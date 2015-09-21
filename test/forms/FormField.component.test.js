@@ -10,7 +10,7 @@ const {
     Simulate,
 } = React.addons.TestUtils;
 
-const renderFormFieldComponent = (fieldConfig, props={onChange: spy()}) => {
+const renderFormFieldComponent = (fieldConfig, props = {onChange: spy()}) => {
     const FormFieldWithContext = injectTheme(FormField);
     const renderedComponents = renderIntoDocument(<FormFieldWithContext type={fieldConfig.type} fieldOptions={fieldConfig.fieldOptions} {...props} />);
 

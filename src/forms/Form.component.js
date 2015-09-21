@@ -15,6 +15,7 @@ const Form = React.createClass({
             React.PropTypes.shape(FormField.propTypes)
         ),
         onFormFieldUpdate: React.PropTypes.func,
+        source: React.PropTypes.object.isRequired,
     },
 
     getDefaultProps() {
@@ -57,7 +58,7 @@ const Form = React.createClass({
         return true;
     },
 
-    updateRequest(fieldConfig, event, ...args) {
+    updateRequest(fieldConfig, event) {
         log.info(`${fieldConfig.name} updated from ${this.props.source[fieldConfig.name]} to ${event.target.value}`);
         this.props.onFormFieldUpdate();
     },

@@ -71,7 +71,7 @@ describe('Form component', () => {
             systemSettings = {
                 keyEmailPort: 587,
                 keyEmailTls: true,
-                keyCalendar: "iso8601",
+                keyCalendar: 'iso8601',
                 SMS_CONFIG: {},
                 orgUnitGroupSetAggregationLevel: 3,
                 omitIndicatorsZeroNumeratorDataMart: false,
