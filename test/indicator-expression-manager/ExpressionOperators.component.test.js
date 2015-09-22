@@ -53,5 +53,35 @@ describe('ExpressionOperators component', () => {
 
             expect(addOperatorCallback).to.be.calledWith(')');
         });
+
+        it('should call callback with "*"', () => {
+            Simulate.click(React.findDOMNode(buttons[2]));
+
+            expect(addOperatorCallback).to.be.calledWith(' * ');
+        });
+
+        it('should call callback with "/"', () => {
+            Simulate.click(React.findDOMNode(buttons[3]));
+
+            expect(addOperatorCallback).to.be.calledWith(' / ');
+        });
+
+        it('should call callback with "+"', () => {
+            Simulate.click(React.findDOMNode(buttons[4]));
+
+            expect(addOperatorCallback).to.be.calledWith(' + ');
+        });
+
+        it('should call callback with "-"', () => {
+            Simulate.click(React.findDOMNode(buttons[5]));
+
+            expect(addOperatorCallback).to.be.calledWith(' - ');
+        });
+
+        it('should call callback with "[days]"', () => {
+            Simulate.click(React.findDOMNode(buttons[6]));
+
+            expect(addOperatorCallback).to.be.calledWith(' [days] ');
+        });
     });
 });

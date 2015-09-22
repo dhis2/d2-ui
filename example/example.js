@@ -1,10 +1,11 @@
 import React from 'react';
 import Form from '../src/forms/Form.component';
-import IndicatorExpressionManager from '../src/indicator-expression-manager/IndicatorExpressionManager.component';
 import TextField from 'material-ui/lib/text-field';
 
-let ThemeManager = new (require('material-ui/lib/styles/theme-manager'))();
-let Colors = require('material-ui/lib/styles/colors');
+import IndicatorExpressionManagerExample from './IndicatorExpressionManagerExample';
+
+const ThemeManager = new (require('material-ui/lib/styles/theme-manager'))();
+const Colors = require('material-ui/lib/styles/colors');
 
 const fcs = [
     {
@@ -28,10 +29,11 @@ const user = {
     password: 'SuperSecret',
 };
 
-let Main = React.createClass({
+const Main = React.createClass({
 
     childContextTypes: {
         muiTheme: React.PropTypes.object,
+        d2: React.PropTypes.object,
     },
 
     getChildContext() {
@@ -53,7 +55,7 @@ let Main = React.createClass({
                 <Form source={user} fieldConfigs={fcs} />
                 <hr />
                 <h3>Expression manager</h3>
-                <IndicatorExpressionManager descriptionLabel="Numerator description" />
+                <IndicatorExpressionManagerExample />
             </div>
         );
     },

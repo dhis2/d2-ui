@@ -65,6 +65,7 @@ module.exports = function karmaConfig( config ) {
                     'loglevel': 'npm:loglevel/lib/loglevel',
                     'material-ui': 'npm:material-ui',
                     'react-stub-context': 'npm:react-stub-context/dist/index',
+                    'rx': 'npm:rx',
                 },
             },
 
@@ -76,6 +77,7 @@ module.exports = function karmaConfig( config ) {
                 './node_modules/loglevel/lib/**',
                 './node_modules/material-ui/**',
                 './node_modules/react-stub-context/**',
+                './node_modules/rx/**',
 
                 // App source files
                 'src/**/*.js',

@@ -14,11 +14,11 @@ const ExpressionOperators = React.createClass({
             <div className={classList}>
                 <FlatButton onClick={this.createOperatorClick('(')}>(</FlatButton>
                 <FlatButton onClick={this.createOperatorClick(')')}>)</FlatButton>
-                <FlatButton>*</FlatButton>
-                <FlatButton>/</FlatButton>
-                <FlatButton>+</FlatButton>
-                <FlatButton>-</FlatButton>
-                <FlatButton>Days</FlatButton>
+                <FlatButton onClick={this.createOperatorClick(' * ')}>*</FlatButton>
+                <FlatButton onClick={this.createOperatorClick(' / ')}>/</FlatButton>
+                <FlatButton onClick={this.createOperatorClick(' + ')}>+</FlatButton>
+                <FlatButton onClick={this.createOperatorClick(' - ')}>-</FlatButton>
+                <FlatButton onClick={this.createOperatorClick(' [days] ')}>Days</FlatButton>
             </div>
         );
     },
