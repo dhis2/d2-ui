@@ -3,12 +3,16 @@ import ExpressionDescription from './ExpressionDescription.component';
 import ExpressionOperators from './ExpressionOperators.component';
 import ExpressionFormula from './ExpressionFormula.component';
 import ListSelect from '../list-select/ListSelect.component';
+import DataElementOperandSelector from './DataElementOperandSelector.component';
+import Tabs from 'material-ui/lib/tabs/tabs';
+import Tab from 'material-ui/lib/tabs/tab';
 
 const IndicatorExpressionManager = React.createClass({
     propTypes: {
         descriptionLabel: React.PropTypes.string.isRequired,
         organisationUnitGroupOptions: React.PropTypes.array.isRequired,
         constantOptions: React.PropTypes.array.isRequired,
+        dataElementOperandModelDefinition: React.PropTypes.object.isRequired,
     },
 
     getDefaultProps() {
@@ -31,14 +35,26 @@ const IndicatorExpressionManager = React.createClass({
                 <ExpressionDescription descriptionLabel={this.i18n.description} onDescriptionChange={this.descriptionChange}/>
                 <ExpressionFormula onFormulaChange={this.formulaChange} formula={this.state.formula} />
                 <ExpressionOperators operatorClicked={this.addOperatorToFormula}  />
-                <ListSelect onItemDoubleClick={this.organisationUnitGroupSelected} source={this.props.organisationUnitGroupOptions} />
-                <ListSelect onItemDoubleClick={this.constantSelected} source={this.props.constantOptions} />
+                <Tabs>
+                    <Tab label={this.i18n.constants}>
+                        <ListSelect onItemDoubleClick={this.constantSelected} source={this.props.constantOptions} />
+                    </Tab>
+                    <Tab label={this.i18n.organisationUnitCounts}>
+                        <ListSelect onItemDoubleClick={this.organisationUnitGroupSelected} source={this.props.organisationUnitGroupOptions} />
+                    </Tab>
+                    <Tab label={this.i18n.dataElements}>
+                        <DataElementOperandSelector onItemDoubleClick={this.dataElementOperandSelected} dataElementOperandModelDefinition={this.props.dataElementOperandModelDefinition} />
+                    </Tab>
+                </Tabs>
             </div>
         );
     },
 
     i18n: {
         description: 'Description',
+        constants: 'Constants',
+        organisationUnitCounts: 'Organisation unit counts',
+        dataElements: 'Data elements',
     },
 
     descriptionChange(newDescription) {
@@ -73,6 +89,12 @@ const IndicatorExpressionManager = React.createClass({
         this.setState({
             formula: [this.state.formula, partToAppend].join(''),
         });
+    },
+
+    dataElementOperandSelected(dataElementOperandId) {
+        const dataElementOperandFormula = ['#{', dataElementOperandId, '}'].join('');
+
+        this.appendToFormula(dataElementOperandFormula);
     },
 });
 

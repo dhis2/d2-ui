@@ -1,6 +1,6 @@
 import React from 'react';
 import ListSelect from './ListSelect.component';
-import {Observable} from 'rx/dist/rx.all';
+import {Observable} from 'rx';
 
 const ListSelectAsync = React.createClass({
     propTypes: {

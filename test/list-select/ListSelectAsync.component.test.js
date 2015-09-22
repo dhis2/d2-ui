@@ -1,7 +1,7 @@
 import React from 'react/addons';
 import ListSelectAsync from '../../src/list-select/ListSelectAsync.component';
 import ListSelect from '../../src/list-select/ListSelect.component';
-import {ReplaySubject} from 'rx/dist/rx.all';
+import {ReplaySubject} from 'rx';
 
 const TestUtils = React.addons.TestUtils;
 const {

@@ -65,7 +65,9 @@ module.exports = function karmaConfig( config ) {
                     'loglevel': 'npm:loglevel/lib/loglevel',
                     'material-ui': 'npm:material-ui',
                     'react-stub-context': 'npm:react-stub-context/dist/index',
-                    'rx': 'npm:rx',
+                    'd2-flux': 'npm:d2-flux',
+                    'rx': 'npm:rx/index',
+                    'lodash.isstring': 'npm:d2-flux/node_modules/lodash.isstring/index',
                 },
             },
 
@@ -78,6 +80,9 @@ module.exports = function karmaConfig( config ) {
                 './node_modules/material-ui/**',
                 './node_modules/react-stub-context/**',
                 './node_modules/rx/**',
+                './node_modules/rx/dist/**',
+                './node_modules/d2-flux/**',
+                './node_modules/d2-flux/node_modules/lodash.isstring/index.js',
 
                 // App source files
                 'src/**/*.js',
