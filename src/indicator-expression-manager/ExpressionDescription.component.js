@@ -5,6 +5,7 @@ const ExpressionDescription = React.createClass({
     propTypes: {
         descriptionLabel: React.PropTypes.string,
         onDescriptionChange: React.PropTypes.func.isRequired,
+        errorText: React.PropTypes.string,
     },
 
     render() {
@@ -13,6 +14,8 @@ const ExpressionDescription = React.createClass({
                 <TextField
                     floatingLabelText={this.props.descriptionLabel}
                     onChange={this.handleDescriptionChange}
+                    fullWidth={true}
+                    errorText={this.props.errorText}
                     />
             </div>
         );

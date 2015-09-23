@@ -7,12 +7,13 @@ const ListSelect = React.createClass({
             value: React.PropTypes.string,
         })).isRequired,
         onItemDoubleClick: React.PropTypes.func.isRequired,
+        listStyle: React.PropTypes.object,
     },
 
     render() {
         return (
             <div className="list-select">
-                <select size="10">
+                <select size="10" style={this.props.listStyle}>
                     {this.props.source.map(item => {
                         return (
                             <option onDoubleClick={this.listItemDoubleClicked} value={item.value}>{item.label}</option>

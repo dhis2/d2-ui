@@ -11,12 +11,21 @@ const {
 
 describe('IndicatorExpressionManager component', () => {
     let indicatorExpressionManagerComponent;
+    let d2Mock;
 
     beforeEach(() => {
+        d2Mock = {
+            models: {
+                dataElementOperand: {
+                    list: spy(),
+                },
+            },
+        };
+
         const IndicatorExpressionManagerWithContext = injectTheme(IndicatorExpressionManager);
 
         const renderedComponents = TestUtils.renderIntoDocument(
-            <IndicatorExpressionManagerWithContext />);
+            <IndicatorExpressionManagerWithContext d2={d2Mock} />);
         indicatorExpressionManagerComponent = findRenderedComponentWithType(renderedComponents, IndicatorExpressionManager);
     });
 

@@ -1,3 +1,34 @@
+$color--success: #006400;
+$color--failure: #8B0000;
+
+
+@import 'susy';
+
 .indicator-expression-manager {
-  color: inherit;
+  @include container();
+}
+
+.indicator-expression-manager__left {
+  @include span(6 of 12);
+}
+
+.indicator-expression-manager__right {
+  @include span(6 of 12 last);
+}
+
+.indicator-expression-manager__description {
+  @include span(12 of 12 last);
+  padding-bottom: 1rem;
+}
+
+.indicator-expression-manager__readable-expression {
+  padding: 1rem 0;
+}
+
+.indicator-expression-manager__readable-expression__message--valid {
+  color: $color--success;
+}
+
+.indicator-expression-manager__readable-expression__message--invalid {
+  color: $color--failure;
 }

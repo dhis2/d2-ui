@@ -7,6 +7,7 @@ const DataElementOperandSelector = React.createClass({
     propTypes: {
         dataElementOperandModelDefinition: React.PropTypes.object.isRequired,
         onItemDoubleClick: React.PropTypes.func.isRequired,
+        listStyle: React.PropTypes.object,
     },
 
     componentWillMount() {
@@ -30,7 +31,10 @@ const DataElementOperandSelector = React.createClass({
     render() {
         return (
             <div className="data-element-operand-selector">
-                <ListSelectAsync onItemDoubleClick={this.props.onItemDoubleClick} source={this.storeObservable} />
+                <ListSelectAsync onItemDoubleClick={this.props.onItemDoubleClick}
+                                 source={this.storeObservable}
+                                 listStyle={this.props.listStyle}
+                    />
             </div>
         );
     },
