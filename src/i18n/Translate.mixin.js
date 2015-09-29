@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Translation = {
+const Translate = {
     contextTypes: {
         d2: React.PropTypes.object.isRequired,
     },
@@ -10,4 +10,4 @@ const Translation = {
     },
 };
 
-export default Translation;
+export default Translate;
