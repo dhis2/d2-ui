@@ -6,7 +6,9 @@ import ListSelect from '../list-select/ListSelect.component';
 import DataElementOperandSelector from './DataElementOperandSelector.component';
 import Tabs from 'material-ui/lib/tabs/tabs';
 import Tab from 'material-ui/lib/tabs/tab';
+import Paper from 'material-ui/lib/paper';
 import classes from 'classnames';
+import log from 'loglevel';
 
 /**
  * @component IndicatorExpressionManager
@@ -52,7 +54,9 @@ const IndicatorExpressionManager = React.createClass({
         expressionStatusActions: React.PropTypes.object.isRequired,
         expressionStatusStore: React.PropTypes.object.isRequired,
         indicatorExpressionChanged: React.PropTypes.func.isRequired,
-        dataElementOperandModelDefinition: React.PropTypes.object.isRequired,
+        dataElementOperandSelectorActions: React.PropTypes.object.isRequired,
+        descriptionValue: React.PropTypes.string.isRequired,
+        formulaValue: React.PropTypes.string.isRequired,
     },
 
     getDefaultProps() {
@@ -64,8 +68,8 @@ const IndicatorExpressionManager = React.createClass({
 
     getInitialState() {
         return {
-            formula: '',
-            description: '',
+            formula: this.props.formulaValue,
+            description: this.props.descriptionValue,
             expressionStatus: {
                 description: '',
                 isValid: false,
@@ -78,6 +82,8 @@ const IndicatorExpressionManager = React.createClass({
             return true;
         }
 
+        let first = true;
+
         this.disposable = this.props.expressionStatusStore
             .subscribe(expressionStatus => {
                 this.setState({
@@ -87,13 +93,22 @@ const IndicatorExpressionManager = React.createClass({
                         message: expressionStatus.message,
                     },
                 }, () => {
+                    if (first) {
+                        first = false;
+                        return;
+                    }
+
                     this.props.indicatorExpressionChanged({
                         formula: this.state.formula,
                         description: this.state.description,
                         expressionStatus: this.state.expressionStatus,
                     });
                 });
-            });
+            }, error => log.error(error));
+
+        if (this.props.formulaValue.trim()) {
+            this.requestExpressionStatus();
+        }
     },
 
     componentWillUnmount() {
@@ -119,25 +134,23 @@ const IndicatorExpressionManager = React.createClass({
 
         return (
             <div className="indicator-expression-manager">
-                <div className="indicator-expression-manager__description">
-                    <ExpressionDescription descriptionLabel={this.i18n.description}
-                                           onDescriptionChange={this.descriptionChange}
-                                           errorText={!isDescriptionValid() ? this.i18n.thisFieldIsRequired : undefined}
-                        />
-                </div>
-                <div className="indicator-expression-manager__readable-expression">
-                    <div>{this.state.expressionStatus.description}</div>
-                    <div className={statusMessageClasses}>{this.state.expressionStatus.message}</div>
-                </div>
                 <div className="indicator-expression-manager__left">
-                    <ExpressionFormula onFormulaChange={this.formulaChange} formula={this.state.formula} />
+                    <div className="indicator-expression-manager__description">
+                        <ExpressionDescription descriptionValue={this.state.description}
+                                               descriptionLabel={this.i18n.description}
+                                               onDescriptionChange={this.descriptionChange}
+                                               errorText={!isDescriptionValid() ? this.i18n.thisFieldIsRequired : undefined}
+                            />
+                    </div>
+                    <ExpressionFormula onFormulaChange={this.formulaChange}
+                                       formula={this.state.formula} />
                     <ExpressionOperators operatorClicked={this.addOperatorToFormula}  />
                 </div>
                 <div className="indicator-expression-manager__right">
                     <Tabs>
                         <Tab label={this.i18n.dataElements}>
                             <DataElementOperandSelector onItemDoubleClick={this.dataElementOperandSelected}
-                                                        dataElementOperandModelDefinition={this.props.dataElementOperandModelDefinition}
+                                                        dataElementOperandSelectorActions={this.props.dataElementOperandSelectorActions}
                                                         listStyle={listStyle}
                                 />
                         </Tab>
@@ -155,6 +168,10 @@ const IndicatorExpressionManager = React.createClass({
                         </Tab>
                     </Tabs>
                 </div>
+                <div className="indicator-expression-manager__readable-expression">
+                    <Paper>{this.state.expressionStatus.description}</Paper>
+                    <div className={statusMessageClasses}>{this.state.expressionStatus.message}</div>
+                </div>
             </div>
         );
     },
@@ -170,6 +187,12 @@ const IndicatorExpressionManager = React.createClass({
     descriptionChange(newDescription) {
         this.setState({
             description: newDescription,
+        }, () => {
+            this.props.indicatorExpressionChanged({
+                formula: this.state.formula,
+                description: this.state.description,
+                expressionStatus: this.state.expressionStatus,
+            });
         });
     },
 

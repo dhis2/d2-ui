@@ -1,5 +1,6 @@
 import React from 'react/addons';
 import {element} from 'd2-testutils';
+import injectTheme from '../config/inject-theme';
 import DataElementOperandSelector from '../../src/indicator-expression-manager/DataElementOperandSelector.component';
 import ListSelectAsync from '../../src/list-select/ListSelectAsync.component';
 import {Observable} from 'rx';
@@ -16,9 +17,12 @@ describe('DataElementOperandSelector component', () => {
     beforeEach(() => {
         onItemDoubleClickSpy = spy();
 
-        dataElementOperandSelectorComponent = renderIntoDocument(
-            <DataElementOperandSelector onItemDoubleClick={onItemDoubleClickSpy} />
+        const DataElementOperandSelectorWithContext = injectTheme(DataElementOperandSelector);
+        const renderedComponents = renderIntoDocument(
+            <DataElementOperandSelectorWithContext onItemDoubleClick={onItemDoubleClickSpy} />
         );
+
+        dataElementOperandSelectorComponent = findRenderedComponentWithType(renderedComponents, DataElementOperandSelector);
     });
 
     it('should have the component name as a class', () => {

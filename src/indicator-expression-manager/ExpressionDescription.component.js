@@ -4,6 +4,7 @@ import TextField from 'material-ui/lib/text-field';
 const ExpressionDescription = React.createClass({
     propTypes: {
         descriptionLabel: React.PropTypes.string,
+        descriptionValue: React.PropTypes.string,
         onDescriptionChange: React.PropTypes.func.isRequired,
         errorText: React.PropTypes.string,
     },
@@ -12,6 +13,7 @@ const ExpressionDescription = React.createClass({
         return (
             <div className="expression-description">
                 <TextField
+                    value={this.props.descriptionValue}
                     floatingLabelText={this.props.descriptionLabel}
                     onChange={this.handleDescriptionChange}
                     fullWidth={true}

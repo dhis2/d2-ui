@@ -20,7 +20,10 @@ describe('ExpressionDescription component', () => {
         const ExpressionDescriptionWithContext = injectTheme(ExpressionDescription);
 
         const renderedComponents = TestUtils.renderIntoDocument(
-            <ExpressionDescriptionWithContext onDescriptionChange={onDescriptionChangeSpy} descriptionLabel="Numerator description" />
+            <ExpressionDescriptionWithContext onDescriptionChange={onDescriptionChangeSpy}
+                                              descriptionLabel="Numerator description"
+                                              descriptionValue="My indicator numerator description"
+                />
         );
         expressionDescriptionComponent = findRenderedComponentWithType(renderedComponents, ExpressionDescription);
     });
@@ -38,6 +41,12 @@ describe('ExpressionDescription component', () => {
 
         beforeEach(() => {
             descriptionComponent = findRenderedComponentWithType(expressionDescriptionComponent, TextField);
+        });
+
+        it('should render the passed descriptionValue as the value of the TextField', () => {
+            const inputBox = React.findDOMNode(descriptionComponent).querySelector('input');
+
+            expect(inputBox.value).to.equal('My indicator numerator description');
         });
 
         it('should have the a floatingLabelText that equals the descriptionLabel property', () => {

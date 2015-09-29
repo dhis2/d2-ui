@@ -1,5 +1,6 @@
 $color--success: #006400;
 $color--failure: #8B0000;
+$background-color-expression: #EEE;
 
 
 @import 'susy';
@@ -17,12 +18,20 @@ $color--failure: #8B0000;
 }
 
 .indicator-expression-manager__description {
-  @include span(12 of 12 last);
   padding-bottom: 1rem;
 }
 
 .indicator-expression-manager__readable-expression {
-  padding: 1rem 0;
+  @include span(12 of 12 last);
+
+  div {
+    margin-top: 1rem;
+  }
+
+  div:first-child {
+    background-color: $background-color-expression;
+    padding: 1rem;
+  }
 }
 
 .indicator-expression-manager__readable-expression__message--valid {

@@ -8,7 +8,8 @@
     "test-watch": "./node_modules/karma/bin/karma start test/config/karma.config.js",
     "lint": "./node_modules/eslint/bin/eslint.js src && ./node_modules/eslint/bin/eslint.js --env node,mocha --global expect,sinon --rule 'no-unused-expressions: 0' test && scss-lint",
     "prebuild": "npm test && npm run lint",
-    "build": "./node_modules/babel/bin/babel.js src --out-dir dist && compass compile && cp ./package.json ./dist/package.json && cp -r scss dist/scss",
+    "build": "npm run build-only",
+    "build-only": "./node_modules/babel/bin/babel.js src --out-dir dist && compass compile && cp ./package.json ./dist/package.json && cp -r scss dist/scss",
     "validate": "npm ls"
   },
   "devDependencies": {
