@@ -5,6 +5,11 @@ import dataElementOperandSelectorActions from './dataElementOperandSelector.acti
 import TextField from 'material-ui/lib/text-field';
 import LinearProgress from 'material-ui/lib/linear-progress';
 import Pagination from '../pagination/Pagination.component';
+import Translate from '../i18n/Translate.mixin';
+import {config} from 'd2';
+
+config.i18n.strings.add('search_by_name');
+console.log(Array.from(config.i18n.strings));
 
 const DataElementOperandSelector = React.createClass({
     propTypes: {
@@ -12,6 +17,8 @@ const DataElementOperandSelector = React.createClass({
         onItemDoubleClick: React.PropTypes.func.isRequired,
         listStyle: React.PropTypes.object,
     },
+
+    mixins: [Translate],
 
     getInitialState() {
         return {
@@ -76,7 +83,7 @@ const DataElementOperandSelector = React.createClass({
                             onNextPageClick={this.getNextPage}
                             onPreviousPageClick={this.getPreviousPage}
                     />
-                <TextField hintText={this.i18n.search} onChange={this.searchDataElement} />
+                <TextField hintText={this.getTranslation('search_by_name')} onChange={this.searchDataElement} />
                 {this.state.isLoading ? <LinearProgress mode="indeterminate"  /> : null}
                 <ListSelectAsync onItemDoubleClick={this.props.onItemDoubleClick}
                                  source={this.storeObservable}
@@ -94,10 +101,6 @@ const DataElementOperandSelector = React.createClass({
             });
 
         this.setState({isLoading: true});
-    },
-
-    i18n: {
-        search: 'search_by_name',
     },
 });
 

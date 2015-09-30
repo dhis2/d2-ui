@@ -9,6 +9,14 @@ import Tab from 'material-ui/lib/tabs/tab';
 import Paper from 'material-ui/lib/paper';
 import classes from 'classnames';
 import log from 'loglevel';
+import Translate from '../i18n/Translate.mixin';
+import {config} from 'd2';
+
+config.i18n.strings.add('data_elements');
+config.i18n.strings.add('description');
+config.i18n.strings.add('organisation_unit_counts');
+config.i18n.strings.add('constants');
+config.i18n.strings.add('this_field_is_required');
 
 /**
  * @component IndicatorExpressionManager
@@ -58,6 +66,8 @@ const IndicatorExpressionManager = React.createClass({
         descriptionValue: React.PropTypes.string.isRequired,
         formulaValue: React.PropTypes.string.isRequired,
     },
+
+    mixins: [Translate],
 
     getDefaultProps() {
         return {
@@ -137,9 +147,9 @@ const IndicatorExpressionManager = React.createClass({
                 <div className="indicator-expression-manager__left">
                     <div className="indicator-expression-manager__description">
                         <ExpressionDescription descriptionValue={this.state.description}
-                                               descriptionLabel={this.i18n.description}
+                                               descriptionLabel={this.getTranslation('description')}
                                                onDescriptionChange={this.descriptionChange}
-                                               errorText={!isDescriptionValid() ? this.i18n.thisFieldIsRequired : undefined}
+                                               errorText={!isDescriptionValid() ? this.getTranslation('this_field_is_required') : undefined}
                             />
                     </div>
                     <ExpressionFormula onFormulaChange={this.formulaChange}
@@ -148,19 +158,19 @@ const IndicatorExpressionManager = React.createClass({
                 </div>
                 <div className="indicator-expression-manager__right">
                     <Tabs>
-                        <Tab label={this.i18n.dataElements}>
+                        <Tab label={this.getTranslation('data_elements')}>
                             <DataElementOperandSelector onItemDoubleClick={this.dataElementOperandSelected}
                                                         dataElementOperandSelectorActions={this.props.dataElementOperandSelectorActions}
                                                         listStyle={listStyle}
                                 />
                         </Tab>
-                        <Tab label={this.i18n.organisationUnitCounts}>
+                        <Tab label={this.getTranslation('organisationUnit_counts')}>
                             <ListSelect onItemDoubleClick={this.organisationUnitGroupSelected}
                                         source={this.props.organisationUnitGroupOptions}
                                         listStyle={listStyle}
                                 />
                         </Tab>
-                        <Tab label={this.i18n.constants}>
+                        <Tab label={this.getTranslation('constants')}>
                             <ListSelect onItemDoubleClick={this.constantSelected}
                                         source={this.props.constantOptions}
                                         listStyle={listStyle}
@@ -174,14 +184,6 @@ const IndicatorExpressionManager = React.createClass({
                 </div>
             </div>
         );
-    },
-
-    i18n: {
-        description: 'Description',
-        constants: 'Constants',
-        organisationUnitCounts: 'Organisation unit counts',
-        dataElements: 'Data elements',
-        thisFieldIsRequired: 'This field is required',
     },
 
     descriptionChange(newDescription) {

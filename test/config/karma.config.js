@@ -54,6 +54,7 @@ module.exports = function karmaConfig( config ) {
                     'phantomjs-polyfill': './node_modules/phantomjs-polyfill/bind-polyfill.js',
                     'babel': './node_modules/babel-core/browser.js',
                     'material-ui/*': './node_modules/material-ui/*',
+                    'npm:d2': 'node_modules/d2/d2',
                 },
                 'map': {
                     // use react with addons when requesting normal react so we have the same react instance in src and test
@@ -68,6 +69,7 @@ module.exports = function karmaConfig( config ) {
                     'd2-flux': 'npm:d2-flux',
                     'rx': 'npm:rx/index',
                     'lodash.isstring': 'npm:d2-flux/node_modules/lodash.isstring/index',
+                    'd2': 'npm:d2',
                 },
             },
 
@@ -83,6 +85,8 @@ module.exports = function karmaConfig( config ) {
                 './node_modules/rx/dist/**',
                 './node_modules/d2-flux/**',
                 './node_modules/d2-flux/node_modules/lodash.isstring/index.js',
+                './node_modules/d2/**',
+                './node_modules/d2/d2.js',
 
                 // App source files
                 'src/**/*.js',
