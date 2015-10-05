@@ -1,8 +1,11 @@
 import React from 'react';
 import classes from 'classnames';
+import Translate from '../i18n/Translate.mixin';
+import {config} from 'd2';
 
-const noop = () => {
-};
+const noop = () => {};
+
+config.i18n.strings.add('of_page');
 
 const Pagination = React.createClass({
     propTypes: {
@@ -16,6 +19,8 @@ const Pagination = React.createClass({
             React.PropTypes.number,
         ]),
     },
+
+    mixins: [Translate],
 
     getDefaultProps() {
         return {
@@ -39,7 +44,7 @@ const Pagination = React.createClass({
             <div className="data-table-pager">
                 <ul className="data-table-pager--buttons">
                     {total ?
-                        <li className="data-table-pager--page-info"><span>{currentlyShown} of {total}</span></li> : ''}
+                        <li className="data-table-pager--page-info"><span>{currentlyShown} {`${this.getTranslation('of_page')}`} {total}</span></li> : ''}
                     <li className="data-table-pager--previous-page">
                         <i className={previousPageClasses}
                            onClick={hasPreviousPage() ? onPreviousPageClick : noop}>navigate_before</i>

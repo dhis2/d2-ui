@@ -1,8 +1,13 @@
 import React from 'react/addons';
 import {element} from 'd2-testutils';
-import Pagination from '../../src/pagination/Pagination.component';
+import injectTheme from '../config/inject-theme';
+import PaginationWithoutContext from '../../src/pagination/Pagination.component';
 
-const TestUtils = React.addons.TestUtils;
+const {
+    findRenderedComponentWithType,
+    renderIntoDocument,
+    Simulate,
+} = React.addons.TestUtils;
 
 describe('Pagination component', () => {
     let dataTablePagerComponent;
@@ -18,7 +23,14 @@ describe('Pagination component', () => {
             total: 725,
         };
 
-        renderComponent = () => dataTablePagerComponent = TestUtils.renderIntoDocument(<Pagination {...mockPager} />);
+        const Pagination = injectTheme(PaginationWithoutContext);
+        renderComponent = () => {
+            const renderedComponents = renderIntoDocument(<Pagination {...mockPager} />);
+
+            dataTablePagerComponent = findRenderedComponentWithType(renderedComponents, PaginationWithoutContext);
+
+            return dataTablePagerComponent;
+        };
     });
 
     it('should have the component name as a class', () => {
@@ -99,7 +111,7 @@ describe('Pagination component', () => {
 
         const nextPageElement = element(dataTablePagerComponent, '.data-table-pager--next-page');
 
-        TestUtils.Simulate.click(nextPageElement.element.querySelector('i'));
+        Simulate.click(nextPageElement.element.querySelector('i'));
 
         expect(mockPager.onNextPageClick).to.be.called;
     });
@@ -111,7 +123,7 @@ describe('Pagination component', () => {
 
         const previousPageElement = element(dataTablePagerComponent, '.data-table-pager--previous-page');
 
-        TestUtils.Simulate.click(previousPageElement.element.querySelector('i'));
+        Simulate.click(previousPageElement.element.querySelector('i'));
 
         expect(mockPager.onPreviousPageClick).to.be.called;
     });

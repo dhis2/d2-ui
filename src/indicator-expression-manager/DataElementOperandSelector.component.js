@@ -9,7 +9,6 @@ import Translate from '../i18n/Translate.mixin';
 import {config} from 'd2';
 
 config.i18n.strings.add('search_by_name');
-console.log(Array.from(config.i18n.strings));
 
 const DataElementOperandSelector = React.createClass({
     propTypes: {
