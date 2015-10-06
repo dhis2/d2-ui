@@ -22,18 +22,28 @@ describe('Auth mixin', () => {
     });
 
     it('should have a user property', () => {
-        expect(Auth.currentUser).to.not.be.undefined;
+        expect(Auth.getCurrentUser()).to.not.be.undefined;
     });
 
     it('should have a canCreate method on the user object', () => {
-        expect(Auth.currentUser.canCreate).to.be.a('function');
+        expect(Auth.getCurrentUser().canCreate).to.be.a('function');
     });
 
     it('should have a canCreate method on the user object', () => {
-        expect(Auth.currentUser.canCreatePublic).to.be.a('function');
+        expect(Auth.getCurrentUser().canCreatePublic).to.be.a('function');
     });
 
-    it('should not be able to set the currentUser', () => {
-        expect(() => Auth.currentUser = 'Override').to.throw();
+    describe('getModelDefinitionByName', () => {
+        it('should be a method', () => {
+            expect(Auth.getModelDefinitionByName).to.be.a('function');
+        });
+
+        it('should return the model definition on D2', () => {
+            expect(Auth.getModelDefinitionByName('dataElement')).to.equal(Auth.context.d2.models.dataElement);
+        });
+
+        it('should return undefined if the definition does not exist', () => {
+            expect(Auth.getModelDefinitionByName('user')).to.be.undefined;
+        });
     });
 });

@@ -5,8 +5,12 @@ const Auth = {
         d2: React.PropTypes.object.isRequired,
     },
 
-    get currentUser() {
+    getCurrentUser() {
         return this.context.d2.currentUser;
+    },
+
+    getModelDefinitionByName(modelType) {
+        return this.context.d2.models[modelType];
     },
 };
 
