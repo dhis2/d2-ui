@@ -1,14 +1,25 @@
 import React from 'react/addons';
 import {element} from 'd2-testutils';
-import DataTable from '../../src/data-table/DataTable.component';
+import DataTableWithoutContext from '../../src/data-table/DataTable.component';
+import injectTheme from '../config/inject-theme';
 
 const TestUtils = React.addons.TestUtils;
 
 describe('DataTable component', () => {
+    let DataTable;
     let dataTableComponent;
+    let renderedComponents;
+
+    function renderComponent(props = {}) {
+        DataTable = injectTheme(DataTableWithoutContext);
+        renderedComponents = TestUtils.renderIntoDocument(<DataTable {...props} />);
+        dataTableComponent = TestUtils.findRenderedComponentWithType(renderedComponents, DataTableWithoutContext);
+
+        return dataTableComponent;
+    }
 
     beforeEach(() => {
-        dataTableComponent = TestUtils.renderIntoDocument(<DataTable />);
+        renderComponent();
     });
 
     describe('initial state', () => {
@@ -24,7 +35,7 @@ describe('DataTable component', () => {
     describe('with headers', () => {
         it('should have set the passed columns', () => {
             const columns = ['name', 'code', 'lastUpdated'];
-            dataTableComponent = TestUtils.renderIntoDocument(<DataTable columns={columns}/>);
+            renderComponent({columns});
 
             expect(dataTableComponent.state.columns).to.deep.equal(['name', 'code', 'lastUpdated']);
         });
@@ -32,7 +43,7 @@ describe('DataTable component', () => {
         it('should not set the columns if the column value is not an array of strings', () => {
             const columns = ['name', 'code', 'lastUpdated', {}];
 
-            dataTableComponent = TestUtils.renderIntoDocument(<DataTable columns={columns}/>);
+            renderComponent({columns});
 
             expect(dataTableComponent.state.columns).to.deep.equal(['name', 'lastUpdated']);
         });
@@ -60,9 +71,7 @@ describe('DataTable component', () => {
                 {uid: 'c1', name: 'BFG', lastUpdated: 'Today'},
             ];
 
-            dataTableComponent = TestUtils.renderIntoDocument(
-                <DataTable rows={dataTableSource}/>
-            );
+            dataTableComponent = renderComponent({rows: dataTableSource});
         });
 
         it('should have set the dataRows onto the state', () => {
@@ -70,9 +79,7 @@ describe('DataTable component', () => {
         });
 
         it('should not set the dataRows when the received value is not iterable', () => {
-            dataTableComponent = TestUtils.renderIntoDocument(
-                <DataTable rows={{}}/>
-            );
+            dataTableComponent = renderComponent({rows: {}});
 
             expect(dataTableComponent.state.dataRows.length).to.equal(0);
         });
@@ -82,13 +89,13 @@ describe('DataTable component', () => {
         });
 
         it('should update the source when the rows property changes', () => {
-            dataTableComponent.setProps({rows: [{uid: 'b1', name: 'BDC', lastUpdated: 'Tomorrow'}]});
+            renderedComponents.setProps({rows: [{uid: 'b1', name: 'BDC', lastUpdated: 'Tomorrow'}]});
 
             expect(dataTableComponent.state.dataRows.length).to.equal(1);
         });
 
         it('should correctly render a map', () => {
-            dataTableComponent.setProps({
+            renderedComponents.setProps({
                 rows: new Map([
                     ['b1', {uid: 'b1', name: 'BDC', lastUpdated: 'Tomorrow'}],
                     ['f1', {uid: 'f1', name: 'BFG', lastUpdated: 'Last year'}],
