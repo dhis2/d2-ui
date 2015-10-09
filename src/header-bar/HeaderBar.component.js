@@ -18,7 +18,7 @@ function islocalStorageSupported() {
         localStorage.setItem('dhis2.menu.localstorage.test', 'dhis2.menu.localstorage.test');
         localStorage.removeItem('dhis2.menu.localstorage.test');
         return true;
-    } catch(e) {
+    } catch (e) {
         return false;
     }
 }
