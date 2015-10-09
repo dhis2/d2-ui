@@ -32,6 +32,14 @@ function injectTheme(Component, theme) {
                     return `${key}_translated`;
                 },
             },
+            Api: {
+                getApi: stub().returns({baseUrl: 'http://localhost:8080'}),
+            },
+            system: {
+                settings: {
+                    all: stub().returns(Promise.resolve({})),
+                },
+            },
         },
     });
 }
