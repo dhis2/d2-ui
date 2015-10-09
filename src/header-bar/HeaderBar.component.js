@@ -1,3 +1,31 @@
+/**
+ * @component HeaderBar
+ *
+ * @description
+ * The `HeaderBar` component can be used to display the systems header bar at the top of your app. The headerbar
+ * includes the `Apps` and `Profile` menus that are displayed in all the core
+ *
+ * @example
+ *
+ * ```html
+ * <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+ * ```
+ *
+ * ```js
+ * import React from 'react';
+ * import HeaderBar from 'd2-ui/lib/header-bar/HeaderBar.component';
+ *
+ * const App = React.createClass({
+ *     render() {
+ *         return (
+ *             <div>
+ *                 <HeaderBar />
+ *             </div>
+ *         );
+ *     }
+ * });
+ ```
+ */
 import React from 'react';
 import './translate';
 import './menu';
