@@ -3,5 +3,5 @@ require "compass"
 require "breakpoint"
 require "susy"
 
-css_dir = "dist/css"
+css_dir = "lib/css"
 sass_dir = "scss"
