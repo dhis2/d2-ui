@@ -13,12 +13,13 @@ const emptyComponent = class extends React.Component { render() { return null; }
  */
 const FormField = React.createClass({
     propTypes: {
-        type: React.PropTypes.element.isRequired,
+        type: React.PropTypes.func.isRequired,
         isValid: React.PropTypes.bool.isRequired,
         errorMessage: React.PropTypes.string,
         fieldOptions: React.PropTypes.object.isRequired,
         value: React.PropTypes.any,
         onChange: React.PropTypes.func.isRequired,
+        updateEvent: React.PropTypes.oneOf(['onChange', 'onBlur']),
     },
 
     getDefaultProps() {
