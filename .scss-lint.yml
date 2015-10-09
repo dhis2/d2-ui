@@ -1,5 +1,7 @@
 scss_files: ./scss
 
+exclude: ./scss/HeaderBar.scss
+
 linters:
   SelectorFormat:
     convention: hyphenated_BEM
