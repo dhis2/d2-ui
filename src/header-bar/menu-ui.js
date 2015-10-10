@@ -944,7 +944,6 @@ import apps from './menus/apps';
 
         const profile = getProfileMenu({helpPageLink});
         const applications = getApplicationMenu({isMobile});
-        console.log(profile, applications);
 
         profile.dataSource[3].defaultAction = helpPageLink;
 
