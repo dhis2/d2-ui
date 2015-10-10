@@ -1,12 +1,13 @@
 *.iml
 
-node_modules/*
+node_modules/
 .sass-cache
 css/
-coverage/*
+coverage/
 
-dist/*
-lib/*
+dist/
+build/
+lib/
 
 #TODO: Jshint is a dependency of the git hook which installs these files on install...
 .jshintignore
