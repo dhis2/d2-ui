@@ -1,0 +1,10 @@
+.sass-cache
+.git
+
+d2-ui.iml
+
+.idea
+node_modules/*
+coverage/*
+build/*
+dist/*
