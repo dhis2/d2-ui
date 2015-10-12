@@ -35,18 +35,22 @@ const FormField = React.createClass({
         let onChangeFn = this.props.updateFn;
         let onBlurFn = undefined;
         if (this.props.updateEvent === 'onBlur') {
-            onBlurFn = this.props.updateFn;
+            onBlurFn = (e) => {
+                if (e.target.value !== this.props.value) {
+                    this.props.updateFn(e);
+                }
+            };
             onChangeFn = undefined;
         }
 
         return (
             <div className={classList}>
                 <this.props.type
-                    {...this.props.fieldOptions}
                     errorText={this.props.errorMessage}
                     defaultValue={this.props.value}
                     onChange={onChangeFn}
                     onBlur={onBlurFn}
+                    {...this.props.fieldOptions}
                 />
             </div>
         );
