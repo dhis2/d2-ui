@@ -1,21 +1,25 @@
 import React from 'react';
 import classes from 'classnames';
 import FormField from './FormField.component';
-import log from 'loglevel';
+// import log from 'loglevel';
 
 /**
  *
  */
 const Form = React.createClass({
     propTypes: {
-        children: React.PropTypes.arrayOf(
-            React.PropTypes.element
-        ),
         fieldConfigs: React.PropTypes.arrayOf(
-            React.PropTypes.shape(FormField.propTypes)
-        ),
+            React.PropTypes.shape({
+                name: React.PropTypes.string.isRequired,
+                type: React.PropTypes.func.isRequired,
+                fieldOptions: React.PropTypes.object,
+                validators: React.PropTypes.arrayOf(React.PropTypes.func),
+            })
+        ).isRequired,
         onFormFieldUpdate: React.PropTypes.func,
         source: React.PropTypes.object.isRequired,
+        // Silly rule..
+        children: React.PropTypes.array,
     },
 
     getDefaultProps() {
@@ -28,18 +32,25 @@ const Form = React.createClass({
         return this.props.fieldConfigs
             .filter(fieldConfig => fieldConfig.type)
             .map(fieldConfig => {
+                const fieldValue = this.props.source && this.props.source[fieldConfig.name];
                 const errorMessage = (fieldConfig.validators || [])
-                    .filter(validator => validator() !== true)
-                    .map(validator => validator())
+                    .filter(validator => validator(fieldValue) !== true)
+                    .map(validator => validator(fieldValue))
                     .shift();
+
+                const updateEvent = fieldConfig.updateEvent === 'onBlur' ? 'onBlur' : 'onChange';
 
                 return (
                     <FormField  fieldOptions={fieldConfig.fieldOptions}
                                 key={fieldConfig.name}
                                 type={fieldConfig.type}
                                 errorMessage={errorMessage}
-                                value={fieldConfig.value}
-                                onChange={this.updateRequest.bind(this, fieldConfig)} />
+                                onChange={this.updateRequest.bind(this, fieldConfig)}
+                                value={fieldValue}
+                                isValid={this.isValid()}
+                                updateFn={this.updateRequest.bind(this, fieldConfig)}
+                                updateEvent={updateEvent}
+                        />
                 );
             });
     },
@@ -60,8 +71,7 @@ const Form = React.createClass({
     },
 
     updateRequest(fieldConfig, event) {
-        log.info(`${fieldConfig.name} updated from ${this.props.source[fieldConfig.name]} to ${event.target.value}`);
-        this.props.onFormFieldUpdate(fieldConfig.name, event.target.value);
+        this.props.onFormFieldUpdate && this.props.onFormFieldUpdate(fieldConfig.name, event.target.value);
     },
 });
 
