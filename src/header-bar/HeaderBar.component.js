@@ -118,7 +118,7 @@ const HeaderBar = React.createClass({
     },
 
     getStylesheetUrl(stylesheet) {
-        return [this.getBaseUrl(), stylesLocation, stylesheet || defaultStylesheetUrl].join('/');
+        return [this.getBaseUrl(), stylesLocation, 'themes', stylesheet || defaultStylesheetUrl].join('/');
     },
 
     getStyleName(userStyle) {
@@ -139,11 +139,26 @@ const HeaderBar = React.createClass({
             boxShadow: '0 0 3px #222',
         };
 
+        const headerBannerStyle = {
+            position: 'absolute',
+            top: '13px',
+            left: '55px',
+        };
+
+        const headerTextStyle = {
+            position: 'absolute',
+            top: 12,
+            left: 175,
+            fontWeight: 'bold',
+            color: '#fff',
+            fontSize: 16,
+        };
+
         return (
             <div className="header-bar" style={headerBarStyle} id="header">
                 <a href={this.state.headerBar.link} title={this.state.headerBar.title} className="title-link">
-                    <img className="header-logo" src={this.state.headerBar.logo} id="headerBanner" />
-                    <span className="header-text" id="headerText">{this.state.headerBar.title}</span>
+                    <img className="header-logo" src={this.state.headerBar.logo} id="headerBanner" style={headerBannerStyle} />
+                    <span className="header-text" id="headerText" style={headerTextStyle}>{this.state.headerBar.title}</span>
                 </a>
                 <div>{this.state.headerBar.message}</div>
                 <div id="dhisDropDownMenu"></div>
