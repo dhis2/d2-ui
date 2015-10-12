@@ -1,9 +1,11 @@
-$data-table--context-menu--background-color: #FFF;
+$data-table--context-menu--border-color: #FFF;
+$data-table--context-menu--background-color: rgba(255, 255, 255, .9);
+$data-table--context-menu--hover-background-color: rgba(200, 200, 255, .9);
 
 .data-table__context-menu {
-  background: rgba(255, 255, 255, .9);
-  border: 1px solid $data-table--context-menu--background-color;
-  padding: $default-padding/2 0;
+  background: $data-table--context-menu--background-color;
+  border: 1px solid $data-table--context-menu--border-color;
+  padding: $default-padding / 2 0;
   position: fixed;
 
   ul {
@@ -16,10 +18,10 @@ $data-table--context-menu--background-color: #FFF;
 .data-table__context-menu__item {
   cursor: pointer;
   display: block;
-  padding: $default-margin/2 $default-padding;
+  padding: $default-margin / 2 $default-padding;
   text-align: left;
 }
 
 .data-table__context-menu__item:hover {
-  background: rgba(200, 200, 255, .9);
+  background: $data-table--context-menu--hover-background-color;
 }

@@ -12,7 +12,10 @@ $table-row-border-color: #E0E0E0;
 $table-row-hover-color: #B3E5FC;
 $table-row-responsive-header-color: #757575;
 
-$data-table-cell-padding: $default-padding/2 $default-padding;
+$data-table-cell-padding: $default-padding / 2 $default-padding;
+
+$box-shadow-color-light: rgba(0, 0, 0, .12);
+$box-shadow-color-dark: rgba(0, 0, 0, .24);
 
 @mixin data-table-cell {
   padding: $data-table-cell-padding;
@@ -25,7 +28,7 @@ $data-table-cell-padding: $default-padding/2 $default-padding;
 .data-table {
   background-color: $data-table-background;
   border-spacing: 0;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .12), 0 1px 2px 0 rgba(0, 0, 0, .24);
+  box-shadow: 0 1px 3px 0 $box-shadow-color-light, 0 1px 2px 0 $box-shadow-color-dark;
   color: $data-table-text-color;
   display: table;
   margin-bottom: $default-margin-large;
