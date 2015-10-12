@@ -1,5 +1,6 @@
 import React from 'react';
 import classes from 'classnames';
+import {isObject} from 'd2-utils';
 
 const DataTableRow = React.createClass({
     propTypes: {
@@ -19,8 +20,17 @@ const DataTableRow = React.createClass({
             });
 
         const columns = this.props.columns.map((columnName, index) => {
+            const rowValue = this.props.dataSource[columnName];
+            let displayValue;
+
+            if (isObject(rowValue)) {
+                displayValue = rowValue.displayName || rowValue.name || rowValue;
+            } else {
+                displayValue = rowValue;
+            }
+
             return (
-                <div key={index} className={'data-table__rows__row__column'}>{this.props.dataSource[columnName]}</div>
+                <div key={index} className={'data-table__rows__row__column'}>{displayValue}</div>
             );
         });
 

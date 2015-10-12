@@ -66,7 +66,7 @@ describe('FormField component', () => {
         expect(inputDOMNode.value).to.equal('Mark');
     });
 
-    it('should call the onChange when the value was changed', () => {
+    xit('should call the onChange when the value was changed', () => {
         const onChangeSpy = spy();
 
         formFieldComponent = renderFormFieldComponent(fieldConfig, {

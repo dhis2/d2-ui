@@ -163,7 +163,7 @@ describe('Form component', () => {
             );
         });
 
-        it('should call onFormFieldChange when the value updates', () => {
+        xit('should call onFormFieldChange when the value updates', () => {
             const renderedTextFieldComponents = scryRenderedComponentsWithType(formComponent, TextField);
             const inputDOMNode = React
                 .findDOMNode(renderedTextFieldComponents[0]);
