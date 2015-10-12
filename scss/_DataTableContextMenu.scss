@@ -1,0 +1,25 @@
+$data-table--context-menu--background-color: #FFF;
+
+.data-table__context-menu {
+  background: rgba(255, 255, 255, .9);
+  border: 1px solid $data-table--context-menu--background-color;
+  padding: $default-padding/2 0;
+  position: fixed;
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.data-table__context-menu__item {
+  cursor: pointer;
+  display: block;
+  padding: $default-margin/2 $default-padding;
+  text-align: left;
+}
+
+.data-table__context-menu__item:hover {
+  background: rgba(200, 200, 255, .9);
+}

@@ -38,6 +38,7 @@ const Form = React.createClass({
                                 key={fieldConfig.name}
                                 type={fieldConfig.type}
                                 errorMessage={errorMessage}
+                                value={fieldConfig.value}
                                 onChange={this.updateRequest.bind(this, fieldConfig)} />
                 );
             });
@@ -60,7 +61,7 @@ const Form = React.createClass({
 
     updateRequest(fieldConfig, event) {
         log.info(`${fieldConfig.name} updated from ${this.props.source[fieldConfig.name]} to ${event.target.value}`);
-        this.props.onFormFieldUpdate();
+        this.props.onFormFieldUpdate(fieldConfig.name, event.target.value);
     },
 });
 
