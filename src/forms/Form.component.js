@@ -38,7 +38,6 @@ const Form = React.createClass({
                     .map(validator => validator(fieldValue))
                     .shift();
 
-                const updateFn = this.updateRequest.bind(this, fieldConfig);
                 const updateEvent = fieldConfig.updateEvent === 'onBlur' ? 'onBlur' : 'onChange';
 
                 return (
@@ -48,7 +47,7 @@ const Form = React.createClass({
                                 errorMessage={errorMessage}
                                 value={fieldValue}
                                 isValid={this.isValid()}
-                                onChange={updateFn}
+                                updateFn={this.updateRequest.bind(this, fieldConfig)}
                                 updateEvent={updateEvent}
                         />
                 );

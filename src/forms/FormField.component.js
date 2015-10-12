@@ -18,7 +18,7 @@ const FormField = React.createClass({
         errorMessage: React.PropTypes.string,
         fieldOptions: React.PropTypes.object.isRequired,
         value: React.PropTypes.any,
-        onChange: React.PropTypes.func.isRequired,
+        updateFn: React.PropTypes.func.isRequired,
         updateEvent: React.PropTypes.oneOf(['onChange', 'onBlur']),
     },
 
@@ -32,13 +32,21 @@ const FormField = React.createClass({
     render() {
         const classList = classes('form-field');
 
+        let onChangeFn = this.props.updateFn;
+        let onBlurFn = undefined;
+        if (this.props.updateEvent === 'onBlur') {
+            onBlurFn = this.props.updateFn;
+            onChangeFn = undefined;
+        }
+
         return (
             <div className={classList}>
                 <this.props.type
                     {...this.props.fieldOptions}
                     errorText={this.props.errorMessage}
-                    value={this.props.value}
-                    onChange={this.props.onChange}
+                    defaultValue={this.props.value}
+                    onChange={onChangeFn}
+                    onBlur={onBlurFn}
                 />
             </div>
         );
