@@ -29,6 +29,21 @@ const FormField = React.createClass({
         };
     },
 
+
+    renderHelpText() {
+        const helpStyle = {
+            color: '#888',
+            fontSize: '.75rem',
+        };
+
+        if (this.props.fieldOptions && this.props.fieldOptions.helpText) {
+            return (
+                <div style={helpStyle}>{this.props.fieldOptions.helpText}</div>
+            );
+        }
+        return null;
+    },
+
     render() {
         const classList = classes('form-field');
 
@@ -52,6 +67,7 @@ const FormField = React.createClass({
                     onBlur={onBlurFn}
                     {...this.props.fieldOptions}
                 />
+                {this.renderHelpText()}
             </div>
         );
     },
