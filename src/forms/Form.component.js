@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from 'classnames';
 import FormField from './FormField.component';
-// import log from 'loglevel';
+import Translate from '../i18n/Translate.mixin';
 
 /**
  *
@@ -21,6 +21,8 @@ const Form = React.createClass({
         // Silly rule..
         children: React.PropTypes.array,
     },
+
+    mixins: [Translate],
 
     getDefaultProps() {
         return {
@@ -44,7 +46,7 @@ const Form = React.createClass({
                     <FormField  fieldOptions={fieldConfig.fieldOptions}
                                 key={fieldConfig.name}
                                 type={fieldConfig.type}
-                                errorMessage={errorMessage}
+                                errorMessage={errorMessage ? this.getTranslation(errorMessage) : undefined}
                                 onChange={this.updateRequest.bind(this, fieldConfig)}
                                 value={fieldValue}
                                 isValid={this.isValid()}

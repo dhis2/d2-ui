@@ -29,7 +29,6 @@ const FormField = React.createClass({
         };
     },
 
-
     renderHelpText() {
         const helpStyle = {
             color: '#888',

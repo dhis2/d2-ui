@@ -2,6 +2,7 @@ import React from 'react/addons';
 import {element} from 'd2-testutils';
 import Form from '../../src/forms/Form.component';
 import FormField from '../../src/forms/FormField.component';
+import injectTheme from '../config/inject-theme';
 
 const {
     renderIntoDocument,
@@ -19,9 +20,15 @@ class TextField extends React.Component {
 
 describe('Form component', () => {
     let formComponent;
+    const renderComponent = (props, children) => {
+        const FormWithContext = injectTheme(Form);
+        const renderedComponents = renderIntoDocument(<FormWithContext {...props}>{children}</FormWithContext>);
+        formComponent = findRenderedComponentWithType(renderedComponents, Form);
+        return formComponent;
+    };
 
     beforeEach(() => {
-        formComponent = renderIntoDocument(<Form />);
+        renderComponent();
     });
 
     it('should have the component name as a class', () => {
@@ -46,13 +53,15 @@ describe('Form component', () => {
 
     describe('formFields', () => {
         beforeEach(() => {
-            formComponent = renderIntoDocument(
-                <Form>
+            const FormWithContext = injectTheme(Form);
+            const renderedComponents = renderIntoDocument(
+                <FormWithContext>
                     <FormField type={TextField} />
                     <FormField type={TextField} />
                     <FormField type={TextField} />
-                </Form>
+                </FormWithContext>
             );
+            formComponent = findRenderedComponentWithType(renderedComponents, Form);
         });
 
         it('should render the formFields', () => {
@@ -96,7 +105,7 @@ describe('Form component', () => {
                 },
             ];
 
-            formComponent = renderIntoDocument(<Form source={systemSettings} fieldConfigs={fieldConfigs} />);
+            fromComponent = renderComponent({source: systemSettings, fieldConfigs});
         });
 
         it('should have rendered the three FormFields from the fieldConfigs', () => {
@@ -195,7 +204,7 @@ describe('Form component', () => {
                 ],
             };
 
-            formComponent = renderIntoDocument(<Form fieldConfigs={[fieldConfig]} />);
+            formComponent = renderComponent({fieldConfigs: [fieldConfig]});
 
             formFieldComponent = findRenderedComponentWithType(formComponent, FormField);
         });
@@ -208,7 +217,7 @@ describe('Form component', () => {
         it('should pass the message from the second validator to the `type` component', () => {
             const renderedMaterialUIComponent = findRenderedComponentWithType(formFieldComponent, TextField);
 
-            expect(renderedMaterialUIComponent.props.errorText).to.equal('This field is required');
+            expect(renderedMaterialUIComponent.props.errorText).to.equal('This field is required_translated');
         });
     });
 });
