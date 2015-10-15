@@ -9,6 +9,7 @@ const DataTableRow = React.createClass({
         isEven: React.PropTypes.bool,
         isOdd: React.PropTypes.bool,
         itemClicked: React.PropTypes.func.isRequired,
+        primaryClick: React.PropTypes.func.isRequired,
     },
 
     render() {
@@ -35,7 +36,7 @@ const DataTableRow = React.createClass({
         });
 
         return (
-            <div className={classList} onContextMenu={this.handleContextClick}>
+            <div className={classList} onContextMenu={this.handleContextClick} onClick={this.handleClick}>
                 {columns}
             </div>
         );
@@ -44,6 +45,10 @@ const DataTableRow = React.createClass({
     handleContextClick(event) {
         event.preventDefault();
         this.props.itemClicked(event, this.props.dataSource);
+    },
+
+    handleClick() {
+        this.props.primaryClick(this.props.dataSource);
     },
 });
 

@@ -9,6 +9,7 @@ const DataTable = React.createClass({
     propTypes: {
         contextMenuActions: React.PropTypes.object,
         contextMenuIcons: React.PropTypes.object,
+        primaryAction: React.PropTypes.func,
     },
 
     getInitialState() {
@@ -42,7 +43,7 @@ const DataTable = React.createClass({
         let dataRowsSource;
         for (dataRowsSource of this.state.dataRows) {
             dataRowsId++;
-            dataRows.push(<DataTableRow key={dataRowsId} dataSource={dataRowsSource} columns={this.state.columns} isActive={this.state.activeRow === dataRowsId} itemClicked={this.handleRowClick} />);
+            dataRows.push(<DataTableRow key={dataRowsId} dataSource={dataRowsSource} columns={this.state.columns} isActive={this.state.activeRow === dataRowsId} itemClicked={this.handleRowClick} primaryClick={this.props.primaryAction || (() => {})} />);
         }
 
         return (

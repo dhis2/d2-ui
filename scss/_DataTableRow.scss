@@ -1,4 +1,5 @@
 .data-table__rows__row {
+  cursor: pointer;
   display: table-row;
 
   &:hover .data-table__rows__row__column {
