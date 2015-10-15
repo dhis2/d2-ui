@@ -37,10 +37,6 @@ const defaultStyle = 'light_blue';
 const defaultStylesheetUrl = 'light_blue/light_blue.css';
 const stylesLocation = 'dhis-web-commons/css';
 
-function stripApi(baseUrl) {
-    return baseUrl.replace(/\/api\/?$/, '');
-}
-
 function islocalStorageSupported() {
     try {
         localStorage.setItem('dhis2.menu.localstorage.test', 'dhis2.menu.localstorage.test');
@@ -76,7 +72,7 @@ const HeaderBar = React.createClass({
     },
 
     componentWillMount() {
-        dhis2.settings.baseUrl = stripApi(this.context.d2.Api.getApi().baseUrl);
+        // dhis2.settings.baseUrl = dhis2.settings.baseUrl || '..';
         dhis2.menu.ui.initMenu();
 
         this.getSystemSettings(this.context.d2)
