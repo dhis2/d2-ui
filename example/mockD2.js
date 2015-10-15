@@ -1,4 +1,10 @@
 export default {
+    i18n: {
+        getTranslation(key) {
+            return `${key}_translated`;
+        },
+    },
+
     models: {
         dataElementOperand: {
             list() {

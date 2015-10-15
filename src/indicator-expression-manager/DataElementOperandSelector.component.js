@@ -6,7 +6,7 @@ import TextField from 'material-ui/lib/text-field';
 import LinearProgress from 'material-ui/lib/linear-progress';
 import Pagination from '../pagination/Pagination.component';
 import Translate from '../i18n/Translate.mixin';
-import {config} from 'd2';
+import {config} from 'd2/lib/d2';
 
 config.i18n.strings.add('search_by_name');
 

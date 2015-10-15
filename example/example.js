@@ -1,11 +1,31 @@
 import React from 'react';
 import Form from '../src/forms/Form.component';
 import TextField from 'material-ui/lib/text-field';
+import ThemeManager from 'material-ui/lib/styles/theme-manager'
+import Colors from 'material-ui/lib/styles/colors';
+import ColorManipulator from 'material-ui/lib/utils/color-manipulator';
+import Spacing from 'material-ui/lib/styles/spacing';
 
 import IndicatorExpressionManagerExample from './IndicatorExpressionManagerExample';
+import SharingDialogExample from './SharingDialogExample';
 
-const ThemeManager = new (require('material-ui/lib/styles/theme-manager'))();
-const Colors = require('material-ui/lib/styles/colors');
+const style = {
+    spacing: Spacing,
+    fontFamily: 'Roboto, sans-serif',
+    palette: {
+        primary1Color: Colors.blue500,
+        primary2Color: Colors.blue700,
+        primary3Color: Colors.lightBlack,
+        accent1Color: '#276696',
+        accent2Color: '#E9E9E9',
+        accent3Color: Colors.grey500,
+        textColor: Colors.darkBlack,
+        alternateTextColor: Colors.white,
+        canvasColor: Colors.white,
+        borderColor: Colors.grey300,
+        disabledColor: ColorManipulator.fade(Colors.darkBlack, 0.3),
+    },
+};
 
 const fcs = [
     {
@@ -38,14 +58,8 @@ const Main = React.createClass({
 
     getChildContext() {
         return {
-            muiTheme: ThemeManager.getCurrentTheme(),
+            muiTheme: ThemeManager.getMuiTheme(style),
         };
-    },
-
-    componentWillMount() {
-        ThemeManager.setPalette({
-            accent1Color: Colors.deepOrange500,
-        });
     },
 
     render() {
@@ -56,6 +70,9 @@ const Main = React.createClass({
                 <hr />
                 <h3>Expression manager</h3>
                 <IndicatorExpressionManagerExample />
+                <hr />
+                <h3>Sharing dialog</h3>
+                <SharingDialogExample />
             </div>
         );
     },

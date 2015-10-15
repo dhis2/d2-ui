@@ -10,7 +10,7 @@ import Paper from 'material-ui/lib/paper';
 import classes from 'classnames';
 import log from 'loglevel';
 import Translate from '../i18n/Translate.mixin';
-import {config} from 'd2';
+import {config} from 'd2/lib/d2';
 
 config.i18n.strings.add('data_elements');
 config.i18n.strings.add('description');

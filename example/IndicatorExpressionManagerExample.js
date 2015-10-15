@@ -30,6 +30,16 @@ const IndicatorExpressionManagerExample = React.createClass({
         };
     },
 
+    childContextTypes: {
+        d2: React.PropTypes.object,
+    },
+
+    getChildContext() {
+        return {
+            d2: d2,
+        }
+    },
+
     render() {
         return (
             <div style={{maxWidth: '80%', margin: '0 auto'}}>
@@ -43,6 +53,8 @@ const IndicatorExpressionManagerExample = React.createClass({
                     indicatorExpressionChanged={function expressionChangedCallback(data) {
                         console.log('Expression changed!', data);
                     }}
+                    formulaValue=""
+                    descriptionValue="The awesome numerator"
                     />
             </div>
         );
