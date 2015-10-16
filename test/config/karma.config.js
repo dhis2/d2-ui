@@ -69,6 +69,7 @@ module.exports = function karmaConfig( config ) {
                     'd2-flux': 'npm:d2-flux',
                     'rx': 'npm:rx/index',
                     'lodash.isstring': 'npm:lodash.isstring/index',
+                    'lodash.isfinite': 'npm:lodash.isfinite/index',
                     'd2': 'npm:d2',
                     'react/lib/update': 'npm:react/lib/update',
                 },
@@ -87,6 +88,7 @@ module.exports = function karmaConfig( config ) {
                 './node_modules/rx/dist/**',
                 './node_modules/d2-flux/**',
                 './node_modules/lodash.isstring/index.js',
+                './node_modules/lodash.isfinite/index.js',
                 './node_modules/d2/**',
                 './node_modules/d2/d2.js',
 

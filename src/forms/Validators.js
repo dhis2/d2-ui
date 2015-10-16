@@ -6,19 +6,35 @@ const urlRegExp = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.
 // Taken from the HTML5 spec http://www.w3.org/TR/html5/forms.html#e-mail-state-(type=email)
 const emailRegExp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 
+export function isNull(value) {
+    return value === null;
+}
+
+export function isUndefined(value) {
+    return value === undefined;
+}
+
+export function isEmptyString(value) {
+    return value === '';
+}
+
+export function isEmptyStringOrUndefined(value) {
+    return isEmptyString(value) || isUndefined(value);
+}
+
 export function isRequired(value) {
     return Boolean(value) || 'field_required';
 }
 
 export function isUrl(value) {
-    if (value === '') {
+    if (isEmptyStringOrUndefined(value)) {
         return true;
     }
     return urlRegExp.test(value) || 'field_should_be_an_url';
 }
 
 export function isEmail(value) {
-    if (value === '') {
+    if (isEmptyStringOrUndefined(value)) {
         return true;
     }
     return emailRegExp.test(value) || 'field_should_be_an_email';
@@ -43,4 +59,7 @@ export default {
     isUrl,
     isNumber,
     isEmail,
+    isEmptyString,
+    isNull,
+    isUndefined,
 };
