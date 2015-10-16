@@ -11,14 +11,23 @@ export function isRequired(value) {
 }
 
 export function isUrl(value) {
+    if (value === '') {
+        return true;
+    }
     return urlRegExp.test(value) || 'field_should_be_an_url';
 }
 
 export function isEmail(value) {
+    if (value === '') {
+        return true;
+    }
     return emailRegExp.test(value) || 'field_should_be_an_email';
 }
 
 export function isNumber(value) {
+    if (!value && value !== 0 ) {
+        return true;
+    }
     return isFinite(Number(value)) || 'field_should_be_a_number';
 }
 
