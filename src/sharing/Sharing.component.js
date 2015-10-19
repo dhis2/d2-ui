@@ -5,6 +5,9 @@ import ExternalAccess from './ExternalAccess.component';
 import PublicAccess from './PublicAccess.component';
 import sharingActions from './sharing.actions';
 import sharingStore from './sharing.store';
+import UserGroupAccesses from './UserGroupAccesses.component';
+import LoadingMask from '../loading-mask/LoadingMask.component';
+import AutoComplete from '../auto-complete/AutoComplete.component';
 
 export default createClass({
     propTypes: {
@@ -16,7 +19,7 @@ export default createClass({
 
     getInitialState() {
         return {
-            objectToShare: this.props.objectToShare,
+            objectToShare: null,
         };
     },
 
@@ -26,7 +29,7 @@ export default createClass({
         this.disposable = sharingStore
             .subscribe((newState) => {
                 this.setState({
-                    objectToShare: Object.assign(this.state.objectToShare, newState),
+                    objectToShare: newState,
                 });
             });
     },
@@ -36,17 +39,31 @@ export default createClass({
     },
 
     render() {
+        const loadingMaskStyle = {
+            position: 'relative',
+        };
+
         const {
             objectToShare,
             ...other,
         } = this.props;
 
+        if (!this.state.objectToShare) {
+            return (
+                <LoadingMask style={loadingMaskStyle} size={1} />
+            );
+        }
+
         return (
             <div>
                 <Heading text={objectToShare.name} level={2} />
                 <CreatedBy user={objectToShare.user} />
+                <div>
+                    <AutoComplete forType="userGroup" />
+                </div>
                 <ExternalAccess externalAccess={this.state.objectToShare.externalAccess} onChange={this.updatedExternalAccess} />
-                <PublicAccess publicAccess={objectToShare.publicAccess} onChange={this.updatePublicAccess} />
+                <PublicAccess publicAccess={this.state.objectToShare.publicAccess} onChange={this.updatePublicAccess} />
+                <UserGroupAccesses userGroupAccesses={this.state.objectToShare.userGroupAccesses} onChange={this.updateUserGroupAccesses} />
             </div>
         );
     },
@@ -57,5 +74,9 @@ export default createClass({
 
     updatePublicAccess(publicAccessValue) {
         sharingActions.publicAccessChanged(publicAccessValue);
+    },
+
+    updateUserGroupAccesses(userGroupAccesses) {
+        sharingActions.userGroupAcessesChanged(userGroupAccesses);
     },
 });

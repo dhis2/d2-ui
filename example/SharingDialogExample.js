@@ -1,20 +1,13 @@
 import {PropTypes, createClass, default as React} from 'react';
 import SharingDialog from '../src/sharing/SharingDialog.component';
-import d2 from './mockD2';
 
 export default createClass({
-    childContextTypes: {
+    contextTypes: {
         d2: React.PropTypes.object,
     },
 
-    getChildContext() {
-        return {
-            d2: d2,
-        }
-    },
-
     render() {
-        const objectToShare = {
+        const objectToShare = this.context.d2.models.dataApprovalLevel.create({
             "created": "2015-10-13T15:05:31.629+0000",
             "lastUpdated": "2015-10-13T15:05:31.629+0000",
             "name": "Facility Funding Agency",
@@ -51,7 +44,8 @@ export default createClass({
                 {"access": "rw------", "userGroupUid": "wl5cDMuUhmF"},
                 {"access": "rw------", "userGroupUid": "lFHP5lLkzVr"}
             ]
-        };
+        });
+
 
         return (
             <SharingDialog

@@ -97,6 +97,7 @@ module.exports = function karmaConfig( config ) {
                 // Test files
                 'test/**/*.test.js',
                 'test/config/inject-theme.js',
+                'test/config/getRenderFunctionForComponent.js',
             ],
         },
 

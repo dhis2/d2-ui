@@ -5,6 +5,7 @@ import ThemeManager from 'material-ui/lib/styles/theme-manager'
 import Colors from 'material-ui/lib/styles/colors';
 import ColorManipulator from 'material-ui/lib/utils/color-manipulator';
 import Spacing from 'material-ui/lib/styles/spacing';
+import {init} from 'd2/lib/d2';
 
 import IndicatorExpressionManagerExample from './IndicatorExpressionManagerExample';
 import SharingDialogExample from './SharingDialogExample';
@@ -49,36 +50,52 @@ const user = {
     password: 'SuperSecret',
 };
 
-const Main = React.createClass({
+function renderExamples(d2) {
+    const Main = React.createClass({
 
-    childContextTypes: {
-        muiTheme: React.PropTypes.object,
-        d2: React.PropTypes.object,
-    },
+        childContextTypes: {
+            muiTheme: React.PropTypes.object,
+            d2: React.PropTypes.object,
+        },
 
-    getChildContext() {
-        return {
-            muiTheme: ThemeManager.getMuiTheme(style),
-        };
-    },
+        getChildContext() {
+            return {
+                muiTheme: ThemeManager.getMuiTheme(style),
+                d2: d2,
+            };
+        },
 
-    render() {
-        return (
-            <div>
-                <h3>Form</h3>
-                <Form source={user} fieldConfigs={fcs} />
-                <hr />
-                <h3>Expression manager</h3>
-                <IndicatorExpressionManagerExample />
-                <hr />
-                <h3>Sharing dialog</h3>
-                <SharingDialogExample />
-            </div>
-        );
+        render() {
+            return (
+                <div>
+                    <h3>Form</h3>
+                    <Form source={user} fieldConfigs={fcs} />
+                    <hr />
+                    <h3>Expression manager</h3>
+                    <IndicatorExpressionManagerExample />
+                    <hr />
+                    <h3>Sharing dialog</h3>
+                    <SharingDialogExample d2={d2} />
+                </div>
+            );
+        },
+    });
+
+    React.render(
+        <Main d2={d2} />,
+        document.getElementById('app')
+    );
+}
+
+jQuery.ajaxSetup({
+    headers: {
+        Authorization: 'Basic ' + btoa('system:System123')
+//                Authorization: 'Basic ' + btoa('admin:district')
+//                Authorization: 'Basic ' + btoa('user:Admin123')
     },
 });
 
-React.render(
-    <Main />,
-    document.getElementById('app')
-);
+
+init({baseUrl: 'http://localhost:8080/dhis/api'}).then(renderExamples);
+
+

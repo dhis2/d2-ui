@@ -1,6 +1,7 @@
 import {PropTypes, createClass, default as React} from 'react';
 import Translate from '../i18n/Translate.mixin';
 import Toggle from 'material-ui/lib/toggle';
+import ClearFix from 'material-ui/lib/clearfix';
 
 export default createClass({
     propTypes: {
@@ -31,10 +32,14 @@ export default createClass({
     },
 
     render() {
+        const style = Object.assign({
+            marginTop: '.5rem',
+        }, this.props.style);
+
         return (
-            <div>
+            <div style={style} classnName="sharing--access-mask-switches">
                 <div>{this.props.label}</div>
-                <div>
+                <ClearFix>
                 <Toggle
                     style={{
                         width: '40%',
@@ -58,7 +63,7 @@ export default createClass({
                     checked={this.hasEdit()}
                     onToggle={this.setEdit}
                 />
-                </div>
+                </ClearFix>
             </div>
         );
     },
