@@ -19,7 +19,7 @@
     "babel-loader": "^5.3.2",
     "chai": "3.0.0",
     "coveralls": "2.11.4",
-    "d2": "0.0.16",
+    "d2": "0.0.19",
     "d2-testutils": "0.1.7",
     "es6-module-loader": "0.17.6",
     "eslint": "^1.2.0",
