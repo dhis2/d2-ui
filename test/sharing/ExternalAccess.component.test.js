@@ -41,7 +41,7 @@ describe('Sharing: ExternalAccess component', () => {
         });
 
         it('should give the toggle the externalAccess label', () => {
-            expect(toggleComponent.props.label).to.equal('external_access_without_login_translated');
+            expect(toggleComponent.props.label).to.equal('external_access_translated');
         });
 
         it('should render the component as not toggled', () => {
@@ -63,6 +63,13 @@ describe('Sharing: ExternalAccess component', () => {
             Simulate.change(inputComponent);
 
             expect(onChange).to.be.called;
+        });
+
+        it('should set the toggle to be disabled', () => {
+            renderComponent({externalAccess: false, disabled: true});
+            toggleComponent = findRenderedComponentWithType(externalAccessComponent, Toggle);
+
+            expect(toggleComponent.props.disabled).to.be.true;
         });
     });
 });

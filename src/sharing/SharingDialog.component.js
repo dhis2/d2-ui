@@ -1,9 +1,12 @@
-// import {config} from 'd2/lib/d2';
+import {config} from 'd2/lib/d2';
 import Dialog from 'material-ui/lib/dialog';
 import FlatButton from 'material-ui/lib/flat-button';
 import {PropTypes, createClass, default as React} from 'react';
 import Translate from '../i18n/Translate.mixin';
 import Sharing from './Sharing.component';
+
+config.i18n.strings.add('close');
+config.i18n.strings.add('sharing_settings');
 
 export default createClass({
     propTypes: {
@@ -15,12 +18,7 @@ export default createClass({
     render() {
         const sharingDialogActions = [
             <FlatButton
-                label="Cancel"
-                secondary={true}
-                onClick={this.closeSharingDialog} />,
-            <FlatButton
-                label="Submit"
-                primary={true}
+                label={this.getTranslation('close')}
                 onClick={this.closeSharingDialog} />,
         ];
 
@@ -29,7 +27,8 @@ export default createClass({
                 ref="sharingDialog"
                 title={this.getTranslation('sharing_settings')}
                 actions={sharingDialogActions}
-                modal
+                autoDetectWindowHeight={true}
+                autoScrollBodyContent={true}
                 {...this.props}
                 >
                 <Sharing objectToShare={this.props.objectToShare} />

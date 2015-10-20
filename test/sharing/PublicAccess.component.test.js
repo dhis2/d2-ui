@@ -50,7 +50,7 @@ describe('Sharing: PublicAccess component', () => {
         });
 
         it('should give the toggle the publicAccess label', () => {
-            expect(viewToggleComponent.props.label).to.equal('view_translated');
+            expect(viewToggleComponent.props.label).to.equal('can_view_translated');
         });
 
         it('should render the component as not toggled', () => {
@@ -81,6 +81,13 @@ describe('Sharing: PublicAccess component', () => {
             expect(viewToggleComponent.isToggled()).to.be.true;
             expect(viewToggleComponent.props.disabled).to.be.true;
         });
+
+        it('should set the toggle to disabled when disabled is passed', () => {
+            renderComponent({publicAccess: 'rw------', disabled: true});
+            viewToggleComponent = scryRenderedComponentsWithType(publicAccessComponent, Toggle)[0];
+
+            expect(viewToggleComponent.props.disabled).to.be.true;
+        });
     });
 
     describe('Toggle for Edit', () => {
@@ -98,7 +105,7 @@ describe('Sharing: PublicAccess component', () => {
         });
 
         it('should give the toggle the publicAccessEdit label', () => {
-            expect(editToggleComponent.props.label).to.equal('edit_translated');
+            expect(editToggleComponent.props.label).to.equal('can_edit_translated');
         });
 
         it('should render the component as not toggled', () => {
@@ -120,6 +127,13 @@ describe('Sharing: PublicAccess component', () => {
             Simulate.change(inputComponent);
 
             expect(onChange).to.be.calledWith('rw------');
+        });
+
+        it('should set the toggle to disabled when disabled is passed', () => {
+            renderComponent({publicAccess: 'rw------', disabled: true});
+            editToggleComponent = scryRenderedComponentsWithType(publicAccessComponent, Toggle)[1];
+
+            expect(editToggleComponent.props.disabled).to.be.true;
         });
     });
 });

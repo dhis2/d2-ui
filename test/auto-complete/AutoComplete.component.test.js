@@ -32,9 +32,8 @@ describe('AutoComplete: AutoComplete component', () => {
 
     it('should call the loadAutoCompleteSuggestions action on change', () => {
         const actions = Action.createActionsFromNames(['loadAutoCompleteSuggestions']);
-        spy(actions, 'loadAutoCompleteSuggestions');
-        actions.loadAutoCompleteSuggestions
-            .subscribe((event) => console.log(event));
+        stub(actions, 'loadAutoCompleteSuggestions');
+
         const autoCompleteComponent = renderAutoComplete({actions});
         const textFieldComponent = findRenderedComponentWithType(autoCompleteComponent, TextField);
 

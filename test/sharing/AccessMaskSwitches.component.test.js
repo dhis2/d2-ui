@@ -49,7 +49,7 @@ describe('Sharing: AccessMaskSwitches component', () => {
         });
 
         it('should give the toggle the accessMaskSwitches label', () => {
-            expect(viewToggleComponent.props.label).to.equal('view_translated');
+            expect(viewToggleComponent.props.label).to.equal('can_view_translated');
         });
 
         it('should render the component as not toggled', () => {
@@ -97,7 +97,7 @@ describe('Sharing: AccessMaskSwitches component', () => {
         });
 
         it('should give the toggle the accessMaskSwitchesEdit label', () => {
-            expect(editToggleComponent.props.label).to.equal('edit_translated');
+            expect(editToggleComponent.props.label).to.equal('can_edit_translated');
         });
 
         it('should render the component as not toggled', () => {

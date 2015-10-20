@@ -8,6 +8,7 @@ import LoadingMask from '../../src/loading-mask/LoadingMask.component';
 import sharingStore from '../../src/sharing/sharing.store';
 import UserGroupAccesses from '../../src/sharing/UserGroupAccesses.component';
 import AutoComplete from '../../src/auto-complete/AutoComplete.component';
+import ExternalAccess from '../../src/sharing/ExternalAccess.component';
 
 const {
     findRenderedComponentWithType,
@@ -21,10 +22,17 @@ describe('Sharing: Sharing component', () => {
             name: 'Facility Funding Agency',
             externalAccess: true,
             publicAccess: 'r-------',
+            user: {
+                name: 'Tom Wakiki',
+            },
             userGroupAccesses: [
                 {id: 'wl5cDMuUhmF', name: 'Administrators', access: 'rw------'},
                 {id: 'lFHP5lLkzVr', name: 'System administrators', access: 'rw------'},
             ],
+            meta: {
+                allowExternalAccess: false,
+                allowPublicAccess: true,
+            },
         };
 
         if (fakeStore) {
@@ -62,30 +70,46 @@ describe('Sharing: Sharing component', () => {
     it('should render the CreatedBy component with the user part of the objectToShare', () => {
         const objectToShare = {
             name: 'Facility Funding Agency',
-            user: {
-                name: 'Tom Wakiki',
-            },
         };
         renderComponent({objectToShare});
 
         const createdByComponent = findRenderedComponentWithType(sharingComponent, CreatedBy);
 
-        expect(createdByComponent.props.user).to.equal(objectToShare.user);
+        expect(createdByComponent.props.user).to.deep.equal({name: 'Tom Wakiki'});
     });
 
     it('should pass the publicAccess property to the PublicAccess component', () => {
         const objectToShare = {
             name: 'Facility Funding Agency',
-            user: {
-                name: 'Tom Wakiki',
-            },
             publicAccess: 'r-------',
         };
         renderComponent({objectToShare});
 
-        const createdByComponent = findRenderedComponentWithType(sharingComponent, PublicAccess);
+        const publicAccessComponent = findRenderedComponentWithType(sharingComponent, PublicAccess);
 
-        expect(createdByComponent.props.publicAccess).to.equal(objectToShare.publicAccess);
+        expect(publicAccessComponent.props.publicAccess).to.equal(objectToShare.publicAccess);
+    });
+
+    it('should set the disabled prop on the PublicAccess component to false', () => {
+        const objectToShare = {
+            name: 'Facility Funding Agency',
+        };
+        renderComponent({objectToShare});
+
+        const publicAccessComponent = findRenderedComponentWithType(sharingComponent, PublicAccess);
+
+        expect(publicAccessComponent.props.disabled).to.be.false;
+    });
+
+    it('should set the disabled prop on the ExternalAccess component to true', () => {
+        const objectToShare = {
+            name: 'Facility Funding Agency',
+        };
+        renderComponent({objectToShare});
+
+        const externalAccessComponent = findRenderedComponentWithType(sharingComponent, ExternalAccess);
+
+        expect(externalAccessComponent.props.disabled).to.be.true;
     });
 
     it('should pass the userGroupAccesses to the UserGroupAccesses component', () => {
@@ -119,5 +143,42 @@ describe('Sharing: Sharing component', () => {
         const autoCompleteComponent = findRenderedComponentWithType(sharingComponent, AutoComplete);
 
         expect(autoCompleteComponent.props.forType).to.deep.equal('userGroup');
+    });
+
+    it('should pass add a new userGroupAccesses when addUserGroup is called', () => {
+        const objectToShare = {
+            name: 'Facility Funding Agency',
+        };
+        renderComponent({objectToShare});
+
+        sharingComponent.addUserGroup({id: 'dl5cDMuUhmF', name: 'AFG'});
+
+        setTimeout(() => {
+            expect(sharingComponent.state.objectToShare.userGroupAccesses.length).to.equal(3);
+        });
+    });
+
+    it('should pass add a new userGroupAccesses when addUserGroup is called', () => {
+        const objectToShare = {
+            name: 'Facility Funding Agency',
+        };
+        renderComponent({objectToShare});
+
+        sharingComponent.addUserGroup({id: 'dl5cDMuUhmF', name: 'AFG'});
+
+        setTimeout(() => {
+            expect(sharingComponent.state.objectToShare.userGroupAccesses[2].access).to.equal('r-------');
+        });
+    });
+
+    it('should pass the addUserGroup method to the autocomplete box', () => {
+        const objectToShare = {
+            name: 'Facility Funding Agency',
+        };
+        renderComponent({objectToShare});
+
+        const autoCompleteComponent = findRenderedComponentWithType(sharingComponent, AutoComplete);
+
+        expect(autoCompleteComponent.props.onSuggestionClicked).to.equal(sharingComponent.addUserGroup);
     });
 });

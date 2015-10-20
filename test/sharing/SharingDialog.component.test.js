@@ -43,17 +43,17 @@ describe('Sharing: SharingDialog component', () => {
         expect(dialogComponent.props.title).to.equal(`sharing_settings_translated`);
     });
 
-    it('should render the cancel and save buttons', () => {
+    it('should render the close button', () => {
         const dialogComponent = findRenderedComponentWithType(sharingDialogComponent, Dialog);
         const buttons = scryRenderedComponentsWithType(dialogComponent, FlatButton);
 
-        expect(buttons.length).to.equal(2);
+        expect(buttons.length).to.equal(1);
     });
 
-    it('should render the dialog as a modal', () => {
+    it('should not render the dialog as a modal', () => {
         const dialogComponent = findRenderedComponentWithType(sharingDialogComponent, Dialog);
 
-        expect(dialogComponent.props.modal).to.be.true;
+        expect(dialogComponent.props.modal).to.be.false;
     });
 
     it('should pass down the props that are passed to Sharing to the Dialog', () => {
