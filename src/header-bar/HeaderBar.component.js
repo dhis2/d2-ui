@@ -134,13 +134,21 @@ const HeaderBar = React.createClass({
             top: 0,
             left: 0,
             right: 0,
+            paddingLeft: 10,
             boxShadow: '0 0 3px #222',
         };
 
+        const headerBannerWrapperStyle = {
+            display: 'table-cell',
+            width: 155,
+            height: 44,
+            verticalAlign: 'middle',
+            textAlign: 'center',
+        };
+
         const headerBannerStyle = {
-            position: 'absolute',
-            top: '13px',
-            left: '55px',
+            maxWidth: 175,
+            maxHeight: 44,
         };
 
         const headerTextStyle = {
@@ -155,7 +163,9 @@ const HeaderBar = React.createClass({
         return (
             <div className="header-bar" style={headerBarStyle} id="header">
                 <a href={this.state.headerBar.link} title={this.state.headerBar.title} className="title-link">
+                    <div style={headerBannerWrapperStyle}>
                         <img className="header-logo" src={this.getLogoUrl()} id="headerBanner" style={headerBannerStyle} />
+                    </div>
                     <span className="header-text" id="headerText" style={headerTextStyle}>{this.state.headerBar.title}</span>
                 </a>
                 <div>{this.state.headerBar.message}</div>
