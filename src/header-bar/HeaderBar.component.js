@@ -138,6 +138,11 @@ const HeaderBar = React.createClass({
             boxShadow: '0 0 3px #222',
         };
 
+        const headerBarContentStyle = {
+            position: 'relative',
+            maxWidth: 1200,
+        };
+
         const headerBannerWrapperStyle = {
             display: 'table-cell',
             width: 155,
@@ -160,16 +165,24 @@ const HeaderBar = React.createClass({
             fontSize: 16,
         };
 
+        const dropDownMenuStyle = {
+            position: 'absolute',
+            top: 0,
+            right: 0,
+        };
+
         return (
             <div className="header-bar" style={headerBarStyle} id="header">
-                <a href={this.state.headerBar.link} title={this.state.headerBar.title} className="title-link">
-                    <div style={headerBannerWrapperStyle}>
-                        <img className="header-logo" src={this.getLogoUrl()} id="headerBanner" style={headerBannerStyle} />
-                    </div>
-                    <span className="header-text" id="headerText" style={headerTextStyle}>{this.state.headerBar.title}</span>
-                </a>
-                <div>{this.state.headerBar.message}</div>
-                <div id="dhisDropDownMenu"></div>
+                <div style={headerBarContentStyle}>
+                    <a href={this.state.headerBar.link} title={this.state.headerBar.title} className="title-link">
+                        <div style={headerBannerWrapperStyle}>
+                            <img className="header-logo" src={this.getLogoUrl()} id="headerBanner" style={headerBannerStyle} />
+                        </div>
+                        <span className="header-text" id="headerText" style={headerTextStyle}>{this.state.headerBar.title}</span>
+                    </a>
+                    <div>{this.state.headerBar.message}</div>
+                    <div style={dropDownMenuStyle} id="dhisDropDownMenu"></div>
+                </div>
             </div>
         );
     },
