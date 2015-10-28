@@ -50,7 +50,6 @@ function islocalStorageSupported() {
 function saveToLocalStorage(headerData) {
     if (islocalStorageSupported()) {
         localStorage.setItem('dhis2.menu.ui.headerBar.userStyle', headerData.userStyleUrl);
-        localStorage.setItem('dhis2.menu.ui.headerBar.logo', headerData.logo);
         localStorage.setItem('dhis2.menu.ui.headerBar.title', headerData.title);
         localStorage.setItem('dhis2.menu.ui.headerBar.link', headerData.link);
     }
@@ -80,7 +79,7 @@ const HeaderBar = React.createClass({
             .catch(this.loadDataFromLocalStorageIfAvailable)
             .then(saveToLocalStorage)
             .then(headerData => {
-                this.setHeaderData(headerData.userStyleUrl, headerData.logo, headerData.title, headerData.link);
+                this.setHeaderData(headerData.userStyleUrl, headerData.title, headerData.link);
             });
     },
 
@@ -98,19 +97,22 @@ const HeaderBar = React.createClass({
             .then(userStyleUrl => {
                 return {
                     userStyleUrl: userStyleUrl || systemSettings.currentStyle,
-                    logo: systemSettings.keyCustomTopMenuLogo,
                     title: systemSettings.applicationTitle,
                     link: systemSettings.startModule,
                 };
             });
     },
 
-    getBaseUrl() {
-        return this.context.d2.Api.getApi().baseUrl.replace(/\/api\/?$/, '');
+    getApiBaseUrl() {
+        return this.context.d2.Api.getApi().baseUrl;
     },
 
-    getStyleLogoUrl(styleName) {
-        return [this.getBaseUrl(), stylesLocation, styleName, 'logo_banner.png'].join('/');
+    getBaseUrl() {
+        return this.getApiBaseUrl().replace(/\/api\/?$/, '');
+    },
+
+    getLogoUrl() {
+        return [this.getApiBaseUrl(), 'staticContent', 'logo_banner'].join('/');
     },
 
     getStylesheetUrl(stylesheet) {
@@ -153,7 +155,7 @@ const HeaderBar = React.createClass({
         return (
             <div className="header-bar" style={headerBarStyle} id="header">
                 <a href={this.state.headerBar.link} title={this.state.headerBar.title} className="title-link">
-                    <img className="header-logo" src={this.state.headerBar.logo} id="headerBanner" style={headerBannerStyle} />
+                        <img className="header-logo" src={this.getLogoUrl()} id="headerBanner" style={headerBannerStyle} />
                     <span className="header-text" id="headerText" style={headerTextStyle}>{this.state.headerBar.title}</span>
                 </a>
                 <div>{this.state.headerBar.message}</div>
@@ -163,14 +165,12 @@ const HeaderBar = React.createClass({
     },
 
     loadDataFromLocalStorageIfAvailable() {
-        let logo;
         let title;
         let link;
         let userStyle;
 
         // Load values from localStorage if they are available
         if (islocalStorageSupported()) {
-            logo = localStorage.getItem('dhis2.menu.ui.headerBar.logo');
             title = localStorage.getItem('dhis2.menu.ui.headerBar.title');
             link = localStorage.getItem('dhis2.menu.ui.headerBar.link');
             userStyle = localStorage.getItem('dhis2.menu.ui.headerBar.userStyle');
@@ -178,17 +178,13 @@ const HeaderBar = React.createClass({
 
         return {
             userStyleUrl: userStyle,
-            logo: logo,
             title: title,
             link: link,
         };
     },
 
-    setHeaderData(userStyleUrl, logo, title, link) {
-        const userStyleName = this.getStyleName(userStyleUrl);
-
+    setHeaderData(userStyleUrl, title, link) {
         this.addUserStyleStylesheet(this.getStylesheetUrl(userStyleUrl));
-        this.setHeaderLogo(userStyleName, logo);
         this.setHeaderTitle(title);
         this.setHeaderLink(link);
     },
@@ -199,18 +195,6 @@ const HeaderBar = React.createClass({
                 [name]: value,
             }),
         });
-    },
-
-    setHeaderLogo(userStyleName, customTopMenuLogo) {
-        if (customTopMenuLogo === true) {
-            this.setHeaderBarProp('logo', [this.getBaseUrl(), '/external-static/logo_banner.png'].join(''));
-        } else {
-            if (this.isValidUserStyle(userStyleName)) {
-                this.setHeaderBarProp('logo', this.getStyleLogoUrl(userStyleName));
-            } else {
-                this.setHeaderBarProp('logo', this.getStyleLogoUrl(defaultStyle));
-            }
-        }
     },
 
     setHeaderTitle(applicationTitle) {
