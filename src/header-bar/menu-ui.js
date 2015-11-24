@@ -31,7 +31,7 @@ import apps from './menus/apps';
                     throw new TypeError("Dhis2 settings: baseUrl should be a string");
                 }
 
-                if (/^http\:\/\//.test(dhis2.settings.baseUrl)) {
+                if (/^https?\:\/\//.test(dhis2.settings.baseUrl)) {
                     return dhis2.settings.baseUrl;
                 }
 

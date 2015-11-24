@@ -48,7 +48,7 @@ import dhis2 from './dhis2';
                 }
 
                 if (urlParts[urlParts.length - 1] !== "") {
-                    if (/^http\:\/\//.test(dhis2.settings.baseUrl)) {
+                    if (/^https?\:\/\//.test(dhis2.settings.baseUrl)) {
                         return dhis2.settings.baseUrl;
                     }
                     baseUrl = href + '/' + dhis2.settings.baseUrl;
