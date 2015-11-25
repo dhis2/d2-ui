@@ -3,7 +3,7 @@ $color--failure: #8B0000;
 $background-color-expression: #EEE;
 
 
-@import '~susy';
+@import 'susy';
 
 .indicator-expression-manager {
   @include container();
