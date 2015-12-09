@@ -17,6 +17,8 @@ export default createClass({
         onChange: PropTypes.func.isRequired,
         name: PropTypes.string.isRequired,
         label: PropTypes.string.isRequired,
+        style: PropTypes.object,
+        disabled: PropTypes.bool,
     },
 
     mixins: [Translate],
@@ -33,6 +35,16 @@ export default createClass({
             view: this.hasView(),
             edit: this.hasEdit(),
         };
+    },
+
+    onChange() {
+        const viewChar = (this.state.view || this.state.edit) ? 'r' : '-';
+        const editChar = this.state.edit ? 'w' : '-';
+        const accessMask = `${viewChar}${editChar}------`;
+
+        if (this.props.onChange) {
+            this.props.onChange(accessMask);
+        }
     },
 
     render() {
@@ -94,15 +106,5 @@ export default createClass({
             view: true,
             edit: !this.state.edit,
         }, () => this.onChange());
-    },
-
-    onChange() {
-        const viewChar = (this.state.view || this.state.edit) ? 'r' : '-';
-        const editChar = this.state.edit ? 'w' : '-';
-        const accessMask = `${viewChar}${editChar}------`;
-
-        if (this.props.onChange) {
-            this.props.onChange(accessMask);
-        }
     },
 });

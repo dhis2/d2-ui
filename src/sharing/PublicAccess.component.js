@@ -6,7 +6,7 @@ import {config} from 'd2/lib/d2';
 config.i18n.strings.add('public_access');
 
 export default createClass({
-    propTypes: AccessMaskSwitches.propTypes,
+    propTypes: Object.assign({}, AccessMaskSwitches.propTypes),
 
     mixins: [Translate],
 

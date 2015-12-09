@@ -81,24 +81,33 @@ export default createClass({
         this.disposable && this.disposable.dispose();
     },
 
-    render() {
-        const {
-            actions,
-            forType,
-            ...other,
-        } = this.props;
+    onSuggestionClick(item) {
+        return event => {
+            const {
+                closeOnItemClicked,
+                clearValueOnItemClicked,
+                onSuggestionClicked,
+                } = this.props;
 
-        return (
-            <div style={{position: 'relative'}} onClick={event => event.stopPropagation()}>
-                <TextField
-                    ref="autoCompleteField" {...other}
-                    onChange={actions.loadAutoCompleteSuggestions}
-                    hintText={this.getTranslation('search_for_user_groups')}
-                    fullWidth
-                    />
-                {(this.state.showAutoComplete && !this.state.loadingSuggestions) ? this.renderAutoCompleteSuggestions() : null}
-            </div>
-        );
+            if (closeOnItemClicked) {
+                this.refs.autoCompleteField.focus();
+            }
+
+            if (clearValueOnItemClicked) {
+                this.refs.autoCompleteField.setValue('');
+                this.props.actions.loadAutoCompleteSuggestions({
+                    target: {value: ''},
+                });
+            }
+
+            this.setState({
+                showAutoComplete: !closeOnItemClicked,
+            });
+
+            if (onSuggestionClicked) {
+                onSuggestionClicked(item, event);
+            }
+        };
     },
 
     renderAutoCompleteSuggestions() {
@@ -122,32 +131,23 @@ export default createClass({
         );
     },
 
-    onSuggestionClick(item) {
-        return event => {
-            const {
-                closeOnItemClicked,
-                clearValueOnItemClicked,
-                onSuggestionClicked,
+    render() {
+        const {
+            actions,
+            forType,
+            ...other,
             } = this.props;
 
-            if (closeOnItemClicked) {
-                this.refs.autoCompleteField.focus();
-            }
-
-            if (clearValueOnItemClicked) {
-                this.refs.autoCompleteField.setValue('');
-                this.props.actions.loadAutoCompleteSuggestions({
-                    target: {value: ''},
-                });
-            }
-
-            this.setState({
-                showAutoComplete: !closeOnItemClicked,
-            });
-
-            if (onSuggestionClicked) {
-                onSuggestionClicked(item, event);
-            }
-        };
+        return (
+            <div style={{position: 'relative'}} onClick={event => event.stopPropagation()}>
+                <TextField
+                    ref="autoCompleteField" {...other}
+                    onChange={actions.loadAutoCompleteSuggestions}
+                    hintText={this.getTranslation('search_for_user_groups')}
+                    fullWidth
+                />
+                {(this.state.showAutoComplete && !this.state.loadingSuggestions) ? this.renderAutoCompleteSuggestions() : null}
+            </div>
+        );
     },
 });
