@@ -10,13 +10,19 @@ const emptyComponent = class extends React.Component { render() { return null; }
  * If the component passed as `type` does not support onChange
  * consider passing a wrapper component that wraps your `type` component
  * and fires the onChange
+ *
+ * The field fires an update request for the value by calling `onChange` by default but it is optional to set the update event to `onBlur`.
+ * Pass the string `onBlur` to `updateEvent` to update the `<Form>` component on blur.
  */
 const FormField = React.createClass({
     propTypes: {
         type: React.PropTypes.func.isRequired,
         isValid: React.PropTypes.bool.isRequired,
         errorMessage: React.PropTypes.string,
-        fieldOptions: React.PropTypes.object.isRequired,
+        fieldOptions: React.PropTypes.shape({
+            helpText: React.PropTypes.string,
+            dynamicHelpText: React.PropTypes.bool,
+        }).isRequired,
         value: React.PropTypes.any,
         updateFn: React.PropTypes.func.isRequired,
         updateEvent: React.PropTypes.oneOf(['onChange', 'onBlur']),
@@ -34,8 +40,13 @@ const FormField = React.createClass({
     },
 
     renderHelpText() {
+        if ((!this.props.fieldOptions || !this.props.fieldOptions.helpText) || this.props.errorMessage) {
+            return null;
+        }
+
         const helpText = this.props.fieldOptions.helpText;
         const dynamic = this.props.fieldOptions.dynamicHelpText;
+
         const helpStyle = {
             color: '#888',
             fontSize: '12px',
@@ -49,14 +60,11 @@ const FormField = React.createClass({
             });
         }
 
-        if (helpText && !this.props.errorMessage) {
-            return (
-                <div style={{overflow: 'hidden', marginTop: dynamic ? -5 : 0}}>
-                    <div style={helpStyle}>{this.props.fieldOptions.helpText}</div>
-                </div>
-            );
-        }
-        return null;
+        return (
+            <div style={{overflow: 'hidden', marginTop: dynamic ? -5 : 0}}>
+                <div style={helpStyle}>{helpText}</div>
+            </div>
+        );
     },
 
     render() {
