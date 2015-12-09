@@ -262,7 +262,7 @@ export default React.createClass({
                     <Paper style={styles.paper}>
                         <div style={styles.hidden}>{hiddenLabel(this.getAvailableItemsFilterCount())}</div>
                         <select multiple style={styles.select} onChange={onChangeLeft}
-                                ref={r => {this.leftSelect = r;}}>
+                                ref={r => { this.leftSelect = r; }}>
                             {this.getAvailableItemsFiltered().map(item => {
                                 return (
                                     <option key={item.value} value={item.value}
@@ -300,7 +300,7 @@ export default React.createClass({
                     <Paper style={styles.paper}>
                         <div style={styles.hidden}>{hiddenLabel(this.getAssignedItemsFilterCount())}</div>
                         <select multiple style={styles.select} onChange={onChangeRight}
-                                ref={r => {this.rightSelect = r;}}>
+                                ref={ r => {this.rightSelect = r; }}>
                             {this.getAssignedItemsFiltered().map(item => {
                                 return (<option key={item.value} value={item.value}
                                                 onDoubleClick={this._removeItems}>{item.text}</option>);
