@@ -9,9 +9,14 @@ export default createClass({
     propTypes: {
         externalAccess: PropTypes.string.isRequired,
         disabled: PropTypes.bool,
+        onChange: PropTypes.func.isRequired,
     },
 
     mixins: [Translate],
+
+    onToggle() {
+        this.props.onChange(this.refs.toggle.isToggled());
+    },
 
     render() {
         return (
@@ -24,9 +29,5 @@ export default createClass({
                 disabled={this.props.disabled}
             />
         );
-    },
-
-    onToggle() {
-        this.props.onChange(this.refs.toggle.isToggled());
     },
 });

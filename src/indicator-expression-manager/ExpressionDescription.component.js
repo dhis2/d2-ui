@@ -16,7 +16,7 @@ const ExpressionDescription = React.createClass({
                     value={this.props.descriptionValue}
                     floatingLabelText={this.props.descriptionLabel}
                     onChange={this.handleDescriptionChange}
-                    fullWidth={true}
+                    fullWidth
                     errorText={this.props.errorText}
                     />
             </div>

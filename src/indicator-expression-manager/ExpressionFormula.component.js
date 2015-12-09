@@ -10,10 +10,10 @@ const ExpressionFormula = React.createClass({
     render() {
         return (
             <div className="expression-formula">
-                <TextField multiLine={true}
+                <TextField multiLine
                            onChange={this.handleFomulaChange}
                            value={this.props.formula}
-                           fullWidth={true}
+                           fullWidth
                     />
             </div>
         );

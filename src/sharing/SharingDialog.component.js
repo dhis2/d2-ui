@@ -27,8 +27,8 @@ export default createClass({
                 ref="sharingDialog"
                 title={this.getTranslation('sharing_settings')}
                 actions={sharingDialogActions}
-                autoDetectWindowHeight={true}
-                autoScrollBodyContent={true}
+                autoDetectWindowHeight
+                autoScrollBodyContent
                 {...this.props}
                 >
                 <Sharing objectToShare={this.props.objectToShare} />
