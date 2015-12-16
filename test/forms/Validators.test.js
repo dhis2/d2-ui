@@ -192,7 +192,7 @@ describe('Validators', () => {
         });
 
         it('should return true when the value is a number type', () => {
-            expect(isNumber(Number(2.1))).to.be.true;
+            expect(isNumber(new Number(2.1))).to.be.true; // eslint-disable-line no-new-wrappers
         });
 
         it('should return false when the object.toString returns a number', () => {

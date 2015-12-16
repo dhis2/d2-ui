@@ -66,12 +66,12 @@ describe('FormField component', () => {
         expect(inputDOMNode.value).to.equal('Mark');
     });
 
-    xit('should call the onChange when the value was changed', () => {
+    it('should call the onChange when the value was changed', () => {
         const onChangeSpy = spy();
 
         formFieldComponent = renderFormFieldComponent(fieldConfig, {
             value: 'Mark',
-            onChange: onChangeSpy,
+            updateFn: onChangeSpy,
         });
         const renderedMaterialUIComponent = findRenderedComponentWithType(formFieldComponent, TextField);
 

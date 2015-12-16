@@ -1,7 +1,8 @@
-import React from 'react';
+import {PropTypes, default as React} from 'react';
 import classes from 'classnames';
+import LinearProgress from 'material-ui/lib/linear-progress';
 
-const emptyComponent = class extends React.Component { render() { return null; }};
+const emptyComponent = React.createClass({ render() { return null; }});
 
 /**
  * Is required to be a direct child of the `Form.component`
@@ -14,18 +15,19 @@ const emptyComponent = class extends React.Component { render() { return null; }
  * The field fires an update request for the value by calling `onChange` by default but it is optional to set the update event to `onBlur`.
  * Pass the string `onBlur` to `updateEvent` to update the `<Form>` component on blur.
  */
-const FormField = React.createClass({
+const FormField = React.createClass({  // eslint-disable-line react/no-multi-comp
     propTypes: {
-        type: React.PropTypes.func.isRequired,
-        isValid: React.PropTypes.bool.isRequired,
-        errorMessage: React.PropTypes.string,
-        fieldOptions: React.PropTypes.shape({
-            helpText: React.PropTypes.string,
-            dynamicHelpText: React.PropTypes.bool,
+        type: PropTypes.func.isRequired,
+        isValid: PropTypes.bool.isRequired,
+        errorMessage: PropTypes.string,
+        fieldOptions: PropTypes.shape({
+            helpText: PropTypes.string,
+            dynamicHelpText: PropTypes.bool,
         }).isRequired,
-        value: React.PropTypes.any,
-        updateFn: React.PropTypes.func.isRequired,
-        updateEvent: React.PropTypes.oneOf(['onChange', 'onBlur']),
+        value: PropTypes.any,
+        updateFn: PropTypes.func.isRequired,
+        updateEvent: PropTypes.oneOf(['onChange', 'onBlur']),
+        isValidating: PropTypes.bool,
     },
 
     getDefaultProps() {
@@ -93,6 +95,7 @@ const FormField = React.createClass({
                     {...this.props.fieldOptions}
                 />
                 {this.renderHelpText()}
+                {this.props.isValidating ? <LinearProgress indetermined /> : null}
             </div>
         );
     },
