@@ -28,6 +28,7 @@ const FormField = React.createClass({  // eslint-disable-line react/no-multi-com
         updateFn: PropTypes.func.isRequired,
         updateEvent: PropTypes.oneOf(['onChange', 'onBlur']),
         isValidating: PropTypes.bool,
+        isRequired: PropTypes.bool,
     },
 
     getDefaultProps() {
@@ -92,6 +93,7 @@ const FormField = React.createClass({  // eslint-disable-line react/no-multi-com
                     onChange={onChangeFn}
                     onBlur={onBlurFn}
                     onFocus={this._focus}
+                    isRequired={this.props.isRequired}
                     {...this.props.fieldOptions}
                 />
                 {this.renderHelpText()}

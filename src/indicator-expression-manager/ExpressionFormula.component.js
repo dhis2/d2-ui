@@ -1,5 +1,4 @@
 import React from 'react';
-import TextField from 'material-ui/lib/text-field';
 
 const ExpressionFormula = React.createClass({
     propTypes: {
@@ -8,13 +7,23 @@ const ExpressionFormula = React.createClass({
     },
 
     render() {
+        const textAreaStyle = {
+            margin: 0,
+            width: '100%',
+            height: 200,
+            border: '1px solid #DDD',
+            padding: '1rem',
+            outline: 'none',
+            resize: 'vertical',
+        };
+
         return (
             <div className="expression-formula">
-                <TextField multiLine
-                           onChange={this.handleFomulaChange}
-                           value={this.props.formula}
-                           fullWidth
-                    />
+                <textarea
+                onChange={this.handleFomulaChange}
+                value={this.props.formula}
+                style={textAreaStyle}
+                />
             </div>
         );
     },

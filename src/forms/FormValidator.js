@@ -38,9 +38,11 @@ function validatorRunner(fieldName, fieldValue) {
 }
 
 function awaitAsyncValidators(accumulator, validatorPromise, index, validators) {
-    accumulator.push(validatorPromise);
+    if (validatorPromise) {
+        accumulator.push(validatorPromise);
+    }
 
-    if (validators.length === (index + 1)) {
+    if (validators.length === 0 || validators.length === (index + 1)) {
         return getAllPromiseValues(accumulator);
     }
     return accumulator;
@@ -79,14 +81,24 @@ export default function createFormValidator(fieldConfigs = []) {
 
                     validatorQueue.onNext(Promise.resolve({fieldName, fieldStatus: {status: FormFieldStatuses.VALIDATING, messages: []}}));
 
-                    return fieldConfig.validators
+                    const validatorToRun = fieldConfig.validators
                         .filter(validator => {
                             if (!isFunction(validator)) {
                                 log.warn(`Warning: One of the validators for '${fieldName}' is not a function.`);
+                                return false;
                             }
                             return isFunction(validator);
                         })
-                        .map(validatorRunner(fieldName, fieldValue))
+                        .map(validatorRunner(fieldName, fieldValue));
+
+                    if (!validatorToRun.length) {
+                        return Promise.resolve({
+                            fieldName: fieldName,
+                            fieldStatus: getFieldStatus(),
+                        });
+                    }
+
+                    return validatorToRun
                         .reduce(awaitAsyncValidators, [])
                         .then(grabErrorMessages)
                         .then(errorMessages => {

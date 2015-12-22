@@ -11,12 +11,18 @@ import classes from 'classnames';
 import log from 'loglevel';
 import Translate from '../i18n/Translate.mixin';
 import {config} from 'd2/lib/d2';
+import ProgramOperandSelector from './ProgramOperandSelector';
+import Heading from '../headings/Heading.component';
 
 config.i18n.strings.add('data_elements');
 config.i18n.strings.add('description');
 config.i18n.strings.add('organisation_unit_counts');
+config.i18n.strings.add('program_tracked_entity_attributes');
+config.i18n.strings.add('program_indicators');
+config.i18n.strings.add('program_data_elements');
 config.i18n.strings.add('constants');
 config.i18n.strings.add('this_field_is_required');
+config.i18n.strings.add('programs');
 
 /**
  * @component IndicatorExpressionManager
@@ -59,6 +65,7 @@ const IndicatorExpressionManager = React.createClass({
         descriptionLabel: React.PropTypes.string.isRequired,
         organisationUnitGroupOptions: React.PropTypes.array.isRequired,
         constantOptions: React.PropTypes.array.isRequired,
+        programTrackedEntityAttributeOptions: React.PropTypes.array.isRequired,
         expressionStatusActions: React.PropTypes.object.isRequired,
         expressionStatusStore: React.PropTypes.object.isRequired,
         indicatorExpressionChanged: React.PropTypes.func.isRequired,
@@ -73,6 +80,7 @@ const IndicatorExpressionManager = React.createClass({
         return {
             organisationUnitGroupOptions: [],
             constantOptions: [],
+            programTrackedEntityAttributeOptions: [],
         };
     },
 
@@ -126,9 +134,7 @@ const IndicatorExpressionManager = React.createClass({
     },
 
     render() {
-        const listStyle = {
-            width: '100%',
-        };
+        const listStyle = {width: '100%', outline: 'none'};
 
         const statusMessageClasses = classes(
             'indicator-expression-manager__readable-expression__message',
@@ -144,8 +150,10 @@ const IndicatorExpressionManager = React.createClass({
 
         return (
             <div className="indicator-expression-manager">
-                <div className="indicator-expression-manager__left">
+                <div className="indicator-expression-manager__left" style={{paddingLeft: '2rem'}}>
+                    <Paper style={{padding: '0 2rem', marginTop: '1rem'}}>
                     <div className="indicator-expression-manager__description">
+                        <Heading level={3} text={this.props.titleText} />
                         <ExpressionDescription descriptionValue={this.state.description}
                                                descriptionLabel={this.getTranslation('description')}
                                                onDescriptionChange={this.descriptionChange}
@@ -155,8 +163,10 @@ const IndicatorExpressionManager = React.createClass({
                     <ExpressionFormula onFormulaChange={this.formulaChange}
                                        formula={this.state.formula} />
                     <ExpressionOperators operatorClicked={this.addOperatorToFormula}  />
+                    </Paper>
                 </div>
-                <div className="indicator-expression-manager__right">
+                <div className="indicator-expression-manager__right" style={{paddingRight: '2rem'}}>
+                    <Paper style={{padding: '0', marginTop: '1rem'}}>
                     <Tabs>
                         <Tab label={this.getTranslation('data_elements')}>
                             <DataElementOperandSelector onItemDoubleClick={this.dataElementOperandSelected}
@@ -164,7 +174,10 @@ const IndicatorExpressionManager = React.createClass({
                                                         listStyle={listStyle}
                                 />
                         </Tab>
-                        <Tab label={this.getTranslation('organisationUnit_counts')}>
+                        <Tab label={this.getTranslation('programs')}>
+                            <ProgramOperandSelector programOperandSelected={this.programOperandSelected} />
+                        </Tab>
+                        <Tab label={this.getTranslation('organisation_unit_counts')}>
                             <ListSelect onItemDoubleClick={this.organisationUnitGroupSelected}
                                         source={this.props.organisationUnitGroupOptions}
                                         listStyle={listStyle}
@@ -177,8 +190,9 @@ const IndicatorExpressionManager = React.createClass({
                                 />
                         </Tab>
                     </Tabs>
+                    </Paper>
                 </div>
-                <div className="indicator-expression-manager__readable-expression">
+                <div className="indicator-expression-manager__readable-expression" style={{paddingLeft: '2rem', paddingRight: '2rem'}}>
                     <Paper>{this.state.expressionStatus.description}</Paper>
                     <div className={statusMessageClasses}>{this.state.expressionStatus.message}</div>
                 </div>
@@ -220,6 +234,10 @@ const IndicatorExpressionManager = React.createClass({
         const constFormula = ['C{', value, '}'].join('');
 
         this.appendToFormula(constFormula);
+    },
+
+    programOperandSelected(programFormulaPart) {
+        this.appendToFormula(programFormulaPart);
     },
 
     appendToFormula(partToAppend) {

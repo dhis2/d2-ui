@@ -5,6 +5,10 @@ import Translate from '../i18n/Translate.mixin';
 import createFormValidator from './FormValidator';
 import {FormFieldStatuses} from './FormValidator';
 
+function identity(value) {
+    return value;
+}
+
 /**
  *
  */
@@ -37,7 +41,7 @@ const Form = React.createClass({
 
     getInitialState() {
         return {
-            formValidator: createFormValidator(this.props.fieldConfigs),
+            formValidator: this.props.formValidator || createFormValidator(this.props.fieldConfigs),
         };
     },
 
@@ -55,7 +59,6 @@ const Form = React.createClass({
                 const fieldValue = this.props.source && this.props.source[fieldConfig.name];
                 const updateEvent = fieldConfig.updateEvent === 'onBlur' ? 'onBlur' : 'onChange';
                 const validationStatus = this.state.formValidator.getStatusFor(fieldConfig.name);
-
                 let errorMessage;
 
                 if (validationStatus && validationStatus.messages && validationStatus.messages.length) {
@@ -66,6 +69,7 @@ const Form = React.createClass({
                     <FormField  fieldOptions={fieldConfig.fieldOptions}
                                 key={fieldConfig.name}
                                 type={fieldConfig.type}
+                                isRequired={fieldConfig.required}
                                 isValidating={validationStatus.status === FormFieldStatuses.VALIDATING}
                                 errorMessage={errorMessage ? this.getTranslation(errorMessage) : undefined}
                                 onChange={this.updateRequest.bind(this, fieldConfig)}
@@ -94,7 +98,7 @@ const Form = React.createClass({
     },
 
     updateRequest(fieldConfig, event) {
-        this.props.onFormFieldUpdate && this.props.onFormFieldUpdate(fieldConfig.name, event.target.value);
+        this.props.onFormFieldUpdate && this.props.onFormFieldUpdate(fieldConfig.name, fieldConfig.beforeUpdateConverter ? fieldConfig.beforeUpdateConverter(event.target.value, fieldConfig) : event.target.value);
         this.state.formValidator.runFor(fieldConfig.name, event.target.value);
     },
 });
