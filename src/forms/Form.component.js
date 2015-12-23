@@ -95,7 +95,7 @@ const Form = React.createClass({
 
     updateRequest(fieldConfig, event) {
         this.props.onFormFieldUpdate && this.props.onFormFieldUpdate(fieldConfig.name, fieldConfig.beforeUpdateConverter ? fieldConfig.beforeUpdateConverter(event.target.value, fieldConfig) : event.target.value);
-        this.state.formValidator.runFor(fieldConfig.name, event.target.value);
+        this.state.formValidator.runFor(fieldConfig.name, event.target.value, this.props.source);
     },
 });
 

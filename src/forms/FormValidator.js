@@ -16,12 +16,12 @@ function getAllPromiseValues(promises) {
     return Promise.all(promises.map(promise => promise.then(identity, identity)));
 }
 
-function validatorRunner(fieldName, fieldValue) {
+function validatorRunner(fieldName, fieldValue, formSource) {
     return function runValidator(validator) {
         let result;
 
         try {
-            result = validator(fieldValue, fieldName);
+            result = validator(fieldValue, fieldName, formSource);
         } catch(e) {
             log.warn(`Validator for '${fieldName}' ignored because the following validator threw an error.`);
             log.error(`${validator}`);
@@ -74,7 +74,7 @@ export default function createFormValidator(fieldConfigs = []) {
         .forEach(validatorObservable => {
             validatorObservable
                 .debounce(300)
-                .map(({fieldName, fieldValue}) => {
+                .map(({fieldName, fieldValue, formSource}) => {
                     const fieldConfig = fieldConfigs
                         .filter(fc => fc.name === fieldName)
                         .shift();
@@ -89,7 +89,7 @@ export default function createFormValidator(fieldConfigs = []) {
                             }
                             return isFunction(validator);
                         })
-                        .map(validatorRunner(fieldName, fieldValue));
+                        .map(validatorRunner(fieldName, fieldValue, formSource));
 
                     if (!validatorToRun.length) {
                         return Promise.resolve({
@@ -145,9 +145,9 @@ export default function createFormValidator(fieldConfigs = []) {
          *   formValidator.runFor('name', 'Mark');
          * ```
          */
-        runFor(fieldName, fieldValue) {
+        runFor(fieldName, fieldValue, formSource) {
             if (validatorQueues.has(fieldName)) {
-                validatorQueues.get(fieldName).onNext({fieldName, fieldValue});
+                validatorQueues.get(fieldName).onNext({fieldName, fieldValue, formSource});
                 return true;
             }
             return false;
