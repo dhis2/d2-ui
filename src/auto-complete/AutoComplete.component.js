@@ -19,7 +19,7 @@ function searchByForModel(searchBy, modelTypeToSearch, valueToSearchFor, options
 
     const searchQueryRequest = getInstance()
         .then(d2 => d2.models[modelTypeToSearch])
-        .then(modelType => modelType.filter().on(searchBy).like(valueToSearchFor))
+        .then(modelType => modelType.filter().on(searchBy).ilike(valueToSearchFor))
         .then(modelTypeWithFilter => modelTypeWithFilter.list(options))
         .then(collection => collection.toArray());
 

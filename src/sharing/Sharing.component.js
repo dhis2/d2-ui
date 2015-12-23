@@ -42,6 +42,10 @@ export default createClass({
         this.disposable.dispose();
     },
 
+    componentWillReceiveProps(newProps) {
+        sharingActions.loadObjectSharingState(newProps.objectToShare);
+    },
+
     render() {
         const loadingMaskStyle = {
             position: 'relative',
