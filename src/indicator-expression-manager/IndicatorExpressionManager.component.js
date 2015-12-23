@@ -72,6 +72,7 @@ const IndicatorExpressionManager = React.createClass({
         dataElementOperandSelectorActions: React.PropTypes.object.isRequired,
         descriptionValue: React.PropTypes.string.isRequired,
         formulaValue: React.PropTypes.string.isRequired,
+        titleText: React.PropTypes.string.isRequired,
     },
 
     mixins: [Translate],

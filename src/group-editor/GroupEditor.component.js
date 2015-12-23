@@ -101,7 +101,7 @@ export default React.createClass({
     // Data handling utility functions
     //
     getItemStoreIsCollection() {
-        return this.props.itemStore.state !== undefined && this.props.itemStore.state.constructor.name.indexOf('ModelCollection') !== -1;
+        return this.props.itemStore.state !== undefined && typeof this.props.itemStore.state.values === 'function';
     },
     getItemStoreIsArray() {
         return this.props.itemStore.state !== undefined && this.props.itemStore.state.constructor.name === 'Array';
@@ -113,9 +113,9 @@ export default React.createClass({
         return this.props.assignedItemStore.state !== undefined && this.props.assignedItemStore.state.constructor.name === 'Array';
     },
     getAllItems() {
-        return this.getItemStoreIsCollection() ? this.props.itemStore.state.toArray().map(item => {
+        return this.getItemStoreIsCollection() ? Array.from(this.props.itemStore.state.values()).map(item => {
             return {value: item.id, text: item.name};
-        }) : this.props.itemStore.state || [];
+        }) : (this.props.itemStore.state || []);
     },
     getItemCount() {
         return this.getItemStoreIsCollection() && this.props.itemStore.state.size || this.getItemStoreIsArray() && this.props.itemStore.state.length || 0;

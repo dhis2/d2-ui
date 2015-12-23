@@ -5,10 +5,6 @@ import Translate from '../i18n/Translate.mixin';
 import createFormValidator from './FormValidator';
 import {FormFieldStatuses} from './FormValidator';
 
-function identity(value) {
-    return value;
-}
-
 /**
  *
  */
