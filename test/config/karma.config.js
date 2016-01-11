@@ -72,6 +72,7 @@ module.exports = function karmaConfig( config ) {
                     'd2/lib/d2': 'npm:d2/lib/d2',
                     'react/lib/update': 'npm:react/lib/update',
                     'lodash.isfunction': 'npm:lodash.isfunction/index',
+                    'moment': 'npm:moment/moment',
                 },
             },
 
@@ -92,6 +93,7 @@ module.exports = function karmaConfig( config ) {
                 './node_modules/lodash.isfunction/index.js',
                 './node_modules/d2/**',
                 './node_modules/d2/lib/d2.js',
+                './node_modules/moment/moment.js',
 
                 // App source files
                 'src/**/*.js',
