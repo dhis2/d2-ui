@@ -107,7 +107,7 @@ export default React.createClass({
         return this.props.itemStore.state !== undefined && this.props.itemStore.state.constructor.name === 'Array';
     },
     getAssignedItemStoreIsCollection() {
-        return this.props.assignedItemStore.state !== undefined && this.props.assignedItemStore.state.constructor.name.indexOf('ModelCollection') !== -1;
+        return this.props.assignedItemStore.state !== undefined && typeof this.props.assignedItemStore.state.values === 'function';
     },
     getAssignedItemStoreIsArray() {
         return this.props.assignedItemStore.state !== undefined && this.props.assignedItemStore.state.constructor.name === 'Array';
