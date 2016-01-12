@@ -10,15 +10,19 @@ const ExpressionOperators = React.createClass({
     render() {
         const classList = classes('expression-operators');
 
+        const operatorButtonStyle = {
+            minWidth: 50,
+        };
+
         return (
             <div className={classList}>
-                <FlatButton onClick={this.createOperatorClick('(')}>(</FlatButton>
-                <FlatButton onClick={this.createOperatorClick(')')}>)</FlatButton>
-                <FlatButton onClick={this.createOperatorClick(' * ')}>*</FlatButton>
-                <FlatButton onClick={this.createOperatorClick(' / ')}>/</FlatButton>
-                <FlatButton onClick={this.createOperatorClick(' + ')}>+</FlatButton>
-                <FlatButton onClick={this.createOperatorClick(' - ')}>-</FlatButton>
-                <FlatButton onClick={this.createOperatorClick(' [days] ')}>Days</FlatButton>
+                <FlatButton style={operatorButtonStyle} onClick={this.createOperatorClick('(')}>(</FlatButton>
+                <FlatButton style={operatorButtonStyle} onClick={this.createOperatorClick(')')}>)</FlatButton>
+                <FlatButton style={operatorButtonStyle} onClick={this.createOperatorClick(' * ')}>*</FlatButton>
+                <FlatButton style={operatorButtonStyle} onClick={this.createOperatorClick(' / ')}>/</FlatButton>
+                <FlatButton style={operatorButtonStyle} onClick={this.createOperatorClick(' + ')}>+</FlatButton>
+                <FlatButton style={operatorButtonStyle} onClick={this.createOperatorClick(' - ')}>-</FlatButton>
+                <FlatButton style={operatorButtonStyle} onClick={this.createOperatorClick(' [days] ')}>Days</FlatButton>
             </div>
         );
     },
