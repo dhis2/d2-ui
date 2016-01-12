@@ -205,6 +205,9 @@ export default React.createClass({
                 fontSize: 13,
                 outline: 'none',
             },
+            options: {
+                padding: '.25rem .5rem',
+            },
             buttons: {
                 minWidth: 100,
                 maxWidth: 100,
@@ -268,7 +271,8 @@ export default React.createClass({
                             {this.getAvailableItemsFiltered().map(item => {
                                 return (
                                     <option key={item.value} value={item.value}
-                                            onDoubleClick={this._assignItems}>{item.text}</option>
+                                            onDoubleClick={this._assignItems}
+                                            style={styles.options}>{item.text}</option>
                                 );
                             })}
                         </select>
@@ -277,6 +281,7 @@ export default React.createClass({
                         label={this.getTranslation('assign_all') + ' ' + (this.getAvailableItemsUnfilteredCount() === 0 ? '' : this.getAvailableItemsUnfilteredCount()) + ' \u2192'}
                         disabled={this.state.loading || this.getAvailableItemsUnfilteredCount() === 0}
                         onClick={this._assignAll}
+                        style={{marginTop: '1rem'}}
                         secondary/>
                 </div>
                 <div style={styles.middle}>
@@ -307,13 +312,14 @@ export default React.createClass({
                                 }}>
                             {this.getAssignedItemsFiltered().map(item => {
                                 return (<option key={item.value} value={item.value}
-                                                onDoubleClick={this._removeItems}>{item.text}</option>);
+                                                onDoubleClick={this._removeItems}
+                                                style={styles.options}>{item.text}</option>);
                             })}
                         </select>
                     </Paper>
                     <RaisedButton
                         label={'\u2190 ' + this.getTranslation('remove_all') + ' ' + (this.getAssignedItemsUnfilteredCount() > 0 ? this.getAssignedItemsUnfilteredCount() : '')}
-                        style={{float: 'right'}}
+                        style={{float: 'right', marginTop: '1rem'}}
                         disabled={this.state.loading || this.getAssignedItemsUnfilteredCount() === 0}
                         onClick={this._removeAll}
                         secondary/>
