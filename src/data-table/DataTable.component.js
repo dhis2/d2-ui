@@ -56,8 +56,6 @@ const DataTable = React.createClass({
                 return availableActions;
             }, {});
 
-        console.log(actionsToShow);
-
         return (
            <div className="data-table" onClick={this.hideContextMenu} onMouseLeave={this.hideContextMenu}>
                <div className="data-table__headers">
