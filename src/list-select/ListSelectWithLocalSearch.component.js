@@ -6,6 +6,10 @@ import Translate from 'd2-ui/lib/i18n/Translate.mixin';
 import ListSelect from '../list-select/ListSelect.component';
 
 export default React.createClass({
+    propTypes: {
+        source: React.PropTypes.array.isRequired,
+    },
+
     mixins: [Translate],
 
     getInitialState() {
