@@ -3,6 +3,8 @@ import classes from 'classnames';
 import {isObject} from 'd2-utils';
 import moment from 'moment';
 
+import Translate from '../i18n/Translate.mixin';
+
 function valueTypeGuess(valueType, value) {
     switch (valueType) {
     case 'DATE':
@@ -32,6 +34,8 @@ const DataTableRow = React.createClass({
         primaryClick: React.PropTypes.func.isRequired,
     },
 
+    mixins: [Translate],
+
     render() {
         const classList = classes(
             'data-table__rows__row',
@@ -48,6 +52,25 @@ const DataTableRow = React.createClass({
                 displayValue = rowValue.displayName || rowValue.name || rowValue;
             } else {
                 displayValue = rowValue;
+            }
+
+            // TODO: PublicAcces Hack - need to make it so that value transformers can be registered
+            if (columnName === 'publicAccess') {
+                const dataSource = this.props.dataSource;
+
+                if (dataSource[columnName]) {
+                    if (dataSource[columnName] === 'rw------') {
+                        displayValue = this.getTranslation('edit');
+                    }
+
+                    if (dataSource[columnName] === 'r-------') {
+                        displayValue = this.getTranslation('view');
+                    }
+
+                    if (dataSource[columnName] === '--------') {
+                        displayValue = this.getTranslation('none');
+                    }
+                }
             }
 
             return (

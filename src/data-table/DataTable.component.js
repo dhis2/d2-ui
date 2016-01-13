@@ -10,6 +10,7 @@ const DataTable = React.createClass({
         contextMenuActions: React.PropTypes.object,
         contextMenuIcons: React.PropTypes.object,
         primaryAction: React.PropTypes.func,
+        isContextActionAllowed: React.PropTypes.func,
     },
 
     getInitialState() {
@@ -46,6 +47,17 @@ const DataTable = React.createClass({
             dataRows.push(<DataTableRow key={dataRowsId} dataSource={dataRowsSource} columns={this.state.columns} isActive={this.state.activeRow === dataRowsId} itemClicked={this.handleRowClick} primaryClick={this.props.primaryAction || (() => {})} />);
         }
 
+        const actionAccessChecker = (this.props.isContextActionAllowed && this.props.isContextActionAllowed.bind(null, this.state.activeRow)) || (() => true);
+
+        const actionsToShow = Object.keys(this.props.contextMenuActions)
+            .filter(actionAccessChecker)
+            .reduce((availableActions, actionKey) => {
+                availableActions[actionKey] = this.props.contextMenuActions[actionKey];
+                return availableActions;
+            }, {});
+
+        console.log(actionsToShow);
+
         return (
            <div className="data-table" onClick={this.hideContextMenu} onMouseLeave={this.hideContextMenu}>
                <div className="data-table__headers">
@@ -54,7 +66,7 @@ const DataTable = React.createClass({
                <div className="data-table__rows">
                    {dataRows}
                </div>
-               {this.state.activeRow ? <DataTableContextMenu actions={this.props.contextMenuActions || {}} activeItem={this.state.activeRow} coords={this.state.contextMenuCoords} icons={this.props.contextMenuIcons} /> : undefined}
+               {this.state.activeRow ? <DataTableContextMenu actions={actionsToShow || {}} activeItem={this.state.activeRow} coords={this.state.contextMenuCoords} icons={this.props.contextMenuIcons} /> : undefined}
            </div>
         );
     },

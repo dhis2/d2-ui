@@ -25,12 +25,7 @@ const DataTableContextMenu = React.createClass({
                 Y: 0,
             },
             icons: {},
-        };
-    },
-
-    getInitialState() {
-        return {
-            actions: this.props.actions || {},
+            actions: {},
         };
     },
 
@@ -38,8 +33,8 @@ const DataTableContextMenu = React.createClass({
         const classList = classes('data-table__context-menu');
 
         const actionList = Object
-            .keys(this.state.actions)
-            .filter(menuActionKey => typeof this.state.actions[menuActionKey] === 'function');
+            .keys(this.props.actions)
+            .filter(menuActionKey => typeof this.props.actions[menuActionKey] === 'function');
 
         return (
             <div className={classList}
@@ -51,6 +46,7 @@ const DataTableContextMenu = React.createClass({
                         const iconName = this.props.icons[action] ? this.props.icons[action] : action;
 
                         return (<MenuItem key={action}
+                                          data-object-id={this.props.activeItem.id}
                                           className={'data-table__context-menu__item'}
                                           onClick={this.handleClick.bind(this, action)}
                                           primaryText={this.getTranslation(action)}
