@@ -72,7 +72,7 @@ export default React.createClass({
     },
 
     renderTabs() {
-        const listStyle = {width: '100%', outline: 'none'};
+        const listStyle = {width: '100%', outline: 'none', border: 'none'};
         const noValueMessageStyle = {
             padding: '1rem',
         };
@@ -84,6 +84,7 @@ export default React.createClass({
                         <ListSelect onItemDoubleClick={this._programDataElementSelected}
                                     source={this.state.programDataElementOptions}
                                     listStyle={listStyle}
+                                    size="10"
                         />}
                 </Tab>
                 <Tab label={this.getTranslation('program_tracked_entity_attributes')} style={{color: '#333'}}>
@@ -91,6 +92,7 @@ export default React.createClass({
                     <ListSelect onItemDoubleClick={this._programTrackedEntityAttributeSelected}
                                 source={this.state.programTrackedEntityAttributeOptions}
                                 listStyle={listStyle}
+                                size="10"
                     />}
                 </Tab>
                 <Tab label={this.getTranslation('program_indicators')} style={{color: '#333'}}>
@@ -98,6 +100,7 @@ export default React.createClass({
                     <ListSelect onItemDoubleClick={this._programIndicatorSelected}
                                 source={this.state.programIndicatorOptions}
                                 listStyle={listStyle}
+                                size="10"
                     />}
                 </Tab>
             </Tabs>

@@ -89,7 +89,7 @@ const DataElementOperandSelector = React.createClass({
                            onChange={this.searchDataElement}
                 />
                 {this.state.isLoading ? <LinearProgress mode="indeterminate"  /> : null}
-                <ListSelectAsync size="10"
+                <ListSelectAsync size="12"
                                  onItemDoubleClick={this.props.onItemDoubleClick}
                                  source={this.storeObservable}
                                  listStyle={this.props.listStyle}

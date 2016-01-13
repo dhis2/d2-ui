@@ -2,7 +2,6 @@ import React from 'react';
 import ExpressionDescription from './ExpressionDescription.component';
 import ExpressionOperators from './ExpressionOperators.component';
 import ExpressionFormula from './ExpressionFormula.component';
-import ListSelect from '../list-select/ListSelect.component';
 import DataElementOperandSelector from './DataElementOperandSelector.component';
 import Tabs from 'material-ui/lib/tabs/tabs';
 import Tab from 'material-ui/lib/tabs/tab';
@@ -13,6 +12,8 @@ import Translate from '../i18n/Translate.mixin';
 import {config} from 'd2/lib/d2';
 import ProgramOperandSelector from './ProgramOperandSelector';
 import Heading from '../headings/Heading.component';
+import OrganisationUnitGroupSelector from './OrganisationUnitGroupSelector.component';
+import ConstantSelector from './ConstantSelector.component';
 
 config.i18n.strings.add('data_elements');
 config.i18n.strings.add('description');
@@ -135,7 +136,7 @@ const IndicatorExpressionManager = React.createClass({
     },
 
     render() {
-        const listStyle = {width: '100%', outline: 'none'};
+        const listStyle = {width: '100%', outline: 'none', border: 'none'};
 
         const statusMessageClasses = classes(
             'indicator-expression-manager__readable-expression__message',
@@ -151,10 +152,10 @@ const IndicatorExpressionManager = React.createClass({
 
         return (
             <div className="indicator-expression-manager">
+                <Heading style={{margin: 0, padding: '2rem 2rem 1rem'}} level={3} text={this.props.titleText} />
                 <div className="indicator-expression-manager__left" style={{paddingLeft: '2rem'}}>
-                    <Paper style={{padding: '0 2rem', marginTop: '1rem'}}>
+                    <Paper style={{padding: '0 2rem', marginTop: '1rem', minHeight: 395}}>
                     <div className="indicator-expression-manager__description">
-                        <Heading style={{margin: 0, padding: 0}} level={3} text={this.props.titleText} />
                         <ExpressionDescription descriptionValue={this.state.description}
                                                descriptionLabel={this.getTranslation('description')}
                                                onDescriptionChange={this.descriptionChange}
@@ -167,7 +168,7 @@ const IndicatorExpressionManager = React.createClass({
                     </Paper>
                 </div>
                 <div className="indicator-expression-manager__right" style={{paddingRight: '2rem'}}>
-                    <Paper style={{padding: '0 2rem', marginTop: '1rem'}}>
+                    <Paper style={{padding: '0 0rem', marginTop: '1rem', minHeight: 395}}>
                     <Tabs>
                         <Tab label={this.getTranslation('data_elements')}>
                             <DataElementOperandSelector onItemDoubleClick={this.dataElementOperandSelected}
@@ -179,13 +180,13 @@ const IndicatorExpressionManager = React.createClass({
                             <ProgramOperandSelector programOperandSelected={this.programOperandSelected} />
                         </Tab>
                         <Tab label={this.getTranslation('organisation_unit_counts')}>
-                            <ListSelect onItemDoubleClick={this.organisationUnitGroupSelected}
+                            <OrganisationUnitGroupSelector onItemDoubleClick={this.organisationUnitGroupSelected}
                                         source={this.props.organisationUnitGroupOptions}
                                         listStyle={listStyle}
                                 />
                         </Tab>
                         <Tab label={this.getTranslation('constants')}>
-                            <ListSelect onItemDoubleClick={this.constantSelected}
+                            <ConstantSelector onItemDoubleClick={this.constantSelected}
                                         source={this.props.constantOptions}
                                         listStyle={listStyle}
                                 />
