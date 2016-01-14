@@ -12,6 +12,11 @@
     "build-only": "./node_modules/babel/bin/babel.js src --out-dir lib && compass compile",
     "validate": "npm ls"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dhis2/d2-ui.git"
+  },
+  "license": "BSD-3-Clause",
   "devDependencies": {
     "babel": "5.8.21",
     "babel-core": "5.8.22",
