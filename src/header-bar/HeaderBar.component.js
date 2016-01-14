@@ -230,7 +230,7 @@ const HeaderBar = React.createClass({
 
     requestUserStyle() {
         const api = this.context.d2.Api.getApi();
-        return api.get('userSettings/keyCurrentStyle', {}, {dataType: 'text'})
+        return api.get('userSettings/keyStyle', {}, {dataType: 'text'})
             .then(response => {
                 return response.trim();
             });
