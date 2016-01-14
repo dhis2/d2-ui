@@ -11,6 +11,7 @@ config.i18n.strings.add('sharing_settings');
 export default createClass({
     propTypes: {
         objectIdToTranslate: PropTypes.object.isRequired,
+        objectTypeToTranslate: PropTypes.string.isRequired,
     },
 
     mixins: [Translate],
@@ -31,7 +32,7 @@ export default createClass({
                 autoScrollBodyContent
                 {...this.props}
             >
-                <TranslationForm objectIdToTranslate={this.props.objectIdToTranslate} />
+                <TranslationForm objectIdToTranslate={this.props.objectIdToTranslate} objectTypeToTranslate={this.props.objectTypeToTranslate} />
             </Dialog>
         );
     },

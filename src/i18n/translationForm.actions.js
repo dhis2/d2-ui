@@ -38,7 +38,7 @@ actions.loadTranslationsForObject
                 return d2.models.translation
                     .filter().on('objectId').equals(objectId)
                     .filter().on('locale').equals(locale)
-                    .list({fields: 'href,id,property,value', paging: false})
+                    .list({fields: 'href,id,property,value,className,locale', paging: false})
                     .then((translationCollection) => translationCollection.toArray());
             })
             .then(translations => {
