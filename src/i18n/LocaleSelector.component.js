@@ -16,8 +16,8 @@ export default React.createClass({
         const locales = this.props.locales
             .map(locale => {
                 return {
-                    payload: locale,
-                    text: this.getTranslation(locale),
+                    payload: locale.locale,
+                    text: locale.name,
                 };
             });
 
