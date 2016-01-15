@@ -17,7 +17,7 @@ import TranslateMixin from '../i18n/Translate.mixin.js';
 config.i18n.strings.add('selected');
 config.i18n.strings.add('assign_all');
 config.i18n.strings.add('remove_all');
-config.i18n.strings.add('hidden by filters');
+config.i18n.strings.add('hidden_by_filters');
 
 export default React.createClass({
     propTypes: {
@@ -252,7 +252,7 @@ export default React.createClass({
         };
 
         const hiddenLabel = (itemCount) => {
-            return this.getItemCount() > 0 && this.getFilterText().length > 0 ? itemCount + ' ' + this.getTranslation('hidden by filters') : '';
+            return this.getItemCount() > 0 && this.getFilterText().length > 0 ? itemCount + ' ' + this.getTranslation('hidden_by_filters') : '';
         };
 
         const selectedLabel = () => {
