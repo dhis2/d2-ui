@@ -160,6 +160,7 @@ const IndicatorExpressionManager = React.createClass({
                                                descriptionLabel={this.getTranslation('description')}
                                                onDescriptionChange={this.descriptionChange}
                                                errorText={!isDescriptionValid() ? this.getTranslation('this_field_is_required') : undefined}
+                                               onBlur={this.requestExpressionStatus}
                             />
                     </div>
                     <ExpressionFormula onFormulaChange={this.formulaChange}
