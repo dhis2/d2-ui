@@ -136,7 +136,7 @@ const IndicatorExpressionManager = React.createClass({
     },
 
     render() {
-        const listStyle = {width: '100%', outline: 'none', border: 'none'};
+        const listStyle = {width: '100%', outline: 'none', border: 'none', padding: '0rem 1rem'};
 
         const statusMessageClasses = classes(
             'indicator-expression-manager__readable-expression__message',

@@ -72,7 +72,7 @@ export default React.createClass({
     },
 
     renderTabs() {
-        const listStyle = {width: '100%', outline: 'none', border: 'none'};
+        const listStyle = {width: '100%', outline: 'none', border: 'none', padding: '0rem 1rem'};
         const noValueMessageStyle = {
             padding: '1rem',
         };
