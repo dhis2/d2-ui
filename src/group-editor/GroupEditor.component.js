@@ -101,13 +101,13 @@ export default React.createClass({
     // Data handling utility functions
     //
     getItemStoreIsCollection() {
-        return this.props.itemStore.state !== undefined && typeof this.props.itemStore.state.values === 'function';
+        return this.props.itemStore.state !== undefined && (typeof this.props.itemStore.state.values === 'function' && typeof this.props.itemStore.state.has === 'function');
     },
     getItemStoreIsArray() {
         return this.props.itemStore.state !== undefined && this.props.itemStore.state.constructor.name === 'Array';
     },
     getAssignedItemStoreIsCollection() {
-        return this.props.assignedItemStore.state !== undefined && typeof this.props.assignedItemStore.state.values === 'function';
+        return this.props.assignedItemStore.state !== undefined && (typeof this.props.assignedItemStore.state.values === 'function' && typeof this.props.assignedItemStore.state.has === 'function');
     },
     getAssignedItemStoreIsArray() {
         return this.props.assignedItemStore.state !== undefined && this.props.assignedItemStore.state.constructor.name === 'Array';
