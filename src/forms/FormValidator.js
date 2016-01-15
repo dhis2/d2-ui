@@ -23,9 +23,9 @@ function validatorRunner(fieldName, fieldValue, formSource) {
         try {
             result = validator(fieldValue, fieldName, formSource);
         } catch(e) {
-            log.warn(`Validator for '${fieldName}' ignored because the following validator threw an error.`);
-            log.error(`${validator}`);
-            log.error(e.message);
+            log.debug(`Validator for '${fieldName}' ignored because the validator threw an error.`);
+            log.debug(`${validator}`);
+            log.debug(e.message);
             return Promise.resolve(true);
         }
 
