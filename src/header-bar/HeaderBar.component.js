@@ -91,12 +91,12 @@ const HeaderBar = React.createClass({
         return this.requestUserStyle()
             .catch(() => {
                 log.info('Unable to load usersettings, falling back to systemSettings');
-                localStorage.setItem('dhis2.menu.ui.headerBar.userStyle', systemSettings.keyCurrentStyle);
-                return systemSettings.keyCurrentStyle;
+                localStorage.setItem('dhis2.menu.ui.headerBar.userStyle', systemSettings.keyStyle);
+                return systemSettings.keyStyle;
             })
             .then(userStyleUrl => {
                 return {
-                    userStyleUrl: userStyleUrl || systemSettings.keyCurrentStyle,
+                    userStyleUrl: userStyleUrl || systemSettings.keyStyle,
                     title: systemSettings.applicationTitle,
                     link: systemSettings.startModule,
                 };
@@ -230,7 +230,7 @@ const HeaderBar = React.createClass({
 
     requestUserStyle() {
         const api = this.context.d2.Api.getApi();
-        return api.get('userSettings/keyCurrentStyle', {}, {dataType: 'text'})
+        return api.get('userSettings/keyStyle', {}, {dataType: 'text'})
             .then(response => {
                 return response.trim();
             });

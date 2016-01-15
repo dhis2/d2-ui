@@ -12,6 +12,7 @@ export default createClass({
     propTypes: {
         objectIdToTranslate: PropTypes.object.isRequired,
         objectTypeToTranslate: PropTypes.string.isRequired,
+        onTranslationSaved: PropTypes.string.isRequired,
     },
 
     mixins: [Translate],
@@ -30,9 +31,10 @@ export default createClass({
                 actions={translationDialogActions}
                 autoDetectWindowHeight
                 autoScrollBodyContent
-                {...this.props}
-            >
-                <TranslationForm objectIdToTranslate={this.props.objectIdToTranslate} objectTypeToTranslate={this.props.objectTypeToTranslate} />
+                {...this.props} >
+                <TranslationForm {...this.props}
+                                 objectIdToTranslate={this.props.objectIdToTranslate}
+                                 objectTypeToTranslate={this.props.objectTypeToTranslate}/>
             </Dialog>
         );
     },

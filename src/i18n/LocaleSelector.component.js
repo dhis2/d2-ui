@@ -36,7 +36,8 @@ export default React.createClass({
     _localeChange(event) {
         this.setState({
             locale: event.target.value,
-        })
+        });
+
         this.props.onChange(event.target.value, event);
     },
 });

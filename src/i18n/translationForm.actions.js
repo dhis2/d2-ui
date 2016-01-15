@@ -16,9 +16,14 @@ function loadAvailableLocales() {
     return loadAvailableLocales.localePromise;
 }
 
+function getClassName(modelDefinition) {
+    return modelDefinition.javaClass.split('.').pop();
+}
+
 const actions = Action.createActionsFromNames([
     'loadTranslationsForObject',
     'loadLocales',
+    'saveTranslation',
 ]);
 
 actions.loadLocales
@@ -47,6 +52,42 @@ actions.loadTranslationsForObject
                     translations,
                 });
             });
+    });
+
+actions.saveTranslation
+    .subscribe(({data: [property, value, objectId, modelDefinition, locale], complete, error}) => {
+        const model = translationStore.state.translations.find((translation) => {
+            return translation.property === property;
+        });
+
+        if (model) {
+            // Update existing translation
+            if (model.value !== value) {
+                model.value = value;
+
+                model.save()
+                    .then(complete)
+                    .catch(error);
+            }
+        } else {
+            if (!value) { return; }
+
+            // Create new translation
+            getD2()
+                .then(d2 => d2.models.translation)
+                .then(translation => translation.create())
+                .then(translationModel => {
+                    translationModel.className = getClassName(modelDefinition);
+                    translationModel.locale = locale;
+                    translationModel.value = value;
+                    translationModel.property = property;
+                    translationModel.objectId = objectId;
+
+                    return translationModel.save();
+                })
+                .then(complete)
+                .catch(error);
+        }
     });
 
 

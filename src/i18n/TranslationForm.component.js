@@ -17,11 +17,14 @@ function getLoadingdataElement() {
     );
 }
 
-function getClassName(modelDefinition) {
-    return modelDefinition.javaClass.split('.').pop();
-}
-
 export default React.createClass({
+    propTypes: {
+        onTranslationSaved: React.PropTypes.func.isRequired,
+        onTranslationError: React.PropTypes.func.isRequired,
+        objectTypeToTranslate: React.PropTypes.object.isRequired,
+        objectIdToTranslate: React.PropTypes.string.isRequired,
+    },
+
     mixins: [Translate],
 
     getInitialState() {
@@ -29,6 +32,7 @@ export default React.createClass({
             loading: true,
             translations: {},
             translationValues: {},
+            currentSelectedLocale: '',
         };
     },
 
@@ -69,7 +73,6 @@ export default React.createClass({
                 </div>
                 <div>
                     <TextField floatingLabelText={this.getTranslation('description')}
-                               multiLine={true}
                                value={this.state.translationValues.description}
                                fullWidth
                                onChange={this._setValue.bind(this, 'description')}
@@ -80,16 +83,23 @@ export default React.createClass({
         );
     },
 
+    renderHelpText() {
+        return (
+            <div>
+                <p>{this.getTranslation('select_a_locale_to_enter_translations_for_that_language')}</p>
+            </div>
+        );
+    },
+
     render() {
         if (this.state.loading) {
             return getLoadingdataElement();
         }
 
         return (
-            <div style={{height: 400}}>
-                {getClassName(this.props.objectTypeToTranslate)}
+            <div style={{minHeight: 250}}>
                 <LocaleSelector locales={this.state.availableLocales} onChange={this._reloadTranslations} />
-                {this.state.isLocaleSelected ? this.renderForm() : null}
+                {Boolean(this.state.currentSelectedLocale) ? this.renderForm() : this.renderHelpText()}
             </div>
         );
     },
@@ -97,7 +107,7 @@ export default React.createClass({
     _reloadTranslations(locale) {
         actions.loadTranslationsForObject(this.props.objectIdToTranslate, locale);
         this.setState({
-            isLocaleSelected: true,
+            currentSelectedLocale: locale,
         });
     },
 
@@ -112,19 +122,7 @@ export default React.createClass({
     },
 
     _saveValue(property, event) {
-        const model = this.state.translations.find((translation) => {
-            return translation.property === property;
-        });
-
-        if (model) {
-            // Update existing translation
-            if (model.value !== event.target.value) {
-                model.value = event.target.value;
-
-                model.save();
-            }
-        } else {
-            console.log('Create a model!');
-        }
+        actions.saveTranslation(property, event.target.value, this.props.objectIdToTranslate, this.props.objectTypeToTranslate, this.state.currentSelectedLocale)
+            .subscribe(this.props.onTranslationSaved, this.props.onTranslationError);
     },
 });
