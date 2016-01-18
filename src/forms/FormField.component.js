@@ -57,9 +57,9 @@ const FormField = React.createClass({  // eslint-disable-line react/no-multi-com
 
         if (dynamic) {
             Object.assign(helpStyle, {
-                marginTop: this.state.isFocused ? 0 : -15,
+                marginTop: this.state.isFocused ? 0 : -18,
                 marginBottom: this.state.isFocused ? 0 : 0,
-                transition: 'margin 150ms ease-out',
+                transition: 'margin 175ms ease-in-out',
             });
         }
 
