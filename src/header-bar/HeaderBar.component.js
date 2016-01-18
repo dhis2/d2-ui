@@ -58,6 +58,10 @@ function saveToLocalStorage(headerData) {
 }
 
 const HeaderBar = React.createClass({
+    propTypes: {
+        lastUpdate: React.PropTypes.instanceOf(Date),
+    },
+
     contextTypes: {
         d2: React.PropTypes.object.isRequired,
     },
@@ -81,6 +85,13 @@ const HeaderBar = React.createClass({
             .then(headerData => {
                 this.setHeaderData(headerData.userStyleUrl, headerData.title, headerData.link);
             });
+    },
+
+    componentWillReceiveProps(props) {
+        if (this.props.lastUpdate && (this.props.lastUpdate.getTime() - props.lastUpdate.getTime()) !== 0) {
+            document.querySelector('#menuLinkArea').innerHTML = '';
+            dhis2.menu.ui.initMenu();
+        }
     },
 
     getSystemSettings(d2) {
