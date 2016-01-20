@@ -8,15 +8,16 @@ const ListSelect = React.createClass({
         })).isRequired,
         onItemDoubleClick: React.PropTypes.func.isRequired,
         listStyle: React.PropTypes.object,
+        size: React.PropTypes.number,
     },
 
     render() {
         return (
             <div className="list-select">
-                <select size="10" style={this.props.listStyle}>
+                <select size={this.props.size || 15} style={this.props.listStyle}>
                     {this.props.source.map(item => {
                         return (
-                            <option onDoubleClick={this.listItemDoubleClicked} value={item.value}>{item.label}</option>
+                            <option style={{padding: '.25rem'}} onDoubleClick={this.listItemDoubleClicked} value={item.value}>{item.label}</option>
                         );
                     })}
                 </select>

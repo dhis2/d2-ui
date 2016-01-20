@@ -5,7 +5,7 @@ import ThemeManager from 'material-ui/lib/styles/theme-manager'
 import Colors from 'material-ui/lib/styles/colors';
 import ColorManipulator from 'material-ui/lib/utils/color-manipulator';
 import Spacing from 'material-ui/lib/styles/spacing';
-import {init} from 'd2/lib/d2';
+import {init, getInstance} from 'd2/lib/d2';
 
 import IndicatorExpressionManagerExample from './IndicatorExpressionManagerExample';
 import SharingDialogExample from './SharingDialogExample';
@@ -28,6 +28,48 @@ const style = {
     },
 };
 
+const alwaysWrong = (value) => {
+    return value.length > 2;
+};
+alwaysWrong.message = 'Always wrong LOL!';
+
+let alwaysAsyncTimeout = null;
+const alwaysAsync = (value) => {
+    return new Promise((resolve, reject) => {
+        if (alwaysAsyncTimeout) {
+            clearTimeout(alwaysAsyncTimeout);
+            alwaysAsyncTimeout = null;
+        }
+
+        setTimeout(() => {
+            if (value.length < 8) {
+                resolve(true);
+            } else {
+                reject('Not shorter than 8');
+            }
+            alwaysAsyncTimeout = null;
+        }, 500);
+    });
+};
+
+function notDataElementName(value) {
+    return getInstance()
+        .then(d2 => {
+            return d2.models.dataElement
+                .filter()
+                .on('name')
+                .equals(value)
+                .list();
+        })
+        .then(modelCollection => modelCollection.toArray())
+        .then(modelCollection => {
+            if (modelCollection.length === 0) {
+                return true;
+            }
+            return Promise.reject('Already exists');
+        });
+}
+
 const fcs = [
     {
         name: 'username',
@@ -42,6 +84,10 @@ const fcs = [
         fieldOptions: {
             floatingLabelText: 'password',
         },
+        validators: [
+            alwaysWrong,
+            notDataElementName,
+        ],
     },
 ];
 
@@ -89,7 +135,8 @@ function renderExamples(d2) {
 
 jQuery.ajaxSetup({
     headers: {
-        Authorization: 'Basic ' + btoa('system:System123')
+        Authorization: 'Basic ' + btoa('markpo:Markpo1234')
+//        Authorization: 'Basic ' + btoa('system:System123')
 //                Authorization: 'Basic ' + btoa('admin:district')
 //                Authorization: 'Basic ' + btoa('user:Admin123')
     },

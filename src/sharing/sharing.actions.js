@@ -34,7 +34,7 @@ actions.loadObjectSharingState
                     user: object.user,
                     externalAccess: object.externalAccess,
                     publicAccess: object.publicAccess,
-                    userGroupAccesses: object.userGroupAccesses,
+                    userGroupAccesses: object.userGroupAccesses || [],
                 };
                 sharableState.model = sharableObject;
                 sharableState.isSaving = false;

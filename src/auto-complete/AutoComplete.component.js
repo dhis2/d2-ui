@@ -19,7 +19,7 @@ function searchByForModel(searchBy, modelTypeToSearch, valueToSearchFor, options
 
     const searchQueryRequest = getInstance()
         .then(d2 => d2.models[modelTypeToSearch])
-        .then(modelType => modelType.filter().on(searchBy).like(valueToSearchFor))
+        .then(modelType => modelType.filter().on(searchBy).ilike(valueToSearchFor))
         .then(modelTypeWithFilter => modelTypeWithFilter.list(options))
         .then(collection => collection.toArray());
 
@@ -68,6 +68,7 @@ export default createClass({
             .map(valueToSearchFor => searchByForModel('name', forType, valueToSearchFor, {fields: 'id,displayName|rename(name),users::size', pageSize: 10}))
             .concatAll()
             .map(suggestions => suggestions.filter(this.props.filterForSuggestions || helpers.identity))
+            .map(suggestions => suggestions.slice(0, 5))
             .subscribe(
                 autoCompleteValues => this.setState({
                     autoCompleteValues,

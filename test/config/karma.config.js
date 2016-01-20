@@ -71,6 +71,8 @@ module.exports = function karmaConfig( config ) {
                     'lodash.isfinite': 'npm:lodash.isfinite/index',
                     'd2/lib/d2': 'npm:d2/lib/d2',
                     'react/lib/update': 'npm:react/lib/update',
+                    'lodash.isfunction': 'npm:lodash.isfunction/index',
+                    'moment': 'npm:moment/moment',
                 },
             },
 
@@ -88,8 +90,10 @@ module.exports = function karmaConfig( config ) {
                 './node_modules/d2-flux/**',
                 './node_modules/lodash.isstring/index.js',
                 './node_modules/lodash.isfinite/index.js',
+                './node_modules/lodash.isfunction/index.js',
                 './node_modules/d2/**',
                 './node_modules/d2/lib/d2.js',
+                './node_modules/moment/moment.js',
 
                 // App source files
                 'src/**/*.js',

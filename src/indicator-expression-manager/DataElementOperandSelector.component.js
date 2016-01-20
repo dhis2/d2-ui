@@ -66,25 +66,31 @@ const DataElementOperandSelector = React.createClass({
 
     getNextPage() {
         this.setState({isLoading: true});
-        this.props.dataElementOperandSelectorActions.getNextPage(this.state.pager);
+        this.props.dataElementOperandSelectorActions.getNextPage(this.state.pager, this.state.searchValue);
     },
 
     getPreviousPage() {
         this.setState({isLoading: true});
-        this.props.dataElementOperandSelectorActions.getPreviousPage(this.state.pager);
+        this.props.dataElementOperandSelectorActions.getPreviousPage(this.state.pager, this.state.searchValue);
     },
 
     render() {
         return (
             <div className="data-element-operand-selector">
+                <div style={{float: 'right'}}>
                 <Pagination hasNextPage={() => this.state.pager.hasNextPage()}
                             hasPreviousPage={() => this.state.pager.hasPreviousPage()}
                             onNextPageClick={this.getNextPage}
                             onPreviousPageClick={this.getPreviousPage}
                     />
-                <TextField hintText={this.getTranslation('search_by_name')} onChange={this.searchDataElement} />
+                </div>
+                <TextField style={{marginLeft: '1rem'}}
+                           hintText={this.getTranslation('search_by_name')}
+                           onChange={this.searchDataElement}
+                />
                 {this.state.isLoading ? <LinearProgress mode="indeterminate"  /> : null}
-                <ListSelectAsync onItemDoubleClick={this.props.onItemDoubleClick}
+                <ListSelectAsync size="12"
+                                 onItemDoubleClick={this.props.onItemDoubleClick}
                                  source={this.storeObservable}
                                  listStyle={this.props.listStyle}
                     />
@@ -96,7 +102,10 @@ const DataElementOperandSelector = React.createClass({
         const value = event.target.value;
         this.props.dataElementOperandSelectorActions.search(value)
             .subscribe(() => {
-                this.setState({isLoading: false});
+                this.setState({
+                    isLoading: false,
+                    searchValue: value,
+                });
             });
 
         this.setState({isLoading: true});

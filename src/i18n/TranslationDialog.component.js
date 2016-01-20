@@ -3,20 +3,22 @@ import Dialog from 'material-ui/lib/dialog';
 import FlatButton from 'material-ui/lib/flat-button';
 import {PropTypes, createClass, default as React} from 'react';
 import Translate from '../i18n/Translate.mixin';
-import Sharing from './Sharing.component';
+import TranslationForm from './TranslationForm.component';
 
 config.i18n.strings.add('close');
 config.i18n.strings.add('sharing_settings');
 
 export default createClass({
     propTypes: {
-        objectToShare: PropTypes.object.isRequired,
+        objectIdToTranslate: PropTypes.object.isRequired,
+        objectTypeToTranslate: PropTypes.string.isRequired,
+        onTranslationSaved: PropTypes.string.isRequired,
     },
 
     mixins: [Translate],
 
     render() {
-        const sharingDialogActions = [
+        const translationDialogActions = [
             <FlatButton
                 label={this.getTranslation('close')}
                 onClick={this.closeSharingDialog} />,
@@ -24,20 +26,20 @@ export default createClass({
 
         return (
             <Dialog
-                ref="sharingDialog"
-                title={this.getTranslation('sharing_settings')}
-                actions={sharingDialogActions}
+                ref="translationDialog"
+                title={this.getTranslation('translation_dialog_title')}
+                actions={translationDialogActions}
                 autoDetectWindowHeight
                 autoScrollBodyContent
-                bodyStyle={{minHeight: 450}}
-                {...this.props}
-                >
-                <Sharing objectToShare={this.props.objectToShare} />
+                {...this.props} >
+                <TranslationForm {...this.props}
+                                 objectIdToTranslate={this.props.objectIdToTranslate}
+                                 objectTypeToTranslate={this.props.objectTypeToTranslate}/>
             </Dialog>
         );
     },
 
     closeSharingDialog() {
-        this.refs.sharingDialog.dismiss();
+        this.refs.translationDialog.dismiss();
     },
 });

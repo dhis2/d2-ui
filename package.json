@@ -1,6 +1,6 @@
 {
   "name": "d2-ui",
-  "version": "0.0.8",
+  "version": "0.1.0",
   "description": "d2-ui",
   "main": "index.js",
   "scripts": {
@@ -64,7 +64,9 @@
     "d2-flux": "0.4.0",
     "d2-utils": "0.0.4",
     "lodash.isfinite": "3.2.0",
+    "lodash.isfunction": "^3.0.6",
     "lodash.isnumber": "3.0.1",
+    "moment": "^2.11.1",
     "rx": "3.1.2"
   },
   "pre-commit": [

@@ -33,7 +33,8 @@ const ListSelectAsync = React.createClass({
 
     render() {
         return (
-            <ListSelect onItemDoubleClick={this.props.onItemDoubleClick}
+            <ListSelect {...this.props}
+                        onItemDoubleClick={this.props.onItemDoubleClick}
                         source={this.state.listSource}
                         listStyle={this.props.listStyle}
                 />
