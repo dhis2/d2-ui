@@ -61,7 +61,7 @@ const Sidebar = React.createClass({
                     <TextField hintText={!!this.props.searchFieldLabel ? this.props.searchFieldLabel : d2.i18n.getTranslation('search')} style={{width: '100%'}}
                                value={this.state.searchText}
                                onChange={this.changeSearchText} ref={ref => { this.searchBox = ref; }} />
-                    {!!this.state.searchText ? <FontIcon style={styles.closeButton} className="material-icons" onClick={this.clearSearchBox}>clear</FontIcon> : undefined}
+                    {!!this.state.searchText ? <FontIcon style={styles.closeButton} className="material-icons" onClick={this._clear}>clear</FontIcon> : undefined}
                 </div>
             );
         }
@@ -132,13 +132,16 @@ const Sidebar = React.createClass({
         });
     },
 
-    clearSearchBox() {
+    _clear() {
         this.setState({searchText: ''}, () => {
             if (this.props.onChangeSearchText) {
                 this.props.onChangeSearchText(this.state.searchText);
             }
-            this.props.onChangeSection(this.state.currentSection);
         });
+    },
+
+    clearSearchBox() {
+        this.setState({searchText: ''});
     },
 });
 
