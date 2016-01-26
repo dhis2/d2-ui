@@ -1,7 +1,7 @@
-import {config} from 'd2/lib/d2';
+import { config } from 'd2/lib/d2';
 import Dialog from 'material-ui/lib/dialog';
 import FlatButton from 'material-ui/lib/flat-button';
-import {PropTypes, createClass, default as React} from 'react';
+import { PropTypes, createClass, default as React } from 'react';
 import Translate from '../i18n/Translate.mixin';
 import Sharing from './Sharing.component';
 
@@ -29,7 +29,7 @@ export default createClass({
                 actions={sharingDialogActions}
                 autoDetectWindowHeight
                 autoScrollBodyContent
-                bodyStyle={{minHeight: 450}}
+                bodyStyle={{ minHeight: 450 }}
                 {...this.props}
                 >
                 <Sharing objectToShare={this.props.objectToShare} />

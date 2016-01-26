@@ -1,4 +1,4 @@
-import {camelCaseToUnderscores} from 'd2-utils';
+import { camelCaseToUnderscores } from 'd2-utils';
 import React from 'react';
 import classes from 'classnames';
 import Translate from '../i18n/Translate.mixin';

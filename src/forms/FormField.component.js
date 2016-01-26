@@ -1,8 +1,8 @@
-import {PropTypes, default as React} from 'react';
+import { PropTypes, default as React } from 'react';
 import classes from 'classnames';
 import LinearProgress from 'material-ui/lib/linear-progress';
 
-const emptyComponent = React.createClass({ render() { return null; }});
+const emptyComponent = React.createClass({ render() { return null; } });
 
 /**
  * Is required to be a direct child of the `Form.component`
@@ -39,7 +39,7 @@ const FormField = React.createClass({  // eslint-disable-line react/no-multi-com
     },
 
     getInitialState() {
-        return {isFocused: false};
+        return { isFocused: false };
     },
 
     renderHelpText() {
@@ -64,7 +64,7 @@ const FormField = React.createClass({  // eslint-disable-line react/no-multi-com
         }
 
         return (
-            <div style={{overflow: 'hidden', marginTop: dynamic ? -5 : 0}}>
+            <div style={{ overflow: 'hidden', marginTop: dynamic ? -5 : 0 }}>
                 <div style={helpStyle}>{helpText}</div>
             </div>
         );
@@ -103,11 +103,11 @@ const FormField = React.createClass({  // eslint-disable-line react/no-multi-com
     },
 
     _focus() {
-        this.setState({isFocused: true});
+        this.setState({ isFocused: true });
     },
 
     _blur() {
-        this.setState({isFocused: false});
+        this.setState({ isFocused: false });
     },
 });
 

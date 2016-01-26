@@ -22,7 +22,7 @@ function validatorRunner(fieldName, fieldValue, formSource) {
 
         try {
             result = validator(fieldValue, fieldName, formSource);
-        } catch(e) {
+        } catch (e) {
             log.debug(`Validator for '${fieldName}' ignored because the validator threw an error.`);
             log.debug(`${validator}`);
             log.debug(e.message);
@@ -61,11 +61,11 @@ function getFieldStatus(statusMessages = []) {
 
 export default function createFormValidator(fieldConfigs = []) {
     const validatorQueue = new Rx.Subject();
-    const statusSubject =  new Rx.ReplaySubject(1);
+    const statusSubject = new Rx.ReplaySubject(1);
     const initialStatuses = fieldConfigs
         .filter(fieldConfig => fieldConfig.validators)
         .map(fc => {
-            return [fc.name, {status: FormFieldStatuses.VALID, messages: []}];
+            return [fc.name, { status: FormFieldStatuses.VALID, messages: [] }];
         });
     const formFieldStatuses = new Map(initialStatuses);
 
@@ -74,12 +74,12 @@ export default function createFormValidator(fieldConfigs = []) {
         .forEach(validatorObservable => {
             validatorObservable
                 .debounce(300)
-                .map(({fieldName, fieldValue, formSource}) => {
+                .map(({ fieldName, fieldValue, formSource }) => {
                     const fieldConfig = fieldConfigs
                         .filter(fc => fc.name === fieldName)
                         .shift();
 
-                    validatorQueue.onNext(Promise.resolve({fieldName, fieldStatus: {status: FormFieldStatuses.VALIDATING, messages: []}}));
+                    validatorQueue.onNext(Promise.resolve({ fieldName, fieldStatus: { status: FormFieldStatuses.VALIDATING, messages: [] } }));
 
                     const validatorToRun = fieldConfig.validators
                         .filter(validator => {
@@ -110,7 +110,7 @@ export default function createFormValidator(fieldConfigs = []) {
                         .catch(log.error);
                 })
                 .concatAll()
-                .subscribe(({fieldName, fieldStatus}) => {
+                .subscribe(({ fieldName, fieldStatus }) => {
                     formFieldStatuses.set(fieldName, fieldStatus);
                     statusSubject.onNext(formFieldStatuses);
                 });
@@ -119,7 +119,7 @@ export default function createFormValidator(fieldConfigs = []) {
     validatorQueue
         .concatAll()
         .subscribe((fieldValidatorStatus) => {
-            const {fieldName, fieldStatus} = fieldValidatorStatus;
+            const { fieldName, fieldStatus } = fieldValidatorStatus;
             formFieldStatuses.set(fieldName, fieldStatus);
             statusSubject.onNext(formFieldStatuses);
         });
@@ -147,7 +147,7 @@ export default function createFormValidator(fieldConfigs = []) {
          */
         runFor(fieldName, fieldValue, formSource) {
             if (validatorQueues.has(fieldName)) {
-                validatorQueues.get(fieldName).onNext({fieldName, fieldValue, formSource});
+                validatorQueues.get(fieldName).onNext({ fieldName, fieldValue, formSource });
                 return true;
             }
             return false;

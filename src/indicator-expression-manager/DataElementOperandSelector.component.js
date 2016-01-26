@@ -6,7 +6,7 @@ import TextField from 'material-ui/lib/text-field';
 import LinearProgress from 'material-ui/lib/linear-progress';
 import Pagination from '../pagination/Pagination.component';
 import Translate from '../i18n/Translate.mixin';
-import {config} from 'd2/lib/d2';
+import { config } from 'd2/lib/d2';
 
 config.i18n.strings.add('search_by_name');
 
@@ -35,7 +35,7 @@ const DataElementOperandSelector = React.createClass({
         }
 
         this.storeObservable = dataElementOperandStore
-            .tap(collection => this.setState({pager: collection.pager}))
+            .tap(collection => this.setState({ pager: collection.pager }))
             .map(collection => collection.toArray())
             .map(collection => {
                 return collection.map(item => {
@@ -46,7 +46,7 @@ const DataElementOperandSelector = React.createClass({
                 });
             })
             .tap((value) => {
-                this.setState({isLoading: false});
+                this.setState({ isLoading: false });
                 return value;
             });
 
@@ -65,30 +65,30 @@ const DataElementOperandSelector = React.createClass({
     },
 
     getNextPage() {
-        this.setState({isLoading: true});
+        this.setState({ isLoading: true });
         this.props.dataElementOperandSelectorActions.getNextPage(this.state.pager, this.state.searchValue);
     },
 
     getPreviousPage() {
-        this.setState({isLoading: true});
+        this.setState({ isLoading: true });
         this.props.dataElementOperandSelectorActions.getPreviousPage(this.state.pager, this.state.searchValue);
     },
 
     render() {
         return (
             <div className="data-element-operand-selector">
-                <div style={{float: 'right'}}>
+                <div style={{ float: 'right' }}>
                 <Pagination hasNextPage={() => this.state.pager.hasNextPage()}
                             hasPreviousPage={() => this.state.pager.hasPreviousPage()}
                             onNextPageClick={this.getNextPage}
                             onPreviousPageClick={this.getPreviousPage}
                     />
                 </div>
-                <TextField style={{marginLeft: '1rem'}}
+                <TextField style={{ marginLeft: '1rem' }}
                            hintText={this.getTranslation('search_by_name')}
                            onChange={this.searchDataElement}
                 />
-                {this.state.isLoading ? <LinearProgress mode="indeterminate"  /> : null}
+                {this.state.isLoading ? <LinearProgress mode="indeterminate" /> : null}
                 <ListSelectAsync size="12"
                                  onItemDoubleClick={this.props.onItemDoubleClick}
                                  source={this.storeObservable}
@@ -108,7 +108,7 @@ const DataElementOperandSelector = React.createClass({
                 });
             });
 
-        this.setState({isLoading: true});
+        this.setState({ isLoading: true });
     },
 });
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from 'classnames';
 import Translate from '../i18n/Translate.mixin';
-import {config} from 'd2/lib/d2';
+import { config } from 'd2/lib/d2';
 
 const noop = () => {};
 
@@ -34,11 +34,11 @@ const Pagination = React.createClass({
     },
 
     render() {
-        const {hasPreviousPage, hasNextPage, onPreviousPageClick, onNextPageClick, currentlyShown, total} = this.props;
+        const { hasPreviousPage, hasNextPage, onPreviousPageClick, onNextPageClick, currentlyShown, total } = this.props;
         const pagerButtonClasses = ['material-icons', 'waves-effect'];
 
-        const previousPageClasses = classes(pagerButtonClasses, {'data-table-pager--previous-page__disabled': !hasPreviousPage()});
-        const nextPageClasses = classes(pagerButtonClasses, {'data-table-pager--next-page__disabled': !hasNextPage()});
+        const previousPageClasses = classes(pagerButtonClasses, { 'data-table-pager--previous-page__disabled': !hasPreviousPage() });
+        const nextPageClasses = classes(pagerButtonClasses, { 'data-table-pager--next-page__disabled': !hasNextPage() });
 
         return (
             <div className="data-table-pager">

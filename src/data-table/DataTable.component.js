@@ -1,4 +1,4 @@
-import {isArrayOfStrings, isIterable} from 'd2-utils';
+import { isArrayOfStrings, isIterable } from 'd2-utils';
 import React from 'react';
 
 import DataTableHeader from './DataTableHeader.component';

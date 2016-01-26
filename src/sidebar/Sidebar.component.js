@@ -32,7 +32,7 @@ const Sidebar = React.createClass({
 
     componentWillReceiveProps(props) {
         if (props.currentSection) {
-            this.setState({currentSection: props.currentSection});
+            this.setState({ currentSection: props.currentSection });
         }
     },
 
@@ -57,8 +57,8 @@ const Sidebar = React.createClass({
         };
         if (this.props.showSearchField) {
             return (
-                <div style={{padding: '1rem 1rem 0', position: 'relative'}}>
-                    <TextField hintText={!!this.props.searchFieldLabel ? this.props.searchFieldLabel : d2.i18n.getTranslation('search')} style={{width: '100%'}}
+                <div style={{ padding: '1rem 1rem 0', position: 'relative' }}>
+                    <TextField hintText={!!this.props.searchFieldLabel ? this.props.searchFieldLabel : d2.i18n.getTranslation('search')} style={{ width: '100%' }}
                                value={this.state.searchText}
                                onChange={this.changeSearchText} ref={ref => { this.searchBox = ref; }} />
                     {!!this.state.searchText ? <FontIcon style={styles.closeButton} className="material-icons" onClick={this._clear}>clear</FontIcon> : undefined}
@@ -86,7 +86,7 @@ const Sidebar = React.createClass({
         };
 
         return (
-            <List style={{backgroundColor: 'transparent'}}>
+            <List style={{ backgroundColor: 'transparent' }}>
                 {this.props.sections.map(section => {
                     return (
                         <ListItem
@@ -119,13 +119,13 @@ const Sidebar = React.createClass({
 
     setSection(key) {
         if (key !== this.state.currentSection) {
-            this.setState({currentSection: key});
+            this.setState({ currentSection: key });
             this.props.onChangeSection(key);
         }
     },
 
     changeSearchText() {
-        this.setState({searchText: this.searchBox.getValue()}, () => {
+        this.setState({ searchText: this.searchBox.getValue() }, () => {
             if (this.props.onChangeSearchText) {
                 this.props.onChangeSearchText(this.state.searchText);
             }
@@ -133,7 +133,7 @@ const Sidebar = React.createClass({
     },
 
     _clear() {
-        this.setState({searchText: ''}, () => {
+        this.setState({ searchText: '' }, () => {
             if (this.props.onChangeSearchText) {
                 this.props.onChangeSearchText(this.state.searchText);
             }
@@ -141,7 +141,7 @@ const Sidebar = React.createClass({
     },
 
     clearSearchBox() {
-        this.setState({searchText: ''});
+        this.setState({ searchText: '' });
     },
 });
 

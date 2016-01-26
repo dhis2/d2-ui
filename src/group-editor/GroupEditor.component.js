@@ -6,7 +6,7 @@ import Paper from 'material-ui/lib/paper';
 import RaisedButton from 'material-ui/lib/raised-button';
 
 // D2
-import {config} from 'd2/lib/d2';
+import { config } from 'd2/lib/d2';
 
 // D2-UI
 import TranslateMixin from '../i18n/Translate.mixin.js';
@@ -56,7 +56,7 @@ export default React.createClass({
         this.disposables = [];
 
         this.disposables.push(this.props.itemStore.subscribe((itemStore) => {
-            this.setState({loading: itemStore.length === 0});
+            this.setState({ loading: itemStore.length === 0 });
         }));
 
         this.disposables.push(this.props.assignedItemStore.subscribe(() => {
@@ -114,7 +114,7 @@ export default React.createClass({
     },
     getAllItems() {
         return this.getItemStoreIsCollection() ? Array.from(this.props.itemStore.state.values()).map(item => {
-            return {value: item.id, text: item.name};
+            return { value: item.id, text: item.name };
         }) : (this.props.itemStore.state || []);
     },
     getItemCount() {
@@ -281,7 +281,7 @@ export default React.createClass({
                         label={this.getTranslation('assign_all') + ' ' + (this.getAvailableItemsUnfilteredCount() === 0 ? '' : this.getAvailableItemsUnfilteredCount()) + ' \u2192'}
                         disabled={this.state.loading || this.getAvailableItemsUnfilteredCount() === 0}
                         onClick={this._assignAll}
-                        style={{marginTop: '1rem'}}
+                        style={{ marginTop: '1rem' }}
                         secondary/>
                 </div>
                 <div style={styles.middle}>
@@ -300,7 +300,7 @@ export default React.createClass({
                         disabled={this.state.loading || this.state.selectedRight === 0}/>
                     <div style={styles.status}>
                         {this.state.loading ?
-                            <CircularProgress size={0.5} style={{width: 60, height: 60}}/> : undefined }
+                            <CircularProgress size={0.5} style={{ width: 60, height: 60 }}/> : undefined }
                     </div>
                 </div>
                 <div style={styles.right}>
@@ -319,7 +319,7 @@ export default React.createClass({
                     </Paper>
                     <RaisedButton
                         label={'\u2190 ' + this.getTranslation('remove_all') + ' ' + (this.getAssignedItemsUnfilteredCount() > 0 ? this.getAssignedItemsUnfilteredCount() : '')}
-                        style={{float: 'right', marginTop: '1rem'}}
+                        style={{ float: 'right', marginTop: '1rem' }}
                         disabled={this.state.loading || this.getAssignedItemsUnfilteredCount() === 0}
                         onClick={this._removeAll}
                         secondary/>
@@ -355,48 +355,48 @@ export default React.createClass({
     // Event handlers
     //
     _assignItems() {
-        this.setState({loading: true});
+        this.setState({ loading: true });
         this.props.onAssignItems([].map.call(this.leftSelect.selectedOptions, item => item.value))
             .then(() => {
                 this.clearSelection();
-                this.setState({loading: false});
+                this.setState({ loading: false });
             })
             .catch(() => {
-                this.setState({loading: false});
+                this.setState({ loading: false });
             });
     },
 
     _removeItems() {
-        this.setState({loading: true});
+        this.setState({ loading: true });
         this.props.onRemoveItems([].map.call(this.rightSelect.selectedOptions, item => item.value))
             .then(() => {
                 this.clearSelection();
-                this.setState({loading: false});
+                this.setState({ loading: false });
             })
             .catch(() => {
-                this.setState({loading: false});
+                this.setState({ loading: false });
             });
     },
 
     _assignAll() {
-        this.setState({loading: true});
+        this.setState({ loading: true });
         this.props.onAssignItems([].map.call(this.leftSelect.options, item => item.value))
             .then(() => {
                 this.clearSelection();
-                this.setState({loading: false});
+                this.setState({ loading: false });
             }).catch(() => {
-                this.setState({loading: false});
+                this.setState({ loading: false });
             });
     },
 
     _removeAll() {
-        this.setState({loading: true});
+        this.setState({ loading: true });
         this.props.onRemoveItems([].map.call(this.rightSelect.options, item => item.value))
             .then(() => {
                 this.clearSelection();
-                this.setState({loading: false});
+                this.setState({ loading: false });
             }).catch(() => {
-                this.setState({loading: false});
+                this.setState({ loading: false });
             });
     },
 });

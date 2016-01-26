@@ -3,7 +3,7 @@ import classes from 'classnames';
 import FormField from './FormField.component';
 import Translate from '../i18n/Translate.mixin';
 import createFormValidator from './FormValidator';
-import {FormFieldStatuses} from './FormValidator';
+import { FormFieldStatuses } from './FormValidator';
 
 /**
  *
@@ -62,7 +62,7 @@ const Form = React.createClass({
                 }
 
                 return (
-                    <FormField  fieldOptions={fieldConfig.fieldOptions}
+                    <FormField fieldOptions={fieldConfig.fieldOptions}
                                 key={fieldConfig.name}
                                 type={fieldConfig.type}
                                 isRequired={fieldConfig.required}

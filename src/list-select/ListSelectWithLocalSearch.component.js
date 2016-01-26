@@ -26,11 +26,11 @@ export default React.createClass({
     },
 
     render() {
-        const listStyle = {width: '100%', outline: 'none', border: 'none', padding: '0rem 1rem'};
+        const listStyle = { width: '100%', outline: 'none', border: 'none', padding: '0rem 1rem' };
 
         return (
             <div>
-                <TextField style={{marginLeft: '1rem'}}
+                <TextField style={{ marginLeft: '1rem' }}
                            hintText={this.getTranslation('search_by_name')}
                            onChange={this._filterList}
                            value={this.state.textSearch}

@@ -26,7 +26,7 @@ export default React.createClass({
                 fullWidth
                 {...this.props}
                 value={this.state && this.state.locale}
-                menuItems={[{payload: '', text: ''}].concat(locales)}
+                menuItems={[{ payload: '', text: '' }].concat(locales)}
                 hintText={this.getTranslation('select_locale')}
                 onChange={this._localeChange}
             />

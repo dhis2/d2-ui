@@ -1,6 +1,6 @@
 import React from 'react';
 import ListSelect from './ListSelect.component';
-import {Observable} from 'rx';
+import { Observable } from 'rx';
 
 const ListSelectAsync = React.createClass({
     propTypes: {
@@ -22,7 +22,7 @@ const ListSelectAsync = React.createClass({
 
         this.disposable = this.props.source
             .subscribe(
-                (listValues) => this.setState({listSource: listValues}),
+                (listValues) => this.setState({ listSource: listValues }),
                 (error) => log.error(error)
             );
     },

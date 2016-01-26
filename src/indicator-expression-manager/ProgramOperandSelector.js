@@ -3,7 +3,7 @@ import Tabs from 'material-ui/lib/tabs/tabs';
 import Tab from 'material-ui/lib/tabs/tab';
 import ListSelect from '../list-select/ListSelect.component';
 import SelectField from 'material-ui/lib/select-field';
-import {config} from 'd2/lib/d2';
+import { config } from 'd2/lib/d2';
 import Translate from '../i18n/Translate.mixin';
 import log from 'loglevel';
 
@@ -29,7 +29,7 @@ export default React.createClass({
     },
 
     componentDidMount() {
-        this.context.d2.models.program.list({paging: false, fields: 'id,displayName,programTrackedEntityAttributes[id,displayName,dimensionItem],programIndicators[id,displayName,dimensionItem]'})
+        this.context.d2.models.program.list({ paging: false, fields: 'id,displayName,programTrackedEntityAttributes[id,displayName,dimensionItem],programIndicators[id,displayName,dimensionItem]' })
             .then(programCollection => programCollection.toArray())
             .then(programs => {
                 const programMenuItems = programs
@@ -72,14 +72,14 @@ export default React.createClass({
     },
 
     renderTabs() {
-        const listStyle = {width: '100%', outline: 'none', border: 'none', padding: '0rem 1rem'};
+        const listStyle = { width: '100%', outline: 'none', border: 'none', padding: '0rem 1rem' };
         const noValueMessageStyle = {
             padding: '1rem',
         };
 
         return (
-            <Tabs tabItemContainerStyle={{backgroundColor: '#FFF'}}>
-                <Tab label={this.getTranslation('program_data_elements')} style={{color: '#333'}}>
+            <Tabs tabItemContainerStyle={{ backgroundColor: '#FFF' }}>
+                <Tab label={this.getTranslation('program_data_elements')} style={{ color: '#333' }}>
                     {!this.state.programDataElementOptions.length ? <div style={noValueMessageStyle}>{this.getTranslation('no_program_data_elements')}</div> :
                         <ListSelect onItemDoubleClick={this._programDataElementSelected}
                                     source={this.state.programDataElementOptions}
@@ -87,7 +87,7 @@ export default React.createClass({
                                     size="10"
                         />}
                 </Tab>
-                <Tab label={this.getTranslation('program_tracked_entity_attributes')} style={{color: '#333'}}>
+                <Tab label={this.getTranslation('program_tracked_entity_attributes')} style={{ color: '#333' }}>
                     {!this.state.programTrackedEntityAttributeOptions.length ? <div style={noValueMessageStyle}>{this.getTranslation('no_tracked_entity_attributes')}</div> :
                     <ListSelect onItemDoubleClick={this._programTrackedEntityAttributeSelected}
                                 source={this.state.programTrackedEntityAttributeOptions}
@@ -95,7 +95,7 @@ export default React.createClass({
                                 size="10"
                     />}
                 </Tab>
-                <Tab label={this.getTranslation('program_indicators')} style={{color: '#333'}}>
+                <Tab label={this.getTranslation('program_indicators')} style={{ color: '#333' }}>
                     {!this.state.programIndicatorOptions.length ? <div style={noValueMessageStyle}>{this.getTranslation('no_program_indicators')}</div> :
                     <ListSelect onItemDoubleClick={this._programIndicatorSelected}
                                 source={this.state.programIndicatorOptions}
@@ -110,7 +110,7 @@ export default React.createClass({
     render() {
         return (
             <div>
-                <div style={{margin: '0 1rem'}}>
+                <div style={{ margin: '0 1rem' }}>
                     <SelectField menuItems={this.state.programMenuItems}
                                  onChange={this._loadProgramDataOperands}
                                  value={this.state.selectedProgram}
@@ -127,13 +127,13 @@ export default React.createClass({
         const programId = menuItem.payload;
         const api = this.context.d2.Api.getApi();
 
-        api.get('programDataElements', {program: programId, fields: 'id,displayName,dimensionItem', paging: false})
+        api.get('programDataElements', { program: programId, fields: 'id,displayName,dimensionItem', paging: false })
             .then((programDataElements) => {
                 this.setState({
                     selectedProgram: programId,
                     programDataElementOptions: programDataElements.programDataElements
                         .map(programDataElement => {
-                            return {value: programDataElement.dimensionItem, label: programDataElement.displayName};
+                            return { value: programDataElement.dimensionItem, label: programDataElement.displayName };
                         }),
                     programIndicatorOptions: this.state.programIndicators.get(programId) || [],
                     programTrackedEntityAttributeOptions: this.state.programAttributes.get(programId) || [],

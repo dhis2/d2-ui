@@ -133,11 +133,7 @@ export default createClass({
     },
 
     render() {
-        const {
-            actions,
-            forType,
-            ...other,
-            } = this.props;
+        const {actions, forType, ...other} = this.props;
 
         return (
             <div style={{position: 'relative'}} onClick={event => event.stopPropagation()}>

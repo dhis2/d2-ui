@@ -1,7 +1,7 @@
-import {config} from 'd2/lib/d2';
+import { config } from 'd2/lib/d2';
 import Dialog from 'material-ui/lib/dialog';
 import FlatButton from 'material-ui/lib/flat-button';
-import {PropTypes, createClass, default as React} from 'react';
+import { PropTypes, createClass, default as React } from 'react';
 import Translate from '../i18n/Translate.mixin';
 import TranslationForm from './TranslationForm.component';
 

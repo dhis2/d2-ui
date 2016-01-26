@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from 'classnames';
-import {isObject} from 'd2-utils';
+import { isObject } from 'd2-utils';
 import moment from 'moment';
 
 import Translate from '../i18n/Translate.mixin';

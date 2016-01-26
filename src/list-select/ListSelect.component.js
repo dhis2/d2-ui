@@ -17,7 +17,7 @@ const ListSelect = React.createClass({
                 <select size={this.props.size || 15} style={this.props.listStyle}>
                     {this.props.source.map(item => {
                         return (
-                            <option style={{padding: '.25rem'}} onDoubleClick={this.listItemDoubleClicked} value={item.value}>{item.label}</option>
+                            <option style={{ padding: '.25rem' }} onDoubleClick={this.listItemDoubleClicked} value={item.value}>{item.label}</option>
                         );
                     })}
                 </select>

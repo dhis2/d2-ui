@@ -1,4 +1,4 @@
-import {PropTypes, createClass, default as React} from 'react';
+import { PropTypes, createClass, default as React } from 'react';
 import AccessMaskSwitches from '../sharing/AccessMaskSwitches.component';
 
 export default createClass({

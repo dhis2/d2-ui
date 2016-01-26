@@ -9,13 +9,6 @@ import LocaleSelector from '../i18n/LocaleSelector.component';
 import actions from './translationForm.actions';
 import store from './translation.store';
 
-function getLoadingdataElement() {
-    return (
-        <div style={{textAlign: 'center'}}>
-            <CircularProgress mode="indeterminate"/>
-        </div>
-    );
-}
 
 export default React.createClass({
     propTypes: {
@@ -50,6 +43,14 @@ export default React.createClass({
                 loading: false,
             });
         });
+    },
+
+    getLoadingdataElement() {
+        return (
+            <div style={{textAlign: 'center'}}>
+                <CircularProgress mode="indeterminate"/>
+            </div>
+        );
     },
 
     renderForm() {
@@ -93,7 +94,7 @@ export default React.createClass({
 
     render() {
         if (this.state.loading) {
-            return getLoadingdataElement();
+            return this.getLoadingdataElement();
         }
 
         return (

@@ -1,6 +1,6 @@
 import Action from 'd2-flux/action/Action';
 import sharingStore from './sharing.store';
-import {getInstance as getD2} from 'd2/lib/d2';
+import { getInstance as getD2 } from 'd2/lib/d2';
 
 const actions = Action.createActionsFromNames([
     'externalAccessChanged',
@@ -11,23 +11,23 @@ const actions = Action.createActionsFromNames([
 ]);
 
 actions.externalAccessChanged
-    .subscribe(({data}) => {
-        sharingStore.setState(Object.assign({}, sharingStore.getState(), {externalAccess: data}));
+    .subscribe(({ data }) => {
+        sharingStore.setState(Object.assign({}, sharingStore.getState(), { externalAccess: data }));
 
         actions.saveChangedState();
     });
 
 actions.loadObjectSharingState
-    .subscribe(({data: sharableObject}) => {
+    .subscribe(({ data: sharableObject }) => {
         const objectType = sharableObject.modelDefinition.name;
 
         getD2()
             .then(d2 => {
                 const api = d2.Api.getApi();
 
-                return api.get('sharing', {type: objectType, id: sharableObject.id}, {contentType: 'text/plain'});
+                return api.get('sharing', { type: objectType, id: sharableObject.id }, { contentType: 'text/plain' });
             })
-            .then(({meta, object}) => {
+            .then(({ meta, object }) => {
                 const sharableState = {
                     objectType,
                     meta,
@@ -43,15 +43,15 @@ actions.loadObjectSharingState
     });
 
 actions.publicAccessChanged
-    .subscribe(({data: publicAccess}) => {
-        sharingStore.setState(Object.assign({}, sharingStore.getState(), {publicAccess}));
+    .subscribe(({ data: publicAccess }) => {
+        sharingStore.setState(Object.assign({}, sharingStore.getState(), { publicAccess }));
 
         actions.saveChangedState();
     });
 
 actions.userGroupAcessesChanged
-    .subscribe(({data: userGroupAccesses}) => {
-        sharingStore.setState(Object.assign({}, sharingStore.getState(), {userGroupAccesses}));
+    .subscribe(({ data: userGroupAccesses }) => {
+        sharingStore.setState(Object.assign({}, sharingStore.getState(), { userGroupAccesses }));
 
         actions.saveChangedState();
     });
@@ -84,7 +84,7 @@ function saveSharingToServer(action) {
             };
 
             return api.post(`sharing?type=${objectType}&id=${model.id}`, sharingDataToPost)
-                .then(({httpStatus, message}) => {
+                .then(({ httpStatus, message }) => {
                     if (httpStatus === 'OK') {
                         action.complete(message);
                     } else {
@@ -92,7 +92,7 @@ function saveSharingToServer(action) {
                     }
                     return message;
                 })
-                .catch(({message}) => {
+                .catch(({ message }) => {
                     action.error(message);
                     return message;
                 });
