@@ -222,7 +222,22 @@ describe('DataTableRow component', () => {
 
                 dataTableRow = renderComponent(dataTableRowProps);
 
-                expect(dataTableRow.text()).to.equal('allid');
+                expect(dataTableRow.text()).to.equal('[object Object]');
+            });
+
+            it('should use the objects toString method if it has one', () => {
+                dataTableRowProps.columns = ['user'];
+                dataTableRowProps.dataSource.user = {
+                    access: 'all',
+                    id: 'id',
+                    toString() {
+                        return 'access: all, id: id';
+                    },
+                };
+
+                dataTableRow = renderComponent(dataTableRowProps);
+
+                expect(dataTableRow.text()).to.equal('access: all, id: id');
             });
         });
     });

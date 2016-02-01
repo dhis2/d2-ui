@@ -49,7 +49,7 @@ const DataTableRow = React.createClass({
             let displayValue;
 
             if (isObject(rowValue)) {
-                displayValue = rowValue.displayName || rowValue.name || rowValue;
+                displayValue = rowValue.displayName || rowValue.name || rowValue.toString();
             } else {
                 displayValue = rowValue;
             }
