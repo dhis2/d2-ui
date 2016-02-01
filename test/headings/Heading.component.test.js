@@ -1,58 +1,39 @@
+import {shallow} from 'enzyme';
 import React from 'react/addons';
-import injectTheme from '../config/inject-theme';
 import Heading from '../../src/headings/Heading.component';
 
-const {
-    findRenderedComponentWithType,
-    findRenderedDOMComponentWithTag,
-    renderIntoDocument,
-} = React.addons.TestUtils;
-
 describe('Heading component', () => {
-    let sharingComponent;
+    let renderedHeading;
+
     const renderComponent = (props = {}) => {
-        const SharingWithContext = injectTheme(Heading);
-        const renderedComponents = renderIntoDocument(<SharingWithContext {...props} />);
-
-        sharingComponent = findRenderedComponentWithType(renderedComponents, Heading);
-        return sharingComponent;
+        renderedHeading = shallow(<Heading {...props} />);
     };
-
-    it('should render a Dialog element', () => {
-        renderComponent();
-
-        expect(() => findRenderedComponentWithType(sharingComponent, Heading)).not.to.throw();
-    });
 
     it('should render a h1 tag with the title', () => {
         renderComponent({text: 'Facility Funding Agency'});
 
-        const titleElement = React.findDOMNode(findRenderedDOMComponentWithTag(sharingComponent, 'h1'));
-
-        expect(titleElement.textContent).to.equal('Facility Funding Agency');
+        expect(renderedHeading.is('h1')).to.be.true;
     });
 
     it('should render a h2 tag with the title', () => {
         renderComponent({text: 'Facility Funding Agency', level: 2});
 
-        const titleElement = React.findDOMNode(findRenderedDOMComponentWithTag(sharingComponent, 'h2'));
-
-        expect(titleElement.textContent).to.equal('Facility Funding Agency');
+        expect(renderedHeading.is('h2')).to.be.true;
+        expect(renderedHeading.children()).to.have.length(1);
+        expect(renderedHeading.children().nodes[0]).to.equal('Facility Funding Agency');
     });
 
     it('should not render a h7 tag', () => {
         renderComponent({text: 'Facility Funding Agency', level: 7});
 
-        expect(() => findRenderedDOMComponentWithTag(sharingComponent, 'h7')).to.throw();
+        expect(renderedHeading.node).to.equal(null);
     });
 
     it('should pass any additional props to the h1 tag', () => {
         const styleDef = {fontSize: '2rem'};
         renderComponent({text: 'Facility Funding Agency', style: styleDef, 'id': 'SomeText'});
 
-        const titleElement = findRenderedDOMComponentWithTag(sharingComponent, 'h1');
-
-        expect(titleElement.props.style).to.equal(styleDef);
-        expect(titleElement.props.id).to.equal('SomeText');
+        expect(renderedHeading.props().id).to.equal('SomeText');
+        expect(renderedHeading.props().style).to.deep.equal(styleDef);
     });
 });

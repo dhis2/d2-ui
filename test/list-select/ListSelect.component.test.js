@@ -1,11 +1,10 @@
 import React from 'react/addons';
-import {element} from 'd2-testutils';
 import ListSelect from '../../src/list-select/ListSelect.component';
 
 const TestUtils = React.addons.TestUtils;
 const Simulate = TestUtils.Simulate;
 
-describe('ListSelect component', () => {
+xdescribe('ListSelect component', () => {
     let listSelectComponent;
     let listSource;
     let onItemDoubleClickSpy;

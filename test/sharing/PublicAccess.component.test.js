@@ -1,5 +1,5 @@
 import React from 'react/addons';
-import injectTheme from '../config/inject-theme';
+import injectTheme from '../../config/inject-theme';
 import PublicAccess from '../../src/sharing/PublicAccess.component';
 import Toggle from 'material-ui/lib/toggle';
 
@@ -10,7 +10,7 @@ const {
     Simulate,
 } = React.addons.TestUtils;
 
-describe('Sharing: PublicAccess component', () => {
+xdescribe('Sharing: PublicAccess component', () => {
     let publicAccessComponent;
 
     const renderComponent = (props = {}) => {

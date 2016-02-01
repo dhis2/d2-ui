@@ -9,9 +9,12 @@ import UserGroupAccesses from './UserGroupAccesses.component';
 import LoadingMask from '../loading-mask/LoadingMask.component';
 import AutoComplete from '../auto-complete/AutoComplete.component';
 import { config } from 'd2/lib/d2';
+import log from 'loglevel';
 
 config.i18n.strings.add('external_access');
 config.i18n.strings.add('public_access');
+
+function noop() {}
 
 export default createClass({
     propTypes: {
@@ -28,7 +31,10 @@ export default createClass({
     },
 
     componentWillMount() {
-        sharingActions.loadObjectSharingState(this.props.objectToShare);
+        sharingActions.loadObjectSharingState(this.props.objectToShare)
+            .subscribe(noop, (error) => {
+                log.error(error.message);
+            });
 
         this.disposable = sharingStore
             .subscribe((newState) => {

@@ -8,7 +8,7 @@ const {
     findRenderedComponentWithType,
 } = TestUtils;
 
-describe('ListSelectAsync component', () => {
+xdescribe('ListSelectAsync component', () => {
     let listSelectAsyncComponent;
     let onItemDoubleClickSpy;
 

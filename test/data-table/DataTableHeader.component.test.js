@@ -1,11 +1,10 @@
 import React from 'react/addons';
-import {element} from 'd2-testutils';
 import DataTableHeaderWithoutContext from '../../src/data-table/DataTableHeader.component';
-import injectTheme from '../config/inject-theme';
+import injectTheme from '../../config/inject-theme';
 
 const TestUtils = React.addons.TestUtils;
 
-describe('DataTableHeader component', () => {
+xdescribe('DataTableHeader component', () => {
     let DataTableHeader;
     let dataTableComponent;
 

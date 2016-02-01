@@ -37,7 +37,7 @@ actions.loadLocales
     });
 
 actions.loadTranslationsForObject
-    .subscribe(({data: [objectId, locale]}) => {
+    .subscribe(({data: [objectId, locale], complete, error}) => {
         getD2()
             .then(d2 => {
                 return d2.models.translation
@@ -51,7 +51,9 @@ actions.loadTranslationsForObject
                     ...translationStore.state,
                     translations,
                 });
-            });
+            })
+            .then(complete)
+            .catch(error);
     });
 
 actions.saveTranslation

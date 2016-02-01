@@ -3,7 +3,7 @@ import DataTableRow from '../../src/data-table/DataTableRow.component';
 
 const TestUtils = React.addons.TestUtils;
 
-describe('DataTableRow component', () => {
+xdescribe('DataTableRow component', () => {
     let dataTableRow;
     let dataElement;
 

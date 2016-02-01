@@ -1,16 +1,11 @@
 import React from 'react/addons';
-import {element} from 'd2-testutils';
-import injectTheme from '../config/inject-theme';
+import injectTheme from '../../config/inject-theme';
+
 import DataElementOperandSelector from '../../src/indicator-expression-manager/DataElementOperandSelector.component';
 import ListSelectAsync from '../../src/list-select/ListSelectAsync.component';
 import {Observable} from 'rx';
 
-const {
-    findRenderedComponentWithType,
-    renderIntoDocument,
-} = React.addons.TestUtils;
-
-describe('DataElementOperandSelector component', () => {
+xdescribe('DataElementOperandSelector component', () => {
     let dataElementOperandSelectorComponent;
     let onItemDoubleClickSpy;
 

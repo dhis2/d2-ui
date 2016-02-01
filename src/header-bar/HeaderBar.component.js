@@ -84,6 +84,9 @@ const HeaderBar = React.createClass({
             .then(saveToLocalStorage)
             .then(headerData => {
                 this.setHeaderData(headerData.userStyleUrl, headerData.title, headerData.link);
+            })
+            .catch(error => {
+                log.error(error);
             });
     },
 
@@ -111,7 +114,8 @@ const HeaderBar = React.createClass({
                     title: systemSettings.applicationTitle,
                     link: systemSettings.startModule,
                 };
-            });
+            })
+            .catch(error => log.error(error));
     },
 
     getApiBaseUrl() {

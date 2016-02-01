@@ -21,7 +21,8 @@ function searchByForModel(searchBy, modelTypeToSearch, valueToSearchFor, options
         .then(d2 => d2.models[modelTypeToSearch])
         .then(modelType => modelType.filter().on(searchBy).ilike(valueToSearchFor))
         .then(modelTypeWithFilter => modelTypeWithFilter.list(options))
-        .then(collection => collection.toArray());
+        .then(collection => collection.toArray())
+        .catch(error => log.error(error));
 
     return Observable.fromPromise(searchQueryRequest);
 }
@@ -39,6 +40,8 @@ export default createClass({
     mixins: [Translate],
 
     getDefaultProps() {
+        console.log(this.context);
+
         return {
             actions: Action.createActionsFromNames(['loadAutoCompleteSuggestions']),
             closeOnItemClicked: true,

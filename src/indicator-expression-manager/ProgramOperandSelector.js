@@ -138,7 +138,8 @@ export default React.createClass({
                     programIndicatorOptions: this.state.programIndicators.get(programId) || [],
                     programTrackedEntityAttributeOptions: this.state.programAttributes.get(programId) || [],
                 });
-            });
+            })
+            .catch(error => log.error(error));
     },
 
     _programTrackedEntityAttributeSelected(value) {

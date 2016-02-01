@@ -27,7 +27,9 @@ export default React.createClass({
         if (!this.props.d2) {
             return log.error('D2 is a required prop to <AppWithD2 />');
         }
-        this.props.d2.then(d2 => this.setState({ d2 }));
+        this.props.d2
+            .then(d2 => this.setState({ d2 }))
+            .catch(error => log.error(error));
     },
 
     render() {

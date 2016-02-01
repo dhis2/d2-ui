@@ -1,66 +1,64 @@
 import React from 'react/addons';
-import {element} from 'd2-testutils';
-import DataTableWithoutContext from '../../src/data-table/DataTable.component';
-import injectTheme from '../config/inject-theme';
+import getRenderFunctionForComponent from '../../config/getRenderFunctionForComponent';
+import {describeWithDOM, shallow} from 'enzyme';
 
-const TestUtils = React.addons.TestUtils;
+import DataTable from '../../src/data-table/DataTable.component';
+import DataTableHeader from '../../src/data-table/DataTableHeader.component';
+import DataTableContextMenu from '../../src/data-table/DataTableContextMenu.component';
 
-describe('DataTable component', () => {
-    let DataTable;
+describeWithDOM('DataTable component', () => {
     let dataTableComponent;
-    let renderedComponents;
 
     function renderComponent(props = {}) {
-        DataTable = injectTheme(DataTableWithoutContext);
-        renderedComponents = TestUtils.renderIntoDocument(<DataTable {...props} />);
-        dataTableComponent = TestUtils.findRenderedComponentWithType(renderedComponents, DataTableWithoutContext);
-
-        return dataTableComponent;
+        return shallow(<DataTable {...Object.assign({contextMenuActions: {}}, props)} />);
     }
 
     beforeEach(() => {
-        renderComponent();
+        dataTableComponent = renderComponent();
     });
 
     describe('initial state', () => {
         it('should have set the default columns', () => {
-            expect(dataTableComponent.state.columns).to.deep.equal(['name', 'lastUpdated']);
+            expect(dataTableComponent.state('columns')).to.deep.equal(['name', 'lastUpdated']);
         });
 
         it('should have a data-table row', () => {
-            expect(element(dataTableComponent.getDOMNode()).hasClass('data-table')).to.be.true;
+            expect(dataTableComponent.hasClass('data-table')).to.be.true;
         });
     });
 
     describe('with headers', () => {
         it('should have set the passed columns', () => {
             const columns = ['name', 'code', 'lastUpdated'];
-            renderComponent({columns});
 
-            expect(dataTableComponent.state.columns).to.deep.equal(['name', 'code', 'lastUpdated']);
+            dataTableComponent = renderComponent({columns});
+
+            expect(dataTableComponent.state('columns')).to.deep.equal(['name', 'code', 'lastUpdated']);
         });
 
         it('should not set the columns if the column value is not an array of strings', () => {
             const columns = ['name', 'code', 'lastUpdated', {}];
 
-            renderComponent({columns});
+            dataTableComponent = renderComponent({columns});
 
-            expect(dataTableComponent.state.columns).to.deep.equal(['name', 'lastUpdated']);
+            expect(dataTableComponent.state('columns')).to.deep.equal(['name', 'lastUpdated']);
         });
 
         it('should generate the headers wrap', () => {
-            expect(() => TestUtils.findRenderedDOMComponentWithClass(dataTableComponent, 'data-table__headers')).not.to.throw();
+            expect(dataTableComponent.find('.data-table__headers')).to.have.length(1);
         });
 
         it('should generate the correct number of headers', () => {
-            const headers = TestUtils.scryRenderedDOMComponentsWithClass(dataTableComponent, 'data-table__headers__header');
+            const headers = dataTableComponent
+                .find('.data-table__headers__headers')
+                .children();
 
-            expect(headers.length).to.equal(2);
+            expect(dataTableComponent.find(DataTableHeader)).to.have.length(2);
         });
     });
 
     it('should have a property for rows that is empty', () => {
-        expect(dataTableComponent.state.dataRows).to.be.an('array');
+        expect(dataTableComponent.state().dataRows).to.be.an('array');
     });
 
     describe('with source', () => {
@@ -75,27 +73,27 @@ describe('DataTable component', () => {
         });
 
         it('should have set the dataRows onto the state', () => {
-            expect(dataTableComponent.state.dataRows.length).to.equal(3);
+            expect(dataTableComponent.state('dataRows')).to.have.length(3);
         });
 
         it('should not set the dataRows when the received value is not iterable', () => {
             dataTableComponent = renderComponent({rows: {}});
 
-            expect(dataTableComponent.state.dataRows.length).to.equal(0);
+            expect(dataTableComponent.state('dataRows')).to.have.length(0)
         });
 
         it('should generate a row wrap', () => {
-            expect(() => TestUtils.findRenderedDOMComponentWithClass(dataTableComponent, 'data-table__rows')).not.to.throw();
+            expect(dataTableComponent.find('.data-table__rows')).to.have.length(1);
         });
 
         it('should update the source when the rows property changes', () => {
-            renderedComponents.setProps({rows: [{uid: 'b1', name: 'BDC', lastUpdated: 'Tomorrow'}]});
+            dataTableComponent.setProps({rows: [{uid: 'b1', name: 'BDC', lastUpdated: 'Tomorrow'}]});
 
-            expect(dataTableComponent.state.dataRows.length).to.equal(1);
+            expect(dataTableComponent.state('dataRows').length).to.equal(1);
         });
 
         it('should correctly render a map', () => {
-            renderedComponents.setProps({
+            dataTableComponent.setProps({
                 rows: new Map([
                     ['b1', {uid: 'b1', name: 'BDC', lastUpdated: 'Tomorrow'}],
                     ['f1', {uid: 'f1', name: 'BFG', lastUpdated: 'Last year'}],
@@ -103,7 +101,7 @@ describe('DataTable component', () => {
                 ]),
             });
 
-            expect(dataTableComponent.state.dataRows.length).to.equal(3);
+            expect(dataTableComponent.state('dataRows')).to.have.length(3);
         });
     });
 
@@ -115,49 +113,113 @@ describe('DataTable component', () => {
                 {uid: 'c1', name: 'BFG', lastUpdated: 'Today'},
             ];
 
-            dataTableComponent = TestUtils.renderIntoDocument(
-                <DataTable rows={dataTableSource}/>
+            dataTableComponent = renderComponent({source: dataTableSource});
+        });
+
+        it('should show the context menu when the activeRow state is set', () => {
+            const fakeRowSource = {name: 'My item'};
+
+            expect(dataTableComponent.find(DataTableContextMenu)).to.have.length(0);
+
+            dataTableComponent.instance().handleRowClick(
+                {clientY: 100, clientX: 100},
+                fakeRowSource
             );
+            dataTableComponent.update();
+
+            const contextMenuComponent = dataTableComponent.find(DataTableContextMenu);
+
+            expect(contextMenuComponent).to.have.length(1);
+            expect(contextMenuComponent.props().coords).to.deep.equal({Y: 75, X: 75});
         });
 
-        it('should show the context menu when clicked', () => {
-            const dataRow = TestUtils.scryRenderedDOMComponentsWithClass(dataTableComponent, 'data-table__rows__row')[0];
+        it('shoukd hide the context menu when handleRowClick is called twice with the same source', () => {
+            const fakeRowSource = {name: 'My item'};
 
-            TestUtils.Simulate.contextMenu(dataRow.getDOMNode());
+            dataTableComponent.instance().handleRowClick({clientY: 100, clientX: 100}, fakeRowSource);
+            dataTableComponent.update();
+            dataTableComponent.instance().handleRowClick({clientY: 100, clientX: 100}, fakeRowSource);
+            dataTableComponent.update();
 
-            expect(() => TestUtils.findRenderedDOMComponentWithClass(dataTableComponent, 'data-table__context-menu')).not.to.throw();
+            const contextMenuComponent = dataTableComponent.find(DataTableContextMenu);
+
+            expect(contextMenuComponent).to.have.length(0);
         });
 
-        it('should hide the context menu when clicked again', () => {
-            const dataRow = TestUtils.scryRenderedDOMComponentsWithClass(dataTableComponent, 'data-table__rows__row')[0];
+        it('should not render the context menu when the activeRow is undefined', () => {
+            const fakeRowSource = {name: 'My item'};
+            dataTableComponent.setState({contextMenuCoords: {Y: 75, X: 75}, activeRow: fakeRowSource});
 
-            TestUtils.Simulate.contextMenu(dataRow.getDOMNode());
-            TestUtils.Simulate.contextMenu(dataRow.getDOMNode());
+            dataTableComponent.instance().hideContextMenu();
+            dataTableComponent.update();
 
-            expect(() => TestUtils.findRenderedDOMComponentWithClass(dataTableComponent, 'data-table__context-menu')).to.throw();
+            const contextMenuComponent = dataTableComponent.find(DataTableContextMenu);
+
+            expect(contextMenuComponent).to.have.length(0);
+            expect(dataTableComponent.state('activeRow')).to.be.undefined;
         });
 
         it('should initially not show the contextmenu', () => {
-            expect(() => TestUtils.findRenderedDOMComponentWithClass(dataTableComponent, 'data-table__context-menu')).to.throw();
+            expect(dataTableComponent.find(DataTableContextMenu)).to.have.length(0);
         });
 
-        it('should hide the contextmenu when clicking elsewhere on the window', () => {
-            const dataRow = TestUtils.scryRenderedDOMComponentsWithClass(dataTableComponent, 'data-table__rows__row')[0];
-            TestUtils.Simulate.contextMenu(dataRow.getDOMNode());
+        it('should hide the contextmenu when left clicking elsewhere on the table', () => {
+            const fakeRowSource = {name: 'My item'};
+            dataTableComponent.setState({contextMenuCoords: {Y: 75, X: 75}, activeRow: fakeRowSource});
+            expect(dataTableComponent.find(DataTableContextMenu)).to.have.length(1);
 
-            TestUtils.Simulate.click(TestUtils.findRenderedDOMComponentWithClass(dataTableComponent, 'data-table').getDOMNode());
+            dataTableComponent.find('.data-table').simulate('click');
 
-            expect(() => TestUtils.findRenderedDOMComponentWithClass(dataTableComponent, 'data-table__context-menu')).to.throw();
+            expect(dataTableComponent.find(DataTableContextMenu)).to.have.length(0);
         });
 
         it('should hide contextmenu when the mouse is leaving the data table', () => {
-            const dataRow = TestUtils.scryRenderedDOMComponentsWithClass(dataTableComponent, 'data-table__rows__row')[0];
-            TestUtils.Simulate.contextMenu(dataRow.getDOMNode());
+            const fakeRowSource = {name: 'My item'};
+            dataTableComponent.setState({contextMenuCoords: {Y: 75, X: 75}, activeRow: fakeRowSource});
+            expect(dataTableComponent.find(DataTableContextMenu)).to.have.length(1);
 
-            // Using mouseout for mouseleave event https://github.com/facebook/react/issues/1297
-            TestUtils.SimulateNative.mouseOut(TestUtils.findRenderedDOMComponentWithClass(dataTableComponent, 'data-table').getDOMNode());
+            dataTableComponent.find('.data-table').simulate('mouseLeave');
 
-            expect(() => TestUtils.findRenderedDOMComponentWithClass(dataTableComponent, 'data-table__context-menu')).to.throw();
+            expect(dataTableComponent.find(DataTableContextMenu)).to.have.length(0);
+        });
+    });
+
+    describe('context menu action filtering', () => {
+        let isContextActionAllowed;
+        let contextMenuActions;
+        let fakeRowSource;
+
+        beforeEach(() => {
+            fakeRowSource = {name: 'My item'};
+
+            isContextActionAllowed = sinon.stub().returns(true);
+            contextMenuActions  = {
+                edit: () => {},
+                delete: () => {},
+                translate: () => {},
+            };
+
+            dataTableComponent = renderComponent({isContextActionAllowed, contextMenuActions});
+        });
+
+        it('should pass through when the actions are allowed', () => {
+            // Show context menu initially
+            dataTableComponent.setState({contextMenuCoords: {Y: 75, X: 75}, activeRow: fakeRowSource});
+            const passedContextMenuActions = dataTableComponent.find(DataTableContextMenu).props().actions;
+
+            expect(Object.keys(passedContextMenuActions)).to.deep.equal(['edit', 'delete', 'translate']);
+        });
+
+        it('should not pass actions that are not allowed', () => {
+            isContextActionAllowed.withArgs(fakeRowSource, 'delete').returns(false);
+
+            dataTableComponent = renderComponent({isContextActionAllowed, contextMenuActions});
+
+            // Show context menu initially
+            dataTableComponent.setState({contextMenuCoords: {Y: 75, X: 75}, activeRow: fakeRowSource});
+            const passedContextMenuActions = dataTableComponent.find(DataTableContextMenu).props().actions;
+
+            expect(Object.keys(passedContextMenuActions)).to.deep.equal(['edit', 'translate']);
         });
     });
 });

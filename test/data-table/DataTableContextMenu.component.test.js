@@ -1,13 +1,13 @@
 import React from 'react/addons';
-import DataTableContextMenuWithoutContext from '../../src/data-table/DataTableContextMenu.component';
+import getRenderFunctionForComponent from '../../config/getRenderFunctionForComponent';
+import {shallow} from 'enzyme';
+
+import DataTableContextMenu from '../../src/data-table/DataTableContextMenu.component';
+
 import FontIcon from 'material-ui/lib/font-icon';
 import MenuItem from 'material-ui/lib/menus/menu-item';
-import injectTheme from '../config/inject-theme';
-
-const TestUtils = React.addons.TestUtils;
 
 describe('DataTableContextMenu component', () => {
-    let DataTableContextMenu;
     let contextMenuComponent;
     const activeItemSource = {
         id: 'DXyJmlo9rge',
@@ -18,71 +18,71 @@ describe('DataTableContextMenu component', () => {
     };
     let actionList;
 
+    function renderComponent(props = {}) {
+        return shallow(
+            <DataTableContextMenu {...Object.assign({contextMenuActions: {}}, props)} />,
+            {
+                context: {
+                    d2: {
+                        i18n: {
+                            getTranslation(key) {
+                                return `${key}_translated`;
+                            },
+                        },
+                    },
+                },
+            }
+        );
+    }
+
     beforeEach(() => {
         actionList = {
             edit: sinon.spy(),
             translate: sinon.spy(),
         };
 
-        DataTableContextMenu = injectTheme(DataTableContextMenuWithoutContext);
-        const renderedComponents = TestUtils.renderIntoDocument(
-            <DataTableContextMenu
-                activeItem={activeItemSource}
-                actions={actionList}
-                icons={{
-                    edit: 'mode_edit',
-                }}
-            />
-        );
-
-        contextMenuComponent = TestUtils.findRenderedComponentWithType(renderedComponents, DataTableContextMenuWithoutContext);
+        contextMenuComponent = renderComponent({
+            activeItem: activeItemSource,
+            actions: actionList,
+            icons: {
+                edit: 'mode_edit',
+            },
+        });
     });
 
     it('should have the data-table__context-menu class', () => {
-        expect(() => TestUtils.findRenderedDOMComponentWithClass(contextMenuComponent, 'data-table__context-menu')).not.to.throw();
-    });
-
-    it('should set the actions to be an empty object', () => {
-        const renderedComponents = TestUtils.renderIntoDocument(
-            <DataTableContextMenu activeItem={activeItemSource} />
-        );
-        contextMenuComponent = TestUtils.findRenderedComponentWithType(renderedComponents, DataTableContextMenuWithoutContext);
-
-        expect(contextMenuComponent.state.actions).to.deep.equal({});
+        expect(contextMenuComponent.find('.data-table__context-menu')).to.have.length(1);
     });
 
     it('should show the actions based on the actionList', () => {
-        const actionItems = TestUtils.scryRenderedDOMComponentsWithClass(contextMenuComponent, 'data-table__context-menu__item');
+        const actionItems = contextMenuComponent.find(MenuItem);
 
-        expect(actionItems.length).to.equal(2);
+        expect(actionItems).to.have.length(2);
     });
 
     it('should call the action from the action list', () => {
-        const actionItems = TestUtils.scryRenderedDOMComponentsWithClass(contextMenuComponent, 'data-table__context-menu__item');
+        const actionItems = contextMenuComponent.find('.data-table__context-menu__item');
 
-        TestUtils.Simulate.click(actionItems[0].getDOMNode());
+        actionItems.first().simulate('click');
 
         expect(actionList.edit).to.be.called;
     });
 
     it('should render the icon based on the name', () => {
-        const actionItems = TestUtils.scryRenderedComponentsWithType(contextMenuComponent, FontIcon);
-        const editButton = actionItems[0].getDOMNode();
+        const translateButton = contextMenuComponent.find(MenuItem).first();
 
-        expect(editButton.textContent).to.equal('mode_edit');
+        expect(translateButton.props().leftIcon.props.children).to.equal('mode_edit');
     });
 
     it('should render the name of the field as an icon name if no icon was provided', () => {
-        const actionItems = TestUtils.scryRenderedComponentsWithType(contextMenuComponent, FontIcon);
-        const translateButton = actionItems[1].getDOMNode();
+        const translateButton = contextMenuComponent.find(MenuItem).at(1);
 
-        expect(translateButton.textContent).to.equal('translate');
+        expect(translateButton.props().leftIcon.props.children).to.equal('translate');
     });
 
     it('should render the action text a translated strings', () => {
-        const actionItems = TestUtils.scryRenderedComponentsWithType(contextMenuComponent, MenuItem);
-        const editButton = actionItems[0];
+        const editButton = contextMenuComponent.find(MenuItem).first();
 
-        expect(editButton.props.primaryText).to.equal('edit_translated');
+        expect(editButton.props().primaryText).to.equal('edit_translated');
     });
 });

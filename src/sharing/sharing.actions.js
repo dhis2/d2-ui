@@ -18,7 +18,14 @@ actions.externalAccessChanged
     });
 
 actions.loadObjectSharingState
-    .subscribe(({ data: sharableObject }) => {
+    .subscribe(({ data: sharableObject, complete, error }) => {
+        if (!sharableObject.modelDefinition || !sharableObject.modelDefinition.name) {
+            error({
+                actionName: 'sharing.loadObjectSharingState',
+                message: 'shareableObject should contain a modelDefinition property',
+            });
+        }
+
         const objectType = sharableObject.modelDefinition.name;
 
         getD2()
@@ -39,7 +46,9 @@ actions.loadObjectSharingState
                 sharableState.model = sharableObject;
                 sharableState.isSaving = false;
                 sharingStore.setState(sharableState);
-            });
+            })
+            .then(complete)
+            .catch(error);
     });
 
 actions.publicAccessChanged
