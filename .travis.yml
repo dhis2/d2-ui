@@ -4,7 +4,7 @@ node_js:
 script:
 - gem install scss_lint
 #- npm run lint
-- npm test
+- npm coverage
 - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 notifications:
   slack:
