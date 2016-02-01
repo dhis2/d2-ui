@@ -54,7 +54,7 @@ const DataTableRow = React.createClass({
                 displayValue = rowValue;
             }
 
-            // TODO: PublicAcces Hack - need to make it so that value transformers can be registered
+            // TODO: PublicAccess Hack - need to make it so that value transformers can be registered
             if (columnName === 'publicAccess') {
                 const dataSource = this.props.dataSource;
 
