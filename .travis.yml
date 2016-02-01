@@ -3,7 +3,7 @@ node_js:
 - node 4.1
 script:
 - gem install scss_lint
-- npm run lint
+#- npm run lint
 - npm test
 - cat ./coverage/phantomjs/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 notifications:
