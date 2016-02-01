@@ -1,11 +1,29 @@
 import React from 'react/addons';
+import getRenderFunctionForComponent from '../../config/getRenderFunctionForComponent';
+import {shallow} from 'enzyme';
+
 import DataTableRow from '../../src/data-table/DataTableRow.component';
 
-const TestUtils = React.addons.TestUtils;
-
-xdescribe('DataTableRow component', () => {
+describe('DataTableRow component', () => {
     let dataTableRow;
     let dataElement;
+
+    function renderComponent(props = {}) {
+        return shallow(
+            <DataTableRow {...Object.assign({contextMenuActions: {}}, props)} />,
+            {
+                context: {
+                    d2: {
+                        i18n: {
+                            getTranslation(key) {
+                                return `${key}_translated`;
+                            },
+                        },
+                    },
+                },
+            }
+        );
+    }
 
     beforeEach(() => {
         dataElement = {
@@ -24,34 +42,59 @@ xdescribe('DataTableRow component', () => {
             },
         };
 
-        dataTableRow = TestUtils.renderIntoDocument(
-            <DataTableRow dataSource={dataElement} columns={['name', 'code', 'objectValue1', 'objectValue2']} />
-        );
+        dataTableRow = renderComponent({dataSource: dataElement, columns: ['name', 'code', 'objectValue1', 'objectValue2']});
     });
 
     it('should render one row', () => {
-        expect(() => TestUtils.findRenderedDOMComponentWithClass(dataTableRow, 'data-table__rows__row')).not.to.throw();
+        expect(dataTableRow.hasClass('data-table__rows__row')).to.be.true;
     });
 
-    it('should render two columns', () => {
-        expect(TestUtils.scryRenderedDOMComponentsWithClass(dataTableRow, 'data-table__rows__row__column').length).to.equal(4);
+    it('should render the correct amount of columns', () => {
+        expect(dataTableRow.find('.data-table__rows__row__column')).to.have.length(4);
     });
 
     it('should render the name into the first column', () => {
-        const firstColumn = TestUtils.scryRenderedDOMComponentsWithClass(dataTableRow, 'data-table__rows__row__column')[0];
+        const firstColumn = dataTableRow.find('.data-table__rows__row__column').first();
 
-        expect(firstColumn.getDOMNode().textContent).to.equal('Centre de Diagnostic et de Traitement de Bongouanou');
+        expect(firstColumn.text()).to.equal('Centre de Diagnostic et de Traitement de Bongouanou');
     });
 
     it('should render the name into the second column', () => {
-        const secondColumn = TestUtils.scryRenderedDOMComponentsWithClass(dataTableRow, 'data-table__rows__row__column')[1];
+        const secondColumn = dataTableRow.find('.data-table__rows__row__column').at(1);
 
-        expect(secondColumn.getDOMNode().textContent).to.equal('p.ci.ipsl.xxxx');
+        expect(secondColumn.text()).to.equal('p.ci.ipsl.xxxx');
     });
 
     it('should render the displayName when the value is an object', () => {
-        const thirdColumn = TestUtils.scryRenderedDOMComponentsWithClass(dataTableRow, 'data-table__rows__row__column')[2];
+        const thirdColumn = dataTableRow.find('.data-table__rows__row__column').at(2);
 
-        expect(thirdColumn.getDOMNode().textContent).to.equal('ANC');
+        expect(thirdColumn.text()).to.equal('ANC');
+    });
+
+    it('should fire the primaryClick callback when a row is clicked', () => {
+        const primaryClickCallback = spy();
+        dataTableRow = renderComponent({
+            dataSource: dataElement,
+            columns: ['name', 'code', 'objectValue1', 'objectValue2'],
+            primaryClick: primaryClickCallback,
+        });
+
+        dataTableRow.simulate('click');
+
+        expect(primaryClickCallback).to.be.calledWith(dataElement);
+    });
+
+    it('should fire the itemClicked callback when a row is clicked', () => {
+        const contextClickCallback = spy();
+        dataTableRow = renderComponent({
+            dataSource: dataElement,
+            columns: ['name', 'code', 'objectValue1', 'objectValue2'],
+            itemClicked: contextClickCallback,
+        });
+
+        dataTableRow.simulate('contextMenu');
+
+        expect(contextClickCallback).to.be.called;
+        expect(contextClickCallback.getCall(0).args[1]).to.equal(dataElement);
     });
 });

@@ -40,8 +40,6 @@ export default createClass({
     mixins: [Translate],
 
     getDefaultProps() {
-        console.log(this.context);
-
         return {
             actions: Action.createActionsFromNames(['loadAutoCompleteSuggestions']),
             closeOnItemClicked: true,

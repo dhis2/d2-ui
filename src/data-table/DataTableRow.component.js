@@ -86,7 +86,7 @@ const DataTableRow = React.createClass({
     },
 
     handleContextClick(event) {
-        event.preventDefault();
+        event && event.preventDefault();
         this.props.itemClicked(event, this.props.dataSource);
     },
 

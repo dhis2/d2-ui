@@ -4,7 +4,7 @@
   "description": "d2-ui",
   "main": "index.js",
   "scripts": {
-    "coverage": "babel-node node_modules/isparta/bin/isparta cover --report text --report html node_modules/mocha/bin/_mocha -- --reporter dot --compilers js:babel-core/register --require config/setup.js --recursive test",
+    "coverage": "babel-node node_modules/isparta/bin/isparta cover --report text --report html --report lcov node_modules/mocha/bin/_mocha -- --reporter dot --compilers js:babel-core/register --require config/setup.js --recursive test",
     "test": "mocha --reporter dot --compilers js:babel-core/register --require config/setup.js --recursive test",
     "test-watch": "mocha --reporter dot --compilers js:babel-core/register --require config/setup.js --recursive test --watch",
     "lint": "./node_modules/eslint/bin/eslint.js --fix src && ./node_modules/eslint/bin/eslint.js --env node,mocha --global expect,sinon --rule 'no-unused-expressions: 0' test && scss-lint",
