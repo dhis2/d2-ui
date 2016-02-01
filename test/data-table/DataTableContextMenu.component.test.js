@@ -4,7 +4,6 @@ import {shallow} from 'enzyme';
 
 import DataTableContextMenu from '../../src/data-table/DataTableContextMenu.component';
 
-import FontIcon from 'material-ui/lib/font-icon';
 import MenuItem from 'material-ui/lib/menus/menu-item';
 
 describe('DataTableContextMenu component', () => {

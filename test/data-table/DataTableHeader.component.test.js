@@ -1,47 +1,48 @@
 import React from 'react/addons';
-import DataTableHeaderWithoutContext from '../../src/data-table/DataTableHeader.component';
-import injectTheme from '../../config/inject-theme';
+import getRenderFunctionForComponent from '../../config/getRenderFunctionForComponent';
+import {shallow} from 'enzyme';
 
-const TestUtils = React.addons.TestUtils;
+import DataTableHeader from '../../src/data-table/DataTableHeader.component';
 
-xdescribe('DataTableHeader component', () => {
-    let DataTableHeader;
+describe('DataTableHeader component', () => {
     let dataTableComponent;
 
-    beforeEach(() => {
-        DataTableHeader = injectTheme(DataTableHeaderWithoutContext);
-        const renderedComponents = TestUtils.renderIntoDocument(
-            <DataTableHeader name={'lastUpdated'} />
+    function renderComponent(props = {}) {
+        return shallow(
+            <DataTableHeader {...Object.assign({contextMenuActions: {}}, props)} />,
+            {
+                context: {
+                    d2: {
+                        i18n: {
+                            getTranslation(key) {
+                                return `${key}_translated`;
+                            },
+                        },
+                    },
+                },
+            }
         );
+    }
 
-        dataTableComponent = TestUtils.findRenderedComponentWithType(renderedComponents, DataTableHeaderWithoutContext);
+    beforeEach(() => {
+        dataTableComponent = renderComponent({name: 'lastUpdated'});
     });
 
     it('should load two columns', () => {
-        expect(() => TestUtils.findRenderedDOMComponentWithTag(dataTableComponent, 'div')).to.not.throw();
+        expect(dataTableComponent).to.have.length(1);
     });
 
     it('should transform display as underscores and translate', () => {
-        const renderedColumn = TestUtils.findRenderedDOMComponentWithTag(dataTableComponent, 'div');
-
-        expect(renderedColumn.getDOMNode().textContent).to.equal('last_updated_translated');
+        expect(dataTableComponent.text()).to.equal('last_updated_translated');
     });
 
     it('should add the data-table__headers__header--even class', () => {
-        dataTableComponent = TestUtils.renderIntoDocument(
-            <DataTableHeader name={'lastUpdated'} />
-        );
-        const renderedColumn = TestUtils.findRenderedDOMComponentWithTag(dataTableComponent, 'div');
-
-        expect(element(renderedColumn.getDOMNode()).hasClass('data-table__headers__header--even')).to.be.true;
+        expect(dataTableComponent.hasClass('data-table__headers__header--even')).to.be.true;
     });
 
     it('should add the data-table__headers__header--odd class', () => {
-        dataTableComponent = TestUtils.renderIntoDocument(
-            <DataTableHeader name={'lastUpdated'} isOdd />
-        );
-        const renderedColumn = TestUtils.findRenderedDOMComponentWithTag(dataTableComponent, 'div');
+        dataTableComponent = renderComponent({name: 'lastUpdated', isOdd: true});
 
-        expect(element(renderedColumn.getDOMNode()).hasClass('data-table__headers__header--odd')).to.be.true;
+        expect(dataTableComponent.hasClass('data-table__headers__header--odd')).to.be.true;
     });
 });

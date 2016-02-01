@@ -21,7 +21,11 @@ const DataTableHeader = React.createClass({
             }
         );
 
-        return (<div className={classList}>{this.getTranslation(camelCaseToUnderscores(this.props.name))}</div>);
+        return (
+            <div className={classList}>
+                {this.getTranslation(camelCaseToUnderscores(this.props.name))}
+            </div>
+        );
     },
 });
 
