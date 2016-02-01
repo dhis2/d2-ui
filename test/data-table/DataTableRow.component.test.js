@@ -97,4 +97,133 @@ describe('DataTableRow component', () => {
         expect(contextClickCallback).to.be.called;
         expect(contextClickCallback.getCall(0).args[1]).to.equal(dataElement);
     });
+
+    describe('transformation of', () => {
+        let dataTableRowProps;
+
+        describe('publicAccess values', () => {
+            beforeEach(() => {
+                dataTableRowProps = {
+                    dataSource: dataElement,
+                    columns: ['publicAccess'],
+                };
+            });
+
+            it('should transformation the r------- publicAccess pattern to their textual values', () => {
+                dataElement.publicAccess = 'r-------';
+
+                dataTableRow = renderComponent(dataTableRowProps);
+
+                expect(dataTableRow.text()).to.equal('view_translated');
+            });
+
+            it('should transformation the rw------ publicAccess pattern to their textual values', () => {
+                dataElement.publicAccess = 'rw------';
+
+                dataTableRow = renderComponent(dataTableRowProps);
+
+                expect(dataTableRow.text()).to.equal('edit_translated');
+            });
+
+            it('should transformation the -------- publicAccess pattern to their textual values', () => {
+                dataElement.publicAccess = '--------';
+
+                dataTableRow = renderComponent(dataTableRowProps);
+
+                expect(dataTableRow.text()).to.equal('none_translated');
+            });
+
+            it('should not transformation an unknown publicAccess pattern', () => {
+                dataElement.publicAccess = 'rwx-----';
+
+                dataTableRow = renderComponent(dataTableRowProps);
+
+                expect(dataTableRow.text()).to.equal('rwx-----');
+            });
+
+            it('should not transformation an empty value', () => {
+                dataTableRow = renderComponent(dataTableRowProps);
+
+                expect(dataTableRow.text()).to.equal('');
+            });
+        });
+
+        describe('guessing of the value type', () => {
+            beforeEach(() => {
+                dataTableRowProps = {
+                    dataSource: dataElement,
+                    columns: ['lastUpdated'],
+                };
+            });
+
+            it('should return a human readable string for a year ago', () => {
+                const dateAYearAgo = (new Date(Date.now() - 31540000000)).toISOString();
+
+                dataTableRowProps.dataSource.lastUpdated = dateAYearAgo;
+                dataTableRowProps.dataSource.modelDefinition = {
+                    modelValidations: {
+                        lastUpdated: {
+                            type: 'DATE',
+                        },
+                    },
+                };
+
+                dataTableRow = renderComponent(dataTableRowProps);
+
+                expect(dataTableRow.text()).to.equal('a year ago');
+            });
+
+            it('should just return the plain value if the value can not be guessed', () => {
+                dataTableRowProps.columns = ['unknownProperty'];
+                dataTableRowProps.dataSource.unknownProperty = 'unknown value';
+                dataTableRowProps.dataSource.modelDefinition = {
+                    modelValidations: {
+                        unknownProperty: {
+                            type: 'UNKNOWN_TYPE',
+                        },
+                    },
+                };
+
+                dataTableRow = renderComponent(dataTableRowProps);
+
+                expect(dataTableRow.text()).to.equal('unknown value');
+            });
+        });
+
+        describe('complex values with names', () => {
+            it('should render the displayName property of the value if it has one', () => {
+                dataTableRowProps.columns = ['user'];
+                dataTableRowProps.dataSource.user = {
+                    displayName: 'Mark',
+                };
+
+                dataTableRow = renderComponent(dataTableRowProps);
+
+                expect(dataTableRow.text()).to.equal('Mark');
+            });
+
+            it('should render the name propery of the value if the displayName property is not there', () => {
+                dataTableRowProps.columns = ['user'];
+                dataTableRowProps.dataSource.user = {
+                    name: 'Mark',
+                };
+
+                dataTableRow = renderComponent(dataTableRowProps);
+
+                expect(dataTableRow.text()).to.equal('Mark');
+            });
+
+            it('should render the object if there is no name or displayName property', () => {
+                dataTableRowProps.columns = ['user'];
+                dataTableRowProps.dataSource.user = {
+                    access: 'all',
+                    id: 'id',
+                };
+
+                dataTableRow = renderComponent(dataTableRowProps);
+
+                expect(dataTableRow.text()).to.equal('allid');
+            });
+        });
+    });
 });
