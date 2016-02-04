@@ -1,8 +1,9 @@
 import {createClass, PropTypes, default as React} from 'react';
 import TextField from 'material-ui/lib/text-field';
 import Action from 'd2-flux/action/Action';
-import {Observable, helpers} from 'rx';
-import {getInstance, config} from 'd2/lib/d2';
+import {Observable, helpers, Scheduler, default as Rx} from 'rx';
+import {config} from 'd2/lib/d2';
+import d2Lib from 'd2/lib/d2';
 import List from 'material-ui/lib/lists/list';
 import ListItem from 'material-ui/lib/lists/list-item';
 import Paper from 'material-ui/lib/paper';
@@ -13,11 +14,13 @@ config.i18n.strings.add('members');
 config.i18n.strings.add('search_for_user_groups');
 
 function searchByForModel(searchBy, modelTypeToSearch, valueToSearchFor, options = {}) {
-    if (!Boolean(valueToSearchFor)) {
+    if (!Boolean(modelTypeToSearch) || !Boolean(valueToSearchFor)) {
+        log.warn('forType property and value should be provided to be able to show results');
+
         return Observable.just([]);
     }
 
-    const searchQueryRequest = getInstance()
+    const searchQueryRequest = d2Lib.getInstance()
         .then(d2 => d2.models[modelTypeToSearch])
         .then(modelType => modelType.filter().on(searchBy).ilike(valueToSearchFor))
         .then(modelTypeWithFilter => modelTypeWithFilter.list(options))
@@ -42,11 +45,14 @@ export default createClass({
     getDefaultProps() {
         return {
             actions: Action.createActionsFromNames(['loadAutoCompleteSuggestions']),
+            debounceTime: 500,
+            propertyToSearchBy: 'displayName',
+            scheduler: Scheduler.default,
             closeOnItemClicked: true,
             clearValueOnItemClicked: true,
         };
     },
-
+    //
     getInitialState() {
         return {
             showAutoComplete: false,
@@ -64,11 +70,12 @@ export default createClass({
                 loadingSuggestions: true,
                 showAutoComplete: Boolean(value),
             }))
-            .debounce(500)
+            .debounce(this.props.debounceTime, this.props.scheduler)
             .distinctUntilChanged()
-            .map(valueToSearchFor => searchByForModel('name', forType, valueToSearchFor, {fields: 'id,displayName|rename(name),users::size', pageSize: 10}))
+            // TODO: Do not hardcore these fields to search for
+            .map(valueToSearchFor => searchByForModel(this.props.propertyToSearchBy, forType, valueToSearchFor, {fields: 'id,displayName|rename(name),users::size', pageSize: 10}))
             .concatAll()
-            .map(suggestions => suggestions.filter(this.props.filterForSuggestions || helpers.identity))
+            .map(suggestions => Array.isArray(suggestions) ? suggestions.filter(this.props.filterForSuggestions || helpers.identity) : [])
             .map(suggestions => suggestions.slice(0, 5))
             .subscribe(
                 autoCompleteValues => this.setState({
@@ -112,6 +119,7 @@ export default createClass({
         };
     },
 
+    // TODO: Allow the component user to specify how to render the list items or at least the primary and secondary texts
     renderAutoCompleteSuggestions() {
         return (
             <div style={{position: 'absolute', zIndex: 100}}>
