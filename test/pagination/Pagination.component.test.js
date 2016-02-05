@@ -1,14 +1,10 @@
 import React from 'react/addons';
-import injectTheme from '../../config/inject-theme';
-import PaginationWithoutContext from '../../src/pagination/Pagination.component';
+import {getStubContext} from '../../config/inject-theme';
+import Pagination from '../../src/pagination/Pagination.component';
 
-const {
-    findRenderedComponentWithType,
-    renderIntoDocument,
-    Simulate,
-} = React.addons.TestUtils;
+import {shallow} from 'enzyme';
 
-xdescribe('Pagination component', () => {
+describe('Pagination component', () => {
     let dataTablePagerComponent;
     let mockPager;
     let renderComponent;
@@ -22,20 +18,15 @@ xdescribe('Pagination component', () => {
             total: 725,
         };
 
-        const Pagination = injectTheme(PaginationWithoutContext);
-        renderComponent = () => {
-            const renderedComponents = renderIntoDocument(<Pagination {...mockPager} />);
-
-            dataTablePagerComponent = findRenderedComponentWithType(renderedComponents, PaginationWithoutContext);
-
-            return dataTablePagerComponent;
+        renderComponent = (props = mockPager) => {
+            dataTablePagerComponent = shallow(<Pagination {...props} />, {context: getStubContext()});
         };
     });
 
     it('should have the component name as a class', () => {
         renderComponent();
 
-        expect(element(dataTablePagerComponent).hasClass('data-table-pager')).to.be.true;
+        expect(dataTablePagerComponent.hasClass('data-table-pager')).to.be.true;
     });
 
     it('should have rendered the next button', () => {
@@ -43,7 +34,7 @@ xdescribe('Pagination component', () => {
 
         renderComponent();
 
-        expect(() => element(dataTablePagerComponent, '.data-table-pager--next-page')).not.to.throw();
+        expect(dataTablePagerComponent.find('.data-table-pager--next-page')).to.have.length(1);
     });
 
     it('should have rendered the previous button', () => {
@@ -51,30 +42,30 @@ xdescribe('Pagination component', () => {
 
         renderComponent();
 
-        expect(() => element(dataTablePagerComponent, '.data-table-pager--previous-page')).not.to.throw();
+        expect(dataTablePagerComponent.find('.data-table-pager--previous-page')).to.have.length(1);
     });
 
     it('should render the previous button as disabled', () => {
         renderComponent();
 
-        const previousElement = element(dataTablePagerComponent, '.data-table-pager--previous-page');
+        const previousIElement = dataTablePagerComponent.find('.data-table-pager--previous-page').find('i');
 
-        expect(element(previousElement.element.querySelector('i')).hasClass('data-table-pager--previous-page__disabled')).to.be.true;
+        expect(previousIElement.hasClass('data-table-pager--previous-page__disabled')).to.be.true;
     });
 
     it('should render the next button as disabled', () => {
         renderComponent();
 
-        const nextElement = element(dataTablePagerComponent, '.data-table-pager--next-page');
+        const previousIElement = dataTablePagerComponent.find('.data-table-pager--next-page').find('i');
 
-        expect(element(nextElement.element.querySelector('i')).hasClass('data-table-pager--next-page__disabled')).to.be.true;
+        expect(previousIElement.hasClass('data-table-pager--next-page__disabled')).to.be.true;
     });
 
     it('should have rendered a ul wrapper with the data-table-pager--buttons class', () => {
         renderComponent();
 
-        expect(() => element(dataTablePagerComponent, 'ul')).not.to.throw();
-        expect(element(dataTablePagerComponent, 'ul').hasClass('data-table-pager--buttons')).to.be.true;
+        expect(dataTablePagerComponent.find('ul')).to.have.length(1);
+        expect(dataTablePagerComponent.find('ul').hasClass('data-table-pager--buttons')).to.be.true;
     });
 
     it('should render the next and previous buttons as li items', () => {
@@ -83,11 +74,11 @@ xdescribe('Pagination component', () => {
 
         renderComponent();
 
-        const nextPageElement = element(dataTablePagerComponent, '.data-table-pager--next-page');
-        const previousPageElement = element(dataTablePagerComponent, '.data-table-pager--previous-page');
+        const nextPageElement = dataTablePagerComponent.find('.data-table-pager--next-page');
+        const previousPageElement = dataTablePagerComponent.find('.data-table-pager--previous-page');
 
-        expect(nextPageElement.isTag('li')).to.be.true;
-        expect(previousPageElement.isTag('li')).to.be.true;
+        expect(nextPageElement.node.type).to.equal('li');
+        expect(previousPageElement.node.type).to.equal('li');
     });
 
     it('should add the data-table-pager--buttons--button class to the next and previous buttons', () => {
@@ -96,11 +87,11 @@ xdescribe('Pagination component', () => {
 
         renderComponent();
 
-        const nextPageElement = element(dataTablePagerComponent, '.data-table-pager--next-page');
-        const previousPageElement = element(dataTablePagerComponent, '.data-table-pager--previous-page');
+        const nextPageElement = dataTablePagerComponent.find('.data-table-pager--next-page');
+        const previousPageElement = dataTablePagerComponent.find('.data-table-pager--previous-page');
 
-        expect(nextPageElement.isTag('li')).to.be.true;
-        expect(previousPageElement.isTag('li')).to.be.true;
+        expect(nextPageElement.node.type).to.equal('li');
+        expect(previousPageElement.node.type).to.equal('li');
     });
 
     it('should call the onNextPageClick handler when the nextPage button is clicked', () => {
@@ -108,9 +99,9 @@ xdescribe('Pagination component', () => {
         mockPager.hasPreviousPage.returns(true);
         renderComponent();
 
-        const nextPageElement = element(dataTablePagerComponent, '.data-table-pager--next-page');
+        const nextPageElement = dataTablePagerComponent.find('.data-table-pager--next-page');
 
-        Simulate.click(nextPageElement.element.querySelector('i'));
+        nextPageElement.find('i').first().simulate('click');
 
         expect(mockPager.onNextPageClick).to.be.called;
     });
@@ -120,9 +111,9 @@ xdescribe('Pagination component', () => {
         mockPager.hasPreviousPage.returns(true);
         renderComponent();
 
-        const previousPageElement = element(dataTablePagerComponent, '.data-table-pager--previous-page');
+        const previousPageElement = dataTablePagerComponent.find('.data-table-pager--previous-page');
 
-        Simulate.click(previousPageElement.element.querySelector('i'));
+        previousPageElement.find('i').simulate('click');
 
         expect(mockPager.onPreviousPageClick).to.be.called;
     });
@@ -132,7 +123,7 @@ xdescribe('Pagination component', () => {
         mockPager.hasPreviousPage.returns(true);
         renderComponent();
 
-        expect(() => element(dataTablePagerComponent, '.data-table-pager--page-info')).not.to.throw();
+        expect(dataTablePagerComponent.find('.data-table-pager--page-info')).to.have.length(1);
     });
 
     it('should not display the page statistics in if there is no total count', () => {
@@ -142,6 +133,19 @@ xdescribe('Pagination component', () => {
 
         renderComponent();
 
-        expect(() => element(dataTablePagerComponent, '.data-table-pager--page-info')).to.throw();
+        expect(dataTablePagerComponent.find('.data-table-pager--page-info')).to.have.length(0);
+    });
+
+    it('should not throw when no clickHandler was provded', () => {
+        mockPager.hasNextPage.returns(true);
+        mockPager.hasPreviousPage.returns(true);
+        renderComponent();
+        dataTablePagerComponent.setProps({
+            onNextPageClick: undefined,
+        });
+
+        const nextPageElement = dataTablePagerComponent.find('.data-table-pager--next-page');
+
+        expect(() => nextPageElement.find('i').first().simulate('click')).not.to.throw();
     });
 });

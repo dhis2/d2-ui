@@ -1,10 +1,9 @@
 import React from 'react/addons';
 import ListSelect from '../../src/list-select/ListSelect.component';
 
-const TestUtils = React.addons.TestUtils;
-const Simulate = TestUtils.Simulate;
+import {shallow} from 'enzyme';
 
-xdescribe('ListSelect component', () => {
+describe('ListSelect component', () => {
     let listSelectComponent;
     let listSource;
     let onItemDoubleClickSpy;
@@ -19,50 +18,83 @@ xdescribe('ListSelect component', () => {
             {value: 'NUPoPEBGCq9', label: 'OUs and Countries'},
         ];
 
-        listSelectComponent = TestUtils.renderIntoDocument(
-            <ListSelect source={listSource} onItemDoubleClick={onItemDoubleClickSpy} />
-        );
+        listSelectComponent = shallow(<ListSelect source={listSource} onItemDoubleClick={onItemDoubleClickSpy} />);
     });
 
     it('should have the component name as a class', () => {
-        expect(element(listSelectComponent.getDOMNode()).hasClass('list-select')).to.be.true;
+        expect(listSelectComponent.hasClass('list-select')).to.be.true;
     });
 
-    it('should a selectbox for each of the options', () => {
-        const selectElement = React.findDOMNode(listSelectComponent).querySelector('select');
+    it('should a <select /> tag to contain the options', () => {
+        const selectElement = listSelectComponent.find('select');
 
         expect(selectElement).not.to.equal(null);
     });
 
-    it('should render an option for each of the items', () => {
-        const optionElements = React.findDOMNode(listSelectComponent).querySelectorAll('select option');
+    it('should set the size of the select box to the passed size', () => {
+        listSelectComponent.setProps({size: 10});
 
-        expect(optionElements.length).to.equal(4);
+        const selectElement = listSelectComponent.find('select');
+
+        expect(selectElement.props().size).to.equal(10);
+    });
+
+    it('should use the default value for the size if no value has been provided', () => {
+        const selectElement = listSelectComponent.find('select');
+
+        expect(selectElement.props().size).to.equal(15);
+    });
+
+    it('should render an <option /> tag for each of the items', () => {
+        const optionElements = listSelectComponent
+            .find('select')
+            .find('option');
+
+        expect(optionElements).to.have.length(4);
     });
 
     it('should render the name for the options', () => {
-        const optionElements = React.findDOMNode(listSelectComponent).querySelectorAll('select option');
+        const optionElements = listSelectComponent
+            .find('select')
+            .find('option');
 
-        expect(optionElements[0].textContent).to.equal('Community');
-        expect(optionElements[1].textContent).to.equal('Country');
-        expect(optionElements[2].textContent).to.equal('Facility');
-        expect(optionElements[3].textContent).to.equal('OUs and Countries');
+        expect(optionElements.at(0).text()).to.equal('Community');
+        expect(optionElements.at(1).text()).to.equal('Country');
+        expect(optionElements.at(2).text()).to.equal('Facility');
+        expect(optionElements.at(3).text()).to.equal('OUs and Countries');
     });
 
     it('should render the values for the options', () => {
-        const optionElements = React.findDOMNode(listSelectComponent).querySelectorAll('select option');
+        const optionElements = listSelectComponent
+            .find('select')
+            .find('option');
 
-        expect(optionElements[0].value).to.equal('PvuaP6YALSA');
-        expect(optionElements[1].value).to.equal('cNzfcPWEGSH');
-        expect(optionElements[2].value).to.equal('POHZmzofoVx');
-        expect(optionElements[3].value).to.equal('NUPoPEBGCq9');
+        expect(optionElements.at(0).props().value).to.equal('PvuaP6YALSA');
+        expect(optionElements.at(1).props().value).to.equal('cNzfcPWEGSH');
+        expect(optionElements.at(2).props().value).to.equal('POHZmzofoVx');
+        expect(optionElements.at(3).props().value).to.equal('NUPoPEBGCq9');
     });
 
     it('should call the onItemDoubleClick callback when item is double clicked', () => {
-        const optionElements = React.findDOMNode(listSelectComponent).querySelectorAll('select option');
+        const optionElements = listSelectComponent
+            .find('select')
+            .find('option');
 
-        Simulate.doubleClick(optionElements[0]);
+        optionElements.first().simulate('doubleClick', {target: {value: 'PvuaP6YALSA'}});
 
         expect(onItemDoubleClickSpy).to.be.calledWith('PvuaP6YALSA');
+    });
+
+    it('should not call attempt to call the callback when none has been given', () => {
+        listSelectComponent.setProps({onItemDoubleClick: undefined});
+
+        const optionElements = listSelectComponent
+            .find('select')
+            .find('option');
+
+        expect(
+            () => optionElements.first().simulate('doubleClick', {target: {value: 'PvuaP6YALSA'}})
+        ).not.to.throw();
+
     });
 });

@@ -1,5 +1,4 @@
 import React from 'react/addons';
-import getRenderFunctionForComponent from '../../config/getRenderFunctionForComponent';
 import {shallow} from 'enzyme';
 
 import DataTableHeader from '../../src/data-table/DataTableHeader.component';

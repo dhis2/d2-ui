@@ -14,7 +14,7 @@ export default React.createClass({
 
     getInitialState() {
         return {
-            source: this.props.source,
+            source: this.props.source || [],
             textSearch: '',
         };
     },

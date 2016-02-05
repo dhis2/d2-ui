@@ -1,5 +1,4 @@
 import React from 'react/addons';
-import getRenderFunctionForComponent from '../../config/getRenderFunctionForComponent';
 import {describeWithDOM, shallow} from 'enzyme';
 
 import DataTable from '../../src/data-table/DataTable.component';

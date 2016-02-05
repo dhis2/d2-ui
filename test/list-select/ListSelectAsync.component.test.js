@@ -2,32 +2,33 @@ import React from 'react/addons';
 import ListSelectAsync from '../../src/list-select/ListSelectAsync.component';
 import ListSelect from '../../src/list-select/ListSelect.component';
 import {ReplaySubject} from 'rx';
+import log from 'loglevel';
 
-const TestUtils = React.addons.TestUtils;
-const {
-    findRenderedComponentWithType,
-} = TestUtils;
+import {shallow} from 'enzyme';
 
-xdescribe('ListSelectAsync component', () => {
+describe('ListSelectAsync component', () => {
     let listSelectAsyncComponent;
     let onItemDoubleClickSpy;
 
     beforeEach(() => {
         onItemDoubleClickSpy = spy();
+        stub(log, 'error');
 
-        listSelectAsyncComponent = TestUtils.renderIntoDocument(
-            <ListSelectAsync onItemDoubleClick={onItemDoubleClickSpy} />
-        );
+        listSelectAsyncComponent = shallow(<ListSelectAsync onItemDoubleClick={onItemDoubleClickSpy} />);
+    });
+
+    afterEach(() => {
+        log.error.restore();
     });
 
     it('should render a ListSelect', () => {
-        expect(() => findRenderedComponentWithType(listSelectAsyncComponent, ListSelect)).not.to.throw();
+        expect(listSelectAsyncComponent.find(ListSelect)).to.have.length(1);
     });
 
     it('should pass through the onItemDoubleClick handler to the ListSelect', () => {
-        const listSelectComponent = findRenderedComponentWithType(listSelectAsyncComponent, ListSelect);
+        const listSelectComponent = listSelectAsyncComponent.find(ListSelect);
 
-        expect(listSelectComponent.props.onItemDoubleClick).to.equal(onItemDoubleClickSpy);
+        expect(listSelectComponent.props().onItemDoubleClick).to.equal(onItemDoubleClickSpy);
     });
 
     describe('async source', () => {
@@ -42,33 +43,28 @@ xdescribe('ListSelectAsync component', () => {
                 {value: 'NUPoPEBGCq9', label: 'OUs and Countries'},
             ]);
 
-            listSelectAsyncComponent = TestUtils.renderIntoDocument(
+            listSelectAsyncComponent = shallow(
                 <ListSelectAsync onItemDoubleClick={onItemDoubleClickSpy} source={fakeAsyncSource} />
             );
+
+            listSelectAsyncComponent.update();
         });
 
         it('should render an option for each of the items', () => {
-            const optionElements = React.findDOMNode(listSelectAsyncComponent).querySelectorAll('select option');
+            const listSelect = listSelectAsyncComponent.find(ListSelect);
 
-            expect(optionElements.length).to.equal(4);
+            expect(listSelect.props().source.length).to.equal(4);
         });
 
-        it('should render the name for the options', () => {
-            const optionElements = React.findDOMNode(listSelectAsyncComponent).querySelectorAll('select option');
+        it('should pass the received data to the ListSelect component', () => {
+            const listSelect = listSelectAsyncComponent.find(ListSelect);
 
-            expect(optionElements[0].textContent).to.equal('Community');
-            expect(optionElements[1].textContent).to.equal('Country');
-            expect(optionElements[2].textContent).to.equal('Facility');
-            expect(optionElements[3].textContent).to.equal('OUs and Countries');
-        });
-
-        it('should render the values for the options', () => {
-            const optionElements = React.findDOMNode(listSelectAsyncComponent).querySelectorAll('select option');
-
-            expect(optionElements[0].value).to.equal('PvuaP6YALSA');
-            expect(optionElements[1].value).to.equal('cNzfcPWEGSH');
-            expect(optionElements[2].value).to.equal('POHZmzofoVx');
-            expect(optionElements[3].value).to.equal('NUPoPEBGCq9');
+            expect(listSelect.props().source).to.deep.equal([
+                {value: 'PvuaP6YALSA', label: 'Community'},
+                {value: 'cNzfcPWEGSH', label: 'Country'},
+                {value: 'POHZmzofoVx', label: 'Facility'},
+                {value: 'NUPoPEBGCq9', label: 'OUs and Countries'},
+            ]);
         });
 
         it('should only keep the new options if the source changed', () => {
@@ -76,14 +72,34 @@ xdescribe('ListSelectAsync component', () => {
                 {value: 'dNzfcPWEGSH', label: 'Universe'},
                 {value: 'MUPoPEBGCq9', label: 'Planet'},
             ]);
+            listSelectAsyncComponent.update();
 
-            const optionElements = React.findDOMNode(listSelectAsyncComponent).querySelectorAll('select option');
+            const listSelect = listSelectAsyncComponent.find(ListSelect);
 
-            expect(optionElements.length).to.equal(2);
-            expect(optionElements[0].textContent).to.equal('Universe');
-            expect(optionElements[1].textContent).to.equal('Planet');
-            expect(optionElements[0].value).to.equal('dNzfcPWEGSH');
-            expect(optionElements[1].value).to.equal('MUPoPEBGCq9');
+            expect(listSelect.props().source).to.deep.equal([
+                {value: 'dNzfcPWEGSH', label: 'Universe'},
+                {value: 'MUPoPEBGCq9', label: 'Planet'},
+            ]);
+        });
+
+        it('should log an error when the source emits one', () => {
+            fakeAsyncSource.onError('Could not find the source items');
+
+            expect(log.error).to.be.calledWith('Could not find the source items');
+        });
+
+        it('should set the subscription onto the component instance', () => {
+            expect(listSelectAsyncComponent.instance().disposable).not.to.be.undefined;
+        });
+
+        it('should dispose the observable on unmount', () => {
+            const listSelectInstance = listSelectAsyncComponent.instance();
+
+            spy(listSelectInstance.disposable, 'dispose');
+
+            listSelectInstance.componentWillUnmount();
+
+            expect(listSelectInstance.disposable.dispose).to.be.calledOnce;
         });
     });
 });

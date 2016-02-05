@@ -1,3 +1,4 @@
+/* istanbul ignore next */
 import stubContext from 'react-stub-context';
 import ThemeManager from 'material-ui/lib/styles/theme-manager';
 import Colors from 'material-ui/lib/styles/colors';
@@ -20,6 +21,28 @@ export const appTheme = {
         disabledColor: ColorManipulator.fade(Colors.darkBlack, 0.3),
     },
 };
+
+export function getStubContext() {
+    const injectedTheme = appTheme || ThemeManager.getMuiTheme(appTheme);
+    return {
+        muiTheme: injectedTheme,
+        d2: {
+            i18n: {
+                getTranslation(key) {
+                    return `${key}_translated`;
+                },
+            },
+            Api: {
+                getApi: stub().returns({baseUrl: 'http://localhost:8080'}),
+            },
+            system: {
+                settings: {
+                    all: stub().returns(Promise.resolve({})),
+                },
+            },
+        },
+    };
+}
 
 
 function injectTheme(Component, theme) {

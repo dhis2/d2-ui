@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ListSelect = React.createClass({
+export default React.createClass({
     propTypes: {
         source: React.PropTypes.arrayOf(React.PropTypes.shape({
             label: React.PropTypes.string,
@@ -33,5 +33,3 @@ const ListSelect = React.createClass({
         }
     },
 });
-
-export default ListSelect;
