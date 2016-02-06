@@ -1,21 +1,15 @@
 import React from 'react/addons';
-import injectTheme from '../../config/inject-theme';
+import {getStubContext} from '../../config/inject-theme';
 import CreatedBy from '../../src/sharing/CreatedBy.component';
 
-const {
-    findRenderedComponentWithType,
-    findRenderedDOMComponentWithTag,
-    renderIntoDocument,
-    } = React.addons.TestUtils;
+import {shallow} from 'enzyme';
 
-xdescribe('Sharing: CreatedBy component', () => {
+describe('Sharing: CreatedBy component', () => {
     let createdByComponent;
     const renderComponent = (props = {}) => {
-        const CreatedByWithContext = injectTheme(CreatedBy);
-        const renderedComponents = renderIntoDocument(<CreatedByWithContext {...props} />);
-
-        createdByComponent = findRenderedComponentWithType(renderedComponents, CreatedBy);
-        return createdByComponent;
+        createdByComponent = shallow(<CreatedBy {...props} />, {
+            context: getStubContext(),
+        });
     };
 
     it('should render a h1 tag with the title', () => {
@@ -28,8 +22,14 @@ xdescribe('Sharing: CreatedBy component', () => {
         };
         renderComponent({user: userObject});
 
-        const createdByElement = React.findDOMNode(findRenderedDOMComponentWithTag(createdByComponent, 'div'));
+        expect(createdByComponent.text()).to.equal('created_by_translated: Tom Wakiki');
+    });
 
-        expect(createdByElement.textContent).to.equal('created_by_translated: Tom Wakiki');
+    it('should use a default object for the user when no object was given', () => {
+        createdByComponent.setProps({
+            user: undefined,
+        });
+
+        expect(createdByComponent.text()).to.equal('created_by_translated: ');
     });
 });

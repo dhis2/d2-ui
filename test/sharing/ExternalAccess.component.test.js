@@ -1,29 +1,25 @@
 import React from 'react/addons';
-import injectTheme from '../../config/inject-theme';
+import {getStubContext} from '../../config/inject-theme';
 import ExternalAccess from '../../src/sharing/ExternalAccess.component';
 import Toggle from 'material-ui/lib/toggle';
 
-const {
-    findRenderedComponentWithType,
-    renderIntoDocument,
-    Simulate,
-} = React.addons.TestUtils;
+import {shallow} from 'enzyme';
 
-xdescribe('Sharing: ExternalAccess component', () => {
+describe('Sharing: ExternalAccess component', () => {
     let externalAccessComponent;
 
     const renderComponent = (props = {}) => {
-        const ExternalAccessWithContext = injectTheme(ExternalAccess);
-        const renderedComponents = renderIntoDocument(<ExternalAccessWithContext {...props} />);
+        externalAccessComponent = shallow(<ExternalAccess {...props} />, {
+            context: getStubContext(),
+        });
 
-        externalAccessComponent = findRenderedComponentWithType(renderedComponents, ExternalAccess);
         return externalAccessComponent;
     };
 
     it('should render a toggle component', () => {
         renderComponent({externalAccess: false});
 
-        expect(() => findRenderedComponentWithType(externalAccessComponent, Toggle)).not.to.throw();
+        expect(externalAccessComponent.find(Toggle)).to.have.length(1);
     });
 
     describe('Toggle', () => {
@@ -33,43 +29,47 @@ xdescribe('Sharing: ExternalAccess component', () => {
         beforeEach(() => {
             onChange = spy();
             renderComponent({externalAccess: false});
-            toggleComponent = findRenderedComponentWithType(externalAccessComponent, Toggle);
+            toggleComponent = externalAccessComponent.find(Toggle);
         });
 
         it('should give the toggle the name externalAccess', () => {
-            expect(toggleComponent.props.name).to.equal('externalAccess');
+            expect(toggleComponent.props().name).to.equal('externalAccess');
         });
 
         it('should give the toggle the externalAccess label', () => {
-            expect(toggleComponent.props.label).to.equal('external_access_translated');
+            expect(toggleComponent.props().label).to.equal('external_access_translated');
         });
 
         it('should render the component as not toggled', () => {
-            expect(toggleComponent.isToggled()).to.be.false;
+            expect(toggleComponent.props().checked).to.be.false;
         });
 
         it('should render the component as toggled', () => {
             renderComponent({externalAccess: true});
-            toggleComponent = findRenderedComponentWithType(externalAccessComponent, Toggle);
+            toggleComponent = externalAccessComponent.find(Toggle);
 
-            expect(toggleComponent.isToggled()).to.be.true;
+            expect(toggleComponent.props().checked).to.be.true;
         });
 
         it('should call the change method when the toggle is clicked', () => {
             renderComponent({externalAccess: false, onChange: onChange});
-            toggleComponent = findRenderedComponentWithType(externalAccessComponent, Toggle);
-            const inputComponent = React.findDOMNode(toggleComponent).querySelector('input');
+            toggleComponent = externalAccessComponent.find(Toggle);
+            externalAccessComponent.instance().refs = {
+                toggle: {
+                    isToggled: stub().returns(true),
+                },
+            };
 
-            Simulate.change(inputComponent);
+            toggleComponent.simulate('toggle');
 
             expect(onChange).to.be.called;
         });
 
         it('should set the toggle to be disabled', () => {
             renderComponent({externalAccess: false, disabled: true});
-            toggleComponent = findRenderedComponentWithType(externalAccessComponent, Toggle);
+            toggleComponent = externalAccessComponent.find(Toggle);
 
-            expect(toggleComponent.props.disabled).to.be.true;
+            expect(toggleComponent.props().disabled).to.be.true;
         });
     });
 });

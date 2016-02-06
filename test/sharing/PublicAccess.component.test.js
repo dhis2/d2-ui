@@ -1,139 +1,59 @@
 import React from 'react/addons';
-import injectTheme from '../../config/inject-theme';
+import {getStubContext} from '../../config/inject-theme';
 import PublicAccess from '../../src/sharing/PublicAccess.component';
+import AccessMaskSwitches from '../../src/sharing/AccessMaskSwitches.component';
 import Toggle from 'material-ui/lib/toggle';
 
-const {
-    findRenderedComponentWithType,
-    scryRenderedComponentsWithType,
-    renderIntoDocument,
-    Simulate,
-} = React.addons.TestUtils;
+import {shallow} from 'enzyme';
 
-xdescribe('Sharing: PublicAccess component', () => {
+describe('Sharing: PublicAccess component', () => {
     let publicAccessComponent;
 
     const renderComponent = (props = {}) => {
-        const PublicAccessWithContext = injectTheme(PublicAccess);
-        const renderedComponents = renderIntoDocument(<PublicAccessWithContext {...props} />);
+        publicAccessComponent = shallow(<PublicAccess {...props} />, {
+            context: getStubContext(),
+        });
 
-        publicAccessComponent = findRenderedComponentWithType(renderedComponents, PublicAccess);
         return publicAccessComponent;
     };
 
-    it('should render a toggle component for view and for edit', () => {
+    it('should render a AccessMaskSwitches component', () => {
         renderComponent({publicAccess: '--------'});
 
-        expect(scryRenderedComponentsWithType(publicAccessComponent, Toggle).length).to.equal(2);
+        expect(publicAccessComponent.find(AccessMaskSwitches)).to.have.length(1);
     });
 
-    it('should render a AccessMAskSwitches component', () => {
-        renderComponent({
-            publicAccess: '--------',
-        });
-
-        expect(scryRenderedComponentsWithType(publicAccessComponent, Toggle).length).to.equal(2);
+    it('should pass a translated label to ', () => {
+        expect(publicAccessComponent.find(AccessMaskSwitches).props().label).to.equal('public_access_translated');
     });
 
-    describe('Toggle for View', () => {
-        let viewToggleComponent;
-        let onChange;
-
-        beforeEach(() => {
-            onChange = spy();
-            renderComponent({publicAccess: '--------'});
-            viewToggleComponent = scryRenderedComponentsWithType(publicAccessComponent, Toggle)[0];
-        });
-
-        it('should give the toggle the name publicAccess', () => {
-            expect(viewToggleComponent.props.name).to.equal('publicAccessView');
-        });
-
-        it('should give the toggle the publicAccess label', () => {
-            expect(viewToggleComponent.props.label).to.equal('can_view_translated');
-        });
-
-        it('should render the component as not toggled', () => {
-            expect(viewToggleComponent.isToggled()).to.be.false;
-        });
-
-        it('should render the component as toggled', () => {
-            renderComponent({publicAccess: 'r-------'});
-            viewToggleComponent = scryRenderedComponentsWithType(publicAccessComponent, Toggle)[0];
-
-            expect(viewToggleComponent.isToggled()).to.be.true;
-        });
-
-        it('should call the change method when the toggle is clicked', () => {
-            renderComponent({publicAccess: '--------', onChange: onChange});
-            viewToggleComponent = scryRenderedComponentsWithType(publicAccessComponent, Toggle)[0];
-            const inputComponent = React.findDOMNode(viewToggleComponent).querySelector('input');
-
-            Simulate.change(inputComponent);
-
-            expect(onChange).to.be.calledWith('r-------');
-        });
-
-        it('should render the view button as toggled and disabled if the edit is there', () => {
-            renderComponent({publicAccess: 'rw------'});
-            viewToggleComponent = scryRenderedComponentsWithType(publicAccessComponent, Toggle)[0];
-
-            expect(viewToggleComponent.isToggled()).to.be.true;
-            expect(viewToggleComponent.props.disabled).to.be.true;
-        });
-
-        it('should set the toggle to disabled when disabled is passed', () => {
-            renderComponent({publicAccess: 'rw------', disabled: true});
-            viewToggleComponent = scryRenderedComponentsWithType(publicAccessComponent, Toggle)[0];
-
-            expect(viewToggleComponent.props.disabled).to.be.true;
-        });
+    it('should pass the passed access mask', () => {
+        expect(publicAccessComponent.find(AccessMaskSwitches).props().accessMask).to.equal('--------');
     });
 
-    describe('Toggle for Edit', () => {
-        let editToggleComponent;
-        let onChange;
+    it('should pass the name `publicAccess` to the AccessMaskSwitches', () => {
+        expect(publicAccessComponent.find(AccessMaskSwitches).props().name).to.equal('publicAccess');
+    });
 
-        beforeEach(() => {
-            onChange = spy();
-            renderComponent({publicAccess: '--------'});
-            editToggleComponent = scryRenderedComponentsWithType(publicAccessComponent, Toggle)[1];
-        });
+    it('should pass the disabled prop along', () => {
+        renderComponent({disabled: true});
 
-        it('should give the toggle the name publicAccessEdit', () => {
-            expect(editToggleComponent.props.name).to.equal('publicAccessEdit');
-        });
+        expect(publicAccessComponent.find(AccessMaskSwitches).props().disabled).to.be.true;
+    });
 
-        it('should give the toggle the publicAccessEdit label', () => {
-            expect(editToggleComponent.props.label).to.equal('can_edit_translated');
-        });
+    it('should pass along the onChange handler', () => {
+        const onChangeSpy = spy();
+        renderComponent({disabled: true, onChange: onChangeSpy});
 
-        it('should render the component as not toggled', () => {
-            expect(editToggleComponent.isToggled()).to.be.false;
-        });
+        expect(publicAccessComponent.find(AccessMaskSwitches).props().onChange).to.equal(onChangeSpy);
+    });
 
-        it('should render the component as toggled', () => {
-            renderComponent({publicAccess: 'rw------'});
-            editToggleComponent = scryRenderedComponentsWithType(publicAccessComponent, Toggle)[1];
+    it('should call the change handler when a change event is given', () => {
+        const onChangeSpy = spy();
+        renderComponent({disabled: true, onChange: onChangeSpy});
 
-            expect(editToggleComponent.isToggled()).to.be.true;
-        });
+        publicAccessComponent.simulate('change');
 
-        it('should call the change method when the toggle is clicked', () => {
-            renderComponent({publicAccess: '--------', onChange: onChange});
-            editToggleComponent = scryRenderedComponentsWithType(publicAccessComponent, Toggle)[1];
-            const inputComponent = React.findDOMNode(editToggleComponent).querySelector('input');
-
-            Simulate.change(inputComponent);
-
-            expect(onChange).to.be.calledWith('rw------');
-        });
-
-        it('should set the toggle to disabled when disabled is passed', () => {
-            renderComponent({publicAccess: 'rw------', disabled: true});
-            editToggleComponent = scryRenderedComponentsWithType(publicAccessComponent, Toggle)[1];
-
-            expect(editToggleComponent.props.disabled).to.be.true;
-        });
+        expect(onChangeSpy).to.be.calledOnce;
     });
 });

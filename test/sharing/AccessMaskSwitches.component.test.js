@@ -1,37 +1,31 @@
 import React from 'react/addons';
-import injectTheme from '../../config/inject-theme';
+import {getStubContext} from '../../config/inject-theme';
 import AccessMaskSwitches from '../../src/sharing/AccessMaskSwitches.component';
 import Toggle from 'material-ui/lib/toggle';
 
-const {
-    findRenderedComponentWithType,
-    scryRenderedComponentsWithType,
-    renderIntoDocument,
-    Simulate,
-} = React.addons.TestUtils;
+import {shallow} from 'enzyme';
 
-xdescribe('Sharing: AccessMaskSwitches component', () => {
+describe('Sharing: AccessMaskSwitches component', () => {
     let accessMaskSwitchesComponent;
 
     const renderComponent = (props = {}) => {
-        const AccessMaskSwitchesWithContext = injectTheme(AccessMaskSwitches);
-        const renderedComponents = renderIntoDocument(<AccessMaskSwitchesWithContext {...props} />);
-
-        accessMaskSwitchesComponent = findRenderedComponentWithType(renderedComponents, AccessMaskSwitches);
-        return accessMaskSwitchesComponent;
+        accessMaskSwitchesComponent = shallow(<AccessMaskSwitches {...props} />, {
+            context: getStubContext(),
+        });
     };
 
     it('should render a toggle component for view and for edit', () => {
         renderComponent({accessMask: '--------'});
 
-        expect(scryRenderedComponentsWithType(accessMaskSwitchesComponent, Toggle).length).to.equal(2);
+        expect(accessMaskSwitchesComponent.find(Toggle)).to.have.length(2);
     });
 
     it('should display the passed label', () => {
         renderComponent({accessMask: '--------', label: 'Another awesome group of users'});
-        const labelComponent = React.findDOMNode(accessMaskSwitchesComponent).querySelector('div > div');
+        const labelComponent = accessMaskSwitchesComponent
+            .children().first();
 
-        expect(labelComponent.textContent).to.equal('Another awesome group of users');
+        expect(labelComponent.text()).to.equal('Another awesome group of users');
     });
 
     describe('Toggle for View', () => {
@@ -41,44 +35,59 @@ xdescribe('Sharing: AccessMaskSwitches component', () => {
         beforeEach(() => {
             onChange = spy();
             renderComponent({accessMask: '--------', name: 'accessMaskSwitches'});
-            viewToggleComponent = scryRenderedComponentsWithType(accessMaskSwitchesComponent, Toggle)[0];
+
+            viewToggleComponent = accessMaskSwitchesComponent.find(Toggle).first();
         });
 
         it('should give the toggle the name accessMaskSwitches', () => {
-            expect(viewToggleComponent.props.name).to.equal('accessMaskSwitchesView');
+            expect(viewToggleComponent.props().name).to.equal('accessMaskSwitchesView');
         });
 
         it('should give the toggle the accessMaskSwitches label', () => {
-            expect(viewToggleComponent.props.label).to.equal('can_view_translated');
+            expect(viewToggleComponent.props().label).to.equal('can_view_translated');
         });
 
         it('should render the component as not toggled', () => {
-            expect(viewToggleComponent.isToggled()).to.be.false;
+            expect(viewToggleComponent.props().checked).to.be.false;
         });
 
         it('should render the component as toggled', () => {
             renderComponent({accessMask: 'r-------'});
-            viewToggleComponent = scryRenderedComponentsWithType(accessMaskSwitchesComponent, Toggle)[0];
+            viewToggleComponent = accessMaskSwitchesComponent.find(Toggle).first();
 
-            expect(viewToggleComponent.isToggled()).to.be.true;
+            expect(viewToggleComponent.props().checked).to.be.true;
         });
 
         it('should call the change method when the toggle is clicked', () => {
             renderComponent({accessMask: '--------', onChange: onChange});
-            viewToggleComponent = scryRenderedComponentsWithType(accessMaskSwitchesComponent, Toggle)[0];
-            const inputComponent = React.findDOMNode(viewToggleComponent).querySelector('input');
+            viewToggleComponent = accessMaskSwitchesComponent.find(Toggle).first();
 
-            Simulate.change(inputComponent);
+            viewToggleComponent.simulate('toggle');
 
             expect(onChange).to.be.calledWith('r-------');
         });
 
+        it('should unset the read flag when the toggle is clicked', () => {
+            renderComponent({accessMask: 'r-------', onChange: onChange});
+            viewToggleComponent = accessMaskSwitchesComponent.find(Toggle).first();
+
+            viewToggleComponent.simulate('toggle');
+
+            expect(onChange).to.be.calledWith('--------');
+        });
+
         it('should render the view button as toggled and disabled if the edit is there', () => {
             renderComponent({accessMask: 'rw------'});
-            viewToggleComponent = scryRenderedComponentsWithType(accessMaskSwitchesComponent, Toggle)[0];
+            viewToggleComponent = accessMaskSwitchesComponent.find(Toggle).first();
 
-            expect(viewToggleComponent.isToggled()).to.be.true;
-            expect(viewToggleComponent.props.disabled).to.be.true;
+            expect(viewToggleComponent.props().checked).to.be.true;
+            expect(viewToggleComponent.props().disabled).to.be.true;
+        });
+
+        it('should not fail when there is no onChange handler', () => {
+            renderComponent({});
+
+            expect(() => viewToggleComponent.simulate('toggle')).not.to.throw();
         });
     });
 
@@ -89,36 +98,44 @@ xdescribe('Sharing: AccessMaskSwitches component', () => {
         beforeEach(() => {
             onChange = spy();
             renderComponent({accessMask: '--------', name: 'accessMaskSwitches'});
-            editToggleComponent = scryRenderedComponentsWithType(accessMaskSwitchesComponent, Toggle)[1];
+            editToggleComponent = accessMaskSwitchesComponent.find(Toggle).at(1);
         });
 
         it('should give the toggle the name accessMaskSwitchesEdit', () => {
-            expect(editToggleComponent.props.name).to.equal('accessMaskSwitchesEdit');
+            expect(editToggleComponent.props().name).to.equal('accessMaskSwitchesEdit');
         });
 
         it('should give the toggle the accessMaskSwitchesEdit label', () => {
-            expect(editToggleComponent.props.label).to.equal('can_edit_translated');
+            expect(editToggleComponent.props().label).to.equal('can_edit_translated');
         });
 
         it('should render the component as not toggled', () => {
-            expect(editToggleComponent.isToggled()).to.be.false;
+            expect(editToggleComponent.props().checked).to.be.false;
         });
 
         it('should render the component as toggled', () => {
             renderComponent({accessMask: 'rw------'});
-            editToggleComponent = scryRenderedComponentsWithType(accessMaskSwitchesComponent, Toggle)[1];
+            editToggleComponent = accessMaskSwitchesComponent.find(Toggle).at(1);
 
-            expect(editToggleComponent.isToggled()).to.be.true;
+            expect(editToggleComponent.props().checked).to.be.true;
         });
 
         it('should call the change method when the toggle is clicked', () => {
             renderComponent({accessMask: '--------', onChange: onChange});
-            editToggleComponent = scryRenderedComponentsWithType(accessMaskSwitchesComponent, Toggle)[1];
-            const inputComponent = React.findDOMNode(editToggleComponent).querySelector('input');
+            editToggleComponent = accessMaskSwitchesComponent.find(Toggle).at(1);
 
-            Simulate.change(inputComponent);
+            editToggleComponent.simulate('toggle');
 
             expect(onChange).to.be.calledWith('rw------');
+        });
+
+        it('should deselect the write flag when the toggle is clicked', () => {
+            renderComponent({accessMask: 'rw------', onChange: onChange});
+            editToggleComponent = accessMaskSwitchesComponent.find(Toggle).at(1);
+
+            editToggleComponent.simulate('toggle');
+
+            expect(onChange).to.be.calledWith('r-------');
         });
     });
 });

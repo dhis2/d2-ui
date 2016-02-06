@@ -1,10 +1,10 @@
-/* istanbul ignore next */
 import stubContext from 'react-stub-context';
 import ThemeManager from 'material-ui/lib/styles/theme-manager';
 import Colors from 'material-ui/lib/styles/colors';
 import ColorManipulator from 'material-ui/lib/utils/color-manipulator';
 import Spacing from 'material-ui/lib/styles/spacing';
 
+/* istanbul ignore next */
 export const appTheme = {
     spacing: Spacing,
     fontFamily: 'Roboto, sans-serif',
@@ -22,6 +22,7 @@ export const appTheme = {
     },
 };
 
+/* istanbul ignore next */
 export function getStubContext() {
     const injectedTheme = appTheme || ThemeManager.getMuiTheme(appTheme);
     return {
@@ -44,7 +45,7 @@ export function getStubContext() {
     };
 }
 
-
+/* istanbul ignore next */
 function injectTheme(Component, theme) {
     const injectedTheme = theme || ThemeManager.getMuiTheme(appTheme);
     return stubContext(Component, {
@@ -66,5 +67,6 @@ function injectTheme(Component, theme) {
         },
     });
 }
+
 
 export default injectTheme;

@@ -77,6 +77,7 @@ export default createClass({
             return Boolean(this.state.objectToShare.meta && this.state.objectToShare.meta.allowPublicAccess);
         };
 
+        // TODO: Is it true that the user should not be able to see externalAccess when he/she can not set it?
         const getExternalAccessValue = () => {
             if (canSetExternalAccess()) {
                 return this.state.objectToShare.externalAccess;
