@@ -1,24 +1,15 @@
 import React from 'react/addons';
 import FormField from '../../src/forms/FormField.component';
-import injectTheme from '../../config/inject-theme';
 import TextField from 'material-ui/lib/text-field';
+import {shallow} from 'enzyme';
 
-const {
-    renderIntoDocument,
-    findRenderedComponentWithType,
-    Simulate,
-} = React.addons.TestUtils;
-
-const renderFormFieldComponent = (fieldConfig, props = {onChange: spy()}) => {
-    const FormFieldWithContext = injectTheme(FormField);
-    const renderedComponents = renderIntoDocument(<FormFieldWithContext type={fieldConfig.type} fieldOptions={fieldConfig.fieldOptions} {...props} />);
-
-    return findRenderedComponentWithType(renderedComponents, FormField);
-};
-
-xdescribe('FormField component', () => {
+describe('FormField component', () => {
     let formFieldComponent;
     let fieldConfig;
+
+    function renderComponent(props) {
+        return shallow(<FormField {...props} />);
+    }
 
     beforeEach(() => {
         fieldConfig = {
@@ -29,17 +20,17 @@ xdescribe('FormField component', () => {
             },
         };
 
-        formFieldComponent = renderFormFieldComponent(fieldConfig);
+        formFieldComponent = renderComponent({...fieldConfig});
     });
 
     it('should have the component name as a class', () => {
-        expect(element(formFieldComponent).hasClass('form-field')).to.be.true;
+        expect(formFieldComponent.hasClass('form-field')).to.be.true;
     });
 
     it('should render the material ui component', () => {
-        const renderedMaterialUIComponent = findRenderedComponentWithType(formFieldComponent, TextField);
+        const renderedMaterialUIComponent = formFieldComponent.find(TextField);
 
-        expect(renderedMaterialUIComponent).not.to.be.undefined;
+        expect(renderedMaterialUIComponent).to.have.length(1);
     });
 
     it('should pass the fieldOptions as props to the type component', () => {
@@ -47,47 +38,42 @@ xdescribe('FormField component', () => {
             multiLine: true,
         };
 
-        formFieldComponent = renderFormFieldComponent(fieldConfig);
+        formFieldComponent = renderComponent({...fieldConfig});
 
-        const renderedMaterialUIComponent = findRenderedComponentWithType(formFieldComponent, TextField);
+        const renderedMaterialUIComponent = formFieldComponent.find(TextField);
 
-        expect(renderedMaterialUIComponent.props.multiLine).to.be.true;
+        expect(renderedMaterialUIComponent.props().multiLine).to.be.true;
     });
 
     it('should correctly render the value', () => {
-        formFieldComponent = renderFormFieldComponent(fieldConfig, {value: 'Mark', onChange: spy()});
-        const renderedMaterialUIComponent = findRenderedComponentWithType(formFieldComponent, TextField);
+        formFieldComponent =
+        formFieldComponent = renderComponent({...fieldConfig, value: 'Mark', onChange: spy()});
+        const renderedMaterialUIComponent = formFieldComponent.find(TextField);
 
-        const inputDOMNode = React
-            .findDOMNode(renderedMaterialUIComponent)
-            .querySelector('input');
-
-        expect(inputDOMNode.value).to.equal('Mark');
+        expect(renderedMaterialUIComponent.props().defaultValue).to.equal('Mark');
     });
 
     it('should call the onChange when the value was changed', () => {
         const onChangeSpy = spy();
 
-        formFieldComponent = renderFormFieldComponent(fieldConfig, {
+        formFieldComponent = renderComponent({
+            ...fieldConfig,
             value: 'Mark',
             updateFn: onChangeSpy,
         });
-        const renderedMaterialUIComponent = findRenderedComponentWithType(formFieldComponent, TextField);
 
-        const inputDOMNode = React
-            .findDOMNode(renderedMaterialUIComponent)
-            .querySelector('input');
+        const renderedMaterialUIComponent = formFieldComponent.find(TextField);
 
-        Simulate.change(inputDOMNode);
+        renderedMaterialUIComponent.simulate('change');
 
         expect(onChangeSpy).to.be.called;
     });
 
     describe('templateOptions', () => {
         it('should pass template options as props to the `type` component', () => {
-            const renderedMaterialUIComponent = findRenderedComponentWithType(formFieldComponent, TextField);
+            const renderedMaterialUIComponent = formFieldComponent.find(TextField);
 
-            expect(renderedMaterialUIComponent.props.floatingLabelText).to.equal('keyEmailPort');
+            expect(renderedMaterialUIComponent.props().floatingLabelText).to.equal('keyEmailPort');
         });
     });
 });

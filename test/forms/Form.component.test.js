@@ -1,16 +1,9 @@
 import React from 'react/addons';
 import Form from '../../src/forms/Form.component';
 import FormField from '../../src/forms/FormField.component';
-import injectTheme from '../../config/inject-theme';
 import {FormFieldStatuses} from '../../src/forms/FormValidator';
-
-const {
-    renderIntoDocument,
-    scryRenderedComponentsWithType,
-    findRenderedDOMComponentWithTag,
-    findRenderedComponentWithType,
-    Simulate,
-} = React.addons.TestUtils;
+import {shallow} from 'enzyme';
+import {getStubContext} from '../../config/inject-theme';
 
 class TextField extends React.Component {
     render() {
@@ -50,56 +43,49 @@ function getSystemSettingsFormConfig() {
     return {systemSettings, fieldConfigs};
 }
 
-xdescribe('Form component', () => {
+describe('Form component', () => {
     let formComponent;
     const renderComponent = (props, children) => {
-        const FormWithContext = injectTheme(Form);
-        const renderedComponents = renderIntoDocument(<FormWithContext {...props}>{children}</FormWithContext>);
-        formComponent = findRenderedComponentWithType(renderedComponents, Form);
-        return formComponent;
+        return shallow(<Form {...props}>{children}</Form>, {
+            context: getStubContext(),
+        });
     };
 
     beforeEach(() => {
-        renderComponent();
+        formComponent = renderComponent();
     });
 
     it('should have the component name as a class', () => {
-        expect(element(formComponent.getDOMNode()).hasClass('form')).to.be.true;
+        expect(formComponent.hasClass('form')).to.be.true;
     });
 
     it('should render a single form tag', () => {
-        const renderedFormTag = findRenderedDOMComponentWithTag(formComponent, 'form');
-
-        expect(renderedFormTag).not.to.be.undefined;
+        expect(formComponent.node.type).to.equal('form');
     });
 
     describe('isValid method', () => {
         it('should exist', () => {
-            expect(formComponent.isValid).to.be.instanceof(Function);
+            expect(formComponent.instance().isValid).to.be.instanceof(Function);
         });
 
         it('should return false initially', () => {
-            expect(formComponent.isValid()).to.equal(true);
+            expect(formComponent.instance().isValid()).to.equal(true);
         });
     });
 
     describe('formFields', () => {
         beforeEach(() => {
-            const FormWithContext = injectTheme(Form);
-            const renderedComponents = renderIntoDocument(
-                <FormWithContext>
-                    <FormField type={TextField} />
-                    <FormField type={TextField} />
-                    <FormField type={TextField} />
-                </FormWithContext>
-            );
-            formComponent = findRenderedComponentWithType(renderedComponents, Form);
+            formComponent = renderComponent({}, [
+                <FormField type={TextField} />,
+                <FormField type={TextField} />,
+                <FormField type={TextField} />,
+            ])
         });
 
         it('should render the formFields', () => {
-            const renderedFieldComponents = scryRenderedComponentsWithType(formComponent, FormField);
+            const renderedFieldComponents = formComponent.find(FormField);
 
-            expect(renderedFieldComponents.length).to.equal(3);
+            expect(renderedFieldComponents).to.have.length(3);
         });
     });
 
@@ -111,21 +97,23 @@ xdescribe('Form component', () => {
         });
 
         it('should have rendered the three FormFields from the fieldConfigs', () => {
-            const renderedFormFieldComponents = scryRenderedComponentsWithType(formComponent, FormField);
+            const renderedFormFieldComponents = formComponent.find(FormField);
 
-            expect(renderedFormFieldComponents.length).to.equal(3);
+            expect(renderedFormFieldComponents).to.have.length(3);
         });
 
         it('should have rendered the three TextFields for the fieldConfigs', () => {
-            const renderedTextFieldComponents = scryRenderedComponentsWithType(formComponent, TextField);
+            const renderedTextFieldComponents = formComponent.find(FormField);
 
-            expect(renderedTextFieldComponents.length).to.equal(3);
+            expect(renderedTextFieldComponents.at(0).props().type).to.equal(TextField);
+            expect(renderedTextFieldComponents.at(1).props().type).to.equal(TextField);
+            expect(renderedTextFieldComponents.at(2).props().type).to.equal(TextField);
         });
 
         it('should pass the fieldConfig to the FormField', () => {
-            const renderedTextFieldComponents = scryRenderedComponentsWithType(formComponent, FormField);
+            const renderedTextFieldComponents = formComponent.find(FormField);
 
-            expect(renderedTextFieldComponents[0].props.fieldOptions).to.deep.equal({floatingLabelText: 'keyEmailPort'});
+            expect(renderedTextFieldComponents.at(0).props().fieldOptions).to.deep.equal({floatingLabelText: 'keyEmailPort'});
         });
     });
 
@@ -137,29 +125,33 @@ xdescribe('Form component', () => {
 
             onFormFieldUpdateSpy = spy();
 
-            formComponent = renderIntoDocument(<Form
-                source={systemSettings}
-                fieldConfigs={fieldConfigs}
-                onFormFieldUpdate={onFormFieldUpdateSpy}
-                />
-            );
+            formComponent = renderComponent({
+                source: systemSettings,
+                fieldConfigs: fieldConfigs,
+                onFormFieldUpdate: onFormFieldUpdateSpy,
+            });
         });
 
         it('should call onFormFieldChange when the value updates', () => {
-            const renderedTextFieldComponents = scryRenderedComponentsWithType(formComponent, TextField);
-            const inputDOMNode = React.findDOMNode(renderedTextFieldComponents[0]);
+            const renderedTextFieldComponent = formComponent.find(FormField).first();
 
-            spy(formComponent, 'updateRequest');
-            expect(inputDOMNode.value).to.equal('587');
+            spy(formComponent.instance(), 'updateRequest');
+            expect(renderedTextFieldComponent.props().value).to.equal(587);
 
-            inputDOMNode.value = '456';
-            Simulate.change(inputDOMNode);
+            renderedTextFieldComponent.simulate('change', {
+                target: {
+                    value: '456',
+                },
+            });
 
             expect(onFormFieldUpdateSpy).to.be.calledWith('keyEmailPort', '456');
+
+            formComponent.instance().updateRequest.restore();
         });
     });
 
-    describe('updateEvent', () => {
+    // TODO: The onChange/onBlur can not be tested on the form component itself as the actual components are not being rendered. This functionality should be tested in the FormField component
+    xdescribe('updateEvent', () => {
         let onFormFieldUpdateSpy;
 
         beforeEach(() => {
@@ -169,43 +161,49 @@ xdescribe('Form component', () => {
 
             fieldConfigs[0].updateEvent = 'onBlur';
 
-            formComponent = renderIntoDocument(<Form
-                    source={systemSettings}
-                    fieldConfigs={fieldConfigs}
-                    onFormFieldUpdate={onFormFieldUpdateSpy}
-                />
-            );
+            formComponent = renderComponent({
+                source: systemSettings,
+                fieldConfigs: fieldConfigs,
+                onFormFieldUpdate: onFormFieldUpdateSpy,
+            });
         });
 
         it('should call onFormFieldUpdate on blur', () => {
-            const renderedTextFieldComponents = scryRenderedComponentsWithType(formComponent, TextField);
-            const inputDOMNode = React.findDOMNode(renderedTextFieldComponents[0]);
+            const renderedTextFieldComponent = formComponent.find(FormField).first();
 
-            spy(formComponent, 'updateRequest');
-            expect(inputDOMNode.value).to.equal('587');
+            spy(formComponent.instance(), 'updateRequest');
+            expect(renderedTextFieldComponent.props().value).to.equal(587);
 
-            inputDOMNode.value = '456';
-            Simulate.blur(inputDOMNode);
+            renderedTextFieldComponent.simulate('blur', {
+                target: {
+                    value: '456',
+                },
+            });
 
             expect(onFormFieldUpdateSpy).to.be.calledWith('keyEmailPort', '456');
+
+            formComponent.instance().updateRequest.restore();
         });
 
         it('should not call onFormFieldUpdate on change', () => {
-            const renderedTextFieldComponents = scryRenderedComponentsWithType(formComponent, TextField);
-            const inputDOMNode = React.findDOMNode(renderedTextFieldComponents[0]);
+            const renderedTextFieldComponent = formComponent.find(FormField).first();
 
-            spy(formComponent, 'updateRequest');
-            expect(inputDOMNode.value).to.equal('587');
+            spy(formComponent.instance(), 'updateRequest');
+            expect(renderedTextFieldComponent.props().value).to.equal(587);
 
-            inputDOMNode.value = '456';
-            Simulate.change(inputDOMNode);
+            renderedTextFieldComponent.simulate('change', {
+                target: {
+                    value: '456',
+                },
+            });
 
             expect(onFormFieldUpdateSpy).to.have.callCount(0);
         });
     });
 
     // TODO: These are integration tests not unit tests... should mock the formValidator
-    describe('validation', () => {
+    // TODO: Possible rework of the validators might need readjustment of these tests
+    xdescribe('validation', () => {
         let fieldConfig;
 
         beforeEach(() => {
