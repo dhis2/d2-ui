@@ -2,63 +2,59 @@ import React from 'react/addons';
 import injectTheme from '../../config/inject-theme';
 import ExpressionFormula from '../../src/indicator-expression-manager/ExpressionFormula.component';
 import TextField from 'material-ui/lib/text-field';
+import {shallow} from 'enzyme';
 
-const TestUtils = React.addons.TestUtils;
-const {
-    findRenderedComponentWithType,
-    Simulate,
-} = TestUtils;
-
-xdescribe('ExpressionFormula component', () => {
+describe('ExpressionFormula component', () => {
     let expressionFormulaComponent;
     let onFormulaChangeSpy;
 
+    function renderComponent(props = {}) {
+        return shallow(<ExpressionFormula {...props} />);
+    }
+
     beforeEach(() => {
         onFormulaChangeSpy = spy();
-        const ExpressionFormulaWithContext = injectTheme(ExpressionFormula);
-        const renderedComponents = TestUtils.renderIntoDocument(
-            <ExpressionFormulaWithContext onFormulaChange={onFormulaChangeSpy} formula={'#{aaadsfdff.dddsdfsf} + #{ccadsfdff.eedsdfsf}'} />
-        );
-        expressionFormulaComponent = findRenderedComponentWithType(renderedComponents, ExpressionFormula);
+
+        expressionFormulaComponent = renderComponent({
+            onFormulaChange: onFormulaChangeSpy,
+            formula: '#{aaadsfdff.dddsdfsf} + #{ccadsfdff.eedsdfsf}',
+        });
     });
 
     it('should have the component name as a class', () => {
-        expect(element(expressionFormulaComponent.getDOMNode()).hasClass('expression-formula')).to.be.true;
+        expect(expressionFormulaComponent.hasClass('expression-formula')).to.be.true;
     });
 
     it('should render a TextField', () => {
-        expect(() => findRenderedComponentWithType(expressionFormulaComponent, TextField)).not.to.throw();
-    });
-
-    it('should render the TextField to be multiline', () => {
-        const renderedTextField = findRenderedComponentWithType(expressionFormulaComponent, TextField);
-
-        expect(renderedTextField.props.multiLine).to.be.true;
-    });
-
-    it('should render the TextField as fullWidth', () => {
-        const renderedTextField = findRenderedComponentWithType(expressionFormulaComponent, TextField);
-
-        expect(renderedTextField.props.fullWidth).to.be.true;
+        expect(expressionFormulaComponent.find('textarea')).to.have.length(1);
     });
 
     it('should call the onFormulaChange prop when the formula changed', () => {
-        const renderedTextField = findRenderedComponentWithType(expressionFormulaComponent, TextField);
+        const renderedTextField = expressionFormulaComponent.find('textarea');
         // Grab the second textarea (https://github.com/callemall/material-ui/blob/838abb4728614e184438002021bf1d539d104501/src/enhanced-textarea.jsx#L90-L104)
-        const textArea = React.findDOMNode(renderedTextField).querySelectorAll('textarea')[1];
 
-        textArea.textContent = '#{dsfdff.sdfsf}';
+        renderedTextField.simulate('change', {
+            target: {
+                value: '#{dsfdff.sdfsf}',
+            },
+        });
 
-        Simulate.change(textArea);
+        expect(onFormulaChangeSpy).to.be.calledWith('#{dsfdff.sdfsf}');
+    });
 
-        expect(onFormulaChangeSpy).to.be.called;
+    it('should not throw an error if no change handler has been passed', () => {
+        const fakeEvent = {target: {value: '#{dsfdff.sdfsf}'}};
+        expressionFormulaComponent = renderComponent({formula: '#{aaadsfdff.dddsdfsf} + #{ccadsfdff.eedsdfsf}'});
+
+        const renderedTextField = expressionFormulaComponent.find('textarea');
+        // Grab the second textarea (https://github.com/callemall/material-ui/blob/838abb4728614e184438002021bf1d539d104501/src/enhanced-textarea.jsx#L90-L104)
+
+        expect(() => renderedTextField.simulate('change', fakeEvent)).not.to.throw();
     });
 
     it('should render the passed formula in the box', () => {
-        const renderedTextField = findRenderedComponentWithType(expressionFormulaComponent, TextField);
-        // Grab the second textarea (https://github.com/callemall/material-ui/blob/838abb4728614e184438002021bf1d539d104501/src/enhanced-textarea.jsx#L90-L104)
-        const textArea = React.findDOMNode(renderedTextField).querySelectorAll('textarea')[1];
+        const renderedTextField = expressionFormulaComponent.find('textarea');
 
-        expect(textArea.textContent).to.equal('#{aaadsfdff.dddsdfsf} + #{ccadsfdff.eedsdfsf}');
+        expect(renderedTextField.props().value).to.equal('#{aaadsfdff.dddsdfsf} + #{ccadsfdff.eedsdfsf}');
     });
 });

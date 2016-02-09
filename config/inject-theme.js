@@ -34,11 +34,11 @@ export function getStubContext() {
                 },
             },
             Api: {
-                getApi: stub().returns({baseUrl: 'http://localhost:8080'}),
+                getApi: sinon.stub().returns({baseUrl: 'http://localhost:8080'}),
             },
             system: {
                 settings: {
-                    all: stub().returns(Promise.resolve({})),
+                    all: sinon.stub().returns(Promise.resolve({})),
                 },
             },
         },

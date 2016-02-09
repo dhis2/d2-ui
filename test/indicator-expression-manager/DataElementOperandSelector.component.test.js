@@ -1,42 +1,65 @@
 import React from 'react/addons';
-import injectTheme from '../../config/inject-theme';
+import {getStubContext} from '../../config/inject-theme';
 
 import DataElementOperandSelector from '../../src/indicator-expression-manager/DataElementOperandSelector.component';
 import ListSelectAsync from '../../src/list-select/ListSelectAsync.component';
-import {Observable} from 'rx';
+import {shallow} from 'enzyme';
+import LinearProgress from 'material-ui/lib/linear-progress';
+import dataElementOperandStore from '../../src/indicator-expression-manager/dataElementOperand.store';
 
-xdescribe('DataElementOperandSelector component', () => {
+describe('DataElementOperandSelector component', () => {
     let dataElementOperandSelectorComponent;
     let onItemDoubleClickSpy;
+
+    function renderComponent(props = {}) {
+        return shallow(<DataElementOperandSelector {...props} />, {
+            context: getStubContext(),
+        });
+    }
 
     beforeEach(() => {
         onItemDoubleClickSpy = spy();
 
-        const DataElementOperandSelectorWithContext = injectTheme(DataElementOperandSelector);
-        const renderedComponents = renderIntoDocument(
-            <DataElementOperandSelectorWithContext onItemDoubleClick={onItemDoubleClickSpy} />
-        );
-
-        dataElementOperandSelectorComponent = findRenderedComponentWithType(renderedComponents, DataElementOperandSelector);
+        dataElementOperandSelectorComponent = renderComponent({onItemDoubleClick: onItemDoubleClickSpy});
     });
 
     it('should have the component name as a class', () => {
-        expect(element(dataElementOperandSelectorComponent.getDOMNode()).hasClass('data-element-operand-selector')).to.be.true;
+        expect(dataElementOperandSelectorComponent.hasClass('data-element-operand-selector')).to.be.true;
     });
 
     it('should render a ListSelectAsync', () => {
-        expect(() => findRenderedComponentWithType(dataElementOperandSelectorComponent, ListSelectAsync)).not.to.throw();
+        expect(dataElementOperandSelectorComponent.find(ListSelectAsync)).to.have.length(1);
     });
 
     it('should pass the dataElementOperandStore mapped source to the async list', () => {
-        const asyncListSelect = findRenderedComponentWithType(dataElementOperandSelectorComponent, ListSelectAsync);
+        const asyncListSelect = dataElementOperandSelectorComponent.find(ListSelectAsync);
 
-        expect(asyncListSelect.props.source).to.be.instanceof(Observable);
+        expect(asyncListSelect.props().source).to.equal(dataElementOperandSelectorComponent.instance().storeObservable);
     });
 
     it('should pass the onItemDoubleClick prop down to the asynclist', () => {
-        const asyncListSelect = findRenderedComponentWithType(dataElementOperandSelectorComponent, ListSelectAsync);
+        const asyncListSelect = dataElementOperandSelectorComponent.find(ListSelectAsync);
 
-        expect(asyncListSelect.props.onItemDoubleClick).to.equal(onItemDoubleClickSpy);
+        expect(asyncListSelect.props().onItemDoubleClick).to.equal(onItemDoubleClickSpy);
+    });
+
+    it('should render a progress bar when the component is loading', () => {
+        expect(dataElementOperandSelectorComponent.find(LinearProgress)).to.have.length(1);
+    });
+
+    it('should hide the loading bar if the status isLoading is set to false', () => {
+        dataElementOperandSelectorComponent.setState({isLoading: false});
+
+        expect(dataElementOperandSelectorComponent.find(LinearProgress)).to.have.length(0);
+    });
+
+    describe('data loading', () => {
+        const mock = sinon.mock(dataElementOperandStore);
+
+        mock.expects('tap').once().returns(dataElementOperandStore);
+
+        renderComponent();
+
+        mock.verify();
     });
 });

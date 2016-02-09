@@ -1,17 +1,11 @@
 import React from 'react/addons';
-import injectTheme from '../../config/inject-theme';
+import {getStubContext} from '../../config/inject-theme';
 import UserGroupAccesses from '../../src/sharing/UserGroupAccesses.component';
 import Toggle from 'material-ui/lib/toggle';
 import AccessMaskSwitches from '../../src/sharing/AccessMaskSwitches.component';
+import {shallow} from 'enzyme';
 
-const {
-    findRenderedComponentWithType,
-    scryRenderedComponentsWithType,
-    renderIntoDocument,
-    Simulate,
-    } = React.addons.TestUtils;
-
-xdescribe('Sharing: UserGroupAccesses component', () => {
+describe('Sharing: UserGroupAccesses component', () => {
     let userGroupAccessesComponent;
     const userGroupAccesses = [
         {access: 'r-------', id: 'wl5cDMuUhmF'},
@@ -19,17 +13,17 @@ xdescribe('Sharing: UserGroupAccesses component', () => {
     ];
 
     const renderComponent = (props = {}) => {
-        const UserGroupAccessesWithContext = injectTheme(UserGroupAccesses);
-        const renderedComponents = renderIntoDocument(<UserGroupAccessesWithContext {...props} />);
+        userGroupAccessesComponent = shallow(<UserGroupAccesses {...props} />, {
+            context: getStubContext(),
+        });
 
-        userGroupAccessesComponent = findRenderedComponentWithType(renderedComponents, UserGroupAccesses);
         return userGroupAccessesComponent;
     };
 
     it('should render one AccessMaskSwitches for each of the userGroupsAccesses', () => {
         renderComponent({userGroupAccesses});
 
-        expect(scryRenderedComponentsWithType(userGroupAccessesComponent, AccessMaskSwitches).length).to.equal(2);
+        expect(userGroupAccessesComponent.find(AccessMaskSwitches)).to.have.length(2);
     });
 
     it('should call the passed onChange method when one of the userGroup accesses has changed', () => {
@@ -41,11 +35,26 @@ xdescribe('Sharing: UserGroupAccesses component', () => {
         const onChangeSpy = spy();
         renderComponent({userGroupAccesses, onChange: onChangeSpy});
 
-        const  editToggleComponent = scryRenderedComponentsWithType(userGroupAccessesComponent, Toggle)[1];
-        const inputComponent = React.findDOMNode(editToggleComponent).querySelector('input');
-
-        Simulate.change(inputComponent);
+        const accessMaskSwitches = userGroupAccessesComponent.find(AccessMaskSwitches).first();
+        accessMaskSwitches.simulate('change', 'rw------');
 
         expect(onChangeSpy).to.be.calledWith(expectedCallBackArgument);
+    });
+
+    it('should not modify the userGroupAccesses props', () => {
+        const onChangeSpy = spy();
+        renderComponent({userGroupAccesses, onChange: onChangeSpy});
+
+        const accessMaskSwitches = userGroupAccessesComponent.find(AccessMaskSwitches).first();
+        accessMaskSwitches.simulate('change', 'rw------');
+
+        expect(userGroupAccesses[0].access).to.equal('r-------');
+    });
+
+    it('should not throw when no onChange has been passed', () => {
+        renderComponent({userGroupAccesses});
+
+        const accessMaskSwitches = userGroupAccessesComponent.find(AccessMaskSwitches).first();
+        expect(() => accessMaskSwitches.simulate('change', 'rw------')).not.to.throw();
     });
 });

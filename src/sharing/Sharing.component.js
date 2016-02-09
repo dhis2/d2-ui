@@ -49,7 +49,7 @@ export default createClass({
     },
 
     componentWillUnmount() {
-        this.disposable.dispose();
+        this.disposable && this.disposable.dispose();
     },
 
     render() {

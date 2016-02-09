@@ -84,6 +84,8 @@ describe('Sharing: Sharing component', () => {
             stub(sharingStore, 'subscribe').callsArgOnWith(0, sharingComponent, mockStoreState);
 
             spy(actions, 'userGroupAcessesChanged');
+            spy(actions, 'publicAccessChanged');
+            spy(actions, 'externalAccessChanged');
         });
 
         afterEach(() => {
@@ -186,7 +188,10 @@ describe('Sharing: Sharing component', () => {
 
         describe('actions', () => {
             beforeEach(() => {
-                spy(actions, 'loadObjectSharingState');
+                stub(actions, 'loadObjectSharingState')
+                    .returns({
+                        subscribe: stub().callsArgOnWith(0, sharingComponent, {}),
+                    });
             });
 
             afterEach(() => {
@@ -256,6 +261,12 @@ describe('Sharing: Sharing component', () => {
         });
 
         it('should pass the correct externalAccess to the ExternalAccess component', () => {
+            const objectToShare = {
+                name: 'Facility Funding Agency',
+                modelDefinition: objectToShareModelDefinition,
+            };
+            renderComponent({objectToShare});
+
             sharingComponent.setState({
                 objectToShare: {
                     meta: {
@@ -271,6 +282,12 @@ describe('Sharing: Sharing component', () => {
         });
 
         it('should pass disabled to ExternalAccess if the user can not set externalAccess', () => {
+            const objectToShare = {
+                name: 'Facility Funding Agency',
+                modelDefinition: objectToShareModelDefinition,
+            };
+            renderComponent({objectToShare});
+
             sharingComponent.setState({
                 objectToShare: {
                     meta: {
@@ -288,12 +305,78 @@ describe('Sharing: Sharing component', () => {
         });
 
         it('should pass the new userGroupAccesses to the userGroupAcessesChanged action', () => {
+            const objectToShare = {
+                name: 'Facility Funding Agency',
+                modelDefinition: objectToShareModelDefinition,
+            };
+            renderComponent({objectToShare});
+
             const userGroupAccesses = [];
             const userGroupAcesses = sharingComponent.find(UserGroupAccesses);
 
             userGroupAcesses.simulate('change', userGroupAccesses);
 
             expect(actions.userGroupAcessesChanged).to.be.calledWith(userGroupAccesses);
+        });
+
+        it('should pass the new publicAccess to the publicAccessChanged action', () => {
+            const objectToShare = {
+                name: 'Facility Funding Agency',
+                modelDefinition: objectToShareModelDefinition,
+            };
+            renderComponent({objectToShare});
+
+            const publicAccess = false;
+            const publicAccessComponent = sharingComponent.find(PublicAccess);
+
+            publicAccessComponent.simulate('change', publicAccess);
+
+            expect(actions.publicAccessChanged).to.be.calledWith(false);
+        });
+
+        it('should pass the externalAccess to the externalAccessChanged handler', () => {
+            const objectToShare = {
+                name: 'Facility Funding Agency',
+                modelDefinition: objectToShareModelDefinition,
+            };
+            renderComponent({objectToShare});
+
+            const externalAccess = true;
+            const externalAccessComponent = sharingComponent.find(ExternalAccess);
+
+            externalAccessComponent.simulate('change', externalAccess);
+
+            expect(actions.externalAccessChanged).to.be.calledWith(true);
+        });
+
+        it('should call dispose on the set disposable', () => {
+            const objectToShare = {
+                name: 'Facility Funding Agency',
+                modelDefinition: objectToShareModelDefinition,
+            };
+            renderComponent({objectToShare});
+
+            const sharingComponentInstance = sharingComponent.instance();
+            sharingComponentInstance.disposable = {
+                dispose: stub(),
+            };
+            sharingComponentInstance.componentWillUnmount();
+
+            expect(sharingComponentInstance.disposable.dispose).to.be.calledOnce;
+        });
+
+        it('should not throw if there is no disposable', () => {
+            const objectToShare = {
+                name: 'Facility Funding Agency',
+                modelDefinition: objectToShareModelDefinition,
+            };
+            renderComponent({objectToShare});
+
+            const sharingComponentInstance = sharingComponent.instance();
+
+            sharingComponentInstance.disposable && delete sharingComponentInstance.disposable;
+
+            expect(() => sharingComponentInstance.componentWillUnmount()).not.to.throw();
         });
     });
 });

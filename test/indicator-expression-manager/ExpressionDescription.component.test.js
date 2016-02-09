@@ -2,61 +2,54 @@ import React from 'react/addons';
 import injectTheme from '../../config/inject-theme';
 import TextField from 'material-ui/lib/text-field';
 import ExpressionDescription from '../../src/indicator-expression-manager/ExpressionDescription.component';
+import {shallow} from 'enzyme';
 
-const TestUtils = React.addons.TestUtils;
-const {
-    findRenderedComponentWithType,
-    Simulate,
-    } = TestUtils;
-
-
-xdescribe('ExpressionDescription component', () => {
+describe('ExpressionDescription component', () => {
     let expressionDescriptionComponent;
     let onDescriptionChangeSpy;
 
+    function renderComponent(props = {}) {
+        return shallow(<ExpressionDescription {...props} />);
+    }
+
     beforeEach(() => {
         onDescriptionChangeSpy = spy();
-        const ExpressionDescriptionWithContext = injectTheme(ExpressionDescription);
-
-        const renderedComponents = TestUtils.renderIntoDocument(
-            <ExpressionDescriptionWithContext onDescriptionChange={onDescriptionChangeSpy}
-                                              descriptionLabel="Numerator description"
-                                              descriptionValue="My indicator numerator description"
-                />
-        );
-        expressionDescriptionComponent = findRenderedComponentWithType(renderedComponents, ExpressionDescription);
+        expressionDescriptionComponent = renderComponent({
+            onDescriptionChange: onDescriptionChangeSpy,
+            descriptionLabel: "Numerator description",
+            descriptionValue: "My indicator numerator description",
+        });
     });
 
     it('should have the component name as a class', () => {
-        expect(element(expressionDescriptionComponent.getDOMNode()).hasClass('expression-description')).to.be.true;
+        expect(expressionDescriptionComponent.hasClass('expression-description')).to.be.true;
     });
 
     it('should render a textfield for description', () => {
-        expect(() => findRenderedComponentWithType(expressionDescriptionComponent, TextField)).not.to.throw();
+        expect(expressionDescriptionComponent.find(TextField)).to.have.length(1);
     });
 
     describe('description field', () => {
         let descriptionComponent;
 
         beforeEach(() => {
-            descriptionComponent = findRenderedComponentWithType(expressionDescriptionComponent, TextField);
+            descriptionComponent = expressionDescriptionComponent.find(TextField);
         });
 
         it('should render the passed descriptionValue as the value of the TextField', () => {
-            const inputBox = React.findDOMNode(descriptionComponent).querySelector('input');
-
-            expect(inputBox.value).to.equal('My indicator numerator description');
+            expect(descriptionComponent.props().value).to.equal('My indicator numerator description');
         });
 
         it('should have the a floatingLabelText that equals the descriptionLabel property', () => {
-            expect(descriptionComponent.props.floatingLabelText).to.equal('Numerator description');
+            expect(descriptionComponent.props().floatingLabelText).to.equal('Numerator description');
         });
 
         it('should set the value of the description onto the state after change', () => {
-            const inputBox = React.findDOMNode(descriptionComponent).querySelector('input');
-            inputBox.value = 'My indicator expression description';
-
-            Simulate.change(inputBox);
+            descriptionComponent.simulate('change', {
+                target: {
+                    value: 'My indicator expression description',
+                },
+            });
 
             expect(onDescriptionChangeSpy).to.be.calledWith('My indicator expression description');
         });

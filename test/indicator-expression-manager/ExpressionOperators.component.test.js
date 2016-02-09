@@ -2,83 +2,79 @@ import React from 'react/addons';
 import injectTheme from '../../config/inject-theme';
 import ExpressionOperators from '../../src/indicator-expression-manager/ExpressionOperators.component';
 import FlatButton from 'material-ui/lib/flat-button';
+import {shallow} from 'enzyme';
 
-const TestUtils = React.addons.TestUtils;
-const {
-    findRenderedComponentWithType,
-    scryRenderedComponentsWithType,
-    Simulate,
-} = TestUtils;
-
-xdescribe('ExpressionOperators component', () => {
+describe('ExpressionOperators component', () => {
     let expressionOperatorsComponent;
     let addOperatorCallback;
 
+    function renderComponent(props = {}) {
+        return shallow(<ExpressionOperators {...props} />);
+    }
+
     beforeEach(() => {
         addOperatorCallback = spy();
-        const ExpressionOperatorsWithContext = injectTheme(ExpressionOperators);
 
-        const renderedComponents = TestUtils.renderIntoDocument(
-            <ExpressionOperatorsWithContext operatorClicked={addOperatorCallback} />
-        );
-        expressionOperatorsComponent = findRenderedComponentWithType(renderedComponents, ExpressionOperators);
+        expressionOperatorsComponent = renderComponent({
+           operatorClicked: addOperatorCallback,
+        });
     });
 
     it('should have the component name as a class', () => {
-        expect(element(expressionOperatorsComponent.getDOMNode()).hasClass('expression-operators')).to.be.true;
+        expect(expressionOperatorsComponent.hasClass('expression-operators')).to.be.true;
     });
 
     it('should render an IconButtons for each of the operators', () => {
-        const buttons = scryRenderedComponentsWithType(expressionOperatorsComponent, FlatButton);
+        const buttons = expressionOperatorsComponent.find(FlatButton);
 
-        expect(buttons.length).to.equal(7);
+        expect(buttons).to.have.length(7);
     });
 
     describe('operator buttons', () => {
         let buttons;
 
         beforeEach(() => {
-            buttons = scryRenderedComponentsWithType(expressionOperatorsComponent, FlatButton);
+            buttons = expressionOperatorsComponent.find(FlatButton);
         });
 
         it('should call callback with "("', () => {
-            Simulate.click(React.findDOMNode(buttons[0]));
+            buttons.at(0).simulate('click');
 
             expect(addOperatorCallback).to.be.calledWith('(');
         });
 
         it('should call callback with ")"', () => {
-            Simulate.click(React.findDOMNode(buttons[1]));
+            buttons.at(1).simulate('click');
 
             expect(addOperatorCallback).to.be.calledWith(')');
         });
 
         it('should call callback with "*"', () => {
-            Simulate.click(React.findDOMNode(buttons[2]));
+            buttons.at(2).simulate('click');
 
             expect(addOperatorCallback).to.be.calledWith(' * ');
         });
 
         it('should call callback with "/"', () => {
-            Simulate.click(React.findDOMNode(buttons[3]));
+            buttons.at(3).simulate('click');
 
             expect(addOperatorCallback).to.be.calledWith(' / ');
         });
 
         it('should call callback with "+"', () => {
-            Simulate.click(React.findDOMNode(buttons[4]));
+            buttons.at(4).simulate('click');
 
             expect(addOperatorCallback).to.be.calledWith(' + ');
         });
 
         it('should call callback with "-"', () => {
-            Simulate.click(React.findDOMNode(buttons[5]));
+            buttons.at(5).simulate('click');
 
             expect(addOperatorCallback).to.be.calledWith(' - ');
         });
 
         it('should call callback with "[days]"', () => {
-            Simulate.click(React.findDOMNode(buttons[6]));
+            buttons.at(6).simulate('click');
 
             expect(addOperatorCallback).to.be.calledWith(' [days] ');
         });
