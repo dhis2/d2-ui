@@ -1,44 +1,37 @@
 import React from 'react/addons';
-import injectTheme from '../../config/inject-theme';
 import IndicatorExpressionManager from '../../src/indicator-expression-manager/IndicatorExpressionManager.component';
+import {shallow} from 'enzyme';
+import {getStubContext} from '../../config/inject-theme';
+
 import DataElementOperandSelector from '../../src/indicator-expression-manager/DataElementOperandSelector.component';
+import ProgramOperandSelector from '../../src/indicator-expression-manager/ProgramOperandSelector';
 
-const TestUtils = React.addons.TestUtils;
-const {
-    findRenderedComponentWithType,
-} = TestUtils;
-
-xdescribe('IndicatorExpressionManager component', () => {
+describe('IndicatorExpressionManager component', () => {
     let indicatorExpressionManagerComponent;
-    let d2Mock;
+
+    function renderComponent(props = {}) {
+        return shallow(<IndicatorExpressionManager {...props} />, {
+            context: getStubContext(),
+        });
+    }
 
     beforeEach(() => {
-        d2Mock = {
-            models: {
-                dataElementOperand: {
-                    list: spy(),
-                },
-            },
-        };
-
-        const IndicatorExpressionManagerWithContext = injectTheme(IndicatorExpressionManager);
-        const shallowRenderer = TestUtils.createRenderer();
-        shallowRenderer.render(<IndicatorExpressionManagerWithContext d2={d2Mock} />);
-
-        const renderedComponents = shallowRenderer.getRenderOutput()
-
-        console.log('===============');
-        console.log(renderedComponents);
-        console.log('===============');
-
-        indicatorExpressionManagerComponent = findRenderedComponentWithType(renderedComponents, IndicatorExpressionManager);
+        indicatorExpressionManagerComponent = renderComponent();
     });
 
     it('should have the component name as a class', () => {
-        expect(element(indicatorExpressionManagerComponent.getDOMNode()).hasClass('indicator-expression-manager')).to.be.true;
+        expect(indicatorExpressionManagerComponent.hasClass('indicator-expression-manager')).to.be.true;
     });
 
-    it('should have a rendered DataElementOperandSelector', () => {
-        expect(() => findRenderedComponentWithType(indicatorExpressionManagerComponent, DataElementOperandSelector)).not.to.throw();
+    describe('DataElementOperandSelector', () => {
+        it('should have rendered', () => {
+            expect(indicatorExpressionManagerComponent.find(DataElementOperandSelector)).to.have.length(1);
+        });
+    });
+
+    describe('ProgramOperandSelector', () => {
+        it('should have rendered', () => {
+            expect(indicatorExpressionManagerComponent.find(ProgramOperandSelector)).to.have.length(1);
+        });
     });
 });
