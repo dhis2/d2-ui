@@ -10,7 +10,7 @@
     "lint": "./node_modules/eslint/bin/eslint.js --fix src && ./node_modules/eslint/bin/eslint.js --env node,mocha --global expect,sinon --rule 'no-unused-expressions: 0' test && scss-lint",
     "prebuild": "npm run lint && npm run validate && npm test",
     "build": "npm run build-only",
-    "build-only": "./node_modules/babel/bin/babel.js src --out-dir lib && compass compile",
+    "build-only": "babel src --out-dir lib && compass compile",
     "validate": "npm ls --depth 0"
   },
   "repository": {
