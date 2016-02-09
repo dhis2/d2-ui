@@ -59,7 +59,7 @@ function getFieldStatus(statusMessages = []) {
     };
 }
 
-export default function createFormValidator(fieldConfigs = []) {
+export default function createFormValidator(fieldConfigs = [], scheduler) {
     const validatorQueue = new Rx.Subject();
     const statusSubject = new Rx.ReplaySubject(1);
     const initialStatuses = fieldConfigs
@@ -73,7 +73,7 @@ export default function createFormValidator(fieldConfigs = []) {
     Array.from(validatorQueues.values())
         .forEach(validatorObservable => {
             validatorObservable
-                .debounce(300)
+                .debounce(300, scheduler)
                 .map(({ fieldName, fieldValue, formSource }) => {
                     const fieldConfig = fieldConfigs
                         .filter(fc => fc.name === fieldName)

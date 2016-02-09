@@ -1,8 +1,9 @@
 import createFormValidator from '../../src/forms/FormValidator';
 import {FormFieldStatuses} from '../../src/forms/FormValidator';
 import log from 'loglevel';
+import Rx from 'rx';
 
-xdescribe('FormValidator', () => {
+describe('FormValidator', () => {
     let formValidator;
 
     beforeEach(() => formValidator = createFormValidator());
@@ -42,8 +43,11 @@ xdescribe('FormValidator', () => {
 
     describe('runFor', () => {
         let validators;
+        let testScheduler;
 
         beforeEach(() => {
+            testScheduler = new Rx.TestScheduler()
+
             validators = [
                 sinon.stub().returns(true),
                 sinon.stub().returns(true),
@@ -52,7 +56,7 @@ xdescribe('FormValidator', () => {
             formValidator = createFormValidator([
                 {name: 'name', validators},
                 {name: 'code', validators},
-            ]);
+            ], testScheduler);
         });
 
         it('should return false when there are no validators for this fieldName', () => {
@@ -61,7 +65,7 @@ xdescribe('FormValidator', () => {
             expect(formValidator.runFor('name')).to.be.false;
         });
 
-        it('should run the validators for the field it is called with', (done) => {
+        xit('should run the validators for the field it is called with', (done) => {
             formValidator.runFor('name', 'Mark');
 
             setTimeout(() => {
@@ -71,7 +75,7 @@ xdescribe('FormValidator', () => {
             }, 301);
         });
 
-        it('should set the status when the runFor() is called', (done) => {
+        xit('should set the status when the runFor() is called', (done) => {
             function statusCallback(statusValue) {
                 expect(Array.from(statusValue)).to.deep.equal([
                     ['name', {status: FormFieldStatuses.VALID, messages: []}],
@@ -85,7 +89,7 @@ xdescribe('FormValidator', () => {
             formValidator.status.subscribe(statusCallback);
         });
 
-        it('should emit a status that represents the validator results', (done) => {
+        xit('should emit a status that represents the validator results', (done) => {
             const requiredValidator = stub().returns(false);
             requiredValidator.message = 'field_is_required';
 
@@ -109,7 +113,7 @@ xdescribe('FormValidator', () => {
             formValidator.status.subscribe(statusCallback);
         });
 
-        it('should emit a pending status for an async validator', (done) => {
+        xit('should emit a pending status for an async validator', (done) => {
             const asyncValidator = stub().returns(new Promise(() => {}));
 
             validators.push(asyncValidator);
@@ -178,7 +182,7 @@ xdescribe('FormValidator', () => {
             formValidator.status.subscribe(statusCallback);
         });
 
-        it('should log a warning when a validator is not a function', (done) => {
+        xit('should log a warning when a validator is not a function', (done) => {
             stub(log, 'warn');
 
             validators.push('Not a validator');
@@ -191,7 +195,7 @@ xdescribe('FormValidator', () => {
             }, 301);
         });
 
-        it('should log an error when something fails', (done) => {
+        xit('should log an error when something fails', (done) => {
             stub(log, 'debug');
 
             function throwingValidator() {
@@ -203,11 +207,11 @@ xdescribe('FormValidator', () => {
             formValidator.runFor('name', 'Mark');
 
             setTimeout(() => {
-                expect(log.debug).to.be.calledWith(`Validator for 'name' ignored because the following validator threw an error.`);
+                expect(log.debug).to.be.calledWith(`Validator for 'name' ignored because the validator threw an error.`);
                 expect(log.debug).to.be.calledWith(`${throwingValidator}`);
                 expect(log.debug).to.be.calledWith('Something failed!');
                 done();
-            }, 301);
+            }, 400);
         });
     });
 
