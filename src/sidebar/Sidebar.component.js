@@ -47,7 +47,7 @@ const Sidebar = React.createClass({
     renderSidebarButtons() {
         if (this.props.sideBarButtons) {
             return (
-                <div style={{padding: '1rem 0 0'}}>{this.props.sideBarButtons}</div>
+                <div style={{ padding: '1rem 0 0' }}>{this.props.sideBarButtons}</div>
             );
         }
         return null;
