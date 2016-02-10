@@ -17,6 +17,7 @@ const Sidebar = React.createClass({
         showSearchField: React.PropTypes.bool,
         searchFieldLabel: React.PropTypes.string,
         onChangeSearchText: React.PropTypes.func,
+        sideBarButtons: React.PropTypes.element,
     },
 
     contextTypes: {
@@ -43,21 +44,36 @@ const Sidebar = React.createClass({
         };
     },
 
+    renderSidebarButtons() {
+        if (this.props.sideBarButtons) {
+            return (
+                <div style={{padding: '1rem 0 0'}}>{this.props.sideBarButtons}</div>
+            );
+        }
+        return null;
+    },
+
     renderSearchField() {
         const d2 = this.context.d2;
         const styles = {
             closeButton: {
                 position: 'absolute',
                 cursor: 'pointer',
-                top: '2rem',
+                top: this.props.sideBarButtons ? '1rem' : '2rem',
                 right: '.75rem',
                 fontSize: '1rem',
                 color: '#AAA',
             },
         };
+
+        const searchFieldStyle = {
+            padding: this.props.sideBarButtons ? '0 1rem' : '1rem 1rem 0',
+            position: 'relative',
+        };
+
         if (this.props.showSearchField) {
             return (
-                <div style={{ padding: '1rem 1rem 0', position: 'relative' }}>
+                <div style={searchFieldStyle}>
                     <TextField hintText={!!this.props.searchFieldLabel ? this.props.searchFieldLabel : d2.i18n.getTranslation('search')} style={{ width: '100%' }}
                                value={this.state.searchText}
                                onChange={this.changeSearchText} ref={ref => { this.searchBox = ref; }} />
@@ -111,6 +127,7 @@ const Sidebar = React.createClass({
 
         return (
             <div style={style.sidebar} className="left-bar">
+                {this.renderSidebarButtons()}
                 {this.renderSearchField()}
                 {this.renderSections()}
             </div>
