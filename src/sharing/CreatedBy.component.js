@@ -20,7 +20,12 @@ export default createClass({
     },
 
     render() {
-        const createdByText = `${this.getTranslation('created_by')}: ${this.props.user.name || ''}`;
+        let nameToRender = '';
+        if (this.props.user && this.props.user.name) {
+            nameToRender = this.props.user.name;
+        }
+
+        const createdByText = `${this.getTranslation('created_by')}: ${nameToRender}`;
 
         return (
             <div>{createdByText}</div>

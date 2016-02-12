@@ -1,4 +1,4 @@
-import Action from 'd2-flux/action/Action';
+import Action from '../action/Action';
 import sharingStore from './sharing.store';
 import { getInstance as getD2 } from 'd2/lib/d2';
 

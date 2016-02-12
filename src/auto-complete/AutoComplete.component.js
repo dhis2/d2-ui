@@ -1,6 +1,6 @@
 import {createClass, PropTypes, default as React} from 'react';
 import TextField from 'material-ui/lib/text-field';
-import Action from 'd2-flux/action/Action';
+import Action from '../action/Action';
 import {Observable, helpers, Scheduler, default as Rx} from 'rx';
 import {config} from 'd2/lib/d2';
 import d2Lib from 'd2/lib/d2';

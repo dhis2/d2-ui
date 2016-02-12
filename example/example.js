@@ -1,4 +1,5 @@
 import React from 'react';
+import {render} from 'react-dom';
 import Form from '../src/forms/Form.component';
 import TextField from 'material-ui/lib/text-field';
 import ThemeManager from 'material-ui/lib/styles/theme-manager'
@@ -127,7 +128,7 @@ function renderExamples(d2) {
         },
     });
 
-    React.render(
+    render(
         <Main d2={d2} />,
         document.getElementById('app')
     );
@@ -135,9 +136,9 @@ function renderExamples(d2) {
 
 jQuery.ajaxSetup({
     headers: {
-        Authorization: 'Basic ' + btoa('markpo:Markpo1234')
+//        Authorization: 'Basic ' + btoa('markpo:Markpo1234')
 //        Authorization: 'Basic ' + btoa('system:System123')
-//                Authorization: 'Basic ' + btoa('admin:district')
+                Authorization: 'Basic ' + btoa('admin:district')
 //                Authorization: 'Basic ' + btoa('user:Admin123')
     },
 });

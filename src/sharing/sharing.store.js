@@ -1,3 +1,3 @@
-import Store from 'd2-flux/store/Store';
+import Store from '../store/Store';
 
 export default Store.create();
