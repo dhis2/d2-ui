@@ -49,7 +49,7 @@ const DataTable = React.createClass({
 
         const actionAccessChecker = (this.props.isContextActionAllowed && this.props.isContextActionAllowed.bind(null, this.state.activeRow)) || (() => true);
 
-        const actionsToShow = Object.keys(this.props.contextMenuActions)
+        const actionsToShow = Object.keys(this.props.contextMenuActions || {})
             .filter(actionAccessChecker)
             .reduce((availableActions, actionKey) => {
                 availableActions[actionKey] = this.props.contextMenuActions[actionKey];
@@ -64,7 +64,7 @@ const DataTable = React.createClass({
                <div className="data-table__rows">
                    {dataRows}
                </div>
-               {this.state.activeRow ? <DataTableContextMenu actions={actionsToShow || {}} activeItem={this.state.activeRow} coords={this.state.contextMenuCoords} icons={this.props.contextMenuIcons} /> : undefined}
+               {this.state.activeRow && this.props.contextMenuActions ? <DataTableContextMenu actions={actionsToShow || {}} activeItem={this.state.activeRow} coords={this.state.contextMenuCoords} icons={this.props.contextMenuIcons} /> : undefined}
            </div>
         );
     },

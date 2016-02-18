@@ -3,8 +3,8 @@ $data-table--context-menu--background-color: rgba(255, 255, 255, 1);
 $data-table--context-menu--hover-background-color: rgba(200, 200, 255, .9);
 
 .data-table__context-menu {
-  background: $data-table--context-menu--background-color;
-  border: 1px solid $data-table--context-menu--border-color;
+  background: transparent;
+  border: 1px solid transparent;
   padding: $default-padding / 2 0;
   position: fixed;
 
