@@ -1,6 +1,6 @@
 import isString from 'lodash.isstring';
 
-import {Subject, Observable} from 'rx';
+import { Subject, Observable } from 'rx';
 import logLevel from 'loglevel';
 
 /**
@@ -49,7 +49,7 @@ const Action = {
             Subject.prototype
         );
 
-        Object.defineProperty(subject, 'id', {value: Symbol(name)});
+        Object.defineProperty(subject, 'id', { value: Symbol(name) });
 
         Subject.call(subject);
 

@@ -6,7 +6,6 @@ import Translate from '../i18n/Translate.mixin';
 const DataTableHeader = React.createClass({
     propTypes: {
         isOdd: React.PropTypes.bool,
-        isEven: React.PropTypes.bool,
         name: React.PropTypes.string.isRequired,
     },
 
