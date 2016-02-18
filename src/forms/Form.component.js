@@ -5,9 +5,7 @@ import Translate from '../i18n/Translate.mixin';
 import createFormValidator from './FormValidator';
 import { FormFieldStatuses } from './FormValidator';
 
-/**
- *
- */
+
 const Form = React.createClass({
     propTypes: {
         fieldConfigs: React.PropTypes.arrayOf(
@@ -46,7 +44,6 @@ const Form = React.createClass({
 
     componentWillReceiveProps(props) {
         if (props.hasOwnProperty('formValidator')) {
-            console.warn('Force update!');
             this.forceUpdate();
         }
     },
@@ -103,7 +100,6 @@ const Form = React.createClass({
     },
 
     updateRequest(fieldConfig, event) {
-        console.warn('Update request:', fieldConfig, this.props.formValidator);
         this.props.formValidator.runFor(fieldConfig.name, event.target.value, this.props.source);
         this.props.onFormFieldUpdate && this.props.onFormFieldUpdate(
             fieldConfig.name, fieldConfig.beforeUpdateConverter ?
