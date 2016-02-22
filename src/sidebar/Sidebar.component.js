@@ -56,6 +56,10 @@ const Sidebar = React.createClass({
     renderSearchField() {
         const d2 = this.context.d2;
         const styles = {
+            container: {
+                padding: '16px 32px 0 24px',
+                position: 'relative',
+            },
             closeButton: {
                 position: 'absolute',
                 cursor: 'pointer',
@@ -73,7 +77,7 @@ const Sidebar = React.createClass({
 
         if (this.props.showSearchField) {
             return (
-                <div style={searchFieldStyle}>
+                <div style={styles.container}>
                     <TextField hintText={!!this.props.searchFieldLabel ? this.props.searchFieldLabel : d2.i18n.getTranslation('search')} style={{ width: '100%' }}
                                value={this.state.searchText}
                                onChange={this.changeSearchText} ref={ref => { this.searchBox = ref; }} />
@@ -84,11 +88,17 @@ const Sidebar = React.createClass({
     },
 
     renderSections() {
-        const style = {
+        const styles = {
+            list: {
+                paddingTop: 0,
+                paddingBottom: 0,
+                backgroundColor: 'transparent',
+                marginTop: 16,
+            },
             item: {
                 fontSize: 14,
                 borderRadius: 5,
-                margin: 8,
+                margin: '0 8px',
             },
             activeItem: {
                 fontSize: 14,
@@ -96,20 +106,20 @@ const Sidebar = React.createClass({
                 color: '#2196f3',
                 backgroundColor: '#e0e0e0',
                 borderRadius: 5,
-                margin: 8,
+                margin: '0 8px',
             },
 
         };
 
         return (
-            <List style={{ backgroundColor: 'transparent' }}>
+            <List style={styles.list}>
                 {this.props.sections.map(section => {
                     return (
                         <ListItem
                             key={section.key}
                             primaryText={section.label}
                             onClick={this.setSection.bind(this, section.key)}
-                            style={section.key === this.state.currentSection && !this.state.searchText ? style.activeItem : style.item} />
+                            style={section.key === this.state.currentSection && !this.state.searchText ? styles.activeItem : styles.item} />
                     );
                 })}
             </List>

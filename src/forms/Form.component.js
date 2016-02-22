@@ -5,9 +5,7 @@ import Translate from '../i18n/Translate.mixin';
 import createFormValidator from './FormValidator';
 import { FormFieldStatuses } from './FormValidator';
 
-/**
- *
- */
+
 const Form = React.createClass({
     propTypes: {
         fieldConfigs: React.PropTypes.arrayOf(
@@ -32,19 +30,27 @@ const Form = React.createClass({
     getDefaultProps() {
         return {
             fieldConfigs: [],
-        };
-    },
-
-    getInitialState() {
-        return {
-            formValidator: this.props.formValidator || createFormValidator(this.props.fieldConfigs),
+            formValidator: createFormValidator([]),
         };
     },
 
     componentDidMount() {
-        this.state.formValidator.status.subscribe(() => {
+        this.disposables = [];
+        this.disposables.push(this.props.formValidator.status.subscribe(() => {
             // TODO: Should probably have some sort of check to see if it really needs to update? That update might be better at home in the formValidator however
             this.forceUpdate();
+        }));
+    },
+
+    componentWillReceiveProps(props) {
+        if (props.hasOwnProperty('formValidator')) {
+            this.forceUpdate();
+        }
+    },
+
+    componentWillUnmount() {
+        this.disposables.forEach(d => {
+            d.dispose();
         });
     },
 
@@ -54,7 +60,7 @@ const Form = React.createClass({
             .map(fieldConfig => {
                 const fieldValue = this.props.source && this.props.source[fieldConfig.name];
                 const updateEvent = fieldConfig.updateEvent === 'onBlur' ? 'onBlur' : 'onChange';
-                const validationStatus = this.state.formValidator.getStatusFor(fieldConfig.name);
+                const validationStatus = this.props.formValidator.getStatusFor(fieldConfig.name);
                 let errorMessage;
 
                 if (validationStatus && validationStatus.messages && validationStatus.messages.length) {
@@ -94,8 +100,12 @@ const Form = React.createClass({
     },
 
     updateRequest(fieldConfig, event) {
-        this.props.onFormFieldUpdate && this.props.onFormFieldUpdate(fieldConfig.name, fieldConfig.beforeUpdateConverter ? fieldConfig.beforeUpdateConverter(event.target.value, fieldConfig) : event.target.value);
-        this.state.formValidator.runFor(fieldConfig.name, event.target.value, this.props.source);
+        this.props.formValidator.runFor(fieldConfig.name, event.target.value, this.props.source);
+        this.props.onFormFieldUpdate && this.props.onFormFieldUpdate(
+            fieldConfig.name, fieldConfig.beforeUpdateConverter ?
+                fieldConfig.beforeUpdateConverter(event.target.value, fieldConfig) :
+                event.target.value
+        );
     },
 });
 

@@ -63,7 +63,7 @@ export default function createFormValidator(fieldConfigs = [], scheduler) {
     const validatorQueue = new Rx.Subject();
     const statusSubject = new Rx.ReplaySubject(1);
     const initialStatuses = fieldConfigs
-        .filter(fieldConfig => fieldConfig.validators)
+        .filter(fieldConfig => Array.isArray(fieldConfig.validators) && fieldConfig.validators.length > 0)
         .map(fc => {
             return [fc.name, { status: FormFieldStatuses.VALID, messages: [] }];
         });

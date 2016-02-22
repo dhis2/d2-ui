@@ -38,7 +38,7 @@ const DataTableContextMenu = React.createClass({
 
         return (
             <div className={classList}
-                 style={{ position: 'absolute', top: this.props.coords.Y, left: this.props.coords.X }}>
+                 style={{ position: 'fixed', top: this.props.coords.Y, left: this.props.coords.X }}>
                 <Menu openDirection="bottom-right"
                       desktop
                     >
