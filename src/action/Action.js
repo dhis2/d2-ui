@@ -1,6 +1,6 @@
 import isString from 'lodash.isstring';
 
-import {Subject, Observable} from 'rx';
+import { Subject, Observable } from 'rx';
 import logLevel from 'loglevel';
 
 /**
@@ -26,7 +26,7 @@ const Action = {
     create(name = 'AnonymousAction') {
         const subject = Object.assign(
             (...actionArgs) => {
-                logLevel.info('Firing action: ' + subject.id.toString());
+                logLevel.info(`Firing action: ${subject.id.toString()}`);
 
                 return Observable.fromPromise(new Promise((resolve, reject) => {
                     subject.onNext({
@@ -35,12 +35,12 @@ const Action = {
                         // Callback to complete the action
                         complete: (...args) => {
                             resolve(...args);
-                            logLevel.info('Completed action: ' + subject.id.toString());
+                            logLevel.info(`Completed action: ${subject.id.toString()}`);
                         },
                         // Callback to error the action
                         error: (...args) => {
                             reject(...args);
-                            logLevel.warn('Errored action: ' + subject.id.toString());
+                            logLevel.warn(`Errored action: ${subject.id.toString()}`);
                         },
                     });
                 }));
@@ -49,7 +49,7 @@ const Action = {
             Subject.prototype
         );
 
-        Object.defineProperty(subject, 'id', {value: Symbol(name)});
+        Object.defineProperty(subject, 'id', { value: Symbol(name) });
 
         Subject.call(subject);
 
@@ -72,7 +72,7 @@ const Action = {
         let actionPrefix = prefix;
 
         if (prefix && isString(prefix)) {
-            actionPrefix = prefix + '.';
+            actionPrefix = `${prefix}.`;
         } else {
             actionPrefix = '';
         }

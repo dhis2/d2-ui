@@ -1,4 +1,4 @@
-import {ReplaySubject, Observable} from 'rx';
+import { ReplaySubject, Observable } from 'rx';
 
 const publishState = Symbol('publishState');
 const publishError = Symbol('publishError');
@@ -34,7 +34,7 @@ class Store extends Observable {
     setSource(observableSource) {
         observableSource.subscribe(
             (value) => this.setState(value),
-            (error) => this[publishError]('Rethrown error from source: ' + error)
+            (error) => this[publishError](`Rethrown error from source: ${error}`)
         );
     }
 
