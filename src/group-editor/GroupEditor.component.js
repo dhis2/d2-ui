@@ -282,7 +282,7 @@ export default React.createClass({
                         disabled={this.state.loading || this.getAvailableItemsUnfilteredCount() === 0}
                         onClick={this._assignAll}
                         style={{ marginTop: '1rem' }}
-                        secondary/>
+                        secondary />
                 </div>
                 <div style={styles.middle}>
                     <div style={styles.selected}>{selectedLabel()}</div>
@@ -291,16 +291,16 @@ export default React.createClass({
                         secondary
                         onClick={this._assignItems}
                         style={styles.buttons}
-                        disabled={this.state.loading || this.state.selectedLeft === 0}/>
+                        disabled={this.state.loading || this.state.selectedLeft === 0} />
                     <RaisedButton
                         label="&larr;"
                         secondary
                         onClick={this._removeItems}
                         style={styles.buttons}
-                        disabled={this.state.loading || this.state.selectedRight === 0}/>
+                        disabled={this.state.loading || this.state.selectedRight === 0} />
                     <div style={styles.status}>
                         {this.state.loading ?
-                            <CircularProgress size={0.5} style={{ width: 60, height: 60 }}/> : undefined }
+                            <CircularProgress size={0.5} style={{ width: 60, height: 60 }} /> : undefined }
                     </div>
                 </div>
                 <div style={styles.right}>
@@ -322,7 +322,7 @@ export default React.createClass({
                         style={{ float: 'right', marginTop: '1rem' }}
                         disabled={this.state.loading || this.getAssignedItemsUnfilteredCount() === 0}
                         onClick={this._removeAll}
-                        secondary/>
+                        secondary />
                 </div>
             </div>
         );

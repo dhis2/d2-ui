@@ -68,18 +68,19 @@ const Form = React.createClass({
                 }
 
                 return (
-                    <FormField fieldOptions={fieldConfig.fieldOptions}
-                                key={fieldConfig.name}
-                                type={fieldConfig.type}
-                                isRequired={fieldConfig.required}
-                                isValidating={validationStatus.status === FormFieldStatuses.VALIDATING}
-                                errorMessage={errorMessage ? this.getTranslation(errorMessage) : undefined}
-                                onChange={this.updateRequest.bind(this, fieldConfig)}
-                                value={fieldValue}
-                                isValid={this.isValid()}
-                                updateFn={this.updateRequest.bind(this, fieldConfig)}
-                                updateEvent={updateEvent}
-                        />
+                    <FormField
+                        fieldOptions={fieldConfig.fieldOptions}
+                        key={fieldConfig.name}
+                        type={fieldConfig.type}
+                        isRequired={fieldConfig.required}
+                        isValidating={validationStatus.status === FormFieldStatuses.VALIDATING}
+                        errorMessage={errorMessage ? this.getTranslation(errorMessage) : undefined}
+                        onChange={this.updateRequest.bind(this, fieldConfig)}
+                        value={fieldValue}
+                        isValid={this.isValid()}
+                        updateFn={this.updateRequest.bind(this, fieldConfig)}
+                        updateEvent={updateEvent}
+                    />
                 );
             });
     },

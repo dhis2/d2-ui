@@ -15,7 +15,7 @@ export default createClass({
     },
 
     render() {
-        const onChange = (currentItem) => {
+        const onChange = (currentItem) => { // eslint-ignore-line
             return (newAccessMask) => {
                 const modifiedUserGroupAccesses = this.props.userGroupAccesses
                     .map(item => Object.assign({}, item))

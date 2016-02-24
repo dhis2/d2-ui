@@ -34,7 +34,7 @@ export default createClass({
                 {...this.props} >
                 <TranslationForm {...this.props}
                                  objectIdToTranslate={this.props.objectIdToTranslate}
-                                 objectTypeToTranslate={this.props.objectTypeToTranslate}/>
+                                 objectTypeToTranslate={this.props.objectTypeToTranslate} />
             </Dialog>
         );
     },

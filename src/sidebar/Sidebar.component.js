@@ -31,17 +31,44 @@ const Sidebar = React.createClass({
         };
     },
 
+    getInitialState() {
+        return {
+            currentSection: this.props.currentSection || this.props.sections[0].key,
+            searchText: '',
+        };
+    },
+
     componentWillReceiveProps(props) {
         if (props.currentSection) {
             this.setState({ currentSection: props.currentSection });
         }
     },
 
-    getInitialState() {
-        return {
-            currentSection: this.props.currentSection || this.props.sections[0].key,
-            searchText: '',
-        };
+    setSection(key) {
+        if (key !== this.state.currentSection) {
+            this.setState({ currentSection: key });
+            this.props.onChangeSection(key);
+        }
+    },
+
+    changeSearchText() {
+        this.setState({ searchText: this.searchBox.getValue() }, () => {
+            if (this.props.onChangeSearchText) {
+                this.props.onChangeSearchText(this.state.searchText);
+            }
+        });
+    },
+
+    _clear() {
+        this.setState({ searchText: '' }, () => {
+            if (this.props.onChangeSearchText) {
+                this.props.onChangeSearchText(this.state.searchText);
+            }
+        });
+    },
+
+    clearSearchBox() {
+        this.setState({ searchText: '' });
     },
 
     renderSidebarButtons() {
@@ -70,21 +97,22 @@ const Sidebar = React.createClass({
             },
         };
 
-        const searchFieldStyle = {
-            padding: this.props.sideBarButtons ? '0 1rem' : '1rem 1rem 0',
-            position: 'relative',
-        };
-
         if (this.props.showSearchField) {
             return (
                 <div style={styles.container}>
-                    <TextField hintText={!!this.props.searchFieldLabel ? this.props.searchFieldLabel : d2.i18n.getTranslation('search')} style={{ width: '100%' }}
-                               value={this.state.searchText}
-                               onChange={this.changeSearchText} ref={ref => { this.searchBox = ref; }} />
+                    <TextField
+                        hintText={!!this.props.searchFieldLabel ? this.props.searchFieldLabel : d2.i18n.getTranslation('search')}
+                        style={{ width: '100%' }}
+                        value={this.state.searchText}
+                        onChange={this.changeSearchText}
+                        ref={ref => { this.searchBox = ref; }}
+                    />
                     {!!this.state.searchText ? <FontIcon style={styles.closeButton} className="material-icons" onClick={this._clear}>clear</FontIcon> : undefined}
                 </div>
             );
         }
+
+        return null;
     },
 
     renderSections() {
@@ -114,12 +142,15 @@ const Sidebar = React.createClass({
         return (
             <List style={styles.list}>
                 {this.props.sections.map(section => {
+                    const listItemStyle = section.key === this.state.currentSection && !this.state.searchText ? styles.activeItem : styles.item;
+
                     return (
                         <ListItem
                             key={section.key}
                             primaryText={section.label}
                             onClick={this.setSection.bind(this, section.key)}
-                            style={section.key === this.state.currentSection && !this.state.searchText ? styles.activeItem : styles.item} />
+                            style={listItemStyle}
+                        />
                     );
                 })}
             </List>
@@ -142,33 +173,6 @@ const Sidebar = React.createClass({
                 {this.renderSections()}
             </div>
         );
-    },
-
-    setSection(key) {
-        if (key !== this.state.currentSection) {
-            this.setState({ currentSection: key });
-            this.props.onChangeSection(key);
-        }
-    },
-
-    changeSearchText() {
-        this.setState({ searchText: this.searchBox.getValue() }, () => {
-            if (this.props.onChangeSearchText) {
-                this.props.onChangeSearchText(this.state.searchText);
-            }
-        });
-    },
-
-    _clear() {
-        this.setState({ searchText: '' }, () => {
-            if (this.props.onChangeSearchText) {
-                this.props.onChangeSearchText(this.state.searchText);
-            }
-        });
-    },
-
-    clearSearchBox() {
-        this.setState({ searchText: '' });
     },
 });
 

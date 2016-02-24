@@ -97,7 +97,7 @@ const FormField = React.createClass({  // eslint-disable-line react/no-multi-com
                     {...this.props.fieldOptions}
                 />
                 {this.renderHelpText()}
-                {this.props.isValidating ? <LinearProgress mode="indeterminate"/> : null}
+                {this.props.isValidating ? <LinearProgress mode="indeterminate" /> : null}
             </div>
         );
     },
