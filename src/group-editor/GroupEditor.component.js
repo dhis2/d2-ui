@@ -1,4 +1,5 @@
 import React from 'react';
+import { findDOMNode } from 'react-dom';
 
 // Material UI
 import CircularProgress from 'material-ui/lib/circular-progress';
@@ -266,7 +267,7 @@ export default React.createClass({
                         <div style={styles.hidden}>{hiddenLabel(this.getAvailableItemsFilterCount())}</div>
                         <select multiple style={styles.select} onChange={onChangeLeft}
                                 ref={r => {
-                                    this.leftSelect = React.findDOMNode(r);
+                                    this.leftSelect = findDOMNode(r);
                                 }}>
                             {this.getAvailableItemsFiltered().map(item => {
                                 return (
@@ -308,7 +309,7 @@ export default React.createClass({
                         <div style={styles.hidden}>{hiddenLabel(this.getAssignedItemsFilterCount())}</div>
                         <select multiple style={styles.select} onChange={onChangeRight}
                                 ref={ r => {
-                                    this.rightSelect = React.findDOMNode(r);
+                                    this.rightSelect = findDOMNode(r);
                                 }}>
                             {this.getAssignedItemsFiltered().map(item => {
                                 return (<option key={item.value} value={item.value}
