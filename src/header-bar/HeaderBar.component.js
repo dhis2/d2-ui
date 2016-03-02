@@ -92,7 +92,6 @@ const HeaderBar = React.createClass({
 
     componentWillReceiveProps(props) {
         if (this.props.lastUpdate && (this.props.lastUpdate.getTime() - props.lastUpdate.getTime()) !== 0) {
-            document.querySelector('#menuLinkArea').innerHTML = '';
             dhis2.menu.ui.initMenu();
         }
     },
