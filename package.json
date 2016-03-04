@@ -69,5 +69,9 @@
     "loglevel": "1.4.0",
     "moment": "^2.11.2",
     "rx": "^4.0.8"
-  }
+  },
+  "pre-commit": [
+    "validate",
+    "test"
+  ]
 }

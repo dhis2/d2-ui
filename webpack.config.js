@@ -3,10 +3,13 @@ var path = require('path');
 
 module.exports = {
     context: __dirname,
-    entry: './example/example.js',
+    entry: {
+        example: './example/example.js',
+        'data-table': './example/data-table.js',
+    },
     output: {
         path: path.join(__dirname, '/build'),
-        filename: 'example.js',
+        filename: '[name].js',
     },
     module: {
         loaders: [
