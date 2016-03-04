@@ -1,4 +1,4 @@
-import isString from 'lodash.isstring';
+import isString from 'd2-utilizr/lib/isString';
 
 import { Subject, Observable } from 'rx';
 import logLevel from 'loglevel';

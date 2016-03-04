@@ -1,6 +1,6 @@
 import Rx from 'rx';
 import log from 'loglevel';
-import isFunction from 'lodash.isfunction';
+import isFunction from 'd2-utilizr/lib/isFunction';
 
 export const FormFieldStatuses = {
     VALID: 'VALID',
