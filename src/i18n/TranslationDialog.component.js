@@ -13,8 +13,11 @@ export default createClass({
         objectToTranslate: React.PropTypes.shape({
             id: React.PropTypes.string.isRequired,
         }).isRequired,
-        objectTypeToTranslate: PropTypes.string.isRequired,
-        onTranslationSaved: PropTypes.string.isRequired,
+        objectTypeToTranslate: React.PropTypes.object.isRequired,
+        onTranslationSaved: React.PropTypes.func.isRequired,
+        onTranslationError: React.PropTypes.func.isRequired,
+        open: React.PropTypes.bool,
+        onRequestClose: React.PropTypes.func.isRequired,
     },
 
     mixins: [Translate],
@@ -44,6 +47,6 @@ export default createClass({
     },
 
     closeSharingDialog() {
-        this.refs.translationDialog.dismiss();
+        this.props.onRequestClose();
     },
 });

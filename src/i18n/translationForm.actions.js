@@ -31,6 +31,7 @@ actions.loadLocales
         loadAvailableLocales()
             .then(availableLocales => {
                 translationStore.setState({
+                    ...translationStore.state,
                     availableLocales,
                 });
             });
