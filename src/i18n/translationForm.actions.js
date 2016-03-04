@@ -9,7 +9,7 @@ function loadAvailableLocales() {
             .then(d2 => {
                 const api = d2.Api.getApi();
 
-                return api.get('locales/ui');
+                return api.get('locales/db');
             });
     }
 
