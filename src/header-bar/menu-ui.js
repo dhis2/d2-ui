@@ -941,7 +941,10 @@ import apps from './menus/apps';
 
     function bootstrapMenu() {
         var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-
+        //If menu is already initiated, remove the links from the menu and recreate it 
+        if(document.querySelector('#menuLinkArea')) {
+            document.querySelector('#menuLinkArea').innerHTML = '';
+        }   
         const profile = getProfileMenu({helpPageLink});
         const applications = getApplicationMenu({isMobile});
 
