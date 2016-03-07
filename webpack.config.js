@@ -3,10 +3,12 @@ var path = require('path');
 
 module.exports = {
     context: __dirname,
-    entry: './example/example.js',
+    entry: {
+        treeview: './examples/treeview.js',
+    },
     output: {
         path: path.join(__dirname, '/build'),
-        filename: 'example.js',
+        filename: '[name].js',
     },
     module: {
         loaders: [
@@ -25,7 +27,7 @@ module.exports = {
         new webpack.optimize.DedupePlugin(),
     ],
     devServer: {
-        contentBase: './example/',
+        contentBase: './examples/',
         progress: true,
         colors: true,
         port: 8081,
