@@ -4,7 +4,7 @@ D2-UI Changelog
 HEAD
 ----
 
-- _No changes_
+- [TreeView] Add TreeView component
 
 
 
