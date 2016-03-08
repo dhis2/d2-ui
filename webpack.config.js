@@ -4,8 +4,8 @@ var path = require('path');
 module.exports = {
     context: __dirname,
     entry: {
-        treeview: './examples/treeview.js',
-       'data-table': './example/data-table.js',
+        treeview: './examples/tree-view/treeview.js',
+        datatable: './examples/data-table/datatable.js',
     },
     output: {
         path: path.join(__dirname, '/build'),
@@ -22,6 +22,10 @@ module.exports = {
                 test: /\.css$/,
                 loader: 'style-loader!css-loader',
             },
+            {
+                test: /\.scss$/,
+                loader: 'style!css!sass',
+            },
         ],
     },
     plugins: [
@@ -29,7 +33,7 @@ module.exports = {
     ],
     devServer: {
         contentBase: './examples/',
-        progress: true,
+        progress: false,
         colors: true,
         port: 8081,
         inline: true,

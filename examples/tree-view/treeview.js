@@ -3,11 +3,12 @@ import ReactDOM from 'react-dom';
 
 import {Card, CardText} from 'material-ui/lib/card';
 
-import SimpleTreeExample from './tree-view/simple-tree';
-import MultiRootExample from './tree-view/multi-root';
-import MultiRootExpandedExample from './tree-view/multi-root-expanded';
-import HugeTreeExample from './tree-view/huge-tree';
+import SimpleTreeExample from './simple-tree';
+import MultiRootExample from './multi-root';
+import MultiRootExpandedExample from './multi-root-expanded';
+import HugeTreeExample from './huge-tree';
 
+// TODO: Convert to function
 class TreeViewExample extends React.Component {
     render() {
         const styles = {
@@ -16,7 +17,6 @@ class TreeViewExample extends React.Component {
                 width: 250,
                 float: 'left',
                 transition: 'all 350ms ease-out',
-                overflowX: 'auto',
             },
             cardText: {
                 paddingTop: 0,
@@ -28,36 +28,42 @@ class TreeViewExample extends React.Component {
             },
         };
 
+        styles.cardWide = Object.assign({}, styles.card, {
+            width: (styles.card.width * 3) + (styles.card.margin * 4),
+        });
+
         return (
             <div>
                 <Card style={styles.card}>
                     <CardText style={styles.cardText}>
                         <h3 style={styles.cardHeader}>Simple Tree View</h3>
-                        <SimpleTreeExample/>
+                        <div className="scroll">
+                            <SimpleTreeExample />
+                        </div>
                     </CardText>
                 </Card>
                 <Card style={styles.card}>
                     <CardText style={styles.cardText}>
                         <h3 style={styles.cardHeader}>Multiple Roots</h3>
-                        <MultiRootExample/>
+                        <div className="scroll">
+                        <MultiRootExample />
+                            </div>
                     </CardText>
                 </Card>
                 <Card style={styles.card}>
                     <CardText style={styles.cardText}>
                         <h3 style={styles.cardHeader}>Initially Expanded</h3>
-                        <MultiRootExpandedExample/>
+                        <div className="scroll">
+                        <MultiRootExpandedExample />
+                            </div>
                     </CardText>
                 </Card>
-                <Card style={Object.assign({}, styles.card, {width: 814})}>
+                <Card style={styles.cardWide}>
                     <CardText style={styles.cardText}>
                         <h3 style={styles.cardHeader}>Huge tree</h3>
-                        <HugeTreeExample/>
-                    </CardText>
-                </Card>
-                <Card style={Object.assign({}, styles.card, {width: 814})}>
-                    <CardText style={styles.cardText}>
-                        <h3 style={styles.cardHeader}>Huge tree</h3>
-                        <HugeTreeExample/>
+                        <div className="scroll">
+                        <HugeTreeExample />
+                            </div>
                     </CardText>
                 </Card>
             </div>
