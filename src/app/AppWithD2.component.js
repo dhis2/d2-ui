@@ -36,7 +36,7 @@ export default React.createClass({
         const getChildren = () => {
             if (!this.props.children) { return null; }
             return React.Children.map(this.props.children, child => {
-                return React.addons.cloneWithProps(child);
+                return React.cloneElement(child);
             });
         };
 

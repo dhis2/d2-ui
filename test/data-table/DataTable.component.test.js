@@ -5,7 +5,7 @@ import DataTable from '../../src/data-table/DataTable.component';
 import DataTableHeader from '../../src/data-table/DataTableHeader.component';
 import DataTableContextMenu from '../../src/data-table/DataTableContextMenu.component';
 
-describeWithDOM('DataTable component', () => {
+describe('DataTable component', () => {
     let dataTableComponent;
 
     function renderComponent(props = {}) {
@@ -104,7 +104,7 @@ describeWithDOM('DataTable component', () => {
         });
     });
 
-    describe('interaction', () => {
+    describeWithDOM('interaction', () => {
         beforeEach(() => {
             const dataTableSource = [
                 {uid: 'b1', name: 'BDC', lastUpdated: 'Tomorrow'},

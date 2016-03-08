@@ -79,7 +79,7 @@ export function isNumber(value) {
         return true;
     }
 
-    return isFinite(value);
+    return value !== null && (isFinite(value) || isFinite(Number(value)));
 }
 isNumber.message = 'value_should_be_a_number';
 
