@@ -54,6 +54,5 @@ xdescribe('FormBuilder component', () => {
         formComponent = renderComponent({ fields: [], onUpdateField: () => {} });
     });
 
-    it('has no tests yet', () => {
-    });
+    it('has no tests');
 });
