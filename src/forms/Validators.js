@@ -75,7 +75,7 @@ export function isNumber(value) {
         return true;
     }
 
-    if (value instanceof Number) {
+    if (Number(value) !== NaN) {
         return true;
     }
 
