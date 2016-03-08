@@ -18,7 +18,7 @@ HEAD
 0.0.16 (2016-02-26)
 -------------------
 
-- [Minor] Upgrade to React 0.15
+- [Minor] Upgrade to React 0.14
 
 
 
