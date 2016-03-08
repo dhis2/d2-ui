@@ -4,7 +4,10 @@ D2-UI Changelog
 HEAD
 ----
 
-- _No changes_
+**Breaking changes**
+
+- `Validators.isNumber()` now accepts numbers, numeric strings, the empty string and
+  `undefined` (see #34)
 
 
 
