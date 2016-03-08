@@ -5,6 +5,7 @@ module.exports = {
     context: __dirname,
     entry: {
         treeview: './examples/treeview.js',
+       'data-table': './example/data-table.js',
     },
     output: {
         path: path.join(__dirname, '/build'),

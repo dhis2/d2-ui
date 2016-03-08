@@ -2,7 +2,7 @@ import React from 'react';
 import {render} from 'react-dom';
 import Form from '../src/forms/Form.component';
 import TextField from 'material-ui/lib/text-field';
-import ThemeManager from 'material-ui/lib/styles/theme-manager'
+import ThemeManager from 'material-ui/lib/styles/theme-manager';
 import Colors from 'material-ui/lib/styles/colors';
 import ColorManipulator from 'material-ui/lib/utils/color-manipulator';
 import Spacing from 'material-ui/lib/styles/spacing';

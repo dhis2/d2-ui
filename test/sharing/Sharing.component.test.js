@@ -34,7 +34,7 @@ describe('Sharing: Sharing component', () => {
 
     describe('loadingMask', () => {
         beforeEach(() => {
-            spy(log, 'error');
+            stub(log, 'error');
         });
 
         afterEach(() => {

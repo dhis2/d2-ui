@@ -67,6 +67,6 @@ describe('Integration ActionStore', () => {
             expect(callbackOld.callCount).to.equal(1);
             expect(callbackNew.callCount).to.equal(1);
             done();
-        });
+        }, 25);
     });
 });

@@ -4,8 +4,12 @@ D2-UI Changelog
 HEAD
 ----
 
-- [TreeView] Add TreeView component
+**Breaking changes**
 
+- `Validators.isNumber()` now accepts numbers, numeric strings, the empty string and
+  `undefined` (see #34)
+
+- [TreeView] Add TreeView component
 
 
 0.0.17 (2016-03-04)
@@ -18,7 +22,7 @@ HEAD
 0.0.16 (2016-02-26)
 -------------------
 
-- [Minor] Upgrade to React 0.15
+- [Minor] Upgrade to React 0.14
 
 
 

@@ -35,17 +35,9 @@ const DataTable = React.createClass({
         };
     },
 
-    render() {
-        const headers = this.state.columns.map((headerName, index) => {
-            return (<DataTableHeader key={index} isOdd={Boolean(index % 2)} name={headerName} />);
-        });
-
-        const dataRows = [];
-        let dataRowsId = 0;
-        let dataRowsSource;
-        for (dataRowsSource of this.state.dataRows) {
-            dataRowsId++;
-            dataRows.push(<DataTableRow key={dataRowsId} dataSource={dataRowsSource} columns={this.state.columns} isActive={this.state.activeRow === dataRowsId} itemClicked={this.handleRowClick} primaryClick={this.props.primaryAction || (() => {})} />);
+    renderContextMenu() {
+        if (!this.state.activeRow || !this.props.contextMenuActions) {
+            return null;
         }
 
         const actionAccessChecker = (this.props.isContextActionAllowed && this.props.isContextActionAllowed.bind(null, this.state.activeRow)) || (() => true);
@@ -58,14 +50,49 @@ const DataTable = React.createClass({
             }, {});
 
         return (
+            <DataTableContextMenu
+                actions={actionsToShow || {}}
+                activeItem={this.state.activeRow}
+                coords={this.state.contextMenuCoords}
+                icons={this.props.contextMenuIcons}
+            />
+        );
+    },
+
+    renderHeaders() {
+        return this.state.columns.map((headerName, index) => {
+            return (
+                <DataTableHeader key={index} isOdd={Boolean(index % 2)} name={headerName} />
+            );
+        });
+    },
+
+    renderRows() {
+        return this.state.dataRows
+            .map((dataRowsSource, dataRowsId) => {
+                return (
+                    <DataTableRow
+                        key={dataRowsId}
+                        dataSource={dataRowsSource}
+                        columns={this.state.columns}
+                        isActive={this.state.activeRow === dataRowsId}
+                        itemClicked={this.handleRowClick}
+                        primaryClick={this.props.primaryAction || (() => {})}
+                    />
+                );
+            });
+    },
+
+    render() {
+        return (
            <div className="data-table" onClick={this.hideContextMenu} onMouseLeave={this.hideContextMenu}>
                <div className="data-table__headers">
-                    {headers}
+                    {this.renderHeaders()}
                </div>
                <div className="data-table__rows">
-                   {dataRows}
+                   {this.renderRows()}
                </div>
-               {this.state.activeRow && this.props.contextMenuActions ? <DataTableContextMenu actions={actionsToShow || {}} activeItem={this.state.activeRow} coords={this.state.contextMenuCoords} icons={this.props.contextMenuIcons} /> : undefined}
+               {this.renderContextMenu()}
            </div>
         );
     },

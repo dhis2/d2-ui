@@ -7,7 +7,7 @@
     "coverage": "babel-node node_modules/isparta/bin/isparta cover --report text --report html --report lcov node_modules/mocha/bin/_mocha -- --reporter dot --compilers js:babel-core/register --require config/setup.js --recursive test",
     "test": "mocha --reporter spec --compilers js:babel-core/register --require config/setup.js --recursive test",
     "test-watch": "mocha --reporter spec --compilers js:babel-core/register --require config/setup.js --recursive test --watch",
-    "lint": "eslint --fix src && ./node_modules/eslint/bin/eslint.js --env node,mocha --global expect,sinon --rule 'no-unused-expressions: 0' test && scss-lint",
+    "lint": "eslint src && eslint --env node,mocha --global expect,sinon --rule 'no-unused-expressions: 0' test && scss-lint",
     "prebuild": "npm run lint && npm run validate && npm test",
     "build": "npm run build-only",
     "build-only": "babel src --out-dir lib && compass compile",
@@ -33,11 +33,10 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-0": "^6.5.0",
     "chai": "3.5.0",
-    "classnames": "2.2.3",
     "coveralls": "^2.11.8",
     "d2": "0.0.24",
     "enzyme": "1.5.0",
-    "eslint": "^2.2.0",
+    "eslint": "2.2.0",
     "eslint-config-airbnb": "^6.0.2",
     "eslint-config-dhis2": "^2.0.1",
     "eslint-plugin-react": "^4.1.0",
@@ -63,11 +62,16 @@
     "webpack-dev-server": "1.14.1"
   },
   "dependencies": {
+    "classnames": "2.2.3",
     "d2-utilizr": "^0.2.4",
     "lodash.isfinite": "^3.3.0",
     "lodash.isfunction": "^3.0.8",
     "loglevel": "1.4.0",
     "moment": "^2.11.2",
     "rx": "^4.0.8"
-  }
+  },
+  "pre-commit": [
+    "validate",
+    "test"
+  ]
 }
