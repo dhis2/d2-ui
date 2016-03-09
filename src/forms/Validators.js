@@ -86,7 +86,7 @@ export function isPositiveNumber(value) {
 isPositiveNumber.message = 'value_should_be_a_positive_number';
 
 export function isNumber(value) {
-    if(isNull(value)) {
+    if (isNull(value)) {
         return false;
     }
 
@@ -94,11 +94,7 @@ export function isNumber(value) {
         return true;
     }
 
-    if (!isNaN(value) && Number(value) !== Infinity) {
-        return true;
-    }
-
-    return false;
+    return !!(!isNaN(value) && Number(value) !== Infinity);
 }
 isNumber.message = 'value_should_be_a_number';
 
