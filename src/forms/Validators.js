@@ -19,7 +19,7 @@ export function isUndefined(value) {
 }
 
 export function isEmptyString(value) {
-    return value === '';
+    return value === '' || value !== undefined && value !== null && value.toString() === '';
 }
 
 export function isEmptyStringOrUndefined(value) {
@@ -71,17 +71,26 @@ export function isEmail(value) {
 isEmail.message = 'value_should_be_an_email';
 
 export function isNumber(value) {
-    if (isUndefined(value)) {
+    if (isNull(value)) {
+        return false;
+    }
+
+    if (isEmptyStringOrUndefined(value)) {
         return true;
     }
 
-    if (value instanceof Number) {
-        return true;
-    }
-
-    return value !== null && (isFinite(value) || isFinite(Number(value)));
+    return !!(!isNaN(value) && Number(value) !== Infinity);
 }
 isNumber.message = 'value_should_be_a_number';
+
+export function isPositiveNumber(value) {
+    if (isEmptyStringOrUndefined(value)) {
+        return true;
+    }
+
+    return isNumber(value) && Number(value) > 0;
+}
+isPositiveNumber.message = 'value_should_be_a_positive_number';
 
 export const wordToValidatorMap = new Map([
     ['required', isRequired],
@@ -89,6 +98,7 @@ export const wordToValidatorMap = new Map([
     ['relative_url', isRelativeUrl],
     ['url_array', isUrlArray],
     ['number', isNumber],
+    ['positive_number', isPositiveNumber],
     ['email', isEmail],
 ]);
 
@@ -96,6 +106,7 @@ export default {
     isRequired,
     isUrl,
     isNumber,
+    isPositiveNumber,
     isEmail,
     isEmptyString,
     isNull,
