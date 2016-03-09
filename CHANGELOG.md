@@ -7,13 +7,13 @@
 ##### Breaking changes
 
 - `Validators.isNumber()` now accepts numbers, numeric strings, the empty string and
-  `undefined` (see #34)
+  `undefined` (see [#34](../../issues/34))
 
 ##### Added
 
 - `TreeView` component
 - `OrgUnitTree` component
-- `Validators.isPositiveNumber()` - Thanks @adhbh (fixes #36)
+- `Validators.isPositiveNumber()` - Thanks [@adhbh](https://github.com/adhbh) (fixes [#36](../../issues/36))
 
 
 ##### Documentation
