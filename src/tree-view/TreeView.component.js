@@ -1,6 +1,5 @@
 import React from 'react';
 
-// TODO: Add a flag to keep children in DOM when collapsed
 
 class TreeView extends React.Component {
     constructor(props) {
@@ -8,7 +7,15 @@ class TreeView extends React.Component {
 
         this.state = {
             collapsed: !props.initiallyExpanded,
+            hasBeenExpanded: props.initiallyExpanded,
         };
+    }
+
+    toggleCollapsed() {
+        this.setState(state => ({
+            collapsed: !state.collapsed,
+            hasBeenExpanded: true,
+        }));
     }
 
     render() {
@@ -34,31 +41,34 @@ class TreeView extends React.Component {
         };
 
         const label = (
-            <div style={styles.treeLabel} onClick={this.toggleCollapsed.bind(this)}>
+            <div className="label" style={styles.treeLabel} onClick={this.toggleCollapsed.bind(this)}>
                 <div style={styles.arrow}>{this.props.arrowSymbol}</div>
                 {this.props.label}
             </div>
         );
-        const children = !this.state.collapsed && (<div style={styles.children}>{this.props.children}</div>);
 
-        return <div style={styles.tree}>{label}{children}</div>;
-    }
+        styles.children.display = this.state.collapsed ? 'none' : 'block';
 
-    toggleCollapsed() {
-        this.setState(state => {
-            return { collapsed: !state.collapsed };
-        });
+        // Render children if not collapsed, or (persistent and has been expanded)
+        const children = (!this.state.collapsed || (this.props.persistent && this.state.hasBeenExpanded)) && (
+                <div className="children" style={styles.children}>{this.props.children}</div>
+            );
+
+        return <div className="tree-view" style={styles.tree}>{label}{children}</div>;
     }
 }
 
 TreeView.propTypes = {
     label: React.PropTypes.node.isRequired,
     children: React.PropTypes.node,
+    persistent: React.PropTypes.bool,
     initiallyExpanded: React.PropTypes.bool,
     arrowSymbol: React.PropTypes.node,
 };
 
 TreeView.defaultProps = {
+    persistent: false,
+    initiallyExpanded: false,
     arrowSymbol: '▾',
 };
 
