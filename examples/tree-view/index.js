@@ -7,7 +7,7 @@ import SimpleTreeExample from './simple-tree';
 import MultiRootExample from './multi-root';
 import MultiRootExpandedExample from './multi-root-expanded';
 import HugeTreeExample from './huge-tree';
-
+import PersistentTreeExample from './persistent-tree';
 
 function TreeViewExample() {
     const styles = {
@@ -45,24 +45,32 @@ function TreeViewExample() {
                 <CardText style={styles.cardText}>
                     <h3 style={styles.cardHeader}>Multiple Roots</h3>
                     <div className="scroll">
-                    <MultiRootExample />
-                        </div>
+                        <MultiRootExample />
+                    </div>
                 </CardText>
             </Card>
             <Card style={styles.card}>
                 <CardText style={styles.cardText}>
                     <h3 style={styles.cardHeader}>Initially Expanded</h3>
                     <div className="scroll">
-                    <MultiRootExpandedExample />
-                        </div>
+                        <MultiRootExpandedExample />
+                    </div>
+                </CardText>
+            </Card>
+            <Card style={styles.card}>
+                <CardText style={styles.cardText}>
+                    <h3 style={styles.cardHeader}>Persistent Tree View</h3>
+                    <div className="scroll">
+                        <PersistentTreeExample />
+                    </div>
                 </CardText>
             </Card>
             <Card style={styles.cardWide}>
                 <CardText style={styles.cardText}>
                     <h3 style={styles.cardHeader}>Huge tree</h3>
                     <div className="scroll">
-                    <HugeTreeExample />
-                        </div>
+                        <HugeTreeExample />
+                    </div>
                 </CardText>
             </Card>
         </div>

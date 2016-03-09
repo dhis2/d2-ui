@@ -1,6 +1,7 @@
 import React from 'react';
 import TreeView from '../../src/tree-view';
 
+
 class ExampleComponent extends React.Component {
     constructor(props) {
         super(props);
@@ -25,7 +26,11 @@ class ExampleComponent extends React.Component {
         for (let c = 0; c < childrenPerLevel; c++) {
             out.push({
                 label: `${label} ${level}.${c + 1}`,
-                children: this.generateChildren(label, Math.round(Math.random() * childrenPerLevel) + 1, level + 1, Math.round(maxLevels * (0.1 + Math.random()))) || [],
+                children: this.generateChildren(
+                    label,
+                    Math.round(Math.random() * childrenPerLevel) + 1,
+                    level + 1, Math.round(maxLevels * (0.1 + Math.random()))
+                ),
             });
         }
         return out;
@@ -42,21 +47,23 @@ class ExampleComponent extends React.Component {
 
     getNodeCount(startNode) {
         function countChilds(node) {
-            return Array.isArray(node.children) ? node.children.reduce((p, c) => p + countChilds(c), 1) : 1;
+            return Array.isArray(node.children) ?
+                node.children.reduce((p, c) => p + countChilds(c), 1) :
+                1;
         }
 
         return countChilds(startNode);
     }
 
     getMaxLevels(startNode) {
-        return Array.isArray(startNode.children) ? startNode.children.reduce((p, c) => Math.max(p, 1 + this.getMaxLevels(c)), 0) : 0;
+        return Array.isArray(startNode.children) ?
+            startNode.children.reduce((p, c) => Math.max(p, 1 + this.getMaxLevels(c)), 0) :
+            0;
     }
 
     renderLevel(level, isLastChild) {
         const styles = {
-            leafNode: {
-                //marginLeft: 17,
-            },
+            leafNode: {},
             leafLabel: {
                 fontSize: 11,
             },
@@ -76,17 +83,16 @@ class ExampleComponent extends React.Component {
                 <span>{level.label} ({this.getMaxLevels(level)} / {this.getNodeCount(level)})</span>
             );
             return (
-                <TreeView key={level.label} label={label} initiallyExpanded={false}>
-                    {level.children.map((child, i) => {
-                        return this.renderLevel(child, i === level.children.length - 1);
-                    })}
+                <TreeView key={level.label} label={label} initiallyExpanded={false} persistent>
+                    {level.children.map((child, i) => this.renderLevel(child, i === level.children.length - 1))}
                 </TreeView>
             );
         }
 
         return (
             <div key={level.label} style={styles.leafNode}>
-                <div style={styles.line}>{isLastChild ? '└' : '├'}</div> {level.label} <span style={styles.leafLabel}>🍂</span>
+                <div style={styles.line}>{isLastChild ? '└' : '├'}</div>
+                {level.label} <span style={styles.leafLabel}>🍂</span>
             </div>
         );
     }
@@ -94,7 +100,11 @@ class ExampleComponent extends React.Component {
     render() {
         return (
             <div>
-                <div>{this.state.data.children ? this.renderLevel(this.state.data) : <button onClick={this.generateData.bind(this)}>Generate data</button>}</div>
+                <div>{
+                    this.state.data.children ?
+                        this.renderLevel(this.state.data) :
+                        <button onClick={this.generateData.bind(this)}>Generate data</button>
+                }</div>
             </div>
         );
     }
