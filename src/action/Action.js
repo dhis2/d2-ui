@@ -1,7 +1,7 @@
 import isString from 'd2-utilizr/lib/isString';
 
 import { Subject, Observable } from 'rx';
-import logLevel from 'loglevel';
+import log from 'loglevel';
 
 /**
  * @class Action
@@ -26,7 +26,7 @@ const Action = {
     create(name = 'AnonymousAction') {
         const subject = Object.assign(
             (...actionArgs) => {
-                logLevel.info(`Firing action: ${subject.id.toString()}`);
+                log.trace(`Firing action: ${subject.id.toString()}`);
 
                 return Observable.fromPromise(new Promise((resolve, reject) => {
                     subject.onNext({
@@ -35,12 +35,12 @@ const Action = {
                         // Callback to complete the action
                         complete: (...args) => {
                             resolve(...args);
-                            logLevel.info(`Completed action: ${subject.id.toString()}`);
+                            log.trace(`Completed action: ${subject.id.toString()}`);
                         },
                         // Callback to error the action
                         error: (...args) => {
                             reject(...args);
-                            logLevel.warn(`Errored action: ${subject.id.toString()}`);
+                            log.debug(`Errored action: ${subject.id.toString()}`);
                         },
                     });
                 }));
