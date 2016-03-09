@@ -176,16 +176,32 @@ describe('Validators', () => {
             expect(isNumber(100)).to.be.true;
         });
 
+        it('should return true when the value is -100', () => {
+            expect(isNumber(-100)).to.be.true;
+        });
+
         it('should return true when the value is the string "100"', () => {
             expect(isNumber('100')).to.be.true;
+        });
+
+        it('should return true when the value is the string "-100"', () => {
+            expect(isNumber('-100')).to.be.true;
         });
 
         it('should return true when the value is 1.9', () => {
             expect(isNumber(1.9)).to.be.true;
         });
 
+        it('should return true when the value is -1.9', () => {
+            expect(isNumber(-1.9)).to.be.true;
+        });
+
         it('should return true when the value is the string "1.9"', () => {
             expect(isNumber('1.9')).to.be.true;
+        });
+
+        it('should return true when the value is the string "-1.9"', () => {
+            expect(isNumber('-1.9')).to.be.true;
         });
 
         it('should return false when the value is an arbitrary string that starts with a number', () => {
@@ -196,8 +212,16 @@ describe('Validators', () => {
             expect(isNumber('314159e-5')).to.be.true;
         });
 
+        it('should return true when the value is a string containing a negative number in scientific notation', () => {
+            expect(isNumber('-314159e-5')).to.be.true;
+        });
+
         it('should return true when the value is a number in scientific notation', () => {
             expect(isNumber(1.234e-45)).to.be.true;
+        });
+
+        it('should return true when the value is a negative number in scientific notation', () => {
+            expect(isNumber(-1.234e-45)).to.be.true;
         });
 
         it('should return true when the value is 0', () => {
@@ -206,6 +230,10 @@ describe('Validators', () => {
 
         it('should return true when the value is the string "0"', () => {
             expect(isNumber('0')).to.be.true;
+        });
+
+        it('should return true when the value is the empty string ""', () => {
+            expect(isNumber('')).to.be.true;
         });
 
         it('should return false when the value is Infinity', () => {
@@ -250,20 +278,28 @@ describe('Validators', () => {
             expect(isPositiveNumber(100)).to.be.true;
         });
 
+        it('should return false when the value is -100', () => {
+            expect(isPositiveNumber(-100)).to.be.false;
+        });
+
         it('should return true when the value is the string "100"', () => {
             expect(isPositiveNumber('100')).to.be.true;
+        });
+
+        it('should return false when the value is the string "-100"', () => {
+            expect(isPositiveNumber('-100')).to.be.false;
         });
 
         it('should return true when the value is 1.9', () => {
             expect(isPositiveNumber(1.9)).to.be.true;
         });
 
-        it('should return true when the value is the string "1.9"', () => {
-            expect(isPositiveNumber('1.9')).to.be.true;
-        });
-
         it('should return false when the value is -1.9', () => {
             expect(isPositiveNumber(-1.9)).to.be.false;
+        });
+
+        it('should return true when the value is the string "1.9"', () => {
+            expect(isPositiveNumber('1.9')).to.be.true;
         });
 
         it('should return false when the value is the string "-1.9"', () => {
@@ -271,15 +307,23 @@ describe('Validators', () => {
         });
 
         it('should return false when the value is an arbitrary string that starts with a number', () => {
-            expect(isPositiveNumber('-13 bananas')).to.be.false;
+            expect(isPositiveNumber('13 bananas')).to.be.false;
         });
 
         it('should return true when the value is a string containing a number in scientific notation', () => {
             expect(isPositiveNumber('314159e-5')).to.be.true;
         });
 
+        it('should return false when the value is a string containing a negative number in scientific notation', () => {
+            expect(isPositiveNumber('-314159e-5')).to.be.false;
+        });
+
         it('should return true when the value is a number in scientific notation', () => {
             expect(isPositiveNumber(1.234e-45)).to.be.true;
+        });
+
+        it('should return false when the value is a negative number in scientific notation', () => {
+            expect(isPositiveNumber(-1.234e-45)).to.be.false;
         });
 
         it('should return false when the value is 0', () => {
@@ -290,12 +334,8 @@ describe('Validators', () => {
             expect(isPositiveNumber('0')).to.be.false;
         });
 
-        it('should return false when the value is -100', () => {
-            expect(isPositiveNumber(-100)).to.be.false;
-        });
-
-        it('should return false when the value is the string "-100"', () => {
-            expect(isPositiveNumber('-100')).to.be.false;
+        it('should return true when the value is the empty string ""', () => {
+            expect(isPositiveNumber('')).to.be.true;
         });
 
         it('should return false when the value is Infinity', () => {
@@ -310,8 +350,8 @@ describe('Validators', () => {
             expect(isPositiveNumber(new Number(2.1))).to.be.true; // eslint-disable-line no-new-wrappers
         });
 
-        it('should return false when object.toString() returns the empty string', () => {
-            expect(isPositiveNumber({toString() { return ''; }})).to.be.false;
+        it('should return true when object.toString() returns the empty string', () => {
+            expect(isPositiveNumber({toString() { return ''; }})).to.be.true;
         });
 
         it('should return false when object.toString() returns an arbitrary string', () => {
