@@ -9,7 +9,8 @@ D2-UI Changelog
 
 ##### New components
 
-- [TreeView] Add TreeView component
+- [TreeView]
+- [OrganisationUnitTree] Extends TreeView
 
 ##### Documentation
 
