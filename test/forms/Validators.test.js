@@ -262,11 +262,11 @@ describe('Validators', () => {
             expect(isPositiveNumber('1.9')).to.be.true;
         });
 
-        it('should return true when the value is -1.9', () => {
+        it('should return false when the value is -1.9', () => {
             expect(isPositiveNumber(-1.9)).to.be.false;
         });
 
-        it('should return true when the value is the string "-1.9"', () => {
+        it('should return false when the value is the string "-1.9"', () => {
             expect(isPositiveNumber('-1.9')).to.be.false;
         });
 
@@ -310,7 +310,7 @@ describe('Validators', () => {
             expect(isPositiveNumber(new Number(2.1))).to.be.true; // eslint-disable-line no-new-wrappers
         });
 
-        it('should return true when object.toString() returns the empty string', () => {
+        it('should return false when object.toString() returns the empty string', () => {
             expect(isPositiveNumber({toString() { return ''; }})).to.be.false;
         });
 
@@ -318,7 +318,7 @@ describe('Validators', () => {
             expect(isPositiveNumber({toString() { return 'bla'; }})).to.be.false;
         });
 
-        it('should return true when object.toString() returns a numeric string which is negative', () => {
+        it('should return false when object.toString() returns a numeric string which is negative', () => {
             expect(isPositiveNumber({toString() { return '-1'; }})).to.be.false;
         });
 
