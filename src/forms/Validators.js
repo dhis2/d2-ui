@@ -70,16 +70,35 @@ export function isEmail(value) {
 }
 isEmail.message = 'value_should_be_an_email';
 
-export function isNumber(value) {
+export function isPositiveNumber(value) {
     if (isUndefined(value)) {
         return true;
     }
 
-    if (value instanceof Number) {
+    if(isNumber(value)) {
+        if(value > 0) {
+            return true;
+        }
+    }
+
+    return false;
+}
+isPositiveNumber.message = 'value_should_be_a_positive_number';
+
+export function isNumber(value) {
+    if(isNull(value)) {
+        return false;
+    }
+
+    if (isUndefined(value)) {
         return true;
     }
 
-    return value !== null && (isFinite(value) || isFinite(Number(value)));
+    if (!isNaN(value) && Number(value) !== Infinity) {
+        return true;
+    }
+
+    return false;
 }
 isNumber.message = 'value_should_be_a_number';
 
@@ -89,6 +108,7 @@ export const wordToValidatorMap = new Map([
     ['relative_url', isRelativeUrl],
     ['url_array', isUrlArray],
     ['number', isNumber],
+    ['positive_number', isPositiveNumber],
     ['email', isEmail],
 ]);
 
@@ -96,6 +116,7 @@ export default {
     isRequired,
     isUrl,
     isNumber,
+    isPositiveNumber,
     isEmail,
     isEmptyString,
     isNull,
