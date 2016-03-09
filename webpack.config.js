@@ -4,8 +4,8 @@ var path = require('path');
 module.exports = {
     context: __dirname,
     entry: {
-        treeview: './examples/tree-view/treeview.js',
-        datatable: './examples/data-table/datatable.js',
+        'tree-view': './examples/tree-view',
+        'data-table': './examples/data-table',
     },
     output: {
         path: path.join(__dirname, '/build'),

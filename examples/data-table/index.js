@@ -28,6 +28,9 @@ const style = {
     },
 };
 
+const el = document.getElementById('data-table');
+const baseUrl = 'https://play.dhis2.org/dev/api';
+
 function renderExamples(d2) {
     class Example extends React.Component {
         getChildContext() {
@@ -46,7 +49,10 @@ function renderExamples(d2) {
         d2: React.PropTypes.object,
     };
     Example.propTypes = {
-        children: React.PropTypes.array,
+        children: React.PropTypes.oneOfType([
+            React.PropTypes.array,
+            React.PropTypes.object,
+        ]),
     };
 
     const myRows = [
@@ -65,8 +71,27 @@ function renderExamples(d2) {
             />
         </Example>
     );
-    render(app, document.getElementById('data-table'));
+    render(app, el);
 }
 
+function SimpleMessage(props) {
+    return (<div>{props.message.trim().split('\n').map((line, lineNo) => <div key={lineNo} style={{ minHeight: '1rem' }}>{line}</div>)}</div>);
+}
+SimpleMessage.propTypes = { message: React.PropTypes.string.isRequired };
+
 jQuery.ajaxSetup({ headers: { Authorization: 'Basic YWRtaW46ZGlzdHJpY3Q=' } });
-init({ baseUrl: 'https://play.dhis2.org/dev/api' }).then(renderExamples);
+
+render(<SimpleMessage message={`Initializing D2 with DHIS 2 server: ${baseUrl} ...`} />, el);
+
+init({ baseUrl })
+    .then(renderExamples)
+    .catch(err => {
+        render(<SimpleMessage message={`
+        Error: ${err}
+
+        Check your configuration:
+        - DHIS2 server address (${baseUrl})
+        - Authentication credentials
+        - CORS whitelist`}
+        />, el);
+    });
