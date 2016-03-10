@@ -75,14 +75,19 @@ function renderExamples(d2) {
 }
 
 function SimpleMessage(props) {
-    return (<div>{props.message.trim().split('\n').map((line, lineNo) => <div key={lineNo} style={{ minHeight: '1rem' }}>{line}</div>)}</div>);
+    return (
+        <div>{
+            props.message
+                .trim()
+                .split('\n')
+                .map((line, n) => <div key={n} style={{ minHeight: '1rem' }}>{line}</div>)
+        }</div>
+    );
 }
 SimpleMessage.propTypes = { message: React.PropTypes.string.isRequired };
+render(<SimpleMessage message={'Initializing D2...'} />, el);
 
 jQuery.ajaxSetup({ headers: { Authorization: 'Basic YWRtaW46ZGlzdHJpY3Q=' } });
-
-render(<SimpleMessage message={`Initializing D2 with DHIS 2 server: ${baseUrl} ...`} />, el);
-
 init({ baseUrl })
     .then(renderExamples)
     .catch(err => {

@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
 import { Card, CardText } from 'material-ui/lib/card';
 
 import SimpleTreeExample from './simple-tree';
