@@ -45,6 +45,7 @@ function TreeViewExample() {
                 <CardText style={styles.cardText}>
                     <h3 style={styles.cardHeader}>Multiple Roots</h3>
                     <div className="scroll">
+                        <h4>With custom arrows</h4>
                         <MultiRootExample />
                     </div>
                 </CardText>
@@ -61,11 +62,12 @@ function TreeViewExample() {
                 <CardText style={styles.cardText}>
                     <h3 style={styles.cardHeader}>Persistent Tree View</h3>
                     <div className="scroll">
+                        <h4>Hidden, not removed from the<br/>DOM, when collapsed</h4>
                         <PersistentTreeExample />
                     </div>
                 </CardText>
             </Card>
-            <Card style={styles.cardWide}>
+            <Card style={Object.assign({}, styles.cardWide, { clear: 'both' })}>
                 <CardText style={styles.cardText}>
                     <h3 style={styles.cardHeader}>Huge tree</h3>
                     <div className="scroll">
