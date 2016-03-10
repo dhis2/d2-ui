@@ -1,20 +1,25 @@
-D2-UI Changelog
-===============
 
-## HEAD
+# D2-UI Changelog
+
+
+## 0.0.18 (HEAD)
+###### _Not yet released_
 ##### Breaking changes
 
 - `Validators.isNumber()` now accepts numbers, numeric strings, the empty string and
-  `undefined` (see #34)
+  `undefined` (see [#34](../../issues/34))
 
-##### New components
+##### Added
 
-- [TreeView]
-- [OrganisationUnitTree] Extends TreeView
+- `TreeView` component
+- `OrgUnitTree` component
+- `Validators.isPositiveNumber()` - Thanks [@adhbh](https://github.com/adhbh) (fixes [#36](../../issues/36))
+
 
 ##### Documentation
 
-- [Examples] Add DataTable component example
+- Added `TreeView` examples
+- Minor changes to `DataTable` example
 
 
 
@@ -42,5 +47,7 @@ D2-UI Changelog
 ## 0.0.14
 ###### _February 18th, 2016_
 
-- [FormBuilder] Add FormBuilder component
-- Add CHANGELOG.md
+##### Added
+
+- `FormBuilder` component
+- CHANGELOG.md

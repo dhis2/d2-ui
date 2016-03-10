@@ -1,6 +1,6 @@
 {
   "name": "d2-ui",
-  "version": "0.0.17",
+  "version": "0.0.18-alpha-0",
   "description": "d2-ui",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,9 @@
     "test": "mocha --reporter spec --compilers js:babel-core/register --require config/setup.js --recursive test",
     "test-watch": "mocha --reporter mocha-silent-reporter --compilers js:babel-core/register --require config/setup.js --recursive test --watch",
     "lint": "eslint src && eslint --env node,mocha --global expect,sinon --rule 'no-unused-expressions: 0' test && scss-lint",
-    "prebuild": "npm run lint && npm run validate && npm test",
+    "prebuild": "npm run validate && npm test",
+    "preversion": "npm run validate && npm test",
+    "prepublish": "npm run build",
     "build": "npm run build-only",
     "build-only": "babel src --out-dir lib && compass compile",
     "validate": "npm ls --depth 0"
