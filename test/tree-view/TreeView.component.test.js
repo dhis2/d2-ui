@@ -50,6 +50,59 @@ describe('TreeView component', () => {
         expect(wrapper.children().contains(TreeView)).to.be.true;
     });
 
+    describe('with onExpand callback', () => {
+        let onExpand;
+
+        beforeEach(() => {
+            onExpand = sinon.spy();
+            wrapper = shallow(<TreeView label="myLabel" onExpand={onExpand} />);
+        });
+
+        it('doesn\'t trigger the onExpand callback initially', () => {
+            expect(onExpand).to.not.have.been.called;
+        });
+
+        it('triggers the onExpand callback when clicked', () => {
+            wrapper.find('.label').simulate('click');
+            expect(onExpand).to.have.been.calledOnce;
+        });
+
+        it('triggers the onExpand callback every time it\'s expanded', () => {
+            wrapper.find('.label').simulate('click'); // Expand
+            expect(onExpand).to.have.been.calledOnce;
+            wrapper.find('.label').simulate('click'); // Collapse
+            expect(onExpand).to.have.been.calledOnce;
+            wrapper.find('.label').simulate('click'); // Expand
+            expect(onExpand).to.have.been.calledTwice;
+        });
+
+        describe('and initiallyExpanded=true', () => {
+            beforeEach(() => {
+                wrapper = shallow(<TreeView label="myLabel" onExpand={onExpand} initiallyExpanded />);
+            });
+
+            it('doesn\'t trigger the onExpand callback initially', () => {
+                expect(onExpand).to.not.have.been.called;
+            });
+
+            it('doesn\'t triggers the onExpand callback when collapsed', () => {
+                wrapper.find('.label').simulate('click'); // Collapse
+                expect(onExpand).to.not.have.been.called;
+            });
+
+            it('triggers the onExpand callback every time it\'s expanded', () => {
+                wrapper.find('.label').simulate('click'); // Collapse
+                expect(onExpand).to.not.have.been.called;
+                wrapper.find('.label').simulate('click'); // Expand
+                expect(onExpand).to.have.been.calledOnce;
+                wrapper.find('.label').simulate('click'); // Collapse
+                expect(onExpand).to.have.been.calledOnce;
+                wrapper.find('.label').simulate('click'); // Expand
+                expect(onExpand).to.have.been.calledTwice;
+            });
+        });
+    });
+
     describe('with children', () => {
         beforeEach(() => {
             children = [

@@ -15,7 +15,11 @@ class TreeView extends React.Component {
         this.setState(state => ({
             collapsed: !state.collapsed,
             hasBeenExpanded: true,
-        }));
+        }), () => {
+            if (!this.state.collapsed && this.props.onExpand instanceof Function) {
+                this.props.onExpand();
+            }
+        });
     }
 
     render() {
@@ -35,7 +39,8 @@ class TreeView extends React.Component {
                 transform: this.state.collapsed ? 'rotate(-90deg)' : '',
             },
             children: {
-                marginLeft: 16,
+                position: 'relative',
+                marginLeft: 8,
                 height: this.state.collapsed ? 0 : 'inherit',
             },
         };
@@ -58,12 +63,15 @@ class TreeView extends React.Component {
     }
 }
 
+// TODO: Document props
 TreeView.propTypes = {
     label: React.PropTypes.node.isRequired,
     children: React.PropTypes.node,
     persistent: React.PropTypes.bool,
     initiallyExpanded: React.PropTypes.bool,
     arrowSymbol: React.PropTypes.node,
+
+    onExpand: React.PropTypes.func,
 };
 
 TreeView.defaultProps = {
