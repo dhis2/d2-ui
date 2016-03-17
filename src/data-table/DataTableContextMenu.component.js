@@ -10,7 +10,7 @@ const DataTableContextMenu = React.createClass({
         actions: React.PropTypes.objectOf(React.PropTypes.func),
         activeItem: React.PropTypes.object,
         icons: React.PropTypes.object,
-        target: React.PropTypes.node.isRequired,
+        target: React.PropTypes.node,
     },
 
     mixins: [Translate],

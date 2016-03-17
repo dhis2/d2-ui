@@ -1,14 +1,12 @@
 import React from 'react';
-import { render } from 'react-dom';
+import {render} from 'react-dom';
 import ThemeManager from 'material-ui/lib/styles/theme-manager';
 import Colors from 'material-ui/lib/styles/colors';
 import ColorManipulator from 'material-ui/lib/utils/color-manipulator';
 import Spacing from 'material-ui/lib/styles/spacing';
-import { init, getInstance } from 'd2/lib/d2';
+import {init, getInstance} from 'd2/lib/d2';
 
 import DataTable from '../../src/data-table/DataTable.component';
-
-import '../../scss/DataTable.scss';
 
 const style = {
     spacing: Spacing,
@@ -28,15 +26,12 @@ const style = {
     },
 };
 
-const el = document.getElementById('data-table');
-const baseUrl = 'https://play.dhis2.org/dev/api';
-
 function renderExamples(d2) {
     class Example extends React.Component {
         getChildContext() {
             return {
                 muiTheme: ThemeManager.getMuiTheme(style),
-                d2,
+                d2: d2,
             };
         }
 
@@ -48,19 +43,17 @@ function renderExamples(d2) {
         muiTheme: React.PropTypes.object,
         d2: React.PropTypes.object,
     };
-    Example.propTypes = {
-        children: React.PropTypes.oneOfType([
-            React.PropTypes.array,
-            React.PropTypes.object,
-        ]),
-    };
 
     const myRows = [
-        { firstName: 'Mark', lastName: 'Polak' },
-        { firstName: 'Nicolay', lastName: 'Ramm' },
+        {firstName: 'Mark', lastName: 'Polak'},
+        {firstName: 'Nicolay', lastName: 'Ramm'},
     ];
 
-    const cma = {};
+    const cma = {
+        edit: function (...args) {
+            console.log('Edit', ...args);
+        },
+    };
 
     const app = (
         <Example>
@@ -71,32 +64,14 @@ function renderExamples(d2) {
             />
         </Example>
     );
-    render(app, el);
+    render(app, document.getElementById('data-table'));
 }
 
-function SimpleMessage(props) {
-    return (
-        <div>{
-            props.message
-                .trim()
-                .split('\n')
-                .map((line, n) => <div key={n} style={{ minHeight: '1rem' }}>{line}</div>)
-        }</div>
-    );
-}
-SimpleMessage.propTypes = { message: React.PropTypes.string.isRequired };
-render(<SimpleMessage message={'Initializing D2...'} />, el);
+jQuery.ajaxSetup({
+    headers: {
+        Authorization: 'Basic ' + btoa('admin:district'),
+    },
+});
 
-jQuery.ajaxSetup({ headers: { Authorization: 'Basic YWRtaW46ZGlzdHJpY3Q=' } });
-init({ baseUrl })
-    .then(renderExamples)
-    .catch(err => {
-        render(<SimpleMessage message={`
-        Error: ${err}
 
-        Check your configuration:
-        - DHIS2 server address (${baseUrl})
-        - Authentication credentials
-        - CORS whitelist`}
-        />, el);
-    });
+init({baseUrl: 'http://localhost:8080/dhis/api'}).then(renderExamples);
