@@ -23,7 +23,6 @@
   },
   "license": "BSD-3-Clause",
   "peerDependencies": {
-    "d2": "0.0.24",
     "material-ui": "0.14.4"
   },
   "devDependencies": {
@@ -39,7 +38,7 @@
     "chai": "3.5.0",
     "coveralls": "^2.11.8",
     "css-loader": "^0.23.1",
-    "d2": "0.0.24",
+    "d2": "0.0.26",
     "enzyme": "1.5.0",
     "eslint": "2.2.0",
     "eslint-config-airbnb": "^6.0.2",
