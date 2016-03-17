@@ -19,6 +19,7 @@
 ##### Documentation
 
 - Added `TreeView` examples
+- Added `OrgUnitTree` examples
 - Minor changes to `DataTable` example
 
 
