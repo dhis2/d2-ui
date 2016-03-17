@@ -4,7 +4,7 @@ import TreeView from '../../src/tree-view';
 export default class extends React.Component {
     render() {
         return (
-            <TreeView label="Persistent Root" persistent initiallyExpanded>
+            <TreeView label="Persistent Root" persistent>
                 <TreeView label="Branch 1" initiallyExpanded>
                     <TreeView label="Sub-branch 1" initiallyExpanded>
                         <div>Leaf 1</div>

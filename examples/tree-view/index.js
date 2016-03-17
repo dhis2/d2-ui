@@ -5,8 +5,9 @@ import { Card, CardText } from 'material-ui/lib/card';
 import SimpleTreeExample from './simple-tree';
 import MultiRootExample from './multi-root';
 import MultiRootExpandedExample from './multi-root-expanded';
-import HugeTreeExample from './huge-tree';
 import PersistentTreeExample from './persistent-tree';
+import ClickHandlerExample from './click-handler';
+import HugeTreeExample from './huge-tree';
 
 function TreeViewExample() {
     const styles = {
@@ -44,9 +45,10 @@ function TreeViewExample() {
                 <CardText style={styles.cardText}>
                     <h3 style={styles.cardHeader}>Multiple Roots</h3>
                     <div className="scroll">
-                        <h4>With custom arrows</h4>
                         <MultiRootExample />
                     </div>
+                    <br />
+                    Also featuring: Custom arrows!
                 </CardText>
             </Card>
             <Card style={styles.card}>
@@ -61,9 +63,20 @@ function TreeViewExample() {
                 <CardText style={styles.cardText}>
                     <h3 style={styles.cardHeader}>Persistent Tree View</h3>
                     <div className="scroll">
-                        <h4>Hidden, not removed from the<br/>DOM, when collapsed</h4>
                         <PersistentTreeExample />
                     </div>
+                    <br />
+                    The children remain in the DOM when the tree view is collapsed.
+                </CardText>
+            </Card>
+            <Card style={styles.card}>
+                <CardText style={styles.cardText}>
+                    <h3 style={styles.cardHeader}>Custom Click Handler</h3>
+                    <div className="scroll">
+                        <ClickHandlerExample />
+                    </div>
+                    <br />
+                    Expand nodes by clicking on their labels, not just on the arrows.
                 </CardText>
             </Card>
             <Card style={Object.assign({}, styles.cardWide, { clear: 'both' })}>
