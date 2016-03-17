@@ -31,6 +31,13 @@ function OrgUnitTreeExample(props) {
             margin: '16px -16px',
             borderBottom: '1px solid #eeeeee',
         },
+        customLabel: {
+            fontStyle: 'italic',
+        },
+        customLabelSelected: {
+            color: 'blue',
+            weight: 900,
+        },
     };
 
     styles.cardWide = Object.assign({}, styles.card, {
@@ -55,6 +62,18 @@ function OrgUnitTreeExample(props) {
                             <OrgUnitTree root={props.roots[2]} />
                         </div>
                     ) : 'Loading...' }
+                </CardText>
+            </Card>
+            <Card style={styles.card}>
+                <CardText style={styles.cardText}>
+                    <h3 style={styles.cardHeader}>Custom Styling</h3>
+                    <OrgUnitTree
+                        root={props.root}
+                        labelStyle={styles.customLabel}
+                        selectedLabelStyle={styles.customLabelSelected}
+                        selected={['O6uvpzGd5pu', 'lc3eMKXaEfw', 'PMa2VCrupOd', 'qhqAxPSTUXp', 'jmIPBj66vD6']}
+                        arrowSymbol="+"
+                    />
                 </CardText>
             </Card>
             <Card style={styles.card}>

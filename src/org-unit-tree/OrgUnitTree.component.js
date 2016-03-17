@@ -91,6 +91,9 @@ class OrgUnitTree extends React.Component {
                     selected={this.props.selected}
                     initiallyExpanded={expandedProp}
                     onClick={this.props.onClick}
+                    labelStyle={this.props.labelStyle}
+                    selectedLabelStyle={this.props.selectedLabelStyle}
+                    arrowSymbol={this.props.arrowSymbol}
                 />));
         }
 
@@ -113,7 +116,7 @@ class OrgUnitTree extends React.Component {
             fontWeight: isSelected ? 700 : 300,
             color: isSelected ? 'orange' : 'inherit',
             cursor: isClickable ? 'pointer' : 'inherit',
-        });
+        }, isSelected ? this.props.selectedLabelStyle : this.props.labelStyle);
         const label = (<div style={labelStyle} onClick={isClickable && this.handleClick}>{root.displayName}</div>);
 
         if (this.state.children === undefined || Array.isArray(this.state.children) && this.state.children.length > 0) {
@@ -124,6 +127,7 @@ class OrgUnitTree extends React.Component {
                         onExpand={this.loadChildren}
                         persistent
                         initiallyExpanded={initiallyExpanded}
+                        arrowSymbol={this.props.arrowSymbol}
                     >
                         {this.renderChildren()}
                     </TreeView>
@@ -149,11 +153,17 @@ OrgUnitTree.propTypes = {
     ]),
 
     onClick: React.PropTypes.func,
+
+    labelStyle: React.PropTypes.object,
+    selectedLabelStyle: React.PropTypes.object,
+    arrowSymbol: React.PropTypes.string,
 };
 
 OrgUnitTree.defaultProps = {
     selected: [],
     initiallyExpanded: [],
+    labelStyle: {},
+    selectedLabelStyle: {},
 };
 
 export default OrgUnitTree;
