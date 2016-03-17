@@ -6,11 +6,13 @@ import { Card, CardText } from 'material-ui/lib/card';
 import { init, getInstance } from 'd2/lib/d2';
 import OrgUnitTree from '../../src/org-unit-tree';
 
-import BasicExample from './basic';
+import InitiallyExpanded from './initially-expanded';
+import SingleSelection from './single-selection';
+import MultipleSelection from './multiple-selection';
 
 const el = document.getElementById('app');
-//const baseUrl = 'http://localhost:8080/api';
-const baseUrl = 'https://play.dhis2.org/dev/api';
+const baseUrl = 'http://localhost:8080/api';
+//const baseUrl = 'https://play.dhis2.org/dev/api';
 
 
 function OrgUnitTreeExample(props) {
@@ -45,11 +47,12 @@ function OrgUnitTreeExample(props) {
             </Card>
             <Card style={styles.card}>
                 <CardText style={styles.cardText}>
-                    <h3 style={styles.cardHeader}>Two Independent Trees</h3>
+                    <h3 style={styles.cardHeader}>Three Independent Trees</h3>
                     {props.roots.length > 0 ? (
                         <div>
                             <OrgUnitTree root={props.roots[0]} />
                             <OrgUnitTree root={props.roots[1]} />
+                            <OrgUnitTree root={props.roots[2]} />
                         </div>
                     ) : 'Loading...' }
                 </CardText>
@@ -57,15 +60,19 @@ function OrgUnitTreeExample(props) {
             <Card style={styles.card}>
                 <CardText style={styles.cardText}>
                     <h3 style={styles.cardHeader}>Single Selection Tree</h3>
-                    (Not yet working)
-                    <OrgUnitTree root={props.root} />
+                    <SingleSelection root={props.root} />
                 </CardText>
             </Card>
             <Card style={styles.card}>
                 <CardText style={styles.cardText}>
                     <h3 style={styles.cardHeader}>Multiple Selection Tree</h3>
-                    (Not yet working)
-                    <OrgUnitTree root={props.root} />
+                    <MultipleSelection root={props.root} />
+                </CardText>
+            </Card>
+            <Card style={styles.card}>
+                <CardText style={styles.cardText}>
+                    <h3 style={styles.cardHeader}>Initially Expanded</h3>
+                    <InitiallyExpanded root={props.root} />
                 </CardText>
             </Card>
         </div>
@@ -82,16 +89,23 @@ init({ baseUrl })
         render(<div>Loading Organisation Units...</div>, el);
         window.d2 = d2;
 
-        d2.models.organisationUnits.list({ paging: false, level: 1, fields: 'id,displayName' })
+        d2.models.organisationUnits.list({ paging: false, level: 1, fields: 'id,displayName,children::isNotEmpty' })
             .then(rootLevel => rootLevel.toArray()[0])
             .then(rootUnit => {
                 window.rootUnit = rootUnit;
-                render(<OrgUnitTreeExample root={rootUnit} roots={[]} />, el);
+                render(<OrgUnitTreeExample root={rootUnit} roots={[]}/>, el);
 
                 Promise.all([
-                    d2.models.organisationUnits.get('at6UHUQatSo'),
-                    d2.models.organisationUnits.get('fdc6uOvgoji'),
-                ]).then(roots => render(<OrgUnitTreeExample root={rootUnit} roots={roots} />, el));
+                    d2.models.organisationUnits.get('at6UHUQatSo', { fields: 'id,displayName' }),
+                    d2.models.organisationUnits.get('fdc6uOvgoji', { fields: 'id,displayName,children::isNotEmpty' }),
+                    d2.models.organisationUnits.list({
+                        paging: false,
+                        level: 1,
+                        fields: 'id,displayName,children[id,displayName]',
+                    }),
+                ])
+                    .then(roots => [roots[0], roots[1], roots[2].toArray()[0]])
+                    .then(roots => render(<OrgUnitTreeExample root={rootUnit} roots={roots}/>, el));
             })
             .catch(err => render(<div>Error: {err}</div>));
     })
