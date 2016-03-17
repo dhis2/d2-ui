@@ -36,10 +36,6 @@ const DataTable = React.createClass({
     },
 
     renderContextMenu() {
-        if (!this.state.activeRow || !this.props.contextMenuActions) {
-            return null;
-        }
-
         const actionAccessChecker = (this.props.isContextActionAllowed && this.props.isContextActionAllowed.bind(null, this.state.activeRow)) || (() => true);
 
         const actionsToShow = Object.keys(this.props.contextMenuActions || {})
@@ -50,12 +46,12 @@ const DataTable = React.createClass({
             }, {});
 
         return (
-            <DataTableContextMenu
-                actions={actionsToShow || {}}
-                activeItem={this.state.activeRow}
-                coords={this.state.contextMenuCoords}
-                icons={this.props.contextMenuIcons}
-            />
+                <DataTableContextMenu
+                    target={this.state.contextMenuTarget}
+                    onRequestClose={this._hideContextMenu}
+                    actions={actionsToShow}
+                    activeItem={this.state.activeRow}
+                />
         );
     },
 
@@ -85,9 +81,10 @@ const DataTable = React.createClass({
 
     render() {
         return (
-           <div className="data-table" onClick={this.hideContextMenu} onMouseLeave={this.hideContextMenu}>
+           <div className="data-table">
                <div className="data-table__headers">
                     {this.renderHeaders()}
+                    <DataTableHeader />
                </div>
                <div className="data-table__rows">
                    {this.renderRows()}
@@ -99,17 +96,16 @@ const DataTable = React.createClass({
 
     handleRowClick(event, rowSource) {
         this.setState({
-            contextMenuCoords: {
-                Y: event.clientY + window.scrollY - 25,
-                X: event.clientX - 25,
-            },
+            contextMenuTarget: event.currentTarget,
+            showContextMenu: true,
             activeRow: rowSource !== this.state.activeRow ? rowSource : undefined,
         });
     },
 
-    hideContextMenu() {
+    _hideContextMenu() {
         this.setState({
             activeRow: undefined,
+            showContextMenu: false,
         });
     },
 });

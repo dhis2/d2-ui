@@ -2,19 +2,6 @@ $data-table--context-menu--border-color: #FFF;
 $data-table--context-menu--background-color: rgba(255, 255, 255, 1);
 $data-table--context-menu--hover-background-color: rgba(200, 200, 255, .9);
 
-.data-table__context-menu {
-  background: transparent;
-  border: 1px solid transparent;
-  padding: $default-padding / 2 0;
-  position: fixed;
-
-  ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-}
-
 .data-table__context-menu__item {
   cursor: pointer;
   display: block;

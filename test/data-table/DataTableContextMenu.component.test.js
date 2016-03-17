@@ -48,10 +48,6 @@ describe('DataTableContextMenu component', () => {
         });
     });
 
-    it('should have the data-table__context-menu class', () => {
-        expect(contextMenuComponent.find('.data-table__context-menu')).to.have.length(1);
-    });
-
     it('should show the actions based on the actionList', () => {
         const actionItems = contextMenuComponent.find(MenuItem);
 

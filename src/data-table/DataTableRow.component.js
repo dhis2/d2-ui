@@ -2,6 +2,8 @@ import React from 'react';
 import classes from 'classnames';
 import isObject from 'd2-utilizr/lib/isObject';
 import moment from 'moment';
+import IconButton from 'material-ui/lib/icon-button';
+import MoreVert from 'material-ui/lib/svg-icons/navigation/more-vert';
 
 import Translate from '../i18n/Translate.mixin';
 
@@ -74,15 +76,31 @@ const DataTableRow = React.createClass({
             }
 
             return (
-                <div key={index} className={'data-table__rows__row__column'}>{displayValue}</div>
+                <div
+                    key={index}
+                    className={'data-table__rows__row__column'}
+                    onContextMenu={this.handleContextClick}
+                    onClick={this.handleClick}
+                >
+                    {displayValue}
+                </div>
             );
         });
-
         return (
-            <div className={classList} onContextMenu={this.handleContextClick} onClick={this.handleClick}>
+            <div className={classList}>
                 {columns}
+                <div className={'data-table__rows__row__column'} style={{width: '1%'}}>
+                    <IconButton tooltip={this.getTranslation('actions')} onClick={this.iconMenuClick}>
+                        <MoreVert />
+                    </IconButton>
+                </div>
             </div>
         );
+    },
+
+    iconMenuClick(event) {
+        event && event.preventDefault() && event.stopPropagation();
+        this.props.itemClicked(event, this.props.dataSource);
     },
 
     handleContextClick(event) {

@@ -6,7 +6,7 @@ import Translate from '../i18n/Translate.mixin';
 const DataTableHeader = React.createClass({
     propTypes: {
         isOdd: React.PropTypes.bool,
-        name: React.PropTypes.string.isRequired,
+        name: React.PropTypes.string,
     },
 
     mixins: [Translate],
@@ -22,7 +22,7 @@ const DataTableHeader = React.createClass({
 
         return (
             <div className={classList}>
-                {this.getTranslation(camelCaseToUnderscores(this.props.name))}
+                {this.props.name ? this.getTranslation(camelCaseToUnderscores(this.props.name)) : null}
             </div>
         );
     },
