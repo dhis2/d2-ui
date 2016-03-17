@@ -50,7 +50,9 @@ function renderExamples(d2) {
     ];
 
     const cma = {
-
+        edit: function (...args) {
+            console.log('Edit', ...args);
+        },
     };
 
     const app = (
