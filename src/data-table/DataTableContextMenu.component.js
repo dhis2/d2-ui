@@ -40,7 +40,7 @@ const DataTableContextMenu = React.createClass({
                         const iconName = this.props.icons[action] ? this.props.icons[action] : action;
 
                         return (<MenuItem key={action}
-                                          data-object-id={this.props.activeItem.id}
+                                          data-object-id={this.props.activeItem && this.props.activeItem.id}
                                           className={'data-table__context-menu__item'}
                                           onClick={this.handleClick.bind(this, action)}
                                           primaryText={this.getTranslation(action)}

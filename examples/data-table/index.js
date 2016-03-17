@@ -7,6 +7,7 @@ import Spacing from 'material-ui/lib/styles/spacing';
 import {init, getInstance} from 'd2/lib/d2';
 
 import DataTable from '../../src/data-table/DataTable.component';
+import '../../scss/DataTable.scss';
 
 const style = {
     spacing: Spacing,
