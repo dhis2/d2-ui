@@ -73,7 +73,7 @@ class OrgUnitTree extends React.Component {
 
     handleClick(e) {
         if (this.props.onClick) {
-            this.props.onClick(e, { id: this.props.root.id, displayName: this.props.root.displayName });
+            this.props.onClick(e, this.props.emitModel ? this.props.root : { id: this.props.root.id, displayName: this.props.root.displayName });
         }
         e.stopPropagation();
     }
@@ -94,6 +94,7 @@ class OrgUnitTree extends React.Component {
                     labelStyle={this.props.labelStyle}
                     selectedLabelStyle={this.props.selectedLabelStyle}
                     arrowSymbol={this.props.arrowSymbol}
+                    emitModel={this.props.emitModel}
                 />));
         }
 
@@ -157,6 +158,7 @@ OrgUnitTree.propTypes = {
     labelStyle: React.PropTypes.object,
     selectedLabelStyle: React.PropTypes.object,
     arrowSymbol: React.PropTypes.string,
+    emitModel: React.PropTypes.bool,
 };
 
 OrgUnitTree.defaultProps = {
