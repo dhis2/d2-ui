@@ -6,9 +6,13 @@ import Colors from 'material-ui/lib/styles/colors';
 import ColorManipulator from 'material-ui/lib/utils/color-manipulator';
 import Spacing from 'material-ui/lib/styles/spacing';
 import {init, getInstance} from 'd2/lib/d2';
+import Store from 'd2-flux/store/Store';
 
 import IndicatorExpressionManagerExample from './IndicatorExpressionManagerExample';
 import SharingDialogExample from './SharingDialogExample';
+
+import GroupEditorWithOrdering from '../src/group-editor/GroupEditorWithOrdering.component';
+import GroupEditor from '../src/group-editor/GroupEditor.component';
 
 const style = {
     spacing: Spacing,
@@ -114,30 +118,75 @@ function renderExamples(d2) {
         render() {
             return (
                 <div>
-                    <h3>Form</h3>
-                    <Form source={user} fieldConfigs={fcs} />
-                    <hr />
-                    <h3>Expression manager</h3>
-                    <IndicatorExpressionManagerExample />
-                    <hr />
-                    <h3>Sharing dialog</h3>
-                    <SharingDialogExample d2={d2} />
+                    <GroupEditorWithOrdering {...this.props.groupEditorProps} />
                 </div>
             );
         },
     });
 
     React.render(
-        <Main d2={d2} />,
+        <div>Loading data...</div>,
         document.getElementById('app')
     );
+
+    Promise.all([d2.models.category.get('KfdsGBcoiCa', {fields: ':all,categoryOptions[id,displayName]'}), d2.models.categoryOption.list({paging: false})])
+        .then(([category, categoryOptions]) => {
+            const itemStore = Store.create();
+            itemStore.state = categoryOptions;
+            const assignedItemStore = Store.create();
+            assignedItemStore.state = category.categoryOptions.toArray().map(value => value.id);
+
+            assignedItemStore
+                .subscribe((modelCollection) => {
+                    console.log(category.categoryOptions.toArray().map(m => m.displayName || m.name));
+                });
+
+            const handlers = {
+                onRemoveItems: (items) => {
+                    items.forEach(item => {
+                        category.categoryOptions.delete(itemStore.state.get(item).id);
+                        assignedItemStore.setState(category.categoryOptions.toArray().map(value => value.id));
+                    });
+                    return Promise.resolve(true);
+                },
+                onAssignItems: (items) => {
+                    items.forEach(item => {
+                        category.categoryOptions.add(itemStore.state.get(item));
+                        assignedItemStore.setState(category.categoryOptions.toArray().map(value => value.id));
+                    });
+
+                    return Promise.resolve(true);
+                },
+                onOrderChanged(newOrder) {
+                    const itemList = itemStore.getState();
+
+                    // Reset the ModelCollectionProperty / ModelCollection
+                    category.categoryOptions.clear();
+
+                    // Add the items back in the correct order
+                    newOrder.forEach(item => {
+                        if (itemList.has(item)) {
+                            category.categoryOptions.add(itemList.get(item));
+                        }
+                    });
+
+                    // Set the state to the store to emit the value to all subscribers
+                    assignedItemStore.setState(category.categoryOptions.toArray().map(value => value.id));
+                }
+            }
+
+            React.render(
+                <Main d2={d2} groupEditorProps={{itemStore, assignedItemStore, ...handlers}} />,
+                document.getElementById('app')
+            );
+        });
 }
 
 jQuery.ajaxSetup({
     headers: {
-        Authorization: 'Basic ' + btoa('markpo:Markpo1234')
+//         Authorization: 'Basic ' + btoa('markpo:Markpo1234')
 //        Authorization: 'Basic ' + btoa('system:System123')
-//                Authorization: 'Basic ' + btoa('admin:district')
+                Authorization: 'Basic ' + btoa('admin:district')
 //                Authorization: 'Basic ' + btoa('user:Admin123')
     },
 });
