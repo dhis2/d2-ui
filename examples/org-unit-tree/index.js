@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import log from 'loglevel';
 import { Card, CardText } from 'material-ui/lib/card';
 
-import { init, getInstance } from 'd2/lib/d2';
+import { init } from 'd2/lib/d2';
 import OrgUnitTree from '../../src/org-unit-tree';
 
 import InitiallyExpanded from './initially-expanded';
@@ -12,7 +12,7 @@ import MultipleSelection from './multiple-selection';
 
 const el = document.getElementById('app');
 const baseUrl = 'http://localhost:8080/api';
-//const baseUrl = 'https://play.dhis2.org/dev/api';
+// const baseUrl = 'https://play.dhis2.org/dev/api';
 
 
 function OrgUnitTreeExample(props) {
@@ -94,10 +94,16 @@ function OrgUnitTreeExample(props) {
                     <InitiallyExpanded root={props.root} />
                 </CardText>
             </Card>
+            <Card style={styles.card}>
+                <CardText style={styles.cardText}>
+                    <h3 style={styles.cardHeader}>Initially Expanded, pre-loaded tree</h3>
+                    { props.preRoot ? <InitiallyExpanded root={props.preRoot} /> : 'Loading...' }
+                </CardText>
+            </Card>
         </div>
     );
 }
-OrgUnitTreeExample.propTypes = { root: React.PropTypes.any, roots: React.PropTypes.any };
+OrgUnitTreeExample.propTypes = { root: React.PropTypes.any, roots: React.PropTypes.any, preRoot: React.PropTypes.any };
 
 render(<div>Initialising D2...</div>, el);
 
@@ -112,7 +118,7 @@ init({ baseUrl })
             .then(rootLevel => rootLevel.toArray()[0])
             .then(rootUnit => {
                 window.rootUnit = rootUnit;
-                render(<OrgUnitTreeExample root={rootUnit} roots={[]}/>, el);
+                render(<OrgUnitTreeExample root={rootUnit} roots={[]} />, el);
 
                 Promise.all([
                     d2.models.organisationUnits.get('at6UHUQatSo', { fields: 'id,displayName' }),
@@ -124,7 +130,18 @@ init({ baseUrl })
                     }),
                 ])
                     .then(roots => [roots[0], roots[1], roots[2].toArray()[0]])
-                    .then(roots => render(<OrgUnitTreeExample root={rootUnit} roots={roots}/>, el));
+                    .then(roots => {
+                        render(<OrgUnitTreeExample root={rootUnit} roots={roots} />, el);
+                        d2.models.organisationUnits.list({
+                            paging: false,
+                            level: 1,
+                            fields: 'id,displayName,children[id,displayName,children[id,displayName,children[id,displayName]]]',
+                        })
+                            .then(preRoot => preRoot.toArray()[0])
+                            .then(preRoot => {
+                                render(<OrgUnitTreeExample root={rootUnit} roots={roots} preRoot={preRoot} />, el);
+                            });
+                    });
             })
             .catch(err => render(<div>Error: {err}</div>));
     })
