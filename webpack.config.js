@@ -7,6 +7,7 @@ module.exports = {
         'tree-view': './examples/tree-view',
         'data-table': './examples/data-table',
         'org-unit-tree': './examples/org-unit-tree',
+        'sidebar': './examples/sidebar',
     },
     output: {
         path: path.join(__dirname, '/build'),
