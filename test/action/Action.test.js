@@ -100,12 +100,12 @@ describe('Action', () => {
                 actionInstance({name: 'Mark'});
             });
 
-            it('should call logLevel.info', () => {
-                spy(logLevel, 'info');
+            it('should call logLevel.trace', () => {
+                spy(logLevel, 'trace');
 
                 Action.create('add')('Mark');
 
-                expect(logLevel.info).to.be.calledWith('Firing action: Symbol(add)');
+                expect(logLevel.trace).to.be.calledWith('Firing action: Symbol(add)');
             });
 
             it('should return an Observable', () => {
@@ -128,8 +128,8 @@ describe('Action', () => {
                     });
             });
 
-            it('should call logLevel.info when action completed', (done) => {
-                spy(logLevel, 'info');
+            it('should call logLevel.trace when action completed', (done) => {
+                spy(logLevel, 'trace');
 
                 actionInstance = Action.create('add');
 
@@ -139,7 +139,7 @@ describe('Action', () => {
 
                 actionInstance('Mark')
                     .subscribe(() => {
-                        expect(logLevel.info).to.be.calledWith('Completed action: Symbol(add)');
+                        expect(logLevel.trace).to.be.calledWith('Completed action: Symbol(add)');
                         done();
                     });
             });
@@ -161,7 +161,7 @@ describe('Action', () => {
             });
 
             it('should notify the execute subscriber of error', (done) => {
-                spy(logLevel, 'warn');
+                spy(logLevel, 'debug');
 
                 actionInstance = Action.create('add');
 
@@ -173,7 +173,7 @@ describe('Action', () => {
                     .subscribe(
                     () => {},
                     () => {
-                        expect(logLevel.warn).to.be.calledWith('Errored action: Symbol(add)');
+                        expect(logLevel.debug).to.be.calledWith('Errored action: Symbol(add)');
                         done();
                     });
             });

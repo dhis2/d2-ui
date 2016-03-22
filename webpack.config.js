@@ -3,10 +3,14 @@ var path = require('path');
 
 module.exports = {
     context: __dirname,
-    entry: './example/example.js',
+    entry: {
+        'tree-view': './examples/tree-view',
+        'data-table': './examples/data-table',
+        'org-unit-tree': './examples/org-unit-tree',
+    },
     output: {
         path: path.join(__dirname, '/build'),
-        filename: 'example.js',
+        filename: '[name].js',
     },
     module: {
         loaders: [
@@ -19,14 +23,18 @@ module.exports = {
                 test: /\.css$/,
                 loader: 'style-loader!css-loader',
             },
+            {
+                test: /\.scss$/,
+                loader: 'style!css!sass',
+            },
         ],
     },
     plugins: [
         new webpack.optimize.DedupePlugin(),
     ],
     devServer: {
-        contentBase: './example/',
-        progress: true,
+        contentBase: './examples/',
+        progress: false,
         colors: true,
         port: 8081,
         inline: true,

@@ -1,4 +1,4 @@
-import Action from 'd2-flux/action/Action';
+import Action from '../src/action/Action';
 import indicatorExpressionStatusStore from '../src/indicator-expression-manager/indicatorExpressionStatus.store';
 
 const indicatorExpressionStatusActions = Action.createActionsFromNames(['requestExpressionStatus']);

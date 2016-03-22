@@ -49,7 +49,7 @@ describe('DataTableRow component', () => {
     });
 
     it('should render the correct amount of columns', () => {
-        expect(dataTableRow.find('.data-table__rows__row__column')).to.have.length(4);
+        expect(dataTableRow.find('.data-table__rows__row__column')).to.have.length(5);
     });
 
     it('should render the name into the first column', () => {
@@ -78,7 +78,7 @@ describe('DataTableRow component', () => {
             primaryClick: primaryClickCallback,
         });
 
-        dataTableRow.simulate('click');
+        dataTableRow.find('.data-table__rows__row__column').first().simulate('click');
 
         expect(primaryClickCallback).to.be.calledWith(dataElement);
     });
@@ -91,7 +91,7 @@ describe('DataTableRow component', () => {
             itemClicked: contextClickCallback,
         });
 
-        dataTableRow.simulate('contextMenu');
+        dataTableRow.find('.data-table__rows__row__column').first().simulate('contextMenu');
 
         expect(contextClickCallback).to.be.called;
         expect(contextClickCallback.getCall(0).args[1]).to.equal(dataElement);
@@ -111,7 +111,7 @@ describe('DataTableRow component', () => {
             it('should transformation the r------- publicAccess pattern to their textual values', () => {
                 dataElement.publicAccess = 'r-------';
 
-                dataTableRow = renderComponent(dataTableRowProps);
+                dataTableRow = renderComponent(dataTableRowProps).find('.data-table__rows__row__column').first();
 
                 expect(dataTableRow.text()).to.equal('view_translated');
             });
@@ -119,7 +119,7 @@ describe('DataTableRow component', () => {
             it('should transformation the rw------ publicAccess pattern to their textual values', () => {
                 dataElement.publicAccess = 'rw------';
 
-                dataTableRow = renderComponent(dataTableRowProps);
+                dataTableRow = renderComponent(dataTableRowProps).find('.data-table__rows__row__column').first();
 
                 expect(dataTableRow.text()).to.equal('edit_translated');
             });
@@ -127,7 +127,7 @@ describe('DataTableRow component', () => {
             it('should transformation the -------- publicAccess pattern to their textual values', () => {
                 dataElement.publicAccess = '--------';
 
-                dataTableRow = renderComponent(dataTableRowProps);
+                dataTableRow = renderComponent(dataTableRowProps).find('.data-table__rows__row__column').first();
 
                 expect(dataTableRow.text()).to.equal('none_translated');
             });
@@ -135,13 +135,13 @@ describe('DataTableRow component', () => {
             it('should not transformation an unknown publicAccess pattern', () => {
                 dataElement.publicAccess = 'rwx-----';
 
-                dataTableRow = renderComponent(dataTableRowProps);
+                dataTableRow = renderComponent(dataTableRowProps).find('.data-table__rows__row__column').first();
 
                 expect(dataTableRow.text()).to.equal('rwx-----');
             });
 
             it('should not transformation an empty value', () => {
-                dataTableRow = renderComponent(dataTableRowProps);
+                dataTableRow = renderComponent(dataTableRowProps).find('.data-table__rows__row__column').first();
 
                 expect(dataTableRow.text()).to.equal('');
             });
@@ -167,7 +167,7 @@ describe('DataTableRow component', () => {
                     },
                 };
 
-                dataTableRow = renderComponent(dataTableRowProps);
+                dataTableRow = renderComponent(dataTableRowProps).find('.data-table__rows__row__column').first();
 
                 expect(dataTableRow.text()).to.equal('a year ago');
             });
@@ -183,7 +183,7 @@ describe('DataTableRow component', () => {
                     },
                 };
 
-                dataTableRow = renderComponent(dataTableRowProps);
+                dataTableRow = renderComponent(dataTableRowProps).find('.data-table__rows__row__column').first();
 
                 expect(dataTableRow.text()).to.equal('unknown value');
             });
@@ -196,7 +196,7 @@ describe('DataTableRow component', () => {
                     displayName: 'Mark',
                 };
 
-                dataTableRow = renderComponent(dataTableRowProps);
+                dataTableRow = renderComponent(dataTableRowProps).find('.data-table__rows__row__column').first();
 
                 expect(dataTableRow.text()).to.equal('Mark');
             });
@@ -207,7 +207,7 @@ describe('DataTableRow component', () => {
                     name: 'Mark',
                 };
 
-                dataTableRow = renderComponent(dataTableRowProps);
+                dataTableRow = renderComponent(dataTableRowProps).find('.data-table__rows__row__column').first();
 
                 expect(dataTableRow.text()).to.equal('Mark');
             });
@@ -219,7 +219,7 @@ describe('DataTableRow component', () => {
                     id: 'id',
                 };
 
-                dataTableRow = renderComponent(dataTableRowProps);
+                dataTableRow = renderComponent(dataTableRowProps).find('.data-table__rows__row__column').first();
 
                 expect(dataTableRow.text()).to.equal('[object Object]');
             });
@@ -234,7 +234,7 @@ describe('DataTableRow component', () => {
                     },
                 };
 
-                dataTableRow = renderComponent(dataTableRowProps);
+                dataTableRow = renderComponent(dataTableRowProps).find('.data-table__rows__row__column').first();
 
                 expect(dataTableRow.text()).to.equal('access: all, id: id');
             });

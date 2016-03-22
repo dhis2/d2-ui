@@ -130,7 +130,7 @@ class FormBuilder extends React.Component {
                 const currentFieldState = this.state && this.state.fields && this.state.fields[field.name];
                 return Object.assign(fields, {
                     [field.name]: {
-                        value: currentFieldState && currentFieldState.value || field.value,
+                        value: field.value,
                         pristine: currentFieldState !== undefined ? currentFieldState.pristine : true,
                         validating: currentFieldState !== undefined ? currentFieldState.validating : false,
                         valid: currentFieldState !== undefined ? currentFieldState.valid : true,
@@ -259,16 +259,16 @@ class FormBuilder extends React.Component {
 
         const field = this.props.fields.filter(f => f.name === fieldName)[0];
 
-        if (newValue === (!!field.value ? field.value : '')) {
-            // Stop here if no actual change occurred
-            return;
-        }
-
         // Using custom clone function to maximize speed, albeit more error prone
         const stateClone = this.getStateClone();
 
         // Update value, and set pristine to false
         this.updateFieldState(stateClone, fieldName, {pristine: false, value: newValue});
+
+        if (newValue === (!!field.value ? field.value : '')) {
+            this.props.onUpdateField(fieldName, newValue);
+            return;
+        }
 
         // Cancel async validators in progress (if any)
         if (this.asyncValidators[fieldName]) {

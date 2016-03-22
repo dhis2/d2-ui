@@ -6,3 +6,5 @@ global.sinon = require('sinon');
 global.chai.use(require('sinon-chai'));
 
 global.expect = global.chai.expect;
+
+process.env.NODE_ENV = 'production';
