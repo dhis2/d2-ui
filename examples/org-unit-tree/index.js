@@ -96,7 +96,7 @@ function OrgUnitTreeExample(props) {
             </Card>
             <Card style={styles.card}>
                 <CardText style={styles.cardText}>
-                    <h3 style={styles.cardHeader}>Initially Expanded, pre-loaded tree</h3>
+                    <h3 style={styles.cardHeader}>Initially Expanded, 3 levels pre-loaded</h3>
                     { props.preRoot ? <InitiallyExpanded root={props.preRoot} /> : 'Loading...' }
                 </CardText>
             </Card>
@@ -135,7 +135,7 @@ init({ baseUrl })
                         d2.models.organisationUnits.list({
                             paging: false,
                             level: 1,
-                            fields: 'id,displayName,children[id,displayName,children[id,displayName,children[id,displayName]]]',
+                            fields: 'id,displayName,children[id,displayName,children[id,displayName,children::isNotEmpty]]',
                         })
                             .then(preRoot => preRoot.toArray()[0])
                             .then(preRoot => {
