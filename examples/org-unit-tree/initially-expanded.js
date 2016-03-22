@@ -14,7 +14,6 @@ function InitiallyExpandedExample(props) {
     return (
         <div>
             <OrgUnitTree root={props.root} selected={expanded} initiallyExpanded={expanded} />
-            <OrgUnitTree root={props.root} selected={props.root.id} initiallyExpanded={props.root.id} />
         </div>
     );
 }
