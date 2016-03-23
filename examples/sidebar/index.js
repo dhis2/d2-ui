@@ -20,7 +20,6 @@ function changeSectionHandler(key, searchText) {
 }
 
 function changeSearchTextHandler(searchText) {
-    console.log(searchText, currentSection, lastSection);
     if (searchText.toString().trim().length > 0) {
         if (currentSection !== 'search') {
             lastSection = currentSection;
