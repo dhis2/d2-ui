@@ -343,17 +343,17 @@ class FormBuilder extends React.Component {
                     }
                 );
             } else {
-                this.props.onUpdateFormStatus(this.state.form);
+                this.setState(this.updateFieldState(stateClone, fieldName, {valid: true}), () => {
+                    this.props.onUpdateFormStatus(this.state.form);
+                });
             }
         } else {
             // Sync validators failed ser field status to false
-            this.setState(this.updateFieldState(stateClone, fieldName, {valid: false}));
-
-            // Also emit when the validator result is false
-            this.props.onUpdateFormStatus(this.state.form);
+            this.setState(this.updateFieldState(stateClone, fieldName, {valid: false}), () => {
+                // Also emit when the validator result is false
+                this.props.onUpdateFormStatus(this.state.form);
+            });
         }
-
-        this.setState(stateClone);
     }
 
 
