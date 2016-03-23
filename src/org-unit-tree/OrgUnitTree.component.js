@@ -79,7 +79,7 @@ class OrgUnitTree extends React.Component {
 
     handleClick(e) {
         if (this.props.onClick) {
-            this.props.onClick(e, this.props.emitModel ? this.props.root : { id: this.props.root.id, displayName: this.props.root.displayName });
+            this.props.onClick(e, this.props.root);
         }
         e.stopPropagation();
     }
@@ -130,23 +130,23 @@ class OrgUnitTree extends React.Component {
 
         if (this.state.children === undefined || Array.isArray(this.state.children) && this.state.children.length > 0) {
             return (
-                <div>
-                    <TreeView
-                        label={label}
-                        onExpand={this.loadChildren}
-                        persistent
-                        initiallyExpanded={initiallyExpanded}
-                        arrowSymbol={this.props.arrowSymbol}
-                    >
-                        {this.renderChildren()}
-                    </TreeView>
-                </div>
+                <TreeView
+                    label={label}
+                    onExpand={this.loadChildren}
+                    persistent
+                    initiallyExpanded={initiallyExpanded}
+                    arrowSymbol={this.props.arrowSymbol}
+                >
+                    {this.renderChildren()}
+                </TreeView>
             );
         }
 
-        return <div onClick={this.handleClick}>
-            <div style={styles.spacer}></div>
-            {label}</div>;
+        return (
+            <div onClick={this.handleClick}>
+                <div style={styles.spacer}></div>{label}
+            </div>
+        );
     }
 }
 

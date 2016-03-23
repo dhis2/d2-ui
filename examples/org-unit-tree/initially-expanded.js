@@ -11,12 +11,14 @@ function InitiallyExpandedExample(props) {
         'ZiOVcrSjSYe', // Dibia - under Port Loco, which is NOT initially expanded!
     ];
 
+    const roots = Array.isArray(props.roots) ? props.roots : [props.roots];
+
     return (
         <div>
-            <OrgUnitTree root={props.root} selected={expanded} initiallyExpanded={expanded} />
+            <OrgUnitTree roots={roots} selected={props.selected || expanded} initiallyExpanded={props.selected || expanded} />
         </div>
     );
 }
-InitiallyExpandedExample.propTypes = { root: React.PropTypes.any.isRequired };
+InitiallyExpandedExample.propTypes = { roots: React.PropTypes.any.isRequired };
 
 export default InitiallyExpandedExample;
