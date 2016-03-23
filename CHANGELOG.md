@@ -26,6 +26,7 @@
 
 - Added `TreeView` examples
 - Added `OrgUnitTree` examples
+- Added `Sidebar` examples - Thanks [@caixiaojia](https://github.com/caixiaojia)
 - Minor changes to `DataTable` example
 
 

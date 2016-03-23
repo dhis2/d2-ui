@@ -1,45 +1,118 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import { Card, CardText } from 'material-ui/lib/card';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-import SimpleSidebar from './simple-sidebar.js';
+import Sidebar from '../../src/sidebar/Sidebar.component';
 
 
-function SideBarExample(){
-  const styles = {
-      card: {
-          margin: 16,
-          width: 320,
-          height: 600,
-          float: 'left',
-          transition: 'all 175ms ease-out',
-      },
-      cardText: {
-          paddingTop: 0,
-      },
-      cardHeader: {
-          padding: '0 16px 16px',
-          margin: '16px -16px',
-          borderBottom: '1px solid #eeeeee',
-          textAlign:'center'
-      },
-  };
-  styles.cardWide = Object.assign({}, styles.card, {
-      width: (styles.card.width * 3) + (styles.card.margin * 4),
-  });
+let currentSection;
+let lastSection;
+let sidebarRef;
 
-  return (
-      <div>
-          <Card style={styles.card}>
-              <CardText style={styles.cardText}>
-                  <h3 style={styles.cardHeader}>Simple SideBar</h3>
-                  <div className="scroll">
-                      <SimpleSidebar />
-                  </div>
-              </CardText>
-          </Card>
-      </div>
-        );
+function changeSectionHandler(key, searchText) {
+    currentSection = key;
+    if (key !== 'search' && sidebarRef) {
+        sidebarRef.clearSearchBox();
+    }
+    ReactDOM.render(
+        <SidebarExample currentSection={currentSection} searchText={searchText} />,
+        document.getElementById('app')
+    );
 }
 
-ReactDOM.render(<SideBarExample />, document.getElementById('app'));
+function changeSearchTextHandler(searchText) {
+    console.log(searchText, currentSection, lastSection);
+    if (searchText.toString().trim().length > 0) {
+        if (currentSection !== 'search') {
+            lastSection = currentSection;
+        }
+        changeSectionHandler('search', searchText);
+    } else {
+        changeSectionHandler(lastSection);
+    }
+}
+
+function storeRef(ref) {
+    sidebarRef = ref;
+}
+
+const styles = {
+    box: {
+        position: 'relative',
+        border: '1px solid #808080',
+        borderRadius: 3,
+        width: 512,
+        height: 256,
+        float: 'left',
+        margin: 16,
+    },
+    header: {
+        height: 44,
+        background: '#276696',
+        color: 'white',
+        fontSize: 16,
+        fontWeight: 700,
+    },
+    headerText: {
+        padding: 12,
+    },
+    leftBar: {
+        position: 'absolute',
+    },
+    page: {
+        paddingLeft: 264,
+        paddingTop: 24,
+    },
+};
+
+const sections = [
+    { key: 's1', label: 'Section 1' },
+    { key: 's2', label: 'Section 2' },
+    { key: 's3', label: 'Section 3' },
+    { key: 's4', label: 'Section 4' },
+];
+
+function SidebarExample(props) {
+    return (
+        <div>
+            <div style={styles.box}>
+                <div style={styles.header}>
+                    <div style={styles.headerText}>Simple Sidebar</div>
+                </div>
+                <div style={styles.leftBar}>
+                    <Sidebar
+                        sections={sections}
+                        onChangeSection={changeSectionHandler}
+                        currentSection={props.currentSection}
+                    />
+                </div>
+                <div style={styles.page}>Current section: {props.currentSection}</div>
+            </div>
+            <div style={styles.box}>
+                <div style={styles.header}>
+                    <div style={styles.headerText}>Sidebar with Search</div>
+                </div>
+                <div style={styles.leftBar}>
+                    <Sidebar
+                        sections={sections.slice(0,2)}
+                        onChangeSection={changeSectionHandler}
+                        currentSection={props.currentSection}
+                        showSearchField
+                        searchFieldLabel="Search"
+                        onChangeSearchText={changeSearchTextHandler}
+                        ref={storeRef}
+                    />
+                </div>
+                <div style={styles.page}>
+                    Current section: {props.currentSection}<br />
+                    Current search: {props.searchText}
+                </div>
+            </div>
+        </div>
+    );
+}
+SidebarExample.propTypes = {
+    currentSection: React.PropTypes.string,
+    searchText: React.PropTypes.string,
+};
+
+changeSectionHandler(sections[0].key);
