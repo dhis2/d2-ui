@@ -953,6 +953,7 @@ import apps from './menus/apps';
         dhis2.menu.ui.createMenu(profile.name, profile.dataSource, profile.options);
         dhis2.menu.mainAppMenu = dhis2.menu.ui.createMenu(applications.name, applications.dataSource, applications.options);
     }
+    dhis2.menu.ui.bootstrapMenu = bootstrapMenu;
 })();
 
 export default {};
