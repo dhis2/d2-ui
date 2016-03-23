@@ -8,11 +8,13 @@ export default class extends React.Component {
         this.state = {
             selected: [],
         };
+
+        this._selectionChanged = this._selectionChanged.bind(this)
     }
 
     render() {
         return (
-            <OrgUnitTree {...this.props} selected={this.state.selected} onClick={this._selectionChanged.bind(this)} />
+            <OrgUnitTree {...this.props} selected={this.state.selected} onClick={this._selectionChanged} />
         );
     }
 

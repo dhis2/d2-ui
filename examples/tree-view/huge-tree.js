@@ -9,6 +9,8 @@ class ExampleComponent extends React.Component {
         this.state = {
             data: {},
         };
+
+        this.generateData = this.generateData.bind(this);
     }
 
     generateChildren(label, childrenPerLevel, level, maxLevels) {
@@ -103,7 +105,7 @@ class ExampleComponent extends React.Component {
                 <div>{
                     this.state.data.children ?
                         this.renderLevel(this.state.data) :
-                        <button onClick={this.generateData.bind(this)}>Generate data</button>
+                        <button onClick={this.generateData}>Generate data</button>
                 }</div>
             </div>
         );

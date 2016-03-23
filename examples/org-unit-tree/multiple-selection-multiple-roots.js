@@ -10,6 +10,8 @@ export default class extends React.Component {
         this.state = {
             selected: [],
         };
+
+        this._handleClick = this._handleClick.bind(this);
     }
 
     render() {
@@ -22,7 +24,7 @@ export default class extends React.Component {
             <div>
                 <OrgUnitTree
                     {...this.props}
-                    onClick={this._handleClick.bind(this)}
+                    onClick={this._handleClick}
                     selected={this.state.selected}
                 />
                 <div style={selStyle}>
