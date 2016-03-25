@@ -12,7 +12,7 @@ class FormBuilder extends React.Component {
         this.state = this.initState(props);
         this.asyncValidators = this.createAsyncValidators(props);
 
-        this.getField = this.getField.bind(this);
+        this.getFieldProp = this.getFieldProp.bind(this);
         this.getStateClone = this.getStateClone.bind(this);
     }
 
@@ -100,7 +100,9 @@ class FormBuilder extends React.Component {
                 } :
                 undefined;
 
-            const errorText = fieldState.validating ? field.validatingLabelText || this.props.validatingLabelText : errorTextProp;
+            const errorText = fieldState.validating
+                ? field.validatingLabelText || this.props.validatingLabelText
+                : errorTextProp;
 
             return (
                 <div key={field.name} style={styles.field}>
@@ -146,8 +148,12 @@ class FormBuilder extends React.Component {
                 const currentFieldState = this.state && this.state.fields && this.state.fields[field.name];
                 return Object.assign(fields, {
                     [field.name]: {
-                        value: field.value,
-                        pristine: currentFieldState !== undefined ? currentFieldState.pristine : true,
+                        value: currentFieldState !== undefined && !currentFieldState.pristine
+                            ? currentFieldState.value
+                            : field.value,
+                        pristine: currentFieldState !== undefined
+                            ? currentFieldState.value === field.value
+                            : true,
                         validating: currentFieldState !== undefined ? currentFieldState.validating : false,
                         valid: currentFieldState !== undefined ? currentFieldState.valid : true,
                         error: currentFieldState && currentFieldState.error || undefined,
@@ -203,8 +209,11 @@ class FormBuilder extends React.Component {
      * @returns {*} A reference to the mutated state object for chaining
      */
     updateFieldState(state, fieldName, fieldState) {
+        const fieldProp = this.getFieldProp(fieldName);
         state.fields[fieldName] = {
-            pristine: fieldState.pristine !== undefined ? !!fieldState.pristine : state.fields[fieldName].pristine,
+            pristine: fieldState.pristine !== undefined
+                ? !!fieldState.pristine
+                : state.fields[fieldName].value === fieldProp.value,
             validating: fieldState.validating !== undefined ? !!fieldState.validating : state.fields[fieldName].validating,
             valid: fieldState.valid !== undefined ? !!fieldState.valid : state.fields[fieldName].valid,
             error: fieldState.error,
@@ -271,7 +280,7 @@ class FormBuilder extends React.Component {
     handleFieldChange(fieldName, event) {
         const newValue = event.target.value;
 
-        const field = this.getField(fieldName);
+        const field = this.getFieldProp(fieldName);
 
         // If the field has changeEvent=onBlur the change handler is triggered whenever the field loses focus.
         // So if the value didn't actually change, abort the change handler here.
@@ -367,7 +376,7 @@ class FormBuilder extends React.Component {
      * @returns {true|String} The error message from the first validator that fails, or true if they all pass
      */
     validateField(stateClone, fieldName, newValue) {
-        const field = this.getField(fieldName);
+        const field = this.getFieldProp(fieldName);
 
         const validatorResult = (field.validators || [])
             .reduce((pass, currentValidator) => (pass === true
@@ -389,7 +398,7 @@ class FormBuilder extends React.Component {
      * @param fieldName
      * @returns {}
      */
-    getField(fieldName) {
+    getFieldProp(fieldName) {
         return this.props.fields.filter(f => f.name === fieldName)[0];
     }
 }
