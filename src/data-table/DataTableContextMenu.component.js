@@ -54,6 +54,7 @@ const DataTableContextMenu = React.createClass({
 
     handleClick(action) {
         this.props.actions[action].apply(this.props.actions, [this.props.activeItem]);
+        this.props.onRequestClose && this.props.onRequestClose();
     },
 });
 
