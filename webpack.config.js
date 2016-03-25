@@ -8,6 +8,7 @@ module.exports = {
         'data-table': './examples/data-table',
         'org-unit-tree': './examples/org-unit-tree',
         'sidebar': './examples/sidebar',
+        'icon-picker': './examples/icon-picker',
     },
     output: {
         path: path.join(__dirname, '/build'),
