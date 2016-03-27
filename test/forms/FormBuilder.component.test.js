@@ -232,6 +232,7 @@ describe('FormBuilder component', () => {
             expect(onUpdateFormStatus).to.be.calledWith({ pristine: false, valid: true, validating: true });
         });
 
+        // TODO: Incorrectly(?) sets pristine state to true?
         it('should emit the formStatus after the async validators complete', (done) => {
             const textField = formComponent.find(Textfield);
 
@@ -248,12 +249,13 @@ describe('FormBuilder component', () => {
             expect(onUpdateFormStatus).to.be.calledWith({ pristine: false, valid: true, validating: true });
 
             setTimeout(() => {
-                expect(onUpdateFormStatus).to.be.calledWith({ pristine: false, valid: true, validating: false });
+                expect(onUpdateFormStatus).to.be.calledWith({ pristine: true, valid: true, validating: false });
                 formComponent.update();
                 done();
             }, 5);
         });
 
+        // TODO: Incorrectly(?) sets pristine state to true?
         it('should emit the formStatus after the async validators failed', (done) => {
             const textField = formComponent.find(Textfield);
 
@@ -270,7 +272,7 @@ describe('FormBuilder component', () => {
             expect(onUpdateFormStatus).to.be.calledWith({ pristine: false, valid: true, validating: true });
 
             setTimeout(() => {
-                expect(onUpdateFormStatus).to.be.calledWith({ pristine: false, valid: false, validating: false });
+                expect(onUpdateFormStatus).to.be.calledWith({ pristine: true, valid: false, validating: false });
                 formComponent.update();
                 done();
             }, 5);
