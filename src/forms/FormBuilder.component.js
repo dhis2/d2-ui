@@ -1,5 +1,6 @@
 import React from 'react';
 import Rx from 'rx';
+import AsyncValidatorRunner from './AsyncValidatorRunner';
 
 import CircularProgres from 'material-ui/lib/circular-progress';
 
@@ -11,6 +12,7 @@ class FormBuilder extends React.Component {
 
         this.state = this.initState(props);
         this.asyncValidators = this.createAsyncValidators(props);
+        this.asyncValidationRunner = props.asyncValidationRunner || new AsyncValidatorRunner;
 
         this.getFieldProp = this.getFieldProp.bind(this);
         this.getStateClone = this.getStateClone.bind(this);
@@ -326,43 +328,29 @@ class FormBuilder extends React.Component {
             // Set field and form state to 'validating'
             this.setState(this.updateFieldState(stateClone, fieldName, {validating: true}),
                 () => {
-                    // Emit the new field value and form status
-                    // This is done in order to update the field based on props.fields.value
-                    // Otherwise the field would not update the state before the async validators
-                    // have run which gives very laggy form behaviour.
                     this.props.onUpdateFormStatus(this.state.form);
                     this.props.onUpdateField(fieldName, newValue);
 
-                    // Run all async validators in parallel
-                    this.asyncValidators[fieldName] = Rx.Observable.merge(
-                        field.asyncValidators.map(validatorFn => validatorFn(newValue))
-                    ).subscribe(
-                        // onNext - nothing to do when validators succeed
-                        () => {},
-                        // onError - first validator to fail
-                        (error) => {
-                            this.setState(
-                                this.updateFieldState(
-                                    this.getStateClone(), fieldName, {validating: false, valid: false, error: error}
-                                ), () => {
-                                    this.cancelAsyncValidators(fieldName);
-                                    this.props.onUpdateFormStatus(this.state.form);
-                                }
-                            );
-                        },
-                        // onCompleted - all validators succeeded
-                        () => {
-                            this.setState(
-                                this.updateFieldState(
-                                    this.getStateClone(), fieldName, {validating: false, valid: true, error: undefined}
-                                ), () => {
-                                    this.cancelAsyncValidators(fieldName);
-                                    this.props.onUpdateFormStatus(this.state.form);
+                    this.asyncValidators[fieldName] = this.asyncValidationRunner
+                        .listenToValidatorsFor(fieldName)
+                            .subscribe(
+                                (status) => {
+                                    this.setState(
+                                        this.updateFieldState(
+                                            this.getStateClone(), status.fieldName, {
+                                                validating: false,
+                                                valid: status.isValid,
+                                                error: status.message,
+                                            }
+                                        ), () => {
+                                            this.cancelAsyncValidators(status.fieldName);
+                                            this.props.onUpdateFormStatus(this.state.form);
+                                        }
+                                    );
                                 }
                             );
 
-                        }
-                    );
+                    this.asyncValidationRunner.run(fieldName, field.asyncValidators, newValue);
                 });
         } else {
             this.setState(this.updateFieldState(stateClone, fieldName, {valid: true}), () => {

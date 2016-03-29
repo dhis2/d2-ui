@@ -3,6 +3,8 @@ import FormBuilder from '../../src/forms/FormBuilder.component';
 import { shallow } from 'enzyme';
 import { getStubContext } from '../../config/inject-theme';
 import Textfield from 'material-ui/lib/text-field';
+import AsyncValidatorRunner from '../../src/forms/AsyncValidatorRunner';
+import {Observable} from 'rx';
 
 describe('FormBuilder component', () => {
     let formComponent;
@@ -23,6 +25,10 @@ describe('FormBuilder component', () => {
         }
 
         formComponent = renderComponent({ fields, onUpdateField });
+    });
+
+    it('should have a asyncFieldValidator availble on the component', () => {
+        expect(formComponent.instance().asyncValidationRunner).to.be.instanceof(AsyncValidatorRunner);
     });
 
     describe('field rendering', () => {
@@ -197,6 +203,7 @@ describe('FormBuilder component', () => {
         let fields;
         let onUpdateFieldSpy;
         let onUpdateFormStatus;
+        let asyncValidationRunnerMock;
 
         beforeEach(() => {
             fields = [
@@ -217,10 +224,23 @@ describe('FormBuilder component', () => {
             onUpdateFieldSpy = sinon.spy(onUpdateField);
             onUpdateFormStatus = sinon.spy();
 
+            asyncValidationRunnerMock = {
+                run() {
+                    return this;
+                },
+
+                listenToValidatorsFor: stub().returns({
+                    subscribe(callback) {
+                        callback({fieldName: 'name', isValid: true});
+                    },
+                }),
+            };
+
             formComponent = renderComponent({
                 fields,
                 onUpdateField: onUpdateFieldSpy,
                 onUpdateFormStatus,
+                asyncValidationRunner: asyncValidationRunnerMock,
             });
         });
 
@@ -260,6 +280,13 @@ describe('FormBuilder component', () => {
             const textField = formComponent.find(Textfield);
 
             fields[0].asyncValidators[0] = sinon.spy(() => Promise.reject('Failure'));
+
+            asyncValidationRunnerMock.listenToValidatorsFor
+                .returns({
+                    subscribe(callback) {
+                        callback({fieldName: 'name', isValid: false});
+                    },
+                });
 
             formComponent = renderComponent({
                 fields,
