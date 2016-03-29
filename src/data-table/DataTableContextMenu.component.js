@@ -33,7 +33,6 @@ const DataTableContextMenu = React.createClass({
                 open={this.props.activeItem ? true : false}
                 anchorEl={this.props.target}
                 anchorOrigin={{horizontal: 'middle', vertical: 'center'}}
-                animated={false}
             >
                 <Menu className="data-table__context-menu" openDirection="bottom-right" desktop>
                     {actionList.map((action) => {
