@@ -38,7 +38,8 @@ export default React.createClass({
                             payload: program.id,
                             text: program.displayName,
                         };
-                    });
+                    })
+                    .sort((left, right) => left.text.localeCompare(right.text.toLowerCase()));
 
                 this.setState({
                     programMenuItems,
@@ -51,7 +52,8 @@ export default React.createClass({
                                         value: tea.dimensionItem,
                                         label: tea.displayName,
                                     };
-                                }),
+                                })
+                                .sort((left, right) => left.label.toLowerCase().localeCompare(right.label.toLowerCase())),
                         ];
                     })),
                     programIndicators: new Map(programs.map(program => {
@@ -63,7 +65,8 @@ export default React.createClass({
                                         value: pi.dimensionItem,
                                         label: pi.displayName,
                                     };
-                                }),
+                                })
+                                .sort((left, right) => left.label.toLowerCase().localeCompare(right.label.toLowerCase())),
                         ];
                     })),
                 });
@@ -127,7 +130,7 @@ export default React.createClass({
         const programId = menuItem.payload;
         const api = this.context.d2.Api.getApi();
 
-        api.get('programDataElements', { program: programId, fields: 'id,displayName,dimensionItem', paging: false })
+        api.get('programDataElements', { program: programId, fields: 'id,displayName,dimensionItem', paging: false, order: 'displayName:asc' })
             .then((programDataElements) => {
                 this.setState({
                     selectedProgram: programId,
