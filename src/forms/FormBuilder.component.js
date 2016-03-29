@@ -331,6 +331,9 @@ class FormBuilder extends React.Component {
                     this.props.onUpdateFormStatus(this.state.form);
                     this.props.onUpdateField(fieldName, newValue);
 
+                    // TODO: Subscription to validation results could be done once in `componentDidMount` and be
+                    // disposed in the `componentWillUnmount` method. This way we don't have to create the
+                    // subscription every time the field is changed.
                     this.asyncValidators[fieldName] = this.asyncValidationRunner
                         .listenToValidatorsFor(fieldName)
                             .subscribe(
