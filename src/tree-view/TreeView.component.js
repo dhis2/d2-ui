@@ -37,6 +37,7 @@ class TreeView extends React.Component {
         const styles = {
             tree: {
                 marginLeft: 16,
+                whiteSpace: 'nowrap',
             },
             itemLabel: {
                 display: 'inline-block',
