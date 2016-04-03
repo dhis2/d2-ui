@@ -18,6 +18,9 @@ const Sidebar = React.createClass({
         searchFieldLabel: React.PropTypes.string,
         onChangeSearchText: React.PropTypes.func,
         sideBarButtons: React.PropTypes.element,
+        styles: React.PropTypes.shape({
+            leftBar: React.PropTypes.object,
+        }),
     },
 
     contextTypes: {
@@ -28,12 +31,15 @@ const Sidebar = React.createClass({
     getDefaultProps() {
         return {
             showSearchField: false,
+            styles: {
+                leftBar: {},
+            },
         };
     },
 
     getInitialState() {
         return {
-            currentSection: this.props.currentSection || this.props.sections[0].key,
+            currentSection: this.props.currentSection || (this.props.sections[0] && this.props.sections[0].key),
             searchText: '',
         };
     },
@@ -86,6 +92,7 @@ const Sidebar = React.createClass({
             container: {
                 padding: '16px 32px 0 24px',
                 position: 'relative',
+                flex: 1,
             },
             closeButton: {
                 position: 'absolute',
@@ -150,6 +157,7 @@ const Sidebar = React.createClass({
                             primaryText={section.label}
                             onClick={this.setSection.bind(this, section.key)}
                             style={listItemStyle}
+                            leftIcon={section.icon}
                         />
                     );
                 })}
@@ -167,7 +175,7 @@ const Sidebar = React.createClass({
         };
 
         return (
-            <div style={style.sidebar} className="left-bar">
+            <div style={Object.assign(style.sidebar, this.props.styles.leftBar)} className="left-bar">
                 {this.renderSidebarButtons()}
                 {this.renderSearchField()}
                 {this.renderSections()}
