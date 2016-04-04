@@ -97,7 +97,7 @@ export default React.createClass({
         if (this.props.objectTypeToTranslate.name === this.context.d2.models.dataElement.name) {
             return (
                 <div>
-                    <TextField floatingLabelText={this.getTranslation('formName')}
+                    <TextField floatingLabelText={this.getTranslation('form_name')}
                                value={this.state.translationValues.formName}
                                fullWidth
                                onChange={this._setValue.bind(this, 'formName')}
