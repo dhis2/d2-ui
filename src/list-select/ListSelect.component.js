@@ -14,7 +14,7 @@ export default React.createClass({
     render() {
         return (
             <div className="list-select">
-                <select size={this.props.size || 15} style={this.props.listStyle}>
+                <select size={this.props.size || 15} style={Object.assign({overflowX: 'auto'}, this.props.listStyle)}>
                     {this.props.source.map(item => {
                         return (
                             <option style={{ padding: '.25rem' }} onDoubleClick={this.listItemDoubleClicked} value={item.value}>{item.label}</option>

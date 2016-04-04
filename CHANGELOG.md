@@ -13,13 +13,20 @@
 
 - `TreeView` component
 - `OrgUnitTree` component
-- `Validators.isPositiveNumber()` - Thanks [@adhbh](https://github.com/adhbh) (fixes [#36](../../issues/36))
+- `Validators.isPositiveNumber()` - Thanks [@adhbh](https://github.com/adhbh)
+  (fixes [#36](../../issues/36))
 
+##### Changed
+
+- `FormBuilder` will now run synchronous validators on every `onChange` event even
+  for fields that have `changeEvent="onBlur"`. Async validators are still only
+  executed on `onBlur` events.
 
 ##### Documentation
 
 - Added `TreeView` examples
 - Added `OrgUnitTree` examples
+- Added `Sidebar` examples - Thanks [@caixiaojia](https://github.com/caixiaojia)
 - Minor changes to `DataTable` example
 
 

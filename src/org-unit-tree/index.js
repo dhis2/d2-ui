@@ -1,3 +1,3 @@
-import OrgUnitTree from './OrgUnitTree.component';
+import OrgUnitTreeMultipleRoots from './OrgUnitTreeMultipleRoots.component';
 
-export default OrgUnitTree;
+export default OrgUnitTreeMultipleRoots;

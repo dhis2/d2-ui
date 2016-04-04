@@ -80,6 +80,7 @@ export default React.createClass({
                                onBlur={this._saveValue.bind(this, 'description')}
                     />
                 </div>
+                {this.renderAdditionalTranslationFields()}
             </div>
         );
     },
@@ -90,6 +91,21 @@ export default React.createClass({
                 <p>{this.getTranslation('select_a_locale_to_enter_translations_for_that_language')}</p>
             </div>
         );
+    },
+
+    renderAdditionalTranslationFields() {
+        if (this.props.objectTypeToTranslate.name === this.context.d2.models.dataElement.name) {
+            return (
+                <div>
+                    <TextField floatingLabelText={this.getTranslation('formName')}
+                               value={this.state.translationValues.formName}
+                               fullWidth
+                               onChange={this._setValue.bind(this, 'formName')}
+                               onBlur={this._saveValue.bind(this, 'formName')}
+                    />
+                </div>
+            );
+        }
     },
 
     render() {

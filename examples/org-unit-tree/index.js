@@ -8,10 +8,12 @@ import OrgUnitTree from '../../src/org-unit-tree';
 
 import InitiallyExpanded from './initially-expanded';
 import SingleSelection from './single-selection';
+import SingleSelectionMultipleRoots from './single-selection-multiple-roots';
 import MultipleSelection from './multiple-selection';
+import MultipleSelectionMultipleRoots from './multiple-selection-multiple-roots';
 
 const el = document.getElementById('app');
-const baseUrl = 'http://localhost:8080/api';
+const baseUrl = 'http://localhost:8080/dhis/api';
 // const baseUrl = 'https://play.dhis2.org/dev/api';
 
 
@@ -66,6 +68,14 @@ function OrgUnitTreeExample(props) {
             </Card>
             <Card style={styles.card}>
                 <CardText style={styles.cardText}>
+                    <h3 style={styles.cardHeader}>Multiple roots in one "tree"</h3>
+                    {props.roots.length > 0 ? (
+                        <OrgUnitTree roots={props.roots} />
+                    ) : 'Loading...' }
+                </CardText>
+            </Card>
+            <Card style={styles.card}>
+                <CardText style={styles.cardText}>
                     <h3 style={styles.cardHeader}>Custom Styling</h3>
                     <OrgUnitTree
                         root={props.root}
@@ -84,20 +94,42 @@ function OrgUnitTreeExample(props) {
             </Card>
             <Card style={styles.card}>
                 <CardText style={styles.cardText}>
+                    <h3 style={styles.cardHeader}>Single Selection with multiple roots</h3>
+                    {props.roots.length > 0 ? (
+                        <SingleSelectionMultipleRoots roots={props.roots} />
+                    ) : 'Loading...' }
+                </CardText>
+            </Card>
+            <Card style={styles.card}>
+                <CardText style={styles.cardText}>
                     <h3 style={styles.cardHeader}>Multiple Selection Tree</h3>
                     <MultipleSelection root={props.root} />
                 </CardText>
             </Card>
             <Card style={styles.card}>
                 <CardText style={styles.cardText}>
+                    <h3 style={styles.cardHeader}>Multiple Selection with multiple roots</h3>
+                    {props.roots.length > 0 ? (
+                        <MultipleSelectionMultipleRoots roots={props.roots} />
+                    ) : 'Loading...' }
+                </CardText>
+            </Card>
+            <Card style={styles.card}>
+                <CardText style={styles.cardText}>
                     <h3 style={styles.cardHeader}>Initially Expanded</h3>
-                    <InitiallyExpanded root={props.root} />
+                    <InitiallyExpanded roots={props.root} />
+                </CardText>
+            </Card>
+            <Card style={styles.card}>
+                <CardText style={styles.cardText}>
+                    <h3 style={styles.cardHeader}>Initially Expanded Multiple Roots</h3>
+                    <InitiallyExpanded roots={props.roots} selected={['ImspTQPwCqd', 'fdc6uOvgoji']} />
                 </CardText>
             </Card>
             <Card style={styles.card}>
                 <CardText style={styles.cardText}>
                     <h3 style={styles.cardHeader}>Initially Expanded, 3 levels pre-loaded</h3>
-                    { props.preRoot ? <InitiallyExpanded root={props.preRoot} /> : 'Loading...' }
+                    { props.preRoot ? <InitiallyExpanded roots={props.preRoot} /> : 'Loading...' }
                 </CardText>
             </Card>
         </div>
