@@ -15,7 +15,9 @@ export default React.createClass({
         onTranslationSaved: React.PropTypes.func.isRequired,
         onTranslationError: React.PropTypes.func.isRequired,
         objectTypeToTranslate: React.PropTypes.object.isRequired,
-        objectIdToTranslate: React.PropTypes.string.isRequired,
+        objectToTranslate: React.PropTypes.shape({
+            id: React.PropTypes.string.isRequired,
+        }).isRequired,
     },
 
     mixins: [Translate],
@@ -63,6 +65,7 @@ export default React.createClass({
                                onChange={this._setValue.bind(this, 'name')}
                                onBlur={this._saveValue.bind(this, 'name')}
                     />
+                    <div>{this.props.objectToTranslate.name}</div>
                 </div>
                 <div>
                     <TextField floatingLabelText={this.getTranslation('short_name')}
@@ -71,6 +74,7 @@ export default React.createClass({
                                onChange={this._setValue.bind(this, 'shortName')}
                                onBlur={this._saveValue.bind(this, 'shortName')}
                     />
+                    <div>{this.props.objectToTranslate.shortName}</div>
                 </div>
                 <div>
                     <TextField floatingLabelText={this.getTranslation('description')}
@@ -79,6 +83,7 @@ export default React.createClass({
                                onChange={this._setValue.bind(this, 'description')}
                                onBlur={this._saveValue.bind(this, 'description')}
                     />
+                    <div>{this.props.objectToTranslate.description}</div>
                 </div>
                 {this.renderAdditionalTranslationFields()}
             </div>
@@ -103,6 +108,7 @@ export default React.createClass({
                                onChange={this._setValue.bind(this, 'formName')}
                                onBlur={this._saveValue.bind(this, 'formName')}
                     />
+                    <div>{this.props.objectToTranslate.formName}</div>
                 </div>
             );
         }
@@ -122,7 +128,7 @@ export default React.createClass({
     },
 
     _reloadTranslations(locale) {
-        actions.loadTranslationsForObject(this.props.objectIdToTranslate, locale);
+        actions.loadTranslationsForObject(this.props.objectToTranslate.id, locale);
         this.setState({
             currentSelectedLocale: locale,
         });
@@ -139,7 +145,7 @@ export default React.createClass({
     },
 
     _saveValue(property, event) {
-        actions.saveTranslation(property, event.target.value, this.props.objectIdToTranslate, this.props.objectTypeToTranslate, this.state.currentSelectedLocale)
+        actions.saveTranslation(property, event.target.value, this.props.objectToTranslate.id, this.props.objectTypeToTranslate, this.state.currentSelectedLocale)
             .subscribe(this.props.onTranslationSaved, this.props.onTranslationError);
     },
 });

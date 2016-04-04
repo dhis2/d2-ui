@@ -10,7 +10,9 @@ config.i18n.strings.add('sharing_settings');
 
 export default createClass({
     propTypes: {
-        objectIdToTranslate: PropTypes.object.isRequired,
+        objectToTranslate: React.PropTypes.shape({
+            id: React.PropTypes.string.isRequired,
+        }).isRequired,
         objectTypeToTranslate: PropTypes.string.isRequired,
         onTranslationSaved: PropTypes.string.isRequired,
     },
@@ -32,9 +34,11 @@ export default createClass({
                 autoDetectWindowHeight
                 autoScrollBodyContent
                 {...this.props} >
-                <TranslationForm {...this.props}
-                                 objectIdToTranslate={this.props.objectIdToTranslate}
-                                 objectTypeToTranslate={this.props.objectTypeToTranslate}/>
+                <TranslationForm
+                    {...this.props}
+                    objectToTranslate={this.props.objectToTranslate}
+                    objectTypeToTranslate={this.props.objectTypeToTranslate}
+                />
             </Dialog>
         );
     },
