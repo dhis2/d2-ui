@@ -31,7 +31,6 @@ export default createClass({
 
         return (
             <Dialog
-                ref="translationDialog"
                 title={this.getTranslation('translation_dialog_title')}
                 actions={translationDialogActions}
                 autoDetectWindowHeight
