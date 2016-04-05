@@ -19,9 +19,13 @@ export default React.createClass({
     render() {
         const localeMenuItems = [{ payload: '', text: '' }]
             .concat(this.props.locales)
-            .map(locale => {
+            .map((locale, index) => {
                 return (
-                    <MenuItem primaryText={locale.name} value={locale.locale} />
+                    <MenuItem
+                        key={index}
+                        primaryText={locale.name}
+                        value={locale.locale}
+                    />
                 );
             });
 
