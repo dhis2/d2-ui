@@ -169,6 +169,17 @@ export default React.createClass({
     getSelectedCount() {
         return Math.max(this.getAvailableSelectedCount(), this.getAssignedSelectedCount());
     },
+    byAssignedItemsOrder(left, right) {
+        const assignedItemStore = this.props.assignedItemStore.state;
+
+        // Don't order anything if the assignedItemStore is not an array
+        // TODO: Support sorting for a ModelCollectionProperty
+        if (!Array.isArray(assignedItemStore)) {
+            return 0;
+        }
+
+        return assignedItemStore.indexOf(left.value) > assignedItemStore.indexOf(right.value) ? 1 : -1;
+    },
 
     //
     // Rendering
@@ -311,11 +322,14 @@ export default React.createClass({
                                 ref={ r => {
                                     this.rightSelect = findDOMNode(r);
                                 }}>
-                            {this.getAssignedItemsFiltered().map(item => {
-                                return (<option key={item.value} value={item.value}
+                            {this.getAssignedItemsFiltered()
+                                .sort(this.byAssignedItemsOrder)
+                                .map(item => {
+                                    return (<option key={item.value} value={item.value}
                                                 onDoubleClick={this._removeItems}
                                                 style={styles.options}>{item.text}</option>);
-                            })}
+                                })
+                            }
                         </select>
                     </Paper>
                     <RaisedButton
@@ -350,6 +364,10 @@ export default React.createClass({
         return items.filter(item => {
             return this.getFilterText().length === 0 || item.text.trim().toLowerCase().indexOf(this.getFilterText()) !== -1;
         });
+    },
+
+    getSelectedItems() {
+        return [].map.call(this.rightSelect.selectedOptions, item => item.value);
     },
 
     //
