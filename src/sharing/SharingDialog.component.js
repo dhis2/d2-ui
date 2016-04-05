@@ -11,6 +11,7 @@ config.i18n.strings.add('sharing_settings');
 export default createClass({
     propTypes: {
         objectToShare: PropTypes.object.isRequired,
+        onRequestClose: PropTypes.func.isRequired,
     },
 
     mixins: [Translate],
@@ -24,20 +25,19 @@ export default createClass({
 
         return (
             <Dialog
-                ref="sharingDialog"
                 title={this.getTranslation('sharing_settings')}
                 actions={sharingDialogActions}
                 autoDetectWindowHeight
                 autoScrollBodyContent
                 bodyStyle={{ minHeight: 450 }}
                 {...this.props}
-                >
+            >
                 <Sharing objectToShare={this.props.objectToShare} />
             </Dialog>
         );
     },
 
     closeSharingDialog() {
-        this.refs.sharingDialog.dismiss();
+        this.props.onRequestClose();
     },
 });

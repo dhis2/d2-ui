@@ -9,6 +9,7 @@ import {shallow} from 'enzyme';
 describe('Sharing: SharingDialog component', () => {
     let sharingDialogComponent;
     let objectToShare;
+    let onRequestClose;
     const renderComponent = (props = {}) => {
         return shallow(<SharingDialog {...props} />, {
             context: getStubContext(),
@@ -20,9 +21,12 @@ describe('Sharing: SharingDialog component', () => {
             name: 'ANC Care',
         };
 
+        onRequestClose = spy();
+
         sharingDialogComponent = renderComponent({
             objectToShare,
-            openImmediately: true,
+            open: true,
+            onRequestClose,
         });
     });
 
@@ -43,13 +47,7 @@ describe('Sharing: SharingDialog component', () => {
     it('should pass down the props that are passed to Sharing to the Dialog', () => {
         const dialogComponent = sharingDialogComponent.find(Dialog);
 
-        expect(dialogComponent.props().openImmediately).to.be.true;
-    });
-
-    it('should pass the correct `ref` to the Dialog ', () => {
-        const dialogComponent = sharingDialogComponent.find(Dialog);
-
-        expect(dialogComponent.node.ref).to.equal('sharingDialog');
+        expect(dialogComponent.props().open).to.be.true;
     });
 
     describe('Sharing component', () => {
@@ -85,17 +83,10 @@ describe('Sharing: SharingDialog component', () => {
             expect(buttons[0].props.onClick).to.equal(sharingDialogComponent.instance().closeSharingDialog);
         });
 
-        it('should call dismiss on the sharingDialog', () => {
-            const dialogDismissSpy = spy();
-            sharingDialogComponent.instance().refs = {
-                sharingDialog: {
-                    dismiss: dialogDismissSpy,
-                },
-            };
-
+        it('should call onRequestClose from the props when the closeSharingDialog is called', () => {
             sharingDialogComponent.instance().closeSharingDialog();
 
-            expect(dialogDismissSpy).to.be.calledOnce;
+            expect(onRequestClose).to.be.calledOnce;
         });
     });
 });
