@@ -34,7 +34,7 @@ export default React.createClass({
     componentDidMount() {
         actions.loadLocales();
 
-        store.subscribe((storeState) => {
+        this.disposable = store.subscribe((storeState) => {
             this.setState({
                 ...storeState,
                 translationValues: (storeState.translations || [])
@@ -45,6 +45,10 @@ export default React.createClass({
                 loading: false,
             });
         });
+    },
+
+    componentWillUnmount() {
+        this.disposable && this.disposable.dispose && this.disposable.dispose();
     },
 
     getLoadingdataElement() {
