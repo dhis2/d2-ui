@@ -51,6 +51,7 @@ const DataTable = React.createClass({
                     onRequestClose={this._hideContextMenu}
                     actions={actionsToShow}
                     activeItem={this.state.activeRow}
+                    icons={this.props.contextMenuIcons}
                 />
         );
     },
