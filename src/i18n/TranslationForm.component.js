@@ -1,13 +1,11 @@
 import React from 'react';
-
 import CircularProgress from 'material-ui/lib/circular-progress';
 import TextField from 'material-ui/lib/text-field';
-
 import Translate from '../i18n/Translate.mixin';
 import LocaleSelector from '../i18n/LocaleSelector.component';
-
 import actions from './translationForm.actions';
 import store from './translation.store';
+import camelCaseToUnderscores from 'd2-utilizr/lib/camelCaseToUnderscores';
 
 
 export default React.createClass({
@@ -18,6 +16,7 @@ export default React.createClass({
         objectToTranslate: React.PropTypes.shape({
             id: React.PropTypes.string.isRequired,
         }).isRequired,
+        fieldsToTranslate: React.PropTypes.arrayOf(React.PropTypes.string),
     },
 
     mixins: [Translate],
@@ -28,6 +27,12 @@ export default React.createClass({
             translations: {},
             translationValues: {},
             currentSelectedLocale: '',
+        };
+    },
+
+    getDefaultProps() {
+        return {
+            fieldsToTranslate: ['name', 'shortName', 'description'],
         };
     },
 
@@ -59,37 +64,28 @@ export default React.createClass({
         );
     },
 
+    renderFieldsToTranslate() {
+        return this.props.fieldsToTranslate
+            .filter(fieldName => fieldName)
+            .map(fieldName => {
+                return (
+                    <div key={fieldName}>
+                        <TextField floatingLabelText={this.getTranslation(camelCaseToUnderscores(fieldName))}
+                                   value={this.state.translationValues[fieldName]}
+                                   fullWidth
+                                   onChange={this._setValue.bind(this, fieldName)}
+                                   onBlur={this._saveValue.bind(this, fieldName)}
+                        />
+                        <div>{this.props.objectToTranslate[fieldName]}</div>
+                    </div>
+                );
+            });
+    },
+
     renderForm() {
         return (
             <div>
-                <div>
-                    <TextField floatingLabelText={this.getTranslation('name')}
-                               value={this.state.translationValues.name}
-                               fullWidth
-                               onChange={this._setValue.bind(this, 'name')}
-                               onBlur={this._saveValue.bind(this, 'name')}
-                    />
-                    <div>{this.props.objectToTranslate.name}</div>
-                </div>
-                <div>
-                    <TextField floatingLabelText={this.getTranslation('short_name')}
-                               value={this.state.translationValues.shortName}
-                               fullWidth
-                               onChange={this._setValue.bind(this, 'shortName')}
-                               onBlur={this._saveValue.bind(this, 'shortName')}
-                    />
-                    <div>{this.props.objectToTranslate.shortName}</div>
-                </div>
-                <div>
-                    <TextField floatingLabelText={this.getTranslation('description')}
-                               value={this.state.translationValues.description}
-                               fullWidth
-                               onChange={this._setValue.bind(this, 'description')}
-                               onBlur={this._saveValue.bind(this, 'description')}
-                    />
-                    <div>{this.props.objectToTranslate.description}</div>
-                </div>
-                {this.renderAdditionalTranslationFields()}
+                {this.renderFieldsToTranslate()}
             </div>
         );
     },
@@ -100,22 +96,6 @@ export default React.createClass({
                 <p>{this.getTranslation('select_a_locale_to_enter_translations_for_that_language')}</p>
             </div>
         );
-    },
-
-    renderAdditionalTranslationFields() {
-        if (this.props.objectTypeToTranslate.name === this.context.d2.models.dataElement.name) {
-            return (
-                <div>
-                    <TextField floatingLabelText={this.getTranslation('form_name')}
-                               value={this.state.translationValues.formName}
-                               fullWidth
-                               onChange={this._setValue.bind(this, 'formName')}
-                               onBlur={this._saveValue.bind(this, 'formName')}
-                    />
-                    <div>{this.props.objectToTranslate.formName}</div>
-                </div>
-            );
-        }
     },
 
     render() {
