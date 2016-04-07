@@ -25,10 +25,10 @@ class TreeView extends React.Component {
     }
 
     componentWillReceiveProps(newProps) {
-        this.setState({
-            collapsed: !newProps.initiallyExpanded,
-            hasBeenExpanded: newProps.initiallyExpanded,
-        });
+        // When initiallyExpanded status changed and the tree is collapsed we fire a toggleEvent to open it up
+        if (newProps.initiallyExpanded && this.state.collapsed) {
+            this.toggleCollapsed();
+        }
     }
 
     handleClick(e) {
