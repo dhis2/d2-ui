@@ -24,6 +24,13 @@ class TreeView extends React.Component {
         });
     }
 
+    componentWillReceiveProps(newProps) {
+        this.setState({
+            collapsed: !newProps.initiallyExpanded,
+            hasBeenExpanded: newProps.initiallyExpanded,
+        });
+    }
+
     handleClick(e) {
         if (this.props.onClick) {
             this.props.onClick(e);

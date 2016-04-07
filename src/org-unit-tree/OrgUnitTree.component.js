@@ -60,6 +60,13 @@ class OrgUnitTree extends React.Component {
         }
     }
 
+    componentWillReceiveProps(newProps) {
+        if (newProps.initiallyExpanded === newProps.root.id ||
+            newProps.initiallyExpanded.indexOf(newProps.root.id) >= 0) {
+            this.loadChildren();
+        }
+    }
+
     loadChildren() {
         if (this.state.children === undefined && !this.state.loading) {
             this.setState({ loading: true });
