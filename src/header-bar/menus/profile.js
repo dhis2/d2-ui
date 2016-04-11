@@ -1,6 +1,7 @@
 export default function getProfileMenu(options = {}) {
     return {
         name: 'profile',
+        label: options.userFullname || 'profile',
         dataSource: [
             {
                 name: 'settings',

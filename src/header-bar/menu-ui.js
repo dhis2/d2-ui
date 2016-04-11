@@ -345,13 +345,14 @@ import apps from './menus/apps';
      *
      * @returns {Menu}
      */
-    defaultMenuUi = function (name, data, icon, container) {
+    defaultMenuUi = function (name, data, icon, container, label) {
         var defaultMenu = createMenu(),
             currentSelectedId = undefined;
 
         defaultMenu.template = template();
 
         defaultMenu.name = name;
+        defaultMenu.label = label;
         defaultMenu.ajax = false;
         defaultMenu.icon = icon;
         defaultMenu.container = container;
@@ -488,7 +489,7 @@ import apps from './menus/apps';
             linkItem = defaultMenu.template.parse('linkItem', {
                 "id": defaultMenu.name,
                 "iconName": defaultMenu.icon,
-                "menuItemName": menuData.name,
+                "menuItemName": defaultMenu.label ? defaultMenu.label : menuData.name,
                 "classes": cssDefaults.aMenuLinkClasses,
                 "menuItems": menuItems
             });
@@ -868,7 +869,7 @@ import apps from './menus/apps';
      * just creates an instance of the dhis2.menu object for each of the menus that are created.
      */
     dhis2menu.ui = {};
-    dhis2menu.ui.createMenu = function (menuName, menuData, options) {
+    dhis2menu.ui.createMenu = function (menuName, menuData, options, label) {
         var menu;
 
         if (typeof menuName !== "string")
@@ -887,7 +888,9 @@ import apps from './menus/apps';
             menuName,
             menuData,
             options['icon'] || 'th', //th is the default font-awesome icon we use for menus
-            options['container'] || 'dhisDropDownMenu'); //dhisDropDownMenu is the default container for the menu
+            options['container'] || 'dhisDropDownMenu', //dhisDropDownMenu is the default container for the menu
+            label
+        );
 
         if ( !! options['shortCut'] && keys[options['shortCut']]) {
             menu.shortCutKey = keys[options['shortCut']];
@@ -917,21 +920,40 @@ import apps from './menus/apps';
  */
 (function () {
     var helpPageLink = "";
+    var userFullname = ""
 
     dhis2.menu.ui.initMenu = function () {
         try {
-            dhis2.menu.ui.loadingStatus = jQuery.ajax({
+            const helpLinkPromise = jQuery.ajax({
                 type : "GET",
                 url : dhis2.settings.getBaseUrl() + "/dhis-web-commons/menu/getHelpPageLinkModule.action",
                 dataType : "json",
-                success : function(json) {
-                    helpPageLink = json.defaultAction ? json.defaultAction : '';
-                    bootstrapMenu();
-                },
-                error: function () {
-                    bootstrapMenu();
-                }
             });
+
+            const profileNamePromise = jQuery.ajax({
+                type: 'GET',
+                url: dhis2.settings.getBaseUrl() + '/api/me/profile.json',
+                dataType: 'json',
+            });
+
+            dhis2.menu.ui.loadingStatus = jQuery
+                .when(helpLinkPromise, profileNamePromise)
+                .then((helpPageResponse, userProfileResponse) => {
+                    if(helpPageResponse && helpPageResponse.length >= 2 && helpPageResponse[1] === "success"){
+                        const helpLink = helpPageResponse[0];
+                        helpPageLink = helpLink.defaultAction ? helpLink.defaultAction : '';
+                    }
+
+                    if(userProfileResponse && userProfileResponse.length >= 2 && userProfileResponse[1] === "success"){
+                        const userProfile = userProfileResponse[0];
+                        if (userProfile && userProfile.firstName && userProfile.surname) {
+                            userFullname = `${userProfile.firstName} ${userProfile.surname}`;
+                        }
+                    }
+                    bootstrapMenu();
+                }, () => {
+                    bootstrapMenu();
+                });
         } catch (e) {
             if (console && console.error) {
                 console.error(e.message, e.stack);
@@ -941,16 +963,16 @@ import apps from './menus/apps';
 
     function bootstrapMenu() {
         var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-        //If menu is already initiated, remove the links from the menu and recreate it 
+        //If menu is already initiated, remove the links from the menu and recreate it
         if(document.querySelector('#menuLinkArea')) {
             document.querySelector('#menuLinkArea').innerHTML = '';
-        }   
-        const profile = getProfileMenu({helpPageLink});
+        }
+        const profile = getProfileMenu({helpPageLink, userFullname});
         const applications = getApplicationMenu({isMobile});
 
         profile.dataSource[3].defaultAction = helpPageLink;
 
-        dhis2.menu.ui.createMenu(profile.name, profile.dataSource, profile.options);
+        dhis2.menu.ui.createMenu(profile.name, profile.dataSource, profile.options, userFullname);
         dhis2.menu.mainAppMenu = dhis2.menu.ui.createMenu(applications.name, applications.dataSource, applications.options);
     }
     dhis2.menu.ui.bootstrapMenu = bootstrapMenu;
