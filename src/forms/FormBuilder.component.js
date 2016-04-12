@@ -103,7 +103,7 @@ class FormBuilder extends React.Component {
                 } :
                 undefined;
 
-            const errorText = fieldState.validating
+            const errorText = fieldState && fieldState.validating
                 ? field.validatingLabelText || this.props.validatingLabelText
                 : errorTextProp;
 
