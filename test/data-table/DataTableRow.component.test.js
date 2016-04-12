@@ -113,7 +113,7 @@ describe('DataTableRow component', () => {
 
                 dataTableRow = renderComponent(dataTableRowProps).find('.data-table__rows__row__column').first();
 
-                expect(dataTableRow.text()).to.equal('view_translated');
+                expect(dataTableRow.text()).to.equal('public_can_view_translated');
             });
 
             it('should transformation the rw------ publicAccess pattern to their textual values', () => {
@@ -121,7 +121,7 @@ describe('DataTableRow component', () => {
 
                 dataTableRow = renderComponent(dataTableRowProps).find('.data-table__rows__row__column').first();
 
-                expect(dataTableRow.text()).to.equal('edit_translated');
+                expect(dataTableRow.text()).to.equal('public_can_edit_translated');
             });
 
             it('should transformation the -------- publicAccess pattern to their textual values', () => {
@@ -129,7 +129,7 @@ describe('DataTableRow component', () => {
 
                 dataTableRow = renderComponent(dataTableRowProps).find('.data-table__rows__row__column').first();
 
-                expect(dataTableRow.text()).to.equal('none_translated');
+                expect(dataTableRow.text()).to.equal('public_none_translated');
             });
 
             it('should not transformation an unknown publicAccess pattern', () => {
