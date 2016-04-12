@@ -33,6 +33,8 @@ class FormBuilder extends React.Component {
         const clonedState = this.getStateClone();
 
         props.fields
+            // Only check fields that are set on the component state
+            .filter(field => this.state && this.state.fields && this.state.fields[field.name])
             // Filter out fields where the values changed
             .filter(field => field.value !== this.state.fields[field.name].value)
             // Change field value and run validators for the field
