@@ -30,6 +30,13 @@ class IconPicker extends React.Component {
     }
 
     render() {
+        const styles = {
+            iconPopoverStyle: {
+                paddingTop: '1rem',
+                width: '50%',
+            },
+        };
+
         const optionElements = this.props.options
             .map((option, index) => {
                 const optionProps = {
@@ -46,7 +53,12 @@ class IconPicker extends React.Component {
             <div>
                 <div className="icon-picker__label-text">{this.props.labelText}</div>
                 <CurrentIcon imgSrc={getImgSrc(this.props.imgPath, this.props.value)} onIconClicked={this._currentIconClicked} />
-                <Popover open={this.state.showOptions} anchorEl={this.state.anchorEl} onRequestClose={this._closeOptions}>
+                <Popover
+                    open={this.state.showOptions}
+                    anchorEl={this.state.anchorEl}
+                    onRequestClose={this._closeOptions}
+                    style={Object.assign(styles.iconPopoverStyle, this.props.iconPopoverStyle)}
+                >
                     {optionElements}
                 </Popover>
             </div>
@@ -80,6 +92,8 @@ IconPicker.propTypes = {
     options: React.PropTypes.array,
     labelText: React.PropTypes.string,
     onChange: React.PropTypes.func,
+    value: React.PropTypes.any,
+    iconPopoverStyle: React.PropTypes.object,
 };
 
 IconPicker.defaultProps = {
