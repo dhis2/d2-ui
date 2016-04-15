@@ -125,6 +125,14 @@ describe('Validators', () => {
         it('should have a message property', () => {
             expect(isRequired.message).to.equal('value_required');
         });
+
+        it('should accept false as a value', () => {
+            expect(isRequired(false)).to.be.true;
+        });
+
+        it('should not accept NaN as a value', () => {
+            expect(isRequired(NaN)).to.be.false;
+        });
     });
 
     describe('isUrl', () => {
