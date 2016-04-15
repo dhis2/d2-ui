@@ -10,6 +10,7 @@ const Sidebar = React.createClass({
         sections: React.PropTypes.arrayOf(React.PropTypes.shape({
             key: React.PropTypes.string,
             label: React.PropTypes.string,
+            icon: React.PropTypes.element,
         })).isRequired,
         currentSection: React.PropTypes.string,
         onChangeSection: React.PropTypes.func.isRequired,
@@ -170,7 +171,7 @@ const Sidebar = React.createClass({
             sidebar: {
                 backgroundColor: '#f3f3f3',
                 overflowY: 'auto',
-                width: 256,
+                width: 295,
             },
         };
 
