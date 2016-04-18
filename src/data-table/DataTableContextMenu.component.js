@@ -4,6 +4,7 @@ import Menu from 'material-ui/lib/menus/menu';
 import MenuItem from 'material-ui/lib/menus/menu-item';
 import FontIcon from 'material-ui/lib/font-icon';
 import Popover from 'material-ui/lib/popover/popover';
+import Paper from 'material-ui/lib/paper';
 
 const DataTableContextMenu = React.createClass({
     propTypes: {
@@ -27,13 +28,18 @@ const DataTableContextMenu = React.createClass({
             .keys(this.props.actions)
             .filter(menuActionKey => typeof this.props.actions[menuActionKey] === 'function');
 
+        const cmStyle = {
+            position: 'fixed',
+        };
         return (
             <Popover
                 {...this.props}
                 open={this.props.activeItem ? true : false}
                 anchorEl={this.props.target}
                 anchorOrigin={{horizontal: 'middle', vertical: 'center'}}
-                animate={false}
+                animated={false}
+                style={cmStyle}
+                animation={Paper}
             >
                 <Menu className="data-table__context-menu" openDirection="bottom-right" desktop>
                     {actionList.map((action) => {
