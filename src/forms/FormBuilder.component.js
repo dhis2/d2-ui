@@ -108,7 +108,7 @@ class FormBuilder extends React.Component {
                 : errorTextProp;
 
             return (
-                <div key={field.name} style={styles.field}>
+                <div key={field.name} style={Object.assign({}, styles.field, this.props.fieldWrapStyle)}>
                     {fieldState.validating ? (
                         <CircularProgres mode="indeterminate" size={0.33} style={styles.progress}/>
                     ) : undefined}
@@ -132,7 +132,7 @@ class FormBuilder extends React.Component {
      */
     render() {
         return (
-            <div>
+            <div style={this.props.style}>
                 {this.renderFields()}
             </div>
         );
@@ -429,6 +429,8 @@ FormBuilder.propTypes = {
     validatingProgressStyle: React.PropTypes.object,
     onUpdateField: React.PropTypes.func.isRequired,
     onUpdateFormStatus: React.PropTypes.func,
+    style: React.PropTypes.object,
+    fieldWrapStyle: React.PropTypes.object,
 };
 
 
