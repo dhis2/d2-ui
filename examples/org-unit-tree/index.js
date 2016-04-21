@@ -153,12 +153,12 @@ init({ baseUrl })
                 render(<OrgUnitTreeExample root={rootUnit} roots={[]} />, el);
 
                 Promise.all([
-                    d2.models.organisationUnits.get('at6UHUQatSo', { fields: 'id,displayName' }),
+                    d2.models.organisationUnits.get('at6UHUQatSo', { fields: 'id,displayName,children::isNotEmpty' }),
                     d2.models.organisationUnits.get('fdc6uOvgoji', { fields: 'id,displayName,children::isNotEmpty' }),
                     d2.models.organisationUnits.list({
                         paging: false,
                         level: 1,
-                        fields: 'id,displayName,children[id,displayName]',
+                        fields: 'id,displayName,children[id,displayName,children::isNotEmpty]',
                     }),
                 ])
                     .then(roots => [roots[0], roots[1], roots[2].toArray()[0]])
