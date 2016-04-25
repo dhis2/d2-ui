@@ -71,6 +71,7 @@
   "dependencies": {
     "classnames": "2.2.3",
     "d2-utilizr": "^0.2.4",
+    "draft-js": "^0.5.0",
     "lodash.isfinite": "^3.3.0",
     "lodash.isfunction": "^3.0.8",
     "loglevel": "1.4.0",
