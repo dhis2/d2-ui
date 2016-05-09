@@ -14,7 +14,7 @@ const Sidebar = React.createClass({
         })).isRequired,
         currentSection: React.PropTypes.string,
         onChangeSection: React.PropTypes.func.isRequired,
-
+        onSectionClick: React.PropTypes.func,
         showSearchField: React.PropTypes.bool,
         searchFieldLabel: React.PropTypes.string,
         onChangeSearchText: React.PropTypes.func,
@@ -52,6 +52,10 @@ const Sidebar = React.createClass({
     },
 
     setSection(key) {
+        // TODO: Refactor as this behavior is sort of silly. The current version of the SideBar with managed state should
+        // probably be a HoC and a simpler version of the header bar should be available for more dynamic scenarios.
+        this.props.onSectionClick(key);
+
         if (key !== this.state.currentSection) {
             this.setState({ currentSection: key });
             this.props.onChangeSection(key);
