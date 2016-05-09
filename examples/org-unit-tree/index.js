@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import log from 'loglevel';
 import { Card, CardText } from 'material-ui/lib/card';
 
-import { init } from 'd2/lib/d2';
+import D2Lib from 'd2/lib/d2';
 import OrgUnitTree from '../../src/org-unit-tree';
 
 import InitiallyExpanded from './initially-expanded';
@@ -13,8 +13,8 @@ import MultipleSelection from './multiple-selection';
 import MultipleSelectionMultipleRoots from './multiple-selection-multiple-roots';
 
 const el = document.getElementById('app');
-const baseUrl = 'http://localhost:8080/dhis/api';
-// const baseUrl = 'https://play.dhis2.org/dev/api';
+const dhisDevConfig = DHIS_CONFIG;
+const baseUrl = `${dhisDevConfig.baseUrl}/api`;
 
 
 function OrgUnitTreeExample(props) {
@@ -139,8 +139,9 @@ OrgUnitTreeExample.propTypes = { root: React.PropTypes.any, roots: React.PropTyp
 
 render(<div>Initialising D2...</div>, el);
 
-jQuery.ajaxSetup({ headers: { Authorization: 'Basic YWRtaW46ZGlzdHJpY3Q=' } });
-init({ baseUrl })
+jQuery.ajaxSetup({ headers: { Authorization: dhisDevConfig.authorization } });
+D2Lib.config.baseUrl = baseUrl;
+D2Lib.init({ baseUrl })
     .then(d2 => {
         log.info('D2 initialised successfully', d2);
         render(<div>Loading Organisation Units...</div>, el);
