@@ -12,6 +12,13 @@
     `<FontIcon/>` elements
 
 
+##### Documentation
+
+- Examples that use the DHIS 2 API will read dev server configuration from
+  `DHIS2_HOME/config.js[on]`, just like the other front end apps. This file
+  should export and object with two properties: `baseUrl` and `authorization`.
+
+
 
 
 ## 0.0.20
