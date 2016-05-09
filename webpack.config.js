@@ -2,7 +2,6 @@
 
 const webpack = require('webpack');
 const path = require('path');
-const colors = require('colors');
 
 const dhisConfigPath = process.env.DHIS2_HOME && `${process.env.DHIS2_HOME}/config`;
 let dhisConfig;
