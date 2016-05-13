@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import FontIcon from 'material-ui/lib/font-icon';
+
 import Sidebar from '../../src/sidebar/Sidebar.component';
 
 
@@ -14,7 +16,7 @@ function changeSectionHandler(key, searchText) {
         sidebarRef.clearSearchBox();
     }
     ReactDOM.render(
-        <SidebarExample currentSection={currentSection} searchText={searchText} />,
+        <SidebarExample currentSection={currentSection} searchText={searchText}/>,
         document.getElementById('app')
     );
 }
@@ -58,7 +60,7 @@ const styles = {
         position: 'absolute',
     },
     page: {
-        paddingLeft: 264,
+        paddingLeft: 295 + 8,
         paddingTop: 24,
     },
 };
@@ -69,6 +71,8 @@ const sections = [
     { key: 's3', label: 'Section 3' },
     { key: 's4', label: 'Section 4' },
 ];
+
+const icons = ['fingerprint', 'alarm', '', 'face'];
 
 function SidebarExample(props) {
     return (
@@ -106,6 +110,49 @@ function SidebarExample(props) {
                     Current search: {props.searchText}
                 </div>
             </div>
+
+            {/* With icons */}
+            <div style={styles.box}>
+                <div style={styles.header}>
+                    <div style={styles.headerText}>Sidebar with icon names</div>
+                </div>
+                <div style={styles.leftBar}>
+                    <Sidebar
+                        sections={sections.map(({ key, label }, i) => ({ key, label, icon: icons[i] }))}
+                        onChangeSection={changeSectionHandler}
+                        currentSection={props.currentSection}
+                    />
+                </div>
+                <div style={styles.page}>
+                    Current section: {props.currentSection}<br /><br />
+                    Icons are simple strings, which are converted into Material icons &lt;FontIcon /> elements by the
+                    Sidebar component.<br /><br />
+                    This requires that the Material icons font is loaded by the app.
+                </div>
+            </div>
+            <div style={styles.box}>
+                <div style={styles.header}>
+                    <div style={styles.headerText}>Sidebar with explicit icons</div>
+                </div>
+                <div style={styles.leftBar}>
+                    <Sidebar
+                        sections={sections.map(({ key, label }, i) => ({
+                            key, label,
+                            icon: <FontIcon className="material-icons">{icons[i]}</FontIcon>,
+                        }))}
+                        onChangeSection={changeSectionHandler}
+                        currentSection={props.currentSection}
+                    />
+                </div>
+                <div style={styles.page}>
+                    Current section: {props.currentSection}<br /><br />
+                    Icons are passed to the Sidebar component as &lt;FontIcon /> elements.<br /><br />
+                    This allows using custom icon fonts, or even SVG icons.
+                </div>
+            </div>
+
+            {/* TODO: With top buttons (sidebarButtons prop) */}
+            {/* TODO: With custom styles */}
         </div>
     );
 }

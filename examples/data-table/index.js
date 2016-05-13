@@ -1,13 +1,15 @@
 import React from 'react';
-import {render} from 'react-dom';
+import { render } from 'react-dom';
 import ThemeManager from 'material-ui/lib/styles/theme-manager';
 import Colors from 'material-ui/lib/styles/colors';
 import ColorManipulator from 'material-ui/lib/utils/color-manipulator';
 import Spacing from 'material-ui/lib/styles/spacing';
-import {init, getInstance} from 'd2/lib/d2';
+import D2Lib from 'd2/lib/d2';
 
 import DataTable from '../../src/data-table/DataTable.component';
 import '../../scss/DataTable.scss';
+
+const dhisDevConfig = DHIS_CONFIG;
 
 const style = {
     spacing: Spacing,
@@ -30,10 +32,7 @@ const style = {
 function renderExamples(d2) {
     class Example extends React.Component {
         getChildContext() {
-            return {
-                muiTheme: ThemeManager.getMuiTheme(style),
-                d2: d2,
-            };
+            return { muiTheme: ThemeManager.getMuiTheme(style), d2 };
         }
 
         render() {
@@ -46,8 +45,8 @@ function renderExamples(d2) {
     };
 
     const myRows = [
-        {firstName: 'Mark', lastName: 'Polak'},
-        {firstName: 'Nicolay', lastName: 'Ramm'},
+        { firstName: 'Mark', lastName: 'Polak' },
+        { firstName: 'Nicolay', lastName: 'Ramm' },
     ];
 
     const cma = {
@@ -68,11 +67,8 @@ function renderExamples(d2) {
     render(app, document.getElementById('data-table'));
 }
 
-jQuery.ajaxSetup({
-    headers: {
-        Authorization: 'Basic ' + btoa('admin:district'),
-    },
-});
+jQuery.ajaxSetup({ headers: { Authorization: dhisDevConfig.authorization } });
+const baseUrl = `${dhisDevConfig.baseUrl}/api`;
 
-
-init({baseUrl: 'http://localhost:8080/dhis/api'}).then(renderExamples);
+D2Lib.config.baseUrl = baseUrl;
+D2Lib.init({ baseUrl }).then(renderExamples);
