@@ -108,15 +108,23 @@ export default React.createClass({
     },
 
     render() {
+        console.log(this.state.programMenuItems);
+        const options = this.state.programMenuItems
+            .map((option, index) => (
+                <option key={index} value={option.payload}>{option.text}</option>
+            ));
+
         return (
             <div>
                 <div style={{ margin: '0 1rem' }}>
-                    <SelectField menuItems={this.state.programMenuItems}
+                    <select
                                  onChange={this._loadProgramDataOperands}
                                  value={this.state.selectedProgram}
                                  hintText={this.getTranslation('please_select_a_program')}
-                                 fullWidth
-                    />
+                                 style={{width: '100%', height: '1rem'}}
+                    >
+                        {options}
+                    </select>
                 </div>
                 {this.state.selectedProgram ? this.renderTabs() : null}
             </div>
@@ -124,7 +132,7 @@ export default React.createClass({
     },
 
     _loadProgramDataOperands(event, index, menuItem) {
-        const programId = menuItem.payload;
+        const programId = event.target.value;
         const api = this.context.d2.Api.getApi();
 
         api.get('programDataElements', { program: programId, fields: 'id,displayName,dimensionItem', paging: false })
