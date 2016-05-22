@@ -24,6 +24,13 @@ class TreeView extends React.Component {
         });
     }
 
+    componentWillReceiveProps(newProps) {
+        // When initiallyExpanded status changed and the tree is collapsed we fire a toggleEvent to open it up
+        if (newProps.initiallyExpanded && this.state.collapsed) {
+            this.toggleCollapsed();
+        }
+    }
+
     handleClick(e) {
         if (this.props.onClick) {
             this.props.onClick(e);
@@ -37,6 +44,7 @@ class TreeView extends React.Component {
         const styles = {
             tree: {
                 marginLeft: 16,
+                whiteSpace: 'nowrap',
             },
             itemLabel: {
                 display: 'inline-block',

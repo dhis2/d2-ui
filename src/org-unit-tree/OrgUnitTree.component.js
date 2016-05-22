@@ -60,14 +60,22 @@ class OrgUnitTree extends React.Component {
         }
     }
 
+    componentWillReceiveProps(newProps) {
+        if ((newProps.initiallyExpanded === newProps.root.id ||
+            newProps.initiallyExpanded.indexOf(newProps.root.id) >= 0) ||
+            newProps.idsThatShouldBeReloaded.indexOf(newProps.root.id) >= 0) {
+            this.loadChildren();
+        }
+    }
+
     loadChildren() {
-        if (this.state.children === undefined && !this.state.loading) {
+        if ((this.state.children === undefined && !this.state.loading) || this.props.idsThatShouldBeReloaded.indexOf(this.props.root.id) >= 0) {
             this.setState({ loading: true });
 
             const root = this.props.root;
             root.modelDefinition.list({
                 paging: false,
-                fields: 'id,displayName,children::isNotEmpty',
+                fields: 'id,displayName,children::isNotEmpty,path,parent',
                 filter: [
                     `parent.id:eq:${root.id}`,
                 ],
@@ -103,6 +111,7 @@ class OrgUnitTree extends React.Component {
                     selectedLabelStyle={this.props.selectedLabelStyle}
                     arrowSymbol={this.props.arrowSymbol}
                     emitModel={this.props.emitModel}
+                    idsThatShouldBeReloaded={this.props.idsThatShouldBeReloaded}
                 />));
         }
 
@@ -208,6 +217,7 @@ OrgUnitTree.defaultProps = {
     initiallyExpanded: [],
     labelStyle: {},
     selectedLabelStyle: {},
+    idsThatShouldBeReloaded: [],
 };
 
 export default OrgUnitTree;

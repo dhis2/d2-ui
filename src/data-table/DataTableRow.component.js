@@ -62,15 +62,15 @@ const DataTableRow = React.createClass({
 
                 if (dataSource[columnName]) {
                     if (dataSource[columnName] === 'rw------') {
-                        displayValue = this.getTranslation('edit');
+                        displayValue = this.getTranslation('public_can_edit');
                     }
 
                     if (dataSource[columnName] === 'r-------') {
-                        displayValue = this.getTranslation('view');
+                        displayValue = this.getTranslation('public_can_view');
                     }
 
                     if (dataSource[columnName] === '--------') {
-                        displayValue = this.getTranslation('none');
+                        displayValue = this.getTranslation('public_none');
                     }
                 }
             }

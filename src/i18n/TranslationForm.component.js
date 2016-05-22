@@ -1,13 +1,11 @@
 import React from 'react';
-
 import CircularProgress from 'material-ui/lib/circular-progress';
 import TextField from 'material-ui/lib/text-field';
-
 import Translate from '../i18n/Translate.mixin';
 import LocaleSelector from '../i18n/LocaleSelector.component';
-
 import actions from './translationForm.actions';
 import store from './translation.store';
+import camelCaseToUnderscores from 'd2-utilizr/lib/camelCaseToUnderscores';
 
 
 export default React.createClass({
@@ -15,7 +13,10 @@ export default React.createClass({
         onTranslationSaved: React.PropTypes.func.isRequired,
         onTranslationError: React.PropTypes.func.isRequired,
         objectTypeToTranslate: React.PropTypes.object.isRequired,
-        objectIdToTranslate: React.PropTypes.string.isRequired,
+        objectToTranslate: React.PropTypes.shape({
+            id: React.PropTypes.string.isRequired,
+        }).isRequired,
+        fieldsToTranslate: React.PropTypes.arrayOf(React.PropTypes.string),
     },
 
     mixins: [Translate],
@@ -29,10 +30,16 @@ export default React.createClass({
         };
     },
 
+    getDefaultProps() {
+        return {
+            fieldsToTranslate: ['name', 'shortName', 'description'],
+        };
+    },
+
     componentDidMount() {
         actions.loadLocales();
 
-        store.subscribe((storeState) => {
+        this.disposable = store.subscribe((storeState) => {
             this.setState({
                 ...storeState,
                 translationValues: (storeState.translations || [])
@@ -45,6 +52,10 @@ export default React.createClass({
         });
     },
 
+    componentWillUnmount() {
+        this.disposable && this.disposable.dispose && this.disposable.dispose();
+    },
+
     getLoadingdataElement() {
         return (
             <div style={{textAlign: 'center'}}>
@@ -53,33 +64,28 @@ export default React.createClass({
         );
     },
 
+    renderFieldsToTranslate() {
+        return this.props.fieldsToTranslate
+            .filter(fieldName => fieldName)
+            .map(fieldName => {
+                return (
+                    <div key={fieldName}>
+                        <TextField floatingLabelText={this.getTranslation(camelCaseToUnderscores(fieldName))}
+                                   value={this.state.translationValues[fieldName]}
+                                   fullWidth
+                                   onChange={this._setValue.bind(this, fieldName)}
+                                   onBlur={this._saveValue.bind(this, fieldName)}
+                        />
+                        <div>{this.props.objectToTranslate[fieldName]}</div>
+                    </div>
+                );
+            });
+    },
+
     renderForm() {
         return (
             <div>
-                <div>
-                    <TextField floatingLabelText={this.getTranslation('name')}
-                               value={this.state.translationValues.name}
-                               fullWidth
-                               onChange={this._setValue.bind(this, 'name')}
-                               onBlur={this._saveValue.bind(this, 'name')}
-                    />
-                </div>
-                <div>
-                    <TextField floatingLabelText={this.getTranslation('short_name')}
-                               value={this.state.translationValues.shortName}
-                               fullWidth
-                               onChange={this._setValue.bind(this, 'shortName')}
-                               onBlur={this._saveValue.bind(this, 'shortName')}
-                    />
-                </div>
-                <div>
-                    <TextField floatingLabelText={this.getTranslation('description')}
-                               value={this.state.translationValues.description}
-                               fullWidth
-                               onChange={this._setValue.bind(this, 'description')}
-                               onBlur={this._saveValue.bind(this, 'description')}
-                    />
-                </div>
+                {this.renderFieldsToTranslate()}
             </div>
         );
     },
@@ -106,7 +112,7 @@ export default React.createClass({
     },
 
     _reloadTranslations(locale) {
-        actions.loadTranslationsForObject(this.props.objectIdToTranslate, locale);
+        actions.loadTranslationsForObject(this.props.objectToTranslate.id, locale);
         this.setState({
             currentSelectedLocale: locale,
         });
@@ -123,7 +129,7 @@ export default React.createClass({
     },
 
     _saveValue(property, event) {
-        actions.saveTranslation(property, event.target.value, this.props.objectIdToTranslate, this.props.objectTypeToTranslate, this.state.currentSelectedLocale)
+        actions.saveTranslation(property, event.target.value, this.props.objectToTranslate.id, this.props.objectTypeToTranslate, this.state.currentSelectedLocale)
             .subscribe(this.props.onTranslationSaved, this.props.onTranslationError);
     },
 });

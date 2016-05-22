@@ -28,7 +28,7 @@ export function isEmptyStringOrUndefined(value) {
 isEmptyStringOrUndefined.message = 'value_should_be_empty_string_or_undefined';
 
 export function isRequired(value) {
-    return (Boolean(value) || value === 0);
+    return (Boolean(value) || value === 0 || value === false);
 }
 isRequired.message = 'value_required';
 

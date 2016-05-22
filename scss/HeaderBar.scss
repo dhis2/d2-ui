@@ -223,7 +223,8 @@ input.apps-search[type="text"] {
   height: 44px;
   line-height: 44px;
   text-align: center;
-  width: 105px;
+  min-width: 105px;
+  white-space: nowrap;
 }
 
 .menu-link i.fa {

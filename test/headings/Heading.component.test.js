@@ -23,17 +23,17 @@ describe('Heading component', () => {
         expect(renderedHeading.children().nodes[0]).to.equal('Facility Funding Agency');
     });
 
-    it('should not render a h7 tag', () => {
+    it('should render a span instead of a h7 tag', () => {
         renderComponent({text: 'Facility Funding Agency', level: 7});
 
-        expect(renderedHeading.node).to.equal(null);
+        expect(renderedHeading.is('span')).to.be.true;
     });
 
     it('should pass any additional props to the h1 tag', () => {
-        const styleDef = {fontSize: '2rem'};
-        renderComponent({text: 'Facility Funding Agency', style: styleDef, 'id': 'SomeText'});
+        const classDef = 'my-heading-class';
+        renderComponent({text: 'Facility Funding Agency', className: classDef, 'id': 'SomeText'});
 
         expect(renderedHeading.props().id).to.equal('SomeText');
-        expect(renderedHeading.props().style).to.deep.equal(styleDef);
+        expect(renderedHeading.props().className).to.deep.equal(classDef);
     });
 });
