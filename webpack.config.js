@@ -29,6 +29,7 @@ module.exports = {
         sidebar: './examples/sidebar',
         'icon-picker': './examples/icon-picker',
         'formula-editor': './examples/formula-editor',
+        'header-bar': './examples/header-bar',
     },
     output: {
         path: path.join(__dirname, '/build'),

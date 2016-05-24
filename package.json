@@ -77,6 +77,7 @@
   "dependencies": {
     "d2-utilizr": "^0.2.4",
     "draft-js": "^0.7.0",
+    "lodash": "^4.12.0",
     "loglevel": "1.4.0",
     "moment": "^2.11.2",
     "rx": "^4.0.8"
