@@ -2,7 +2,7 @@ import React from 'react';
 import SelectField from 'material-ui/lib/select-field';
 import MenuItem from 'material-ui/lib/menus/menu-item';
 
-import MuiThemeMixin from '../mui-theme.mixin';
+import MuiThemeMixin from './mui-theme.mixin';
 
 export default React.createClass({
     propTypes: {

@@ -28,6 +28,7 @@ module.exports = {
         'org-unit-tree': './examples/org-unit-tree',
         sidebar: './examples/sidebar',
         'icon-picker': './examples/icon-picker',
+        'form-builder': './examples/form-builder',
     },
     output: {
         path: path.join(__dirname, '/build'),

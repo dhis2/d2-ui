@@ -1,7 +1,7 @@
 import React from 'react';
 import TextField from 'material-ui/lib/text-field';
 
-import MuiThemeMixin from '../mui-theme.mixin';
+import MuiThemeMixin from './mui-theme.mixin';
 
 
 // TODO: Rewrite as ES6 class

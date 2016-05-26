@@ -5,10 +5,10 @@ import LinearProgress from 'material-ui/lib/linear-progress';
 import FlatButton from 'material-ui/lib/flat-button';
 import Dialog from 'material-ui/lib/dialog';
 
-import Translate from 'd2-ui/lib/i18n/Translate.mixin';
+import Translate from '../i18n/Translate.mixin';
 
 import Checkbox from 'material-ui/lib/checkbox';
-import AppTheme from '../theme';
+import AppTheme from './theme';
 
 export default React.createClass({
     propTypes: {
