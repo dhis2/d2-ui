@@ -15,17 +15,19 @@ const searchResultBoxStateStore$ = Store.create({
 });
 
 export function setSearchValue(searchValue) {
-    searchResultBoxStateStore$.setState({ searchValue });
+    searchResultBoxStateStore$.setState({ ...searchResultBoxStateStore$.getState(), searchValue });
 }
 
 export function setHovering(isHoveringOverResults) {
     searchResultBoxStateStore$.setState({
+        ...searchResultBoxStateStore$.getState(),
         isHoveringOverResults,
     });
 }
 
 export function setSearchFieldFocusTo(value) {
     searchResultBoxStateStore$.setState({
+        ...searchResultBoxStateStore$.getState(),
         isSearchFieldFocused: value,
     });
 }
