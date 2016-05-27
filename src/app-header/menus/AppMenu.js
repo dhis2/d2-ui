@@ -28,7 +28,7 @@ const AppMenu = addD2Context(function AppMenu(props, { d2 }) {
 
     return (
         <HeaderMenu
-            name={<div style={{padding: '1rem'}}>{<AppsIcon color={white} />}</div>}
+            name={<div>{<AppsIcon color={white} />}</div>}
             moreButton={moreAppsButton}
             rowItemCount={props.rowItemCount}
             columnItemCount={props.columnItemCount}

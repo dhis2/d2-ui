@@ -12,7 +12,6 @@ import headerBarStore$ from './headerBar.store';
 
 function HeaderBar(props, { d2 }) {
     const { appItems, profileItems, currentUser, settings } = props;
-    console.log(d2);
 
     if (!appItems && !profileItems, !settings) {
         return (<div style={styles.headerBar}><LinearProgress indeterminate /></div>);

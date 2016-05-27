@@ -81,9 +81,6 @@ const InnerHeader = React.createClass({
     },
 
     componentWillMount() {
-        // dhis2.settings.baseUrl = dhis2.settings.baseUrl || '..';
-        // dhis2.menu.ui.initMenu();
-
         this.getSystemSettings(this.context.d2)
             .then(this.getHeaderBarData)
             .catch(this.loadDataFromLocalStorageIfAvailable)
@@ -175,6 +172,7 @@ const InnerHeader = React.createClass({
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
+            textDecoration: 'none',
         };
 
         return (

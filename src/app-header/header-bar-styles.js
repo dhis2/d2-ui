@@ -1,4 +1,4 @@
-import { white } from 'material-ui/lib/styles/colors';
+import { white, black } from 'material-ui/lib/styles/colors';
 
 export function applyUserStyle(user, style) {
     switch (user.userSettings.keyStyle) {
@@ -99,6 +99,8 @@ export default {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
+        textDecoration: 'none',
+        color: black,
     },
 
     menuItemIcon: {
