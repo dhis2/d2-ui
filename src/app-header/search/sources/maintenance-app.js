@@ -7,6 +7,7 @@ import filter from 'lodash/fp/filter';
 import mapValues from 'lodash/fp/mapValues';
 import { prepareMenuItems, translate$, translateMenuItemNames } from '../../headerBar.store';
 import { config } from 'd2/lib/d2';
+import camelCaseToUnderscores from 'd2-utilizr/lib/camelCaseToUnderscores';
 
 const map = curry(mapLd);
 
@@ -74,7 +75,7 @@ map(addToTranslationConfig, flatten(map('items', maintenanceSections)));
 
 const getMenuItemsFromModelName = curry((section, modelName) => {
     return {
-        name: modelName,
+        name: camelCaseToUnderscores(modelName),
         defaultAction: `/dhis-web-maintenance/#/list/${section}/${modelName}`,
         icon: '/icons/dhis-web-maintenance.png',
         description: '',
