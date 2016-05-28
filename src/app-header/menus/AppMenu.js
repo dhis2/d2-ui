@@ -18,10 +18,17 @@ const styles = {
     },
 };
 
+function getBaseUrl(d2) {
+    if (d2.Api) {
+        return d2.Api.getApi().baseUrl.replace('/api', '');
+    }
+    return './'; // Get old base url from local storage
+}
+
 const AppMenu = addD2Context(function AppMenu(props, { d2 }) {
     const menuItems = props.items.map((item, index) => (<HeaderMenuItem key={index} {...item} />));
     const moreAppsButton = (
-        <FlatButton style={styles.moreAppsButton} linkButton={true} href={DHIS_CONFIG.baseUrl + '/dhis-web-commons-about/modules.action'}>
+        <FlatButton style={styles.moreAppsButton} linkButton={true} href={getBaseUrl(d2) + '/dhis-web-commons-about/modules.action'}>
             {d2.i18n.getTranslation('more_applications')}
         </FlatButton>
     );

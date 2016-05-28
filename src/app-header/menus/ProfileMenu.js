@@ -8,6 +8,10 @@ function ProfileMenu(props) {
     const { currentUser, items } = props;
     const menuItems = props.items.map((item, index) => (<HeaderMenuItem key={index} {...item} />));
 
+    if (!currentUser.firstName) {
+        return (<div />);
+    }
+
     return (
         <HeaderMenu
             name={<Avatar style={styles.avatar}>{`${currentUser.firstName.charAt(0)} ${currentUser.surname.charAt(0)}`}</Avatar>}

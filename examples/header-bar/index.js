@@ -5,4 +5,4 @@ import initHeaderBar from '../../src/app-header';
 // http://stackoverflow.com/a/34015469/988941
 injectTapEventPlugin();
 
-initHeaderBar(document.getElementById('header-bar'));
+initHeaderBar(document.getElementById('header-bar'), DHIS_CONFIG.baseUrl + '/api');

@@ -1,10 +1,6 @@
 import React, { PropTypes } from 'react';
 import styles from '../header-bar-styles';
 
-function goTo(url) {
-    window.location = url;
-}
-
 export default function HeaderMenuItem(props) {
     return (
         <a href={props.action} style={styles.menuItemLink}>
@@ -17,8 +13,4 @@ HeaderMenuItem.propTypes = {
     action: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
     icon: PropTypes.string,
-};
-
-HeaderMenuItem.defaultProps = {
-    icon: DHIS_CONFIG.baseUrl + '/icons/program.png',
 };

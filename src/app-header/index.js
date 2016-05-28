@@ -3,33 +3,44 @@ import { render } from 'react-dom';
 import { init } from 'd2/lib/d2';
 import HeaderBar from './HeaderBar';
 
-global.jQuery.ajaxSetup({
-    headers: {
-        Authorization: DHIS_CONFIG.authorization,
-    },
-});
+export function initHeaderBar(domElement, apiLocation, config = { noSchemas: true }) {
+    const d2Config = {
+        ...config,
+        baseUrl: apiLocation,
+    };
 
-export default function initHeaderBar(domElement) {
-    init({ baseUrl: DHIS_CONFIG.baseUrl + '/api', noSchemas: true })
+    // Mock d2 for offline header-bar
+    let d2Context = {
+        currentUser: { userSettings: {} },
+        i18n: { getTranslation(v) { return v; } },
+    };
+
+    const HeaderBarWithContext = React.createClass({
+        childContextTypes: {
+            d2: React.PropTypes.object,
+        },
+
+        getChildContext() {
+            return {
+                d2: d2Context,
+            };
+        },
+
+        render() {
+            return (
+                <HeaderBar />
+            );
+        },
+    });
+
+    init(d2Config)
         .then((d2) => {
-            const HeaderBarWithContext = React.createClass({
-                childContextTypes: {
-                    d2: React.PropTypes.object,
-                },
+            d2Context = d2;
 
-                getChildContext() {
-                    return {
-                        d2: d2,
-                    };
-                },
-
-                render() {
-                    return (
-                        <HeaderBar />
-                    );
-                },
-            });
-
+            render(<HeaderBarWithContext />, domElement);
+        }, () => {
             render(<HeaderBarWithContext />, domElement);
         });
 }
+
+export default initHeaderBar;

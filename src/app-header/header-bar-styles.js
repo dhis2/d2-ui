@@ -4,7 +4,11 @@ export function applyUserStyle(user, style) {
     switch (user.userSettings.keyStyle) {
 
     case 'vietnam/vietnam.css':
-        return Object.assign({}, style, { background: '#b40303' });
+        return Object.assign({}, style, { background: '#B40303' });
+    case 'india/india.css':
+        return Object.assign({}, style, { background: '#EA5911' });
+    case 'green/green.css':
+        return Object.assign({}, style, { background: '#467E4A' });
     }
 
     return style;

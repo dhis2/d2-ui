@@ -15,8 +15,10 @@ const translate = curry(function translate(d2, key) {
     return d2.i18n.getTranslation(key);
 });
 
-const d2$ = Observable.fromPromise(getInstance());
+const d2Offline = { currentUser: { userSettings: {} } };
+const d2$ = Observable.fromPromise(getInstance()).catch(Observable.just(d2Offline));
 const currentUser$ = d2$.map(pluck('currentUser'));
+
 export const translate$ = Observable
     .combineLatest(
         d2$,
@@ -30,22 +32,28 @@ export function translateMenuItemNames(translate, items) {
 
 const removePrefix = (word) => word.replace(/^\.\./, '');
 const isAbsoluteUrl = (url) => /^(?:https?:)?\/\//.test(url);
+const getBaseUrlFromD2 = (d2) => d2.Api.getApi().baseUrl.replace('/api', '');
 
 const addBaseUrlWhenNotAnAbsoluteUrl = curry((baseUrl, url) => isAbsoluteUrl(url) ? url : baseUrl + removePrefix(url));
-const adjustIconUrl = curry((baseUrl, item) => Object.assign({}, item, { icon: addBaseUrlWhenNotAnAbsoluteUrl(baseUrl, item.icon) }));
+const getIconUrl = item => item.icon || '/icons/program.png';
+const adjustIconUrl = curry((baseUrl, item) => Object.assign({}, item, { icon: addBaseUrlWhenNotAnAbsoluteUrl(baseUrl, getIconUrl(item)) }));
 const adjustDefaultActionUrl = curry((baseUrl, item) => Object.assign({}, item, { action: addBaseUrlWhenNotAnAbsoluteUrl(baseUrl, item.defaultAction) }));
-const adjustMenuItemsUrls = compose(adjustIconUrl(DHIS_CONFIG.baseUrl), adjustDefaultActionUrl(DHIS_CONFIG.baseUrl));
+const adjustMenuItemsUrls = (baseUrl) => compose(adjustIconUrl(baseUrl), adjustDefaultActionUrl(baseUrl));
 const getLabelFromName = (item) => Object.assign({}, item, { label: item.displayName || item.name });
 const extractMenuProps = pick(['action', 'icon', 'description', 'label']);
-const prepareMenuItem = compose(extractMenuProps, adjustMenuItemsUrls, getLabelFromName);
-export const prepareMenuItems = map(prepareMenuItem);
+const prepareMenuItem = (baseUrl) => compose(extractMenuProps, adjustMenuItemsUrls(baseUrl), getLabelFromName);
+export const prepareMenuItems = (baseUrl, items) => map(prepareMenuItem(baseUrl), items);
 
 const profileMenuItems$ = Observable
     .combineLatest(translate$, profileSource$, translateMenuItemNames)
-    .map(prepareMenuItems);
+    .combineLatest(d2$, (items, d2) => ({items, d2}))
+    .map(({items, d2}) => prepareMenuItems(getBaseUrlFromD2(d2), items))
+    .catch(Observable.just([]));
 
 const appsMenuItems$ = appsMenuSource$
-    .map(prepareMenuItems);
+    .combineLatest(d2$, (items, d2) => ({items, d2}))
+    .map(({items, d2}) => prepareMenuItems(getBaseUrlFromD2(d2), items))
+    .catch(Observable.just([]));
 
 const headerBarStore$ = Observable
     .combineLatest(

@@ -31,6 +31,15 @@
 <div id="header-bar"></div>
 <div style="height: 10000px">a</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+<script>
+    jQuery.ajaxSetup({
+        headers: {
+            Authorization: 'Basic YWRtaW46ZGlzdHJpY3Q=',
+        },
+    });
+</script>
+
 <script src="header-bar.js"></script>
 </body>
 </html>

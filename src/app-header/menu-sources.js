@@ -60,10 +60,11 @@ function loadMenuItems() {
         .then(d2 => {
             const api = d2.Api.getApi();
 
-            return api.get(DHIS_CONFIG.baseUrl + '/dhis-web-commons/menu/getModules.action');
+            return api.get(d2.Api.getApi().baseUrl.replace('/api', '') + '/dhis-web-commons/menu/getModules.action');
         })
-        .then(({modules}) => modules)
-        .catch((error) => log.error(error));
+        .then(({modules}) => modules);
 }
 
-export const appsMenuSource$ = Observable.fromPromise(loadMenuItems());
+export const appsMenuSource$ = Observable
+    .fromPromise(loadMenuItems())
+    .catch(Observable.just([]));

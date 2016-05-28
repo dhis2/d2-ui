@@ -100,6 +100,10 @@ const InnerHeader = React.createClass({
     },
 
     getSystemSettings(d2) {
+        if (!d2.system) {
+            return Promise.reject(new Error('Offline'));
+        }
+
         return d2.system.settings.all();
     },
 
@@ -121,6 +125,9 @@ const InnerHeader = React.createClass({
     },
 
     getApiBaseUrl() {
+        if (!this.context.d2.Api) {
+            return '/';
+        }
         return this.context.d2.Api.getApi().baseUrl;
     },
 
