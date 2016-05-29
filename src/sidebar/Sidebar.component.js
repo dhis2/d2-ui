@@ -79,6 +79,7 @@ const Sidebar = React.createClass({
             styles: {
                 leftBar: {},
             },
+            onSectionClick: () => {},
         };
     },
 

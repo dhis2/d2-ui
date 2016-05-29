@@ -1,8 +1,8 @@
 
 # D2-UI Changelog
 
-## 0.0.21 (HEAD)
-###### _Not yet released_
+## 0.0.22
+###### _May 10th 2016_
 
 ##### Changed
 
@@ -10,6 +10,9 @@
 - `Sidebar` icons can now be plain strings
   - String icons will be treated as Material Icon ligatures and converted to
     `<FontIcon/>` elements
+- `Sidebar` now takes an optional `onSectionClick(key)` callback prop, which will
+  be called whenever a section header is clicked. Use this to react to clicks on
+  the currently active section.
 
 
 ##### Documentation
@@ -17,14 +20,6 @@
 - Examples that use the DHIS 2 API will read dev server configuration from
   `DHIS2_HOME/config.js[on]`, just like the other front end apps. This file
   should export and object with two properties: `baseUrl` and `authorization`.
-
-
-
-
-## 0.0.20
-###### _April 21st 2016_
-
-No significant changes.
 
 
 
