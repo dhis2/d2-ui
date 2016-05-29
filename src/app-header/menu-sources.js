@@ -1,5 +1,4 @@
 import { Observable } from 'rx';
-import log from 'loglevel';
 import { getInstance, config } from 'd2/lib/d2';
 
 // Profile menu

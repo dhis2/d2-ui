@@ -12,10 +12,6 @@ export function setGrid(grid) {
     );
 }
 
-function getBodyWidth() {
-    return document.querySelector('body').clientWidth;
-}
-
 function setBodyWidth(bodyWidth) {
     headerBarSettingsStore.setState(
         Object.assign({}, headerBarSettingsStore.getState() || {}, {
@@ -23,13 +19,6 @@ function setBodyWidth(bodyWidth) {
         })
     );
 }
-
-Observable
-    .fromEvent(window, 'resize')
-    .debounce(200)
-    .map(getBodyWidth)
-    .startWith(getBodyWidth())
-    .subscribe(setBodyWidth);
 
 setGrid({ x: 3, y: 3 });
 

@@ -1,4 +1,4 @@
-import { getInstance } from 'd2/lib/d2';
+import d2 from 'd2/lib/d2';
 import compose from 'lodash/fp/compose';
 import map from 'lodash/fp/map';
 import headerBarSettingsStore$ from './settings/settings.store';
@@ -16,7 +16,7 @@ const translate = curry(function translate(d2, key) {
 });
 
 const d2Offline = { currentUser: { userSettings: {} } };
-const d2$ = Observable.fromPromise(getInstance()).catch(Observable.just(d2Offline));
+const d2$ = Observable.fromPromise(d2.getInstance()).catch(Observable.just(d2Offline));
 const currentUser$ = d2$.map(pluck('currentUser'));
 
 export const translate$ = Observable

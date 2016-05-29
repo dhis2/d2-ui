@@ -2,6 +2,8 @@ import React from 'react';
 import { render } from 'react-dom';
 import { init } from 'd2/lib/d2';
 import HeaderBar from './HeaderBar';
+import withStateFrom from '../../src/component-helpers/withStateFrom';
+import headerBarStore$ from './headerBar.store';
 
 export function initHeaderBar(domElement, apiLocation, config = { noSchemas: true }) {
     const d2Config = {
@@ -14,6 +16,8 @@ export function initHeaderBar(domElement, apiLocation, config = { noSchemas: tru
         currentUser: { userSettings: {} },
         i18n: { getTranslation(v) { return v; } },
     };
+
+    const HeaderBarWithState = withStateFrom(headerBarStore$, HeaderBar);
 
     const HeaderBarWithContext = React.createClass({
         childContextTypes: {
@@ -28,7 +32,7 @@ export function initHeaderBar(domElement, apiLocation, config = { noSchemas: tru
 
         render() {
             return (
-                <HeaderBar />
+                <HeaderBarWithState />
             );
         },
     });

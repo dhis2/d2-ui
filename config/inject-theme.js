@@ -41,6 +41,13 @@ export function getStubContext() {
                     all: sinon.stub().returns(Promise.resolve({})),
                 },
             },
+            currentUser: {
+                firstName: 'Mark',
+                surname: 'Polak',
+                userSettings: {
+                    keyStyle: 'vietnam/vietnam.css',
+                },
+            },
         },
     };
 }
