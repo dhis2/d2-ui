@@ -2,6 +2,15 @@
 # D2-UI Changelog
 
 ## 0.0.22
+###### _May 29th 2016_
+
+##### Changed
+- Added a new `HeaderBar` component under the `app-header` folder.
+
+##### Documentation
+- The `app-header/HeaderBar` will replace the original `header-bar/HeaderBar` since there are currently apps that still use the old headerbar it is not yet removed. As of DHIS2 2.24 all apps will/should be using the new header bar.
+
+## 0.0.22
 ###### _May 10th 2016_
 
 ##### Changed
