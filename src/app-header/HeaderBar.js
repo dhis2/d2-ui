@@ -11,6 +11,7 @@ import LinearProgress from 'material-ui/lib/linear-progress';
 export default function HeaderBar(props, { d2 }) {
     const { appItems, profileItems, currentUser, settings } = props;
 
+    // If the required props are not passed we're in a loading state.
     if (!appItems && !profileItems && !settings) {
         return (<div style={styles.headerBar}><LinearProgress indeterminate /></div>);
     }

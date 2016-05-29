@@ -12,14 +12,6 @@ export function setGrid(grid) {
     );
 }
 
-function setBodyWidth(bodyWidth) {
-    headerBarSettingsStore.setState(
-        Object.assign({}, headerBarSettingsStore.getState() || {}, {
-            bodyWidth,
-        })
-    );
-}
-
 setGrid({ x: 3, y: 3 });
 
 export default Observable.combineLatest(
@@ -32,7 +24,6 @@ export default Observable.combineLatest(
                 { x: 3, y: 3 },
                 { x: 5, y: 4 },
                 { x: 8, y: 3 },
-                { x: Math.ceil(appItems.length / 4), y: 4 },
-            ],
+            ].concat(appItems ? [{ x: Math.ceil(appItems.length / 4), y: 4 }] : []),
         };
     });

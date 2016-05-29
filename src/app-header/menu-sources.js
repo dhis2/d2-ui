@@ -58,8 +58,9 @@ function loadMenuItems() {
     return getInstance()
         .then(d2 => {
             const api = d2.Api.getApi();
+            const baseUrl = d2.Api.getApi().baseUrl.replace('/api', '') || '';
 
-            return api.get(d2.Api.getApi().baseUrl.replace('/api', '') + '/dhis-web-commons/menu/getModules.action');
+            return api.get(baseUrl + '/dhis-web-commons/menu/getModules.action');
         })
         .then(({modules}) => modules);
 }
