@@ -26,22 +26,19 @@ export default class Legend extends Component {
 
     createLegendItems() {
         const {startValue, endValue, colorScheme} = this.state;
+        const scale = scaleLinear().domain([startValue, endValue]).rangeRound([0, colorScheme.length]);
 
-        const breaks = scaleLinear().domain([startValue, endValue]).ticks(colorScheme.length);
+        const items = colorScheme.map((color, index) => {
+            const startValue = scale.invert(index);
+            const endValue = scale.invert(index + 1);
 
-        console.log(breaks, this.props.items);
-
-        const items = [{
-            name: '0 - 10',
-            startValue: 0,
-            endValue: 10,
-            color: '#333333'
-        },{
-            name: '10 - 20',
-            startValue: 10,
-            endValue: 20,
-            color: '#555555'
-        }];
+            return {
+                name: `${startValue} — ${endValue}`,
+                startValue,
+                endValue,
+                color
+            };
+        });
 
         this.props.onItemsChange(items);
     }
