@@ -8,7 +8,6 @@ import CardText from 'material-ui/lib/card/card-text';
 
 import CheckBox from '../../src/form-fields/check-box.js';
 import SelectField from '../../src/form-fields/drop-down.js';
-import FileUpload from '../../src/form-fields/file-upload.js';
 import MultiToggle from '../../src/form-fields/multi-toggle.js';
 import TextField from '../../src/form-fields/text-field.js';
 
@@ -88,16 +87,6 @@ class FormExample extends React.Component {
                     emptyLabel: "No Options"
                 },
             },
-			{
-				name: 'exampleFileUpload',
-				component: FileUpload,
-				props: {
-					label: 'File Upload Example',
-                    name: 'logo_banner',
-                    value: false,
-                    isEnabled: true,
-                },
-			},
 		];
 		return(
 				<Card>
