@@ -1,5 +1,6 @@
 'use strict';
 
+const isProduction = () => process.argv.indexOf('-p') >= 0;
 const webpack = require('webpack');
 const path = require('path');
 
@@ -22,14 +23,19 @@ console.log(JSON.stringify(dhisConfig, null, 2), '\n');
 
 module.exports = {
     context: __dirname,
-    entry: {
+    entry: isProduction() ?  {
+        'header-bar': './src/app-header/index.js',
+    } : {
         'tree-view': './examples/tree-view',
         'data-table': './examples/data-table',
         'org-unit-tree': './examples/org-unit-tree',
         sidebar: './examples/sidebar',
         'icon-picker': './examples/icon-picker',
+        'formula-editor': './examples/formula-editor',
+        'header-bar': './examples/header-bar',
     },
     output: {
+        library: 'Dhis2HeaderBar',
         path: path.join(__dirname, '/build'),
         filename: '[name].js',
     },
@@ -51,11 +57,20 @@ module.exports = {
         ],
     },
     plugins: [
-        new webpack.optimize.DedupePlugin(),
-        // Replace any occurance of DHIS_CONFIG with an object with baseUrl and authorization props
+        // Set node_env to production to remove extra React logging etc.
         new webpack.DefinePlugin({
-            DHIS_CONFIG: JSON.stringify(dhisConfig),
+            'process.env': {
+                'NODE_ENV': JSON.stringify(isProduction() ? 'production' : 'development'),
+            },
         }),
+        isProduction() ?
+            // Only dedupe on production builds, as the build occasionally bugs out on live reloads
+            new webpack.optimize.DedupePlugin()
+            :
+            // Replace any occurance of DHIS_CONFIG with an object with baseUrl and authorization props
+            new webpack.DefinePlugin({
+                DHIS_CONFIG: JSON.stringify(dhisConfig),
+            }),
     ],
     devServer: {
         contentBase: './examples/',
@@ -65,5 +80,5 @@ module.exports = {
         inline: true,
         compress: true,
     },
-    devtool: ['sourcemap'],
+    devtool: isProduction() ? 'sourcemap' : 'eval-source-map',
 };

@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+    <div id="header"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-rc1/jquery.min.js"></script>
+    <script>
+        jQuery.ajaxSetup({ headers: { Authorization: 'Basic YWRtaW46ZGlzdHJpY3Q=' } });
+    </script>
+    <script type="text/javascript" src="header-bar.js"></script>
+    <script>
+        Dhis2HeaderBar.initHeaderBar(
+            document.querySelector('#header'),
+            'http://localhost:8080/dhis/api'
+        );
+    </script>
