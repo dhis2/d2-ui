@@ -1,6 +1,6 @@
 'use strict';
 
-const isProduction = () => process.argv.includes('-p');
+const isProduction = () => process.argv.indexOf('-p') >= 0;
 const webpack = require('webpack');
 const path = require('path');
 
