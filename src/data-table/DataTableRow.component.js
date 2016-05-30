@@ -4,6 +4,7 @@ import isObject from 'd2-utilizr/lib/isObject';
 import moment from 'moment';
 import IconButton from 'material-ui/lib/icon-button';
 import MoreVert from 'material-ui/lib/svg-icons/navigation/more-vert';
+import Color from './data-value/Color.component';
 
 import Translate from '../i18n/Translate.mixin';
 
@@ -11,6 +12,11 @@ function valueTypeGuess(valueType, value) {
     switch (valueType) {
     case 'DATE':
         return moment(new Date(value)).fromNow();
+    case 'TEXT':
+        if (/#([a-z0-9]{6})$/i.test(value)) {
+            return (<Color value={value} />);
+        }
+        return value;
     default:
         break;
     }
@@ -50,7 +56,7 @@ const DataTableRow = React.createClass({
             const rowValue = getValueAfterValueTypeGuess(this.props.dataSource, columnName);
             let displayValue;
 
-            if (isObject(rowValue)) {
+            if (isObject(rowValue) && (rowValue.displayName || rowValue.name)) {
                 displayValue = rowValue.displayName || rowValue.name || rowValue.toString();
             } else {
                 displayValue = rowValue;

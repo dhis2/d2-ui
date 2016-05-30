@@ -33,6 +33,7 @@ module.exports = {
         'icon-picker': './examples/icon-picker',
         'formula-editor': './examples/formula-editor',
         'header-bar': './examples/header-bar',
+        'legend': './examples/legend',
     },
     output: {
         library: 'Dhis2HeaderBar',
