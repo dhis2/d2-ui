@@ -78,6 +78,16 @@ class FormExample extends React.Component {
                     changeEvent: 'onBlur',
                 },
 			},
+            {
+                name: 'exampleDropDown',
+                value: "1",
+                component: SelectField,
+                props: {
+                    menuItems: [{id:"1", displayName:"Option 1"}, {id:"2", displayName:"Option 2"}],
+                    includeEmpty: false,
+                    emptyLabel: "No Options"
+                },
+            },
 			{
 				name: 'exampleFileUpload',
 				component: FileUpload,
