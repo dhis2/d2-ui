@@ -2,6 +2,7 @@ import React from 'react/addons';
 import {shallow} from 'enzyme';
 
 import DataTableRow from '../../src/data-table/DataTableRow.component';
+import Color from '../../src/data-table/data-value/Color.component';
 
 describe('DataTableRow component', () => {
     let dataTableRow;
@@ -186,6 +187,28 @@ describe('DataTableRow component', () => {
                 dataTableRow = renderComponent(dataTableRowProps).find('.data-table__rows__row__column').first();
 
                 expect(dataTableRow.text()).to.equal('unknown value');
+            });
+
+            it('should render a Color component when the value is a hex color', () => {
+                dataTableRowProps = {
+                    dataSource: dataElement,
+                    columns: ['color'],
+                };
+
+                dataTableRowProps.dataSource.color = '#FF35CC';
+                dataTableRowProps.dataSource.modelDefinition = {
+                    modelValidations: {
+                        color: {
+                            type: 'TEXT',
+                        },
+                    },
+                };
+
+                dataTableRow = renderComponent(dataTableRowProps).find('.data-table__rows__row__column').first();
+
+                expect(dataTableRow.find(Color)).to.have.length(1);
+                expect(dataTableRow.find(Color).props().value).to.equal('#FF35CC');
+
             });
         });
 

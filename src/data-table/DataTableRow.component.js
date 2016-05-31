@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { isValidElement } from 'react';
 import classes from 'classnames';
 import isObject from 'd2-utilizr/lib/isObject';
 import moment from 'moment';
@@ -56,7 +56,9 @@ const DataTableRow = React.createClass({
             const rowValue = getValueAfterValueTypeGuess(this.props.dataSource, columnName);
             let displayValue;
 
-            if (isObject(rowValue) && (rowValue.displayName || rowValue.name)) {
+            // Render objects by name or otherwise by their toString method.
+            // ReactElements are also objects but we want to render them out normally, so they are excluded.
+            if (isObject(rowValue) && !isValidElement(rowValue)) {
                 displayValue = rowValue.displayName || rowValue.name || rowValue.toString();
             } else {
                 displayValue = rowValue;
