@@ -1,7 +1,17 @@
 
 # D2-UI Changelog
 
-## 0.0.22
+## 0.0.25
+###### _June 3rd 2016_
+
+##### Changed
+
+- The logo in the `HeaderBar` components link to
+  `../dhis-web-commons-about/redirect.action` in stead of using the `startModule`
+  system setting value directly. This makes using custom apps as start modules work
+  correctly.
+
+## 0.0.24
 ###### _May 29th 2016_
 
 ##### Changed
