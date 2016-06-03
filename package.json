@@ -1,6 +1,6 @@
 {
   "name": "d2-ui",
-  "version": "0.0.24",
+  "version": "0.0.25",
   "description": "d2-ui",
   "main": "index.js",
   "scripts": {
