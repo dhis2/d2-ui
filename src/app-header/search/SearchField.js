@@ -9,6 +9,8 @@ import { white } from 'material-ui/lib/styles/colors';
 import { config } from 'd2/lib/d2';
 import addD2Context from '../../component-helpers/addD2Context';
 import SearchResults from './SearchResults';
+import { Observable } from 'rx';
+import log from 'loglevel';
 
 config.i18n.strings.add('app_search_placeholder');
 
@@ -44,6 +46,33 @@ class SearchField extends Component {
                 <SearchResults />
             </div>
         );
+    }
+
+    componentDidMount() {
+        const isCtrlPressed = event => event.ctrlKey;
+        const isSpaceKey = event => event.keyCode === 32 || event.key === 'Space';
+        const combineFilters = (...args) => {
+            return function combinedFiltersFn(event) {
+                return args
+                    .map(filterFn => filterFn(event))
+                    .every(filterResult => filterResult === true);
+            };
+        };
+
+        // When Ctrl+Space is pressed focus the search field in the header bar
+        this.disposable = Observable
+            .fromEvent(window, 'keyup')
+            .filter(combineFilters(isCtrlPressed, isSpaceKey))
+            .subscribe(
+                this._focusSearchField,
+                log.error
+            );
+    }
+
+    componentWillUnmount() {
+        if (this.disposable && this.disposable.dispose) {
+            this.disposable.dispose();
+        }
     }
 
     _focusSearchField() {
