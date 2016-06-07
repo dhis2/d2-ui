@@ -31,8 +31,8 @@ const ProfileMenu = addD2Context(function ProfileMenu(props, { d2 }) {
         borderLeft: '1px solid #CCC',
         backgroundColor: '#F5F5F5',
     };
-    // const adjustedRightStyle = applyUserStyle(d2.currentUser, rightSideStyle);
 
+    // TODO: Pull out these styles
     const rightSide = (
         <div style={rightSideStyle}>
             <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
