@@ -26,6 +26,33 @@ class SearchField extends Component {
         this._focusSearchField = this._focusSearchField.bind(this);
     }
 
+    componentDidMount() {
+        const isCtrlPressed = event => event.ctrlKey;
+        const isSpaceKey = event => event.keyCode === 32 || event.key === 'Space';
+        const combineFilters = (...args) => {
+            return function combinedFiltersFn(event) {
+                return args
+                    .map(filterFn => filterFn(event))
+                    .every(filterResult => filterResult === true);
+            };
+        };
+
+        // When Ctrl+Space is pressed focus the search field in the header bar
+        this.disposable = Observable
+            .fromEvent(window, 'keyup') // TODO: Using the window global directly is bad for testability
+            .filter(combineFilters(isCtrlPressed, isSpaceKey))
+            .subscribe(
+                this._focusSearchField,
+                log.error
+            );
+    }
+
+    componentWillUnmount() {
+        if (this.disposable && this.disposable.dispose) {
+            this.disposable.dispose();
+        }
+    }
+
     render() {
         return (
             <div style={styles.searchField}>
@@ -46,33 +73,6 @@ class SearchField extends Component {
                 <SearchResults />
             </div>
         );
-    }
-
-    componentDidMount() {
-        const isCtrlPressed = event => event.ctrlKey;
-        const isSpaceKey = event => event.keyCode === 32 || event.key === 'Space';
-        const combineFilters = (...args) => {
-            return function combinedFiltersFn(event) {
-                return args
-                    .map(filterFn => filterFn(event))
-                    .every(filterResult => filterResult === true);
-            };
-        };
-
-        // When Ctrl+Space is pressed focus the search field in the header bar
-        this.disposable = Observable
-            .fromEvent(window, 'keyup')
-            .filter(combineFilters(isCtrlPressed, isSpaceKey))
-            .subscribe(
-                this._focusSearchField,
-                log.error
-            );
-    }
-
-    componentWillUnmount() {
-        if (this.disposable && this.disposable.dispose) {
-            this.disposable.dispose();
-        }
     }
 
     _focusSearchField() {

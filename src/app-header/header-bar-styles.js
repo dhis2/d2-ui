@@ -1,5 +1,5 @@
-import {white, black} from 'material-ui/lib/styles/colors';
-import {Observable} from 'rx';
+import { white, black } from 'material-ui/lib/styles/colors';
+import { Observable } from 'rx';
 import log from 'loglevel';
 
 export const MENU_ITEM_WIDTH = 125;
@@ -7,11 +7,11 @@ export const MENU_ITEM_WIDTH = 125;
 export function applyUserStyle(user, style) {
     switch (user.userSettings.keyStyle) {
     case 'vietnam/vietnam.css':
-        return Object.assign({}, style, {background: '#B40303'});
+        return Object.assign({}, style, { background: '#B40303' });
     case 'india/india.css':
-        return Object.assign({}, style, {background: '#EA5911'});
+        return Object.assign({}, style, { background: '#EA5911' });
     case 'green/green.css':
-        return Object.assign({}, style, {background: '#467E4A'});
+        return Object.assign({}, style, { background: '#467E4A' });
     default:
         break;
     }
@@ -35,7 +35,7 @@ function getSearchResultsHeight() {
         return maxResultRowsHeight;
     }
 
-    const eightyPercentHeight = Math.max(global.document.documentElement.clientHeight, window.innerHeight || 0) * .8;
+    const eightyPercentHeight = Math.max(global.document.documentElement.clientHeight, window.innerHeight || 0) * 0.8;
 
     if (eightyPercentHeight < maxResultRowsHeight) {
         return eightyPercentHeight;
@@ -50,7 +50,7 @@ if (global.document) {
         .fromEvent(global, 'resize')
         .debounce(300)
         .subscribe(
-            () => Object.assign(styles.searchResults, {maxHeight: getSearchResultsHeight()}),
+            () => Object.assign(styles.searchResults, { maxHeight: getSearchResultsHeight() }),
             log.error
         );
 }

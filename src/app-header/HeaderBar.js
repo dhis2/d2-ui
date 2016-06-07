@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import AppMenu from './menus/AppMenu';
 import ProfileMenu from './menus/ProfileMenu';
 import InnerHeader from './InnerHeader';
@@ -26,5 +26,11 @@ export default function HeaderBar(props, { d2 }) {
     );
 }
 HeaderBar.contextTypes = {
-    d2: React.PropTypes.object,
+    d2: PropTypes.object,
+};
+HeaderBar.propTypes = {
+    appItems: PropTypes.array,
+    profileItems: PropTypes.array,
+    currentUser: PropTypes.object,
+    settings: PropTypes.object,
 };
