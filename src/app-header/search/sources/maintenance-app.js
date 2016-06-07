@@ -11,6 +11,7 @@ import camelCaseToUnderscores from 'd2-utilizr/lib/camelCaseToUnderscores';
 
 const map = curry(mapLd);
 
+// TODO: This is duplicate code from the maintenance-app
 const maintenanceSections = {
     all: {
         items: [],
@@ -71,7 +72,7 @@ function addToTranslationConfig(modelName) {
     config.i18n.strings.add(modelName);
 }
 
-map(addToTranslationConfig, flatten(map('items', maintenanceSections)));
+map(addToTranslationConfig, map(camelCaseToUnderscores, flatten(map('items', maintenanceSections))));
 
 const getMenuItemsFromModelName = curry((section, modelName) => {
     return {
