@@ -5,6 +5,7 @@ import HeaderMenuItem from '../menus/HeaderMenuItem';
 import withStateFrom from '../../component-helpers/withStateFrom';
 import { searchStore$, setHovering } from './search.stores';
 import styles from '../header-bar-styles';
+import NoResults from './NoResults';
 
 function SearchResults(props) {
     if (!props.open) {
@@ -13,11 +14,11 @@ function SearchResults(props) {
 
     const menuItems = (props.searchResults || []).map((item, index) => (<HeaderMenuItem key={index} {...item} />));
 
+    const searchResultBoxContent = menuItems.length ? (<SearchResultsList>{menuItems}</SearchResultsList>) : (<NoResults />);
+
     return (
         <Paper style={styles.searchResults} onMouseEnter={() => setHovering(true)} onMouseLeave={() => setHovering(false)}>
-            <SearchResultsList>
-                {menuItems}
-            </SearchResultsList>
+            {searchResultBoxContent}
         </Paper>
     );
 }
