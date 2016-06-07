@@ -1,15 +1,17 @@
-import { white, black } from 'material-ui/lib/styles/colors';
+import {white, black} from 'material-ui/lib/styles/colors';
+import {Observable} from 'rx';
+import log from 'loglevel';
 
 export const MENU_ITEM_WIDTH = 125;
 
 export function applyUserStyle(user, style) {
     switch (user.userSettings.keyStyle) {
     case 'vietnam/vietnam.css':
-        return Object.assign({}, style, { background: '#B40303' });
+        return Object.assign({}, style, {background: '#B40303'});
     case 'india/india.css':
-        return Object.assign({}, style, { background: '#EA5911' });
+        return Object.assign({}, style, {background: '#EA5911'});
     case 'green/green.css':
-        return Object.assign({}, style, { background: '#467E4A' });
+        return Object.assign({}, style, {background: '#467E4A'});
     default:
         break;
     }
@@ -17,7 +19,41 @@ export function applyUserStyle(user, style) {
     return style;
 }
 
-export default {
+let styles = {};
+
+/**
+ * Calculates the height of the search results box. When the user has a large screen height we fit a max of four rows
+ * of search results onto the screen. If four rows is too big for the current screen size we limit the search results box
+ * to 80% of the current viewport height.
+ *
+ * @returns {number} The height of the search result box in pixels.
+ */
+function getSearchResultsHeight() {
+    if (!global.document) {
+        return MENU_ITEM_WIDTH * 4;
+    }
+
+    const eightyPercentHeight = Math.max(global.document.documentElement.clientHeight, window.innerHeight || 0) * .8;
+
+    if (eightyPercentHeight < (MENU_ITEM_WIDTH * 4)) {
+        return eightyPercentHeight;
+    }
+    return MENU_ITEM_WIDTH * 4;
+}
+
+// Only attach the window resize listener when we have a document
+if (global.document) {
+    // Track the resize event on the window to recalculate the height of the search results box.
+    Observable
+        .fromEvent(global, 'resize')
+        .debounce(300)
+        .subscribe(
+            () => Object.assign(styles.searchResults, {maxHeight: getSearchResultsHeight()}),
+            log.error
+        );
+}
+
+styles = {
     avatar: {
         fontSize: '1.3rem',
         letterSpacing: -2,
@@ -97,6 +133,8 @@ export default {
         right: 0,
         padding: '1rem',
         maxWidth: 673,
+        maxHeight: getSearchResultsHeight(),
+        overflow: 'auto',
     },
 
     searchFieldInput: {
@@ -126,3 +164,5 @@ export default {
         width: 48,
     },
 };
+
+export default styles;
