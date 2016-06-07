@@ -32,7 +32,7 @@ export function translateMenuItemNames(translate, items) {
 
 const removePrefix = (word) => word.replace(/^\.\./, '');
 const isAbsoluteUrl = (url) => /^(?:https?:)?\/\//.test(url);
-const getBaseUrlFromD2 = (d2) => d2.Api.getApi().baseUrl.replace('/api', '');
+export const getBaseUrlFromD2 = (d2) => d2.Api.getApi().baseUrl.replace('/api', '');
 
 const addBaseUrlWhenNotAnAbsoluteUrl = curry((baseUrl, url) => isAbsoluteUrl(url) ? url : baseUrl + removePrefix(url));
 const getIconUrl = item => item.icon || '/icons/program.png';

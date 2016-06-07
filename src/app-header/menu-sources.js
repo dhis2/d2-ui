@@ -39,13 +39,6 @@ export const profileSource$ = Observable.just([
         description: '',
     },
     {
-        name: 'log_out',
-        namespace: '/dhis-web-commons-about',
-        defaultAction: '/dhis-web-commons-security/logout.action',
-        icon: '/icons/function-log-out.png',
-        description: '',
-    },
-    {
         name: 'about_dhis2',
         namespace: '/dhis-web-commons-about',
         defaultAction: '/dhis-web-commons-about/about.action',

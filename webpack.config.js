@@ -80,5 +80,5 @@ module.exports = {
         inline: true,
         compress: true,
     },
-    devtool: isProduction() ? 'sourcemap' : 'eval-source-map',
+    devtool: 'sourcemap',
 };

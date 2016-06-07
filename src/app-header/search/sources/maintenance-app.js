@@ -5,8 +5,8 @@ import { Observable } from 'rx';
 import flatten from 'lodash/fp/flatten';
 import filter from 'lodash/fp/filter';
 import mapValues from 'lodash/fp/mapValues';
-import { prepareMenuItems, translate$, translateMenuItemNames } from '../../headerBar.store';
-import { config } from 'd2/lib/d2';
+import { prepareMenuItems, translate$, translateMenuItemNames, getBaseUrlFromD2 } from '../../headerBar.store';
+import { config, getInstance } from 'd2/lib/d2';
 import camelCaseToUnderscores from 'd2-utilizr/lib/camelCaseToUnderscores';
 
 const map = curry(mapLd);
@@ -98,6 +98,8 @@ export default function addDeepLinksForMaintenance(apps) {
 
     return Observable
         .combineLatest(translate$, maintenanceDeepLinks$, translateMenuItemNames)
-        .map(prepareMenuItems)
+        .flatMap((items) => {
+            return Observable.fromPromise(getInstance().then((d2) => prepareMenuItems(getBaseUrlFromD2(d2), items)));
+        })
         .map(maintenanceItems => [].concat(apps, maintenanceItems));
 }

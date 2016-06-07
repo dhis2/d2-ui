@@ -1,5 +1,4 @@
 import React from 'react';
-import HeaderBarSettingsButton from './settings/HeaderBarSettingsButton';
 import AppMenu from './menus/AppMenu';
 import ProfileMenu from './menus/ProfileMenu';
 import InnerHeader from './InnerHeader';
@@ -22,7 +21,6 @@ export default function HeaderBar(props, { d2 }) {
             <HeaderMenus>
                 <AppMenu items={appItems} rowItemCount={settings.grid.x} columnItemCount={settings.grid.y} />
                 <ProfileMenu items={profileItems} rowItemCount={3} columnItemCount={3} currentUser={currentUser} />
-                <HeaderBarSettingsButton />
             </HeaderMenus>
         </div>
     );

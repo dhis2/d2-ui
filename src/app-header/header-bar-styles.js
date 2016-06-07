@@ -1,14 +1,17 @@
 import { white, black } from 'material-ui/lib/styles/colors';
 
+export const MENU_ITEM_WIDTH = 125;
+
 export function applyUserStyle(user, style) {
     switch (user.userSettings.keyStyle) {
-
     case 'vietnam/vietnam.css':
         return Object.assign({}, style, { background: '#B40303' });
     case 'india/india.css':
         return Object.assign({}, style, { background: '#EA5911' });
     case 'green/green.css':
         return Object.assign({}, style, { background: '#467E4A' });
+    default:
+        break;
     }
 
     return style;
@@ -16,11 +19,15 @@ export function applyUserStyle(user, style) {
 
 export default {
     avatar: {
-        height: 32,
-        width: 32,
         fontSize: '1.3rem',
         letterSpacing: -2,
         lineHeight: '32px',
+    },
+
+    avatarBig: {
+        fontSize: '34px',
+        letterSpacing: -2,
+        lineHeight: '60px',
     },
 
     headerBar: {
@@ -56,6 +63,7 @@ export default {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'flex-end',
+        paddingRight: '2rem',
     },
 
     dropDownWrap: {
@@ -66,11 +74,15 @@ export default {
         overflow: 'hidden',
         width: 400,
         flexDirection: 'column',
+        top: 48,
     },
 
     searchField: {
+        display: 'flex',
         flex: 2,
         position: 'relative',
+        flexDirection: 'row',
+        maxWidth: 720,
     },
 
     searchResultList: {
@@ -84,10 +96,12 @@ export default {
         left: 0,
         right: 0,
         padding: '1rem',
+        maxWidth: 673,
     },
 
     searchFieldInput: {
         color: white,
+        flex: 1,
     },
 
     searchFieldHintText: {
@@ -97,8 +111,8 @@ export default {
     menuItemLink: {
         padding: '1rem',
         display: 'flex',
-        width: '125px',
-        height: '125px',
+        width: MENU_ITEM_WIDTH,
+        height: MENU_ITEM_WIDTH,
         boxSizing: 'border-box',
         flexDirection: 'column',
         alignItems: 'center',

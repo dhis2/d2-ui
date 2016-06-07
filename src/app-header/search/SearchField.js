@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
 import { findDOMNode } from 'react-dom';
-import styles from '../header-bar-styles';
+import styles, { MENU_ITEM_WIDTH } from '../header-bar-styles';
 import TextField from 'material-ui/lib/text-field';
-import { search, searchStore$, setHovering, setSearchFieldFocusTo, hideWhenNotHovering } from './search.stores';
+import { search, handleKeyPress, searchStore$, setHovering, setSearchFieldFocusTo, hideWhenNotHovering } from './search.stores';
 import Paper from 'material-ui/lib/paper';
 import withStateFrom from '../../component-helpers/withStateFrom';
 import HeaderMenuItem from '../menus/HeaderMenuItem';
-import { Observable } from 'rx';
+import IconButton from 'material-ui/lib/icon-button';
+import SearchIcon from 'material-ui/lib/svg-icons/action/search';
+import { white } from 'material-ui/lib/styles/colors';
+import { config } from 'd2/lib/d2';
+import addD2Context from '../../component-helpers/addD2Context';
+
+config.i18n.strings.add('app_search_placeholder');
 
 class SearchResultsList extends Component {
     render() {
@@ -36,7 +42,7 @@ function SearchResults(props) {
 
 const SearchResultsWithState = withStateFrom(searchStore$, SearchResults);
 
-export default class SearchField extends Component {
+class SearchField extends Component {
     constructor(...args) {
         super(...args);
 
@@ -45,6 +51,7 @@ export default class SearchField extends Component {
         };
 
         this._setSearchValue = this._setSearchValue.bind(this);
+        this._focusSearchField = this._focusSearchField.bind(this);
     }
 
     render() {
@@ -55,13 +62,26 @@ export default class SearchField extends Component {
                     onChange={this._setSearchValue}
                     onFocus={this._onFocus}
                     onBlur={this._onBlur}
-                    hintText="Super search for DHIS2! :)" // TODO Translate
+                    hintText={this.context.d2.i18n.getTranslation('app_search_placeholder')}
                     hintStyle={styles.searchFieldHintText}
                     inputStyle={styles.searchFieldInput}
+                    onKeyUp={this._onKeyUp}
+                    ref="searchBox"
                 />
+                <IconButton onClick={this._focusSearchField}>
+                    <SearchIcon color={white} />
+                </IconButton>
                 <SearchResultsWithState />
             </div>
         );
+    }
+
+    _focusSearchField() {
+        const searchField = findDOMNode(this.refs.searchBox);
+
+        if (searchField && searchField !== document.activeElement) {
+            searchField.querySelector('input').focus();
+        }
     }
 
     _setSearchValue(event) {
@@ -75,4 +95,10 @@ export default class SearchField extends Component {
     _onBlur() {
         hideWhenNotHovering();
     }
+
+    _onKeyUp(event) {
+        handleKeyPress(event, Math.floor(event.currentTarget.clientWidth / MENU_ITEM_WIDTH));
+    }
 }
+
+export default addD2Context(SearchField);
