@@ -29,16 +29,18 @@ let styles = {};
  * @returns {number} The height of the search result box in pixels.
  */
 function getSearchResultsHeight() {
+    const maxResultRowsHeight = MENU_ITEM_WIDTH * 4;
+
     if (!global.document) {
-        return MENU_ITEM_WIDTH * 4;
+        return maxResultRowsHeight;
     }
 
     const eightyPercentHeight = Math.max(global.document.documentElement.clientHeight, window.innerHeight || 0) * .8;
 
-    if (eightyPercentHeight < (MENU_ITEM_WIDTH * 4)) {
+    if (eightyPercentHeight < maxResultRowsHeight) {
         return eightyPercentHeight;
     }
-    return MENU_ITEM_WIDTH * 4;
+    return maxResultRowsHeight;
 }
 
 // Only attach the window resize listener when we have a document
