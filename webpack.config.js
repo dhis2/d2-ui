@@ -1,6 +1,6 @@
 'use strict';
 
-const isProduction = () => process.argv.includes('-p');
+const isProduction = () => process.argv.indexOf('-p') >= 0;
 const webpack = require('webpack');
 const path = require('path');
 
@@ -31,6 +31,7 @@ module.exports = {
         'org-unit-tree': './examples/org-unit-tree',
         sidebar: './examples/sidebar',
         'icon-picker': './examples/icon-picker',
+        'form-builder': './examples/form-builder',
         'formula-editor': './examples/formula-editor',
         'header-bar': './examples/header-bar',
     },

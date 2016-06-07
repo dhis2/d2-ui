@@ -233,8 +233,8 @@ const InnerHeader = React.createClass({
         this.setHeaderBarProp('title', applicationTitle || 'District Health Information Software 2');
     },
 
-    setHeaderLink(startModule) {
-        this.setHeaderBarProp('link', [this.getBaseUrl(), startModule || 'dhis-web-dashboard-integration', 'index.action'].join('/'));
+    setHeaderLink() {
+        this.setHeaderBarProp('link', [this.getBaseUrl(), 'dhis-web-commons-about/redirect.action'].join('/'));
     },
 
     requestUserStyle() {

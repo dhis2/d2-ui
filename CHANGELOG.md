@@ -1,6 +1,48 @@
 
 # D2-UI Changelog
 
+## 0.0.26
+###### _June 6th 2016_
+
+##### Added
+
+- Form field components, including examples (thanks @adhbh):
+    - `CheckBox`
+    - `MultiToggle` for displaying multiple related checkboxes
+    - `DropDown`
+    - `TextField` for displaying single or multi-line text boxes
+
+##### Changed
+
+- Disabled the animation of the context menu for the `DataTable` component
+
+
+
+## 0.0.25
+###### _June 3rd 2016_
+
+##### Changed
+
+- The logo in the `HeaderBar` components link to
+  `../dhis-web-commons-about/redirect.action` in stead of using the `startModule`
+  system setting value directly. This makes using custom apps as start modules work
+  correctly.
+
+
+
+
+## 0.0.24
+###### _May 29th 2016_
+
+##### Changed
+- Added a new `HeaderBar` component under the `app-header` folder.
+
+##### Documentation
+- The `app-header/HeaderBar` will replace the original `header-bar/HeaderBar` since there are currently apps that still use the old headerbar it is not yet removed. As of DHIS2 2.24 all apps will/should be using the new header bar.
+
+
+
+
 ## 0.0.22
 ###### _May 10th 2016_
 
