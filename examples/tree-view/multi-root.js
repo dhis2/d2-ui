@@ -1,5 +1,5 @@
 import React from 'react';
-import TreeView from '../../src/tree-view';
+import TreeView from '../../src/tree-view/TreeView.component';
 
 export default class extends React.Component {
     render() {
