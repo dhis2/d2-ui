@@ -57,7 +57,6 @@ function saveToLocalStorage(headerData) {
     if (islocalStorageSupported()) {
         localStorage.setItem('dhis2.menu.ui.headerBar.userStyle', headerData.userStyleUrl);
         localStorage.setItem('dhis2.menu.ui.headerBar.title', headerData.title);
-        localStorage.setItem('dhis2.menu.ui.headerBar.link', headerData.link);
     }
 
     return headerData;
@@ -118,7 +117,6 @@ const InnerHeader = React.createClass({
                 return {
                     userStyleUrl: userStyleUrl || systemSettings.keyCurrentStyle,
                     title: systemSettings.applicationTitle,
-                    link: systemSettings.startModule,
                 };
             })
             .catch(error => log.error(error));
@@ -182,9 +180,11 @@ const InnerHeader = React.createClass({
             textDecoration: 'none',
         };
 
+        const linkHref = [this.getBaseUrl(), 'dhis-web-commons-about/redirect.action'].join('/');
+
         return (
             <div style={Object.assign({ display: 'flex'}, styles.headerTitle)}>
-                <a href={this.state.headerBar.link} title={this.state.headerBar.title} style={linkStyle} className="title-link">
+                <a href={linkHref} title={this.state.headerBar.title} style={linkStyle} className="title-link">
                     <div style={headerBannerWrapperStyle}>
                         <div>
                             <img className="header-logo" src={this.getLogoUrl()} id="headerBanner" style={headerBannerStyle} />
@@ -198,27 +198,23 @@ const InnerHeader = React.createClass({
 
     loadDataFromLocalStorageIfAvailable() {
         let title;
-        let link;
         let userStyle;
 
         // Load values from localStorage if they are available
         if (islocalStorageSupported()) {
             title = localStorage.getItem('dhis2.menu.ui.headerBar.title');
-            link = localStorage.getItem('dhis2.menu.ui.headerBar.link');
             userStyle = localStorage.getItem('dhis2.menu.ui.headerBar.userStyle');
         }
 
         return {
             userStyleUrl: userStyle,
             title: title,
-            link: link,
         };
     },
 
     setHeaderData(userStyleUrl, title, link) {
         this.addUserStyleStylesheet(this.getStylesheetUrl(userStyleUrl));
         this.setHeaderTitle(title);
-        this.setHeaderLink(link);
     },
 
     setHeaderBarProp(name, value) {
@@ -231,10 +227,6 @@ const InnerHeader = React.createClass({
 
     setHeaderTitle(applicationTitle) {
         this.setHeaderBarProp('title', applicationTitle || 'District Health Information Software 2');
-    },
-
-    setHeaderLink() {
-        this.setHeaderBarProp('link', [this.getBaseUrl(), 'dhis-web-commons-about/redirect.action'].join('/'));
     },
 
     requestUserStyle() {
