@@ -97,6 +97,7 @@ class FormExample extends React.Component {
                     onChange: (e, v) => {
                         this._onUpdateField('exampleDatePicker', e.target.value);
                     },
+                    allowFuture: false,
                 },
             },
 		];

@@ -5,7 +5,7 @@ import { DatePicker } from 'material-ui';
 class FutureDatePicker extends React.Component {
     constructor(props) {
         super(props);
-        this.maxDate = new Date();
+        this.maxDate = props.allowFuture ? undefined : new Date();
         this.props = props;
         this._onDateSelect = this._onDateSelect.bind(this);
         this._formatDate = this._formatDate.bind(this);
@@ -63,6 +63,7 @@ FutureDatePicker.propTypes = {
     floatingLabelText: React.PropTypes.string.isRequired,
     onChange: React.PropTypes.func.isRequired,
     dateFormat: React.PropTypes.string.isRequired,
+    allowFuture: React.PropTypes.bool.isRequired,
 };
 
 export default FutureDatePicker;
