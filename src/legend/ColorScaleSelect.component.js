@@ -37,7 +37,7 @@ class ColorScaleSelect extends Component {
     }
     onClassesChange(event, index, value) {
         this.setState({classes: value});
-        console.log(event, index, value);
+        // console.log(event, index, value);
     }
     getColorBrewerScale(scheme, classes) {
         return colorbrewer[scheme][classes];
@@ -54,14 +54,13 @@ class ColorScaleSelect extends Component {
                 padding: 0,
                 cursor: 'pointer',
             },
-            popover: {}
-        };
+            popover: {} };
 
         const items = colors.map((color, index) => {
             const styles = {
                 marginLeft: 0,
                 display: 'inline-block',
-                backgroundColor: color,
+                backgrodColor: color,
                 width: 20,
                 height: 20,
             };
@@ -73,7 +72,7 @@ class ColorScaleSelect extends Component {
             <div>
                 <ColorScale scheme={this.state.scheme} classes={this.state.classes} onClick={this.showColorScales} />
 
-                <SelectField value={this.state.classes} onChange={this.onClassesChange}>
+                <SelectField floatingLabelText="Number of items" value={this.state.classes} onChange={this.onClassesChange}>
                     <MenuItem value={3} primaryText="3"/>
                     <MenuItem value={4} primaryText="4"/>
                     <MenuItem value={5} primaryText="5"/>

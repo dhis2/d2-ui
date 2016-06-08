@@ -6,8 +6,12 @@ export default function ColorScale({scheme, classes, onClick}) {
 
     const styles = {
         list: {
-            padding: 0,
+            paddingLeft: 0,
+            marginRight: 20,
+            height: 25,
             cursor: 'pointer',
+            boxShadow: '0 1px 6px rgba(0,0,0,0.12),0 1px 4px rgba(0,0,0,0.12)',
+            display: 'inline-block',
         }
     };
 
@@ -16,8 +20,8 @@ export default function ColorScale({scheme, classes, onClick}) {
             marginLeft: 0,
             display: 'inline-block',
             backgroundColor: color,
-            width: 20,
-            height: 20,
+            width: 25,
+            height: '100%',
         };
 
         return (<li key={index} style={styles} />);
