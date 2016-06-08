@@ -5,8 +5,6 @@ injectTapEventPlugin();
 import SelectField from 'material-ui/lib/select-field';
 import MenuItem from 'material-ui/lib/menus/menu-item';
 
-import MuiThemeMixin from './mui-theme.mixin';
-
 export default React.createClass({
     propTypes: {
         defaultValue: React.PropTypes.oneOfType([
@@ -26,8 +24,6 @@ export default React.createClass({
         emptyLabel: React.PropTypes.string,
         noOptionsLabel: React.PropTypes.string,
     },
-
-    mixins: [MuiThemeMixin],
 
     getDefaultProps() {
         return {

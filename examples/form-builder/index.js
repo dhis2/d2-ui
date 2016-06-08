@@ -6,10 +6,10 @@ import FormBuilder from '../../src/forms/FormBuilder.component.js';
 import Card from 'material-ui/lib/card/card';
 import CardText from 'material-ui/lib/card/card-text';
 
-import CheckBox from '../../src/form-fields/check-box.js';
-import SelectField from '../../src/form-fields/drop-down.js';
-import MultiToggle from '../../src/form-fields/multi-toggle.js';
-import TextField from '../../src/form-fields/text-field.js';
+import CheckBox from '../../src/form-fields/CheckBox.component.js';
+import SelectField from '../../src/form-fields/DropDown.component.js';
+import MultiToggle from '../../src/form-fields/MultiToggle.js';
+import TextField from '../../src/form-fields/TextField.js';
 
 class FormExample extends React.Component {
 	constructor() {
