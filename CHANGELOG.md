@@ -4,12 +4,22 @@
 ## 0.0.28
 ###### _Not yet released_
 
+##### Breaking changes
+
+- Form field components are renamed in order to follow D2-UI conventions:
+  - `form-fields/check-box.js` is now `form-fields/CheckBox.component.js`
+  - `form-fields/drop-down.js` is now `form-fields/DropDown.component.js`
+  - `form-fields/multi-toggle.js` is now `form-fields/MultiToggle.component.js`
+  - `form-fields/text-field.js` is now `form-fields/TextField.component.js`
+
 ##### Deprecated
 
 - Either `OrgUnitTree` or `OrgUnitTreeMultipleRoots` components should be
   specified explicitly when `import`-ing in order to maintain consistency across
   components. Importing `index.js` in the common org-unit-tree folder is
   deprecated.
+- Likewise, importing `tree-view/index.js` is deprecated as well.
+
 
 
 
@@ -37,6 +47,7 @@
 ##### Changed
 
 - Disabled the animation of the context menu for the `DataTable` component
+
 
 
 
