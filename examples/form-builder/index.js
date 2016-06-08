@@ -10,6 +10,7 @@ import CheckBox from '../../src/form-fields/CheckBox.component.js';
 import SelectField from '../../src/form-fields/DropDown.component.js';
 import MultiToggle from '../../src/form-fields/MultiToggle.js';
 import TextField from '../../src/form-fields/TextField.js';
+import DatePicker from '../../src/form-fields/DatePicker.component.js';
 
 class FormExample extends React.Component {
 	constructor() {
@@ -74,7 +75,6 @@ class FormExample extends React.Component {
                     onCheck: (e, v) => {
                         this._onUpdateField('exampleCheckBox', v ? 'true' : 'false');
                     },
-                    changeEvent: 'onBlur',
                 },
 			},
             {
@@ -85,6 +85,18 @@ class FormExample extends React.Component {
                     menuItems: [{id:"1", displayName:"Option 1"}, {id:"2", displayName:"Option 2"}],
                     includeEmpty: false,
                     emptyLabel: "No Options"
+                },
+            },
+            {
+                name: 'exampleDatePicker',
+                value: new Date(),
+                component: DatePicker,
+                props: {
+                    floatingLabelText: 'Example Date Picker',
+                    dateFormat: 'yyyy-MM-dd',
+                    onChange: (e, v) => {
+                        this._onUpdateField('exampleDatePicker', e.target.value);
+                    },
                 },
             },
 		];
