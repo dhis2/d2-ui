@@ -9,7 +9,7 @@ class FutureDatePicker extends React.Component {
         this.props = props;
         this._onDateSelect = this._onDateSelect.bind(this);
         this._formatDate = this._formatDate.bind(this);
-        this.state = {value: new Date()};
+        this.state = {value: null};
     }
 
     _onDateSelect(event, date) {
