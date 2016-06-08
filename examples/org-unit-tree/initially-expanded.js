@@ -1,6 +1,6 @@
 import React from 'react';
 
-import OrgUnitTree from '../../src/org-unit-tree';
+import OrgUnitTree from '../../src/org-unit-tree/OrgUnitTreeMultipleRoots.component';
 
 
 function InitiallyExpandedExample(props) {

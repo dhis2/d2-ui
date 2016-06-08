@@ -1,5 +1,5 @@
 import React from 'react';
-import OrgUnitTree from '../../src/org-unit-tree';
+import OrgUnitTreeMultipleRoots from '../../src/org-unit-tree/OrgUnitTreeMultipleRoots.component';
 
 export default class extends React.Component {
     constructor(...args) {
@@ -9,18 +9,18 @@ export default class extends React.Component {
             selected: [],
         };
 
-        this._selectionChanged = this._selectionChanged.bind(this)
-    }
-
-    render() {
-        return (
-            <OrgUnitTree {...this.props} selected={this.state.selected} onClick={this._selectionChanged} />
-        );
+        this._selectionChanged = this._selectionChanged.bind(this);
     }
 
     _selectionChanged(event, selectedOu) {
         this.setState({
             selected: selectedOu.id,
         });
+    }
+
+    render() {
+        return (
+            <OrgUnitTreeMultipleRoots {...this.props} selected={this.state.selected} onClick={this._selectionChanged} />
+        );
     }
 }

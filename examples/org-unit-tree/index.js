@@ -4,7 +4,8 @@ import log from 'loglevel';
 import { Card, CardText } from 'material-ui/lib/card';
 
 import D2Lib from 'd2/lib/d2';
-import OrgUnitTree from '../../src/org-unit-tree';
+import OrgUnitTree from '../../src/org-unit-tree/OrgUnitTree.component';
+import OrgUnitTreeMultipleRoots from '../../src/org-unit-tree/OrgUnitTreeMultipleRoots.component';
 
 import InitiallyExpanded from './initially-expanded';
 import SingleSelection from './single-selection';
@@ -51,7 +52,7 @@ function OrgUnitTreeExample(props) {
             <Card style={styles.card}>
                 <CardText style={styles.cardText}>
                     <h3 style={styles.cardHeader}>Plain OrgUnitTree</h3>
-                    <OrgUnitTree root={props.root} />
+                    <OrgUnitTree root={props.root}/>
                 </CardText>
             </Card>
             <Card style={styles.card}>
@@ -59,9 +60,9 @@ function OrgUnitTreeExample(props) {
                     <h3 style={styles.cardHeader}>Three Independent Trees</h3>
                     {props.roots.length > 0 ? (
                         <div>
-                            <OrgUnitTree root={props.roots[0]} />
-                            <OrgUnitTree root={props.roots[1]} />
-                            <OrgUnitTree root={props.roots[2]} />
+                            <OrgUnitTree root={props.roots[0]}/>
+                            <OrgUnitTree root={props.roots[1]}/>
+                            <OrgUnitTree root={props.roots[2]}/>
                         </div>
                     ) : 'Loading...' }
                 </CardText>
@@ -70,7 +71,7 @@ function OrgUnitTreeExample(props) {
                 <CardText style={styles.cardText}>
                     <h3 style={styles.cardHeader}>Multiple roots in one "tree"</h3>
                     {props.roots.length > 0 ? (
-                        <OrgUnitTree roots={props.roots} />
+                        <OrgUnitTreeMultipleRoots roots={props.roots}/>
                     ) : 'Loading...' }
                 </CardText>
             </Card>
@@ -89,47 +90,47 @@ function OrgUnitTreeExample(props) {
             <Card style={styles.card}>
                 <CardText style={styles.cardText}>
                     <h3 style={styles.cardHeader}>Single Selection Tree</h3>
-                    <SingleSelection root={props.root} />
+                    <SingleSelection root={props.root}/>
                 </CardText>
             </Card>
             <Card style={styles.card}>
                 <CardText style={styles.cardText}>
                     <h3 style={styles.cardHeader}>Single Selection with multiple roots</h3>
                     {props.roots.length > 0 ? (
-                        <SingleSelectionMultipleRoots roots={props.roots} />
+                        <SingleSelectionMultipleRoots roots={props.roots}/>
                     ) : 'Loading...' }
                 </CardText>
             </Card>
             <Card style={styles.card}>
                 <CardText style={styles.cardText}>
                     <h3 style={styles.cardHeader}>Multiple Selection Tree</h3>
-                    <MultipleSelection root={props.root} />
+                    <MultipleSelection root={props.root}/>
                 </CardText>
             </Card>
             <Card style={styles.card}>
                 <CardText style={styles.cardText}>
                     <h3 style={styles.cardHeader}>Multiple Selection with multiple roots</h3>
                     {props.roots.length > 0 ? (
-                        <MultipleSelectionMultipleRoots roots={props.roots} />
+                        <MultipleSelectionMultipleRoots roots={props.roots}/>
                     ) : 'Loading...' }
                 </CardText>
             </Card>
             <Card style={styles.card}>
                 <CardText style={styles.cardText}>
                     <h3 style={styles.cardHeader}>Initially Expanded</h3>
-                    <InitiallyExpanded roots={props.root} />
+                    <InitiallyExpanded roots={props.root}/>
                 </CardText>
             </Card>
             <Card style={styles.card}>
                 <CardText style={styles.cardText}>
                     <h3 style={styles.cardHeader}>Initially Expanded Multiple Roots</h3>
-                    <InitiallyExpanded roots={props.roots} selected={['ImspTQPwCqd', 'fdc6uOvgoji']} />
+                    <InitiallyExpanded roots={props.roots} selected={['ImspTQPwCqd', 'fdc6uOvgoji']}/>
                 </CardText>
             </Card>
             <Card style={styles.card}>
                 <CardText style={styles.cardText}>
                     <h3 style={styles.cardHeader}>Initially Expanded, 3 levels pre-loaded</h3>
-                    { props.preRoot ? <InitiallyExpanded roots={props.preRoot} /> : 'Loading...' }
+                    { props.preRoot ? <InitiallyExpanded roots={props.preRoot}/> : 'Loading...' }
                 </CardText>
             </Card>
         </div>
@@ -151,7 +152,7 @@ D2Lib.init({ baseUrl })
             .then(rootLevel => rootLevel.toArray()[0])
             .then(rootUnit => {
                 window.rootUnit = rootUnit;
-                render(<OrgUnitTreeExample root={rootUnit} roots={[]} />, el);
+                render(<OrgUnitTreeExample root={rootUnit} roots={[]}/>, el);
 
                 Promise.all([
                     d2.models.organisationUnits.get('at6UHUQatSo', { fields: 'id,displayName,children::isNotEmpty' }),
@@ -164,7 +165,7 @@ D2Lib.init({ baseUrl })
                 ])
                     .then(roots => [roots[0], roots[1], roots[2].toArray()[0]])
                     .then(roots => {
-                        render(<OrgUnitTreeExample root={rootUnit} roots={roots} />, el);
+                        render(<OrgUnitTreeExample root={rootUnit} roots={roots}/>, el);
                         d2.models.organisationUnits.list({
                             paging: false,
                             level: 1,
@@ -172,7 +173,7 @@ D2Lib.init({ baseUrl })
                         })
                             .then(preRoot => preRoot.toArray()[0])
                             .then(preRoot => {
-                                render(<OrgUnitTreeExample root={rootUnit} roots={roots} preRoot={preRoot} />, el);
+                                render(<OrgUnitTreeExample root={rootUnit} roots={roots} preRoot={preRoot}/>, el);
                             });
                     });
             })
