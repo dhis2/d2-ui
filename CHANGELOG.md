@@ -18,7 +18,10 @@
   specified explicitly when `import`-ing in order to maintain consistency across
   components. Importing `index.js` in the common org-unit-tree folder is
   deprecated.
-- Likewise, importing `tree-view/index.js` is deprecated as well.
+- The same goes for:
+   - `tree-view/index.js`
+   - `formula-editor/index.js`
+   - `icon-picker/index.js`
 
 
 
