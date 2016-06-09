@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import AppMenu from './menus/AppMenu';
 import ProfileMenu from './menus/ProfileMenu';
 import InnerHeader from './InnerHeader';
 import HeaderMenus from './menus/HeaderMenus';
@@ -20,8 +19,12 @@ export default function HeaderBar(props, { d2 }) {
             <InnerHeader />
             <SearchField />
             <HeaderMenus>
-                <AppMenu items={appItems} rowItemCount={settings.grid.x} columnItemCount={settings.grid.y} />
-                <ProfileMenu items={profileItems} rowItemCount={3} columnItemCount={3} currentUser={currentUser} />
+                <ProfileMenu
+                    items={profileItems}
+                    rowItemCount={3}
+                    columnItemCount={3}
+                    currentUser={currentUser}
+                />
             </HeaderMenus>
         </div>
     );

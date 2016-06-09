@@ -50,7 +50,7 @@ const profileMenuItems$ = Observable
     .map(({items, d2}) => prepareMenuItems(getBaseUrlFromD2(d2), items))
     .catch(Observable.just([]));
 
-const appsMenuItems$ = appsMenuSource$
+export const appsMenuItems$ = appsMenuSource$
     .combineLatest(d2$, (items, d2) => ({items, d2}))
     .map(({items, d2}) => prepareMenuItems(getBaseUrlFromD2(d2), items))
     .catch(Observable.just([]));

@@ -4,6 +4,7 @@ import Store from '../../store/Store';
 import { Observable, helpers } from 'rx';
 import addDeepLinksForMaintenance from './sources/maintenance-app';
 import log from 'loglevel';
+import { appsMenuItems$ } from '../headerBar.store';
 
 const searchResultBoxStateStore$ = Store.create({
     getInitialState() {
@@ -70,18 +71,32 @@ export function hideWhenNotHovering() {
 export const search = Action.create('Search Apps');
 search
     .map(action => action.data || '')
-    .debounce(200)
     .subscribe(setSearchValue);
 
 const searchSourceStore$ = headerBarStore$
     .map(headerBarState => [].concat(headerBarState.appItems, headerBarState.profileItems))
     .flatMap(addDeepLinksForMaintenance);
 
-export const searchStore$ = searchResultBoxStateStore$
+export const searchStore$ = Observable
+    .combineLatest(
+        searchResultBoxStateStore$,
+        appsMenuItems$,
+        (searchResult, appsMenuItems) => {
+            if (!searchResult.searchValue) {
+                return {
+                    ...searchResult,
+                    searchResults: appsMenuItems,
+                };
+            }
+
+            return searchResult;
+        }
+    )
     .map((resultState) => ({
         ...resultState,
-        searchResults: resultState.searchResults.map((item, index) => Object.assign({}, item, { selected: resultState.selected === index })),
-        open: Boolean(resultState.isSearchFieldFocused && resultState.searchValue),
+        searchResults: resultState.searchResults
+            .map((item, index) => Object.assign({}, item, { selected: resultState.selected === index })),
+        open: Boolean(resultState.isSearchFieldFocused),
     }));
 
 export const handleKeyPress = Action.create();
@@ -111,7 +126,7 @@ keyPress$
 keyPress$
     .map(actionData => actionData[0])
     .filter(event => event.keyCode === 37 || event.key === 'ArrowLeft')
-    .subscribe(event => setSelectedIndex(-1));
+    .subscribe(() => setSelectedIndex(-1));
 
 // When the left arrow is pressed move the selected item to the next row
 keyPress$

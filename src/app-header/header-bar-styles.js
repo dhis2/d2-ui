@@ -28,7 +28,7 @@ let styles = {};
  *
  * @returns {number} The height of the search result box in pixels.
  */
-function getSearchResultsHeight() {
+export function getSearchResultsHeight() {
     const maxResultRowsHeight = MENU_ITEM_WIDTH * 4;
 
     if (!global.document) {
@@ -97,7 +97,6 @@ styles = {
     },
 
     menusWrap: {
-        flex: 1,
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'flex-end',
@@ -121,6 +120,7 @@ styles = {
         position: 'relative',
         flexDirection: 'row',
         maxWidth: 720,
+        justifyContent: 'flex-end',
     },
 
     searchResultList: {
@@ -133,10 +133,11 @@ styles = {
         top: 48,
         left: 0,
         right: 0,
-        padding: '1rem',
         maxWidth: 673,
         maxHeight: getSearchResultsHeight(),
         overflow: 'auto',
+        transition: 'padding-top .3s cubic-bezier(0.39, -0.04, 0.2, 1), padding-bottom .3s cubic-bezier(0.39, -0.04, 0.2, 1), height .3s cubic-bezier(0.39, -0.04, 0.2, 1)',
+        boxSizing: 'border-box',
     },
 
     searchFieldInput: {
@@ -164,6 +165,24 @@ styles = {
     menuItemIcon: {
         height: 48,
         width: 48,
+    },
+
+    moreAppsButton: {
+        marginTop: '1rem',
+        width: '100%',
+        display: 'block',
+        textAlign: 'center',
+    },
+
+    moreAppsButtonWrap: {
+        width: '100%',
+        padding: '1rem', boxSizing: 'border-box',
+    },
+
+    clearIcon: {
+        position: 'absolute',
+        top: '10px',
+        right: '5px',
     },
 };
 

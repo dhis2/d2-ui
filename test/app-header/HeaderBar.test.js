@@ -49,14 +49,6 @@ describe('HeaderBar', () => {
             expect(component.props().style.background).to.equal('#B40303');
         });
 
-        it('should render the AppMenu', () => {
-            expect(component.find(AppMenu)).to.have.length(1);
-        });
-
-        it('should pass the appItems to the AppMenu', () => {
-            expect(component.find(AppMenu).props().items).to.deep.equal([{ label: 'App item 1', action: 'actionurl', icon: 'icon.png' }]);
-        });
-
         it('should render the ProfileMenu', () => {
             expect(component.find(ProfileMenu)).to.have.length(1);
         });
