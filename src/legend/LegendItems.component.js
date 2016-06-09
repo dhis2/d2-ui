@@ -62,22 +62,9 @@ export default class LegendItems extends Component {
     }
 }
 
-/*
-function updateItem(items) {
-    return items.map((model, index) => {
-        if (index === 0) {
-            model.name = 'Hello';
-        }
-        return model;
-    });
-}
-*/
-
 export default function LegendItems (props) {
-
-
-
 };
+
 LegendItems.propTypes = {
     items: PropTypes.array.isRequired,
 };
