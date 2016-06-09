@@ -1,6 +1,4 @@
-import React from 'react';
-import HeaderBarSettingsButton from './settings/HeaderBarSettingsButton';
-import AppMenu from './menus/AppMenu';
+import React, { PropTypes } from 'react';
 import ProfileMenu from './menus/ProfileMenu';
 import InnerHeader from './InnerHeader';
 import HeaderMenus from './menus/HeaderMenus';
@@ -21,13 +19,22 @@ export default function HeaderBar(props, { d2 }) {
             <InnerHeader />
             <SearchField />
             <HeaderMenus>
-                <AppMenu items={appItems} rowItemCount={settings.grid.x} columnItemCount={settings.grid.y} />
-                <ProfileMenu items={profileItems} rowItemCount={3} columnItemCount={3} currentUser={currentUser} />
-                <HeaderBarSettingsButton />
+                <ProfileMenu
+                    items={profileItems}
+                    rowItemCount={3}
+                    columnItemCount={3}
+                    currentUser={currentUser}
+                />
             </HeaderMenus>
         </div>
     );
 }
 HeaderBar.contextTypes = {
-    d2: React.PropTypes.object,
+    d2: PropTypes.object,
+};
+HeaderBar.propTypes = {
+    appItems: PropTypes.array,
+    profileItems: PropTypes.array,
+    currentUser: PropTypes.object,
+    settings: PropTypes.object,
 };

@@ -12,6 +12,7 @@ config.i18n.strings.add('more_applications');
 
 const styles = {
     moreAppsButton: {
+        marginTop: '1rem',
         width: '375px',
         display: 'block',
         textAlign: 'center',
