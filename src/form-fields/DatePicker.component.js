@@ -55,10 +55,6 @@ class FutureDatePicker extends React.Component {
     }
 };
 
-FutureDatePicker.contextTypes = {
-    d2: React.PropTypes.object,
-};
-
 FutureDatePicker.propTypes = {
     floatingLabelText: React.PropTypes.string.isRequired,
     onChange: React.PropTypes.func.isRequired,
