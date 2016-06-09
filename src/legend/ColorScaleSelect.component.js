@@ -5,8 +5,9 @@ import Popover from 'material-ui/lib/popover/popover';
 import SelectField from 'material-ui/lib/select-field';
 import MenuItem from 'material-ui/lib/menus/menu-item';
 
-const schemes = ['YlOrRd', 'YlGnBu', 'GnBu', 'BuGn', 'PuBuGn'];
+const scales = ['YlOrRd', 'YlGnBu', 'GnBu', 'BuGn', 'PuBuGn'];
 
+// Renders a color scale component consisting of a changeable color scale and number of classes
 class ColorScaleSelect extends Component {
     constructor() {
         super();
@@ -14,65 +15,69 @@ class ColorScaleSelect extends Component {
         this.state = {
             open: false,
             anchorEl: null,
-            scheme: 'YlOrRd',
+            scale: 'YlOrRd',
             classes: 5
         };
-
-        this.showColorScales = this.showColorScales.bind(this);
-        this.handleRequestClose = this.handleRequestClose.bind(this);
-        this.onColorScaleSelect = this.onColorScaleSelect.bind(this);
-        this.onClassesChange = this.onClassesChange.bind(this);
     }
 
     componentDidMount() {
-        this.props.onChange(this.getColorBrewerScale(this.state.scheme, this.state.classes));
+        this.props.onChange(this.getColorBrewerScale(this.state.scale, this.state.classes));
     }
 
-    showColorScales(event) {
+    // Show popover with allowed color scales
+    showColorScales = (event) => {
         this.setState({open: true, anchorEl: event.currentTarget});
     }
-    onColorScaleSelect(event, scheme) {
-        this.setState({scheme: scheme, open: false});
-        this.props.onChange(this.getColorBrewerScale(scheme,this.state.classes));
+
+    // Called when a new color scale is selected in the popover
+    onColorScaleSelect = (event, scale) => {
+        this.setState({scale: scale, open: false});
+        this.props.onChange(this.getColorBrewerScale(scale, this.state.classes));
     }
-    onClassesChange(event, index, value) {
+
+    // Called when the number of classes is changed
+    onClassesChange = (event, index, value) => {
         this.setState({classes: value});
-        // console.log(event, index, value);
     }
-    getColorBrewerScale(scheme, classes) {
-        return colorbrewer[scheme][classes];
+
+    // Returns a color brewer scale for a number of classes
+    getColorBrewerScale(scale, classes) {
+        return colorbrewer[scale][classes];
     }
-    handleRequestClose(reason) {
+
+    // Called when popover is closed
+    onColorScalePopoverClose = (reason) => {
         this.setState({open: false});
     }
+
     render() {
-        const colors = this.getColorBrewerScale(this.state.scheme, this.state.classes);
-        const colorSchemes = schemes.map((scheme, index) => <ColorScale key={index} scheme={scheme} classes={this.state.classes} onClick={this.onColorScaleSelect} />);
-
+        const colors = this.getColorBrewerScale(this.state.scale, this.state.classes);
         const styles = {
-            list: {
-                padding: 0,
-                cursor: 'pointer',
-            },
-            popover: {} };
-
-        const items = colors.map((color, index) => {
-            const styles = {
-                marginLeft: 0,
+            select: {
                 display: 'inline-block',
-                backgrodColor: color,
-                width: 20,
-                height: 20,
-            };
-
-            return (<li key={index} style={styles} />);
-        });
+                position: 'relative',
+                top: -8,
+            },
+            selectField: {
+                width: 120,
+                marginRight: 20,
+            },
+            scale: {
+                position: 'relative',
+                top: 11,
+            },
+            popoverScale: {
+                display: 'block',
+                marginLeft: 20,
+            },
+        };
+        const colorScales = scales.map((scale, index) =>
+            <ColorScale key={index} scale={scale} classes={this.state.classes} style={styles.popoverScale} onClick={this.onColorScaleSelect} />
+        );
 
         return (
-            <div>
-                <ColorScale scheme={this.state.scheme} classes={this.state.classes} onClick={this.showColorScales} />
-
-                <SelectField floatingLabelText="Number of items" value={this.state.classes} onChange={this.onClassesChange}>
+            <div style={styles.select}>
+                <SelectField style={styles.selectField} floatingLabelText="Number of items" value={this.state.classes} onChange={this.onClassesChange}>
                     <MenuItem value={3} primaryText="3"/>
                     <MenuItem value={4} primaryText="4"/>
                     <MenuItem value={5} primaryText="5"/>
@@ -82,15 +87,17 @@ class ColorScaleSelect extends Component {
                     <MenuItem value={9} primaryText="9"/>
                 </SelectField>
 
+                <ColorScale scale={this.state.scale} classes={this.state.classes} style={styles.scale} onClick={this.showColorScales} />
+
                 <Popover
                     open={this.state.open}
                     anchorEl={this.state.anchorEl}
                     anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
                     targetOrigin={{horizontal: 'left', vertical: 'top'}}
-                    onRequestClose={this.handleRequestClose}
+                    onRequestClose={this.onColorScalePopoverClose}
                 >
-                    <div style={styles.popover}>
-                        {colorSchemes}
+                    <div>
+                        {colorScales}
                     </div>
                 </Popover>
             </div>
@@ -99,3 +106,5 @@ class ColorScaleSelect extends Component {
 }
 
 export default ColorScaleSelect;
+
+

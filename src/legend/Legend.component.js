@@ -82,15 +82,25 @@ export default class Legend extends Component {
             />,
         ];
 
+        const styles = {
+            textField: {
+                width: 120,
+                marginRight: 20,
+            },
+            button: {
+                position: 'relative',
+                top: -10,
+            },
+        };
+
         return (
             <div>
-                <TextField floatingLabelText="StartValue" value={this.state.startValue} onChange={(event, value) => this.setState({startValue: event.target.value})} />
-                <TextField floatingLabelText="End value"  value={this.state.endValue} onChange={(event, value) => this.setState({endValue: event.target.value})} />
+                <TextField style={styles.textField} floatingLabelText="StartValue" value={this.state.startValue} onChange={(event, value) => this.setState({startValue: event.target.value})} />
+                <TextField style={styles.textField} floatingLabelText="End value"  value={this.state.endValue} onChange={(event, value) => this.setState({endValue: event.target.value})} />
                 <ColorScaleSelect onChange={this.onColorScaleChange} />
-                <RaisedButton label="Create legend items" onClick={this.displayWarning} />
-                <LegendItems items={this.props.items} updateItem={this.updateItem} /> // If on is changed call this.props.onItemsChange(items);
+                <RaisedButton style={styles.button} label="Create legend items" onClick={this.displayWarning} />
+                <LegendItems items={this.props.items} updateItem={this.updateItem} />
 
-                // Confir dialog
                 <Dialog
                     title='Are you sure?'
                     actions={actions}
