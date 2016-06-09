@@ -12,6 +12,12 @@
   - `form-fields/multi-toggle.js` is now `form-fields/MultiToggle.component.js`
   - `form-fields/text-field.js` is now `form-fields/TextField.component.js`
 
+##### Added
+
+- `DatePicker` component - a thin wrapper around Material-UI DatePicker with
+  added support for formatting dates according to DHIS system settings
+  (thanks @adhbh)
+
 ##### Deprecated
 
 - Either `OrgUnitTree` or `OrgUnitTreeMultipleRoots` components should be
