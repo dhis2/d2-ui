@@ -5,7 +5,11 @@ export default function Color (props) {
     const colorStyle = {
         backgroundColor: props.value,
         color: hcl(props.value).l < 70 ? '#fff' : '#000',
-        textAlign: 'center'
+        textAlign: 'center',
+        position: 'relative',
+        width: 90,
+        height: 36,
+        lineHeight: 2.5,
     };
 
     return (

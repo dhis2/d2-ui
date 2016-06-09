@@ -3,15 +3,19 @@ import Store from '../store/Store';
 import TextField from 'material-ui/lib/text-field';
 import { Observable } from 'rx';
 import ColorPicker from 'react-colorpickr';
+//import { ChromePicker } from 'react-color';
+
 import '../../node_modules/react-colorpickr/dist/colorpickr.css';
 
 const legendItemStore = Store.create();
 
 // ForBuilder currently requires an event to be passed for fields
 function createFakeEvent(color) {
+    console.log(color);
     return {
         target: {
             value: `#${color.hex}`,
+            //value: color.hex,
         },
     };
 };
@@ -28,6 +32,8 @@ const colorPicker = function(props) {
         </div>
     );
 }
+
+// <ChromePicker color={props.value} onChangeComplete={(color) => props.onChange(createFakeEvent(color))} />
 
 const onColorChange = function(color) {
     console.log('onColorchange', color);
@@ -58,7 +64,7 @@ const formFieldsConfigs = [{
     props: {
         floatingLabelText: 'End value',
     },
-}, {
+}, { // Defined in data-table/data-value/Color.component.js
     name: 'color',
     component: colorPicker,
     props: {
