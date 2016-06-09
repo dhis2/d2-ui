@@ -4,6 +4,7 @@ import FlatButton from 'material-ui/lib/flat-button';
 import FloatingActionButton from 'material-ui/lib/floating-action-button';
 import ContentAdd from 'material-ui/lib/svg-icons/content/add';
 import DataTable from '../data-table/DataTable.component';
+//import EditLegendItem from './EditLegendItem.component';
 import { legendItemStore$, openEditDialogFor, onFieldChange } from './LegendItem.store';
 import { setDialogStateToAction } from './LegendItem.actions';
 import withStateFrom from '../component-helpers/withStateFrom';
@@ -67,12 +68,20 @@ export default class LegendItems extends Component {
         };
 
         const styles = {
-            paddingTop: 20,
+            component: {
+                position: 'relative',
+            },
+            button: {
+                float: 'right',
+                position: 'absolute',
+                right: 20,
+                top: -29,
+            }
         };
 
         return (
-            <div style={styles}>
-                <FloatingActionButton onClick={this.onAddLegendItem}>
+            <div style={styles.component}>
+                <FloatingActionButton style={styles.button} onClick={this.onAddLegendItem}>
                     <ContentAdd />
                 </FloatingActionButton>
 
