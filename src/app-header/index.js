@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { init } from 'd2/lib/d2';
 import HeaderBar from './HeaderBar';
-import withStateFrom from '../../src/component-helpers/withStateFrom';
+import withStateFrom from '../component-helpers/withStateFrom';
 import headerBarStore$ from './headerBar.store';
 
 export function initHeaderBar(domElement, apiLocation, config = { noSchemas: true }) {
