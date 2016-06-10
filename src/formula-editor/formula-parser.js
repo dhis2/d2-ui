@@ -1,4 +1,7 @@
-import { concat, curry, compose, map, sortBy } from 'lodash/fp';
+import curry from 'lodash/fp/curry';
+import compose from 'lodash/fp/compose';
+import map from 'lodash/fp/map';
+import sortBy from 'lodash/fp/sortBy';
 
 // parseFormula :: regexp -> formula -> [object]
 const parseFormula = curry(function parseFormula(regexp, formula) {

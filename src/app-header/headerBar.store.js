@@ -1,4 +1,4 @@
-import d2 from 'd2/lib/d2';
+import { getInstance } from 'd2/lib/d2';
 import compose from 'lodash/fp/compose';
 import map from 'lodash/fp/map';
 import headerBarSettingsStore$ from './settings/settings.store';
@@ -16,7 +16,7 @@ const translate = curry(function translate(d2, key) {
 });
 
 const d2Offline = { currentUser: { userSettings: {} } };
-const d2$ = Observable.fromPromise(d2.getInstance()).catch(Observable.just(d2Offline));
+const d2$ = Observable.fromPromise(getInstance()).catch(Observable.just(d2Offline));
 const currentUser$ = d2$.map(pluck('currentUser'));
 
 export const translate$ = Observable
@@ -26,13 +26,13 @@ export const translate$ = Observable
         (d2, translateFn) => translateFn(d2)
     );
 
-export function translateMenuItemNames(translate, items) {
-    return items.map((item) => Object.assign({}, item, { name: translate(item.name) }));
+export function translateMenuItemNames(trans, items) {
+    return items.map((item) => Object.assign({}, item, { name: trans(item.name) }));
 }
 
 const removePrefix = (word) => word.replace(/^\.\./, '');
 const isAbsoluteUrl = (url) => /^(?:https?:)?\/\//.test(url);
-const getBaseUrlFromD2 = (d2) => d2.Api.getApi().baseUrl.replace('/api', '');
+export const getBaseUrlFromD2 = (d2) => d2.Api.getApi().baseUrl.replace('/api', '');
 
 const addBaseUrlWhenNotAnAbsoluteUrl = curry((baseUrl, url) => isAbsoluteUrl(url) ? url : baseUrl + removePrefix(url));
 const getIconUrl = item => item.icon || '/icons/program.png';
@@ -50,7 +50,7 @@ const profileMenuItems$ = Observable
     .map(({items, d2}) => prepareMenuItems(getBaseUrlFromD2(d2), items))
     .catch(Observable.just([]));
 
-const appsMenuItems$ = appsMenuSource$
+export const appsMenuItems$ = appsMenuSource$
     .combineLatest(d2$, (items, d2) => ({items, d2}))
     .map(({items, d2}) => prepareMenuItems(getBaseUrlFromD2(d2), items))
     .catch(Observable.just([]));

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Paper from 'material-ui/lib/paper';
-import styles from '../header-bar-styles';
+import styles, { MENU_ITEM_WIDTH } from '../header-bar-styles';
+import HeaderMenuItems from './HeaderMenuItems';
 
 class HeaderMenu extends Component {
     constructor(...args) {
@@ -15,24 +16,22 @@ class HeaderMenu extends Component {
 
     render() {
         const itemsPerRow = this.props.rowItemCount;
-        const menuWidth = itemsPerRow * 125;
+        const menuWidth = itemsPerRow * MENU_ITEM_WIDTH;
         const { name, children } = this.props;
         const menuStyle = Object.assign({}, styles.dropDownWrap, {
             display: this.state.open ? 'flex' : 'none',
             right: this.state.showScrollBar ? 20 : styles.dropDownWrap.right,
             width: this.state.showScrollBar ? menuWidth + 55 : menuWidth + 35,
-        });
+        }, this.props.menuStyle);
 
-        const useScrollAfterNumberOfRows = this.props.columnItemCount * 125;
-        const calculatedHeight = Math.ceil(children.length / itemsPerRow) * 125;
-        const innerMenuStyle = {
+        const useScrollAfterNumberOfRows = this.props.columnItemCount * MENU_ITEM_WIDTH;
+        const calculatedHeight = Math.ceil(children.length / itemsPerRow) * MENU_ITEM_WIDTH;
+        const innerMenuProps = {
             height: calculatedHeight > useScrollAfterNumberOfRows ? useScrollAfterNumberOfRows : calculatedHeight,
             width: this.state.showScrollBar ? menuWidth + 35 : menuWidth + 55,
-            overflowY: 'scroll',
             marginRight: this.state.showScrollBar ? 0 : -30,
-            display: 'flex',
-            flexWrap: 'wrap',
-            boxSizing: 'content-box',
+            onScroll: this._onScroll.bind(this),
+            padding: this.props.padding,
         };
 
         return (
@@ -44,9 +43,10 @@ class HeaderMenu extends Component {
                 {name}
                 <div style={{paddingTop: 55}}>
                     <Paper style={menuStyle}>
-                        <div style={innerMenuStyle} onScroll={this._onScroll}>
+                        <HeaderMenuItems {...innerMenuProps}>
                             {children}
-                        </div>
+                        </HeaderMenuItems>
+                        {this.props.rightSide}
                         {this.props.moreButton}
                     </Paper>
                 </div>
