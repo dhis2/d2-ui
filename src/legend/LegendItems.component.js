@@ -17,7 +17,7 @@ export default class LegendItems extends Component {
     }
 
     onAddLegendItem = () => {
-        const model = this.context.d2.models.legend.create();
+        //const model = this.context.d2.models.legend.create();
 
         openEditDialogFor(this.context.d2.models.legend.create());
     }
@@ -66,14 +66,11 @@ export default class LegendItems extends Component {
     }
 }
 
-// <EditDialog onItemUpdate={() => props.updateItem(props.items)} />
-
 LegendItems.contextTypes = {
     d2: PropTypes.object,
 };
 
-export default function LegendItems (props) {
-};
+export default function LegendItems (props) {};
 
 LegendItems.propTypes = {
     items: PropTypes.array.isRequired,

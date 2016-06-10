@@ -7,6 +7,7 @@ import ColorScaleSelect from './ColorScaleSelect.component';
 import LegendItems from './LegendItems.component';
 import {scaleLinear} from 'd3-scale';
 import { config } from 'd2/lib/d2';
+import { legendItemStore } from './LegendItem.store';
 
 config.i18n.strings.add('start_value');
 config.i18n.strings.add('end_value');
@@ -58,7 +59,14 @@ export default class Legend extends Component {
     }
 
     updateItem = (newItems) => {
-        this.props.onItemsChange(newItems);
+        const modelToUpdate = legendItemStore.getState().model;
+
+        const isNewLegendItem = !modelToUpdate.id;
+
+        return this.props.onItemsChange([].concat(
+            newItems,
+            isNewLegendItem ? modelToUpdate : []
+        ));
     }
 
     // Check if end value is bigger than start value

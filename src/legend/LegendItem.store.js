@@ -2,18 +2,18 @@ import React, {  Component, PropTypes } from 'react';
 import Store from '../store/Store';
 import TextField from 'material-ui/lib/text-field';
 import { Observable } from 'rx';
-//import ColorPicker from 'react-colorpickr';
-import ChromePicker from 'react-color/lib/components/ChromePicker';
-
-//import '../../node_modules/react-colorpickr/dist/colorpickr.css';
-import {getInstance} from 'd2/lib/d2';
+import ColorPicker from 'react-color/lib/components/ChromePicker';
+import {getInstance, config} from 'd2/lib/d2';
 import camelCaseToUnderscores from 'd2-utilizr/lib/camelCaseToUnderscores'
 
-const legendItemStore = Store.create();
+config.i18n.strings.add('should_be_lower_than_end_value');
+config.i18n.strings.add('should_be_higher_than_start_value');
+
+export const legendItemStore = Store.create();
 
 // FormBuilder currently requires an event to be passed for fields
 function createFakeEvent(color) {
-    console.log(color);
+    // console.log(color);
     return {
         target: {
             value: `#${color.hex}`,
@@ -26,12 +26,9 @@ function createFakeEvent(color) {
 const colorPicker = function(props) {
     // TODO: Decide on default color when creating new legend items
     return (
-
-        <ChromePicker color={props.value} onChangeComplete={(color) => props.onChange(createFakeEvent(color))} />
+        <ColorPicker color={props.value} onChangeComplete={(color) => props.onChange(createFakeEvent(color))} />
     );
 }
-
-// <ColorPicker value={props.value} onChange={(color) => props.onChange(createFakeEvent(color))} />
 
 const onColorChange = function(color) {
     console.log('onColorchange', color);
@@ -82,6 +79,13 @@ export function onFieldChange(fieldName, value) {
     legendItemStore.setState({
         ...legendItemStore.getState(),
         model
+    });
+}
+
+export function onFormStatusChange({valid}) {
+    legendItemStore.setState({
+        ...legendItemStore.getState(),
+        isValid: valid,
     });
 }
 
