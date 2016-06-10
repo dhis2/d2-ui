@@ -3,7 +3,7 @@ import Dialog from 'material-ui/lib/dialog';
 import FlatButton from 'material-ui/lib/flat-button';
 import FloatingActionButton from 'material-ui/lib/floating-action-button';
 import ContentAdd from 'material-ui/lib/svg-icons/content/add';
-import DataTable from '../../src/data-table/DataTable.component';
+import DataTable from '../data-table/DataTable.component';
 import EditLegendItem from './EditLegendItem.component';
 import { openEditDialogFor } from './LegendItem.store';
 
