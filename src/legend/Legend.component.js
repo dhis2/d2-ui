@@ -36,29 +36,29 @@ export default class Legend extends Component {
     }
 
     onColorScaleChange = (colorScheme) => {
-        this.setState({colorScheme});
+        this.setState({ colorScheme });
     }
 
     createLegendItems = () => {
-        const {startValue, endValue, colorScheme, classes} = this.state;
+        const d2 = this.context.d2;
+        const { startValue, endValue, colorScheme } = this.state;
         const scale = scaleLinear().domain([startValue, endValue]).rangeRound([0, colorScheme.length]);
 
-        console.log('scale', scale);
-
         const items = colorScheme.map((color, index) => {
-            const startValue = scale.invert(index);
-            const endValue = scale.invert(index + 1);
+            const start = scale.invert(index);
+            const end = scale.invert(index + 1);
+            const legend = d2.models.legend.create();
 
-            return {
-                name: `${startValue} — ${endValue}`,
-                startValue,
-                endValue,
-                color
-            };
+            legend.name = `${start} — ${end}`;
+            legend.startValue = start;
+            legend.endValue = end;
+            legend.color = color;
+
+            return legend;
         });
 
         this.props.onItemsChange(items);
-    }
+    };
 
     deleteItem = (modelToDelete) => {
         const newItems = this.props.items.filter(model => model !== modelToDelete);
@@ -97,8 +97,8 @@ export default class Legend extends Component {
         this.setState({
             errorMessage: {
                 startValue: Number(state.startValue) >= Number(state.endValue) ? this.i18n.getTranslation('should_be_lower_than_end_value') : '',
-                endValue: Number(state.endValue) <= Number(state.startValue) ? this.i18n.getTranslation('should_be_higher_than_start_value') : ''
-            }
+                endValue: Number(state.endValue) <= Number(state.startValue) ? this.i18n.getTranslation('should_be_higher_than_start_value') : '',
+            },
         });
 
         /*
@@ -160,7 +160,7 @@ export default class Legend extends Component {
                     style={styles.textField}
                     floatingLabelText={this.i18n.getTranslation('start_value')}
                     value={this.state.startValue}
-                    onChange={(event, value) => this.setState({startValue: event.target.value})}
+                    onChange={(event) => this.setState({startValue: event.target.value})}
                     errorText={this.state.errorMessage.startValue}
                 />
                 <TextField
@@ -168,7 +168,7 @@ export default class Legend extends Component {
                     style={styles.textField}
                     floatingLabelText={this.i18n.getTranslation('end_value')}
                     value={this.state.endValue}
-                    onChange={(event, value) => this.setState({endValue: event.target.value})}
+                    onChange={(event) => this.setState({endValue: event.target.value})}
                     errorText={this.state.errorMessage.endValue}
                 />
                 <ColorScaleSelect onChange={this.onColorScaleChange} />
@@ -187,7 +187,7 @@ export default class Legend extends Component {
             </div>
         );
     }
-};
+}
 Legend.propTypes = {
     items: PropTypes.array.isRequired,
 };

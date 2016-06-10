@@ -45,7 +45,60 @@ function renderExamples(d2) {
     class Example extends React.Component {
         constructor() {
             super();
-            const model = d2.models.legendSet.create({"id":"fqs276KXCXi","name":"ANC Coverage","legends":[{"name":"Medium Plus","id":"Pn6IoBWiJpe","endValue":70.0,"color":"#FF6600","startValue":60.0,"attributeValues":[]},{"name":"Low","id":"lrs5w0hTJtE","endValue":40.0,"color":"#FF0000","startValue":0.0,"attributeValues":[]},{"name":"Medium","id":"QokQceufnau","endValue":60.0,"color":"#993300","startValue":40.0,"attributeValues":[]},{"name":"High Plus","id":"JVBtpZGG2Rh","endValue":90.0,"color":"#339966","startValue":80.0,"attributeValues":[]},{"name":"High","id":"epVTNHmMDlk","endValue":80.0,"color":"#99CC00","startValue":70.0,"attributeValues":[]},{"name":"Great","id":"VwpNfwNQX3m","endValue":120.0,"color":"#00FF00","startValue":90.0,"attributeValues":[]},{"name":"Invalid","id":"Va71FXFjb4w","endValue":990.0,"color":"#99CCFF","startValue":120.0,"attributeValues":[]}]});
+            const model = d2.models.legendSet.create({
+                "id": "fqs276KXCXi",
+                "name": "ANC Coverage",
+                "legends": [{
+                    "name": "Medium Plus",
+                    "id": "Pn6IoBWiJpe",
+                    "endValue": 70.0,
+                    "color": "#FF6600",
+                    "startValue": 60.0,
+                    "attributeValues": []
+                }, {
+                    "name": "Low",
+                    "id": "lrs5w0hTJtE",
+                    "endValue": 40.0,
+                    "color": "#FF0000",
+                    "startValue": 0.0,
+                    "attributeValues": []
+                }, {
+                    "name": "Medium",
+                    "id": "QokQceufnau",
+                    "endValue": 60.0,
+                    "color": "#993300",
+                    "startValue": 40.0,
+                    "attributeValues": []
+                }, {
+                    "name": "High Plus",
+                    "id": "JVBtpZGG2Rh",
+                    "endValue": 90.0,
+                    "color": "#339966",
+                    "startValue": 80.0,
+                    "attributeValues": []
+                }, {
+                    "name": "High",
+                    "id": "epVTNHmMDlk",
+                    "endValue": 80.0,
+                    "color": "#99CC00",
+                    "startValue": 70.0,
+                    "attributeValues": []
+                }, {
+                    "name": "Great",
+                    "id": "VwpNfwNQX3m",
+                    "endValue": 120.0,
+                    "color": "#00FF00",
+                    "startValue": 90.0,
+                    "attributeValues": []
+                }, {
+                    "name": "Invalid",
+                    "id": "Va71FXFjb4w",
+                    "endValue": 990.0,
+                    "color": "#99CCFF",
+                    "startValue": 120.0,
+                    "attributeValues": []
+                }]
+            });
 
             this.state = {
                 items: model.legends.toArray(),
@@ -71,17 +124,6 @@ function renderExamples(d2) {
     Example.childContextTypes = {
         muiTheme: React.PropTypes.object,
         d2: React.PropTypes.object,
-    };
-
-    const myRows = [
-        { firstName: 'Mark', lastName: 'Polak' },
-        { firstName: 'Nicolay', lastName: 'Ramm' },
-    ];
-
-    const cma = {
-        edit: function (...args) {
-            console.log('Edit', ...args);
-        },
     };
 
     const app = (
