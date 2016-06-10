@@ -1,8 +1,6 @@
 import React from 'react';
 import TextField from 'material-ui/lib/text-field';
 
-import MuiThemeMixin from './mui-theme.mixin';
-
 
 // TODO: Rewrite as ES6 class
 /* eslint-disable react/prefer-es6-class */
@@ -11,8 +9,6 @@ export default React.createClass({
         value: React.PropTypes.string,
         multiLine: React.PropTypes.bool,
     },
-
-    mixins: [MuiThemeMixin],
 
     getInitialState() {
         return {

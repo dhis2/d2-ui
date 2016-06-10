@@ -1,6 +1,47 @@
 
 # D2-UI Changelog
 
+## 0.0.28
+###### _Not yet released_
+
+##### Breaking changes
+
+- Form field components are renamed in order to follow D2-UI conventions:
+  - `form-fields/check-box.js` is now `form-fields/CheckBox.component.js`
+  - `form-fields/drop-down.js` is now `form-fields/DropDown.component.js`
+  - `form-fields/multi-toggle.js` is now `form-fields/MultiToggle.component.js`
+  - `form-fields/text-field.js` is now `form-fields/TextField.component.js`
+
+##### Added
+
+- `DatePicker` component - a thin wrapper around Material-UI DatePicker with
+  added support for formatting dates according to DHIS system settings
+  (thanks @adhbh)
+
+##### Deprecated
+
+- Either `OrgUnitTree` or `OrgUnitTreeMultipleRoots` components should be
+  specified explicitly when `import`-ing in order to maintain consistency across
+  components. Importing `index.js` in the common org-unit-tree folder is
+  deprecated.
+- The same goes for:
+   - `tree-view/index.js`
+   - `formula-editor/index.js`
+   - `icon-picker/index.js`
+
+
+
+
+## 0.0.27
+###### _June 7th 2016_
+
+##### Added
+
+- `HeaderBar` search index files in `src/app-header/search/sources`
+
+
+
+
 ## 0.0.26
 ###### _June 6th 2016_
 
@@ -15,6 +56,7 @@
 ##### Changed
 
 - Disabled the animation of the context menu for the `DataTable` component
+
 
 
 
@@ -38,7 +80,9 @@
 - Added a new `HeaderBar` component under the `app-header` folder.
 
 ##### Documentation
-- The `app-header/HeaderBar` will replace the original `header-bar/HeaderBar` since there are currently apps that still use the old headerbar it is not yet removed. As of DHIS2 2.24 all apps will/should be using the new header bar.
+- The `app-header/HeaderBar` will replace the original `header-bar/HeaderBar`
+  since there are currently apps that still use the old headerbar it is not yet
+  removed. As of DHIS2 2.24 all apps will/should be using the new header bar.
 
 
 
@@ -72,7 +116,8 @@
 ##### Changed
 
 - `FormBuilder` has new styling props:
-  - `style` is applied to the element that contains the entire `FormBuilder` component
+  - `style` is applied to the element that contains the entire `FormBuilder`
+    component
   - `fieldWrapStyle` is applied to the element that wraps each form field
 
 
@@ -83,8 +128,8 @@
 
 ##### Breaking changes
 
-- `Validators.isNumber()` now accepts numbers, numeric strings, the empty string and
-  `undefined` (see [#34](../../issues/34))
+- `Validators.isNumber()` now accepts numbers, numeric strings, the empty string
+  and `undefined` (see [#34](../../issues/34))
 - `FormBuilder` component behavior has changed (needs to be documented)
 - `Sidebar` width has increased from `256px` to `295px`
 
@@ -102,9 +147,11 @@
 - `FormBuilder` will now run synchronous validators on every `onChange` event even
   for fields that have `changeEvent="onBlur"`. Async validators are still only
   executed on `onBlur` events.
-- `DataTable` context menu is available from a menu icon button in addition to right click
+- `DataTable` context menu is available from a menu icon button in addition to
+  right click
 - `Sidebar` component now has support for icons using the `section.icon` prop
-- `HeaderBar` component displays the full profile name in stead of the string `"Profile"`
+- `HeaderBar` component displays the full profile name in stead of the string
+  `"Profile"`
 
 ##### Documentation
 
