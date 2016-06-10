@@ -26,13 +26,8 @@ export default class LegendItems extends Component {
         const props = this.props;
 
         const actions = {
-            edit: (model) => {
-                openEditDialogFor(model);
-            },
-            delete: (v) => {
-                const newList = props.items.filter(model => model.id !== v.id);
-                props.updateItem(newList);
-            },
+            edit: openEditDialogFor,
+            delete: props.deleteItem,
         };
 
         const styles = {
@@ -47,6 +42,8 @@ export default class LegendItems extends Component {
             }
         };
 
+        const orderedItems = props.items.sort((left, right) => Number(left.startValue) > Number(right.startValue));
+
         return (
             <div style={styles.component}>
                 <FloatingActionButton style={styles.button} onClick={this.onAddLegendItem}>
@@ -54,7 +51,7 @@ export default class LegendItems extends Component {
                 </FloatingActionButton>
 
                 <DataTable
-                    rows={props.items}
+                    rows={orderedItems}
                     columns={['name', 'startValue', 'endValue', 'color']}
                     primaryAction={() => {}}
                     contextMenuActions={actions}
