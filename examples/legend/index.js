@@ -14,7 +14,6 @@ import D2Lib from 'd2/lib/d2';
 
 import DataTable from '../../src/data-table/DataTable.component';
 import '../../scss/DataTable.scss';
-import Legend from '../../src/legend/Legend.component';
 
 const style = {
     spacing: Spacing,
@@ -34,7 +33,7 @@ const style = {
     },
 };
 
-
+import Legend from '../../src/legend/Legend.component';
 
 jQuery.ajaxSetup({ headers: { Authorization: DHIS_CONFIG.authorization } });
 const baseUrl = `${DHIS_CONFIG.baseUrl}/api`;

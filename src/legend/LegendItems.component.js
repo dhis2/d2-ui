@@ -4,44 +4,12 @@ import FlatButton from 'material-ui/lib/flat-button';
 import FloatingActionButton from 'material-ui/lib/floating-action-button';
 import ContentAdd from 'material-ui/lib/svg-icons/content/add';
 import DataTable from '../../src/data-table/DataTable.component';
-//import EditLegendItem from './EditLegendItem.component';
-import { legendItemStore$, openEditDialogFor, onFieldChange } from './LegendItem.store';
-import { setDialogStateToAction } from './LegendItem.actions';
-import withStateFrom from '../component-helpers/withStateFrom';
-import FormBuilder from '../forms/FormBuilder.component';
-
-// TODO: Separate component
-const EditDialog = withStateFrom(legendItemStore$, function ({ fieldConfigs = [], open = false, onItemUpdate }) {
-    const onClose = function() {
-        setDialogStateToAction(false);
-        onItemUpdate();
-    }
-
-    const actions = [
-        <FlatButton
-            label="Close"
-            primary={true}
-            onTouchTap={onClose}
-        />,
-    ];
-
-    return (
-        <Dialog
-            title='Edit legend item'
-            modal={false}
-            open={open}
-            onRequestClose={onClose}
-            actions={actions}
-        >
-            <FormBuilder fields={fieldConfigs} onUpdateField={onFieldChange} />
-
-        </Dialog>
-    );
-});
+import EditLegendItem from './EditLegendItem.component';
+import { openEditDialogFor } from './LegendItem.store';
 
 export default class LegendItems extends Component {
-    constructor() {
-        super();
+    constructor(...args) {
+        super(...args);
 
         this.state = {
             editDialogOpen: false,
@@ -92,11 +60,14 @@ export default class LegendItems extends Component {
                     contextMenuActions={actions}
                 />
 
-                <EditDialog onItemUpdate={() => props.updateItem(props.items)} />
+                <EditLegendItem onItemUpdate={() => props.updateItem(props.items)} />
             </div>
         );
     }
 }
+
+// <EditDialog onItemUpdate={() => props.updateItem(props.items)} />
+
 LegendItems.contextTypes = {
     d2: PropTypes.object,
 };

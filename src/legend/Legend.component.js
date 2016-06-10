@@ -6,37 +6,39 @@ import Dialog from 'material-ui/lib/dialog';
 import ColorScaleSelect from './ColorScaleSelect.component';
 import LegendItems from './LegendItems.component';
 import {scaleLinear} from 'd3-scale';
+import { config } from 'd2/lib/d2';
 
+config.i18n.strings.add('start_value');
+config.i18n.strings.add('end_value');
+config.i18n.strings.add('required');
+config.i18n.strings.add('cancel');
+config.i18n.strings.add('proceed');
+config.i18n.strings.add('needs_to_be_bigger_than_start_value');
+config.i18n.strings.add('are_you_sure');
+config.i18n.strings.add('this_will_replace_the_current_legend_items');
+config.i18n.strings.add('create_legend_items');
 
 export default class Legend extends Component {
-    constructor() {
-        super();
+    constructor(...args) {
+        super(...args);
 
         this.state = {
             startValue: 0,
             endValue: 100,
             warningDialogOpen: false,
+            errorMessage: {},
         };
 
-        this.onColorScaleChange = this.onColorScaleChange.bind(this);
-        this.displayWarning = this.displayWarning.bind(this);
-        this.createLegendItems = this.createLegendItems.bind(this);
+        this.i18n = this.context.d2.i18n;
+
         this.updateItem = this.updateItem.bind(this);
     }
 
-    onColorScaleChange(colorScheme) {
-        this.setState({colorScheme})
+    onColorScaleChange = (colorScheme) => {
+        this.setState({colorScheme});
     }
 
-    // Make sure user want to replace current legend items
-    //displayWarning() {
-     //   console.log('warning');
-
-        //  this.createLegendItems();
-    //}
-    //}
-
-    createLegendItems() {
+    createLegendItems = () => {
         const {startValue, endValue, colorScheme} = this.state;
         const scale = scaleLinear().domain([startValue, endValue]).rangeRound([0, colorScheme.length]);
 
@@ -55,10 +57,48 @@ export default class Legend extends Component {
         this.props.onItemsChange(items);
     }
 
-    updateItem(newItems) {
+    updateItem = (newItems) => {
         this.props.onItemsChange(newItems);
     }
 
+    // Check if end value is bigger than start value
+    validateForm = () => {
+        const state = this.state;
+
+        /*
+        if (state.startValue === '' || state.endValue === '') {
+            alert('Start and end values are required.'); // TODO: Show message below field + i18n
+            return;
+        }
+        */
+
+        //let endValue = '';
+
+
+
+        this.setState({
+            errorMessage: {
+                startValue: state.startValue === '' ? this.i18n.getTranslation('required') : '',
+                endValue: state.endValue <= state.startValue ? this.i18n.getTranslation('needs_to_be_bigger_than_start_value') : ''
+            }
+        });
+
+        /*
+        this.setState({
+            errorMessage: {
+                endValue: state.endValue <= state.startValue ? this.i18n.getTranslation('needs_to_be_bigger_than_start_value') : ''
+            }
+        });
+        */
+
+        if (state.startValue === '' || state.endValue <= state.startValue ) {
+            return;
+        }
+
+        this.displayWarning();
+    }
+
+    // Display warning that current legend items will be deleted
     displayWarning = () => {
         this.setState({warningDialogOpen: true});
     }
@@ -71,12 +111,12 @@ export default class Legend extends Component {
     render() {
         const actions = [
             <FlatButton
-                label="Cancel"
+                label={this.i18n.getTranslation('cancel')}
                 secondary={true}
                 onTouchTap={this.handleClose}
             />,
             <FlatButton
-                label="Proceed"
+                label={this.i18n.getTranslation('proceed')}
                 primary={true}
                 onTouchTap={this.handleClose}
             />,
@@ -84,7 +124,7 @@ export default class Legend extends Component {
 
         const styles = {
             textField: {
-                width: 120,
+                width: 160,
                 marginRight: 20,
             },
             button: {
@@ -95,20 +135,34 @@ export default class Legend extends Component {
 
         return (
             <div>
-                <TextField style={styles.textField} floatingLabelText="StartValue" value={this.state.startValue} onChange={(event, value) => this.setState({startValue: event.target.value})} />
-                <TextField style={styles.textField} floatingLabelText="End value"  value={this.state.endValue} onChange={(event, value) => this.setState({endValue: event.target.value})} />
+                <TextField
+                    type="number"
+                    style={styles.textField}
+                    floatingLabelText={this.i18n.getTranslation('start_value')}
+                    value={this.state.startValue}
+                    onChange={(event, value) => this.setState({startValue: event.target.value})}
+                    errorText={this.state.errorMessage.startValue}
+                />
+                <TextField
+                    type="number"
+                    style={styles.textField}
+                    floatingLabelText={this.i18n.getTranslation('end_value')}
+                    value={this.state.endValue}
+                    onChange={(event, value) => this.setState({endValue: event.target.value})}
+                    errorText={this.state.errorMessage.endValue}
+                />
                 <ColorScaleSelect onChange={this.onColorScaleChange} />
-                <RaisedButton style={styles.button} label="Create legend items" onClick={this.displayWarning} />
+                <RaisedButton style={styles.button} label={this.i18n.getTranslation('create_legend_items')} onClick={this.validateForm} />
                 <LegendItems items={this.props.items} updateItem={this.updateItem} />
 
                 <Dialog
-                    title='Are you sure?'
+                    title={this.i18n.getTranslation('are_you_sure')}
                     actions={actions}
                     modal={false}
                     open={this.state.warningDialogOpen}
                     onRequestClose={this.handleClose}
                 >
-                    This will replace your current legend items.
+                    {this.i18n.getTranslation('this_will_replace_the_current_legend_items')}
                 </Dialog>
             </div>
         );
@@ -116,4 +170,7 @@ export default class Legend extends Component {
 };
 Legend.propTypes = {
     items: PropTypes.array.isRequired,
+};
+Legend.contextTypes = {
+    d2: PropTypes.object,
 };

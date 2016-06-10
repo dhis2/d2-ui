@@ -5,8 +5,6 @@ import colorbrewer from './colorbrewer';
 export default function ColorScale({scale, classes, style, onClick}) {
     const colors = colorbrewer[scale][classes];
 
-    // console.log(style); // TODO: Why is it called twice?
-
     const styles = {
         scale: {
             paddingLeft: 0,
@@ -37,4 +35,3 @@ export default function ColorScale({scale, classes, style, onClick}) {
         </ul>
     );
 }
-

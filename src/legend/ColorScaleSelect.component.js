@@ -4,13 +4,49 @@ import colorbrewer from './colorbrewer';
 import Popover from 'material-ui/lib/popover/popover';
 import SelectField from 'material-ui/lib/select-field';
 import MenuItem from 'material-ui/lib/menus/menu-item';
+import { config } from 'd2/lib/d2';
 
-const scales = ['YlOrRd', 'YlGnBu', 'GnBu', 'BuGn', 'PuBuGn'];
+config.i18n.strings.add('number_of_items');
+
+// Allowed color scales from ColorBrewer (needs to have at least 9 classes)
+const scales = [
+    'YlGn',
+    'YlGnBu',
+    'GnBu',
+    'BuGn',
+    'PuBuGn',
+    'PuBu',
+    'BuPu',
+    'RdPu',
+    'PuRd',
+    'OrRd',
+    'YlOrRd',
+    'YlOrBr',
+    'Purples',
+    'Blues',
+    'Greens',
+    'Oranges',
+    'Reds',
+    'Greys',
+    'PuOr',
+    'BrBG',
+    'PRGn',
+    'PiYG',
+    'RdBu',
+    'RdGy',
+    'RdYlBu',
+    'Spectral',
+    'RdYlGn',
+    'Paired',
+    'Pastel1',
+    'Set1',
+    'Set3'
+];
 
 // Renders a color scale component consisting of a changeable color scale and number of classes
-class ColorScaleSelect extends Component {
-    constructor() {
-        super();
+export default class ColorScaleSelect extends Component {
+    constructor(...args) {
+        super(...args);
 
         this.state = {
             open: false,
@@ -18,6 +54,8 @@ class ColorScaleSelect extends Component {
             scale: 'YlOrRd',
             classes: 5
         };
+
+        this.i18n = this.context.d2.i18n;
     }
 
     componentDidMount() {
@@ -59,16 +97,24 @@ class ColorScaleSelect extends Component {
                 top: -8,
             },
             selectField: {
-                width: 120,
+                width: 160,
                 marginRight: 20,
             },
             scale: {
                 position: 'relative',
                 top: 11,
             },
+            popover: {
+                //width: 300,
+                //background: 'red',
+                //paddingRight: 200,
+                //marginRight: 300,
+                overflowY: 'auto',
+            },
             popoverScale: {
                 display: 'block',
-                marginLeft: 20,
+                overflow: 'hidden',
+                //marginLeft: 20,
             },
         };
         const colorScales = scales.map((scale, index) =>
@@ -77,7 +123,7 @@ class ColorScaleSelect extends Component {
 
         return (
             <div style={styles.select}>
-                <SelectField style={styles.selectField} floatingLabelText="Number of items" value={this.state.classes} onChange={this.onClassesChange}>
+                <SelectField style={styles.selectField} floatingLabelText={this.i18n.getTranslation('number_of_items')} value={this.state.classes} onChange={this.onClassesChange}>
                     <MenuItem value={3} primaryText="3"/>
                     <MenuItem value={4} primaryText="4"/>
                     <MenuItem value={5} primaryText="5"/>
@@ -90,6 +136,7 @@ class ColorScaleSelect extends Component {
                 <ColorScale scale={this.state.scale} classes={this.state.classes} style={styles.scale} onClick={this.showColorScales} />
 
                 <Popover
+                    style={styles.popover}
                     open={this.state.open}
                     anchorEl={this.state.anchorEl}
                     anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
@@ -105,6 +152,7 @@ class ColorScaleSelect extends Component {
     }
 }
 
-export default ColorScaleSelect;
-
+ColorScaleSelect.contextTypes = {
+    d2: PropTypes.object,
+};
 
