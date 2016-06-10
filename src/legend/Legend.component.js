@@ -40,7 +40,8 @@ export default class Legend extends Component {
     }
 
     createLegendItems = () => {
-        const {startValue, endValue, colorScheme} = this.state;
+        const {startValue, endValue, colorScheme, classes} = this.state;
+        console.log(this.state);
         const scale = scaleLinear().domain([startValue, endValue]).rangeRound([0, colorScheme.length]);
 
         const items = colorScheme.map((color, index) => {
@@ -58,10 +59,15 @@ export default class Legend extends Component {
         this.props.onItemsChange(items);
     }
 
-    updateItem = (newItems) => {
-        const modelToUpdate = legendItemStore.getState().model;
+    deleteItem = (modelToDelete) => {
+        const newItems = this.props.items.filter(model => model !== modelToDelete);
 
-        const isNewLegendItem = !modelToUpdate.id;
+        this.props.onItemsChange(newItems);
+    }
+
+    updateItem = (newItems) => {
+        const modelToUpdate = legendItemStore.getState() && legendItemStore.getState().model;
+        const isNewLegendItem = newItems.every(model => model !== modelToUpdate);
 
         return this.props.onItemsChange([].concat(
             newItems,
@@ -72,6 +78,11 @@ export default class Legend extends Component {
     // Check if end value is bigger than start value
     validateForm = () => {
         const state = this.state;
+        let startValue = '';
+        let endValue = '';
+
+        //if ()
+
 
         /*
         if (state.startValue === '' || state.endValue === '') {
@@ -82,12 +93,13 @@ export default class Legend extends Component {
 
         //let endValue = '';
 
+        console.log('######');
 
 
         this.setState({
             errorMessage: {
-                startValue: state.startValue === '' ? this.i18n.getTranslation('required') : '',
-                endValue: state.endValue <= state.startValue ? this.i18n.getTranslation('needs_to_be_bigger_than_start_value') : ''
+                startValue: Number(state.startValue) >= Number(state.endValue) ? this.i18n.getTranslation('should_be_lower_than_end_value') : '',
+                endValue: Number(state.endValue) <= Number(state.startValue) ? this.i18n.getTranslation('should_be_higher_than_start_value') : ''
             }
         });
 
@@ -112,8 +124,10 @@ export default class Legend extends Component {
     }
 
     handleClose = () => {
-        this.setState({warningDialogOpen: false});
-        this.createLegendItems();
+        this.setState(
+            {warningDialogOpen: false},
+            () => this.createLegendItems() // Callback for after state update
+        );
     }
 
     render() {
@@ -161,7 +175,7 @@ export default class Legend extends Component {
                 />
                 <ColorScaleSelect onChange={this.onColorScaleChange} />
                 <RaisedButton style={styles.button} label={this.i18n.getTranslation('create_legend_items')} onClick={this.validateForm} />
-                <LegendItems items={this.props.items} updateItem={this.updateItem} />
+                <LegendItems items={this.props.items} updateItem={this.updateItem} deleteItem={this.deleteItem} />
 
                 <Dialog
                     title={this.i18n.getTranslation('are_you_sure')}

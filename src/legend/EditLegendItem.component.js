@@ -1,5 +1,5 @@
 import React,{ PropTypes } from 'react';
-import { legendItemStore$, onFieldChange, onFormStatusChange } from './LegendItem.store';
+import { legendItemStore, legendItemStore$, onFieldChange, onFormStatusChange } from './LegendItem.store';
 import { setDialogStateToAction } from './LegendItem.actions';
 import withStateFrom from '../component-helpers/withStateFrom';
 import FormBuilder from '../forms/FormBuilder.component';
@@ -9,6 +9,20 @@ import { config } from 'd2/lib/d2';
 
 config.i18n.strings.add('close');
 config.i18n.strings.add('edit_legend_item');
+
+function isCloseDisabled(isValid) {
+    const model = legendItemStore.getState() && legendItemStore.getState().model;
+
+    if (model && (model.startValue === undefined || model.endValue === undefined)) {
+        return true;
+    }
+
+    if (model && !model.dirty) {
+        return false;
+    }
+
+    return !isValid;
+}
 
 // props, context
 export function EditLegendItem({ fieldConfigs = [], open = false, onItemUpdate, isValid}, { d2 }) {
@@ -22,14 +36,14 @@ export function EditLegendItem({ fieldConfigs = [], open = false, onItemUpdate, 
             label={d2.i18n.getTranslation('close')}
             primary={true}
             onTouchTap={onClose}
-            disabled={!isValid}
+            disabled={isCloseDisabled(isValid)}
         />,
     ];
 
     return (
         <Dialog
             title={d2.i18n.getTranslation('edit_legend_item')}
-            modal={false}
+            modal={true}
             open={open}
             onRequestClose={onClose}
             actions={actions}

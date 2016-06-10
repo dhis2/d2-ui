@@ -67,6 +67,7 @@ export default class ColorScaleSelect extends Component {
     // Called when the number of classes is changed
     onClassesChange = (event, index, value) => {
         this.setState({classes: value});
+        this.props.onChange(this.getColorBrewerScale(this.state.scale, value));
     }
 
     // Returns a color brewer scale for a number of classes
