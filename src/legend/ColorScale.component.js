@@ -7,8 +7,8 @@ export default function ColorScale({scale, classes, style, onClick}) {
 
     const styles = {
         scale: {
+            marginRight: 30,
             paddingLeft: 0,
-            marginRight: 20,
             height: 36,
             cursor: 'pointer',
             boxShadow: '0 1px 6px rgba(0,0,0,0.12),0 1px 4px rgba(0,0,0,0.12)',

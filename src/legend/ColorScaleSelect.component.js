@@ -10,23 +10,14 @@ config.i18n.strings.add('number_of_items');
 
 // Allowed color scales from ColorBrewer (needs to have at least 9 classes)
 const scales = [
+    'YlOrRd',
+    'Reds',
     'YlGn',
-    'YlGnBu',
-    'GnBu',
-    'BuGn',
-    'PuBuGn',
-    'PuBu',
+    'Greens',
+    'Blues',
     'BuPu',
     'RdPu',
     'PuRd',
-    'OrRd',
-    'YlOrRd',
-    'YlOrBr',
-    'Purples',
-    'Blues',
-    'Greens',
-    'Oranges',
-    'Reds',
     'Greys',
     'PuOr',
     'BrBG',
@@ -102,19 +93,19 @@ export default class ColorScaleSelect extends Component {
             },
             scale: {
                 position: 'relative',
+                width: 36 * this.state.classes,
                 top: 11,
             },
             popover: {
-                //width: 300,
-                //background: 'red',
-                //paddingRight: 200,
-                //marginRight: 300,
-                overflowY: 'auto',
+                maxHeight: '60%',
+                overflowY: 'auto'
             },
             popoverScale: {
                 display: 'block',
-                overflow: 'hidden',
-                //marginLeft: 20,
+                overflow: 'visible',
+                marginLeft: 20,
+                width: 36 * this.state.classes,
+                whiteSpace: 'nowrap',
             },
         };
         const colorScales = scales.map((scale, index) =>
