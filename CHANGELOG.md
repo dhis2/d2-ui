@@ -2,7 +2,7 @@
 # D2-UI Changelog
 
 ## 0.0.28
-###### _Not yet released_
+###### _June 10th 2016_
 
 ##### Breaking changes
 
