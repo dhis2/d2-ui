@@ -9,7 +9,7 @@ config.i18n.strings.add('help');
 config.i18n.strings.add('log_out');
 config.i18n.strings.add('about_dhis2');
 
-export const profileSource$ = Observable.just([
+const profileMenuData = [
     {
         name: 'settings',
         namespace: '/dhis-web-commons-about',
@@ -34,7 +34,7 @@ export const profileSource$ = Observable.just([
     {
         name: 'help',
         namespace: '/dhis-web-commons-about',
-        defaultAction: '', //helpPageLink.defaultAction || '', //FIXME: This sets the help url to an empty string when the ajax call failed. We should find an alternative.
+        defaultAction: '/dhis-web-commons-about/help.action',
         icon: '/icons/function-account.png',
         description: '',
     },
@@ -45,7 +45,26 @@ export const profileSource$ = Observable.just([
         icon: '/icons/function-about-dhis2.png',
         description: '',
     },
-]);
+];
+
+function addHelpLinkToProfileData() {
+    return getInstance()
+        .then(d2 => d2.system.settings.get('helpPageLink'))
+        // When the request for the system setting fails we return false to not set the help link
+        .catch(() => false)
+        .then(helpPageLink => profileMenuData
+            .map((profileMenuItem) => {
+                // Override the defaultAction with the helpPageLink when one was found.
+                if (helpPageLink && profileMenuItem.name === 'help') {
+                    return Object.assign({}, profileMenuItem, { defaultAction: helpPageLink });
+                }
+
+                return profileMenuItem;
+            })
+        );
+}
+
+export const profileSource$ = Observable.fromPromise(addHelpLinkToProfileData(profileMenuData));
 
 function loadMenuItems() {
     return getInstance()
