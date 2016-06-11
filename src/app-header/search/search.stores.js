@@ -6,6 +6,8 @@ import addDeepLinksForMaintenance from './sources/maintenance-app';
 import log from 'loglevel';
 import { appsMenuItems$ } from '../headerBar.store';
 import uniqBy from 'lodash/fp/uniqBy';
+import curry from 'lodash/fp/curry';
+import get from 'lodash/fp/get';
 
 const searchResultBoxStateStore$ = Store.create({
     getInitialState() {
@@ -19,25 +21,51 @@ const searchResultBoxStateStore$ = Store.create({
     },
 });
 
+const getParentApp = get('parentApp');
+const hasParentApp = (item) => !!getParentApp(item);
+const uniqueByName = uniqBy(item => item.name);
+const filterByValue = curry((searchValue, item) => item.label.toLowerCase().indexOf(searchValue.toLowerCase()) >= 0);
+const isFullApp = (item) => !hasParentApp(item);
+const isNotAFullApp = (item) => !isFullApp(item)
+// Only allow deep links for apps for which the user has access to the parentApp
+const hasAvailableFullApp = curry((fullApps, item) => fullApps.some(app => app.name === item.parentApp));
+
 export function setSearchValue(searchValue) {
-    const uniqueByName = uniqBy(item => item.name);
+    const matchesSearchValue = filterByValue(searchValue);
 
     searchSourceStore$
         .take(1)
         .subscribe((searchResults) => {
-            const itemsThatMatchSearchString = searchResults.filter(item => item.label.toLowerCase().indexOf(searchValue.toLowerCase()) >= 0);
-            const parentAppsForMatchedItems = searchResults
-                .filter(item => {
-                    return itemsThatMatchSearchString
-                        .filter(v => v.parentApp)
-                        .map(v => v.parentApp)
-                        .some(parentApp => parentApp === item.name);
-                });
+            const fullApps = searchResults.filter(isFullApp);
+            const fullAppsThatMatchSearchString = fullApps.filter(matchesSearchValue);
+            const deepLinksThatMatchSearchString = searchResults
+                .filter(matchesSearchValue)
+                .filter(isNotAFullApp)
+                .filter(hasAvailableFullApp(fullApps));
 
+            // Determine which parent apps we need to show at the end of the list.
+            // When we have deep links in the search results we should also shown their parent app.
+            const parentAppsForMatchedItems = fullApps
+                .filter(item => deepLinksThatMatchSearchString
+                    .map(getParentApp)
+                    .some(parentApp => parentApp === item.name)
+                );
+
+            // Combine all results
+            // - Full applications that match the search string
+            // - Deep links that match the search string
+            // - Full apps for deep links that match the search string
+            // As it might be possible that Full apps are in the results twice we only show the first one
+            // by running the result list through unique by name.
+            const allSearchResults = uniqueByName([].concat(
+                fullAppsThatMatchSearchString,
+                deepLinksThatMatchSearchString,
+                parentAppsForMatchedItems)
+            );
 
             searchResultBoxStateStore$.setState({
                 ...searchResultBoxStateStore$.getState(),
-                searchResults: uniqueByName([].concat(itemsThatMatchSearchString, parentAppsForMatchedItems)),
+                searchResults: allSearchResults,
                 searchValue,
             });
         });
