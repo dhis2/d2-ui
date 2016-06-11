@@ -31,7 +31,6 @@ export function getWindowWidth() {
 }
 
 export const toggleStyle = curry(function toggleStyle(predicateFn, whenTrue, whenFalse) {
-    console.log(predicateFn());
     return predicateFn() ? whenTrue : whenFalse;
 });
 

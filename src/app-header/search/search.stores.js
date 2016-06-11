@@ -5,6 +5,7 @@ import { Observable, helpers } from 'rx';
 import addDeepLinksForMaintenance from './sources/maintenance-app';
 import log from 'loglevel';
 import { appsMenuItems$ } from '../headerBar.store';
+import uniqBy from 'lodash/fp/uniqBy';
 
 const searchResultBoxStateStore$ = Store.create({
     getInitialState() {
@@ -19,13 +20,24 @@ const searchResultBoxStateStore$ = Store.create({
 });
 
 export function setSearchValue(searchValue) {
+    const uniqueByName = uniqBy(item => item.name);
+
     searchSourceStore$
         .take(1)
         .subscribe((searchResults) => {
+            const itemsThatMatchSearchString = searchResults.filter(item => item.label.toLowerCase().indexOf(searchValue.toLowerCase()) >= 0);
+            const parentAppsForMatchedItems = searchResults
+                .filter(item => {
+                    return itemsThatMatchSearchString
+                        .filter(v => v.parentApp)
+                        .map(v => v.parentApp)
+                        .some(parentApp => parentApp === item.name);
+                });
+
+
             searchResultBoxStateStore$.setState({
                 ...searchResultBoxStateStore$.getState(),
-                searchResults: searchResults
-                    .filter(item => item.label.toLowerCase().indexOf(searchValue.toLowerCase()) >= 0),
+                searchResults: uniqueByName([].concat(itemsThatMatchSearchString, parentAppsForMatchedItems)),
                 searchValue,
             });
         });

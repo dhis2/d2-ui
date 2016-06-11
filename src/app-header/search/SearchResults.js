@@ -11,7 +11,7 @@ import FlatButton from 'material-ui/lib/flat-button';
 import { config } from 'd2/lib/d2';
 
 // App menu strings to be translated
-config.i18n.strings.add('more_applications');
+config.i18n.strings.add('manage_my_apps');
 
 function getBaseUrl(d2) {
     if (d2.Api) {
@@ -29,7 +29,7 @@ function SearchResults(props, { d2 }) {
             linkButton={true}
             href={getBaseUrl(d2) + '/dhis-web-commons-about/modules.action'}
         >
-            {d2.i18n.getTranslation('Manage my apps')}
+            {d2.i18n.getTranslation('manage_my_apps')}
         </FlatButton>
     );
 

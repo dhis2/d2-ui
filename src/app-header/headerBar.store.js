@@ -4,12 +4,9 @@ import map from 'lodash/fp/map';
 import headerBarSettingsStore$ from './settings/settings.store';
 import { profileSource$, appsMenuSource$ } from './menu-sources';
 import curry from 'lodash/fp/curry';
-import pickLodash from 'lodash/fp/pick';
-import getLodash from 'lodash/fp/get';
+import pick from 'lodash/fp/pick';
+import { default as pluck } from 'lodash/fp/get';
 import { Observable } from 'rx';
-
-const pick = curry(pickLodash);
-const pluck = curry(getLodash);
 
 const translate = curry(function translate(d2, key) {
     return d2.i18n.getTranslation(key);
@@ -40,7 +37,7 @@ const adjustIconUrl = curry((baseUrl, item) => Object.assign({}, item, { icon: a
 const adjustDefaultActionUrl = curry((baseUrl, item) => Object.assign({}, item, { action: addBaseUrlWhenNotAnAbsoluteUrl(baseUrl, item.defaultAction) }));
 const adjustMenuItemsUrls = (baseUrl) => compose(adjustIconUrl(baseUrl), adjustDefaultActionUrl(baseUrl));
 const getLabelFromName = (item) => Object.assign({}, item, { label: item.displayName || item.name });
-const extractMenuProps = pick(['action', 'icon', 'description', 'label']);
+const extractMenuProps = pick(['action', 'icon', 'description', 'label', 'name', 'parentApp']);
 const prepareMenuItem = (baseUrl) => compose(extractMenuProps, adjustMenuItemsUrls(baseUrl), getLabelFromName);
 export const prepareMenuItems = (baseUrl, items) => map(prepareMenuItem(baseUrl), items);
 

@@ -1,4 +1,4 @@
-import mapLd from 'lodash/fp/map';
+import map from 'lodash/fp/map';
 import curry from 'lodash/fp/curry';
 import compose from 'lodash/fp/compose';
 import { Observable } from 'rx';
@@ -8,8 +8,6 @@ import mapValues from 'lodash/fp/mapValues';
 import { prepareMenuItems, translate$, translateMenuItemNames, getBaseUrlFromD2 } from '../../headerBar.store';
 import { config, getInstance } from 'd2/lib/d2';
 import camelCaseToUnderscores from 'd2-utilizr/lib/camelCaseToUnderscores';
-
-const map = curry(mapLd);
 
 // TODO: This is duplicate code from the maintenance-app
 const maintenanceSections = {
@@ -80,6 +78,7 @@ const getMenuItemsFromModelName = curry((section, modelName) => {
         defaultAction: `/dhis-web-maintenance/#/list/${section}/${modelName}`,
         icon: '/icons/dhis-web-maintenance.png',
         description: '',
+        parentApp: 'dhis-web-maintenance',
     };
 });
 
