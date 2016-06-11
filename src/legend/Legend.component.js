@@ -41,8 +41,9 @@ export default class Legend extends Component {
 
     createLegendItems = () => {
         const {startValue, endValue, colorScheme, classes} = this.state;
-        console.log(this.state);
         const scale = scaleLinear().domain([startValue, endValue]).rangeRound([0, colorScheme.length]);
+
+        console.log('scale', scale);
 
         const items = colorScheme.map((color, index) => {
             const startValue = scale.invert(index);
@@ -92,9 +93,6 @@ export default class Legend extends Component {
         */
 
         //let endValue = '';
-
-        console.log('######');
-
 
         this.setState({
             errorMessage: {
