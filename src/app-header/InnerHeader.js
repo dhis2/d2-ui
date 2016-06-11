@@ -37,7 +37,8 @@
  */
 import React from 'react';
 import log from 'loglevel';
-import styles from './header-bar-styles';
+import styles, { whenWidthLargerThan1150 } from './header-bar-styles';
+import { Observable, Subject } from 'rx';
 
 const defaultStyle = 'light_blue';
 const defaultStylesheetUrl = 'light_blue/light_blue.css';
@@ -72,6 +73,8 @@ const InnerHeader = React.createClass({
     },
 
     getInitialState() {
+        this.unmount = new Subject();
+
         return {
             headerBar: {
 
@@ -92,10 +95,25 @@ const InnerHeader = React.createClass({
             });
     },
 
+    componentDidMount() {
+        Observable
+            .fromEvent(window, 'resize')
+            .takeUntil(this.unmount)
+            .debounce(200)
+            .subscribe(
+                () => this.forceUpdate(),
+                (e) => log.error('Could not update the HeaderBar after resize', e)
+            );
+    },
+
     componentWillReceiveProps(props) {
         if (this.props.lastUpdate && (this.props.lastUpdate.getTime() - props.lastUpdate.getTime()) !== 0) {
             dhis2.menu.ui.bootstrapMenu();
         }
+    },
+
+    componentWillUnmount() {
+        this.unmount.onNext(true);
     },
 
     getSystemSettings(d2) {
@@ -165,33 +183,53 @@ const InnerHeader = React.createClass({
             maxHeight: 44,
         };
 
-        const headerTextStyle = {
-            fontWeight: 'bold',
-            color: '#fff',
-            fontSize: 16,
+        const linkWrapStyle = {
             flex: 1,
-            padding: '.5rem',
+            overflow: 'hidden',
+            whiteSpace: 'nowrap',
+            color: '#FFF',
+            alignItems: 'center',
+            justifyItems: 'center',
+            display: 'flex',
+            minWidth: whenWidthLargerThan1150(450, 'auto'),
+            paddingRight: '1rem',
+            boxSizing: 'border-box',
         };
 
         const linkStyle = {
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
+            fontWeight: 'bold',
+            color: '#FFF',
             textDecoration: 'none',
+            textOverflow: 'ellipsis',
+            minWidth: 1,
+            overflow: 'hidden',
+            whiteSpace: 'nowrap',
+        };
+
+        const logoHref = {
+            minWidth: 175,
         };
 
         const linkHref = [this.getBaseUrl(), 'dhis-web-commons-about/redirect.action'].join('/');
 
+        const largeScreensInnerHeader = Object.assign({ display: 'flex', minWidth: 450 + 175, overflow: 'hidden', textOverflow: 'ellipsis' }, styles.headerTitle);
+
+        const smallerScreensInnerHeader = Object.assign({ display: 'flex', overflow: 'hidden', textOverflow: 'ellipsis' }, styles.headerTitle);
+
         return (
-            <div style={Object.assign({ display: 'flex'}, styles.headerTitle)}>
-                <a href={linkHref} title={this.state.headerBar.title} style={linkStyle} className="title-link">
+            <div style={whenWidthLargerThan1150(largeScreensInnerHeader, smallerScreensInnerHeader)}>
+                <a href={linkHref} title={this.state.headerBar.title} style={logoHref} className="title-link">
                     <div style={headerBannerWrapperStyle}>
                         <div>
                             <img className="header-logo" src={this.getLogoUrl()} id="headerBanner" style={headerBannerStyle} />
                         </div>
                     </div>
-                    <span className="header-text" id="headerText" style={headerTextStyle}>{this.state.headerBar.title}</span>
                 </a>
+                <div style={linkWrapStyle}>
+                    <a href={linkHref} title={this.state.headerBar.title} style={linkStyle} className="title-link">
+                        {this.state.headerBar.title}
+                    </a>
+                </div>
             </div>
         );
     },

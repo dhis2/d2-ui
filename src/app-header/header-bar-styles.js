@@ -1,6 +1,7 @@
 import { white, black } from 'material-ui/lib/styles/colors';
 import { Observable } from 'rx';
 import log from 'loglevel';
+import curry from 'lodash/fp/curry';
 
 export const MENU_ITEM_WIDTH = 125;
 
@@ -20,6 +21,21 @@ export function applyUserStyle(user, style) {
 }
 
 let styles = {};
+
+export function getWindowWidth() {
+    if (!global.document) {
+        return 0;
+    }
+
+    return Math.max(window.document.documentElement.clientWidth, window.innerWidth || 0);
+}
+
+export const toggleStyle = curry(function toggleStyle(predicateFn, whenTrue, whenFalse) {
+    console.log(predicateFn());
+    return predicateFn() ? whenTrue : whenFalse;
+});
+
+export const whenWidthLargerThan1150 = toggleStyle(() => getWindowWidth() > 1150);
 
 /**
  * Calculates the height of the search results box. When the user has a large screen height we fit a max of four rows
@@ -116,11 +132,12 @@ styles = {
 
     searchField: {
         display: 'flex',
-        flex: 2,
+        flex: 1,
         position: 'relative',
         flexDirection: 'row',
-        maxWidth: 720,
+        maxWidth: 550,
         justifyContent: 'flex-end',
+        minWidth: 420,
     },
 
     searchResultList: {
