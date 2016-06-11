@@ -1,5 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import styles from '../header-bar-styles';
+import { search, setSearchFieldFocusTo } from '../search/search.stores';
+
+const onMouseUp = (link) => () => {
+    search('');
+    setSearchFieldFocusTo(false);
+    window.location = link;
+};
 
 export default class HeaderMenuItem extends Component {
     constructor() {
@@ -21,7 +28,7 @@ export default class HeaderMenuItem extends Component {
         }, styles.menuItemLink);
 
         return (
-            <a href={props.action} style={itemStyle} onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave}>
+            <a href={props.action} onMouseUp={onMouseUp(props.action)} style={itemStyle} onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave}>
                 <div><img style={styles.menuItemIcon} src={props.icon}/></div>
                 <div style={{textAlign: 'center'}}>{props.label}</div>
             </a>

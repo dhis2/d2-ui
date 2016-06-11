@@ -29,6 +29,7 @@ class SearchField extends Component {
         this._focusSearchField = this._focusSearchField.bind(this);
         this._onFocus = this._onFocus.bind(this);
         this._onBlur = this._onBlur.bind(this);
+        this.clearSearchField = this.clearSearchField.bind(this);
     }
 
     componentDidMount() {
@@ -105,17 +106,17 @@ class SearchField extends Component {
     }
 
     _setSearchValue(event) {
-        this.setState({ hasValue: Boolean(event.target.value), });
+        this.setState({ hasValue: Boolean(event.target.value) });
         search(event.target.value);
     }
 
     _onFocus() {
-        this.setState({ hasFocus: true, });
+        this.setState({ hasFocus: true });
         setSearchFieldFocusTo(true);
     }
 
     _onBlur() {
-        this.setState({ hasFocus: false, });
+        this.setState({ hasFocus: false });
         hideWhenNotHovering();
     }
 
