@@ -6,6 +6,7 @@ import Dialog from 'material-ui/lib/dialog';
 import ColorScaleSelect from './ColorScaleSelect.component';
 import LegendItems from './LegendItems.component';
 import {scaleLinear} from 'd3-scale';
+import {precisionFixed} from 'd3-format';
 import { config } from 'd2/lib/d2';
 import { legendItemStore } from './LegendItem.store';
 
@@ -18,6 +19,8 @@ config.i18n.strings.add('needs_to_be_bigger_than_start_value');
 config.i18n.strings.add('are_you_sure');
 config.i18n.strings.add('this_will_replace_the_current_legend_items');
 config.i18n.strings.add('create_legend_items');
+
+
 
 export default class Legend extends Component {
     constructor(...args) {
@@ -41,15 +44,17 @@ export default class Legend extends Component {
 
     createLegendItems = () => {
         const d2 = this.context.d2;
-        const { startValue, endValue, colorScheme } = this.state;
+        const { startValue, endValue, classes, colorScheme } = this.state;
         const scale = scaleLinear().domain([startValue, endValue]).rangeRound([0, colorScheme.length]);
+        const step = (endValue - startValue) / colorScheme.length;
+        const precision = precisionFixed(step); // https://github.com/d3/d3-format#precisionFixed
 
         const items = colorScheme.map((color, index) => {
-            const start = scale.invert(index);
-            const end = scale.invert(index + 1);
+            const start = scale.invert(index).toFixed(precision);
+            const end = scale.invert(index + 1).toFixed(precision);
             const legend = d2.models.legend.create();
 
-            legend.name = `${start} — ${end}`;
+            // legend.name = `${start} — ${end}`;
             legend.startValue = start;
             legend.endValue = end;
             legend.color = color;

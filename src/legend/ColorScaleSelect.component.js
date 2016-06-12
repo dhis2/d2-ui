@@ -147,4 +147,3 @@ export default class ColorScaleSelect extends Component {
 ColorScaleSelect.contextTypes = {
     d2: PropTypes.object,
 };
-
