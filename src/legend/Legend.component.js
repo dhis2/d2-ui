@@ -20,8 +20,6 @@ config.i18n.strings.add('are_you_sure');
 config.i18n.strings.add('this_will_replace_the_current_legend_items');
 config.i18n.strings.add('create_legend_items');
 
-
-
 export default class Legend extends Component {
     constructor(...args) {
         super(...args);
@@ -34,8 +32,6 @@ export default class Legend extends Component {
         };
 
         this.i18n = this.context.d2.i18n;
-
-        this.updateItem = this.updateItem.bind(this);
     }
 
     onColorScaleChange = (colorScheme) => {
@@ -67,7 +63,6 @@ export default class Legend extends Component {
 
     deleteItem = (modelToDelete) => {
         const newItems = this.props.items.filter(model => model !== modelToDelete);
-
         this.props.onItemsChange(newItems);
     }
 
@@ -83,41 +78,33 @@ export default class Legend extends Component {
 
     // Check if end value is bigger than start value
     validateForm = () => {
-        const state = this.state;
-        let startValue = '';
-        let endValue = '';
+        const { startValue, endValue } = this.state;
+        let startValueMsg = startValue === '' ? this.i18n.getTranslation('required') : '';
+        let endValueMsg = endValue === '' ? this.i18n.getTranslation('required') : '';
 
-        //if ()
-
-
-        /*
-        if (state.startValue === '' || state.endValue === '') {
-            alert('Start and end values are required.'); // TODO: Show message below field + i18n
-            return;
-        }
-        */
-
-        //let endValue = '';
-
-        this.setState({
-            errorMessage: {
-                startValue: Number(state.startValue) >= Number(state.endValue) ? this.i18n.getTranslation('should_be_lower_than_end_value') : '',
-                endValue: Number(state.endValue) <= Number(state.startValue) ? this.i18n.getTranslation('should_be_higher_than_start_value') : '',
-            },
-        });
-
-        /*
-        this.setState({
-            errorMessage: {
-                endValue: state.endValue <= state.startValue ? this.i18n.getTranslation('needs_to_be_bigger_than_start_value') : ''
-            }
-        });
-        */
-
-        if (state.startValue === '' || state.endValue <= state.startValue ) {
+        // Check if start or end value is empty
+        if (startValue === '' || endValue === '') {
+            this.setState({
+                errorMessage: {
+                    startValue: startValue === '' ? this.i18n.getTranslation('required') : '',
+                    endValue: endValue === '' ? this.i18n.getTranslation('required') : '',
+                },
+            });
             return;
         }
 
+        // Check if end value is less than start value
+        if (endValue <= startValue) {
+            this.setState({
+                errorMessage: {
+                    startValue: Number(startValue) >= Number(endValue) ? this.i18n.getTranslation('should_be_lower_than_end_value') : '',
+                    endValue: Number(endValue) <= Number(startValue) ? this.i18n.getTranslation('should_be_higher_than_start_value') : '',
+                },
+            });
+            return;
+        }
+
+        // All OK
         this.displayWarning();
     }
 
@@ -193,9 +180,11 @@ export default class Legend extends Component {
         );
     }
 }
+
 Legend.propTypes = {
     items: PropTypes.array.isRequired,
 };
+
 Legend.contextTypes = {
     d2: PropTypes.object,
 };
