@@ -18,7 +18,6 @@ export default class LegendItems extends Component {
 
     onAddLegendItem = () => {
         //const model = this.context.d2.models.legend.create();
-
         openEditDialogFor(this.context.d2.models.legend.create());
     }
 

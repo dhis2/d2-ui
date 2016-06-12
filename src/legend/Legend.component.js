@@ -138,10 +138,15 @@ export default class Legend extends Component {
             textField: {
                 width: 160,
                 marginRight: 20,
+                marginBottom: 36,
+            },
+            errorStyle: {
+                float: "left"
             },
             button: {
                 position: 'relative',
                 top: -10,
+                marginBottom: 20,
             },
         };
 
@@ -154,6 +159,7 @@ export default class Legend extends Component {
                     value={this.state.startValue}
                     onChange={(event) => this.setState({startValue: event.target.value})}
                     errorText={this.state.errorMessage.startValue}
+                    errorStyle={styles.errorStyle}
                 />
                 <TextField
                     type="number"
@@ -162,6 +168,7 @@ export default class Legend extends Component {
                     value={this.state.endValue}
                     onChange={(event) => this.setState({endValue: event.target.value})}
                     errorText={this.state.errorMessage.endValue}
+                    errorStyle={styles.errorStyle}
                 />
                 <ColorScaleSelect onChange={this.onColorScaleChange} />
                 <RaisedButton style={styles.button} label={this.i18n.getTranslation('create_legend_items')} onClick={this.validateForm} />

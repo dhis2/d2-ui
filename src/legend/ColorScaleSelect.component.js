@@ -91,11 +91,13 @@ export default class ColorScaleSelect extends Component {
             selectField: {
                 width: 160,
                 marginRight: 20,
+                marginBottom: 36,
             },
             scale: {
                 position: 'relative',
                 width: 36 * this.state.classes,
                 top: 11,
+                marginBottom: 36,
             },
             popover: {
                 maxHeight: '60%',

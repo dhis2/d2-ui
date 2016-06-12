@@ -23,9 +23,10 @@ function createFakeEvent(color) {
 
 // https://github.com/mapbox/react-colorpickr/
 const colorPicker = function(props) {
-    // TODO: Decide on default color when creating new legend items
+    const color = props.value || '#FFA500'; // Orange is default
+
     return (
-        <ColorPicker color={props.value} onChangeComplete={(color) => props.onChange(createFakeEvent(color))} />
+        <ColorPicker color={color} onChangeComplete={(color) => props.onChange(createFakeEvent(color))} />
     );
 }
 
