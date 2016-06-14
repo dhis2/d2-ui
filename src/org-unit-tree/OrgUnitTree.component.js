@@ -4,7 +4,7 @@ import LinearProgress from 'material-ui/lib/linear-progress';
 import Model from 'd2/lib/model/Model';
 import ModelCollection from 'd2/lib/model/ModelCollection';
 
-import TreeView from '../tree-view';
+import TreeView from '../tree-view/TreeView.component';
 
 
 const styles = {
