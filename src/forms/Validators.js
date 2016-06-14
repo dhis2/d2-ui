@@ -13,14 +13,8 @@ const emailRegExp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-
 //Atleast one digit
 const oneDigit = (/^(?=.*\d)/);
 
-//Atleast one lowercase character
-const oneLowerCase = (/^(?=.*[a-z])/);
-
 //Atleast one uppercase character
 const oneUpperCase = (/^(?=.*[A-Z])/);
-
-//Atleast one symbol
-const oneSymbol = (/^(?=.*[_\W])/);
 
 export function isNull(value) {
     return value === null;
@@ -108,7 +102,7 @@ export function isValidPassword(value) {
     if (isEmptyStringOrUndefined(value)) {
         return true;
     }
-    return (oneDigit.test(value) || oneSymbol.test(value)) && oneLowerCase.test(value) && oneUpperCase.test(value) && value.length > 7;
+    return oneDigit.test(value) && oneUpperCase.test(value) && value.length > 7 && value.length < 36;
 }
 isValidPassword.message = 'invalid_password';
 

@@ -419,12 +419,8 @@ describe('Validators', () => {
     });
 
     describe('isValidPassword', () => {
-        it('should return false when value contains no digit or symbol', () => {
-            expect(isValidPassword('abcdefGHIJ')).to.be.false;
-        });
-
-        it('should return false when value contains no lower-case character', () => {
-            expect(isValidPassword('123ABCDEF')).to.be.false;
+        it('should return false when value contains no digit', () => {
+            expect(isValidPassword('ab@defGHIJ')).to.be.false;
         });
 
         it('should return false when value contains no uper-case character', () => {
@@ -432,11 +428,15 @@ describe('Validators', () => {
         });
 
         it('should return false when value is less than 8 characters', () => {
-            expect(isValidPassword('@@@abcD')).to.be.false;
+            expect(isValidPassword('1@@abcD')).to.be.false;
+        });
+
+        it('should return false when value is greater than 35 characters', () => {
+            expect(isValidPassword('12@abcDndlwosjDlwjslapqiwejdnfmdskak')).to.be.false;
         });
 
         it('should return true for valid password', () => {
-            expect(isValidPassword('!!!@abcD')).to.be.true;
+            expect(isValidPassword('1!!@abcD')).to.be.true;
         });
 
     });
