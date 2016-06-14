@@ -46,10 +46,10 @@ const formFieldsConfigs = [{
     validators: [{
         validator: value => value === '' ? false : true,
         message: 'required',
-    },{
+    }/*,{
         validator: value => Number(value) >= Number(legendItemStore.getState().model.endValue) ? false : true,
         message: 'should_be_lower_than_end_value',
-    }],
+    }*/],
 }, {
     name: 'endValue',
     component: TextField,
@@ -59,10 +59,10 @@ const formFieldsConfigs = [{
     validators: [{
         validator: value => value === '' ? false : true,
         message: 'required',
-    },{
+    }/*,{
         validator: value => Number(value) <= Number(legendItemStore.getState().model.startValue) ? false : true,
         message: 'should_be_higher_than_start_value',
-    }],
+    }*/],
 }, { // Defined in data-table/data-value/Color.component.js
     name: 'color',
     component: colorPicker,
