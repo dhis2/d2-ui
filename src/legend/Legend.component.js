@@ -29,9 +29,18 @@ export default class Legend extends Component {
             endValue: 100,
             warningDialogOpen: false,
             errorMessage: {},
+            createLegendDisabled: false
         };
 
         this.i18n = this.context.d2.i18n;
+    }
+
+    onStartValueChange = (event) => {
+        this.setState({startValue: event.target.value}, this.validateForm);
+    }
+
+    onEndValueChange = (event) => {
+        this.setState({endValue: event.target.value}, this.validateForm);
     }
 
     onColorScaleChange = (colorScheme) => {
@@ -76,8 +85,6 @@ export default class Legend extends Component {
     // Check if end value is bigger than start value
     validateForm = () => {
         const { startValue, endValue } = this.state;
-        let startValueMsg = startValue === '' ? this.i18n.getTranslation('required') : '';
-        let endValueMsg = endValue === '' ? this.i18n.getTranslation('required') : '';
 
         // Check if start or end value is empty
         if (startValue === '' || endValue === '') {
@@ -86,23 +93,31 @@ export default class Legend extends Component {
                     startValue: startValue === '' ? this.i18n.getTranslation('required') : '',
                     endValue: endValue === '' ? this.i18n.getTranslation('required') : '',
                 },
+                createLegendDisabled: true,
             });
             return;
         }
 
         // Check if end value is less than start value
-        if (endValue <= startValue) {
+        if (Number(endValue) <= Number(startValue)) {
             this.setState({
                 errorMessage: {
                     startValue: Number(startValue) >= Number(endValue) ? this.i18n.getTranslation('should_be_lower_than_end_value') : '',
                     endValue: Number(endValue) <= Number(startValue) ? this.i18n.getTranslation('should_be_higher_than_start_value') : '',
                 },
+                createLegendDisabled: true,
             });
             return;
         }
 
         // All OK
-        this.displayWarning();
+        this.setState({
+            errorMessage: {
+                startValue: '',
+                endValue: '',
+            },
+            createLegendDisabled: false,
+        });
     }
 
     // Display warning that current legend items will be deleted
@@ -154,7 +169,7 @@ export default class Legend extends Component {
                     style={styles.textField}
                     floatingLabelText={this.i18n.getTranslation('start_value')}
                     value={this.state.startValue}
-                    onChange={(event) => this.setState({startValue: event.target.value})}
+                    onChange={this.onStartValueChange}
                     errorText={this.state.errorMessage.startValue}
                     errorStyle={styles.errorStyle}
                 />
@@ -163,14 +178,24 @@ export default class Legend extends Component {
                     style={styles.textField}
                     floatingLabelText={this.i18n.getTranslation('end_value')}
                     value={this.state.endValue}
-                    onChange={(event) => this.setState({endValue: event.target.value})}
+                    onChange={this.onEndValueChange}
                     errorText={this.state.errorMessage.endValue}
                     errorStyle={styles.errorStyle}
                 />
-                <ColorScaleSelect onChange={this.onColorScaleChange} />
-                <RaisedButton style={styles.button} label={this.i18n.getTranslation('create_legend_items')} onClick={this.validateForm} />
-                <LegendItems items={this.props.items} updateItem={this.updateItem} deleteItem={this.deleteItem} />
-
+                <ColorScaleSelect
+                    onChange={this.onColorScaleChange}
+                />
+                <RaisedButton
+                    style={styles.button}
+                    label={this.i18n.getTranslation('create_legend_items')}
+                    onClick={this.displayWarning}
+                    disabled={this.state.createLegendDisabled}
+                />
+                <LegendItems
+                    items={this.props.items}
+                    updateItem={this.updateItem}
+                    deleteItem={this.deleteItem}
+                />
                 <Dialog
                     title={this.i18n.getTranslation('are_you_sure')}
                     actions={actions}
