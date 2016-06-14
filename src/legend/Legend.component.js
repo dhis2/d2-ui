@@ -46,13 +46,10 @@ export default class Legend extends Component {
         const precision = precisionFixed(step); // https://github.com/d3/d3-format#precisionFixed
 
         const items = colorScheme.map((color, index) => {
-            const start = scale.invert(index).toFixed(precision);
-            const end = scale.invert(index + 1).toFixed(precision);
             const legend = d2.models.legend.create();
 
-            // legend.name = `${start} — ${end}`;
-            legend.startValue = start;
-            legend.endValue = end;
+            legend.startValue = scale.invert(index).toFixed(precision);
+            legend.endValue = scale.invert(index + 1).toFixed(precision);
             legend.color = color;
 
             return legend;

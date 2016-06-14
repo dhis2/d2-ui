@@ -7,8 +7,8 @@ import FlatButton from 'material-ui/lib/flat-button';
 import Dialog from 'material-ui/lib/dialog';
 import { config } from 'd2/lib/d2';
 
+config.i18n.strings.add('ok');
 config.i18n.strings.add('cancel');
-config.i18n.strings.add('finish');
 config.i18n.strings.add('edit_legend_item');
 
 function isCloseDisabled(isValid) {
@@ -43,7 +43,7 @@ export function EditLegendItem({ fieldConfigs = [], open = false, onItemUpdate, 
             onTouchTap={onCancel}
         />,
         <FlatButton
-            label={d2.i18n.getTranslation('finish')}
+            label={d2.i18n.getTranslation('ok')}
             primary={true}
             onTouchTap={onClose}
             disabled={isCloseDisabled(isValid)}

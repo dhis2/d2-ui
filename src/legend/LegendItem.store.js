@@ -2,7 +2,7 @@ import React, {  Component, PropTypes } from 'react';
 import Store from '../store/Store';
 import TextField from 'material-ui/lib/text-field';
 import { Observable } from 'rx';
-import ColorPicker from 'react-color/lib/components/ChromePicker';
+import ColorPicker from './ColorPicker.component';
 import {getInstance, config} from 'd2/lib/d2';
 import camelCaseToUnderscores from 'd2-utilizr/lib/camelCaseToUnderscores'
 
@@ -16,23 +16,16 @@ export const legendItemStore = Store.create();
 function createFakeEvent(color) {
     return {
         target: {
-            value: `#${color.hex}`
+            value: color
         },
     };
 };
 
-// https://github.com/mapbox/react-colorpickr/
 const colorPicker = function(props) {
-    const color = props.value || '#FFA500'; // Orange is default
-
     return (
-        <ColorPicker color={color} onChangeComplete={(color) => props.onChange(createFakeEvent(color))} />
+        <ColorPicker color={props.value} onChange={(color) => props.onChange(createFakeEvent(color))} />
     );
 }
-
-const onColorChange = function(color) {
-    console.log('onColorchange', color);
-};
 
 export function openEditDialogFor(model) {
     legendItemStore.setState({
