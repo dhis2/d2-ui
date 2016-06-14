@@ -7,7 +7,8 @@ import FlatButton from 'material-ui/lib/flat-button';
 import Dialog from 'material-ui/lib/dialog';
 import { config } from 'd2/lib/d2';
 
-config.i18n.strings.add('close');
+config.i18n.strings.add('cancel');
+config.i18n.strings.add('finish');
 config.i18n.strings.add('edit_legend_item');
 
 function isCloseDisabled(isValid) {
@@ -26,6 +27,10 @@ function isCloseDisabled(isValid) {
 
 // props, context
 export function EditLegendItem({ fieldConfigs = [], open = false, onItemUpdate, isValid}, { d2 }) {
+    const onCancel = function() {
+        setDialogStateToAction(false);
+    }
+
     const onClose = function() {
         setDialogStateToAction(false);
         onItemUpdate();
@@ -33,7 +38,12 @@ export function EditLegendItem({ fieldConfigs = [], open = false, onItemUpdate, 
 
     const actions = [
         <FlatButton
-            label={d2.i18n.getTranslation('close')}
+            label={d2.i18n.getTranslation('cancel')}
+            secondary={true}
+            onTouchTap={onCancel}
+        />,
+        <FlatButton
+            label={d2.i18n.getTranslation('finish')}
             primary={true}
             onTouchTap={onClose}
             disabled={isCloseDisabled(isValid)}
