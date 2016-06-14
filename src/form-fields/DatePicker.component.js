@@ -1,15 +1,15 @@
 import React from 'react';
 
-import { DatePicker } from 'material-ui';
+import { DatePicker as MuiDatePicker } from 'material-ui';
 
-class FutureDatePicker extends React.Component {
+class DatePicker extends React.Component {
     constructor(props) {
         super(props);
         this.maxDate = props.allowFuture ? undefined : new Date();
         this.props = props;
         this._onDateSelect = this._onDateSelect.bind(this);
         this._formatDate = this._formatDate.bind(this);
-        this.state = {value: null};
+        this.state = {value: this.props.value};
     }
 
     _onDateSelect(event, date) {
@@ -42,7 +42,7 @@ class FutureDatePicker extends React.Component {
     render() {
         return (
               <div>
-                    <DatePicker
+                    <MuiDatePicker
                     {...this.props}
                     value={this.state.value}
                     floatingLabelText={this.props.floatingLabelText}
@@ -55,11 +55,11 @@ class FutureDatePicker extends React.Component {
     }
 };
 
-FutureDatePicker.propTypes = {
+DatePicker.propTypes = {
     floatingLabelText: React.PropTypes.string.isRequired,
     onChange: React.PropTypes.func.isRequired,
     dateFormat: React.PropTypes.string.isRequired,
     allowFuture: React.PropTypes.bool.isRequired,
 };
 
-export default FutureDatePicker;
+export default DatePicker;
