@@ -9,6 +9,7 @@ import {
     isRelativeUrl,
     isNumber,
     isPositiveNumber,
+    isValidPassword,
 } from '../../src/forms/Validators';
 
 describe('Validators', () => {
@@ -415,5 +416,28 @@ describe('Validators', () => {
         it('should have a message', () => {
             expect(isUrlArray.message).to.equal('value_should_be_list_of_urls');
         });
+    });
+
+    describe('isValidPassword', () => {
+        it('should return false when value contains no digit or symbol', () => {
+            expect(isValidPassword('abcdefGHIJ')).to.be.false;
+        });
+
+        it('should return false when value contains no lower-case character', () => {
+            expect(isValidPassword('123ABCDEF')).to.be.false;
+        });
+
+        it('should return false when value contains no uper-case character', () => {
+            expect(isValidPassword('123abcdef')).to.be.false;
+        });
+
+        it('should return false when value is less than 8 characters', () => {
+            expect(isValidPassword('@@@abcD')).to.be.false;
+        });
+
+        it('should return true for valid password', () => {
+            expect(isValidPassword('!!!@abcD')).to.be.true;
+        });
+
     });
 });

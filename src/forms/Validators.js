@@ -10,6 +10,18 @@ const relativeUrlRegExp = /[^ ]*/i;
 // Taken from the HTML5 spec http://www.w3.org/TR/html5/forms.html#e-mail-state-(type=email)
 const emailRegExp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 
+//Atleast one digit
+const oneDigit = (/^(?=.*\d)/);
+
+//Atleast one lowercase character
+const oneLowerCase = (/^(?=.*[a-z])/);
+
+//Atleast one uppercase character
+const oneUpperCase = (/^(?=.*[A-Z])/);
+
+//Atleast one symbol
+const oneSymbol = (/^(?=.*[_\W])/);
+
 export function isNull(value) {
     return value === null;
 }
@@ -92,6 +104,14 @@ export function isPositiveNumber(value) {
 }
 isPositiveNumber.message = 'value_should_be_a_positive_number';
 
+export function isValidPassword(value) {
+    if (isEmptyStringOrUndefined(value)) {
+        return true;
+    }
+    return (oneDigit.test(value) || oneSymbol.test(value)) && oneLowerCase.test(value) && oneUpperCase.test(value) && value.length > 7;
+}
+isValidPassword.message = 'invalid_password';
+
 export const wordToValidatorMap = new Map([
     ['required', isRequired],
     ['url', isUrl],
@@ -100,6 +120,7 @@ export const wordToValidatorMap = new Map([
     ['number', isNumber],
     ['positive_number', isPositiveNumber],
     ['email', isEmail],
+    ['is_valid_password', isValidPassword],
 ]);
 
 export default {
@@ -111,4 +132,5 @@ export default {
     isEmptyString,
     isNull,
     isUndefined,
+    isValidPassword,
 };
