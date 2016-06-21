@@ -202,6 +202,7 @@ export default class Legend extends Component {
                     modal={false}
                     open={this.state.warningDialogOpen}
                     onRequestClose={this.handleClose}
+                    autoScrollBodyContent
                 >
                     {this.i18n.getTranslation('this_will_replace_the_current_legend_items')}
                 </Dialog>

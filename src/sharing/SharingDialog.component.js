@@ -29,7 +29,6 @@ export default createClass({
                 actions={sharingDialogActions}
                 autoDetectWindowHeight
                 autoScrollBodyContent
-                bodyStyle={{ minHeight: 450 }}
                 {...this.props}
             >
                 <Sharing objectToShare={this.props.objectToShare} />
