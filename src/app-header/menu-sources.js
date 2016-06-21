@@ -73,7 +73,10 @@ function loadMenuItems() {
             const api = d2.Api.getApi();
             const baseUrl = getBaseUrlFromD2ApiUrl(d2);
 
-            return api.get(baseUrl + '/dhis-web-commons/menu/getModules.action');
+            // TODO: This path is not always be correct. Only when the manifest has '..' as the baseUrl
+            // and a versioned api endpoint is used.
+            // TODO: This call should probably have a proper API endpoint
+            return api.get(baseUrl + '/../dhis-web-commons/menu/getModules.action');
         })
         .then(({modules}) => modules);
 }

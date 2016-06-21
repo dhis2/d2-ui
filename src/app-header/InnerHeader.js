@@ -2,6 +2,7 @@ import React from 'react';
 import log from 'loglevel';
 import styles, { whenWidthLargerThan1150 } from './header-bar-styles';
 import { Observable, Subject } from 'rx';
+import getBaseUrlFromD2ApiUrl from './getBaseUrlFromD2ApiUrl';
 
 const defaultStyle = 'light_blue';
 const defaultStylesheetUrl = 'light_blue/light_blue.css';
@@ -111,7 +112,7 @@ const InnerHeader = React.createClass({
     },
 
     getBaseUrl() {
-        return this.getApiBaseUrl().replace(/\/api\/?$/, '');
+        return getBaseUrlFromD2ApiUrl(this.context.d2);
     },
 
     getLogoUrl() {
