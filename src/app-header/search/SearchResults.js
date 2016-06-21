@@ -9,16 +9,12 @@ import styles, { getSearchResultsHeight } from '../header-bar-styles';
 import NoResults from './NoResults';
 import FlatButton from 'material-ui/lib/flat-button';
 import { config } from 'd2/lib/d2';
+import getBaseUrlFromD2ApiUrl from '../getBaseUrlFromD2ApiUrl';
 
 // App menu strings to be translated
 config.i18n.strings.add('manage_my_apps');
 
-function getBaseUrl(d2) {
-    if (d2.Api) {
-        return d2.Api.getApi().baseUrl.replace('/api', '');
-    }
-    return './'; // TODO: Get old base url from local storage
-}
+const getBaseUrl = getBaseUrlFromD2ApiUrl;
 
 function SearchResults(props, { d2 }) {
     const menuItems = (props.searchResults || []).map((item, index) => (<HeaderMenuItem key={index} {...item} />));

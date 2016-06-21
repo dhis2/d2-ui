@@ -7,6 +7,7 @@ import curry from 'lodash/fp/curry';
 import pick from 'lodash/fp/pick';
 import { default as pluck } from 'lodash/fp/get';
 import { Observable } from 'rx';
+import getBaseUrlFromD2ApiUrl from './getBaseUrlFromD2ApiUrl';
 
 const translate = curry(function translate(d2, key) {
     return d2.i18n.getTranslation(key);
@@ -29,7 +30,7 @@ export function translateMenuItemNames(trans, items) {
 
 const removePrefix = (word) => word.replace(/^\.\./, '');
 const isAbsoluteUrl = (url) => /^(?:https?:)?\/\//.test(url);
-export const getBaseUrlFromD2 = (d2) => d2.Api.getApi().baseUrl.replace('/api', '');
+export const getBaseUrlFromD2 = getBaseUrlFromD2ApiUrl;
 
 const addBaseUrlWhenNotAnAbsoluteUrl = curry((baseUrl, url) => isAbsoluteUrl(url) ? url : baseUrl + removePrefix(url));
 const getIconUrl = item => item.icon || '/icons/program.png';

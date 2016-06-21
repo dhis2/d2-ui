@@ -1,5 +1,6 @@
 import { Observable } from 'rx';
 import { getInstance, config } from 'd2/lib/d2';
+import getBaseUrlFromD2ApiUrl from './getBaseUrlFromD2ApiUrl';
 
 // Profile menu
 config.i18n.strings.add('settings');
@@ -70,7 +71,7 @@ function loadMenuItems() {
     return getInstance()
         .then(d2 => {
             const api = d2.Api.getApi();
-            const baseUrl = d2.Api.getApi().baseUrl.replace('/api', '') || '';
+            const baseUrl = getBaseUrlFromD2ApiUrl(d2);
 
             return api.get(baseUrl + '/dhis-web-commons/menu/getModules.action');
         })

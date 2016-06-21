@@ -6,6 +6,7 @@ import AppsIcon from 'material-ui/lib/svg-icons/navigation/apps';
 import addD2Context from '../../component-helpers/addD2Context';
 import { white } from 'material-ui/lib/styles/colors';
 import { config } from 'd2/lib/d2';
+import getBaseUrlFromD2ApiUrl from '../getBaseUrlFromD2ApiUrl';
 
 // App menu strings to be translated
 config.i18n.strings.add('more_applications');
@@ -21,7 +22,7 @@ const styles = {
 
 function getBaseUrl(d2) {
     if (d2.Api) {
-        return d2.Api.getApi().baseUrl.replace('/api', '');
+        return getBaseUrlFromD2ApiUrl(d2);
     }
     return './'; // Get old base url from local storage
 }

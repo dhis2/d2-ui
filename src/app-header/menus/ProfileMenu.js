@@ -5,13 +5,9 @@ import HeaderMenuItem from './HeaderMenuItem';
 import styles, {applyUserStyle} from '../header-bar-styles';
 import addD2Context from '../../component-helpers/addD2Context';
 import FlatButton from 'material-ui/lib/flat-button';
+import getBaseUrlFromD2ApiUrl from '../getBaseUrlFromD2ApiUrl';
 
-function getBaseUrl(d2) {
-    if (d2.Api) {
-        return d2.Api.getApi().baseUrl.replace('/api', '');
-    }
-    return './'; // Get old base url from local storage
-}
+const getBaseUrl = getBaseUrlFromD2ApiUrl;
 
 const ProfileMenu = addD2Context(function ProfileMenu(props, { d2 }) {
     const { currentUser, items } = props;
