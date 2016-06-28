@@ -1,7 +1,7 @@
 $main-text-color: #333;
 
 $default-font-size: 14px;
-$default-padding: 1rem;
+$default-padding: 1.6rem;
 $default-margin: 1rem;
 $default-margin-large: $default-margin * 2;
 
@@ -12,13 +12,15 @@ $table-row-border-color: #E0E0E0;
 $table-row-hover-color: #F1F1F1;
 $table-row-responsive-header-color: #757575;
 
-$data-table-cell-padding: $default-padding / 2 $default-padding;
+$data-table-cell-padding: 0 $default-padding;
 
 $box-shadow-color-light: rgba(0, 0, 0, .12);
 $box-shadow-color-dark: rgba(0, 0, 0, .24);
 
 @mixin data-table-cell {
+  height: 50px;
   padding: $data-table-cell-padding;
+  vertical-align: middle;
 }
 
 @import './DataTableHeader';

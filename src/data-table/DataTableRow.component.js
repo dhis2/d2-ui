@@ -1,6 +1,7 @@
 import React, { isValidElement } from 'react';
 import classes from 'classnames';
 import isObject from 'd2-utilizr/lib/isObject';
+import isString from 'd2-utilizr/lib/isString';
 import moment from 'moment';
 import IconButton from 'material-ui/lib/icon-button';
 import MoreVert from 'material-ui/lib/svg-icons/navigation/more-vert';
@@ -83,6 +84,20 @@ const DataTableRow = React.createClass({
                 }
             }
 
+            const textWrapStyle = {
+                width: '100%',
+                textOverflow: 'ellipsis',
+                overflow: 'hidden',
+                whiteSpace: 'nowrap',
+                position: 'absolute',
+                wordBreak: 'break-all',
+                wordWrap: 'break-word',
+                top: 0,
+                bottom: 0,
+                lineHeight: '50px',
+                paddingRight: '1rem',
+            };
+
             return (
                 <div
                     key={index}
@@ -90,7 +105,7 @@ const DataTableRow = React.createClass({
                     onContextMenu={this.handleContextClick}
                     onClick={this.handleClick}
                 >
-                    {displayValue}
+                    {isString(displayValue) ? <span title={displayValue} style={textWrapStyle} >{displayValue}</span> : displayValue}
                 </div>
             );
         });

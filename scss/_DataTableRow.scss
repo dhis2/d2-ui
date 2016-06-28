@@ -13,8 +13,7 @@
   border-bottom: 1px solid $table-row-border-color;
   border-top: 0;
   display: table-cell;
-  padding: 1rem 1.6rem;
   text-align: left;
   transition: all .3s ease;
-  vertical-align: middle;
+  position: relative;
 }
