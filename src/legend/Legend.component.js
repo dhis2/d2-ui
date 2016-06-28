@@ -153,7 +153,7 @@ export default class Legend extends Component {
                 marginBottom: 36,
             },
             errorStyle: {
-                float: "left"
+                float: 'left',
             },
             button: {
                 position: 'relative',
