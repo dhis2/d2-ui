@@ -94,6 +94,11 @@ const TranslationForm = React.createClass({
                     primary
                     onClick={this._saveTranslations}
                 />
+                <RaisedButton
+                    style={{ marginLeft: '1rem' }}
+                    label={this.getTranslation('cancel')}
+                    onClick={this.props.onCancel}
+                />
             </div>
         );
     },

@@ -28,9 +28,21 @@ export default class TranslationDialog extends Component {
                 autoDetectWindowHeight
                 autoScrollBodyContent
                 {...this.props} >
-                <this.state.TranslationForm onTranslationSaved={this.translationSaved} onTranslationError={this.translationError} />
+                <this.state.TranslationForm
+                    onTranslationSaved={this.translationSaved}
+                    onTranslationError={this.translationError}
+                    onCancel={this.closeSharingDialog}
+                />
             </Dialog>
         );
+    }
+
+    componentWillReceiveProps(newProps) {
+        if (newProps.objectToTranslate) {
+            this.setState({
+                TranslationForm: getTranslationFormFor(newProps.objectToTranslate),
+            });
+        }
     }
 
     closeSharingDialog() {
