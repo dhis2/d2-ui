@@ -1,7 +1,11 @@
+function replaceTrailingSlash(value) {
+    return value.replace(/\/{1,}$/, '');
+}
+
 function getUrl(location) {
     const {protocol, host, pathname} = location;
 
-    return `${protocol}//${host}${pathname}`;
+    return replaceTrailingSlash(`${protocol}//${host}${pathname}`);
 }
 
 export default function getBaseUrlFromD2ApiUrl(d2) {
