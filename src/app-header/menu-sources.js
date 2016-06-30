@@ -76,7 +76,8 @@ function loadMenuItems() {
             // TODO: This path is not always be correct. Only when the manifest has '..' as the baseUrl
             // and a versioned api endpoint is used.
             // TODO: This call should probably have a proper API endpoint
-            return api.get(baseUrl + '/../dhis-web-commons/menu/getModules.action');
+            console.log(baseUrl);
+            return api.get(baseUrl + '/dhis-web-commons/menu/getModules.action');
         })
         .then(({modules}) => modules);
 }
