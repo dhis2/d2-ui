@@ -4,6 +4,7 @@ import FlatButton from 'material-ui/lib/flat-button';
 import { PropTypes, createClass, default as React } from 'react';
 import Translate from '../i18n/Translate.mixin';
 import Sharing from './Sharing.component';
+import sharingStore from './sharing.store';
 
 config.i18n.strings.add('close');
 config.i18n.strings.add('sharing_settings');
@@ -30,6 +31,7 @@ export default createClass({
                 autoDetectWindowHeight
                 autoScrollBodyContent
                 {...this.props}
+                onRequestClose={this.closeSharingDialog}
             >
                 <Sharing objectToShare={this.props.objectToShare} />
             </Dialog>
@@ -37,6 +39,6 @@ export default createClass({
     },
 
     closeSharingDialog() {
-        this.props.onRequestClose();
+        this.props.onRequestClose(sharingStore.getState());
     },
 });
