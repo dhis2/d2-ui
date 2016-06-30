@@ -139,6 +139,11 @@ styles = {
         minWidth: 420,
     },
 
+    searchFieldInnerWrap: {
+        transition: 'width .5s cubic-bezier(0.39, -0.04, 0.2, 1)',
+        position: 'relative',
+    },
+
     searchResultList: {
         display: 'flex',
         flexWrap: 'wrap',
@@ -162,7 +167,7 @@ styles = {
     },
 
     searchFieldHintText: {
-        color: '#CCC',
+        color: 'rgba(255, 255, 255, 0.5)',
     },
 
     menuItemLink: {
@@ -176,6 +181,7 @@ styles = {
         justifyContent: 'center',
         textDecoration: 'none',
         color: black,
+        fontSize: '1rem',
     },
 
     menuItemIcon: {

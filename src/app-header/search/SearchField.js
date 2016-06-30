@@ -62,11 +62,7 @@ class SearchField extends Component {
     render() {
         return (
             <div style={styles.searchField}>
-                <div style={{
-                        width: this.state.hasFocus ? '100%' : '50%',
-                        transition: 'width .5s cubic-bezier(0.39, -0.04, 0.2, 1)',
-                        position: 'relative',
-                    }}>
+                <div style={Object.assign({ width: this.state.hasFocus ? '100%' : '50%' }, styles.searchFieldInnerWrap)}>
                     <TextField
                         fullWidth
                         value={this.props.searchValue}

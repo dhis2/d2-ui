@@ -1,97 +1,63 @@
 import Action from '../action/Action';
 import {getInstance as getD2} from 'd2/lib/d2';
+import { Observable } from 'rx';
+import { getInstance } from 'd2/lib/d2';
 
-import translationStore from './translation.store';
-
-function loadAvailableLocales() {
-    if (!loadAvailableLocales.localePromise) {
-        loadAvailableLocales.localePromise = getD2()
+export function getLocales() {
+    if (!getLocales.localePromise) {
+        getLocales.localePromise = getD2()
             .then(d2 => {
                 const api = d2.Api.getApi();
 
                 return api.get('locales/db');
-            });
+            })
+            .then((locales) => ({
+                locales,
+            }));
     }
 
-    return loadAvailableLocales.localePromise;
+    return Observable.fromPromise(getLocales.localePromise);
 }
 
-function getClassName(modelDefinition) {
-    return modelDefinition.javaClass.split('.').pop();
+function getModelHref(model) {
+    if (model.href) {
+        return model.href;
+    }
+
+    return `${model.modelDefinition.apiEndpoint}/${model.id}`;
 }
 
-const actions = Action.createActionsFromNames([
-    'loadTranslationsForObject',
-    'loadLocales',
-    'saveTranslation',
-]);
+export function getTranslationsForModel(model) {
+    return Observable.just(model)
+        .flatMap((model) => {
+            const modelDefinition = model.modelDefinition;
 
-actions.loadLocales
-    .subscribe(() => {
-        loadAvailableLocales()
-            .then(availableLocales => {
-                translationStore.setState({
-                    ...translationStore.state,
-                    availableLocales,
+            if (!modelDefinition && !modelDefinition.name) {
+                return Promise.reject(new Error(`Can not find modelDefinition for ${model.id}`));
+            }
+
+            return getInstance()
+                .then((d2) => {
+                    const api = d2.Api.getApi();
+
+                    return api.get(`${getModelHref(model)}/translations`);
                 });
-            });
-    });
-
-actions.loadTranslationsForObject
-    .subscribe(({data: [objectId, locale], complete, error}) => {
-        getD2()
-            .then(d2 => {
-                return d2.models.translation
-                    .filter().on('objectId').equals(objectId)
-                    .filter().on('locale').equals(locale)
-                    .list({fields: 'href,id,property,value,className,locale', paging: false})
-                    .then((translationCollection) => translationCollection.toArray());
-            })
-            .then(translations => {
-                translationStore.setState({
-                    ...translationStore.state,
-                    translations,
-                });
-            })
-            .then(complete)
-            .catch(error);
-    });
-
-actions.saveTranslation
-    .subscribe(({data: [property, value, objectId, modelDefinition, locale], complete, error}) => {
-        const model = translationStore.state.translations.find((translation) => {
-            return translation.property === property;
         });
+}
 
-        if (model) {
-            // Update existing translation
-            if (model.value !== value) {
-                model.value = value;
 
-                model.save()
+export const saveTranslations = Action.create('saveTranslations');
+
+saveTranslations
+    .subscribe(({data: [model, translations], complete, error}) => {
+        const translationHref = `${getModelHref(model)}/translations`;
+
+        getInstance()
+            .then((d2) => {
+                const api = d2.Api.getApi();
+
+                api.update(translationHref, { translations }, { dataType: 'text'})
                     .then(complete)
                     .catch(error);
-            }
-        } else {
-            if (!value) { return; }
-
-            // Create new translation
-            getD2()
-                .then(d2 => d2.models.translation)
-                .then(translation => translation.create())
-                .then(translationModel => {
-                    translationModel.className = getClassName(modelDefinition);
-                    translationModel.locale = locale;
-                    translationModel.value = value;
-                    translationModel.property = property;
-                    translationModel.objectId = objectId;
-
-                    return translationModel.save();
-                })
-                .then(complete)
-                .catch(error);
-        }
+            });
     });
-
-
-export default actions;

@@ -1,51 +1,58 @@
 import { config } from 'd2/lib/d2';
 import Dialog from 'material-ui/lib/dialog';
-import FlatButton from 'material-ui/lib/flat-button';
-import { PropTypes, createClass, default as React } from 'react';
-import Translate from '../i18n/Translate.mixin';
-import TranslationForm from './TranslationForm.component';
+import React, { PropTypes, Component } from 'react';
+import { getTranslationFormFor } from './TranslationForm.component';
 
 config.i18n.strings.add('close');
 config.i18n.strings.add('sharing_settings');
 
-export default createClass({
-    propTypes: {
-        objectToTranslate: React.PropTypes.shape({
-            id: React.PropTypes.string.isRequired,
-        }).isRequired,
-        objectTypeToTranslate: React.PropTypes.object.isRequired,
-        onTranslationSaved: React.PropTypes.func.isRequired,
-        onTranslationError: React.PropTypes.func.isRequired,
-        open: React.PropTypes.bool,
-        onRequestClose: React.PropTypes.func.isRequired,
-    },
+export default class TranslationDialog extends Component {
+    constructor(props, context) {
+        super(props, context);
 
-    mixins: [Translate],
+        this.i18n = context.d2.i18n;
+
+        this.state = {
+            TranslationForm: getTranslationFormFor(this.props.objectToTranslate),
+        };
+    }
 
     render() {
-        const translationDialogActions = [
-            <FlatButton
-                label={this.getTranslation('close')}
-                onClick={this.closeSharingDialog} />,
-        ];
-
         return (
             <Dialog
-                title={this.getTranslation('translation_dialog_title')}
-                actions={translationDialogActions}
+                title={this.i18n.getTranslation('translation_dialog_title')}
                 autoDetectWindowHeight
                 autoScrollBodyContent
                 {...this.props} >
-                <TranslationForm
-                    {...this.props}
-                    objectToTranslate={this.props.objectToTranslate}
-                    objectTypeToTranslate={this.props.objectTypeToTranslate}
-                />
+                <this.state.TranslationForm onTranslationSaved={this.translationSaved} onTranslationError={this.translationError} />
             </Dialog>
         );
-    },
+    }
 
     closeSharingDialog() {
         this.props.onRequestClose();
-    },
-});
+    }
+
+    translationSaved() {
+        this.props.onTranslationSaved();
+        this.closeSharingDialog();
+    }
+
+    translationError() {
+        this.props.onTranslationError();
+    }
+}
+
+TranslationDialog.propTypes = {
+    objectToTranslate: React.PropTypes.shape({
+        id: React.PropTypes.string.isRequired,
+    }).isRequired,
+    onTranslationSaved: React.PropTypes.func.isRequired,
+    onTranslationError: React.PropTypes.func.isRequired,
+    open: React.PropTypes.bool,
+    onRequestClose: React.PropTypes.func.isRequired,
+};
+
+TranslationDialog.contextTypes = {
+    d2: PropTypes.object,
+};

@@ -35,6 +35,7 @@ module.exports = {
         'formula-editor': './examples/formula-editor',
         'header-bar': './examples/header-bar',
         'legend': './examples/legend',
+        'translation': './examples/translation',
     },
     output: {
         library: 'Dhis2HeaderBar',
