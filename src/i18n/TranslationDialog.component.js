@@ -15,6 +15,10 @@ export default class TranslationDialog extends Component {
         this.state = {
             TranslationForm: getTranslationFormFor(this.props.objectToTranslate),
         };
+
+        this.translationSaved = this.translationSaved.bind(this);
+        this.translationError = this.translationError.bind(this);
+        this.closeSharingDialog = this.closeSharingDialog.bind(this);
     }
 
     render() {
