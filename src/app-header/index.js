@@ -5,10 +5,19 @@ import HeaderBar from './HeaderBar';
 import withStateFrom from '../component-helpers/withStateFrom';
 import headerBarStore$ from './headerBar.store';
 
+function getBaseUrl(predefLocation) {
+    if (predefLocation) {
+        return predefLocation;
+    }
+
+    return '../api';
+}
+
 export function initHeaderBar(domElement, apiLocation, config = { noSchemas: true }) {
+    const baseUrl = getBaseUrl(apiLocation);
     const d2Config = {
         ...config,
-        baseUrl: apiLocation,
+        baseUrl,
     };
 
     // Mock d2 for offline header-bar

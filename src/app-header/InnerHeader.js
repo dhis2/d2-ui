@@ -161,6 +161,7 @@ const InnerHeader = React.createClass({
         };
 
         const linkStyle = {
+            fontSize: '1rem',
             fontWeight: 'bold',
             color: '#FFF',
             textDecoration: 'none',
