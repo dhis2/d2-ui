@@ -12,10 +12,14 @@ export default React.createClass({
             React.PropTypes.number,
             React.PropTypes.bool,
         ]),
-        value: React.PropTypes.string.isRequired,
+        value: React.PropTypes.oneOfType([
+            React.PropTypes.string,
+            React.PropTypes.number,
+            React.PropTypes.bool,
+        ]),
         onFocus: React.PropTypes.func,
         onBlur: React.PropTypes.func,
-        onChange: React.PropTypes.func,
+        onChange: React.PropTypes.func.isRequired,
         menuItems: React.PropTypes.oneOfType([
             React.PropTypes.array,
             React.PropTypes.object,
@@ -37,7 +41,7 @@ export default React.createClass({
             menuItems.unshift({id: 'null', displayName: this.props.emptyLabel});
         }
 
-        return menuItems.map(item => (<MenuItem key={item.id} value={item.id} primaryText={item.displayName} />));
+        return menuItems.map((item, i) => (<MenuItem key={i} value={item.id} primaryText={item.displayName} />));
     },
 
     renderEmptyItem() {
@@ -55,7 +59,7 @@ export default React.createClass({
             <SelectField
                 value={hasOptions ? this.props.value : 1}
                 onChange={this.handleChange}
-                disabled={!hasOptions}
+                disabled={!hasOptions || disabled}
                 {...other}>
                 {hasOptions
                     ? this.renderMenuItems(menuItemArray)
