@@ -1,24 +1,8 @@
 import React from 'react';
 import log from 'loglevel';
 
-import DropDown from '../form-fields/DropDown.component';
-import RaisedButton from 'material-ui/lib/raised-button';
-import LinearProgress from 'material-ui/lib/linear-progress';
+import { addToSelection, removeFromSelection, handleChangeSelection, renderDropdown, renderControls } from './common';
 
-
-const style = {
-    button: {
-        position: 'relative',
-        top: 3,
-        marginLeft: 16,
-    },
-    progress: {
-        height: 2,
-        backgroundColor: 'rgba(0,0,0,0)',
-        top: 46,
-    },
-};
-style.button1 = Object.assign({}, style.button, { marginLeft: 0 });
 
 class OrgUnitSelectByLevel extends React.Component {
     constructor(props, context) {
@@ -26,32 +10,20 @@ class OrgUnitSelectByLevel extends React.Component {
 
         this.state = {
             loading: false,
+            selection: undefined,
         };
         this.levelCache = {};
 
-        this.addToSelection = this.addToSelection.bind(this);
-        this.removeFromSelection = this.removeFromSelection.bind(this);
-        this.getOrgUnitsForLevel = this.getOrgUnitsForLevel.bind(this);
+        this.addToSelection = addToSelection.bind(this);
+        this.removeFromSelection = removeFromSelection.bind(this);
+        this.handleChangeSelection = handleChangeSelection.bind(this);
+        this.renderControls = renderControls.bind(this);
 
-        this.handleChangeLevel = this.handleChangeLevel.bind(this);
-        this.handleSelectAll = this.handleSelectAll.bind(this);
-        this.handleDeselectAll = this.handleDeselectAll.bind(this);
+        this.getOrgUnitsForLevel = this.getOrgUnitsForLevel.bind(this);
+        this.handleSelect = this.handleSelect.bind(this);
+        this.handleDeselect = this.handleDeselect.bind(this);
 
         this.getTranslation = context.d2.i18n.getTranslation.bind(context.d2.i18n);
-    }
-
-    addToSelection(orgUnits) {
-        const res = this.props.selected;
-        orgUnits.forEach(orgUnitId => {
-            if (res.indexOf(orgUnitId) === -1) {
-                res.push(orgUnitId);
-            }
-        });
-        this.props.onUpdateSelection(res);
-    }
-
-    removeFromSelection(orgUnits) {
-        this.props.onUpdateSelection(this.props.selected.filter(orgUnit => orgUnits.indexOf(orgUnit) === -1));
     }
 
     getOrgUnitsForLevel(level, ignoreCache = false) {
@@ -81,64 +53,28 @@ class OrgUnitSelectByLevel extends React.Component {
         });
     }
 
-    handleChangeLevel(event) {
-        this.setState({ level: event.target.value });
-    }
-
-    handleSelectAll() {
-        this.getOrgUnitsForLevel(this.state.level)
+    handleSelect() {
+        this.getOrgUnitsForLevel(this.state.selection)
             .then(orgUnits => {
                 this.addToSelection(orgUnits);
             });
     }
 
-    handleDeselectAll() {
-        this.getOrgUnitsForLevel(this.state.level)
+    handleDeselect() {
+        this.getOrgUnitsForLevel(this.state.selection)
             .then(orgUnits => {
                 this.removeFromSelection(orgUnits);
             });
     }
 
-    renderControls() {
-        return (
-            <div style={{ position: 'absolute', display: 'inline-block', top: 24, marginLeft: 16 }}>
-                {this.state.loading && (
-                    <LinearProgress size={0.5} style={style.progress} />
-                )}
-                <RaisedButton
-                    label={this.getTranslation('select')}
-                    style={style.button1}
-                    onClick={this.handleSelectAll}
-                    disabled={this.state.loading}
-                />
-                <RaisedButton
-                    label={this.getTranslation('deselect')}
-                    style={style.button}
-                    onClick={this.handleDeselectAll}
-                    disabled={this.state.loading}
-                />
-            </div>
-        );
-    }
-
     render() {
         const menuItems = (Array.isArray(this.props.levels) && this.props.levels || this.props.levels.toArray())
             .map(level => ({ id: level.level, displayName: level.displayName }));
+        const label = 'organisation_unit_level';
 
         // The minHeight on the wrapping div below is there to compensate for the fact that a
         // Material-UI SelectField will change height depending on whether or not it has a value
-        return (
-            <div style={{ position: 'relative', minHeight: 89 }}>
-                <DropDown
-                    value={this.state.level}
-                    menuItems={menuItems}
-                    onChange={this.handleChangeLevel}
-                    floatingLabelText="Organisation Unit Level"
-                    disabled={this.state.loading}
-                />
-                {(this.state.level > 0 || this.state.loading) && this.renderControls()}
-            </div>
-        );
+        return renderDropdown.call(this, menuItems, label);
     }
 }
 
