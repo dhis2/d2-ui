@@ -44,7 +44,7 @@ export const whenWidthLargerThan1150 = toggleStyle(() => getWindowWidth() > 1150
  * @returns {number} The height of the search result box in pixels.
  */
 export function getSearchResultsHeight() {
-    const maxResultRowsHeight = MENU_ITEM_WIDTH * 4;
+    const maxResultRowsHeight = 465;
 
     if (!global.document) {
         return maxResultRowsHeight;
