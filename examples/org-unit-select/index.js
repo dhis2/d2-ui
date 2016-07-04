@@ -2,6 +2,8 @@ import React from 'react';
 import { render } from 'react-dom';
 import log from 'loglevel';
 import { Card, CardText } from 'material-ui/lib/card';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
 
 import D2Lib from 'd2/lib/d2';
 
@@ -169,7 +171,6 @@ D2Lib.init({ baseUrl })
                 const root = roots.toArray()[0];
                 render(<OrgUnitSelectExample d2={d2} root={root} levels={levels} groups={groups} />, el);
             });
-            // .catch(err => render(<div>Error: {err}</div>));
     })
     .catch(err => {
         log.error('Failed to initialise D2:', err);
