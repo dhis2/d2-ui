@@ -7,10 +7,13 @@ import styles, { applyUserStyle } from './header-bar-styles';
 import LinearProgress from 'material-ui/lib/linear-progress';
 
 export default function HeaderBar(props, { d2 }) {
-    const { appItems, profileItems, currentUser, settings } = props;
+    const { appItems, profileItems, currentUser, settings, noLoadingIndicator } = props;
 
     // If the required props are not passed we're in a loading state.
     if (!appItems && !profileItems && !settings) {
+        if (noLoadingIndicator) {
+            return <div style={{display: 'none'}} />;
+        }
         return (<div style={styles.headerBar}><LinearProgress indeterminate /></div>);
     }
 
