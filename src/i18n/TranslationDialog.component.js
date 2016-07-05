@@ -32,6 +32,7 @@ export default class TranslationDialog extends Component {
                     onTranslationSaved={this.translationSaved}
                     onTranslationError={this.translationError}
                     onCancel={this.closeSharingDialog}
+                    fieldsToTranslate={this.props.fieldsToTranslate}
                 />
             </Dialog>
         );
@@ -67,6 +68,7 @@ TranslationDialog.propTypes = {
     onTranslationError: React.PropTypes.func.isRequired,
     open: React.PropTypes.bool,
     onRequestClose: React.PropTypes.func.isRequired,
+    fieldsToTranslate: React.PropTypes.array,
 };
 
 TranslationDialog.contextTypes = {
