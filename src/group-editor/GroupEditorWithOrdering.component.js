@@ -1,5 +1,4 @@
 import React from 'react';
-import { findDOMNode } from 'react';
 import GroupEditor from './GroupEditor.component';
 import IconButton from 'material-ui/lib/icon-button';
 import log from 'loglevel';
@@ -15,7 +14,7 @@ function moveItemOneSpotDownIn(currentlySelected) {
             currentlySelected[indexOfItem + 1] = currentlySelected[indexOfItem];
             currentlySelected[indexOfItem] = tempItem;
         }
-    }
+    };
 }
 
 function moveItemOneSpotUpIn(currentlySelected) {
@@ -29,7 +28,7 @@ function moveItemOneSpotUpIn(currentlySelected) {
             currentlySelected[indexOfItem - 1] = currentlySelected[indexOfItem];
             currentlySelected[indexOfItem] = tempItem;
         }
-    }
+    };
 }
 
 export default class GroupEditorWithOrdering extends React.Component {
@@ -88,6 +87,9 @@ export default class GroupEditorWithOrdering extends React.Component {
 }
 GroupEditorWithOrdering.propTypes = {
     onOrderChanged: React.PropTypes.func,
+    assignedItemStore: React.PropTypes.shape({
+        getState: React.PropTypes.func,
+    }),
 };
 GroupEditorWithOrdering.defaultProps = {
     onOrderChanged: () => {},

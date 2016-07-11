@@ -2,7 +2,6 @@ import React from 'react';
 import Tabs from 'material-ui/lib/tabs/tabs';
 import Tab from 'material-ui/lib/tabs/tab';
 import ListSelect from '../list-select/ListSelect.component';
-import SelectField from 'material-ui/lib/select-field';
 import { config } from 'd2/lib/d2';
 import Translate from '../i18n/Translate.mixin';
 import log from 'loglevel';
@@ -108,7 +107,6 @@ export default React.createClass({
     },
 
     render() {
-        console.log(this.state.programMenuItems);
         const options = this.state.programMenuItems
             .map((option, index) => (
                 <option key={index} value={option.payload}>{option.text}</option>
@@ -131,7 +129,7 @@ export default React.createClass({
         );
     },
 
-    _loadProgramDataOperands(event, index, menuItem) {
+    _loadProgramDataOperands(event) {
         const programId = event.target.value;
         const api = this.context.d2.Api.getApi();
 

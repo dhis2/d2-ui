@@ -17,6 +17,10 @@ export default React.createClass({
         objectTypeToTranslate: React.PropTypes.object.isRequired,
         objectToTranslate: React.PropTypes.shape({
             id: React.PropTypes.string.isRequired,
+            name: React.PropTypes.string,
+            shortName: React.PropTypes.string,
+            description: React.PropTypes.string,
+            formName: React.PropTypes.string,
         }).isRequired,
     },
 
