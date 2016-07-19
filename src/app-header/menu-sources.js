@@ -1,6 +1,7 @@
 import { Observable } from 'rx';
 import { getInstance, config } from 'd2/lib/d2';
 import getBaseUrlFromD2ApiUrl from './getBaseUrlFromD2ApiUrl';
+import log from 'loglevel';
 
 // Profile menu
 config.i18n.strings.add('settings');
@@ -66,6 +67,42 @@ function addHelpLinkToProfileData() {
 }
 
 export const profileSource$ = Observable.fromPromise(addHelpLinkToProfileData(profileMenuData));
+
+// TODO: Remove this when we have proper support for `displayName` from the getModules.action.
+function getTranslationsForMenuItems({modules}) {
+    return getInstance()
+        .then(d2 => {
+            const api = d2.Api.getApi();
+
+            const moduleNames = modules.map(module => module.name);
+
+            return api.post('i18n', moduleNames);
+        })
+        .then(translations => {
+            const translatedModules = modules.map(module => Object.assign({...module}, { displayName: translations[module.name] || module.name }));
+
+            return { modules: translatedModules };
+        })
+        .catch(() => {
+            log.warn('Could not load translations for modules, defaulting back to English');
+
+            return { modules };
+        });
+}
+
+/**
+ * Module management is available though the More Apps button. We therefore do not display it in the menu as a separate item.
+ *
+ * @param modules
+ * @returns {{modules: [module]}}
+ */
+function removeMenuManagementModule({modules}) {
+    return {
+        modules: modules.filter(module => module.name !== 'dhis-web-menu-management'),
+    };
+}
+
+
 function loadMenuItems() {
     return getInstance()
         .then(d2 => {
@@ -77,6 +114,8 @@ function loadMenuItems() {
             // TODO: This call should probably have a proper API endpoint
             return api.get(baseUrl + '/dhis-web-commons/menu/getModules.action');
         })
+        .then(getTranslationsForMenuItems)
+        .then(removeMenuManagementModule)
         .then(({modules}) => modules);
 }
 
