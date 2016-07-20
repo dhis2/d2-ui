@@ -36,7 +36,7 @@ const profileMenuData = [
     {
         name: 'help',
         namespace: '/dhis-web-commons-about',
-        defaultAction: '/dhis-web-commons-about/help.action',
+        defaultAction: 'https://dhis2.github.io/dhis2-docs/master/en/user/html/dhis2_user_manual_en.html',
         icon: '/icons/function-account.png',
         description: '',
     },

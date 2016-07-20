@@ -4,7 +4,7 @@ import log from 'loglevel';
 import { addToSelection, removeFromSelection, handleChangeSelection, renderDropdown, renderControls } from './common';
 
 
-class OrgUnitSelectByLevel extends React.Component {
+class OrgUnitSelectByGroup extends React.Component {
     constructor(props, context) {
         super(props, context);
 
@@ -78,7 +78,7 @@ class OrgUnitSelectByLevel extends React.Component {
     }
 }
 
-OrgUnitSelectByLevel.propTypes = {
+OrgUnitSelectByGroup.propTypes = {
     // groups is an array of either ModelCollection objects or plain objects,
     // where each object should contain `id` and `displayName` properties
     groups: React.PropTypes.oneOfType([
@@ -96,6 +96,6 @@ OrgUnitSelectByLevel.propTypes = {
     // TODO: Add group cache prop?
 };
 
-OrgUnitSelectByLevel.contextTypes = { d2: React.PropTypes.any.isRequired };
+OrgUnitSelectByGroup.contextTypes = { d2: React.PropTypes.any.isRequired };
 
-export default OrgUnitSelectByLevel;
+export default OrgUnitSelectByGroup;
