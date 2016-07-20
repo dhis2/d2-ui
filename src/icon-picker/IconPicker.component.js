@@ -31,9 +31,20 @@ class IconPicker extends React.Component {
 
     render() {
         const styles = {
-            iconPopoverStyle: {
+            iconPopover: {
                 paddingTop: '1rem',
                 width: '50%',
+            },
+
+            // TODO: Load partial style from material-ui
+            iconPickerLabel: {
+                transformOrigin: 'left top 0px',
+                pointerEvents: 'none',
+                color: 'rgba(0, 0, 0, 0.498039)',
+                padding: '1rem 0 .5rem',
+                transition: 'all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms',
+                transform: 'scale(.75)',
+                fontSize: '16px',
             },
         };
 
@@ -51,13 +62,13 @@ class IconPicker extends React.Component {
 
         return (
             <div>
-                <div className="icon-picker__label-text">{this.props.labelText}</div>
+                <div className="icon-picker__label-text" style={styles.iconPickerLabel}>{this.props.labelText}</div>
                 <CurrentIcon imgSrc={getImgSrc(this.props.imgPath, this.props.value)} onIconClicked={this._currentIconClicked} />
                 <Popover
                     open={this.state.showOptions}
                     anchorEl={this.state.anchorEl}
                     onRequestClose={this._closeOptions}
-                    style={Object.assign(styles.iconPopoverStyle, this.props.iconPopoverStyle)}
+                    style={Object.assign(styles.iconPopover, this.props.iconPopoverStyle)}
                 >
                     {optionElements}
                 </Popover>
