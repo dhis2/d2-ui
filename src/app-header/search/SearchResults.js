@@ -1,5 +1,5 @@
 import React from 'react';
-import Paper from 'material-ui/lib/paper';
+import Paper from 'material-ui/Paper';
 import SearchResultsList from './SearchResultsList';
 import HeaderMenuItem from '../menus/HeaderMenuItem';
 import withStateFrom from '../../component-helpers/withStateFrom';
@@ -7,7 +7,7 @@ import addD2Context from '../../component-helpers/addD2Context';
 import { searchStore$, setHovering } from './search.stores';
 import styles, { getSearchResultsHeight } from '../header-bar-styles';
 import NoResults from './NoResults';
-import FlatButton from 'material-ui/lib/flat-button';
+import FlatButton from 'material-ui/FlatButton';
 import { config } from 'd2/lib/d2';
 import getBaseUrlFromD2ApiUrl from '../getBaseUrlFromD2ApiUrl';
 
@@ -22,7 +22,6 @@ function SearchResults(props, { d2 }) {
     const moreAppsButton = (
         <FlatButton
             style={styles.moreAppsButton}
-            linkButton={true}
             href={getBaseUrl(d2) + '/dhis-web-menu-management'}
         >
             {d2.i18n.getTranslation('manage_my_apps')}

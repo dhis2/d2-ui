@@ -1,10 +1,10 @@
 import React from 'react';
-import Avatar from 'material-ui/lib/avatar';
+import Avatar from 'material-ui/Avatar';
 import HeaderMenu from './HeaderMenu';
 import HeaderMenuItem from './HeaderMenuItem';
 import styles, {applyUserStyle} from '../header-bar-styles';
 import addD2Context from '../../component-helpers/addD2Context';
-import FlatButton from 'material-ui/lib/flat-button';
+import FlatButton from 'material-ui/FlatButton';
 import getBaseUrlFromD2ApiUrl from '../getBaseUrlFromD2ApiUrl';
 
 const getBaseUrl = getBaseUrlFromD2ApiUrl;
@@ -38,7 +38,7 @@ const ProfileMenu = addD2Context(function ProfileMenu(props, { d2 }) {
                     <div style={{width: '100%', lineHeight: '1.5rem'}}>{currentUser.email}</div>
                 </div>
             </div>
-            <FlatButton style={{width: '100%', textAlign: 'center'}} linkButton={true} href={getBaseUrl(d2) + '/dhis-web-commons-security/logout.action'}>
+            <FlatButton style={{width: '100%', textAlign: 'center'}} href={getBaseUrl(d2) + '/dhis-web-commons-security/logout.action'}>
                 {d2.i18n.getTranslation('log_out')}
             </FlatButton>
         </div>

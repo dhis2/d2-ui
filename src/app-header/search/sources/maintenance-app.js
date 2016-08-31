@@ -1,10 +1,10 @@
-import map from 'lodash/fp/map';
-import curry from 'lodash/fp/curry';
-import compose from 'lodash/fp/compose';
+import { map } from 'lodash/fp';
+import { curry } from 'lodash/fp';
+import { compose } from 'lodash/fp';
 import { Observable } from 'rx';
-import flatten from 'lodash/fp/flatten';
-import filter from 'lodash/fp/filter';
-import mapValues from 'lodash/fp/mapValues';
+import { flatten } from 'lodash/fp';
+import { filter } from 'lodash/fp';
+import { mapValues } from 'lodash/fp';
 import { prepareMenuItems, translate$, translateMenuItemNames, getBaseUrlFromD2 } from '../../headerBar.store';
 import { config, getInstance } from 'd2/lib/d2';
 import camelCaseToUnderscores from 'd2-utilizr/lib/camelCaseToUnderscores';

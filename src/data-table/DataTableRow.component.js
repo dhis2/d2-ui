@@ -1,7 +1,7 @@
 import React, { isValidElement } from 'react';
 import classes from 'classnames';
-import isObject from 'd2-utilizr/lib/isObject';
-import isString from 'd2-utilizr/lib/isString';
+import { isObject } from 'lodash/fp';
+import { isString } from 'lodash/fp';
 import moment from 'moment';
 import IconButton from 'material-ui/lib/icon-button';
 import MoreVert from 'material-ui/lib/svg-icons/navigation/more-vert';

@@ -4,7 +4,7 @@ import InnerHeader from './InnerHeader';
 import HeaderMenus from './menus/HeaderMenus';
 import SearchField from './search/SearchField';
 import styles, { applyUserStyle } from './header-bar-styles';
-import LinearProgress from 'material-ui/lib/linear-progress';
+import LinearProgress from 'material-ui/LinearProgress';
 
 export default function HeaderBar(props, { d2 }) {
     const { appItems, profileItems, currentUser, settings, noLoadingIndicator } = props;
@@ -14,7 +14,7 @@ export default function HeaderBar(props, { d2 }) {
         if (noLoadingIndicator) {
             return <div style={{display: 'none'}} />;
         }
-        return (<div style={styles.headerBar}><LinearProgress indeterminate /></div>);
+        return (<div style={styles.headerBar}><LinearProgress mode="indeterminate" /></div>);
     }
 
     return (

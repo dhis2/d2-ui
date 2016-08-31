@@ -1,7 +1,7 @@
 import React from 'react';
 import addD2Context from '../component-helpers/addD2Context';
-import isString from 'd2-utilizr/lib/isString';
-import isFunction from 'd2-utilizr/lib/isFunction';
+import { isString } from 'lodash/fp';
+import { isFunction } from 'lodash/fp';
 import log from 'loglevel';
 
 function hasAccessToD2TranslationFunction(context) {

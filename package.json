@@ -23,7 +23,7 @@
   },
   "license": "BSD-3-Clause",
   "peerDependencies": {
-    "material-ui": "0.14.4"
+    "material-ui": "^0.15.4"
   },
   "devDependencies": {
     "babel": "^6.5.2",
@@ -37,6 +37,7 @@
     "babel-preset-stage-0": "^6.5.0",
     "chai": "3.5.0",
     "classnames": "^2.2.3",
+    "colors": "^1.1.2",
     "coveralls": "^2.11.8",
     "css-loader": "^0.23.1",
     "d2": "^24.0.2",
@@ -56,24 +57,25 @@
     "lodash.isfinite": "^3.3.0",
     "lodash.isfunction": "^3.0.8",
     "loglevel": "1.4.0",
-    "material-ui": "^0.14.4",
+    "material-ui": "^0.15.4",
     "mocha": "2.4.5",
     "mocha-jsdom": "^1.1.0",
     "mocha-silent-reporter": "^1.0.0",
     "moment": "^2.11.2",
     "node-sass": "^3.4.2",
     "precommit-hook": "^3.0.0",
-    "react": "^0.14.8",
+    "react": "^15.3.0",
     "react-addons-test-utils": "^0.14.8",
-    "react-dom": "^0.14.8",
+    "react-dom": "^15.3.0",
     "react-stub-context": "^0.4.0",
-    "react-tap-event-plugin": "^0.2.0",
+    "react-tap-event-plugin": "^1.0.0",
     "sass-loader": "^3.2.0",
     "sinon": "^1.17.3",
     "sinon-chai": "^2.8.0",
     "style-loader": "^0.13.0",
-    "webpack": "^1.12.14",
-    "webpack-dev-server": "^1.14.1"
+    "webpack": "^2.1.0-beta.20",
+    "webpack-dev-server": "^2.1.0-beta.0",
+    "webpack-visualizer-plugin": "^0.1.5"
   },
   "dependencies": {
     "d2-utilizr": "^0.2.4",

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { findDOMNode } from 'react-dom';
 import styles, { MENU_ITEM_WIDTH } from '../header-bar-styles';
-import TextField from 'material-ui/lib/text-field';
+import TextField from 'material-ui/TextField';
 import { search, handleKeyPress, setSearchFieldFocusTo, hideWhenNotHovering } from './search.stores';
-import IconButton from 'material-ui/lib/icon-button';
-import AppsIcon from 'material-ui/lib/svg-icons/navigation/apps';
-import ClearIcon from 'material-ui/lib/svg-icons/content/clear';
-import { white } from 'material-ui/lib/styles/colors';
+import IconButton from 'material-ui/IconButton';
+import AppsIcon from 'material-ui/svg-icons/navigation/apps';
+import ClearIcon from 'material-ui/svg-icons/content/clear';
+import { white } from 'material-ui/styles/colors';
 import { config } from 'd2/lib/d2';
 import addD2Context from '../../component-helpers/addD2Context';
 import SearchResults from './SearchResults';
@@ -65,7 +65,7 @@ class SearchField extends Component {
                 <div style={Object.assign({ width: this.state.hasFocus ? '100%' : '50%' }, styles.searchFieldInnerWrap)}>
                     <TextField
                         fullWidth
-                        value={this.props.searchValue}
+                        value={this.props.searchValue || ''}
                         onChange={this._setSearchValue}
                         onFocus={this._onFocus}
                         onBlur={this._onBlur}

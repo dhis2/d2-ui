@@ -1,11 +1,11 @@
 import { getInstance } from 'd2/lib/d2';
-import compose from 'lodash/fp/compose';
-import map from 'lodash/fp/map';
+import { compose } from 'lodash/fp';
+import { map } from 'lodash/fp';
 import headerBarSettingsStore$ from './settings/settings.store';
 import { profileSource$, appsMenuSource$ } from './menu-sources';
-import curry from 'lodash/fp/curry';
-import pick from 'lodash/fp/pick';
-import { default as pluck } from 'lodash/fp/get';
+import { curry } from 'lodash/fp';
+import { pick } from 'lodash/fp';
+import { get as pluck } from 'lodash/fp';
 import { Observable } from 'rx';
 import getBaseUrlFromD2ApiUrl from './getBaseUrlFromD2ApiUrl';
 

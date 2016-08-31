@@ -4,6 +4,7 @@ import { init } from 'd2/lib/d2';
 import HeaderBar from './HeaderBar';
 import withStateFrom from '../component-helpers/withStateFrom';
 import headerBarStore$ from './headerBar.store';
+import D2UIApp from '../app/D2UIApp';
 
 function getBaseUrl(predefLocation) {
     if (predefLocation) {
@@ -42,7 +43,9 @@ export function initHeaderBar(domElement, apiLocation, config = { noSchemas: tru
 
         render() {
             return (
-                <HeaderBarWithState noLoadingIndicator={noLoadingIndicator} />
+                <D2UIApp>
+                    <HeaderBarWithState noLoadingIndicator={noLoadingIndicator} />
+                </D2UIApp>
             );
         },
     });

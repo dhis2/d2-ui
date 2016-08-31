@@ -1,5 +1,5 @@
 import React from 'react';
-import isArray from 'd2-utilizr/lib/isArray';
+import { isArray } from 'lodash/fp';
 import log from 'loglevel';
 
 function TwoPanelSelector(props) {

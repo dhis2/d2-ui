@@ -5,9 +5,9 @@ import { Observable, helpers } from 'rx';
 import addDeepLinksForMaintenance from './sources/maintenance-app';
 import log from 'loglevel';
 import { appsMenuItems$ } from '../headerBar.store';
-import uniqBy from 'lodash/fp/uniqBy';
-import curry from 'lodash/fp/curry';
-import get from 'lodash/fp/get';
+import { uniqBy } from 'lodash/fp';
+import { curry } from 'lodash/fp';
+import { get } from 'lodash/fp';
 
 const searchResultBoxStateStore$ = Store.create({
     getInitialState() {
