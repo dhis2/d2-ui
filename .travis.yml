@@ -1,9 +1,10 @@
 language: node_js
+rvm:
+- 2.2
 node_js:
 - node 4.1
 script:
-- gem install scss_lint
-#- npm run lint
+- gem install scss_lint -v 0.50.2
 - npm run coverage
 - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 notifications:
