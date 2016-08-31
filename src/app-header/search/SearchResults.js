@@ -23,7 +23,7 @@ function SearchResults(props, { d2 }) {
         <FlatButton
             style={styles.moreAppsButton}
             linkButton={true}
-            href={getBaseUrl(d2) + '/dhis-web-commons-about/modules.action'}
+            href={getBaseUrl(d2) + '/dhis-web-menu-management'}
         >
             {d2.i18n.getTranslation('manage_my_apps')}
         </FlatButton>

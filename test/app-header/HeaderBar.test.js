@@ -6,7 +6,6 @@ import LinearProgress from 'material-ui/lib/linear-progress';
 import InnerHeader from '../../src/app-header/InnerHeader';
 import SearchField from '../../src/app-header/search/SearchField';
 import styles from '../../src/app-header/header-bar-styles';
-import AppMenu from '../../src/app-header/menus/AppMenu';
 import ProfileMenu from '../../src/app-header/menus/ProfileMenu';
 
 describe('HeaderBar', () => {

@@ -15,8 +15,9 @@ function getBaseUrl(predefLocation) {
 
 export function initHeaderBar(domElement, apiLocation, config = { noSchemas: true }) {
     const baseUrl = getBaseUrl(apiLocation);
+    const { noLoadingIndicator, ...d2ConfigKeys } = config;
     const d2Config = {
-        ...config,
+        ...d2ConfigKeys,
         baseUrl,
     };
 
@@ -41,7 +42,7 @@ export function initHeaderBar(domElement, apiLocation, config = { noSchemas: tru
 
         render() {
             return (
-                <HeaderBarWithState />
+                <HeaderBarWithState noLoadingIndicator={noLoadingIndicator} />
             );
         },
     });

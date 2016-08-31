@@ -1,6 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
 import log from 'loglevel';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
 
 import FormBuilder from '../../src/forms/FormBuilder.component.js';
 

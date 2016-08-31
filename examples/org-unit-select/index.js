@@ -2,12 +2,15 @@ import React from 'react';
 import { render } from 'react-dom';
 import log from 'loglevel';
 import { Card, CardText } from 'material-ui/lib/card';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
 
 import D2Lib from 'd2/lib/d2';
 
 import OrgUnitTree from '../../src/org-unit-tree/OrgUnitTree.component';
 import OrgUnitSelectByLevel from '../../src/org-unit-select/OrgUnitSelectByLevel.component';
 import OrgUnitSelectByGroup from '../../src/org-unit-select/OrgUnitSelectByGroup.component';
+import OrgUnitSelectAll from '../../src/org-unit-select/OrgUnitSelectAll.component';
 
 const el = document.getElementById('app');
 const dhisDevConfig = DHIS_CONFIG;
@@ -29,8 +32,8 @@ const styles = {
         borderBottom: '1px solid #eeeeee',
     },
 };
-styles.cardFloat = Object.assign({}, styles.card, {
-    float: 'right',
+styles.cardWide = Object.assign({}, styles.card, {
+    width: 923,
 });
 
 class OrgUnitSelectExample extends React.Component {
@@ -57,12 +60,6 @@ class OrgUnitSelectExample extends React.Component {
     render() {
         return (
             <div>
-                <Card style={styles.cardFloat}>
-                    <CardText style={styles.cardText}>
-                        <h3 style={styles.cardHeader}>Seleced Org Units: {this.state.selected.length}</h3>
-                        <OrgUnitTree root={this.props.root} selected={this.state.selected} />
-                    </CardText>
-                </Card>
                 <Card style={styles.card}>
                     <CardText style={styles.cardText}>
                         <h3 style={styles.cardHeader}>Select By Org Unit Level</h3>
@@ -83,10 +80,39 @@ class OrgUnitSelectExample extends React.Component {
                         />
                     </CardText>
                 </Card>
-                <Card style={styles.card}>
+                <Card style={styles.cardWide}>
                     <CardText style={styles.cardText}>
-                        <h3 style={styles.cardHeader}>Combined with Org Unit Tree</h3>
-                        (All the stuff)
+                        <h3 style={styles.cardHeader}>Combined with Org Unit Tree: {this.state.selected.length}</h3>
+                        <div style={{ height: 350, width: 400, overflowY: 'scroll', float: 'left', marginBottom: 16 }}>
+                            <OrgUnitTree
+                                root={this.props.root}
+                                selected={this.state.selected}
+                                initiallyExpanded={this.props.root.id}
+                                onClick={(e) => { e.target.parentNode.parentNode.firstChild.click(e); }}
+                            />
+                        </div>
+                        <div style={{ float: 'right', width: 475 }}>
+                            <div style={{ marginBottom: -24, marginTop: -16 }}>
+                                <OrgUnitSelectByLevel
+                                    levels={this.props.levels}
+                                    selected={this.state.selected}
+                                    onUpdateSelection={this.handleSelectionUpdate}
+                                />
+                            </div>
+                            <div>
+                                <OrgUnitSelectByGroup
+                                    groups={this.props.groups}
+                                    selected={this.state.selected}
+                                    onUpdateSelection={this.handleSelectionUpdate}
+                                />
+                            </div>
+                            <div style={{ float: 'right' }}>
+                                <OrgUnitSelectAll
+                                    selected={this.state.selected}
+                                    onUpdateSelection={this.handleSelectionUpdate}
+                                />
+                            </div>
+                        </div>
                     </CardText>
                 </Card>
             </div>
@@ -117,6 +143,14 @@ D2Lib.init({ baseUrl })
         render(<div>Loading Organisation Units...</div>, el);
         window.d2 = d2;
 
+        // Hack in some translations since these examples don't have localisation files
+        d2.i18n.translations.organisation_unit_group = 'Organisation Unit Group';
+        d2.i18n.translations.organisation_unit_level = 'Organisation Unit Level';
+        d2.i18n.translations.select = 'Select';
+        d2.i18n.translations.deselect = 'Deselect';
+        d2.i18n.translations.select_all = 'Select All Org Units';
+        d2.i18n.translations.deselect_all = 'Deselect All Org Units';
+
         Promise.all([
             d2.models.organisationUnits.list({
                 paging: false,
@@ -137,7 +171,6 @@ D2Lib.init({ baseUrl })
                 const root = roots.toArray()[0];
                 render(<OrgUnitSelectExample d2={d2} root={root} levels={levels} groups={groups} />, el);
             });
-            // .catch(err => render(<div>Error: {err}</div>));
     })
     .catch(err => {
         log.error('Failed to initialise D2:', err);

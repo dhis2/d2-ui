@@ -3,19 +3,43 @@ import CircularProgress from 'material-ui/lib/circular-progress';
 import TextField from 'material-ui/lib/text-field';
 import Translate from '../i18n/Translate.mixin';
 import LocaleSelector from '../i18n/LocaleSelector.component';
-import actions from './translationForm.actions';
-import store from './translation.store';
+import { getLocales, getTranslationsForModel, saveTranslations } from './translationForm.actions';
 import camelCaseToUnderscores from 'd2-utilizr/lib/camelCaseToUnderscores';
+import withStateFrom from '../component-helpers/withStateFrom';
+import RaisedButton from 'material-ui/lib/raised-button';
+import { Observable } from 'rx';
+import Store from '../store/Store';
 
+function getTranslationFormData(model) {
+    const translationStore = Store.create();
 
-export default React.createClass({
+    getTranslationsForModel(model)
+        .subscribe((translations) => {
+            translationStore.setState(translations);
+        });
+
+    return Observable
+        .combineLatest(
+            getLocales(),
+            translationStore,
+            (...data) => Object.assign({
+                objectToTranslate: model,
+                setTranslations(translations) {
+                    translationStore.setState({
+                        translations,
+                    });
+                },
+            }, ...data)
+        );
+}
+
+const TranslationForm = React.createClass({
     propTypes: {
         onTranslationSaved: React.PropTypes.func.isRequired,
         onTranslationError: React.PropTypes.func.isRequired,
-        objectTypeToTranslate: React.PropTypes.object.isRequired,
         objectToTranslate: React.PropTypes.shape({
             id: React.PropTypes.string.isRequired,
-        }).isRequired,
+        }),
         fieldsToTranslate: React.PropTypes.arrayOf(React.PropTypes.string),
     },
 
@@ -36,26 +60,6 @@ export default React.createClass({
         };
     },
 
-    componentDidMount() {
-        actions.loadLocales();
-
-        this.disposable = store.subscribe((storeState) => {
-            this.setState({
-                ...storeState,
-                translationValues: (storeState.translations || [])
-                    .reduce((acc, translation) => {
-                        acc[translation.property] = translation.value;
-                        return acc;
-                    }, {}),
-                loading: false,
-            });
-        });
-    },
-
-    componentWillUnmount() {
-        this.disposable && this.disposable.dispose && this.disposable.dispose();
-    },
-
     getLoadingdataElement() {
         return (
             <div style={{textAlign: 'center'}}>
@@ -71,10 +75,9 @@ export default React.createClass({
                 return (
                     <div key={fieldName}>
                         <TextField floatingLabelText={this.getTranslation(camelCaseToUnderscores(fieldName))}
-                                   value={this.state.translationValues[fieldName]}
+                                   value={this.getTranslationValueFor(fieldName)}
                                    fullWidth
                                    onChange={this._setValue.bind(this, fieldName)}
-                                   onBlur={this._saveValue.bind(this, fieldName)}
                         />
                         <div>{this.props.objectToTranslate[fieldName]}</div>
                     </div>
@@ -86,6 +89,16 @@ export default React.createClass({
         return (
             <div>
                 {this.renderFieldsToTranslate()}
+                <RaisedButton
+                    label={this.getTranslation('save')}
+                    primary
+                    onClick={this._saveTranslations}
+                />
+                <RaisedButton
+                    style={{ marginLeft: '1rem' }}
+                    label={this.getTranslation('cancel')}
+                    onClick={this.props.onCancel}
+                />
             </div>
         );
     },
@@ -99,37 +112,72 @@ export default React.createClass({
     },
 
     render() {
-        if (this.state.loading) {
+        if (!this.props.locales && !this.props.translations) {
             return this.getLoadingdataElement();
         }
 
         return (
             <div style={{minHeight: 250}}>
-                <LocaleSelector locales={this.state.availableLocales} onChange={this._reloadTranslations} />
+                    <LocaleSelector locales={this.props.locales} onChange={this.setCurrentLocale} />
                 {Boolean(this.state.currentSelectedLocale) ? this.renderForm() : this.renderHelpText()}
             </div>
         );
     },
 
-    _reloadTranslations(locale) {
-        actions.loadTranslationsForObject(this.props.objectToTranslate.id, locale);
+    getTranslationValueFor(fieldName) {
+        const translation = this.props.translations
+            .find((t) =>
+                t.locale === this.state.currentSelectedLocale &&
+                t.property.toLowerCase() === camelCaseToUnderscores(fieldName)
+            );
+
+        if (translation) {
+            return translation.value;
+        }
+    },
+
+    setCurrentLocale(locale) {
         this.setState({
             currentSelectedLocale: locale,
         });
     },
 
     _setValue(property, event) {
-        const newTranslations = this.state.translationValues;
+        let newTranslations = [].concat(this.props.translations);
+        let translation =  newTranslations
+            .find(t =>  t.locale === this.state.currentSelectedLocale && t.property.toLowerCase() === camelCaseToUnderscores(property));
 
-        newTranslations[property] = event.target.value;
+        if (translation) {
+            if (event.target.value) {
+                translation.value = event.target.value;
+            } else {
+                // Remove translation from the array
+                newTranslations = newTranslations.filter(t => t !== translation);
+            }
+        } else {
+            translation = {
+                property: camelCaseToUnderscores(property).toUpperCase(),
+                locale: this.state.currentSelectedLocale,
+                value: event.target.value,
+            };
 
-        this.setState({
-            translationValues: newTranslations,
-        });
+            newTranslations.push(translation);
+        }
+
+        this.props.setTranslations(newTranslations);
     },
 
-    _saveValue(property, event) {
-        actions.saveTranslation(property, event.target.value, this.props.objectToTranslate.id, this.props.objectTypeToTranslate, this.state.currentSelectedLocale)
-            .subscribe(this.props.onTranslationSaved, this.props.onTranslationError);
+    _saveTranslations() {
+        saveTranslations(this.props.objectToTranslate, this.props.translations)
+            .subscribe(
+                this.props.onTranslationSaved,
+                this.props.onTranslationError
+            );
     },
 });
+
+export default TranslationForm;
+
+export function getTranslationFormFor(model) {
+    return withStateFrom(getTranslationFormData(model), TranslationForm);
+}
