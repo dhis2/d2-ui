@@ -14,22 +14,22 @@ config.i18n.strings.add('about_dhis2');
 const profileMenuData = [
     {
         name: 'settings',
-        namespace: '/dhis-web-commons-about',
-        defaultAction: '/dhis-web-commons-about/userSettings.action',
+        namespace: '/dhis-web-user-profile',
+        defaultAction: '/dhis-web-user-profile/#/settings',
         icon: '/icons/usersettings.png',
         description: '',
     },
     {
         name: 'profile',
-        namespace: '/dhis-web-commons-about',
-        defaultAction: '/dhis-web-commons-about/showUpdateUserProfileForm.action',
+        namespace: '/dhis-web-user-profile',
+        defaultAction: '/dhis-web-user-profile/#/profile',
         icon: '/icons/function-profile.png',
         description: '',
     },
     {
         name: 'account',
-        namespace: '/dhis-web-commons-about',
-        defaultAction: '/dhis-web-commons-about/showUpdateUserAccountForm.action',
+        namespace: '/dhis-web-user-profile',
+        defaultAction: '/dhis-web-user-profile/#/account',
         icon: '/icons/function-account.png',
         description: '',
     },
