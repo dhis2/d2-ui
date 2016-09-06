@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ChromePicker from 'react-color/lib/components/ChromePicker';
+import ChromePicker from 'react-color/lib/components/chrome/Chrome';
 import {hcl} from 'd3-color';
 
 export default class ColorPicker extends Component {
@@ -21,7 +21,7 @@ export default class ColorPicker extends Component {
     }
 
     handleChange = (color) => {
-        const hexColor =  '#' + color.hex.toUpperCase();
+        const hexColor = color.hex.toUpperCase();
 
         this.setState({color: hexColor});
         this.props.onChange(hexColor);
