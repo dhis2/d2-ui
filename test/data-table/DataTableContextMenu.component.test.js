@@ -1,9 +1,9 @@
-import React from 'react/addons';
+import React from 'react';
 import {shallow} from 'enzyme';
 
 import DataTableContextMenu from '../../src/data-table/DataTableContextMenu.component';
 
-import MenuItem from 'material-ui/lib/menus/menu-item';
+import MenuItem from 'material-ui/MenuItem/MenuItem';
 
 describe('DataTableContextMenu component', () => {
     let contextMenuComponent;

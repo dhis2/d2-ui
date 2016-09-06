@@ -2,7 +2,7 @@ import React from 'react';
 import LoadingMask from '../../src/loading-mask/LoadingMask.component';
 
 import {shallow} from 'enzyme';
-import CircularProgress from 'material-ui/lib/circular-progress';
+import CircularProgress from 'material-ui/CircularProgress/CircularProgress';
 
 describe('LoadingMask', () => {
     let loadingMask;

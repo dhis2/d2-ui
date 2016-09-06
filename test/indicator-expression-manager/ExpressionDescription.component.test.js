@@ -1,6 +1,6 @@
-import React from 'react/addons';
+import React from 'react';
 import injectTheme from '../../config/inject-theme';
-import TextField from 'material-ui/lib/text-field';
+import TextField from 'material-ui/TextField/TextField';
 import ExpressionDescription from '../../src/indicator-expression-manager/ExpressionDescription.component';
 import {shallow} from 'enzyme';
 

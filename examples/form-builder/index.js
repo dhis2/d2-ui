@@ -2,19 +2,19 @@ import React from 'react';
 import { render } from 'react-dom';
 import log from 'loglevel';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 injectTapEventPlugin();
 
 import FormBuilder from '../../src/forms/FormBuilder.component.js';
 
-import Card from 'material-ui/lib/card/card';
-import CardText from 'material-ui/lib/card/card-text';
+import Card from 'material-ui/Card/Card';
+import CardText from 'material-ui/Card/CardText';
 
 import CheckBox from '../../src/form-fields/CheckBox.component.js';
 import SelectField from '../../src/form-fields/DropDown.component.js';
 import TextField from '../../src/form-fields/TextField.js';
 import DatePicker from '../../src/form-fields/DatePicker.component.js';
-// TODO: MultiToggle example
-// import MultiToggle from '../../src/form-fields/MultiToggle.js';
 
 class FormExample extends React.Component {
     constructor() {
@@ -64,7 +64,7 @@ class FormExample extends React.Component {
                     floatingLabelText: 'Multiline TextField',
                     style: { width: '100%' },
                     hintText: 'Press enter for new line',
-                    multiLine: true,
+                    // multiLine: true,
                     changeEvent: 'onBlur',
                 },
             },
@@ -122,4 +122,9 @@ FormExample.childContextTypes = {
     d2: React.PropTypes.object,
 };
 
-render(<FormExample />, document.querySelector('#form-builder'));
+render(
+    <MuiThemeProvider muiTheme={getMuiTheme()}>
+        <FormExample />
+    </MuiThemeProvider>,
+    document.querySelector('#form-builder')
+);

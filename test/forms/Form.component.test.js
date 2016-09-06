@@ -1,4 +1,4 @@
-import React from 'react/addons';
+import React from 'react';
 import Form from '../../src/forms/Form.component';
 import FormField from '../../src/forms/FormField.component';
 import {FormFieldStatuses} from '../../src/forms/FormValidator';

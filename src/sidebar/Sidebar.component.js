@@ -1,8 +1,8 @@
 import React from 'react';
-import List from 'material-ui/lib/lists/list';
-import ListItem from 'material-ui/lib/lists/list-item';
-import TextField from 'material-ui/lib/text-field';
-import FontIcon from 'material-ui/lib/font-icon';
+import List from 'material-ui/List/List';
+import ListItem from 'material-ui/List/ListItem';
+import TextField from 'material-ui/TextField';
+import FontIcon from 'material-ui/FontIcon';
 
 
 const styles = {

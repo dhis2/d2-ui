@@ -1,4 +1,4 @@
-import React from 'react/addons';
+import React from 'react';
 import {getStubContext} from '../../config/inject-theme';
 import Pagination from '../../src/pagination/Pagination.component';
 

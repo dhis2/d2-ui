@@ -1,6 +1,6 @@
 import { PropTypes, default as React } from 'react';
 import classes from 'classnames';
-import LinearProgress from 'material-ui/lib/linear-progress';
+import LinearProgress from 'material-ui/LinearProgress';
 
 const emptyComponent = React.createClass({ render() { return null; } });
 

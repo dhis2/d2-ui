@@ -1,7 +1,7 @@
-import React from 'react/addons';
+import React from 'react';
 import injectTheme from '../../config/inject-theme';
 import ExpressionOperators from '../../src/indicator-expression-manager/ExpressionOperators.component';
-import FlatButton from 'material-ui/lib/flat-button';
+import FlatButton from 'material-ui/FlatButton/FlatButton';
 import {shallow} from 'enzyme';
 
 describe('ExpressionOperators component', () => {

@@ -1,7 +1,7 @@
-import { PropTypes, createClass, default as React } from 'react';
+import React, { PropTypes, createClass } from 'react';
 import Translate from '../i18n/Translate.mixin';
-import Toggle from 'material-ui/lib/toggle';
-import ClearFix from 'material-ui/lib/clearfix';
+import Toggle from 'material-ui/Toggle/Toggle';
+import ClearFix from 'material-ui/internal/Clearfix';
 import { config } from 'd2/lib/d2';
 
 config.i18n.strings.add('can_view');

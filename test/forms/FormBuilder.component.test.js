@@ -1,8 +1,8 @@
-import React from 'react/addons';
+import React from 'react';
 import FormBuilder from '../../src/forms/FormBuilder.component';
 import { shallow } from 'enzyme';
 import { getStubContext } from '../../config/inject-theme';
-import Textfield from 'material-ui/lib/text-field';
+import Textfield from 'material-ui/Textfield/Textfield';
 import AsyncValidatorRunner from '../../src/forms/AsyncValidatorRunner';
 import {Observable} from 'rx';
 

@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import ColorScale from './ColorScale.component';
 import colorbrewer from './colorbrewer';
-import Popover from 'material-ui/lib/popover/popover';
-import SelectField from 'material-ui/lib/select-field';
-import MenuItem from 'material-ui/lib/menus/menu-item';
+import Popover from 'material-ui/Popover/Popover';
+import SelectField from 'material-ui/SelectField/SelectField';
+import MenuItem from 'material-ui/MenuItem/MenuItem';
 import { config } from 'd2/lib/d2';
 
 config.i18n.strings.add('number_of_items');

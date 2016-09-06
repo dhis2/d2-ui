@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-import TextField from 'material-ui/lib/text-field';
-import RaisedButton from 'material-ui/lib/raised-button';
-import FlatButton from 'material-ui/lib/flat-button';
-import Dialog from 'material-ui/lib/dialog';
+import TextField from 'material-ui/TextField/TextField';
+import RaisedButton from 'material-ui/RaisedButton/RaisedButton';
+import FlatButton from 'material-ui/FlatButton/FlatButton';
+import Dialog from 'material-ui/Dialog/Dialog';
 import ColorScaleSelect from './ColorScaleSelect.component';
 import LegendItems from './LegendItems.component';
 import {scaleLinear} from 'd3-scale';

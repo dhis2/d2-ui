@@ -1,4 +1,4 @@
-//import React from 'react/addons';
+//import React from 'react';
 //import AppBar from '../../src/header-bar/HeaderBar.component';
 //import dhis2 from '../../src/header-bar/dhis2';
 //import injectTheme from '../../config/inject-theme';

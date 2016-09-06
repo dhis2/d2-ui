@@ -1,5 +1,5 @@
 import React from 'react';
-import LinearProgress from 'material-ui/lib/linear-progress';
+import LinearProgress from 'material-ui/LinearProgress';
 
 import Model from 'd2/lib/model/Model';
 import ModelCollection from 'd2/lib/model/ModelCollection';

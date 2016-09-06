@@ -1,8 +1,10 @@
 import React from 'react';
 import {render} from 'react-dom';
 import IconPicker from '../../src/icon-picker';
-import Card from 'material-ui/lib/card/card';
-import CardText from 'material-ui/lib/card/card-text';
+import Card from 'material-ui/Card/Card';
+import CardText from 'material-ui/Card/CardText';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
@@ -65,30 +67,32 @@ ExampleWithMockD2.childContextTypes = {
 
 function renderIconPicker() {
     render(
-        <ExampleWithMockD2>
-            <Card>
-                <CardText>
-                    Without initial value
-                    <IconPicker
-                        options={options}
-                        imgPath="./images/orgunitgroup"
-                        labelText="Symbol"
-                    />
-                </CardText>
-            </Card>
-            <Card>
-                <CardText>
-                    With initial value
-                    <IconPicker
-                        options={options}
-                        imgPath="./images/orgunitgroup"
-                        value={value}
-                        onChange={onChange}
-                        labelText="Symbol"
-                    />
-                </CardText>
-            </Card>
-        </ExampleWithMockD2>
+        <MuiThemeProvider muiTheme={getMuiTheme()}>
+            <ExampleWithMockD2>
+                <Card>
+                    <CardText>
+                        Without initial value
+                        <IconPicker
+                            options={options}
+                            imgPath="./images/orgunitgroup"
+                            labelText="Symbol"
+                        />
+                    </CardText>
+                </Card>
+                <Card>
+                    <CardText>
+                        With initial value
+                        <IconPicker
+                            options={options}
+                            imgPath="./images/orgunitgroup"
+                            value={value}
+                            onChange={onChange}
+                            labelText="Symbol"
+                        />
+                    </CardText>
+                </Card>
+            </ExampleWithMockD2>
+        </MuiThemeProvider>
         , document.querySelector('#icon-picker'));
 }
 

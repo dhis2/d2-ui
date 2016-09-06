@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Card, CardText } from 'material-ui/lib/card';
+import { Card, CardText } from 'material-ui/Card';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import SimpleTreeExample from './simple-tree';
 import MultiRootExample from './multi-root';
@@ -91,4 +93,9 @@ function TreeViewExample() {
     );
 }
 
-ReactDOM.render(<TreeViewExample />, document.getElementById('app'));
+ReactDOM.render(
+    <MuiThemeProvider muiTheme={getMuiTheme()}>
+        <TreeViewExample />
+    </MuiThemeProvider>,
+    document.getElementById('app')
+);

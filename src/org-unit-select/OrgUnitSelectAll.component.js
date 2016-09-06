@@ -1,8 +1,7 @@
 import React from 'react';
 import log from 'loglevel';
-
-import RaisedButton from 'material-ui/lib/raised-button';
-import LinearProgress from 'material-ui/lib/linear-progress';
+import RaisedButton from 'material-ui/RaisedButton/RaisedButton';
+import LinearProgress from 'material-ui/LinearProgress/LinearProgress';
 
 import { addToSelection } from './common';
 

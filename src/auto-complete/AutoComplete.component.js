@@ -1,12 +1,12 @@
 import {createClass, PropTypes, default as React} from 'react';
-import TextField from 'material-ui/lib/text-field';
+import TextField from 'material-ui/TextField';
 import Action from '../action/Action';
 import {Observable, helpers, Scheduler, default as Rx} from 'rx';
 import {config} from 'd2/lib/d2';
 import d2Lib from 'd2/lib/d2';
-import List from 'material-ui/lib/lists/list';
-import ListItem from 'material-ui/lib/lists/list-item';
-import Paper from 'material-ui/lib/paper';
+import List from 'material-ui/List/List';
+import ListItem from 'material-ui/List/ListItem';
+import Paper from 'material-ui/Paper';
 import Translate from '../i18n/Translate.mixin';
 import log from 'loglevel';
 

@@ -1,16 +1,18 @@
 import React from 'react';
 import { render } from 'react-dom';
 import log from 'loglevel';
-import { Card, CardText } from 'material-ui/lib/card';
+import Card from 'material-ui/Card/Card';
+import CardText from 'material-ui/Card/CardText';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-injectTapEventPlugin();
-
 import D2Lib from 'd2/lib/d2';
-
 import OrgUnitTree from '../../src/org-unit-tree/OrgUnitTree.component';
 import OrgUnitSelectByLevel from '../../src/org-unit-select/OrgUnitSelectByLevel.component';
 import OrgUnitSelectByGroup from '../../src/org-unit-select/OrgUnitSelectByGroup.component';
 import OrgUnitSelectAll from '../../src/org-unit-select/OrgUnitSelectAll.component';
+
+injectTapEventPlugin();
 
 const el = document.getElementById('app');
 const dhisDevConfig = DHIS_CONFIG;
@@ -59,6 +61,7 @@ class OrgUnitSelectExample extends React.Component {
 
     render() {
         return (
+            <MuiThemeProvider muiTheme={getMuiTheme()}>
             <div>
                 <Card style={styles.card}>
                     <CardText style={styles.cardText}>
@@ -116,6 +119,7 @@ class OrgUnitSelectExample extends React.Component {
                     </CardText>
                 </Card>
             </div>
+            </MuiThemeProvider>
         );
     }
 }

@@ -1,5 +1,5 @@
 import { config } from 'd2/lib/d2';
-import Dialog from 'material-ui/lib/dialog';
+import Dialog from 'material-ui/Dialog/Dialog';
 import React, { PropTypes, Component } from 'react';
 import { getTranslationFormFor } from './TranslationForm.component';
 

@@ -1,7 +1,7 @@
-import React from 'react/addons';
+import React from 'react';
 import injectTheme from '../../config/inject-theme';
 import ExpressionFormula from '../../src/indicator-expression-manager/ExpressionFormula.component';
-import TextField from 'material-ui/lib/text-field';
+import TextField from 'material-ui/TextField/TextField';
 import {shallow} from 'enzyme';
 
 describe('ExpressionFormula component', () => {

@@ -3,9 +3,9 @@ import {shallow} from 'enzyme';
 import IconPicker from '../../src/icon-picker/IconPicker.component';
 import IconOption from '../../src/icon-picker/IconOption.component';
 import CurrentIcon from '../../src/icon-picker/CurrentIcon.component';
-import FlatButton from 'material-ui/lib/flat-button';
+import FlatButton from 'material-ui/FlatButton/FlatButton';
 
-import Popover from 'material-ui/lib/popover/popover';
+import Popover from 'material-ui/Popover/Popover';
 
 describe('IconPicker', () => {
     let iconPicker;

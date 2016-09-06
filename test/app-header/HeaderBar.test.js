@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { getStubContext } from '../../config/inject-theme';
 import HeaderBar from '../../src/app-header/HeaderBar';
-import LinearProgress from 'material-ui/lib/linear-progress';
+import LinearProgress from 'material-ui/LinearProgress/LinearProgress';
 import InnerHeader from '../../src/app-header/InnerHeader';
 import SearchField from '../../src/app-header/search/SearchField';
 import styles from '../../src/app-header/header-bar-styles';

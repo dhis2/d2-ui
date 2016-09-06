@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import FlatButton from 'material-ui/lib/flat-button';
+import FlatButton from 'material-ui/FlatButton/FlatButton';
 import IconOption from '../../src/icon-picker/IconOption.component';
 
 describe('IconOption', () => {

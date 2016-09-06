@@ -1,7 +1,7 @@
 import { config } from 'd2/lib/d2';
-import Dialog from 'material-ui/lib/dialog';
-import FlatButton from 'material-ui/lib/flat-button';
-import { PropTypes, createClass, default as React } from 'react';
+import Dialog from 'material-ui/Dialog/Dialog';
+import FlatButton from 'material-ui/FlatButton/FlatButton';
+import React, { PropTypes, createClass } from 'react';
 import Translate from '../i18n/Translate.mixin';
 import Sharing from './Sharing.component';
 import sharingStore from './sharing.store';

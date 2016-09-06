@@ -2,7 +2,7 @@ import React from 'react';
 import ListSelectWithLocalSearch from '../../src/list-select/ListSelectWithLocalSearch.component';
 import {shallow} from 'enzyme';
 
-import TextField from 'material-ui/lib/text-field';
+import TextField from 'material-ui/TextField/TextField';
 import ListSelect from '../../src/list-select/ListSelect.component';
 
 describe('ListComponentWithLocalSearch', () => {

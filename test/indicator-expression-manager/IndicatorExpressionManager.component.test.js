@@ -1,4 +1,4 @@
-import React from 'react/addons';
+import React from 'react';
 import IndicatorExpressionManager from '../../src/indicator-expression-manager/IndicatorExpressionManager.component';
 import {shallow} from 'enzyme';
 import {getStubContext} from '../../config/inject-theme';

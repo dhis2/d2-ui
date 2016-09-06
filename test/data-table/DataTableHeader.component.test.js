@@ -1,4 +1,4 @@
-import React from 'react/addons';
+import React from 'react';
 import {shallow} from 'enzyme';
 
 import DataTableHeader from '../../src/data-table/DataTableHeader.component';

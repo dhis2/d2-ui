@@ -1,10 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-import FontIcon from 'material-ui/lib/font-icon';
-
+import FontIcon from 'material-ui/FontIcon';
 import Sidebar from '../../src/sidebar/Sidebar.component';
-
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 let currentSection;
 let lastSection;
@@ -16,7 +15,9 @@ function changeSectionHandler(key, searchText) {
         sidebarRef.clearSearchBox();
     }
     ReactDOM.render(
-        <SidebarExample currentSection={currentSection} searchText={searchText}/>,
+        <MuiThemeProvider muiTheme={getMuiTheme()}>
+            <SidebarExample currentSection={currentSection} searchText={searchText}/>
+        </MuiThemeProvider>,
         document.getElementById('app')
     );
 }

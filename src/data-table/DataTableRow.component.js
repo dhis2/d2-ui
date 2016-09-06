@@ -3,8 +3,8 @@ import classes from 'classnames';
 import { isObject } from 'lodash/fp';
 import { isString } from 'lodash/fp';
 import moment from 'moment';
-import IconButton from 'material-ui/lib/icon-button';
-import MoreVert from 'material-ui/lib/svg-icons/navigation/more-vert';
+import IconButton from 'material-ui/IconButton';
+import MoreVert from 'material-ui/svg-icons/navigation/more-vert';
 import Color from './data-value/Color.component';
 
 import Translate from '../i18n/Translate.mixin';

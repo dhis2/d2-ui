@@ -1,6 +1,6 @@
-import { PropTypes, createClass, default as React } from 'react';
+import React, { PropTypes, createClass } from 'react';
 import Translate from '../i18n/Translate.mixin';
-import Toggle from 'material-ui/lib/toggle';
+import Toggle from 'material-ui/Toggle/Toggle';
 import { config } from 'd2/lib/d2';
 
 config.i18n.strings.add('external_access');

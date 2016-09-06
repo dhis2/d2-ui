@@ -3,8 +3,8 @@ import { legendItemStore, legendItemStore$, onFieldChange, onFormStatusChange } 
 import { setDialogStateToAction } from './LegendItem.actions';
 import withStateFrom from '../component-helpers/withStateFrom';
 import FormBuilder from '../forms/FormBuilder.component';
-import FlatButton from 'material-ui/lib/flat-button';
-import Dialog from 'material-ui/lib/dialog';
+import FlatButton from 'material-ui/FlatButton/FlatButton';
+import Dialog from 'material-ui/Dialog/Dialog';
 import { config } from 'd2/lib/d2';
 
 config.i18n.strings.add('ok');

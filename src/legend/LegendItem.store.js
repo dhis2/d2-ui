@@ -1,6 +1,6 @@
 import React, {  Component, PropTypes } from 'react';
 import Store from '../store/Store';
-import TextField from 'material-ui/lib/text-field';
+import TextField from 'material-ui/TextField/TextField';
 import { Observable } from 'rx';
 import ColorPicker from './ColorPicker.component';
 import {getInstance, config} from 'd2/lib/d2';

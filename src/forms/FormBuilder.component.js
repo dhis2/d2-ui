@@ -2,7 +2,7 @@ import React from 'react';
 import Rx from 'rx';
 import AsyncValidatorRunner from './AsyncValidatorRunner';
 
-import CircularProgres from 'material-ui/lib/circular-progress';
+import CircularProgres from 'material-ui/CircularProgress';
 
 const noop = () => {};
 

@@ -1,6 +1,6 @@
-import React from 'react/addons';
+import React from 'react';
 import FormField from '../../src/forms/FormField.component';
-import TextField from 'material-ui/lib/text-field';
+import TextField from 'material-ui/TextField/TextField';
 import {shallow} from 'enzyme';
 
 describe('FormField component', () => {

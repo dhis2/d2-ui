@@ -31,17 +31,17 @@ module.exports = {
     entry: isProduction() ?  {
         'header-bar': './src/app-header/index.js',
     } : {
-        // 'tree-view': './examples/tree-view',
-        // 'data-table': './examples/data-table',
-        // 'org-unit-tree': './examples/org-unit-tree',
-        // 'org-unit-select': './examples/org-unit-select',
-        // sidebar: './examples/sidebar',
-        // 'icon-picker': './examples/icon-picker',
-        // 'form-builder': './examples/form-builder',
-        // 'formula-editor': './examples/formula-editor',
+        'tree-view': './examples/tree-view',
+        'data-table': './examples/data-table',
+        'org-unit-tree': './examples/org-unit-tree',
+        'org-unit-select': './examples/org-unit-select',
+        sidebar: './examples/sidebar',
+        'icon-picker': './examples/icon-picker',
+        'form-builder': './examples/form-builder',
+        'formula-editor': './examples/formula-editor',
         'header-bar': './examples/header-bar',
-        // legend: './examples/legend',
-        // translation: './examples/translation',
+        legend: './examples/legend',
+        translation: './examples/translation',
     },
     output: {
         library: 'Dhis2HeaderBar',
@@ -65,7 +65,15 @@ module.exports = {
             },
         ],
     },
-    externals: [
+
+    resolve: {
+        alias: {
+            react: __dirname + '/node_modules/react',
+            'd2/lib/d2': __dirname + '/node_modules/d2/lib/d2',
+        }
+    },
+
+    externals: isProduction() ? [
         {
             'react': 'React',
             'react-dom': 'ReactDOM',
@@ -79,7 +87,7 @@ module.exports = {
         /^react-addons/,
         /^react-dom$/,
         /^rx$/,
-    ],
+    ] : [],
     plugins: [
         // Set node_env to production to remove extra React logging etc.
         new webpack.DefinePlugin({

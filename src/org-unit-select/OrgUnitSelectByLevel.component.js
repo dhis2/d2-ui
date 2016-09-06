@@ -1,6 +1,5 @@
 import React from 'react';
 import log from 'loglevel';
-
 import { addToSelection, removeFromSelection, handleChangeSelection, renderDropdown, renderControls } from './common';
 
 

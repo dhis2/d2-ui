@@ -1,9 +1,7 @@
 import React from 'react';
-
 import DropDown from '../form-fields/DropDown.component';
-import RaisedButton from 'material-ui/lib/raised-button';
-import LinearProgress from 'material-ui/lib/linear-progress';
-
+import RaisedButton from 'material-ui/RaisedButton/RaisedButton';
+import LinearProgress from 'material-ui/LinearProgress/LinearProgress';
 
 const style = {
     button: {

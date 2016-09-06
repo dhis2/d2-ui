@@ -1,8 +1,8 @@
 import React from 'react';
-import Tabs from 'material-ui/lib/tabs/tabs';
-import Tab from 'material-ui/lib/tabs/tab';
+import Tabs from 'material-ui/Tabs/Tabs';
+import Tab from 'material-ui/Tabs/Tab';
 import ListSelect from '../list-select/ListSelect.component';
-import SelectField from 'material-ui/lib/select-field';
+import SelectField from 'material-ui/SelectField/SelectField';
 import { config } from 'd2/lib/d2';
 import Translate from '../i18n/Translate.mixin';
 import log from 'loglevel';

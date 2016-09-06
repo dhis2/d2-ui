@@ -1,5 +1,5 @@
 import React from 'react';
-import Popover from 'material-ui/lib/popover/popover';
+import Popover from 'material-ui/Popover/Popover';
 import IconOption from './IconOption.component';
 import CurrentIcon from './CurrentIcon.component';
 

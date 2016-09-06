@@ -1,13 +1,13 @@
-import React from 'react/addons';
-import TextField from 'material-ui/lib/text-field';
+import React from 'react';
+import TextField from 'material-ui/TextField/TextField';
 import AutoComplete from '../../src/auto-complete/AutoComplete.component';
 import Action from '../../src/action/Action';
 import Rx from 'rx';
 import d2 from 'd2/lib/d2';
 import log from 'loglevel';
-import List from 'material-ui/lib/lists/list';
-import ListItem from 'material-ui/lib/lists/list-item';
-import Paper from 'material-ui/lib/paper';
+import List from 'material-ui/List/List';
+import ListItem from 'material-ui/List/ListItem';
+import Paper from 'material-ui/Paper/Paper';
 
 import {shallow} from 'enzyme';
 

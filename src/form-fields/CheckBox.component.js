@@ -1,5 +1,5 @@
 import React from 'react';
-import Checkbox from 'material-ui/lib/checkbox';
+import Checkbox from 'material-ui/Checkbox';
 
 
 // TODO: Rewrite as ES6 class

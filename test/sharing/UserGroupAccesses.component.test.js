@@ -1,7 +1,7 @@
-import React from 'react/addons';
+import React from 'react';
 import {getStubContext} from '../../config/inject-theme';
 import UserGroupAccesses from '../../src/sharing/UserGroupAccesses.component';
-import Toggle from 'material-ui/lib/toggle';
+import Toggle from 'material-ui/Toggle/Toggle';
 import AccessMaskSwitches from '../../src/sharing/AccessMaskSwitches.component';
 import {shallow} from 'enzyme';
 

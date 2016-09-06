@@ -1,10 +1,10 @@
-import React from 'react/addons';
+import React from 'react';
 import {getStubContext} from '../../config/inject-theme';
 
 import DataElementOperandSelector from '../../src/indicator-expression-manager/DataElementOperandSelector.component';
 import ListSelectAsync from '../../src/list-select/ListSelectAsync.component';
 import {shallow} from 'enzyme';
-import LinearProgress from 'material-ui/lib/linear-progress';
+import LinearProgress from 'material-ui/LinearProgress/LinearProgress';
 import dataElementOperandStore from '../../src/indicator-expression-manager/dataElementOperand.store';
 
 describe('DataElementOperandSelector component', () => {

@@ -1,6 +1,7 @@
 {
     "presets": ["stage-0", "react"],
     "plugins": [
+        "transform-class-properties",
         "transform-es2015-template-literals",
         "transform-es2015-literals",
         "transform-es2015-function-name",
@@ -20,5 +21,13 @@
         "transform-es2015-block-scoping",
         "transform-es2015-typeof-symbol",
         ["transform-regenerator", { "async": false, "asyncGenerators": false }]
-    ]
+    ],
+    "env": {
+        "test": {
+            "presets": ["stage-0", "react", "es2015"],
+            "plugins": [
+                "transform-class-properties"
+            ]
+        }
+    }
 }

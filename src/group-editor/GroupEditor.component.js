@@ -2,9 +2,9 @@ import React from 'react';
 import { findDOMNode } from 'react-dom';
 
 // Material UI
-import CircularProgress from 'material-ui/lib/circular-progress';
-import Paper from 'material-ui/lib/paper';
-import RaisedButton from 'material-ui/lib/raised-button';
+import CircularProgress from 'material-ui/CircularProgress/CircularProgress';
+import Paper from 'material-ui/Paper/Paper';
+import RaisedButton from 'material-ui/RaisedButton/RaisedButton';
 
 // D2
 import { config } from 'd2/lib/d2';

@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from 'classnames';
-import FlatButton from 'material-ui/lib/flat-button';
+import FlatButton from 'material-ui/FlatButton/FlatButton';
 
 const ExpressionOperators = React.createClass({
     propTypes: {

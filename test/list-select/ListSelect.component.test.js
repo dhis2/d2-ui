@@ -1,4 +1,4 @@
-import React from 'react/addons';
+import React from 'react';
 import ListSelect from '../../src/list-select/ListSelect.component';
 
 import {shallow} from 'enzyme';

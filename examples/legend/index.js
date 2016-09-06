@@ -5,31 +5,29 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
 import React from 'react';
-import { render } from 'react-dom';
-import ThemeManager from 'material-ui/lib/styles/theme-manager';
-import Colors from 'material-ui/lib/styles/colors';
-import ColorManipulator from 'material-ui/lib/utils/color-manipulator';
-import Spacing from 'material-ui/lib/styles/spacing';
+import {render} from 'react-dom';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import { blue500, blue700, lightBlack, grey300, grey500, white, darkBlack } from 'material-ui/styles/colors';
+import { fade } from 'material-ui/utils/colorManipulator';
+import Spacing from 'material-ui/styles/spacing';
 import D2Lib from 'd2/lib/d2';
-
-import DataTable from '../../src/data-table/DataTable.component';
 import '../../scss/DataTable.scss';
 
 const style = {
     spacing: Spacing,
     fontFamily: 'Roboto, sans-serif',
     palette: {
-        primary1Color: Colors.blue500,
-        primary2Color: Colors.blue700,
-        primary3Color: Colors.lightBlack,
+        primary1Color: blue500,
+        primary2Color: blue700,
+        primary3Color: lightBlack,
         accent1Color: '#276696',
         accent2Color: '#E9E9E9',
-        accent3Color: Colors.grey500,
-        textColor: Colors.darkBlack,
-        alternateTextColor: Colors.white,
-        canvasColor: Colors.white,
-        borderColor: Colors.grey300,
-        disabledColor: ColorManipulator.fade(Colors.darkBlack, 0.3),
+        accent3Color: grey500,
+        textColor: darkBlack,
+        alternateTextColor: white,
+        canvasColor: white,
+        borderColor: grey300,
+        disabledColor: fade(darkBlack, 0.3),
     },
 };
 
@@ -108,7 +106,7 @@ function renderExamples(d2) {
         }
 
         getChildContext() {
-            return { muiTheme: ThemeManager.getMuiTheme(style), d2 };
+            return { muiTheme: getMuiTheme(style), d2 };
         }
 
         onItemsChange(items) {

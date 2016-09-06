@@ -1,6 +1,6 @@
 import React from 'react';
-import SelectField from 'material-ui/lib/select-field';
-import MenuItem from 'material-ui/lib/menus/menu-item';
+import SelectField from 'material-ui/SelectField/SelectField';
+import MenuItem from 'material-ui/MenuItem/MenuItem';
 
 import Translate from '../i18n/Translate.mixin';
 

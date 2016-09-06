@@ -1,12 +1,13 @@
 import React from 'react';
 import { render } from 'react-dom';
 import log from 'loglevel';
-import { Card, CardText } from 'material-ui/lib/card';
-
+import Card from 'material-ui/Card/Card';
+import CardText from 'material-ui/Card/CardText';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import D2Lib from 'd2/lib/d2';
 import OrgUnitTree from '../../src/org-unit-tree/OrgUnitTree.component';
 import OrgUnitTreeMultipleRoots from '../../src/org-unit-tree/OrgUnitTreeMultipleRoots.component';
-
 import InitiallyExpanded from './initially-expanded';
 import SingleSelection from './single-selection';
 import SingleSelectionMultipleRoots from './single-selection-multiple-roots';
@@ -48,6 +49,7 @@ function OrgUnitTreeExample(props) {
     });
 
     return (
+        <MuiThemeProvider muiTheme={getMuiTheme()}>
         <div>
             <Card style={styles.card}>
                 <CardText style={styles.cardText}>
@@ -134,6 +136,7 @@ function OrgUnitTreeExample(props) {
                 </CardText>
             </Card>
         </div>
+        </MuiThemeProvider>
     );
 }
 OrgUnitTreeExample.propTypes = { root: React.PropTypes.any, roots: React.PropTypes.any, preRoot: React.PropTypes.any };
@@ -177,7 +180,7 @@ D2Lib.init({ baseUrl })
                             });
                     });
             })
-            .catch(err => render(<div>Error: {err}</div>));
+            .catch(err => render(<div>Error: {err}</div>, el));
     })
     .catch(err => {
         log.error('Failed to initialise D2:', err);

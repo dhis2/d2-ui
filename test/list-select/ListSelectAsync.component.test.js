@@ -1,4 +1,4 @@
-import React from 'react/addons';
+import React from 'react';
 import ListSelectAsync from '../../src/list-select/ListSelectAsync.component';
 import ListSelect from '../../src/list-select/ListSelect.component';
 import {ReplaySubject} from 'rx';

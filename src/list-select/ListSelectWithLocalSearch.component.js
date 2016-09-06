@@ -1,6 +1,6 @@
 import React from 'react';
 
-import TextField from 'material-ui/lib/text-field';
+import TextField from 'material-ui/TextField/TextField';
 import Translate from '../i18n/Translate.mixin';
 
 import ListSelect from '../list-select/ListSelect.component';

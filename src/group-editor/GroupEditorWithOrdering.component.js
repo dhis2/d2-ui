@@ -1,7 +1,7 @@
 import React from 'react';
 import { findDOMNode } from 'react';
 import GroupEditor from './GroupEditor.component';
-import IconButton from 'material-ui/lib/icon-button';
+import IconButton from 'material-ui/IconButton/IconButton';
 import log from 'loglevel';
 
 function moveItemOneSpotDownIn(currentlySelected) {

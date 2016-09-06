@@ -1,11 +1,11 @@
-import React from 'react/addons';
+import React from 'react';
 import {describeWithDOM, shallow} from 'enzyme';
 
 import DataTable from '../../src/data-table/DataTable.component';
 import DataTableHeader from '../../src/data-table/DataTableHeader.component';
 import DataTableContextMenu from '../../src/data-table/DataTableContextMenu.component';
 
-import Popover from 'material-ui/lib/popover/popover';
+import Popover from 'material-ui/Popover/Popover';
 
 describe('DataTable component', () => {
     let dataTableComponent;

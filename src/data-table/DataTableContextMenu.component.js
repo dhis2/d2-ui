@@ -1,10 +1,10 @@
 import React from 'react';
 import Translate from '../i18n/Translate.mixin';
-import Menu from 'material-ui/lib/menus/menu';
-import MenuItem from 'material-ui/lib/menus/menu-item';
-import FontIcon from 'material-ui/lib/font-icon';
-import Popover from 'material-ui/lib/popover/popover';
-import Paper from 'material-ui/lib/paper';
+import Menu from 'material-ui/Menu';
+import MenuItem from 'material-ui/MenuItem';
+import FontIcon from 'material-ui/FontIcon';
+import Popover from 'material-ui/Popover/Popover';
+import Paper from 'material-ui/Paper';
 
 const DataTableContextMenu = React.createClass({
     propTypes: {
