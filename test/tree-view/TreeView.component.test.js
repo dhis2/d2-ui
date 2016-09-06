@@ -52,7 +52,7 @@ describe('TreeView component', () => {
 
     it('renders components as labels', () => {
         wrapper = shallow(<TreeView label={<TreeView />} />);
-        expect(wrapper.children().contains(TreeView)).to.be.true;
+        expect(wrapper.children().contains(<TreeView />)).to.be.true;
     });
 
     describe('with onExpand() callback', () => {

@@ -42,7 +42,7 @@
     "coveralls": "^2.11.8",
     "css-loader": "^0.23.1",
     "d2": "^24.0.2",
-    "enzyme": "^1.6.0",
+    "enzyme": "^2.4.1",
     "eslint": "^2.9.0",
     "eslint-config-airbnb": "^6.0.2",
     "eslint-config-dhis2": "^2.0.2",
