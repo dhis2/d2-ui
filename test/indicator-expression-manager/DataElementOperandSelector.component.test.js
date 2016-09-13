@@ -5,7 +5,6 @@ import DataElementOperandSelector from '../../src/indicator-expression-manager/D
 import ListSelectAsync from '../../src/list-select/ListSelectAsync.component';
 import {shallow} from 'enzyme';
 import LinearProgress from 'material-ui/LinearProgress/LinearProgress';
-import dataElementOperandStore from '../../src/indicator-expression-manager/dataElementOperand.store';
 
 describe('DataElementOperandSelector component', () => {
     let dataElementOperandSelectorComponent;
@@ -53,13 +52,13 @@ describe('DataElementOperandSelector component', () => {
         expect(dataElementOperandSelectorComponent.find(LinearProgress)).to.have.length(0);
     });
 
-    describe('data loading', () => {
-        const mock = sinon.mock(dataElementOperandStore);
-
-        mock.expects('tap').once().returns(dataElementOperandStore);
-
-        renderComponent();
-
-        mock.verify();
-    });
+    // xdescribe('data loading', () => {
+    //     const mock = sinon.mock(dataElementOperandStore);
+    //
+    //     mock.expects('tap').once().returns(dataElementOperandStore);
+    //
+    //     renderComponent();
+    //
+    //     mock.verify();
+    // });
 });

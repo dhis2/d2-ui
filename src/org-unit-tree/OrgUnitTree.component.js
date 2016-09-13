@@ -75,10 +75,8 @@ class OrgUnitTree extends React.Component {
             const root = this.props.root;
             root.modelDefinition.list({
                 paging: false,
-                fields: 'id,displayName,children::isNotEmpty,path,parent',
-                filter: [
-                    `parent.id:eq:${root.id}`,
-                ],
+                fields: 'id,children[id,displayName,children::isNotEmpty,path,parent]',
+                filter: [`id:eq:${root.id}`],
             }).then(units => {
                 this.setState({ children: units.toArray(), loading: false });
             });

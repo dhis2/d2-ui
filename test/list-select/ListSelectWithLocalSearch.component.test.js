@@ -42,7 +42,7 @@ describe('ListComponentWithLocalSearch', () => {
     });
 
     it('should set the source to an empty array', () => {
-        expect(listComponentWithLocalSearch.state('source')).to.deep.equal([]);
+        expect(listComponentWithLocalSearch.find(ListSelect).props().source).to.deep.equal([]);
     });
 
     it('should pass the source items to the ListSelect', () => {

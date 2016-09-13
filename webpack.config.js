@@ -1,7 +1,7 @@
 const isProduction = () => process.argv.indexOf('-p') >= 0;
 const webpack = require('webpack');
 const path = require('path');
-const colors = require('colors');
+require('colors');
 const Visualizer = require('webpack-visualizer-plugin');
 
 const dhisConfigPath = process.env.DHIS2_HOME && `${process.env.DHIS2_HOME}/config`;
@@ -18,12 +18,6 @@ try {
         baseUrl: 'http://localhost:8080/dhis',
         authorization: 'Basic YWRtaW46ZGlzdHJpY3Q=', // admin:district
     };
-}
-// console.log(JSON.stringify(dhisConfig, null, 2), '\n');
-
-function log(req, res, opt) {
-    req.headers.Authorization = dhisConfig.authorization;
-    console.log('[PROXY]'.cyan.bold, req.method.green.bold, req.url.magenta, '=>'.dim, opt.target.dim);
 }
 
 module.exports = {
@@ -42,6 +36,7 @@ module.exports = {
         'header-bar': './examples/header-bar',
         legend: './examples/legend',
         translation: './examples/translation',
+        'expression-manager': './examples/expression-manager',
     },
     output: {
         library: 'Dhis2HeaderBar',
@@ -70,7 +65,7 @@ module.exports = {
         alias: {
             react: __dirname + '/node_modules/react',
             'd2/lib/d2': __dirname + '/node_modules/d2/lib/d2',
-        }
+        },
     },
 
     externals: isProduction() ? [

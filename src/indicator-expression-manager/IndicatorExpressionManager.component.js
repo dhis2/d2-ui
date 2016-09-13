@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import ExpressionDescription from './ExpressionDescription.component';
 import ExpressionOperators from './ExpressionOperators.component';
 import ExpressionFormula from './ExpressionFormula.component';
@@ -6,14 +6,16 @@ import DataElementOperandSelector from './DataElementOperandSelector.component';
 import Tabs from 'material-ui/Tabs/Tabs';
 import Tab from 'material-ui/Tabs/Tab';
 import Paper from 'material-ui/Paper/Paper';
-import classes from 'classnames';
 import log from 'loglevel';
-import Translate from '../i18n/Translate.mixin';
 import { config } from 'd2/lib/d2';
 import ProgramOperandSelector from './ProgramOperandSelector';
 import Heading from '../headings/Heading.component';
 import OrganisationUnitGroupSelector from './OrganisationUnitGroupSelector.component';
 import ConstantSelector from './ConstantSelector.component';
+import addD2Context from '../component-helpers/addD2Context';
+import Action from '../action/Action';
+import { Observable } from 'rx';
+import { Row, Column } from '../layout';
 
 config.i18n.strings.add('data_elements');
 config.i18n.strings.add('description');
@@ -25,69 +27,46 @@ config.i18n.strings.add('constants');
 config.i18n.strings.add('this_field_is_required');
 config.i18n.strings.add('programs');
 
-/**
- * @component IndicatorExpressionManager
- *
- * @description
- * Component to manage the indicator expressions. Either numerator or denominator.
- *
- * This component require an `expressionStatusActions` object that contains the following actions.
- * - `requestExpressionStatus`
- *
- * The `requestExpressionStatus` action gets fired each time the expression is changed.
- * In case of `d2-flux` we suggest you implement the action handler somewhat like the following.
- * ```js
-    import Action from 'd2-flux/action/Action';
-    import indicatorExpressionStatusStore from './indicatorExpressionStatus.store';
-
-    const indicatorExpressionStatusActions = Action.createActionsFromNames(['requestExpressionStatus']);
-
-    indicatorExpressionStatusActions.requestExpressionStatus
-        .throttle(500)
-        .map(action => {
-            const encodedFormula =  encodeURIComponent(action.data);
-            const url = `/api/expressions/description?expression=${encodedFormula}`;
-
-            return Observable.fromPromise(api.request(url));
-        })
-        .concatAll()
-        .subscribe(action => {
-            .then(function () {
-                indicatorExpressionStatusStore.setState(tempResponse);
-            });
-        });
-
-    export default indicatorExpressionStatusActions;
-
- * ```
- */
-const IndicatorExpressionManager = React.createClass({
-    propTypes: {
-        descriptionLabel: React.PropTypes.string.isRequired,
-        organisationUnitGroupOptions: React.PropTypes.array.isRequired,
-        constantOptions: React.PropTypes.array.isRequired,
-        programTrackedEntityAttributeOptions: React.PropTypes.array.isRequired,
-        expressionStatusActions: React.PropTypes.object.isRequired,
-        expressionStatusStore: React.PropTypes.object.isRequired,
-        indicatorExpressionChanged: React.PropTypes.func.isRequired,
-        dataElementOperandSelectorActions: React.PropTypes.object.isRequired,
-        descriptionValue: React.PropTypes.string.isRequired,
-        formulaValue: React.PropTypes.string.isRequired,
-        titleText: React.PropTypes.string.isRequired,
+const styles = {
+    expressionDescription: {
+        padding: '1rem',
+        margin: '1rem 0',
     },
 
-    mixins: [Translate],
-
-    getDefaultProps() {
-        return {
-            organisationUnitGroupOptions: [],
-            constantOptions: [],
-            programTrackedEntityAttributeOptions: [],
-        };
+    expressionMessage: {
+        valid: {
+            padding: '1rem',
+            color: '#006400',
+        },
+        invalid: {
+            padding: '1rem',
+            color: '#8B0000',
+        },
     },
 
-    getInitialState() {
-        return {
+    list: {
+        width: '100%',
+        outline: 'none',
+        border: 'none',
+        padding: '0rem 1rem',
+    },
+
+    expressionFormulaWrap: {
+        padding: '1rem',
+        maxWidth: '650px',
+        marginRight: '1rem',
+    },
+
+    expressionValueOptionsWrap: {
+        minHeight: 395,
+    }
+};
+
+class IndicatorExpressionManager extends Component {
+    constructor(props, context) {
+        super(props, context);
+
+        this.state = {
             formula: this.props.formulaValue,
             description: this.props.descriptionValue,
             expressionStatus: {
@@ -95,7 +74,10 @@ const IndicatorExpressionManager = React.createClass({
                 isValid: false,
             },
         };
-    },
+
+        this.i18n = this.context.d2.i18n;
+        this.requestExpressionStatusAction = Action.create('requestExpressionStatus');
+    }
 
     componentWillMount() {
         if (!this.props.expressionStatusStore) {
@@ -126,84 +108,94 @@ const IndicatorExpressionManager = React.createClass({
                 });
             }, error => log.error(error));
 
+        this.expressionStatusDisposable = this.requestExpressionStatusAction
+            .throttle(500)
+            .map(action => {
+                const encodedFormula = encodeURIComponent(action.data);
+                const url = `expressions/description?expression=${encodedFormula}`;
+
+                return Observable.fromPromise(this.context.d2.Api.getApi().get(url));
+            })
+            .concatAll()
+            .subscribe(
+                response => this.props.expressionStatusStore.setState(response),
+                error => log.error(error)
+            );
+
         if (this.props.formulaValue.trim()) {
             this.requestExpressionStatus();
         }
-    },
+    }
 
     componentWillUnmount() {
         this.disposable && this.disposable.dispose();
-    },
+        this.expressionStatusDisposable && this.expressionStatusDisposable.dispose();
+    }
 
     render() {
-        const listStyle = { width: '100%', outline: 'none', border: 'none', padding: '0rem 1rem' };
-
-        const statusMessageClasses = classes(
-            'indicator-expression-manager__readable-expression__message',
-            {
-                'indicator-expression-manager__readable-expression__message--valid': this.state.expressionStatus.isValid,
-                'indicator-expression-manager__readable-expression__message--invalid': !this.state.expressionStatus.isValid,
-            }
-        );
-
         const isDescriptionValid = () => {
             return this.state.description && this.state.description.trim();
         };
 
         return (
-            <div className="indicator-expression-manager">
-                <Heading style={{ margin: 0, padding: '2rem 2rem 1rem' }} level={3} text={this.props.titleText} />
-                <div className="indicator-expression-manager__left" style={{ paddingLeft: '2rem' }}>
-                    <Paper style={{ padding: '0 2rem', marginTop: '1rem', minHeight: 395 }}>
-                    <div className="indicator-expression-manager__description">
-                        <ExpressionDescription descriptionValue={this.state.description}
-                                               descriptionLabel={this.getTranslation('description')}
-                                               onDescriptionChange={this.descriptionChange}
-                                               errorText={!isDescriptionValid() ? this.getTranslation('this_field_is_required') : undefined}
-                                               onBlur={this.requestExpressionStatus}
+            <Column>
+                <Heading level={3} text={this.props.titleText} />
+                <Row>
+                    <Paper style={styles.expressionFormulaWrap}>
+                        <Column>
+                            <ExpressionDescription
+                                descriptionValue={this.state.description}
+                                descriptionLabel={this.i18n.getTranslation('description')}
+                                onDescriptionChange={this.descriptionChange}
+                                errorText={!isDescriptionValid() ? this.i18n.getTranslation('this_field_is_required') : undefined}
+                                onBlur={this.requestExpressionStatus}
                             />
+                            <ExpressionFormula
+                                onFormulaChange={this.formulaChange}
+                                formula={this.state.formula}
+                            />
+                            <ExpressionOperators operatorClicked={this.addOperatorToFormula} />
+                        </Column>
+                    </Paper>
+                    <Paper style={styles.expressionValueOptionsWrap}>
+                        <Tabs>
+                            <Tab label={this.i18n.getTranslation('data_elements')}>
+                                <DataElementOperandSelector
+                                    listStyle={styles.list}
+                                    onItemDoubleClick={this.dataElementOperandSelected}
+                                />
+                            </Tab>
+                            <Tab label={this.i18n.getTranslation('programs')}>
+                                <ProgramOperandSelector programOperandSelected={this.programOperandSelected}/>
+                            </Tab>
+                            <Tab label={this.i18n.getTranslation('organisation_unit_counts')}>
+                                <OrganisationUnitGroupSelector
+                                    listStyle={styles.list}
+                                    onSelect={this.appendToFormula}
+                                />
+                            </Tab>
+                            <Tab label={this.i18n.getTranslation('constants')}>
+                                <ConstantSelector
+                                    listStyle={styles.list}
+                                    onSelect={this.appendToFormula}
+                                />
+                            </Tab>
+                        </Tabs>
+                    </Paper>
+                </Row>
+                <Column>
+                    <Paper style={styles.expressionDescription}>{this.state.expressionStatus.description}</Paper>
+                    <div
+                        style={this.state.expressionStatus.isValid ? styles.expressionMessage.valid : styles.expressionMessage.invalid}
+                    >
+                        {this.state.expressionStatus.message}
                     </div>
-                    <ExpressionFormula onFormulaChange={this.formulaChange}
-                                       formula={this.state.formula} />
-                    <ExpressionOperators operatorClicked={this.addOperatorToFormula} />
-                    </Paper>
-                </div>
-                <div className="indicator-expression-manager__right" style={{ paddingRight: '2rem' }}>
-                    <Paper style={{ padding: '0 0rem', marginTop: '1rem', minHeight: 395 }}>
-                    <Tabs>
-                        <Tab label={this.getTranslation('data_elements')}>
-                            <DataElementOperandSelector onItemDoubleClick={this.dataElementOperandSelected}
-                                                        dataElementOperandSelectorActions={this.props.dataElementOperandSelectorActions}
-                                                        listStyle={listStyle}
-                                />
-                        </Tab>
-                        <Tab label={this.getTranslation('programs')}>
-                            <ProgramOperandSelector programOperandSelected={this.programOperandSelected} />
-                        </Tab>
-                        <Tab label={this.getTranslation('organisation_unit_counts')}>
-                            <OrganisationUnitGroupSelector onItemDoubleClick={this.organisationUnitGroupSelected}
-                                        source={this.props.organisationUnitGroupOptions}
-                                        listStyle={listStyle}
-                                />
-                        </Tab>
-                        <Tab label={this.getTranslation('constants')}>
-                            <ConstantSelector onItemDoubleClick={this.constantSelected}
-                                        source={this.props.constantOptions}
-                                        listStyle={listStyle}
-                                />
-                        </Tab>
-                    </Tabs>
-                    </Paper>
-                </div>
-                <div className="indicator-expression-manager__readable-expression" style={{ paddingLeft: '2rem', paddingRight: '2rem' }}>
-                    <Paper>{this.state.expressionStatus.description}</Paper>
-                    <div className={statusMessageClasses}>{this.state.expressionStatus.message}</div>
-                </div>
-            </div>
+                </Column>
+            </Column>
         );
-    },
+    }
 
-    descriptionChange(newDescription) {
+    descriptionChange = (newDescription) => {
         this.setState({
             description: newDescription,
         }, () => {
@@ -213,53 +205,50 @@ const IndicatorExpressionManager = React.createClass({
                 expressionStatus: this.state.expressionStatus,
             });
         });
-    },
+    }
 
-    formulaChange(newFormula) {
+    formulaChange = (newFormula) => {
         this.setState({
             formula: newFormula,
         }, () => {
             this.requestExpressionStatus();
         });
-    },
+    }
 
-    addOperatorToFormula(operator) {
+    addOperatorToFormula = (operator) => {
         this.appendToFormula(operator);
-    },
+    }
 
-    organisationUnitGroupSelected(value) {
-        const ougFormula = ['OUG{', value, '}'].join('');
-
-        this.appendToFormula(ougFormula);
-    },
-
-    constantSelected(value) {
-        const constFormula = ['C{', value, '}'].join('');
-
-        this.appendToFormula(constFormula);
-    },
-
-    programOperandSelected(programFormulaPart) {
+    programOperandSelected = (programFormulaPart) => {
         this.appendToFormula(programFormulaPart);
-    },
+    }
 
-    appendToFormula(partToAppend) {
+    appendToFormula = (partToAppend) => {
         this.setState({
             formula: [this.state.formula, partToAppend].join(''),
         }, () => {
             this.requestExpressionStatus();
         });
-    },
+    }
 
-    dataElementOperandSelected(dataElementOperandId) {
+    dataElementOperandSelected = (dataElementOperandId) => {
         const dataElementOperandFormula = ['#{', dataElementOperandId, '}'].join('');
 
         this.appendToFormula(dataElementOperandFormula);
-    },
+    }
 
-    requestExpressionStatus() {
-        this.props.expressionStatusActions.requestExpressionStatus(this.state.formula);
-    },
-});
+    requestExpressionStatus = () => {
+        this.requestExpressionStatusAction(this.state.formula);
 
-export default IndicatorExpressionManager;
+    }
+}
+IndicatorExpressionManager.propTypes = {
+    descriptionLabel: PropTypes.string.isRequired,
+    expressionStatusStore: PropTypes.object.isRequired,
+    indicatorExpressionChanged: PropTypes.func.isRequired,
+    descriptionValue: PropTypes.string.isRequired,
+    formulaValue: PropTypes.string.isRequired,
+    titleText: PropTypes.string.isRequired,
+};
+
+export default addD2Context(IndicatorExpressionManager);

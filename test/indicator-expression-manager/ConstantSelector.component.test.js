@@ -3,7 +3,7 @@ import ConstantSelector from '../../src/indicator-expression-manager/ConstantSel
 import ListSelectWithLocalSearch from '../../src/list-select/ListSelectWithLocalSearch.component';
 import {shallow} from 'enzyme';
 
-describe('ConstantSelector', () => {
+xdescribe('ConstantSelector', () => {
     let constantSelector;
 
     function renderComponent(props = {}) {

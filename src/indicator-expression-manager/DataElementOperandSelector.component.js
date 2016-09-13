@@ -1,23 +1,31 @@
 import React from 'react';
 import ListSelectAsync from '../list-select/ListSelectAsync.component';
-import dataElementOperandStore from './dataElementOperand.store';
-import dataElementOperandSelectorActions from './dataElementOperandSelector.actions';
 import TextField from 'material-ui/TextField/TextField';
 import LinearProgress from 'material-ui/LinearProgress/LinearProgress';
 import Pagination from '../pagination/Pagination.component';
 import Translate from '../i18n/Translate.mixin';
+import Store from '../store/Store';
+import { createDataElementOperandActions, subscribeDataElementActionsToStore } from './dataElementOperandSelector.actions';
 import { config } from 'd2/lib/d2';
 
 config.i18n.strings.add('search_by_name');
 
 const DataElementOperandSelector = React.createClass({
     propTypes: {
-        dataElementOperandSelectorActions: React.PropTypes.object.isRequired,
+        dataElementOperandSelectorActions: React.PropTypes.object,
+        dataElementOperandStore: React.PropTypes.object,
         onItemDoubleClick: React.PropTypes.func.isRequired,
         listStyle: React.PropTypes.object,
     },
 
     mixins: [Translate],
+
+    getDefaultProps() {
+        return {
+            dataElementOperandSelectorActions: createDataElementOperandActions(),
+            dataElementOperandStore: Store.create(),
+        };
+    },
 
     getInitialState() {
         return {
@@ -30,11 +38,13 @@ const DataElementOperandSelector = React.createClass({
     },
 
     componentWillMount() {
+        this.actionSubscriptions = subscribeDataElementActionsToStore(this.props.dataElementOperandSelectorActions, this.props.dataElementOperandStore);
+
         if (this.props.dataElementOperandSelectorActions) {
-            dataElementOperandSelectorActions.loadList();
+            this.props.dataElementOperandSelectorActions.loadList();
         }
 
-        this.storeObservable = dataElementOperandStore
+        this.storeObservable = this.props.dataElementOperandStore
             .tap(collection => this.setState({ pager: collection.pager }))
             .map(collection => collection.toArray())
             .map(collection => {
@@ -54,14 +64,13 @@ const DataElementOperandSelector = React.createClass({
             .map(collection => collection.pager)
             .filter(pager => Boolean(pager))
             .subscribe(pager => {
-                this.setState({
-                    pager: pager,
-                });
+                this.setState({ pager });
             });
     },
 
     componentWillUnmount() {
         this.disposable && this.disposable.dispose();
+        this.actionSubscriptions.forEach(subscription => subscription.dispose());
     },
 
     getNextPage() {
@@ -78,22 +87,25 @@ const DataElementOperandSelector = React.createClass({
         return (
             <div className="data-element-operand-selector">
                 <div style={{ float: 'right' }}>
-                <Pagination hasNextPage={() => this.state.pager.hasNextPage()}
-                            hasPreviousPage={() => this.state.pager.hasPreviousPage()}
-                            onNextPageClick={this.getNextPage}
-                            onPreviousPageClick={this.getPreviousPage}
-                    />
+                <Pagination
+                    hasNextPage={() => this.state.pager.hasNextPage()}
+                    hasPreviousPage={() => this.state.pager.hasPreviousPage()}
+                    onNextPageClick={this.getNextPage}
+                    onPreviousPageClick={this.getPreviousPage}
+                />
                 </div>
-                <TextField style={{ marginLeft: '1rem' }}
-                           hintText={this.getTranslation('search_by_name')}
-                           onChange={this.searchDataElement}
+                <TextField
+                    style={{marginLeft: '1rem'}}
+                    hintText={this.getTranslation('search_by_name')}
+                    onChange={this.searchDataElement}
                 />
                 {this.state.isLoading ? <LinearProgress mode="indeterminate" /> : null}
-                <ListSelectAsync size="12"
-                                 onItemDoubleClick={this.props.onItemDoubleClick}
-                                 source={this.storeObservable}
-                                 listStyle={this.props.listStyle}
-                    />
+                <ListSelectAsync
+                    size={12}
+                    onItemDoubleClick={this.props.onItemDoubleClick}
+                    source={this.storeObservable}
+                    listStyle={this.props.listStyle}
+                />
             </div>
         );
     },

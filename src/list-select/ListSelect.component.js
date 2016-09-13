@@ -1,35 +1,40 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
-export default React.createClass({
-    propTypes: {
-        source: React.PropTypes.arrayOf(React.PropTypes.shape({
-            label: React.PropTypes.string,
-            value: React.PropTypes.string,
-        })).isRequired,
-        onItemDoubleClick: React.PropTypes.func.isRequired,
-        listStyle: React.PropTypes.object,
-        size: React.PropTypes.number,
-    },
 
-    render() {
-        return (
-            <div className="list-select">
-                <select size={this.props.size || 15} style={Object.assign({overflowX: 'auto'}, this.props.listStyle)}>
-                    {this.props.source.map(item => {
-                        return (
-                            <option style={{ padding: '.25rem' }} onDoubleClick={this.listItemDoubleClicked} value={item.value}>{item.label}</option>
-                        );
-                    })}
-                </select>
-            </div>
-        );
-    },
-
-    listItemDoubleClicked(event) {
+export default function ListSelect(props) {
+    function listItemDoubleClicked(event) {
         const clickedItemValue = event.target.value;
 
-        if (this.props.onItemDoubleClick) {
-            this.props.onItemDoubleClick(clickedItemValue);
+        if (props.onItemDoubleClick) {
+            props.onItemDoubleClick(clickedItemValue);
         }
-    },
-});
+    }
+
+    const options = props.source.map(item => (
+        <option
+            key={item.value}
+            style={{ padding: '.25rem' }}
+            onDoubleClick={listItemDoubleClicked}
+            value={item.value}
+        >
+            {item.label}
+        </option>
+    ));
+
+    return (
+        <div className="list-select">
+            <select size={props.size || 15} style={Object.assign({overflowX: 'auto'}, props.listStyle)}>
+                {options}
+            </select>
+        </div>
+    );
+}
+ListSelect.propTypes = {
+    source: PropTypes.arrayOf(PropTypes.shape({
+        label: PropTypes.string,
+        value: PropTypes.string,
+    })).isRequired,
+    onItemDoubleClick: PropTypes.func.isRequired,
+    listStyle: PropTypes.object,
+    size: PropTypes.number,
+};

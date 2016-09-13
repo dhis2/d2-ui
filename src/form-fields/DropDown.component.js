@@ -1,73 +1,67 @@
-import React from 'react';
-
+import React, { Component, PropTypes } from 'react';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 
-export default React.createClass({
-    propTypes: {
-        defaultValue: React.PropTypes.oneOfType([
-            React.PropTypes.string,
-            React.PropTypes.number,
-            React.PropTypes.bool,
-        ]),
-        value: React.PropTypes.oneOfType([
-            React.PropTypes.string,
-            React.PropTypes.number,
-            React.PropTypes.bool,
-        ]),
-        onFocus: React.PropTypes.func,
-        onBlur: React.PropTypes.func,
-        onChange: React.PropTypes.func.isRequired,
-        menuItems: React.PropTypes.oneOfType([
-            React.PropTypes.array,
-            React.PropTypes.object,
-        ]),
-        includeEmpty: React.PropTypes.bool,
-        emptyLabel: React.PropTypes.string,
-        noOptionsLabel: React.PropTypes.string,
-    },
+function renderMenuItem({ value, text }) {
+    return (<MenuItem key={value} value={value} primaryText={text}/>);
+}
 
-    getDefaultProps() {
-        return {
-            includeEmpty: false,
-            emptyLabel: '',
-        };
-    },
+function renderMenuItems({ menuItems, includeEmpty, emptyLabel }) {
+    const renderedMenuItems = menuItems.map(({ id, displayName }) => renderMenuItem({ value: id, text: displayName }));
 
-    renderMenuItems(menuItems) {
-        if (this.props.includeEmpty) {
-            menuItems.unshift({id: 'null', displayName: this.props.emptyLabel});
-        }
+    if (includeEmpty) {
+        renderedMenuItems.unshift(renderMenuItem({ value: 'null', text: emptyLabel }));
+    }
 
-        return menuItems.map((item, i) => (<MenuItem key={i} value={item.id} primaryText={item.displayName} />));
-    },
+    return renderedMenuItems;
+}
 
-    renderEmptyItem() {
-        if (this.props.includeEmpty) {
-            return <MenuItem value="null" primaryText={this.props.emptyLabel}/>;
-        }
-    },
+function createCallbackWithFakeEventFromMaterialSelectField(callback) {
+    return (event, index, value) => callback({target: {value: value}});
+}
 
-    render() {
-        const {onFocus, onBlur, onChange, value, disabled, menuItems, ...other} = this.props;
-        const menuItemArray = Array.isArray(menuItems) && menuItems || menuItems.toArray();
-        const hasOptions = menuItemArray.length > 0;
+function DropDown({ onFocus, onBlur, onChange, value, disabled, menuItems, includeEmpty, emptyLabel, noOptionsLabel, ...other }) {
+    const menuItemArray = Array.isArray(menuItems) && menuItems || menuItems.toArray();
+    const hasOptions = menuItemArray.length > 0;
 
-        return (
-            <SelectField
-                value={hasOptions ? this.props.value : 1}
-                onChange={this.handleChange}
-                disabled={!hasOptions || disabled}
-                {...other}>
-                {hasOptions
-                    ? this.renderMenuItems(menuItemArray)
-                    : <MenuItem value={1} primaryText={this.props.noOptionsLabel || '-'} />
-                }
-            </SelectField>
-        );
-    },
+    return (
+        <SelectField
+            value={hasOptions ? value : 1}
+            onChange={createCallbackWithFakeEventFromMaterialSelectField(onChange)}
+            disabled={!hasOptions || disabled}
+            {...other}>
+            {hasOptions
+                ? renderMenuItems({ menuItems: menuItemArray, includeEmpty, emptyLabel })
+                : <MenuItem value={1} primaryText={noOptionsLabel || '-'} />
+            }
+        </SelectField>
+    );
+}
+DropDown.propTypes = {
+    defaultValue: React.PropTypes.oneOfType([
+        React.PropTypes.string,
+        React.PropTypes.number,
+        React.PropTypes.bool,
+    ]),
+    value: React.PropTypes.oneOfType([
+        React.PropTypes.string,
+        React.PropTypes.number,
+        React.PropTypes.bool,
+    ]),
+    onFocus: React.PropTypes.func,
+    onBlur: React.PropTypes.func,
+    onChange: React.PropTypes.func.isRequired,
+    menuItems: React.PropTypes.oneOfType([
+        React.PropTypes.array,
+        React.PropTypes.object,
+    ]),
+    includeEmpty: React.PropTypes.bool,
+    emptyLabel: React.PropTypes.string,
+    noOptionsLabel: React.PropTypes.string,
+};
+DropDown.defaultProps = {
+    includeEmpty: false,
+    emptyLabel: '',
+};
 
-    handleChange(event, index, value) {
-        this.props.onChange({target: {value: value}});
-    },
-});
+export default DropDown;

@@ -65,6 +65,7 @@
     "moment": "^2.11.2",
     "node-sass": "^3.4.2",
     "precommit-hook": "^3.0.0",
+    "proxyquire": "^1.7.10",
     "react": "^15.3.0",
     "react-addons-test-utils": "^15.3.1",
     "react-color": "^2.2.7",
@@ -89,6 +90,7 @@
     "loglevel": "1.4.0",
     "moment": "^2.11.2",
     "react-color": "^2.2.7",
+    "recompose": "^0.20.2",
     "rx": "^4.0.8"
   },
   "pre-commit": [

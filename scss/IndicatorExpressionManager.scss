@@ -2,11 +2,8 @@ $color--success: #006400;
 $color--failure: #8B0000;
 $background-color-expression: #EEE;
 
-
-@import 'susy';
-
 .indicator-expression-manager {
-  @include container();
+  display: flex;
 
   .data-table-pager--buttons {
     margin: 0;
@@ -14,11 +11,11 @@ $background-color-expression: #EEE;
 }
 
 .indicator-expression-manager__left {
-  @include span(6 of 12);
+  flex: 1;
 }
 
 .indicator-expression-manager__right {
-  @include span(6 of 12 last);
+  flex: 1;
 }
 
 .indicator-expression-manager__description {
@@ -26,7 +23,7 @@ $background-color-expression: #EEE;
 }
 
 .indicator-expression-manager__readable-expression {
-  @include span(12 of 12 last);
+  width: 100%;
 
   div {
     margin-top: 1rem;

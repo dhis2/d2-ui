@@ -1,11 +1,6 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 
-const ExpressionFormula = React.createClass({
-    propTypes: {
-        onFormulaChange: React.PropTypes.func.isRequired,
-        formula: React.PropTypes.string,
-    },
-
+export default class ExpressionFormula extends Component {
     render() {
         const textAreaStyle = {
             margin: 0,
@@ -15,26 +10,30 @@ const ExpressionFormula = React.createClass({
             padding: '1rem',
             outline: 'none',
             resize: 'vertical',
+            boxSizing: 'border-box',
         };
 
         return (
             <div className="expression-formula">
                 <textarea
-                onChange={this.handleFomulaChange}
+                onChange={this._handleFomulaChange}
                 value={this.props.formula}
                 style={textAreaStyle}
                 />
             </div>
         );
-    },
+    }
 
-    handleFomulaChange(event) {
+    _handleFomulaChange = (event) => {
         const formulaValue = event.target.value;
 
         if (this.props.onFormulaChange) {
             this.props.onFormulaChange(formulaValue);
         }
-    },
-});
+    }
+}
 
-export default ExpressionFormula;
+ExpressionFormula.propTypes = {
+    onFormulaChange: PropTypes.func.isRequired,
+    formula: PropTypes.string,
+};

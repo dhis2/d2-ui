@@ -10,16 +10,18 @@ const ExpressionDescription = React.createClass({
     },
 
     render() {
+        const { descriptionLabel, descriptionValue, onDescriptionChange, ...textFieldProps } = this.props;
+
         return (
             <div className="expression-description">
                 <TextField
-                    {...this.props}
+                    {...textFieldProps}
                     value={this.props.descriptionValue}
                     floatingLabelText={this.props.descriptionLabel}
                     onChange={this.handleDescriptionChange}
                     fullWidth
                     errorText={this.props.errorText}
-                    />
+                />
             </div>
         );
     },

@@ -19,10 +19,6 @@ describe('IndicatorExpressionManager component', () => {
         indicatorExpressionManagerComponent = renderComponent();
     });
 
-    it('should have the component name as a class', () => {
-        expect(indicatorExpressionManagerComponent.hasClass('indicator-expression-manager')).to.be.true;
-    });
-
     describe('DataElementOperandSelector', () => {
         it('should have rendered', () => {
             expect(indicatorExpressionManagerComponent.find(DataElementOperandSelector)).to.have.length(1);

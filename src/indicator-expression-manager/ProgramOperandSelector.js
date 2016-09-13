@@ -1,16 +1,79 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import Tabs from 'material-ui/Tabs/Tabs';
 import Tab from 'material-ui/Tabs/Tab';
 import ListSelect from '../list-select/ListSelect.component';
-import SelectField from 'material-ui/SelectField/SelectField';
 import { config } from 'd2/lib/d2';
 import Translate from '../i18n/Translate.mixin';
 import log from 'loglevel';
+import CircularProgress from 'material-ui/CircularProgress/CircularProgress';
+import DropDown from '../form-fields/DropDown.component';
 
 config.i18n.strings.add('please_select_a_program');
 config.i18n.strings.add('no_tracked_entity_attributes');
 config.i18n.strings.add('no_program_indicators');
 config.i18n.strings.add('no_program_data_elements');
+
+class DropDownForSchemaReference extends Component {
+    constructor(props, context) {
+        super(props, context);
+
+        this.state = {
+            isLoading: true,
+            options: [],
+        };
+    }
+
+    componentDidMount() {
+        const schema = this.getSchema(); // getSchema returns a d2.schema (modelDefinition object)
+
+        schema.list({ paging: false, fields: 'displayName,id' })
+            .then(collection => collection.toArray())
+            .then(options => this.setState({ options, isLoading: false }))
+            .catch(() => this.setState({ isLoading: false }));
+    }
+
+    /**
+     * Gets a d2 modelDefinition for the `schema` prop.
+     *
+     * @returns {ModelDefinition}
+     * @throws When the `schema` is not a valid schema on the `d2.models` object.
+     */
+    getSchema() {
+        const d2 = this.context.d2;
+        const isSchemaAvailable = () => this.props.schema && d2.models[this.props.schema];
+
+        if (isSchemaAvailable()) {
+            return d2.models[this.props.schema];
+        }
+
+        throw new Error(`${this.props.schema} is not a valid schema name on the d2.models object. Perhaps you forgot to load the schema or the schema does not exist.`);
+    }
+
+    render() {
+        const {schema, ...selectProps} = this.props;
+
+        if (this.isLoading) {
+            return (
+                <CircularProgress />
+            );
+        }
+
+        return (
+            <DropDown
+                menuItems={this.state.options}
+                {...selectProps}
+            />
+        );
+    }
+}
+
+DropDownForSchemaReference.propTypes = {
+    schema: PropTypes.string.isRequired,
+};
+
+DropDownForSchemaReference.contextTypes = {
+    d2: PropTypes.object,
+};
 
 export default React.createClass({
     propTypes: {
@@ -87,7 +150,7 @@ export default React.createClass({
                         <ListSelect onItemDoubleClick={this._programDataElementSelected}
                                     source={this.state.programDataElementOptions}
                                     listStyle={listStyle}
-                                    size="10"
+                                    size={10}
                         />}
                 </Tab>
                 <Tab label={this.getTranslation('program_tracked_entity_attributes')} style={{ color: '#333' }}>
@@ -95,7 +158,7 @@ export default React.createClass({
                     <ListSelect onItemDoubleClick={this._programTrackedEntityAttributeSelected}
                                 source={this.state.programTrackedEntityAttributeOptions}
                                 listStyle={listStyle}
-                                size="10"
+                                size={10}
                     />}
                 </Tab>
                 <Tab label={this.getTranslation('program_indicators')} style={{ color: '#333' }}>
@@ -103,7 +166,7 @@ export default React.createClass({
                     <ListSelect onItemDoubleClick={this._programIndicatorSelected}
                                 source={this.state.programIndicatorOptions}
                                 listStyle={listStyle}
-                                size="10"
+                                size={10}
                     />}
                 </Tab>
             </Tabs>
@@ -114,11 +177,12 @@ export default React.createClass({
         return (
             <div>
                 <div style={{ margin: '0 1rem' }}>
-                    <SelectField menuItems={this.state.programMenuItems}
-                                 onChange={this._loadProgramDataOperands}
-                                 value={this.state.selectedProgram}
-                                 hintText={this.getTranslation('please_select_a_program')}
-                                 fullWidth
+                    <DropDownForSchemaReference
+                        schema="program"
+                        value={this.state.selectedProgram}
+                        fullWidth
+                        onChange={this._loadProgramDataOperands}
+                        hintText={this.getTranslation('please_select_a_program')}
                     />
                 </div>
                 {this.state.selectedProgram ? this.renderTabs() : null}
@@ -126,9 +190,9 @@ export default React.createClass({
         );
     },
 
-    _loadProgramDataOperands(event, index, menuItem) {
-        const programId = menuItem.payload;
+    _loadProgramDataOperands(event) {
         const api = this.context.d2.Api.getApi();
+        const programId = event.target.value;
 
         api.get('programDataElements', { program: programId, fields: 'id,displayName,dimensionItem', paging: false, order: 'displayName:asc' })
             .then((programDataElements) => {
