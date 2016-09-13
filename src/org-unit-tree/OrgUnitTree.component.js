@@ -76,7 +76,6 @@ class OrgUnitTree extends React.Component {
             root.modelDefinition.get(root.id, {
                 fields: 'children[id,displayName,children::isNotEmpty,path,parent]',
             }).then(unit => {
-                console.warn('Got children:', unit);
                 this.setState({ children: unit.children.toArray(), loading: false });
             });
         }
