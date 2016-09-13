@@ -65,8 +65,6 @@ LegendItems.contextTypes = {
     d2: PropTypes.object,
 };
 
-export default function LegendItems (props) {};
-
 LegendItems.propTypes = {
     items: PropTypes.array.isRequired,
 };
