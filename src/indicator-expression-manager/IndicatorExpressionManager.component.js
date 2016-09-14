@@ -111,8 +111,8 @@ class IndicatorExpressionManager extends Component {
         this.expressionStatusDisposable = this.requestExpressionStatusAction
             .throttle(500)
             .map(action => {
-                const encodedFormula = encodeURIComponent(action.data);
-                const url = `expressions/description?expression=${encodedFormula}`;
+                const formula = action.data;
+                const url = `expressions/description?expression=${formula}`;
 
                 return Observable.fromPromise(this.context.d2.Api.getApi().get(url));
             })
