@@ -33,7 +33,7 @@ export function subscribeDataElementActionsToStore(dataElementOperandSelectorAct
     });
 
     const searchSubscription = dataElementOperandSelectorActions.search
-        .throttle(500)
+        .debounce(500)
         .distinctUntilChanged(action => action.data)
         .map(action => {
             const searchPromise = getInstance()

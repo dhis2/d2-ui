@@ -51,14 +51,4 @@ describe('DataElementOperandSelector component', () => {
 
         expect(dataElementOperandSelectorComponent.find(LinearProgress)).to.have.length(0);
     });
-
-    // xdescribe('data loading', () => {
-    //     const mock = sinon.mock(dataElementOperandStore);
-    //
-    //     mock.expects('tap').once().returns(dataElementOperandStore);
-    //
-    //     renderComponent();
-    //
-    //     mock.verify();
-    // });
 });
