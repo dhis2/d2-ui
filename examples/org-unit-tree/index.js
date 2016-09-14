@@ -143,7 +143,6 @@ OrgUnitTreeExample.propTypes = { root: React.PropTypes.any, roots: React.PropTyp
 
 render(<div>Initialising D2...</div>, el);
 
-jQuery.ajaxSetup({ headers: { Authorization: dhisDevConfig.authorization } });
 D2Lib.config.baseUrl = baseUrl;
 D2Lib.init({ baseUrl })
     .then(d2 => {

@@ -139,7 +139,6 @@ OrgUnitSelectExample.childContextTypes = { d2: React.PropTypes.object.isRequired
 
 render(<div>Initialising D2...</div>, el);
 
-jQuery.ajaxSetup({ headers: { Authorization: dhisDevConfig.authorization } });
 D2Lib.config.baseUrl = baseUrl;
 D2Lib.init({ baseUrl })
     .then(d2 => {

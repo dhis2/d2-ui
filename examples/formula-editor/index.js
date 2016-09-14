@@ -47,13 +47,4 @@ function renderExamples() {
     render(app, document.getElementById('formulaEditor'));
 }
 
-// jQuery.ajaxSetup({
-//     headers: {
-//         Authorization: 'Basic ' + btoa('admin:district'),
-//     },
-// });
-
-
 renderExamples();
-
-// init({baseUrl: 'http://localhost:8080/dhis/api'}).then(renderExamples);

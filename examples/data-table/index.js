@@ -67,7 +67,6 @@ function renderExamples(d2) {
     render(app, document.getElementById('data-table'));
 }
 
-jQuery.ajaxSetup({ headers: { Authorization: dhisDevConfig.authorization } });
 const baseUrl = `${dhisDevConfig.baseUrl}/api`;
 
 D2Lib.config.baseUrl = baseUrl;

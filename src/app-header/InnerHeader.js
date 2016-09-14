@@ -245,7 +245,13 @@ const InnerHeader = React.createClass({
     },
 
     addUserStyleStylesheet(stylesheetUrl) {
-        jQuery('head').append('<link href="' + stylesheetUrl + '" type="text/css" rel="stylesheet" media="screen,print" />');
+        const linkElement = document.createElement('link');
+        linkElement.setAttribute('href', stylesheetUrl);
+        linkElement.setAttribute('type', 'text/css');
+        linkElement.setAttribute('rel', 'stylesheet');
+        linkElement.setAttribute('media', 'screen,print');
+
+        document.querySelector('head').appendChild(linkElement);
     },
 });
 

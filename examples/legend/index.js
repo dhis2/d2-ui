@@ -33,7 +33,6 @@ const style = {
 
 import Legend from '../../src/legend/Legend.component';
 
-jQuery.ajaxSetup({ headers: { Authorization: DHIS_CONFIG.authorization } });
 const baseUrl = `${DHIS_CONFIG.baseUrl}/api`;
 
 D2Lib.config.baseUrl = baseUrl;

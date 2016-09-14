@@ -8,7 +8,6 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 // http://stackoverflow.com/a/34015469/988941
 injectTapEventPlugin();
 
-jQuery.ajaxSetup({ headers: { Authorization: DHIS_CONFIG.authorization } });
 const baseUrl = `${DHIS_CONFIG.baseUrl}/api`;
 
 config.baseUrl = baseUrl;
