@@ -48,7 +48,6 @@ function renderExamples(d2) {
         d2: React.PropTypes.object,
     };
 
-    const actions = {};
     const store = Store.create();
 
     const app = (
