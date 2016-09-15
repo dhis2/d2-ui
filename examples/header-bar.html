@@ -16,6 +16,7 @@
 
         body {
             margin: 0;
+            margin-top: 48px;
             padding: 8px;
         }
 
@@ -23,9 +24,22 @@
             text-decoration: none;
             color: #1E88E5;
         }
+
+        #placeholder {
+            position: fixed;
+            z-index: -100;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 24px;
+            padding: 12px;
+            color: white;
+            background: #d0d0d0;
+        }
     </style>
 </head>
 <body>
+<div id="placeholder">Header bar goes here...</div>
 <h1><a href="index.html">D2-UI Examples</a>: HeaderBar component</h1>
 <hr/>
 <div id="header-bar"></div>
