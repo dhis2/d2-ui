@@ -50,13 +50,15 @@ export function initHeaderBar(domElement, apiLocation, config = { noSchemas: tru
         },
     });
 
-    init(d2Config)
+    return init(d2Config)
         .then((d2) => {
             d2Context = d2;
 
             render(<HeaderBarWithContext />, domElement);
-        }, () => {
+            return Promise.resolve();
+        }, (err) => {
             render(<HeaderBarWithContext />, domElement);
+            return Promise.reject(err);
         });
 }
 
