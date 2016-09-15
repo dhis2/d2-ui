@@ -255,7 +255,13 @@ const HeaderBar = React.createClass({
     },
 
     addUserStyleStylesheet(stylesheetUrl) {
-        jQuery('head').append('<link href="' + stylesheetUrl + '" type="text/css" rel="stylesheet" media="screen,print" />');
+        const head = document.querySelector('head');
+        const link = document.createElement('link');
+        link.type = 'text/css';
+        link.rel = 'stylesheet';
+        link.media = 'screen,print';
+        link.href = stylesheetUrl;
+        head.appendChild(link);
     },
 });
 
