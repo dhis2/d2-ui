@@ -1,67 +1,68 @@
-import React from 'react';
-import Translate from '../i18n/Translate.mixin';
+import React, { PropTypes } from 'react';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 import FontIcon from 'material-ui/FontIcon';
 import Popover from 'material-ui/Popover/Popover';
 import Paper from 'material-ui/Paper';
+import addD2Context from '../component-helpers/addD2Context';
 
-const DataTableContextMenu = React.createClass({
-    propTypes: {
-        actions: React.PropTypes.objectOf(React.PropTypes.func),
-        activeItem: React.PropTypes.object,
-        icons: React.PropTypes.object,
-        target: React.PropTypes.object,
-    },
+function handleClick(props, action) {
+    props.actions[action].apply(props.actions, [props.activeItem]);
 
-    mixins: [Translate],
+    if (props.onRequestClose) {
+        props.onRequestClose();
+    }
+}
 
-    getDefaultProps() {
-        return {
-            icons: {},
-            actions: {},
-        };
-    },
+function DataTableContextMenu(props, context) {
+    const actionList = Object
+        .keys(props.actions)
+        .filter(menuActionKey => typeof props.actions[menuActionKey] === 'function');
 
-    render() {
-        const actionList = Object
-            .keys(this.props.actions)
-            .filter(menuActionKey => typeof this.props.actions[menuActionKey] === 'function');
+    const cmStyle = {
+        position: 'fixed',
+    };
+    return (
+        <Popover
+            {...props}
+            open={Boolean(props.activeItem)}
+            anchorEl={props.target}
+            anchorOrigin={{ horizontal: 'middle', vertical: 'center' }}
+            animated={false}
+            style={cmStyle}
+            animation={Paper}
+        >
+            <Menu className="data-table__context-menu" desktop>
+                {actionList.map((action) => {
+                    const iconName = props.icons[action] ? props.icons[action] : action;
 
-        const cmStyle = {
-            position: 'fixed',
-        };
-        return (
-            <Popover
-                {...this.props}
-                open={this.props.activeItem ? true : false}
-                anchorEl={this.props.target}
-                anchorOrigin={{horizontal: 'middle', vertical: 'center'}}
-                animated={false}
-                style={cmStyle}
-                animation={Paper}
-            >
-                <Menu className="data-table__context-menu" openDirection="bottom-right" desktop>
-                    {actionList.map((action) => {
-                        const iconName = this.props.icons[action] ? this.props.icons[action] : action;
+                    return (
+                        <MenuItem
+                            key={action}
+                            data-object-id={props.activeItem && props.activeItem.id}
+                            className={'data-table__context-menu__item'}
+                            onClick={() => handleClick(props, action)}
+                            primaryText={context.d2.i18n.getTranslation(action)}
+                            leftIcon={<FontIcon className="material-icons">{iconName}</FontIcon>}
+                        />
+                    );
+                })}
+            </Menu>
+        </Popover>
+    );
+}
 
-                        return (<MenuItem key={action}
-                                          data-object-id={this.props.activeItem && this.props.activeItem.id}
-                                          className={'data-table__context-menu__item'}
-                                          onClick={this.handleClick.bind(this, action)}
-                                          primaryText={this.getTranslation(action)}
-                                          leftIcon={<FontIcon className="material-icons">{iconName}</FontIcon>}
-                                />);
-                    })}
-                </Menu>
-            </Popover>
-        );
-    },
+DataTableContextMenu.defaultProps = {
+    icons: {},
+    actions: {},
+};
 
-    handleClick(action) {
-        this.props.actions[action].apply(this.props.actions, [this.props.activeItem]);
-        this.props.onRequestClose && this.props.onRequestClose();
-    },
-});
+DataTableContextMenu.propTypes = {
+    actions: PropTypes.objectOf(PropTypes.func),
+    activeItem: PropTypes.object,
+    icons: PropTypes.object,
+    target: PropTypes.object,
+    onRequestClose: PropTypes.func,
+};
 
-export default DataTableContextMenu;
+export default addD2Context(DataTableContextMenu);
