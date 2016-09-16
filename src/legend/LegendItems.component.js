@@ -15,7 +15,10 @@ export default class LegendItems extends Component {
     }
 
     onAddLegendItem = () => {
-        openEditDialogFor(this.context.d2.models.legend.create());
+        const model = this.context.d2.models.legend.create();
+        model.color = '#FFA500'; // Orange is default
+
+        openEditDialogFor(model);
     }
 
     render() {

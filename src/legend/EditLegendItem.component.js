@@ -1,4 +1,4 @@
-import React,{ PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import { legendItemStore, legendItemStore$, onFieldChange, onFormStatusChange } from './LegendItem.store';
 import { setDialogStateToAction } from './LegendItem.actions';
 import withStateFrom from '../component-helpers/withStateFrom';
@@ -14,7 +14,7 @@ config.i18n.strings.add('edit_legend_item');
 function isCloseDisabled(isValid) {
     const model = legendItemStore.getState() && legendItemStore.getState().model;
 
-    if (model && (model.startValue === undefined || model.endValue === undefined)) {
+    if (model && (model.startValue === undefined || model.endValue === undefined || model.name === undefined)) {
         return true;
     }
 
@@ -27,11 +27,11 @@ function isCloseDisabled(isValid) {
 
 // props, context
 export function EditLegendItem({ fieldConfigs = [], open = false, onItemUpdate, isValid}, { d2 }) {
-    const onCancel = function() {
+    const onCancel = () => {
         setDialogStateToAction(false);
     }
 
-    const onClose = function() {
+    const onClose = () => {
         setDialogStateToAction(false);
         onItemUpdate();
     }
@@ -39,12 +39,12 @@ export function EditLegendItem({ fieldConfigs = [], open = false, onItemUpdate, 
     const actions = [
         <FlatButton
             label={d2.i18n.getTranslation('cancel')}
-            secondary={true}
+            secondary
             onTouchTap={onCancel}
         />,
         <FlatButton
             label={d2.i18n.getTranslation('ok')}
-            primary={true}
+            primary
             onTouchTap={onClose}
             disabled={isCloseDisabled(isValid)}
         />,
@@ -53,11 +53,11 @@ export function EditLegendItem({ fieldConfigs = [], open = false, onItemUpdate, 
     return (
         <Dialog
             title={d2.i18n.getTranslation('edit_legend_item')}
-            modal={true}
+            modal
             open={open}
             onRequestClose={onClose}
             actions={actions}
-            autoScrollBodyContent={true}
+            autoScrollBodyContent
         >
 
             <FormBuilder

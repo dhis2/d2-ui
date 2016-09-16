@@ -8,7 +8,7 @@ export default class ColorPicker extends Component {
 
         this.state = {
             open: false,
-            color: this.props.color || '#FFA500', // Orange is default
+            color: this.props.color,
         };
     }
 

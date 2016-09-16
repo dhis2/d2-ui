@@ -60,6 +60,7 @@ export default class Legend extends Component {
             legend.startValue = scale.invert(index).toFixed(precision);
             legend.endValue = scale.invert(index + 1).toFixed(precision);
             legend.color = color;
+            legend.name = `${legend.startValue} - ${legend.endValue}`;
 
             return legend;
         });

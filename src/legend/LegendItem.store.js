@@ -3,8 +3,10 @@ import Store from '../store/Store';
 import TextField from 'material-ui/TextField/TextField';
 import { Observable } from 'rx';
 import ColorPicker from './ColorPicker.component';
-import {getInstance, config} from 'd2/lib/d2';
+import { getInstance, config } from 'd2/lib/d2';
 import camelCaseToUnderscores from 'd2-utilizr/lib/camelCaseToUnderscores'
+import { isRequired } from '../forms/Validators';
+import mapProps from '../component-helpers/mapProps';
 
 config.i18n.strings.add('required');
 config.i18n.strings.add('should_be_lower_than_end_value');
@@ -21,12 +23,6 @@ function createFakeEvent(color) {
     };
 };
 
-const colorPicker = function(props) {
-    return (
-        <ColorPicker color={props.value} onChange={(color) => props.onChange(createFakeEvent(color))} />
-    );
-}
-
 export function openEditDialogFor(model) {
     legendItemStore.setState({
         model,
@@ -37,6 +33,10 @@ export function openEditDialogFor(model) {
 const formFieldsConfigs = [{
     name: 'name',
     component: TextField,
+    validators: [{
+        validator: isRequired,
+        message: isRequired.message,
+    }],
 }, {
     name: 'startValue',
     component: TextField,
@@ -65,7 +65,12 @@ const formFieldsConfigs = [{
     }*/],
 }, { // Defined in data-table/data-value/Color.component.js
     name: 'color',
-    component: colorPicker,
+    component: mapProps((props) => ({
+        color: props.value,
+        onChange(color) {
+            props.onChange(createFakeEvent(color));
+        }
+    }), ColorPicker),
 }];
 
 
