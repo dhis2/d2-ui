@@ -1,5 +1,3 @@
-import isFinite from 'lodash.isfinite';
-
 // Taken from http://blog.mattheworiordan.com/post/13174566389/url-regular-expression-for-links-with-or-without
 // const urlRegExp = /^(([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?$/i;
 const urlRegExp = /^https?:\/\/[^ ]*/i;
@@ -10,10 +8,10 @@ const relativeUrlRegExp = /[^ ]*/i;
 // Taken from the HTML5 spec http://www.w3.org/TR/html5/forms.html#e-mail-state-(type=email)
 const emailRegExp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 
-//Atleast one digit
+// Atleast one digit
 const oneDigit = (/^(?=.*\d)/);
 
-//Atleast one uppercase character
+// Atleast one uppercase character
 const oneUpperCase = (/^(?=.*[A-Z])/);
 
 export function isNull(value) {
