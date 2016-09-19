@@ -4,7 +4,6 @@ import { shallow } from 'enzyme';
 import { getStubContext } from '../../config/inject-theme';
 import Textfield from 'material-ui/Textfield/Textfield';
 import AsyncValidatorRunner from '../../src/forms/AsyncValidatorRunner';
-import {Observable} from 'rx';
 
 describe('FormBuilder component', () => {
     let formComponent;
@@ -177,6 +176,58 @@ describe('FormBuilder component', () => {
                 textField.props().onChange({ target: { value: 'John' }});
 
                 expect(onUpdateFieldSpy).to.be.calledWith('name', 'John');
+            });
+        });
+
+        describe('when changing an `object` value', () => {
+            // Fake object field
+            const ObjectField = () => (<div></div>);
+
+            beforeEach(() => {
+                fields = [
+                    {
+                        name: 'mapValues',
+                        component: ObjectField,
+                        value: new Map([['key1', 'value1'], ['key2', 'value2']]),
+                        validators: [
+                            {
+                                validator: sinon.spy((value) => value.size >= 2),
+                                message: 'field_is_required',
+                            },
+                        ],
+                    },
+                ];
+
+                function onUpdateField(fieldName, value) {
+                    fields[0].value = value;
+                }
+
+                onUpdateFieldSpy = sinon.spy(onUpdateField);
+                onUpdateFormStatus = sinon.spy();
+
+                formComponent = renderComponent({
+                    fields,
+                    onUpdateField: onUpdateFieldSpy,
+                    onUpdateFormStatus,
+                });
+            });
+
+            it('should run the validator even when the value is the same', () => {
+                const objectField = formComponent.find(ObjectField);
+
+                objectField.props().onChange({ target: { value: fields[0].value }});
+
+                expect(fields[0].validators[0].validator).to.be.called;
+            });
+
+            it('should emit the value when the values are the same', () => {
+                const objectField = formComponent.find(ObjectField);
+
+                objectField.props().onChange({ target: { value: fields[0].value }});
+
+                expect(onUpdateFieldSpy).to.be.deep.calledWith('mapValues', fields[0].value);
+                expect(onUpdateFieldSpy.firstCall.args[1].get('key1')).to.equal('value1');
+                expect(onUpdateFieldSpy.firstCall.args[1].get('key2')).to.equal('value2');
             });
         });
 

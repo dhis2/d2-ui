@@ -1,6 +1,6 @@
 import React from 'react';
-import Rx from 'rx';
 import AsyncValidatorRunner from './AsyncValidatorRunner';
+import { isObject } from 'lodash';
 
 import CircularProgres from 'material-ui/CircularProgress';
 
@@ -297,7 +297,7 @@ class FormBuilder extends React.Component {
         // Update value, and set pristine to false
         this.setState(this.updateFieldState(stateClone, fieldName, {pristine: false, value: newValue}),
             () => {
-                if (newValue === (!!field.value ? field.value : '')) {
+                if (!isObject(newValue) && newValue === (!!field.value ? field.value : '')) {
                     this.props.onUpdateField(fieldName, newValue);
                     return;
                 }
