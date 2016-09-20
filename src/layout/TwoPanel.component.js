@@ -3,7 +3,7 @@ import { isArray } from 'lodash/fp';
 import log from 'loglevel';
 
 function TwoPanelSelector(props) {
-    const {children, childWrapStyle, ...otherProps} = props;
+    const {children, childWrapStyle, sizeRatio, ...otherProps} = props;
     const styles = {
         mainStyle: {
             flex: 1,
@@ -34,7 +34,7 @@ function TwoPanelSelector(props) {
         .map((childComponent, index) => {
             const childStyle = Object
                 .assign({}, childWrapStyle, {
-                    flex: props.sizeRatio[index],
+                    flex: sizeRatio[index],
                     paddingRight: (index === children.length - 1) ? '2rem' : undefined,
                 });
 
