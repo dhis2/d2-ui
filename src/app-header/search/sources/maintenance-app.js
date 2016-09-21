@@ -50,11 +50,24 @@ const maintenanceSections = {
         ],
     },
 
+    trackerSection: {
+        items: [
+            'trackedEntityAttribute',
+            'trackedEntityAttributeGroup',
+            'relationshipType',
+            'trackedEntity',
+        ],
+    },
+
     otherSection: {
         items: [
             'constant',
             'attribute',
             'optionSet',
+            'legendSet',
+            'predictor',
+            'pushAnalysis',
+            'externalMapLayer',
         ],
     },
 };
