@@ -91,7 +91,7 @@ class FormBuilder extends React.Component {
 
         return this.props.fields.map(field => {
             const {errorTextProp, ...props} = field.props || {};
-            const fieldState = this.state.fields[field.name];
+            const fieldState = this.state.fields[field.name] || {};
 
             const changeHandler = this.handleFieldChange.bind(this, field.name);
 
