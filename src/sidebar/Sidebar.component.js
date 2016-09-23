@@ -94,6 +94,12 @@ const Sidebar = React.createClass({
         if (props.currentSection) {
             this.setState({ currentSection: props.currentSection });
         }
+
+        if (props.searchText && props.searchText !== this.state.searchText) {
+            this.setState({ searchText: props.searchText }, () => {
+                this.changeSearchText();
+            })
+        }
     },
 
     setSection(key) {
