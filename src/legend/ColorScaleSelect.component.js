@@ -5,6 +5,8 @@ import Popover from 'material-ui/Popover/Popover';
 import SelectField from 'material-ui/SelectField/SelectField';
 import MenuItem from 'material-ui/MenuItem/MenuItem';
 import { config } from 'd2/lib/d2';
+import Row from '../layout/Row.component';
+import Column from '../layout/Column.component';
 
 config.i18n.strings.add('number_of_items');
 
@@ -83,31 +85,22 @@ export default class ColorScaleSelect extends Component {
     render() {
         const colors = this.getColorBrewerScale(this.state.scale, this.state.classes);
         const styles = {
-            select: {
-                display: 'inline-block',
-                position: 'relative',
-                top: -8,
-            },
-            selectField: {
-                width: 160,
-                marginRight: 20,
-                marginBottom: 36,
-            },
             scale: {
-                position: 'relative',
                 width: 36 * this.state.classes,
-                top: 11,
-                marginBottom: 36,
+                minWidth: 36 * this.state.classes,
+                flex: '0 0 auto',
             },
             popover: {
                 maxHeight: '60%',
-                overflowY: 'auto'
+                overflowY: 'scroll'
             },
             popoverScale: {
                 display: 'block',
                 overflow: 'visible',
+                margin: '10px 0',
                 marginLeft: 20,
                 width: 36 * this.state.classes,
+                minWidth: 36 * this.state.classes,
                 whiteSpace: 'nowrap',
             },
         };
@@ -116,8 +109,8 @@ export default class ColorScaleSelect extends Component {
         );
 
         return (
-            <div style={styles.select}>
-                <SelectField style={styles.selectField} floatingLabelText={this.i18n.getTranslation('number_of_items')} value={this.state.classes} onChange={this.onClassesChange}>
+            <Row style={{ alignItems: 'center', ...this.props.style }}>
+                <SelectField floatingLabelText={this.i18n.getTranslation('number_of_items')} value={this.state.classes} onChange={this.onClassesChange}>
                     <MenuItem value={3} primaryText="3"/>
                     <MenuItem value={4} primaryText="4"/>
                     <MenuItem value={5} primaryText="5"/>
@@ -127,7 +120,7 @@ export default class ColorScaleSelect extends Component {
                     <MenuItem value={9} primaryText="9"/>
                 </SelectField>
 
-                <ColorScale scale={this.state.scale} classes={this.state.classes} style={styles.scale} onClick={this.showColorScales} />
+                <ColorScale scale={this.state.scale} classes={this.state.classes} style={{...styles.scale, margin: '0 0 0 20px'}} onClick={this.showColorScales} />
 
                 <Popover
                     style={styles.popover}
@@ -137,11 +130,11 @@ export default class ColorScaleSelect extends Component {
                     targetOrigin={{horizontal: 'left', vertical: 'top'}}
                     onRequestClose={this.onColorScalePopoverClose}
                 >
-                    <div>
+                    <Column>
                         {colorScales}
-                    </div>
+                    </Column>
                 </Popover>
-            </div>
+            </Row>
         );
     }
 }

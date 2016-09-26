@@ -9,6 +9,8 @@ import {scaleLinear} from 'd3-scale';
 import {precisionFixed} from 'd3-format';
 import { config } from 'd2/lib/d2';
 import { legendItemStore } from './LegendItem.store';
+import Row from '../layout/Row.component';
+import Column from '../layout/Column.component';
 
 config.i18n.strings.add('start_value');
 config.i18n.strings.add('end_value');
@@ -149,49 +151,59 @@ export default class Legend extends Component {
 
         const styles = {
             textField: {
-                width: 160,
                 marginRight: 20,
-                marginBottom: 36,
+                minWidth: '150px',
+                flex: '1 1 auto',
             },
             errorStyle: {
                 float: 'left',
             },
             button: {
-                position: 'relative',
-                top: -10,
-                marginBottom: 20,
+                flex: '1 0 auto',
+                minWidth: '150px',
+                marginLeft: 20,
+            },
+            legendGenerator: {
+                alignItems: 'center',
+                flexWrap: 'wrap',
+                marginBottom: '40px',
+            },
+            colorScaleSelect: {
             },
         };
 
         return (
-            <div>
-                <TextField
-                    type="number"
-                    style={styles.textField}
-                    floatingLabelText={this.i18n.getTranslation('start_value')}
-                    value={this.state.startValue}
-                    onChange={this.onStartValueChange}
-                    errorText={this.state.errorMessage.startValue}
-                    errorStyle={styles.errorStyle}
-                />
-                <TextField
-                    type="number"
-                    style={styles.textField}
-                    floatingLabelText={this.i18n.getTranslation('end_value')}
-                    value={this.state.endValue}
-                    onChange={this.onEndValueChange}
-                    errorText={this.state.errorMessage.endValue}
-                    errorStyle={styles.errorStyle}
-                />
-                <ColorScaleSelect
-                    onChange={this.onColorScaleChange}
-                />
-                <RaisedButton
-                    style={styles.button}
-                    label={this.i18n.getTranslation('create_legend_items')}
-                    onClick={this.displayWarning}
-                    disabled={this.state.createLegendDisabled}
-                />
+            <Column>
+                <Row style={styles.legendGenerator}>
+                    <TextField
+                        type="number"
+                        style={styles.textField}
+                        floatingLabelText={this.i18n.getTranslation('start_value')}
+                        value={this.state.startValue}
+                        onChange={this.onStartValueChange}
+                        errorText={this.state.errorMessage.startValue}
+                        errorStyle={styles.errorStyle}
+                    />
+                    <TextField
+                        type="number"
+                        style={styles.textField}
+                        floatingLabelText={this.i18n.getTranslation('end_value')}
+                        value={this.state.endValue}
+                        onChange={this.onEndValueChange}
+                        errorText={this.state.errorMessage.endValue}
+                        errorStyle={styles.errorStyle}
+                    />
+                    <ColorScaleSelect
+                        style={styles.colorScaleSelect}
+                        onChange={this.onColorScaleChange}
+                    />
+                    <RaisedButton
+                        style={styles.button}
+                        label={this.i18n.getTranslation('create_legend_items')}
+                        onClick={this.displayWarning}
+                        disabled={this.state.createLegendDisabled}
+                    />
+                </Row>
                 <LegendItems
                     items={this.props.items}
                     updateItem={this.updateItem}
@@ -207,7 +219,7 @@ export default class Legend extends Component {
                 >
                     {this.i18n.getTranslation('this_will_replace_the_current_legend_items')}
                 </Dialog>
-            </div>
+            </Column>
         );
     }
 }
