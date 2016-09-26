@@ -25,14 +25,14 @@ const searchResultBoxStateStore$ = Store.create({
 const getParentApp = get('parentApp');
 const hasParentApp = (item) => !!getParentApp(item);
 const uniqueByName = uniqBy(item => item.name);
-const filterByValue = curry((searchValue, item) => item.label.toLowerCase().indexOf(searchValue.toLowerCase()) >= 0);
+const filterByValue = curry((searchTerms, item) => searchTerms.every(term => item.label.toLowerCase().includes(term)));
 const isFullApp = (item) => !hasParentApp(item);
-const isNotAFullApp = (item) => !isFullApp(item)
+const isNotAFullApp = (item) => !isFullApp(item);
 // Only allow deep links for apps for which the user has access to the parentApp
 const hasAvailableFullApp = curry((fullApps, item) => fullApps.some(app => app.name === item.parentApp));
 
 export function setSearchValue(searchValue) {
-    const matchesSearchValue = filterByValue(searchValue);
+    const matchesSearchValue = filterByValue(searchValue.trim().toLowerCase().split(/\s+/));
 
     searchSourceStore$
         .take(1)
