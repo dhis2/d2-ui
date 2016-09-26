@@ -3,9 +3,10 @@ function replaceTrailingSlash(value) {
 }
 
 function getUrl(location) {
-    const {protocol, host, pathname} = location;
+    const { protocol, host, pathname } = location;
+    const correctedPath = /^\//.test(pathname) ? pathname : `/${pathname}`;
 
-    return replaceTrailingSlash(`${protocol}//${host}${pathname}`);
+    return replaceTrailingSlash(`${protocol}//${host}${correctedPath}`);
 }
 
 export default function getBaseUrlFromD2ApiUrl(d2) {
@@ -15,6 +16,11 @@ export default function getBaseUrlFromD2ApiUrl(d2) {
     // If we have a d2.Api object available use that as the source for the server location
     if (d2.Api) {
         url.href = d2.Api.getApi().baseUrl.replace(/\/api(?:\/2[3-9])?\/?$/i, '');
+
+        // IE11 does not set the host property for relative urls so we set it to the window.location hostname
+        if (!url.host) {
+            url.host = window.location.host;
+        }
 
         // We only need to get the url from the apiUrl if the request is a
         return getUrl(url);
