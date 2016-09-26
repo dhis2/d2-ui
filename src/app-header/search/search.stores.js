@@ -3,6 +3,7 @@ import Action from '../../action/Action';
 import Store from '../../store/Store';
 import { Observable, helpers } from 'rx';
 import addDeepLinksForMaintenance from './sources/maintenance-app';
+import addDeepLinksForSettings from './sources/settings-app';
 import log from 'loglevel';
 import { appsMenuItems$ } from '../headerBar.store';
 import { uniqBy } from 'lodash/fp';
@@ -115,7 +116,8 @@ search
 
 const searchSourceStore$ = headerBarStore$
     .map(headerBarState => [].concat(headerBarState.appItems, headerBarState.profileItems))
-    .flatMap(addDeepLinksForMaintenance);
+    .flatMap(addDeepLinksForMaintenance)
+    .flatMap(addDeepLinksForSettings);
 
 export const searchStore$ = Observable
     .combineLatest(
