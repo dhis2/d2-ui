@@ -9,68 +9,10 @@ import { prepareMenuItems, translate$, translateMenuItemNames, getBaseUrlFromD2 
 import { config, getInstance } from 'd2/lib/d2';
 import camelCaseToUnderscores from 'd2-utilizr/lib/camelCaseToUnderscores';
 
-// TODO: This is duplicate code from the maintenance-app
-const maintenanceSections = {
-    all: {
-        items: [],
-    },
-    dataElementSection: {
-        items: [
-            'categoryOption',
-            'category',
-            'categoryCombo',
-            'categoryOptionCombo',
-            'categoryOptionGroup',
-            'categoryOptionGroupSet',
-            'dataElement',
-            'dataElementGroup',
-            'dataElementGroupSet',
-        ],
-    },
-    dataSetSection: {
-        items: [
-            'dataSet',
-        ],
-    },
-    indicatorSection: {
-        items: [
-            'indicator',
-            'indicatorType',
-            'indicatorGroup',
-            'indicatorGroupSet',
-        ],
-    },
-
-    organisationUnitSection: {
-        items: [
-            'organisationUnit',
-            'organisationUnitGroup',
-            'organisationUnitGroupSet',
-            'organisationUnitLevel',
-        ],
-    },
-
-    trackerSection: {
-        items: [
-            'trackedEntityAttribute',
-            'trackedEntityAttributeGroup',
-            'relationshipType',
-            'trackedEntity',
-        ],
-    },
-
-    otherSection: {
-        items: [
-            'constant',
-            'attribute',
-            'optionSet',
-            'legendSet',
-            'predictor',
-            'pushAnalysis',
-            'externalMapLayer',
-        ],
-    },
-};
+// This file is copied from the maintenance app
+// https://github.com/dhis2/maintenance-app/blob/master/src/config/maintenance-models.js
+import { getSideBarConfig } from './maintenance-app/maintenance-models';
+const maintenanceSections = getSideBarConfig();
 
 function addToTranslationConfig(modelName) {
     config.i18n.strings.add(modelName);
