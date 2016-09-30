@@ -17,3 +17,7 @@
   transition: all .3s ease;
   position: relative;
 }
+
+.data-table__rows__row.selected{
+    background-color: $table-row-hover-color;
+}
