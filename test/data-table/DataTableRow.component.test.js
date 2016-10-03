@@ -91,9 +91,9 @@ describe('DataTableRow component', () => {
             columns: ['name', 'code', 'objectValue1', 'objectValue2'],
             itemClicked: contextClickCallback,
         });
-        
+
         dataTableRow.find('.data-table__rows__row__column').first().simulate('contextMenu',fakeEvent);
-       
+
         expect(contextClickCallback).to.be.called;
         expect(contextClickCallback.getCall(0).args[1]).to.equal(dataElement);
     });

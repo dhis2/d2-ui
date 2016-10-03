@@ -2,8 +2,8 @@ import isArrayOfStrings from 'd2-utilizr/lib/isArrayOfStrings';
 import isIterable from 'd2-utilizr/lib/isIterable';
 import React from 'react';
 import update from 'react-addons-update';
-import DataTableRow from './DataTableRow.component';
 import DataTableHeader from './DataTableHeader.component';
+import DataTableRow from './DataTableRow.component';
 import DataTableContextMenu from './DataTableContextMenu.component';
 
 const DataTable = React.createClass({
@@ -74,9 +74,9 @@ const DataTable = React.createClass({
                         key={dataRowsId}
                         dataSource={dataRowsSource}
                         columns={this.state.columns}
-                        isActive={this.isRowActive(dataRowsSource)}                        
+                        isActive={this.isRowActive(dataRowsSource)}
                         itemClicked={this.handleRowClick}
-                        primaryClick={this.handlePrimaryClick}                                                                     
+                        primaryClick={this.handlePrimaryClick}
                     />
                 );
             });
@@ -127,7 +127,7 @@ const DataTable = React.createClass({
             contextMenuTarget: event.currentTarget,
             showContextMenu: true,
             activeRows: newActiveRows
-        });       
+        });
     },
     
     handlePrimaryClick(event, rowSource) {        
@@ -150,7 +150,7 @@ const DataTable = React.createClass({
        
     _hideContextMenu() {
         this.setState({
-            activeRows: [],         
+            activeRows: [],
             showContextMenu: false,
         });
     },    
