@@ -144,9 +144,9 @@ describe('DataTable component', () => {
             expect(contextMenuComponent).to.have.length(0);
         });
 
-        it('should not render the context menu when the activeRow is undefined', () => {
+        it('should not render the context menu when the activeRows are empty', () => {
             const fakeRowSource = {name: 'My item'};
-            dataTableComponent.setState({contextMenuTarget: {}, activeRow: fakeRowSource});
+            dataTableComponent.setState({contextMenuTarget: {},activeRows: [fakeRowSource]});
 
             dataTableComponent.instance()._hideContextMenu();
             dataTableComponent.update();
@@ -154,9 +154,8 @@ describe('DataTable component', () => {
             const contextMenuComponent = dataTableComponent.find('.data-table__context-menu');
 
             expect(contextMenuComponent).to.have.length(0);
-            //TODO Review
-            // expect(dataTableComponent.state('activeRow')).to.be.undefined;
-        });
+            expect(dataTableComponent.state('activeRows')).to.have.length(0);
+        });            
 
         it('should initially not show the contextmenu', () => {
             expect(dataTableComponent.find('.data-table__context-menu')).to.have.length(0);
@@ -182,6 +181,34 @@ describe('DataTable component', () => {
             expect(dataTableComponent.find('.data-table__context-menu')).to.have.length(0);
         });
     });
+    
+    describe('multiple selection table', function(){
+        beforeEach(() => {
+            dataTableComponent = renderComponent({isMultipleSelectionAllowed: true});
+        });     
+        
+        it('should add row to selection with ctrl+click', () => {
+            const fakeRowSource = {name: 'My item'};
+            const firstItemSelected = dataTableComponent.state('dataRows')[0];
+            dataTableComponent.setState({contextMenuTarget: {},activeRows: [firstItemSelected]});
+
+            dataTableComponent.instance().handlePrimaryClick({clientY: 100, clientX: 100, ctrlKey:true}, fakeRowSource);
+            dataTableComponent.update();
+            
+            expect(dataTableComponent.state('activeRows')).to.have.length(2);    
+        });    
+        
+        it('should remove row from selection with ctrl+click"', () => {            
+            const firstItemSelected = dataTableComponent.state('dataRows')[0];
+            dataTableComponent.setState({contextMenuTarget: {},activeRows: [firstItemSelected]});
+
+            dataTableComponent.instance().handlePrimaryClick({clientY: 100, clientX: 100, ctrlKey:true}, firstItemSelected);
+            dataTableComponent.update();
+            
+            expect(dataTableComponent.state('activeRows')).to.have.length(0);             
+        });                      
+       
+    });
 
     describe('context menu action filtering', () => {
         let isContextActionAllowed;
@@ -203,19 +230,19 @@ describe('DataTable component', () => {
 
         it('should pass through when the actions are allowed', () => {
             // Show context menu initially
-            dataTableComponent.setState({contextMenuTarget: {}, activeRow: fakeRowSource});
+            dataTableComponent.setState({contextMenuTarget: {}, activeRows: [fakeRowSource]});
             const passedContextMenuActions = dataTableComponent.find(DataTableContextMenu).props().actions;
 
             expect(Object.keys(passedContextMenuActions)).to.deep.equal(['edit', 'delete', 'translate']);
         });
 
         it('should not pass actions that are not allowed', () => {
-            isContextActionAllowed.withArgs(fakeRowSource, 'delete').returns(false);
+            isContextActionAllowed.withArgs([fakeRowSource], 'delete').returns(false);
 
             dataTableComponent = renderComponent({isContextActionAllowed, contextMenuActions});
 
             // Show context menu initially
-            dataTableComponent.setState({contextMenuTarget: {}, activeRow: fakeRowSource});
+            dataTableComponent.setState({contextMenuTarget: {}, activeRows: [fakeRowSource]});
             const passedContextMenuActions = dataTableComponent.find(DataTableContextMenu).props().actions;
 
             expect(Object.keys(passedContextMenuActions)).to.deep.equal(['edit', 'translate']);

@@ -37,7 +37,7 @@ const DataTable = React.createClass({
     },
 
     renderContextMenu() {
-        const actionAccessChecker = (this.props.isContextActionAllowed && this.props.isContextActionAllowed.bind(null, this.state.activeRow)) || (() => true);
+        const actionAccessChecker = (this.props.isContextActionAllowed && this.props.isContextActionAllowed.bind(null, this.state.activeRows)) || (() => true);
 
         const actionsToShow = Object.keys(this.props.contextMenuActions || {})
             .filter(actionAccessChecker)
