@@ -130,13 +130,9 @@ describe('AutoComplete: AutoComplete component', () => {
         it('should debounce the input from the inputbox', () => {
             autoCompleteComponent = renderComponent({actions, scheduler: testScheduler, debounceTime: 12, forType: 'dataElement'});
 
-            actions.loadAutoCompleteSuggestions(fakeEvent);
-
-            testScheduler.schedule(5, () => actions.loadAutoCompleteSuggestions(fakeEvent));
-
-            fakeEvent.target.value = 'Hello!';
-
-            testScheduler.schedule(15, () => actions.loadAutoCompleteSuggestions(fakeEvent));
+            actions.loadAutoCompleteSuggestions({}, 'Hel');
+            testScheduler.schedule(5, () => actions.loadAutoCompleteSuggestions({}, 'Hel'));
+            testScheduler.schedule(15, () => actions.loadAutoCompleteSuggestions({}, 'Hello'));
             testScheduler.advanceTo(26);
 
             return new Promise((resolve, reject) => {
@@ -145,6 +141,7 @@ describe('AutoComplete: AutoComplete component', () => {
                         expect(autoCompleteComponent.instance().setState).to.be.calledWith({
                             loadingSuggestions: true,
                             showAutoComplete: true,
+                            value: 'Hello',
                         });
                         expect(autoCompleteComponent.instance().setState).to.be.calledWith({
                             autoCompleteValues: [
@@ -155,6 +152,7 @@ describe('AutoComplete: AutoComplete component', () => {
                                 {name: 'HoiHello1'},
                             ],
                             loadingSuggestions: false,
+                            value: 'Hello',
                         });
                         expect(autoCompleteComponent.instance().setState.withArgs({
                             autoCompleteValues: [
@@ -165,6 +163,7 @@ describe('AutoComplete: AutoComplete component', () => {
                                 {name: 'HoiHello1'},
                             ],
                             loadingSuggestions: false,
+                            value: 'Hello',
                         })).to.have.callCount(1);
                         resolve();
                     } catch (e) {
@@ -190,13 +189,9 @@ describe('AutoComplete: AutoComplete component', () => {
                 filterForSuggestions,
             });
 
-            actions.loadAutoCompleteSuggestions(fakeEvent);
-
-            testScheduler.schedule(5, () => actions.loadAutoCompleteSuggestions(fakeEvent));
-
-            fakeEvent.target.value = 'Hello!';
-
-            testScheduler.schedule(15, () => actions.loadAutoCompleteSuggestions(fakeEvent));
+            actions.loadAutoCompleteSuggestions({}, 'Hel');
+            testScheduler.schedule(5, () => actions.loadAutoCompleteSuggestions({}, 'Hello'));
+            testScheduler.schedule(15, () => actions.loadAutoCompleteSuggestions({}, 'Hello'));
             testScheduler.advanceTo(26);
 
             return new Promise((resolve, reject) => {
@@ -205,6 +200,7 @@ describe('AutoComplete: AutoComplete component', () => {
                         expect(autoCompleteComponent.instance().setState).to.be.calledWith({
                             loadingSuggestions: true,
                             showAutoComplete: true,
+                            value: 'Hel',
                         });
                         expect(autoCompleteComponent.instance().setState).to.be.calledWith({
                             autoCompleteValues: [
@@ -212,6 +208,7 @@ describe('AutoComplete: AutoComplete component', () => {
                                 {name: 'BonjourHello1'},
                             ],
                             loadingSuggestions: false,
+                            value: 'Hello',
                         });
                         expect(autoCompleteComponent.instance().setState.withArgs({
                             autoCompleteValues: [
@@ -219,6 +216,7 @@ describe('AutoComplete: AutoComplete component', () => {
                                 {name: 'BonjourHello1'},
                             ],
                             loadingSuggestions: false,
+                            value: 'Hello',
                         })).to.have.callCount(1);
                         resolve();
                     } catch (e) {
@@ -234,7 +232,7 @@ describe('AutoComplete: AutoComplete component', () => {
 
             autoCompleteComponent = renderComponent({actions, scheduler: testScheduler, debounceTime: 12, forType: 'dataElement'});
 
-            actions.loadAutoCompleteSuggestions(fakeEvent);
+            actions.loadAutoCompleteSuggestions({}, 'Hel');
             testScheduler.advanceTo(26);
 
             return new Promise((resolve) => {
@@ -249,7 +247,7 @@ describe('AutoComplete: AutoComplete component', () => {
         xit('should always return an empty array when no type has been set', () => {
             autoCompleteComponent = renderComponent({actions, scheduler: testScheduler, debounceTime: 12});
 
-            actions.loadAutoCompleteSuggestions(fakeEvent);
+            actions.loadAutoCompleteSuggestions({}, 'Hel');
 
             return new Promise((resolve) => {
                 setTimeout(() => {
@@ -275,7 +273,7 @@ describe('AutoComplete: AutoComplete component', () => {
                 forType: 'dataElement',
             });
 
-            actions.loadAutoCompleteSuggestions(fakeEvent);
+            actions.loadAutoCompleteSuggestions({}, 'Hel');
 
             return new Promise((resolve) => {
                 setTimeout(() => {
@@ -297,7 +295,7 @@ describe('AutoComplete: AutoComplete component', () => {
 
             stub(autoCompleteComponent.instance(), 'onSuggestionClick');
 
-            actions.loadAutoCompleteSuggestions(fakeEvent);
+            actions.loadAutoCompleteSuggestions({}, 'Hel');
 
             return new Promise((resolve) => {
                 setTimeout(() => {
@@ -337,9 +335,9 @@ describe('AutoComplete: AutoComplete component', () => {
             autoCompleteComponent.instance().refs = {
                 autoCompleteField: {
                     focus: stub(),
-                    setValue: stub(),
                 },
             };
+            spy(AutoComplete.prototype, 'setState');
 
             fakeEvent = sinon.mock();
         });
@@ -350,10 +348,11 @@ describe('AutoComplete: AutoComplete component', () => {
             expect(autoCompleteComponent.instance().refs.autoCompleteField.focus).to.be.calledOnce;
         });
 
-        it('should call setValue to reset the value on the autocComplete field reference by default', () => {
-            autoCompleteComponent.instance().onSuggestionClick({name: 'Administrators'})(fakeEvent);
+        it('should reset the autoComplete field by default', () => {
+            autoCompleteComponent.instance().onSuggestionClick({name: 'Administrators'})({}, 'Hello');
 
-            expect(autoCompleteComponent.instance().refs.autoCompleteField.setValue).to.be.calledOnce;
+            expect(autoCompleteComponent.instance().setState).to.be.calledWith({ loadingSuggestions: true, showAutoComplete: false, value: undefined });
+            expect(autoCompleteComponent.instance().setState).to.be.calledWith({ showAutoComplete: false, value: '' });
         });
 
         it('should not call focus when the `closeOnItemClicked` property contains a falsy value', () => {
@@ -364,12 +363,12 @@ describe('AutoComplete: AutoComplete component', () => {
             expect(autoCompleteComponent.instance().refs.autoCompleteField.focus).not.to.be.called;
         });
 
-        it('should not call setValue when `clearValueOnItemClicked` is set to a falsy value', () => {
+        it('should not reset the autoComplete field when `clearValueOnItemClicked` is set to a falsy value', () => {
             autoCompleteComponent.setProps({clearValueOnItemClicked: false});
 
-            autoCompleteComponent.instance().onSuggestionClick({name: 'Administrators'})(fakeEvent);
+            autoCompleteComponent.instance().onSuggestionClick({name: 'Administrators'})({}, 'Hello');
 
-            expect(autoCompleteComponent.instance().refs.autoCompleteField.setValue).not.to.be.calledOnce;
+            expect(autoCompleteComponent.instance().setState).to.be.calledWith({ showAutoComplete: false, value: undefined });
         });
 
         it('should call `onSuggestionClicked` callback function when an item was clicked', () => {

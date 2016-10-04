@@ -30,7 +30,7 @@ function searchByForModel(searchBy, modelTypeToSearch, valueToSearchFor, options
     return Observable.fromPromise(searchQueryRequest);
 }
 
-export default createClass({
+const AutoComplete = createClass({
     propTypes: {
         actions: PropTypes.object,
         forType: PropTypes.string.isRequired,
@@ -63,13 +63,18 @@ export default createClass({
 
     componentWillMount() {
         const {actions, forType} = this.props;
+        let searchValue;
 
         this.disposable = actions.loadAutoCompleteSuggestions
-            .map(({data: event}) => event.target.value)
-            .tap(value => this.setState({
-                loadingSuggestions: true,
-                showAutoComplete: Boolean(value),
-            }))
+            .map(({ data: args }) => args[1])
+            .tap(value => {
+                searchValue = value;
+                this.setState({
+                    loadingSuggestions: true,
+                    showAutoComplete: Boolean(value),
+                    value: searchValue,
+                });
+            })
             .debounce(this.props.debounceTime, this.props.scheduler)
             .distinctUntilChanged()
             // TODO: Do not hardcore these fields to search for
@@ -81,6 +86,7 @@ export default createClass({
                 autoCompleteValues => this.setState({
                     autoCompleteValues,
                     loadingSuggestions: false,
+                    value: searchValue,
                 }),
                 (errorMessage) => log.error(errorMessage)
             );
@@ -103,7 +109,6 @@ export default createClass({
             }
 
             if (clearValueOnItemClicked) {
-                this.refs.autoCompleteField.setValue('');
                 this.props.actions.loadAutoCompleteSuggestions({
                     target: {value: ''},
                 });
@@ -111,6 +116,7 @@ export default createClass({
 
             this.setState({
                 showAutoComplete: !closeOnItemClicked,
+                value: clearValueOnItemClicked ? '' : this.state.value,
             });
 
             if (onSuggestionClicked) {
@@ -150,6 +156,7 @@ export default createClass({
                     ref="autoCompleteField" {...other}
                     onChange={actions.loadAutoCompleteSuggestions}
                     hintText={this.getTranslation('search_for_user_groups')}
+                    value={this.state.value}
                     fullWidth
                 />
                 {(this.state.showAutoComplete && !this.state.loadingSuggestions) ? this.renderAutoCompleteSuggestions() : null}
@@ -157,3 +164,5 @@ export default createClass({
         );
     },
 });
+
+export default AutoComplete;
