@@ -2,7 +2,6 @@ import React from 'react';
 import LinearProgress from 'material-ui/LinearProgress';
 
 import Model from 'd2/lib/model/Model';
-import ModelCollection from 'd2/lib/model/ModelCollection';
 
 import TreeView from '../tree-view/TreeView.component';
 
@@ -42,7 +41,7 @@ class OrgUnitTree extends React.Component {
                 : undefined,
             loading: false,
         };
-        if (props.root.children instanceof ModelCollection) {
+        if (!props.root.children instanceof Model) {
             this.state.children = props.root.children
                 .toArray()
                 // Sort here since the API returns nested children in random order
