@@ -76,7 +76,12 @@ class OrgUnitTree extends React.Component {
             root.modelDefinition.get(root.id, {
                 fields: 'children[id,displayName,children::isNotEmpty,path,parent]',
             }).then(unit => {
-                this.setState({ children: unit.children.toArray(), loading: false });
+                this.setState({
+                    children: unit.children
+                        .toArray()
+                        .sort((a, b) => a.displayName.localeCompare(b.displayName)),
+                    loading: false,
+                });
             });
         }
     }
