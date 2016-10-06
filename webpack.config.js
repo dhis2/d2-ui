@@ -37,6 +37,7 @@ module.exports = {
         legend: './examples/legend',
         translation: './examples/translation',
         expressionmanager: './examples/expression-manager',
+        groupeditor: './examples/group-editor',
     },
     output: {
         library: 'Dhis2HeaderBar',
