@@ -49,9 +49,6 @@ class GroupEditorExample extends React.Component {
             filterText: '',
         };
 
-        itemStore.setState([]);
-        assignedItemStore.setState([]);
-
         this.props.d2.i18n.translations['assign_all'] = 'Assign all';
         this.props.d2.i18n.translations['hidden_by_filters'] = 'Hidden by filters';
 
@@ -59,17 +56,34 @@ class GroupEditorExample extends React.Component {
     }
 
     static addItem() {
+        if (!itemStore.state) {
+            itemStore.state = [];
+            assignedItemStore.state = [];
+        }
+
         itemStore.state.push({ value: itemStore.state.length.toString(), text: `Item ${itemStore.state.length+1}` });
         itemStore.setState(itemStore.state);
     }
 
     static removeItem() {
-        itemStore.state.pop();
-        itemStore.setState(itemStore.state);
+        if (itemStore.state) {
+            itemStore.state.pop();
+            itemStore.setState(itemStore.state);
+        }
     }
 
     static addAssignedItem() {
+        if (!itemStore.state) {
+            itemStore.state = [];
+            assignedItemStore.state = [];
+        }
+
         const item = { value: itemStore.state.length.toString(), text: `Item ${itemStore.state.length+1}` };
+
+        if (!itemStore.state) {
+            itemStore.state = [];
+            assignedItemStore.state = [];
+        }
 
         itemStore.state.push(item);
         assignedItemStore.state.push(item.value);
@@ -79,9 +93,11 @@ class GroupEditorExample extends React.Component {
     }
 
     static removeAssignedItem() {
-        const item = assignedItemStore.state.pop();
-        assignedItemStore.setState(assignedItemStore.state);
-        itemStore.setState(itemStore.state.filter(i => i.value !== item));
+        if (assignedItemStore.state) {
+            const item = assignedItemStore.state.pop();
+            assignedItemStore.setState(assignedItemStore.state);
+            itemStore.setState(itemStore.state.filter(i => i.value !== item));
+        }
     }
 
     static assignItems(items) {
@@ -98,6 +114,18 @@ class GroupEditorExample extends React.Component {
         return Promise.resolve();
     }
 
+    static stopLoading() {
+        if (!itemStore.state) {
+            itemStore.setState([]);
+            assignedItemStore.setState([]);
+        }
+    }
+
+    static startLoading() {
+        itemStore.setState(false);
+        assignedItemStore.setState(undefined);
+    }
+
     filterChange(e) {
         this.setState({ filterText: e.target.value });
     }
@@ -108,13 +136,18 @@ class GroupEditorExample extends React.Component {
                 <Card style={Object.assign({}, this.styles.card, { width: 250 })}>
                     <CardText style={this.styles.cardText}>
                         <h3 style={this.styles.cardHeader}>Data controls</h3>
-                        <ul style={{ cursor: 'pointer' }}>
-                            <li onClick={GroupEditorExample.addItem}>Add item</li>
-                            <li onClick={GroupEditorExample.removeItem}>Remove item</li>
-                            <li onClick={GroupEditorExample.addAssignedItem}>Add assigned item</li>
-                            <li onClick={GroupEditorExample.removeAssignedItem}>Remove assigned item</li>
-                        </ul>
-                        <input onChange={this.filterChange} />
+                        <button onClick={GroupEditorExample.addItem}>+ Item</button>
+                        <button onClick={GroupEditorExample.removeItem}>- Item</button>
+                        <br/>
+                        <button onClick={GroupEditorExample.addAssignedItem}>+ Assigned</button>
+                        <button onClick={GroupEditorExample.removeAssignedItem}>- Assigned</button>
+                        <br/>
+                        <button onClick={GroupEditorExample.stopLoading}>Stop loading</button>
+                        <button onClick={GroupEditorExample.startLoading}>Start loading</button>
+                        <br/>
+                        <label>Filter: <input onChange={this.filterChange} value={this.state.filterText} /></label>
+                        <br/>
+                        <button onClick={this.filterChange.bind(this, { target: { value: '' }})}>Clear filter</button>
                     </CardText>
                 </Card>
 
