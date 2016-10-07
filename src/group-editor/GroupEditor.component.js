@@ -38,10 +38,10 @@ export default React.createClass({
         // resolves or is rejected.
 
         // assign items callback, called with an array of values to be assigned to the group
-        onAssignItems: React.PropTypes.func,
+        onAssignItems: React.PropTypes.func.isRequired,
 
         // remove items callback, called with an array of values to be removed from the group
-        onRemoveItems: React.PropTypes.func,
+        onRemoveItems: React.PropTypes.func.isRequired,
 
         // The height of the component, defaults to 500px
         height: React.PropTypes.number,
@@ -56,13 +56,8 @@ export default React.createClass({
     componentDidMount() {
         this.disposables = [];
 
-        this.disposables.push(this.props.itemStore.subscribe((itemStore) => {
-            this.setState({ loading: itemStore.length === 0 });
-        }));
-
-        this.disposables.push(this.props.assignedItemStore.subscribe(() => {
-            this.forceUpdate();
-        }));
+        this.disposables.push(this.props.itemStore.subscribe(state => this.setState({ loading: !state })));
+        this.disposables.push(this.props.assignedItemStore.subscribe(() => this.forceUpdate()));
     },
 
     componentWillReceiveProps(props) {
@@ -114,15 +109,15 @@ export default React.createClass({
         return this.props.assignedItemStore.state !== undefined && this.props.assignedItemStore.state.constructor.name === 'Array';
     },
     getAllItems() {
-        return this.getItemStoreIsCollection() ? Array.from(this.props.itemStore.state.values()).map(item => {
-            return { value: item.id, text: item.name };
-        }) : (this.props.itemStore.state || []);
+        return this.getItemStoreIsCollection()
+            ? Array.from(this.props.itemStore.state.values()).map(item => { return { value: item.id, text: item.name }; })
+            : (this.props.itemStore.state || []);
     },
     getItemCount() {
         return this.getItemStoreIsCollection() && this.props.itemStore.state.size || this.getItemStoreIsArray() && this.props.itemStore.state.length || 0;
     },
     getIsValueAssigned(value) {
-        return this.getAssignedItemStoreIsCollection() ? this.props.assignedItemStore.state.has(value) : this.props.assignedItemStore.state.indexOf(value) !== -1;
+        return this.getAssignedItemStoreIsCollection() ? this.props.assignedItemStore.state.has(value) : this.props.assignedItemStore.state && this.props.assignedItemStore.state.indexOf(value) !== -1;
     },
     getAssignedItems() {
         return this.getAllItems().filter(item => this.getIsValueAssigned(item.value));
