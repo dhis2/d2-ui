@@ -14,12 +14,13 @@ function getBaseUrl(predefLocation) {
     return '../api';
 }
 
-export function initHeaderBar(domElement, apiLocation, config = { schemas: [] }) {
+export function initHeaderBar(domElement, apiLocation, config = {}) {
     const baseUrl = getBaseUrl(apiLocation);
-    const { noLoadingIndicator, ...d2ConfigKeys } = config;
+    const { noLoadingIndicator, schemas = [], ...other } = config;
     const d2Config = {
-        ...d2ConfigKeys,
+        ...other,
         baseUrl,
+        schemas,
     };
 
     // Mock d2 for offline header-bar
