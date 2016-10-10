@@ -13,7 +13,7 @@ function getBaseUrl(predefLocation) {
     return '../api';
 }
 
-export function initHeaderBar(domElement, apiLocation, config = { noSchemas: true }) {
+export function initHeaderBar(domElement, apiLocation, config = { schemas: [] }) {
     const baseUrl = getBaseUrl(apiLocation);
     const { noLoadingIndicator, ...d2ConfigKeys } = config;
     const d2Config = {
