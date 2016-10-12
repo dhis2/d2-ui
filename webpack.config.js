@@ -76,7 +76,7 @@ module.exports = {
             'react-addons-transition-group': 'var React.addons.TransitionGroup',
             'rx': 'Rx',
             'react-addons-create-fragment': 'var React.addons.createFragment',
-            'd2/lib/d2': 'var d2',
+            // 'd2/lib/d2': 'var d2',
             'lodash': 'var _',
             'lodash/fp': 'fp(_)',
         },
