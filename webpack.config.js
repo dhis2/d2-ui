@@ -78,7 +78,7 @@ module.exports = {
             'react-addons-create-fragment': 'var React.addons.createFragment',
             // 'd2/lib/d2': 'var d2',
             'lodash': 'var _',
-            'lodash/fp': 'fp(_)',
+            'lodash/fp': 'var fp',
         },
         /^react-addons/,
         /^react-dom$/,
