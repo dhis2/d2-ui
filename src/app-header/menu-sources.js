@@ -111,7 +111,7 @@ function loadMenuItems() {
 
             // This path is only correct when the manifest has '..' as the baseUrl and a versioned api endpoint is used
             // TODO: This should have a proper API endpoint
-            return api.get(baseUrl + '/dhis-web-commons/menu/getModules.action');
+            return api.get(baseUrl + `/dhis-web-commons/menu/getModules.action?${(new Date).getTime()}`);
         })
         .then(getTranslationsForMenuItems)
         .then(removeMenuManagementModule)
