@@ -7,8 +7,7 @@ import Paper from 'material-ui/Paper';
 import addD2Context from '../component-helpers/addD2Context';
 
 function handleClick(props, action) {
-    props.actions[action].apply(props.actions, [props.activeItem]);
-
+    props.actions[action].apply(props.actions, props.activeItems);
     if (props.onRequestClose) {
         props.onRequestClose();
     }
@@ -25,7 +24,7 @@ function DataTableContextMenu(props, context) {
     return (
         <Popover
             {...props}
-            open={Boolean(props.activeItem)}
+            open={props.showContextMenu}
             anchorEl={props.target}
             anchorOrigin={{ horizontal: 'middle', vertical: 'center' }}
             animated={false}
@@ -39,7 +38,7 @@ function DataTableContextMenu(props, context) {
                     return (
                         <MenuItem
                             key={action}
-                            data-object-id={props.activeItem && props.activeItem.id}
+                            data-object-id={props.activeItems}
                             className={'data-table__context-menu__item'}
                             onClick={() => handleClick(props, action)}
                             primaryText={context.d2.i18n.getTranslation(action)}
@@ -59,7 +58,8 @@ DataTableContextMenu.defaultProps = {
 
 DataTableContextMenu.propTypes = {
     actions: PropTypes.objectOf(PropTypes.func),
-    activeItem: PropTypes.object,
+    showContextMenu: React.PropTypes.bool,
+    activeItems: React.PropTypes.array,
     icons: PropTypes.object,
     target: PropTypes.object,
     onRequestClose: PropTypes.func,

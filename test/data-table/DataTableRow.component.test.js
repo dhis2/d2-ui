@@ -80,11 +80,11 @@ describe('DataTableRow component', () => {
         });
 
         dataTableRow.find('.data-table__rows__row__column').first().simulate('click');
-
-        expect(primaryClickCallback).to.be.calledWith(dataElement);
+        expect(primaryClickCallback).to.be.calledWith(undefined,dataElement);
     });
 
     it('should fire the itemClicked callback when a row is clicked', () => {
+        const fakeEvent = {preventDefault:sinon.stub().returns(true)};
         const contextClickCallback = spy();
         dataTableRow = renderComponent({
             dataSource: dataElement,
@@ -92,7 +92,7 @@ describe('DataTableRow component', () => {
             itemClicked: contextClickCallback,
         });
 
-        dataTableRow.find('.data-table__rows__row__column').first().simulate('contextMenu');
+        dataTableRow.find('.data-table__rows__row__column').first().simulate('contextMenu',fakeEvent);
 
         expect(contextClickCallback).to.be.called;
         expect(contextClickCallback.getCall(0).args[1]).to.equal(dataElement);

@@ -37,6 +37,7 @@ const DataTableRow = React.createClass({
     propTypes: {
         columns: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
         dataSource: React.PropTypes.object,
+        isActive: React.PropTypes.bool,
         isEven: React.PropTypes.bool,
         isOdd: React.PropTypes.bool,
         itemClicked: React.PropTypes.func.isRequired,
@@ -51,6 +52,7 @@ const DataTableRow = React.createClass({
             {
                 'data-table__rows__row--even': !this.props.isOdd,
                 'data-table__rows__row--odd': this.props.isOdd,
+                'selected':this.props.isActive  
             });
 
         const columns = this.props.columns.map((columnName, index) => {
@@ -123,16 +125,18 @@ const DataTableRow = React.createClass({
 
     iconMenuClick(event) {
         event && event.preventDefault() && event.stopPropagation();
-        this.props.itemClicked(event, this.props.dataSource);
+        event.isIconMenuClick = true;
+        this.props.itemClicked(event, this.props.dataSource);                
     },
 
     handleContextClick(event) {
         event && event.preventDefault();
+        event.isIconMenuClick = false;
         this.props.itemClicked(event, this.props.dataSource);
     },
 
-    handleClick() {
-        this.props.primaryClick(this.props.dataSource);
+    handleClick(event) {
+        this.props.primaryClick(event, this.props.dataSource);
     },
 });
 
