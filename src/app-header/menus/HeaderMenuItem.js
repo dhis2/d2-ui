@@ -30,7 +30,7 @@ export default class HeaderMenuItem extends Component {
         return (
             <a href={props.action} onMouseUp={onMouseUp(props.action)} style={itemStyle} onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave}>
                 <div><img style={styles.menuItemIcon} src={props.icon}/></div>
-                <div style={{textAlign: 'center'}}>{props.label}</div>
+                <div style={styles.menuItemLabel}>{props.label}</div>
             </a>
         );
     }

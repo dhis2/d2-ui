@@ -189,6 +189,12 @@ styles = {
         width: 48,
     },
 
+    menuItemLabel: {
+        flex: '1 1 auto',
+        maxWidth: '100%',
+        textAlign: 'center',
+    },
+
     moreAppsButton: {
         marginTop: '1rem',
         width: '100%',
