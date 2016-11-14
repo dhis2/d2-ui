@@ -26,14 +26,39 @@ class OrgUnitSelectByLevel extends React.Component {
     }
 
     getOrgUnitsForLevel(level, ignoreCache = false) {
+        const d2 = this.context.d2;
         return new Promise(resolve => {
-            if (!ignoreCache && this.levelCache.hasOwnProperty(level)) {
+            if (this.props.currentRoot) {
+                const rootLevel = this.props.currentRoot.level || this.props.currentRoot.path
+                    ? this.props.currentRoot.path.match(/\//g).length
+                    : NaN;
+                const relativeLevel = level - rootLevel;
+                if (isNaN(relativeLevel) || relativeLevel < 0) {
+                    log.info(`Unable to select org unit levels higher up in the hierarchy than the current root`);
+                    return resolve([]);
+                }
+
+                d2.models.organisationUnits.list({
+                    paging: false,
+                    level: level - rootLevel,
+                    fields: 'id',
+                    root: this.props.currentRoot.id,
+                })
+                    .then(orgUnits => orgUnits.toArray().map(orgUnit => orgUnit.id))
+                    .then(orgUnitIds => {
+                        log.debug(
+                            `Loaded ${orgUnitIds.length} org units for level ` +
+                            `${relativeLevel} under ${this.props.currentRoot.displayName}`
+                        );
+                        this.setState({ loading: false });
+                        resolve(orgUnitIds);
+                    })
+            } else if (!ignoreCache && this.levelCache.hasOwnProperty(level)) {
                 resolve(this.levelCache[level].slice());
             } else {
                 log.debug(`Loading org units for level ${level}`);
                 this.setState({ loading: true });
 
-                const d2 = this.context.d2;
                 d2.models.organisationUnits.list({ paging: false, level, fields: 'id' })
                     .then(orgUnits => orgUnits.toArray().map(orgUnit => orgUnit.id))
                     .then(orgUnitIds => {
@@ -67,7 +92,11 @@ class OrgUnitSelectByLevel extends React.Component {
     }
 
     render() {
+        const currentRoot = this.props.currentRoot;
+        const currentRootLevel = currentRoot ? currentRoot.level || currentRoot.path.match(/\//g).length : 1;
+
         const menuItems = (Array.isArray(this.props.levels) && this.props.levels || this.props.levels.toArray())
+            .filter(level => level.level >= currentRootLevel)
             .map(level => ({ id: level.level, displayName: level.displayName }));
         const label = 'organisation_unit_level';
 
@@ -91,6 +120,20 @@ OrgUnitSelectByLevel.propTypes = {
     // Whenever the selection changes, onUpdateSelection will be called with
     // one argument: The new array of selected organisation units
     onUpdateSelection: React.PropTypes.func.isRequired,
+
+    // If currentRoot is set, only org units that are descendants of the
+    // current root org unit will be added to or removed from the selection
+    currentRoot: (props, propName, componentName) => {
+        if (props[propName]) {
+            if (!props[propName].hasOwnProperty('id')) {
+                return new Error('currentRoot must have an `id` property');
+            }
+
+            if (!props[propName].hasOwnProperty('level') && !props[propName].hasOwnProperty('path')) {
+                return new Error('currentRoot must have either a `level` or a `path` property');
+            }
+        }
+    },
 
     // TODO: Add level cache prop?
 };

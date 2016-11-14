@@ -1,5 +1,6 @@
 import React from 'react';
 import log from 'loglevel';
+
 import { addToSelection, removeFromSelection, handleChangeSelection, renderDropdown, renderControls } from './common';
 
 
@@ -27,7 +28,25 @@ class OrgUnitSelectByGroup extends React.Component {
 
     getOrgUnitsForGroup(groupId, ignoreCache = false) {
         return new Promise(resolve => {
-            if (!ignoreCache && this.groupCache.hasOwnProperty(groupId)) {
+            if (this.props.currentRoot) {
+                log.debug(`Loading org units for group ${groupId} within ${this.props.currentRoot.displayName}`);
+                this.setState({ loading: true });
+
+                d2.models.organisationUnits.list({
+                    root: this.props.currentRoot.id,
+                    paging: false,
+                    includeDescendants: true,
+                    fields: 'id',
+                    filter: `organisationUnitGroups.id:eq:${groupId}`,
+                })
+                    .then(orgUnits => orgUnits.toArray().map(orgUnit => orgUnit.id))
+                    .then(orgUnitIds => {
+                        log.debug(`Loaded ${orgUnitIds.length} org units for group ${groupId} within ${this.props.currentRoot.displayName}`);
+                        this.setState({ loading: false });
+
+                        resolve(orgUnitIds.slice());
+                    });
+            } else if (!ignoreCache && this.groupCache.hasOwnProperty(groupId)) {
                 resolve(this.groupCache[groupId].slice());
             } else {
                 log.debug(`Loading org units for group ${groupId}`);
@@ -91,6 +110,10 @@ OrgUnitSelectByGroup.propTypes = {
     // Whenever the selection changes, onUpdateSelection will be called with
     // one argument: The new array of selected organisation units
     onUpdateSelection: React.PropTypes.func.isRequired,
+
+    // If currentRoot is set, only org units that are descendants of the
+    // current root org unit will be added to or removed from the selection
+    currentRoot: React.PropTypes.object,
 
     // TODO: Add group cache prop?
 };

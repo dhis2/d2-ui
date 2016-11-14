@@ -1,9 +1,8 @@
 import React from 'react';
 import log from 'loglevel';
 import RaisedButton from 'material-ui/RaisedButton/RaisedButton';
-import LinearProgress from 'material-ui/LinearProgress/LinearProgress';
 
-import { addToSelection } from './common';
+import { addToSelection, removeFromSelection } from './common';
 
 
 const style = {
@@ -30,6 +29,7 @@ class OrgUnitSelectAll extends React.Component {
         };
 
         this.addToSelection = addToSelection.bind(this);
+        this.removeFromSelection = removeFromSelection.bind(this);
 
         this.handleSelectAll = this.handleSelectAll.bind(this);
         this.handleDeselectAll = this.handleDeselectAll.bind(this);
@@ -38,7 +38,13 @@ class OrgUnitSelectAll extends React.Component {
     }
 
     handleSelectAll() {
-        if (Array.isArray(this.state.cache)) {
+        if (this.props.currentRoot) {
+            this.setState({ loading: true });
+            this.getDescendantOrgUnits().then(orgUnits => {
+                this.setState({ loading: false });
+                this.addToSelection(orgUnits.toArray().map(ou => ou.id));
+            });
+        } else if (Array.isArray(this.state.cache)) {
             this.props.onUpdateSelection(this.state.cache.slice());
         } else {
             this.setState({ loading: true });
@@ -60,8 +66,25 @@ class OrgUnitSelectAll extends React.Component {
         }
     }
 
+    getDescendantOrgUnits() {
+        return this.context.d2.models.organisationUnits.list({
+            root: this.props.currentRoot.id,
+            paging: false,
+            includeDescendants: true,
+            fields: 'id',
+        });
+    }
+
     handleDeselectAll() {
-        this.props.onUpdateSelection([]);
+        if (this.props.currentRoot) {
+            this.setState({ loading: true });
+            this.getDescendantOrgUnits().then(orgUnits => {
+                this.setState({ loading: false });
+                this.removeFromSelection(orgUnits.toArray().map(ou => ou.id));
+            })
+        } else {
+            this.props.onUpdateSelection([]);
+        }
     }
 
     render() {
@@ -91,6 +114,10 @@ OrgUnitSelectAll.propTypes = {
     // Whenever the selection changes, onUpdateSelection will be called with
     // one argument: The new array of selected organisation units
     onUpdateSelection: React.PropTypes.func.isRequired,
+
+    // If currentRoot is set, only org units that are descendants of the
+    // current root org unit will be added to or removed from the selection
+    currentRoot: React.PropTypes.object,
 };
 
 OrgUnitSelectAll.contextTypes = { d2: React.PropTypes.object.isRequired };
