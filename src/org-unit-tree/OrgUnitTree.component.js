@@ -27,6 +27,27 @@ const styles = {
     label: {
         display: 'inline-block',
     },
+    changeRootLabel: {
+        fontSize: 11,
+        display: 'inline-block',
+        fontWeight: 300,
+        marginLeft: 8,
+        color: 'blue',
+        cursor: 'pointer',
+    },
+    line: {
+        borderColor: 'transparent',
+        borderStyle: 'solid',
+        borderWidth: '1px',
+        borderRightWidth: 0,
+        borderRadius: '3px 0 0 3px',
+        background: 'transparent',
+        paddingLeft: 2,
+    },
+    currentLine: {
+        background: 'rgba(0,0,0,0.05)',
+        borderColor: 'rgba(0,0,0,0.1)',
+    },
 };
 
 class OrgUnitTree extends React.Component {
@@ -94,7 +115,7 @@ class OrgUnitTree extends React.Component {
     }
 
     renderChildren() {
-        // If initiallyExpanded is an array, remove the current root id from it
+        // If initiallyExpanded is an array, remove the current root id and pass the rest on
         // If it's a string, pass it on unless it's the current root id
         const expandedProp = Array.isArray(this.props.initiallyExpanded)
             ? this.props.initiallyExpanded.filter(id => id !== this.props.root.id)
@@ -108,6 +129,8 @@ class OrgUnitTree extends React.Component {
                     selected={this.props.selected}
                     initiallyExpanded={expandedProp}
                     onClick={this.props.onClick}
+                    currentRoot={this.props.currentRoot}
+                    onChangeCurrentRoot={this.props.onChangeCurrentRoot}
                     labelStyle={this.props.labelStyle}
                     selectedLabelStyle={this.props.selectedLabelStyle}
                     arrowSymbol={this.props.arrowSymbol}
@@ -124,28 +147,56 @@ class OrgUnitTree extends React.Component {
     }
 
     render() {
-        const root = this.props.root;
+        const currentOu = this.props.root;
 
+        // Calculate properties of the current org unit
+        const isChild = !!currentOu.parent;
+        const hasChildren = this.state.children === undefined || Array.isArray(this.state.children) &&
+            this.state.children.length > 0;
         const isClickable = !!this.props.onClick;
-        const isSelected = this.props.selected === root.id || this.props.selected.indexOf(root.id) >= 0;
-        const initiallyExpanded = this.props.initiallyExpanded === root.id ||
-            this.props.initiallyExpanded.indexOf(root.id) >= 0;
+        const isSelected = this.props.selected === currentOu.id || this.props.selected.includes(currentOu.id);
+        const isCurrentRoot = this.props.currentRoot && this.props.currentRoot.id === currentOu.id ||
+            !this.props.currentRoot && !isChild;
+        const isInitiallyExpanded = this.props.initiallyExpanded === currentOu.id ||
+            this.props.initiallyExpanded.includes(currentOu.id);
+        const canBecomeCurrentRoot = this.props.onChangeCurrentRoot && !isCurrentRoot && hasChildren;
 
         const labelStyle = Object.assign({}, styles.label, {
             fontWeight: isSelected ? 700 : 300,
             color: isSelected ? 'orange' : 'inherit',
             cursor: isClickable ? 'pointer' : 'inherit',
         }, isSelected ? this.props.selectedLabelStyle : this.props.labelStyle);
-        const label = (<div style={labelStyle} onClick={isClickable && this.handleClick}>{root.displayName}</div>);
+        const lineStyle = Object.assign({}, styles.line, isCurrentRoot && isChild ? styles.currentLine : {});
 
-        if (this.state.children === undefined || Array.isArray(this.state.children) && this.state.children.length > 0) {
+        const setCurrentRoot = (e) => {
+            e.stopPropagation();
+            // If this org unit is the root of the tree, clear the current root
+            // Otherwise set the current root to this org unit
+            this.props.onChangeCurrentRoot(isChild ? currentOu : undefined);
+        };
+
+        const label = (
+            <div style={labelStyle} onClick={isClickable && this.handleClick}>
+                {currentOu.displayName}
+                {canBecomeCurrentRoot && (
+                    <div style={styles.changeRootLabel}
+                         onClick={setCurrentRoot}
+                         className="change-root"
+                    >{this.props.changeRootLabel}</div>
+                )}
+            </div>
+        );
+
+        if (hasChildren) {
             return (
                 <TreeView
                     label={label}
                     onExpand={this.loadChildren}
                     persistent
-                    initiallyExpanded={initiallyExpanded}
+                    initiallyExpanded={isInitiallyExpanded}
                     arrowSymbol={this.props.arrowSymbol}
+                    className="orgunit with-children"
+                    style={lineStyle}
                 >
                     {this.renderChildren()}
                 </TreeView>
@@ -153,7 +204,10 @@ class OrgUnitTree extends React.Component {
         }
 
         return (
-            <div onClick={this.handleClick}>
+            <div onClick={this.handleClick}
+                 className="orgunit without-children"
+                 style={lineStyle}
+            >
                 <div style={styles.spacer}></div>{label}
             </div>
         );
@@ -199,6 +253,29 @@ OrgUnitTree.propTypes = {
     onClick: React.PropTypes.func,
 
     /**
+     * onChangeCurrentRoot callback, which is triggered when the change current root label is clicked. Setting this also
+     * enables the display of the change current root label
+     *
+     * the onChangeCurrentRoot callback will receive two arguments: The original click event, and the organisation unit
+     * model object that was selected as the new root
+     */
+    onChangeCurrentRoot: React.PropTypes.func,
+
+    /**
+     * Organisation unit model representing the current root
+     *
+     * Setting this to the root org unit (where level=1) has the same effect as setting it to undefined
+     */
+    currentRoot: React.PropTypes.object,
+
+    /**
+     * The text of the label that may be clicked to change the current root
+     *
+     * If no other value is specified, this is set to 'Select →'
+     */
+    changeRootLabel: React.PropTypes.string,
+
+    /**
      * Custom styling for OU labels
      */
     labelStyle: React.PropTypes.object,
@@ -216,6 +293,7 @@ OrgUnitTree.propTypes = {
 OrgUnitTree.defaultProps = {
     selected: [],
     initiallyExpanded: [],
+    changeRootLabel: 'Select →',
     labelStyle: {},
     selectedLabelStyle: {},
     idsThatShouldBeReloaded: [],
