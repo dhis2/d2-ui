@@ -12,6 +12,7 @@ export default class extends React.Component {
         };
 
         this._handleClick = this._handleClick.bind(this);
+        this._handleChangeRoot = this._handleChangeRoot.bind(this);
     }
 
     render() {
@@ -26,6 +27,8 @@ export default class extends React.Component {
                     {...this.props}
                     onClick={this._handleClick}
                     selected={this.state.selected}
+                    currentRoot={this.state.currentRoot}
+                    onChangeCurrentRoot={this._handleChangeRoot}
                 />
                 <div style={selStyle}>
                     <TreeView label={`Selected: ${this.state.selected.length}`}>
@@ -38,6 +41,10 @@ export default class extends React.Component {
                 </div>
             </div>
         );
+    }
+
+    _handleChangeRoot(orgUnit) {
+        this.setState({ currentRoot: orgUnit });
     }
 
     _handleClick(event, orgUnit) {

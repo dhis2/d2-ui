@@ -134,7 +134,6 @@ class OrgUnitTree extends React.Component {
                     labelStyle={this.props.labelStyle}
                     selectedLabelStyle={this.props.selectedLabelStyle}
                     arrowSymbol={this.props.arrowSymbol}
-                    emitModel={this.props.emitModel}
                     idsThatShouldBeReloaded={this.props.idsThatShouldBeReloaded}
                 />));
         }
@@ -155,8 +154,7 @@ class OrgUnitTree extends React.Component {
             this.state.children.length > 0;
         const isClickable = !!this.props.onClick;
         const isSelected = this.props.selected === currentOu.id || this.props.selected.includes(currentOu.id);
-        const isCurrentRoot = this.props.currentRoot && this.props.currentRoot.id === currentOu.id ||
-            !this.props.currentRoot && !isChild;
+        const isCurrentRoot = this.props.currentRoot && this.props.currentRoot.id === currentOu.id;
         const isInitiallyExpanded = this.props.initiallyExpanded === currentOu.id ||
             this.props.initiallyExpanded.includes(currentOu.id);
         const canBecomeCurrentRoot = this.props.onChangeCurrentRoot && !isCurrentRoot && hasChildren;
@@ -166,13 +164,13 @@ class OrgUnitTree extends React.Component {
             color: isSelected ? 'orange' : 'inherit',
             cursor: isClickable ? 'pointer' : 'inherit',
         }, isSelected ? this.props.selectedLabelStyle : this.props.labelStyle);
-        const lineStyle = Object.assign({}, styles.line, isCurrentRoot && isChild ? styles.currentLine : {});
+        const lineStyle = Object.assign({}, styles.line, isCurrentRoot ? styles.currentLine : {});
 
         const setCurrentRoot = (e) => {
             e.stopPropagation();
             // If this org unit is the root of the tree, clear the current root
             // Otherwise set the current root to this org unit
-            this.props.onChangeCurrentRoot(isChild ? currentOu : undefined);
+            this.props.onChangeCurrentRoot(currentOu);
         };
 
         const label = (
@@ -287,7 +285,6 @@ OrgUnitTree.propTypes = {
      * Custom arrow symbol
      */
     arrowSymbol: React.PropTypes.string,
-    emitModel: React.PropTypes.bool,
 };
 
 OrgUnitTree.defaultProps = {
