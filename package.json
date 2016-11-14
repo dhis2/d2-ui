@@ -15,7 +15,7 @@
     "build": "npm run build-only",
     "build-only": "babel src --out-dir lib && compass compile",
     "build-stand-alone-header-bar": "webpack -p && cp ./examples/external-header-bar/index.html build",
-    "validate": "npm ls --depth 0"
+    "validate": "npm ls --depth 0 || yarn ls"
   },
   "repository": {
     "type": "git",
