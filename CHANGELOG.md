@@ -1,12 +1,30 @@
 
 # D2-UI Changelog
 
+
+## 26.0.0
+###### _In development_
+
+Org unit selection components now support limiting modifications to org units
+below a specified root org unit. To make use of this feature, pass a d2
+Organisation Unit object model to the `currentRoot` property of the
+`OrgUnitSelectAll`, `OrgUnitSelectByLevel` and `OrgUnitSelectByGroup` components.
+
+Similarly the `OrgUnitTree` and `OrgUnitTreeMultipleRoot` components also support
+an `currentRoot` prop. If a callback function is passed to the
+`onChangeCurrentRoot` prop of `OrgUnitTree` components, the tree will display
+UI labels for changing the current root.
+
+The Organisation Unit Selection components example has been updated to showcase
+the new functionality.
+
+
 ## 0.0.28
 ###### _June 10th 2016_
 
 ##### Breaking changes
 
-- Form field components are renamed in order to follow D2-UI conventions:
+- Form field components have been renamed in order to follow D2-UI conventions:
   - `form-fields/check-box.js` is now `form-fields/CheckBox.component.js`
   - `form-fields/drop-down.js` is now `form-fields/DropDown.component.js`
   - `form-fields/multi-toggle.js` is now `form-fields/MultiToggle.component.js`

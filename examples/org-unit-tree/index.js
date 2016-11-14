@@ -13,6 +13,7 @@ import SingleSelection from './single-selection';
 import SingleSelectionMultipleRoots from './single-selection-multiple-roots';
 import MultipleSelection from './multiple-selection';
 import MultipleSelectionMultipleRoots from './multiple-selection-multiple-roots';
+// import MouseOverHandler from './mouse-over-handler';
 
 const el = document.getElementById('app');
 const dhisDevConfig = DHIS_CONFIG;
@@ -144,7 +145,7 @@ OrgUnitTreeExample.propTypes = { root: React.PropTypes.any, roots: React.PropTyp
 render(<div>Initialising D2...</div>, el);
 
 D2Lib.config.baseUrl = baseUrl;
-D2Lib.init({ baseUrl })
+D2Lib.init({ baseUrl, schemas: ['organisationUnit'] })
     .then(d2 => {
         log.info('D2 initialised successfully', d2);
         render(<div>Loading Organisation Units...</div>, el);

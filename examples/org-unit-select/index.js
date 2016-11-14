@@ -20,22 +20,43 @@ const baseUrl = `${dhisDevConfig.baseUrl}/api`;
 
 const styles = {
     card: {
-        // display: 'inline-block',
+        display: 'inline-block',
         margin: 16,
-        width: 580,
+        width: 510,
         transition: 'all 175ms ease-out',
     },
     cardText: {
         paddingTop: 0,
     },
     cardHeader: {
-        padding: '0 16px 16px',
+        padding: '16px',
         margin: '16px -16px',
         borderBottom: '1px solid #eeeeee',
     },
+    left: {
+        display: 'inline-block',
+        position: 'absolute',
+        height: 350,
+        width: 524,
+        overflowY: 'scroll',
+        marginBottom: 16,
+    },
+    right: {
+        display: 'inline-block',
+        position: 'absolute',
+        width: 475,
+        right: 16,
+    },
+    ouLabel: {
+        background: 'rgba(0,0,0,0.05)',
+        borderRadius: 5,
+        border: '1px solid rgba(0,0,0,0.1)',
+        padding: '1px 6px 1px 3px',
+        fontStyle: 'italic',
+    },
 };
 styles.cardWide = Object.assign({}, styles.card, {
-    width: 923,
+    width: 1052,
 });
 
 class OrgUnitSelectExample extends React.Component {
@@ -47,6 +68,7 @@ class OrgUnitSelectExample extends React.Component {
         };
 
         this.handleSelectionUpdate = this.handleSelectionUpdate.bind(this);
+        this.handleOrgUnitClick = this.handleOrgUnitClick.bind(this);
     }
 
     getChildContext() {
@@ -57,6 +79,15 @@ class OrgUnitSelectExample extends React.Component {
 
     handleSelectionUpdate(newSelection) {
         this.setState({ selected: newSelection });
+    }
+
+    handleOrgUnitClick(event, orgUnit) {
+        if (this.state.selected.includes(orgUnit.id)) {
+            this.state.selected.splice(this.state.selected.indexOf(orgUnit.id), 1);
+            this.setState({ selected: this.state.selected });
+        } else {
+            this.setState({ selected: this.state.selected.concat(orgUnit.id) });
+        }
     }
 
     render() {
@@ -84,36 +115,48 @@ class OrgUnitSelectExample extends React.Component {
                     </CardText>
                 </Card>
                 <Card style={styles.cardWide}>
-                    <CardText style={styles.cardText}>
+                    <CardText style={Object.assign({}, styles.cardText, { height: 420, position: 'relative' })}>
                         <h3 style={styles.cardHeader}>Combined with Org Unit Tree: {this.state.selected.length}</h3>
-                        <div style={{ height: 350, width: 400, overflowY: 'scroll', float: 'left', marginBottom: 16 }}>
+                        <div style={styles.left}>
                             <OrgUnitTree
                                 root={this.props.root}
                                 selected={this.state.selected}
+                                currentRoot={this.state.currentRoot}
                                 initiallyExpanded={this.props.root.id}
-                                onClick={(e) => { e.target.parentNode.parentNode.firstChild.click(e); }}
+                                onClick={this.handleOrgUnitClick}
+                                onChangeCurrentRoot={(currentRoot) => { this.setState({ currentRoot }); }}
                             />
                         </div>
-                        <div style={{ float: 'right', width: 475 }}>
-                            <div style={{ marginBottom: -24, marginTop: -16 }}>
-                                <OrgUnitSelectByLevel
-                                    levels={this.props.levels}
-                                    selected={this.state.selected}
-                                    onUpdateSelection={this.handleSelectionUpdate}
-                                />
-                            </div>
+                        <div style={styles.right}>
                             <div>
-                                <OrgUnitSelectByGroup
-                                    groups={this.props.groups}
-                                    selected={this.state.selected}
-                                    onUpdateSelection={this.handleSelectionUpdate}
-                                />
-                            </div>
-                            <div style={{ float: 'right' }}>
-                                <OrgUnitSelectAll
-                                    selected={this.state.selected}
-                                    onUpdateSelection={this.handleSelectionUpdate}
-                                />
+                                {this.state.currentRoot ? (
+                                    <div>For organisation units within <span style={styles.ouLabel}>{
+                                        this.state.currentRoot.displayName
+                                    }</span>:</div>
+                                ) : <div>For all organisation units:</div>}
+                                <div style={{ marginBottom: -24, marginTop: -16 }}>
+                                    <OrgUnitSelectByLevel
+                                        levels={this.props.levels}
+                                        selected={this.state.selected}
+                                        currentRoot={this.state.currentRoot}
+                                        onUpdateSelection={this.handleSelectionUpdate}
+                                    />
+                                </div>
+                                <div>
+                                    <OrgUnitSelectByGroup
+                                        groups={this.props.groups}
+                                        selected={this.state.selected}
+                                        currentRoot={this.state.currentRoot}
+                                        onUpdateSelection={this.handleSelectionUpdate}
+                                    />
+                                </div>
+                                <div style={{ float: 'right' }}>
+                                    <OrgUnitSelectAll
+                                        selected={this.state.selected}
+                                        currentRoot={this.state.currentRoot}
+                                        onUpdateSelection={this.handleSelectionUpdate}
+                                    />
+                                </div>
                             </div>
                         </div>
                     </CardText>
@@ -158,7 +201,7 @@ D2Lib.init({ baseUrl })
             d2.models.organisationUnits.list({
                 paging: false,
                 level: 1,
-                fields: 'id,displayName,children::isNotEmpty',
+                fields: 'id,displayName,level,path,children::isNotEmpty',
             }),
             d2.models.organisationUnitLevels.list({
                 paging: false,

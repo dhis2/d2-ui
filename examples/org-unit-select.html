@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>D2-UI | TreeView component</title>
+    <title>D2-UI | OrgUnitSelect component</title>
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
     <style>
@@ -57,10 +57,25 @@
             margin-right: -8px;
             padding-right: 8px;
         }
+
+        .orgunit.current {
+            border: solid rgba(0,0,0,0.2);
+            border-width: 1px 0;
+            margin: -1px 0;
+        }
+
+        .orgunit .change-root {
+            opacity: 0;
+            transition: 175ms all ease-out;
+        }
+
+        .orgunit.with-children:hover .change-root {
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
-<h1><a href="index.html">D2-UI Examples</a>: Organisation Unit Tree component</h1>
+<h1><a href="index.html">D2-UI Examples</a>: Organisation Unit Selection components</h1>
 <hr/>
 <div id="app"></div>
 <script src="orgunitselect.js"></script>
