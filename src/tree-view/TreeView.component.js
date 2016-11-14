@@ -53,7 +53,8 @@ class TreeView extends React.Component {
             arrow: {
                 display: 'inline-block',
                 position: 'absolute',
-                left: -12, top: -2, width: '1rem', height: '1rem',
+                left: -16, top: -1, width: 11, height: 16,
+                paddingLeft: 4,
                 textAlign: 'center',
                 cursor: 'pointer',
             },
@@ -63,7 +64,7 @@ class TreeView extends React.Component {
                 position: 'absolute',
             },
             clickTarget: {
-                cursor: 'pointer',
+                cursor: this.props.onClick && 'pointer',
             },
             children: {
                 position: 'relative',
@@ -71,9 +72,6 @@ class TreeView extends React.Component {
                 height: this.state.collapsed ? 0 : 'inherit',
             },
         };
-        if (!this.props.onClick) {
-            styles.clickTarget.cursor = 'initial';
-        }
 
         const label = (
             <div style={styles.itemLabel}>
@@ -91,7 +89,8 @@ class TreeView extends React.Component {
                 <div className="children" style={styles.children}>{this.props.children}</div>
             );
 
-        return <div className="tree-view" style={styles.tree}>{label}{children}</div>;
+        const className = `tree-view ${this.props.className}`;
+        return <div className={className} style={Object.assign(styles.tree, this.props.style)}>{label}{children}</div>;
     }
 }
 
@@ -102,6 +101,8 @@ TreeView.propTypes = {
     persistent: React.PropTypes.bool,
     initiallyExpanded: React.PropTypes.bool,
     arrowSymbol: React.PropTypes.node,
+    style: React.PropTypes.object,
+    className: React.PropTypes.string,
 
     onExpand: React.PropTypes.func,
     onClick: React.PropTypes.func,
@@ -111,6 +112,7 @@ TreeView.defaultProps = {
     persistent: false,
     initiallyExpanded: false,
     arrowSymbol: '▸',
+    style: {},
 };
 
 export default TreeView;
