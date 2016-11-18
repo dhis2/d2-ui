@@ -18,10 +18,10 @@ function islocalStorageSupported() {
     }
 }
 
-function saveToLocalStorage(headerData) {
+function saveToLocalStorage(headerData = {}) {
     if (islocalStorageSupported()) {
-        localStorage.setItem('dhis2.menu.ui.headerBar.userStyle', headerData.userStyleUrl);
-        localStorage.setItem('dhis2.menu.ui.headerBar.title', headerData.title);
+        headerData.userStyleUrl && localStorage.setItem('dhis2.menu.ui.headerBar.userStyle', headerData.userStyleUrl);
+        headerData.title && localStorage.setItem('dhis2.menu.ui.headerBar.title', headerData.title);
     }
 
     return headerData;
