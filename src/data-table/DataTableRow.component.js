@@ -131,8 +131,8 @@ const DataTableRow = React.createClass({
         this.props.itemClicked(event, this.props.dataSource);
     },
 
-    handleClick() {
-        this.props.primaryClick(this.props.dataSource);
+    handleClick(event) {
+        this.props.primaryClick(this.props.dataSource, event);
     },
 });
 
