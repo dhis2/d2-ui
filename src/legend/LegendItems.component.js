@@ -69,3 +69,7 @@ LegendItems.contextTypes = {
 LegendItems.propTypes = {
     items: PropTypes.array.isRequired,
 };
+
+LegendItems.defaultProps = {
+    items: [],
+};
