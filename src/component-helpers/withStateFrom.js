@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import log from 'loglevel';
 
 export default function withStateFrom(stateSource$, BaseComponent) {
-    return class extends React.Component {
+    const withStateForm = class extends Component {
         componentDidMount() {
             this.disposable = stateSource$
                 .subscribe(
@@ -21,4 +21,8 @@ export default function withStateFrom(stateSource$, BaseComponent) {
             );
         }
     };
+
+    withStateForm.displayName = BaseComponent.displayName || BaseComponent.name;
+
+    return withStateForm;
 }
