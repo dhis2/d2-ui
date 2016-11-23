@@ -13,7 +13,8 @@ import SingleSelection from './single-selection';
 import SingleSelectionMultipleRoots from './single-selection-multiple-roots';
 import MultipleSelection from './multiple-selection';
 import MultipleSelectionMultipleRoots from './multiple-selection-multiple-roots';
-// import MouseOverHandler from './mouse-over-handler';
+import ChangeRoot from './change-root';
+import MultipleSelectionChangeRoot from './multiple-selection-change-root';
 
 const el = document.getElementById('app');
 const dhisDevConfig = DHIS_CONFIG;
@@ -55,7 +56,7 @@ function OrgUnitTreeExample(props) {
             <Card style={styles.card}>
                 <CardText style={styles.cardText}>
                     <h3 style={styles.cardHeader}>Plain OrgUnitTree</h3>
-                    <OrgUnitTree root={props.root}/>
+                    <OrgUnitTree root={props.root} />
                 </CardText>
             </Card>
             <Card style={styles.card}>
@@ -72,7 +73,7 @@ function OrgUnitTreeExample(props) {
             </Card>
             <Card style={styles.card}>
                 <CardText style={styles.cardText}>
-                    <h3 style={styles.cardHeader}>Multiple roots in one "tree"</h3>
+                    <h3 style={styles.cardHeader}>Tree with multiple roots</h3>
                     {props.roots.length > 0 ? (
                         <OrgUnitTreeMultipleRoots roots={props.roots}/>
                     ) : 'Loading...' }
@@ -134,6 +135,18 @@ function OrgUnitTreeExample(props) {
                 <CardText style={styles.cardText}>
                     <h3 style={styles.cardHeader}>Initially Expanded, 3 levels pre-loaded</h3>
                     { props.preRoot ? <InitiallyExpanded roots={props.preRoot}/> : 'Loading...' }
+                </CardText>
+            </Card>
+            <Card style={styles.card}>
+                <CardText style={styles.cardText}>
+                    <h3 style={styles.cardHeader}>Root Selection</h3>
+                    <ChangeRoot root={props.root} />
+                </CardText>
+            </Card>
+            <Card style={styles.card}>
+                <CardText style={styles.cardText}>
+                    <h3 style={styles.cardHeader}>Root Selection & Multiple Selection</h3>
+                    <MultipleSelectionChangeRoot root={props.root} />
                 </CardText>
             </Card>
         </div>

@@ -33,7 +33,7 @@ class SingleSelectionExample extends React.Component {
             <div>
                 <OrgUnitTree
                     root={this.props.root}
-                    onClick={this.handleClick}
+                    onSelectClick={this.handleClick}
                     selected={this.state.selected}
                 />
                 <div style={selStyle}>Selected: {this.state.selected}</div>

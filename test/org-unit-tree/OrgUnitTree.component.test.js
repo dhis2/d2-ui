@@ -18,7 +18,7 @@ describe('OrgUnitTree component', () => {
 
     it('should pass the displayName as the label to the TreeView', () => {
         const component = shallow(<OrgUnitTree root={rootModel} />);
-
-        expect(component.find(TreeView).props().label.props.children[0]).to.equal('Norway');
+        
+        expect(component.find(TreeView).props().label.props.children[1]).to.equal('Norway');
     });
 });

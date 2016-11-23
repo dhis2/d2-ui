@@ -35,7 +35,7 @@ const styles = {
         color: 'blue',
         cursor: 'pointer',
     },
-    line: {
+    ouContainer: {
         borderColor: 'transparent',
         borderStyle: 'solid',
         borderWidth: '1px',
@@ -44,7 +44,7 @@ const styles = {
         background: 'transparent',
         paddingLeft: 2,
     },
-    currentLine: {
+    currentOuContainer: {
         background: 'rgba(0,0,0,0.05)',
         borderColor: 'rgba(0,0,0,0.1)',
     },
@@ -53,6 +53,10 @@ const styles = {
 class OrgUnitTree extends React.Component {
     constructor(props) {
         super(props);
+
+        if (props.hasOwnProperty('onClick')) {
+            console.warn('Deprecated: `OrgUnitTree.onClick` has been deprecated. Please use `onSelectClick` instead.');
+        }
 
         this.state = {
             children: (
@@ -71,7 +75,7 @@ class OrgUnitTree extends React.Component {
         }
 
         this.loadChildren = this.loadChildren.bind(this);
-        this.handleClick = this.handleClick.bind(this);
+        this.handleSelectClick = this.handleSelectClick.bind(this);
     }
 
     componentDidMount() {
@@ -107,8 +111,11 @@ class OrgUnitTree extends React.Component {
         }
     }
 
-    handleClick(e) {
-        if (this.props.onClick) {
+    handleSelectClick(e) {
+        if (this.props.onSelectClick) {
+            this.props.onSelectClick(e, this.props.root);
+        } else if (this.props.onClick) {
+            // TODO: onClick is deprecated and should be removed in v26
             this.props.onClick(e, this.props.root);
         }
         e.stopPropagation();
@@ -128,7 +135,7 @@ class OrgUnitTree extends React.Component {
                     root={orgUnit}
                     selected={this.props.selected}
                     initiallyExpanded={expandedProp}
-                    onClick={this.props.onClick}
+                    onSelectClick={this.props.onSelectClick || this.props.onClick}
                     currentRoot={this.props.currentRoot}
                     onChangeCurrentRoot={this.props.onChangeCurrentRoot}
                     labelStyle={this.props.labelStyle}
@@ -148,40 +155,47 @@ class OrgUnitTree extends React.Component {
     render() {
         const currentOu = this.props.root;
 
-        // Calculate properties of the current org unit
-        const isChild = !!currentOu.parent;
+        // True if this OU has children = is not a leaf node
         const hasChildren = this.state.children === undefined || Array.isArray(this.state.children) &&
             this.state.children.length > 0;
-        const isClickable = !!this.props.onClick;
-        const isSelected = this.props.selected === currentOu.id || this.props.selected.includes(currentOu.id);
+        // True if a click handler exists
+        const isSelectable = !!this.props.onSelectClick || !!this.props.onClick; // TODO: Remove onClick in v26
+        // True if this OU is currently selected
+        const isSelected = this.props.selected &&
+            (this.props.selected === currentOu.id || this.props.selected.includes(currentOu.id));
+        // True if this OU is the current root
         const isCurrentRoot = this.props.currentRoot && this.props.currentRoot.id === currentOu.id;
+        // True if this OU should be expanded by default
         const isInitiallyExpanded = this.props.initiallyExpanded === currentOu.id ||
             this.props.initiallyExpanded.includes(currentOu.id);
+        // True if this OU can BECOME the current root, which means that:
+        // 1) there is a change root handler
+        // 2) this OU is not already the current root
+        // 3) this OU has children (is not a leaf node)
         const canBecomeCurrentRoot = this.props.onChangeCurrentRoot && !isCurrentRoot && hasChildren;
 
+        // Hard coded styles for OU name labels - can be overridden with the selectedLabelStyle and labelStyle props
         const labelStyle = Object.assign({}, styles.label, {
-            fontWeight: isSelected ? 700 : 300,
+            fontWeight: isSelected ? 500 : 300,
             color: isSelected ? 'orange' : 'inherit',
-            cursor: isClickable ? 'pointer' : 'inherit',
+            cursor: canBecomeCurrentRoot ? 'pointer' : 'default',
         }, isSelected ? this.props.selectedLabelStyle : this.props.labelStyle);
-        const lineStyle = Object.assign({}, styles.line, isCurrentRoot ? styles.currentLine : {});
 
+        // Styles for this OU and OUs contained within it
+        const ouContainerStyle = Object.assign({}, styles.ouContainer, isCurrentRoot ? styles.currentOuContainer : {});
+
+        // Wrap the change root click handler in order to stop event propagation
         const setCurrentRoot = (e) => {
             e.stopPropagation();
-            // If this org unit is the root of the tree, clear the current root
-            // Otherwise set the current root to this org unit
             this.props.onChangeCurrentRoot(currentOu);
         };
 
         const label = (
-            <div style={labelStyle} onClick={isClickable && this.handleClick}>
-                {currentOu.displayName}
-                {canBecomeCurrentRoot && (
-                    <div style={styles.changeRootLabel}
-                         onClick={setCurrentRoot}
-                         className="change-root"
-                    >{this.props.changeRootLabel}</div>
+            <div style={labelStyle} onClick={canBecomeCurrentRoot && setCurrentRoot}>
+                {isSelectable && (
+                    <input type="checkbox" readOnly disabled={!isSelectable} checked={isSelected} onClick={this.handleSelectClick}/>
                 )}
+                {currentOu.displayName}
             </div>
         );
 
@@ -194,7 +208,7 @@ class OrgUnitTree extends React.Component {
                     initiallyExpanded={isInitiallyExpanded}
                     arrowSymbol={this.props.arrowSymbol}
                     className="orgunit with-children"
-                    style={lineStyle}
+                    style={ouContainerStyle}
                 >
                     {this.renderChildren()}
                 </TreeView>
@@ -202,9 +216,9 @@ class OrgUnitTree extends React.Component {
         }
 
         return (
-            <div onClick={this.handleClick}
+            <div onClick={this.handleSelectClick}
                  className="orgunit without-children"
-                 style={lineStyle}
+                 style={ouContainerStyle}
             >
                 <div style={styles.spacer}></div>{label}
             </div>
@@ -243,12 +257,12 @@ OrgUnitTree.propTypes = {
     ]),
 
     /**
-     * onClick callback, which is triggered when the label of an OU is clicked
+     * onSelectClick callback, which is triggered when the label of an OU is clicked
      *
-     * The onClick callback will receive two arguments: The original click event, and an object containing
+     * The onSelectClick callback will receive two arguments: The original click event, and an object containing
      * the displayName and id of the OU that was clicked.
      */
-    onClick: React.PropTypes.func,
+    onSelectClick: React.PropTypes.func,
 
     /**
      * onChangeCurrentRoot callback, which is triggered when the change current root label is clicked. Setting this also
@@ -261,26 +275,24 @@ OrgUnitTree.propTypes = {
 
     /**
      * Organisation unit model representing the current root
-     *
-     * Setting this to the root org unit (where level=1) has the same effect as setting it to undefined
      */
     currentRoot: React.PropTypes.object,
 
     /**
-     * The text of the label that may be clicked to change the current root
-     *
-     * If no other value is specified, this is set to 'Select →'
+     * If true, only org units that have at least 1 child will be displayed
      */
-    changeRootLabel: React.PropTypes.string,
+    hideLeafNodes: React.PropTypes.bool,
 
     /**
      * Custom styling for OU labels
      */
     labelStyle: React.PropTypes.object,
+
     /**
      * Custom styling for the labels of selected OUs
      */
     selectedLabelStyle: React.PropTypes.object,
+
     /**
      * Custom arrow symbol
      */
@@ -288,9 +300,7 @@ OrgUnitTree.propTypes = {
 };
 
 OrgUnitTree.defaultProps = {
-    selected: [],
     initiallyExpanded: [],
-    changeRootLabel: 'Select →',
     labelStyle: {},
     selectedLabelStyle: {},
     idsThatShouldBeReloaded: [],

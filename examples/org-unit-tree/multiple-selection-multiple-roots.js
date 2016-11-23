@@ -1,6 +1,6 @@
 import React from 'react';
 
-import TreeView from '../../src/tree-view';
+import TreeView from '../../src/tree-view/TreeView.component';
 import OrgUnitTree from '../../src/org-unit-tree/OrgUnitTreeMultipleRoots.component';
 
 export default class extends React.Component {
@@ -12,7 +12,6 @@ export default class extends React.Component {
         };
 
         this._handleClick = this._handleClick.bind(this);
-        this._handleChangeRoot = this._handleChangeRoot.bind(this);
     }
 
     render() {
@@ -25,10 +24,8 @@ export default class extends React.Component {
             <div>
                 <OrgUnitTree
                     {...this.props}
-                    onClick={this._handleClick}
+                    onSelectClick={this._handleClick}
                     selected={this.state.selected}
-                    currentRoot={this.state.currentRoot}
-                    onChangeCurrentRoot={this._handleChangeRoot}
                 />
                 <div style={selStyle}>
                     <TreeView label={`Selected: ${this.state.selected.length}`}>
@@ -41,10 +38,6 @@ export default class extends React.Component {
                 </div>
             </div>
         );
-    }
-
-    _handleChangeRoot(orgUnit) {
-        this.setState({ currentRoot: orgUnit });
     }
 
     _handleClick(event, orgUnit) {

@@ -20,7 +20,11 @@ export default class extends React.Component {
 
     render() {
         return (
-            <OrgUnitTreeMultipleRoots {...this.props} selected={this.state.selected} onClick={this._selectionChanged} />
+            <OrgUnitTreeMultipleRoots
+                {...this.props}
+                selected={this.state.selected}
+                onSelectClick={this._selectionChanged}
+            />
         );
     }
 }

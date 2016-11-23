@@ -11,7 +11,7 @@ export default function OrgUnitTreeMultipleRoots(props) {
                         key={index}
                         {...props}
                         root={root}
-                        onClick={props.onClick}
+                        onSelectClick={props.onSelectClick}
                     />)
                 }
             </div>

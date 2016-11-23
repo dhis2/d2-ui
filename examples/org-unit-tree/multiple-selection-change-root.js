@@ -12,6 +12,7 @@ class MultipleSelectionExample extends React.Component {
         };
 
         this.handleClick = this.handleClick.bind(this);
+        this.handleChangeRoot = this.handleChangeRoot.bind(this);
     }
 
     handleClick(event, orgUnit) {
@@ -32,6 +33,10 @@ class MultipleSelectionExample extends React.Component {
         }
     }
 
+    handleChangeRoot(ou) {
+        this.setState({ currentRoot: ou });
+    }
+
     render() {
         const selStyle = {
             borderTop: '1px solid #eeeeee',
@@ -44,8 +49,11 @@ class MultipleSelectionExample extends React.Component {
                     root={this.props.root}
                     onSelectClick={this.handleClick}
                     selected={this.state.selected}
+                    currentRoot={this.state.currentRoot}
+                    onChangeCurrentRoot={this.handleChangeRoot}
                 />
                 <div style={selStyle}>
+                    <div>Current root: {this.state.currentRoot ? this.state.currentRoot.displayName : 'N/A'}</div>
                     <TreeView label={`Selected: ${this.state.selected.length}`}>
                         <ul>{
                             this.state.selected
