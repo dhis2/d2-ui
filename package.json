@@ -55,7 +55,7 @@
     "react-color": "^2.4.0",
     "react-dom": "^15.3.2",
     "react-stub-context": "^0.7.0",
-    "react-tap-event-plugin": "^1.0.0",
+    "react-tap-event-plugin": "^2.0.1",
     "rx": "^4.1.0",
     "sass-loader": "^4.0.2",
     "sinon": "^1.17.6",
