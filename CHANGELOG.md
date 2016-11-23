@@ -2,8 +2,8 @@
 # D2-UI Changelog
 
 
-## 26.0.0
-###### _In development_
+## 25.5.0
+###### _November 23rd 2016_
 
 Org unit selection components now support limiting modifications to org units
 below a specified root org unit. To make use of this feature, pass a d2
@@ -11,13 +11,19 @@ Organisation Unit object model to the `currentRoot` property of the
 `OrgUnitSelectAll`, `OrgUnitSelectByLevel` and `OrgUnitSelectByGroup` components.
 
 Similarly the `OrgUnitTree` and `OrgUnitTreeMultipleRoot` components also support
-an `currentRoot` prop. If a callback function is passed to the
+a `currentRoot` prop. If a callback function is passed to the
 `onChangeCurrentRoot` prop of `OrgUnitTree` components, the tree will display
 UI labels for changing the current root.
 
 The Organisation Unit Selection components example has been updated to showcase
 the new functionality.
 
+**Breaking changes:**
+
+`OrgUnitTree.onClick` has been renamed to `OrgUnitTree.onSelectClick` in order to
+clarify the difference between selecting an org unit and changing the current root.
+`onClick` will still work until the next major release, but a deprecation warning
+will be printed to the console.
 
 ## 0.0.28
 ###### _June 10th 2016_
