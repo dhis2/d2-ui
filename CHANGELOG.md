@@ -2,6 +2,18 @@
 # D2-UI Changelog
 
 
+## 25.5.1
+###### _November 24th 2016_
+
+Add support for hiding checkboxes on organisation unit trees by setting the
+`hideCheckboxes` prop to `true`.
+
+Org unit tree behavior has also been tweaked to trigger the `onSelectClick`
+callback when an org unit label is clicked if no `onChangeCurrentRoot` callback
+is specified.
+
+
+
 ## 25.5.0
 ###### _November 23rd 2016_
 
@@ -24,6 +36,8 @@ the new functionality.
 clarify the difference between selecting an org unit and changing the current root.
 `onClick` will still work until the next major release, but a deprecation warning
 will be printed to the console.
+
+
 
 ## 0.0.28
 ###### _June 10th 2016_

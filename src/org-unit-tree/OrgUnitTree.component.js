@@ -142,6 +142,7 @@ class OrgUnitTree extends React.Component {
                     selectedLabelStyle={this.props.selectedLabelStyle}
                     arrowSymbol={this.props.arrowSymbol}
                     idsThatShouldBeReloaded={this.props.idsThatShouldBeReloaded}
+                    hideCheckboxes={this.props.hideCheckboxes}
                 />));
         }
 
@@ -191,8 +192,8 @@ class OrgUnitTree extends React.Component {
         };
 
         const label = (
-            <div style={labelStyle} onClick={canBecomeCurrentRoot && setCurrentRoot}>
-                {isSelectable && (
+            <div style={labelStyle} onClick={(canBecomeCurrentRoot && setCurrentRoot) || (isSelectable && this.handleSelectClick)}>
+                {isSelectable && !this.props.hideCheckboxes && (
                     <input type="checkbox" readOnly disabled={!isSelectable} checked={isSelected} onClick={this.handleSelectClick}/>
                 )}
                 {currentOu.displayName}
@@ -216,7 +217,7 @@ class OrgUnitTree extends React.Component {
         }
 
         return (
-            <div onClick={this.handleSelectClick}
+            <div onClick={isSelectable && this.handleSelectClick}
                  className="orgunit without-children"
                  style={ouContainerStyle}
             >
@@ -297,6 +298,11 @@ OrgUnitTree.propTypes = {
      * Custom arrow symbol
      */
     arrowSymbol: React.PropTypes.string,
+
+    /**
+     * If true, don't display checkboxes next to org unit labels
+     */
+    hideCheckboxes: React.PropTypes.bool,
 };
 
 OrgUnitTree.defaultProps = {
@@ -304,6 +310,7 @@ OrgUnitTree.defaultProps = {
     labelStyle: {},
     selectedLabelStyle: {},
     idsThatShouldBeReloaded: [],
+    hideCheckboxes: false,
 };
 
 export default OrgUnitTree;

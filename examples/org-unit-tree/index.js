@@ -10,8 +10,10 @@ import OrgUnitTree from '../../src/org-unit-tree/OrgUnitTree.component';
 import OrgUnitTreeMultipleRoots from '../../src/org-unit-tree/OrgUnitTreeMultipleRoots.component';
 import InitiallyExpanded from './initially-expanded';
 import SingleSelection from './single-selection';
+import SingleSelectionNoCheckbox from './single-selection-no-checkbox';
 import SingleSelectionMultipleRoots from './single-selection-multiple-roots';
 import MultipleSelection from './multiple-selection';
+import MultipleSelectionNoCheckbox from './multiple-selection-no-checkbox';
 import MultipleSelectionMultipleRoots from './multiple-selection-multiple-roots';
 import ChangeRoot from './change-root';
 import MultipleSelectionChangeRoot from './multiple-selection-change-root';
@@ -99,6 +101,12 @@ function OrgUnitTreeExample(props) {
             </Card>
             <Card style={styles.card}>
                 <CardText style={styles.cardText}>
+                    <h3 style={styles.cardHeader}>Single Selection Tree without Checkboxes</h3>
+                    <SingleSelectionNoCheckbox root={props.root}/>
+                </CardText>
+            </Card>
+            <Card style={styles.card}>
+                <CardText style={styles.cardText}>
                     <h3 style={styles.cardHeader}>Single Selection with multiple roots</h3>
                     {props.roots.length > 0 ? (
                         <SingleSelectionMultipleRoots roots={props.roots}/>
@@ -109,6 +117,12 @@ function OrgUnitTreeExample(props) {
                 <CardText style={styles.cardText}>
                     <h3 style={styles.cardHeader}>Multiple Selection Tree</h3>
                     <MultipleSelection root={props.root}/>
+                </CardText>
+            </Card>
+            <Card style={styles.card}>
+                <CardText style={styles.cardText}>
+                    <h3 style={styles.cardHeader}>Multiple Selection without Checkboxes</h3>
+                    <MultipleSelectionNoCheckbox root={props.root}/>
                 </CardText>
             </Card>
             <Card style={styles.card}>
