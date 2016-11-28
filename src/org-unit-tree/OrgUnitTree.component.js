@@ -280,11 +280,6 @@ OrgUnitTree.propTypes = {
     currentRoot: React.PropTypes.object,
 
     /**
-     * If true, only org units that have at least 1 child will be displayed
-     */
-    hideLeafNodes: React.PropTypes.bool,
-
-    /**
      * Custom styling for OU labels
      */
     labelStyle: React.PropTypes.object,
