@@ -27,6 +27,7 @@ class OrgUnitSelectByGroup extends React.Component {
     }
 
     getOrgUnitsForGroup(groupId, ignoreCache = false) {
+        const d2 = this.context.d2;
         return new Promise(resolve => {
             if (this.props.currentRoot) {
                 log.debug(`Loading org units for group ${groupId} within ${this.props.currentRoot.displayName}`);
