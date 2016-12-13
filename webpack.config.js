@@ -3,7 +3,6 @@ const webpack = require('webpack');
 const path = require('path');
 require('colors');
 const Visualizer = require('webpack-visualizer-plugin');
-const version = require('./package.json').version;
 
 const dhisConfigPath = process.env.DHIS2_HOME && `${process.env.DHIS2_HOME}/config`;
 let dhisConfig;
@@ -43,7 +42,7 @@ module.exports = {
     output: {
         library: 'Dhis2HeaderBar',
         path: path.join(__dirname, '/dist'),
-        filename: `[name]-${version}.js`,
+        filename: `[name].js`,
     },
     module: {
         loaders: [
