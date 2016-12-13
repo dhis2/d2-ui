@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const path = require('path');
 require('colors');
 const Visualizer = require('webpack-visualizer-plugin');
+const version = require('./package.json').version;
 
 const dhisConfigPath = process.env.DHIS2_HOME && `${process.env.DHIS2_HOME}/config`;
 let dhisConfig;
@@ -41,8 +42,8 @@ module.exports = {
     },
     output: {
         library: 'Dhis2HeaderBar',
-        path: path.join(__dirname, '/build'),
-        filename: '[name].js',
+        path: path.join(__dirname, '/dist'),
+        filename: `[name]-${version}.js`,
     },
     module: {
         loaders: [
@@ -79,7 +80,12 @@ module.exports = {
             // 'd2/lib/d2': 'var d2',
             'lodash': 'var _',
             'lodash/fp': 'var fp',
+            'lodash.merge': 'var _.merge',
+            'lodash.throttle': 'var _.throttle',
+            'lodash/merge': 'var _.merge',
         },
+        /^lodash$/,
+        /^lodash\/fp$/,
         /^react-addons/,
         /^react-dom$/,
         /^rx$/,

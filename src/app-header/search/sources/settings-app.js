@@ -1,4 +1,4 @@
-import map from 'lodash/fp/map';
+import { map } from 'lodash/fp';
 import { Observable } from 'rx';
 import getBaseUrlFromD2ApiUrl from '../../getBaseUrlFromD2ApiUrl';
 import { prepareMenuItems, translate$, translateMenuItemNames } from '../../headerBar.store';
