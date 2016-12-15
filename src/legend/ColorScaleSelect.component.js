@@ -129,7 +129,7 @@ export default class ColorScaleSelect extends Component {
                     <MenuItem value={9} primaryText="9"/>
                 </SelectField>
 
-                <ColorScale scale={this.state.scale} classes={this.state.classes} style={{...styles.scale, margin: '0 0 0 20px'}} onClick={this.showColorScales} />
+                <ColorScale scale={this.state.scale} classes={this.state.classes} style={{...styles.scale, margin: '0 20px 0 20px'}} onClick={this.showColorScales} />
 
                 <Popover
                     style={styles.popover}
