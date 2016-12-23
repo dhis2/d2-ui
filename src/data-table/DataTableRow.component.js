@@ -93,7 +93,6 @@ const DataTableRow = React.createClass({
                 wordBreak: 'break-all',
                 wordWrap: 'break-word',
                 top: 0,
-                bottom: 0,
                 lineHeight: '50px',
                 paddingRight: '1rem',
             };
