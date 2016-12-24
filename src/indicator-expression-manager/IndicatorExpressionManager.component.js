@@ -109,7 +109,7 @@ class IndicatorExpressionManager extends Component {
             }, error => log.error(error));
 
         this.expressionStatusDisposable = this.requestExpressionStatusAction
-            .throttle(500)
+            .debounce(500)
             .map(action => {
                 const formula = action.data;
                 const url = `expressions/description?expression=${formula}`;
