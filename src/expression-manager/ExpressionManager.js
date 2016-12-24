@@ -24,7 +24,7 @@ config.i18n.strings.add('program_tracked_entity_attributes');
 config.i18n.strings.add('program_indicators');
 config.i18n.strings.add('program_data_elements');
 config.i18n.strings.add('constants');
-config.i18n.strings.add('this_field_is_required');
+config.i18n.strings.add('field_is_required');
 config.i18n.strings.add('programs');
 
 const styles = {
@@ -147,7 +147,7 @@ class ExpressionManager extends Component {
                                 descriptionValue={this.state.description}
                                 descriptionLabel={this.i18n.getTranslation('description')}
                                 onDescriptionChange={this.descriptionChange}
-                                errorText={!isDescriptionValid() ? this.i18n.getTranslation('this_field_is_required') : undefined}
+                                errorText={!isDescriptionValid() ? this.i18n.getTranslation('field_is_required') : undefined}
                                 onBlur={this.requestExpressionStatus}
                             />
                             <ExpressionFormula
