@@ -1,5 +1,5 @@
 import React from 'react';
-import ConstantSelector from '../../src/indicator-expression-manager/ConstantSelector.component';
+import ConstantSelector from '../../src/expression-manager/ConstantSelector';
 import ListSelectWithLocalSearch from '../../src/list-select/ListSelectWithLocalSearch.component';
 import {shallow} from 'enzyme';
 

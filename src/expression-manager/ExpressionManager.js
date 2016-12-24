@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-import ExpressionDescription from './ExpressionDescription.component';
-import ExpressionOperators from './ExpressionOperators.component';
-import ExpressionFormula from './ExpressionFormula.component';
-import DataElementOperandSelector from './DataElementOperandSelector.component';
+import ExpressionDescription from './ExpressionDescription';
+import ExpressionOperators from './ExpressionOperators';
+import ExpressionFormula from './ExpressionFormula';
+import DataElementOperandSelector from './DataElementOperandSelector';
 import Tabs from 'material-ui/Tabs/Tabs';
 import Tab from 'material-ui/Tabs/Tab';
 import Paper from 'material-ui/Paper/Paper';
@@ -10,8 +10,8 @@ import log from 'loglevel';
 import { config } from 'd2/lib/d2';
 import ProgramOperandSelector from './ProgramOperandSelector';
 import Heading from '../headings/Heading.component';
-import OrganisationUnitGroupSelector from './OrganisationUnitGroupSelector.component';
-import ConstantSelector from './ConstantSelector.component';
+import OrganisationUnitGroupSelector from './OrganisationUnitGroupSelector';
+import ConstantSelector from './ConstantSelector';
 import addD2Context from '../component-helpers/addD2Context';
 import Action from '../action/Action';
 import { Observable } from 'rx';
@@ -62,7 +62,7 @@ const styles = {
     }
 };
 
-class IndicatorExpressionManager extends Component {
+class ExpressionManager extends Component {
     constructor(props, context) {
         super(props, context);
 
@@ -100,7 +100,7 @@ class IndicatorExpressionManager extends Component {
                         return;
                     }
 
-                    this.props.indicatorExpressionChanged({
+                    this.props.expressionChanged({
                         formula: this.state.formula,
                         description: this.state.description,
                         expressionStatus: this.state.expressionStatus,
@@ -199,7 +199,7 @@ class IndicatorExpressionManager extends Component {
         this.setState({
             description: newDescription,
         }, () => {
-            this.props.indicatorExpressionChanged({
+            this.props.expressionChanged({
                 formula: this.state.formula,
                 description: this.state.description,
                 expressionStatus: this.state.expressionStatus,
@@ -242,13 +242,13 @@ class IndicatorExpressionManager extends Component {
 
     }
 }
-IndicatorExpressionManager.propTypes = {
+ExpressionManager.propTypes = {
     descriptionLabel: PropTypes.string.isRequired,
     expressionStatusStore: PropTypes.object.isRequired,
-    indicatorExpressionChanged: PropTypes.func.isRequired,
+    expressionChanged: PropTypes.func.isRequired,
     descriptionValue: PropTypes.string.isRequired,
     formulaValue: PropTypes.string.isRequired,
-    titleText: PropTypes.string.isRequired,
+    titleText: PropTypes.string,
 };
 
-export default addD2Context(IndicatorExpressionManager);
+export default addD2Context(ExpressionManager);

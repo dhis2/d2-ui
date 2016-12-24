@@ -1,7 +1,7 @@
 import React from 'react';
 import {getStubContext} from '../../config/inject-theme';
 
-import DataElementOperandSelector from '../../src/indicator-expression-manager/DataElementOperandSelector.component';
+import DataElementOperandSelector from '../../src/expression-manager/DataElementOperandSelector';
 import ListSelectAsync from '../../src/list-select/ListSelectAsync.component';
 import {shallow} from 'enzyme';
 import LinearProgress from 'material-ui/LinearProgress/LinearProgress';

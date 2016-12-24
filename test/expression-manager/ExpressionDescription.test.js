@@ -1,7 +1,7 @@
 import React from 'react';
 import injectTheme from '../../config/inject-theme';
 import TextField from 'material-ui/TextField/TextField';
-import ExpressionDescription from '../../src/indicator-expression-manager/ExpressionDescription.component';
+import ExpressionDescription from '../../src/expression-manager/ExpressionDescription';
 import {shallow} from 'enzyme';
 
 describe('ExpressionDescription component', () => {
