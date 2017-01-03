@@ -85,12 +85,6 @@ class OrgUnitTree extends React.Component {
             newProps.idsThatShouldBeReloaded.includes(newProps.root.id)) {
             this.loadChildren();
         }
-
-        if (process.env && process.env.NODE_ENV === 'development' && newProps.selected) {
-            newProps.selected.filter(s => !s.includes('/')).forEach(ou => {
-                console.error('Selected should be path, not id!', ou);
-            });
-        }
     }
 
     setChildState(children) {
@@ -162,7 +156,7 @@ class OrgUnitTree extends React.Component {
         }
 
         if (this.state.loading || true) {
-            return <div style={styles.progress}><LinearProgress style={styles.progressBar} /></div>;
+            return <div style={styles.progress}><LinearProgress style={styles.progressBar}/></div>;
         }
 
         return null;
@@ -210,9 +204,11 @@ class OrgUnitTree extends React.Component {
         };
 
         const label = (
-            <div style={labelStyle} onClick={(canBecomeCurrentRoot && setCurrentRoot) || (isSelectable && this.handleSelectClick)}>
+            <div style={labelStyle}
+                 onClick={(canBecomeCurrentRoot && setCurrentRoot) || (isSelectable && this.handleSelectClick)}>
                 {isSelectable && !this.props.hideCheckboxes && (
-                    <input type="checkbox" readOnly disabled={!isSelectable} checked={isSelected} onClick={this.handleSelectClick}/>
+                    <input type="checkbox" readOnly disabled={!isSelectable} checked={isSelected}
+                           onClick={this.handleSelectClick}/>
                 )}
                 {currentOu.displayName}
                 {hasChildren && !this.props.hideMemberCount && !!memberCount && (
@@ -242,9 +238,16 @@ class OrgUnitTree extends React.Component {
                  className="orgunit without-children"
                  style={ouContainerStyle}
             >
-                <div style={styles.spacer}></div>{label}
+                <div style={styles.spacer}></div>
+                {label}
             </div>
         );
+    }
+}
+
+function orgUnitPathPropValidator (propValue, key, componentName, location, propFullName) {
+    if (!/(\/[a-zA-Z][a-zA-Z0-9]{10})+/.test(propValue[key])) {
+        return new Error(`Invalid org unit path \`${propValue[key]}\` supplied to \`${componentName}.${propFullName}\``);
     }
 }
 
@@ -263,14 +266,14 @@ OrgUnitTree.propTypes = {
      *
      * The path of an OU is the UIDs of the OU and all its parent OUs separated by slashes (/)
      */
-    selected: React.PropTypes.arrayOf(React.PropTypes.string),
+    selected: React.PropTypes.arrayOf(orgUnitPathPropValidator),
 
     /**
      * An array of OU paths that will be expanded automatically as soon as they are encountered
      *
      * The path of an OU is the UIDs of the OU and all its parent OUs separated by slashes (/)
      */
-    initiallyExpanded: React.PropTypes.arrayOf(React.PropTypes.string),
+    initiallyExpanded: React.PropTypes.arrayOf(orgUnitPathPropValidator),
 
     /**
      * onSelectClick callback, which is triggered when a click triggers the selection of an organisation unit
