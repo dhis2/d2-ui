@@ -6,7 +6,7 @@ import { fade } from 'material-ui/utils/colorManipulator';
 import Spacing from 'material-ui/styles/spacing';
 import D2Lib from 'd2/lib/d2';
 import Store from '../../src/store/Store';
-import ExpressionManager from '../../src/indicator-expression-manager/IndicatorExpressionManager.component';
+import ExpressionManager from '../../src/expression-manager/ExpressionManager';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 // Needed for onTouchTap
