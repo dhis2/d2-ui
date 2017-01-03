@@ -12,7 +12,7 @@ describe('OrgUnitTreeMultipleRoots component', () => {
     let rootModel;
 
     beforeEach(() => {
-        rootModel = new Model(new ModelDefinition('organisationUnit', 'organisationUnits', {}, [], {}, [], []));
+        rootModel = new Model(new ModelDefinition({ singular: 'organisationUnit', plural: 'organisationUnits' }, {}, {}, {}, {}));
 
         rootModel.displayName = 'Norway';
     });

@@ -15,11 +15,11 @@ class SingleSelectionExample extends React.Component {
 
     handleClick(event, orgUnit) {
         this.setState(state => {
-            if (state.selected[0] === orgUnit.id) {
+            if (state.selected[0] === orgUnit.path) {
                 return { selected: [] };
             }
 
-            return { selected: [orgUnit.id] };
+            return { selected: [orgUnit.path] };
         });
     }
 

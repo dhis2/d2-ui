@@ -37,15 +37,15 @@ class OrgUnitSelectByGroup extends React.Component {
                     root: this.props.currentRoot.id,
                     paging: false,
                     includeDescendants: true,
-                    fields: 'id',
+                    fields: 'id,path',
                     filter: `organisationUnitGroups.id:eq:${groupId}`,
                 })
-                    .then(orgUnits => orgUnits.toArray().map(orgUnit => orgUnit.id))
-                    .then(orgUnitIds => {
-                        log.debug(`Loaded ${orgUnitIds.length} org units for group ${groupId} within ${this.props.currentRoot.displayName}`);
+                    .then(orgUnits => orgUnits.toArray())
+                    .then(orgUnits => {
+                        log.debug(`Loaded ${orgUnits.length} org units for group ${groupId} within ${this.props.currentRoot.displayName}`);
                         this.setState({ loading: false });
 
-                        resolve(orgUnitIds.slice());
+                        resolve(orgUnits.slice());
                     });
             } else if (!ignoreCache && this.groupCache.hasOwnProperty(groupId)) {
                 resolve(this.groupCache[groupId].slice());
@@ -54,15 +54,15 @@ class OrgUnitSelectByGroup extends React.Component {
                 this.setState({ loading: true });
 
                 const d2 = this.context.d2;
-                d2.models.organisationUnitGroups.get(groupId, { fields: 'organisationUnits[id]' })
-                    .then(orgUnitGroups => orgUnitGroups.organisationUnits.toArray().map(orgUnit => orgUnit.id))
-                    .then(orgUnitIds => {
-                        log.debug(`Loaded ${orgUnitIds.length} org units for group ${groupId}`);
+                d2.models.organisationUnitGroups.get(groupId, { fields: 'organisationUnits[id,path]' })
+                    .then(orgUnitGroups => orgUnitGroups.organisationUnits.toArray())
+                    .then(orgUnits => {
+                        log.debug(`Loaded ${orgUnits.length} org units for group ${groupId}`);
                         this.setState({ loading: false });
-                        this.groupCache[groupId] = orgUnitIds;
+                        this.groupCache[groupId] = orgUnits;
 
                         // Make a copy of the returned array to ensure that the cache won't be modified from elsewhere
-                        resolve(orgUnitIds.slice());
+                        resolve(orgUnits.slice());
                     })
                     .catch(err => {
                         this.setState({ loading: false });
@@ -73,17 +73,11 @@ class OrgUnitSelectByGroup extends React.Component {
     }
 
     handleSelect() {
-        this.getOrgUnitsForGroup(this.state.selection)
-            .then(orgUnits => {
-                this.addToSelection(orgUnits);
-            });
+        this.getOrgUnitsForGroup(this.state.selection).then(this.addToSelection);
     }
 
     handleDeselect() {
-        this.getOrgUnitsForGroup(this.state.selection)
-            .then(orgUnits => {
-                this.removeFromSelection(orgUnits);
-            });
+        this.getOrgUnitsForGroup(this.state.selection).then(this.removeFromSelection);
     }
 
     render() {

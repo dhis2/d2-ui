@@ -19,17 +19,21 @@ style.button1 = Object.assign({}, style.button, { marginLeft: 0 });
 
 
 function addToSelection(orgUnits) {
-    const res = orgUnits;
-    this.props.selected.forEach(orgUnitId => {
-        if (res.indexOf(orgUnitId) === -1) {
-            res.push(orgUnitId);
-        }
-    });
-    this.props.onUpdateSelection(res);
+    const orgUnitArray = Array.isArray(orgUnits) ? orgUnits : orgUnits.toArray();
+    const addedOus = orgUnitArray
+        .filter(ou => !this.props.selected.includes(ou.id) && !this.props.selected.includes(ou.path));
+
+    this.props.onUpdateSelection(this.props.selected.concat(addedOus.map(ou => ou.path || ou.id)));
 }
 
 function removeFromSelection(orgUnits) {
-    this.props.onUpdateSelection(this.props.selected.filter(orgUnit => orgUnits.indexOf(orgUnit) === -1));
+    const orgUnitArray = Array.isArray(orgUnits) ? orgUnits : orgUnits.toArray();
+    const removedOus = orgUnitArray
+        .filter(ou => this.props.selected.includes(ou.id) || this.props.selected.includes(ou.path));
+    const removed = removedOus.map(ou => ou.path || ou.id);
+    const selectedOus = this.props.selected.filter(ou => !removed.includes(ou));
+
+    this.props.onUpdateSelection(selectedOus);
 }
 
 function handleChangeSelection(event) {

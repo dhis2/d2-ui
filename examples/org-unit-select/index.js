@@ -11,6 +11,9 @@ import OrgUnitTree from '../../src/org-unit-tree/OrgUnitTree.component';
 import OrgUnitSelectByLevel from '../../src/org-unit-select/OrgUnitSelectByLevel.component';
 import OrgUnitSelectByGroup from '../../src/org-unit-select/OrgUnitSelectByGroup.component';
 import OrgUnitSelectAll from '../../src/org-unit-select/OrgUnitSelectAll.component';
+import TreeView from '../../src/tree-view/TreeView.component';
+
+import { mergeChildren, incrementMemberCount, decrementMemberCount } from '../../src/org-unit-tree/utils';
 
 injectTapEventPlugin();
 
@@ -64,11 +67,14 @@ class OrgUnitSelectExample extends React.Component {
         super(props);
 
         this.state = {
-            selected: [],
+            selected: props.selected,
+            rootWithMembers: props.rootWithMembers,
         };
 
         this.handleSelectionUpdate = this.handleSelectionUpdate.bind(this);
         this.handleOrgUnitClick = this.handleOrgUnitClick.bind(this);
+
+        this.handleChildrenLoaded = this.handleChildrenLoaded.bind(this);
     }
 
     getChildContext() {
@@ -82,86 +88,116 @@ class OrgUnitSelectExample extends React.Component {
     }
 
     handleOrgUnitClick(event, orgUnit) {
-        if (this.state.selected.includes(orgUnit.id)) {
-            this.state.selected.splice(this.state.selected.indexOf(orgUnit.id), 1);
+        if (this.state.selected.includes(orgUnit.path)) {
+            this.state.selected.splice(this.state.selected.indexOf(orgUnit.path), 1);
+            decrementMemberCount(this.state.rootWithMembers, orgUnit);
             this.setState({ selected: this.state.selected });
         } else {
-            this.setState({ selected: this.state.selected.concat(orgUnit.id) });
+            incrementMemberCount(this.state.rootWithMembers, orgUnit);
+            this.setState({ selected: this.state.selected.concat(orgUnit.path) });
         }
+    }
+
+    handleChildrenLoaded(children) {
+        function countChildren(root) {
+            if (root.children && root.children.size && root.children.size > 0) {
+                return root.children.toArray().reduce((sum, child) => sum + countChildren(child), 1);
+            }
+
+            return 1;
+        }
+
+        this.setState(state => ({
+            rootWithMembers: mergeChildren(state.rootWithMembers, children)
+        }));
     }
 
     render() {
         return (
             <MuiThemeProvider muiTheme={getMuiTheme()}>
-            <div>
-                <Card style={styles.card}>
-                    <CardText style={styles.cardText}>
-                        <h3 style={styles.cardHeader}>Select By Org Unit Level</h3>
-                        <OrgUnitSelectByLevel
-                            levels={this.props.levels}
-                            selected={this.state.selected}
-                            onUpdateSelection={this.handleSelectionUpdate}
-                        />
-                    </CardText>
-                </Card>
-                <Card style={styles.card}>
-                    <CardText style={styles.cardText}>
-                        <h3 style={styles.cardHeader}>Select by Org Unit Group</h3>
-                        <OrgUnitSelectByGroup
-                            groups={this.props.groups}
-                            selected={this.state.selected}
-                            onUpdateSelection={this.handleSelectionUpdate}
-                        />
-                    </CardText>
-                </Card>
-                <Card style={styles.cardWide}>
-                    <CardText style={Object.assign({}, styles.cardText, { height: 420, position: 'relative' })}>
-                        <h3 style={styles.cardHeader}>Combined with Org Unit Tree: {this.state.selected.length}</h3>
-                        <div style={styles.left}>
-                            <OrgUnitTree
-                                root={this.props.root}
+                <div>
+                    <Card style={styles.card}>
+                        <CardText style={styles.cardText}>
+                            <h3 style={styles.cardHeader}>Select By Org Unit Level</h3>
+                            <OrgUnitSelectByLevel
+                                levels={this.props.levels}
                                 selected={this.state.selected}
-                                currentRoot={this.state.currentRoot}
-                                initiallyExpanded={this.props.root.id}
-                                onClick={this.handleOrgUnitClick}
-                                onChangeCurrentRoot={(currentRoot) => { this.setState({ currentRoot }); }}
+                                onUpdateSelection={this.handleSelectionUpdate}
                             />
-                        </div>
-                        <div style={styles.right}>
-                            <div>
-                                {this.state.currentRoot ? (
-                                    <div>For organisation units within <span style={styles.ouLabel}>{
-                                        this.state.currentRoot.displayName
-                                    }</span>:</div>
-                                ) : <div>For all organisation units:</div>}
-                                <div style={{ marginBottom: -24, marginTop: -16 }}>
-                                    <OrgUnitSelectByLevel
-                                        levels={this.props.levels}
-                                        selected={this.state.selected}
-                                        currentRoot={this.state.currentRoot}
-                                        onUpdateSelection={this.handleSelectionUpdate}
-                                    />
-                                </div>
+                        </CardText>
+                    </Card>
+                    <Card style={styles.card}>
+                        <CardText style={styles.cardText}>
+                            <h3 style={styles.cardHeader}>Select by Org Unit Group</h3>
+                            <OrgUnitSelectByGroup
+                                groups={this.props.groups}
+                                selected={this.state.selected}
+                                onUpdateSelection={this.handleSelectionUpdate}
+                            />
+                        </CardText>
+                    </Card>
+                    <Card style={styles.cardWide}>
+                        <CardText style={Object.assign({}, styles.cardText, { height: 420, position: 'relative' })}>
+                            <h3 style={styles.cardHeader}>Selected: {this.state.selected.length}</h3>
+                            <div style={styles.left}>
+                                <OrgUnitTree
+                                    root={this.props.rootWithMembers}
+                                    selected={this.state.selected}
+                                    currentRoot={this.state.currentRoot}
+                                    initiallyExpanded={[`/${this.props.rootWithMembers.id}`]}
+                                    onSelectClick={this.handleOrgUnitClick}
+                                    onChangeCurrentRoot={(currentRoot) => {
+                                        this.setState({ currentRoot });
+                                    }}
+                                    memberCollection="dataSets"
+                                    memberObject="TuL8IOPzpHh"
+                                    onChildrenLoaded={this.handleChildrenLoaded}
+                                />
+                            </div>
+                            <div style={styles.right}>
                                 <div>
-                                    <OrgUnitSelectByGroup
-                                        groups={this.props.groups}
-                                        selected={this.state.selected}
-                                        currentRoot={this.state.currentRoot}
-                                        onUpdateSelection={this.handleSelectionUpdate}
-                                    />
-                                </div>
-                                <div style={{ float: 'right' }}>
-                                    <OrgUnitSelectAll
-                                        selected={this.state.selected}
-                                        currentRoot={this.state.currentRoot}
-                                        onUpdateSelection={this.handleSelectionUpdate}
-                                    />
+                                    {this.state.currentRoot ? (
+                                            <div>For organisation units within <span style={styles.ouLabel}>{
+                                                this.state.currentRoot.displayName
+                                            }</span>:</div>
+                                        ) : <div>For all organisation units:</div>}
+                                    <div style={{ marginBottom: -24, marginTop: -16 }}>
+                                        <OrgUnitSelectByLevel
+                                            levels={this.props.levels}
+                                            selected={this.state.selected}
+                                            currentRoot={this.state.currentRoot}
+                                            onUpdateSelection={this.handleSelectionUpdate}
+                                        />
+                                    </div>
+                                    <div>
+                                        <OrgUnitSelectByGroup
+                                            groups={this.props.groups}
+                                            selected={this.state.selected}
+                                            currentRoot={this.state.currentRoot}
+                                            onUpdateSelection={this.handleSelectionUpdate}
+                                        />
+                                    </div>
+                                    <div style={{ float: 'right' }}>
+                                        <OrgUnitSelectAll
+                                            selected={this.state.selected}
+                                            currentRoot={this.state.currentRoot}
+                                            onUpdateSelection={this.handleSelectionUpdate}
+                                        />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </CardText>
-                </Card>
-            </div>
+                        </CardText>
+                    </Card>
+                    <Card style={styles.card}>
+                        <CardText style={{ maxHeight: 250, overflowY: 'auto' }}>
+                            <TreeView label={`Selected (${this.state.selected.length})`}>
+                                <div style={{fontFamily: 'monospace'}}>
+                                {this.state.selected.sort().map(ou => <div key={ou}>{ou}</div>)}
+                                </div>
+                            </TreeView>
+                        </CardText>
+                    </Card>
+                </div>
             </MuiThemeProvider>
         );
     }
@@ -212,10 +248,24 @@ D2Lib.init({ baseUrl })
                 paging: false,
                 fields: 'id,displayName',
             }),
+            d2.models.organisationUnits.list({
+                paging: false,
+                level: 1,
+                fields: 'id,displayName,path,children::isNotEmpty,memberCount',
+                memberCollection: 'dataSets',
+                memberObject: 'TuL8IOPzpHh',
+            }),
+            d2.models.dataSets.get('TuL8IOPzpHh', {
+                paging: false,
+                fields: 'organisationUnits[id,path]',
+            }),
         ])
-            .then(([roots, levels, groups]) => {
+            .then(([roots, levels, groups, rootWithDataSetMembers, dataSetMembers]) => {
                 const root = roots.toArray()[0];
-                render(<OrgUnitSelectExample d2={d2} root={root} levels={levels} groups={groups} />, el);
+                const rootWithMembers = rootWithDataSetMembers.toArray()[0];
+                const selected = dataSetMembers.organisationUnits.toArray().map(ou => ou.path);
+                render(<OrgUnitSelectExample d2={d2} root={root} levels={levels} groups={groups}
+                                             rootWithMembers={rootWithMembers} selected={selected}/>, el);
             });
     })
     .catch(err => {

@@ -14,7 +14,7 @@ export default class extends React.Component {
 
     _selectionChanged(event, selectedOu) {
         this.setState({
-            selected: selectedOu.id,
+            selected: this.state.selected.includes(selectedOu.path) ? [] : [selectedOu.path],
         });
     }
 

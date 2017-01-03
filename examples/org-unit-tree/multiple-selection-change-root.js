@@ -16,19 +16,15 @@ class MultipleSelectionExample extends React.Component {
     }
 
     handleClick(event, orgUnit) {
-        if (this.state.selected.indexOf(orgUnit.id) >= 0) {
+        if (this.state.selected.includes(orgUnit.path)) {
             this.setState(state => {
-                state.selected.splice(state.selected.indexOf(orgUnit.id), 1);
-                return {
-                    selected: state.selected,
-                };
+                state.selected.splice(state.selected.indexOf(orgUnit.path), 1);
+                return { selected: state.selected };
             });
         } else {
             this.setState(state => {
-                state.selected.push(orgUnit.id);
-                return {
-                    selected: state.selected,
-                };
+                state.selected.push(orgUnit.path);
+                return { selected: state.selected };
             });
         }
     }

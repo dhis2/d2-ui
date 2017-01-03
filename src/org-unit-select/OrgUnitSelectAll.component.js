@@ -42,22 +42,22 @@ class OrgUnitSelectAll extends React.Component {
             this.setState({ loading: true });
             this.getDescendantOrgUnits().then(orgUnits => {
                 this.setState({ loading: false });
-                this.addToSelection(orgUnits.toArray().map(ou => ou.id));
+                this.addToSelection(orgUnits);
             });
         } else if (Array.isArray(this.state.cache)) {
             this.props.onUpdateSelection(this.state.cache.slice());
         } else {
             this.setState({ loading: true });
 
-            this.context.d2.models.organisationUnits.list({ fields: 'id', paging: false })
+            this.context.d2.models.organisationUnits.list({ fields: 'id,path', paging: false })
                 .then(orgUnits => {
-                    const ous = orgUnits.toArray().map(ou => ou.id);
+                    const ous = orgUnits.toArray().map(ou => ou.path);
                     this.setState({
                         cache: ous,
                         loading: false,
                     });
 
-                    this.props.onUpdateSelection(ous.slice());
+                    this.props.onUpdateSelection(ous.slice(), orgUnits.toArray().map(ou => ou.path));
                 })
                 .catch(err => {
                     this.setState({ loading: false });
@@ -71,7 +71,7 @@ class OrgUnitSelectAll extends React.Component {
             root: this.props.currentRoot.id,
             paging: false,
             includeDescendants: true,
-            fields: 'id',
+            fields: 'id,path',
         });
     }
 
@@ -80,7 +80,7 @@ class OrgUnitSelectAll extends React.Component {
             this.setState({ loading: true });
             this.getDescendantOrgUnits().then(orgUnits => {
                 this.setState({ loading: false });
-                this.removeFromSelection(orgUnits.toArray().map(ou => ou.id));
+                this.removeFromSelection(orgUnits);
             })
         } else {
             this.props.onUpdateSelection([]);
@@ -112,7 +112,8 @@ OrgUnitSelectAll.propTypes = {
     selected: React.PropTypes.array.isRequired,
 
     // Whenever the selection changes, onUpdateSelection will be called with
-    // one argument: The new array of selected organisation units
+    // two arguments: The new array of selected organisation units, and an
+    // array of the complete paths of all selected org units
     onUpdateSelection: React.PropTypes.func.isRequired,
 
     // If currentRoot is set, only org units that are descendants of the

@@ -41,17 +41,17 @@ class OrgUnitSelectByLevel extends React.Component {
                 d2.models.organisationUnits.list({
                     paging: false,
                     level: level - rootLevel,
-                    fields: 'id',
+                    fields: 'id,path',
                     root: this.props.currentRoot.id,
                 })
-                    .then(orgUnits => orgUnits.toArray().map(orgUnit => orgUnit.id))
-                    .then(orgUnitIds => {
+                    .then(orgUnits => orgUnits.toArray())
+                    .then(orgUnitArray => {
                         log.debug(
-                            `Loaded ${orgUnitIds.length} org units for level ` +
+                            `Loaded ${orgUnitArray.length} org units for level ` +
                             `${relativeLevel} under ${this.props.currentRoot.displayName}`
                         );
                         this.setState({ loading: false });
-                        resolve(orgUnitIds);
+                        resolve(orgUnitArray);
                     })
             } else if (!ignoreCache && this.levelCache.hasOwnProperty(level)) {
                 resolve(this.levelCache[level].slice());
@@ -59,15 +59,15 @@ class OrgUnitSelectByLevel extends React.Component {
                 log.debug(`Loading org units for level ${level}`);
                 this.setState({ loading: true });
 
-                d2.models.organisationUnits.list({ paging: false, level, fields: 'id' })
-                    .then(orgUnits => orgUnits.toArray().map(orgUnit => orgUnit.id))
-                    .then(orgUnitIds => {
-                        log.debug(`Loaded ${orgUnitIds.length} org units for level ${level}`);
+                d2.models.organisationUnits.list({ paging: false, level, fields: 'id,path' })
+                    .then(orgUnits => orgUnits.toArray())
+                    .then(orgUnitArray => {
+                        log.debug(`Loaded ${orgUnitArray.length} org units for level ${level}`);
                         this.setState({ loading: false });
-                        this.levelCache[level] = orgUnitIds;
+                        this.levelCache[level] = orgUnitArray;
 
                         // Make a copy of the returned array to ensure that the cache won't be modified from elsewhere
-                        resolve(orgUnitIds.slice());
+                        resolve(orgUnitArray.slice());
                     })
                     .catch(err => {
                         this.setState({ loading: false });

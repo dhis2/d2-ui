@@ -11,14 +11,14 @@ describe('OrgUnitTree component', () => {
     let rootModel;
 
     beforeEach(() => {
-        rootModel = new Model(new ModelDefinition('organisationUnit', 'organisationUnits', {}, [], {}, [], []));
+        rootModel = new Model(new ModelDefinition({ singular: 'organisationUnit', plural: 'organisationUnits' }, {}, {}, {}, {}));
 
         rootModel.displayName = 'Norway';
     });
 
     it('should pass the displayName as the label to the TreeView', () => {
         const component = shallow(<OrgUnitTree root={rootModel} />);
-        
+
         expect(component.find(TreeView).props().label.props.children[1]).to.equal('Norway');
     });
 });
