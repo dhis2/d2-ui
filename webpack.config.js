@@ -35,7 +35,7 @@ module.exports = {
         formulaeditor: './examples/formula-editor',
         headerbar: './examples/header-bar',
         legend: './examples/legend',
-        translation: './examples/translation',
+        // translation: './examples/translation',
         expressionmanager: './examples/expression-manager',
         groupeditor: './examples/group-editor',
     },
