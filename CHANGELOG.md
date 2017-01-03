@@ -2,6 +2,19 @@
 # D2-UI Changelog
 
 
+## 26.1.0
+###### _January 3rd 2017_
+
+##### Breaking changes
+
+The `selected` and `initiallyExpanded` props of the `OrgUnitTree` component
+must now be an array of org unit _paths_, rather than org unit _IDs_.
+
+If the `selected` prop is specified, it will be used to display a number of
+selected org units within each node. Otherwise, the `memberCount` property of
+each org unit will be displayed, if present.
+
+
 ## 25.5.1
 ###### _November 24th 2016_
 
