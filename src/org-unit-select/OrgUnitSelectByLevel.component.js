@@ -118,7 +118,7 @@ OrgUnitSelectByLevel.propTypes = {
     selected: React.PropTypes.array.isRequired,
 
     // Whenever the selection changes, onUpdateSelection will be called with
-    // one argument: The new array of selected organisation units
+    // one argument: The new array of selected organisation unit paths
     onUpdateSelection: React.PropTypes.func.isRequired,
 
     // If currentRoot is set, only org units that are descendants of the

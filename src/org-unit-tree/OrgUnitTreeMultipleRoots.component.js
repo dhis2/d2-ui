@@ -17,17 +17,32 @@ export default function OrgUnitTreeMultipleRoots(props) {
             </div>
         );
     }
+
+    const root = props.root;
     return (
-        <OrgUnitTree {...props} />
+        <OrgUnitTree root={root} {...props} />
     );
 }
-OrgUnitTreeMultipleRoots.propTypes = Object.assign(
-    {},
-    OrgUnitTree.propTypes,
+
+function isOrgUnitModel(obj) {
+    return obj && obj.modelDefinition && obj.modelDefinition.plural === 'organisationUnits';
+}
+
+function OrgUnitModelValidator(props, propName, componentName) {
+    if (props[propName] && !isOrgUnitModel(props[propName])) {
+        return new Error(`Invalid org unit model supplied to \`${componentName}.${propName}\``);
+    }
+}
+
+function OrgUnitModelArrayElementValidator(propValue, key, componentName, location, propFullName) {
+    if (!isOrgUnitModel(propValue[key])) {
+        return new Error(`Invalid org unit model supplied to \`${componentName}.${propName}\``);
+    }
+}
+
+OrgUnitTreeMultipleRoots.propTypes = Object.assign({}, OrgUnitTree.propTypes,
     {
-        root: React.PropTypes.instanceOf(Model),
-        roots: React.PropTypes.arrayOf(
-            React.PropTypes.instanceOf(Model)
-        ),
+        root: OrgUnitModelValidator,
+        roots: React.PropTypes.arrayOf(OrgUnitModelArrayElementValidator),
     }
 );

@@ -21,16 +21,16 @@ style.button1 = Object.assign({}, style.button, { marginLeft: 0 });
 function addToSelection(orgUnits) {
     const orgUnitArray = Array.isArray(orgUnits) ? orgUnits : orgUnits.toArray();
     const addedOus = orgUnitArray
-        .filter(ou => !this.props.selected.includes(ou.id) && !this.props.selected.includes(ou.path));
+        .filter(ou => !this.props.selected.includes(ou.path));
 
-    this.props.onUpdateSelection(this.props.selected.concat(addedOus.map(ou => ou.path || ou.id)));
+    this.props.onUpdateSelection(this.props.selected.concat(addedOus.map(ou => ou.path)));
 }
 
 function removeFromSelection(orgUnits) {
     const orgUnitArray = Array.isArray(orgUnits) ? orgUnits : orgUnits.toArray();
     const removedOus = orgUnitArray
-        .filter(ou => this.props.selected.includes(ou.id) || this.props.selected.includes(ou.path));
-    const removed = removedOus.map(ou => ou.path || ou.id);
+        .filter(ou => this.props.selected.includes(ou.path));
+    const removed = removedOus.map(ou => ou.path);
     const selectedOus = this.props.selected.filter(ou => !removed.includes(ou));
 
     this.props.onUpdateSelection(selectedOus);

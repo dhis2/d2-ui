@@ -57,7 +57,7 @@ class OrgUnitSelectAll extends React.Component {
                         loading: false,
                     });
 
-                    this.props.onUpdateSelection(ous.slice(), orgUnits.toArray().map(ou => ou.path));
+                    this.props.onUpdateSelection(ous.slice());
                 })
                 .catch(err => {
                     this.setState({ loading: false });
@@ -112,8 +112,7 @@ OrgUnitSelectAll.propTypes = {
     selected: React.PropTypes.array.isRequired,
 
     // Whenever the selection changes, onUpdateSelection will be called with
-    // two arguments: The new array of selected organisation units, and an
-    // array of the complete paths of all selected org units
+    // one argument: The new array of selected organisation unit paths
     onUpdateSelection: React.PropTypes.func.isRequired,
 
     // If currentRoot is set, only org units that are descendants of the
