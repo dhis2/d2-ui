@@ -15,11 +15,10 @@ function getBaseUrl(predefLocation) {
 
 export function initHeaderBar(domElement, apiLocation, config = {}) {
     const baseUrl = getBaseUrl(apiLocation);
-    const { noLoadingIndicator, schemas = [], ...other } = config;
+    const { noLoadingIndicator, ...other } = config;
     const d2Config = {
         ...other,
         baseUrl,
-        schemas,
     };
 
     // Mock d2 for offline header-bar

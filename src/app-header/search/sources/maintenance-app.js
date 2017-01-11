@@ -5,6 +5,7 @@ import { Observable } from 'rx';
 import flatten from 'lodash/fp/flatten';
 import filter from 'lodash/fp/filter';
 import mapValues from 'lodash/fp/mapValues';
+import memoize from 'lodash/fp/memoize';
 import { prepareMenuItems, translate$, translateMenuItemNames, getBaseUrlFromD2 } from '../../headerBar.store';
 import { config, getInstance } from 'd2/lib/d2';
 import camelCaseToUnderscores from 'd2-utilizr/lib/camelCaseToUnderscores';
@@ -72,6 +73,7 @@ const getMenuItemsFromModelName = curry((section, modelName) => {
         icon: '/icons/dhis-web-maintenance.png',
         description: '',
         parentApp: 'dhis-web-maintenance',
+        modelName,
     };
 });
 
@@ -85,14 +87,30 @@ const sectionsWithModels = filter(filterOutEmptyValueLists, toKeyValueArray(getM
 const getMenuItemConfigsForSection = ([section, models]) => map(getMenuItemsFromModelName(section), models);
 const createAppsListForMenu = compose(flatten, map(getMenuItemConfigsForSection));
 
+const createFilterItemsBasedOnAuthorities = (d2, requireAddToView) => ({ modelName }) => (requireAddToView === false) || d2.currentUser.canCreate(d2.models[modelName])
+const getRequireAddToView = memoize((d2) => d2.system.settings.get('keyRequireAddToView')
+    .catch((error) => {
+        if (error.message === 'The requested systemSetting has no value or does not exist.') {
+            return false;
+        }
+        return Promise.reject(error);
+    }));
+
 // Replace this with a proper source for there values
 export default function addDeepLinksForMaintenance(apps) {
-    const maintenanceDeepLinks$ = Observable.just(createAppsListForMenu(sectionsWithModels));
+    const maintenanceDeepLinks$ = Observable
+        .just(createAppsListForMenu(sectionsWithModels))
+        .flatMap(items => (
+            getInstance()
+                .then(d2 => Promise.all([d2, getRequireAddToView(d2)]))
+                .then(([d2, requireAddToView]) => items.filter(createFilterItemsBasedOnAuthorities(d2, requireAddToView)))
+        ));
 
     return Observable
         .combineLatest(translate$, maintenanceDeepLinks$, translateMenuItemNames)
-        .flatMap((items) => {
-            return Observable.fromPromise(getInstance().then((d2) => prepareMenuItems(getBaseUrlFromD2(d2), items)));
-        })
+        .flatMap((items) => (
+            getInstance()
+                .then(d2 => prepareMenuItems(getBaseUrlFromD2(d2), items))
+        ))
         .map(maintenanceItems => [].concat(apps, maintenanceItems));
 }
