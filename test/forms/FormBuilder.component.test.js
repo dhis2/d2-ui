@@ -2,7 +2,7 @@ import React from 'react';
 import FormBuilder from '../../src/forms/FormBuilder.component';
 import { shallow } from 'enzyme';
 import { getStubContext } from '../../config/inject-theme';
-import Textfield from 'material-ui/Textfield/Textfield';
+import TextField from 'material-ui/TextField/TextField';
 import AsyncValidatorRunner from '../../src/forms/AsyncValidatorRunner';
 
 describe('FormBuilder component', () => {
@@ -16,7 +16,7 @@ describe('FormBuilder component', () => {
 
     beforeEach(() => {
         const fields = [
-            { name: 'name', component: Textfield, value: 'John' },
+            { name: 'name', component: TextField, value: 'John' },
         ];
 
         function onUpdateField(fieldName, value) {
@@ -32,13 +32,13 @@ describe('FormBuilder component', () => {
 
     describe('field rendering', () => {
         it('should render a the Textfield', () => {
-            const textField = formComponent.find(Textfield);
+            const textField = formComponent.find(TextField);
 
             expect(textField).to.have.length(1);
         });
 
         it('should pass the value to the Textfield', () => {
-            const textField = formComponent.find(Textfield);
+            const textField = formComponent.find(TextField);
 
             expect(textField.props().value).to.equal('John');
         });
@@ -46,12 +46,12 @@ describe('FormBuilder component', () => {
         it('should pass the new value to the TextField when props has changed', () => {
             formComponent.setProps({
                 fields: [
-                    {name: 'name', component: Textfield, value: 'Mike'},
+                    {name: 'name', component: TextField, value: 'Mike'},
                 ],
             });
             formComponent.update();
 
-            const textField = formComponent.find(Textfield);
+            const textField = formComponent.find(TextField);
 
             expect(textField.props().value).to.equal('Mike');
         });
@@ -66,7 +66,7 @@ describe('FormBuilder component', () => {
             fields = [
                 {
                     name: 'name',
-                    component: Textfield,
+                    component: TextField,
                     value: 'John',
                     validators: [
                         {
@@ -92,7 +92,7 @@ describe('FormBuilder component', () => {
         });
 
         it('should mark the field as valid', () => {
-            const textField = formComponent.find(Textfield);
+            const textField = formComponent.find(TextField);
 
             expect(textField.props().errorText).to.be.undefined;
         });
@@ -103,7 +103,7 @@ describe('FormBuilder component', () => {
                     fields: [
                         {
                             name: 'name',
-                            component: Textfield,
+                            component: TextField,
                             value: '',
                             validators: [
                                 {
@@ -121,7 +121,7 @@ describe('FormBuilder component', () => {
             });
 
             it('should pass the error message to the text field', () => {
-                expect(formComponent.find(Textfield).first().props().errorText).to.equal('field_is_required');
+                expect(formComponent.find(TextField).first().props().errorText).to.equal('field_is_required');
             });
 
             it('should mark the form as invalid', () => {
@@ -131,7 +131,7 @@ describe('FormBuilder component', () => {
 
         describe('when changing textfield value', () => {
             it('should run the validator on value change', () => {
-                const textField = formComponent.find(Textfield);
+                const textField = formComponent.find(TextField);
 
                 textField.props().onChange({ target: { value: 'John1' }});
 
@@ -139,7 +139,7 @@ describe('FormBuilder component', () => {
             });
 
             it('should emit the value of the field from the form', () => {
-                const textField = formComponent.find(Textfield);
+                const textField = formComponent.find(TextField);
 
                 textField.props().onChange({ target: { value: 'John1' }});
 
@@ -147,7 +147,7 @@ describe('FormBuilder component', () => {
             });
 
             it('should run the validator with an empty value', () => {
-                const textField = formComponent.find(Textfield);
+                const textField = formComponent.find(TextField);
 
                 textField.props().onChange({ target: { value: '' }});
 
@@ -155,7 +155,7 @@ describe('FormBuilder component', () => {
             });
 
             it('should still emit the value from the form when it is invalid', () => {
-                const textField = formComponent.find(Textfield);
+                const textField = formComponent.find(TextField);
 
                 textField.props().onChange({ target: { value: 'ddd' }});
 
@@ -163,7 +163,7 @@ describe('FormBuilder component', () => {
             });
 
             it('should not run the validator when the values are the same', () => {
-                const textField = formComponent.find(Textfield);
+                const textField = formComponent.find(TextField);
 
                 textField.props().onChange({ target: { value: 'John' }});
 
@@ -171,7 +171,7 @@ describe('FormBuilder component', () => {
             });
 
             it('should still emit the value when the values are the same', () => {
-                const textField = formComponent.find(Textfield);
+                const textField = formComponent.find(TextField);
 
                 textField.props().onChange({ target: { value: 'John' }});
 
@@ -233,7 +233,7 @@ describe('FormBuilder component', () => {
 
         describe('onUpdateFormStatus callback', () => {
             it('should emit the formStatus when a field was changed and the value is valid', () => {
-                const textField = formComponent.find(Textfield);
+                const textField = formComponent.find(TextField);
 
                 textField.props().onChange({ target: { value: 'John1' }});
 
@@ -241,7 +241,7 @@ describe('FormBuilder component', () => {
             });
 
             it('should emit the formStatus when a field was changed but the value is invalid', () => {
-                const textField = formComponent.find(Textfield);
+                const textField = formComponent.find(TextField);
 
                 textField.props().onChange({ target: { value: '' }});
 
@@ -260,7 +260,7 @@ describe('FormBuilder component', () => {
             fields = [
                 {
                     name: 'name',
-                    component: Textfield,
+                    component: TextField,
                     value: 'John',
                     asyncValidators: [
                         sinon.spy(() => new Promise(() => {}))
@@ -296,7 +296,7 @@ describe('FormBuilder component', () => {
         });
 
         it('should emit the formStatus with validating set to true before running the async validators', () => {
-            const textField = formComponent.find(Textfield);
+            const textField = formComponent.find(TextField);
 
             textField.props().onChange({ target: { value: 'John1' }});
 
@@ -305,7 +305,7 @@ describe('FormBuilder component', () => {
 
         // TODO: Incorrectly(?) sets pristine state to true?
         it('should emit the formStatus after the async validators complete', (done) => {
-            const textField = formComponent.find(Textfield);
+            const textField = formComponent.find(TextField);
 
             fields[0].asyncValidators[0] = sinon.spy(() => Promise.resolve('Success'));
 
@@ -328,7 +328,7 @@ describe('FormBuilder component', () => {
 
         // TODO: Incorrectly(?) sets pristine state to true?
         it('should emit the formStatus after the async validators failed', (done) => {
-            const textField = formComponent.find(Textfield);
+            const textField = formComponent.find(TextField);
 
             fields[0].asyncValidators[0] = sinon.spy(() => Promise.reject('Failure'));
 
@@ -357,7 +357,7 @@ describe('FormBuilder component', () => {
         });
 
         it('should call the onUpdateField after the async validators completed', (done) => {
-            const textField = formComponent.find(Textfield);
+            const textField = formComponent.find(TextField);
 
             fields[0].asyncValidators[0] = sinon.spy(() => Promise.resolve('Success'));
 
@@ -377,7 +377,7 @@ describe('FormBuilder component', () => {
         });
 
         it('should call the onUpdateField after the async validators failed', (done) => {
-            const textField = formComponent.find(Textfield);
+            const textField = formComponent.find(TextField);
 
             fields[0].asyncValidators[0] = sinon.spy(() => Promise.reject('Failure'));
 
@@ -397,7 +397,7 @@ describe('FormBuilder component', () => {
         });
 
         it('should cancel the running async validators when the value is changed again', () => {
-            const textField = formComponent.find(Textfield);
+            const textField = formComponent.find(TextField);
 
             fields[0].asyncValidators[0] = sinon.spy(() => new Promise(() => {}));
 
@@ -425,7 +425,7 @@ describe('FormBuilder component', () => {
             fields = [
                 {
                     name: 'name',
-                    component: Textfield,
+                    component: TextField,
                     value: 'John',
                     props: {
                         changeEvent: 'onBlur',
@@ -450,7 +450,7 @@ describe('FormBuilder component', () => {
         it('should not run the handler for onChange', () => {
             sinon.spy(FormBuilder.prototype, 'updateFieldState');
 
-            const textField = formComponent.find(Textfield);
+            const textField = formComponent.find(TextField);
             textField.props().onChange({ target: { value: 'John2' }});
             textField.props().onBlur({ target: { value: 'John2' }});
 
