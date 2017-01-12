@@ -8,7 +8,7 @@ before_script:
 script:
 - npm run build
 - '[ "${TRAVIS_PULL_REQUEST}" = "false" ] || travis_terminate 0'
-- 'npm run coverage && codeclimate-test-reporter < ./coverage/lcov.info'
+- npm run coverage && codeclimate-test-reporter < ./coverage/lcov.info
 notifications:
   slack:
     secure: KxP+fsA7PMmmoS+/F+8Sg0U7EZR0C2y4/QK4PL5XvgYqjesqWhA6VXBfh+UC3QjXozLEHHgIcknYpypnTHoR/yHISDS2yUj9rcYhuwa1qTYzuTuFrgWAAAXUVfe0tuCLqMIAOprUMAzKCkExpimgTbotiSbH25ZsPof4iDB8e3ItSO1dJ9khakFswCBCzrBeBMZBKByANBlk2NvKvZnsnem+gjcRgHwDROfIgeqWhZxlgrULHkRGaAS1+/7UzHg6fM5VzB3e8s+v+AVOU+Td89M2M75ec2PtE0rxPzpJzTszUR4qGFpa3ofWXc4h0pVMTx6iwklTEw+W84FiFKI2ce2nhMzavJplvM/YNvaj7t/LGd6rR+Vqp3wOb5WHaZ6dvul8388PCk7OEKynN9tZe0KdgfA5T2cCL7SvJwwygmmnbWc7acUBYivl9wOFE6gY/QNXZ7jtMKbagrDQsggMP2aVQNrAsLkXHAm0JhZRjOfaaERrFLhaXHzlJEzJ4vClDVzBiBw0XzYKkjHCK6d9ZEtZNhM5GIA0sbf39HMtM3+blllpgOakY+/NgvTtDymCLcxNj4TfQDEPnJV8oMzT5pm9Av1fv79z9b3T4bUKkOJa7pQo1y281sL98MyRwOqtSxPJpsFodZFAKJJGTKerQA+1d6+d/KY/8DAh1v491js=
@@ -21,7 +21,7 @@ deploy:
   provider: npm
   email: mark@dhis2.org
   api_key:
-    secure: E4v33CS/hPzXQjZHjzmzU1CpW/eyrA4RopXR7/f9cRNpIHOITTQsRvBtgbJ9cCAZ37PbVqzlGeI7QV6M6DZrMV4CyVple9zQwn8UocKYTxHxIr/qZj2UxrppGcj2+967zgDQXqQm6/rD2IvIDQaPj9UUXd5ohAEOzmkbIZ4VYTgbQit7/lTPIl9fWThlNVuAbZE+Lco41wBhzQeAsr+BFqQTm2L3gDnvZo0B2HvOIkukJQD0SdxFZ+nYtjoE0G8c8fJQ0AmTcsUiS7+Y+4mmQl5nz4Ma2YxHelxHJTl6cnRUg4g7ZZR2qSGJHhFgwT5fu23XelxX/CXRL9M48lO5kQhqufojQyAQiVHWjhucnt83KlpoAX7AC913GZabHBJXEasQtdhZlmzQaER47I0FnlwcL14gVsB4N1rFRNWKEowYyV/VLtVNJvdb/CTl4zFZOc/DoFIEsQxkB0l+/t+59DrXaxN9+0UXiY60T9r4Lp9pwWVGz/9oJn7NCbjWEEXmw7QjgT/QOzBap0/1Nb3jcE2MmKFl7Di1HBhr/YUOeN+tR/IH6Q6Bteu2612fqZVVWBZAhtMnNdKN1XbfDBOughzDzsBgZyz+wOptsG/Ud79EMQlZ1hvz8NzBZ3P3I+4c3JyV78ahPAZxSgwOjSnJn2N90hV2EgSUFzddxnNCZpY=
+    secure: dYQZHukV1eQhkFOXqn8nkKXRws1KIlEZ8a4zws49K0nWQb86hrArW4T+qsBXd5Fo9Z2qyENdbfERIPk9t7iYGwNolKBEtb14AbK/oHUQZ2/Rof0PRhiZH8G1m02b3QzIEnapFZvyVxPSARXC1qM7uw9fci6Xe0UX6mRJUB2OiGCJmop5J+CN1mGS+DUEg4M0eOBX4DkbSUgtIAFi92xi1zerQ+P23MT+W+3giAvB6DcvBerSrLXwX9Bkxn7xE0cf17xhto1WRZ9ryGirUOZMNX5KaPizHNGCBbFXvgl07GSy0QaS8SoBuSvS7nWf9tUuG897BpL2ist5dviTRYp8SBQlkDYRKj+d0oa0BgFYr6gNdsB9qHS49LM+xB8PuXFhNg5+kdz8dErSNvc0nIXPZTl01ANIMzgxt3mYBt+ZrZ4MAQP2puUIIUJsQJEzbY4SUGG/vkz4T1PxYHtp4arULgv/x7JtW6xige2M7iwEjBv3hrSofqg3EOk4O4wCNRmTe84U+LLOSX+1OyqDshCWpypz0QL+iv5UFO2/s644bvYSghlhB8oxyuFbp7xaijxv3SDA5gP6jRYw0l5qMP3yV5xj7LISUQaCUXWDpLhq/zNtIf/laPtT0swfrDpvwE+KIqAv52I8Rkb78MMZZ3Vf3WTIJR5z3kWvFbSpK+JSh2o=
   on:
     tags: true
     repo: dhis2/d2-ui
