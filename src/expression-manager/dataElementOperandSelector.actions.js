@@ -11,7 +11,7 @@ const createFakePager = response => {
                 return getInstance()
                     .then(d2 => {
                         if (this.searchValue) {
-                            return d2.Api.getApi().get('dataElementOperands', { page: pager.page, fields: 'id,displayName', filter: ['dataElement.domainType:eq:AGGREGATE', `name:ilike:${encodeURIComponent(this.searchValue)}`], totals: true });
+                            return d2.Api.getApi().get('dataElementOperands', { page: pager.page, fields: 'id,displayName', filter: ['dataElement.domainType:eq:AGGREGATE', `name:ilike:${this.searchValue}`], totals: true });
                         }
 
                         return d2.Api.getApi().get('dataElementOperands', { page: pager.page, fields: 'id,displayName', totals: true, filter: ['dataElement.domainType:eq:AGGREGATE'] });
@@ -39,7 +39,7 @@ export function subscribeDataElementActionsToStore(dataElementOperandSelectorAct
             const searchPromise = getInstance()
                 .then(d2 => {
                     if (action.data) {
-                        return d2.Api.getApi().get('dataElementOperands', { fields: 'id,displayName', totals: true, filter: ['dataElement.domainType:eq:AGGREGATE', `name:ilike:${encodeURIComponent(action.data)}`] });
+                        return d2.Api.getApi().get('dataElementOperands', { fields: 'id,displayName', totals: true, filter: ['dataElement.domainType:eq:AGGREGATE', `name:ilike:${action.data}`] });
                     }
                     return d2.Api.getApi().get('dataElementOperands', { fields: 'id,displayName', totals: true, filter: ['dataElement.domainType:eq:AGGREGATE'] });
                 })
