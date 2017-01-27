@@ -41,7 +41,7 @@
     "codeclimate-test-reporter": "^0.4.0",
     "colors": "^1.1.2",
     "css-loader": "^0.26.1",
-    "d2": "^26.0.4",
+    "d2": "^26.1.7",
     "d2-utilizr": "^0.2.11",
     "d3-format": "^1.0.2",
     "d3-scale": "^1.0.3",

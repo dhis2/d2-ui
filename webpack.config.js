@@ -22,23 +22,24 @@ try {
 
 module.exports = {
     context: __dirname,
-    entry: isProduction() ?  {
-        'header-bar': './src/app-header/index.js',
-    } : {
-        treeview: './examples/tree-view',
-        datatable: './examples/data-table',
-        orgunittree: './examples/org-unit-tree',
-        orgunitselect: './examples/org-unit-select',
-        sidebar: './examples/sidebar',
-        iconpicker: './examples/icon-picker',
-        formbuilder: './examples/form-builder',
-        formulaeditor: './examples/formula-editor',
-        headerbar: './examples/header-bar',
-        legend: './examples/legend',
-        // translation: './examples/translation',
-        expressionmanager: './examples/expression-manager',
-        groupeditor: './examples/group-editor',
-    },
+    entry: isProduction() ? {
+            'header-bar': './src/app-header/index.js',
+        } : {
+            treeview: './examples/tree-view',
+            datatable: './examples/data-table',
+            orgunittree: './examples/org-unit-tree',
+            orgunitselect: './examples/org-unit-select',
+            sidebar: './examples/sidebar',
+            iconpicker: './examples/icon-picker',
+            formbuilder: './examples/form-builder',
+            formulaeditor: './examples/formula-editor',
+            headerbar: './examples/header-bar',
+            legend: './examples/legend',
+            // translation: './examples/translation',
+            expressionmanager: './examples/expression-manager',
+            groupeditor: './examples/group-editor',
+            periodpicker: './examples/period-picker',
+        },
     output: {
         library: 'Dhis2HeaderBar',
         path: path.join(__dirname, '/dist'),
