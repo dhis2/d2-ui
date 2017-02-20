@@ -1,11 +1,11 @@
 import React from 'react';
 import {hcl} from 'd3-color';
 
-export default function Color (props) {
+export default function Color ({ color, value }) {
     const styles = {
         color: {
-            backgroundColor: props.value,
-            color: hcl(props.value).l < 70 ? '#fff' : '#000',
+            backgroundColor: value,
+            color: hcl(value).l < 70 ? '#FFF' : '#000',
             textAlign: 'center',
             position: 'relative',
             width: 90,
@@ -16,6 +16,6 @@ export default function Color (props) {
     };
 
     return (
-        <div style={styles.color}>{props.value}</div>
+        <div style={styles.color}>{value}</div>
     );
 };
