@@ -1,24 +1,34 @@
-import { createClass, default as React } from 'react';
-import Translate from '../i18n/Translate.mixin';
-import AccessMaskSwitches from './AccessMaskSwitches.component';
-import { config } from 'd2/lib/d2';
+/* eslint react/jsx-no-bind: 0 */
 
-config.i18n.strings.add('public_access');
+import React, { PropTypes } from 'react';
+import Rule from './Rule.component';
 
-export default createClass({
-    propTypes: Object.assign({}, AccessMaskSwitches.propTypes),
+function constructSecondaryText(canView, canEdit) {
+    if (canView) {
+        return canEdit
+            ? 'Anyone can find, view and edit'
+            : 'Anyone can find and view';
+    }
 
-    mixins: [Translate],
+    return 'No access';
+}
 
-    render() {
-        return (
-            <AccessMaskSwitches
-                label={this.getTranslation('public_access')}
-                accessMask={this.props.publicAccess}
-                onChange={this.props.onChange}
-                name="publicAccess"
-                disabled={this.props.disabled}
-                />
-        );
-    },
-});
+const PublicAccess = ({ canView, canEdit, disabled, onChange }) => (
+    <Rule
+        accessType="public"
+        disabled={disabled}
+        primaryText="Public"
+        secondaryText={constructSecondaryText(canView, canEdit)}
+        onChange={onChange}
+        accessOptions={{ canView, canEdit }}
+    />
+);
+
+PublicAccess.propTypes = {
+    canView: PropTypes.bool.isRequired,
+    canEdit: PropTypes.bool.isRequired,
+    onChange: PropTypes.func.isRequired,
+    disabled: PropTypes.bool,
+};
+
+export default PublicAccess;

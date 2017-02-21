@@ -1,120 +1,166 @@
-import { PropTypes, createClass, default as React } from 'react';
-import Heading from '../headings/Heading.component';
+/* eslint react/jsx-no-bind: 0 */
+
+import { PropTypes, default as React } from 'react';
+import Divider from 'material-ui/Divider';
+import Subheader from 'material-ui/Subheader';
+import UserSearch from './UserSearch.component';
 import CreatedBy from './CreatedBy.component';
-import ExternalAccess from './ExternalAccess.component';
 import PublicAccess from './PublicAccess.component';
-import sharingActions from './sharing.actions';
-import sharingStore from './sharing.store';
-import UserGroupAccesses from './UserGroupAccesses.component';
-import LoadingMask from '../loading-mask/LoadingMask.component';
-import AutoComplete from '../auto-complete/AutoComplete.component';
-import { config } from 'd2/lib/d2';
-import log from 'loglevel';
+import ExternalAccess from './ExternalAccess.component';
+import UserGroupAccess from './UserGroupAccess.component';
 
-config.i18n.strings.add('external_access');
-config.i18n.strings.add('public_access');
-
-function noop() {}
-
-export default createClass({
-    propTypes: {
-        objectToShare: PropTypes.shape({
-            name: PropTypes.string.isRequired,
-            user: PropTypes.object.isRequired,
-        }).isRequired,
+const styles = {
+    objectName: {
+        padding: '16px 0px 8px',
+        color: '#818181',
+        fontWeight: 400,
+        fontSize: '2rem',
     },
+    createdBy: {
+        color: '#818181',
+    },
+    titleBodySpace: {
+        paddingTop: 50,
+    },
+    rules: {
+        height: '200px',
+        overflowY: 'scroll',
+    },
+};
 
-    getInitialState() {
-        return {
-            objectToShare: null,
+class Sharing extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            publicCanView: this.props.publicCanView,
+            publicCanEdit: this.props.publicCanEdit,
+            isSharedExternally: this.props.isSharedExternally,
+            accesses: this.props.accesses,
         };
-    },
+    }
 
-    componentWillMount() {
-        sharingActions.loadObjectSharingState(this.props.objectToShare)
-            .subscribe(noop, (error) => {
-                log.error(error.message);
-            });
+    publicAccessChanged(publicCanView, publicCanEdit) {
+        this.setState({
+            publicCanView,
+            publicCanEdit,
+        }, () => { this.postChangedObject(); });
+    }
 
-        this.disposable = sharingStore
-            .subscribe((newState) => {
-                this.setState({
-                    objectToShare: newState,
-                });
-            });
-    },
+    externalAccessChanged(isSharedExternally) {
+        this.setState({
+            isSharedExternally,
+        }, () => { this.postChangedObject(); });
+    }
 
-    componentWillReceiveProps(newProps) {
-        sharingActions.loadObjectSharingState(newProps.objectToShare);
-    },
+    accessRulesChanged(id, canView, canEdit) {
+        const accesses = this.state.accesses.map(accessRule => (
+            accessRule.id === id ? { ...accessRule, canView, canEdit } : accessRule
+        ));
 
-    componentWillUnmount() {
-        this.disposable && this.disposable.dispose();
-    },
+        this.setState({
+            accesses,
+        }, () => { this.postChangedObject(); });
+    }
+
+    addUserGroupAccess(userGroup) {
+        const accesses = this.state.accesses;
+        accesses.push(userGroup);
+
+        this.setState({
+            accesses,
+        }, () => { this.postChangedObject(); });
+    }
+
+    removeUserGroupAccess(userGroupId) {
+        const accesses = this.state.accesses.filter(userGroup => userGroup.id !== userGroupId);
+        this.setState({
+            accesses,
+        }, () => { this.postChangedObject(); });
+    }
+
+    postChangedObject() {
+        this.props.onSharingChanged({
+            authorOfSharableItem: this.props.authorOfSharableItem,
+            nameOfSharableItem: this.props.nameOfSharableItem,
+            canSetPublicAccess: this.props.canSetPublicAccess,
+            canSetExternalAccess: this.props.canSetExternalAccess,
+            ...this.state,
+        });
+    }
 
     render() {
-        const loadingMaskStyle = {
-            position: 'relative',
-        };
-
-        if (!this.state.objectToShare) {
-            return (
-                <LoadingMask style={loadingMaskStyle} size={1} />
-            );
-        }
-
-        function doesNotContainItemWithId(collection = []) {
-            return function checkForItemWithId(object = {}) {
-                return collection.every(item => item.id !== object.id);
-            };
-        }
-
-        const canSetExternalAccess = () => {
-            return Boolean(this.state.objectToShare.meta && this.state.objectToShare.meta.allowExternalAccess);
-        };
-
-        const canSetPublicAccess = () => {
-            return Boolean(this.state.objectToShare.meta && this.state.objectToShare.meta.allowPublicAccess);
-        };
-
-        // TODO: Is it true that the user should not be able to see externalAccess when he/she can not set it?
-        const getExternalAccessValue = () => {
-            if (canSetExternalAccess()) {
-                return this.state.objectToShare.externalAccess;
-            }
-            return false;
-        };
-
         return (
             <div>
-                <Heading text={this.props.objectToShare.name} level={2} />
-                <CreatedBy user={this.state.objectToShare.user} />
-                <div>
-                    <AutoComplete forType="userGroup"
-                      onSuggestionClicked={this.addUserGroup}
-                      filterForSuggestions={doesNotContainItemWithId(this.state.objectToShare.userGroupAccesses)}
+                <div style={styles.objectName}>{this.props.nameOfSharableItem}</div>
+                <CreatedBy user={this.props.authorOfSharableItem} />
+                <div style={styles.titleBodySpace} />
+                <Subheader>[Who has access]</Subheader>
+                <Divider />
+                <div style={styles.rules}>
+                    <PublicAccess
+                        canView={this.state.publicCanView}
+                        canEdit={this.state.publicCanEdit}
+                        disabled={!this.props.canSetPublicAccess}
+                        onChange={(accessRules) => {
+                            this.publicAccessChanged(accessRules.canView, accessRules.canEdit);
+                        }}
                     />
+                    <Divider />
+                    <ExternalAccess
+                        canView={this.state.isSharedExternally}
+                        disabled={!this.props.canSetExternalAccess}
+                        onChange={(accessRules) => {
+                            this.externalAccessChanged(accessRules.canView);
+                        }}
+                    />
+                    <Divider />
+                    { this.state.accesses.map((accessRules, index) =>
+                        <div key={index}>
+                            <UserGroupAccess
+                                nameOfGroup={accessRules.displayName}
+                                groupType={accessRules.type}
+                                canView={accessRules.canView}
+                                canEdit={accessRules.canEdit}
+                                onRemove={() => { this.removeUserGroupAccess(accessRules.id); }}
+                                onChange={(newAccessRules) => {
+                                    this.accessRulesChanged(accessRules.id, newAccessRules.canView,
+                                                            newAccessRules.canEdit);
+                                }}
+                            />
+                            <Divider />
+                        </div>
+                    )}
                 </div>
-                <ExternalAccess disabled={!canSetExternalAccess()} externalAccess={getExternalAccessValue()} onChange={this.updatedExternalAccess} />
-                <PublicAccess disabled={!canSetPublicAccess()} publicAccess={this.state.objectToShare.publicAccess} onChange={this.updatePublicAccess} />
-                <UserGroupAccesses userGroupAccesses={this.state.objectToShare.userGroupAccesses} onChange={this.updateUserGroupAccesses} />
+                <Divider />
+                <UserSearch
+                    onSearch={this.props.onSearch}
+                    addUserGroupAccess={this.addUserGroupAccess.bind(this)}
+                />
             </div>
         );
-    },
+    }
+}
 
-    addUserGroup(userGroup) {
-        sharingActions.userGroupAcessesChanged(this.state.objectToShare.userGroupAccesses.concat(userGroup));
-    },
+Sharing.propTypes = {
+    authorOfSharableItem: PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+    }).isRequired,
+    nameOfSharableItem: PropTypes.string.isRequired,
+    canSetPublicAccess: PropTypes.bool.isRequired,
+    canSetExternalAccess: PropTypes.bool.isRequired,
+    publicCanView: PropTypes.bool.isRequired,
+    publicCanEdit: PropTypes.bool.isRequired,
+    isSharedExternally: PropTypes.bool.isRequired,
+    accesses: PropTypes.arrayOf(PropTypes.shape({
+        type: PropTypes.oneOf(['user', 'userGroup']).isRequired,
+        id: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        canView: PropTypes.bool.isRequired,
+        canEdit: PropTypes.bool.isRequired,
+    })).isRequired,
+    onSharingChanged: PropTypes.func.isRequired,
+    onSearch: PropTypes.func.isRequired,
+};
 
-    updateUserGroupAccesses(userGroupAccesses) {
-        sharingActions.userGroupAcessesChanged(userGroupAccesses);
-    },
-
-    updatePublicAccess(publicAccessValue) {
-        sharingActions.publicAccessChanged(publicAccessValue);
-    },
-
-    updatedExternalAccess(externalAccessValue) {
-        sharingActions.externalAccessChanged(externalAccessValue);
-    },
-});
+export default Sharing;

@@ -1,3 +1,7 @@
 {
-  "extends": "dhis2"
+  "extends": "dhis2",
+  "env": { "browser": true },
+  "globals": {
+    "DHIS_CONFIG": true,
+  },
 }

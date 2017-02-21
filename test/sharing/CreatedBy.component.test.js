@@ -1,4 +1,4 @@
-import React from 'react';
+/*import React from 'react';
 import {getStubContext} from '../../config/inject-theme';
 import CreatedBy from '../../src/sharing/CreatedBy.component';
 
@@ -33,3 +33,4 @@ describe('Sharing: CreatedBy component', () => {
         expect(createdByComponent.text()).to.equal('created_by_translated: ');
     });
 });
+*/

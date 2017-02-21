@@ -1,3 +1,4 @@
+/*
 import Action from '../action/Action';
 import sharingStore from './sharing.store';
 import { getInstance as getD2 } from 'd2/lib/d2';
@@ -117,3 +118,4 @@ actions.saveChangedState
     });
 
 export default actions;
+*/

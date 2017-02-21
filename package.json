@@ -29,6 +29,7 @@
   "devDependencies": {
     "babel-cli": "^6.18.0",
     "babel-core": "^6.17.0",
+    "babel-eslint": "^7.1.1",
     "babel-loader": "^6.2.5",
     "babel-plugin-istanbul": "3.1.1",
     "babel-plugin-transform-class-properties": "^6.16.0",
@@ -47,6 +48,9 @@
     "d3-scale": "^1.0.3",
     "draft-js": "^0.9.1",
     "enzyme": "^2.5.1",
+    "eslint": "^3.13.1",
+    "eslint-config-dhis2": "^2.1.0",
+    "eslint-plugin-react": "^6.9.0",
     "loglevel": "^1.4.1",
     "material-ui": "0.15.4",
     "mocha": "^3.2.0",

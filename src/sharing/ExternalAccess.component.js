@@ -1,33 +1,24 @@
-import React, { PropTypes, createClass } from 'react';
-import Translate from '../i18n/Translate.mixin';
-import Toggle from 'material-ui/Toggle/Toggle';
-import { config } from 'd2/lib/d2';
+/* eslint react/jsx-no-bind: 0 */
 
-config.i18n.strings.add('external_access');
+import React, { PropTypes } from 'react';
+import Rule from './Rule.component';
 
-export default createClass({
-    propTypes: {
-        externalAccess: PropTypes.string.isRequired,
-        disabled: PropTypes.bool,
-        onChange: PropTypes.func.isRequired,
-    },
+const ExternalAccess = ({ canView, disabled, onChange }) => (
+    <Rule
+        accessType="external"
+        disabled={disabled}
+        disableWritePermission
+        primaryText="External access"
+        secondaryText={canView ? 'Anyone can view without a login' : 'No access'}
+        onChange={onChange}
+        accessOptions={{ canView }}
+    />
+);
 
-    mixins: [Translate],
+ExternalAccess.propTypes = {
+    canView: PropTypes.bool.isRequired,
+    onChange: PropTypes.func.isRequired,
+    disabled: PropTypes.bool,
+};
 
-    onToggle() {
-        this.props.onChange(this.refs.toggle.isToggled());
-    },
-
-    render() {
-        return (
-            <Toggle
-                ref="toggle"
-                name="externalAccess"
-                label={this.getTranslation('external_access')}
-                checked={this.props.externalAccess}
-                onToggle={this.onToggle}
-                disabled={this.props.disabled}
-            />
-        );
-    },
-});
+export default ExternalAccess;

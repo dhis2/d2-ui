@@ -30,6 +30,7 @@ module.exports = {
         orgunittree: './examples/org-unit-tree',
         orgunitselect: './examples/org-unit-select',
         sidebar: './examples/sidebar',
+        sharing: './examples/sharing',
         iconpicker: './examples/icon-picker',
         formbuilder: './examples/form-builder',
         formulaeditor: './examples/formula-editor',

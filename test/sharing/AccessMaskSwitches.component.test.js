@@ -1,4 +1,4 @@
-import React from 'react';
+/*import React from 'react';
 import {getStubContext} from '../../config/inject-theme';
 import AccessMaskSwitches from '../../src/sharing/AccessMaskSwitches.component';
 import Toggle from 'material-ui/Toggle/Toggle';
@@ -139,3 +139,4 @@ describe('Sharing: AccessMaskSwitches component', () => {
         });
     });
 });
+*/

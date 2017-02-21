@@ -1,4 +1,4 @@
-import React from 'react';
+/*import React from 'react';
 import {getStubContext} from '../../config/inject-theme';
 import PublicAccess from '../../src/sharing/PublicAccess.component';
 import AccessMaskSwitches from '../../src/sharing/AccessMaskSwitches.component';
@@ -57,3 +57,4 @@ describe('Sharing: PublicAccess component', () => {
         expect(onChangeSpy).to.be.calledOnce;
     });
 });
+*/
