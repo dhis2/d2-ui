@@ -1,4 +1,4 @@
-import React, { isValidElement } from 'react';
+import React, { isValidElement, PureComponent, PropTypes } from 'react';
 import Color from './Color.component';
 import Translate from '../../i18n/Translate.component';
 import addD2Context from '../../component-helpers/addD2Context';
@@ -30,13 +30,33 @@ function getDateToShowInList(value, locale = 'en') {
     return value.substr(0, 19).replace('T', ' ');
 }
 
-const DateValue = addD2Context(function ({ value }, { d2 }) {
-    const displayDate = getDateToShowInList(value, d2.currentUser.uiLocale);
+class DateValue extends PureComponent {
+    constructor(props, context) {
+        super(props, context);
 
-    return (
-        <TextValue value={displayDate} />
-    );
-});
+        this.state = {
+            uiLocale: 'en',
+        };
+    }
+
+    componentDidMount() {
+        // Get the locale from the userSettings
+        this.context.d2.currentUser.userSettings
+            .get('keyUiLocale')
+            .then((uiLocale) => this.setState({ uiLocale }));
+    }
+
+    render () {
+        const displayDate = getDateToShowInList(this.props.value, this.state.uiLocale);
+
+        return (
+            <TextValue value={displayDate} />
+        );
+    }
+}
+DateValue.contextTypes = {
+    d2: PropTypes.object,
+};
 
 function ObjectWithDisplayName(props) {
     const textValue = props.value && (props.value.displayName || props.value.name);
