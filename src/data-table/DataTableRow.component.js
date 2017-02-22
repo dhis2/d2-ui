@@ -5,15 +5,35 @@ import { isString } from 'lodash/fp';
 import moment from 'moment';
 import IconButton from 'material-ui/IconButton';
 import MoreVert from 'material-ui/svg-icons/navigation/more-vert';
-import Translate from '../i18n/Translate.component';
-import addD2Context from '../component-helpers/addD2Context';
-import { findValueRenderer } from './data-value/valueRenderers';
+import Color from './data-value/Color.component';
 
-function getD2ModelValueType(dataSource, columnName) {
-    return dataSource && dataSource.modelDefinition && dataSource.modelDefinition.modelValidations && dataSource.modelDefinition.modelValidations[columnName] && dataSource.modelDefinition.modelValidations[columnName].type
+import Translate from '../i18n/Translate.mixin';
+
+function valueTypeGuess(valueType, value) {
+    switch (valueType) {
+    case 'DATE':
+        return moment(new Date(value)).fromNow();
+    case 'TEXT':
+        if (/#([a-z0-9]{6})$/i.test(value)) {
+            return (<Color value={value} />);
+        }
+        return value;
+    default:
+        break;
+    }
+
+    return value;
 }
 
-const DataTableRow = addD2Context(React.createClass({
+function getValueAfterValueTypeGuess(dataSource, columnName) {
+    if (dataSource && dataSource.modelDefinition && dataSource.modelDefinition.modelValidations && dataSource.modelDefinition.modelValidations[columnName]) {
+        return valueTypeGuess(dataSource.modelDefinition.modelValidations[columnName].type, dataSource[columnName]);
+    }
+
+    return dataSource[columnName];
+}
+
+const DataTableRow = React.createClass({
     propTypes: {
         columns: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
         dataSource: React.PropTypes.object,
@@ -22,6 +42,8 @@ const DataTableRow = addD2Context(React.createClass({
         itemClicked: React.PropTypes.func.isRequired,
         primaryClick: React.PropTypes.func.isRequired,
     },
+
+    mixins: [Translate],
 
     render() {
         const classList = classes(
@@ -32,13 +54,48 @@ const DataTableRow = addD2Context(React.createClass({
             });
 
         const columns = this.props.columns.map((columnName, index) => {
-            const valueDetails = {
-                valueType: getD2ModelValueType(this.props.dataSource, columnName),
-                value: this.props.dataSource[columnName],
-                columnName,
-            };
+            const rowValue = getValueAfterValueTypeGuess(this.props.dataSource, columnName);
+            let displayValue;
 
-            const Value = findValueRenderer(valueDetails);
+            // Render objects by name or otherwise by their toString method.
+            // ReactElements are also objects but we want to render them out normally, so they are excluded.
+            if (isObject(rowValue) && !isValidElement(rowValue)) {
+                displayValue = rowValue.displayName || rowValue.name || rowValue.toString();
+            } else {
+                displayValue = rowValue;
+            }
+
+            // TODO: PublicAccess Hack - need to make it so that value transformers can be registered
+            if (columnName === 'publicAccess') {
+                const dataSource = this.props.dataSource;
+
+                if (dataSource[columnName]) {
+                    if (dataSource[columnName] === 'rw------') {
+                        displayValue = this.getTranslation('public_can_edit');
+                    }
+
+                    if (dataSource[columnName] === 'r-------') {
+                        displayValue = this.getTranslation('public_can_view');
+                    }
+
+                    if (dataSource[columnName] === '--------') {
+                        displayValue = this.getTranslation('public_none');
+                    }
+                }
+            }
+
+            const textWrapStyle = {
+                width: '100%',
+                textOverflow: 'ellipsis',
+                overflow: 'hidden',
+                whiteSpace: 'nowrap',
+                position: 'absolute',
+                wordBreak: 'break-all',
+                wordWrap: 'break-word',
+                top: 0,
+                lineHeight: '50px',
+                paddingRight: '1rem',
+            };
 
             return (
                 <div
@@ -47,7 +104,7 @@ const DataTableRow = addD2Context(React.createClass({
                     onContextMenu={this.handleContextClick}
                     onClick={this.handleClick}
                 >
-                    <Value {...valueDetails} />
+                    {isString(displayValue) ? <span title={displayValue} style={textWrapStyle} >{displayValue}</span> : displayValue}
                 </div>
             );
         });
@@ -55,7 +112,7 @@ const DataTableRow = addD2Context(React.createClass({
             <div className={classList}>
                 {columns}
                 <div className={'data-table__rows__row__column'} style={{width: '1%'}}>
-                    <IconButton tooltip={this.context.d2.i18n.getTranslation('actions')} onClick={this.iconMenuClick}>
+                    <IconButton tooltip={this.getTranslation('actions')} onClick={this.iconMenuClick}>
                         <MoreVert />
                     </IconButton>
                 </div>
@@ -64,6 +121,7 @@ const DataTableRow = addD2Context(React.createClass({
     },
 
     iconMenuClick(event) {
+        event && event.preventDefault() && event.stopPropagation();
         this.props.itemClicked(event, this.props.dataSource);
     },
 
@@ -75,6 +133,6 @@ const DataTableRow = addD2Context(React.createClass({
     handleClick(event) {
         this.props.primaryClick(this.props.dataSource, event);
     },
-}));
+});
 
 export default DataTableRow;

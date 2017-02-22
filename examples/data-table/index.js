@@ -45,8 +45,8 @@ function renderExamples(d2) {
     };
 
     const myRows = [
-        { firstName: 'John', lastName: 'Traore', lastUpdated: '2014-11-11T21:56:05.469' },
-        { firstName: 'Tom', lastName: 'Wakiki', lastUpdated: '2015-08-06T13:28:05.512' },
+        { firstName: 'Mark', lastName: 'Polak' },
+        { firstName: 'Nicolay', lastName: 'Ramm' },
     ];
 
     const cma = {
@@ -58,7 +58,7 @@ function renderExamples(d2) {
     const app = (
         <Example>
             <DataTable
-                columns={['firstName', 'lastName', 'lastUpdated']}
+                columns={['firstName', 'lastName']}
                 rows={myRows}
                 contextMenuActions={cma}
             />
