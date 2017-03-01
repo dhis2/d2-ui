@@ -1,21 +1,20 @@
 /* eslint react/jsx-no-bind: 0 */
 
 import { PropTypes, default as React } from 'react';
+import { config } from 'd2/lib/d2';
 import Divider from 'material-ui/Divider';
 import Subheader from 'material-ui/Subheader';
+
+import Heading from '../headings/Heading.component';
 import UserSearch from './UserSearch.component';
 import CreatedBy from './CreatedBy.component';
 import PublicAccess from './PublicAccess.component';
 import ExternalAccess from './ExternalAccess.component';
 import UserGroupAccess from './UserGroupAccess.component';
 
+config.i18n.strings.add('who_has_access');
+
 const styles = {
-    objectName: {
-        padding: '16px 0px 8px',
-        color: '#818181',
-        fontWeight: 400,
-        fontSize: '2rem',
-    },
     createdBy: {
         color: '#818181',
     },
@@ -63,8 +62,10 @@ class Sharing extends React.Component {
     }
 
     addUserGroupAccess(userGroup) {
-        const accesses = this.state.accesses;
-        accesses.push(userGroup);
+        const accesses = [
+            ...this.state.accesses,
+            userGroup
+        ];
 
         this.setState({
             accesses,
@@ -91,10 +92,10 @@ class Sharing extends React.Component {
     render() {
         return (
             <div>
-                <div style={styles.objectName}>{this.props.nameOfSharableItem}</div>
+                <Heading text={this.props.nameOfSharableItem} level={2} />
                 <CreatedBy user={this.props.authorOfSharableItem} />
                 <div style={styles.titleBodySpace} />
-                <Subheader>[Who has access]</Subheader>
+                <Subheader>{this.context.d2.i18n.getTranslation('who_has_access')}</Subheader>
                 <Divider />
                 <div style={styles.rules}>
                     <PublicAccess
@@ -161,6 +162,10 @@ Sharing.propTypes = {
     })).isRequired,
     onSharingChanged: PropTypes.func.isRequired,
     onSearch: PropTypes.func.isRequired,
+};
+
+Sharing.contextTypes = {
+    d2: PropTypes.object.isRequired,
 };
 
 export default Sharing;

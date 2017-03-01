@@ -7,7 +7,7 @@
     "examples": "npm run start",
     "coverage": "NODE_ENV=test nyc --require babel-register --require babel-polyfill mocha --reporter dot --require config/setup.js --recursive test/ && nyc report --reporter=lcov",
     "start": "webpack-dev-server",
-    "test": "BABEL_ENV=test mocha --reporter spec --compilers js:babel-core/register --require config/setup.js --recursive test",
+    "test": "BABEL_ENV=test mocha --reporter spec --compilers js:babel-core/register --require config/setup.js --recursive test/sharing",
     "test-watch": "npm run test -- --watch",
     "lint": "eslint src && eslint --env node,mocha --global expect,sinon --rule 'no-unused-expressions: 0' test && scss-lint",
     "prebuild": "npm run validate && npm test",

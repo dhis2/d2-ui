@@ -1,8 +1,11 @@
 /* eslint react/jsx-no-bind: 0 */
 
 import React, { Component, PropTypes } from 'react';
+import { config } from 'd2/lib/d2';
 import AutoComplete from 'material-ui/AutoComplete';
 import PermissionPicker from './PermissionPicker.component';
+
+config.i18n.strings.add('add_users_and_user_groups');
 
 const styles = {
     container: {
@@ -89,7 +92,9 @@ class UserSearch extends Component {
         const debouncedSearch = debounce(this.fetchSearchResult.bind(this), 300);
         return (
             <div style={styles.container}>
-                <div style={styles.title}>[Add users and user groups:]</div>
+                <div style={styles.title}>
+                    {this.context.d2.i18n.getTranslation('add_users_and_user_groups')}
+                </div>
                 <div style={styles.innerContainer}>
                     <AutoComplete
                         fullWidth
@@ -120,6 +125,10 @@ class UserSearch extends Component {
 UserSearch.propTypes = {
     onSearch: PropTypes.func.isRequired,
     addUserGroupAccess: PropTypes.func.isRequired,
+};
+
+UserSearch.contextTypes = {
+    d2: PropTypes.object.isRequired,
 };
 
 export default UserSearch;

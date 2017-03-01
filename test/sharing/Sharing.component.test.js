@@ -1,383 +1,186 @@
-/*import React from 'react';
-import {getStubContext} from '../../config/inject-theme';
+/* eslint no-undef: 0 */
+
+import React from 'react';
+import { shallow } from 'enzyme';
+import Subheader from 'material-ui/Subheader';
+
+import { getStubContext } from '../../config/inject-theme';
 import Sharing from '../../src/sharing/Sharing.component';
 import Heading from '../../src/headings/Heading.component';
 import CreatedBy from '../../src/sharing/CreatedBy.component';
+import UserSearch from '../../src/sharing/UserSearch.component';
 import PublicAccess from '../../src/sharing/PublicAccess.component';
-import LoadingMask from '../../src/loading-mask/LoadingMask.component';
-import sharingStore from '../../src/sharing/sharing.store';
-import UserGroupAccesses from '../../src/sharing/UserGroupAccesses.component';
-import AutoComplete from '../../src/auto-complete/AutoComplete.component';
 import ExternalAccess from '../../src/sharing/ExternalAccess.component';
-import actions from '../../src/sharing/sharing.actions';
-import log from 'loglevel';
+import UserGroupAccess from '../../src/sharing/UserGroupAccess.component';
 
-import {shallow} from 'enzyme';
+const sharingProps = {
+    authorOfSharableItem: {
+        id: 'GOLswS44mh8',
+        name: 'Tom Wakiki',
+    },
+    nameOfSharableItem: 'ANC: Overview Report (HTML-based)',
+    canSetPublicAccess: true,
+    canSetExternalAccess: true,
+    publicCanView: true,
+    publicCanEdit: true,
+    isSharedExternally: true,
+    accesses: [{
+        id: 'lFHP5lLkzVr',
+        name: 'System administrators',
+        displayName: 'System administrators',
+        type: 'userGroup',
+        canView: true,
+        canEdit: false,
+    }, {
+        id: 'rWLrZL8rP3K',
+        name: 'Guest User',
+        displayName: 'Guest User',
+        type: 'user',
+        canView: true,
+        canEdit: false,
+    }],
+    onSharingChanged: () => {},
+    onSearch: () => {},
+};
+
+const exampleUserGroup = {
+    id: 'vAvEltyXGbD',
+    name: 'Africare HQ',
+    displayName: 'Africare HQ',
+    type: 'userGroup',
+    canView: true,
+    canEdit: false,
+};
 
 describe('Sharing: Sharing component', () => {
     let sharingComponent;
-    let objectToShareModelDefinition;
 
     const renderComponent = (props = {}) => {
-        sharingComponent = shallow(<Sharing {...props} />, {
+        const sharing = shallow(<Sharing {...props} />, {
             context: getStubContext(),
         });
 
-        return sharingComponent;
+        return sharing;
     };
 
     beforeEach(() => {
-        objectToShareModelDefinition = {
-            name: 'dataElement',
-        };
+        sharingComponent = renderComponent(sharingProps);
     });
 
-    describe('loadingMask', () => {
+    it('renders the object name using a Heading component', () => {
+        const headerComponent = sharingComponent.find(Heading);
+        expect(headerComponent.props().text).to.equal('ANC: Overview Report (HTML-based)');
+    });
+
+    it('should render the CreatedBy component with the authorOfSharableItem prop', () => {
+        const createdByComponent = sharingComponent.find(CreatedBy);
+        expect(createdByComponent.props().user).to.deep.equal(sharingProps.authorOfSharableItem);
+    });
+
+    it('should render a sub header above the permissions list', () => {
+        const subheaderComponent = sharingComponent.find(Subheader);
+        expect(subheaderComponent.childAt(0).text()).to.equal('who_has_access_translated');
+    });
+
+    describe('State', () => {
+        let sharingComponentInstance;
+
         beforeEach(() => {
-            stub(log, 'error');
+            sharingComponentInstance = sharingComponent.instance();
         });
 
-        afterEach(() => {
-            actions.loadObjectSharingState.subscribe.restore && actions.loadObjectSharingState.subscribe.restore();
-            log.error.restore();
+        it('reflects changes in public access', () => {
+            expect(sharingComponent.state().publicCanEdit).to.equal(true);
+            sharingComponentInstance.publicAccessChanged(true, false);
+            expect(sharingComponent.state().publicCanEdit).to.equal(false);
         });
 
-        it('should render a LoadingMask', () => {
-            renderComponent({objectToShare: {id: 'Ql6Gew7eaX6', name: 'Facility Funding Agency', modelDefinition: objectToShareModelDefinition}});
-
-            expect(sharingComponent.find(LoadingMask)).to.have.length(1);
+        it('reflects changes in external access', () => {
+            expect(sharingComponent.state().isSharedExternally).to.equal(true);
+            sharingComponentInstance.externalAccessChanged(false);
+            expect(sharingComponent.state().isSharedExternally).to.equal(false);
         });
 
-        it('should call log.error when the store emits an error', () => {
-            stub(actions, 'loadObjectSharingState')
-                .returns({
-                    subscribe: stub().callsArgOnWith(1, sharingComponent, new Error('Unable to get store data'))
-                });
+        it('reflects changes in user- and group accesses', () => {
+            expect(sharingComponent.state().accesses[0].canEdit).to.equal(false);
+            sharingComponentInstance.accessRulesChanged('lFHP5lLkzVr', true, true);
+            expect(sharingComponent.state().accesses[0].canEdit).to.equal(true);
+        });
 
-            renderComponent({objectToShare: {id: 'Ql6Gew7eaX6', name: 'Facility Funding Agency', modelDefinition: objectToShareModelDefinition}});
+        it('reflects additions of user- and group accesses', () => {
+            expect(sharingComponent.state().accesses).to.have.length(2);
+            sharingComponentInstance.addUserGroupAccess(exampleUserGroup);
+            expect(sharingComponent.state().accesses).to.have.length(3);
+            expect(sharingComponent.state().accesses[2].id).to.equal('vAvEltyXGbD');
+        });
 
-
-
-            expect(log.error).to.be.calledWith('Unable to get store data');
+        it('reflects removal of user- and group accesses', () => {
+            expect(sharingComponent.state().accesses).to.have.length(2);
+            sharingComponentInstance.removeUserGroupAccess('lFHP5lLkzVr');
+            expect(sharingComponent.state().accesses).to.have.length(1);
         });
     });
 
-    describe('sharing component', () => {
+    describe('PublicAccess', () => {
+        let publicAccessComponent;
+
         beforeEach(() => {
-            const mockStoreState = {
-                name: 'Facility Funding Agency',
-                externalAccess: true,
-                publicAccess: 'r-------',
-                user: {
-                    name: 'Tom Wakiki',
-                },
-                userGroupAccesses: [
-                    {id: 'wl5cDMuUhmF', name: 'Administrators', access: 'rw------'},
-                    {id: 'lFHP5lLkzVr', name: 'System administrators', access: 'rw------'},
-                ],
-                meta: {
-                    allowExternalAccess: false,
-                    allowPublicAccess: true,
-                },
-            };
-
-            stub(sharingStore, 'subscribe').callsArgOnWith(0, sharingComponent, mockStoreState);
-
-            spy(actions, 'userGroupAcessesChanged');
-            spy(actions, 'publicAccessChanged');
-            spy(actions, 'externalAccessChanged');
+            publicAccessComponent = sharingComponent.find(PublicAccess);
         });
 
-        afterEach(() => {
-            sharingStore.subscribe.restore()
-            actions.userGroupAcessesChanged.restore();
+        it('inherits props correctly from parent', () => {
+            expect(publicAccessComponent.props().canView).to.equal(sharingProps.publicCanView);
+            expect(publicAccessComponent.props().canEdit).to.equal(sharingProps.publicCanEdit);
+            expect(publicAccessComponent.props().disabled).to.not.equal(sharingProps.canSetPublicAccess);
+        });
+    });
+
+    describe('ExternalAccess', () => {
+        let externalAccessComponent;
+
+        beforeEach(() => {
+            externalAccessComponent = sharingComponent.find(ExternalAccess);
         });
 
-        it('should render the title of the component as a Heading', () => {
-            renderComponent({objectToShare: {id: 'Ql6Gew7eaX6', name: 'Facility Funding Agency', modelDefinition: objectToShareModelDefinition}});
-
-            const headerComponent = sharingComponent.find(Heading);
-
-            expect(headerComponent.props().text).to.equal('Facility Funding Agency');
-            expect(headerComponent.props().level).to.equal(2);
+        it('inherits the canView and disabled props from parent', () => {
+            expect(externalAccessComponent.props().canView).to.equal(sharingProps.publicCanView);
+            expect(externalAccessComponent.props().disabled).to.not.equal(sharingProps.canSetPublicAccess);
         });
+    });
 
-        it('should render the CreatedBy component with the user part of the objectToShare', () => {
-            const objectToShare = {
-                name: 'Facility Funding Agency',
-                modelDefinition: objectToShareModelDefinition,
-            };
-            renderComponent({objectToShare});
+    describe('UserGroupAccess', () => {
+        it('should render once per access', () => {
+            expect(sharingComponent.find(UserGroupAccess)).to.have.length(2);
 
-            const createdByComponent = sharingComponent.find(CreatedBy);
-
-            expect(createdByComponent.props().user).to.deep.equal({name: 'Tom Wakiki'});
-        });
-
-        it('should pass the publicAccess property to the PublicAccess component', () => {
-            const objectToShare = {
-                name: 'Facility Funding Agency',
-                publicAccess: 'r-------',
-                modelDefinition: objectToShareModelDefinition,
-            };
-            renderComponent({objectToShare});
-
-            const publicAccessComponent = sharingComponent.find(PublicAccess);
-
-            expect(publicAccessComponent.props().publicAccess).to.equal(objectToShare.publicAccess);
-        });
-
-        it('should set the disabled prop on the PublicAccess component to false', () => {
-            const objectToShare = {
-                name: 'Facility Funding Agency',
-                modelDefinition: objectToShareModelDefinition,
-            };
-            renderComponent({objectToShare});
-
-            const publicAccessComponent = sharingComponent.find(PublicAccess);
-
-            expect(publicAccessComponent.props().disabled).to.be.false;
-        });
-
-        it('should set the disabled prop on the ExternalAccess component to true', () => {
-            const objectToShare = {
-                name: 'Facility Funding Agency',
-                modelDefinition: objectToShareModelDefinition,
-            };
-            renderComponent({objectToShare});
-
-            const externalAccessComponent = sharingComponent.find(ExternalAccess);
-
-            expect(externalAccessComponent.props().disabled).to.be.true;
-        });
-
-        it('should pass the userGroupAccesses to the UserGroupAccesses component', () => {
-            const expectedUserGroupAccesses = [
-                {id: 'wl5cDMuUhmF', name: 'Administrators', access: 'rw------'},
-                {id: 'lFHP5lLkzVr', name: 'System administrators', access: 'rw------'},
-            ];
-
-            const objectToShare = {
-                name: 'Facility Funding Agency',
-                modelDefinition: objectToShareModelDefinition,
-            };
-            renderComponent({objectToShare});
-
-            const userGroupAccesses = sharingComponent.find(UserGroupAccesses);
-
-            expect(userGroupAccesses.props().userGroupAccesses).to.deep.equal(expectedUserGroupAccesses);
-        });
-
-        it('should render the AutoComplete for searching userGroups', () => {
-            renderComponent({objectToShare: {id: 'Ql6Gew7eaX6', name: 'Facility Funding Agency', modelDefinition: objectToShareModelDefinition}});
-
-            expect(sharingComponent.find(AutoComplete)).to.have.length(1);
-        });
-
-        it('should set the type of the autoComplete to be userGroup', () => {
-            const objectToShare = {
-                name: 'Facility Funding Agency',
-                modelDefinition: objectToShareModelDefinition,
-            };
-            renderComponent({objectToShare});
-
-            const autoCompleteComponent = sharingComponent.find(AutoComplete);
-
-            expect(autoCompleteComponent.props().forType).to.deep.equal('userGroup');
-        });
-
-        describe('actions', () => {
-            beforeEach(() => {
-                stub(actions, 'loadObjectSharingState')
-                    .returns({
-                        subscribe: stub().callsArgOnWith(0, sharingComponent, {}),
-                    });
+            sharingComponent = renderComponent({
+                ...sharingProps, accesses: [...sharingProps.accesses, exampleUserGroup],
             });
 
-            afterEach(() => {
-                actions.loadObjectSharingState.restore();
-            });
-
-            it('should pass add a new userGroupAccesses when addUserGroup is called', () => {
-                const objectToShare = {
-                    name: 'Facility Funding Agency',
-                    modelDefinition: objectToShareModelDefinition,
-                };
-                renderComponent({objectToShare});
-
-                sharingComponent.instance().addUserGroup({id: 'dl5cDMuUhmF', name: 'AFG'});
-                sharingComponent.update();
-
-                expect(actions.userGroupAcessesChanged).to.have.been.calledWith([
-                    {id: 'wl5cDMuUhmF', name: 'Administrators', access: 'rw------'},
-                    {id: 'lFHP5lLkzVr', name: 'System administrators', access: 'rw------'},
-                    {id: 'dl5cDMuUhmF', name: 'AFG'},
-                ]);
-            });
-
-            it('should call loadObjectSharingState when new props are received', () => {
-                const objectToShare = {
-                    id: 'Ql6Gew7eaX6',
-                    name: 'Facility Funding Agency',
-                    modelDefinition: objectToShareModelDefinition,
-                };
-
-                renderComponent({objectToShare});
-
-                sharingComponent.setProps({objectToShare});
-
-                expect(actions.loadObjectSharingState).to.be.calledWith({
-                    id: 'Ql6Gew7eaX6',
-                    name: 'Facility Funding Agency',
-                    modelDefinition: objectToShareModelDefinition,
-                });
-            });
+            expect(sharingComponent.find(UserGroupAccess)).to.have.length(3);
         });
 
-        it('should pass the addUserGroup method to the autocomplete box', () => {
-            const objectToShare = {
-                name: 'Facility Funding Agency',
-                modelDefinition: objectToShareModelDefinition,
-            };
-            renderComponent({objectToShare});
+        it('is passed the correct access props', () => {
+            const userGroupAccess = sharingComponent.find(UserGroupAccess).at(0);
+            expect(userGroupAccess.props().nameOfGroup).to.equal('System administrators');
+            expect(userGroupAccess.props().groupType).to.equal('userGroup');
+            expect(userGroupAccess.props().canView).to.equal(true);
+            expect(userGroupAccess.props().canEdit).to.equal(false);
+        });
+    });
 
-            const autoCompleteComponent = sharingComponent.find(AutoComplete);
+    describe('UserSearch', () => {
+        let userSearchComponent;
 
-            expect(autoCompleteComponent.props().onSuggestionClicked).to.equal(sharingComponent.instance().addUserGroup);
+        beforeEach(() => {
+            userSearchComponent = sharingComponent.find(UserSearch);
         });
 
-        it('should filter the results for the autoComplete, accepting only objects with ids that are not already in the list', () => {
-            const autoCompleteComponent = sharingComponent.find(AutoComplete);
-
-            expect(autoCompleteComponent.props().filterForSuggestions({id: 'lFHP5lLkzVr'})).to.be.false;
-            expect(autoCompleteComponent.props().filterForSuggestions({id: 'DCHP5lLkzVc'})).to.be.true;
-            expect(autoCompleteComponent.props().filterForSuggestions()).to.be.true;
+        it('should render correctly', () => {
+            expect(sharingComponent.find(UserSearch)).to.have.length(1);
         });
 
-        it('should pass the externalAccess value as false when the user can not set external access', () => {
-            const externalAccess = sharingComponent.find(ExternalAccess);
-
-            expect(externalAccess.props().externalAccess).to.be.false;
-        });
-
-        it('should pass the correct externalAccess to the ExternalAccess component', () => {
-            const objectToShare = {
-                name: 'Facility Funding Agency',
-                modelDefinition: objectToShareModelDefinition,
-            };
-            renderComponent({objectToShare});
-
-            sharingComponent.setState({
-                objectToShare: {
-                    meta: {
-                        allowExternalAccess: true,
-                    },
-                    externalAccess: true,
-                },
-            });
-
-            const externalAccess = sharingComponent.find(ExternalAccess);
-
-            expect(externalAccess.props().externalAccess).to.be.true;
-        });
-
-        it('should pass disabled to ExternalAccess if the user can not set externalAccess', () => {
-            const objectToShare = {
-                name: 'Facility Funding Agency',
-                modelDefinition: objectToShareModelDefinition,
-            };
-            renderComponent({objectToShare});
-
-            sharingComponent.setState({
-                objectToShare: {
-                    meta: {
-                        allowExternalAccess: false,
-                    },
-                    externalAccess: true,
-                },
-            });
-
-            const externalAccess = sharingComponent.find(ExternalAccess);
-
-            expect(externalAccess.props().disabled).to.be.true;
-            // TODO: Is it true that the user should not be able to see externalAccess when he/she can not set it?
-            // expect(externalAccess.props().externalAccess).to.be.true;
-        });
-
-        it('should pass the new userGroupAccesses to the userGroupAcessesChanged action', () => {
-            const objectToShare = {
-                name: 'Facility Funding Agency',
-                modelDefinition: objectToShareModelDefinition,
-            };
-            renderComponent({objectToShare});
-
-            const userGroupAccesses = [];
-            const userGroupAcesses = sharingComponent.find(UserGroupAccesses);
-
-            userGroupAcesses.simulate('change', userGroupAccesses);
-
-            expect(actions.userGroupAcessesChanged).to.be.calledWith(userGroupAccesses);
-        });
-
-        it('should pass the new publicAccess to the publicAccessChanged action', () => {
-            const objectToShare = {
-                name: 'Facility Funding Agency',
-                modelDefinition: objectToShareModelDefinition,
-            };
-            renderComponent({objectToShare});
-
-            const publicAccess = false;
-            const publicAccessComponent = sharingComponent.find(PublicAccess);
-
-            publicAccessComponent.simulate('change', publicAccess);
-
-            expect(actions.publicAccessChanged).to.be.calledWith(false);
-        });
-
-        it('should pass the externalAccess to the externalAccessChanged handler', () => {
-            const objectToShare = {
-                name: 'Facility Funding Agency',
-                modelDefinition: objectToShareModelDefinition,
-            };
-            renderComponent({objectToShare});
-
-            const externalAccess = true;
-            const externalAccessComponent = sharingComponent.find(ExternalAccess);
-
-            externalAccessComponent.simulate('change', externalAccess);
-
-            expect(actions.externalAccessChanged).to.be.calledWith(true);
-        });
-
-        it('should call dispose on the set disposable', () => {
-            const objectToShare = {
-                name: 'Facility Funding Agency',
-                modelDefinition: objectToShareModelDefinition,
-            };
-            renderComponent({objectToShare});
-
-            const sharingComponentInstance = sharingComponent.instance();
-            sharingComponentInstance.disposable = {
-                dispose: stub(),
-            };
-            sharingComponentInstance.componentWillUnmount();
-
-            expect(sharingComponentInstance.disposable.dispose).to.be.calledOnce;
-        });
-
-        it('should not throw if there is no disposable', () => {
-            const objectToShare = {
-                name: 'Facility Funding Agency',
-                modelDefinition: objectToShareModelDefinition,
-            };
-            renderComponent({objectToShare});
-
-            const sharingComponentInstance = sharingComponent.instance();
-
-            sharingComponentInstance.disposable && delete sharingComponentInstance.disposable;
-
-            expect(() => sharingComponentInstance.componentWillUnmount()).not.to.throw();
+        it('should pass the onSearch function', () => {
+            expect(userSearchComponent.props().onSearch).to.equal(sharingProps.onSearch);
         });
     });
 });
-*/

@@ -1,15 +1,17 @@
 /* eslint no-console: 0 */
 /* eslint class-methods-use-this: 0 */
 /* eslint react/jsx-no-bind: 0 */
+/* eslint no-unused-expressions: 0 */
 
 import { config, getInstance } from 'd2/lib/d2';
 import Dialog from 'material-ui/Dialog/Dialog';
 import FlatButton from 'material-ui/FlatButton/FlatButton';
 import React, { PropTypes } from 'react';
 import Sharing from './Sharing.component';
+import LoadingMask from '../loading-mask/LoadingMask.component';
 
+config.i18n.strings.add('share');
 config.i18n.strings.add('close');
-config.i18n.strings.add('sharing_settings');
 
 function cachedAccessTypeToString(canView, canEdit) {
     if (canView) {
@@ -64,11 +66,10 @@ class SharingDialog extends React.Component {
     }
 
     onSearchRequest(searchText) {
-        const apiInstance = this.context.d2.Api.getApi(); // Changed
+        const apiInstance = this.state.api; // Changed
 
         return apiInstance.get('sharing/search', { key: searchText })
             .then((searchResult) => {
-                console.log(searchResult);
                 let transformedResult = searchResult.users.map(
                     user => transformAccessObject(user, 'user'));
 
@@ -127,9 +128,8 @@ class SharingDialog extends React.Component {
             };
 
             access.type === 'user'
-                ? userAccesses.push(apiAccess);
+                ? userAccesses.push(apiAccess)
                 : userGroupAccesses.push(apiAccess);
-            }
         });
 
         const restoredObject = {
@@ -163,19 +163,19 @@ class SharingDialog extends React.Component {
     render() {
         const sharingDialogActions = [
             <FlatButton
-                label="[Cancel]"
-                onClick={this.closeSharingDialog}
-            />,
-            <FlatButton
-                label="[Save]"
-                onClick={this.closeSharingDialog}
+                label={this.context.d2.i18n.getTranslation('close')}
+                onClick={this.closeSharingDialog.bind(this)}
             />,
         ];
+
+        const loadingMaskStyle = {
+            position: 'relative',
+        };
 
         return this.state.objectToShare ? (
             <Dialog
                 open={this.props.open}
-                title={this.context.d2.i18n.getTranslation('sharing_settings')}
+                title={this.context.d2.i18n.getTranslation('share')}
                 actions={sharingDialogActions}
                 autoDetectWindowHeight
                 autoScrollBodyContent
@@ -195,7 +195,7 @@ class SharingDialog extends React.Component {
                     onSearch={this.onSearchRequest.bind(this)}
                 />
             </Dialog>
-        ) : null;
+        ) : <LoadingMask style={loadingMaskStyle} size={1} />;
     }
 }
 

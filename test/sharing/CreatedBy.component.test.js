@@ -1,8 +1,9 @@
-/*import React from 'react';
-import {getStubContext} from '../../config/inject-theme';
-import CreatedBy from '../../src/sharing/CreatedBy.component';
+/* eslint no-undef: 0 */
 
-import {shallow} from 'enzyme';
+import React from 'react';
+import { shallow } from 'enzyme';
+import { getStubContext } from '../../config/inject-theme';
+import CreatedBy from '../../src/sharing/CreatedBy.component';
 
 describe('Sharing: CreatedBy component', () => {
     let createdByComponent;
@@ -12,7 +13,7 @@ describe('Sharing: CreatedBy component', () => {
         });
     };
 
-    it('should render a h1 tag with the title', () => {
+    it('should render a div showing the author\'s name', () => {
         const userObject = {
             id: 'GOLswS44mh8',
             name: 'Tom Wakiki',
@@ -20,17 +21,8 @@ describe('Sharing: CreatedBy component', () => {
             lastUpdated: '2014-12-19T11:28:37.065+0000',
             href: 'http://localhost:8080/dhis/api/users/GOLswS44mh8',
         };
-        renderComponent({user: userObject});
 
+        renderComponent({ user: userObject });
         expect(createdByComponent.text()).to.equal('created_by_translated: Tom Wakiki');
     });
-
-    it('should use a default object for the user when no object was given', () => {
-        createdByComponent.setProps({
-            user: undefined,
-        });
-
-        expect(createdByComponent.text()).to.equal('created_by_translated: ');
-    });
 });
-*/

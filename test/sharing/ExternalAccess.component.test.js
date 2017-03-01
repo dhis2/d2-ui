@@ -1,9 +1,12 @@
-/*import React from 'react';
-import {getStubContext} from '../../config/inject-theme';
-import ExternalAccess from '../../src/sharing/ExternalAccess.component';
-import Toggle from 'material-ui/Toggle/Toggle';
+/* eslint no-undef: 0 */
 
-import {shallow} from 'enzyme';
+import React from 'react';
+import { shallow } from 'enzyme';
+
+import Rule from '../../src/sharing/Rule.component';
+import ExternalAccess from '../../src/sharing/ExternalAccess.component';
+
+import { getStubContext } from '../../config/inject-theme';
 
 describe('Sharing: ExternalAccess component', () => {
     let externalAccessComponent;
@@ -16,61 +19,34 @@ describe('Sharing: ExternalAccess component', () => {
         return externalAccessComponent;
     };
 
-    it('should render a toggle component', () => {
-        renderComponent({externalAccess: false});
-
-        expect(externalAccessComponent.find(Toggle)).to.have.length(1);
+    it('should render a Rule component', () => {
+        renderComponent({ canView: true, disabled: false, onChange: () => {} });
+        expect(externalAccessComponent.find(Rule)).to.have.length(1);
     });
 
-    describe('Toggle', () => {
-        let toggleComponent;
+    describe('Rule', () => {
+        let ruleComponent;
         let onChange;
 
+        renderComponent({ canView: true, disabled: false, onChange });
+
         beforeEach(() => {
-            onChange = spy();
-            renderComponent({externalAccess: false});
-            toggleComponent = externalAccessComponent.find(Toggle);
+            onChange = sinon.spy();
+            ruleComponent = externalAccessComponent.find(Rule);
         });
 
-        it('should give the toggle the name externalAccess', () => {
-            expect(toggleComponent.props().name).to.equal('externalAccess');
+        it('should have a suitable title', () => {
+            expect(ruleComponent.props().primaryText).to.equal('external_access_translated');
         });
 
-        it('should give the toggle the externalAccess label', () => {
-            expect(toggleComponent.props().label).to.equal('external_access_translated');
+        it('should describe the access as viewable if external access is enabled', () => {
+            expect(ruleComponent.props().secondaryText.toLowerCase()).to.contain('can view');
         });
 
-        it('should render the component as not toggled', () => {
-            expect(toggleComponent.props().checked).to.be.false;
-        });
-
-        it('should render the component as toggled', () => {
-            renderComponent({externalAccess: true});
-            toggleComponent = externalAccessComponent.find(Toggle);
-
-            expect(toggleComponent.props().checked).to.be.true;
-        });
-
-        it('should call the change method when the toggle is clicked', () => {
-            renderComponent({externalAccess: false, onChange: onChange});
-            toggleComponent = externalAccessComponent.find(Toggle);
-            externalAccessComponent.instance().refs = {
-                toggle: {
-                    isToggled: stub().returns(true),
-                },
-            };
-
-            toggleComponent.simulate('toggle');
-
-            expect(onChange).to.be.called;
-        });
-
-        it('should set the toggle to be disabled', () => {
-            renderComponent({externalAccess: false, disabled: true});
-            toggleComponent = externalAccessComponent.find(Toggle);
-
-            expect(toggleComponent.props().disabled).to.be.true;
+        it('should have no access if external access is disabled', () => {
+            renderComponent({ canView: false, disabled: false, onChange });
+            ruleComponent = externalAccessComponent.find(Rule);
+            expect(ruleComponent.props().secondaryText.toLowerCase()).to.contain('no access');
         });
     });
 });
-*/
