@@ -74,7 +74,9 @@ class UserSearch extends Component {
         } else {
             this.props.onSearch(searchText)
             .then((searchResult) => {
-                this.setState({ searchResult });
+                const noDuplicates = searchResult.filter(
+                    result => !this.props.currentAccesses.some(access => access.id === result.id))
+                this.setState({ searchResult: noDuplicates });
             });
         }
     }
@@ -125,6 +127,7 @@ class UserSearch extends Component {
 UserSearch.propTypes = {
     onSearch: PropTypes.func.isRequired,
     addUserGroupAccess: PropTypes.func.isRequired,
+    currentAccesses: PropTypes.array.isRequired,
 };
 
 UserSearch.contextTypes = {

@@ -136,6 +136,7 @@ class Sharing extends React.Component {
                 <UserSearch
                     onSearch={this.props.onSearch}
                     addUserGroupAccess={this.addUserGroupAccess.bind(this)}
+                    currentAccesses={this.state.accesses}
                 />
             </div>
         );
