@@ -28,11 +28,10 @@ describe('Sharing: ExternalAccess component', () => {
         let ruleComponent;
         let onChange;
 
-        renderComponent({ canView: true, disabled: false, onChange });
-
         beforeEach(() => {
             onChange = sinon.spy();
             ruleComponent = externalAccessComponent.find(Rule);
+            renderComponent({ canView: true, disabled: false, onChange });
         });
 
         it('should have a suitable title', () => {

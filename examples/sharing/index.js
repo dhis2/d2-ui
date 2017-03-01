@@ -49,14 +49,12 @@ class SharingExample extends React.Component {
             <MuiThemeProvider muiTheme={getMuiTheme()}>
                 <div style={{ padding: 32 }}>
                     <RaisedButton label="Open" onTouchTap={this.handleOpen} />
-                    { this.state.dialogOpen &&
                         <SharingDialog
                             open={this.state.dialogOpen}
                             type={this.props.type}
                             id={this.props.id}
                             onRequestClose={() => { this.handleClose(); }}
                         />
-                    }
                 </div>
             </MuiThemeProvider>
         );

@@ -66,7 +66,7 @@ class SharingDialog extends React.Component {
     }
 
     onSearchRequest(searchText) {
-        const apiInstance = this.state.api; // Changed
+        const apiInstance = this.state.api;
 
         return apiInstance.get('sharing/search', { key: searchText })
             .then((searchResult) => {
