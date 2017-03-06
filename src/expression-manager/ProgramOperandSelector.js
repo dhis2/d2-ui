@@ -5,7 +5,7 @@ import ListSelect from '../list-select/ListSelect.component';
 import { config } from 'd2/lib/d2';
 import Translate from '../i18n/Translate.mixin';
 import log from 'loglevel';
-import CircularProgress from 'material-ui/CircularProgress/CircularProgress';
+import CircularProgress from '../circular-progress/CircularProgress';
 import DropDown from '../form-fields/DropDown.component';
 
 config.i18n.strings.add('please_select_a_program');

@@ -1,32 +1,22 @@
-import React from 'react';
-import CircularProgress from 'material-ui/CircularProgress';
+import React, { PropTypes } from 'react';
+import CircularProgress from '../circular-progress/CircularProgress';
 
-export default React.createClass({
-    propTypes: {
-        style: React.PropTypes.object,
-        size: React.PropTypes.number,
-    },
+const loadingStatusMask = {
+    left: '45%',
+    position: 'fixed',
+    top: '45%',
+};
 
-    getDefaultProps() {
-        return {
-            style: {},
-            size: 1.5,
-        };
-    },
+export default function LoadingMask({ style = {}, large = false, small = false }) {
+    return (
+        <div style={Object.assign({}, loadingStatusMask, style)} >
+            <CircularProgress large={large} small={small} />
+        </div>
+    );
+}
 
-    render() {
-        const loadingStatusMask = {
-            left: '45%',
-            position: 'fixed',
-            top: '45%',
-        };
-
-        return (
-            <CircularProgress
-                mode="indeterminate"
-                size={this.props.size}
-                style={Object.assign(loadingStatusMask, this.props.style)}
-            />
-        );
-    },
-});
+LoadingMask.propTypes = {
+    style: PropTypes.object,
+    large: PropTypes.bool,
+    small: PropTypes.bool,
+};
