@@ -2,7 +2,7 @@ import React from 'react';
 import AsyncValidatorRunner from './AsyncValidatorRunner';
 import { isObject } from 'lodash';
 
-import CircularProgres from 'material-ui/CircularProgress';
+import CircularProgres from '../circular-progress/CircularProgress';
 
 const noop = () => {};
 

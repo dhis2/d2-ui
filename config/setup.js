@@ -4,6 +4,7 @@ global.sinon = require('sinon');
 
 // Chai plugins
 global.chai.use(require('sinon-chai'));
+global.chai.use(require('chai-enzyme')());
 
 global.expect = global.chai.expect;
 
