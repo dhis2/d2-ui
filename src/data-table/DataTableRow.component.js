@@ -2,10 +2,8 @@ import React, { isValidElement } from 'react';
 import classes from 'classnames';
 import { isObject } from 'lodash/fp';
 import { isString } from 'lodash/fp';
-import moment from 'moment';
 import IconButton from 'material-ui/IconButton';
 import MoreVert from 'material-ui/svg-icons/navigation/more-vert';
-import Translate from '../i18n/Translate.component';
 import addD2Context from '../component-helpers/addD2Context';
 import { findValueRenderer } from './data-value/valueRenderers';
 
