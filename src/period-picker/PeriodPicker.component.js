@@ -1,10 +1,9 @@
 import React from 'react';
-import moment from 'moment';
 import log from 'loglevel';
-
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import DatePicker from 'material-ui/DatePicker';
+import { is53WeekISOYear, getFirstDateOfWeek } from 'd2/lib/period/helpers';
 
 const styles = {
     datePicker: { width: '100%' },
@@ -17,6 +16,31 @@ const styles = {
     line: { marginTop: 0 },
 };
 
+const getYear = (date) => (new Date(date)).getFullYear();
+const getTwoDigitMonth = (date) => {
+    const month = (new Date(date)).getMonth() + 1; // Month is 0 indexed
+
+    return `0${month}`.slice(-2);
+};
+const getTwoDigitDay = (date) => {
+    const day = (new Date(date)).getDate();
+
+    return `0${day}`.slice(-2);
+};
+const formattedDate = (date) => {
+    return `${getYear(date)}${getTwoDigitMonth(date)}${getTwoDigitDay(date)}`;
+};
+const getWeekYear = (date) => {
+    // Create a new date object for the thursday of this week
+    const target  = new Date(date);
+    target.setDate(target.getDate() - ((date.getDay() + 6) % 7) + 3);
+
+    return target.getFullYear();
+};
+const isWeekValid = (date, week) => {
+    // It's not possible to have a week 53 in a 52 week year
+    return !is53WeekISOYear(date) && Number(week) !== 53;
+};
 
 class PeriodPicker extends React.Component {
     constructor(props, context) {
@@ -30,14 +54,13 @@ class PeriodPicker extends React.Component {
     getPeriod() {
         switch (this.props.periodType) {
         case 'Daily':
-            return this.state.date && moment(this.state.date).format('YYYYMMDD');
+            return this.state.date && formattedDate(this.state.date);
         case 'Weekly':
-            const date = this.state.year && this.state.week &&
-                moment(`${this.state.year}W${this.state.week}`, 'YYYY-[W]WW');
+            const date = this.state.year && this.state.week && getFirstDateOfWeek(this.state.year, this.state.week);
             if (date) {
-                this.setState({ invalidWeek: !date.isValid() });
+                this.setState({ invalidWeek: !isWeekValid(date, this.state.week) });
             }
-            return date && date.isValid() && date.format('GGGG[W]W');
+            return date && isWeekValid(date, this.state.week) && `${getWeekYear(date)}W${this.state.week}`;
         case 'Monthly':
             return this.state.year && this.state.month && `${this.state.year}${this.state.month}`;
         case 'BiMonthly':
@@ -146,8 +169,8 @@ class PeriodPicker extends React.Component {
 
     render() {
         const setDateState = (nothing, date) => {
-            const year = moment(date).format('YYYY');
-            const month = moment(date).format('MM');
+            const year = getYear(date);
+            const month = getTwoDigitMonth(date);
             this.setState({ date, year, month }, this.handleChange);
         };
 
