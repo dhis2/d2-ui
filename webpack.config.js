@@ -20,6 +20,8 @@ try {
     };
 }
 
+const identity = (v) => v;
+
 module.exports = {
     context: __dirname,
     entry: isProduction() ? {
@@ -98,15 +100,13 @@ module.exports = {
             },
         }),
         isProduction() ?
-            // Only dedupe on production builds, as the build occasionally bugs out on live reloads
-            new webpack.optimize.DedupePlugin()
-            :
             // Replace any occurance of DHIS_CONFIG with an object with baseUrl and authorization props
             new webpack.DefinePlugin({
                 DHIS_CONFIG: JSON.stringify(dhisConfig),
-            }),
+            })
+            : null,
         new Visualizer(),
-    ],
+    ].filter(identity),
     devServer: {
         contentBase: './examples/',
         port: 8081,
