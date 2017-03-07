@@ -1,5 +1,4 @@
 import React from 'react';
-import CircularProgress from 'material-ui/CircularProgress';
 import TextField from 'material-ui/TextField/TextField';
 import Translate from '../i18n/Translate.mixin';
 import LocaleSelector from '../i18n/LocaleSelector.component';
@@ -9,6 +8,7 @@ import withStateFrom from '../component-helpers/withStateFrom';
 import RaisedButton from 'material-ui/RaisedButton/RaisedButton';
 import { Observable } from 'rx';
 import Store from '../store/Store';
+import CircularProgress from '../circular-progress/CircularProgress';
 
 function getTranslationFormData(model) {
     const translationStore = Store.create();

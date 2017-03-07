@@ -20,26 +20,29 @@ try {
     };
 }
 
+const identity = (v) => v;
+
 module.exports = {
     context: __dirname,
-    entry: isProduction() ?  {
-        'header-bar': './src/app-header/index.js',
-    } : {
-        treeview: './examples/tree-view',
-        datatable: './examples/data-table',
-        orgunittree: './examples/org-unit-tree',
-        orgunitselect: './examples/org-unit-select',
-        sidebar: './examples/sidebar',
-        sharing: './examples/sharing',
-        iconpicker: './examples/icon-picker',
-        formbuilder: './examples/form-builder',
-        formulaeditor: './examples/formula-editor',
-        headerbar: './examples/header-bar',
-        legend: './examples/legend',
-        // translation: './examples/translation',
-        expressionmanager: './examples/expression-manager',
-        groupeditor: './examples/group-editor',
-    },
+    entry: isProduction() ? {
+            'header-bar': './src/app-header/index.js',
+        } : {
+            treeview: './examples/tree-view',
+            datatable: './examples/data-table',
+            orgunittree: './examples/org-unit-tree',
+            orgunitselect: './examples/org-unit-select',
+            sharing: './examples/sharing',
+            sidebar: './examples/sidebar',
+            iconpicker: './examples/icon-picker',
+            formbuilder: './examples/form-builder',
+            formulaeditor: './examples/formula-editor',
+            headerbar: './examples/header-bar',
+            legend: './examples/legend',
+            // translation: './examples/translation',
+            expressionmanager: './examples/expression-manager',
+            groupeditor: './examples/group-editor',
+            periodpicker: './examples/period-picker',
+        },
     output: {
         library: 'Dhis2HeaderBar',
         path: path.join(__dirname, '/dist'),
@@ -97,20 +100,15 @@ module.exports = {
                 'NODE_ENV': JSON.stringify(isProduction() ? 'production' : 'development'),
             },
         }),
-        isProduction() ?
-            // Only dedupe on production builds, as the build occasionally bugs out on live reloads
-            new webpack.optimize.DedupePlugin()
-            :
+        isProduction() ? null :
             // Replace any occurance of DHIS_CONFIG with an object with baseUrl and authorization props
             new webpack.DefinePlugin({
                 DHIS_CONFIG: JSON.stringify(dhisConfig),
             }),
         new Visualizer(),
-    ],
+    ].filter(identity),
     devServer: {
         contentBase: './examples/',
-        progress: false,
-        colors: true,
         port: 8081,
         inline: true,
         compress: true,

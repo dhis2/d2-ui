@@ -10,7 +10,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 import SharingDialog from '../../src/sharing/SharingDialog.component';
 
-injectTapEventPlugin();
+// injectTapEventPlugin();
 
 class SharingExample extends React.Component {
     constructor(props) {
@@ -20,7 +20,7 @@ class SharingExample extends React.Component {
         };
 
         this.handleOpen = this.handleOpen.bind(this);
-        this.handleClose = this.handleOpen.bind(this);
+        this.handleClose = this.handleClose.bind(this);
     }
 
     // eslint-disable-next-line class-methods-use-this
@@ -36,25 +36,25 @@ class SharingExample extends React.Component {
         };
     }
 
-    handleOpen() {
+    handleOpen = () => {
         this.setState({ dialogOpen: true });
-    }
+    };
 
-    handleClose() {
+    handleClose = () => {
         this.setState({ dialogOpen: false });
-    }
+    };
 
     render() {
         return (
             <MuiThemeProvider muiTheme={getMuiTheme()}>
                 <div style={{ padding: 32 }}>
-                    <RaisedButton label="Open" onTouchTap={this.handleOpen} />
-                        <SharingDialog
-                            open={this.state.dialogOpen}
-                            type={this.props.type}
-                            id={this.props.id}
-                            onRequestClose={() => { this.handleClose(); }}
-                        />
+                    <RaisedButton label="Open" onClick={this.handleOpen} />
+                    <SharingDialog
+                        open={this.state.dialogOpen}
+                        type={this.props.type}
+                        id={this.props.id}
+                        onRequestClose={this.handleClose}
+                    />
                 </div>
             </MuiThemeProvider>
         );

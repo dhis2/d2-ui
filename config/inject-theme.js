@@ -1,5 +1,5 @@
 import stubContext from 'react-stub-context';
-import ThemeManager from 'material-ui/styles/themeManager';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { blue500, blue700, lightBlack, grey300, grey500, white, darkBlack } from 'material-ui/styles/colors';
 import { fade } from 'material-ui/utils/colorManipulator';
 import Spacing from 'material-ui/styles/spacing';
@@ -55,7 +55,7 @@ export function getStubContext() {
 
 /* istanbul ignore next */
 function injectTheme(Component, theme) {
-    const injectedTheme = theme || ThemeManager.getMuiTheme(appTheme);
+    const injectedTheme = theme || getMuiTheme(appTheme);
     return stubContext(Component, {
         muiTheme: injectedTheme,
         d2: {

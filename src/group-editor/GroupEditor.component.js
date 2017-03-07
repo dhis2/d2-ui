@@ -2,7 +2,6 @@ import React from 'react';
 import { findDOMNode } from 'react-dom';
 
 // Material UI
-import CircularProgress from 'material-ui/CircularProgress/CircularProgress';
 import Paper from 'material-ui/Paper/Paper';
 import RaisedButton from 'material-ui/RaisedButton/RaisedButton';
 
@@ -11,6 +10,7 @@ import { config } from 'd2/lib/d2';
 
 // D2-UI
 import TranslateMixin from '../i18n/Translate.mixin.js';
+import CircularProgress from '../circular-progress/CircularProgress';
 
 // TODO: TOAST!
 // TODO: Undo support (in TOAST?)
@@ -307,7 +307,7 @@ export default React.createClass({
                         disabled={this.state.loading || this.state.selectedRight === 0} />
                     <div style={styles.status}>
                         {this.state.loading ?
-                            <CircularProgress size={0.5} style={{ width: 60, height: 60 }} /> : undefined }
+                            <CircularProgress small style={{ width: 60, height: 60 }} /> : undefined }
                     </div>
                 </div>
                 <div style={styles.right}>
