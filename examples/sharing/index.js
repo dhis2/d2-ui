@@ -10,7 +10,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 import SharingDialog from '../../src/sharing/SharingDialog.component';
 
-// injectTapEventPlugin();
+injectTapEventPlugin();
 
 class SharingExample extends React.Component {
     constructor(props) {
@@ -40,7 +40,7 @@ class SharingExample extends React.Component {
         this.setState({ dialogOpen: true });
     };
 
-    handleClose = () => {
+    handleClose = (sharingState) => {
         this.setState({ dialogOpen: false });
     };
 
@@ -82,8 +82,8 @@ D2Lib.init({ baseUrl })
         log.info('D2 initialized successfully', d2);
         window.d2 = d2;
 
-        const objectType = 'report';
-        const objectId = 'AMERNML55Tg';
+        const objectType = 'category';
+        const objectId = 'veGzholzPQm';
 
         render(<SharingExample type={objectType} id={objectId} />, element);
     })

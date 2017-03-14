@@ -6,6 +6,7 @@ import AutoComplete from 'material-ui/AutoComplete';
 import PermissionPicker from './PermissionPicker.component';
 
 config.i18n.strings.add('add_users_and_user_groups');
+config.i18n.strings.add('enter_names');
 
 const styles = {
     container: {
@@ -60,8 +61,11 @@ class UserSearch extends Component {
         this.state = {
             initialViewAccess: true,
             initialEditAccess: true,
+            searchText: '',
             searchResult: [],
         };
+
+        this.debouncedSearch = debounce(this.fetchSearchResult.bind(this), 300);
     }
 
     accessOptionsChanged(initialViewAccess, initialEditAccess) {
@@ -75,13 +79,14 @@ class UserSearch extends Component {
             this.props.onSearch(searchText)
             .then((searchResult) => {
                 const noDuplicates = searchResult.filter(
-                    result => !this.props.currentAccesses.some(access => access.id === result.id))
+                    result => !this.props.currentAccesses.some(access => access.id === result.id));
                 this.setState({ searchResult: noDuplicates });
             });
         }
     }
 
     groupWasSelected(index) {
+        this.setState({ searchText: '' });
         const selectedGroup = this.state.searchResult[index];
         this.props.addUserGroupAccess({
             ...selectedGroup,
@@ -90,8 +95,12 @@ class UserSearch extends Component {
         });
     }
 
+    handleUpdateInput(searchText) {
+        this.setState({ searchText });
+        this.debouncedSearch(searchText);
+    }
+
     render() {
-        const debouncedSearch = debounce(this.fetchSearchResult.bind(this), 300);
         return (
             <div style={styles.container}>
                 <div style={styles.title}>
@@ -99,16 +108,17 @@ class UserSearch extends Component {
                 </div>
                 <div style={styles.innerContainer}>
                     <AutoComplete
-                        fullWidth
-                        openOnFocus
                         dataSource={this.state.searchResult}
                         dataSourceConfig={{ text: 'displayName', value: 'id' }}
-                        onUpdateInput={debouncedSearch}
-                        onNewRequest={(chosenRequest, index) => this.groupWasSelected(index)}
                         filter={() => true}
-                        underlineShow={false}
-                        hintText="Enter names"
+                        fullWidth
+                        hintText={this.context.d2.i18n.getTranslation('enter_names')}
+                        onNewRequest={(chosenRequest, index) => { this.groupWasSelected(index); }}
+                        onUpdateInput={(searchText) => { this.handleUpdateInput(searchText); }}
+                        openOnFocus
+                        searchText={this.state.searchText}
                         style={styles.searchBox}
+                        underlineShow={false}
                     />
                     <PermissionPicker
                         disableNoAccess

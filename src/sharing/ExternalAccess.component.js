@@ -6,6 +6,8 @@ import { config } from 'd2/lib/d2';
 import Rule from './Rule.component';
 
 config.i18n.strings.add('external_access');
+config.i18n.strings.add('anyone_can_view_without_a_login');
+config.i18n.strings.add('no_access');
 
 const ExternalAccess = ({ canView, disabled, onChange }, context) => (
     <Rule
@@ -13,7 +15,9 @@ const ExternalAccess = ({ canView, disabled, onChange }, context) => (
         disabled={disabled}
         disableWritePermission
         primaryText={context.d2.i18n.getTranslation('external_access')}
-        secondaryText={canView ? 'Anyone can view without a login' : 'No access'}
+        secondaryText={canView ?
+          context.d2.i18n.getTranslation('anyone_can_view_without_a_login') :
+          context.d2.i18n.getTranslation('no_access')}
         onChange={onChange}
         accessOptions={{ canView }}
     />

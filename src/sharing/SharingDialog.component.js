@@ -44,9 +44,11 @@ function transformObjectStructure(apiMeta, apiObject) {
     const combinedAccesses = userGroupAccesses.concat(userAccesses);
 
     return {
-        authorOfSharableItem: {
-            id: apiObject.user.id,
-            name: apiObject.user.name,
+        ...apiObject.user && {
+            authorOfSharableItem: {
+                id: apiObject.user.id,
+                name: apiObject.user.name,
+            },
         },
         nameOfSharableItem: apiObject.name,
         canSetPublicAccess: apiMeta.allowPublicAccess,
@@ -61,8 +63,24 @@ function transformObjectStructure(apiMeta, apiObject) {
 class SharingDialog extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            apiObject: null,
+            objectToShare: null,
+            fullObjectName: '',
+        };
+
         this.loadObjectFromApi();
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.id !== this.props.id) {
+            this.setState({
+                objectToShare: null,
+                fullObjectName: '',
+            });
+
+            this.loadObjectFromApi();
+        }
     }
 
     onSearchRequest(searchText) {
@@ -81,12 +99,23 @@ class SharingDialog extends React.Component {
             });
     }
 
-    onSharingChanged(changedObject) {
-        const apiObject = this.restoreObjectStructure(changedObject);
+    onSharingChanged(updatedAttributes, onSuccess) {
+        const objectToShare = {
+            ...this.state.objectToShare,
+            ...updatedAttributes,
+        };
+
+        const apiObject = this.restoreObjectStructure(objectToShare);
+
         return this.state.api.post(`sharing?type=${this.props.type}&id=${this.props.id}`, apiObject)
           .then(({ httpStatus, message }) => {
               if (httpStatus === 'OK') {
-                  console.warn('Successfully saved object:', apiObject);
+                  this.setState({
+                      objectToShare,
+                      apiObject,
+                  }, () => {
+                      onSuccess && onSuccess();
+                  });
               } else {
                   console.warn('Failed to post changes.');
                   console.warn('SERVER SAID:', message);
@@ -107,6 +136,7 @@ class SharingDialog extends React.Component {
                 .then((apiObject) => {
                     this.setState({
                         api: apiInstance,
+                        apiObject: apiObject.object,
                         objectToShare: transformObjectStructure(apiObject.meta, apiObject.object),
                         fullObjectName: apiObject.object.name,
                     });
@@ -132,7 +162,7 @@ class SharingDialog extends React.Component {
                 : userGroupAccesses.push(apiAccess);
         });
 
-        const restoredObject = {
+        return {
             meta: {
                 allowPublicAccess: transformedObject.canSetPublicAccess,
                 allowExternalAccess: transformedObject.canSetExternalAccess,
@@ -152,12 +182,10 @@ class SharingDialog extends React.Component {
                 ...userGroupAccesses && { userGroupAccesses },
             },
         };
-
-        return restoredObject;
     }
 
     closeSharingDialog() {
-        this.props.onRequestClose();
+        this.props.onRequestClose(this.state.apiObject);
     }
 
     render() {

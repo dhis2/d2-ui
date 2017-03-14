@@ -5,12 +5,14 @@ import { config } from 'd2/lib/d2';
 import Rule from './Rule.component';
 
 config.i18n.strings.add('public_access');
+config.i18n.strings.add('anyone_can_find_and_view');
+config.i18n.strings.add('anyone_can_find_view_and_edit');
 
-function constructSecondaryText(canView, canEdit) {
+function constructSecondaryText(canView, canEdit, context) {
     if (canView) {
         return canEdit
-            ? 'Anyone can find, view and edit'
-            : 'Anyone can find and view';
+            ? context.d2.i18n.getTranslation('anyone_can_find_view_and_edit')
+            : context.d2.i18n.getTranslation('anyone_can_find_and_view')
     }
 
     return 'No access';
@@ -21,7 +23,7 @@ const PublicAccess = ({ canView, canEdit, disabled, onChange }, context) => (
         accessType="public"
         disabled={disabled}
         primaryText={context.d2.i18n.getTranslation('public_access')}
-        secondaryText={constructSecondaryText(canView, canEdit)}
+        secondaryText={constructSecondaryText(canView, canEdit, context)}
         onChange={onChange}
         accessOptions={{ canView, canEdit }}
     />

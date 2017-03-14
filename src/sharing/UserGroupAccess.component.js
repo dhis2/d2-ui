@@ -8,7 +8,6 @@ const UserGroupAccess = ({ nameOfGroup, groupType, canView, canEdit, onChange, o
         disableNoAccess
         accessType={groupType}
         primaryText={nameOfGroup}
-        secondaryText={groupType}
         onChange={onChange}
         onRemove={onRemove}
         accessOptions={{

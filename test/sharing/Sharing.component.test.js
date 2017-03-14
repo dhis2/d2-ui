@@ -82,45 +82,6 @@ describe('Sharing: Sharing component', () => {
         expect(subheaderComponent.childAt(0).text()).to.equal('who_has_access_translated');
     });
 
-    describe('State', () => {
-        let sharingComponentInstance;
-
-        beforeEach(() => {
-            sharingComponentInstance = sharingComponent.instance();
-        });
-
-        it('reflects changes in public access', () => {
-            expect(sharingComponent.state().publicCanEdit).to.equal(true);
-            sharingComponentInstance.publicAccessChanged(true, false);
-            expect(sharingComponent.state().publicCanEdit).to.equal(false);
-        });
-
-        it('reflects changes in external access', () => {
-            expect(sharingComponent.state().isSharedExternally).to.equal(true);
-            sharingComponentInstance.externalAccessChanged(false);
-            expect(sharingComponent.state().isSharedExternally).to.equal(false);
-        });
-
-        it('reflects changes in user- and group accesses', () => {
-            expect(sharingComponent.state().accesses[0].canEdit).to.equal(false);
-            sharingComponentInstance.accessRulesChanged('lFHP5lLkzVr', true, true);
-            expect(sharingComponent.state().accesses[0].canEdit).to.equal(true);
-        });
-
-        it('reflects additions of user- and group accesses', () => {
-            expect(sharingComponent.state().accesses).to.have.length(2);
-            sharingComponentInstance.addUserGroupAccess(exampleUserGroup);
-            expect(sharingComponent.state().accesses).to.have.length(3);
-            expect(sharingComponent.state().accesses[2].id).to.equal('vAvEltyXGbD');
-        });
-
-        it('reflects removal of user- and group accesses', () => {
-            expect(sharingComponent.state().accesses).to.have.length(2);
-            sharingComponentInstance.removeUserGroupAccess('lFHP5lLkzVr');
-            expect(sharingComponent.state().accesses).to.have.length(1);
-        });
-    });
-
     describe('PublicAccess', () => {
         let publicAccessComponent;
 

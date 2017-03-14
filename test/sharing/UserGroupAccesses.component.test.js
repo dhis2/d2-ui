@@ -39,10 +39,6 @@ describe('Sharing: UserGroupAccess component', () => {
         expect(userGroupAccessComponent.find(Rule).props().primaryText).to.equal(userGroupAccessProps.nameOfGroup);
     });
 
-    it('should render the secondaryText as the groupType', () => {
-        expect(userGroupAccessComponent.find(Rule).props().secondaryText).to.equal(userGroupAccessProps.groupType);
-    });
-
     it('should render the accessOptions according to canView and canEdit', () => {
         expect(userGroupAccessComponent.find(Rule).props().accessOptions).to.deep.equal({
             canView: userGroupAccessProps.canView,

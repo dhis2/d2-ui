@@ -30,63 +30,39 @@ const styles = {
 class Sharing extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            publicCanView: this.props.publicCanView,
-            publicCanEdit: this.props.publicCanEdit,
-            isSharedExternally: this.props.isSharedExternally,
-            accesses: this.props.accesses,
-        };
+        this.accessList = null;
     }
 
     publicAccessChanged(publicCanView, publicCanEdit) {
-        this.setState({
-            publicCanView,
-            publicCanEdit,
-        }, () => { this.postChangedObject(); });
+        this.props.onSharingChanged({ publicCanView, publicCanEdit });
     }
 
     externalAccessChanged(isSharedExternally) {
-        this.setState({
-            isSharedExternally,
-        }, () => { this.postChangedObject(); });
+        this.props.onSharingChanged({ isSharedExternally });
     }
 
     accessRulesChanged(id, canView, canEdit) {
-        const accesses = this.state.accesses.map(accessRule => (
+        const accesses = [...this.props.accesses].map(accessRule => (
             accessRule.id === id ? { ...accessRule, canView, canEdit } : accessRule
         ));
 
-        this.setState({
-            accesses,
-        }, () => { this.postChangedObject(); });
+        this.props.onSharingChanged({ accesses });
     }
 
     addUserGroupAccess(userGroup) {
-        const accesses = [
-            ...this.state.accesses,
-            userGroup
-        ];
-
-        this.setState({
-            accesses,
-        }, () => { this.postChangedObject(); });
+        const accesses = [...this.props.accesses, userGroup];
+        this.props.onSharingChanged({ accesses }, () => {
+            this.scrollAccessListToBottom();
+        });
     }
 
     removeUserGroupAccess(userGroupId) {
-        const accesses = this.state.accesses.filter(userGroup => userGroup.id !== userGroupId);
-        this.setState({
-            accesses,
-        }, () => { this.postChangedObject(); });
+        const accesses = [...this.props.accesses].filter(userGroup => userGroup.id !== userGroupId);
+        this.props.onSharingChanged({ accesses });
     }
 
-    postChangedObject() {
-        this.props.onSharingChanged({
-            authorOfSharableItem: this.props.authorOfSharableItem,
-            nameOfSharableItem: this.props.nameOfSharableItem,
-            canSetPublicAccess: this.props.canSetPublicAccess,
-            canSetExternalAccess: this.props.canSetExternalAccess,
-            ...this.state,
-        });
+    scrollAccessListToBottom() {
+        this.accessList.scrollTop = this.accessList.scrollHeight;
     }
 
     render() {
@@ -97,10 +73,10 @@ class Sharing extends React.Component {
                 <div style={styles.titleBodySpace} />
                 <Subheader>{this.context.d2.i18n.getTranslation('who_has_access')}</Subheader>
                 <Divider />
-                <div style={styles.rules}>
+                <div style={styles.rules} ref={(ref) => { this.accessList = ref; }}>
                     <PublicAccess
-                        canView={this.state.publicCanView}
-                        canEdit={this.state.publicCanEdit}
+                        canView={this.props.publicCanView}
+                        canEdit={this.props.publicCanEdit}
                         disabled={!this.props.canSetPublicAccess}
                         onChange={(accessRules) => {
                             this.publicAccessChanged(accessRules.canView, accessRules.canEdit);
@@ -108,14 +84,14 @@ class Sharing extends React.Component {
                     />
                     <Divider />
                     <ExternalAccess
-                        canView={this.state.isSharedExternally}
+                        canView={this.props.isSharedExternally}
                         disabled={!this.props.canSetExternalAccess}
                         onChange={(accessRules) => {
                             this.externalAccessChanged(accessRules.canView);
                         }}
                     />
                     <Divider />
-                    { this.state.accesses.map((accessRules, index) =>
+                    { this.props.accesses.map((accessRules, index) =>
                         <div key={index}>
                             <UserGroupAccess
                                 nameOfGroup={accessRules.displayName}
@@ -136,7 +112,7 @@ class Sharing extends React.Component {
                 <UserSearch
                     onSearch={this.props.onSearch}
                     addUserGroupAccess={this.addUserGroupAccess.bind(this)}
-                    currentAccesses={this.state.accesses}
+                    currentAccesses={this.props.accesses}
                 />
             </div>
         );
@@ -145,8 +121,8 @@ class Sharing extends React.Component {
 
 Sharing.propTypes = {
     authorOfSharableItem: PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
+        id: PropTypes.string,
+        name: PropTypes.string,
     }).isRequired,
     nameOfSharableItem: PropTypes.string.isRequired,
     canSetPublicAccess: PropTypes.bool.isRequired,

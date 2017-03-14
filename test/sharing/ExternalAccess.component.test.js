@@ -39,13 +39,14 @@ describe('Sharing: ExternalAccess component', () => {
         });
 
         it('should describe the access as viewable if external access is enabled', () => {
-            expect(ruleComponent.props().secondaryText.toLowerCase()).to.contain('can view');
+            expect(ruleComponent.props().secondaryText.toLowerCase())
+              .to.equal('anyone_can_view_without_a_login_translated');
         });
 
         it('should have no access if external access is disabled', () => {
             renderComponent({ canView: false, disabled: false, onChange });
             ruleComponent = externalAccessComponent.find(Rule);
-            expect(ruleComponent.props().secondaryText.toLowerCase()).to.contain('no access');
+            expect(ruleComponent.props().secondaryText.toLowerCase()).to.equal('no_access_translated');
         });
     });
 });

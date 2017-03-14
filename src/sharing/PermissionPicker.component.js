@@ -1,13 +1,15 @@
 /* eslint react/jsx-no-bind: 0 */
 
 import React, { PropTypes } from 'react';
-import injectTapEventPlugin from 'react-tap-event-plugin';
 import FontIcon from 'material-ui/FontIcon';
 import MenuItem from 'material-ui/MenuItem';
 import IconMenu from 'material-ui/IconMenu';
 import IconButton from 'material-ui/IconButton';
+import { config } from 'd2/lib/d2';
 
-injectTapEventPlugin();
+config.i18n.strings.add('can_edit_and_view');
+config.i18n.strings.add('can_view_only');
+config.i18n.strings.add('no_access');
 
 function getAccessIcon(accessOptions) {
     if (accessOptions.canView) {
@@ -32,7 +34,7 @@ function createMenuItem(text, canView, canEdit, isSelected, disabled) {
     );
 }
 
-const PermissionPicker = ({ accessOptions, onChange, disabled, disableWritePermission, disableNoAccess }) => (
+const PermissionPicker = ({ accessOptions, onChange, disabled, disableWritePermission, disableNoAccess }, context) => (
     <IconMenu
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
         touchTapCloseDelay={1}
@@ -47,9 +49,12 @@ const PermissionPicker = ({ accessOptions, onChange, disabled, disableWritePermi
             </IconButton>
         }
     >
-        { createMenuItem('Can edit and view', true, true, accessOptions.canEdit, disableWritePermission) }
-        { createMenuItem('Can view only', true, false, accessOptions.canView && !accessOptions.canEdit) }
-        { createMenuItem('No access', false, false, !accessOptions.canView && !accessOptions.canEdit, disableNoAccess) }
+        { createMenuItem(context.d2.i18n.getTranslation('can_edit_and_view'),
+            true, true, accessOptions.canEdit, disableWritePermission) }
+        { createMenuItem(context.d2.i18n.getTranslation('can_view_only'),
+            true, false, accessOptions.canView && !accessOptions.canEdit) }
+        { createMenuItem(context.d2.i18n.getTranslation('no_access'),
+            false, false, !accessOptions.canView && !accessOptions.canEdit, disableNoAccess) }
     </IconMenu>
 );
 
@@ -62,6 +67,10 @@ PermissionPicker.propTypes = {
     disabled: PropTypes.bool,
     disableWritePermission: PropTypes.bool,
     disableNoAccess: PropTypes.bool,
+};
+
+PermissionPicker.contextTypes = {
+    d2: PropTypes.object.isRequired,
 };
 
 export default PermissionPicker;
