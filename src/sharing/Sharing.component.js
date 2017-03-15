@@ -22,7 +22,7 @@ const styles = {
         paddingTop: 50,
     },
     rules: {
-        height: '200px',
+        height: '240px',
         overflowY: 'scroll',
     },
 };

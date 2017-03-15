@@ -12,7 +12,7 @@ function constructSecondaryText(canView, canEdit, context) {
     if (canView) {
         return canEdit
             ? context.d2.i18n.getTranslation('anyone_can_find_view_and_edit')
-            : context.d2.i18n.getTranslation('anyone_can_find_and_view')
+            : context.d2.i18n.getTranslation('anyone_can_find_and_view');
     }
 
     return 'No access';

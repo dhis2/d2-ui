@@ -96,13 +96,14 @@ describe('Sharing: SharingDialog component', () => {
             const buttons = sharingDialogComponent.find(Dialog).props().actions;
             expect(buttons[0].props.label).to.equal('close_translated');
         });
-/*
-        it('should pass the closeSharingDialog as the onClick handler', () => {
-            const buttons = sharingDialogComponent.find(Dialog).props().actions;
-            expect(buttons[0].props.onClick).to.equal(sharingDialogComponent.instance().closeSharingDialog);
-        });
-*/
+
         it('should call onRequestClose from the props when the closeSharingDialog is called', () => {
+            sharingDialogComponent.setState({
+                apiObject: {
+                    object: null,
+                },
+            });
+
             sharingDialogComponent.instance().closeSharingDialog();
             expect(onRequestClose).to.be.calledOnce;
         });

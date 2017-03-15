@@ -36,13 +36,13 @@ class SharingExample extends React.Component {
         };
     }
 
-    handleOpen = () => {
+    handleOpen() {
         this.setState({ dialogOpen: true });
-    };
+    }
 
-    handleClose = (sharingState) => {
+    handleClose() {
         this.setState({ dialogOpen: false });
-    };
+    }
 
     render() {
         return (

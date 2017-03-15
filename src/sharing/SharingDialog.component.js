@@ -66,7 +66,6 @@ class SharingDialog extends React.Component {
         this.state = {
             apiObject: null,
             objectToShare: null,
-            fullObjectName: '',
         };
 
         this.loadObjectFromApi();
@@ -76,7 +75,6 @@ class SharingDialog extends React.Component {
         if (nextProps.id !== this.props.id) {
             this.setState({
                 objectToShare: null,
-                fullObjectName: '',
             });
 
             this.loadObjectFromApi();
@@ -136,9 +134,8 @@ class SharingDialog extends React.Component {
                 .then((apiObject) => {
                     this.setState({
                         api: apiInstance,
-                        apiObject: apiObject.object,
+                        apiObject,
                         objectToShare: transformObjectStructure(apiObject.meta, apiObject.object),
-                        fullObjectName: apiObject.object.name,
                     });
                 });
         });
@@ -163,29 +160,23 @@ class SharingDialog extends React.Component {
         });
 
         return {
-            meta: {
-                allowPublicAccess: transformedObject.canSetPublicAccess,
-                allowExternalAccess: transformedObject.canSetExternalAccess,
-            },
-
+            meta: this.state.apiObject.meta,
             object: {
-                id: this.props.id,
-                name: this.state.fullObjectName,
-                displayName: transformedObject.nameOfSharableItem,
+                ...this.state.apiObject.object,
+                ...userAccesses && { userAccesses },
+                ...userGroupAccesses && { userGroupAccesses },
+
                 publicAccess: cachedAccessTypeToString(
                     transformedObject.publicCanView,
                     transformedObject.publicCanEdit
                 ),
                 externalAccess: transformedObject.isSharedExternally,
-                user: transformedObject.authorOfSharableItem,
-                ...userAccesses && { userAccesses },
-                ...userGroupAccesses && { userGroupAccesses },
             },
         };
     }
 
     closeSharingDialog() {
-        this.props.onRequestClose(this.state.apiObject);
+        this.props.onRequestClose(this.state.apiObject.object);
     }
 
     render() {
