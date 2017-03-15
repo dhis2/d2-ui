@@ -27,6 +27,10 @@ const styles = {
     },
 };
 
+/**
+ * Content of the sharing dialog; a set of components for changing sharing
+ * preferences.
+ */
 class Sharing extends React.Component {
     constructor(props) {
         super(props);
@@ -120,16 +124,54 @@ class Sharing extends React.Component {
 }
 
 Sharing.propTypes = {
+
+    /**
+     * Author of the shared object.
+     */
     authorOfSharableItem: PropTypes.shape({
         id: PropTypes.string,
         name: PropTypes.string,
     }).isRequired,
+
+    /**
+     * Display name of the shared object.
+     */
     nameOfSharableItem: PropTypes.string.isRequired,
+
+    /**
+     * Is *true* if the public access options (publicCanView/publicCanEdit)
+     * can be changed
+     */
     canSetPublicAccess: PropTypes.bool.isRequired,
+
+    /**
+     * Is *true* if the external access options (isSharedExternally) can be
+     * changed
+     */
     canSetExternalAccess: PropTypes.bool.isRequired,
+
+    /**
+     * If *true*, the object can currently be found and viewed by all users of
+     * the DHIS instance.
+     */
     publicCanView: PropTypes.bool.isRequired,
+
+    /**
+     * If *true*, the object can currently be found, viewed and changed by all
+     * users of the DHIS instance.
+     */
     publicCanEdit: PropTypes.bool.isRequired,
+
+    /**
+     * If *true*, the object is shared outside of DHIS.
+     */
     isSharedExternally: PropTypes.bool.isRequired,
+
+    /**
+     * A list of the access preferences of the sharable object. Each entry in
+     * the list consists of a type (user or userGroup), an id, a name and
+     * whether the user or group can view and/or edit the object.
+     */
     accesses: PropTypes.arrayOf(PropTypes.shape({
         type: PropTypes.oneOf(['user', 'userGroup']).isRequired,
         id: PropTypes.string.isRequired,
@@ -137,7 +179,16 @@ Sharing.propTypes = {
         canView: PropTypes.bool.isRequired,
         canEdit: PropTypes.bool.isRequired,
     })).isRequired,
+
+    /**
+     * Function that takes an object containing updated sharing preferences and
+     * an optional callback fired when the change was successfully posted.
+     */
     onSharingChanged: PropTypes.func.isRequired,
+
+    /**
+     * Takes a string and a callback, and returns matching users and userGroups.
+     */
     onSearch: PropTypes.func.isRequired,
 };
 

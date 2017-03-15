@@ -60,6 +60,9 @@ function transformObjectStructure(apiMeta, apiObject) {
     };
 }
 
+/**
+ * A pop-up dialog for changing sharing preferences for a sharable object.
+ */
 class SharingDialog extends React.Component {
     constructor(props) {
         super(props);
@@ -219,9 +222,25 @@ class SharingDialog extends React.Component {
 }
 
 SharingDialog.propTypes = {
+    /**
+     * Decides whether the dialog should be open or closed.
+     */
     open: PropTypes.bool.isRequired,
+
+    /**
+     * Function to be called when the dialog is closed. The function is called
+     * with the updated sharing preferences as the first and only argument.
+     */
     onRequestClose: PropTypes.func.isRequired,
+
+    /**
+     * Type of the sharable object.
+     */
     type: PropTypes.string.isRequired,
+
+    /**
+     * Id of the sharable object.
+     */
     id: PropTypes.string.isRequired,
 };
 
