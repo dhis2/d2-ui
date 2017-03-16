@@ -6,7 +6,7 @@ import { profileSource$, appsMenuSource$ } from './menu-sources';
 import { curry } from 'lodash/fp';
 import { pick } from 'lodash/fp';
 import { get as pluck } from 'lodash/fp';
-import { Observable } from 'rx';
+import { Observable } from 'rxjs';
 import getBaseUrlFromD2ApiUrl from './getBaseUrlFromD2ApiUrl';
 
 const translate = curry(function translate(d2, key) {
@@ -14,13 +14,13 @@ const translate = curry(function translate(d2, key) {
 });
 
 const d2Offline = { currentUser: { userSettings: {} } };
-const d2$ = Observable.fromPromise(getInstance()).catch(Observable.just(d2Offline));
+const d2$ = Observable.fromPromise(getInstance()).catch(Observable.of(d2Offline));
 const currentUser$ = d2$.map(pluck('currentUser'));
 
 export const translate$ = Observable
     .combineLatest(
         d2$,
-        Observable.just(translate),
+        Observable.of(translate),
         (d2, translateFn) => translateFn(d2)
     );
 
@@ -46,12 +46,12 @@ const profileMenuItems$ = Observable
     .combineLatest(translate$, profileSource$, translateMenuItemNames)
     .combineLatest(d2$, (items, d2) => ({items, d2}))
     .map(({items, d2}) => prepareMenuItems(getBaseUrlFromD2(d2), items))
-    .catch(Observable.just([]));
+    .catch(Observable.of([]));
 
 export const appsMenuItems$ = appsMenuSource$
     .combineLatest(d2$, (items, d2) => ({items, d2}))
     .map(({items, d2}) => prepareMenuItems(getBaseUrlFromD2(d2), items))
-    .catch(Observable.just([]));
+    .catch(Observable.of([]));
 
 const headerBarStore$ = Observable
     .combineLatest(

@@ -6,7 +6,7 @@ import { getLocales, getTranslationsForModel, saveTranslations } from './transla
 import camelCaseToUnderscores from 'd2-utilizr/lib/camelCaseToUnderscores';
 import withStateFrom from '../component-helpers/withStateFrom';
 import RaisedButton from 'material-ui/RaisedButton/RaisedButton';
-import { Observable } from 'rx';
+import { Observable } from 'rxjs';
 import Store from '../store/Store';
 import CircularProgress from '../circular-progress/CircularProgress';
 

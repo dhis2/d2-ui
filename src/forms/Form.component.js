@@ -50,7 +50,7 @@ const Form = React.createClass({
 
     componentWillUnmount() {
         this.disposables.forEach(d => {
-            d.dispose();
+            d.unsubscribe();
         });
     },
 

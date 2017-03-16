@@ -1,7 +1,7 @@
 import ListSelectWithLocalSearch from '../list-select/ListSelectWithLocalSearch.component';
 import withPropsFromObservable from '../component-helpers/withPropsFromObservable';
 import { getAllObjectsWithFields } from '../data-helpers';
-import { Observable } from 'rx';
+import { Observable } from 'rxjs';
 import { isFunction } from 'lodash';
 
 const organisationUnitGroupSelectorProps$ = Observable.fromPromise(getAllObjectsWithFields('organisationUnitGroup'))

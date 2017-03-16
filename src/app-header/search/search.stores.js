@@ -1,7 +1,7 @@
 import headerBarStore$ from '../headerBar.store';
 import Action from '../../action/Action';
 import Store from '../../store/Store';
-import { Observable, helpers } from 'rx';
+import { Observable } from 'rxjs';
 import addDeepLinksForMaintenance from './sources/maintenance-app';
 import addDeepLinksForSettings from './sources/settings-app';
 import log from 'loglevel';
@@ -9,6 +9,8 @@ import { appsMenuItems$ } from '../headerBar.store';
 import { uniqBy } from 'lodash/fp';
 import { curry } from 'lodash/fp';
 import { get } from 'lodash/fp';
+
+const identity = v => v;
 
 const searchResultBoxStateStore$ = Store.create({
     getInitialState() {
@@ -152,7 +154,7 @@ keyPress$
     .flatMap(() => searchResultBoxStateStore$.take(1))
     // Find the selected menu item in the search results list by the `selected` index
     .map(state => state.searchResults.find((item, index) => index === state.selected))
-    .filter(helpers.identity)
+    .filter(identity)
     .subscribe(
         itemToGoTo => window.location = itemToGoTo.action,
         log.error

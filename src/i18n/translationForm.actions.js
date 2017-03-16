@@ -1,6 +1,6 @@
 import Action from '../action/Action';
 import {getInstance as getD2} from 'd2/lib/d2';
-import { Observable } from 'rx';
+import { Observable } from 'rxjs';
 import { getInstance } from 'd2/lib/d2';
 
 export function getLocales() {
@@ -28,7 +28,7 @@ function getModelHref(model) {
 }
 
 export function getTranslationsForModel(model) {
-    return Observable.just(model)
+    return Observable.of(model)
         .flatMap((model) => {
             const modelDefinition = model.modelDefinition;
 

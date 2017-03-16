@@ -1,4 +1,4 @@
-import {Observable} from 'rx';
+import { Observable } from 'rxjs';
 import logLevel from 'loglevel';
 import Action from '../../src/action/Action';
 

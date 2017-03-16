@@ -1,7 +1,8 @@
 import createFormValidator from '../../src/forms/FormValidator';
 import {FormFieldStatuses} from '../../src/forms/FormValidator';
 import log from 'loglevel';
-import Rx from 'rx';
+import { TestScheduler } from 'rxjs';
+import isEqual from 'lodash/isEqual';
 
 describe('FormValidator', () => {
     let formValidator;
@@ -44,9 +45,11 @@ describe('FormValidator', () => {
     describe('runFor', () => {
         let validators;
         let testScheduler;
+        let cold;
 
         beforeEach(() => {
-            testScheduler = new Rx.TestScheduler()
+            testScheduler = new TestScheduler((a, b) => isEqual(a, b));
+            cold = ((testScheduler) => (...args) => testScheduler.createColdObservable.apply(testScheduler, args))(testScheduler);
 
             validators = [
                 sinon.stub().returns(true),
@@ -65,17 +68,18 @@ describe('FormValidator', () => {
             expect(formValidator.runFor('name')).to.be.false;
         });
 
-        xit('should run the validators for the field it is called with', (done) => {
-            formValidator.runFor('name', 'Mark');
+        it('should run the validators for the field it is called with', () => {
+            cold('--a-|')
+                .map(() => formValidator.runFor('name', 'Mark'))
+                .subscribe();
 
-            setTimeout(() => {
-                expect(validators[0]).to.be.calledWith('Mark', 'name');
-                expect(validators[1]).to.be.calledWith('Mark', 'name');
-                done();
-            }, 301);
+            testScheduler.flush();
+
+            expect(validators[0]).to.be.calledWith('Mark', 'name');
+            expect(validators[1]).to.be.calledWith('Mark', 'name');
         });
 
-        xit('should set the status when the runFor() is called', (done) => {
+        it('should set the status when the runFor() is called', (done) => {
             function statusCallback(statusValue) {
                 expect(Array.from(statusValue)).to.deep.equal([
                     ['name', {status: FormFieldStatuses.VALID, messages: []}],
@@ -87,9 +91,11 @@ describe('FormValidator', () => {
             formValidator.runFor('name');
 
             formValidator.status.subscribe(statusCallback);
+
+            testScheduler.flush();
         });
 
-        xit('should emit a status that represents the validator results', (done) => {
+        it('should emit a status that represents the validator results', (done) => {
             const requiredValidator = stub().returns(false);
             requiredValidator.message = 'field_is_required';
 
@@ -98,7 +104,7 @@ describe('FormValidator', () => {
             formValidator = createFormValidator([
                 {name: 'name', validators},
                 {name: 'code', validators},
-            ]);
+            ], testScheduler);
 
             function statusCallback(statusValue) {
                 expect(Array.from(statusValue)).to.deep.equal([
@@ -111,9 +117,11 @@ describe('FormValidator', () => {
             formValidator.runFor('name');
 
             formValidator.status.subscribe(statusCallback);
+
+            testScheduler.flush();
         });
 
-        xit('should emit a pending status for an async validator', (done) => {
+        it('should emit a pending status for an async validator', (done) => {
             const asyncValidator = stub().returns(new Promise(() => {}));
 
             validators.push(asyncValidator);
@@ -121,7 +129,7 @@ describe('FormValidator', () => {
             formValidator = createFormValidator([
                 {name: 'name', validators},
                 {name: 'code', validators},
-            ]);
+            ], testScheduler);
 
             function statusCallback(statusValue) {
                 expect(Array.from(statusValue)).to.deep.equal([
@@ -134,6 +142,8 @@ describe('FormValidator', () => {
             formValidator.runFor('name');
 
             formValidator.status.subscribe(statusCallback);
+
+            testScheduler.flush();
         });
 
         it('should pass the field validation when the async validator resolves', (done) => {
@@ -182,20 +192,19 @@ describe('FormValidator', () => {
             formValidator.status.subscribe(statusCallback);
         });
 
-        xit('should log a warning when a validator is not a function', (done) => {
+        it('should log a warning when a validator is not a function', () => {
             stub(log, 'warn');
 
             validators.push('Not a validator');
 
             formValidator.runFor('name', 'Mark');
 
-            setTimeout(() => {
-                expect(log.warn).to.be.calledWith(`Warning: One of the validators for 'name' is not a function.`);
-                done();
-            }, 301);
+            testScheduler.flush();
+
+            expect(log.warn).to.be.calledWith(`Warning: One of the validators for 'name' is not a function.`);
         });
 
-        xit('should log an error when something fails', (done) => {
+        it('should log an error when something fails', () => {
             stub(log, 'debug');
 
             function throwingValidator() {
@@ -206,12 +215,11 @@ describe('FormValidator', () => {
 
             formValidator.runFor('name', 'Mark');
 
-            setTimeout(() => {
-                expect(log.debug).to.be.calledWith(`Validator for 'name' ignored because the validator threw an error.`);
-                expect(log.debug).to.be.calledWith(`${throwingValidator}`);
-                expect(log.debug).to.be.calledWith('Something failed!');
-                done();
-            }, 400);
+            testScheduler.flush();
+
+            expect(log.debug).to.be.calledWith(`Validator for 'name' ignored because the validator threw an error.`);
+            expect(log.debug).to.be.calledWith(`${throwingValidator}`);
+            expect(log.debug).to.be.calledWith('Something failed!');
         });
     });
 

@@ -1,4 +1,4 @@
-import { ReplaySubject, Observable } from 'rx';
+import { ReplaySubject, Observable } from 'rxjs';
 
 const publishState = Symbol('publishState');
 const publishError = Symbol('publishError');
@@ -47,11 +47,11 @@ class Store extends Observable {
      *****************************************************************************************************************/
 
     [publishState]() {
-        return this[observableSymbol].onNext(this.state);
+        return this[observableSymbol].next(this.state);
     }
 
     [publishError](error) {
-        return this[observableSymbol].onError(error);
+        return this[observableSymbol].error(error);
     }
 
     /** ***************************************************************************************************************

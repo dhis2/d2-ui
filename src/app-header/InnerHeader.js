@@ -1,7 +1,7 @@
 import React from 'react';
 import log from 'loglevel';
 import styles, { whenWidthLargerThan1150 } from './header-bar-styles';
-import { Observable, Subject } from 'rx';
+import { Observable, Subject } from 'rxjs';
 import getBaseUrlFromD2ApiUrl from './getBaseUrlFromD2ApiUrl';
 
 const defaultStyle = 'light_blue';
@@ -77,7 +77,7 @@ const InnerHeader = React.createClass({
     },
 
     componentWillUnmount() {
-        this.unmount.onNext(true);
+        this.unmount.next(true);
     },
 
     getSystemSettings(d2) {

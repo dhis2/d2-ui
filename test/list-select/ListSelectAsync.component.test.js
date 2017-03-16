@@ -1,7 +1,7 @@
 import React from 'react';
 import ListSelectAsync from '../../src/list-select/ListSelectAsync.component';
 import ListSelect from '../../src/list-select/ListSelect.component';
-import {ReplaySubject} from 'rx';
+import {ReplaySubject} from 'rxjs';
 import log from 'loglevel';
 
 import {shallow} from 'enzyme';
@@ -36,7 +36,7 @@ describe('ListSelectAsync component', () => {
 
         beforeEach(() => {
             fakeAsyncSource = new ReplaySubject(1);
-            fakeAsyncSource.onNext([
+            fakeAsyncSource.next([
                 {value: 'PvuaP6YALSA', label: 'Community'},
                 {value: 'cNzfcPWEGSH', label: 'Country'},
                 {value: 'POHZmzofoVx', label: 'Facility'},
@@ -68,7 +68,7 @@ describe('ListSelectAsync component', () => {
         });
 
         it('should only keep the new options if the source changed', () => {
-            fakeAsyncSource.onNext([
+            fakeAsyncSource.next([
                 {value: 'dNzfcPWEGSH', label: 'Universe'},
                 {value: 'MUPoPEBGCq9', label: 'Planet'},
             ]);
@@ -83,23 +83,23 @@ describe('ListSelectAsync component', () => {
         });
 
         it('should log an error when the source emits one', () => {
-            fakeAsyncSource.onError('Could not find the source items');
+            fakeAsyncSource.error('Could not find the source items');
 
             expect(log.error).to.be.calledWith('Could not find the source items');
         });
 
         it('should set the subscription onto the component instance', () => {
-            expect(listSelectAsyncComponent.instance().disposable).not.to.be.undefined;
+            expect(listSelectAsyncComponent.instance().subscription).not.to.be.undefined;
         });
 
-        it('should dispose the observable on unmount', () => {
+        it('should unsubscribe the observable on unmount', () => {
             const listSelectInstance = listSelectAsyncComponent.instance();
 
-            spy(listSelectInstance.disposable, 'dispose');
+            spy(listSelectInstance.subscription, 'unsubscribe');
 
             listSelectInstance.componentWillUnmount();
 
-            expect(listSelectInstance.disposable.dispose).to.be.calledOnce;
+            expect(listSelectInstance.subscription.unsubscribe).to.be.calledOnce;
         });
     });
 });

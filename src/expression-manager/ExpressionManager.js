@@ -14,7 +14,7 @@ import OrganisationUnitGroupSelector from './OrganisationUnitGroupSelector';
 import ConstantSelector from './ConstantSelector';
 import addD2Context from '../component-helpers/addD2Context';
 import Action from '../action/Action';
-import { Observable } from 'rx';
+import { Observable } from 'rxjs';
 import { Row, Column } from '../layout';
 
 config.i18n.strings.add('data_elements');
@@ -128,8 +128,8 @@ class ExpressionManager extends Component {
     }
 
     componentWillUnmount() {
-        this.disposable && this.disposable.dispose();
-        this.expressionStatusDisposable && this.expressionStatusDisposable.dispose();
+        this.disposable && this.disposable.unsubscribe();
+        this.expressionStatusDisposable && this.expressionStatusDisposable.unsubscribe();
     }
 
     render() {

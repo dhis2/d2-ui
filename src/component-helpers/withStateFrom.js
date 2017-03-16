@@ -12,7 +12,7 @@ export default function withStateFrom(stateSource$, BaseComponent) {
         }
 
         componentWillUnmount() {
-            this.disposable && this.disposable.dispose && this.disposable.dispose();
+            this.disposable && this.disposable.unsubscribe && this.disposable.unsubscribe();
         }
 
         render() {

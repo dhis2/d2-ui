@@ -14,6 +14,7 @@ export default function withPropsFromObservable(observable, BaseComponent) {
         }
 
         componentDidMount() {
+            console.log('mounted!');
             this.disposable = observable
                 .subscribe(
                     (props) => this.setState({ isLoading: false, ...props }),
@@ -22,8 +23,8 @@ export default function withPropsFromObservable(observable, BaseComponent) {
         }
 
         componentWillUnmount() {
-            if (this.disposable && this.disposable.dispose) {
-                this.disposable.dispose();
+            if (this.disposable && this.disposable.unsubscribe) {
+                this.disposable.unsubscribe();
             }
         }
 
