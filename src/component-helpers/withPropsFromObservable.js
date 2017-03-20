@@ -22,8 +22,8 @@ export default function withPropsFromObservable(observable, BaseComponent) {
         }
 
         componentWillUnmount() {
-            if (this.disposable && this.disposable.dispose) {
-                this.disposable.dispose();
+            if (this.disposable && this.disposable.unsubscribe) {
+                this.disposable.unsubscribe();
             }
         }
 

@@ -1,7 +1,7 @@
 import { map } from 'lodash/fp';
 import { curry } from 'lodash/fp';
 import { compose } from 'lodash/fp';
-import { Observable } from 'rx';
+import { Observable } from 'rxjs';
 import { flatten } from 'lodash/fp';
 import { filter } from 'lodash/fp';
 import { mapValues } from 'lodash/fp';
@@ -42,7 +42,7 @@ const createAppsListForMenu = compose(flatten, map(getMenuItemConfigsForSection)
 
 // Replace this with a proper source for there values
 export default function addDeepLinksForMaintenance(apps) {
-    const maintenanceDeepLinks$ = Observable.just(createAppsListForMenu(sectionsWithModels));
+    const maintenanceDeepLinks$ = Observable.of(createAppsListForMenu(sectionsWithModels));
 
     return Observable
         .combineLatest(translate$, maintenanceDeepLinks$, translateMenuItemNames)

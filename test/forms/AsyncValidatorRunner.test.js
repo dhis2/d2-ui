@@ -1,5 +1,6 @@
 import AsyncValidatorRunner from '../../src/forms/AsyncValidatorRunner';
-import Rx from 'rx';
+import { Subject, TestScheduler } from 'rxjs';
+import isEqual from 'lodash/isEqual';
 
 describe('AsyncValidatorRunner', () => {
     it('should be an object', () => {
@@ -24,7 +25,7 @@ describe('AsyncValidatorRunner', () => {
         });
 
         it('should set the scheduler if one has been passed in', () => {
-            const testScheduler = new Rx.TestScheduler();
+            const testScheduler  = new TestScheduler((a, b) => isEqual(a, b));
             const asyncValidatorRunner = AsyncValidatorRunner.create(testScheduler);
 
             expect(asyncValidatorRunner.scheduler).to.equal(testScheduler);
@@ -33,16 +34,15 @@ describe('AsyncValidatorRunner', () => {
         it('should have a validatorPipeline property that is an Rx.Subject', () => {
             const asyncValidatorRunner = AsyncValidatorRunner.create();
 
-            expect(asyncValidatorRunner.validatorPipeline).to.be.instanceof(Rx.Subject);
+            expect(asyncValidatorRunner.validatorPipeline).to.be.instanceof(Subject);
         });
     });
 
     describe('run()', () => {
         let asyncValidatorRunner;
-        let testScheduler;
 
         beforeEach(() => {
-            testScheduler = new Rx.TestScheduler();
+            const testScheduler = new TestScheduler((a, b) => isEqual(a, b));
             asyncValidatorRunner = AsyncValidatorRunner.create(testScheduler);
         });
 
@@ -56,12 +56,14 @@ describe('AsyncValidatorRunner', () => {
     });
 
     describe('listenToValidatorsFor()', () => {
-        let asyncValidatorRunner;
         let testScheduler;
+        let asyncValidatorRunner;
+        let asyncCold;
 
         beforeEach(() => {
-            testScheduler = new Rx.TestScheduler();
+            testScheduler = new TestScheduler((a, b) => isEqual(a, b));
             asyncValidatorRunner = AsyncValidatorRunner.create(testScheduler);
+            asyncCold = ((testScheduler) => (...args) => testScheduler.createColdObservable.apply(testScheduler, args))(testScheduler);
         });
 
         it('should debounce the values coming in', (done) => {
@@ -78,10 +80,11 @@ describe('AsyncValidatorRunner', () => {
                     (e) => done(e)
                 );
 
-            testScheduler.schedule(200, () => asyncValidatorRunner.run('name', asyncValidators, 'Zoe'));
-            testScheduler.schedule(300, () => asyncValidatorRunner.run('name', asyncValidators, 'Jane'));
-            testScheduler.schedule(350, () => asyncValidatorRunner.run('name', asyncValidators, 'John'));
-            testScheduler.advanceTo(600);
+
+            asyncCold('---a----b---c-|', { a: 'Zoe', b: 'Jane', c: 'John' })
+                .subscribe(name => asyncValidatorRunner.run('name', asyncValidators, name));
+
+            testScheduler.flush();
         });
 
         it('should still resolve when the one of the validators throws', (done) => {
@@ -97,8 +100,10 @@ describe('AsyncValidatorRunner', () => {
                     (e) => done(e)
                 );
 
-            testScheduler.schedule(200, () => asyncValidatorRunner.run('name', asyncValidators, 'Zoe'));
-            testScheduler.advanceTo(600);
+            asyncCold('----a-b-c-|', { a: 'Zoe', b: 'Jane', c: 'John' })
+                .subscribe(name => asyncValidatorRunner.run('name', asyncValidators, name));
+
+            testScheduler.flush();
         });
 
         it('should resolve with the correct result structure after a failing validator', (done) => {
@@ -122,8 +127,10 @@ describe('AsyncValidatorRunner', () => {
                     e => done(e)
                 );
 
-            testScheduler.schedule(200, () => asyncValidatorRunner.run('name', asyncValidators, 'Zoe'));
-            testScheduler.advanceTo(600);
+            asyncCold('---a--|', { a: 'Zoe' })
+                .subscribe(name => asyncValidatorRunner.run('name', asyncValidators, name));
+
+            testScheduler.flush();
         });
 
 
@@ -134,22 +141,28 @@ describe('AsyncValidatorRunner', () => {
                     (e) => done(e)
                 );
 
-            testScheduler.schedule(200, () => asyncValidatorRunner.run('name', [], 'Zoe'));
-            testScheduler.advanceTo(600);
+            asyncCold('---a--|', { a: 'Zoe' })
+                .subscribe(name => asyncValidatorRunner.run('name', [], name));
+
+            testScheduler.flush();
         });
 
         it('should emit the correct result structure', (done) => {
+            const expectedResult = { fieldName: 'name', isValid: true, value: 'Zoe' };
+
             asyncValidatorRunner.listenToValidatorsFor('name')
                 .subscribe(
                     (validationResult) => {
-                        expect(validationResult).to.deep.equal({ fieldName: 'name', isValid: true, value: 'Zoe' });
+                        expect(validationResult).to.deep.equal(expectedResult);
                         done();
                     },
                     (e) => done(e)
                 );
 
-            testScheduler.schedule(200, () => asyncValidatorRunner.run('name', [], 'Zoe'));
-            testScheduler.advanceTo(600);
+            asyncCold('---a--|', { a: 'Zoe' })
+                .subscribe(name => asyncValidatorRunner.run('name', [], name));
+
+            testScheduler.flush();
         });
 
         it('should run the passed validators for the field', (done) => {
@@ -170,8 +183,10 @@ describe('AsyncValidatorRunner', () => {
                     (e) => done(e)
                 );
 
-            testScheduler.schedule(200, () => asyncValidatorRunner.run('name', nameValidators, 'Zoe'));
-            testScheduler.advanceTo(600);
+            asyncCold('---a--|', { a: 'Zoe' })
+                .subscribe(name => asyncValidatorRunner.run('name', nameValidators, name));
+
+            testScheduler.flush();
         });
     });
 });

@@ -10,7 +10,7 @@ import { white } from 'material-ui/styles/colors';
 import { config } from 'd2/lib/d2';
 import addD2Context from '../../component-helpers/addD2Context';
 import SearchResults from './SearchResults';
-import { Observable } from 'rx';
+import { Observable } from 'rxjs';
 import log from 'loglevel';
 import withStateFrom from '../../component-helpers/withStateFrom';
 import { searchStore$ } from './search.stores';
@@ -54,8 +54,8 @@ class SearchField extends Component {
     }
 
     componentWillUnmount() {
-        if (this.disposable && this.disposable.dispose) {
-            this.disposable.dispose();
+        if (this.disposable && this.disposable.unsubscribe) {
+            this.disposable.unsubscribe();
         }
     }
 

@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "examples": "npm run start",
-    "coverage": "NODE_ENV=test nyc --require babel-register --require babel-polyfill mocha --reporter dot --require config/setup.js --recursive test/ && nyc report --reporter=lcov",
+    "coverage": "NODE_ENV=test nyc --require babel-register --require babel-polyfill mocha --reporter dot --require config/setup.js --require config/testScheduler-ui.js --ui testschedulerui --recursive test/ && nyc report --reporter=lcov",
     "start": "webpack-dev-server",
-    "test": "BABEL_ENV=test mocha --reporter spec --compilers js:babel-core/register --require config/setup.js --recursive test",
+    "test": "BABEL_ENV=test mocha --reporter spec --compilers js:babel-core/register --require config/setup.js --require config/test-helper.js --require config/testScheduler-ui.js --ui testschedulerui --recursive test",
     "test-watch": "npm run test -- --watch",
     "lint": "eslint src && eslint --env node,mocha --global expect,sinon --rule 'no-unused-expressions: 0' test && scss-lint",
     "prebuild": "npm run validate && npm test",
@@ -24,7 +24,8 @@
   },
   "license": "BSD-3-Clause",
   "peerDependencies": {
-    "material-ui": "0.17"
+    "material-ui": "0.17",
+    "rxjs": "^5.2.0"
   },
   "devDependencies": {
     "babel-cli": "^6.23.0",
@@ -37,6 +38,7 @@
     "babel-preset-react": "^6.23.0",
     "babel-preset-stage-0": "^6.16.0",
     "chai": "3.5.0",
+    "chai-enzyme": "^0.6.1",
     "classnames": "^2.2.5",
     "codeclimate-test-reporter": "^0.4.1",
     "colors": "^1.1.2",
@@ -61,7 +63,8 @@
     "react-color": "^2.11.3",
     "react-dom": "15.4",
     "react-stub-context": "^0.7.0",
-    "rx": "^4.1.0",
+    "react-tap-event-plugin": "^2.0.1",
+    "rxjs": "^5.2.0",
     "sass-loader": "^6.0.2",
     "sinon": "^1.17.6",
     "sinon-chai": "^2.8.0",
@@ -71,8 +74,6 @@
     "webpack-visualizer-plugin": "^0.1.5"
   },
   "dependencies": {
-    "react-tap-event-plugin": "^2.0.1",
-    "chai-enzyme": "^0.6.1"
   },
   "pre-commit": [
     "validate",

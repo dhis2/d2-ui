@@ -1,4 +1,4 @@
-import Rx from 'rx';
+import Rx from 'rxjs';
 import log from 'loglevel';
 import { isFunction } from 'lodash/fp';
 
@@ -73,13 +73,13 @@ export default function createFormValidator(fieldConfigs = [], scheduler) {
     Array.from(validatorQueues.values())
         .forEach(validatorObservable => {
             validatorObservable
-                .debounce(300, scheduler)
+                .debounceTime(300, scheduler)
                 .map(({ fieldName, fieldValue, formSource }) => {
                     const fieldConfig = fieldConfigs
                         .filter(fc => fc.name === fieldName)
                         .shift();
 
-                    validatorQueue.onNext(Promise.resolve({ fieldName, fieldStatus: { status: FormFieldStatuses.VALIDATING, messages: [] } }));
+                    validatorQueue.next(Promise.resolve({ fieldName, fieldStatus: { status: FormFieldStatuses.VALIDATING, messages: [] } }));
 
                     const validatorToRun = fieldConfig.validators
                         .filter(validator => {
@@ -112,7 +112,7 @@ export default function createFormValidator(fieldConfigs = [], scheduler) {
                 .concatAll()
                 .subscribe(({ fieldName, fieldStatus }) => {
                     formFieldStatuses.set(fieldName, fieldStatus);
-                    statusSubject.onNext(formFieldStatuses);
+                    statusSubject.next(formFieldStatuses);
                 });
         });
 
@@ -121,15 +121,15 @@ export default function createFormValidator(fieldConfigs = [], scheduler) {
         .subscribe((fieldValidatorStatus) => {
             const { fieldName, fieldStatus } = fieldValidatorStatus;
             formFieldStatuses.set(fieldName, fieldStatus);
-            statusSubject.onNext(formFieldStatuses);
+            statusSubject.next(formFieldStatuses);
         });
 
     const formValidator = {
         status: statusSubject
-            .debounce(100),
+            .debounceTime(100),
 
         setStatus(status) {
-            statusSubject.onNext(status);
+            statusSubject.next(status);
         },
 
         /**
@@ -147,7 +147,7 @@ export default function createFormValidator(fieldConfigs = [], scheduler) {
          */
         runFor(fieldName, fieldValue, formSource) {
             if (validatorQueues.has(fieldName)) {
-                validatorQueues.get(fieldName).onNext({ fieldName, fieldValue, formSource });
+                validatorQueues.get(fieldName).next({ fieldName, fieldValue, formSource });
                 return true;
             }
             return false;

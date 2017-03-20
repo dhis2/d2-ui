@@ -1,7 +1,7 @@
 import { getInstance } from 'd2/lib/d2';
 import Pager from 'd2/lib/pager/Pager';
 import Action from '../action/Action';
-import { Observable } from 'rx';
+import { Observable } from 'rxjs';
 
 const createFakePager = response => {
     // Fake the modelCollection since dataElementOperands do not have a valid uid
@@ -33,7 +33,7 @@ export function subscribeDataElementActionsToStore(dataElementOperandSelectorAct
     });
 
     const searchSubscription = dataElementOperandSelectorActions.search
-        .debounce(500)
+        .debounceTime(500)
         .distinctUntilChanged(action => action.data)
         .map(action => {
             const searchPromise = getInstance()

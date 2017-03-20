@@ -1,5 +1,5 @@
 import { isString } from 'lodash/fp';
-import { Subject, Observable } from 'rx';
+import { Subject, Observable } from 'rxjs';
 import log from 'loglevel';
 
 /**
@@ -28,7 +28,7 @@ const Action = {
                 log.trace(`Firing action: ${subject.id.toString()}`);
 
                 return Observable.fromPromise(new Promise((resolve, reject) => {
-                    subject.onNext({
+                    subject.next({
                         // Pass one argument if there is just one else pass the arguments as an array
                         data: actionArgs.length === 1 ? actionArgs[0] : [...actionArgs],
                         // Callback to complete the action
