@@ -1,34 +1,25 @@
-import { PropTypes, createClass, default as React } from 'react';
-import Translate from '../i18n/Translate.mixin';
+import { PropTypes, default as React } from 'react';
 import { config } from 'd2/lib/d2';
 
 config.i18n.strings.add('created_by');
+config.i18n.strings.add('no_author');
 
-export default createClass({
-    propTypes: {
-        user: PropTypes.shape({
-            name: PropTypes.string.isRequired,
-        }).isRequired,
-    },
+const CreatedBy = ({ user }, context) => {
+    const createdByText = user && user.name ?
+        `${context.d2.i18n.getTranslation('created_by')}: ${user.name}` :
+        context.d2.i18n.getTranslation('no_author');
 
-    mixins: [Translate],
+    return <div>{createdByText}</div>;
+};
 
-    getDefaultProps() {
-        return {
-            user: {},
-        };
-    },
+CreatedBy.propTypes = {
+    user: PropTypes.shape({
+        name: PropTypes.string,
+    }).isRequired,
+};
 
-    render() {
-        let nameToRender = '';
-        if (this.props.user && this.props.user.name) {
-            nameToRender = this.props.user.name;
-        }
+CreatedBy.contextTypes = {
+    d2: PropTypes.object.isRequired,
+};
 
-        const createdByText = `${this.getTranslation('created_by')}: ${nameToRender}`;
-
-        return (
-            <div>{createdByText}</div>
-        );
-    },
-});
+export default CreatedBy;

@@ -31,6 +31,7 @@ module.exports = {
             datatable: './examples/data-table',
             orgunittree: './examples/org-unit-tree',
             orgunitselect: './examples/org-unit-select',
+            sharing: './examples/sharing',
             sidebar: './examples/sidebar',
             iconpicker: './examples/icon-picker',
             formbuilder: './examples/form-builder',
@@ -99,12 +100,11 @@ module.exports = {
                 'NODE_ENV': JSON.stringify(isProduction() ? 'production' : 'development'),
             },
         }),
-        isProduction() ?
+        isProduction() ? null :
             // Replace any occurance of DHIS_CONFIG with an object with baseUrl and authorization props
             new webpack.DefinePlugin({
                 DHIS_CONFIG: JSON.stringify(dhisConfig),
-            })
-            : null,
+            }),
         new Visualizer(),
     ].filter(identity),
     devServer: {

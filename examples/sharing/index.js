@@ -1,0 +1,93 @@
+/* eslint import/no-extraneous-dependencies: 0 */
+
+import React, { PropTypes } from 'react';
+import log from 'loglevel';
+import D2Lib from 'd2/lib/d2';
+import { render } from 'react-dom';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import RaisedButton from 'material-ui/RaisedButton';
+import SharingDialog from '../../src/sharing/SharingDialog.component';
+
+injectTapEventPlugin();
+
+class SharingExample extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            dialogOpen: false,
+        };
+
+        this.handleOpen = this.handleOpen.bind(this);
+        this.handleClose = this.handleClose.bind(this);
+    }
+
+    // eslint-disable-next-line class-methods-use-this
+    getChildContext() {
+        return {
+            d2: {
+                i18n: {
+                    getTranslation(key) {
+                        return key;
+                    },
+                },
+            },
+        };
+    }
+
+    handleOpen() {
+        this.setState({ dialogOpen: true });
+    }
+
+    handleClose() {
+        this.setState({ dialogOpen: false });
+    }
+
+    render() {
+        return (
+            <MuiThemeProvider muiTheme={getMuiTheme()}>
+                <div style={{ padding: 32 }}>
+                    <RaisedButton label="Open" onClick={this.handleOpen} />
+                    <SharingDialog
+                        open={this.state.dialogOpen}
+                        type={this.props.type}
+                        id={this.props.id}
+                        onRequestClose={this.handleClose}
+                    />
+                </div>
+            </MuiThemeProvider>
+        );
+    }
+}
+
+SharingExample.propTypes = {
+    type: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+};
+
+SharingExample.childContextTypes = {
+    d2: React.PropTypes.object,
+};
+
+const element = document.getElementById('sharing');
+const dhisDevConfig = DHIS_CONFIG;
+const baseUrl = `${dhisDevConfig.baseUrl}/api`;
+
+render(<div>Sharing dialog is loading.</div>, element);
+
+D2Lib.config.baseUrl = baseUrl;
+D2Lib.init({ baseUrl })
+    .then((d2) => {
+        log.info('D2 initialized successfully', d2);
+        window.d2 = d2;
+
+        const objectType = 'category';
+        const objectId = 'veGzholzPQm';
+
+        render(<SharingExample type={objectType} id={objectId} />, element);
+    })
+    .catch((err) => {
+        log.error('Failed to initialise D2:', err);
+        render(<div>Failed to initialise D2: {err}</div>, element);
+    });
