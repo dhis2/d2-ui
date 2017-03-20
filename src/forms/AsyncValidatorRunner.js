@@ -1,4 +1,4 @@
-import {Observable, Subject} from 'rx';
+import { Observable, Subject } from 'rxjs';
 
 /**
  * Run `validatorFunctions` in parallel and returns a resolved `Promise` with the validation status.
@@ -51,7 +51,7 @@ export default class AsyncValidatorRunner {
      * @returns {AsyncValidatorObject} Returns itself for chaining purposes
      */
     run(fieldName, asyncValidators = [], value) {
-        this.validatorPipeline.onNext({ fieldName, asyncValidators, value });
+        this.validatorPipeline.next({ fieldName, asyncValidators, value });
 
         return this;
     }
@@ -70,7 +70,8 @@ export default class AsyncValidatorRunner {
             // Filter the values by fieldName to make sure we only deal with the values for the requested field
             .filter(field => field.fieldName === fieldName)
             // Only process the latest value within the specified time window
-            .debounce(this.debounceTimeInMs, this.scheduler)
+            .debounceTime(this.debounceTimeInMs, this.scheduler)
+            // .do((v) => console.log(v.value))
             .map(field => {
                 return Observable.fromPromise(runValidatorFunctions(field.asyncValidators, field.value))
                     .map((status) => {
@@ -78,7 +79,8 @@ export default class AsyncValidatorRunner {
                     });
             })
             // Flatten all observables in the correct order they should be processed
-            .concatAll();
+            .concatAll()
+            // .do((v) => console.log(v));
     }
 
     /**

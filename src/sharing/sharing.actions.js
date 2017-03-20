@@ -109,7 +109,7 @@ function saveSharingToServer(action) {
 }
 
 actions.saveChangedState
-    .debounce(500)
+    .debounceTime(500)
     .map(saveSharingToServer)
     .concatAll()
     .subscribe(() => {

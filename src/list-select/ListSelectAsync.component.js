@@ -1,6 +1,6 @@
 import React from 'react';
 import ListSelect from './ListSelect.component';
-import { Observable } from 'rx';
+import { Observable } from 'rxjs';
 import log from 'loglevel';
 
 const ListSelectAsync = React.createClass({
@@ -21,7 +21,7 @@ const ListSelectAsync = React.createClass({
             return;
         }
 
-        this.disposable = this.props.source
+        this.subscription = this.props.source
             .subscribe(
                 (listValues) => this.setState({ listSource: listValues }),
                 (error) => log.error(error)
@@ -29,7 +29,7 @@ const ListSelectAsync = React.createClass({
     },
 
     componentWillUnmount() {
-        this.disposable && this.disposable.dispose();
+        this.subscription && this.subscription.unsubscribe();
     },
 
     render() {

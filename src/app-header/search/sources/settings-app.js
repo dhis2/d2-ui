@@ -1,5 +1,5 @@
 import { map } from 'lodash/fp';
-import { Observable } from 'rx';
+import { Observable } from 'rxjs';
 import getBaseUrlFromD2ApiUrl from '../../getBaseUrlFromD2ApiUrl';
 import { prepareMenuItems, translate$, translateMenuItemNames } from '../../headerBar.store';
 
@@ -29,7 +29,7 @@ const getMenuItemForCategory = (categoryKey) => ({
 const settingsCategoryItemMap = Object.keys(settingsCategories).map(getMenuItemForCategory);
 
 export default function addDeepLinksForSettings(headerBarMenuItems) {
-    const settingsItems$ = Observable.just(settingsCategoryItemMap);
+    const settingsItems$ = Observable.of(settingsCategoryItemMap);
 
     return Observable
         .combineLatest(translate$, settingsItems$, translateMenuItemNames)

@@ -1,7 +1,7 @@
 import React, {  Component, PropTypes } from 'react';
 import Store from '../store/Store';
 import TextField from 'material-ui/TextField/TextField';
-import { Observable } from 'rx';
+import { Observable } from 'rxjs';
 import ColorPicker from './ColorPicker.component';
 import { getInstance, config } from 'd2/lib/d2';
 import camelCaseToUnderscores from 'd2-utilizr/lib/camelCaseToUnderscores'
@@ -103,7 +103,7 @@ export function setDialogStateTo(open) {
 export const legendItemStore$ = Observable
     .combineLatest(
         legendItemStore,
-        Observable.just(formFieldsConfigs),
+        Observable.of(formFieldsConfigs),
         Observable.fromPromise(getInstance()),
         (state, fieldConfigs, d2) => ({
             ...state,

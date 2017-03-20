@@ -45,7 +45,7 @@ const DataElementOperandSelector = React.createClass({
         }
 
         this.storeObservable = this.props.dataElementOperandStore
-            .tap(collection => this.setState({ pager: collection.pager }))
+            .do(collection => this.setState({ pager: collection.pager }))
             .map(collection => collection.toArray())
             .map(collection => {
                 return collection.map(item => {
@@ -55,7 +55,7 @@ const DataElementOperandSelector = React.createClass({
                     };
                 });
             })
-            .tap((value) => {
+            .do((value) => {
                 this.setState({ isLoading: false });
                 return value;
             });
@@ -69,8 +69,8 @@ const DataElementOperandSelector = React.createClass({
     },
 
     componentWillUnmount() {
-        this.disposable && this.disposable.dispose();
-        this.actionSubscriptions.forEach(subscription => subscription.dispose());
+        this.disposable && this.disposable.unsubscribe();
+        this.actionSubscriptions.forEach(subscription => subscription.unsubscribe());
     },
 
     getNextPage() {

@@ -71,7 +71,7 @@ export default React.createClass({
 
     componentWillUnmount() {
         this.disposables.forEach(disposable => {
-            disposable.dispose();
+            disposable.unsubscribe();
         });
     },
 

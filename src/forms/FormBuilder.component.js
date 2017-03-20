@@ -197,7 +197,7 @@ class FormBuilder extends React.Component {
      */
     cancelAsyncValidators(fieldName) {
         if (this.asyncValidators[fieldName]) {
-            this.asyncValidators[fieldName].dispose();
+            this.asyncValidators[fieldName].unsubscribe();
             this.asyncValidators[fieldName] = undefined;
         }
     }

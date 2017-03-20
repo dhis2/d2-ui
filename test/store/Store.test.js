@@ -1,7 +1,7 @@
 import Store from '../../src/store/Store';
-import {Observable, TestScheduler, ReactiveTest} from 'rx';
-
-const onNext = ReactiveTest.onNext;
+import { Observable, TestScheduler } from 'rxjs';
+import isEqual from 'lodash/isEqual';
+import { expectObservable, cold } from '../../config/marble-testing';
 
 function eventually(callback) {
     return new Promise((resolve, reject) => {
@@ -20,9 +20,12 @@ function eventually(callback) {
 describe('Store', () => {
     let store;
     let testScheduler;
+    // let cold;
 
     beforeEach(() => {
-        testScheduler = new TestScheduler();
+        testScheduler = new TestScheduler((a, b) => isEqual(a, b));
+        // cold = ((testScheduler) => (...args) => testScheduler.createColdObservable.apply(testScheduler, args))(testScheduler);
+
         store = Store.create();
     });
 
@@ -156,22 +159,17 @@ describe('Store', () => {
         it('should throttle the output', () => {
             store = Store.create();
 
-            const xs = testScheduler.createHotObservable(
-                onNext(150, 'John'),
-                onNext(210, 'Mark'),
-                onNext(220, 'Jim')
-            );
+            const e1 = cold('--a--b--c---|', { a: 'John', b: 'Mark', c: 'Jim' });
+            const r1 =      '--a----------';
 
-            const results = testScheduler.startScheduler(() => {
-                return xs
-                    .flatMap((v) => {
-                        store.setState({name: v});
-                        return store;
-                    })
-                    .throttle(200, testScheduler);
-            });
+            const o1 = e1.flatMap((v) => {
+                    store.setState({name: v});
+                    return store;
+                })
+                .throttleTime(100);
 
-            expect(results.messages).to.deep.equal([onNext(210, {name: 'Mark'})]);
+
+            expectObservable(o1).toBe(r1, { a: { name: 'John' }});
         });
 
         it('should still receive replayed values', (done) => {
@@ -205,7 +203,7 @@ describe('Store', () => {
         it('should call setState with the result of the passed Observable', () => {
             spy(store, 'setState');
 
-            store.setSource(Observable.return({name: 'John'}));
+            store.setSource(Observable.of({name: 'John'}));
 
             expect(store.setState).to.be.called;
         });
