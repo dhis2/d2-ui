@@ -1,6 +1,6 @@
 {
   "name": "d2-ui",
-  "version": "27.0.0-2",
+  "version": "27.0.0-3",
   "description": "d2-ui",
   "main": "index.js",
   "scripts": {
@@ -73,8 +73,7 @@
     "webpack-dev-server": "^2.4.1",
     "webpack-visualizer-plugin": "^0.1.5"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "pre-commit": [
     "validate",
     "test"
