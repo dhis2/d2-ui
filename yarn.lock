@@ -2,21 +2,6 @@
 # yarn lockfile v1
 
 
-"@kwonoj/rxjs-testscheduler-compat@^0.0.5":
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/@kwonoj/rxjs-testscheduler-compat/-/rxjs-testscheduler-compat-0.0.5.tgz#6f00e9d681613e3bbb324d9ec2edb00e95663e03"
-  dependencies:
-    "@types/es6-collections" "^0.5.29"
-    "@types/es6-shim" "^0.31.32"
-
-"@types/es6-collections@^0.5.29":
-  version "0.5.29"
-  resolved "https://registry.yarnpkg.com/@types/es6-collections/-/es6-collections-0.5.29.tgz#ec22831f7e8de73637bf15660f9d8ca26946980d"
-
-"@types/es6-shim@^0.31.32":
-  version "0.31.32"
-  resolved "https://registry.yarnpkg.com/@types/es6-shim/-/es6-shim-0.31.32.tgz#8196c09e1e40ac977c713bf258090989f501d8ff"
-
 abbrev@1:
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.0.9.tgz#91b4792588a7738c25f35dd6f63752a2f8776135"

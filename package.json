@@ -24,7 +24,8 @@
   },
   "license": "BSD-3-Clause",
   "peerDependencies": {
-    "material-ui": "0.17"
+    "material-ui": "0.17",
+    "rxjs": "^5.2.0"
   },
   "devDependencies": {
     "babel-cli": "^6.23.0",
@@ -37,6 +38,7 @@
     "babel-preset-react": "^6.23.0",
     "babel-preset-stage-0": "^6.16.0",
     "chai": "3.5.0",
+    "chai-enzyme": "^0.6.1",
     "classnames": "^2.2.5",
     "codeclimate-test-reporter": "^0.4.1",
     "colors": "^1.1.2",
@@ -59,6 +61,7 @@
     "react-dom": "15.4",
     "react-stub-context": "^0.7.0",
     "react-tap-event-plugin": "^2.0.1",
+    "rxjs": "^5.2.0",
     "sass-loader": "^6.0.2",
     "sinon": "^1.17.6",
     "sinon-chai": "^2.8.0",
@@ -68,9 +71,6 @@
     "webpack-visualizer-plugin": "^0.1.5"
   },
   "dependencies": {
-    "@kwonoj/rxjs-testscheduler-compat": "^0.0.5",
-    "chai-enzyme": "^0.6.1",
-    "rxjs": "^5.2.0"
   },
   "pre-commit": [
     "validate",
