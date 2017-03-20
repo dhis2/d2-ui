@@ -63,7 +63,7 @@ const InnerHeader = React.createClass({
         Observable
             .fromEvent(window, 'resize')
             .takeUntil(this.unmount)
-            .debounce(200)
+            .debounceTime(200)
             .subscribe(
                 () => this.forceUpdate(),
                 (e) => log.error('Could not update the HeaderBar after resize', e)

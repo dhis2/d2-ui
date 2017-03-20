@@ -63,7 +63,7 @@ if (global.document) {
     // Track the resize event on the window to recalculate the height of the search results box.
     Observable
         .fromEvent(global, 'resize')
-        .debounce(300)
+        .debounceTime(300)
         .subscribe(
             () => Object.assign(styles.searchResults, { maxHeight: getSearchResultsHeight() }),
             log.error

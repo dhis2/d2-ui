@@ -109,7 +109,7 @@ class ExpressionManager extends Component {
             }, error => log.error(error));
 
         this.expressionStatusDisposable = this.requestExpressionStatusAction
-            .debounce(500)
+            .debounceTime(500)
             .map(action => {
                 const formula = action.data;
                 const url = `expressions/description?expression=${formula}`;

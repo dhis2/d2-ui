@@ -14,7 +14,6 @@ export default function withPropsFromObservable(observable, BaseComponent) {
         }
 
         componentDidMount() {
-            console.log('mounted!');
             this.disposable = observable
                 .subscribe(
                     (props) => this.setState({ isLoading: false, ...props }),
