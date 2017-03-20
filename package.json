@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "examples": "npm run start",
-    "coverage": "NODE_ENV=test nyc --require babel-register --require babel-polyfill mocha --reporter dot --require config/setup.js --recursive test/ && nyc report --reporter=lcov",
+    "coverage": "NODE_ENV=test nyc --require babel-register --require babel-polyfill mocha --reporter dot --require config/setup.js --require config/testScheduler-ui.js --ui testschedulerui --recursive test/ && nyc report --reporter=lcov",
     "start": "webpack-dev-server",
     "test": "BABEL_ENV=test mocha --reporter spec --compilers js:babel-core/register --require config/setup.js --require config/test-helper.js --require config/testScheduler-ui.js --ui testschedulerui --recursive test",
     "test-watch": "npm run test -- --watch",
