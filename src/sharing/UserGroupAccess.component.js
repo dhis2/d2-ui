@@ -1,5 +1,3 @@
-/* eslint react/jsx-no-bind: 0 */
-
 import React, { PropTypes } from 'react';
 import Rule from './Rule.component';
 

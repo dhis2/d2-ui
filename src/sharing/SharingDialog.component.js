@@ -1,7 +1,4 @@
 /* eslint no-console: 0 */
-/* eslint class-methods-use-this: 0 */
-/* eslint react/jsx-no-bind: 0 */
-/* eslint no-unused-expressions: 0 */
 
 import { config, getInstance } from 'd2/lib/d2';
 import Dialog from 'material-ui/Dialog/Dialog';
@@ -42,14 +39,13 @@ function transformObjectStructure(apiMeta, apiObject) {
         access => transformAccessObject(access, 'user'));
 
     const combinedAccesses = userGroupAccesses.concat(userAccesses);
+    const authorOfSharableItem = apiObject.user && {
+        id: apiObject.user.id,
+        name: apiObject.user.name,
+    };
 
     return {
-        ...apiObject.user && {
-            authorOfSharableItem: {
-                id: apiObject.user.id,
-                name: apiObject.user.name,
-            },
-        },
+        authorOfSharableItem,
         nameOfSharableItem: apiObject.name,
         canSetPublicAccess: apiMeta.allowPublicAccess,
         canSetExternalAccess: apiMeta.allowExternalAccess,
@@ -84,23 +80,21 @@ class SharingDialog extends React.Component {
         }
     }
 
-    onSearchRequest(searchText) {
+    onSearchRequest = (searchText) => {
         const apiInstance = this.state.api;
 
         return apiInstance.get('sharing/search', { key: searchText })
             .then((searchResult) => {
-                let transformedResult = searchResult.users.map(
+                const transformedResult = searchResult.users.map(
                     user => transformAccessObject(user, 'user'));
 
-                transformedResult = transformedResult.concat(
+                return transformedResult.concat(
                     searchResult.userGroups.map(
                         userGroup => transformAccessObject(userGroup, 'userGroup')));
-
-                return transformedResult;
             });
     }
 
-    onSharingChanged(updatedAttributes, onSuccess) {
+    onSharingChanged = (updatedAttributes, onSuccess) => {
         const objectToShare = {
             ...this.state.objectToShare,
             ...updatedAttributes,
@@ -115,7 +109,7 @@ class SharingDialog extends React.Component {
                       objectToShare,
                       apiObject,
                   }, () => {
-                      onSuccess && onSuccess();
+                      if (onSuccess) onSuccess();
                   });
               } else {
                   console.warn('Failed to post changes.');
@@ -148,8 +142,7 @@ class SharingDialog extends React.Component {
         const userAccesses = [];
         const userGroupAccesses = [];
 
-        // eslint-disable-next-line array-callback-return
-        transformedObject.accesses.map((access) => {
+        transformedObject.accesses.forEach((access) => {
             const apiAccess = {
                 id: access.id,
                 name: access.name,
@@ -157,17 +150,19 @@ class SharingDialog extends React.Component {
                 access: cachedAccessTypeToString(access.canView, access.canEdit),
             };
 
-            access.type === 'user'
-                ? userAccesses.push(apiAccess)
-                : userGroupAccesses.push(apiAccess);
+            if (access.type === 'user') {
+                userAccesses.push(apiAccess);
+            } else {
+                userGroupAccesses.push(apiAccess);
+            }
         });
 
         return {
             meta: this.state.apiObject.meta,
             object: {
                 ...this.state.apiObject.object,
-                ...userAccesses && { userAccesses },
-                ...userGroupAccesses && { userGroupAccesses },
+                userAccesses,
+                userGroupAccesses,
 
                 publicAccess: cachedAccessTypeToString(
                     transformedObject.publicCanView,
@@ -178,7 +173,7 @@ class SharingDialog extends React.Component {
         };
     }
 
-    closeSharingDialog() {
+    closeSharingDialog = () => {
         this.props.onRequestClose(this.state.apiObject.object);
     }
 
@@ -186,7 +181,7 @@ class SharingDialog extends React.Component {
         const sharingDialogActions = [
             <FlatButton
                 label={this.context.d2.i18n.getTranslation('close')}
-                onClick={this.closeSharingDialog.bind(this)}
+                onClick={this.closeSharingDialog}
             />,
         ];
 
@@ -194,7 +189,11 @@ class SharingDialog extends React.Component {
             position: 'relative',
         };
 
-        return this.state.objectToShare ? (
+        if (this.state && !this.state.objectToShare) {
+            return (<LoadingMask style={loadingMaskStyle} size={1} />);
+        }
+
+        return (
             <Dialog
                 open={this.props.open}
                 title={this.context.d2.i18n.getTranslation('share')}
@@ -213,11 +212,11 @@ class SharingDialog extends React.Component {
                     publicCanEdit={this.state.objectToShare.publicCanEdit}
                     isSharedExternally={this.state.objectToShare.isSharedExternally}
                     accesses={this.state.objectToShare.accesses}
-                    onSharingChanged={this.onSharingChanged.bind(this)}
-                    onSearch={this.onSearchRequest.bind(this)}
+                    onSharingChanged={this.onSharingChanged}
+                    onSearch={this.onSearchRequest}
                 />
             </Dialog>
-        ) : <LoadingMask style={loadingMaskStyle} size={1} />;
+        );
     }
 }
 

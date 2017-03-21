@@ -1,5 +1,3 @@
-/* eslint react/jsx-no-bind: 0 */
-
 import React, { Component, PropTypes } from 'react';
 import { config } from 'd2/lib/d2';
 import AutoComplete from 'material-ui/AutoComplete';
@@ -38,7 +36,6 @@ const styles = {
     },
 };
 
-// TOOD: Use RxJs instead.
 function debounce(inner, ms = 0) {
     let timer = null;
     let resolves = [];
@@ -68,8 +65,11 @@ class UserSearch extends Component {
         this.debouncedSearch = debounce(this.fetchSearchResult.bind(this), 300);
     }
 
-    accessOptionsChanged(initialViewAccess, initialEditAccess) {
-        this.setState({ initialViewAccess, initialEditAccess });
+    accessOptionsChanged = ({ canView, canEdit }) => {
+        this.setState({
+            initialViewAccess: canView,
+            initialEditAccess: canEdit,
+        });
     }
 
     fetchSearchResult(searchText) {
@@ -85,7 +85,8 @@ class UserSearch extends Component {
         }
     }
 
-    groupWasSelected(index) {
+    groupWasSelected = (chosenRequest, index) => {
+        if (index === -1) return;
         this.setState({ searchText: '' });
         const selectedGroup = this.state.searchResult[index];
         this.props.addUserGroupAccess({
@@ -95,10 +96,12 @@ class UserSearch extends Component {
         });
     }
 
-    handleUpdateInput(searchText) {
+    handleUpdateInput = (searchText) => {
         this.setState({ searchText });
         this.debouncedSearch(searchText);
     }
+
+    generousFilter = () => true;
 
     render() {
         return (
@@ -110,11 +113,11 @@ class UserSearch extends Component {
                     <AutoComplete
                         dataSource={this.state.searchResult}
                         dataSourceConfig={{ text: 'displayName', value: 'id' }}
-                        filter={() => true}
+                        filter={this.generousFilter}
                         fullWidth
                         hintText={this.context.d2.i18n.getTranslation('enter_names')}
-                        onNewRequest={(chosenRequest, index) => { this.groupWasSelected(index); }}
-                        onUpdateInput={(searchText) => { this.handleUpdateInput(searchText); }}
+                        onNewRequest={this.groupWasSelected}
+                        onUpdateInput={this.handleUpdateInput}
                         openOnFocus
                         searchText={this.state.searchText}
                         style={styles.searchBox}
@@ -122,7 +125,7 @@ class UserSearch extends Component {
                     />
                     <PermissionPicker
                         disableNoAccess
-                        onChange={(access) => { this.accessOptionsChanged(access.canView, access.canEdit); }}
+                        onChange={this.accessOptionsChanged}
                         accessOptions={{
                             canView: this.state.initialViewAccess,
                             canEdit: this.state.initialEditAccess,
