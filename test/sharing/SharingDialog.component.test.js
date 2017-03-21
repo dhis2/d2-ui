@@ -65,9 +65,6 @@ describe('Sharing: SharingDialog component', () => {
     sinon.stub(SharingDialog.prototype, 'loadObjectFromApi');
 
     it('should show its dialog when objectToShare is defined', () => {
-        sinon.stub(SharingDialog.prototype, 'onSharingChanged');
-        sinon.stub(SharingDialog.prototype, 'onSearchRequest');
-
         sharingDialogComponent.setState({
             api: null,
             objectToShare: mockedObject,

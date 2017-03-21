@@ -31,9 +31,10 @@ function getAccessIcon(userType) {
     }
 }
 
-const Rule = ({ accessType, primaryText, secondaryText, accessOptions,
-                onChange, onRemove, disabled, disableWritePermission, disableNoAccess }) => (
-    // eslint-disable-next-line
+const Rule = ({
+    accessType, primaryText, secondaryText, accessOptions, onChange, onRemove,
+    disabled, disableWritePermission, disableNoAccess,
+}) => (
     <div style={styles.ruleView}>
         <FontIcon className="material-icons">
             {getAccessIcon(accessType)}

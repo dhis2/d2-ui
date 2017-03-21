@@ -1,5 +1,6 @@
 {
   "extends": "dhis2",
+  "parser": "babel-eslint",
   "env": { "browser": true },
   "globals": {
     "DHIS_CONFIG": true,
