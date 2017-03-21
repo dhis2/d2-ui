@@ -36,7 +36,6 @@ const styles = {
     },
 };
 
-// TOOD: Use RxJs instead.
 function debounce(inner, ms = 0) {
     let timer = null;
     let resolves = [];
