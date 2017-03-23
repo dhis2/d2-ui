@@ -5,9 +5,10 @@ import FlatButton from 'material-ui/FlatButton/FlatButton';
 import Dialog from 'material-ui/Dialog/Dialog';
 import ColorScaleSelect from './ColorScaleSelect.component';
 import LegendItems from './LegendItems.component';
-import {scaleLinear} from 'd3-scale';
-import {precisionFixed} from 'd3-format';
+import { scaleLinear } from 'd3-scale';
+import { precisionFixed } from 'd3-format';
 import { config } from 'd2/lib/d2';
+import { generateUid } from 'd2/lib/uid';
 import { legendItemStore } from './LegendItem.store';
 import Row from '../layout/Row.component';
 import Column from '../layout/Column.component';
@@ -39,26 +40,26 @@ export default class Legend extends Component {
 
     onStartValueChange = (event) => {
         this.setState({startValue: event.target.value}, this.validateForm);
-    }
+    };
 
     onEndValueChange = (event) => {
         this.setState({endValue: event.target.value}, this.validateForm);
-    }
+    };
 
     onColorScaleChange = (colorScheme) => {
         this.setState({ colorScheme });
-    }
+    };
 
     createLegendItems = () => {
-        const d2 = this.context.d2;
         const { startValue, endValue, classes, colorScheme } = this.state;
         const scale = scaleLinear().domain([startValue, endValue]).rangeRound([0, colorScheme.length]);
         const step = (endValue - startValue) / colorScheme.length;
         const precision = precisionFixed(step); // https://github.com/d3/d3-format#precisionFixed
 
         const items = colorScheme.map((color, index) => {
-            const legend = d2.models.legend.create();
+            const legend = {};
 
+            legend.id = generateUid();
             legend.startValue = scale.invert(index).toFixed(precision);
             legend.endValue = scale.invert(index + 1).toFixed(precision);
             legend.color = color;
@@ -73,7 +74,7 @@ export default class Legend extends Component {
     deleteItem = (modelToDelete) => {
         const newItems = this.props.items.filter(model => model !== modelToDelete);
         this.props.onItemsChange(newItems);
-    }
+    };
 
     updateItem = (newItems) => {
         const modelToUpdate = legendItemStore.getState() && legendItemStore.getState().model;
@@ -83,7 +84,7 @@ export default class Legend extends Component {
             newItems,
             isNewLegendItem ? modelToUpdate : []
         ));
-    }
+    };
 
     // Check if end value is bigger than start value
     validateForm = () => {
@@ -121,19 +122,19 @@ export default class Legend extends Component {
             },
             createLegendDisabled: false,
         });
-    }
+    };
 
     // Display warning that current legend items will be deleted
     displayWarning = () => {
         this.setState({warningDialogOpen: true});
-    }
+    };
 
     handleClose = () => {
         this.setState(
             {warningDialogOpen: false},
             () => this.createLegendItems() // Callback for after state update
         );
-    }
+    };
 
     render() {
         const actions = [

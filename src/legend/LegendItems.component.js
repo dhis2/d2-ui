@@ -4,6 +4,7 @@ import ContentAdd from 'material-ui/svg-icons/content/add';
 import DataTable from '../data-table/DataTable.component';
 import EditLegendItem from './EditLegendItem.component';
 import { openEditDialogFor } from './LegendItem.store';
+import { generateUid } from 'd2/lib/uid';
 
 export default class LegendItems extends Component {
     constructor(...args) {
@@ -15,11 +16,13 @@ export default class LegendItems extends Component {
     }
 
     onAddLegendItem = () => {
-        const model = this.context.d2.models.legend.create();
-        model.color = '#FFA500'; // Orange is default
+        const legend = {
+            id: generateUid(),
+            color: '#FFA500' // Orange is default
+        };
 
-        openEditDialogFor(model);
-    }
+        openEditDialogFor(legend);
+    };
 
     render() {
         const props = this.props;
