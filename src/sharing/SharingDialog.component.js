@@ -3,12 +3,14 @@
 import { config, getInstance } from 'd2/lib/d2';
 import Dialog from 'material-ui/Dialog/Dialog';
 import FlatButton from 'material-ui/FlatButton/FlatButton';
+import Snackbar from 'material-ui/Snackbar';
 import React, { PropTypes } from 'react';
 import Sharing from './Sharing.component';
 import LoadingMask from '../loading-mask/LoadingMask.component';
 
 config.i18n.strings.add('share');
 config.i18n.strings.add('close');
+config.i18n.strings.add('no_manage_access');
 
 function cachedAccessTypeToString(canView, canEdit) {
     if (canView) {
@@ -63,19 +65,27 @@ class SharingDialog extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            accessForbidden: false,
             apiObject: null,
             objectToShare: null,
         };
 
-        this.loadObjectFromApi();
+        if (this.props.open) {
+            this.loadObjectFromApi();
+        }
     }
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.id !== this.props.id) {
             this.setState({
+                accessForbidden: false,
                 objectToShare: null,
             });
 
+            if (nextProps.open) this.loadObjectFromApi();
+        }
+
+        if (!this.props.open && nextProps.open) {
             this.loadObjectFromApi();
         }
     }
@@ -134,6 +144,11 @@ class SharingDialog extends React.Component {
                         apiObject,
                         objectToShare: transformObjectStructure(apiObject.meta, apiObject.object),
                     });
+                })
+                .catch(() => {
+                    this.setState({
+                        accessForbidden: true,
+                    });
                 });
         });
     }
@@ -189,8 +204,22 @@ class SharingDialog extends React.Component {
             position: 'relative',
         };
 
-        if (this.state && !this.state.objectToShare) {
-            return (<LoadingMask style={loadingMaskStyle} size={1} />);
+        if (!this.state.objectToShare) {
+            if (this.state.accessForbidden) {
+                return (
+                    <Snackbar
+                        open
+                        message={this.context.d2.i18n.getTranslation('no_manage_access')}
+                        autoHideDuration={3000}
+                    />
+                );
+            }
+
+            if (this.props.open) {
+                return (<LoadingMask style={loadingMaskStyle} size={1} />);
+            }
+
+            return null;
         }
 
         return (

@@ -111,7 +111,7 @@ describe('Sharing: SharingDialog component', () => {
             sinon.stub(log, 'warn');
         });
 
-        it('should render when objectToShare is undefined', () => {
+        it('should render when objectToShare is undefined and dialog is open', () => {
             renderComponent({ open: true, onRequestClose: () => {}, type: 'report', id: 'AMERNML55Tg' });
             expect(sharingDialogComponent.find(LoadingMask)).to.have.length(1);
         });
