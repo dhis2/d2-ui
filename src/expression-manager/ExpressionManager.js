@@ -112,9 +112,9 @@ class ExpressionManager extends Component {
             .debounceTime(500)
             .map(action => {
                 const formula = action.data;
-                const url = `expressions/description?expression=${formula}`;
+                const url = 'expressions/description';
 
-                return Observable.fromPromise(this.context.d2.Api.getApi().get(url));
+                return Observable.fromPromise(this.context.d2.Api.getApi().get(url, { expression: formula }));
             })
             .concatAll()
             .subscribe(
