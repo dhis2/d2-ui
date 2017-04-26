@@ -52,7 +52,7 @@ describe('dataTableValueRenderers', () => {
 
     describe('DATE valueType', () => {
         const renderOptions = {
-            context: { 
+            context: {
                 d2: {
                     currentUser: {
                         uiLocale: 'en',
@@ -84,6 +84,13 @@ describe('dataTableValueRenderers', () => {
 
             expect(renderedComponent.find('TextValue').prop('value')).to.equal('2016-02-18 11:21:32');
             global.Intl = intl;
+        });
+
+        it('should render nothing when there is no date', () => {
+            const DateValueRenderer = findValueRenderer({ value: undefined, columnName: 'lastUpdated', valueType: 'DATE' });
+            const renderedComponent = shallow(<DateValueRenderer />, renderOptions);
+
+            expect(renderedComponent.find('TextValue').prop('value')).to.equal('');
         });
     });
 

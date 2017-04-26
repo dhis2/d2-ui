@@ -1,7 +1,7 @@
 import React, { isValidElement, PureComponent, PropTypes } from 'react';
 import Color from './Color.component';
 import Translate from '../../i18n/Translate.component';
-import addD2Context from '../../component-helpers/addD2Context';
+import { isNil } from 'lodash/fp';
 
 function TextValue({ value = '', columnName }) {
     const textWrapStyle = {
@@ -23,6 +23,10 @@ function TextValue({ value = '', columnName }) {
 }
 
 function getDateToShowInList(value, locale = 'en') {
+    if (isNil(value)) {
+        return '';
+    }
+
     if (typeof global.Intl !== 'undefined' && Intl.DateTimeFormat) {
         return new Intl.DateTimeFormat(locale, { year: 'numeric', month: 'long', day: 'numeric' }).format(new Date(value));
     }
@@ -109,10 +113,10 @@ let valueRenderers = [
  * Register a new ValueRenderer. The value renderers are used to render different values in the DataTable. (e.g. colors should be rendered as a Color component).
  * The new renderer is added to the start of the renderer list. If your passed `checker` is too specific the `component` might be used for values that you might not want.
  * Passing `() => true` as a checker will result the passed `component` to be used for every value in the DataTable.
- * 
+ *
  * @param {function} checker Check if the value is valid for the `component` to be rendered. This function receives an object with `value`, `valueType` and `columnName` that can be used to determine if this `component` should render the value.
  * @param {function} component A React component to render when the `checker` returns true. This is the component that will be returned from `findValueRenderer`.
- * 
+ *
  * @returns {function} A de-register function to unregister the checker. If you want to remove the valueRenderer from the list of renderers you can use this function to undo the add.
  */
 export function addValueRenderer(checker, component) {
@@ -140,7 +144,7 @@ export function addValueRenderer(checker, component) {
  *   "columnName": "color",
  * }
  * ```
- * 
+ *
  * @param {object} valueDetails The value and its details. The object has the properties `columnName`, `value` and `valueType`.
  * @returns {function} The React component that can render a value for the passed `valueDetails`.
  */
