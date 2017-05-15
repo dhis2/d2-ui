@@ -76,6 +76,10 @@ class PeriodPickerExample extends React.Component {
                                     >
                                         <option>Daily</option>
                                         <option>Weekly</option>
+                                        <option>WeeklyWednesday</option>
+                                        <option>WeeklyThursday</option>
+                                        <option>WeeklySaturday</option>
+                                        <option>WeeklySunday</option>
                                         <option>Monthly</option>
                                         <option>BiMonthly</option>
                                         <option>Quarterly</option>

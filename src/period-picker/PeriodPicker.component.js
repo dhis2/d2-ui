@@ -52,15 +52,35 @@ class PeriodPicker extends React.Component {
     }
 
     getPeriod() {
+        const date = this.state.year && this.state.week && getFirstDateOfWeek(this.state.year, this.state.week);
         switch (this.props.periodType) {
         case 'Daily':
             return this.state.date && formattedDate(this.state.date);
         case 'Weekly':
-            const date = this.state.year && this.state.week && getFirstDateOfWeek(this.state.year, this.state.week);
             if (date) {
                 this.setState({ invalidWeek: !isWeekValid(date, this.state.week) });
             }
             return date && isWeekValid(date, this.state.week) && `${getWeekYear(date)}W${this.state.week}`;
+        case 'WeeklyWednesday':
+            if (date) {
+                this.setState({ invalidWeek: !isWeekValid(date, this.state.week) });
+            }
+            return date && isWeekValid(date, this.state.week) && `${getWeekYear(date)}WedW${this.state.week}`;
+        case 'WeeklyThursday':
+            if (date) {
+                this.setState({ invalidWeek: !isWeekValid(date, this.state.week) });
+            }
+            return date && isWeekValid(date, this.state.week) && `${getWeekYear(date)}ThuW${this.state.week}`;
+        case 'WeeklySaturday':
+            if (date) {
+                this.setState({ invalidWeek: !isWeekValid(date, this.state.week) });
+            }
+            return date && isWeekValid(date, this.state.week) && `${getWeekYear(date)}SatW${this.state.week}`;
+        case 'WeeklySunday':
+            if (date) {
+                this.setState({ invalidWeek: !isWeekValid(date, this.state.week) });
+            }
+            return date && isWeekValid(date, this.state.week) && `${getWeekYear(date)}SunW${this.state.week}`;
         case 'Monthly':
             return this.state.year && this.state.month && `${this.state.year}${this.state.month}`;
         case 'BiMonthly':
@@ -186,6 +206,10 @@ class PeriodPicker extends React.Component {
                 />
             );
         case 'Weekly':
+        case 'WeeklyWednesday':
+        case 'WeeklyThursday':
+        case 'WeeklySaturday':
+        case 'WeeklySunday':
             return <div style={styles.line}>{this.renderYearPicker()}{this.renderWeekPicker()}</div>;
         case 'Monthly':
             return <div style={styles.line}>{this.renderYearPicker()}{this.renderMonthPicker()}</div>;
@@ -221,6 +245,10 @@ PeriodPicker.propTypes = {
     periodType: React.PropTypes.oneOf([
         'Daily',
         'Weekly',
+        'WeeklyWednesday',
+        'WeeklyThursday',
+        'WeeklySaturday',
+        'WeeklySunday',
         'Monthly',
         'BiMonthly',
         'Quarterly',
