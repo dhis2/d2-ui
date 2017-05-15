@@ -48,7 +48,6 @@
     "d2-utilizr": "^0.2.11",
     "d3-format": "^1.1.0",
     "d3-scale": "^1.0.3",
-    "draft-js": "^0.9.1",
     "enzyme": "^2.5.1",
     "eslint": "^3.13.1",
     "eslint-config-dhis2": "^2.1.0",

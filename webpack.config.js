@@ -35,7 +35,7 @@ module.exports = {
             sidebar: './examples/sidebar',
             iconpicker: './examples/icon-picker',
             formbuilder: './examples/form-builder',
-            formulaeditor: './examples/formula-editor',
+            // formulaeditor: './examples/formula-editor',
             headerbar: './examples/header-bar',
             legend: './examples/legend',
             // translation: './examples/translation',
