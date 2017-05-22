@@ -34,7 +34,7 @@ export function subscribeDataElementActionsToStore(dataElementOperandSelectorAct
 
     const searchSubscription = dataElementOperandSelectorActions.search
         .debounceTime(500)
-        .distinctUntilChanged(action => action.data)
+        .distinctUntilChanged((x, y) => x === y, action => action.data)
         .map(action => {
             const searchPromise = getInstance()
                 .then(d2 => {
