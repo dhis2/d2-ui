@@ -1,4 +1,5 @@
-import React, {  Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, {  Component } from 'react';
 import FloatingActionButton from 'material-ui/FloatingActionButton/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import DataTable from '../data-table/DataTable.component';

@@ -1,6 +1,7 @@
 import { config } from 'd2/lib/d2';
 import Dialog from 'material-ui/Dialog/Dialog';
-import React, { PropTypes, Component } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import { getTranslationFormFor } from './TranslationForm.component';
 
 config.i18n.strings.add('close');

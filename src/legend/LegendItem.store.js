@@ -1,4 +1,4 @@
-import React, {  Component, PropTypes } from 'react';
+import React from 'react';
 import Store from '../store/Store';
 import TextField from 'material-ui/TextField/TextField';
 import { Observable } from 'rxjs';

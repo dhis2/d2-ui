@@ -1,4 +1,5 @@
-import { PropTypes, default as React } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import classes from 'classnames';
 import LinearProgress from 'material-ui/LinearProgress';
 

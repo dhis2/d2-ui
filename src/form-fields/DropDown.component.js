@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 
@@ -38,26 +39,26 @@ function DropDown({ onFocus, onBlur, onChange, value, disabled, menuItems, inclu
     );
 }
 DropDown.propTypes = {
-    defaultValue: React.PropTypes.oneOfType([
-        React.PropTypes.string,
-        React.PropTypes.number,
-        React.PropTypes.bool,
+    defaultValue: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+        PropTypes.bool,
     ]),
-    value: React.PropTypes.oneOfType([
-        React.PropTypes.string,
-        React.PropTypes.number,
-        React.PropTypes.bool,
+    value: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+        PropTypes.bool,
     ]),
-    onFocus: React.PropTypes.func,
-    onBlur: React.PropTypes.func,
-    onChange: React.PropTypes.func.isRequired,
-    menuItems: React.PropTypes.oneOfType([
-        React.PropTypes.array,
-        React.PropTypes.object,
+    onFocus: PropTypes.func,
+    onBlur: PropTypes.func,
+    onChange: PropTypes.func.isRequired,
+    menuItems: PropTypes.oneOfType([
+        PropTypes.array,
+        PropTypes.object,
     ]),
-    includeEmpty: React.PropTypes.bool,
-    emptyLabel: React.PropTypes.string,
-    noOptionsLabel: React.PropTypes.string,
+    includeEmpty: PropTypes.bool,
+    emptyLabel: PropTypes.string,
+    noOptionsLabel: PropTypes.string,
 };
 DropDown.defaultProps = {
     includeEmpty: false,

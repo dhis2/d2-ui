@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import colorbrewer from './colorbrewer';
 
 // Returns one color scale based on a code and number of classes

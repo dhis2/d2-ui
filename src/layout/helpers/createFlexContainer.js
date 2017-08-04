@@ -1,4 +1,4 @@
-import React, { PropTypes, Children, cloneElement } from 'react';
+import React, { Children, cloneElement } from 'react';
 import log from 'loglevel';
 
 export default function createFlexContainer(defaultFlexStyle, displayName = 'FlexContainer') {

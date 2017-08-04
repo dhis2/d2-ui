@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { legendItemStore, legendItemStore$, onFieldChange, onFormStatusChange } from './LegendItem.store';
 import { setDialogStateToAction } from './LegendItem.actions';
 import withStateFrom from '../component-helpers/withStateFrom';

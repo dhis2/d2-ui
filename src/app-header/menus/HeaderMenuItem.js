@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import styles from '../header-bar-styles';
 import { search, setSearchFieldFocusTo } from '../search/search.stores';
 

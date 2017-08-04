@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import { config } from 'd2/lib/d2';
 import AutoComplete from 'material-ui/AutoComplete';
 import PermissionPicker from './PermissionPicker.component';

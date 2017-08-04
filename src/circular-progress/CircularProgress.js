@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { default as MUICircularProgress } from 'material-ui/CircularProgress/CircularProgress';
 
 function getSizes(large, small) {

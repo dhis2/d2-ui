@@ -1,4 +1,5 @@
-import { PropTypes, default as React } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { config } from 'd2/lib/d2';
 
 config.i18n.strings.add('created_by');

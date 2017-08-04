@@ -1,6 +1,7 @@
 /* eslint react/jsx-no-bind: 0 */
 
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { config } from 'd2/lib/d2';
 
 import Rule from './Rule.component';

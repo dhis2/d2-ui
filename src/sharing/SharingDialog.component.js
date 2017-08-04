@@ -4,7 +4,8 @@ import { config, getInstance } from 'd2/lib/d2';
 import Dialog from 'material-ui/Dialog/Dialog';
 import FlatButton from 'material-ui/FlatButton/FlatButton';
 import Snackbar from 'material-ui/Snackbar';
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import Sharing from './Sharing.component';
 import LoadingMask from '../loading-mask/LoadingMask.component';
 

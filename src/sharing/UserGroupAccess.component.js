@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import Rule from './Rule.component';
 
 const UserGroupAccess = ({ nameOfGroup, groupType, canView, canEdit, onChange, onRemove }) => (
