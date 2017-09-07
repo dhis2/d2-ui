@@ -14,7 +14,15 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
  * @property {node} children The content of the button.
  */
 const Button = ({ raised, fab, color, disabled, onClick, children }) => {
-    const MuiButton = fab ? FloatingActionButton : raised ? RaisedButton : FlatButton;
+    let MuiButton;
+
+    if (fab) {
+        MuiButton = FloatingActionButton;
+    } else if (raised) {
+        MuiButton = RaisedButton;
+    } else {
+        MuiButton = FlatButton;
+    }
 
     return (
         <MuiButton
