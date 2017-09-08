@@ -16,7 +16,7 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 const Button = ({ raised, fab, color, disabled, onClick, children }) => {
     let MuiButton;
 
-    if (fab) {
+    if (fab) { // Always raised
         MuiButton = FloatingActionButton;
     } else if (raised) {
         MuiButton = RaisedButton;
