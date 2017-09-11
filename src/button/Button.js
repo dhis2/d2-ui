@@ -4,7 +4,7 @@ import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 
-const Button = ({ raised, fab, color, disabled, onClick, children }) => {
+const Button = ({ raised, fab, color, disabled, onClick, children, style }) => {
     let MuiButton;
 
     if (fab) { // Always raised
@@ -21,6 +21,7 @@ const Button = ({ raised, fab, color, disabled, onClick, children }) => {
         secondary: color === 'accent' || null,
         disabled: disabled,
         onTouchTap: onClick,
+        style: style,
     };
 
     // Property gives error on FAB buttons in Material UI 0.19
@@ -63,6 +64,11 @@ Button.propTypes = {
      *
      */
     onClick: PropTypes.func.isRequired,
+
+    /**
+     * Override the inline-styles of the root element
+     */
+    style: PropTypes.object,
 };
 
 export default Button;
