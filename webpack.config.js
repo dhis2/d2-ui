@@ -43,6 +43,7 @@ module.exports = {
             groupeditor: './examples/group-editor',
             periodpicker: './examples/period-picker',
             button: './examples/button',
+            textfield: './examples/text-field',
         },
     output: {
         library: 'Dhis2HeaderBar',
