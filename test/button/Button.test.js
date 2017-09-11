@@ -48,5 +48,4 @@ describe('Button', () => {
 
         expect(component.props().onTouchTap).to.equal(clickSpy);
     });
-
 });

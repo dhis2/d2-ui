@@ -1,5 +1,5 @@
 import React from 'react';
-    import { shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import { getStubContext } from '../../config/inject-theme';
 import HeaderBar from '../../src/app-header/HeaderBar';
 import LinearProgress from 'material-ui/LinearProgress/LinearProgress';
