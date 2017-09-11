@@ -4,15 +4,6 @@ import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 
-/**
- * D2 button component, modeled after Material UI v1
- * @property {boolean} raised If true, the button will use raised styling.
- * @property {boolean} fab If true, will use floating action button styling.
- * @property {boolean} disabled If true, the button will be disabled.
- * @property {string} color The theme color of the component ('default', 'primary', 'accent').
- * @property {function} onClick Callback function fired when the button is touch-tapped.
- * @property {node} children The content of the button.
- */
 const Button = ({ raised, fab, color, disabled, onClick, children }) => {
     let MuiButton;
 
@@ -45,10 +36,32 @@ const Button = ({ raised, fab, color, disabled, onClick, children }) => {
 };
 
 Button.propTypes = {
+    /**
+     * If true, the button will use raised styling
+     */
     raised: PropTypes.bool,
+
+    /**
+     * If true, the button will use floating action styling
+     */
     fab: PropTypes.bool,
+
+    /**
+     *  If true, the button will be disabled
+     */
     disabled: PropTypes.bool,
+
+    /**
+     * The theme color of the button ('default', 'primary', 'accent')
+     */
     color: PropTypes.string,
+
+    /**
+     * onClick callback, which is triggered when the button is clicked
+     *
+     * The onClick callback will receive one arguments: TouchTap event targeting the button
+     *
+     */
     onClick: PropTypes.func.isRequired,
 };
 
