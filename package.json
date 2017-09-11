@@ -16,13 +16,12 @@
     "build-only": "rm -rf lib/ && babel src --out-dir lib && compass compile && npm run build-stand-alone-header-bar",
     "prebuild-stand-alone-header-bar": "rm -rf dist &>/dev/null || true",
     "build-stand-alone-header-bar": "webpack -p && cp -r ./examples/external-header-bar/index.html dist",
-    "validate": "npm ls --depth 0 || yarn list"
+    "validate": "yarn check || npm ls --depth 0"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/dhis2/d2-ui.git"
   },
-  "license": "BSD-3-Clause",
   "devDependencies": {
     "babel-cli": "^6.23.0",
     "babel-core": "^6.23.1",
@@ -40,6 +39,7 @@
     "codeclimate-test-reporter": "^0.4.1",
     "colors": "^1.1.2",
     "css-loader": "^0.26.2",
+    "d2": "^27.0.0",
     "d2-utilizr": "^0.2.11",
     "d3-format": "^1.1.0",
     "d3-scale": "^1.0.3",
@@ -47,14 +47,19 @@
     "eslint": "^3.13.1",
     "eslint-config-dhis2": "^2.1.0",
     "eslint-plugin-react": "^6.9.0",
+    "loglevel": "^1.4.1",
     "material-ui": "0.17",
     "mocha": "^3.2.0",
-    "node-pre-gyp": "^0.6.33",
     "node-sass": "^4.5.0",
     "nyc": "^10.0.0",
+    "prop-types": "^15.5.10",
+    "react": "^15.6.1",
     "react-addons-test-utils": "^15.3.2",
     "react-color": "^2.11.3",
+    "react-dom": "^15.6.1",
     "react-stub-context": "^0.7.0",
+    "react-tap-event-plugin": "^2.0.1",
+    "rxjs": "^5.4.3",
     "sass-loader": "^6.0.2",
     "sinon": "^1.17.6",
     "sinon-chai": "^2.8.0",
@@ -62,16 +67,6 @@
     "webpack": "^2.2.1",
     "webpack-dev-server": "^2.4.1",
     "webpack-visualizer-plugin": "^0.1.5"
-  },
-  "dependencies": {
-    "d2": "^27.0.0-8",
-    "loglevel": "^1.4.1",
-    "material-ui": "^0.18.7",
-    "prop-types": "^15.5.10",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
-    "react-tap-event-plugin": "^2.0.1",
-    "rxjs": "^5.4.2"
   },
   "pre-commit": [
     "validate",
