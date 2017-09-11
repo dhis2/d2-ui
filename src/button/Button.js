@@ -52,9 +52,9 @@ Button.propTypes = {
     disabled: PropTypes.bool,
 
     /**
-     * The theme color of the button ('default', 'primary', 'accent')
+     * The theme color of the button
      */
-    color: PropTypes.string,
+    color: PropTypes.oneOf(['default', 'primary', 'accent']),
 
     /**
      * onClick callback, which is triggered when the button is clicked
