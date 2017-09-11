@@ -24,14 +24,21 @@ const Button = ({ raised, fab, color, disabled, onClick, children }) => {
         MuiButton = FlatButton;
     }
 
+    const props = {
+        label: typeof children === 'string' ? children : null,
+        primary: color === 'primary' || null,
+        secondary: color === 'accent' || null,
+        disabled: disabled,
+        onTouchTap: onClick,
+    };
+
+    // Property gives error on FAB buttons in Material UI 0.19
+    if (fab) {
+        delete props.primary;
+    }
+
     return (
-        <MuiButton
-            label={typeof children === 'string' ? children : null}
-            primary={color === 'primary'}
-            secondary={color === 'accent'}
-            disabled={disabled}
-            onTouchTap={onClick}
-        >
+        <MuiButton {...props}>
             {typeof children !== 'string' ? children : null}
         </MuiButton>
     );
