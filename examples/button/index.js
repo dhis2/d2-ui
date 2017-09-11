@@ -20,7 +20,6 @@ const style = {
 const buttons = (
     <MuiThemeProvider muiTheme={getMuiTheme()}>
         <div style={style}>
-            <Button raised color='primary'><div>###</div></Button>
             <Button>Default</Button>
             <Button disabled>Disabled</Button>
             <Button raised>Raised</Button>
