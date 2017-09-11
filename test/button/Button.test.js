@@ -38,4 +38,15 @@ describe('Button', () => {
 
         expect(component.children().contains(<div>Label</div>)).to.true;
     });
+
+    it('should call the onClick action when clicking the Button', () => {
+        const clickSpy = sinon.spy();
+
+        const component = shallow(<Button onClick={clickSpy}>Label</Button>, {
+            context: getStubContext(),
+        });
+
+        expect(component.props().onTouchTap).to.equal(clickSpy);
+    });
+
 });

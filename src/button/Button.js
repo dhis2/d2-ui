@@ -49,7 +49,7 @@ Button.propTypes = {
     fab: PropTypes.bool,
     disabled: PropTypes.bool,
     color: PropTypes.string,
-    onClick: PropTypes.func,
+    onClick: PropTypes.func.isRequired,
 };
 
 export default Button;
