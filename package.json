@@ -3,6 +3,7 @@
   "version": "28.0.0-0",
   "description": "d2-ui",
   "main": "index.js",
+  "license": "BSD-3-Clause",
   "scripts": {
     "examples": "npm run start",
     "coverage": "NODE_ENV=test nyc --require babel-register --require babel-polyfill mocha --reporter dot --require config/setup.js --require config/testScheduler-ui.js --ui testschedulerui --recursive test/ && nyc report --reporter=lcov",
