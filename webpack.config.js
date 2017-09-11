@@ -42,6 +42,7 @@ module.exports = {
             expressionmanager: './examples/expression-manager',
             groupeditor: './examples/group-editor',
             periodpicker: './examples/period-picker',
+            button: './examples/button',
         },
     output: {
         library: 'Dhis2HeaderBar',
