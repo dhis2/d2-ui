@@ -39,13 +39,9 @@ describe('Button', () => {
         expect(component.children().contains(<div>Label</div>)).to.true;
     });
 
-    it('should call the onClick action when clicking the Button', () => {
+    it('should pass on the onClick handler to MUI onTouchTap property', () => {
         const clickSpy = sinon.spy();
 
-        const component = shallow(<Button onClick={clickSpy}>Label</Button>, {
-            context: getStubContext(),
-        });
-
-        expect(component.props().onTouchTap).to.equal(clickSpy);
+        expect(renderWithProps({ onClick: clickSpy }).props().onTouchTap).to.equal(clickSpy);
     });
 });
