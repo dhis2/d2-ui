@@ -30,7 +30,10 @@ const Button = ({ raised, fab, color, disabled, onClick, children, style }) => {
     }
 
     return (
-        <MuiButton {...props}>
+        <MuiButton
+            className='d2-ui-button'
+            {...props}
+        >
             {typeof children !== 'string' ? children : null}
         </MuiButton>
     );
