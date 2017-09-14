@@ -28,7 +28,8 @@ export default class TranslationDialog extends Component {
                 title={this.i18n.getTranslation('translation_dialog_title')}
                 autoDetectWindowHeight
                 autoScrollBodyContent
-                {...this.props} >
+                {...this.props}
+            >
                 <this.state.TranslationForm
                     onTranslationSaved={this.translationSaved}
                     onTranslationError={this.translationError}

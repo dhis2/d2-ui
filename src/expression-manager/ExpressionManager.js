@@ -60,7 +60,7 @@ const styles = {
 
     expressionValueOptionsWrap: {
         minHeight: 395,
-    }
+    },
 };
 
 class ExpressionManager extends Component {
@@ -88,7 +88,7 @@ class ExpressionManager extends Component {
         let first = true;
 
         this.disposable = this.props.expressionStatusStore
-            .subscribe(expressionStatus => {
+            .subscribe((expressionStatus) => {
                 this.setState({
                     expressionStatus: {
                         description: expressionStatus.description,
@@ -111,7 +111,7 @@ class ExpressionManager extends Component {
 
         this.expressionStatusDisposable = this.requestExpressionStatusAction
             .debounceTime(500)
-            .map(action => {
+            .map((action) => {
                 const formula = action.data;
                 const url = 'expressions/description';
 
@@ -120,7 +120,7 @@ class ExpressionManager extends Component {
             .concatAll()
             .subscribe(
                 response => this.props.expressionStatusStore.setState(response),
-                error => log.error(error)
+                error => log.error(error),
             );
 
         if (this.props.formulaValue.trim()) {
@@ -134,9 +134,7 @@ class ExpressionManager extends Component {
     }
 
     render() {
-        const isDescriptionValid = () => {
-            return this.state.description && this.state.description.trim();
-        };
+        const isDescriptionValid = () => this.state.description && this.state.description.trim();
 
         return (
             <Column>
@@ -167,7 +165,7 @@ class ExpressionManager extends Component {
                                 />
                             </Tab>
                             <Tab label={this.i18n.getTranslation('programs')}>
-                                <ProgramOperandSelector programOperandSelected={this.programOperandSelected}/>
+                                <ProgramOperandSelector programOperandSelected={this.programOperandSelected} />
                             </Tab>
                             <Tab label={this.i18n.getTranslation('organisation_unit_counts')}>
                                 <OrganisationUnitGroupSelector
@@ -240,7 +238,6 @@ class ExpressionManager extends Component {
 
     requestExpressionStatus = () => {
         this.requestExpressionStatusAction(this.state.formula);
-
     }
 }
 ExpressionManager.propTypes = {

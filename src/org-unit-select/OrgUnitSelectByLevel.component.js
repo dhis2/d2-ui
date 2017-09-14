@@ -27,14 +27,14 @@ class OrgUnitSelectByLevel extends React.Component {
 
     getOrgUnitsForLevel(level, ignoreCache = false) {
         const d2 = this.context.d2;
-        return new Promise(resolve => {
+        return new Promise((resolve) => {
             if (this.props.currentRoot) {
                 const rootLevel = this.props.currentRoot.level || this.props.currentRoot.path
                     ? this.props.currentRoot.path.match(/\//g).length
                     : NaN;
                 const relativeLevel = level - rootLevel;
                 if (isNaN(relativeLevel) || relativeLevel < 0) {
-                    log.info(`Unable to select org unit levels higher up in the hierarchy than the current root`);
+                    log.info('Unable to select org unit levels higher up in the hierarchy than the current root');
                     return resolve([]);
                 }
 
@@ -45,14 +45,14 @@ class OrgUnitSelectByLevel extends React.Component {
                     root: this.props.currentRoot.id,
                 })
                     .then(orgUnits => orgUnits.toArray())
-                    .then(orgUnitArray => {
+                    .then((orgUnitArray) => {
                         log.debug(
                             `Loaded ${orgUnitArray.length} org units for level ` +
-                            `${relativeLevel} under ${this.props.currentRoot.displayName}`
+                            `${relativeLevel} under ${this.props.currentRoot.displayName}`,
                         );
                         this.setState({ loading: false });
                         resolve(orgUnitArray);
-                    })
+                    });
             } else if (!ignoreCache && this.levelCache.hasOwnProperty(level)) {
                 resolve(this.levelCache[level].slice());
             } else {
@@ -61,7 +61,7 @@ class OrgUnitSelectByLevel extends React.Component {
 
                 d2.models.organisationUnits.list({ paging: false, level, fields: 'id,path' })
                     .then(orgUnits => orgUnits.toArray())
-                    .then(orgUnitArray => {
+                    .then((orgUnitArray) => {
                         log.debug(`Loaded ${orgUnitArray.length} org units for level ${level}`);
                         this.setState({ loading: false });
                         this.levelCache[level] = orgUnitArray;
@@ -69,7 +69,7 @@ class OrgUnitSelectByLevel extends React.Component {
                         // Make a copy of the returned array to ensure that the cache won't be modified from elsewhere
                         resolve(orgUnitArray.slice());
                     })
-                    .catch(err => {
+                    .catch((err) => {
                         this.setState({ loading: false });
                         log.error(`Failed to load org units in level ${level}:`, err);
                     });
@@ -79,14 +79,14 @@ class OrgUnitSelectByLevel extends React.Component {
 
     handleSelect() {
         this.getOrgUnitsForLevel(this.state.selection)
-            .then(orgUnits => {
+            .then((orgUnits) => {
                 this.addToSelection(orgUnits);
             });
     }
 
     handleDeselect() {
         this.getOrgUnitsForLevel(this.state.selection)
-            .then(orgUnits => {
+            .then((orgUnits) => {
                 this.removeFromSelection(orgUnits);
             });
     }

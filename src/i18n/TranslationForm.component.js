@@ -29,7 +29,7 @@ function getTranslationFormData(model) {
                         translations,
                     });
                 },
-            }, ...data)
+            }, ...data),
         );
 }
 
@@ -62,8 +62,8 @@ const TranslationForm = React.createClass({
 
     getLoadingdataElement() {
         return (
-            <div style={{textAlign: 'center'}}>
-                <CircularProgress mode="indeterminate"/>
+            <div style={{ textAlign: 'center' }}>
+                <CircularProgress mode="indeterminate" />
             </div>
         );
     },
@@ -71,18 +71,17 @@ const TranslationForm = React.createClass({
     renderFieldsToTranslate() {
         return this.props.fieldsToTranslate
             .filter(fieldName => fieldName)
-            .map(fieldName => {
-                return (
-                    <div key={fieldName}>
-                        <TextField floatingLabelText={this.getTranslation(camelCaseToUnderscores(fieldName))}
-                                   value={this.getTranslationValueFor(fieldName)}
-                                   fullWidth
-                                   onChange={this._setValue.bind(this, fieldName)}
-                        />
-                        <div>{this.props.objectToTranslate[fieldName]}</div>
-                    </div>
-                );
-            });
+            .map(fieldName => (
+                <div key={fieldName}>
+                    <TextField
+                        floatingLabelText={this.getTranslation(camelCaseToUnderscores(fieldName))}
+                        value={this.getTranslationValueFor(fieldName)}
+                        fullWidth
+                        onChange={this._setValue.bind(this, fieldName)}
+                    />
+                    <div>{this.props.objectToTranslate[fieldName]}</div>
+                </div>
+            ));
     },
 
     renderForm() {
@@ -117,18 +116,18 @@ const TranslationForm = React.createClass({
         }
 
         return (
-            <div style={{minHeight: 250}}>
-                    <LocaleSelector locales={this.props.locales} onChange={this.setCurrentLocale} />
-                {Boolean(this.state.currentSelectedLocale) ? this.renderForm() : this.renderHelpText()}
+            <div style={{ minHeight: 250 }}>
+                <LocaleSelector locales={this.props.locales} onChange={this.setCurrentLocale} />
+                {this.state.currentSelectedLocale ? this.renderForm() : this.renderHelpText()}
             </div>
         );
     },
 
     getTranslationValueFor(fieldName) {
         const translation = this.props.translations
-            .find((t) =>
+            .find(t =>
                 t.locale === this.state.currentSelectedLocale &&
-                t.property.toLowerCase() === camelCaseToUnderscores(fieldName)
+                t.property.toLowerCase() === camelCaseToUnderscores(fieldName),
             );
 
         if (translation) {
@@ -144,8 +143,8 @@ const TranslationForm = React.createClass({
 
     _setValue(property, event) {
         let newTranslations = [].concat(this.props.translations);
-        let translation =  newTranslations
-            .find(t =>  t.locale === this.state.currentSelectedLocale && t.property.toLowerCase() === camelCaseToUnderscores(property));
+        let translation = newTranslations
+            .find(t => t.locale === this.state.currentSelectedLocale && t.property.toLowerCase() === camelCaseToUnderscores(property));
 
         if (translation) {
             if (event.target.value) {
@@ -171,7 +170,7 @@ const TranslationForm = React.createClass({
         saveTranslations(this.props.objectToTranslate, this.props.translations)
             .subscribe(
                 this.props.onTranslationSaved,
-                this.props.onTranslationError
+                this.props.onTranslationError,
             );
     },
 });

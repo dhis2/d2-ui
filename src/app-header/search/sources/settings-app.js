@@ -18,10 +18,10 @@ function addTranslationLabel(label) {
 map(addTranslationLabel,
     Object.keys(settingsCategories).map(categoryName => settingsCategories[categoryName].pageLabel));
 
-const getMenuItemForCategory = (categoryKey) => ({
+const getMenuItemForCategory = categoryKey => ({
     name: settingsCategories[categoryKey].pageLabel,
     defaultAction: `/dhis-web-settings/#/${categoryKey}`,
-    icon: `/icons/dhis-web-settings.png`,
+    icon: '/icons/dhis-web-settings.png',
     description: '',
     parentApp: 'dhis-web-settings',
 });
@@ -34,7 +34,7 @@ export default function addDeepLinksForSettings(headerBarMenuItems) {
     return Observable
         .combineLatest(translate$, settingsItems$, translateMenuItemNames)
         .flatMap(items => Observable.fromPromise(getD2().then(d2 =>
-            prepareMenuItems(getBaseUrlFromD2ApiUrl(d2), items)
+            prepareMenuItems(getBaseUrlFromD2ApiUrl(d2), items),
         )))
         .map(settingsMenuItems => [].concat(headerBarMenuItems, settingsMenuItems));
 }

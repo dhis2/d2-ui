@@ -28,7 +28,7 @@ class OrgUnitSelectByGroup extends React.Component {
 
     getOrgUnitsForGroup(groupId, ignoreCache = false) {
         const d2 = this.context.d2;
-        return new Promise(resolve => {
+        return new Promise((resolve) => {
             if (this.props.currentRoot) {
                 log.debug(`Loading org units for group ${groupId} within ${this.props.currentRoot.displayName}`);
                 this.setState({ loading: true });
@@ -41,7 +41,7 @@ class OrgUnitSelectByGroup extends React.Component {
                     filter: `organisationUnitGroups.id:eq:${groupId}`,
                 })
                     .then(orgUnits => orgUnits.toArray())
-                    .then(orgUnits => {
+                    .then((orgUnits) => {
                         log.debug(`Loaded ${orgUnits.length} org units for group ${groupId} within ${this.props.currentRoot.displayName}`);
                         this.setState({ loading: false });
 
@@ -56,7 +56,7 @@ class OrgUnitSelectByGroup extends React.Component {
                 const d2 = this.context.d2;
                 d2.models.organisationUnitGroups.get(groupId, { fields: 'organisationUnits[id,path]' })
                     .then(orgUnitGroups => orgUnitGroups.organisationUnits.toArray())
-                    .then(orgUnits => {
+                    .then((orgUnits) => {
                         log.debug(`Loaded ${orgUnits.length} org units for group ${groupId}`);
                         this.setState({ loading: false });
                         this.groupCache[groupId] = orgUnits;
@@ -64,7 +64,7 @@ class OrgUnitSelectByGroup extends React.Component {
                         // Make a copy of the returned array to ensure that the cache won't be modified from elsewhere
                         resolve(orgUnits.slice());
                     })
-                    .catch(err => {
+                    .catch((err) => {
                         this.setState({ loading: false });
                         log.error(`Failed to load org units in group ${groupId}:`, err);
                     });

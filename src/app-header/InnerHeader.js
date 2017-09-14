@@ -51,10 +51,10 @@ const InnerHeader = React.createClass({
             .then(this.getHeaderBarData)
             .catch(this.loadDataFromLocalStorageIfAvailable)
             .then(saveToLocalStorage)
-            .then(headerData => {
+            .then((headerData) => {
                 this.setHeaderData(headerData.userStyleUrl, headerData.title, headerData.link);
             })
-            .catch(error => {
+            .catch((error) => {
                 log.error(error);
             });
     },
@@ -66,7 +66,7 @@ const InnerHeader = React.createClass({
             .debounceTime(200)
             .subscribe(
                 () => this.forceUpdate(),
-                (e) => log.error('Could not update the HeaderBar after resize', e)
+                e => log.error('Could not update the HeaderBar after resize', e),
             );
     },
 
@@ -95,12 +95,10 @@ const InnerHeader = React.createClass({
                 localStorage.setItem('dhis2.menu.ui.headerBar.userStyle', systemSettings.keyCurrentStyle);
                 return systemSettings.keyCurrentStyle;
             })
-            .then(userStyleUrl => {
-                return {
-                    userStyleUrl: userStyleUrl || systemSettings.keyCurrentStyle,
-                    title: systemSettings.applicationTitle,
-                };
-            })
+            .then(userStyleUrl => ({
+                userStyleUrl: userStyleUrl || systemSettings.keyCurrentStyle,
+                title: systemSettings.applicationTitle,
+            }))
             .catch(error => log.error(error));
     },
 
@@ -211,7 +209,7 @@ const InnerHeader = React.createClass({
 
         return {
             userStyleUrl: userStyle,
-            title: title,
+            title,
         };
     },
 
@@ -235,9 +233,7 @@ const InnerHeader = React.createClass({
     requestUserStyle() {
         const api = this.context.d2.Api.getApi();
         return api.get('userSettings/keyStyle')
-            .then(response => {
-                return response.trim();
-            });
+            .then(response => response.trim());
     },
 
     isValidUserStyle(userStyle) {

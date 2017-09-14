@@ -48,10 +48,10 @@ class DateValue extends PureComponent {
         // Get the locale from the userSettings
         this.context.d2.currentUser.userSettings
             .get('keyUiLocale')
-            .then((uiLocale) => this.setState({ uiLocale }));
+            .then(uiLocale => this.setState({ uiLocale }));
     }
 
-    render () {
+    render() {
         const displayDate = getDateToShowInList(this.props.value, this.state.uiLocale);
 
         return (
@@ -68,7 +68,7 @@ function ObjectWithDisplayName(props) {
     return (<TextValue {...props} value={textValue} />);
 }
 
-const dhis2DateFormat = /^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{2,3}$/
+const dhis2DateFormat = /^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{2,3}$/;
 function isDateValue({ valueType, value }) {
     return valueType === 'DATE' || dhis2DateFormat.test(value);
 }
@@ -151,7 +151,7 @@ export function addValueRenderer(checker, component) {
  */
 export const findValueRenderer = (valueDetails) => {
     const valueCheckers = valueRenderers.map(([checker]) => checker);
-    const checkerIndex = valueCheckers.findIndex(checker => checker(valueDetails))
+    const checkerIndex = valueCheckers.findIndex(checker => checker(valueDetails));
 
     return (valueRenderers[checkerIndex] && valueRenderers[checkerIndex][1]) || TextValue;
 };

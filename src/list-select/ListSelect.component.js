@@ -23,7 +23,7 @@ export default function ListSelect(props) {
 
     return (
         <div className="list-select">
-            <select size={props.size || 15} style={Object.assign({overflowX: 'auto'}, props.listStyle)}>
+            <select size={props.size || 15} style={Object.assign({ overflowX: 'auto' }, props.listStyle)}>
                 {options}
             </select>
         </div>

@@ -57,12 +57,10 @@ export function isUrlArray(value) {
     if (isEmptyStringOrUndefined(value)) {
         return true;
     }
-    return (value + '')
+    return (`${value}`)
         .split('\n')
         .filter(v => v.trim().length > 0)
-        .reduce((prev, curr) => {
-            return prev === true && isUrl(curr) || isEmptyString(curr.trim());
-        }, true);
+        .reduce((prev, curr) => prev === true && isUrl(curr) || isEmptyString(curr.trim()), true);
 }
 isUrlArray.message = 'value_should_be_list_of_urls';
 

@@ -7,12 +7,12 @@ export default function OrgUnitTreeMultipleRoots(props) {
         return (
             <div>
                 {props.roots
-                    .map((root, index) => <OrgUnitTree
+                    .map((root, index) => (<OrgUnitTree
                         key={index}
                         {...props}
                         root={root}
                         onSelectClick={props.onSelectClick}
-                    />)
+                    />))
                 }
             </div>
         );
@@ -44,5 +44,5 @@ OrgUnitTreeMultipleRoots.propTypes = Object.assign({}, OrgUnitTree.propTypes,
     {
         root: OrgUnitModelValidator,
         roots: React.PropTypes.arrayOf(OrgUnitModelArrayElementValidator),
-    }
+    },
 );

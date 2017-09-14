@@ -17,8 +17,8 @@ const ExternalAccess = ({ canView, disabled, onChange }, context) => (
         disableWritePermission
         primaryText={context.d2.i18n.getTranslation('external_access')}
         secondaryText={canView ?
-          context.d2.i18n.getTranslation('anyone_can_view_without_a_login') :
-          context.d2.i18n.getTranslation('no_access')}
+            context.d2.i18n.getTranslation('anyone_can_view_without_a_login') :
+            context.d2.i18n.getTranslation('no_access')}
         onChange={onChange}
         accessOptions={{ canView }}
     />
