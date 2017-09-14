@@ -35,12 +35,10 @@ class SearchField extends Component {
     componentDidMount() {
         const isCtrlPressed = event => event.ctrlKey;
         const isSpaceKey = event => event.keyCode === 32 || event.key === 'Space';
-        const combineFilters = (...args) => {
-            return function combinedFiltersFn(event) {
-                return args
-                    .map(filterFn => filterFn(event))
-                    .every(filterResult => filterResult === true);
-            };
+        const combineFilters = (...args) => function combinedFiltersFn(event) {
+            return args
+                .map(filterFn => filterFn(event))
+                .every(filterResult => filterResult === true);
         };
 
         // When Ctrl+Space is pressed focus the search field in the header bar
@@ -49,7 +47,7 @@ class SearchField extends Component {
             .filter(combineFilters(isCtrlPressed, isSpaceKey))
             .subscribe(
                 this._focusSearchField,
-                log.error
+                log.error,
             );
     }
 
@@ -74,7 +72,7 @@ class SearchField extends Component {
                         inputStyle={styles.searchFieldInput}
                         onKeyUp={this._onKeyUp}
                         ref="searchBox"
-                        underlineFocusStyle={{borderColor: white}}
+                        underlineFocusStyle={{ borderColor: white }}
                     />
                     {this.props.searchValue ? <ClearIcon style={styles.clearIcon} color={white} onClick={this.clearSearchField} /> : ''}
                 </div>

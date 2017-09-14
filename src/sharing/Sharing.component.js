@@ -98,7 +98,7 @@ class Sharing extends React.Component {
                     />
                     <Divider />
                     { this.props.accesses.map((accessRules, index) =>
-                        <div key={index}>
+                        (<div key={index}>
                             <UserGroupAccess
                                 nameOfGroup={accessRules.displayName}
                                 groupType={accessRules.type}
@@ -111,11 +111,11 @@ class Sharing extends React.Component {
                                 // eslint-disable-next-line
                                 onChange={(newAccessRules) => {
                                     this.accessRulesChanged(accessRules.id, newAccessRules.canView,
-                                                            newAccessRules.canEdit);
+                                        newAccessRules.canEdit);
                                 }}
                             />
                             <Divider />
-                        </div>
+                        </div>),
                     )}
                 </div>
                 <Divider />

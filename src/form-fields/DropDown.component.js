@@ -4,7 +4,7 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 
 function renderMenuItem({ value, text }) {
-    return (<MenuItem key={value} value={value} primaryText={text}/>);
+    return (<MenuItem key={value} value={value} primaryText={text} />);
 }
 
 function renderMenuItems({ menuItems, includeEmpty, emptyLabel }) {
@@ -18,7 +18,7 @@ function renderMenuItems({ menuItems, includeEmpty, emptyLabel }) {
 }
 
 function createCallbackWithFakeEventFromMaterialSelectField(callback) {
-    return (event, index, value) => callback({target: {value: value}});
+    return (event, index, value) => callback({ target: { value } });
 }
 
 function DropDown({ onFocus, onBlur, onChange, value, disabled, menuItems, includeEmpty, emptyLabel, noOptionsLabel, ...other }) {
@@ -30,7 +30,8 @@ function DropDown({ onFocus, onBlur, onChange, value, disabled, menuItems, inclu
             value={hasOptions ? value : 1}
             onChange={createCallbackWithFakeEventFromMaterialSelectField(onChange)}
             disabled={!hasOptions || disabled}
-            {...other}>
+            {...other}
+        >
             {hasOptions
                 ? renderMenuItems({ menuItems: menuItemArray, includeEmpty, emptyLabel })
                 : <MenuItem value={1} primaryText={noOptionsLabel || '-'} />

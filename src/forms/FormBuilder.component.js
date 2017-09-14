@@ -12,7 +12,7 @@ class FormBuilder extends React.Component {
 
         this.state = this.initState(props);
         this.asyncValidators = this.createAsyncValidators(props);
-        this.asyncValidationRunner = props.asyncValidationRunner || new AsyncValidatorRunner;
+        this.asyncValidationRunner = props.asyncValidationRunner || new AsyncValidatorRunner();
 
         this.getFieldProp = this.getFieldProp.bind(this);
         this.getStateClone = this.getStateClone.bind(this);
@@ -38,7 +38,7 @@ class FormBuilder extends React.Component {
             // Filter out fields where the values changed
             .filter(field => field.value !== this.state.fields[field.name].value)
             // Change field value and run validators for the field
-            .forEach(field => {
+            .forEach((field) => {
                 clonedState.fields[field.name].value = field.value;
                 this.validateField(clonedState, field.name, field.value);
             });
@@ -89,15 +89,15 @@ class FormBuilder extends React.Component {
             },
         };
 
-        return this.props.fields.map(field => {
-            const {errorTextProp, ...props} = field.props || {};
+        return this.props.fields.map((field) => {
+            const { errorTextProp, ...props } = field.props || {};
             const fieldState = this.state.fields[field.name] || {};
 
             const changeHandler = this.handleFieldChange.bind(this, field.name);
 
             const onBlurChangeHandler = props.changeEvent === 'onBlur' ?
                 (e) => {
-                    const stateClone = this.updateFieldState(this.getStateClone(), field.name, {value: e.target.value});
+                    const stateClone = this.updateFieldState(this.getStateClone(), field.name, { value: e.target.value });
                     this.validateField(stateClone, field.name, e.target.value);
                     this.setState(stateClone);
                 } :
@@ -110,7 +110,7 @@ class FormBuilder extends React.Component {
             return (
                 <div key={field.name} style={Object.assign({}, styles.field, this.props.fieldWrapStyle)}>
                     {fieldState.validating ? (
-                        <CircularProgres mode="indeterminate" size={0.33} style={styles.progress}/>
+                        <CircularProgres mode="indeterminate" size={0.33} style={styles.progress} />
                     ) : undefined}
                     <field.component
                         value={fieldState.value}
@@ -118,7 +118,8 @@ class FormBuilder extends React.Component {
                         onBlur={props.changeEvent && props.changeEvent === 'onBlur' ? changeHandler : undefined}
                         errorStyle={fieldState.validating ? styles.validatingErrorStyle : undefined}
                         errorText={fieldState.valid ? errorText : fieldState.error}
-                        {...props} />
+                        {...props}
+                    />
                 </div>
             );
         });
@@ -226,15 +227,9 @@ class FormBuilder extends React.Component {
         // Form state is a composite of field states
         const fieldNames = Object.keys(state.fields);
         state.form = {
-            pristine: fieldNames.reduce((p, current) => {
-                return p && state.fields[current].pristine;
-            }, true),
-            validating: fieldNames.reduce((p, current) => {
-                return p || state.fields[current].validating;
-            }, false),
-            valid: fieldNames.reduce((p, current) => {
-                return p && state.fields[current].valid;
-            }, true),
+            pristine: fieldNames.reduce((p, current) => p && state.fields[current].pristine, true),
+            validating: fieldNames.reduce((p, current) => p || state.fields[current].validating, false),
+            valid: fieldNames.reduce((p, current) => p && state.fields[current].valid, true),
         };
 
         return state;
@@ -295,9 +290,9 @@ class FormBuilder extends React.Component {
         const stateClone = this.getStateClone();
 
         // Update value, and set pristine to false
-        this.setState(this.updateFieldState(stateClone, fieldName, {pristine: false, value: newValue}),
+        this.setState(this.updateFieldState(stateClone, fieldName, { pristine: false, value: newValue }),
             () => {
-                if (!isObject(newValue) && newValue === (!!field.value ? field.value : '')) {
+                if (!isObject(newValue) && newValue === (field.value ? field.value : '')) {
                     this.props.onUpdateField(fieldName, newValue);
                     return;
                 }
@@ -305,7 +300,7 @@ class FormBuilder extends React.Component {
                 // Cancel async validators in progress (if any)
                 if (this.asyncValidators[fieldName]) {
                     this.cancelAsyncValidators(fieldName);
-                    this.setState(this.updateFieldState(stateClone, fieldName, {validating: false}));
+                    this.setState(this.updateFieldState(stateClone, fieldName, { validating: false }));
                 }
 
                 // Run synchronous validators
@@ -316,7 +311,7 @@ class FormBuilder extends React.Component {
                     this.runAsyncValidators(field, stateClone, fieldName, newValue);
                 } else {
                     // Sync validators failed set field status to false
-                    this.setState(this.updateFieldState(stateClone, fieldName, {valid: false, error: validatorResult}), () => {
+                    this.setState(this.updateFieldState(stateClone, fieldName, { valid: false, error: validatorResult }), () => {
                         // Also emit when the validator result is false
                         this.props.onUpdateFormStatus(this.state.form);
                         this.props.onUpdateField(fieldName, newValue);
@@ -328,7 +323,7 @@ class FormBuilder extends React.Component {
     runAsyncValidators(field, stateClone, fieldName, newValue) {
         if ((field.asyncValidators || []).length > 0) {
             // Set field and form state to 'validating'
-            this.setState(this.updateFieldState(stateClone, fieldName, {validating: true}),
+            this.setState(this.updateFieldState(stateClone, fieldName, { validating: true }),
                 () => {
                     this.props.onUpdateFormStatus(this.state.form);
                     this.props.onUpdateField(fieldName, newValue);
@@ -338,27 +333,27 @@ class FormBuilder extends React.Component {
                     // subscription every time the field is changed.
                     this.asyncValidators[fieldName] = this.asyncValidationRunner
                         .listenToValidatorsFor(fieldName)
-                            .subscribe(
-                                (status) => {
-                                    this.setState(
-                                        this.updateFieldState(
-                                            this.getStateClone(), status.fieldName, {
-                                                validating: false,
-                                                valid: status.isValid,
-                                                error: status.message,
-                                            }
-                                        ), () => {
-                                            this.cancelAsyncValidators(status.fieldName);
-                                            this.props.onUpdateFormStatus(this.state.form);
-                                        }
-                                    );
-                                }
-                            );
+                        .subscribe(
+                            (status) => {
+                                this.setState(
+                                    this.updateFieldState(
+                                        this.getStateClone(), status.fieldName, {
+                                            validating: false,
+                                            valid: status.isValid,
+                                            error: status.message,
+                                        },
+                                    ), () => {
+                                        this.cancelAsyncValidators(status.fieldName);
+                                        this.props.onUpdateFormStatus(this.state.form);
+                                    },
+                                );
+                            },
+                        );
 
                     this.asyncValidationRunner.run(fieldName, field.asyncValidators, newValue);
                 });
         } else {
-            this.setState(this.updateFieldState(stateClone, fieldName, {valid: true}), () => {
+            this.setState(this.updateFieldState(stateClone, fieldName, { valid: true }), () => {
                 this.props.onUpdateFormStatus(this.state.form);
                 this.props.onUpdateField(fieldName, newValue);
             });
@@ -380,8 +375,8 @@ class FormBuilder extends React.Component {
 
         const validatorResult = (field.validators || [])
             .reduce((pass, currentValidator) => (pass === true
-                        ? (currentValidator.validator(newValue) === true || currentValidator.message) : pass
-                ), true);
+                ? (currentValidator.validator(newValue) === true || currentValidator.message) : pass
+            ), true);
 
         this.updateFieldState(stateClone, fieldName, {
             valid: validatorResult === true,
@@ -420,7 +415,7 @@ FormBuilder.propTypes = {
             React.PropTypes.shape({
                 validator: React.PropTypes.func.isRequired,
                 message: React.PropTypes.string.isRequired,
-            })
+            }),
         ),
         asyncValidators: React.PropTypes.arrayOf(React.PropTypes.func.isRequired),
         validatingLabelText: React.PropTypes.string,

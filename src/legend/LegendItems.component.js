@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, {  Component } from 'react';
+import React, { Component } from 'react';
 import FloatingActionButton from 'material-ui/FloatingActionButton/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import DataTable from '../data-table/DataTable.component';
@@ -19,7 +19,7 @@ export default class LegendItems extends Component {
     onAddLegendItem = () => {
         const legend = {
             id: generateUid(),
-            color: '#FFA500' // Orange is default
+            color: '#FFA500', // Orange is default
         };
 
         openEditDialogFor(legend);
@@ -42,7 +42,7 @@ export default class LegendItems extends Component {
                 position: 'absolute',
                 right: 20,
                 top: -29,
-            }
+            },
         };
 
         const orderedItems = props.items.sort((left, right) => Number(left.startValue) > Number(right.startValue));

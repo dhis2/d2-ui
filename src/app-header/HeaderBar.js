@@ -13,7 +13,7 @@ export default function HeaderBar(props, { d2 }) {
     // If the required props are not passed we're in a loading state.
     if (!appItems && !profileItems && !settings) {
         if (noLoadingIndicator) {
-            return <div style={{display: 'none'}} />;
+            return <div style={{ display: 'none' }} />;
         }
         return (<div style={styles.headerBar}><LinearProgress mode="indeterminate" /></div>);
     }

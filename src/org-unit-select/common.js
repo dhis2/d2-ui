@@ -53,7 +53,7 @@ function renderDropdown(menuItems, label) {
             {this.renderControls()}
         </div>
     );
-};
+}
 
 function renderControls() {
     const disabled = this.state.loading || !this.state.selection;

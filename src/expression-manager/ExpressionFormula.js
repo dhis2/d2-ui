@@ -17,9 +17,9 @@ export default class ExpressionFormula extends Component {
         return (
             <div className="expression-formula">
                 <textarea
-                onChange={this._handleFomulaChange}
-                value={this.props.formula}
-                style={textAreaStyle}
+                    onChange={this._handleFomulaChange}
+                    value={this.props.formula}
+                    style={textAreaStyle}
                 />
             </div>
         );

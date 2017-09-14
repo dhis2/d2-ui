@@ -29,7 +29,7 @@ actions.loadObjectSharingState
         const objectType = sharableObject.modelDefinition.name;
 
         getD2()
-            .then(d2 => {
+            .then((d2) => {
                 const api = d2.Api.getApi();
 
                 return api.get('sharing', { type: objectType, id: sharableObject.id }, { contentType: 'text/plain' });
@@ -83,7 +83,7 @@ function saveSharingToServer(action) {
                 object: {
                     externalAccess,
                     publicAccess,
-                    userGroupAccesses: userGroupAccesses.filter(userGroupAccess => {
+                    userGroupAccesses: userGroupAccesses.filter((userGroupAccess) => {
                         if (userGroupAccess.access !== '--------') {
                             return true;
                         }

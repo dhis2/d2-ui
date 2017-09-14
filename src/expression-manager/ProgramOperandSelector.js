@@ -51,7 +51,7 @@ class DropDownForSchemaReference extends Component {
     }
 
     render() {
-        const {schema, ...selectProps} = this.props;
+        const { schema, ...selectProps } = this.props;
 
         if (this.isLoading) {
             return (
@@ -95,44 +95,34 @@ export default React.createClass({
     componentDidMount() {
         this.context.d2.models.program.list({ paging: false, fields: 'id,displayName,programTrackedEntityAttributes[id,displayName,dimensionItem],programIndicators[id,displayName,dimensionItem]' })
             .then(programCollection => programCollection.toArray())
-            .then(programs => {
+            .then((programs) => {
                 const programMenuItems = programs
-                    .map(program => {
-                        return {
-                            payload: program.id,
-                            text: program.displayName,
-                        };
-                    })
+                    .map(program => ({
+                        payload: program.id,
+                        text: program.displayName,
+                    }))
                     .sort((left, right) => left.text.localeCompare(right.text.toLowerCase()));
 
                 this.setState({
                     programMenuItems,
-                    programAttributes: new Map(programs.map(program => {
-                        return [
-                            program.id,
-                            Array.from(program.programTrackedEntityAttributes.values())
-                                .map(tea => {
-                                    return {
-                                        value: tea.dimensionItem,
-                                        label: tea.displayName,
-                                    };
-                                })
-                                .sort((left, right) => left.label.toLowerCase().localeCompare(right.label.toLowerCase())),
-                        ];
-                    })),
-                    programIndicators: new Map(programs.map(program => {
-                        return [
-                            program.id,
-                            Array.from(program.programIndicators.values())
-                                .map(pi => {
-                                    return {
-                                        value: pi.dimensionItem,
-                                        label: pi.displayName,
-                                    };
-                                })
-                                .sort((left, right) => left.label.toLowerCase().localeCompare(right.label.toLowerCase())),
-                        ];
-                    })),
+                    programAttributes: new Map(programs.map(program => [
+                        program.id,
+                        Array.from(program.programTrackedEntityAttributes.values())
+                            .map(tea => ({
+                                value: tea.dimensionItem,
+                                label: tea.displayName,
+                            }))
+                            .sort((left, right) => left.label.toLowerCase().localeCompare(right.label.toLowerCase())),
+                    ])),
+                    programIndicators: new Map(programs.map(program => [
+                        program.id,
+                        Array.from(program.programIndicators.values())
+                            .map(pi => ({
+                                value: pi.dimensionItem,
+                                label: pi.displayName,
+                            }))
+                            .sort((left, right) => left.label.toLowerCase().localeCompare(right.label.toLowerCase())),
+                    ])),
                 });
             })
             .catch(e => log.error(e));
@@ -148,27 +138,30 @@ export default React.createClass({
             <Tabs tabItemContainerStyle={{ backgroundColor: '#FFF' }}>
                 <Tab label={this.getTranslation('program_data_elements')} style={{ color: '#333' }}>
                     {!this.state.programDataElementOptions.length ? <div style={noValueMessageStyle}>{this.getTranslation('no_program_data_elements')}</div> :
-                        <ListSelect onItemDoubleClick={this._programDataElementSelected}
-                                    source={this.state.programDataElementOptions}
-                                    listStyle={listStyle}
-                                    size={10}
-                        />}
+                        <ListSelect
+                        onItemDoubleClick={this._programDataElementSelected}
+                        source={this.state.programDataElementOptions}
+                        listStyle={listStyle}
+                        size={10}
+                    />}
                 </Tab>
                 <Tab label={this.getTranslation('program_tracked_entity_attributes')} style={{ color: '#333' }}>
                     {!this.state.programTrackedEntityAttributeOptions.length ? <div style={noValueMessageStyle}>{this.getTranslation('no_tracked_entity_attributes')}</div> :
-                    <ListSelect onItemDoubleClick={this._programTrackedEntityAttributeSelected}
-                                source={this.state.programTrackedEntityAttributeOptions}
-                                listStyle={listStyle}
-                                size={10}
-                    />}
+                    <ListSelect
+                            onItemDoubleClick={this._programTrackedEntityAttributeSelected}
+                            source={this.state.programTrackedEntityAttributeOptions}
+                            listStyle={listStyle}
+                            size={10}
+                        />}
                 </Tab>
                 <Tab label={this.getTranslation('program_indicators')} style={{ color: '#333' }}>
                     {!this.state.programIndicatorOptions.length ? <div style={noValueMessageStyle}>{this.getTranslation('no_program_indicators')}</div> :
-                    <ListSelect onItemDoubleClick={this._programIndicatorSelected}
-                                source={this.state.programIndicatorOptions}
-                                listStyle={listStyle}
-                                size={10}
-                    />}
+                    <ListSelect
+                            onItemDoubleClick={this._programIndicatorSelected}
+                            source={this.state.programIndicatorOptions}
+                            listStyle={listStyle}
+                            size={10}
+                        />}
                 </Tab>
             </Tabs>
         );
@@ -200,9 +193,7 @@ export default React.createClass({
                 this.setState({
                     selectedProgram: programId,
                     programDataElementOptions: programDataElements.programDataElements
-                        .map(programDataElement => {
-                            return { value: programDataElement.dimensionItem, label: programDataElement.displayName };
-                        }),
+                        .map(programDataElement => ({ value: programDataElement.dimensionItem, label: programDataElement.displayName })),
                     programIndicatorOptions: this.state.programIndicators.get(programId) || [],
                     programTrackedEntityAttributeOptions: this.state.programAttributes.get(programId) || [],
                 });

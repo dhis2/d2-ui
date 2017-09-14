@@ -17,12 +17,12 @@ config.i18n.strings.add('manage_my_apps');
 const getBaseUrl = getBaseUrlFromD2ApiUrl;
 
 function SearchResults(props, { d2 }) {
-    const menuItems = (props.searchResults || []).map((item) => (<HeaderMenuItem key={item.label} {...item} />));
+    const menuItems = (props.searchResults || []).map(item => (<HeaderMenuItem key={item.label} {...item} />));
 
     const moreAppsButton = (
         <FlatButton
             style={styles.moreAppsButton}
-            href={getBaseUrl(d2) + '/dhis-web-menu-management'}
+            href={`${getBaseUrl(d2)}/dhis-web-menu-management`}
         >
             {d2.i18n.getTranslation('manage_my_apps')}
         </FlatButton>
@@ -38,7 +38,7 @@ function SearchResults(props, { d2 }) {
             flexDirection: 'column',
             height: props.open ? getSearchResultsHeight() : 0,
             overflow: props.open ? undefined : 'hidden',
-        }
+        },
     );
 
     return (

@@ -25,11 +25,11 @@ const searchResultBoxStateStore$ = Store.create({
 });
 
 const getParentApp = get('parentApp');
-const hasParentApp = (item) => !!getParentApp(item);
+const hasParentApp = item => !!getParentApp(item);
 const uniqueByName = uniqBy(item => item.name);
 const filterByValue = curry((searchTerms, item) => searchTerms.every(term => item.label.toLowerCase().includes(term)));
-const isFullApp = (item) => !hasParentApp(item);
-const isNotAFullApp = (item) => !isFullApp(item);
+const isFullApp = item => !hasParentApp(item);
+const isNotAFullApp = item => !isFullApp(item);
 // Only allow deep links for apps for which the user has access to the parentApp
 const hasAvailableFullApp = curry((fullApps, item) => fullApps.some(app => app.name === item.parentApp));
 
@@ -51,7 +51,7 @@ export function setSearchValue(searchValue) {
             const parentAppsForMatchedItems = fullApps
                 .filter(item => deepLinksThatMatchSearchString
                     .map(getParentApp)
-                    .some(parentApp => parentApp === item.name)
+                    .some(parentApp => parentApp === item.name),
                 );
 
             // Combine all results
@@ -63,7 +63,7 @@ export function setSearchValue(searchValue) {
             const allSearchResults = uniqueByName([].concat(
                 fullAppsThatMatchSearchString,
                 deepLinksThatMatchSearchString,
-                parentAppsForMatchedItems)
+                parentAppsForMatchedItems),
             );
 
             searchResultBoxStateStore$.setState({
@@ -134,9 +134,9 @@ export const searchStore$ = Observable
             }
 
             return searchResult;
-        }
+        },
     )
-    .map((resultState) => ({
+    .map(resultState => ({
         ...resultState,
         searchResults: resultState.searchResults
             .map((item, index) => Object.assign({}, item, { selected: resultState.selected === index })),
@@ -157,7 +157,7 @@ keyPress$
     .filter(identity)
     .subscribe(
         itemToGoTo => window.location = itemToGoTo.action,
-        log.error
+        log.error,
     );
 
 // When the right arrow is pressed move the selected item to the next one

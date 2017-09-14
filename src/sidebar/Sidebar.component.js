@@ -98,7 +98,7 @@ const Sidebar = React.createClass({
         if (props.searchText && props.searchText !== this.state.searchText) {
             this.setState({ searchText: props.searchText }, () => {
                 this.changeSearchText();
-            })
+            });
         }
     },
 
@@ -149,13 +149,13 @@ const Sidebar = React.createClass({
             return (
                 <div style={styles.container}>
                     <TextField
-                        hintText={!!this.props.searchFieldLabel ? this.props.searchFieldLabel : d2.i18n.getTranslation('search')}
+                        hintText={this.props.searchFieldLabel ? this.props.searchFieldLabel : d2.i18n.getTranslation('search')}
                         style={{ width: '100%' }}
                         value={this.state.searchText}
                         onChange={this.changeSearchText}
-                        ref={ref => { this.searchBox = ref; }}
+                        ref={(ref) => { this.searchBox = ref; }}
                     />
-                    {!!this.state.searchText ? <FontIcon style={styles.closeButton} className="material-icons" onClick={this._clear}>clear</FontIcon> : undefined}
+                    {this.state.searchText ? <FontIcon style={styles.closeButton} className="material-icons" onClick={this._clear}>clear</FontIcon> : undefined}
                 </div>
             );
         }
@@ -166,7 +166,7 @@ const Sidebar = React.createClass({
     renderSections() {
         return (
             <List style={styles.list}>
-                {this.props.sections.map(section => {
+                {this.props.sections.map((section) => {
                     const listItemStyle = section.key === this.state.currentSection && !this.state.searchText
                         ? styles.activeItem
                         : styles.item;

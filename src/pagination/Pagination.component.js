@@ -46,12 +46,16 @@ const Pagination = React.createClass({
                     {total ?
                         <li className="data-table-pager--page-info"><span>{currentlyShown} {`${this.getTranslation('of_page')}`} {total}</span></li> : ''}
                     <li className="data-table-pager--previous-page">
-                        <i className={previousPageClasses}
-                           onClick={hasPreviousPage() ? onPreviousPageClick : noop}>navigate_before</i>
+                        <i
+                            className={previousPageClasses}
+                            onClick={hasPreviousPage() ? onPreviousPageClick : noop}
+                        >navigate_before</i>
                     </li>
                     <li className="data-table-pager--next-page">
-                        <i className={nextPageClasses}
-                           onClick={hasNextPage() ? onNextPageClick : noop}>navigate_next</i>
+                        <i
+                            className={nextPageClasses}
+                            onClick={hasNextPage() ? onNextPageClick : noop}
+                        >navigate_next</i>
                     </li>
                 </ul>
             </div>

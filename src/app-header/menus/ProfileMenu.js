@@ -2,14 +2,14 @@ import React from 'react';
 import Avatar from 'material-ui/Avatar';
 import HeaderMenu from './HeaderMenu';
 import HeaderMenuItem from './HeaderMenuItem';
-import styles, {applyUserStyle} from '../header-bar-styles';
+import styles, { applyUserStyle } from '../header-bar-styles';
 import addD2Context from '../../component-helpers/addD2Context';
 import FlatButton from 'material-ui/FlatButton';
 import getBaseUrlFromD2ApiUrl from '../getBaseUrlFromD2ApiUrl';
 
 const getBaseUrl = getBaseUrlFromD2ApiUrl;
 
-const ProfileMenu = addD2Context(function ProfileMenu(props, { d2 }) {
+const ProfileMenu = addD2Context((props, { d2 }) => {
     const { currentUser, items } = props;
     const menuItems = items.map((item, index) => (<HeaderMenuItem key={index} {...item} />));
 
@@ -34,11 +34,11 @@ const ProfileMenu = addD2Context(function ProfileMenu(props, { d2 }) {
             <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
                 <Avatar size={60} style={styles.avatarBig}>{`${currentUser.firstName.charAt(0)} ${currentUser.surname.charAt(0)}`}</Avatar>
                 <div>
-                    <div style={{width: '100%', marginTop: '1rem', lineHeight: '1.5rem', fontWeight: 'bold'}}>{currentUser.displayName}</div>
-                    <div style={{width: '100%', lineHeight: '1.5rem'}}>{currentUser.email}</div>
+                    <div style={{ width: '100%', marginTop: '1rem', lineHeight: '1.5rem', fontWeight: 'bold' }}>{currentUser.displayName}</div>
+                    <div style={{ width: '100%', lineHeight: '1.5rem' }}>{currentUser.email}</div>
                 </div>
             </div>
-            <FlatButton style={{width: '100%', textAlign: 'center'}} href={getBaseUrl(d2) + '/dhis-web-commons-security/logout.action'}>
+            <FlatButton style={{ width: '100%', textAlign: 'center' }} href={`${getBaseUrl(d2)}/dhis-web-commons-security/logout.action`}>
                 {d2.i18n.getTranslation('log_out')}
             </FlatButton>
         </div>

@@ -33,18 +33,18 @@ export default class Legend extends Component {
             endValue: 100,
             warningDialogOpen: false,
             errorMessage: {},
-            createLegendDisabled: false
+            createLegendDisabled: false,
         };
 
         this.i18n = this.context.d2.i18n;
     }
 
     onStartValueChange = (event) => {
-        this.setState({startValue: event.target.value}, this.validateForm);
+        this.setState({ startValue: event.target.value }, this.validateForm);
     };
 
     onEndValueChange = (event) => {
-        this.setState({endValue: event.target.value}, this.validateForm);
+        this.setState({ endValue: event.target.value }, this.validateForm);
     };
 
     onColorScaleChange = (colorScheme) => {
@@ -83,7 +83,7 @@ export default class Legend extends Component {
 
         return this.props.onItemsChange([].concat(
             newItems,
-            isNewLegendItem ? modelToUpdate : []
+            isNewLegendItem ? modelToUpdate : [],
         ));
     };
 
@@ -127,13 +127,13 @@ export default class Legend extends Component {
 
     // Display warning that current legend items will be deleted
     displayWarning = () => {
-        this.setState({warningDialogOpen: true});
+        this.setState({ warningDialogOpen: true });
     };
 
     handleClose = () => {
         this.setState(
-            {warningDialogOpen: false},
-            () => this.createLegendItems() // Callback for after state update
+            { warningDialogOpen: false },
+            () => this.createLegendItems(), // Callback for after state update
         );
     };
 
@@ -141,12 +141,12 @@ export default class Legend extends Component {
         const actions = [
             <FlatButton
                 label={this.i18n.getTranslation('cancel')}
-                secondary={true}
+                secondary
                 onTouchTap={this.handleClose}
             />,
             <FlatButton
                 label={this.i18n.getTranslation('proceed')}
-                primary={true}
+                primary
                 onTouchTap={this.handleClose}
             />,
         ];

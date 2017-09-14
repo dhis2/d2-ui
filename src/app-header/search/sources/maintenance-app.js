@@ -12,6 +12,7 @@ import camelCaseToUnderscores from 'd2-utilizr/lib/camelCaseToUnderscores';
 // This file is copied from the maintenance app
 // https://github.com/dhis2/maintenance-app/blob/master/src/config/maintenance-models.js
 import { getSideBarConfig } from './maintenance-app/maintenance-models';
+
 const maintenanceSections = getSideBarConfig();
 
 function addToTranslationConfig(modelName) {
@@ -20,17 +21,15 @@ function addToTranslationConfig(modelName) {
 
 map(addToTranslationConfig, map(camelCaseToUnderscores, flatten(map('items', maintenanceSections))));
 
-const getMenuItemsFromModelName = curry((section, modelName) => {
-    return {
-        name: camelCaseToUnderscores(modelName),
-        defaultAction: `/dhis-web-maintenance/#/list/${section}/${modelName}`,
-        icon: '/icons/dhis-web-maintenance.png',
-        description: '',
-        parentApp: 'dhis-web-maintenance',
-    };
-});
+const getMenuItemsFromModelName = curry((section, modelName) => ({
+    name: camelCaseToUnderscores(modelName),
+    defaultAction: `/dhis-web-maintenance/#/list/${section}/${modelName}`,
+    icon: '/icons/dhis-web-maintenance.png',
+    description: '',
+    parentApp: 'dhis-web-maintenance',
+}));
 
-const toKeyValueArray = (obj) => Object
+const toKeyValueArray = obj => Object
     .keys(obj)
     .map(key => [key, obj[key]]);
 
@@ -46,8 +45,6 @@ export default function addDeepLinksForMaintenance(apps) {
 
     return Observable
         .combineLatest(translate$, maintenanceDeepLinks$, translateMenuItemNames)
-        .flatMap((items) => {
-            return Observable.fromPromise(getInstance().then((d2) => prepareMenuItems(getBaseUrlFromD2(d2), items)));
-        })
+        .flatMap(items => Observable.fromPromise(getInstance().then(d2 => prepareMenuItems(getBaseUrlFromD2(d2), items))))
         .map(maintenanceItems => [].concat(apps, maintenanceItems));
 }

@@ -43,7 +43,7 @@ const scales = [
     'Paired',
     'Pastel1',
     'Set1',
-    'Set3'
+    'Set3',
 ];
 
 // Renders a color scale component consisting of a changeable color scale and number of classes
@@ -55,7 +55,7 @@ export default class ColorScaleSelect extends Component {
             open: false,
             anchorEl: null,
             scale: 'YlOrRd',
-            classes: 5
+            classes: 5,
         };
 
         this.i18n = this.context.d2.i18n;
@@ -67,18 +67,18 @@ export default class ColorScaleSelect extends Component {
 
     // Show popover with allowed color scales
     showColorScales = (event) => {
-        this.setState({open: true, anchorEl: event.currentTarget});
+        this.setState({ open: true, anchorEl: event.currentTarget });
     }
 
     // Called when a new color scale is selected in the popover
     onColorScaleSelect = (event, scale) => {
-        this.setState({scale: scale, open: false});
+        this.setState({ scale, open: false });
         this.props.onChange(this.getColorBrewerScale(scale, this.state.classes));
     }
 
     // Called when the number of classes is changed
     onClassesChange = (event, index, value) => {
-        this.setState({classes: value});
+        this.setState({ classes: value });
         this.props.onChange(this.getColorBrewerScale(this.state.scale, value));
     }
 
@@ -89,7 +89,7 @@ export default class ColorScaleSelect extends Component {
 
     // Called when popover is closed
     onColorScalePopoverClose = (reason) => {
-        this.setState({open: false});
+        this.setState({ open: false });
     }
 
     render() {
@@ -102,7 +102,7 @@ export default class ColorScaleSelect extends Component {
             },
             popover: {
                 maxHeight: '60%',
-                overflowY: 'scroll'
+                overflowY: 'scroll',
             },
             popoverScale: {
                 display: 'block',
@@ -115,29 +115,29 @@ export default class ColorScaleSelect extends Component {
             },
         };
         const colorScales = scales.map((scale, index) =>
-            <ColorScale key={index} scale={scale} classes={this.state.classes} style={styles.popoverScale} onClick={this.onColorScaleSelect} />
+            <ColorScale key={index} scale={scale} classes={this.state.classes} style={styles.popoverScale} onClick={this.onColorScaleSelect} />,
         );
 
         return (
             <Row style={{ alignItems: 'center', ...this.props.style }}>
                 <SelectField floatingLabelText={this.i18n.getTranslation('number_of_items')} value={this.state.classes} onChange={this.onClassesChange}>
-                    <MenuItem value={3} primaryText="3"/>
-                    <MenuItem value={4} primaryText="4"/>
-                    <MenuItem value={5} primaryText="5"/>
-                    <MenuItem value={6} primaryText="6"/>
-                    <MenuItem value={7} primaryText="7"/>
-                    <MenuItem value={8} primaryText="8"/>
-                    <MenuItem value={9} primaryText="9"/>
+                    <MenuItem value={3} primaryText="3" />
+                    <MenuItem value={4} primaryText="4" />
+                    <MenuItem value={5} primaryText="5" />
+                    <MenuItem value={6} primaryText="6" />
+                    <MenuItem value={7} primaryText="7" />
+                    <MenuItem value={8} primaryText="8" />
+                    <MenuItem value={9} primaryText="9" />
                 </SelectField>
 
-                <ColorScale scale={this.state.scale} classes={this.state.classes} style={{...styles.scale, margin: '0 20px 0 20px'}} onClick={this.showColorScales} />
+                <ColorScale scale={this.state.scale} classes={this.state.classes} style={{ ...styles.scale, margin: '0 20px 0 20px' }} onClick={this.showColorScales} />
 
                 <Popover
                     style={styles.popover}
                     open={this.state.open}
                     anchorEl={this.state.anchorEl}
-                    anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
-                    targetOrigin={{horizontal: 'left', vertical: 'top'}}
+                    anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
+                    targetOrigin={{ horizontal: 'left', vertical: 'top' }}
                     onRequestClose={this.onColorScalePopoverClose}
                 >
                     <Column>

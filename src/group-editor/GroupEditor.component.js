@@ -63,14 +63,14 @@ export default React.createClass({
     componentWillReceiveProps(props) {
         if (props.hasOwnProperty('filterText') && this.leftSelect && this.rightSelect) {
             this.setState({
-                selectedLeft: [].filter.call(this.leftSelect.selectedOptions, item => item.text.toLowerCase().indexOf(('' + props.filterText).trim().toLowerCase()) !== -1).length,
-                selectedRight: [].filter.call(this.rightSelect.selectedOptions, item => item.text.toLowerCase().indexOf(('' + props.filterText).trim().toLowerCase()) !== -1).length,
+                selectedLeft: [].filter.call(this.leftSelect.selectedOptions, item => item.text.toLowerCase().indexOf((`${props.filterText}`).trim().toLowerCase()) !== -1).length,
+                selectedRight: [].filter.call(this.rightSelect.selectedOptions, item => item.text.toLowerCase().indexOf((`${props.filterText}`).trim().toLowerCase()) !== -1).length,
             });
         }
     },
 
     componentWillUnmount() {
-        this.disposables.forEach(disposable => {
+        this.disposables.forEach((disposable) => {
             disposable.unsubscribe();
         });
     },
@@ -110,7 +110,7 @@ export default React.createClass({
     },
     getAllItems() {
         return this.getItemStoreIsCollection()
-            ? Array.from(this.props.itemStore.state.values()).map(item => { return { value: item.id, text: item.name }; })
+            ? Array.from(this.props.itemStore.state.values()).map(item => ({ value: item.id, text: item.name }))
             : (this.props.itemStore.state || []);
     },
     getItemCount() {
@@ -258,38 +258,40 @@ export default React.createClass({
             });
         };
 
-        const hiddenLabel = (itemCount) => {
-            return this.getItemCount() > 0 && this.getFilterText().length > 0 ? itemCount + ' ' + this.getTranslation('hidden_by_filters') : '';
-        };
+        const hiddenLabel = itemCount => (this.getItemCount() > 0 && this.getFilterText().length > 0 ? `${itemCount} ${this.getTranslation('hidden_by_filters')}` : '');
 
-        const selectedLabel = () => {
-            return this.getSelectedCount() > 0 ? this.getSelectedCount() + ' ' + this.getTranslation('selected') : '';
-        };
+        const selectedLabel = () => (this.getSelectedCount() > 0 ? `${this.getSelectedCount()} ${this.getTranslation('selected')}` : '');
 
         return (
             <div style={styles.container}>
                 <div style={styles.left}>
                     <Paper style={styles.paper}>
                         <div style={styles.hidden}>{hiddenLabel(this.getAvailableItemsFilterCount())}</div>
-                        <select multiple style={styles.select} onChange={onChangeLeft}
-                                ref={r => {
-                                    this.leftSelect = findDOMNode(r);
-                                }}>
-                            {this.getAvailableItemsFiltered().map(item => {
-                                return (
-                                    <option key={item.value} value={item.value}
-                                            onDoubleClick={this._assignItems}
-                                            style={styles.options}>{item.text}</option>
-                                );
-                            })}
+                        <select
+                            multiple
+                            style={styles.select}
+                            onChange={onChangeLeft}
+                            ref={(r) => {
+                                this.leftSelect = findDOMNode(r);
+                            }}
+                        >
+                            {this.getAvailableItemsFiltered().map(item => (
+                                <option
+                                    key={item.value}
+                                    value={item.value}
+                                    onDoubleClick={this._assignItems}
+                                    style={styles.options}
+                                >{item.text}</option>
+                            ))}
                         </select>
                     </Paper>
                     <RaisedButton
-                        label={this.getTranslation('assign_all') + ' ' + (this.getAvailableItemsUnfilteredCount() === 0 ? '' : this.getAvailableItemsUnfilteredCount()) + ' \u2192'}
+                        label={`${this.getTranslation('assign_all')} ${this.getAvailableItemsUnfilteredCount() === 0 ? '' : this.getAvailableItemsUnfilteredCount()} \u2192`}
                         disabled={this.state.loading || this.getAvailableItemsUnfilteredCount() === 0}
                         onClick={this._assignAll}
                         style={{ marginTop: '1rem' }}
-                        secondary />
+                        secondary
+                    />
                 </div>
                 <div style={styles.middle}>
                     <div style={styles.selected}>{selectedLabel()}</div>
@@ -298,13 +300,15 @@ export default React.createClass({
                         secondary
                         onClick={this._assignItems}
                         style={styles.buttons}
-                        disabled={this.state.loading || this.state.selectedLeft === 0} />
+                        disabled={this.state.loading || this.state.selectedLeft === 0}
+                    />
                     <RaisedButton
                         label="&larr;"
                         secondary
                         onClick={this._removeItems}
                         style={styles.buttons}
-                        disabled={this.state.loading || this.state.selectedRight === 0} />
+                        disabled={this.state.loading || this.state.selectedRight === 0}
+                    />
                     <div style={styles.status}>
                         {this.state.loading ?
                             <CircularProgress small style={{ width: 60, height: 60 }} /> : undefined }
@@ -313,26 +317,32 @@ export default React.createClass({
                 <div style={styles.right}>
                     <Paper style={styles.paper}>
                         <div style={styles.hidden}>{hiddenLabel(this.getAssignedItemsFilterCount())}</div>
-                        <select multiple style={styles.select} onChange={onChangeRight}
-                                ref={ r => {
-                                    this.rightSelect = findDOMNode(r);
-                                }}>
+                        <select
+                            multiple
+                            style={styles.select}
+                            onChange={onChangeRight}
+                            ref={(r) => {
+                                this.rightSelect = findDOMNode(r);
+                            }}
+                        >
                             {this.getAssignedItemsFiltered()
                                 .sort(this.byAssignedItemsOrder)
-                                .map(item => {
-                                    return (<option key={item.value} value={item.value}
-                                                onDoubleClick={this._removeItems}
-                                                style={styles.options}>{item.text}</option>);
-                                })
+                                .map(item => (<option
+                                    key={item.value}
+                                    value={item.value}
+                                    onDoubleClick={this._removeItems}
+                                    style={styles.options}
+                                >{item.text}</option>))
                             }
                         </select>
                     </Paper>
                     <RaisedButton
-                        label={'\u2190 ' + this.getTranslation('remove_all') + ' ' + (this.getAssignedItemsUnfilteredCount() > 0 ? this.getAssignedItemsUnfilteredCount() : '')}
+                        label={`\u2190 ${this.getTranslation('remove_all')} ${this.getAssignedItemsUnfilteredCount() > 0 ? this.getAssignedItemsUnfilteredCount() : ''}`}
                         style={{ float: 'right', marginTop: '1rem' }}
                         disabled={this.state.loading || this.getAssignedItemsUnfilteredCount() === 0}
                         onClick={this._removeAll}
-                        secondary />
+                        secondary
+                    />
                 </div>
             </div>
         );
@@ -347,18 +357,14 @@ export default React.createClass({
             this.rightSelect.selectedIndex = -1;
         }
 
-        this.setState(state => {
-            return {
-                selectedLeft: left ? 0 : state.selectedLeft,
-                selectedRight: right ? 0 : state.selectedRight,
-            };
-        });
+        this.setState(state => ({
+            selectedLeft: left ? 0 : state.selectedLeft,
+            selectedRight: right ? 0 : state.selectedRight,
+        }));
     },
 
     filterItems(items) {
-        return items.filter(item => {
-            return this.getFilterText().length === 0 || item.text.trim().toLowerCase().indexOf(this.getFilterText()) !== -1;
-        });
+        return items.filter(item => this.getFilterText().length === 0 || item.text.trim().toLowerCase().indexOf(this.getFilterText()) !== -1);
     },
 
     getSelectedItems() {

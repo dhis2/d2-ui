@@ -5,8 +5,8 @@ import IconButton from 'material-ui/IconButton/IconButton';
 import log from 'loglevel';
 
 function moveItemOneSpotDownIn(currentlySelected) {
-    return itemToFind => {
-        const indexOfItem = Array.prototype.findIndex.call(currentlySelected, (item) => item === itemToFind);
+    return (itemToFind) => {
+        const indexOfItem = Array.prototype.findIndex.call(currentlySelected, item => item === itemToFind);
 
         // Can only move the item when the indexOfItem does not refer to the last item
         if (indexOfItem < (currentlySelected.length - 1)) {
@@ -15,12 +15,12 @@ function moveItemOneSpotDownIn(currentlySelected) {
             currentlySelected[indexOfItem + 1] = currentlySelected[indexOfItem];
             currentlySelected[indexOfItem] = tempItem;
         }
-    }
+    };
 }
 
 function moveItemOneSpotUpIn(currentlySelected) {
-    return itemToFind => {
-        const indexOfItem = Array.prototype.findIndex.call(currentlySelected, (item) => item === itemToFind);
+    return (itemToFind) => {
+        const indexOfItem = Array.prototype.findIndex.call(currentlySelected, item => item === itemToFind);
 
         // Can only move the item when the indexOfItem does not refer to the first item
         if (indexOfItem > 0) {
@@ -29,23 +29,23 @@ function moveItemOneSpotUpIn(currentlySelected) {
             currentlySelected[indexOfItem - 1] = currentlySelected[indexOfItem];
             currentlySelected[indexOfItem] = tempItem;
         }
-    }
+    };
 }
 
 export default class GroupEditorWithOrdering extends React.Component {
     render() {
         return (
-            <div style={{paddingRight: '2.5rem', position: 'relative'}}>
+            <div style={{ paddingRight: '2.5rem', position: 'relative' }}>
                 <GroupEditor ref={(r) => { this.groupEditor = r; }} {...this.props} />
-                <div style={{width: '2.5rem', position: 'absolute', top: '45%', right: 0}}>
+                <div style={{ width: '2.5rem', position: 'absolute', top: '45%', right: 0 }}>
                     <IconButton
-                        style={{color: 'rgb(33, 150, 243)'}}
+                        style={{ color: 'rgb(33, 150, 243)' }}
                         iconClassName="material-icons"
                         tooltip="Move up"
                         onClick={this._moveUp.bind(this)}
                     >arrow_upward</IconButton>
                     <IconButton
-                        style={{color: 'rgb(33, 150, 243)'}}
+                        style={{ color: 'rgb(33, 150, 243)' }}
                         iconClassName="material-icons"
                         tooltip="Move down"
                         onClick={this._moveDown.bind(this)}

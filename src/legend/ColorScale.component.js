@@ -2,7 +2,7 @@ import React from 'react';
 import colorbrewer from './colorbrewer';
 
 // Returns one color scale based on a code and number of classes
-export default function ColorScale({scale, classes, style, onClick}) {
+export default function ColorScale({ scale, classes, style, onClick }) {
     const colors = colorbrewer[scale][classes];
 
     const styles = {
@@ -14,7 +14,7 @@ export default function ColorScale({scale, classes, style, onClick}) {
             boxShadow: '0 1px 6px rgba(0,0,0,0.12),0 1px 4px rgba(0,0,0,0.12)',
             display: 'inline-block',
             ...style,
-        }
+        },
     };
 
     const items = colors.map((color, index) => {

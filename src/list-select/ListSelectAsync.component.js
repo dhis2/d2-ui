@@ -23,8 +23,8 @@ const ListSelectAsync = React.createClass({
 
         this.subscription = this.props.source
             .subscribe(
-                (listValues) => this.setState({ listSource: listValues }),
-                (error) => log.error(error)
+                listValues => this.setState({ listSource: listValues }),
+                error => log.error(error),
             );
     },
 
@@ -34,11 +34,12 @@ const ListSelectAsync = React.createClass({
 
     render() {
         return (
-            <ListSelect {...this.props}
-                        onItemDoubleClick={this.props.onItemDoubleClick}
-                        source={this.state.listSource}
-                        listStyle={this.props.listStyle}
-                />
+            <ListSelect
+                {...this.props}
+                onItemDoubleClick={this.props.onItemDoubleClick}
+                source={this.state.listSource}
+                listStyle={this.props.listStyle}
+            />
         );
     },
 });

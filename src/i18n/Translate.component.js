@@ -10,7 +10,7 @@ function hasAccessToD2TranslationFunction(context) {
 
 function Translate(props, context) {
     if (!isString(props.children)) {
-        log.error(`<Translate /> requires a string to be passed as a child in order for it to translate. e.g. <Translate>string_to_translate</Translate>`);
+        log.error('<Translate /> requires a string to be passed as a child in order for it to translate. e.g. <Translate>string_to_translate</Translate>');
         return <span />;
     }
 
