@@ -170,8 +170,6 @@ class OrgUnitTree extends React.Component {
             this.state.children.length > 0;
         // True if a click handler exists
         const isSelectable = !!this.props.onSelectClick || !!this.props.onClick; // TODO: Remove onClick in v26
-        // True if this OU is currently selected
-        const selectedHasPath = this.props.selected && this.props.selected.reduce((acc, ou) => acc || ou.includes('/'), false);
         const pathRegEx = new RegExp(`/${currentOu.id}$`);
         const memberRegEx = new RegExp(`/${currentOu.id}`);
         const isSelected = this.props.selected && this.props.selected.some(ou => pathRegEx.test(ou));

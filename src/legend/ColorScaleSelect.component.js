@@ -88,12 +88,11 @@ export default class ColorScaleSelect extends Component {
     }
 
     // Called when popover is closed
-    onColorScalePopoverClose = (reason) => {
+    onColorScalePopoverClose = () => {
         this.setState({ open: false });
     }
 
     render() {
-        const colors = this.getColorBrewerScale(this.state.scale, this.state.classes);
         const styles = {
             scale: {
                 width: 36 * this.state.classes,

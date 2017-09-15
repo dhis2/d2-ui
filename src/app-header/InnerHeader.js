@@ -52,7 +52,7 @@ const InnerHeader = React.createClass({
             .catch(this.loadDataFromLocalStorageIfAvailable)
             .then(saveToLocalStorage)
             .then((headerData) => {
-                this.setHeaderData(headerData.userStyleUrl, headerData.title, headerData.link);
+                this.setHeaderData(headerData.userStyleUrl, headerData.title);
             })
             .catch((error) => {
                 log.error(error);
@@ -213,7 +213,7 @@ const InnerHeader = React.createClass({
         };
     },
 
-    setHeaderData(userStyleUrl, title, link) {
+    setHeaderData(userStyleUrl, title) {
         this.addUserStyleStylesheet(this.getStylesheetUrl(userStyleUrl));
         this.setHeaderTitle(title);
     },

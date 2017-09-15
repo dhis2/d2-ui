@@ -123,7 +123,7 @@ OrgUnitSelectByLevel.propTypes = {
 
     // If currentRoot is set, only org units that are descendants of the
     // current root org unit will be added to or removed from the selection
-    currentRoot: (props, propName, componentName) => {
+    currentRoot: (props, propName) => {
         if (props[propName]) {
             if (!props[propName].hasOwnProperty('id')) {
                 return new Error('currentRoot must have an `id` property');
