@@ -1,5 +1,4 @@
 import React from 'react';
-import { findDOMNode } from 'react';
 import IconButton from 'material-ui/IconButton/IconButton';
 import log from 'loglevel';
 import GroupEditor from './GroupEditor.component';

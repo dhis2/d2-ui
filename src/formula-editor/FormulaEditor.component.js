@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import Draft from 'draft-js';
@@ -12,7 +11,6 @@ const {
     EditorState,
     Entity,
     Modifier,
-    DraftEntity,
 } = Draft;
 
 const rawContent = {
@@ -189,12 +187,12 @@ const styles = {
     },
 };
 
-function FormulaEditor(props, context) {
-    return (
-        <div>
-            Formula Editor here
-        </div>
-    );
-}
+// function FormulaEditor(props, context) {
+//     return (
+//         <div>
+//             Formula Editor here
+//         </div>
+//     );
+// }
 
 // export default FormulaEditor;

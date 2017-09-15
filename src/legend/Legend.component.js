@@ -52,7 +52,7 @@ export default class Legend extends Component {
     };
 
     createLegendItems = () => {
-        const { startValue, endValue, classes, colorScheme } = this.state;
+        const { startValue, endValue, colorScheme } = this.state;
         const scale = scaleLinear().domain([startValue, endValue]).rangeRound([0, colorScheme.length]);
         const step = (endValue - startValue) / colorScheme.length;
         const precision = precisionFixed(step); // https://github.com/d3/d3-format#precisionFixed

@@ -164,7 +164,7 @@ keyPress$
 keyPress$
     .map(actionData => actionData[0])
     .filter(event => event.keyCode === 39 || event.key === 'ArrowRight')
-    .subscribe(event => setSelectedIndex(1));
+    .subscribe(() => setSelectedIndex(1));
 
 // When the left arrow is pressed move the selected item to the next one
 keyPress$
