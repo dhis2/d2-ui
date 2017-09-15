@@ -5,9 +5,9 @@ import { Observable } from 'rxjs';
 import { flatten } from 'lodash/fp';
 import { filter } from 'lodash/fp';
 import { mapValues } from 'lodash/fp';
-import { prepareMenuItems, translate$, translateMenuItemNames, getBaseUrlFromD2 } from '../../headerBar.store';
 import { config, getInstance } from 'd2/lib/d2';
 import camelCaseToUnderscores from 'd2-utilizr/lib/camelCaseToUnderscores';
+import { prepareMenuItems, translate$, translateMenuItemNames, getBaseUrlFromD2 } from '../../headerBar.store';
 
 // This file is copied from the maintenance app
 // https://github.com/dhis2/maintenance-app/blob/master/src/config/maintenance-models.js

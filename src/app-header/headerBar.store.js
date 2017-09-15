@@ -1,12 +1,12 @@
 import { getInstance } from 'd2/lib/d2';
 import { compose } from 'lodash/fp';
 import { map } from 'lodash/fp';
-import headerBarSettingsStore$ from './settings/settings.store';
-import { profileSource$, appsMenuSource$ } from './menu-sources';
 import { curry } from 'lodash/fp';
 import { pick } from 'lodash/fp';
 import { get as pluck } from 'lodash/fp';
 import { Observable } from 'rxjs';
+import headerBarSettingsStore$ from './settings/settings.store';
+import { profileSource$, appsMenuSource$ } from './menu-sources';
 import getBaseUrlFromD2ApiUrl from './getBaseUrlFromD2ApiUrl';
 
 const translate = curry((d2, key) => d2.i18n.getTranslation(key));

@@ -1,14 +1,14 @@
-import headerBarStore$ from '../headerBar.store';
-import Action from '../../action/Action';
-import Store from '../../store/Store';
 import { Observable } from 'rxjs';
-import addDeepLinksForMaintenance from './sources/maintenance-app';
-import addDeepLinksForSettings from './sources/settings-app';
 import log from 'loglevel';
-import { appsMenuItems$ } from '../headerBar.store';
 import { uniqBy } from 'lodash/fp';
 import { curry } from 'lodash/fp';
 import { get } from 'lodash/fp';
+import Action from '../../action/Action';
+import Store from '../../store/Store';
+import addDeepLinksForMaintenance from './sources/maintenance-app';
+import addDeepLinksForSettings from './sources/settings-app';
+import headerBarStore$ from '../headerBar.store';
+import { appsMenuItems$ } from '../headerBar.store';
 
 const identity = v => v;
 

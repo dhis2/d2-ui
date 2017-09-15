@@ -1,6 +1,6 @@
+import { getInstance as getD2 } from 'd2/lib/d2';
 import Action from '../action/Action';
 import sharingStore from './sharing.store';
-import { getInstance as getD2 } from 'd2/lib/d2';
 
 const actions = Action.createActionsFromNames([
     'externalAccessChanged',

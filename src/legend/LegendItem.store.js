@@ -1,10 +1,10 @@
 import React from 'react';
-import Store from '../store/Store';
 import TextField from 'material-ui/TextField/TextField';
 import { Observable } from 'rxjs';
-import ColorPicker from './ColorPicker.component';
 import { getInstance, config } from 'd2/lib/d2';
 import camelCaseToUnderscores from 'd2-utilizr/lib/camelCaseToUnderscores';
+import Store from '../store/Store';
+import ColorPicker from './ColorPicker.component';
 import { isRequired } from '../forms/Validators';
 import mapProps from '../component-helpers/mapProps';
 

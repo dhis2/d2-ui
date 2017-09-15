@@ -1,9 +1,9 @@
 import { map } from 'lodash/fp';
 import { Observable } from 'rxjs';
+import { config, getInstance as getD2 } from 'd2/lib/d2';
 import getBaseUrlFromD2ApiUrl from '../../getBaseUrlFromD2ApiUrl';
 import { prepareMenuItems, translate$, translateMenuItemNames } from '../../headerBar.store';
 
-import { config, getInstance as getD2 } from 'd2/lib/d2';
 
 // These files are copied from the settings app
 // https://github.com/dhis2/settings-app/blob/master/src/settingsCategories.js

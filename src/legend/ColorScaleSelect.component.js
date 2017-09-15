@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import ColorScale from './ColorScale.component';
-import colorbrewer from './colorbrewer';
 import Popover from 'material-ui/Popover/Popover';
 import SelectField from 'material-ui/SelectField/SelectField';
 import MenuItem from 'material-ui/MenuItem/MenuItem';
 import { config } from 'd2/lib/d2';
+import ColorScale from './ColorScale.component';
+import colorbrewer from './colorbrewer';
 import Row from '../layout/Row.component';
 import Column from '../layout/Column.component';
 

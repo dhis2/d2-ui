@@ -1,6 +1,6 @@
 import React from 'react';
-import AsyncValidatorRunner from './AsyncValidatorRunner';
 import { isObject } from 'lodash';
+import AsyncValidatorRunner from './AsyncValidatorRunner';
 
 import CircularProgres from '../circular-progress/CircularProgress';
 

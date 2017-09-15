@@ -1,10 +1,10 @@
 import React from 'react';
 import Avatar from 'material-ui/Avatar';
+import FlatButton from 'material-ui/FlatButton';
 import HeaderMenu from './HeaderMenu';
 import HeaderMenuItem from './HeaderMenuItem';
 import styles, { applyUserStyle } from '../header-bar-styles';
 import addD2Context from '../../component-helpers/addD2Context';
-import FlatButton from 'material-ui/FlatButton';
 import getBaseUrlFromD2ApiUrl from '../getBaseUrlFromD2ApiUrl';
 
 const getBaseUrl = getBaseUrlFromD2ApiUrl;
