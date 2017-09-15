@@ -121,7 +121,7 @@ const Sidebar = React.createClass({
         });
     },
 
-    clear() {
+    onClear() {
         this.setState({ searchText: '' }, () => {
             if (this.props.onChangeSearchText) {
                 this.props.onChangeSearchText(this.state.searchText);
@@ -155,7 +155,7 @@ const Sidebar = React.createClass({
                         onChange={this.changeSearchText}
                         ref={(ref) => { this.searchBox = ref; }}
                     />
-                    {this.state.searchText ? <FontIcon style={styles.closeButton} className="material-icons" onClick={this.clear}>clear</FontIcon> : undefined}
+                    {this.state.searchText ? <FontIcon style={styles.closeButton} className="material-icons" onClick={this.onClear}>clear</FontIcon> : undefined}
                 </div>
             );
         }
