@@ -1,12 +1,12 @@
 import React from 'react';
 import TextField from 'material-ui/TextField/TextField';
+import camelCaseToUnderscores from 'd2-utilizr/lib/camelCaseToUnderscores';
+import RaisedButton from 'material-ui/RaisedButton/RaisedButton';
+import { Observable } from 'rxjs';
 import Translate from '../i18n/Translate.mixin';
 import LocaleSelector from '../i18n/LocaleSelector.component';
 import { getLocales, getTranslationsForModel, saveTranslations } from './translationForm.actions';
-import camelCaseToUnderscores from 'd2-utilizr/lib/camelCaseToUnderscores';
 import withStateFrom from '../component-helpers/withStateFrom';
-import RaisedButton from 'material-ui/RaisedButton/RaisedButton';
-import { Observable } from 'rxjs';
 import Store from '../store/Store';
 import CircularProgress from '../circular-progress/CircularProgress';
 

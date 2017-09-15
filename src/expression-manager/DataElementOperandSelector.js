@@ -1,12 +1,12 @@
 import React from 'react';
-import ListSelectAsync from '../list-select/ListSelectAsync.component';
+import { config } from 'd2/lib/d2';
 import TextField from 'material-ui/TextField/TextField';
 import LinearProgress from 'material-ui/LinearProgress/LinearProgress';
+import ListSelectAsync from '../list-select/ListSelectAsync.component';
 import Pagination from '../pagination/Pagination.component';
 import Translate from '../i18n/Translate.mixin';
 import Store from '../store/Store';
 import { createDataElementOperandActions, subscribeDataElementActionsToStore } from './dataElementOperandSelector.actions';
-import { config } from 'd2/lib/d2';
 
 config.i18n.strings.add('search_by_name');
 

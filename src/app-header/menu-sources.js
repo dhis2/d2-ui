@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 import { getInstance, config } from 'd2/lib/d2';
-import getBaseUrlFromD2ApiUrl from './getBaseUrlFromD2ApiUrl';
 import log from 'loglevel';
+import getBaseUrlFromD2ApiUrl from './getBaseUrlFromD2ApiUrl';
 
 // Profile menu
 config.i18n.strings.add('settings');

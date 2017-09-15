@@ -1,7 +1,7 @@
 import React from 'react';
 import log from 'loglevel';
-import styles, { whenWidthLargerThan1150 } from './header-bar-styles';
 import { Observable, Subject } from 'rxjs';
+import styles, { whenWidthLargerThan1150 } from './header-bar-styles';
 import getBaseUrlFromD2ApiUrl from './getBaseUrlFromD2ApiUrl';
 
 const defaultStyle = 'light_blue';

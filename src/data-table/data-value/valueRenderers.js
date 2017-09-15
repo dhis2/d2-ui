@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
+import { isNil } from 'lodash/fp';
 import Color from './Color.component';
 import Translate from '../../i18n/Translate.component';
-import { isNil } from 'lodash/fp';
 
 function TextValue({ value = '', columnName }) {
     const textWrapStyle = {

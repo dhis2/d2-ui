@@ -1,8 +1,8 @@
 import React from 'react';
 import { findDOMNode } from 'react';
-import GroupEditor from './GroupEditor.component';
 import IconButton from 'material-ui/IconButton/IconButton';
 import log from 'loglevel';
+import GroupEditor from './GroupEditor.component';
 
 function moveItemOneSpotDownIn(currentlySelected) {
     return (itemToFind) => {

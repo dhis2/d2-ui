@@ -1,21 +1,21 @@
 import PropTypes from 'prop-types';
+import { Observable } from 'rxjs';
 import React, { Component } from 'react';
-import ExpressionDescription from './ExpressionDescription';
-import ExpressionOperators from './ExpressionOperators';
-import ExpressionFormula from './ExpressionFormula';
-import DataElementOperandSelector from './DataElementOperandSelector';
 import Tabs from 'material-ui/Tabs/Tabs';
 import Tab from 'material-ui/Tabs/Tab';
 import Paper from 'material-ui/Paper/Paper';
 import log from 'loglevel';
 import { config } from 'd2/lib/d2';
+import ExpressionDescription from './ExpressionDescription';
+import ExpressionOperators from './ExpressionOperators';
+import ExpressionFormula from './ExpressionFormula';
+import DataElementOperandSelector from './DataElementOperandSelector';
 import ProgramOperandSelector from './ProgramOperandSelector';
 import Heading from '../headings/Heading.component';
 import OrganisationUnitGroupSelector from './OrganisationUnitGroupSelector';
 import ConstantSelector from './ConstantSelector';
 import addD2Context from '../component-helpers/addD2Context';
 import Action from '../action/Action';
-import { Observable } from 'rxjs';
 import { Row, Column } from '../layout';
 
 config.i18n.strings.add('data_elements');

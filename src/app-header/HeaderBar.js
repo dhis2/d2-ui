@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import LinearProgress from 'material-ui/LinearProgress';
 import ProfileMenu from './menus/ProfileMenu';
 import InnerHeader from './InnerHeader';
 import HeaderMenus from './menus/HeaderMenus';
 import SearchField from './search/SearchField';
 import styles, { applyUserStyle } from './header-bar-styles';
-import LinearProgress from 'material-ui/LinearProgress';
 
 export default function HeaderBar(props, { d2 }) {
     const { appItems, profileItems, currentUser, settings, noLoadingIndicator } = props;

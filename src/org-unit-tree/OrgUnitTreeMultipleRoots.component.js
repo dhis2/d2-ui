@@ -1,6 +1,6 @@
 import React from 'react';
-import OrgUnitTree from './OrgUnitTree.component';
 import Model from 'd2/lib/model/Model';
+import OrgUnitTree from './OrgUnitTree.component';
 
 export default function OrgUnitTreeMultipleRoots(props) {
     if (props.roots) {

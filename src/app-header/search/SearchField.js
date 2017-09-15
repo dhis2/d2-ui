@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import { findDOMNode } from 'react-dom';
-import styles, { MENU_ITEM_WIDTH } from '../header-bar-styles';
+import { Observable } from 'rxjs';
+import log from 'loglevel';
 import TextField from 'material-ui/TextField';
-import { search, handleKeyPress, setSearchFieldFocusTo, hideWhenNotHovering } from './search.stores';
 import IconButton from 'material-ui/IconButton';
 import AppsIcon from 'material-ui/svg-icons/navigation/apps';
 import ClearIcon from 'material-ui/svg-icons/content/clear';
 import { white } from 'material-ui/styles/colors';
 import { config } from 'd2/lib/d2';
+import styles, { MENU_ITEM_WIDTH } from '../header-bar-styles';
+import { search, handleKeyPress, setSearchFieldFocusTo, hideWhenNotHovering } from './search.stores';
 import addD2Context from '../../component-helpers/addD2Context';
 import SearchResults from './SearchResults';
-import { Observable } from 'rxjs';
-import log from 'loglevel';
 import withStateFrom from '../../component-helpers/withStateFrom';
 import { searchStore$ } from './search.stores';
 

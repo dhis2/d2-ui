@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from 'classnames';
-import Translate from '../i18n/Translate.mixin';
 import { config } from 'd2/lib/d2';
+import Translate from '../i18n/Translate.mixin';
 
 const noop = () => {};
 

@@ -1,8 +1,8 @@
+import { Observable } from 'rxjs';
+import { isFunction } from 'lodash';
 import ListSelectWithLocalSearch from '../list-select/ListSelectWithLocalSearch.component';
 import withPropsFromObservable from '../component-helpers/withPropsFromObservable';
 import { getAllObjectsWithFields } from '../data-helpers';
-import { Observable } from 'rxjs';
-import { isFunction } from 'lodash';
 
 const constantSelectorProps$ = Observable.fromPromise(getAllObjectsWithFields('constant'))
     .map(constants => ({

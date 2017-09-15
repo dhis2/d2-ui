@@ -2,10 +2,10 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Tabs from 'material-ui/Tabs/Tabs';
 import Tab from 'material-ui/Tabs/Tab';
-import ListSelect from '../list-select/ListSelect.component';
 import { config } from 'd2/lib/d2';
-import Translate from '../i18n/Translate.mixin';
 import log from 'loglevel';
+import ListSelect from '../list-select/ListSelect.component';
+import Translate from '../i18n/Translate.mixin';
 import CircularProgress from '../circular-progress/CircularProgress';
 import DropDown from '../form-fields/DropDown.component';
 
