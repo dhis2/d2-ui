@@ -25,11 +25,11 @@ class SearchField extends Component {
             searchValue: '',
         };
 
-        this.onSearchValueSet = this.onSearchValueSet.bind(this);
-        this.onSearchFieldFocused = this.onSearchFieldFocused.bind(this);
+        this.setSearchValue = this.setSearchValue.bind(this);
+        this.focusSearchField = this.focusSearchField.bind(this);
         this.onFocus = this.onFocus.bind(this);
         this.onBlur = this.onBlur.bind(this);
-        this.onSearchFieldCleared = this.onSearchFieldCleared.bind(this);
+        this.clearSearchField = this.clearSearchField.bind(this);
     }
 
     componentDidMount() {
@@ -46,7 +46,7 @@ class SearchField extends Component {
             .fromEvent(window, 'keyup') // TODO: Using the window global directly is bad for testability
             .filter(combineFilters(isCtrlPressed, isSpaceKey))
             .subscribe(
-                this.onSearchFieldFocused,
+                this.focusSearchField,
                 log.error,
             );
     }
@@ -64,7 +64,7 @@ class SearchField extends Component {
                     <TextField
                         fullWidth
                         value={this.props.searchValue || ''}
-                        onChange={this.onSearchValueSet}
+                        onChange={this.setSearchValue}
                         onFocus={this.onFocus}
                         onBlur={this.onBlur}
                         hintText={this.context.d2.i18n.getTranslation('app_search_placeholder')}
@@ -74,9 +74,9 @@ class SearchField extends Component {
                         ref="searchBox"
                         underlineFocusStyle={{ borderColor: white }}
                     />
-                    {this.props.searchValue ? <ClearIcon style={styles.clearIcon} color={white} onClick={this.onSearchFieldCleared} /> : ''}
+                    {this.props.searchValue ? <ClearIcon style={styles.clearIcon} color={white} onClick={this.clearSearchField} /> : ''}
                 </div>
-                <IconButton onClick={this.onSearchFieldFocused}>
+                <IconButton onClick={this.focusSearchField}>
                     <AppsIcon color={white} />
                 </IconButton>
                 <SearchResults />
@@ -84,7 +84,7 @@ class SearchField extends Component {
         );
     }
 
-    onSearchFieldFocused() {
+    focusSearchField() {
         const searchField = findDOMNode(this.refs.searchBox);
 
         if (searchField && searchField !== document.activeElement) {
@@ -92,14 +92,14 @@ class SearchField extends Component {
         }
     }
 
-    onSearchFieldCleared() {
+    clearSearchField() {
         if (this.state.hasFocus) {
-            this.onSearchFieldFocused();
+            this.focusSearchField();
         }
         search('');
     }
 
-    onSearchValueSet(event) {
+    setSearchValue(event) {
         this.setState({ hasValue: Boolean(event.target.value) });
         search(event.target.value);
     }
