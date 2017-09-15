@@ -48,7 +48,7 @@ const DataTable = React.createClass({
         return (
             <DataTableContextMenu
                 target={this.state.contextMenuTarget}
-                onRequestClose={this._hideContextMenu}
+                onRequestClose={this.hideContextMenu}
                 actions={actionsToShow}
                 activeItem={this.state.activeRow}
                 icons={this.props.contextMenuIcons}
@@ -99,7 +99,7 @@ const DataTable = React.createClass({
         });
     },
 
-    _hideContextMenu() {
+    hideContextMenu() {
         this.setState({
             activeRow: undefined,
             showContextMenu: false,

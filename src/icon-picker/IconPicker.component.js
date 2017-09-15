@@ -24,9 +24,9 @@ class IconPicker extends React.Component {
             showOptions: false,
         };
 
-        this._currentIconClicked = this._currentIconClicked.bind(this);
-        this._closeOptions = this._closeOptions.bind(this);
-        this._onIconSelected = this._onIconSelected.bind(this);
+        this.currentIconClicked = this.currentIconClicked.bind(this);
+        this.closeOptions = this.closeOptions.bind(this);
+        this.onIconSelected = this.onIconSelected.bind(this);
     }
 
     render() {
@@ -56,18 +56,18 @@ class IconPicker extends React.Component {
                 };
 
                 return (
-                    <IconOption key={index} {...optionProps} onIconClicked={this._onIconSelected} />
+                    <IconOption key={index} {...optionProps} onIconClicked={this.onIconSelected} />
                 );
             });
 
         return (
             <div>
                 <div className="icon-picker__label-text" style={styles.iconPickerLabel}>{this.props.labelText}</div>
-                <CurrentIcon imgSrc={getImgSrc(this.props.imgPath, this.props.value)} onIconClicked={this._currentIconClicked} />
+                <CurrentIcon imgSrc={getImgSrc(this.props.imgPath, this.props.value)} onIconClicked={this.currentIconClicked} />
                 <Popover
                     open={this.state.showOptions}
                     anchorEl={this.state.anchorEl}
-                    onRequestClose={this._closeOptions}
+                    onRequestClose={this.closeOptions}
                     style={Object.assign(styles.iconPopover, this.props.iconPopoverStyle)}
                 >
                     {optionElements}
@@ -76,20 +76,20 @@ class IconPicker extends React.Component {
         );
     }
 
-    _currentIconClicked(event) {
+    currentIconClicked(event) {
         this.setState({
             anchorEl: event.currentTarget,
             showOptions: !this.state.showOptions,
         });
     }
 
-    _closeOptions() {
+    closeOptions() {
         this.setState({
             showOptions: false,
         });
     }
 
-    _onIconSelected(event, value) {
+    onIconSelected(event, value) {
         this.setState({
             showOptions: false,
         }, () => {

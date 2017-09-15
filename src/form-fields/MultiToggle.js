@@ -33,7 +33,7 @@ export default React.createClass({
         };
     },
 
-    _handleToggle(value, event, checked) {
+    handleToggle(value, event, checked) {
         this.setState((oldState) => {
             if (checked) {
                 if (oldState.values.indexOf(value) === -1) {
@@ -54,7 +54,7 @@ export default React.createClass({
             <div>
                 <div style={{ marginTop: 16, marginBottom: 8 }}>{this.props.label}</div>
                 {this.props.items.map((item) => {
-                    const togglor = this._handleToggle.bind(null, item.name);
+                    const togglor = this.handleToggle.bind(null, item.name);
                     return (
                         <Checkbox
                             key={item.name}

@@ -75,10 +75,10 @@ const FormField = React.createClass({  // eslint-disable-line react/no-multi-com
         const classList = classes('form-field');
 
         let onChangeFn = this.props.updateFn;
-        let onBlurFn = this._blur;
+        let onBlurFn = this.onBlur;
         if (this.props.updateEvent === 'onBlur') {
             onBlurFn = (e) => {
-                this._blur(e);
+                this.onBlur(e);
                 if (e.target.value !== (this.props.value ? this.props.value : '')) {
                     this.props.updateFn(e);
                 }
@@ -93,7 +93,7 @@ const FormField = React.createClass({  // eslint-disable-line react/no-multi-com
                     defaultValue={this.props.value}
                     onChange={onChangeFn}
                     onBlur={onBlurFn}
-                    onFocus={this._focus}
+                    onFocus={this.onFocus}
                     isRequired={this.props.isRequired}
                     {...this.props.fieldOptions}
                 />
@@ -103,11 +103,11 @@ const FormField = React.createClass({  // eslint-disable-line react/no-multi-com
         );
     },
 
-    _focus() {
+    onFocus() {
         this.setState({ isFocused: true });
     },
 
-    _blur() {
+    onBlur() {
         this.setState({ isFocused: false });
     },
 });

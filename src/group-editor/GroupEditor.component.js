@@ -279,7 +279,7 @@ export default React.createClass({
                                 <option
                                     key={item.value}
                                     value={item.value}
-                                    onDoubleClick={this._assignItems}
+                                    onDoubleClick={this.onAssignItems}
                                     style={styles.options}
                                 >{item.text}</option>
                             ))}
@@ -288,7 +288,7 @@ export default React.createClass({
                     <RaisedButton
                         label={`${this.getTranslation('assign_all')} ${this.getAvailableItemsUnfilteredCount() === 0 ? '' : this.getAvailableItemsUnfilteredCount()} \u2192`}
                         disabled={this.state.loading || this.getAvailableItemsUnfilteredCount() === 0}
-                        onClick={this._assignAll}
+                        onClick={this.onAssignAll}
                         style={{ marginTop: '1rem' }}
                         secondary
                     />
@@ -298,14 +298,14 @@ export default React.createClass({
                     <RaisedButton
                         label="&rarr;"
                         secondary
-                        onClick={this._assignItems}
+                        onClick={this.onAssignItems}
                         style={styles.buttons}
                         disabled={this.state.loading || this.state.selectedLeft === 0}
                     />
                     <RaisedButton
                         label="&larr;"
                         secondary
-                        onClick={this._removeItems}
+                        onClick={this.onRemoveItems}
                         style={styles.buttons}
                         disabled={this.state.loading || this.state.selectedRight === 0}
                     />
@@ -330,7 +330,7 @@ export default React.createClass({
                                 .map(item => (<option
                                     key={item.value}
                                     value={item.value}
-                                    onDoubleClick={this._removeItems}
+                                    onDoubleClick={this.onRemoveItems}
                                     style={styles.options}
                                 >{item.text}</option>))
                             }
@@ -340,7 +340,7 @@ export default React.createClass({
                         label={`\u2190 ${this.getTranslation('remove_all')} ${this.getAssignedItemsUnfilteredCount() > 0 ? this.getAssignedItemsUnfilteredCount() : ''}`}
                         style={{ float: 'right', marginTop: '1rem' }}
                         disabled={this.state.loading || this.getAssignedItemsUnfilteredCount() === 0}
-                        onClick={this._removeAll}
+                        onClick={this.onRemoveAll}
                         secondary
                     />
                 </div>
@@ -374,7 +374,7 @@ export default React.createClass({
     //
     // Event handlers
     //
-    _assignItems() {
+    onAssignItems() {
         this.setState({ loading: true });
         this.props.onAssignItems([].map.call(this.leftSelect.selectedOptions, item => item.value))
             .then(() => {
@@ -386,7 +386,7 @@ export default React.createClass({
             });
     },
 
-    _removeItems() {
+    onRemoveItems() {
         this.setState({ loading: true });
         this.props.onRemoveItems([].map.call(this.rightSelect.selectedOptions, item => item.value))
             .then(() => {
@@ -398,7 +398,7 @@ export default React.createClass({
             });
     },
 
-    _assignAll() {
+    onAssignAll() {
         this.setState({ loading: true });
         this.props.onAssignItems([].map.call(this.leftSelect.options, item => item.value))
             .then(() => {
@@ -409,7 +409,7 @@ export default React.createClass({
             });
     },
 
-    _removeAll() {
+    onRemoveAll() {
         this.setState({ loading: true });
         this.props.onRemoveItems([].map.call(this.rightSelect.options, item => item.value))
             .then(() => {

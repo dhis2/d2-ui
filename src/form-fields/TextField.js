@@ -20,7 +20,7 @@ export default React.createClass({
         this.setState({ value: props.value });
     },
 
-    _change(e) {
+    change(e) {
         this.setState({ value: e.target.value });
     },
 
@@ -31,7 +31,7 @@ export default React.createClass({
         };
 
         return (
-            <TextField errorStyle={errorStyle} {...this.props} value={this.state.value} onChange={this._change} />
+            <TextField errorStyle={errorStyle} {...this.props} value={this.state.value} onChange={this.change} />
         );
     },
 });
