@@ -21,7 +21,7 @@ describe('Sharing: ExternalAccess component', () => {
 
     it('should render a Rule component', () => {
         renderComponent({ canView: true, disabled: false, onChange: () => {} });
-        expect(externalAccessComponent.find(Rule)).to.have.length(1);
+        expect(externalAccessComponent.find(Rule)).toHaveLength(1);
     });
 
     describe('Rule', () => {
@@ -29,24 +29,24 @@ describe('Sharing: ExternalAccess component', () => {
         let onChange;
 
         beforeEach(() => {
-            onChange = sinon.spy();
+            onChange = jest.fn();
             ruleComponent = externalAccessComponent.find(Rule);
             renderComponent({ canView: true, disabled: false, onChange });
         });
 
         it('should have a suitable title', () => {
-            expect(ruleComponent.props().primaryText).to.equal('external_access_translated');
+            expect(ruleComponent.props().primaryText).toBe('external_access_translated');
         });
 
         it('should describe the access as viewable if external access is enabled', () => {
             expect(ruleComponent.props().secondaryText.toLowerCase())
-              .to.equal('anyone_can_view_without_a_login_translated');
+              .toBe('anyone_can_view_without_a_login_translated');
         });
 
         it('should have no access if external access is disabled', () => {
             renderComponent({ canView: false, disabled: false, onChange });
             ruleComponent = externalAccessComponent.find(Rule);
-            expect(ruleComponent.props().secondaryText.toLowerCase()).to.equal('no_access_translated');
+            expect(ruleComponent.props().secondaryText.toLowerCase()).toBe('no_access_translated');
         });
     });
 });

@@ -9,7 +9,7 @@ describe('ListSelect component', () => {
     let onItemDoubleClickSpy;
 
     beforeEach(() => {
-        onItemDoubleClickSpy = spy();
+        onItemDoubleClickSpy = jest.fn();
 
         listSource = [
             {value: 'PvuaP6YALSA', label: 'Community'},
@@ -22,13 +22,13 @@ describe('ListSelect component', () => {
     });
 
     it('should have the component name as a class', () => {
-        expect(listSelectComponent.hasClass('list-select')).to.be.true;
+        expect(listSelectComponent.hasClass('list-select')).toBe(true);
     });
 
     it('should a <select /> tag to contain the options', () => {
         const selectElement = listSelectComponent.find('select');
 
-        expect(selectElement).not.to.equal(null);
+        expect(selectElement).not.toBe(null);
     });
 
     it('should set the size of the select box to the passed size', () => {
@@ -36,13 +36,13 @@ describe('ListSelect component', () => {
 
         const selectElement = listSelectComponent.find('select');
 
-        expect(selectElement.props().size).to.equal(10);
+        expect(selectElement.props().size).toBe(10);
     });
 
     it('should use the default value for the size if no value has been provided', () => {
         const selectElement = listSelectComponent.find('select');
 
-        expect(selectElement.props().size).to.equal(15);
+        expect(selectElement.props().size).toBe(15);
     });
 
     it('should render an <option /> tag for each of the items', () => {
@@ -50,7 +50,7 @@ describe('ListSelect component', () => {
             .find('select')
             .find('option');
 
-        expect(optionElements).to.have.length(4);
+        expect(optionElements).toHaveLength(4);
     });
 
     it('should render the name for the options', () => {
@@ -58,10 +58,10 @@ describe('ListSelect component', () => {
             .find('select')
             .find('option');
 
-        expect(optionElements.at(0).text()).to.equal('Community');
-        expect(optionElements.at(1).text()).to.equal('Country');
-        expect(optionElements.at(2).text()).to.equal('Facility');
-        expect(optionElements.at(3).text()).to.equal('OUs and Countries');
+        expect(optionElements.at(0).text()).toBe('Community');
+        expect(optionElements.at(1).text()).toBe('Country');
+        expect(optionElements.at(2).text()).toBe('Facility');
+        expect(optionElements.at(3).text()).toBe('OUs and Countries');
     });
 
     it('should render the values for the options', () => {
@@ -69,10 +69,10 @@ describe('ListSelect component', () => {
             .find('select')
             .find('option');
 
-        expect(optionElements.at(0).props().value).to.equal('PvuaP6YALSA');
-        expect(optionElements.at(1).props().value).to.equal('cNzfcPWEGSH');
-        expect(optionElements.at(2).props().value).to.equal('POHZmzofoVx');
-        expect(optionElements.at(3).props().value).to.equal('NUPoPEBGCq9');
+        expect(optionElements.at(0).props().value).toBe('PvuaP6YALSA');
+        expect(optionElements.at(1).props().value).toBe('cNzfcPWEGSH');
+        expect(optionElements.at(2).props().value).toBe('POHZmzofoVx');
+        expect(optionElements.at(3).props().value).toBe('NUPoPEBGCq9');
     });
 
     it('should call the onItemDoubleClick callback when item is double clicked', () => {
@@ -82,7 +82,7 @@ describe('ListSelect component', () => {
 
         optionElements.first().simulate('doubleClick', {target: {value: 'PvuaP6YALSA'}});
 
-        expect(onItemDoubleClickSpy).to.be.calledWith('PvuaP6YALSA');
+        expect(onItemDoubleClickSpy).toHaveBeenCalledWith('PvuaP6YALSA');
     });
 
     it('should not call attempt to call the callback when none has been given', () => {
@@ -94,7 +94,7 @@ describe('ListSelect component', () => {
 
         expect(
             () => optionElements.first().simulate('doubleClick', {target: {value: 'PvuaP6YALSA'}})
-        ).not.to.throw();
+        ).not.toThrow();
 
     });
 });

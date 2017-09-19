@@ -13,7 +13,7 @@ describe('ExpressionDescription component', () => {
     }
 
     beforeEach(() => {
-        onDescriptionChangeSpy = spy();
+        onDescriptionChangeSpy = jest.fn();
         expressionDescriptionComponent = renderComponent({
             onDescriptionChange: onDescriptionChangeSpy,
             descriptionLabel: "Numerator description",
@@ -22,11 +22,11 @@ describe('ExpressionDescription component', () => {
     });
 
     it('should have the component name as a class', () => {
-        expect(expressionDescriptionComponent.hasClass('expression-description')).to.be.true;
+        expect(expressionDescriptionComponent.hasClass('expression-description')).toBe(true);
     });
 
     it('should render a textfield for description', () => {
-        expect(expressionDescriptionComponent.find(TextField)).to.have.length(1);
+        expect(expressionDescriptionComponent.find(TextField)).toHaveLength(1);
     });
 
     describe('description field', () => {
@@ -37,11 +37,11 @@ describe('ExpressionDescription component', () => {
         });
 
         it('should render the passed descriptionValue as the value of the TextField', () => {
-            expect(descriptionComponent.props().value).to.equal('My indicator numerator description');
+            expect(descriptionComponent.props().value).toBe('My indicator numerator description');
         });
 
         it('should have the a floatingLabelText that equals the descriptionLabel property', () => {
-            expect(descriptionComponent.props().floatingLabelText).to.equal('Numerator description');
+            expect(descriptionComponent.props().floatingLabelText).toBe('Numerator description');
         });
 
         it('should set the value of the description onto the state after change', () => {
@@ -51,7 +51,7 @@ describe('ExpressionDescription component', () => {
                 },
             });
 
-            expect(onDescriptionChangeSpy).to.be.calledWith('My indicator expression description');
+            expect(onDescriptionChangeSpy).toHaveBeenCalledWith('My indicator expression description');
         });
     });
 });

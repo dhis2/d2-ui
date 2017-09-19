@@ -32,7 +32,7 @@ describe('Integration ActionStore', () => {
             });
 
         store.subscribe(storeState => {
-        //    expect(storeState).to.equal('newState');
+        //    expect(storeState).toBe('newState');
             done();
         });
 
@@ -47,15 +47,15 @@ describe('Integration ActionStore', () => {
 
         crudActions.create('newState')
             .subscribe((createResult) => {
-                expect(createResult).to.equal('created');
+                expect(createResult).toBe('created');
                 done();
             });
     });
 
     it('should only notify the subscriber that triggered the action', (done) => {
-        const createStub = spy(store, 'create');
-        const callbackOld = spy();
-        const callbackNew = spy();
+        const createStub = jest.spyOn(store, 'create');
+        const callbackOld = jest.fn();
+        const callbackNew = jest.fn();
 
         crudActions.create.subscribe(createStub);
 
@@ -63,9 +63,9 @@ describe('Integration ActionStore', () => {
         crudActions.create('newState').subscribe(callbackNew);
 
         setTimeout(() => {
-            expect(createStub.callCount).to.equal(2);
-            expect(callbackOld.callCount).to.equal(1);
-            expect(callbackNew.callCount).to.equal(1);
+            expect(createStub).toHaveBeenCalledTimes(2);
+            expect(callbackOld).toHaveBeenCalledTimes(1);
+            expect(callbackNew).toHaveBeenCalledTimes(1);
             done();
         }, 50);
     });

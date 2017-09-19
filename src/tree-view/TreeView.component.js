@@ -18,7 +18,7 @@ class TreeView extends React.Component {
             collapsed: !state.collapsed,
             hasBeenExpanded: true,
         }), () => {
-            if (!this.state.collapsed && this.props.onExpand instanceof Function) {
+            if (!this.state.collapsed && typeof this.props.onExpand === 'function') {
                 this.props.onExpand();
             }
         });

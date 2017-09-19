@@ -16,13 +16,13 @@ describe('HeaderBar', () => {
     it('should render a ProgressIndicator when no state is passed', () => {
         const component = renderWithProps({});
 
-        expect(component.find(LinearProgress)).to.have.length(1);
+        expect(component.find(LinearProgress)).toHaveLength(1);
     });
 
     it('should render the correct style for the headerbar', () => {
         const component = renderWithProps({});
 
-        expect(component.props().style).to.deep.equal(styles.headerBar);
+        expect(component.props().style).toEqual(styles.headerBar);
     });
 
     describe('when data has loaded', () => {
@@ -37,23 +37,23 @@ describe('HeaderBar', () => {
         });
 
         it('should render the inner header', () => {
-            expect(component.find(InnerHeader)).to.have.length(1);
+            expect(component.find(InnerHeader)).toHaveLength(1);
         });
 
         it('should render the search field', () => {
-            expect(component.find(SearchField)).to.have.length(1);
+            expect(component.find(SearchField)).toHaveLength(1);
         });
 
         it('should add the users color for the headerbar background', () => {
-            expect(component.props().style.background).to.equal('#B40303');
+            expect(component.props().style.background).toBe('#B40303');
         });
 
         it('should render the ProfileMenu', () => {
-            expect(component.find(ProfileMenu)).to.have.length(1);
+            expect(component.find(ProfileMenu)).toHaveLength(1);
         });
 
         it('should pass the profileItems to the ProfileMenu', () => {
-            expect(component.find(ProfileMenu).props().items).to.deep.equal([{ label: 'My Account', action: 'myaccount.html', icon: 'account.png' }])
+            expect(component.find(ProfileMenu).props().items).toEqual([{ label: 'My Account', action: 'myaccount.html', icon: 'account.png' }])
         });
     });
 });

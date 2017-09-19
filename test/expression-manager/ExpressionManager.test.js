@@ -21,13 +21,13 @@ describe('ExpressionManager component', () => {
 
     describe('DataElementOperandSelector', () => {
         it('should have rendered', () => {
-            expect(expressionManagerComponent.find(DataElementOperandSelector)).to.have.length(1);
+            expect(expressionManagerComponent.find(DataElementOperandSelector)).toHaveLength(1);
         });
     });
 
     describe('ProgramOperandSelector', () => {
         it('should have rendered', () => {
-            expect(expressionManagerComponent.find(ProgramOperandSelector)).to.have.length(1);
+            expect(expressionManagerComponent.find(ProgramOperandSelector)).toHaveLength(1);
         });
     });
 });

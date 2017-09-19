@@ -12,7 +12,7 @@ describe('LoadingMask', () => {
     });
 
     it('should render a CircularProgress component', () => {
-        expect(loadingMask.find(CircularProgress)).to.have.length(1);
+        expect(loadingMask.find(CircularProgress)).toHaveLength(1);
     });
 
     it('should pass the default style options if no style was provided', () => {
@@ -22,7 +22,7 @@ describe('LoadingMask', () => {
             top: '45%',
         };
 
-        expect(loadingMask).to.have.prop('style').deep.equal(expectedStyle);
+        expect(loadingMask).toHaveProp('style', expectedStyle);
     });
 
     it('should combine passed style prop with the predefined style', () => {
@@ -34,18 +34,18 @@ describe('LoadingMask', () => {
 
         loadingMask.setProps({style: {left: '55%', position: 'relative'}});
 
-        expect(loadingMask.props().style).to.deep.equal(expectedStyle);
+        expect(loadingMask.props().style).toEqual(expectedStyle);
     });
 
     it('should render the CircularProgress as large when large is passed as prop', () => {
         const loadingMask = renderLoadingMask({ large: true });
 
-        expect(loadingMask.find(CircularProgress)).to.have.prop('large', true);
+        expect(loadingMask.find(CircularProgress)).toHaveProp('large', true);
     });
 
     it('should render the CircularProgress as small when small is passed as prop', () => {
         const loadingMask = renderLoadingMask({ small: true });
 
-        expect(loadingMask.find(CircularProgress)).to.have.prop('small', true);
+        expect(loadingMask.find(CircularProgress)).toHaveProp('small', true);
     });
 });

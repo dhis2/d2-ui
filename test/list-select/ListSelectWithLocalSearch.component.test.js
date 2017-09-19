@@ -26,23 +26,23 @@ describe('ListComponentWithLocalSearch', () => {
     });
 
     it('should render a TextField', () => {
-        expect(listComponentWithLocalSearch.find(TextField)).to.have.length(1);
+        expect(listComponentWithLocalSearch.find(TextField)).toHaveLength(1);
     });
 
     it('should render a ListSelect', () => {
-        expect(listComponentWithLocalSearch.find(ListSelect)).to.have.length(1);
+        expect(listComponentWithLocalSearch.find(ListSelect)).toHaveLength(1);
     });
 
     it('should render the TextField and ListSelect as children of the component', () => {
         const textField = listComponentWithLocalSearch.find(TextField);
         const listSelect = listComponentWithLocalSearch.find(ListSelect);
 
-        expect(listComponentWithLocalSearch.find('div').children().at(0)).to.deep.equal(textField);
-        expect(listComponentWithLocalSearch.find('div').children().at(1)).to.deep.equal(listSelect);
+        expect(listComponentWithLocalSearch.find('div').children().at(0)).toEqual(textField);
+        expect(listComponentWithLocalSearch.find('div').children().at(1)).toEqual(listSelect);
     });
 
     it('should set the source to an empty array', () => {
-        expect(listComponentWithLocalSearch.find(ListSelect).props().source).to.deep.equal([]);
+        expect(listComponentWithLocalSearch.find(ListSelect).props().source).toEqual([]);
     });
 
     it('should pass the source items to the ListSelect', () => {
@@ -57,7 +57,7 @@ describe('ListComponentWithLocalSearch', () => {
             source: sourceList,
         });
 
-        expect(listComponentWithLocalSearch.find(ListSelect).props().source).to.deep.equal(sourceList);
+        expect(listComponentWithLocalSearch.find(ListSelect).props().source).toEqual(sourceList);
     });
 
     it('should pass only the items that are being filtered on', () => {
@@ -75,7 +75,7 @@ describe('ListComponentWithLocalSearch', () => {
             source: sourceList,
         });
 
-        expect(listComponentWithLocalSearch.find(ListSelect).props().source).to.deep.equal(sourceList);
+        expect(listComponentWithLocalSearch.find(ListSelect).props().source).toEqual(sourceList);
     });
 
     it('should do the searching case insensitively', () => {
@@ -94,6 +94,6 @@ describe('ListComponentWithLocalSearch', () => {
             source: sourceList,
         });
 
-        expect(listComponentWithLocalSearch.find(ListSelect).props().source).to.deep.equal(sourceList);
+        expect(listComponentWithLocalSearch.find(ListSelect).props().source).toEqual(sourceList);
     });
 });

@@ -27,20 +27,20 @@ describe('Sharing: UserGroupAccess component', () => {
         return userGroupAccessComponent;
     };
 
-    before(() => {
+    beforeEach(() => {
         renderComponent(userGroupAccessProps);
     });
 
     it('should render a Rule component', () => {
-        expect(userGroupAccessComponent.find(Rule)).to.have.length(1);
+        expect(userGroupAccessComponent.find(Rule)).toHaveLength(1);
     });
 
     it('should render the primaryText as nameOfGroup', () => {
-        expect(userGroupAccessComponent.find(Rule).props().primaryText).to.equal(userGroupAccessProps.nameOfGroup);
+        expect(userGroupAccessComponent.find(Rule).props().primaryText).toBe(userGroupAccessProps.nameOfGroup);
     });
 
     it('should render the accessOptions according to canView and canEdit', () => {
-        expect(userGroupAccessComponent.find(Rule).props().accessOptions).to.deep.equal({
+        expect(userGroupAccessComponent.find(Rule).props().accessOptions).toEqual({
             canView: userGroupAccessProps.canView,
             canEdit: userGroupAccessProps.canEdit,
         });

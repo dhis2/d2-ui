@@ -13,40 +13,40 @@ describe('Action', () => {
             it('should return an object with Actions', () => {
                 const createdActions = Action.createActionsFromNames(['add', 'edit', 'delete', 'clone']);
 
-                expect(createdActions.add).to.be.instanceof(Function);
-                expect(createdActions.edit).to.be.instanceof(Function);
-                expect(createdActions.delete).to.be.instanceof(Function);
-                expect(createdActions.clone).to.be.instanceof(Function);
+                expect(createdActions.add).toBeInstanceOf(Function);
+                expect(createdActions.edit).toBeInstanceOf(Function);
+                expect(createdActions.delete).toBeInstanceOf(Function);
+                expect(createdActions.clone).toBeInstanceOf(Function);
             });
 
             it('should have set the names on the actions', () => {
                 const createdActions = Action.createActionsFromNames(['add', 'edit', 'delete', 'clone']);
 
-                expect(createdActions.add.id.toString()).to.equal('Symbol(add)');
-                expect(createdActions.edit.id.toString()).to.equal('Symbol(edit)');
-                expect(createdActions.delete.id.toString()).to.equal('Symbol(delete)');
-                expect(createdActions.clone.id.toString()).to.equal('Symbol(clone)');
+                expect(createdActions.add.id.toString()).toBe('Symbol(add)');
+                expect(createdActions.edit.id.toString()).toBe('Symbol(edit)');
+                expect(createdActions.delete.id.toString()).toBe('Symbol(delete)');
+                expect(createdActions.clone.id.toString()).toBe('Symbol(clone)');
             });
 
             it('should return an empty object if there are no actions given', () => {
                 const createdActions = Action.createActionsFromNames([]);
 
-                expect(createdActions).to.deep.equal({});
+                expect(createdActions).toEqual({});
             });
 
             it('should return an empty object if the parameter is undefined', () => {
                 const createdActions = Action.createActionsFromNames();
 
-                expect(createdActions).to.deep.equal({});
+                expect(createdActions).toEqual({});
             });
 
             it('should add a prefix to the action names if it was provided', () => {
                 const createdActions = Action.createActionsFromNames(['add', 'edit', 'delete', 'clone'], 'user');
 
-                expect(createdActions.add.id.toString()).to.equal('Symbol(user.add)');
-                expect(createdActions.edit.id.toString()).to.equal('Symbol(user.edit)');
-                expect(createdActions.delete.id.toString()).to.equal('Symbol(user.delete)');
-                expect(createdActions.clone.id.toString()).to.equal('Symbol(user.clone)');
+                expect(createdActions.add.id.toString()).toBe('Symbol(user.add)');
+                expect(createdActions.edit.id.toString()).toBe('Symbol(user.edit)');
+                expect(createdActions.delete.id.toString()).toBe('Symbol(user.delete)');
+                expect(createdActions.clone.id.toString()).toBe('Symbol(user.clone)');
             });
         });
     });
@@ -64,21 +64,21 @@ describe('Action', () => {
             it('should create a symbol based on the given name', () => {
                 action = Action.create('add');
 
-                expect(action.id.toString()).to.equal('Symbol(add)');
+                expect(action.id.toString()).toBe('Symbol(add)');
             });
 
             it('should create a symbol with Anonymous name when no name is specified', () => {
                 action = Action.create();
 
-                expect(action.id.toString()).to.equal('Symbol(AnonymousAction)');
+                expect(action.id.toString()).toBe('Symbol(AnonymousAction)');
             });
 
             it('should not be able to override the id', () => {
                 action = Action.create('add');
 
-                expect(() => action.id = 'overridden id').to.throw();
+                expect(() => action.id = 'overridden id').toThrow();
 
-                expect(action.id.toString()).to.equal('Symbol(add)');
+                expect(action.id.toString()).toBe('Symbol(add)');
             });
         });
 
@@ -93,7 +93,7 @@ describe('Action', () => {
 
             it('should pass the value to the subscriber', (done) => {
                 actionInstance.subscribe((action) => {
-                    expect(action.data).to.deep.equal({name: 'Mark'});
+                    expect(action.data).toEqual({name: 'Mark'});
                     done();
                 });
 
@@ -101,17 +101,17 @@ describe('Action', () => {
             });
 
             it('should call logLevel.trace', () => {
-                spy(logLevel, 'trace');
+                jest.spyOn(logLevel, 'trace');
 
                 Action.create('add')('Mark');
 
-                expect(logLevel.trace).to.be.calledWith('Firing action: Symbol(add)');
+                expect(logLevel.trace).toHaveBeenCalledWith('Firing action: Symbol(add)');
             });
 
             it('should return an Observable', () => {
                 const actionResultObservable = Action.create('add')('Mark');
 
-                expect(actionResultObservable).to.be.instanceof(Observable);
+                expect(actionResultObservable).toBeInstanceOf(Observable);
             });
 
             it('should notify the execute subscriber of success', (done) => {
@@ -123,13 +123,13 @@ describe('Action', () => {
 
                 actionInstance('Mark')
                     .subscribe((value) => {
-                        expect(value).to.equal('Added!');
+                        expect(value).toBe('Added!');
                         done();
                     });
             });
 
             it('should call logLevel.trace when action completed', (done) => {
-                spy(logLevel, 'trace');
+                jest.spyOn(logLevel, 'trace');
 
                 actionInstance = Action.create('add');
 
@@ -139,7 +139,7 @@ describe('Action', () => {
 
                 actionInstance('Mark')
                     .subscribe(() => {
-                        expect(logLevel.trace).to.be.calledWith('Completed action: Symbol(add)');
+                        expect(logLevel.trace).toHaveBeenCalledWith('Completed action: Symbol(add)');
                         done();
                     });
             });
@@ -155,13 +155,13 @@ describe('Action', () => {
                     .subscribe(
                         () => {},
                         (value) => {
-                            expect(value).to.equal('Failed to add!');
+                            expect(value).toBe('Failed to add!');
                             done();
                         });
             });
 
             it('should notify the execute subscriber of error', (done) => {
-                spy(logLevel, 'debug');
+                jest.spyOn(logLevel, 'debug');
 
                 actionInstance = Action.create('add');
 
@@ -173,7 +173,7 @@ describe('Action', () => {
                     .subscribe(
                     () => {},
                     () => {
-                        expect(logLevel.debug).to.be.calledWith('Errored action: Symbol(add)');
+                        expect(logLevel.debug).toHaveBeenCalledWith('Errored action: Symbol(add)');
                         done();
                     });
             });
@@ -193,7 +193,7 @@ describe('Action', () => {
             });
 
             it('should not execute the success handler twice', (done) => {
-                const successHandlerSpy = spy();
+                const successHandlerSpy = jest.fn();
                 actionInstance = Action.create('add');
 
                 actionInstance.subscribe((action) => {
@@ -209,8 +209,7 @@ describe('Action', () => {
                     successHandlerSpy,
                     () => {},
                     () => {
-                        expect(successHandlerSpy).to.be.called;
-                        expect(successHandlerSpy.callCount).to.equal(1);
+                        expect(successHandlerSpy).toHaveBeenCalledTimes(1);
                         done();
                     });
             });

@@ -11,13 +11,13 @@ describe('<TwoPanel />', () => {
     });
 
     it('should render a <main /> component', () => {
-        expect(component.type()).to.equal('main');
+        expect(component.type()).toBe('main');
     });
 
     it('should pass the passed props to the <main /> component', () => {
         component = shallow(<TwoPanel name="John" />);
 
-        expect(component.props().name).to.equal('John');
+        expect(component.props().name).toBe('John');
     });
 
     it('should pass a style prop to the <main /> component', () => {
@@ -28,7 +28,7 @@ describe('<TwoPanel />', () => {
             marginTop: '8rem',
         };
 
-        expect(component.props().style).to.deep.equal(expectedStyle);
+        expect(component.props().style).toEqual(expectedStyle);
     });
 
     describe('children rendering', () => {
@@ -44,21 +44,21 @@ describe('<TwoPanel />', () => {
         });
 
         it('should render the correct number of children', () => {
-            expect(component.props().children).to.have.length(2);
+            expect(component.props().children).toHaveLength(2);
         });
 
         it('should wrap the children components in a <div />', () => {
-            expect(component.props().children[0].props.children).to.equal(childComponents[0]);
-            expect(component.props().children[1].props.children).to.equal(childComponents[1]);
+            expect(component.props().children[0].props.children).toBe(childComponents[0]);
+            expect(component.props().children[1].props.children).toBe(childComponents[1]);
         });
 
         it('should pass additional style to the wrapped children', () => {
-            expect(component.props().children[0].props.style).to.deep.equal({
+            expect(component.props().children[0].props.style).toEqual({
                 flex: '0 0 320px',
                 paddingRight: undefined,
             });
 
-            expect(component.props().children[1].props.style).to.deep.equal({
+            expect(component.props().children[1].props.style).toEqual({
                 flex: 1,
                 paddingRight: '2rem',
             });
@@ -70,13 +70,13 @@ describe('<TwoPanel />', () => {
             };
             component = shallow(<TwoPanel childWrapStyle={childWrapStyle}>{childComponents}</TwoPanel>);
 
-            expect(component.props().children[0].props.style).to.deep.equal({
+            expect(component.props().children[0].props.style).toEqual({
                 color: 'red',
                 flex: '0 0 320px',
                 paddingRight: undefined,
             });
 
-            expect(component.props().children[1].props.style).to.deep.equal({
+            expect(component.props().children[1].props.style).toEqual({
                 color: 'red',
                 flex: 1,
                 paddingRight: '2rem',
@@ -92,17 +92,17 @@ describe('<TwoPanel />', () => {
                 </TwoPanel>
             );
 
-            expect(component.props().children).to.have.length(2);
+            expect(component.props().children).toHaveLength(2);
         });
     });
 
     describe('a warning', () => {
         beforeEach(() => {
-            sinon.spy(log, 'warn');
+            jest.spyOn(log, 'warn');
         });
 
         afterEach(() => {
-            log.warn.restore();
+            log.warn.mockRestore();
         });
 
         it('should be logged when less than two children have been passed', () => {
@@ -112,7 +112,7 @@ describe('<TwoPanel />', () => {
                 </TwoPanel>
             );
 
-            expect(log.warn).to.be.calledWith('You passed just one child to the <TwoPanel /> component, it requires exactly two');
+            expect(log.warn).toHaveBeenCalledWith('You passed just one child to the <TwoPanel /> component, it requires exactly two');
         });
 
         it('should be logged when more than two children have been passed', () => {
@@ -124,7 +124,7 @@ describe('<TwoPanel />', () => {
                 </TwoPanel>
             );
 
-            expect(log.warn).to.be.calledWith('You passed more than two children to the <TwoPanel /> component, it requires exactly two');
+            expect(log.warn).toHaveBeenCalledWith('You passed more than two children to the <TwoPanel /> component, it requires exactly two');
         });
 
         it('should not be logged when exactly two children are passed', () => {
@@ -135,7 +135,7 @@ describe('<TwoPanel />', () => {
                 </TwoPanel>
             );
 
-            expect(log.warn).not.to.be.called;
+            expect(log.warn).not.toHaveBeenCalled();
         });
     });
 });

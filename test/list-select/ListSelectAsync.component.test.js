@@ -11,24 +11,24 @@ describe('ListSelectAsync component', () => {
     let onItemDoubleClickSpy;
 
     beforeEach(() => {
-        onItemDoubleClickSpy = spy();
-        stub(log, 'error');
+        onItemDoubleClickSpy = jest.fn();
+        jest.spyOn(log, 'error');
 
         listSelectAsyncComponent = shallow(<ListSelectAsync onItemDoubleClick={onItemDoubleClickSpy} />);
     });
 
     afterEach(() => {
-        log.error.restore();
+        log.error.mockRestore();
     });
 
     it('should render a ListSelect', () => {
-        expect(listSelectAsyncComponent.find(ListSelect)).to.have.length(1);
+        expect(listSelectAsyncComponent.find(ListSelect)).toHaveLength(1);
     });
 
     it('should pass through the onItemDoubleClick handler to the ListSelect', () => {
         const listSelectComponent = listSelectAsyncComponent.find(ListSelect);
 
-        expect(listSelectComponent.props().onItemDoubleClick).to.equal(onItemDoubleClickSpy);
+        expect(listSelectComponent.props().onItemDoubleClick).toBe(onItemDoubleClickSpy);
     });
 
     describe('async source', () => {
@@ -53,13 +53,13 @@ describe('ListSelectAsync component', () => {
         it('should render an option for each of the items', () => {
             const listSelect = listSelectAsyncComponent.find(ListSelect);
 
-            expect(listSelect.props().source.length).to.equal(4);
+            expect(listSelect.props().source.length).toBe(4);
         });
 
         it('should pass the received data to the ListSelect component', () => {
             const listSelect = listSelectAsyncComponent.find(ListSelect);
 
-            expect(listSelect.props().source).to.deep.equal([
+            expect(listSelect.props().source).toEqual([
                 {value: 'PvuaP6YALSA', label: 'Community'},
                 {value: 'cNzfcPWEGSH', label: 'Country'},
                 {value: 'POHZmzofoVx', label: 'Facility'},
@@ -76,7 +76,7 @@ describe('ListSelectAsync component', () => {
 
             const listSelect = listSelectAsyncComponent.find(ListSelect);
 
-            expect(listSelect.props().source).to.deep.equal([
+            expect(listSelect.props().source).toEqual([
                 {value: 'dNzfcPWEGSH', label: 'Universe'},
                 {value: 'MUPoPEBGCq9', label: 'Planet'},
             ]);
@@ -85,21 +85,21 @@ describe('ListSelectAsync component', () => {
         it('should log an error when the source emits one', () => {
             fakeAsyncSource.error('Could not find the source items');
 
-            expect(log.error).to.be.calledWith('Could not find the source items');
+            expect(log.error).toHaveBeenCalledWith('Could not find the source items');
         });
 
         it('should set the subscription onto the component instance', () => {
-            expect(listSelectAsyncComponent.instance().subscription).not.to.be.undefined;
+            expect(listSelectAsyncComponent.instance().subscription).not.toBe(undefined);
         });
 
         it('should unsubscribe the observable on unmount', () => {
             const listSelectInstance = listSelectAsyncComponent.instance();
 
-            spy(listSelectInstance.subscription, 'unsubscribe');
+            jest.spyOn(listSelectInstance.subscription, 'unsubscribe');
 
             listSelectInstance.componentWillUnmount();
 
-            expect(listSelectInstance.subscription.unsubscribe).to.be.calledOnce;
+            expect(listSelectInstance.subscription.unsubscribe).toHaveBeenCalledTimes(1);
         });
     });
 });

@@ -11,18 +11,18 @@ describe('ErrorMessage', () => {
     it('should render a Message component', () => {
         const component = renderComponent();
 
-        expect(component.find(Message)).to.have.length(1);
+        expect(component.find(Message)).toHaveLength(1);
     });
 
     it('should pass the message down', () => {
         const component = renderComponent({ message: 'This is an error message' });
 
-        expect(component.find(Message).props().message).to.equal('This is an error message');
+        expect(component.find(Message).props().message).toBe('This is an error message');
     });
 
     it('should pass the correct style to the Message component', () => {
         const component = renderComponent({ message: 'This is an error message' });
 
-        expect(component.find(Message).props().style).to.deep.equal({ color: 'red' });
+        expect(component.find(Message).props().style).toEqual({ color: 'red' });
     });
 });

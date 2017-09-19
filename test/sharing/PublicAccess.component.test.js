@@ -28,7 +28,7 @@ describe('Sharing: PublicAccess component', () => {
 
     it('should render a Rule component', () => {
         renderComponent(publicAccessProps);
-        expect(publicAccessComponent.find(Rule)).to.have.length(1);
+        expect(publicAccessComponent.find(Rule)).toHaveLength(1);
     });
 
     describe('Rule', () => {
@@ -41,33 +41,33 @@ describe('Sharing: PublicAccess component', () => {
         });
 
         it('should have a suitable title', () => {
-            expect(ruleComponent.props().primaryText).to.equal('public_access_translated');
+            expect(ruleComponent.props().primaryText).toBe('public_access_translated');
         });
 
         it('should pass the disabled prop along', () => {
             renderComponent({ ...publicAccessProps, disabled: true });
             ruleComponent = publicAccessComponent.find(Rule);
-            expect(ruleComponent.props().disabled).to.equal(true);
+            expect(ruleComponent.props().disabled).toBe(true);
         });
 
         it('should receive the access type', () => {
-            expect(ruleComponent.props().accessType).to.equal('public');
+            expect(ruleComponent.props().accessType).toBe('public');
         })
 
         it('should pass along the onChange handler', () => {
-            const onChangeSpy = sinon.spy();
+            const onChangeSpy = jest.fn();
             renderComponent({ ...publicAccessProps, onChange: onChangeSpy });
             ruleComponent = publicAccessComponent.find(Rule);
-            expect(publicAccessComponent.find(Rule).props().onChange).to.equal(onChangeSpy);
+            expect(publicAccessComponent.find(Rule).props().onChange).toBe(onChangeSpy);
         });
 
         it('should call the change handler when a change event is given', () => {
-            const onChangeSpy = sinon.spy();
+            const onChangeSpy = jest.fn();
             renderComponent({ ...publicAccessProps, onChange: onChangeSpy });
             ruleComponent = publicAccessComponent.find(Rule);
 
             publicAccessComponent.simulate('change');
-            expect(onChangeSpy).to.be.calledOnce;
+            expect(onChangeSpy).toHaveBeenCalledTimes(1);
         });
     });
 });

@@ -69,17 +69,17 @@ describe('Sharing: Sharing component', () => {
 
     it('renders the object name using a Heading component', () => {
         const headerComponent = sharingComponent.find(Heading);
-        expect(headerComponent.props().text).to.equal('ANC: Overview Report (HTML-based)');
+        expect(headerComponent.props().text).toBe('ANC: Overview Report (HTML-based)');
     });
 
     it('should render the CreatedBy component with the authorOfSharableItem prop', () => {
         const createdByComponent = sharingComponent.find(CreatedBy);
-        expect(createdByComponent.props().user).to.deep.equal(sharingProps.authorOfSharableItem);
+        expect(createdByComponent.props().user).toEqual(sharingProps.authorOfSharableItem);
     });
 
     it('should render a sub header above the permissions list', () => {
         const subheaderComponent = sharingComponent.find(Subheader);
-        expect(subheaderComponent.childAt(0).text()).to.equal('who_has_access_translated');
+        expect(subheaderComponent.childAt(0).text()).toBe('who_has_access_translated');
     });
 
     describe('PublicAccess', () => {
@@ -90,9 +90,9 @@ describe('Sharing: Sharing component', () => {
         });
 
         it('inherits props correctly from parent', () => {
-            expect(publicAccessComponent.props().canView).to.equal(sharingProps.publicCanView);
-            expect(publicAccessComponent.props().canEdit).to.equal(sharingProps.publicCanEdit);
-            expect(publicAccessComponent.props().disabled).to.not.equal(sharingProps.canSetPublicAccess);
+            expect(publicAccessComponent.props().canView).toBe(sharingProps.publicCanView);
+            expect(publicAccessComponent.props().canEdit).toBe(sharingProps.publicCanEdit);
+            expect(publicAccessComponent.props().disabled).not.toEqual(sharingProps.canSetPublicAccess);
         });
     });
 
@@ -104,28 +104,28 @@ describe('Sharing: Sharing component', () => {
         });
 
         it('inherits the canView and disabled props from parent', () => {
-            expect(externalAccessComponent.props().canView).to.equal(sharingProps.publicCanView);
-            expect(externalAccessComponent.props().disabled).to.not.equal(sharingProps.canSetPublicAccess);
+            expect(externalAccessComponent.props().canView).toBe(sharingProps.publicCanView);
+            expect(externalAccessComponent.props().disabled).not.toEqual(sharingProps.canSetPublicAccess);
         });
     });
 
     describe('UserGroupAccess', () => {
         it('should render once per access', () => {
-            expect(sharingComponent.find(UserGroupAccess)).to.have.length(2);
+            expect(sharingComponent.find(UserGroupAccess)).toHaveLength(2);
 
             sharingComponent = renderComponent({
                 ...sharingProps, accesses: [...sharingProps.accesses, exampleUserGroup],
             });
 
-            expect(sharingComponent.find(UserGroupAccess)).to.have.length(3);
+            expect(sharingComponent.find(UserGroupAccess)).toHaveLength(3);
         });
 
         it('is passed the correct access props', () => {
             const userGroupAccess = sharingComponent.find(UserGroupAccess).at(0);
-            expect(userGroupAccess.props().nameOfGroup).to.equal('System administrators');
-            expect(userGroupAccess.props().groupType).to.equal('userGroup');
-            expect(userGroupAccess.props().canView).to.equal(true);
-            expect(userGroupAccess.props().canEdit).to.equal(false);
+            expect(userGroupAccess.props().nameOfGroup).toBe('System administrators');
+            expect(userGroupAccess.props().groupType).toBe('userGroup');
+            expect(userGroupAccess.props().canView).toBe(true);
+            expect(userGroupAccess.props().canEdit).toBe(false);
         });
     });
 
@@ -137,11 +137,11 @@ describe('Sharing: Sharing component', () => {
         });
 
         it('should render correctly', () => {
-            expect(sharingComponent.find(UserSearch)).to.have.length(1);
+            expect(sharingComponent.find(UserSearch)).toHaveLength(1);
         });
 
         it('should pass the onSearch function', () => {
-            expect(userSearchComponent.props().onSearch).to.equal(sharingProps.onSearch);
+            expect(userSearchComponent.props().onSearch).toBe(sharingProps.onSearch);
         });
     });
 });

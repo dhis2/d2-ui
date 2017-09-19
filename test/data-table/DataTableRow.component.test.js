@@ -56,36 +56,36 @@ describe('DataTableRow component', () => {
     });
 
     it('should render one row', () => {
-        expect(dataTableRow.hasClass('data-table__rows__row')).to.be.true;
+        expect(dataTableRow.hasClass('data-table__rows__row')).toBe(true);
     });
 
     it('should render the correct amount of columns', () => {
-        expect(dataTableRow.find('.data-table__rows__row__column')).to.have.length(5);
+        expect(dataTableRow.find('.data-table__rows__row__column')).toHaveLength(5);
     });
 
     it('should render the name into the first column', () => {
         const firstColumn = dataTableRow.find('.data-table__rows__row__column').first();
 
-        expect(firstColumn.find('TextValue').first().prop('columnName')).to.equal('name');
-        expect(firstColumn.find('TextValue').first().prop('value')).to.equal('Centre de Diagnostic et de Traitement de Bongouanou');
+        expect(firstColumn.find('TextValue').first().prop('columnName')).toBe('name');
+        expect(firstColumn.find('TextValue').first().prop('value')).toBe('Centre de Diagnostic et de Traitement de Bongouanou');
     });
 
     it('should render the code into the second column', () => {
         const secondColumn = dataTableRow.find('.data-table__rows__row__column').at(1);
 
-        expect(secondColumn.find('TextValue').first().prop('columnName')).to.equal('code');
-        expect(secondColumn.find('TextValue').first().prop('value')).to.equal('p.ci.ipsl.xxxx');
+        expect(secondColumn.find('TextValue').first().prop('columnName')).toBe('code');
+        expect(secondColumn.find('TextValue').first().prop('value')).toBe('p.ci.ipsl.xxxx');
     });
 
     it('should render the ObjectWithDisplayName field type when the value has a displayName', () => {
         const thirdColumn = dataTableRow.find('.data-table__rows__row__column').at(2);
 
-        expect(thirdColumn.find('ObjectWithDisplayName')).to.have.length(1);
-        expect(thirdColumn.find('ObjectWithDisplayName').prop('value')).to.deep.equal(dataElement.objectValue1);
+        expect(thirdColumn.find('ObjectWithDisplayName')).toHaveLength(1);
+        expect(thirdColumn.find('ObjectWithDisplayName').prop('value')).toEqual(dataElement.objectValue1);
     });
 
     it('should fire the primaryClick callback when a row is clicked', () => {
-        const primaryClickCallback = spy();
+        const primaryClickCallback = jest.fn();
         dataTableRow = renderComponent({
             dataSource: dataElement,
             columns: ['name', 'code', 'objectValue1', 'objectValue2'],
@@ -94,11 +94,12 @@ describe('DataTableRow component', () => {
 
         dataTableRow.find('.data-table__rows__row__column').first().simulate('click');
 
-        expect(primaryClickCallback).to.be.calledWith(dataElement);
+        expect(primaryClickCallback).toHaveBeenCalled();
+        expect(primaryClickCallback.mock.calls[0][0]).toBe(dataElement);
     });
 
     it('should fire the itemClicked callback when a row is clicked', () => {
-        const contextClickCallback = spy();
+        const contextClickCallback = jest.fn();
         dataTableRow = renderComponent({
             dataSource: dataElement,
             columns: ['name', 'code', 'objectValue1', 'objectValue2'],
@@ -107,12 +108,12 @@ describe('DataTableRow component', () => {
 
         dataTableRow.find('.data-table__rows__row__column').first().simulate('contextMenu');
 
-        expect(contextClickCallback).to.be.called;
-        expect(contextClickCallback.getCall(0).args[1]).to.equal(dataElement);
+        expect(contextClickCallback).toHaveBeenCalled();
+        expect(contextClickCallback.mock.calls[0][1]).toBe(dataElement);
     });
 
     it('should fre the itemClicked callback when the icon is clicked', () => {
-        const contextClickCallback = spy();
+        const contextClickCallback = jest.fn();
         dataTableRow = renderComponent({
             dataSource: dataElement,
             columns: ['name', 'code', 'objectValue1', 'objectValue2'],
@@ -121,7 +122,7 @@ describe('DataTableRow component', () => {
 
         dataTableRow.find('IconButton').first().simulate('click');
 
-        expect(contextClickCallback).to.be.called;
-        expect(contextClickCallback.getCall(0).args[1]).to.equal(dataElement);
+        expect(contextClickCallback).toHaveBeenCalled();
+        expect(contextClickCallback.mock.calls[0][1]).toBe(dataElement);
     });
 });

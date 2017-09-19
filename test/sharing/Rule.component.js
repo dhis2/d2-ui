@@ -32,9 +32,9 @@ describe('Sharing: Rule component', () => {
     renderComponent(sharingRule);
 
     it('should render subcomponents', () => {
-        expect(ruleComponent.find('FontIcon')).to.have.length(1);
-        expect(ruleComponent.find('PermissionPicker')).to.have.length(1);
-        expect(ruleComponent.find('IconButton')).to.have.length(1);
+        expect(ruleComponent.find('FontIcon')).toHaveLength(1);
+        expect(ruleComponent.find('PermissionPicker')).toHaveLength(1);
+        expect(ruleComponent.find('IconButton')).toHaveLength(1);
     });
 
     it('should show the primary and secondary text', () => {

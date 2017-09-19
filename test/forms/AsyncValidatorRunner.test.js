@@ -4,16 +4,16 @@ import isEqual from 'lodash/isEqual';
 
 describe('AsyncValidatorRunner', () => {
     it('should be an object', () => {
-        expect(AsyncValidatorRunner).to.be.a('function');
+        expect(typeof AsyncValidatorRunner).toBe('function');
     });
 
     describe('create()', () => {
         it('should be a method on the AsyncValidatorRunner', () => {
-            expect(AsyncValidatorRunner.create).to.be.a('function');
+            expect(typeof AsyncValidatorRunner.create).toBe('function');
         });
 
         it('should return a instance of AyncValidatorRunner', () => {
-            expect(AsyncValidatorRunner.create()).to.be.instanceof(AsyncValidatorRunner);
+            expect(AsyncValidatorRunner.create()).toBeInstanceOf(AsyncValidatorRunner);
         });
     });
 
@@ -21,20 +21,20 @@ describe('AsyncValidatorRunner', () => {
         it('should not set the scheduler property by default', () => {
             const asyncValidatorRunner = AsyncValidatorRunner.create();
 
-            expect(asyncValidatorRunner.scheduler).to.be.undefined;
+            expect(asyncValidatorRunner.scheduler).toBe(undefined);
         });
 
         it('should set the scheduler if one has been passed in', () => {
             const testScheduler  = new TestScheduler((a, b) => isEqual(a, b));
             const asyncValidatorRunner = AsyncValidatorRunner.create(testScheduler);
 
-            expect(asyncValidatorRunner.scheduler).to.equal(testScheduler);
+            expect(asyncValidatorRunner.scheduler).toEqual(testScheduler);
         });
 
         it('should have a validatorPipeline property that is an Rx.Subject', () => {
             const asyncValidatorRunner = AsyncValidatorRunner.create();
 
-            expect(asyncValidatorRunner.validatorPipeline).to.be.instanceof(Subject);
+            expect(asyncValidatorRunner.validatorPipeline).toBeInstanceOf(Subject);
         });
     });
 
@@ -47,11 +47,11 @@ describe('AsyncValidatorRunner', () => {
         });
 
         it('should not throw when the validatorsArray is empty', () => {
-            expect(() => asyncValidatorRunner.run('name', [], 'Zoe')).not.to.throw();
+            expect(() => asyncValidatorRunner.run('name', [], 'Zoe')).not.toThrow();
         });
 
         it('should return the ayncValidatorRunner', () => {
-            expect(asyncValidatorRunner.run('name', [], 'Zoe')).to.equal(asyncValidatorRunner);
+            expect(asyncValidatorRunner.run('name', [], 'Zoe')).toEqual(asyncValidatorRunner);
         });
     });
 
@@ -68,13 +68,13 @@ describe('AsyncValidatorRunner', () => {
 
         it('should debounce the values coming in', (done) => {
             const asyncValidators = [
-                sinon.stub().returns(Promise.resolve()),
+                jest.fn().mockReturnValue(Promise.resolve()),
             ];
 
             asyncValidatorRunner.listenToValidatorsFor('name')
                 .subscribe(
                     () => {
-                        expect(asyncValidators[0]).to.have.callCount(1);
+                        expect(asyncValidators[0]).toHaveBeenCalledTimes(1);
                         done();
                     },
                     (e) => done(e)
@@ -89,9 +89,9 @@ describe('AsyncValidatorRunner', () => {
 
         it('should still resolve when the one of the validators throws', (done) => {
             const asyncValidators = [
-                sinon.stub().returns(Promise.resolve()),
-                sinon.stub().returns(Promise.reject('not_unique')),
-                sinon.stub().returns(Promise.resolve()),
+                jest.fn().mockReturnValue(Promise.resolve()),
+                jest.fn().mockReturnValue(Promise.reject('not_unique')),
+                jest.fn().mockReturnValue(Promise.resolve()),
             ];
 
             asyncValidatorRunner.listenToValidatorsFor('name')
@@ -108,15 +108,15 @@ describe('AsyncValidatorRunner', () => {
 
         it('should resolve with the correct result structure after a failing validator', (done) => {
             const asyncValidators = [
-                sinon.stub().returns(Promise.resolve()),
-                sinon.stub().returns(Promise.reject('not_unique')),
-                sinon.stub().returns(Promise.resolve()),
+                jest.fn().mockReturnValue(Promise.resolve()),
+                jest.fn().mockReturnValue(Promise.reject('not_unique')),
+                jest.fn().mockReturnValue(Promise.resolve()),
             ];
 
             asyncValidatorRunner.listenToValidatorsFor('name')
                 .subscribe(
                     validationResult => {
-                        expect(validationResult).to.deep.equal({
+                        expect(validationResult).toEqual({
                             fieldName: 'name',
                             isValid: false,
                             value: 'Zoe',
@@ -153,7 +153,7 @@ describe('AsyncValidatorRunner', () => {
             asyncValidatorRunner.listenToValidatorsFor('name')
                 .subscribe(
                     (validationResult) => {
-                        expect(validationResult).to.deep.equal(expectedResult);
+                        expect(validationResult).toEqual(expectedResult);
                         done();
                     },
                     (e) => done(e)
@@ -167,17 +167,17 @@ describe('AsyncValidatorRunner', () => {
 
         it('should run the passed validators for the field', (done) => {
             const nameValidators = [
-                sinon.spy(),
-                sinon.spy(),
-                sinon.spy(),
+                jest.fn(),
+                jest.fn(),
+                jest.fn(),
             ];
 
             asyncValidatorRunner.listenToValidatorsFor('name')
                 .subscribe(
                     () => {
-                        expect(nameValidators[0]).to.be.calledWith('Zoe');
-                        expect(nameValidators[1]).to.be.calledWith('Zoe');
-                        expect(nameValidators[2]).to.be.calledWith('Zoe');
+                        expect(nameValidators[0]).toBeCalledWith('Zoe');
+                        expect(nameValidators[1]).toBeCalledWith('Zoe');
+                        expect(nameValidators[2]).toBeCalledWith('Zoe');
                         done();
                     },
                     (e) => done(e)

@@ -56,20 +56,20 @@ describe('Form component', () => {
     });
 
     it('should have the component name as a class', () => {
-        expect(formComponent.hasClass('form')).to.be.true;
+        expect(formComponent.hasClass('form')).toBe(true);
     });
 
     it('should render a single form tag', () => {
-        expect(formComponent.node.type).to.equal('form');
+        expect(formComponent.node.type).toBe('form');
     });
 
     describe('isValid method', () => {
         it('should exist', () => {
-            expect(formComponent.instance().isValid).to.be.instanceof(Function);
+            expect(formComponent.instance().isValid).toBeInstanceOf(Function);
         });
 
         it('should return false initially', () => {
-            expect(formComponent.instance().isValid()).to.equal(true);
+            expect(formComponent.instance().isValid()).toBe(true);
         });
     });
 
@@ -85,7 +85,7 @@ describe('Form component', () => {
         it('should render the formFields', () => {
             const renderedFieldComponents = formComponent.find(FormField);
 
-            expect(renderedFieldComponents).to.have.length(3);
+            expect(renderedFieldComponents).toHaveLength(3);
         });
     });
 
@@ -99,21 +99,21 @@ describe('Form component', () => {
         it('should have rendered the three FormFields from the fieldConfigs', () => {
             const renderedFormFieldComponents = formComponent.find(FormField);
 
-            expect(renderedFormFieldComponents).to.have.length(3);
+            expect(renderedFormFieldComponents).toHaveLength(3);
         });
 
         it('should have rendered the three TextFields for the fieldConfigs', () => {
             const renderedTextFieldComponents = formComponent.find(FormField);
 
-            expect(renderedTextFieldComponents.at(0).props().type).to.equal(TextField);
-            expect(renderedTextFieldComponents.at(1).props().type).to.equal(TextField);
-            expect(renderedTextFieldComponents.at(2).props().type).to.equal(TextField);
+            expect(renderedTextFieldComponents.at(0).props().type).toBe(TextField);
+            expect(renderedTextFieldComponents.at(1).props().type).toBe(TextField);
+            expect(renderedTextFieldComponents.at(2).props().type).toBe(TextField);
         });
 
         it('should pass the fieldConfig to the FormField', () => {
             const renderedTextFieldComponents = formComponent.find(FormField);
 
-            expect(renderedTextFieldComponents.at(0).props().fieldOptions).to.deep.equal({floatingLabelText: 'keyEmailPort'});
+            expect(renderedTextFieldComponents.at(0).props().fieldOptions).toEqual({floatingLabelText: 'keyEmailPort'});
         });
     });
 
@@ -123,7 +123,7 @@ describe('Form component', () => {
         beforeEach(() => {
             const {systemSettings, fieldConfigs} = getSystemSettingsFormConfig();
 
-            onFormFieldUpdateSpy = spy();
+            onFormFieldUpdateSpy = jest.fn();
 
             formComponent = renderComponent({
                 source: systemSettings,
@@ -135,8 +135,8 @@ describe('Form component', () => {
         it('should call onFormFieldChange when the value updates', () => {
             const renderedTextFieldComponent = formComponent.find(FormField).first();
 
-            spy(formComponent.instance(), 'updateRequest');
-            expect(renderedTextFieldComponent.props().value).to.equal(587);
+            jest.spyOn(formComponent.instance(), 'updateRequest');
+            expect(renderedTextFieldComponent.props().value).toBe(587);
 
             renderedTextFieldComponent.simulate('change', {
                 target: {
@@ -144,9 +144,9 @@ describe('Form component', () => {
                 },
             });
 
-            expect(onFormFieldUpdateSpy).to.be.calledWith('keyEmailPort', '456');
+            expect(onFormFieldUpdateSpy).toHaveBeenCalledWith('keyEmailPort', '456');
 
-            formComponent.instance().updateRequest.restore();
+            formComponent.instance().updateRequest.mockRestore();
         });
     });
 
@@ -157,7 +157,7 @@ describe('Form component', () => {
         beforeEach(() => {
             const {systemSettings, fieldConfigs} = getSystemSettingsFormConfig();
 
-            onFormFieldUpdateSpy = spy();
+            onFormFieldUpdateSpy = jest.fn();
 
             fieldConfigs[0].updateEvent = 'onBlur';
 
@@ -171,8 +171,8 @@ describe('Form component', () => {
         it('should call onFormFieldUpdate on blur', () => {
             const renderedTextFieldComponent = formComponent.find(FormField).first();
 
-            spy(formComponent.instance(), 'updateRequest');
-            expect(renderedTextFieldComponent.props().value).to.equal(587);
+            jest.spyOn(formComponent.instance(), 'updateRequest');
+            expect(renderedTextFieldComponent.props().value).toBe(587);
 
             renderedTextFieldComponent.simulate('blur', {
                 target: {
@@ -180,7 +180,7 @@ describe('Form component', () => {
                 },
             });
 
-            expect(onFormFieldUpdateSpy).to.be.calledWith('keyEmailPort', '456');
+            expect(onFormFieldUpdateSpy).toHaveBeenCalledWith('keyEmailPort', '456');
 
             formComponent.instance().updateRequest.restore();
         });
@@ -188,8 +188,8 @@ describe('Form component', () => {
         it('should not call onFormFieldUpdate on change', () => {
             const renderedTextFieldComponent = formComponent.find(FormField).first();
 
-            spy(formComponent.instance(), 'updateRequest');
-            expect(renderedTextFieldComponent.props().value).to.equal(587);
+            jest.spyOn(formComponent.instance(), 'updateRequest');
+            expect(renderedTextFieldComponent.props().value).toBe(587);
 
             renderedTextFieldComponent.simulate('change', {
                 target: {
@@ -207,7 +207,7 @@ describe('Form component', () => {
         let fieldConfig;
 
         beforeEach(() => {
-            const failingValidator = stub().returns(false);
+            const failingValidator = jest.fn().mockReturnValue(false);
             failingValidator.message = 'field_is_required';
 
             fieldConfig = {
@@ -217,7 +217,7 @@ describe('Form component', () => {
                     multiLine: true,
                 },
                 validators: [
-                    stub().returns(true),
+                    jest.fn().mockReturnValue(true),
                     failingValidator,
                 ],
             };
@@ -230,8 +230,8 @@ describe('Form component', () => {
         it('should create a formValidator if no validator was passed', () => {
             formComponent = renderComponent({fieldConfigs: [fieldConfig]});
 
-            expect(formComponent.state.formValidator).to.not.be.undefined;
-            expect(formComponent.state.formValidator.getStatusFor('keyEmailPort')).to.deep.equal({
+            expect(formComponent.state.formValidator).not.toBe(undefined);
+            expect(formComponent.state.formValidator.getStatusFor('keyEmailPort')).toEqual({
                 status: FormFieldStatuses.VALID,
                 messages: [],
             });
@@ -244,7 +244,7 @@ describe('Form component', () => {
             formComponent.state.formValidator.runFor('keyEmailPort');
 
             setTimeout(() => {
-                expect(formComponent.state.formValidator.getStatusFor('keyEmailPort')).to.deep.equal({
+                expect(formComponent.state.formValidator.getStatusFor('keyEmailPort')).toEqual({
                     status: FormFieldStatuses.VALIDATING,
                     messages: [],
                 });
@@ -258,7 +258,7 @@ describe('Form component', () => {
             formComponent.state.formValidator.runFor('keyEmailPort');
 
             formComponent.state.formValidator.status.subscribe(() => {
-                expect(formComponent.state.formValidator.getStatusFor('keyEmailPort')).to.deep.equal({
+                expect(formComponent.state.formValidator.getStatusFor('keyEmailPort')).toEqual({
                     status: FormFieldStatuses.INVALID,
                     messages: ['field_is_required'],
                 });
@@ -280,7 +280,7 @@ describe('Form component', () => {
             formComponent.state.formValidator.status.subscribe(() => {
                 const renderedTextFieldComponents = scryRenderedComponentsWithType(formComponent, FormField)[0];
 
-                expect(renderedTextFieldComponents.props.errorMessage).to.equal('field_is_required_translated');
+                expect(renderedTextFieldComponents.props.errorMessage).toBe('field_is_required_translated');
                 done();
             });
         });
@@ -288,7 +288,7 @@ describe('Form component', () => {
         it('should run validation for a specific field when the update request is being done', () => {
             formComponent = renderComponent({fieldConfigs: [fieldConfig]});
 
-            spy(formComponent.state.formValidator, 'runFor');
+            jest.spyOn(formComponent.state.formValidator, 'runFor');
 
             const renderedTextFieldComponents = scryRenderedComponentsWithType(formComponent, TextField);
             const inputDOMNode = React.findDOMNode(renderedTextFieldComponents[0]);
@@ -296,7 +296,7 @@ describe('Form component', () => {
             inputDOMNode.value = '456';
             Simulate.change(inputDOMNode);
 
-            expect(formComponent.state.formValidator.runFor).to.be.calledWith('keyEmailPort', '456');
+            expect(formComponent.state.formValidator.runFor).toHaveBeenCalledWith('keyEmailPort', '456');
         });
     });
 });

@@ -5,27 +5,27 @@ describe('Translate mixin', () => {
         Translate.context = {
             d2: {
                 i18n: {
-                    getTranslation: stub().returns('Navn'),
+                    getTranslation: jest.fn().mockReturnValue('Navn'),
                 },
             },
         };
     });
 
     it('should have a getTranslation method', () => {
-        expect(Translate.getTranslation).to.be.a('function');
+        expect(typeof Translate.getTranslation).toBe('function');
     });
 
     it('should define d2 on the context', () => {
-        expect(Translate.contextTypes.d2).to.not.be.undefined;
+        expect(Translate.contextTypes.d2).not.toBe(undefined);
     });
 
     it('should call the d2 translation service for the translation', () => {
         Translate.getTranslation('name');
 
-        expect(Translate.context.d2.i18n.getTranslation).to.be.calledWith('name');
+        expect(Translate.context.d2.i18n.getTranslation).toHaveBeenCalledWith('name');
     });
 
     it('should pass the ', () => {
-        expect(Translate.getTranslation('name')).to.equal('Navn');
+        expect(Translate.getTranslation('name')).toBe('Navn');
     });
 });

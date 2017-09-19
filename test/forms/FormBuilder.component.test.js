@@ -27,20 +27,20 @@ describe('FormBuilder component', () => {
     });
 
     it('should have a asyncFieldValidator availble on the component', () => {
-        expect(formComponent.instance().asyncValidationRunner).to.be.instanceof(AsyncValidatorRunner);
+        expect(formComponent.instance().asyncValidationRunner).toBeInstanceOf(AsyncValidatorRunner);
     });
 
     describe('field rendering', () => {
         it('should render a the Textfield', () => {
             const textField = formComponent.find(TextField);
 
-            expect(textField).to.have.length(1);
+            expect(textField).toHaveLength(1);
         });
 
         it('should pass the value to the Textfield', () => {
             const textField = formComponent.find(TextField);
 
-            expect(textField.props().value).to.equal('John');
+            expect(textField.props().value).toBe('John');
         });
 
         it('should pass the new value to the TextField when props has changed', () => {
@@ -53,7 +53,7 @@ describe('FormBuilder component', () => {
 
             const textField = formComponent.find(TextField);
 
-            expect(textField.props().value).to.equal('Mike');
+            expect(textField.props().value).toBe('Mike');
         });
     });
 
@@ -70,7 +70,7 @@ describe('FormBuilder component', () => {
                     value: 'John',
                     validators: [
                         {
-                            validator: sinon.spy((value) => !!value),
+                            validator: jest.fn((value) => !!value),
                             message: 'field_is_required',
                         },
                     ],
@@ -81,8 +81,8 @@ describe('FormBuilder component', () => {
                 fields[0].value = value;
             }
 
-            onUpdateFieldSpy = sinon.spy(onUpdateField);
-            onUpdateFormStatus = sinon.spy();
+            onUpdateFieldSpy = jest.fn(onUpdateField);
+            onUpdateFormStatus = jest.fn();
 
             formComponent = renderComponent({
                 fields,
@@ -94,7 +94,7 @@ describe('FormBuilder component', () => {
         it('should mark the field as valid', () => {
             const textField = formComponent.find(TextField);
 
-            expect(textField.props().errorText).to.be.undefined;
+            expect(textField.props().errorText).toBe(undefined);
         });
 
         describe('with invalid result', () => {
@@ -107,7 +107,7 @@ describe('FormBuilder component', () => {
                             value: '',
                             validators: [
                                 {
-                                    validator: sinon.spy((value) => !!value),
+                                    validator: jest.fn((value) => !!value),
                                     message: 'field_is_required',
                                 },
                             ],
@@ -117,15 +117,15 @@ describe('FormBuilder component', () => {
             });
 
             it('should mark the field as invalid', () => {
-                expect(formComponent.state().fields.name.valid).to.be.false;
+                expect(formComponent.state().fields.name.valid).toBe(false);
             });
 
             it('should pass the error message to the text field', () => {
-                expect(formComponent.find(TextField).first().props().errorText).to.equal('field_is_required');
+                expect(formComponent.find(TextField).first().props().errorText).toBe('field_is_required');
             });
 
             it('should mark the form as invalid', () => {
-                expect(formComponent.state().form.valid).to.be.false;
+                expect(formComponent.state().form.valid).toBe(false);
             });
         });
 
@@ -135,7 +135,7 @@ describe('FormBuilder component', () => {
 
                 textField.props().onChange({ target: { value: 'John1' }});
 
-                expect(fields[0].validators[0].validator).to.be.calledWith('John1');
+                expect(fields[0].validators[0].validator).toHaveBeenCalledWith('John1');
             });
 
             it('should emit the value of the field from the form', () => {
@@ -143,7 +143,7 @@ describe('FormBuilder component', () => {
 
                 textField.props().onChange({ target: { value: 'John1' }});
 
-                expect(onUpdateFieldSpy).to.be.calledWith('name', 'John1');
+                expect(onUpdateFieldSpy).toHaveBeenCalledWith('name', 'John1');
             });
 
             it('should run the validator with an empty value', () => {
@@ -151,7 +151,7 @@ describe('FormBuilder component', () => {
 
                 textField.props().onChange({ target: { value: '' }});
 
-                expect(fields[0].validators[0].validator).to.be.calledWith('');
+                expect(fields[0].validators[0].validator).toHaveBeenCalledWith('');
             });
 
             it('should still emit the value from the form when it is invalid', () => {
@@ -159,7 +159,7 @@ describe('FormBuilder component', () => {
 
                 textField.props().onChange({ target: { value: 'ddd' }});
 
-                expect(onUpdateFieldSpy).to.be.calledWith('name', 'ddd');
+                expect(onUpdateFieldSpy).toHaveBeenCalledWith('name', 'ddd');
             });
 
             it('should not run the validator when the values are the same', () => {
@@ -167,7 +167,7 @@ describe('FormBuilder component', () => {
 
                 textField.props().onChange({ target: { value: 'John' }});
 
-                expect(fields[0].validators[0].validator).not.to.be.called;
+                expect(fields[0].validators[0].validator).not.toHaveBeenCalled();
             });
 
             it('should still emit the value when the values are the same', () => {
@@ -175,7 +175,7 @@ describe('FormBuilder component', () => {
 
                 textField.props().onChange({ target: { value: 'John' }});
 
-                expect(onUpdateFieldSpy).to.be.calledWith('name', 'John');
+                expect(onUpdateFieldSpy).toHaveBeenCalledWith('name', 'John');
             });
         });
 
@@ -191,7 +191,7 @@ describe('FormBuilder component', () => {
                         value: new Map([['key1', 'value1'], ['key2', 'value2']]),
                         validators: [
                             {
-                                validator: sinon.spy((value) => value.size >= 2),
+                                validator: jest.fn((value) => value.size >= 2),
                                 message: 'field_is_required',
                             },
                         ],
@@ -202,8 +202,8 @@ describe('FormBuilder component', () => {
                     fields[0].value = value;
                 }
 
-                onUpdateFieldSpy = sinon.spy(onUpdateField);
-                onUpdateFormStatus = sinon.spy();
+                onUpdateFieldSpy = jest.fn(onUpdateField);
+                onUpdateFormStatus = jest.fn();
 
                 formComponent = renderComponent({
                     fields,
@@ -217,7 +217,7 @@ describe('FormBuilder component', () => {
 
                 objectField.props().onChange({ target: { value: fields[0].value }});
 
-                expect(fields[0].validators[0].validator).to.be.called;
+                expect(fields[0].validators[0].validator).toHaveBeenCalled();
             });
 
             it('should emit the value when the values are the same', () => {
@@ -225,9 +225,9 @@ describe('FormBuilder component', () => {
 
                 objectField.props().onChange({ target: { value: fields[0].value }});
 
-                expect(onUpdateFieldSpy).to.be.deep.calledWith('mapValues', fields[0].value);
-                expect(onUpdateFieldSpy.firstCall.args[1].get('key1')).to.equal('value1');
-                expect(onUpdateFieldSpy.firstCall.args[1].get('key2')).to.equal('value2');
+                expect(onUpdateFieldSpy).toHaveBeenCalledWith('mapValues', fields[0].value);
+                expect(onUpdateFieldSpy.mock.calls[0][1].get('key1')).toBe('value1');
+                expect(onUpdateFieldSpy.mock.calls[0][1].get('key2')).toBe('value2');
             });
         });
 
@@ -237,7 +237,7 @@ describe('FormBuilder component', () => {
 
                 textField.props().onChange({ target: { value: 'John1' }});
 
-                expect(onUpdateFormStatus).to.be.calledWith({ pristine: false, valid: true, validating: false });
+                expect(onUpdateFormStatus).toHaveBeenCalledWith({ pristine: false, valid: true, validating: false });
             });
 
             it('should emit the formStatus when a field was changed but the value is invalid', () => {
@@ -245,7 +245,7 @@ describe('FormBuilder component', () => {
 
                 textField.props().onChange({ target: { value: '' }});
 
-                expect(onUpdateFormStatus).to.be.calledWith({ pristine: false, valid: false, validating: false });
+                expect(onUpdateFormStatus).toHaveBeenCalledWith({ pristine: false, valid: false, validating: false });
             });
         });
     });
@@ -263,7 +263,7 @@ describe('FormBuilder component', () => {
                     component: TextField,
                     value: 'John',
                     asyncValidators: [
-                        sinon.spy(() => new Promise(() => {}))
+                        jest.fn(() => new Promise(() => {})),
                     ],
                 },
             ];
@@ -272,15 +272,15 @@ describe('FormBuilder component', () => {
                 fields[0].value = value;
             }
 
-            onUpdateFieldSpy = sinon.spy(onUpdateField);
-            onUpdateFormStatus = sinon.spy();
+            onUpdateFieldSpy = jest.fn(onUpdateField);
+            onUpdateFormStatus = jest.fn();
 
             asyncValidationRunnerMock = {
                 run() {
                     return this;
                 },
 
-                listenToValidatorsFor: stub().returns({
+                listenToValidatorsFor: jest.fn().mockReturnValue({
                     subscribe(callback) {
                         callback({fieldName: 'name', isValid: true});
                     },
@@ -300,14 +300,14 @@ describe('FormBuilder component', () => {
 
             textField.props().onChange({ target: { value: 'John1' }});
 
-            expect(onUpdateFormStatus).to.be.calledWith({ pristine: false, valid: true, validating: true });
+            expect(onUpdateFormStatus).toHaveBeenCalledWith({ pristine: false, valid: true, validating: true });
         });
 
         // TODO: Incorrectly(?) sets pristine state to true?
         it('should emit the formStatus after the async validators complete', (done) => {
             const textField = formComponent.find(TextField);
 
-            fields[0].asyncValidators[0] = sinon.spy(() => Promise.resolve('Success'));
+            fields[0].asyncValidators[0] = jest.fn(() => Promise.resolve('Success'));
 
             formComponent = renderComponent({
                 fields,
@@ -317,10 +317,10 @@ describe('FormBuilder component', () => {
 
             textField.props().onChange({ target: { value: 'John1' }});
 
-            expect(onUpdateFormStatus).to.be.calledWith({ pristine: false, valid: true, validating: true });
+            expect(onUpdateFormStatus).toHaveBeenCalledWith({ pristine: false, valid: true, validating: true });
 
             setTimeout(() => {
-                expect(onUpdateFormStatus).to.be.calledWith({ pristine: true, valid: true, validating: false });
+                expect(onUpdateFormStatus).toHaveBeenCalledWith({ pristine: true, valid: true, validating: false });
                 formComponent.update();
                 done();
             }, 5);
@@ -330,10 +330,10 @@ describe('FormBuilder component', () => {
         it('should emit the formStatus after the async validators failed', (done) => {
             const textField = formComponent.find(TextField);
 
-            fields[0].asyncValidators[0] = sinon.spy(() => Promise.reject('Failure'));
+            fields[0].asyncValidators[0] = jest.fn(() => Promise.reject('Failure'));
 
             asyncValidationRunnerMock.listenToValidatorsFor
-                .returns({
+                .mockReturnValue({
                     subscribe(callback) {
                         callback({fieldName: 'name', isValid: false});
                     },
@@ -347,10 +347,10 @@ describe('FormBuilder component', () => {
 
             textField.props().onChange({ target: { value: 'John1' }});
 
-            expect(onUpdateFormStatus).to.be.calledWith({ pristine: false, valid: true, validating: true });
+            expect(onUpdateFormStatus).toHaveBeenCalledWith({ pristine: false, valid: true, validating: true });
 
             setTimeout(() => {
-                expect(onUpdateFormStatus).to.be.calledWith({ pristine: true, valid: false, validating: false });
+                expect(onUpdateFormStatus).toHaveBeenCalledWith({ pristine: true, valid: false, validating: false });
                 formComponent.update();
                 done();
             }, 5);
@@ -359,7 +359,7 @@ describe('FormBuilder component', () => {
         it('should call the onUpdateField after the async validators completed', (done) => {
             const textField = formComponent.find(TextField);
 
-            fields[0].asyncValidators[0] = sinon.spy(() => Promise.resolve('Success'));
+            fields[0].asyncValidators[0] = jest.fn(() => Promise.resolve('Success'));
 
             formComponent = renderComponent({
                 fields,
@@ -370,7 +370,7 @@ describe('FormBuilder component', () => {
             textField.props().onChange({ target: { value: 'John1' }});
 
             setTimeout(() => {
-                expect(onUpdateFieldSpy).to.be.calledWith('name', 'John1');
+                expect(onUpdateFieldSpy).toHaveBeenCalledWith('name', 'John1');
                 formComponent.update();
                 done();
             }, 5);
@@ -379,7 +379,7 @@ describe('FormBuilder component', () => {
         it('should call the onUpdateField after the async validators failed', (done) => {
             const textField = formComponent.find(TextField);
 
-            fields[0].asyncValidators[0] = sinon.spy(() => Promise.reject('Failure'));
+            fields[0].asyncValidators[0] = jest.fn(() => Promise.reject('Failure'));
 
             formComponent = renderComponent({
                 fields,
@@ -390,7 +390,7 @@ describe('FormBuilder component', () => {
             textField.props().onChange({ target: { value: 'John1' }});
 
             setTimeout(() => {
-                expect(onUpdateFieldSpy).to.be.calledWith('name', 'John1');
+                expect(onUpdateFieldSpy).toHaveBeenCalledWith('name', 'John1');
                 formComponent.update();
                 done();
             }, 5);
@@ -399,7 +399,7 @@ describe('FormBuilder component', () => {
         it('should cancel the running async validators when the value is changed again', () => {
             const textField = formComponent.find(TextField);
 
-            fields[0].asyncValidators[0] = sinon.spy(() => new Promise(() => {}));
+            fields[0].asyncValidators[0] = jest.fn(() => new Promise(() => {}));
 
             formComponent = renderComponent({
                 fields,
@@ -407,12 +407,12 @@ describe('FormBuilder component', () => {
                 onUpdateFormStatus,
             });
 
-            sinon.spy(FormBuilder.prototype, 'cancelAsyncValidators');
+            jest.spyOn(FormBuilder.prototype, 'cancelAsyncValidators');
 
             textField.props().onChange({ target: { value: 'John1' }});
             textField.props().onChange({ target: { value: 'John12' }});
 
-            expect(formComponent.instance().cancelAsyncValidators).to.be.called;
+            expect(formComponent.instance().cancelAsyncValidators).toHaveBeenCalled();
         });
     });
 
@@ -437,8 +437,8 @@ describe('FormBuilder component', () => {
                 fields[0].value = value;
             }
 
-            onUpdateFieldSpy = sinon.spy(onUpdateField);
-            onUpdateFormStatus = sinon.spy();
+            onUpdateFieldSpy = jest.fn(onUpdateField);
+            onUpdateFormStatus = jest.fn();
 
             formComponent = renderComponent({
                 fields,
@@ -448,14 +448,14 @@ describe('FormBuilder component', () => {
         });
 
         it('should not run the handler for onChange', () => {
-            sinon.spy(FormBuilder.prototype, 'updateFieldState');
+            jest.spyOn(FormBuilder.prototype, 'updateFieldState');
 
             const textField = formComponent.find(TextField);
             textField.props().onChange({ target: { value: 'John2' }});
             textField.props().onBlur({ target: { value: 'John2' }});
 
 
-            expect(onUpdateFieldSpy).to.be.calledWith('name', 'John2');
+            expect(onUpdateFieldSpy).toHaveBeenCalledWith('name', 'John2');
         });
     });
 });

@@ -52,7 +52,7 @@ describe('Sharing: SharingDialog component', () => {
         });
 
     beforeEach(() => {
-        onRequestClose = sinon.spy();
+        onRequestClose = jest.fn();
 
         sharingDialogComponent = renderComponent({
             open: true,
@@ -62,7 +62,7 @@ describe('Sharing: SharingDialog component', () => {
         });
     });
 
-    sinon.stub(SharingDialog.prototype, 'loadObjectFromApi');
+    jest.spyOn(SharingDialog.prototype, 'loadObjectFromApi');
 
     it('should show its dialog when objectToShare is defined', () => {
         sharingDialogComponent.setState({
@@ -71,7 +71,7 @@ describe('Sharing: SharingDialog component', () => {
             fullObjectName: mockedObject.name,
         });
 
-        expect(sharingDialogComponent.find(Sharing)).to.have.length(1);
+        expect(sharingDialogComponent.find(Sharing)).toHaveLength(1);
     });
 
     describe('close action', () => {
@@ -85,13 +85,13 @@ describe('Sharing: SharingDialog component', () => {
 
         it('should render the close button', () => {
             const buttons = sharingDialogComponent.find(Dialog).props().actions;
-            expect(buttons.length).to.equal(1);
-            expect(buttons[0].type).to.equal(FlatButton);
+            expect(buttons.length).toBe(1);
+            expect(buttons[0].type).toBe(FlatButton);
         });
 
         it('should pass the close label to the close button', () => {
             const buttons = sharingDialogComponent.find(Dialog).props().actions;
-            expect(buttons[0].props.label).to.equal('close_translated');
+            expect(buttons[0].props.label).toBe('close_translated');
         });
 
         it('should call onRequestClose from the props when the closeSharingDialog is called', () => {
@@ -102,18 +102,19 @@ describe('Sharing: SharingDialog component', () => {
             });
 
             sharingDialogComponent.instance().closeSharingDialog();
-            expect(onRequestClose).to.be.calledOnce;
+            expect(onRequestClose).toHaveBeenCalledTimes(1);
         });
     });
 
     describe('loadingMask', () => {
         beforeEach(() => {
-            sinon.stub(log, 'warn');
+            jest.fn(log, 'warn');
         });
 
         it('should render when objectToShare is undefined and dialog is open', () => {
             renderComponent({ open: true, onRequestClose: () => {}, type: 'report', id: 'AMERNML55Tg' });
-            expect(sharingDialogComponent.find(LoadingMask)).to.have.length(1);
+
+            expect(sharingDialogComponent.find(LoadingMask)).toHaveLength(1);
         });
     });
 });

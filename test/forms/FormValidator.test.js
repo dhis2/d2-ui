@@ -10,24 +10,24 @@ describe('FormValidator', () => {
     beforeEach(() => formValidator = createFormValidator());
 
     it('should be be a function', () => {
-        expect(createFormValidator).to.be.a('function');
+        expect(typeof createFormValidator).toBe('function');
     });
 
     describe('status', () => {
         it('should be able to subscribe to the status', () => {
-            formValidator.status.subscribe(spy());
+            formValidator.status.subscribe(jest.fn());
         });
 
         it('should not emit a value on subscription without a status', () => {
-            const statusCallBack = spy();
+            const statusCallBack = jest.fn();
             formValidator.status.subscribe(statusCallBack);
 
-            expect(statusCallBack).not.to.be.called;
+            expect(statusCallBack).not.toHaveBeenCalled();
         });
 
         it('should emit a value when setStatus was called', (done) => {
             function statusCallback(statusValue) {
-                expect(statusValue).to.deep.equal({
+                expect(statusValue).toEqual({
                     name: 'name',
                     status: FormFieldStatuses.VALID,
                 });
@@ -52,8 +52,8 @@ describe('FormValidator', () => {
             cold = ((testScheduler) => (...args) => testScheduler.createColdObservable.apply(testScheduler, args))(testScheduler);
 
             validators = [
-                sinon.stub().returns(true),
-                sinon.stub().returns(true),
+                jest.fn().mockReturnValue(true),
+                jest.fn().mockReturnValue(true),
             ];
 
             formValidator = createFormValidator([
@@ -65,7 +65,7 @@ describe('FormValidator', () => {
         it('should return false when there are no validators for this fieldName', () => {
             formValidator = createFormValidator();
 
-            expect(formValidator.runFor('name')).to.be.false;
+            expect(formValidator.runFor('name')).toBe(false);
         });
 
         it('should run the validators for the field it is called with', () => {
@@ -75,13 +75,13 @@ describe('FormValidator', () => {
 
             testScheduler.flush();
 
-            expect(validators[0]).to.be.calledWith('Mark', 'name');
-            expect(validators[1]).to.be.calledWith('Mark', 'name');
+            expect(validators[0]).toBeCalledWith('Mark', 'name', undefined);
+            expect(validators[1]).toBeCalledWith('Mark', 'name', undefined);
         });
 
         it('should set the status when the runFor() is called', (done) => {
             function statusCallback(statusValue) {
-                expect(Array.from(statusValue)).to.deep.equal([
+                expect(Array.from(statusValue)).toEqual([
                     ['name', {status: FormFieldStatuses.VALID, messages: []}],
                     ['code', {status: FormFieldStatuses.VALID, messages: []}],
                 ]);
@@ -96,7 +96,7 @@ describe('FormValidator', () => {
         });
 
         it('should emit a status that represents the validator results', (done) => {
-            const requiredValidator = stub().returns(false);
+            const requiredValidator = jest.fn().mockReturnValue(false);
             requiredValidator.message = 'field_is_required';
 
             validators.push(requiredValidator);
@@ -107,7 +107,7 @@ describe('FormValidator', () => {
             ], testScheduler);
 
             function statusCallback(statusValue) {
-                expect(Array.from(statusValue)).to.deep.equal([
+                expect(Array.from(statusValue)).toEqual([
                     ['name', {status: FormFieldStatuses.INVALID, messages: ['field_is_required']}],
                     ['code', {status: FormFieldStatuses.VALID, messages: []}],
                 ]);
@@ -122,7 +122,7 @@ describe('FormValidator', () => {
         });
 
         it('should emit a pending status for an async validator', (done) => {
-            const asyncValidator = stub().returns(new Promise(() => {}));
+            const asyncValidator = jest.fn().mockReturnValue(new Promise(() => {}));
 
             validators.push(asyncValidator);
 
@@ -132,7 +132,7 @@ describe('FormValidator', () => {
             ], testScheduler);
 
             function statusCallback(statusValue) {
-                expect(Array.from(statusValue)).to.deep.equal([
+                expect(Array.from(statusValue)).toEqual([
                     ['name', {status: FormFieldStatuses.VALIDATING, messages: []}],
                     ['code', {status: FormFieldStatuses.VALID, messages: []}],
                 ]);
@@ -147,7 +147,7 @@ describe('FormValidator', () => {
         });
 
         it('should pass the field validation when the async validator resolves', (done) => {
-            const asyncValidator = stub().returns(Promise.resolve(true));
+            const asyncValidator = jest.fn().mockReturnValue(Promise.resolve(true));
 
             validators.push(asyncValidator);
 
@@ -157,7 +157,7 @@ describe('FormValidator', () => {
             ]);
 
             function statusCallback(statusValue) {
-                expect(Array.from(statusValue)).to.deep.equal([
+                expect(Array.from(statusValue)).toEqual([
                     ['name', {status: FormFieldStatuses.VALID, messages: []}],
                     ['code', {status: FormFieldStatuses.VALID, messages: []}],
                 ]);
@@ -170,7 +170,7 @@ describe('FormValidator', () => {
         });
 
         it('should fail the field validation when the async validator rejects', (done) => {
-            const asyncValidator = stub().returns(Promise.reject('field_should_pass_async'));
+            const asyncValidator = jest.fn(() => Promise.reject('field_should_pass_async'));
 
             validators.push(asyncValidator);
 
@@ -180,7 +180,7 @@ describe('FormValidator', () => {
             ]);
 
             function statusCallback(statusValue) {
-                expect(Array.from(statusValue)).to.deep.equal([
+                expect(Array.from(statusValue)).toEqual([
                     ['name', {status: FormFieldStatuses.INVALID, messages: ['field_should_pass_async']}],
                     ['code', {status: FormFieldStatuses.VALID, messages: []}],
                 ]);
@@ -193,7 +193,7 @@ describe('FormValidator', () => {
         });
 
         it('should log a warning when a validator is not a function', () => {
-            stub(log, 'warn');
+            jest.spyOn(log, 'warn');
 
             validators.push('Not a validator');
 
@@ -201,11 +201,11 @@ describe('FormValidator', () => {
 
             testScheduler.flush();
 
-            expect(log.warn).to.be.calledWith(`Warning: One of the validators for 'name' is not a function.`);
+            expect(log.warn).toHaveBeenCalledWith(`Warning: One of the validators for 'name' is not a function.`);
         });
 
         it('should log an error when something fails', () => {
-            stub(log, 'debug');
+            jest.spyOn(log, 'debug');
 
             function throwingValidator() {
                 throw new Error('Something failed!');
@@ -217,17 +217,17 @@ describe('FormValidator', () => {
 
             testScheduler.flush();
 
-            expect(log.debug).to.be.calledWith(`Validator for 'name' ignored because the validator threw an error.`);
-            expect(log.debug).to.be.calledWith(`${throwingValidator}`);
-            expect(log.debug).to.be.calledWith('Something failed!');
+            expect(log.debug).toHaveBeenCalledWith(`Validator for 'name' ignored because the validator threw an error.`);
+            expect(log.debug).toHaveBeenCalledWith(`${throwingValidator}`);
+            expect(log.debug).toHaveBeenCalledWith('Something failed!');
         });
     });
 
     describe('getStatusFor', () => {
         beforeEach(() => {
             const validators = [
-                sinon.stub().returns(true),
-                sinon.stub().returns(true),
+                jest.fn().mockReturnValue(true),
+                jest.fn().mockReturnValue(true),
             ];
 
             formValidator = createFormValidator([
@@ -237,7 +237,7 @@ describe('FormValidator', () => {
         });
 
         it('should return the current status for the field', () => {
-            expect(formValidator.getStatusFor('name')).to.deep.equal({
+            expect(formValidator.getStatusFor('name')).toEqual({
                 status: FormFieldStatuses.VALID,
                 messages: [],
             });

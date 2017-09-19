@@ -10,11 +10,11 @@ describe('<MainContent />', () => {
     });
 
     it('should add a default margin at the bottom', () => {
-        expect(component.props().style.marginBottom).to.equal('4rem');
+        expect(component.props().style.marginBottom).toBe('4rem');
     });
 
     it('should set the width of the main content to 100%', () => {
-        expect(component.props().style.width).to.equal('100%');
+        expect(component.props().style.width).toBe('100%');
     });
 
     it('should render the passed children', () => {
@@ -25,7 +25,7 @@ describe('<MainContent />', () => {
             </MainContent>
         );
 
-        expect(component.props().children).to.deep.equal([
+        expect(component.props().children).toEqual([
             <h1>Some heading</h1>,
             <div>Some content</div>,
         ]);

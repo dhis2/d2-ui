@@ -20,29 +20,32 @@ function eventually(callback) {
 describe('Store', () => {
     let store;
     let testScheduler;
-    // let cold;
+    let asyncCold;
+    let expectObs;
 
     beforeEach(() => {
+        // TODO: Move these to a config file, something like https://github.com/ReactiveX/rxjs/blob/master/spec/helpers/testScheduler-ui.ts but then for jest.
         testScheduler = new TestScheduler((a, b) => isEqual(a, b));
-        // cold = ((testScheduler) => (...args) => testScheduler.createColdObservable.apply(testScheduler, args))(testScheduler);
+        expectObs = ((testScheduler) => (...args) => testScheduler.expectObservable.apply(testScheduler, args))(testScheduler);
+        asyncCold = ((testScheduler) => (...args) => testScheduler.createColdObservable.apply(testScheduler, args))(testScheduler);
 
         store = Store.create();
     });
 
     it('should be a function', () => {
-        expect(Store).to.be.instanceof(Function);
+        expect(Store).toBeInstanceOf(Function);
     });
 
     describe('state', () => {
         it('should have a state property that is undefined on default', () => {
-            expect(store.state).to.be.undefined;
+            expect(store.state).toBe(undefined);
         });
 
         it('should be initialized after a value was passed to constructor', () => {
             store = new Store({name: 'Mark'});
 
             return eventually(() => {
-                expect(store.state).to.deep.equal({name: 'Mark'});
+                expect(store.state).toEqual({name: 'Mark'});
             });
         });
     });
@@ -52,7 +55,7 @@ describe('Store', () => {
             store = new Store(Promise.resolve({name: 'Mark'}));
 
             return eventually(() => {
-                expect(store.state).to.deep.equal({name: 'Mark'});
+                expect(store.state).toEqual({name: 'Mark'});
             });
         });
 
@@ -60,76 +63,76 @@ describe('Store', () => {
             store = new Store(Promise.reject(new Error('Could not load value')));
 
             return eventually(() => {
-                expect(store.state).to.deep.equal(undefined);
+                expect(store.state).toEqual(undefined);
             });
         });
     });
 
     describe('emitState', () => {
         it('should have emitted the intial state when the store was initialized with a state', () => {
-            const onNextSpy = spy();
+            const onNextSpy = jest.fn();
             store = new Store({name: 'Mark'});
             store.subscribe(onNextSpy);
 
             return eventually(() => {
-                expect(store.state).to.deep.equal({name: 'Mark'});
+                expect(store.state).toEqual({name: 'Mark'});
             });
         });
 
         it('should emit the newly set state', () => {
-            const onNextSpy = spy();
+            const onNextSpy = jest.fn();
             store = new Store();
 
             store.setState({name: 'Mark'});
             store.subscribe(onNextSpy);
 
-            expect(onNextSpy).to.be.calledWith({name: 'Mark'});
+            expect(onNextSpy).toHaveBeenCalledWith({name: 'Mark'});
         });
 
         it('should emit an error when the initial promise fails', () => {
-            const onErrorSpy = spy();
+            const onErrorSpy = jest.fn();
             store = new Store(Promise.reject(new Error('Could not load value')));
             store.subscribe(undefined, onErrorSpy);
 
             return eventually(() => {
-                expect(onErrorSpy).to.be.called;
+                expect(onErrorSpy).toHaveBeenCalled();
             });
         });
 
         it('should not emit an undefined value if no inital value has been given', () => {
-            const onNextSpy = spy();
+            const onNextSpy = jest.fn();
             store = new Store();
 
             store.subscribe(onNextSpy);
 
 
             return eventually(() => {
-                expect(onNextSpy).not.to.be.called;
+                expect(onNextSpy).not.toHaveBeenCalled();
             });
         });
     });
 
     describe('setState', () => {
         it('should be a method', () => {
-            expect(store.setState).to.be.instanceof(Function);
+            expect(store.setState).toBeInstanceOf(Function);
         });
 
         it('should set the state', () => {
             store.setState({name: 'Mark'});
 
-            expect(store.state).to.deep.equal({name: 'Mark'});
+            expect(store.state).toEqual({name: 'Mark'});
         });
     });
 
     describe('getState', () => {
         it('should be a method', () => {
-            expect(store.getState).to.be.instanceof(Function);
+            expect(store.getState).toBeInstanceOf(Function);
         });
 
         it('should return the set state', () => {
             store.setState({name: 'Mark'});
 
-            expect(store.getState()).to.deep.equal({name: 'Mark'});
+            expect(store.getState()).toEqual({name: 'Mark'});
         });
     });
 
@@ -141,8 +144,8 @@ describe('Store', () => {
             const userStore = new UserStore({name: 'Mark', userName: 'markpo'});
 
             return eventually(() => {
-                expect(userStore).to.be.instanceof(Store);
-                expect(userStore.state).to.deep.equal({name: 'Mark', userName: 'markpo'});
+                expect(userStore).toBeInstanceOf(Store);
+                expect(userStore.state).toEqual({name: 'Mark', userName: 'markpo'});
             });
         });
     });
@@ -151,7 +154,7 @@ describe('Store', () => {
         it('should work as expected', (done) => {
             new Store({name: 'Mark'})
                 .subscribe((value) => {
-                    expect(value).to.deep.equal({name: 'Mark'});
+                    expect(value).toEqual({name: 'Mark'});
                     done();
                 });
         });
@@ -159,7 +162,7 @@ describe('Store', () => {
         it('should throttle the output', () => {
             store = Store.create();
 
-            const e1 = cold('--a--b--c---|', { a: 'John', b: 'Mark', c: 'Jim' });
+            const e1 = asyncCold('--a--b--c---|', { a: 'John', b: 'Mark', c: 'Jim' });
             const r1 =      '--a----------';
 
             const o1 = e1.flatMap((v) => {
@@ -169,7 +172,7 @@ describe('Store', () => {
                 .throttleTime(100);
 
 
-            expectObservable(o1).toBe(r1, { a: { name: 'John' }});
+            expectObs(o1).toBe(r1, { a: { name: 'John' }});
         });
 
         it('should still receive replayed values', (done) => {
@@ -178,46 +181,46 @@ describe('Store', () => {
             store.setState({name: 'John'});
 
             store.subscribe((value) => {
-                expect(value).to.deep.equal({name: 'John'});
+                expect(value).toEqual({name: 'John'});
                 done();
             });
         });
 
         it('should not call completed', () => {
-            const completedSpy = spy();
+            const completedSpy = jest.fn();
             store = new Store({name: 'Mark'});
 
             store.setState({name: 'John'});
 
             store.subscribe(() => {}, () => {}, completedSpy);
 
-            expect(completedSpy).not.to.be.called;
+            expect(completedSpy).not.toHaveBeenCalled();
         });
     });
 
     describe('setSource()', () => {
         it('should be a method', () => {
-            expect(store.setSource).to.be.instanceof(Function);
+            expect(store.setSource).toBeInstanceOf(Function);
         });
 
         it('should call setState with the result of the passed Observable', () => {
-            spy(store, 'setState');
+            jest.spyOn(store, 'setState');
 
             store.setSource(Observable.of({name: 'John'}));
 
-            expect(store.setState).to.be.called;
+            expect(store.setState).toHaveBeenCalled();
         });
 
         it('should emit an error when the source emits an error', (done) => {
-            spy(store, 'setState');
+            jest.spyOn(store, 'setState');
 
             store.setSource(Observable.throw('Failed to load'));
 
-            expect(store.setState).not.to.be.called;
+            expect(store.setState).not.toHaveBeenCalled();
 
             store.subscribe(() => {
             }, (error) => {
-                expect(error).to.equal('Rethrown error from source: Failed to load');
+                expect(error).toBe('Rethrown error from source: Failed to load');
                 done();
             });
         });
@@ -225,7 +228,7 @@ describe('Store', () => {
 
     describe('create()', () => {
         it('should create a store object', () => {
-            expect(Store.create()).to.be.instanceof(Store);
+            expect(Store.create()).toBeInstanceOf(Store);
         });
 
         it('should have initialzed the Store with the value of geInitialState', () => {
@@ -236,7 +239,7 @@ describe('Store', () => {
             });
 
             store.subscribe(value => {
-                expect(value).to.deep.equal({name: 'Mark'});
+                expect(value).toEqual({name: 'Mark'});
             });
         });
 
@@ -251,7 +254,7 @@ describe('Store', () => {
                 },
             });
 
-            expect(store.getMyCustomValue).to.be.instanceof(Function);
+            expect(store.getMyCustomValue).toBeInstanceOf(Function);
         });
 
         it('should not add getInitialState to the result object', () => {
@@ -265,7 +268,7 @@ describe('Store', () => {
                 },
             });
 
-            expect(store.getInitialState).to.be.undefined;
+            expect(store.getInitialState).toBe(undefined);
         });
 
         it('should copy properties from the object onto the created object', () => {
@@ -276,7 +279,7 @@ describe('Store', () => {
                 },
             });
 
-            expect(store.name).to.equal('MyStore');
+            expect(store.name).toBe('MyStore');
         });
     });
 });

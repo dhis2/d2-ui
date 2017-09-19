@@ -35,8 +35,8 @@ describe('DataTableContextMenu component', () => {
 
     beforeEach(() => {
         actionList = {
-            edit: sinon.spy(),
-            translate: sinon.spy(),
+            edit: jest.fn(),
+            translate: jest.fn(),
         };
 
         contextMenuComponent = renderComponent({
@@ -51,7 +51,7 @@ describe('DataTableContextMenu component', () => {
     it('should show the actions based on the actionList', () => {
         const actionItems = contextMenuComponent.find(MenuItem);
 
-        expect(actionItems).to.have.length(2);
+        expect(actionItems).toHaveLength(2);
     });
 
     it('should call the action from the action list', () => {
@@ -59,24 +59,24 @@ describe('DataTableContextMenu component', () => {
 
         actionItems.first().simulate('click');
 
-        expect(actionList.edit).to.be.called;
+        expect(actionList.edit).toHaveBeenCalled();
     });
 
     it('should render the icon based on the name', () => {
         const translateButton = contextMenuComponent.find(MenuItem).first();
 
-        expect(translateButton.props().leftIcon.props.children).to.equal('mode_edit');
+        expect(translateButton.props().leftIcon.props.children).toBe('mode_edit');
     });
 
     it('should render the name of the field as an icon name if no icon was provided', () => {
         const translateButton = contextMenuComponent.find(MenuItem).at(1);
 
-        expect(translateButton.props().leftIcon.props.children).to.equal('translate');
+        expect(translateButton.props().leftIcon.props.children).toBe('translate');
     });
 
     it('should render the action text a translated strings', () => {
         const editButton = contextMenuComponent.find(MenuItem).first();
 
-        expect(editButton.props().primaryText).to.equal('edit_translated');
+        expect(editButton.props().primaryText).toBe('edit_translated');
     });
 });

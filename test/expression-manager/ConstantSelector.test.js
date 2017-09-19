@@ -15,17 +15,17 @@ xdescribe('ConstantSelector', () => {
     });
 
     it('should render the ConstantSelector component', () => {
-        expect(constantSelector).to.have.length(1);
+        expect(constantSelector).toHaveLength(1);
     });
 
     it('should render a ListSelectWithLocalSearch component', () => {
-        expect(constantSelector.find(ListSelectWithLocalSearch)).to.have.length(1);
+        expect(constantSelector.find(ListSelectWithLocalSearch)).toHaveLength(1);
     });
 
     it('should pass the props passed to the ConstantSelector to the ListSelect', () => {
         constantSelector = renderComponent({myName: 'John'});
         const listSelect = constantSelector.find(ListSelectWithLocalSearch);
 
-        expect(listSelect.props()).to.deep.equal(constantSelector.props());
+        expect(listSelect.props()).toEqual(constantSelector.props());
     });
 });

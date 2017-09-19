@@ -24,13 +24,13 @@ describe('FormField component', () => {
     });
 
     it('should have the component name as a class', () => {
-        expect(formFieldComponent.hasClass('form-field')).to.be.true;
+        expect(formFieldComponent.hasClass('form-field')).toBe(true);
     });
 
     it('should render the material ui component', () => {
         const renderedMaterialUIComponent = formFieldComponent.find(TextField);
 
-        expect(renderedMaterialUIComponent).to.have.length(1);
+        expect(renderedMaterialUIComponent).toHaveLength(1);
     });
 
     it('should pass the fieldOptions as props to the type component', () => {
@@ -42,19 +42,19 @@ describe('FormField component', () => {
 
         const renderedMaterialUIComponent = formFieldComponent.find(TextField);
 
-        expect(renderedMaterialUIComponent.props().multiLine).to.be.true;
+        expect(renderedMaterialUIComponent.props().multiLine).toBe(true);
     });
 
     it('should correctly render the value', () => {
         formFieldComponent =
-        formFieldComponent = renderComponent({...fieldConfig, value: 'Mark', onChange: spy()});
+        formFieldComponent = renderComponent({...fieldConfig, value: 'Mark', onChange: jest.fn()});
         const renderedMaterialUIComponent = formFieldComponent.find(TextField);
 
-        expect(renderedMaterialUIComponent.props().defaultValue).to.equal('Mark');
+        expect(renderedMaterialUIComponent.props().defaultValue).toBe('Mark');
     });
 
     it('should call the onChange when the value was changed', () => {
-        const onChangeSpy = spy();
+        const onChangeSpy = jest.fn();
 
         formFieldComponent = renderComponent({
             ...fieldConfig,
@@ -66,14 +66,14 @@ describe('FormField component', () => {
 
         renderedMaterialUIComponent.simulate('change');
 
-        expect(onChangeSpy).to.be.called;
+        expect(onChangeSpy).toHaveBeenCalled();
     });
 
     describe('templateOptions', () => {
         it('should pass template options as props to the `type` component', () => {
             const renderedMaterialUIComponent = formFieldComponent.find(TextField);
 
-            expect(renderedMaterialUIComponent.props().floatingLabelText).to.equal('keyEmailPort');
+            expect(renderedMaterialUIComponent.props().floatingLabelText).toBe('keyEmailPort');
         });
     });
 });

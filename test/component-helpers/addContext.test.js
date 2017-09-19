@@ -3,7 +3,7 @@ import addContext from '../../src/component-helpers/addContext';
 
 describe('addContext', () => {
     it('should be a function', () => {
-        expect(addContext).to.be.a('function');
+        expect(typeof addContext).toBe('function');
     });
 
     it('should be return the passed in class with the context added to it', () => {
@@ -13,7 +13,7 @@ describe('addContext', () => {
             name: React.PropTypes.object,
         });
 
-        expect(componentWithContext.contextTypes).to.deep.equal({ name: React.PropTypes.object });
+        expect(componentWithContext.contextTypes).toEqual({ name: React.PropTypes.object });
     });
 
     it('should also add the contextTypes to a function component', () => {
@@ -23,7 +23,7 @@ describe('addContext', () => {
             name: React.PropTypes.string,
         });
 
-        expect(componentWithD2Context.contextTypes).to.deep.equal({ name: React.PropTypes.string });
+        expect(componentWithD2Context.contextTypes).toEqual({ name: React.PropTypes.string });
     });
 
     it('should respect the contextTypes added earlier', () => {
@@ -34,6 +34,6 @@ describe('addContext', () => {
             name: React.PropTypes.string,
         });
 
-        expect(componentWithD2Context.contextTypes).to.deep.equal({ name: React.PropTypes.string,  isAmazing: React.PropTypes.bool });
+        expect(componentWithD2Context.contextTypes).toEqual({ name: React.PropTypes.string,  isAmazing: React.PropTypes.bool });
     });
 });

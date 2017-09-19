@@ -20,11 +20,11 @@ describe('DataTable component', () => {
 
     describe('initial state', () => {
         it('should have set the default columns', () => {
-            expect(dataTableComponent.state('columns')).to.deep.equal(['name', 'lastUpdated']);
+            expect(dataTableComponent.state('columns')).toEqual(['name', 'lastUpdated']);
         });
 
         it('should have a data-table row', () => {
-            expect(dataTableComponent.hasClass('data-table')).to.be.true;
+            expect(dataTableComponent.hasClass('data-table')).toBe(true);
         });
     });
 
@@ -34,7 +34,7 @@ describe('DataTable component', () => {
 
             dataTableComponent = renderComponent({columns});
 
-            expect(dataTableComponent.state('columns')).to.deep.equal(['name', 'code', 'lastUpdated']);
+            expect(dataTableComponent.state('columns')).toEqual(['name', 'code', 'lastUpdated']);
         });
 
         it('should not set the columns if the column value is not an array of strings', () => {
@@ -42,20 +42,20 @@ describe('DataTable component', () => {
 
             dataTableComponent = renderComponent({columns});
 
-            expect(dataTableComponent.state('columns')).to.deep.equal(['name', 'lastUpdated']);
+            expect(dataTableComponent.state('columns')).toEqual(['name', 'lastUpdated']);
         });
 
         it('should generate the headers wrap', () => {
-            expect(dataTableComponent.find('.data-table__headers')).to.have.length(1);
+            expect(dataTableComponent.find('.data-table__headers')).toHaveLength(1);
         });
 
         it('should generate the correct number of headers', () => {
-            expect(dataTableComponent.find(DataTableHeader)).to.have.length(3);
+            expect(dataTableComponent.find(DataTableHeader)).toHaveLength(3);
         });
     });
 
     it('should have a property for rows that is empty', () => {
-        expect(dataTableComponent.state().dataRows).to.be.an('array');
+        expect(Array.isArray(dataTableComponent.state().dataRows)).toBe(true);
     });
 
     describe('with source', () => {
@@ -70,23 +70,23 @@ describe('DataTable component', () => {
         });
 
         it('should have set the dataRows onto the state', () => {
-            expect(dataTableComponent.state('dataRows')).to.have.length(3);
+            expect(dataTableComponent.state('dataRows')).toHaveLength(3);
         });
 
         it('should not set the dataRows when the received value is not iterable', () => {
             dataTableComponent = renderComponent({rows: {}});
 
-            expect(dataTableComponent.state('dataRows')).to.have.length(0)
+            expect(dataTableComponent.state('dataRows')).toHaveLength(0)
         });
 
         it('should generate a row wrap', () => {
-            expect(dataTableComponent.find('.data-table__rows')).to.have.length(1);
+            expect(dataTableComponent.find('.data-table__rows')).toHaveLength(1);
         });
 
         it('should update the source when the rows property changes', () => {
             dataTableComponent.setProps({rows: [{uid: 'b1', name: 'BDC', lastUpdated: 'Tomorrow'}]});
 
-            expect(dataTableComponent.state('dataRows').length).to.equal(1);
+            expect(dataTableComponent.state('dataRows').length).toBe(1);
         });
 
         it('should correctly render a map', () => {
@@ -98,7 +98,7 @@ describe('DataTable component', () => {
                 ]),
             });
 
-            expect(dataTableComponent.state('dataRows')).to.have.length(3);
+            expect(dataTableComponent.state('dataRows')).toHaveLength(3);
         });
     });
 
@@ -116,7 +116,7 @@ describe('DataTable component', () => {
         it('should show the context menu when the activeRow state is set', () => {
             const fakeRowSource = {name: 'My item'};
 
-            expect(dataTableComponent.find('.data-table__context-menu')).to.have.length(0);
+            expect(dataTableComponent.find('.data-table__context-menu')).toHaveLength(0);
 
             dataTableComponent.instance()
                 .handleRowClick(
@@ -127,8 +127,8 @@ describe('DataTable component', () => {
 
             const contextMenuComponent = dataTableComponent.find(DataTableContextMenu);
 
-            expect(contextMenuComponent).to.have.length(1);
-            expect(contextMenuComponent.props().target).to.deep.equal(dataTableComponent);
+            expect(contextMenuComponent).toHaveLength(1);
+            expect(contextMenuComponent.props().target).toEqual(dataTableComponent);
         });
 
         it('should hide the context menu when handleRowClick is called twice with the same source', () => {
@@ -141,7 +141,7 @@ describe('DataTable component', () => {
 
             const contextMenuComponent = dataTableComponent.find('.data-table__context-menu');
 
-            expect(contextMenuComponent).to.have.length(0);
+            expect(contextMenuComponent).toHaveLength(0);
         });
 
         it('should not render the context menu when the activeRow is undefined', () => {
@@ -153,12 +153,12 @@ describe('DataTable component', () => {
 
             const contextMenuComponent = dataTableComponent.find('.data-table__context-menu');
 
-            expect(contextMenuComponent).to.have.length(0);
-            expect(dataTableComponent.state('activeRow')).to.be.undefined;
+            expect(contextMenuComponent).toHaveLength(0);
+            expect(dataTableComponent.state('activeRow')).toBe(undefined);
         });
 
         it('should initially not show the contextmenu', () => {
-            expect(dataTableComponent.find('.data-table__context-menu')).to.have.length(0);
+            expect(dataTableComponent.find('.data-table__context-menu')).toHaveLength(0);
         });
 
         // TODO: The Popover requires a dom element as a targetEl prop. Figure out how to test this without a DOM.
@@ -172,13 +172,13 @@ describe('DataTable component', () => {
                 );
             dataTableComponent.update();
 
-            expect(dataTableComponent.find('.data-table__context-menu')).to.have.length(1);
+            expect(dataTableComponent.find('.data-table__context-menu')).toHaveLength(1);
 
             // onRequestClose is called when clicking outside the menu
             dataTableComponent.find(Popover).props().onRequestClose();
             dataTableComponent.update();
 
-            expect(dataTableComponent.find('.data-table__context-menu')).to.have.length(0);
+            expect(dataTableComponent.find('.data-table__context-menu')).toHaveLength(0);
         });
     });
 
@@ -190,7 +190,7 @@ describe('DataTable component', () => {
         beforeEach(() => {
             fakeRowSource = {name: 'My item'};
 
-            isContextActionAllowed = sinon.stub().returns(true);
+            isContextActionAllowed = jest.fn().mockReturnValue(true);
             contextMenuActions  = {
                 edit: () => {},
                 delete: () => {},
@@ -205,11 +205,15 @@ describe('DataTable component', () => {
             dataTableComponent.setState({contextMenuTarget: {}, activeRow: fakeRowSource});
             const passedContextMenuActions = dataTableComponent.find(DataTableContextMenu).props().actions;
 
-            expect(Object.keys(passedContextMenuActions)).to.deep.equal(['edit', 'delete', 'translate']);
+            expect(Object.keys(passedContextMenuActions)).toEqual(['edit', 'delete', 'translate']);
         });
 
         it('should not pass actions that are not allowed', () => {
-            isContextActionAllowed.withArgs(fakeRowSource, 'delete').returns(false);
+            const falseForDeleteActionType = (source, action) => action !== 'delete';
+
+            isContextActionAllowed
+                .mockReset()
+                .mockImplementation(falseForDeleteActionType);
 
             dataTableComponent = renderComponent({isContextActionAllowed, contextMenuActions});
 
@@ -217,7 +221,7 @@ describe('DataTable component', () => {
             dataTableComponent.setState({contextMenuTarget: {}, activeRow: fakeRowSource});
             const passedContextMenuActions = dataTableComponent.find(DataTableContextMenu).props().actions;
 
-            expect(Object.keys(passedContextMenuActions)).to.deep.equal(['edit', 'translate']);
+            expect(Object.keys(passedContextMenuActions)).toEqual(['edit', 'translate']);
         });
     });
 });

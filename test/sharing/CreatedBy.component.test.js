@@ -23,6 +23,6 @@ describe('Sharing: CreatedBy component', () => {
         };
 
         renderComponent({ user: userObject });
-        expect(createdByComponent.text()).to.equal('created_by_translated: Tom Wakiki');
+        expect(createdByComponent.text()).toBe('created_by_translated: Tom Wakiki');
     });
 });
