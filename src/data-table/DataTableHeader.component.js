@@ -17,7 +17,7 @@ const DataTableHeader = React.createClass({
             {
                 'data-table__headers__header--even': !this.props.isOdd,
                 'data-table__headers__header--odd': this.props.isOdd,
-            }
+            },
         );
 
         return (

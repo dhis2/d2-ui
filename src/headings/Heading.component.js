@@ -1,4 +1,4 @@
-import {PropTypes, default as React} from 'react';
+import { PropTypes, default as React } from 'react';
 
 function Heading(props) {
     const {
@@ -6,10 +6,10 @@ function Heading(props) {
         text,
         style,
         children,
-        ...other,
+        ...other
     } = props;
 
-    const tag = {type: level <= 6 ? `h${level}` : 'span'};
+    const tag = { type: level <= 6 ? `h${level}` : 'span' };
     const headingStyle = {
         fontSize: 24,
         fontWeight: 300,

@@ -14,7 +14,7 @@ const Form = React.createClass({
                 type: React.PropTypes.func.isRequired,
                 fieldOptions: React.PropTypes.object,
                 validators: React.PropTypes.arrayOf(React.PropTypes.func),
-            })
+            }),
         ).isRequired,
         formValidator: React.PropTypes.object,
         onFormFieldUpdate: React.PropTypes.func,
@@ -49,7 +49,7 @@ const Form = React.createClass({
     },
 
     componentWillUnmount() {
-        this.disposables.forEach(d => {
+        this.disposables.forEach((d) => {
             d.unsubscribe();
         });
     },
@@ -57,7 +57,7 @@ const Form = React.createClass({
     renderFieldsFromFieldConfigs() {
         return this.props.fieldConfigs
             .filter(fieldConfig => fieldConfig.type)
-            .map(fieldConfig => {
+            .map((fieldConfig) => {
                 const fieldValue = this.props.source && this.props.source[fieldConfig.name];
                 const updateEvent = fieldConfig.updateEvent === 'onBlur' ? 'onBlur' : 'onChange';
                 const validationStatus = this.props.formValidator.getStatusFor(fieldConfig.name);
@@ -105,7 +105,7 @@ const Form = React.createClass({
         this.props.onFormFieldUpdate && this.props.onFormFieldUpdate(
             fieldConfig.name, fieldConfig.beforeUpdateConverter ?
                 fieldConfig.beforeUpdateConverter(event.target.value, fieldConfig) :
-                event.target.value
+                event.target.value,
         );
     },
 });

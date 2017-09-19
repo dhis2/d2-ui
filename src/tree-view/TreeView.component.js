@@ -53,7 +53,10 @@ class TreeView extends React.Component {
             arrow: {
                 display: 'inline-block',
                 position: 'absolute',
-                left: -16, top: -1, width: 11, height: 16,
+                left: -16,
+                top: -1,
+                width: 11,
+                height: 16,
                 paddingLeft: 4,
                 textAlign: 'center',
                 cursor: 'pointer',
@@ -86,8 +89,8 @@ class TreeView extends React.Component {
 
         // Render children if not collapsed, or (persistent and has been expanded)
         const children = (!this.state.collapsed || (this.props.persistent && this.state.hasBeenExpanded)) && (
-                <div className="children" style={styles.children}>{this.props.children}</div>
-            );
+            <div className="children" style={styles.children}>{this.props.children}</div>
+        );
 
         const className = `tree-view ${this.props.className}`;
         return <div className={className} style={Object.assign(styles.tree, this.props.style)}>{label}{children}</div>;

@@ -1,7 +1,7 @@
 import React from 'react';
-import DropDown from '../form-fields/DropDown.component';
 import RaisedButton from 'material-ui/RaisedButton/RaisedButton';
 import LinearProgress from 'material-ui/LinearProgress/LinearProgress';
+import DropDown from '../form-fields/DropDown.component';
 
 const style = {
     button: {
@@ -53,7 +53,7 @@ function renderDropdown(menuItems, label) {
             {this.renderControls()}
         </div>
     );
-};
+}
 
 function renderControls() {
     const disabled = this.state.loading || !this.state.selection;

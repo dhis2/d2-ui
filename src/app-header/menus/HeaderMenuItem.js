@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import styles from '../header-bar-styles';
 import { search, setSearchFieldFocusTo } from '../search/search.stores';
 
-const onMouseUp = (link) => () => {
+const onMouseUp = link => () => {
     search('');
     setSearchFieldFocusTo(false);
     window.location = link;
@@ -30,7 +30,7 @@ export default class HeaderMenuItem extends Component {
 
         return (
             <a href={props.action} onMouseUp={onMouseUp(props.action)} style={itemStyle} onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave}>
-                <div><img style={styles.menuItemIcon} src={props.icon}/></div>
+                <div><img style={styles.menuItemIcon} src={props.icon} /></div>
                 <div style={styles.menuItemLabel}>{props.label}</div>
             </a>
         );

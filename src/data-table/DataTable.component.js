@@ -46,52 +46,48 @@ const DataTable = React.createClass({
             }, {});
 
         return (
-                <DataTableContextMenu
-                    target={this.state.contextMenuTarget}
-                    onRequestClose={this._hideContextMenu}
-                    actions={actionsToShow}
-                    activeItem={this.state.activeRow}
-                    icons={this.props.contextMenuIcons}
-                />
+            <DataTableContextMenu
+                target={this.state.contextMenuTarget}
+                onRequestClose={this._hideContextMenu}
+                actions={actionsToShow}
+                activeItem={this.state.activeRow}
+                icons={this.props.contextMenuIcons}
+            />
         );
     },
 
     renderHeaders() {
-        return this.state.columns.map((headerName, index) => {
-            return (
-                <DataTableHeader key={index} isOdd={Boolean(index % 2)} name={headerName} />
-            );
-        });
+        return this.state.columns.map((headerName, index) => (
+            <DataTableHeader key={index} isOdd={Boolean(index % 2)} name={headerName} />
+        ));
     },
 
     renderRows() {
         return this.state.dataRows
-            .map((dataRowsSource, dataRowsId) => {
-                return (
-                    <DataTableRow
-                        key={dataRowsId}
-                        dataSource={dataRowsSource}
-                        columns={this.state.columns}
-                        isActive={this.state.activeRow === dataRowsId}
-                        itemClicked={this.handleRowClick}
-                        primaryClick={this.props.primaryAction || (() => {})}
-                    />
-                );
-            });
+            .map((dataRowsSource, dataRowsId) => (
+                <DataTableRow
+                    key={dataRowsId}
+                    dataSource={dataRowsSource}
+                    columns={this.state.columns}
+                    isActive={this.state.activeRow === dataRowsId}
+                    itemClicked={this.handleRowClick}
+                    primaryClick={this.props.primaryAction || (() => {})}
+                />
+            ));
     },
 
     render() {
         return (
-           <div className="data-table">
-               <div className="data-table__headers">
+            <div className="data-table">
+                <div className="data-table__headers">
                     {this.renderHeaders()}
                     <DataTableHeader />
-               </div>
-               <div className="data-table__rows">
-                   {this.renderRows()}
-               </div>
-               {this.renderContextMenu()}
-           </div>
+                </div>
+                <div className="data-table__rows">
+                    {this.renderRows()}
+                </div>
+                {this.renderContextMenu()}
+            </div>
         );
     },
 

@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import Draft from 'draft-js';
@@ -12,7 +11,6 @@ const {
     EditorState,
     Entity,
     Modifier,
-    DraftEntity,
 } = Draft;
 
 const rawContent = {
@@ -55,22 +53,20 @@ export default class EntityEditorExample extends React.Component {
         };
 
         this.focus = () => this.refs.editor.focus();
-        this.onChange = (editorState) => this.setState({editorState});
+        this.onChange = editorState => this.setState({ editorState });
         this.logState = () => {
             const content = this.state.editorState.getCurrentContent();
             console.log(convertToRaw(content));
         };
 
         this.addEntity = () => {
-
-
             const currentState = this.state.editorState.getCurrentContent();
             const newCurrentState = Modifier.insertText(
                 currentState,
                 this.state.editorState.getSelection(),
                 this.state.dataElementName,
                 undefined,
-                Entity.create('dataElement', 'IMMUTABLE')
+                Entity.create('dataElement', 'IMMUTABLE'),
             );
 
             this.setState({
@@ -110,7 +106,7 @@ export default class EntityEditorExample extends React.Component {
 }
 
 function getEntityStrategy(mutability) {
-    return function(contentBlock, callback) {
+    return function (contentBlock, callback) {
         contentBlock.findEntityRanges(
             (character) => {
                 const entityKey = character.getEntity();
@@ -119,17 +115,17 @@ function getEntityStrategy(mutability) {
                 }
                 return Entity.get(entityKey).getMutability() === mutability;
             },
-            callback
+            callback,
         );
     };
 }
 
 function getDecoratedStyle(mutability) {
     switch (mutability) {
-        case 'IMMUTABLE': return styles.immutable;
-        case 'MUTABLE': return styles.mutable;
-        case 'SEGMENTED': return styles.segmented;
-        default: return null;
+    case 'IMMUTABLE': return styles.immutable;
+    case 'MUTABLE': return styles.mutable;
+    case 'SEGMENTED': return styles.segmented;
+    default: return null;
     }
 }
 
@@ -137,12 +133,12 @@ const TokenSpan = (props) => {
     console.log(Entity.get(props.entityKey));
 
     const style = getDecoratedStyle(
-        Entity.get(props.entityKey).getMutability()
+        Entity.get(props.entityKey).getMutability(),
     );
     return (
         <span {...props} style={style}>
             {props.children}
-          </span>
+        </span>
     );
 };
 
@@ -191,12 +187,12 @@ const styles = {
     },
 };
 
-function FormulaEditor(props, context) {
-    return (
-        <div>
-            Formula Editor here
-        </div>
-    );
-}
+// function FormulaEditor(props, context) {
+//     return (
+//         <div>
+//             Formula Editor here
+//         </div>
+//     );
+// }
 
 // export default FormulaEditor;

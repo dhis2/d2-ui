@@ -78,11 +78,11 @@ class UserSearch extends Component {
             this.setState({ searchResult: [] });
         } else {
             this.props.onSearch(searchText)
-            .then((searchResult) => {
-                const noDuplicates = searchResult.filter(
-                    result => !this.props.currentAccesses.some(access => access.id === result.id));
-                this.setState({ searchResult: noDuplicates });
-            });
+                .then((searchResult) => {
+                    const noDuplicates = searchResult.filter(
+                        result => !this.props.currentAccesses.some(access => access.id === result.id));
+                    this.setState({ searchResult: noDuplicates });
+                });
         }
     }
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ChromePicker from 'react-color/lib/components/chrome/Chrome';
-import {hcl} from 'd3-color';
+import { hcl } from 'd3-color';
 
 export default class ColorPicker extends Component {
     constructor(...args) {
@@ -13,17 +13,17 @@ export default class ColorPicker extends Component {
     }
 
     handleOpen = () => {
-        this.setState({open: true});
+        this.setState({ open: true });
     }
 
     handleClose = () => {
-        this.setState({open: false});
+        this.setState({ open: false });
     }
 
     handleChange = (color) => {
         const hexColor = color.hex.toUpperCase();
 
-        this.setState({color: hexColor});
+        this.setState({ color: hexColor });
         this.props.onChange(hexColor);
     }
 
@@ -58,7 +58,7 @@ export default class ColorPicker extends Component {
                 position: 'absolute',
                 top: -207,
                 left: 120,
-            }
+            },
         };
 
         return (
@@ -66,13 +66,13 @@ export default class ColorPicker extends Component {
                 <div style={styles.color} onClick={this.handleOpen}>{color}</div>
 
                 {this.state.open ? <div is="popover">
-                    <div style={styles.cover} onClick={this.handleClose}/>
+                    <div style={styles.cover} onClick={this.handleClose} />
                     <div style={styles.picker}>
                         <ChromePicker color={this.state.color} onChange={this.handleChange} />
                     </div>
                 </div> : null}
             </div>
-        )
+        );
     }
 }
 

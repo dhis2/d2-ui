@@ -3,7 +3,7 @@ import { isArray } from 'lodash/fp';
 import log from 'loglevel';
 
 function TwoPanelSelector(props) {
-    const {children, childWrapStyle, sizeRatio, ...otherProps} = props;
+    const { children, childWrapStyle, sizeRatio, ...otherProps } = props;
     const styles = {
         mainStyle: {
             flex: 1,

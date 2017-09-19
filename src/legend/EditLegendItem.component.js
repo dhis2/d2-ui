@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import FlatButton from 'material-ui/FlatButton/FlatButton';
+import Dialog from 'material-ui/Dialog/Dialog';
+import { config } from 'd2/lib/d2';
 import { legendItemStore, legendItemStore$, onFieldChange, onFormStatusChange } from './LegendItem.store';
 import { setDialogStateToAction } from './LegendItem.actions';
 import withStateFrom from '../component-helpers/withStateFrom';
 import FormBuilder from '../forms/FormBuilder.component';
-import FlatButton from 'material-ui/FlatButton/FlatButton';
-import Dialog from 'material-ui/Dialog/Dialog';
-import { config } from 'd2/lib/d2';
 
 config.i18n.strings.add('ok');
 config.i18n.strings.add('cancel');
@@ -27,15 +27,15 @@ function isCloseDisabled(isValid) {
 }
 
 // props, context
-export function EditLegendItem({ fieldConfigs = [], open = false, onItemUpdate, isValid}, { d2 }) {
+export function EditLegendItem({ fieldConfigs = [], open = false, onItemUpdate, isValid }, { d2 }) {
     const onCancel = () => {
         setDialogStateToAction(false);
-    }
+    };
 
     const onClose = () => {
         setDialogStateToAction(false);
         onItemUpdate();
-    }
+    };
 
     const actions = [
         <FlatButton

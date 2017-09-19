@@ -30,9 +30,7 @@ export function getWindowWidth() {
     return Math.max(window.document.documentElement.clientWidth, window.innerWidth || 0);
 }
 
-export const toggleStyle = curry(function toggleStyle(predicateFn, whenTrue, whenFalse) {
-    return predicateFn() ? whenTrue : whenFalse;
-});
+export const toggleStyle = curry((predicateFn, whenTrue, whenFalse) => (predicateFn() ? whenTrue : whenFalse));
 
 export const whenWidthLargerThan1150 = toggleStyle(() => getWindowWidth() > 1150);
 
@@ -66,7 +64,7 @@ if (global.document) {
         .debounceTime(300)
         .subscribe(
             () => Object.assign(styles.searchResults, { maxHeight: getSearchResultsHeight() }),
-            log.error
+            log.error,
         );
 }
 
@@ -204,7 +202,8 @@ styles = {
 
     moreAppsButtonWrap: {
         width: '100%',
-        padding: '1rem', boxSizing: 'border-box',
+        padding: '1rem',
+        boxSizing: 'border-box',
     },
 
     clearIcon: {

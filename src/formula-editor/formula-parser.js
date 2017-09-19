@@ -4,11 +4,11 @@ import { map } from 'lodash/fp';
 import { sortBy } from 'lodash/fp';
 
 // parseFormula :: regexp -> formula -> [object]
-const parseFormula = curry(function parseFormula(regexp, formula) {
+const parseFormula = curry((regexp, formula) => {
     const matches = [];
     let match;
 
-    while(match = regexp.exec(formula)) {
+    while (match = regexp.exec(formula)) {
         matches.push(match);
     }
 
@@ -38,12 +38,12 @@ function getCharForIndex(index) {
     return getCharForIndex(Math.floor(index / 26) - 1) + getCharForIndex((index % 26));
 }
 
-const addVariableNames = (parts) => parts.map((part, index) => Object.assign({}, part, { displaySubstitute: getCharForIndex(index) }));
+const addVariableNames = parts => parts.map((part, index) => Object.assign({}, part, { displaySubstitute: getCharForIndex(index) }));
 
-const extractFormulaParts = (formula) => [].concat(
-        compose(addVariableNames, map(createFormulaPartObject('dataElement')), extractDataElements)(formula),
-        compose(map(createFormulaPartObject('operator')), extractOperators)(formula),
-        compose(map(createFormulaPartObject('bracket')), extractBrackets)(formula)
+const extractFormulaParts = formula => [].concat(
+    compose(addVariableNames, map(createFormulaPartObject('dataElement')), extractDataElements)(formula),
+    compose(map(createFormulaPartObject('operator')), extractOperators)(formula),
+    compose(map(createFormulaPartObject('bracket')), extractBrackets)(formula),
 );
 
 const getOrderedFormulaParts = compose(sortBy('index'), extractFormulaParts);

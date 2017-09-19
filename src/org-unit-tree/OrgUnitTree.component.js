@@ -156,7 +156,7 @@ class OrgUnitTree extends React.Component {
         }
 
         if (this.state.loading || true) {
-            return <div style={styles.progress}><LinearProgress style={styles.progressBar}/></div>;
+            return <div style={styles.progress}><LinearProgress style={styles.progressBar} /></div>;
         }
 
         return null;
@@ -170,8 +170,6 @@ class OrgUnitTree extends React.Component {
             this.state.children.length > 0;
         // True if a click handler exists
         const isSelectable = !!this.props.onSelectClick || !!this.props.onClick; // TODO: Remove onClick in v26
-        // True if this OU is currently selected
-        const selectedHasPath = this.props.selected && this.props.selected.reduce((acc, ou) => acc || ou.includes('/'), false);
         const pathRegEx = new RegExp(`/${currentOu.id}$`);
         const memberRegEx = new RegExp(`/${currentOu.id}`);
         const isSelected = this.props.selected && this.props.selected.some(ou => pathRegEx.test(ou));
@@ -204,11 +202,18 @@ class OrgUnitTree extends React.Component {
         };
 
         const label = (
-            <div style={labelStyle}
-                 onClick={(canBecomeCurrentRoot && setCurrentRoot) || (isSelectable && this.handleSelectClick)}>
+            <div
+                style={labelStyle}
+                onClick={(canBecomeCurrentRoot && setCurrentRoot) || (isSelectable && this.handleSelectClick)}
+            >
                 {isSelectable && !this.props.hideCheckboxes && (
-                    <input type="checkbox" readOnly disabled={!isSelectable} checked={isSelected}
-                           onClick={this.handleSelectClick}/>
+                    <input
+                        type="checkbox"
+                        readOnly
+                        disabled={!isSelectable}
+                        checked={isSelected}
+                        onClick={this.handleSelectClick}
+                    />
                 )}
                 {currentOu.displayName}
                 {hasChildren && !this.props.hideMemberCount && !!memberCount && (
@@ -234,18 +239,19 @@ class OrgUnitTree extends React.Component {
         }
 
         return (
-            <div onClick={isSelectable && this.handleSelectClick}
-                 className="orgunit without-children"
-                 style={ouContainerStyle}
+            <div
+                onClick={isSelectable && this.handleSelectClick}
+                className="orgunit without-children"
+                style={ouContainerStyle}
             >
-                <div style={styles.spacer}></div>
+                <div style={styles.spacer} />
                 {label}
             </div>
         );
     }
 }
 
-function orgUnitPathPropValidator (propValue, key, componentName, location, propFullName) {
+function orgUnitPathPropValidator(propValue, key, componentName, location, propFullName) {
     if (!/(\/[a-zA-Z][a-zA-Z0-9]{10})+/.test(propValue[key])) {
         return new Error(`Invalid org unit path \`${propValue[key]}\` supplied to \`${componentName}.${propFullName}\``);
     }

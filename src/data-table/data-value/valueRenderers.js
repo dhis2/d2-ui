@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
+import { isNil } from 'lodash/fp';
 import Color from './Color.component';
 import Translate from '../../i18n/Translate.component';
-import { isNil } from 'lodash/fp';
 
-function TextValue({ value = '', columnName }) {
+function TextValue({ value = '' }) {
     const textWrapStyle = {
         width: '100%',
         textOverflow: 'ellipsis',
@@ -48,10 +48,10 @@ class DateValue extends PureComponent {
         // Get the locale from the userSettings
         this.context.d2.currentUser.userSettings
             .get('keyUiLocale')
-            .then((uiLocale) => this.setState({ uiLocale }));
+            .then(uiLocale => this.setState({ uiLocale }));
     }
 
-    render () {
+    render() {
         const displayDate = getDateToShowInList(this.props.value, this.state.uiLocale);
 
         return (
@@ -68,7 +68,7 @@ function ObjectWithDisplayName(props) {
     return (<TextValue {...props} value={textValue} />);
 }
 
-const dhis2DateFormat = /^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{2,3}$/
+const dhis2DateFormat = /^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{2,3}$/;
 function isDateValue({ valueType, value }) {
     return valueType === 'DATE' || dhis2DateFormat.test(value);
 }
@@ -81,7 +81,7 @@ function isObjectWithDisplayName({ value }) {
     return value && (value.displayName || value.name);
 }
 
-function PublicAccessValue({ columnName, value }) {
+function PublicAccessValue({ value }) {
     if (value) {
         if (value === 'rw------') {
             return <Translate>public_can_edit</Translate>;
@@ -151,7 +151,7 @@ export function addValueRenderer(checker, component) {
  */
 export const findValueRenderer = (valueDetails) => {
     const valueCheckers = valueRenderers.map(([checker]) => checker);
-    const checkerIndex = valueCheckers.findIndex(checker => checker(valueDetails))
+    const checkerIndex = valueCheckers.findIndex(checker => checker(valueDetails));
 
     return (valueRenderers[checkerIndex] && valueRenderers[checkerIndex][1]) || TextValue;
 };

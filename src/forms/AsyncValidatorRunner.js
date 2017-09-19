@@ -72,15 +72,11 @@ export default class AsyncValidatorRunner {
             // Only process the latest value within the specified time window
             .debounceTime(this.debounceTimeInMs, this.scheduler)
             // .do((v) => console.log(v.value))
-            .map(field => {
-                return Observable.fromPromise(runValidatorFunctions(field.asyncValidators, field.value))
-                    .map((status) => {
-                        return Object.assign(status, {fieldName: field.fieldName, value: field.value});
-                    });
-            })
+            .map(field => Observable.fromPromise(runValidatorFunctions(field.asyncValidators, field.value))
+                .map(status => Object.assign(status, { fieldName: field.fieldName, value: field.value })))
             // Flatten all observables in the correct order they should be processed
-            .concatAll()
-            // .do((v) => console.log(v));
+            .concatAll();
+        // .do((v) => console.log(v));
     }
 
     /**

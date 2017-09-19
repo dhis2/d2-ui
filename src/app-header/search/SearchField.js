@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import { findDOMNode } from 'react-dom';
-import styles, { MENU_ITEM_WIDTH } from '../header-bar-styles';
+import { Observable } from 'rxjs';
+import log from 'loglevel';
 import TextField from 'material-ui/TextField';
-import { search, handleKeyPress, setSearchFieldFocusTo, hideWhenNotHovering } from './search.stores';
 import IconButton from 'material-ui/IconButton';
 import AppsIcon from 'material-ui/svg-icons/navigation/apps';
 import ClearIcon from 'material-ui/svg-icons/content/clear';
 import { white } from 'material-ui/styles/colors';
 import { config } from 'd2/lib/d2';
+import styles, { MENU_ITEM_WIDTH } from '../header-bar-styles';
+import { search, handleKeyPress, setSearchFieldFocusTo, hideWhenNotHovering } from './search.stores';
 import addD2Context from '../../component-helpers/addD2Context';
 import SearchResults from './SearchResults';
-import { Observable } from 'rxjs';
-import log from 'loglevel';
 import withStateFrom from '../../component-helpers/withStateFrom';
 import { searchStore$ } from './search.stores';
 
@@ -35,12 +35,10 @@ class SearchField extends Component {
     componentDidMount() {
         const isCtrlPressed = event => event.ctrlKey;
         const isSpaceKey = event => event.keyCode === 32 || event.key === 'Space';
-        const combineFilters = (...args) => {
-            return function combinedFiltersFn(event) {
-                return args
-                    .map(filterFn => filterFn(event))
-                    .every(filterResult => filterResult === true);
-            };
+        const combineFilters = (...args) => function combinedFiltersFn(event) {
+            return args
+                .map(filterFn => filterFn(event))
+                .every(filterResult => filterResult === true);
         };
 
         // When Ctrl+Space is pressed focus the search field in the header bar
@@ -49,7 +47,7 @@ class SearchField extends Component {
             .filter(combineFilters(isCtrlPressed, isSpaceKey))
             .subscribe(
                 this._focusSearchField,
-                log.error
+                log.error,
             );
     }
 
@@ -74,7 +72,7 @@ class SearchField extends Component {
                         inputStyle={styles.searchFieldInput}
                         onKeyUp={this._onKeyUp}
                         ref="searchBox"
-                        underlineFocusStyle={{borderColor: white}}
+                        underlineFocusStyle={{ borderColor: white }}
                     />
                     {this.props.searchValue ? <ClearIcon style={styles.clearIcon} color={white} onClick={this.clearSearchField} /> : ''}
                 </div>

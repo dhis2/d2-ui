@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import CircularProgress from '../circular-progress/CircularProgress';
 import log from 'loglevel';
 import getDisplayName from 'recompose/getDisplayName';
+import CircularProgress from '../circular-progress/CircularProgress';
 
 export default function withPropsFromObservable(observable, BaseComponent) {
     class WithPropsFromComponent extends Component {
@@ -10,14 +10,14 @@ export default function withPropsFromObservable(observable, BaseComponent) {
 
             this.state = {
                 isLoading: true,
-            }
+            };
         }
 
         componentDidMount() {
             this.disposable = observable
                 .subscribe(
-                    (props) => this.setState({ isLoading: false, ...props }),
-                    (error) => { log.error(`Failed to receive props for ${BaseComponent.displayName}`); log.error(error) }
+                    props => this.setState({ isLoading: false, ...props }),
+                    (error) => { log.error(`Failed to receive props for ${BaseComponent.displayName}`); log.error(error); },
                 );
         }
 

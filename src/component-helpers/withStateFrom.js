@@ -6,8 +6,8 @@ export default function withStateFrom(stateSource$, BaseComponent) {
         componentDidMount() {
             this.disposable = stateSource$
                 .subscribe(
-                    (state) => this.setState(state),
-                    (error) => log.error(error)
+                    state => this.setState(state),
+                    error => log.error(error),
                 );
         }
 

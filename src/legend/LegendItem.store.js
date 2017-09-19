@@ -1,10 +1,9 @@
-import React from 'react';
-import Store from '../store/Store';
 import TextField from 'material-ui/TextField/TextField';
 import { Observable } from 'rxjs';
-import ColorPicker from './ColorPicker.component';
 import { getInstance, config } from 'd2/lib/d2';
-import camelCaseToUnderscores from 'd2-utilizr/lib/camelCaseToUnderscores'
+import camelCaseToUnderscores from 'd2-utilizr/lib/camelCaseToUnderscores';
+import Store from '../store/Store';
+import ColorPicker from './ColorPicker.component';
 import { isRequired } from '../forms/Validators';
 import mapProps from '../component-helpers/mapProps';
 
@@ -18,10 +17,10 @@ export const legendItemStore = Store.create();
 function createFakeEvent(color) {
     return {
         target: {
-            value: color
+            value: color,
         },
     };
-};
+}
 
 export function openEditDialogFor(model) {
     legendItemStore.setState({
@@ -44,12 +43,12 @@ const formFieldsConfigs = [{
         type: 'number',
     },
     validators: [{
-        validator: value => value === '' ? false : true,
+        validator: value => (value !== ''),
         message: 'required',
-    }/*,{
+    }, /* ,{
         validator: value => Number(value) >= Number(legendItemStore.getState().model.endValue) ? false : true,
         message: 'should_be_lower_than_end_value',
-    }*/],
+    } */],
 }, {
     name: 'endValue',
     component: TextField,
@@ -57,19 +56,19 @@ const formFieldsConfigs = [{
         type: 'number',
     },
     validators: [{
-        validator: value => value === '' ? false : true,
+        validator: value => (value !== ''),
         message: 'required',
-    }/*,{
+    }, /* ,{
         validator: value => Number(value) <= Number(legendItemStore.getState().model.startValue) ? false : true,
         message: 'should_be_higher_than_start_value',
-    }*/],
+    } */],
 }, { // Defined in data-table/data-value/Color.component.js
     name: 'color',
-    component: mapProps((props) => ({
+    component: mapProps(props => ({
         color: props.value,
         onChange(color) {
             props.onChange(createFakeEvent(color));
-        }
+        },
     }), ColorPicker),
 }];
 
@@ -82,11 +81,11 @@ export function onFieldChange(fieldName, value) {
 
     legendItemStore.setState({
         ...legendItemStore.getState(),
-        model
+        model,
     });
 }
 
-export function onFormStatusChange({valid}) {
+export function onFormStatusChange({ valid }) {
     legendItemStore.setState({
         ...legendItemStore.getState(),
         isValid: valid,
@@ -109,28 +108,26 @@ export const legendItemStore$ = Observable
             ...state,
             fieldConfigs: fieldConfigs
                 .map(fieldConfig => ({
-                        ...fieldConfig,
-                        props: {
-                            ...fieldConfig.props,
-                            floatingLabelText: d2.i18n.getTranslation(camelCaseToUnderscores(fieldConfig.name))
-                        },
-                        validators: (fieldConfig.validators || [])
-                            .map(validator => ({
-                                ...validator,
-                                message: d2.i18n.getTranslation(validator.message)
-                            }))
-                    })
-                )
-        })
-    ) // Return a combined object (will return an array if we don't pass it)
-    .map(state => {
-        return {
-            ...state,
-            fieldConfigs: state.fieldConfigs
-                .map(fieldConfig => ({
                     ...fieldConfig,
-                    value: state.model[fieldConfig.name],
-                }))
-        }
-    });
+                    props: {
+                        ...fieldConfig.props,
+                        floatingLabelText: d2.i18n.getTranslation(camelCaseToUnderscores(fieldConfig.name)),
+                    },
+                    validators: (fieldConfig.validators || [])
+                        .map(validator => ({
+                            ...validator,
+                            message: d2.i18n.getTranslation(validator.message),
+                        })),
+                }),
+                ),
+        }),
+    ) // Return a combined object (will return an array if we don't pass it)
+    .map(state => ({
+        ...state,
+        fieldConfigs: state.fieldConfigs
+            .map(fieldConfig => ({
+                ...fieldConfig,
+                value: state.model[fieldConfig.name],
+            })),
+    }));
 

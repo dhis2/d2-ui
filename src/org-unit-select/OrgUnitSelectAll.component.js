@@ -40,7 +40,7 @@ class OrgUnitSelectAll extends React.Component {
     handleSelectAll() {
         if (this.props.currentRoot) {
             this.setState({ loading: true });
-            this.getDescendantOrgUnits().then(orgUnits => {
+            this.getDescendantOrgUnits().then((orgUnits) => {
                 this.setState({ loading: false });
                 this.addToSelection(orgUnits);
             });
@@ -50,7 +50,7 @@ class OrgUnitSelectAll extends React.Component {
             this.setState({ loading: true });
 
             this.context.d2.models.organisationUnits.list({ fields: 'id,path', paging: false })
-                .then(orgUnits => {
+                .then((orgUnits) => {
                     const ous = orgUnits.toArray().map(ou => ou.path);
                     this.setState({
                         cache: ous,
@@ -59,7 +59,7 @@ class OrgUnitSelectAll extends React.Component {
 
                     this.props.onUpdateSelection(ous.slice());
                 })
-                .catch(err => {
+                .catch((err) => {
                     this.setState({ loading: false });
                     log.error('Failed to load all org units:', err);
                 });
@@ -78,10 +78,10 @@ class OrgUnitSelectAll extends React.Component {
     handleDeselectAll() {
         if (this.props.currentRoot) {
             this.setState({ loading: true });
-            this.getDescendantOrgUnits().then(orgUnits => {
+            this.getDescendantOrgUnits().then((orgUnits) => {
                 this.setState({ loading: false });
                 this.removeFromSelection(orgUnits);
-            })
+            });
         } else {
             this.props.onUpdateSelection([]);
         }
