@@ -4,7 +4,7 @@ import CircularProgress from 'material-ui/CircularProgress';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { shallow } from 'enzyme';
 import * as d2 from 'd2/lib/d2';
-import D2UIApp from '..//D2UIApp';
+import D2UIApp from '../D2UIApp';
 
 const identity = v => v;
 const isNotEqualTo = (first) => (second) => first !== second;
