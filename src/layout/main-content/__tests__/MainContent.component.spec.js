@@ -22,7 +22,7 @@ describe('<MainContent />', () => {
             <MainContent>
                 <h1>Some heading</h1>
                 <div>Some content</div>
-            </MainContent>
+            </MainContent>,
         );
 
         expect(component.props().children).toEqual([

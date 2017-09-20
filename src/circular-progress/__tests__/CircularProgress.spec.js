@@ -4,7 +4,7 @@ import { default as MUICircularProgress } from 'material-ui/CircularProgress/Cir
 import CircularProgress from '../CircularProgress';
 
 describe('CircularProgress', () => {
-    const renderProgress = (props) => shallow(<CircularProgress {...props} />);
+    const renderProgress = props => shallow(<CircularProgress {...props} />);
 
     it('should render the material-ui CircularProgress component', () => {
         expect(renderProgress().type()).toBe(MUICircularProgress);

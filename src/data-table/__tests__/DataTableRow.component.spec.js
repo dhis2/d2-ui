@@ -1,5 +1,5 @@
 import React from 'react';
-import {shallow} from 'enzyme';
+import { shallow } from 'enzyme';
 import DataTableRow from '../DataTableRow.component';
 
 describe('DataTableRow component', () => {
@@ -8,7 +8,7 @@ describe('DataTableRow component', () => {
 
     function renderComponent(props = {}) {
         return shallow(
-            <DataTableRow {...Object.assign({contextMenuActions: {}}, props)} />,
+            <DataTableRow {...Object.assign({ contextMenuActions: {} }, props)} />,
             {
                 context: {
                     d2: {
@@ -19,7 +19,7 @@ describe('DataTableRow component', () => {
                         },
                     },
                 },
-            }
+            },
         );
     }
 
@@ -49,7 +49,7 @@ describe('DataTableRow component', () => {
             },
         };
 
-        dataTableRow = renderComponent({dataSource: dataElement, columns: ['name', 'code', 'objectValue1', 'objectValue2']});
+        dataTableRow = renderComponent({ dataSource: dataElement, columns: ['name', 'code', 'objectValue1', 'objectValue2'] });
     });
 
     it('should render one row', () => {

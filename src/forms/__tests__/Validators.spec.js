@@ -258,15 +258,15 @@ describe('Validators', () => {
         });
 
         it('should return true when object.toString() returns the empty string', () => {
-            expect(isNumber({toString() { return ''; }})).toBe(true);
+            expect(isNumber({ toString() { return ''; } })).toBe(true);
         });
 
         it('should return false when object.toString() returns an arbitrary string', () => {
-            expect(isNumber({toString() { return 'bla'; }})).toBe(false);
+            expect(isNumber({ toString() { return 'bla'; } })).toBe(false);
         });
 
         it('should return true when object.toString() returns a numeric string', () => {
-            expect(isNumber({toString() { return '1'; }})).toBe(true);
+            expect(isNumber({ toString() { return '1'; } })).toBe(true);
         });
 
         it('should return true if the value is undefined', () => {
@@ -360,19 +360,19 @@ describe('Validators', () => {
         });
 
         it('should return true when object.toString() returns the empty string', () => {
-            expect(isPositiveNumber({toString() { return ''; }})).toBe(true);
+            expect(isPositiveNumber({ toString() { return ''; } })).toBe(true);
         });
 
         it('should return false when object.toString() returns an arbitrary string', () => {
-            expect(isPositiveNumber({toString() { return 'bla'; }})).toBe(false);
+            expect(isPositiveNumber({ toString() { return 'bla'; } })).toBe(false);
         });
 
         it('should return false when object.toString() returns a numeric string which is negative', () => {
-            expect(isPositiveNumber({toString() { return '-1'; }})).toBe(false);
+            expect(isPositiveNumber({ toString() { return '-1'; } })).toBe(false);
         });
 
         it('should return true when object.toString() returns a numeric string which is positive', () => {
-            expect(isPositiveNumber({toString() { return '1'; }})).toBe(true);
+            expect(isPositiveNumber({ toString() { return '1'; } })).toBe(true);
         });
 
         it('should return true if the value is undefined', () => {
@@ -438,6 +438,5 @@ describe('Validators', () => {
         it('should return true for valid password', () => {
             expect(isValidPassword('1!!@abcD')).toBe(true);
         });
-
     });
 });

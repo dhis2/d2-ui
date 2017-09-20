@@ -18,7 +18,7 @@ describe('DataElementOperandSelector component', () => {
     beforeEach(() => {
         onItemDoubleClickSpy = jest.fn();
 
-        dataElementOperandSelectorComponent = renderComponent({onItemDoubleClick: onItemDoubleClickSpy});
+        dataElementOperandSelectorComponent = renderComponent({ onItemDoubleClick: onItemDoubleClickSpy });
     });
 
     it('should have the component name as a class', () => {
@@ -46,7 +46,7 @@ describe('DataElementOperandSelector component', () => {
     });
 
     it('should hide the loading bar if the status isLoading is set to false', () => {
-        dataElementOperandSelectorComponent.setState({isLoading: false});
+        dataElementOperandSelectorComponent.setState({ isLoading: false });
 
         expect(dataElementOperandSelectorComponent.find(LinearProgress)).toHaveLength(0);
     });

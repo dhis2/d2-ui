@@ -15,8 +15,8 @@ describe('ExpressionDescription component', () => {
         onDescriptionChangeSpy = jest.fn();
         expressionDescriptionComponent = renderComponent({
             onDescriptionChange: onDescriptionChangeSpy,
-            descriptionLabel: "Numerator description",
-            descriptionValue: "My indicator numerator description",
+            descriptionLabel: 'Numerator description',
+            descriptionValue: 'My indicator numerator description',
         });
     });
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import {describeWithDOM, shallow} from 'enzyme';
+import { describeWithDOM, shallow } from 'enzyme';
 import DataTable from '../DataTable.component';
 import DataTableHeader from '../DataTableHeader.component';
 import DataTableContextMenu from '../DataTableContextMenu.component';
@@ -10,7 +10,7 @@ describe('DataTable component', () => {
     let dataTableComponent;
 
     function renderComponent(props = {}) {
-        return shallow(<DataTable {...Object.assign({contextMenuActions: {}}, props)} />);
+        return shallow(<DataTable {...Object.assign({ contextMenuActions: {} }, props)} />);
     }
 
     beforeEach(() => {
@@ -31,7 +31,7 @@ describe('DataTable component', () => {
         it('should have set the passed columns', () => {
             const columns = ['name', 'code', 'lastUpdated'];
 
-            dataTableComponent = renderComponent({columns});
+            dataTableComponent = renderComponent({ columns });
 
             expect(dataTableComponent.state('columns')).toEqual(['name', 'code', 'lastUpdated']);
         });
@@ -39,7 +39,7 @@ describe('DataTable component', () => {
         it('should not set the columns if the column value is not an array of strings', () => {
             const columns = ['name', 'code', 'lastUpdated', {}];
 
-            dataTableComponent = renderComponent({columns});
+            dataTableComponent = renderComponent({ columns });
 
             expect(dataTableComponent.state('columns')).toEqual(['name', 'lastUpdated']);
         });
@@ -60,12 +60,12 @@ describe('DataTable component', () => {
     describe('with source', () => {
         beforeEach(() => {
             const dataTableSource = [
-                {uid: 'b1', name: 'BDC', lastUpdated: 'Tomorrow'},
-                {uid: 'f1', name: 'BFG', lastUpdated: 'Last year'},
-                {uid: 'c1', name: 'BFG', lastUpdated: 'Today'},
+                { uid: 'b1', name: 'BDC', lastUpdated: 'Tomorrow' },
+                { uid: 'f1', name: 'BFG', lastUpdated: 'Last year' },
+                { uid: 'c1', name: 'BFG', lastUpdated: 'Today' },
             ];
 
-            dataTableComponent = renderComponent({rows: dataTableSource});
+            dataTableComponent = renderComponent({ rows: dataTableSource });
         });
 
         it('should have set the dataRows onto the state', () => {
@@ -73,9 +73,9 @@ describe('DataTable component', () => {
         });
 
         it('should not set the dataRows when the received value is not iterable', () => {
-            dataTableComponent = renderComponent({rows: {}});
+            dataTableComponent = renderComponent({ rows: {} });
 
-            expect(dataTableComponent.state('dataRows')).toHaveLength(0)
+            expect(dataTableComponent.state('dataRows')).toHaveLength(0);
         });
 
         it('should generate a row wrap', () => {
@@ -83,7 +83,7 @@ describe('DataTable component', () => {
         });
 
         it('should update the source when the rows property changes', () => {
-            dataTableComponent.setProps({rows: [{uid: 'b1', name: 'BDC', lastUpdated: 'Tomorrow'}]});
+            dataTableComponent.setProps({ rows: [{ uid: 'b1', name: 'BDC', lastUpdated: 'Tomorrow' }] });
 
             expect(dataTableComponent.state('dataRows').length).toBe(1);
         });
@@ -91,9 +91,9 @@ describe('DataTable component', () => {
         it('should correctly render a map', () => {
             dataTableComponent.setProps({
                 rows: new Map([
-                    ['b1', {uid: 'b1', name: 'BDC', lastUpdated: 'Tomorrow'}],
-                    ['f1', {uid: 'f1', name: 'BFG', lastUpdated: 'Last year'}],
-                    ['c1', {uid: 'c1', name: 'BFG', lastUpdated: 'Today'}],
+                    ['b1', { uid: 'b1', name: 'BDC', lastUpdated: 'Tomorrow' }],
+                    ['f1', { uid: 'f1', name: 'BFG', lastUpdated: 'Last year' }],
+                    ['c1', { uid: 'c1', name: 'BFG', lastUpdated: 'Today' }],
                 ]),
             });
 
@@ -104,23 +104,23 @@ describe('DataTable component', () => {
     describe('interaction', () => {
         beforeEach(() => {
             const dataTableSource = [
-                {uid: 'b1', name: 'BDC', lastUpdated: 'Tomorrow'},
-                {uid: 'f1', name: 'BFG', lastUpdated: 'Last year'},
-                {uid: 'c1', name: 'BFG', lastUpdated: 'Today'},
+                { uid: 'b1', name: 'BDC', lastUpdated: 'Tomorrow' },
+                { uid: 'f1', name: 'BFG', lastUpdated: 'Last year' },
+                { uid: 'c1', name: 'BFG', lastUpdated: 'Today' },
             ];
 
-            dataTableComponent = renderComponent({source: dataTableSource});
+            dataTableComponent = renderComponent({ source: dataTableSource });
         });
 
         it('should show the context menu when the activeRow state is set', () => {
-            const fakeRowSource = {name: 'My item'};
+            const fakeRowSource = { name: 'My item' };
 
             expect(dataTableComponent.find('.data-table__context-menu')).toHaveLength(0);
 
             dataTableComponent.instance()
                 .handleRowClick(
-                    {currentTarget: dataTableComponent},
-                    fakeRowSource
+                    { currentTarget: dataTableComponent },
+                    fakeRowSource,
                 );
             dataTableComponent.update();
 
@@ -131,11 +131,11 @@ describe('DataTable component', () => {
         });
 
         it('should hide the context menu when handleRowClick is called twice with the same source', () => {
-            const fakeRowSource = {name: 'My item'};
+            const fakeRowSource = { name: 'My item' };
 
-            dataTableComponent.instance().handleRowClick({clientY: 100, clientX: 100}, fakeRowSource);
+            dataTableComponent.instance().handleRowClick({ clientY: 100, clientX: 100 }, fakeRowSource);
             dataTableComponent.update();
-            dataTableComponent.instance().handleRowClick({clientY: 100, clientX: 100}, fakeRowSource);
+            dataTableComponent.instance().handleRowClick({ clientY: 100, clientX: 100 }, fakeRowSource);
             dataTableComponent.update();
 
             const contextMenuComponent = dataTableComponent.find('.data-table__context-menu');
@@ -144,8 +144,8 @@ describe('DataTable component', () => {
         });
 
         it('should not render the context menu when the activeRow is undefined', () => {
-            const fakeRowSource = {name: 'My item'};
-            dataTableComponent.setState({contextMenuTarget: {}, activeRow: fakeRowSource});
+            const fakeRowSource = { name: 'My item' };
+            dataTableComponent.setState({ contextMenuTarget: {}, activeRow: fakeRowSource });
 
             dataTableComponent.instance()._hideContextMenu();
             dataTableComponent.update();
@@ -162,12 +162,12 @@ describe('DataTable component', () => {
 
         // TODO: The Popover requires a dom element as a targetEl prop. Figure out how to test this without a DOM.
         xit('should hide the contextmenu when left clicking outside the contextmenu', () => {
-            const fakeRowSource = {name: 'My item'};
+            const fakeRowSource = { name: 'My item' };
 
             dataTableComponent.instance()
                 .handleRowClick(
-                    {currentTarget: dataTableComponent},
-                    fakeRowSource
+                    { currentTarget: dataTableComponent },
+                    fakeRowSource,
                 );
             dataTableComponent.update();
 
@@ -187,21 +187,21 @@ describe('DataTable component', () => {
         let fakeRowSource;
 
         beforeEach(() => {
-            fakeRowSource = {name: 'My item'};
+            fakeRowSource = { name: 'My item' };
 
             isContextActionAllowed = jest.fn().mockReturnValue(true);
-            contextMenuActions  = {
+            contextMenuActions = {
                 edit: () => {},
                 delete: () => {},
                 translate: () => {},
             };
 
-            dataTableComponent = renderComponent({isContextActionAllowed, contextMenuActions});
+            dataTableComponent = renderComponent({ isContextActionAllowed, contextMenuActions });
         });
 
         it('should pass through when the actions are allowed', () => {
             // Show context menu initially
-            dataTableComponent.setState({contextMenuTarget: {}, activeRow: fakeRowSource});
+            dataTableComponent.setState({ contextMenuTarget: {}, activeRow: fakeRowSource });
             const passedContextMenuActions = dataTableComponent.find(DataTableContextMenu).props().actions;
 
             expect(Object.keys(passedContextMenuActions)).toEqual(['edit', 'delete', 'translate']);
@@ -214,10 +214,10 @@ describe('DataTable component', () => {
                 .mockReset()
                 .mockImplementation(falseForDeleteActionType);
 
-            dataTableComponent = renderComponent({isContextActionAllowed, contextMenuActions});
+            dataTableComponent = renderComponent({ isContextActionAllowed, contextMenuActions });
 
             // Show context menu initially
-            dataTableComponent.setState({contextMenuTarget: {}, activeRow: fakeRowSource});
+            dataTableComponent.setState({ contextMenuTarget: {}, activeRow: fakeRowSource });
             const passedContextMenuActions = dataTableComponent.find(DataTableContextMenu).props().actions;
 
             expect(Object.keys(passedContextMenuActions)).toEqual(['edit', 'translate']);

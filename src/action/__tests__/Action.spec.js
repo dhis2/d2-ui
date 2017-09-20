@@ -88,16 +88,16 @@ describe('Action', () => {
                     done();
                 });
 
-                actionInstance({name: 'Mark'});
+                actionInstance({ name: 'Mark' });
             });
 
             it('should pass the value to the subscriber', (done) => {
                 actionInstance.subscribe((action) => {
-                    expect(action.data).toEqual({name: 'Mark'});
+                    expect(action.data).toEqual({ name: 'Mark' });
                     done();
                 });
 
-                actionInstance({name: 'Mark'});
+                actionInstance({ name: 'Mark' });
             });
 
             it('should call logLevel.trace', () => {
@@ -171,11 +171,11 @@ describe('Action', () => {
 
                 actionInstance('Mark')
                     .subscribe(
-                    () => {},
-                    () => {
-                        expect(logLevel.debug).toHaveBeenCalledWith('Errored action: Symbol(add)');
-                        done();
-                    });
+                        () => {},
+                        () => {
+                            expect(logLevel.debug).toHaveBeenCalledWith('Errored action: Symbol(add)');
+                            done();
+                        });
             });
 
             it('should complete the execute subscriber of success', (done) => {
@@ -187,9 +187,9 @@ describe('Action', () => {
 
                 actionInstance('Mark')
                     .subscribe(
-                    () => {},
-                    () => {},
-                    done);
+                        () => {},
+                        () => {},
+                        done);
             });
 
             it('should not execute the success handler twice', (done) => {
@@ -206,12 +206,12 @@ describe('Action', () => {
 
                 actionInstance('Mark')
                     .subscribe(
-                    successHandlerSpy,
-                    () => {},
-                    () => {
-                        expect(successHandlerSpy).toHaveBeenCalledTimes(1);
-                        done();
-                    });
+                        successHandlerSpy,
+                        () => {},
+                        () => {
+                            expect(successHandlerSpy).toHaveBeenCalledTimes(1);
+                            done();
+                        });
             });
         });
     });

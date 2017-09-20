@@ -1,6 +1,6 @@
 
 import React from 'react';
-import {shallow} from 'enzyme';
+import { shallow } from 'enzyme';
 import Model from 'd2/lib/model/Model';
 import ModelDefinition from 'd2/lib/model/ModelDefinition';
 import OrgUnitTreeMultipleRoots from '../OrgUnitTreeMultipleRoots.component';

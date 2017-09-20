@@ -34,7 +34,7 @@ describe('<SinglePanel />', () => {
     });
 
     it('should pass the children to the main component', () => {
-        const childComponent = <div></div>;
+        const childComponent = <div />;
         component = shallow(<SinglePanel>{childComponent}</SinglePanel>);
 
         expect(component.props().children).toBe(childComponent);
@@ -42,8 +42,8 @@ describe('<SinglePanel />', () => {
 
     it('should only render the first child if more children have been passed', () => {
         const childComponents = [
-            <div></div>,
-            <div></div>,
+            <div />,
+            <div />,
         ];
         component = shallow(<SinglePanel>{childComponents}</SinglePanel>);
 
@@ -52,8 +52,8 @@ describe('<SinglePanel />', () => {
 
     it('should log a warning when more than one child has been passed', () => {
         const childComponents = [
-            <div></div>,
-            <div></div>,
+            <div />,
+            <div />,
         ];
         component = shallow(<SinglePanel>{childComponents}</SinglePanel>);
 
@@ -61,7 +61,7 @@ describe('<SinglePanel />', () => {
     });
 
     it('should not log any warnings when just a single child was passed', () => {
-        const childComponent = <div></div>;
+        const childComponent = <div />;
         component = shallow(<SinglePanel>{childComponent}</SinglePanel>);
 
         expect(log.warn).not.toHaveBeenCalled();

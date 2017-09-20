@@ -40,7 +40,7 @@ describe('Sharing: PermissionPicker component', () => {
         });
 
         expect(permissionPickerComponent.find(MenuItem)).toHaveLength(2);
-    })
+    });
 
     it('should render two MenuItems if disableNoAccess is false', () => {
         permissionPickerComponent = renderComponent({
@@ -49,7 +49,7 @@ describe('Sharing: PermissionPicker component', () => {
         });
 
         expect(permissionPickerComponent.find(MenuItem)).toHaveLength(2);
-    })
+    });
 
     it('should render one MenuItems if disableWritePermission and disableNoAccess are both false', () => {
         permissionPickerComponent = renderComponent({
@@ -59,7 +59,7 @@ describe('Sharing: PermissionPicker component', () => {
         });
 
         expect(permissionPickerComponent.find(MenuItem)).toHaveLength(1);
-    })
+    });
 
     it('should render the checkmark FontIcon according to the permission values', () => {
         expect(permissionPickerComponent.find(MenuItem).at(0).props().leftIcon.props.children).toBe('done');

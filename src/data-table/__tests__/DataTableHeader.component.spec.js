@@ -1,5 +1,5 @@
 import React from 'react';
-import {shallow} from 'enzyme';
+import { shallow } from 'enzyme';
 import DataTableHeader from '../DataTableHeader.component';
 
 describe('DataTableHeader component', () => {
@@ -7,7 +7,7 @@ describe('DataTableHeader component', () => {
 
     function renderComponent(props = {}) {
         return shallow(
-            <DataTableHeader {...Object.assign({contextMenuActions: {}}, props)} />,
+            <DataTableHeader {...Object.assign({ contextMenuActions: {} }, props)} />,
             {
                 context: {
                     d2: {
@@ -18,12 +18,12 @@ describe('DataTableHeader component', () => {
                         },
                     },
                 },
-            }
+            },
         );
     }
 
     beforeEach(() => {
-        dataTableComponent = renderComponent({name: 'lastUpdated'});
+        dataTableComponent = renderComponent({ name: 'lastUpdated' });
     });
 
     it('should load two columns', () => {
@@ -39,7 +39,7 @@ describe('DataTableHeader component', () => {
     });
 
     it('should add the data-table__headers__header--odd class', () => {
-        dataTableComponent = renderComponent({name: 'lastUpdated', isOdd: true});
+        dataTableComponent = renderComponent({ name: 'lastUpdated', isOdd: true });
 
         expect(dataTableComponent.hasClass('data-table__headers__header--odd')).toBe(true);
     });

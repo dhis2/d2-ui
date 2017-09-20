@@ -40,7 +40,7 @@ function getSystemSettingsFormConfig() {
         },
     ];
 
-    return {systemSettings, fieldConfigs};
+    return { systemSettings, fieldConfigs };
 }
 
 describe('Form component', () => {
@@ -79,7 +79,7 @@ describe('Form component', () => {
                 <FormField type={TextField} />,
                 <FormField type={TextField} />,
                 <FormField type={TextField} />,
-            ])
+            ]);
         });
 
         it('should render the formFields', () => {
@@ -91,9 +91,9 @@ describe('Form component', () => {
 
     describe('fieldConfig', () => {
         beforeEach(() => {
-            const {systemSettings, fieldConfigs} = getSystemSettingsFormConfig();
+            const { systemSettings, fieldConfigs } = getSystemSettingsFormConfig();
 
-            formComponent = renderComponent({source: systemSettings, fieldConfigs});
+            formComponent = renderComponent({ source: systemSettings, fieldConfigs });
         });
 
         it('should have rendered the three FormFields from the fieldConfigs', () => {
@@ -113,7 +113,7 @@ describe('Form component', () => {
         it('should pass the fieldConfig to the FormField', () => {
             const renderedTextFieldComponents = formComponent.find(FormField);
 
-            expect(renderedTextFieldComponents.at(0).props().fieldOptions).toEqual({floatingLabelText: 'keyEmailPort'});
+            expect(renderedTextFieldComponents.at(0).props().fieldOptions).toEqual({ floatingLabelText: 'keyEmailPort' });
         });
     });
 
@@ -121,13 +121,13 @@ describe('Form component', () => {
         let onFormFieldUpdateSpy;
 
         beforeEach(() => {
-            const {systemSettings, fieldConfigs} = getSystemSettingsFormConfig();
+            const { systemSettings, fieldConfigs } = getSystemSettingsFormConfig();
 
             onFormFieldUpdateSpy = jest.fn();
 
             formComponent = renderComponent({
                 source: systemSettings,
-                fieldConfigs: fieldConfigs,
+                fieldConfigs,
                 onFormFieldUpdate: onFormFieldUpdateSpy,
             });
         });
@@ -155,7 +155,7 @@ describe('Form component', () => {
         let onFormFieldUpdateSpy;
 
         beforeEach(() => {
-            const {systemSettings, fieldConfigs} = getSystemSettingsFormConfig();
+            const { systemSettings, fieldConfigs } = getSystemSettingsFormConfig();
 
             onFormFieldUpdateSpy = jest.fn();
 
@@ -163,7 +163,7 @@ describe('Form component', () => {
 
             formComponent = renderComponent({
                 source: systemSettings,
-                fieldConfigs: fieldConfigs,
+                fieldConfigs,
                 onFormFieldUpdate: onFormFieldUpdateSpy,
             });
         });
@@ -222,13 +222,13 @@ describe('Form component', () => {
                 ],
             };
 
-            formComponent = renderComponent({fieldConfigs: [fieldConfig]});
+            formComponent = renderComponent({ fieldConfigs: [fieldConfig] });
 
             findRenderedComponentWithType(formComponent, FormField);
         });
 
         it('should create a formValidator if no validator was passed', () => {
-            formComponent = renderComponent({fieldConfigs: [fieldConfig]});
+            formComponent = renderComponent({ fieldConfigs: [fieldConfig] });
 
             expect(formComponent.state.formValidator).not.toBe(undefined);
             expect(formComponent.state.formValidator.getStatusFor('keyEmailPort')).toEqual({
@@ -239,7 +239,7 @@ describe('Form component', () => {
 
         it('should set the field status to VALIDATING when the validators are running', (done) => {
             fieldConfig.validators.push(() => new Promise(() => {}));
-            formComponent = renderComponent({fieldConfigs: [fieldConfig]});
+            formComponent = renderComponent({ fieldConfigs: [fieldConfig] });
 
             formComponent.state.formValidator.runFor('keyEmailPort');
 
@@ -253,7 +253,7 @@ describe('Form component', () => {
         });
 
         it('should set the state to INVALID when the validators are done running', (done) => {
-            formComponent = renderComponent({fieldConfigs: [fieldConfig]});
+            formComponent = renderComponent({ fieldConfigs: [fieldConfig] });
 
             formComponent.state.formValidator.runFor('keyEmailPort');
 
@@ -273,7 +273,7 @@ describe('Form component', () => {
             requiredValidator.message = 'field_is_required';
             fieldConfig.validators.push(requiredValidator);
 
-            formComponent = renderComponent({fieldConfigs: [fieldConfig]});
+            formComponent = renderComponent({ fieldConfigs: [fieldConfig] });
 
             formComponent.state.formValidator.runFor('keyEmailPort');
 
@@ -286,7 +286,7 @@ describe('Form component', () => {
         });
 
         it('should run validation for a specific field when the update request is being done', () => {
-            formComponent = renderComponent({fieldConfigs: [fieldConfig]});
+            formComponent = renderComponent({ fieldConfigs: [fieldConfig] });
 
             jest.spyOn(formComponent.state.formValidator, 'runFor');
 

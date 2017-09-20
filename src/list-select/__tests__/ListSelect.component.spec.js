@@ -1,7 +1,7 @@
 import React from 'react';
 import ListSelect from '../ListSelect.component';
 
-import {shallow} from 'enzyme';
+import { shallow } from 'enzyme';
 
 describe('ListSelect component', () => {
     let listSelectComponent;
@@ -12,10 +12,10 @@ describe('ListSelect component', () => {
         onItemDoubleClickSpy = jest.fn();
 
         listSource = [
-            {value: 'PvuaP6YALSA', label: 'Community'},
-            {value: 'cNzfcPWEGSH', label: 'Country'},
-            {value: 'POHZmzofoVx', label: 'Facility'},
-            {value: 'NUPoPEBGCq9', label: 'OUs and Countries'},
+            { value: 'PvuaP6YALSA', label: 'Community' },
+            { value: 'cNzfcPWEGSH', label: 'Country' },
+            { value: 'POHZmzofoVx', label: 'Facility' },
+            { value: 'NUPoPEBGCq9', label: 'OUs and Countries' },
         ];
 
         listSelectComponent = shallow(<ListSelect source={listSource} onItemDoubleClick={onItemDoubleClickSpy} />);
@@ -32,7 +32,7 @@ describe('ListSelect component', () => {
     });
 
     it('should set the size of the select box to the passed size', () => {
-        listSelectComponent.setProps({size: 10});
+        listSelectComponent.setProps({ size: 10 });
 
         const selectElement = listSelectComponent.find('select');
 
@@ -80,21 +80,20 @@ describe('ListSelect component', () => {
             .find('select')
             .find('option');
 
-        optionElements.first().simulate('doubleClick', {target: {value: 'PvuaP6YALSA'}});
+        optionElements.first().simulate('doubleClick', { target: { value: 'PvuaP6YALSA' } });
 
         expect(onItemDoubleClickSpy).toHaveBeenCalledWith('PvuaP6YALSA');
     });
 
     it('should not call attempt to call the callback when none has been given', () => {
-        listSelectComponent.setProps({onItemDoubleClick: undefined});
+        listSelectComponent.setProps({ onItemDoubleClick: undefined });
 
         const optionElements = listSelectComponent
             .find('select')
             .find('option');
 
         expect(
-            () => optionElements.first().simulate('doubleClick', {target: {value: 'PvuaP6YALSA'}})
+            () => optionElements.first().simulate('doubleClick', { target: { value: 'PvuaP6YALSA' } }),
         ).not.toThrow();
-
     });
 });

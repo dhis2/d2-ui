@@ -1,5 +1,5 @@
 import React from 'react';
-import {shallow} from 'enzyme';
+import { shallow } from 'enzyme';
 import MenuItem from 'material-ui/MenuItem/MenuItem';
 import DataTableContextMenu from '../DataTableContextMenu.component';
 
@@ -16,7 +16,7 @@ describe('DataTableContextMenu component', () => {
 
     function renderComponent(props = {}) {
         return shallow(
-            <DataTableContextMenu {...Object.assign({contextMenuActions: {}}, props)} />,
+            <DataTableContextMenu {...Object.assign({ contextMenuActions: {} }, props)} />,
             {
                 context: {
                     d2: {
@@ -27,7 +27,7 @@ describe('DataTableContextMenu component', () => {
                         },
                     },
                 },
-            }
+            },
         );
     }
 

@@ -112,7 +112,7 @@ describe('TreeView component', () => {
 
         beforeEach(() => {
             onClick = jest.fn();
-            wrapper = shallow(<TreeView label="myLabel" onClick={onClick}/>);
+            wrapper = shallow(<TreeView label="myLabel" onClick={onClick} />);
         });
 
         it('triggers the onClick callback when the label is clicked', () => {
@@ -146,7 +146,7 @@ describe('TreeView component', () => {
                 wrapper = shallow(
                     <TreeView label="myLabel" onClick={onClick} initiallyExpanded>
                         {children}
-                    </TreeView>
+                    </TreeView>,
                 );
             });
 
@@ -177,7 +177,7 @@ describe('TreeView component', () => {
 
             beforeEach(() => {
                 onExpand = jest.fn(() => {});
-                wrapper = shallow(<TreeView label="myLabel" onClick={onClick} onExpand={onExpand}/>);
+                wrapper = shallow(<TreeView label="myLabel" onClick={onClick} onExpand={onExpand} />);
             });
 
             it('triggers the onExpand callback when expanded', () => {
@@ -201,8 +201,8 @@ describe('TreeView component', () => {
                     nestedOnClick = jest.fn();
                     wrapper = shallow(
                         <TreeView label="myLabel" onClick={onClick} initiallyExpanded>
-                            <TreeView label="nestedLabel" onClick={nestedOnClick}/>
-                        </TreeView>
+                            <TreeView label="nestedLabel" onClick={nestedOnClick} />
+                        </TreeView>,
                     );
                 });
 
@@ -239,7 +239,7 @@ describe('TreeView component', () => {
             wrapper = shallow(
                 <TreeView label="myLabel">
                     {children}
-                </TreeView>
+                </TreeView>,
             );
         });
 
@@ -279,7 +279,7 @@ describe('TreeView component', () => {
                 wrapper = shallow(
                     <TreeView label="myLabel" persistent>
                         {children}
-                    </TreeView>
+                    </TreeView>,
                 );
             });
 

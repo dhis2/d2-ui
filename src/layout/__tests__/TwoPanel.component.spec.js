@@ -89,7 +89,7 @@ describe('<TwoPanel />', () => {
                     <div />
                     <div />
                     <div />
-                </TwoPanel>
+                </TwoPanel>,
             );
 
             expect(component.props().children).toHaveLength(2);
@@ -109,7 +109,7 @@ describe('<TwoPanel />', () => {
             component = shallow(
                 <TwoPanel>
                     <div />
-                </TwoPanel>
+                </TwoPanel>,
             );
 
             expect(log.warn).toHaveBeenCalledWith('You passed just one child to the <TwoPanel /> component, it requires exactly two');
@@ -121,7 +121,7 @@ describe('<TwoPanel />', () => {
                     <div />
                     <div />
                     <div />
-                </TwoPanel>
+                </TwoPanel>,
             );
 
             expect(log.warn).toHaveBeenCalledWith('You passed more than two children to the <TwoPanel /> component, it requires exactly two');
@@ -132,7 +132,7 @@ describe('<TwoPanel />', () => {
                 <TwoPanel>
                     <div />
                     <div />
-                </TwoPanel>
+                </TwoPanel>,
             );
 
             expect(log.warn).not.toHaveBeenCalled();

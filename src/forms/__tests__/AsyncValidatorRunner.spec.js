@@ -25,7 +25,7 @@ describe('AsyncValidatorRunner', () => {
         });
 
         it('should set the scheduler if one has been passed in', () => {
-            const testScheduler  = new TestScheduler((a, b) => isEqual(a, b));
+            const testScheduler = new TestScheduler((a, b) => isEqual(a, b));
             const asyncValidatorRunner = AsyncValidatorRunner.create(testScheduler);
 
             expect(asyncValidatorRunner.scheduler).toEqual(testScheduler);
@@ -63,7 +63,7 @@ describe('AsyncValidatorRunner', () => {
         beforeEach(() => {
             testScheduler = new TestScheduler((a, b) => isEqual(a, b));
             asyncValidatorRunner = AsyncValidatorRunner.create(testScheduler);
-            asyncCold = ((testScheduler) => (...args) => testScheduler.createColdObservable.apply(testScheduler, args))(testScheduler);
+            asyncCold = (testScheduler => (...args) => testScheduler.createColdObservable(...args))(testScheduler);
         });
 
         it('should debounce the values coming in', (done) => {
@@ -77,7 +77,7 @@ describe('AsyncValidatorRunner', () => {
                         expect(asyncValidators[0]).toHaveBeenCalledTimes(1);
                         done();
                     },
-                    (e) => done(e)
+                    e => done(e),
                 );
 
 
@@ -97,7 +97,7 @@ describe('AsyncValidatorRunner', () => {
             asyncValidatorRunner.listenToValidatorsFor('name')
                 .subscribe(
                     () => done(),
-                    (e) => done(e)
+                    e => done(e),
                 );
 
             asyncCold('----a-b-c-|', { a: 'Zoe', b: 'Jane', c: 'John' })
@@ -115,7 +115,7 @@ describe('AsyncValidatorRunner', () => {
 
             asyncValidatorRunner.listenToValidatorsFor('name')
                 .subscribe(
-                    validationResult => {
+                    (validationResult) => {
                         expect(validationResult).toEqual({
                             fieldName: 'name',
                             isValid: false,
@@ -124,7 +124,7 @@ describe('AsyncValidatorRunner', () => {
                         });
                         done();
                     },
-                    e => done(e)
+                    e => done(e),
                 );
 
             asyncCold('---a--|', { a: 'Zoe' })
@@ -138,7 +138,7 @@ describe('AsyncValidatorRunner', () => {
             asyncValidatorRunner.listenToValidatorsFor('name')
                 .subscribe(
                     () => done(),
-                    (e) => done(e)
+                    e => done(e),
                 );
 
             asyncCold('---a--|', { a: 'Zoe' })
@@ -156,7 +156,7 @@ describe('AsyncValidatorRunner', () => {
                         expect(validationResult).toEqual(expectedResult);
                         done();
                     },
-                    (e) => done(e)
+                    e => done(e),
                 );
 
             asyncCold('---a--|', { a: 'Zoe' })
@@ -180,7 +180,7 @@ describe('AsyncValidatorRunner', () => {
                         expect(nameValidators[2]).toBeCalledWith('Zoe');
                         done();
                     },
-                    (e) => done(e)
+                    e => done(e),
                 );
 
             asyncCold('---a--|', { a: 'Zoe' })

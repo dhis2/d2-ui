@@ -1,7 +1,7 @@
 import React from 'react';
 import ConstantSelector from '../ConstantSelector';
 import ListSelectWithLocalSearch from '../../list-select/ListSelectWithLocalSearch.component';
-import {shallow} from 'enzyme';
+import { shallow } from 'enzyme';
 
 xdescribe('ConstantSelector', () => {
     let constantSelector;
@@ -23,7 +23,7 @@ xdescribe('ConstantSelector', () => {
     });
 
     it('should pass the props passed to the ConstantSelector to the ListSelect', () => {
-        constantSelector = renderComponent({myName: 'John'});
+        constantSelector = renderComponent({ myName: 'John' });
         const listSelect = constantSelector.find(ListSelectWithLocalSearch);
 
         expect(listSelect.props()).toEqual(constantSelector.props());

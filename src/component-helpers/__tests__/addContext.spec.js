@@ -34,6 +34,6 @@ describe('addContext', () => {
             name: React.PropTypes.string,
         });
 
-        expect(componentWithD2Context.contextTypes).toEqual({ name: React.PropTypes.string,  isAmazing: React.PropTypes.bool });
+        expect(componentWithD2Context.contextTypes).toEqual({ name: React.PropTypes.string, isAmazing: React.PropTypes.bool });
     });
 });

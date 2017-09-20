@@ -7,7 +7,7 @@ import { getStubContext } from '../../../config/inject-theme';
 import Button from '../Button';
 
 describe('Button', () => {
-    const renderWithProps = (props) => shallow(<Button {...props} />, {
+    const renderWithProps = props => shallow(<Button {...props} />, {
         context: getStubContext(),
     });
 

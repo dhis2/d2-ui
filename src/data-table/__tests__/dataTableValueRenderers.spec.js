@@ -128,7 +128,7 @@ describe('dataTableValueRenderers', () => {
         it('should find the correct renderer', () => {
             const ColorRenderer = findValueRenderer({ value: '#FFFDDD', columnName: 'color' });
 
-            expect(ColorRenderer).toBe(Color)
+            expect(ColorRenderer).toBe(Color);
         });
 
         it('should render the value as the text of the Color component', () => {

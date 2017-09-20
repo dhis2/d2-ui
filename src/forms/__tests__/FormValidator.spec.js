@@ -49,7 +49,7 @@ describe('FormValidator', () => {
 
         beforeEach(() => {
             testScheduler = new TestScheduler((a, b) => isEqual(a, b));
-            cold = ((testScheduler) => (...args) => testScheduler.createColdObservable.apply(testScheduler, args))(testScheduler);
+            cold = (testScheduler => (...args) => testScheduler.createColdObservable(...args))(testScheduler);
 
             validators = [
                 jest.fn().mockReturnValue(true),
@@ -57,8 +57,8 @@ describe('FormValidator', () => {
             ];
 
             formValidator = createFormValidator([
-                {name: 'name', validators},
-                {name: 'code', validators},
+                { name: 'name', validators },
+                { name: 'code', validators },
             ], testScheduler);
         });
 
@@ -82,8 +82,8 @@ describe('FormValidator', () => {
         it('should set the status when the runFor() is called', (done) => {
             function statusCallback(statusValue) {
                 expect(Array.from(statusValue)).toEqual([
-                    ['name', {status: FormFieldStatuses.VALID, messages: []}],
-                    ['code', {status: FormFieldStatuses.VALID, messages: []}],
+                    ['name', { status: FormFieldStatuses.VALID, messages: [] }],
+                    ['code', { status: FormFieldStatuses.VALID, messages: [] }],
                 ]);
                 done();
             }
@@ -102,14 +102,14 @@ describe('FormValidator', () => {
             validators.push(requiredValidator);
 
             formValidator = createFormValidator([
-                {name: 'name', validators},
-                {name: 'code', validators},
+                { name: 'name', validators },
+                { name: 'code', validators },
             ], testScheduler);
 
             function statusCallback(statusValue) {
                 expect(Array.from(statusValue)).toEqual([
-                    ['name', {status: FormFieldStatuses.INVALID, messages: ['field_is_required']}],
-                    ['code', {status: FormFieldStatuses.VALID, messages: []}],
+                    ['name', { status: FormFieldStatuses.INVALID, messages: ['field_is_required'] }],
+                    ['code', { status: FormFieldStatuses.VALID, messages: [] }],
                 ]);
                 done();
             }
@@ -127,14 +127,14 @@ describe('FormValidator', () => {
             validators.push(asyncValidator);
 
             formValidator = createFormValidator([
-                {name: 'name', validators},
-                {name: 'code', validators},
+                { name: 'name', validators },
+                { name: 'code', validators },
             ], testScheduler);
 
             function statusCallback(statusValue) {
                 expect(Array.from(statusValue)).toEqual([
-                    ['name', {status: FormFieldStatuses.VALIDATING, messages: []}],
-                    ['code', {status: FormFieldStatuses.VALID, messages: []}],
+                    ['name', { status: FormFieldStatuses.VALIDATING, messages: [] }],
+                    ['code', { status: FormFieldStatuses.VALID, messages: [] }],
                 ]);
                 done();
             }
@@ -152,14 +152,14 @@ describe('FormValidator', () => {
             validators.push(asyncValidator);
 
             formValidator = createFormValidator([
-                {name: 'name', validators},
-                {name: 'code', validators},
+                { name: 'name', validators },
+                { name: 'code', validators },
             ]);
 
             function statusCallback(statusValue) {
                 expect(Array.from(statusValue)).toEqual([
-                    ['name', {status: FormFieldStatuses.VALID, messages: []}],
-                    ['code', {status: FormFieldStatuses.VALID, messages: []}],
+                    ['name', { status: FormFieldStatuses.VALID, messages: [] }],
+                    ['code', { status: FormFieldStatuses.VALID, messages: [] }],
                 ]);
                 done();
             }
@@ -175,14 +175,14 @@ describe('FormValidator', () => {
             validators.push(asyncValidator);
 
             formValidator = createFormValidator([
-                {name: 'name', validators},
-                {name: 'code', validators},
+                { name: 'name', validators },
+                { name: 'code', validators },
             ]);
 
             function statusCallback(statusValue) {
                 expect(Array.from(statusValue)).toEqual([
-                    ['name', {status: FormFieldStatuses.INVALID, messages: ['field_should_pass_async']}],
-                    ['code', {status: FormFieldStatuses.VALID, messages: []}],
+                    ['name', { status: FormFieldStatuses.INVALID, messages: ['field_should_pass_async'] }],
+                    ['code', { status: FormFieldStatuses.VALID, messages: [] }],
                 ]);
                 done();
             }
@@ -201,7 +201,7 @@ describe('FormValidator', () => {
 
             testScheduler.flush();
 
-            expect(log.warn).toHaveBeenCalledWith(`Warning: One of the validators for 'name' is not a function.`);
+            expect(log.warn).toHaveBeenCalledWith('Warning: One of the validators for \'name\' is not a function.');
         });
 
         it('should log an error when something fails', () => {
@@ -217,7 +217,7 @@ describe('FormValidator', () => {
 
             testScheduler.flush();
 
-            expect(log.debug).toHaveBeenCalledWith(`Validator for 'name' ignored because the validator threw an error.`);
+            expect(log.debug).toHaveBeenCalledWith('Validator for \'name\' ignored because the validator threw an error.');
             expect(log.debug).toHaveBeenCalledWith(`${throwingValidator}`);
             expect(log.debug).toHaveBeenCalledWith('Something failed!');
         });
@@ -231,8 +231,8 @@ describe('FormValidator', () => {
             ];
 
             formValidator = createFormValidator([
-                {name: 'name', validators},
-                {name: 'code', validators},
+                { name: 'name', validators },
+                { name: 'code', validators },
             ]);
         });
 

@@ -32,7 +32,7 @@ describe('LoadingMask', () => {
             top: '45%',
         };
 
-        loadingMask.setProps({style: {left: '55%', position: 'relative'}});
+        loadingMask.setProps({ style: { left: '55%', position: 'relative' } });
 
         expect(loadingMask.props().style).toEqual(expectedStyle);
     });

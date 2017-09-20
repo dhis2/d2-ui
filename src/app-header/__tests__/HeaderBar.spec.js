@@ -9,7 +9,7 @@ import styles from '../header-bar-styles';
 import ProfileMenu from '../menus/ProfileMenu';
 
 describe('HeaderBar', () => {
-    const renderWithProps = (props) => shallow(<HeaderBar {...props} />, {
+    const renderWithProps = props => shallow(<HeaderBar {...props} />, {
         context: getStubContext(),
     });
 
@@ -32,7 +32,7 @@ describe('HeaderBar', () => {
             component = renderWithProps({
                 appItems: [{ label: 'App item 1', action: 'actionurl', icon: 'icon.png' }],
                 profileItems: [{ label: 'My Account', action: 'myaccount.html', icon: 'account.png' }],
-                settings: { grid: { x: 3, y: 3 }},
+                settings: { grid: { x: 3, y: 3 } },
             });
         });
 
@@ -53,7 +53,7 @@ describe('HeaderBar', () => {
         });
 
         it('should pass the profileItems to the ProfileMenu', () => {
-            expect(component.find(ProfileMenu).props().items).toEqual([{ label: 'My Account', action: 'myaccount.html', icon: 'account.png' }])
+            expect(component.find(ProfileMenu).props().items).toEqual([{ label: 'My Account', action: 'myaccount.html', icon: 'account.png' }]);
         });
     });
 });

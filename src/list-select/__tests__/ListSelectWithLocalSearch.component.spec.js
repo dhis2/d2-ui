@@ -1,5 +1,5 @@
 import React from 'react';
-import {shallow} from 'enzyme';
+import { shallow } from 'enzyme';
 import TextField from 'material-ui/TextField/TextField';
 import ListSelectWithLocalSearch from '../ListSelectWithLocalSearch.component';
 import ListSelect from '../ListSelect.component';
@@ -20,7 +20,7 @@ describe('ListComponentWithLocalSearch', () => {
                         },
                     },
                 },
-            }
+            },
         );
     });
 
@@ -46,10 +46,10 @@ describe('ListComponentWithLocalSearch', () => {
 
     it('should pass the source items to the ListSelect', () => {
         const sourceList = [
-            {label: 'Alpha'},
-            {label: 'Beta'},
-            {label: 'Charlie'},
-            {label: 'Delta'},
+            { label: 'Alpha' },
+            { label: 'Beta' },
+            { label: 'Charlie' },
+            { label: 'Delta' },
         ];
 
         listComponentWithLocalSearch.setProps({
@@ -62,12 +62,12 @@ describe('ListComponentWithLocalSearch', () => {
     it('should pass only the items that are being filtered on', () => {
         const textField = listComponentWithLocalSearch.find(TextField);
 
-        textField.simulate('change', {target: {
+        textField.simulate('change', { target: {
             value: 'Al',
-        }});
+        } });
 
         const sourceList = [
-            {label: 'Alpha'},
+            { label: 'Alpha' },
         ];
 
         listComponentWithLocalSearch.setProps({
@@ -80,13 +80,13 @@ describe('ListComponentWithLocalSearch', () => {
     it('should do the searching case insensitively', () => {
         const textField = listComponentWithLocalSearch.find(TextField);
 
-        textField.simulate('change', {target: {
+        textField.simulate('change', { target: {
             value: 'Ha',
-        }});
+        } });
 
         const sourceList = [
-            {label: 'Alpha'},
-            {label: 'Charlie'},
+            { label: 'Alpha' },
+            { label: 'Charlie' },
         ];
 
         listComponentWithLocalSearch.setProps({

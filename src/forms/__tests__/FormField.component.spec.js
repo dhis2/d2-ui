@@ -20,7 +20,7 @@ describe('FormField component', () => {
             },
         };
 
-        formFieldComponent = renderComponent({...fieldConfig});
+        formFieldComponent = renderComponent({ ...fieldConfig });
     });
 
     it('should have the component name as a class', () => {
@@ -38,7 +38,7 @@ describe('FormField component', () => {
             multiLine: true,
         };
 
-        formFieldComponent = renderComponent({...fieldConfig});
+        formFieldComponent = renderComponent({ ...fieldConfig });
 
         const renderedMaterialUIComponent = formFieldComponent.find(TextField);
 
@@ -47,7 +47,7 @@ describe('FormField component', () => {
 
     it('should correctly render the value', () => {
         formFieldComponent =
-        formFieldComponent = renderComponent({...fieldConfig, value: 'Mark', onChange: jest.fn()});
+        formFieldComponent = renderComponent({ ...fieldConfig, value: 'Mark', onChange: jest.fn() });
         const renderedMaterialUIComponent = formFieldComponent.find(TextField);
 
         expect(renderedMaterialUIComponent.props().defaultValue).toBe('Mark');

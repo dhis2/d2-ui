@@ -9,7 +9,7 @@ const publicAccessProps = {
     canEdit: false,
     disabled: false,
     onChange: () => {},
-}
+};
 
 describe('Sharing: PublicAccess component', () => {
     let publicAccessComponent;
@@ -48,7 +48,7 @@ describe('Sharing: PublicAccess component', () => {
 
         it('should receive the access type', () => {
             expect(ruleComponent.props().accessType).toBe('public');
-        })
+        });
 
         it('should pass along the onChange handler', () => {
             const onChangeSpy = jest.fn();

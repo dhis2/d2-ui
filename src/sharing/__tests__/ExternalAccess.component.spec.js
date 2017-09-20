@@ -36,7 +36,7 @@ describe('Sharing: ExternalAccess component', () => {
 
         it('should describe the access as viewable if external access is enabled', () => {
             expect(ruleComponent.props().secondaryText.toLowerCase())
-              .toBe('anyone_can_view_without_a_login_translated');
+                .toBe('anyone_can_view_without_a_login_translated');
         });
 
         it('should have no access if external access is disabled', () => {

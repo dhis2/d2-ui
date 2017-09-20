@@ -15,7 +15,7 @@ describe('ExpressionOperators component', () => {
         addOperatorCallback = jest.fn();
 
         expressionOperatorsComponent = renderComponent({
-           operatorClicked: addOperatorCallback,
+            operatorClicked: addOperatorCallback,
         });
     });
 

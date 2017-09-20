@@ -7,7 +7,7 @@ import * as d2 from 'd2/lib/d2';
 import D2UIApp from '../D2UIApp';
 
 const identity = v => v;
-const isNotEqualTo = (first) => (second) => first !== second;
+const isNotEqualTo = first => second => first !== second;
 const MyApp = () => (<div>My App</div>);
 
 describe('D2UIApp component', () => {
@@ -15,17 +15,17 @@ describe('D2UIApp component', () => {
         const component = shallow(
             <D2UIApp>
                 <div>My App</div>
-            </D2UIApp>
+            </D2UIApp>,
         );
 
-       expect(component.type()).toBe(MuiThemeProvider);
+        expect(component.type()).toBe(MuiThemeProvider);
     });
 
     it('should render the MuiThemeProvider with the default theme', () => {
         const component = shallow(
             <D2UIApp>
                 <div>My App</div>
-            </D2UIApp>
+            </D2UIApp>,
         );
 
         const muiProvided = component.prop('muiTheme');
@@ -34,7 +34,7 @@ describe('D2UIApp component', () => {
         // Somewhat convoluted way tp check for equal styles, but the prepareStyles function will fail the deep equal comparison.
         Object.keys(muiProvided)
             .filter(isNotEqualTo('prepareStyles'))
-            .forEach(key => {
+            .forEach((key) => {
                 expect(muiProvided[key]).toEqual(muiExpected[key]);
             });
     });
@@ -45,7 +45,7 @@ describe('D2UIApp component', () => {
         const component = shallow(
             <D2UIApp muiTheme={providedTheme}>
                 <div>My App</div>
-            </D2UIApp>
+            </D2UIApp>,
         );
 
         expect(component.prop('muiTheme')).toBe(providedTheme);
@@ -62,7 +62,7 @@ describe('D2UIApp component', () => {
             <D2UIApp>
                 <MyApp />
             </D2UIApp>,
-            { lifecycleExperimental: true }
+            { lifecycleExperimental: true },
         );
 
         expect(component.children().type()).toBe(CircularProgress);
@@ -79,7 +79,7 @@ describe('D2UIApp component', () => {
             <D2UIApp initConfig={{ baseUrl: 'http://play.dhis2.org/dev/api' }}>
                 <MyApp />
             </D2UIApp>,
-            { lifecycleExperimental: true }
+            { lifecycleExperimental: true },
         );
 
         expect(d2.init).toHaveBeenCalledWith({ baseUrl: 'http://play.dhis2.org/dev/api' });
@@ -97,7 +97,7 @@ describe('D2UIApp component', () => {
             <D2UIApp>
                 <MyApp />
             </D2UIApp>,
-            { lifecycleExperimental: true }
+            { lifecycleExperimental: true },
         );
 
         expect(component.children().type()).toBe(CircularProgress);
@@ -119,7 +119,7 @@ describe('D2UIApp component', () => {
             <D2UIApp>
                 <MyApp />
             </D2UIApp>,
-            { lifecycleExperimental: true }
+            { lifecycleExperimental: true },
         );
 
         expect(component.children().type()).toBe(CircularProgress);
@@ -145,7 +145,7 @@ describe('D2UIApp component', () => {
             <D2UIApp>
                 <MyApp />
             </D2UIApp>,
-            { lifecycleExperimental: true }
+            { lifecycleExperimental: true },
         );
 
         promiseToD2
@@ -170,7 +170,7 @@ describe('D2UIApp component', () => {
             <D2UIApp>
                 <App />
             </D2UIApp>,
-            { lifecycleExperimental: true }
+            { lifecycleExperimental: true },
         );
 
         return promiseToD2

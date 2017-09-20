@@ -41,8 +41,8 @@ describe('ExpressionFormula component', () => {
     });
 
     it('should not throw an error if no change handler has been passed', () => {
-        const fakeEvent = {target: {value: '#{dsfdff.sdfsf}'}};
-        expressionFormulaComponent = renderComponent({formula: '#{aaadsfdff.dddsdfsf} + #{ccadsfdff.eedsdfsf}'});
+        const fakeEvent = { target: { value: '#{dsfdff.sdfsf}' } };
+        expressionFormulaComponent = renderComponent({ formula: '#{aaadsfdff.dddsdfsf} + #{ccadsfdff.eedsdfsf}' });
 
         const renderedTextField = expressionFormulaComponent.find('textarea');
         // Grab the second textarea (https://github.com/callemall/material-ui/blob/838abb4728614e184438002021bf1d539d104501/src/enhanced-textarea.jsx#L90-L104)

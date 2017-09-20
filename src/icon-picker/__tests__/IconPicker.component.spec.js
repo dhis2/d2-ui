@@ -49,14 +49,14 @@ describe('IconPicker', () => {
         });
 
         it('should render the Popover as open when clicked', () => {
-            iconPicker.find(CurrentIcon).props().onIconClicked({currentTarget: {}});
+            iconPicker.find(CurrentIcon).props().onIconClicked({ currentTarget: {} });
             iconPicker.update();
 
             expect(iconPicker.find(Popover).props().open).toBe(true);
         });
 
         it('should close the Popover when it is requested to close', () => {
-            iconPicker.find(CurrentIcon).props().onIconClicked({currentTarget: {}});
+            iconPicker.find(CurrentIcon).props().onIconClicked({ currentTarget: {} });
             iconPicker.update();
 
             expect(iconPicker.find(Popover).props().open).toBe(true);

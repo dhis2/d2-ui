@@ -1,5 +1,5 @@
 import React from 'react';
-import {shallow} from 'enzyme';
+import { shallow } from 'enzyme';
 import FlatButton from 'material-ui/FlatButton/FlatButton';
 import IconOption from '../IconOption.component';
 

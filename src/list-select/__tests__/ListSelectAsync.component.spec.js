@@ -36,14 +36,14 @@ describe('ListSelectAsync component', () => {
         beforeEach(() => {
             fakeAsyncSource = new ReplaySubject(1);
             fakeAsyncSource.next([
-                {value: 'PvuaP6YALSA', label: 'Community'},
-                {value: 'cNzfcPWEGSH', label: 'Country'},
-                {value: 'POHZmzofoVx', label: 'Facility'},
-                {value: 'NUPoPEBGCq9', label: 'OUs and Countries'},
+                { value: 'PvuaP6YALSA', label: 'Community' },
+                { value: 'cNzfcPWEGSH', label: 'Country' },
+                { value: 'POHZmzofoVx', label: 'Facility' },
+                { value: 'NUPoPEBGCq9', label: 'OUs and Countries' },
             ]);
 
             listSelectAsyncComponent = shallow(
-                <ListSelectAsync onItemDoubleClick={onItemDoubleClickSpy} source={fakeAsyncSource} />
+                <ListSelectAsync onItemDoubleClick={onItemDoubleClickSpy} source={fakeAsyncSource} />,
             );
 
             listSelectAsyncComponent.update();
@@ -59,25 +59,25 @@ describe('ListSelectAsync component', () => {
             const listSelect = listSelectAsyncComponent.find(ListSelect);
 
             expect(listSelect.props().source).toEqual([
-                {value: 'PvuaP6YALSA', label: 'Community'},
-                {value: 'cNzfcPWEGSH', label: 'Country'},
-                {value: 'POHZmzofoVx', label: 'Facility'},
-                {value: 'NUPoPEBGCq9', label: 'OUs and Countries'},
+                { value: 'PvuaP6YALSA', label: 'Community' },
+                { value: 'cNzfcPWEGSH', label: 'Country' },
+                { value: 'POHZmzofoVx', label: 'Facility' },
+                { value: 'NUPoPEBGCq9', label: 'OUs and Countries' },
             ]);
         });
 
         it('should only keep the new options if the source changed', () => {
             fakeAsyncSource.next([
-                {value: 'dNzfcPWEGSH', label: 'Universe'},
-                {value: 'MUPoPEBGCq9', label: 'Planet'},
+                { value: 'dNzfcPWEGSH', label: 'Universe' },
+                { value: 'MUPoPEBGCq9', label: 'Planet' },
             ]);
             listSelectAsyncComponent.update();
 
             const listSelect = listSelectAsyncComponent.find(ListSelect);
 
             expect(listSelect.props().source).toEqual([
-                {value: 'dNzfcPWEGSH', label: 'Universe'},
-                {value: 'MUPoPEBGCq9', label: 'Planet'},
+                { value: 'dNzfcPWEGSH', label: 'Universe' },
+                { value: 'MUPoPEBGCq9', label: 'Planet' },
             ]);
         });
 
