@@ -43,7 +43,7 @@ class PeriodPickerExample extends React.Component {
         const styles = {
             card: {
                 margin: 16,
-                width: 310,
+                width: 370,
                 float: 'left',
                 transition: 'all 175ms ease-out',
             },

@@ -26,6 +26,7 @@ const styles = {
     },
     label: {
         display: 'inline-block',
+        outline: 'none',
     },
     ouContainer: {
         borderColor: 'transparent',
@@ -35,6 +36,7 @@ const styles = {
         borderRadius: '3px 0 0 3px',
         background: 'transparent',
         paddingLeft: 2,
+        outline: 'none',
     },
     currentOuContainer: {
         background: 'rgba(0,0,0,0.05)',
@@ -84,7 +86,9 @@ class OrgUnitTree extends React.Component {
     }
 
     setChildState(children) {
-        this.props.onChildrenLoaded && this.props.onChildrenLoaded(children);
+        if (this.props.onChildrenLoaded) {
+            this.props.onChildrenLoaded(children);
+        }
         this.setState({
             children: children.toArray().sort((a, b) => a.displayName.localeCompare(b.displayName)),
             loading: false,
@@ -115,7 +119,7 @@ class OrgUnitTree extends React.Component {
         // If it's a string, pass it on unless it's the current root id
         const expandedProp = Array.isArray(this.props.initiallyExpanded)
             ? this.props.initiallyExpanded.filter(id => id !== this.props.root.id)
-            : this.props.initiallyExpanded !== this.props.root.id && this.props.initiallyExpanded || [];
+            : (this.props.initiallyExpanded !== this.props.root.id && this.props.initiallyExpanded) || [];
 
         if (Array.isArray(this.state.children) && this.state.children.length > 0) {
             return this.state.children.map(orgUnit => (
@@ -148,8 +152,8 @@ class OrgUnitTree extends React.Component {
         const currentOu = this.props.root;
 
         // True if this OU has children = is not a leaf node
-        const hasChildren = this.state.children === undefined || Array.isArray(this.state.children) &&
-            this.state.children.length > 0;
+        const hasChildren = this.state.children === undefined ||
+            (Array.isArray(this.state.children) && this.state.children.length > 0);
         // True if a click handler exists
         const isSelectable = !!this.props.onSelectClick;
         const pathRegEx = new RegExp(`/${currentOu.id}$`);
@@ -165,7 +169,9 @@ class OrgUnitTree extends React.Component {
         // 3) this OU has children (is not a leaf node)
         const canBecomeCurrentRoot = this.props.onChangeCurrentRoot && !isCurrentRoot && hasChildren;
 
-        const memberCount = this.props.selected !== undefined ? this.props.selected.filter(ou => memberRegEx.test(ou)).length : currentOu.memberCount;
+        const memberCount = this.props.selected !== undefined
+            ? this.props.selected.filter(ou => memberRegEx.test(ou)).length
+            : currentOu.memberCount;
 
         // Hard coded styles for OU name labels - can be overridden with the selectedLabelStyle and labelStyle props
         const labelStyle = Object.assign({}, styles.label, {
@@ -187,6 +193,8 @@ class OrgUnitTree extends React.Component {
             <div
                 style={labelStyle}
                 onClick={(canBecomeCurrentRoot && setCurrentRoot) || (isSelectable && this.handleSelectClick)}
+                role="button"
+                tabIndex={0}
             >
                 {isSelectable && !this.props.hideCheckboxes && (
                     <input
@@ -225,6 +233,8 @@ class OrgUnitTree extends React.Component {
                 onClick={isSelectable && this.handleSelectClick}
                 className="orgunit without-children"
                 style={ouContainerStyle}
+                role="button"
+                tabIndex={0}
             >
                 <div style={styles.spacer} />
                 {label}
@@ -233,10 +243,11 @@ class OrgUnitTree extends React.Component {
     }
 }
 
-function orgUnitPathPropValidator(propValue, key, componentName, location, propFullName) {
+function orgUnitPathPropValidator(propValue, key, compName, location, propFullName) {
     if (!/(\/[a-zA-Z][a-zA-Z0-9]{10})+/.test(propValue[key])) {
-        return new Error(`Invalid org unit path \`${propValue[key]}\` supplied to \`${componentName}.${propFullName}\``);
+        return new Error(`Invalid org unit path \`${propValue[key]}\` supplied to \`${compName}.${propFullName}\``);
     }
+    return undefined;
 }
 
 OrgUnitTree.propTypes = {
@@ -302,6 +313,11 @@ OrgUnitTree.propTypes = {
     selectedLabelStyle: React.PropTypes.object,
 
     /**
+     * An array of organisation unit IDs that should be reloaded from the API
+     */
+    idsThatShouldBeReloaded: React.PropTypes.arrayOf(React.PropTypes.string),
+
+    /**
      * Custom arrow symbol
      */
     arrowSymbol: React.PropTypes.string,
@@ -318,10 +334,16 @@ OrgUnitTree.propTypes = {
 };
 
 OrgUnitTree.defaultProps = {
+    selected: [],
     initiallyExpanded: [],
+    onSelectClick: undefined,
+    onChangeCurrentRoot: undefined,
+    currentRoot: undefined,
+    onChildrenLoaded: undefined,
     labelStyle: {},
     selectedLabelStyle: {},
     idsThatShouldBeReloaded: [],
+    arrowSymbol: undefined,
     hideCheckboxes: false,
     hideMemberCount: false,
 };

@@ -7,8 +7,8 @@ import { is53WeekISOYear, getFirstDateOfWeek } from 'd2/lib/period/helpers';
 
 const styles = {
     datePicker: { width: '100%' },
-    year: { width: 55, marginRight: 16 },
-    month: { width: 105 },
+    year: { width: 95, marginRight: 16 },
+    month: { width: 125 },
     week: { width: 105 },
     biMonth: { width: 200 },
     quarter: { width: 200 },
@@ -132,9 +132,9 @@ class PeriodPicker extends React.Component {
                 floatingLabelStyle={isInvalid ? { color: 'red' } : {}}
             >
                 <MenuItem key="" value={this.state[name]} primaryText="&nbsp;" />
-                {Object.keys(options).sort().map((value, i) => (
+                {Object.keys(options).sort().map((value) => (
                     <MenuItem
-                        key={i}
+                        key={value}
                         value={value}
                         primaryText={
                             /[^0-9]/.test(options[value])
