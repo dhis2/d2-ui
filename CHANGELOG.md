@@ -2,6 +2,15 @@
 # D2-UI Changelog
 
 
+## 28.0.0
+###### _September 28th 2017_
+
+##### Breaking changes
+
+- Support for `memberObject` and `memberCollection` properties have been
+  removed from the `OrgUnitTree` component. These were superfluous since
+  the same functionality can be achieved by passing an array of 
+  organisation unit paths to the `selected` property.
 ## 26.1.0
 ###### _January 3rd 2017_
 

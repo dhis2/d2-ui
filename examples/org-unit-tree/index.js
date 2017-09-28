@@ -17,7 +17,6 @@ import MultipleSelectionNoCheckbox from './multiple-selection-no-checkbox';
 import MultipleSelectionMultipleRoots from './multiple-selection-multiple-roots';
 import ChangeRoot from './change-root';
 import MultipleSelectionChangeRoot from './multiple-selection-change-root';
-import MultipleSelectionWithMemberCount from './multiple-selection-with-member-count';
 
 const el = document.getElementById('app');
 const dhisDevConfig = DHIS_CONFIG;
@@ -175,16 +174,7 @@ function OrgUnitTreeExample(props) {
                 <Card style={styles.card}>
                     <CardText style={styles.cardText}>
                         <h3 style={styles.cardHeader}>Root Selection & Multiple Selection</h3>
-                        <MultipleSelectionChangeRoot root={props.root}/>
-                    </CardText>
-                </Card>
-
-                <section>Member Count</section>
-
-                <Card style={styles.card}>
-                    <CardText style={styles.cardText}>
-                        <h3 style={styles.cardHeader}>Data Set Member Count</h3>
-                        <MultipleSelectionWithMemberCount memberCollection="dataSets" memberObject="TuL8IOPzpHh" />
+                        <MultipleSelectionChangeRoot root={props.root} />
                     </CardText>
                 </Card>
             </div>

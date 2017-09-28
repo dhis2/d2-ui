@@ -63,7 +63,7 @@ class OrgUnitTree extends React.Component {
                 : undefined,
             loading: false,
         };
-        if (props.root.children instanceof ModelCollection) {
+        if (props.root.children instanceof ModelCollection && !props.root.children.hasUnloadedData) {
             this.state.children = props.root.children
                 .toArray()
                 // Sort here since the API returns nested children in random order
@@ -96,23 +96,14 @@ class OrgUnitTree extends React.Component {
     }
 
     loadChildren() {
-        if ((this.state.children === undefined && !this.state.loading) || this.props.idsThatShouldBeReloaded.indexOf(this.props.root.id) >= 0) {
+        if ((this.state.children === undefined && !this.state.loading) ||
+            this.props.idsThatShouldBeReloaded.indexOf(this.props.root.id) >= 0) {
             this.setState({ loading: true });
 
             const root = this.props.root;
-            if (this.props.memberCollection && this.props.memberObject) {
-                root.modelDefinition.list({
-                    filter: `parent.id:eq:${root.id}`,
-                    paging: false,
-                    fields: 'id,displayName,children::isNotEmpty,path,parent,memberCount',
-                    memberObject: this.props.memberObject,
-                    memberCollection: this.props.memberCollection,
-                }).then(units => this.setChildState(units));
-            } else {
-                root.modelDefinition.get(root.id, {
-                    fields: 'children[id,displayName,children::isNotEmpty,path,parent]',
-                }).then(unit => this.setChildState(unit.children));
-            }
+            root.children.load({ fields: 'id,displayName,children::isNotEmpty,path,parent' }).then((children) => {
+                this.setChildState(children);
+            });
         }
     }
 
@@ -148,14 +139,12 @@ class OrgUnitTree extends React.Component {
                     arrowSymbol={this.props.arrowSymbol}
                     idsThatShouldBeReloaded={this.props.idsThatShouldBeReloaded}
                     hideCheckboxes={this.props.hideCheckboxes}
-                    memberCollection={this.props.memberCollection}
-                    memberObject={this.props.memberObject}
                     onChildrenLoaded={this.props.onChildrenLoaded}
                     hideMemberCount={this.props.hideMemberCount}
                 />));
         }
 
-        if (this.state.loading || true) {
+        if (this.state.loading) {
             return <div style={styles.progress}><LinearProgress style={styles.progressBar} /></div>;
         }
 
@@ -308,16 +297,6 @@ OrgUnitTree.propTypes = {
      * The callback receives one argument: A D2 ModelCollection object that contains all the newly loaded org units
      */
     onChildrenLoaded: React.PropTypes.func,
-
-    /**
-     * The name of a collection to check for org unit assignment
-     */
-    memberCollection: React.PropTypes.string,
-
-    /**
-     * The UID of the object of the memberCollection type to check for org unit assignment
-     */
-    memberObject: React.PropTypes.string,
 
     /**
      * Custom styling for OU labels
