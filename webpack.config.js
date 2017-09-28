@@ -21,6 +21,10 @@ try {
 }
 
 const identity = (v) => v;
+function log(req, res, opt) {
+    req.headers.Authorization = dhisConfig.authorization;
+    console.log('[PROXY]'.cyan.bold, req.method.green.bold, req.url.magenta, '=>'.dim, opt.target.dim);
+}
 
 module.exports = {
     context: __dirname,
@@ -44,6 +48,7 @@ module.exports = {
             periodpicker: './examples/period-picker',
             button: './examples/button',
         },
+    devtool: 'source-map',
     output: {
         library: 'Dhis2HeaderBar',
         path: path.join(__dirname, '/dist'),
@@ -109,10 +114,12 @@ module.exports = {
         new Visualizer(),
     ].filter(identity),
     devServer: {
-        contentBase: './examples/',
+        contentBase: [path.join(__dirname, '/examples/')],
         port: 8081,
         inline: true,
         compress: true,
+        proxy: [
+            { path: ['/api/', '/dhis-web-commons/', '/icons/'], target: dhisConfig.baseUrl, bypass: log },
+        ],
     },
-    devtool: 'sourcemap',
 };
