@@ -50,10 +50,6 @@ class OrgUnitTree extends React.Component {
     constructor(props) {
         super(props);
 
-        if (props.hasOwnProperty('onClick')) {
-            console.warn('Deprecated: `OrgUnitTree.onClick` has been deprecated. Please use `onSelectClick` instead.');
-        }
-
         this.state = {
             children: (
                 props.root.children === false ||
@@ -110,9 +106,6 @@ class OrgUnitTree extends React.Component {
     handleSelectClick(e) {
         if (this.props.onSelectClick) {
             this.props.onSelectClick(e, this.props.root);
-        } else if (this.props.onClick) {
-            // TODO: onClick is deprecated and should be removed in v26
-            this.props.onClick(e, this.props.root);
         }
         e.stopPropagation();
     }
@@ -131,7 +124,7 @@ class OrgUnitTree extends React.Component {
                     root={orgUnit}
                     selected={this.props.selected}
                     initiallyExpanded={expandedProp}
-                    onSelectClick={this.props.onSelectClick || this.props.onClick}
+                    onSelectClick={this.props.onSelectClick}
                     currentRoot={this.props.currentRoot}
                     onChangeCurrentRoot={this.props.onChangeCurrentRoot}
                     labelStyle={this.props.labelStyle}
@@ -158,7 +151,7 @@ class OrgUnitTree extends React.Component {
         const hasChildren = this.state.children === undefined || Array.isArray(this.state.children) &&
             this.state.children.length > 0;
         // True if a click handler exists
-        const isSelectable = !!this.props.onSelectClick || !!this.props.onClick; // TODO: Remove onClick in v26
+        const isSelectable = !!this.props.onSelectClick;
         const pathRegEx = new RegExp(`/${currentOu.id}$`);
         const memberRegEx = new RegExp(`/${currentOu.id}`);
         const isSelected = this.props.selected && this.props.selected.some(ou => pathRegEx.test(ou));

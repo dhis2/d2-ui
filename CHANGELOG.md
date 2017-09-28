@@ -11,6 +11,10 @@
   removed from the `OrgUnitTree` component. These were superfluous since
   the same functionality can be achieved by passing an array of 
   organisation unit paths to the `selected` property.
+- The deprecated `onClick` prop has been removed from the `OrgUnitTree`
+  component. Use the `onSelectClick` prop instead.
+
+
 ## 26.1.0
 ###### _January 3rd 2017_
 
