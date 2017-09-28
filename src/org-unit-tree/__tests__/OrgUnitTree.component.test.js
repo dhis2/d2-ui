@@ -12,6 +12,7 @@ describe('OrgUnitTree component', () => {
         rootModel = new Model(new ModelDefinition({ singular: 'organisationUnit', plural: 'organisationUnits' }, {}, {}, {}, {}));
 
         rootModel.displayName = 'Norway';
+        rootModel.children = { hasUnloadedData: false, toArray: () => [] }; // Pretend to support lazy-loading children
     });
 
     it('should pass the displayName as the label to the TreeView', () => {
