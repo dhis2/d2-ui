@@ -26,6 +26,7 @@ const styles = {
     },
     label: {
         display: 'inline-block',
+        outline: 'none',
     },
     ouContainer: {
         borderColor: 'transparent',
@@ -35,6 +36,7 @@ const styles = {
         borderRadius: '3px 0 0 3px',
         background: 'transparent',
         paddingLeft: 2,
+        outline: 'none',
     },
     currentOuContainer: {
         background: 'rgba(0,0,0,0.05)',
@@ -50,10 +52,6 @@ class OrgUnitTree extends React.Component {
     constructor(props) {
         super(props);
 
-        if (props.hasOwnProperty('onClick')) {
-            console.warn('Deprecated: `OrgUnitTree.onClick` has been deprecated. Please use `onSelectClick` instead.');
-        }
-
         this.state = {
             children: (
                 props.root.children === false ||
@@ -63,7 +61,7 @@ class OrgUnitTree extends React.Component {
                 : undefined,
             loading: false,
         };
-        if (props.root.children instanceof ModelCollection) {
+        if (props.root.children instanceof ModelCollection && !props.root.children.hasUnloadedData) {
             this.state.children = props.root.children
                 .toArray()
                 // Sort here since the API returns nested children in random order
@@ -88,7 +86,9 @@ class OrgUnitTree extends React.Component {
     }
 
     setChildState(children) {
-        this.props.onChildrenLoaded && this.props.onChildrenLoaded(children);
+        if (this.props.onChildrenLoaded) {
+            this.props.onChildrenLoaded(children);
+        }
         this.setState({
             children: children.toArray().sort((a, b) => a.displayName.localeCompare(b.displayName)),
             loading: false,
@@ -96,32 +96,20 @@ class OrgUnitTree extends React.Component {
     }
 
     loadChildren() {
-        if ((this.state.children === undefined && !this.state.loading) || this.props.idsThatShouldBeReloaded.indexOf(this.props.root.id) >= 0) {
+        if ((this.state.children === undefined && !this.state.loading) ||
+            this.props.idsThatShouldBeReloaded.indexOf(this.props.root.id) >= 0) {
             this.setState({ loading: true });
 
             const root = this.props.root;
-            if (this.props.memberCollection && this.props.memberObject) {
-                root.modelDefinition.list({
-                    filter: `parent.id:eq:${root.id}`,
-                    paging: false,
-                    fields: 'id,displayName,children::isNotEmpty,path,parent,memberCount',
-                    memberObject: this.props.memberObject,
-                    memberCollection: this.props.memberCollection,
-                }).then(units => this.setChildState(units));
-            } else {
-                root.modelDefinition.get(root.id, {
-                    fields: 'children[id,displayName,children::isNotEmpty,path,parent]',
-                }).then(unit => this.setChildState(unit.children));
-            }
+            root.children.load({ fields: 'id,displayName,children::isNotEmpty,path,parent' }).then((children) => {
+                this.setChildState(children);
+            });
         }
     }
 
     handleSelectClick(e) {
         if (this.props.onSelectClick) {
             this.props.onSelectClick(e, this.props.root);
-        } else if (this.props.onClick) {
-            // TODO: onClick is deprecated and should be removed in v26
-            this.props.onClick(e, this.props.root);
         }
         e.stopPropagation();
     }
@@ -131,7 +119,7 @@ class OrgUnitTree extends React.Component {
         // If it's a string, pass it on unless it's the current root id
         const expandedProp = Array.isArray(this.props.initiallyExpanded)
             ? this.props.initiallyExpanded.filter(id => id !== this.props.root.id)
-            : this.props.initiallyExpanded !== this.props.root.id && this.props.initiallyExpanded || [];
+            : (this.props.initiallyExpanded !== this.props.root.id && this.props.initiallyExpanded) || [];
 
         if (Array.isArray(this.state.children) && this.state.children.length > 0) {
             return this.state.children.map(orgUnit => (
@@ -140,7 +128,7 @@ class OrgUnitTree extends React.Component {
                     root={orgUnit}
                     selected={this.props.selected}
                     initiallyExpanded={expandedProp}
-                    onSelectClick={this.props.onSelectClick || this.props.onClick}
+                    onSelectClick={this.props.onSelectClick}
                     currentRoot={this.props.currentRoot}
                     onChangeCurrentRoot={this.props.onChangeCurrentRoot}
                     labelStyle={this.props.labelStyle}
@@ -148,15 +136,13 @@ class OrgUnitTree extends React.Component {
                     arrowSymbol={this.props.arrowSymbol}
                     idsThatShouldBeReloaded={this.props.idsThatShouldBeReloaded}
                     hideCheckboxes={this.props.hideCheckboxes}
-                    memberCollection={this.props.memberCollection}
-                    memberObject={this.props.memberObject}
                     onChildrenLoaded={this.props.onChildrenLoaded}
                     hideMemberCount={this.props.hideMemberCount}
                 />));
         }
 
-        if (this.state.loading || true) {
-            return <div style={styles.progress}><LinearProgress style={styles.progressBar}/></div>;
+        if (this.state.loading) {
+            return <div style={styles.progress}><LinearProgress style={styles.progressBar} /></div>;
         }
 
         return null;
@@ -166,12 +152,10 @@ class OrgUnitTree extends React.Component {
         const currentOu = this.props.root;
 
         // True if this OU has children = is not a leaf node
-        const hasChildren = this.state.children === undefined || Array.isArray(this.state.children) &&
-            this.state.children.length > 0;
+        const hasChildren = this.state.children === undefined ||
+            (Array.isArray(this.state.children) && this.state.children.length > 0);
         // True if a click handler exists
-        const isSelectable = !!this.props.onSelectClick || !!this.props.onClick; // TODO: Remove onClick in v26
-        // True if this OU is currently selected
-        const selectedHasPath = this.props.selected && this.props.selected.reduce((acc, ou) => acc || ou.includes('/'), false);
+        const isSelectable = !!this.props.onSelectClick;
         const pathRegEx = new RegExp(`/${currentOu.id}$`);
         const memberRegEx = new RegExp(`/${currentOu.id}`);
         const isSelected = this.props.selected && this.props.selected.some(ou => pathRegEx.test(ou));
@@ -185,7 +169,9 @@ class OrgUnitTree extends React.Component {
         // 3) this OU has children (is not a leaf node)
         const canBecomeCurrentRoot = this.props.onChangeCurrentRoot && !isCurrentRoot && hasChildren;
 
-        const memberCount = this.props.selected !== undefined ? this.props.selected.filter(ou => memberRegEx.test(ou)).length : currentOu.memberCount;
+        const memberCount = this.props.selected !== undefined
+            ? this.props.selected.filter(ou => memberRegEx.test(ou)).length
+            : currentOu.memberCount;
 
         // Hard coded styles for OU name labels - can be overridden with the selectedLabelStyle and labelStyle props
         const labelStyle = Object.assign({}, styles.label, {
@@ -204,11 +190,20 @@ class OrgUnitTree extends React.Component {
         };
 
         const label = (
-            <div style={labelStyle}
-                 onClick={(canBecomeCurrentRoot && setCurrentRoot) || (isSelectable && this.handleSelectClick)}>
+            <div
+                style={labelStyle}
+                onClick={(canBecomeCurrentRoot && setCurrentRoot) || (isSelectable && this.handleSelectClick)}
+                role="button"
+                tabIndex={0}
+            >
                 {isSelectable && !this.props.hideCheckboxes && (
-                    <input type="checkbox" readOnly disabled={!isSelectable} checked={isSelected}
-                           onClick={this.handleSelectClick}/>
+                    <input
+                        type="checkbox"
+                        readOnly
+                        disabled={!isSelectable}
+                        checked={isSelected}
+                        onClick={this.handleSelectClick}
+                    />
                 )}
                 {currentOu.displayName}
                 {hasChildren && !this.props.hideMemberCount && !!memberCount && (
@@ -234,21 +229,25 @@ class OrgUnitTree extends React.Component {
         }
 
         return (
-            <div onClick={isSelectable && this.handleSelectClick}
-                 className="orgunit without-children"
-                 style={ouContainerStyle}
+            <div
+                onClick={isSelectable && this.handleSelectClick}
+                className="orgunit without-children"
+                style={ouContainerStyle}
+                role="button"
+                tabIndex={0}
             >
-                <div style={styles.spacer}></div>
+                <div style={styles.spacer} />
                 {label}
             </div>
         );
     }
 }
 
-function orgUnitPathPropValidator (propValue, key, componentName, location, propFullName) {
+function orgUnitPathPropValidator(propValue, key, compName, location, propFullName) {
     if (!/(\/[a-zA-Z][a-zA-Z0-9]{10})+/.test(propValue[key])) {
-        return new Error(`Invalid org unit path \`${propValue[key]}\` supplied to \`${componentName}.${propFullName}\``);
+        return new Error(`Invalid org unit path \`${propValue[key]}\` supplied to \`${compName}.${propFullName}\``);
     }
+    return undefined;
 }
 
 OrgUnitTree.propTypes = {
@@ -304,16 +303,6 @@ OrgUnitTree.propTypes = {
     onChildrenLoaded: React.PropTypes.func,
 
     /**
-     * The name of a collection to check for org unit assignment
-     */
-    memberCollection: React.PropTypes.string,
-
-    /**
-     * The UID of the object of the memberCollection type to check for org unit assignment
-     */
-    memberObject: React.PropTypes.string,
-
-    /**
      * Custom styling for OU labels
      */
     labelStyle: React.PropTypes.object,
@@ -322,6 +311,11 @@ OrgUnitTree.propTypes = {
      * Custom styling for the labels of selected OUs
      */
     selectedLabelStyle: React.PropTypes.object,
+
+    /**
+     * An array of organisation unit IDs that should be reloaded from the API
+     */
+    idsThatShouldBeReloaded: React.PropTypes.arrayOf(React.PropTypes.string),
 
     /**
      * Custom arrow symbol
@@ -340,10 +334,16 @@ OrgUnitTree.propTypes = {
 };
 
 OrgUnitTree.defaultProps = {
+    selected: [],
     initiallyExpanded: [],
+    onSelectClick: undefined,
+    onChangeCurrentRoot: undefined,
+    currentRoot: undefined,
+    onChildrenLoaded: undefined,
     labelStyle: {},
     selectedLabelStyle: {},
     idsThatShouldBeReloaded: [],
+    arrowSymbol: undefined,
     hideCheckboxes: false,
     hideMemberCount: false,
 };

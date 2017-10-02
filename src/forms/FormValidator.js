@@ -64,14 +64,12 @@ export default function createFormValidator(fieldConfigs = [], scheduler) {
     const statusSubject = new Rx.ReplaySubject(1);
     const initialStatuses = fieldConfigs
         .filter(fieldConfig => Array.isArray(fieldConfig.validators) && fieldConfig.validators.length > 0)
-        .map(fc => {
-            return [fc.name, { status: FormFieldStatuses.VALID, messages: [] }];
-        });
+        .map(fc => [fc.name, { status: FormFieldStatuses.VALID, messages: [] }]);
     const formFieldStatuses = new Map(initialStatuses);
 
     const validatorQueues = new Map(initialStatuses.map(([name]) => [name, new Rx.Subject()]));
     Array.from(validatorQueues.values())
-        .forEach(validatorObservable => {
+        .forEach((validatorObservable) => {
             validatorObservable
                 .debounceTime(300, scheduler)
                 .map(({ fieldName, fieldValue, formSource }) => {
@@ -82,7 +80,7 @@ export default function createFormValidator(fieldConfigs = [], scheduler) {
                     validatorQueue.next(Promise.resolve({ fieldName, fieldStatus: { status: FormFieldStatuses.VALIDATING, messages: [] } }));
 
                     const validatorToRun = fieldConfig.validators
-                        .filter(validator => {
+                        .filter((validator) => {
                             if (!isFunction(validator)) {
                                 log.warn(`Warning: One of the validators for '${fieldName}' is not a function.`);
                                 return false;
@@ -93,7 +91,7 @@ export default function createFormValidator(fieldConfigs = [], scheduler) {
 
                     if (!validatorToRun.length) {
                         return Promise.resolve({
-                            fieldName: fieldName,
+                            fieldName,
                             fieldStatus: getFieldStatus(),
                         });
                     }
@@ -101,12 +99,10 @@ export default function createFormValidator(fieldConfigs = [], scheduler) {
                     return validatorToRun
                         .reduce(awaitAsyncValidators, [])
                         .then(grabErrorMessages)
-                        .then(errorMessages => {
-                            return {
-                                fieldName: fieldName,
-                                fieldStatus: getFieldStatus(errorMessages),
-                            };
-                        })
+                        .then(errorMessages => ({
+                            fieldName,
+                            fieldStatus: getFieldStatus(errorMessages),
+                        }))
                         .catch(log.error);
                 })
                 .concatAll()

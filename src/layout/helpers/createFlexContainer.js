@@ -6,10 +6,10 @@ export default function createFlexContainer(defaultFlexStyle, displayName = 'Fle
         const flexContainerStyle = Object.assign({ display: 'flex' }, defaultFlexStyle, style);
         const flexedChildren = Children.map(children, (child) => {
             if (child === null) {
-                log.error(`createFlexContainer: Flex child can not be 'null'`);
+                log.error('createFlexContainer: Flex child can not be \'null\'');
             }
 
-            return cloneElement(child, { style: Object.assign({}, { flex: flexValue }, child.props.style) })
+            return cloneElement(child, { style: Object.assign({}, { flex: flexValue }, child.props.style) });
         });
 
         return (

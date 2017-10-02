@@ -8,7 +8,7 @@ import addD2Context from '../component-helpers/addD2Context';
 import { findValueRenderer } from './data-value/valueRenderers';
 
 function getD2ModelValueType(dataSource, columnName) {
-    return dataSource && dataSource.modelDefinition && dataSource.modelDefinition.modelValidations && dataSource.modelDefinition.modelValidations[columnName] && dataSource.modelDefinition.modelValidations[columnName].type
+    return dataSource && dataSource.modelDefinition && dataSource.modelDefinition.modelValidations && dataSource.modelDefinition.modelValidations[columnName] && dataSource.modelDefinition.modelValidations[columnName].type;
 }
 
 const DataTableRow = addD2Context(React.createClass({
@@ -52,7 +52,7 @@ const DataTableRow = addD2Context(React.createClass({
         return (
             <div className={classList}>
                 {columns}
-                <div className={'data-table__rows__row__column'} style={{width: '1%'}}>
+                <div className={'data-table__rows__row__column'} style={{ width: '1%' }}>
                     <IconButton tooltip={this.context.d2.i18n.getTranslation('actions')} onClick={this.iconMenuClick}>
                         <MoreVert />
                     </IconButton>

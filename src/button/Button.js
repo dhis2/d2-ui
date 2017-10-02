@@ -24,10 +24,9 @@ const Button = ({ raised, fab, color, disabled, onClick, children, style, select
         label: typeof children === 'string' ? children : null,
         primary: color === 'primary' || null,
         secondary: color === 'accent' || null,
-        disabled: disabled,
+        disabled,
         onTouchTap: onClick,
-        style: style,
-        className: className,
+        style,
     };
 
     // Property gives error on FAB buttons in Material UI 0.19

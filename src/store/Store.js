@@ -13,10 +13,10 @@ class Store extends Observable {
 
         if (initialValue) {
             Promise.resolve(initialValue)
-                .then(value => {
+                .then((value) => {
                     this.setState(value);
                 })
-                .catch(error => {
+                .catch((error) => {
                     this[publishError](error);
                 });
         }
@@ -33,8 +33,8 @@ class Store extends Observable {
 
     setSource(observableSource) {
         observableSource.subscribe(
-            (value) => this.setState(value),
-            (error) => this[publishError](`Rethrown error from source: ${error}`)
+            value => this.setState(value),
+            error => this[publishError](`Rethrown error from source: ${error}`),
         );
     }
 
@@ -44,7 +44,7 @@ class Store extends Observable {
 
     /** ***************************************************************************************************************
      * Private methods
-     *****************************************************************************************************************/
+     **************************************************************************************************************** */
 
     [publishState]() {
         return this[observableSymbol].next(this.state);
@@ -56,7 +56,7 @@ class Store extends Observable {
 
     /** ***************************************************************************************************************
      * Static methods
-     *****************************************************************************************************************/
+     **************************************************************************************************************** */
 
     static create(storeConfig) {
         let initialState;
@@ -69,7 +69,7 @@ class Store extends Observable {
 
             Object.keys(storeConfig)
                 .filter(keyName => keyName !== 'getInitialState')
-                .forEach(keyName => {
+                .forEach((keyName) => {
                     mergeObject[keyName] = storeConfig[keyName];
                     return mergeObject;
                 });

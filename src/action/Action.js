@@ -45,7 +45,7 @@ const Action = {
                 }));
             },
             Observable.prototype,
-            Subject.prototype
+            Subject.prototype,
         );
 
         Object.defineProperty(subject, 'id', { value: Symbol(name) });
@@ -76,7 +76,7 @@ const Action = {
             actionPrefix = '';
         }
 
-        actionNames.forEach(actionName => {
+        actionNames.forEach((actionName) => {
             actions[actionName] = this.create(actionPrefix + actionName);
         });
 

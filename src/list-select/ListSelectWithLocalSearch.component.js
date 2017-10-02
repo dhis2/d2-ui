@@ -27,7 +27,7 @@ class ListSelectWithLocalSearch extends Component {
         return (
             <div>
                 <TextField
-                    style={{marginLeft: '1rem'}}
+                    style={{ marginLeft: '1rem' }}
                     hintText={this.i18n.getTranslation('search_by_name')}
                     onChange={this._filterList}
                     value={this.state.textSearch}

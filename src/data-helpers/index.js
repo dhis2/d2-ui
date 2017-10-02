@@ -12,6 +12,6 @@ import { getInstance } from 'd2/lib/d2';
  */
 export function getAllObjectsWithFields(schemaName, fields = 'id,displayName') {
     return getInstance()
-        .then(d2 => d2.models[schemaName].list({ paging: false, fields, }))
+        .then(d2 => d2.models[schemaName].list({ paging: false, fields }))
         .then(collection => collection.toArray());
 }

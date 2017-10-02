@@ -1,15 +1,15 @@
+import { Observable } from 'rxjs';
 import { getInstance } from 'd2/lib/d2';
 import Pager from 'd2/lib/pager/Pager';
 import Action from '../action/Action';
-import { Observable } from 'rxjs';
 
-const createFakePager = response => {
+const createFakePager = response =>
     // Fake the modelCollection since dataElementOperands do not have a valid uid
-    return {
+    ({
         pager: new Pager(response.pager, {
             list(pager) {
                 return getInstance()
-                    .then(d2 => {
+                    .then((d2) => {
                         if (this.searchValue) {
                             return d2.Api.getApi().get('dataElementOperands', { page: pager.page, fields: 'id,displayName', filter: ['dataElement.domainType:eq:AGGREGATE', `name:ilike:${this.searchValue}`], totals: true });
                         }
@@ -21,8 +21,8 @@ const createFakePager = response => {
         toArray() {
             return response.dataElementOperands;
         },
-    };
-};
+    })
+;
 
 export function subscribeDataElementActionsToStore(dataElementOperandSelectorActions, dataElementOperandStore) {
     const loadListSubscription = dataElementOperandSelectorActions.loadList.subscribe(() => {
@@ -35,27 +35,25 @@ export function subscribeDataElementActionsToStore(dataElementOperandSelectorAct
     const searchSubscription = dataElementOperandSelectorActions.search
         .debounceTime(500)
         .distinctUntilChanged((x, y) => x === y, action => action.data)
-        .map(action => {
+        .map((action) => {
             const searchPromise = getInstance()
-                .then(d2 => {
+                .then((d2) => {
                     if (action.data) {
                         return d2.Api.getApi().get('dataElementOperands', { fields: 'id,displayName', totals: true, filter: ['dataElement.domainType:eq:AGGREGATE', `name:ilike:${action.data}`] });
                     }
                     return d2.Api.getApi().get('dataElementOperands', { fields: 'id,displayName', totals: true, filter: ['dataElement.domainType:eq:AGGREGATE'] });
                 })
                 .then(createFakePager)
-                .then(collection => {
-                    return {
-                        complete: action.complete,
-                        error: action.error,
-                        collection: collection,
-                    };
-                });
+                .then(collection => ({
+                    complete: action.complete,
+                    error: action.error,
+                    collection,
+                }));
 
             return Observable.fromPromise(searchPromise);
         })
         .concatAll()
-        .subscribe(actionResult => {
+        .subscribe((actionResult) => {
             dataElementOperandStore.setState(actionResult.collection);
             actionResult.complete();
         });
@@ -67,14 +65,12 @@ export function subscribeDataElementActionsToStore(dataElementOperandSelectorAct
 
             pager.getNextPage()
                 .then(createFakePager)
-                .then(collection => {
-                    return {
-                        complete: action.complete,
-                        error: action.error,
-                        collection,
-                    };
-                })
-                .then(actionResult => {
+                .then(collection => ({
+                    complete: action.complete,
+                    error: action.error,
+                    collection,
+                }))
+                .then((actionResult) => {
                     dataElementOperandStore.setState(actionResult.collection);
                     actionResult.complete();
                 });
@@ -87,14 +83,12 @@ export function subscribeDataElementActionsToStore(dataElementOperandSelectorAct
 
             pager.getPreviousPage()
                 .then(createFakePager)
-                .then(collection => {
-                    return {
-                        complete: action.complete,
-                        error: action.error,
-                        collection,
-                    };
-                })
-                .then(actionResult => {
+                .then(collection => ({
+                    complete: action.complete,
+                    error: action.error,
+                    collection,
+                }))
+                .then((actionResult) => {
                     dataElementOperandStore.setState(actionResult.collection);
                     actionResult.complete();
                 });

@@ -4,12 +4,12 @@ import TextField from 'material-ui/TextField/TextField';
 import RaisedButton from 'material-ui/RaisedButton/RaisedButton';
 import FlatButton from 'material-ui/FlatButton/FlatButton';
 import Dialog from 'material-ui/Dialog/Dialog';
-import ColorScaleSelect from './ColorScaleSelect.component';
-import LegendItems from './LegendItems.component';
 import { scaleLinear } from 'd3-scale';
 import { precisionFixed } from 'd3-format';
 import { config } from 'd2/lib/d2';
 import { generateUid } from 'd2/lib/uid';
+import ColorScaleSelect from './ColorScaleSelect.component';
+import LegendItems from './LegendItems.component';
 import { legendItemStore } from './LegendItem.store';
 import Row from '../layout/Row.component';
 import Column from '../layout/Column.component';
@@ -33,18 +33,18 @@ export default class Legend extends Component {
             endValue: 100,
             warningDialogOpen: false,
             errorMessage: {},
-            createLegendDisabled: false
+            createLegendDisabled: false,
         };
 
         this.i18n = this.context.d2.i18n;
     }
 
     onStartValueChange = (event) => {
-        this.setState({startValue: event.target.value}, this.validateForm);
+        this.setState({ startValue: event.target.value }, this.validateForm);
     };
 
     onEndValueChange = (event) => {
-        this.setState({endValue: event.target.value}, this.validateForm);
+        this.setState({ endValue: event.target.value }, this.validateForm);
     };
 
     onColorScaleChange = (colorScheme) => {
@@ -52,7 +52,7 @@ export default class Legend extends Component {
     };
 
     createLegendItems = () => {
-        const { startValue, endValue, classes, colorScheme } = this.state;
+        const { startValue, endValue, colorScheme } = this.state;
         const scale = scaleLinear().domain([startValue, endValue]).rangeRound([0, colorScheme.length]);
         const step = (endValue - startValue) / colorScheme.length;
         const precision = precisionFixed(step); // https://github.com/d3/d3-format#precisionFixed
@@ -83,7 +83,7 @@ export default class Legend extends Component {
 
         return this.props.onItemsChange([].concat(
             newItems,
-            isNewLegendItem ? modelToUpdate : []
+            isNewLegendItem ? modelToUpdate : [],
         ));
     };
 
@@ -127,13 +127,13 @@ export default class Legend extends Component {
 
     // Display warning that current legend items will be deleted
     displayWarning = () => {
-        this.setState({warningDialogOpen: true});
+        this.setState({ warningDialogOpen: true });
     };
 
     handleClose = () => {
         this.setState(
-            {warningDialogOpen: false},
-            () => this.createLegendItems() // Callback for after state update
+            { warningDialogOpen: false },
+            () => this.createLegendItems(), // Callback for after state update
         );
     };
 
@@ -141,12 +141,12 @@ export default class Legend extends Component {
         const actions = [
             <FlatButton
                 label={this.i18n.getTranslation('cancel')}
-                secondary={true}
+                secondary
                 onTouchTap={this.handleClose}
             />,
             <FlatButton
                 label={this.i18n.getTranslation('proceed')}
-                primary={true}
+                primary
                 onTouchTap={this.handleClose}
             />,
         ];

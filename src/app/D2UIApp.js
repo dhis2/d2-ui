@@ -24,7 +24,7 @@ export default class D2UIApp extends Component {
 
     componentDidMount() {
         init(this.props.initConfig)
-            .then((d2) => this.setState({ d2 }))
+            .then(d2 => this.setState({ d2 }))
             .catch(errorMessage => this.setState({
                 isErrored: true,
                 error: (

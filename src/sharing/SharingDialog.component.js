@@ -16,8 +16,8 @@ config.i18n.strings.add('no_manage_access');
 function cachedAccessTypeToString(canView, canEdit) {
     if (canView) {
         return canEdit
-          ? 'rw------'
-          : 'r-------';
+            ? 'rw------'
+            : 'r-------';
     }
 
     return '--------';
@@ -114,25 +114,25 @@ class SharingDialog extends React.Component {
         const apiObject = this.restoreObjectStructure(objectToShare);
 
         return this.state.api.post(`sharing?type=${this.props.type}&id=${this.props.id}`, apiObject)
-          .then(({ httpStatus, message }) => {
-              if (httpStatus === 'OK') {
-                  this.setState({
-                      objectToShare,
-                      apiObject,
-                  }, () => {
-                      if (onSuccess) onSuccess();
-                  });
-              } else {
-                  console.warn('Failed to post changes.');
-                  console.warn('SERVER SAID:', message);
-              }
+            .then(({ httpStatus, message }) => {
+                if (httpStatus === 'OK') {
+                    this.setState({
+                        objectToShare,
+                        apiObject,
+                    }, () => {
+                        if (onSuccess) onSuccess();
+                    });
+                } else {
+                    console.warn('Failed to post changes.');
+                    console.warn('SERVER SAID:', message);
+                }
 
-              return message;
-          })
-          .catch(({ message }) => {
-              console.warn('Failed to post changes.');
-              console.warn('SERVER SAID:', message);
-          });
+                return message;
+            })
+            .catch(({ message }) => {
+                console.warn('Failed to post changes.');
+                console.warn('SERVER SAID:', message);
+            });
     }
 
     loadObjectFromApi() {
@@ -182,7 +182,7 @@ class SharingDialog extends React.Component {
 
                 publicAccess: cachedAccessTypeToString(
                     transformedObject.publicCanView,
-                    transformedObject.publicCanEdit
+                    transformedObject.publicCanEdit,
                 ),
                 externalAccess: transformedObject.isSharedExternally,
             },

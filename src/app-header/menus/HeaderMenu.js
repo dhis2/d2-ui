@@ -41,7 +41,7 @@ class HeaderMenu extends Component {
                 onMouseLeave={this._mouseLeave}
             >
                 {name}
-                <div style={{paddingTop: 55}}>
+                <div style={{ paddingTop: 55 }}>
                     <Paper style={menuStyle}>
                         <HeaderMenuItems {...innerMenuProps}>
                             {children}

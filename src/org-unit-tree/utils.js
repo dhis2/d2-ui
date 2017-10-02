@@ -22,7 +22,7 @@ export function forEachOnPath(root, path, op) {
  * @param orgUnit
  */
 export function decrementMemberCount(root, orgUnit) {
-    forEachOnPath(root, orgUnit.path.substr(1).split('/').slice(1), (ou) => ou.memberCount--);
+    forEachOnPath(root, orgUnit.path.substr(1).split('/').slice(1), ou => ou.memberCount--);
 }
 
 /**
@@ -32,7 +32,7 @@ export function decrementMemberCount(root, orgUnit) {
  * @param orgUnit
  */
 export function incrementMemberCount(root, orgUnit) {
-    forEachOnPath(root, orgUnit.path.substr(1).split('/').slice(1), (ou) => ou.memberCount++);
+    forEachOnPath(root, orgUnit.path.substr(1).split('/').slice(1), ou => ou.memberCount++);
 }
 
 /**

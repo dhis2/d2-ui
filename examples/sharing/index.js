@@ -72,7 +72,7 @@ SharingExample.childContextTypes = {
 
 const element = document.getElementById('sharing');
 const dhisDevConfig = DHIS_CONFIG;
-const baseUrl = `${dhisDevConfig.baseUrl}/api`;
+const baseUrl = `/api`;
 
 render(<div>Sharing dialog is loading.</div>, element);
 

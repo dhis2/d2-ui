@@ -7,8 +7,8 @@ import { is53WeekISOYear, getFirstDateOfWeek } from 'd2/lib/period/helpers';
 
 const styles = {
     datePicker: { width: '100%' },
-    year: { width: 55, marginRight: 16 },
-    month: { width: 105 },
+    year: { width: 95, marginRight: 16 },
+    month: { width: 125 },
     week: { width: 105 },
     biMonth: { width: 200 },
     quarter: { width: 200 },
@@ -16,7 +16,7 @@ const styles = {
     line: { marginTop: 0 },
 };
 
-const getYear = (date) => (new Date(date)).getFullYear();
+const getYear = date => (new Date(date)).getFullYear();
 const getTwoDigitMonth = (date) => {
     const month = (new Date(date)).getMonth() + 1; // Month is 0 indexed
 
@@ -27,20 +27,18 @@ const getTwoDigitDay = (date) => {
 
     return `0${day}`.slice(-2);
 };
-const formattedDate = (date) => {
-    return `${getYear(date)}${getTwoDigitMonth(date)}${getTwoDigitDay(date)}`;
-};
+const formattedDate = date => `${getYear(date)}${getTwoDigitMonth(date)}${getTwoDigitDay(date)}`;
 const getWeekYear = (date) => {
     // Create a new date object for the thursday of this week
-    const target  = new Date(date);
+    const target = new Date(date);
     target.setDate(target.getDate() - ((date.getDay() + 6) % 7) + 3);
 
     return target.getFullYear();
 };
-const isWeekValid = (date, week) => {
+const isWeekValid = (date, week) =>
     // It's not possible to have a week 53 in a 52 week year
-    return !is53WeekISOYear(date) && Number(week) !== 53;
-};
+    !is53WeekISOYear(date) && Number(week) !== 53
+;
 
 class PeriodPicker extends React.Component {
     constructor(props, context) {
@@ -133,10 +131,10 @@ class PeriodPicker extends React.Component {
                 floatingLabelText={this.getTranslation(name)}
                 floatingLabelStyle={isInvalid ? { color: 'red' } : {}}
             >
-                <MenuItem key="" value={this.state[name]} primaryText="&nbsp;"/>
-                {Object.keys(options).sort().map((value, i) => (
+                <MenuItem key="" value={this.state[name]} primaryText="&nbsp;" />
+                {Object.keys(options).sort().map((value) => (
                     <MenuItem
-                        key={i}
+                        key={value}
                         value={value}
                         primaryText={
                             /[^0-9]/.test(options[value])
@@ -161,8 +159,18 @@ class PeriodPicker extends React.Component {
 
     renderMonthPicker() {
         const months = {
-            '01': 'jan', '02': 'feb', '03': 'mar', '04': 'apr', '05': 'may', '06': 'jun',
-            '07': 'jul', '08': 'aug', '09': 'sep', '10': 'oct', '11': 'nov', '12': 'dec',
+            '01': 'jan',
+            '02': 'feb',
+            '03': 'mar',
+            '04': 'apr',
+            '05': 'may',
+            '06': 'jun',
+            '07': 'jul',
+            '08': 'aug',
+            '09': 'sep',
+            10: 'oct',
+            11: 'nov',
+            12: 'dec',
         };
         return this.renderOptionPicker('month', months);
     }
@@ -170,7 +178,7 @@ class PeriodPicker extends React.Component {
     renderWeekPicker() {
         const weeks = {};
         const weekLimit = 53;
-        for(let week = 1; week <= weekLimit; week++) {
+        for (let week = 1; week <= weekLimit; week++) {
             weeks[`0${week}`.substr(-2)] = week;
         }
 
@@ -257,7 +265,7 @@ PeriodPicker.propTypes = {
         'Yearly',
         'FinancialApril',
         'FinancialJuly',
-        'FinancialOct'
+        'FinancialOct',
     ]).isRequired,
 
     onPickPeriod: React.PropTypes.func.isRequired,
