@@ -41,4 +41,5 @@ HeaderBar.propTypes = {
     profileItems: PropTypes.array,
     currentUser: PropTypes.object,
     settings: PropTypes.object,
+    noLoadingIndicator: PropTypes.bool,
 };
