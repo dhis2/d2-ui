@@ -1,15 +1,19 @@
 <!doctype html>
 <html lang="en">
-    <div id="header"></div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.0/react-with-addons.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.0/react-dom.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/4.1.0/rx.lite.min.js"></script>
-    <script src="d2-browser.js"></script>
-    <script src="header-bar.js"></script>
-    <script type="text/javascript"></script>
-    <script>
-        Dhis2HeaderBar.initHeaderBar(
-            document.querySelector('#header'),
-            'http://localhost:8080/dhis/api'
-        );
-    </script>
+<body>
+<div id="header"></div>
+<!-- TODO: Generate this using HtmlWebpackPlugin -->
+<script src="http://localhost:8080/dhis/dhis-web-core-resource/react/15.4.2/react-with-touch-tap-plugin.min.js"></script>
+<script src="http://localhost:8080/dhis/dhis-web-core-resource/lodash/4.15.0/lodash.min.js"></script>
+<script src="http://localhost:8080/dhis/dhis-web-core-resource/lodash-functional/lodash-functional.js"></script>
+
+<script src="header-bar.js"></script>
+<script type="text/javascript"></script>
+<script>
+    Dhis2HeaderBar.initHeaderBar(
+        document.querySelector('#header'),
+        'http://localhost:8080/dhis/api'
+    );
+</script>
+</body>
+</html>
