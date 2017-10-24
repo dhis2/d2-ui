@@ -8,6 +8,7 @@ import Button from '../Button';
 
 
 // https://www.sitepoint.com/test-react-components-jest/
+// https://github.com/callemall/material-ui/issues/4664
 describe('Button', () => {
     const renderWithProps = props => shallow(<Button {...props} />, {
         context: getStubContext(),
@@ -43,27 +44,7 @@ describe('Button', () => {
 
     it('should pass on the onClick handler to MUI onTouchTap property', () => {
         const onClick = jest.fn();
-        const component = mount(<Button onClick={onClick}></Button>, {
-            context: getStubContext(),
-        });
-        const p = component.find('.d2-ui-button').first();
-        p.simulate('click');
-        expect(onClick).toBeCalledWith(1);
 
-
-        /*
-        const instance = component.instance();
-        const spy = jest.spyOn('instance', 'onClick');
-
-        instance.forceUpdate();
-
-        component.find('.d2-ui-button').simulate('click');
-        expect(spy).toHaveBeenCalled();
-        */
-
-        // jest.spyOn(formComponent.state.formValidator, 'runFor');
-
-        // const clickSpy = sinon.spy();
-        // expect(renderWithProps({ onClick: clickSpy }).props().onTouchTap).to.equal(clickSpy);
+        expect(renderWithProps({ onClick: onClick }).props().onTouchTap).toEqual(onClick);
     });
 });
