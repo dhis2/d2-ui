@@ -1,5 +1,3 @@
-/* eslint import/no-extraneous-dependencies: 0 */
-
 import React, { PropTypes } from 'react';
 import log from 'loglevel';
 import D2Lib from 'd2/lib/d2';
@@ -13,52 +11,36 @@ import SharingDialog from '../../src/sharing/SharingDialog.component';
 injectTapEventPlugin();
 
 class SharingExample extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            dialogOpen: false,
-        };
-
-        this.handleOpen = this.handleOpen.bind(this);
-        this.handleClose = this.handleClose.bind(this);
+    state = {
+        dialogOpen: false,
     }
 
-    // eslint-disable-next-line class-methods-use-this
-    getChildContext() {
-        return {
-            d2: {
-                i18n: {
-                    getTranslation(key) {
-                        return key;
-                    },
+    getChildContext = () => ({
+        d2: {
+            i18n: {
+                getTranslation(key) {
+                    return key;
                 },
             },
-        };
-    }
+        },
+    });
 
-    handleOpen() {
-        this.setState({ dialogOpen: true });
-    }
+    handleOpen = () => { this.setState({ dialogOpen: true }); };
+    handleClose = () => { this.setState({ dialogOpen: false }); };
 
-    handleClose() {
-        this.setState({ dialogOpen: false });
-    }
-
-    render() {
-        return (
-            <MuiThemeProvider muiTheme={getMuiTheme()}>
-                <div style={{ padding: 32 }}>
-                    <RaisedButton label="Open" onClick={this.handleOpen} />
-                    <SharingDialog
-                        open={this.state.dialogOpen}
-                        type={this.props.type}
-                        id={this.props.id}
-                        onRequestClose={this.handleClose}
-                    />
-                </div>
-            </MuiThemeProvider>
-        );
-    }
+    render = () => (
+        <MuiThemeProvider muiTheme={getMuiTheme()}>
+            <div style={{ padding: 32 }}>
+                <RaisedButton label="Open" onClick={this.handleOpen} />
+                <SharingDialog
+                    open={this.state.dialogOpen}
+                    type={this.props.type}
+                    id={this.props.id}
+                    onRequestClose={this.handleClose}
+                />
+            </div>
+        </MuiThemeProvider>
+    );
 }
 
 SharingExample.propTypes = {
@@ -72,7 +54,7 @@ SharingExample.childContextTypes = {
 
 const element = document.getElementById('sharing');
 const dhisDevConfig = DHIS_CONFIG;
-const baseUrl = `/api`;
+const baseUrl = `${dhisDevConfig.baseUrl}/api`;
 
 render(<div>Sharing dialog is loading.</div>, element);
 

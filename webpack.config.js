@@ -1,4 +1,4 @@
-const isProduction = () => process.argv.indexOf('-p') >= 0;
+const isProduction = () => process.env.NODE_ENV === 'production';
 const webpack = require('webpack');
 const path = require('path');
 require('colors');
@@ -41,6 +41,7 @@ module.exports = {
             formbuilder: './examples/form-builder',
             // formulaeditor: './examples/formula-editor',
             headerbar: './examples/header-bar',
+            'header-bar': './src/app-header/index.js',
             legend: './examples/legend',
             // translation: './examples/translation',
             expressionmanager: './examples/expression-manager',
@@ -87,12 +88,8 @@ module.exports = {
             'react-addons-transition-group': 'var React.addons.TransitionGroup',
             'rx': 'Rx',
             'react-addons-create-fragment': 'var React.addons.createFragment',
-            // 'd2/lib/d2': 'var d2',
             'lodash': 'var _',
             'lodash/fp': 'var fp',
-            'lodash.merge': 'var _.merge',
-            'lodash.throttle': 'var _.throttle',
-            'lodash/merge': 'var _.merge',
         },
         /^lodash$/,
         /^lodash\/fp$/,
@@ -112,7 +109,7 @@ module.exports = {
             new webpack.DefinePlugin({
                 DHIS_CONFIG: JSON.stringify(dhisConfig),
             }),
-        new Visualizer(),
+        isProduction() ? null : new Visualizer(),
     ].filter(identity),
     devServer: {
         contentBase: [path.join(__dirname, '/examples/')],

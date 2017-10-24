@@ -5,7 +5,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import CircularProgress from 'material-ui/CircularProgress';
 import { init } from 'd2/lib/d2';
 import Paper from 'material-ui/Paper';
-import ErrorMessage from '../messages/ErrorMessage.component.js';
+import ErrorMessage from '../messages/ErrorMessage.component';
 
 export default class D2UIApp extends Component {
     constructor(props, context) {
@@ -55,11 +55,19 @@ export default class D2UIApp extends Component {
     }
 }
 
+D2UIApp.propTypes = {
+    initConfig: PropTypes.object,
+    muiTheme: PropTypes.object,
+    children: PropTypes.node,
+    LoadingComponent: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
+};
+
 D2UIApp.childContextTypes = {
     d2: PropTypes.object,
 };
 
 D2UIApp.defaultProps = {
+    initConfig: {},
     muiTheme: getMuiTheme(),
     LoadingComponent: CircularProgress,
 };
