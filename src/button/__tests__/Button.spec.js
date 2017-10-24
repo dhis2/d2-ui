@@ -1,11 +1,13 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import { getStubContext } from '../../../config/inject-theme';
 import Button from '../Button';
 
+
+// https://www.sitepoint.com/test-react-components-jest/
 describe('Button', () => {
     const renderWithProps = props => shallow(<Button {...props} />, {
         context: getStubContext(),
@@ -39,11 +41,29 @@ describe('Button', () => {
         expect(component.children().contains(<div>Label</div>)).toBe(true);
     });
 
-    /*
     it('should pass on the onClick handler to MUI onTouchTap property', () => {
-        const clickSpy = sinon.spy();
+        const onClick = jest.fn();
+        const component = mount(<Button onClick={onClick}></Button>, {
+            context: getStubContext(),
+        });
+        const p = component.find('.d2-ui-button').first();
+        p.simulate('click');
+        expect(onClick).toBeCalledWith(1);
 
-        expect(renderWithProps({ onClick: clickSpy }).props().onTouchTap).to.equal(clickSpy);
+
+        /*
+        const instance = component.instance();
+        const spy = jest.spyOn('instance', 'onClick');
+
+        instance.forceUpdate();
+
+        component.find('.d2-ui-button').simulate('click');
+        expect(spy).toHaveBeenCalled();
+        */
+
+        // jest.spyOn(formComponent.state.formValidator, 'runFor');
+
+        // const clickSpy = sinon.spy();
+        // expect(renderWithProps({ onClick: clickSpy }).props().onTouchTap).to.equal(clickSpy);
     });
-    */
 });

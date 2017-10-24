@@ -20,10 +20,19 @@ const buttons = (
     <MuiThemeProvider muiTheme={getMuiTheme()}>
         <div style={style}>
             <TextField
+                label='Text'
+                onChange={() => {}}
+            />
+            <TextField
                 label='Number'
                 type='number'
+                onChange={() => {}}
+            />
+            <TextField
+                label='Default value'
+                type='number'
                 value={100}
-                onChange={value => console.log(value)}
+                onChange={() => {}}
             />
         </div>
     </MuiThemeProvider>

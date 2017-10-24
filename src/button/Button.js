@@ -26,6 +26,7 @@ const Button = ({ raised, fab, color, disabled, onClick, children, style, select
         secondary: color === 'accent' || null,
         disabled,
         onTouchTap: onClick,
+        className,
         style,
     };
 
