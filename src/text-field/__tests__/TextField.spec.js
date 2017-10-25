@@ -24,4 +24,11 @@ describe('TextField', () => {
     it('should set floatingLabelText when label is passed', () => {
         expect(renderWithProps({ label: 'My label' }).props().floatingLabelText).toEqual('My label');
     });
+
+    it('should call onChange function when a field content is changed', () => {
+        const onChangeSpy = jest.fn();
+
+        renderWithProps({ onChange: onChangeSpy }).props().onChange({}, 'my text');
+        expect(onChangeSpy).toHaveBeenCalledWith('my text');
+    });
 });
