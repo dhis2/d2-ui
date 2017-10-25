@@ -6,9 +6,6 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 import { getStubContext } from '../../../config/inject-theme';
 import Button from '../Button';
 
-
-// https://www.sitepoint.com/test-react-components-jest/
-// https://github.com/callemall/material-ui/issues/4664
 describe('Button', () => {
     const renderWithProps = props => shallow(<Button {...props} />, {
         context: getStubContext(),
@@ -24,6 +21,22 @@ describe('Button', () => {
 
     it('should render a FloatingActionButton when fab is passed', () => {
         expect(renderWithProps({ fab: true }).type()).toBe(FloatingActionButton);
+    });
+
+    it('should set primary property to true when color=primary is passed', () => {
+        expect(renderWithProps({ color: 'primary' }).props().primary).toBeTruthy();
+    });
+
+    it('should set secondary property to true when color=accent is passed', () => {
+        expect(renderWithProps({ color: 'accent' }).props().secondary).toBeTruthy();
+    });
+
+    it('should add a class name', () => {
+        expect(renderWithProps({}).props().className).toMatch('d2-ui-button');
+    });
+
+    it('should add a custom class name when a selector is passed', () => {
+        expect(renderWithProps({ selector: 'my-button' }).props().className).toMatch('d2-ui-button-my-button');
     });
 
     it('should render button text as a label property', () => {
