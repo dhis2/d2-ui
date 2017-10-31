@@ -19,7 +19,7 @@ const SelectField = ({ label, items, value, onChange, style, selector, children 
             style={style}
         >
             {children ? children : items.map(item => (
-                <MenuItem key={item.id} value={item.id}>{item.name}</MenuItem>
+                <MenuItem key={item.id} value={item.id} primaryText={item.name} />
             ))}
         </MuiSelectField>
     );

@@ -40,15 +40,15 @@ describe('SelectField', () => {
     it('should render items array as menu items', () => {
         const component = renderWithProps({ items, onChange: () => {} });
 
-        expect(component.contains(<MenuItem value='mouse'>Mouse</MenuItem>)).toBe(true);
+        expect(component.contains(<MenuItem value='mouse' primaryText='Mouse' />)).toBe(true);
     });
 
     it('should render child nodes inside select field', () => {
-        const component = shallow(<SelectField><MenuItem value='cat'>Cat</MenuItem></SelectField>, {
+        const component = shallow(<SelectField><MenuItem value='cat' primaryText='Cat' /></SelectField>, {
             context: getStubContext(),
         });
 
-        expect(component.contains(<MenuItem value='cat'>Cat</MenuItem>)).toBe(true);
+        expect(component.contains(<MenuItem value='cat' primaryText='Cat' />)).toBe(true);
     });
 
     it('should call onChange function when a field content is changed', () => {
