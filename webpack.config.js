@@ -49,6 +49,7 @@ module.exports = {
             periodpicker: './examples/period-picker',
             button: './examples/button',
             textfield: './examples/text-field',
+            selectfield: './examples/select-field',
         },
     devtool: 'source-map',
     output: {

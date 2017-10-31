@@ -4,7 +4,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import Button from '../../src/button/Button';
-import ContentAdd from 'material-ui/svg-icons/content/add';
+import AddIcon from 'material-ui/svg-icons/content/add';
 
 injectTapEventPlugin();
 
@@ -26,8 +26,8 @@ const buttons = (
             <Button raised color='primary' onClick={() => {}}>Primary</Button>
             <Button raised color='accent' onClick={() => {}}>Accent</Button>
             <Button raised disabled onClick={() => {}}>Disabled</Button>
-            <Button fab onClick={() => {}}><ContentAdd /></Button>
-            <Button fab color='accent' onClick={() => {}}><ContentAdd /></Button>
+            <Button fab onClick={() => {}}><AddIcon /></Button>
+            <Button fab color='accent' onClick={() => {}}><AddIcon /></Button>
         </div>
     </MuiThemeProvider>
 );
