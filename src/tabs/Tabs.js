@@ -1,30 +1,46 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Tabs as MuiTabs, Tab as MuiTab } from 'material-ui/Tabs';
+import { createClassName } from '../component-helpers/utils';
 
-const Tabs = ({ selector, children }) => {
-    let className = 'd2-ui-tabs';
-
-    if (selector) {
-        className = `${className} ${className}-${selector}`;
-    }
+const Tabs = ({ style, selector, children }) => {
+    const className = createClassName('d2-ui-tabs', selector);
 
     return (
-        <MuiTabs className={className}>
+        <MuiTabs
+            className={className}
+            style={style}
+        >
             {children}
         </MuiTabs>
     );
 };
 
+Tabs.propTypes = {
+    /**
+     * Override the inline-styles of the root element
+     */
+    style: PropTypes.object,
+
+    /**
+     * If set, adds a class to the element in the format d2-ui-tabs-selector
+     */
+    selector: PropTypes.string,
+};
+
 const Tab = class extends Component {
+
+    static propTypes = {
+        /**
+         * If set, adds a class to the element in the format d2-ui-tab-selector
+         */
+        selector: PropTypes.string,
+    };
+
     static muiName = 'Tab';
 
     render () {
-        const { selector } = this.props;
-        let className = 'd2-ui-tab';
-
-        if (selector) {
-            className = `${className} ${className}-${selector}`;
-        }
+        const className = createClassName('d2-ui-tab', this.props.selector);
 
         return (
             <MuiTab

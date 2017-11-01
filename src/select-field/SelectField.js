@@ -2,13 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import MuiSelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
+import { createClassName } from '../component-helpers/utils';
 
 const SelectField = ({ label, items, value, onChange, style, selector, children }) => {
-    let className = 'd2-ui-selectfield';
-
-    if (selector) {
-        className = `${className} ${className}-${selector}`;
-    }
+    const className = createClassName('d2-ui-selectfield', selector);
 
     return (
         <MuiSelectField
