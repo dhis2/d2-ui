@@ -20,10 +20,10 @@ const Tab = class extends Component {
 
     render () {
         const { selector } = this.props;
-        let className = 'd2-ui-tabs';
+        let className = 'd2-ui-tab';
 
         if (selector) {
-            className = `${Tab.className} ${className}-${selector}`;
+            className = `${className} ${className}-${selector}`;
         }
 
         return (
