@@ -59,14 +59,15 @@ const selectFields = (
             />
             <SelectField
                 label='Children'
+                value='cat'
                 onChange={(item) => alert(item)}
             >
                 <MenuItem value={'none'}>
                     <em>None</em>
                 </MenuItem>
-                <MenuItem value='cat'>Cat</MenuItem>
-                <MenuItem value='mouse'>Mouse</MenuItem>
-                <MenuItem value='dog'>Dog</MenuItem>
+                <MenuItem value='cat' primaryText='Cat' />
+                <MenuItem value='mouse' primaryText='Mouse' />
+                <MenuItem value='dog' primaryText='Dog' />
             </SelectField>
         </div>
     </MuiThemeProvider>
