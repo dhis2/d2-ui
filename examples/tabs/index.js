@@ -4,8 +4,6 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import { Tabs, Tab } from '../../src/tabs/Tabs';
-// import { Tabs } from '../../src/tabs/Tabs';
-// import { Tab } from 'material-ui/Tabs';
 
 injectTapEventPlugin();
 

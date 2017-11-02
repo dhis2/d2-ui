@@ -29,7 +29,6 @@ Tabs.propTypes = {
 };
 
 const Tab = class extends Component {
-
     static propTypes = {
         /**
          * If set, adds a class to the element in the format d2-ui-tab-selector
