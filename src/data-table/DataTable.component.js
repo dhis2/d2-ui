@@ -12,6 +12,7 @@ const DataTable = React.createClass({
         contextMenuIcons: React.PropTypes.object,
         primaryAction: React.PropTypes.func,
         isContextActionAllowed: React.PropTypes.func,
+        headerClick: React.PropTypes.func,
     },
 
     getInitialState() {
@@ -58,7 +59,7 @@ const DataTable = React.createClass({
 
     renderHeaders() {
         return this.state.columns.map((headerName, index) => (
-            <DataTableHeader key={index} isOdd={Boolean(index % 2)} name={headerName} />
+            <DataTableHeader key={index} isOdd={Boolean(index % 2)} name={headerName} headerClick={this.props.headerClick} />
         ));
     },
 
