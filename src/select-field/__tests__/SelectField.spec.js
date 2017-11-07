@@ -43,6 +43,18 @@ describe('SelectField', () => {
         expect(component.contains(<MenuItem value='mouse' primaryText='Mouse' />)).toBe(true);
     });
 
+    it('should inset items when multiple select', () => {
+        const component = renderWithProps({ items, multiple: true, onChange: () => {} }); // multiple: true, value: ['cat']
+
+        expect(component.contains(<MenuItem value='cat' primaryText='Cat' insetChildren={true} checked={false} />)).toBe(true);
+    });
+
+    it('should check selected items when multiple select', () => {
+        const component = renderWithProps({ items, multiple: true, value: ['cat'], onChange: () => {} }); // multiple: true, value: ['cat']
+
+        expect(component.contains(<MenuItem value='cat' primaryText='Cat' insetChildren={true} checked={true} />)).toBe(true);
+    });
+
     it('should render child nodes inside select field', () => {
         const component = shallow(<SelectField><MenuItem value='cat' primaryText='Cat' /></SelectField>, {
             context: getStubContext(),
@@ -51,10 +63,20 @@ describe('SelectField', () => {
         expect(component.contains(<MenuItem value='cat' primaryText='Cat' />)).toBe(true);
     });
 
-    it('should call onChange function when a field content is changed', () => {
+    it('should call onChange function when field content is changed', () => {
         const onChangeSpy = jest.fn();
 
         renderWithProps({ items, onChange: onChangeSpy }).props().onChange({}, 1);
         expect(onChangeSpy).toHaveBeenCalledWith(items[1]);
+    });
+
+    it('should call onChange with item value when child nodes are used', () => {
+        const onChangeSpy = jest.fn();
+
+        shallow(<SelectField onChange={onChangeSpy}><MenuItem value='cat' primaryText='Cat' /></SelectField>, {
+            context: getStubContext(),
+        }).props().onChange({}, 0, 'cat');
+
+        expect(onChangeSpy).toHaveBeenCalledWith('cat');
     });
 });
