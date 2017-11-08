@@ -24,7 +24,6 @@ const defaultStyle = {
 class Popover extends Component {
 
     static propTypes = {
-        open: PropTypes.bool,
         animated: PropTypes.bool,
         autoCloseWhenOffScreen: PropTypes.bool,
         style: PropTypes.object,
@@ -39,7 +38,6 @@ class Popover extends Component {
     };
 
     static defaultProps = {
-        open: false,
         animated: true,
         autoCloseWhenOffScreen: true,
         style: defaultStyle.popoverStyle,

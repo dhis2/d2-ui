@@ -51,8 +51,7 @@ const style = {
         display: 'flex',
         flexDirection: 'row',
         flexWrap: 'wrap',
-        alignItems: 'center',
-        justifyContent: 'space-between',
+        alignItems: 'flex-start',
     }
 };
 
@@ -75,9 +74,7 @@ const popovers = (
             </Popover>
 
             <Popover
-                button={(<Button label="Standard Popover" />)}
-                header={"Popover Header"}
-                footer={"Popover Footer"}>
+                button={(<Button label="Standard Popover" />)}>
                 { popoverContent }
             </Popover>
 
