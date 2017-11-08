@@ -58,26 +58,12 @@ const style = {
 const popovers = (
     <MuiThemeProvider muiTheme={getMuiTheme()}>
         <div style={style.container}>
-            <Popover 
-                header='Embed in Webpage'
-                button={(<Button label="Embed Popover" />)}>
-                <textarea 
-                    style={{
-                        resize: "none",
-                        width: "400px",
-                        height: "360px",
-                        border: "none",
-                    }}
-                    value={test}
-                    disabled
-                />
-            </Popover>
-
             <Popover
-                button={(<Button label="Standard Popover" />)}>
+                button={(<Button label="Standard Popover" />)}
+                header={"Popover Header"}
+                footer={"Popover Footer"}>
                 { popoverContent }
             </Popover>
-
 
             <Popover button={(<Button label="Menu Popover" />)}>
                 <MuiMenu>
