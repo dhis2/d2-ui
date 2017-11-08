@@ -20,14 +20,14 @@ const style = {
 const buttons = (
     <MuiThemeProvider muiTheme={getMuiTheme()}>
         <div style={style}>
-            <Button onClick={() => {}}>Default</Button>
-            <Button disabled onClick={() => {}}>Disabled</Button>
-            <Button raised onClick={() => {}}>Raised</Button>
-            <Button raised color='primary' onClick={() => {}}>Primary</Button>
-            <Button raised color='accent' onClick={() => {}}>Accent</Button>
-            <Button raised disabled onClick={() => {}}>Disabled</Button>
-            <Button fab onClick={() => {}}><ContentAdd /></Button>
-            <Button fab color='accent' onClick={() => {}}><ContentAdd /></Button>
+            <Button>Default</Button>
+            <Button disabled>Disabled</Button>
+            <Button raised>Raised</Button>
+            <Button raised color='primary'>Primary</Button>
+            <Button raised color='accent'>Accent</Button>
+            <Button raised disabled>Disabled</Button>
+            <Button fab><ContentAdd /></Button>
+            <Button fab color='accent'><ContentAdd /></Button>
         </div>
     </MuiThemeProvider>
 );

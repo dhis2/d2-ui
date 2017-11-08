@@ -48,6 +48,7 @@ module.exports = {
             groupeditor: './examples/group-editor',
             periodpicker: './examples/period-picker',
             button: './examples/button',
+            popover: './examples/popover',
             textfield: './examples/text-field',
         },
     devtool: 'source-map',
