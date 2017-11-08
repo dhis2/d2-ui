@@ -50,6 +50,8 @@ module.exports = {
             button: './examples/button',
             popover: './examples/popover',
             textfield: './examples/text-field',
+            selectfield: './examples/select-field',
+            tabs: './examples/tabs',
         },
     devtool: 'source-map',
     output: {

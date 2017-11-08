@@ -16,7 +16,7 @@ const style = {
     justifyContent: 'space-between',
 };
 
-const buttons = (
+const textFields = (
     <MuiThemeProvider muiTheme={getMuiTheme()}>
         <div style={style}>
             <TextField
@@ -38,4 +38,4 @@ const buttons = (
     </MuiThemeProvider>
 );
 
-render(buttons, document.getElementById('text-fields'));
+render(textFields, document.getElementById('text-fields'));
