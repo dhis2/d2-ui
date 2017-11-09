@@ -84,18 +84,14 @@ class Popover extends Component {
                 >
                     <div style={this.props.containerStyle}>
                         {this.props.header ? 
-                        <header style={this.props.headerStyle}>
-                            { this.props.header }
-                        </header> : ''}
-                        
-                        <div>
-                            { this.props.children }
-                        </div>
-
+                            <header style={this.props.headerStyle}>
+                                { this.props.header }
+                            </header> : ''}
+                        { this.props.children }
                         {this.props.footer ? 
-                        <footer style={this.props.footerStyle}>
-                            { this.props.footer }
-                        </footer> : ''}
+                            <footer style={this.props.footerStyle}>
+                                { this.props.footer }
+                            </footer> : ''}
                     </div>
                 </MuiPopover>
             </div>
