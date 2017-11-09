@@ -25,7 +25,7 @@ class Popover extends Component {
         animated: PropTypes.bool,
         autoCloseWhenOffScreen: PropTypes.bool,
         style: PropTypes.object,
-        button: PropTypes.object,
+        button: PropTypes.object.isRequired,
         headerStyle: PropTypes.object,
         footerStyle: PropTypes.object,
         anchorOrigin: PropTypes.object,
