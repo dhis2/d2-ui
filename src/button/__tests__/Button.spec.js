@@ -55,9 +55,9 @@ describe('Button', () => {
         expect(component.children().contains(<div>Label</div>)).toBe(true);
     });
 
-    it('should pass on the onClick handler to MUI onTouchTap property', () => {
+    it('should pass on the onClick handler to MUI onClick property', () => {
         const onClick = jest.fn();
 
-        expect(renderWithProps({ onClick: onClick }).props().onTouchTap).toEqual(onClick);
+        expect(renderWithProps({ onClick: onClick }).props().onClick).toEqual(onClick);
     });
 });

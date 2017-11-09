@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import log from 'loglevel';
 import { Observable, Subject } from 'rxjs';
 import styles, { whenWidthLargerThan1150 } from './header-bar-styles';
@@ -29,11 +30,11 @@ function saveToLocalStorage(headerData = {}) {
 
 const InnerHeader = React.createClass({
     propTypes: {
-        lastUpdate: React.PropTypes.instanceOf(Date),
+        lastUpdate: PropTypes.instanceOf(Date),
     },
 
     contextTypes: {
-        d2: React.PropTypes.object.isRequired,
+        d2: PropTypes.object.isRequired,
     },
 
     getInitialState() {

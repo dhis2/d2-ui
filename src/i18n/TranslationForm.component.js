@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import TextField from 'material-ui/TextField/TextField';
 import camelCaseToUnderscores from 'd2-utilizr/lib/camelCaseToUnderscores';
 import RaisedButton from 'material-ui/RaisedButton/RaisedButton';
@@ -35,12 +36,12 @@ function getTranslationFormData(model) {
 
 const TranslationForm = React.createClass({
     propTypes: {
-        onTranslationSaved: React.PropTypes.func.isRequired,
-        onTranslationError: React.PropTypes.func.isRequired,
-        objectToTranslate: React.PropTypes.shape({
-            id: React.PropTypes.string.isRequired,
+        onTranslationSaved: PropTypes.func.isRequired,
+        onTranslationError: PropTypes.func.isRequired,
+        objectToTranslate: PropTypes.shape({
+            id: PropTypes.string.isRequired,
         }),
-        fieldsToTranslate: React.PropTypes.arrayOf(React.PropTypes.string),
+        fieldsToTranslate: PropTypes.arrayOf(PropTypes.string),
     },
 
     mixins: [Translate],

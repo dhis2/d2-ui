@@ -1,12 +1,13 @@
-import camelCaseToUnderscores from 'd2-utilizr/lib/camelCaseToUnderscores';
 import React from 'react';
+import PropTypes from 'prop-types';
+import camelCaseToUnderscores from 'd2-utilizr/lib/camelCaseToUnderscores';
 import classes from 'classnames';
 import Translate from '../i18n/Translate.mixin';
 
 const DataTableHeader = React.createClass({
     propTypes: {
-        isOdd: React.PropTypes.bool,
-        name: React.PropTypes.string,
+        isOdd: PropTypes.bool,
+        name: PropTypes.string,
     },
 
     mixins: [Translate],
