@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 import MuiPopover from 'material-ui/Popover';
 
 const defaultStyle = {
-    popoverStyle: {
-        overflow: "hidden",
-    },
+    popoverStyle: { },
     headerStyle: {
         flexGrow: 1,
         paddingBottom: "20px"
@@ -30,12 +28,15 @@ class Popover extends Component {
         button: PropTypes.object,
         headerStyle: PropTypes.object,
         footerStyle: PropTypes.object,
+        anchorOrigin: PropTypes.object,
+        targetOrigin: PropTypes.object,
         animation: PropTypes.func,
         header: PropTypes.node,
         children: PropTypes.node,
         footer: PropTypes.node,
         className: PropTypes.string,
     };
+
 
     static defaultProps = {
         animated: true,
@@ -44,6 +45,8 @@ class Popover extends Component {
         containerStyle: defaultStyle.containerStyle,
         headerStyle: defaultStyle.headerStyle,
         footerStyle: defaultStyle.footerStyle,
+        anchorOrigin: { horizontal: 'left', vertical: 'bottom' },
+        targetOrigin: { horizontal: 'left', vertical: 'top' },
         className: '',
     };
 
@@ -74,8 +77,8 @@ class Popover extends Component {
                     animated={ this.props.animated }
                     autoCloseWhenOffScreen={ this.props.autoCloseWhenOffScreen }
                     anchorEl={ this.state.anchorElement }
-                    anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
-                    targetOrigin={{ horizontal: 'left', vertical: 'top' }}
+                    anchorOrigin={this.props.anchorOrigin}
+                    targetOrigin={this.props.targetOrigin}
                     onRequestClose={ this.handleClose }
                     className={ this.props.className }
                 >
