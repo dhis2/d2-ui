@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 
 class TreeView extends React.Component {
     constructor(props) {
@@ -99,16 +99,15 @@ class TreeView extends React.Component {
 
 // TODO: Documentation
 TreeView.propTypes = {
-    label: React.PropTypes.node.isRequired,
-    children: React.PropTypes.node,
-    persistent: React.PropTypes.bool,
-    initiallyExpanded: React.PropTypes.bool,
-    arrowSymbol: React.PropTypes.node,
-    style: React.PropTypes.object,
-    className: React.PropTypes.string,
-
-    onExpand: React.PropTypes.func,
-    onClick: React.PropTypes.func,
+    label: PropTypes.node.isRequired,
+    children: PropTypes.node,
+    persistent: PropTypes.bool,
+    initiallyExpanded: PropTypes.bool,
+    arrowSymbol: PropTypes.node,
+    style: PropTypes.object,
+    className: PropTypes.string,
+    onExpand: PropTypes.func,
+    onClick: PropTypes.func,
 };
 
 TreeView.defaultProps = {

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Popover from 'material-ui/Popover/Popover';
 import IconOption from './IconOption.component';
 import CurrentIcon from './CurrentIcon.component';
@@ -99,12 +100,12 @@ class IconPicker extends React.Component {
 }
 
 IconPicker.propTypes = {
-    imgPath: React.PropTypes.string,
-    options: React.PropTypes.array,
-    labelText: React.PropTypes.string,
-    onChange: React.PropTypes.func,
-    value: React.PropTypes.any,
-    iconPopoverStyle: React.PropTypes.object,
+    imgPath: PropTypes.string,
+    options: PropTypes.array,
+    labelText: PropTypes.string,
+    onChange: PropTypes.func,
+    value: PropTypes.any,
+    iconPopoverStyle: PropTypes.object,
 };
 
 IconPicker.defaultProps = {

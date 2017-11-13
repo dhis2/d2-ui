@@ -1,16 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import log from 'loglevel';
 
 export default React.createClass({
     propTypes: {
-        children: React.PropTypes.element,
-        d2: React.PropTypes.shape({
-            then: React.PropTypes.func.isRequired,
+        children: PropTypes.element,
+        d2: PropTypes.shape({
+            then: PropTypes.func.isRequired,
         }),
     },
 
     childContextTypes: {
-        d2: React.PropTypes.object,
+        d2: PropTypes.object,
     },
 
     getChildContext() {

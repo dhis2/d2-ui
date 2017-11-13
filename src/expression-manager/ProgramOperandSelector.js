@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Tabs from 'material-ui/Tabs/Tabs';
 import Tab from 'material-ui/Tabs/Tab';
 import { config } from 'd2/lib/d2';
@@ -78,7 +78,7 @@ DropDownForSchemaReference.contextTypes = {
 
 export default React.createClass({
     propTypes: {
-        programOperandSelected: React.PropTypes.func.isRequired,
+        programOperandSelected: PropTypes.func.isRequired,
     },
 
     mixins: [Translate],

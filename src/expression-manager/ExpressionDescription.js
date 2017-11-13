@@ -1,12 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import TextField from 'material-ui/TextField/TextField';
 
 const ExpressionDescription = React.createClass({
     propTypes: {
-        descriptionLabel: React.PropTypes.string,
-        descriptionValue: React.PropTypes.string,
-        onDescriptionChange: React.PropTypes.func.isRequired,
-        errorText: React.PropTypes.string,
+        descriptionLabel: PropTypes.string,
+        descriptionValue: PropTypes.string,
+        onDescriptionChange: PropTypes.func.isRequired,
+        errorText: PropTypes.string,
     },
 
     render() {

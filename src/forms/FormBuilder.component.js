@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { isObject } from 'lodash';
 import AsyncValidatorRunner from './AsyncValidatorRunner';
 
@@ -404,28 +405,28 @@ class FormBuilder extends React.Component {
  * @type {{fields: (Object|isRequired), validatingLabelText: *, validatingProgressStyle: *, onUpdateField: (Function|isRequired)}}
  */
 FormBuilder.propTypes = {
-    fields: React.PropTypes.arrayOf(React.PropTypes.shape({
-        name: React.PropTypes.string.isRequired,
-        value: React.PropTypes.any,
-        component: React.PropTypes.func.isRequired,
-        props: React.PropTypes.shape({
-            changeEvent: React.PropTypes.oneOf(['onChange', 'onBlur']),
+    fields: PropTypes.arrayOf(PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        value: PropTypes.any,
+        component: PropTypes.func.isRequired,
+        props: PropTypes.shape({
+            changeEvent: PropTypes.oneOf(['onChange', 'onBlur']),
         }),
-        validators: React.PropTypes.arrayOf(
-            React.PropTypes.shape({
-                validator: React.PropTypes.func.isRequired,
-                message: React.PropTypes.string.isRequired,
+        validators: PropTypes.arrayOf(
+            PropTypes.shape({
+                validator: PropTypes.func.isRequired,
+                message: PropTypes.string.isRequired,
             }),
         ),
-        asyncValidators: React.PropTypes.arrayOf(React.PropTypes.func.isRequired),
-        validatingLabelText: React.PropTypes.string,
+        asyncValidators: PropTypes.arrayOf(PropTypes.func.isRequired),
+        validatingLabelText: PropTypes.string,
     })).isRequired,
-    validatingLabelText: React.PropTypes.string,
-    validatingProgressStyle: React.PropTypes.object,
-    onUpdateField: React.PropTypes.func.isRequired,
-    onUpdateFormStatus: React.PropTypes.func,
-    style: React.PropTypes.object,
-    fieldWrapStyle: React.PropTypes.object,
+    validatingLabelText: PropTypes.string,
+    validatingProgressStyle: PropTypes.object,
+    onUpdateField: PropTypes.func.isRequired,
+    onUpdateFormStatus: PropTypes.func,
+    style: PropTypes.object,
+    fieldWrapStyle: PropTypes.object,
 };
 
 

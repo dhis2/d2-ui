@@ -1,4 +1,5 @@
 import React, { isValidElement } from 'react';
+import PropTypes from 'prop-types';
 import classes from 'classnames';
 import { isObject } from 'lodash/fp';
 import { isString } from 'lodash/fp';
@@ -13,12 +14,12 @@ function getD2ModelValueType(dataSource, columnName) {
 
 const DataTableRow = addD2Context(React.createClass({
     propTypes: {
-        columns: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
-        dataSource: React.PropTypes.object,
-        isEven: React.PropTypes.bool,
-        isOdd: React.PropTypes.bool,
-        itemClicked: React.PropTypes.func.isRequired,
-        primaryClick: React.PropTypes.func.isRequired,
+        columns: PropTypes.arrayOf(PropTypes.string).isRequired,
+        dataSource: PropTypes.object,
+        isEven: PropTypes.bool,
+        isOdd: PropTypes.bool,
+        itemClicked: PropTypes.func.isRequired,
+        primaryClick: PropTypes.func.isRequired,
     },
 
     render() {

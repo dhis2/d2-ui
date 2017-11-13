@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import TextField from 'material-ui/TextField';
 
 
@@ -6,8 +7,8 @@ import TextField from 'material-ui/TextField';
 /* eslint-disable react/prefer-es6-class */
 export default React.createClass({
     propTypes: {
-        value: React.PropTypes.string,
-        multiLine: React.PropTypes.bool,
+        value: PropTypes.string,
+        multiLine: PropTypes.bool,
     },
 
     getInitialState() {

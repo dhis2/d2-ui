@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classes from 'classnames';
 import { config } from 'd2/lib/d2';
 import Translate from '../i18n/Translate.mixin';
@@ -9,14 +10,14 @@ config.i18n.strings.add('of_page');
 
 const Pagination = React.createClass({
     propTypes: {
-        hasPreviousPage: React.PropTypes.func,
-        hasNextPage: React.PropTypes.func,
-        onPreviousPageClick: React.PropTypes.func,
-        onNextPageClick: React.PropTypes.func,
-        total: React.PropTypes.number,
-        currentlyShown: React.PropTypes.oneOfType([
-            React.PropTypes.string,
-            React.PropTypes.number,
+        hasPreviousPage: PropTypes.func,
+        hasNextPage: PropTypes.func,
+        onPreviousPageClick: PropTypes.func,
+        onNextPageClick: PropTypes.func,
+        total: PropTypes.number,
+        currentlyShown: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number,
         ]),
     },
 

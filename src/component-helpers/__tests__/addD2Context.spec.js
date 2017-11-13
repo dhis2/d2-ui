@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import addD2Context from '../addD2Context';
 
 describe('addD2Context', () => {
@@ -10,10 +11,10 @@ describe('addD2Context', () => {
         class Component extends React.Component {}
 
         const componentWithD2Context = addD2Context(Component, {
-            name: React.PropTypes.object,
+            name: PropTypes.object,
         });
 
-        expect(componentWithD2Context.contextTypes).toEqual({ d2: React.PropTypes.object });
+        expect(componentWithD2Context.contextTypes).toEqual({ d2: PropTypes.object });
     });
 
     it('should also add the contextTypes to a function component', () => {
@@ -21,6 +22,6 @@ describe('addD2Context', () => {
 
         const componentWithD2Context = addD2Context(App);
 
-        expect(componentWithD2Context.contextTypes).toEqual({ d2: React.PropTypes.object });
+        expect(componentWithD2Context.contextTypes).toEqual({ d2: PropTypes.object });
     });
 });
