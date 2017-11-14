@@ -37,4 +37,37 @@ describe('Popover', () => {
     it('should add style to popover component', () => {
         expect(renderWithProps({style: {'test': 'test'}}).find(MuiPopover).props().style.test).toBeDefined();
     });
+
+    it('should add style to header component', () => {
+        expect(renderWithProps({header: 'test', headerStyle: {'test': 'test'}})
+            .find(MuiPopover).find('header').props().style.test).toBe('test');
+    });
+
+    it('should add style to footer component', () => {
+        expect(renderWithProps({footer: 'test', footerStyle: {'test': 'test'}})
+            .find(MuiPopover).find('footer').props().style.test).toBe('test');
+    });
+
+    it('should set the anchor origin of the popover component', () => {
+        expect(renderWithProps({anchorOrigin: { horizontal: 'left', vertical: 'top' }})
+            .find(MuiPopover).props().anchorOrigin.vertical).toBe('top');
+    });
+
+    it('should set the transform origin of the popover component', () => {
+        expect(renderWithProps({transformOrigin: { horizontal: 'right', vertical: 'bottom' }})
+            .find(MuiPopover).props().targetOrigin.horizontal).toBe('right');
+    });
+
+    it('should set the open prop to false', () => {
+        const component = renderWithProps({});
+        component.instance().handleClose();
+        expect(component.state().open).toBe(false);
+    });
+
+    it('should set the open prop to true', () => {
+        const component = renderWithProps({button: (<Button />)});
+        const preventDefault = jest.fn();
+        component.find(Button).simulate('click', { preventDefault })
+        expect(component.state().open).toBe(true);
+    });
 });

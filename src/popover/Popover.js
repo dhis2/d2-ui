@@ -22,63 +22,61 @@ const defaultStyle = {
 class Popover extends Component {
 
     static propTypes = {
-        animated: PropTypes.bool,
-        autoCloseWhenOffScreen: PropTypes.bool,
         style: PropTypes.object,
         button: PropTypes.object.isRequired,
         headerStyle: PropTypes.object,
         footerStyle: PropTypes.object,
         anchorOrigin: PropTypes.object,
-        targetOrigin: PropTypes.object,
-        animation: PropTypes.func,
+        transformOrigin: PropTypes.object,
+        anchorEl: PropTypes.object,
         header: PropTypes.node,
         children: PropTypes.node,
         footer: PropTypes.node,
         className: PropTypes.string,
     };
 
-
     static defaultProps = {
-        animated: true,
-        autoCloseWhenOffScreen: true,
         style: defaultStyle.popoverStyle,
         containerStyle: defaultStyle.containerStyle,
         headerStyle: defaultStyle.headerStyle,
         footerStyle: defaultStyle.footerStyle,
         anchorOrigin: { horizontal: 'left', vertical: 'bottom' },
-        targetOrigin: { horizontal: 'left', vertical: 'top' },
+        transformOrigin: { horizontal: 'left', vertical: 'top' },
         className: '',
     };
 
     state = {
         open: false,
+        anchorEl: this.props.anchorEl || null,
     };
 
     handleOpen = event => {
         event.preventDefault();
-        this.setState({
-            open: true,
-            anchorElement: event.currentTarget,
-        });
+
+        const newState = { open: true, }
+
+        if (!this.state.anchorEl) {
+            newState.anchorEl = event.currentTarget;
+        }
+
+        this.setState(newState);
     };
     
     handleClose = () => {
-        this.setState({open: false});
+        this.setState({ open: false });
     };
 
     render = () => {
         return (
             <div>
                 {this.props.button ? 
-                    React.cloneElement(this.props.button, { onClick: this.handleOpen, }) : ''}
+                    React.cloneElement(this.props.button, { onClick: this.handleOpen }) : ''}
                 <MuiPopover 
                     open={ this.state.open }
                     style={ this.props.style }
-                    animated={ this.props.animated }
-                    autoCloseWhenOffScreen={ this.props.autoCloseWhenOffScreen }
-                    anchorEl={ this.state.anchorElement }
-                    anchorOrigin={this.props.anchorOrigin}
-                    targetOrigin={this.props.targetOrigin}
+                    anchorEl={ this.state.anchorEl }
+                    anchorOrigin={ this.props.anchorOrigin }
+                    targetOrigin={ this.props.transformOrigin } // TODO: change to transformOrigin when MUI 1.0
                     onRequestClose={ this.handleClose }
                     className={ this.props.className }
                 >
