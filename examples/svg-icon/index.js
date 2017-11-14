@@ -17,12 +17,18 @@ const styles = {
     fill: 'blue',
 };
 
+const children = <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />;
+
 const icons = (
     <MuiThemeProvider muiTheme={getMuiTheme()}>
         <div style={style}>
             <SvgIcon icon={'star'} />
             <SvgIcon icon={'star'} style={styles} />
             <SvgIcon icon={'star'} color="blue" hoverColor="yellow" />
+            <SvgIcon />
+            <SvgIcon>
+                {children}
+            </SvgIcon>
         </div>
     </MuiThemeProvider>
 );

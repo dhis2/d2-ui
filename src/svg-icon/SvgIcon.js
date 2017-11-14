@@ -11,7 +11,7 @@ const fetchComponent = (icon) => {
     case icons.star:
         return import('material-ui/svg-icons/toggle/star');
     default:
-        return Promise.reject('Icon name is missing or not recognized');
+        return import('material-ui/SvgIcon');
     }
 };
 
@@ -19,7 +19,12 @@ export default class SvgIcon extends React.Component {
     state = { Icon: null };
 
     componentWillMount() {
-        const { icon } = this.props;
+        const { icon, children } = this.props;
+
+        if (!icons.hasOwnProperty(icon) && !children) {
+            return;
+        }
+
         fetchComponent(icon)
             .then(component => this.setState({ Icon: component.default }));
     }
@@ -28,7 +33,7 @@ export default class SvgIcon extends React.Component {
         const { Icon } = this.state;
         const omitProps = [
             'icon',  // icon used internally only
-            'color', // color is not supported in 1.0.0 (use style property instead)
+            'color', // color is a v0.19 prop and not supported in v1.0.0 (use style property instead)
         ];
 
         if (!Icon) {
@@ -36,10 +41,22 @@ export default class SvgIcon extends React.Component {
         }
 
         const rest = getRestProps(this.props, omitProps);
-        return <Icon {...rest} />;
+        const { children } = this.props;
+
+        return (
+            <Icon {...rest}>
+                {children}
+            </Icon>
+        );
     }
 }
 
 SvgIcon.propTypes = {
-    icon: PropTypes.oneOf([icons.star]).isRequired,
+    icon: PropTypes.string,
+    children: PropTypes.node,
+};
+
+SvgIcon.defaultProps = {
+    icon: '',
+    children: null,
 };
