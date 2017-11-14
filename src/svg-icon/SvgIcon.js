@@ -1,13 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-const getRestProps = (props) => {
-    const omitProps = ['icon'];
-
-    return Object.keys(props).reduce((acc, key) => { // eslint-disable-line arrow-body-style
-        return omitProps.indexOf(key) === -1 ? { ...acc, [key]: props[key] } : acc;
-    }, {});
-};
+import { getRestProps } from '../component-helpers/utils';
 
 const icons = {
     star: 'star',
@@ -33,12 +26,16 @@ export default class SvgIcon extends React.Component {
 
     render() {
         const { Icon } = this.state;
-        const rest = getRestProps(this.props);
+        const omitProps = [
+            'icon',  // icon used internally only
+            'color', // color is not supported in 1.0.0 (use style property instead)
+        ];
 
         if (!Icon) {
             return <div>Loading icon...</div>;
         }
 
+        const rest = getRestProps(this.props, omitProps);
         return <Icon {...rest} />;
     }
 }

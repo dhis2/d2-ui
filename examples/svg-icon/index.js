@@ -10,14 +10,11 @@ const style = {
     flexDirection: 'row',
     flexWrap: 'wrap',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
 };
 
 const styles = {
     fill: 'blue',
-    ':hover': {
-        fill: 'yellow'
-    }
 };
 
 const icons = (
@@ -25,6 +22,7 @@ const icons = (
         <div style={style}>
             <SvgIcon icon={'star'} />
             <SvgIcon icon={'star'} style={styles} />
+            <SvgIcon icon={'star'} color="blue" hoverColor="yellow" />
         </div>
     </MuiThemeProvider>
 );
