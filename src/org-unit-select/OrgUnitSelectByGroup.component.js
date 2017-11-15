@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import log from 'loglevel';
 
 import { addToSelection, removeFromSelection, handleChangeSelection, renderDropdown, renderControls } from './common';
@@ -94,25 +95,25 @@ class OrgUnitSelectByGroup extends React.Component {
 OrgUnitSelectByGroup.propTypes = {
     // groups is an array of either ModelCollection objects or plain objects,
     // where each object should contain `id` and `displayName` properties
-    groups: React.PropTypes.oneOfType([
-        React.PropTypes.object,
-        React.PropTypes.array,
+    groups: PropTypes.oneOfType([
+        PropTypes.object,
+        PropTypes.array,
     ]).isRequired,
 
     // selected is an array of selected organisation unit IDs
-    selected: React.PropTypes.array.isRequired,
+    selected: PropTypes.array.isRequired,
 
     // Whenever the selection changes, onUpdateSelection will be called with
     // one argument: The new array of selected organisation unit paths
-    onUpdateSelection: React.PropTypes.func.isRequired,
+    onUpdateSelection: PropTypes.func.isRequired,
 
     // If currentRoot is set, only org units that are descendants of the
     // current root org unit will be added to or removed from the selection
-    currentRoot: React.PropTypes.object,
+    currentRoot: PropTypes.object,
 
     // TODO: Add group cache prop?
 };
 
-OrgUnitSelectByGroup.contextTypes = { d2: React.PropTypes.any.isRequired };
+OrgUnitSelectByGroup.contextTypes = { d2: PropTypes.any.isRequired };
 
 export default OrgUnitSelectByGroup;

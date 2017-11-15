@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import SelectField from 'material-ui/SelectField/SelectField';
 import MenuItem from 'material-ui/MenuItem/MenuItem';
 
@@ -6,12 +7,12 @@ import Translate from '../i18n/Translate.mixin';
 
 export default React.createClass({
     propTypes: {
-        value: React.PropTypes.string,
-        locales: React.PropTypes.arrayOf(React.PropTypes.shape({
-            name: React.PropTypes.string.isRequired,
-            locale: React.PropTypes.string.isRequired,
+        value: PropTypes.string,
+        locales: PropTypes.arrayOf(PropTypes.shape({
+            name: PropTypes.string.isRequired,
+            locale: PropTypes.string.isRequired,
         })).isRequired,
-        onChange: React.PropTypes.func.isRequired,
+        onChange: PropTypes.func.isRequired,
     },
 
     mixins: [Translate],

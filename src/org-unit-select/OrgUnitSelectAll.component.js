@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import log from 'loglevel';
 import RaisedButton from 'material-ui/RaisedButton/RaisedButton';
 
@@ -109,17 +110,17 @@ class OrgUnitSelectAll extends React.Component {
 
 OrgUnitSelectAll.propTypes = {
     // selected is an array of selected organisation unit IDs
-    selected: React.PropTypes.array.isRequired,
+    selected: PropTypes.array.isRequired,
 
     // Whenever the selection changes, onUpdateSelection will be called with
     // one argument: The new array of selected organisation unit paths
-    onUpdateSelection: React.PropTypes.func.isRequired,
+    onUpdateSelection: PropTypes.func.isRequired,
 
     // If currentRoot is set, only org units that are descendants of the
     // current root org unit will be added to or removed from the selection
-    currentRoot: React.PropTypes.object,
+    currentRoot: PropTypes.object,
 };
 
-OrgUnitSelectAll.contextTypes = { d2: React.PropTypes.object.isRequired };
+OrgUnitSelectAll.contextTypes = { d2: PropTypes.object.isRequired };
 
 export default OrgUnitSelectAll;

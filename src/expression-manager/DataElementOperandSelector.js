@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { config } from 'd2/lib/d2';
 import TextField from 'material-ui/TextField/TextField';
 import LinearProgress from 'material-ui/LinearProgress/LinearProgress';
@@ -12,10 +13,10 @@ config.i18n.strings.add('search_by_name');
 
 const DataElementOperandSelector = React.createClass({
     propTypes: {
-        dataElementOperandSelectorActions: React.PropTypes.object,
-        dataElementOperandStore: React.PropTypes.object,
-        onItemDoubleClick: React.PropTypes.func.isRequired,
-        listStyle: React.PropTypes.object,
+        dataElementOperandSelectorActions: PropTypes.object,
+        dataElementOperandStore: PropTypes.object,
+        onItemDoubleClick: PropTypes.func.isRequired,
+        listStyle: PropTypes.object,
     },
 
     mixins: [Translate],

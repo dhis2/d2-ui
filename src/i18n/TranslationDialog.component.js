@@ -63,14 +63,14 @@ export default class TranslationDialog extends Component {
 }
 
 TranslationDialog.propTypes = {
-    objectToTranslate: React.PropTypes.shape({
-        id: React.PropTypes.string.isRequired,
+    objectToTranslate: PropTypes.shape({
+        id: PropTypes.string.isRequired,
     }).isRequired,
-    onTranslationSaved: React.PropTypes.func.isRequired,
-    onTranslationError: React.PropTypes.func.isRequired,
-    open: React.PropTypes.bool,
-    onRequestClose: React.PropTypes.func.isRequired,
-    fieldsToTranslate: React.PropTypes.array,
+    onTranslationSaved: PropTypes.func.isRequired,
+    onTranslationError: PropTypes.func.isRequired,
+    open: PropTypes.bool,
+    onRequestClose: PropTypes.func.isRequired,
+    fieldsToTranslate: PropTypes.array,
 };
 
 TranslationDialog.contextTypes = {

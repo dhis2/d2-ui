@@ -142,12 +142,12 @@ export default class Legend extends Component {
             <FlatButton
                 label={this.i18n.getTranslation('cancel')}
                 secondary
-                onTouchTap={this.handleClose}
+                onClick={this.handleClose}
             />,
             <FlatButton
                 label={this.i18n.getTranslation('proceed')}
                 primary
-                onTouchTap={this.handleClose}
+                onClick={this.handleClose}
             />,
         ];
 
