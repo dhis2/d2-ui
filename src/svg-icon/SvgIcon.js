@@ -4,12 +4,16 @@ import { getRestProps } from '../component-helpers/utils';
 
 const icons = {
     star: 'star',
+    visibility: 'visibility',
 };
 
 const fetchComponent = (icon) => {
     switch (icon) {
     case icons.star:
         return import('material-ui/svg-icons/toggle/star');
+    case icons.visibility:
+        return import('material-ui/svg-icons/action/visibility');
+
     default:
         return import('material-ui/SvgIcon');
     }
