@@ -5,52 +5,79 @@ import IconStar from 'material-ui/svg-icons/toggle/star';
 import MuiChip from 'material-ui/Chip';
 import { createClassName } from '../component-helpers/utils';
 
-const styles = {
-    colors: {
-        'default': {
-            backgroundColor: '#e0e0e0',
-            color: '#333333',
-        },
-        primary: {
-            backgroundColor: '#9bd9f3',
-            color: '#333333',
-        },
+const size = '30px';
+const color = '#333333';
+
+const chipStyle = {
+    margin: 3,
+    height: '30px',
+    pointer: 'auto',
+};
+
+const labelStyle = {
+    fontSize: '13px',
+    fontWeight: 500,
+    lineHeight: size,
+};
+
+const colors = {
+    'default': {
+        backgroundColor: '#e0e0e0',
+        color: color,
     },
-    avatar: {
-        color: '#444',
-        style: {
-            height: '30px',
-            width: '30px',
-        },
+    primary: {
+        backgroundColor: '#b1deda',
+        color: color,
     },
 };
 
-const avatarMap = {
-    star: <Avatar icon={<IconStar/>} {...styles.avatar} />,
+const avatarProps = {
+    backgroundColor: '#00000011',
+    color: color,
+    style: {
+        height: size,
+        width: size,
+    },
 };
+
+const avatarIcons = {
+    star: <IconStar/>,
+}
+
+const disabledStyle = {
+    cursor: 'auto',
+    opacity: 0.5,
+};
+
+const getHandlerFunction = (fn, isDisabled) =>
+    isDisabled && typeof fn === 'function' ? Function.prototype : fn;
 
 const Chip = ({ avatar, color = 'default', disabled, label, onClick, onRequestDelete, selector }) => {
-    const props = {
-        style: {
-            margin: 3,
-            height: '30px',
-            cursor: 'pointer',
-        },
-        labelStyle: {
-            fontSize: '13px',
-            fontWeight: 500,
-            lineHeight: '30px',
-        },
-        className: createClassName('d2-ui-chip', selector),
-        onClick: disabled && typeof onClick === 'function' ? Function.prototype : onClick,
-        onRequestDelete: disabled && typeof onRequestDelete === 'function' ? Function.prototype : onRequestDelete,
-        backgroundColor: (styles.colors[color] || {}).backgroundColor + (disabled ? '66' : ''),
-        labelColor: (styles.colors[color] || {}).color + (disabled ? '66' : ''),
+    const style = {
+        ...chipStyle,
+        cursor: typeof onClick === 'function' ? 'pointer' : chipStyle.cursor,
+        ...(disabled ? disabledStyle : {}),
     };
+
+    const props = {
+        className: createClassName('d2-ui-chip', selector),
+        style: style,
+        labelStyle: labelStyle,
+        onClick: getHandlerFunction(onClick, disabled),
+        onRequestDelete: getHandlerFunction(onRequestDelete, disabled),
+        deleteIconStyle: { height: '22px' },
+        ...colors[color],
+    };
+
+    const avatarCmp = avatarIcons[avatar] &&
+        <Avatar
+            icon={avatarIcons[avatar]}
+            {...avatarProps}
+        />;
 
     return (
         <MuiChip {...props}>
-            {avatarMap[avatar]}
+            {avatarCmp}
             {label}
         </MuiChip>
     );

@@ -19,14 +19,16 @@ const style = {
 const buttons = (
     <MuiThemeProvider muiTheme={getMuiTheme()}>
         <div style={style}>
-            <Chip label={'Basic chip'} />
+            <Chip label={'Default'} />
             <Chip label={'With avatar'} avatar={'star'} />
             <Chip label={'Primary'} color={'primary'} />
-            <Chip label={'Primary with avatar'} avatar={'star'} color={'primary'} />
-            <Chip label={'Default chip'} />
-
-
-
+            <Chip label={'With avatar'} avatar={'star'} color={'primary'} />
+            <Chip label={'With onClick'} onClick={() => alert('clicked')} />
+            <Chip label={'With onRequestDelete'} onRequestDelete={() => alert('delete')} />
+            <Chip label={'Disabled'} disabled={true} />
+            <Chip label={'With avatar'} avatar={'star'} disabled={true} />
+            <Chip label={'With onClick'} onClick={() => alert('clicked')} disabled={true} />
+            <Chip label={'With onRequestDelete'} onRequestDelete={() => alert('delete')} disabled={true} />
         </div>
     </MuiThemeProvider>
 );
