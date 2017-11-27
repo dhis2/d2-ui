@@ -39,7 +39,7 @@ describe('Chip', () => {
 
     it('should render disabled style when disabled=true is passed', () => {
         expect(renderWithProps({ disabled: true }).props().style.cursor).toMatch(disabledStyle.cursor);
-        expect(renderWithProps({ disabled: true }).props().style.opacity.toString()).toMatch(disabledStyle.opacity.toString());
+        expect(renderWithProps({ disabled: true }).props().style.opacity).toEqual(disabledStyle.opacity);
     });
 
     it('should render label as child node', () => {
