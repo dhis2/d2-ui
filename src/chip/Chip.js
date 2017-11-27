@@ -61,9 +61,9 @@ const Chip = ({ avatar, color = 'default', disabled, label, onClick, onRequestDe
     };
 
     const props = {
+        style,
+        labelStyle,
         className: createClassName('d2-ui-chip', selector),
-        style: style,
-        labelStyle: labelStyle,
         onClick: disabled ? undefined : onClick,
         onRequestDelete: disabled ? undefined : onRequestDelete,
         deleteIconStyle: { height: '22px' },
