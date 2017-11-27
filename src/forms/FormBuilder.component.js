@@ -278,9 +278,7 @@ class FormBuilder extends React.Component {
      */
     handleFieldChange(fieldName, event) {
         const newValue = event.target.value;
-
         const field = this.getFieldProp(fieldName);
-
         // If the field has changeEvent=onBlur the change handler is triggered whenever the field loses focus.
         // So if the value didn't actually change, abort the change handler here.
         if (field.props && field.props.changeEvent === 'onBlur' && newValue === field.value) {
@@ -289,7 +287,7 @@ class FormBuilder extends React.Component {
 
         // Using custom clone function to maximize speed, albeit more error prone
         const stateClone = this.getStateClone();
-
+    
         // Update value, and set pristine to false
         this.setState(this.updateFieldState(stateClone, fieldName, { pristine: false, value: newValue }),
             () => {
@@ -328,12 +326,11 @@ class FormBuilder extends React.Component {
                 () => {
                     this.props.onUpdateFormStatus(this.state.form);
                     this.props.onUpdateField(fieldName, newValue);
-
                     // TODO: Subscription to validation results could be done once in `componentDidMount` and be
                     // disposed in the `componentWillUnmount` method. This way we don't have to create the
                     // subscription every time the field is changed.
                     this.asyncValidators[fieldName] = this.asyncValidationRunner
-                        .listenToValidatorsFor(fieldName)
+                        .listenToValidatorsFor(fieldName, stateClone)
                         .subscribe(
                             (status) => {
                                 this.setState(
@@ -376,7 +373,7 @@ class FormBuilder extends React.Component {
 
         const validatorResult = (field.validators || [])
             .reduce((pass, currentValidator) => (pass === true
-                ? (currentValidator.validator(newValue) === true || currentValidator.message) : pass
+                ? (currentValidator.validator(newValue, stateClone) === true || currentValidator.message) : pass
             ), true);
 
         this.updateFieldState(stateClone, fieldName, {
