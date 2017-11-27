@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import log from 'loglevel';
 import { Observable, Subject } from 'rxjs';
@@ -28,14 +28,14 @@ function saveToLocalStorage(headerData = {}) {
     return headerData;
 }
 
-const InnerHeader = React.createClass({
-    propTypes: {
+class InnerHeader extends Component {
+    propTypes = {
         lastUpdate: PropTypes.instanceOf(Date),
-    },
+    };
 
-    contextTypes: {
+    contextTypes = {
         d2: PropTypes.object.isRequired,
-    },
+    };
 
     getInitialState() {
         this.unmount = new Subject();
@@ -45,7 +45,7 @@ const InnerHeader = React.createClass({
 
             },
         };
-    },
+    }
 
     componentWillMount() {
         this.getSystemSettings(this.context.d2)
@@ -58,7 +58,7 @@ const InnerHeader = React.createClass({
             .catch((error) => {
                 log.error(error);
             });
-    },
+    }
 
     componentDidMount() {
         Observable
@@ -69,17 +69,17 @@ const InnerHeader = React.createClass({
                 () => this.forceUpdate(),
                 e => log.error('Could not update the HeaderBar after resize', e),
             );
-    },
+    }
 
     componentWillReceiveProps(props) {
         if (this.props.lastUpdate && (this.props.lastUpdate.getTime() - props.lastUpdate.getTime()) !== 0) {
             dhis2.menu.ui.bootstrapMenu();
         }
-    },
+    }
 
     componentWillUnmount() {
         this.unmount.next(true);
-    },
+    }
 
     getSystemSettings(d2) {
         if (!d2.system) {
@@ -87,7 +87,7 @@ const InnerHeader = React.createClass({
         }
 
         return d2.system.settings.all();
-    },
+    }
 
     getHeaderBarData(systemSettings) {
         return this.requestUserStyle()
@@ -101,33 +101,33 @@ const InnerHeader = React.createClass({
                 title: systemSettings.applicationTitle,
             }))
             .catch(error => log.error(error));
-    },
+    }
 
     getApiBaseUrl() {
         if (!this.context.d2.Api) {
             return '/';
         }
         return this.context.d2.Api.getApi().baseUrl;
-    },
+    }
 
     getBaseUrl() {
         return getBaseUrlFromD2ApiUrl(this.context.d2);
-    },
+    }
 
     getLogoUrl() {
         return [this.getApiBaseUrl(), 'staticContent', 'logo_banner'].join('/');
-    },
+    }
 
     getStylesheetUrl(stylesheet) {
         return [this.getBaseUrl(), stylesLocation, 'themes', stylesheet || defaultStylesheetUrl].join('/');
-    },
+    }
 
     getStyleName(userStyle) {
         if (typeof userStyle === 'string' && userStyle.split('/')[0] && userStyle.split('/').length > 0) {
             return userStyle.split('/')[0];
         }
         return defaultStyle;
-    },
+    }
 
     render() {
         const headerBannerWrapperStyle = {
@@ -196,7 +196,7 @@ const InnerHeader = React.createClass({
                 </div>
             </div>
         );
-    },
+    }
 
     loadDataFromLocalStorageIfAvailable() {
         let title;
@@ -212,12 +212,12 @@ const InnerHeader = React.createClass({
             userStyleUrl: userStyle,
             title,
         };
-    },
+    }
 
     setHeaderData(userStyleUrl, title) {
         this.addUserStyleStylesheet(this.getStylesheetUrl(userStyleUrl));
         this.setHeaderTitle(title);
-    },
+    }
 
     setHeaderBarProp(name, value) {
         this.setState({
@@ -225,21 +225,21 @@ const InnerHeader = React.createClass({
                 [name]: value,
             }),
         });
-    },
+    }
 
     setHeaderTitle(applicationTitle) {
         this.setHeaderBarProp('title', applicationTitle || 'District Health Information Software 2');
-    },
+    }
 
     requestUserStyle() {
         const api = this.context.d2.Api.getApi();
         return api.get('userSettings/keyStyle')
             .then(response => response.trim());
-    },
+    }
 
     isValidUserStyle(userStyle) {
         return typeof userStyle === 'string' && /^[A-z0-9_\-]+$/.test(userStyle);
-    },
+    }
 
     addUserStyleStylesheet(stylesheetUrl) {
         const linkElement = document.createElement('link');
@@ -249,7 +249,7 @@ const InnerHeader = React.createClass({
         linkElement.setAttribute('media', 'screen,print');
 
         document.querySelector('head').appendChild(linkElement);
-    },
-});
+    }
+}
 
 export default InnerHeader;
