@@ -126,5 +126,5 @@ render(
     <MuiThemeProvider muiTheme={getMuiTheme()}>
         <FormExample />
     </MuiThemeProvider>,
-    document.querySelector('#form-builder')
+    document.querySelector('#form-builder'),
 );

@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import classes from 'classnames';
 import FormField from './FormField.component';
 import Translate from '../i18n/Translate.mixin';
-import createFormValidator from './FormValidator';
-import { FormFieldStatuses } from './FormValidator';
+import { FormFieldStatuses, createFormValidator } from './FormValidator';
 
 
 const Form = React.createClass({

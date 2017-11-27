@@ -4,13 +4,14 @@ import { Observable, Subject } from 'rxjs';
  * Run `validatorFunctions` in parallel and returns a resolved `Promise` with the validation status.
  * @param {function:Promise[]} validatorFunctions Array of validator functions that return a Promise.
  * @param {*} value The value that should be checked by the given validators
+ * @param {*} formModel The form of the state. In case the value of the field needs to be checked against other fields
  * @returns {Promise.<Object>} Resolves promise with `{ isValid: true }` when validators passed
  * or with `{ isValid: false, message: '<error_message>'`} when one of the validators failed. The `message` property
  * contains the value that the failed validator function rejected with.
  */
-function runValidatorFunctions(validatorFunctions, value) {
+function runValidatorFunctions(validatorFunctions, value, formModel) {
     return Promise
-        .all(validatorFunctions.map(validator => validator.call(null, value)))
+        .all(validatorFunctions.map(validator => validator.call(null, value, formModel)))
         // All validators passed
         .then(() => ({ isValid: true }))
         // When one of the validators failed a failure status with error message are emitted
@@ -63,16 +64,17 @@ export default class AsyncValidatorRunner {
      * issued were applicable to the field.
      *
      * @param {string} fieldName The name of the field to filter statuses for.
+     * @param {string} formModel The form containing state and all fields
      * @returns {Rx.Observable} Observable that represents validation results for the given `fieldName`.
      */
-    listenToValidatorsFor(fieldName) {
+    listenToValidatorsFor(fieldName, formModel) {
         return this.validatorPipeline
             // Filter the values by fieldName to make sure we only deal with the values for the requested field
             .filter(field => field.fieldName === fieldName)
             // Only process the latest value within the specified time window
             .debounceTime(this.debounceTimeInMs, this.scheduler)
             // .do((v) => console.log(v.value))
-            .map(field => Observable.fromPromise(runValidatorFunctions(field.asyncValidators, field.value))
+            .map(field => Observable.fromPromise(runValidatorFunctions(field.asyncValidators, field.value, formModel))
                 .map(status => Object.assign(status, { fieldName: field.fieldName, value: field.value })))
             // Flatten all observables in the correct order they should be processed
             .concatAll();
