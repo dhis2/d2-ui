@@ -102,6 +102,14 @@ export function isValidPassword(value) {
 }
 isValidPassword.message = 'invalid_password';
 
+export function isStartDateBeforeEndDate(startDate, endDate) {
+    if (isEmptyStringOrUndefined(startDate) || isEmptyStringOrUndefined(endDate)) {
+        return true;
+    }
+    return new Date(startDate) < new Date(endDate);
+}
+isStartDateBeforeEndDate.message = 'closed_date_cannot_be_before_open_date';
+
 export const wordToValidatorMap = new Map([
     ['required', isRequired],
     ['url', isUrl],
@@ -111,6 +119,7 @@ export const wordToValidatorMap = new Map([
     ['positive_number', isPositiveNumber],
     ['email', isEmail],
     ['is_valid_password', isValidPassword],
+    ['isStartDateBeforeEndDate', isStartDateBeforeEndDate],
 ]);
 
 export default {
@@ -123,4 +132,5 @@ export default {
     isNull,
     isUndefined,
     isValidPassword,
+    isStartDateBeforeEndDate,
 };

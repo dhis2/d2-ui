@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import ReactDOM from 'react-dom';
 import FontIcon from 'material-ui/FontIcon';
 import Sidebar from '../../src/sidebar/Sidebar.component';
@@ -158,8 +160,8 @@ function SidebarExample(props) {
     );
 }
 SidebarExample.propTypes = {
-    currentSection: React.PropTypes.string,
-    searchText: React.PropTypes.string,
+    currentSection: PropTypes.string,
+    searchText: PropTypes.string,
 };
 
 changeSectionHandler(sections[0].key);

@@ -39,12 +39,14 @@ function DropDown({ onFocus, onBlur, onChange, value, disabled, menuItems, inclu
         </SelectField>
     );
 }
+
 DropDown.propTypes = {
     defaultValue: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number,
         PropTypes.bool,
     ]),
+    noOptionsLabel: PropTypes.string,    
     value: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number,
@@ -59,9 +61,20 @@ DropDown.propTypes = {
     ]),
     includeEmpty: PropTypes.bool,
     emptyLabel: PropTypes.string,
-    noOptionsLabel: PropTypes.string,
 };
+
 DropDown.defaultProps = {
+    value: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+        PropTypes.bool,
+    ]),
+    menuItems: PropTypes.oneOfType([
+        PropTypes.array,
+        PropTypes.object,
+    ]),
+    onFocus: PropTypes.func,
+    onBlur: PropTypes.func,
     includeEmpty: false,
     emptyLabel: '',
 };

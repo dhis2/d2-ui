@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import ReactDOM from 'react-dom';
 import { Card, CardText } from 'material-ui/Card';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -117,7 +119,7 @@ class PeriodPickerExample extends React.Component {
         );
     }
 }
-PeriodPickerExample.childContextTypes = { d2: React.PropTypes.object.isRequired };
+PeriodPickerExample.childContextTypes = { d2: PropTypes.object.isRequired };
 
 ReactDOM.render(<div>Initialising D2...</div>, el);
 

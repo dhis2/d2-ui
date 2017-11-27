@@ -1,4 +1,6 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+
 import log from 'loglevel';
 import D2Lib from 'd2/lib/d2';
 import { render } from 'react-dom';
@@ -49,7 +51,7 @@ SharingExample.propTypes = {
 };
 
 SharingExample.childContextTypes = {
-    d2: React.PropTypes.object,
+    d2: PropTypes.object,
 };
 
 const element = document.getElementById('sharing');

@@ -6,14 +6,20 @@ import { DatePicker as MuiDatePicker } from 'material-ui';
 class DatePicker extends React.Component {
     constructor(props) {
         super(props);
-        this.maxDate = props.allowFuture ? undefined : new Date();
-        this.props = props;
-        this._onDateSelect = this._onDateSelect.bind(this);
-        this._formatDate = this._formatDate.bind(this);
+        const {
+            allowFuture,
+            dateFormat,
+            ...other
+        } = props;
+        this.other = other;
+
+        this.maxDate = allowFuture ? undefined : new Date();
+        this.onDateSelect = this.onDateSelect.bind(this);
+        this.formatDate = this.formatDate.bind(this);
         this.state = { value: this.props.value };
     }
 
-    _onDateSelect(event, date) {
+    onDateSelect(event, date) {
         this.setState({ value: date });
         this.props.onChange({
             target: {
@@ -22,7 +28,7 @@ class DatePicker extends React.Component {
         });
     }
 
-    _formatDate(date) {
+    formatDate(date) {
         let dd = date.getDate();
         let mm = date.getMonth() + 1;
         const yyyy = date.getFullYear();
@@ -33,7 +39,7 @@ class DatePicker extends React.Component {
             mm = `0${mm}`;
         }
 
-        switch (this.props.dateFormat) {
+        switch (this.dateFormat) {
         case 'dd-MM-yyyy': return `${dd}-${mm}-${yyyy}`;
         case 'yyyy-MM-dd': return `${yyyy}-${mm}-${dd}`;
         default: return `${dd}-${mm}-${yyyy}`;
@@ -44,12 +50,13 @@ class DatePicker extends React.Component {
         return (
             <div>
                 <MuiDatePicker
-                    {...this.props}
+                    {...this.other}
                     value={this.state.value}
                     floatingLabelText={this.props.floatingLabelText}
                     maxDate={this.maxDate}
-                    formatDate={this._formatDate}
-                    onChange={this._onDateSelect}
+                    errorText={this.props.errorText}
+                    formatDate={this.formatDate}
+                    onChange={this.onDateSelect}
                 />
             </div>
         );
@@ -61,6 +68,17 @@ DatePicker.propTypes = {
     onChange: PropTypes.func.isRequired,
     dateFormat: PropTypes.string.isRequired,
     allowFuture: PropTypes.bool.isRequired,
+    value: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object,
+    ]),
+};
+
+DatePicker.defaultProps = {
+    value: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object,
+    ]),
 };
 
 export default DatePicker;

@@ -376,7 +376,7 @@ class FormBuilder extends React.Component {
 
         const validatorResult = (field.validators || [])
             .reduce((pass, currentValidator) => (pass === true
-                ? (currentValidator.validator(newValue) === true || currentValidator.message) : pass
+                ? (currentValidator.validator(newValue, stateClone) === true || currentValidator.message) : pass
             ), true);
 
         this.updateFieldState(stateClone, fieldName, {

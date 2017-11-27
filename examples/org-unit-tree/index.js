@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import { render } from 'react-dom';
 import log from 'loglevel';
 import Card from 'material-ui/Card/Card';
@@ -191,9 +193,9 @@ function OrgUnitTreeExample(props) {
     );
 }
 OrgUnitTreeExample.propTypes = {
-    root: React.PropTypes.any.isRequired,
-    roots: React.PropTypes.any.isRequired,
-    preRoot: React.PropTypes.any,
+    root: PropTypes.any.isRequired,
+    roots: PropTypes.any.isRequired,
+    preRoot: PropTypes.any,
 };
 OrgUnitTreeExample.defaultProps = {
     preRoot: undefined,

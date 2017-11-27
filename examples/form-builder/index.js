@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import { render } from 'react-dom';
 import log from 'loglevel';
 import injectTapEventPlugin from 'react-tap-event-plugin';
@@ -97,11 +99,15 @@ class FormExample extends React.Component {
                 props: {
                     floatingLabelText: 'Example Date Picker',
                     dateFormat: 'yyyy-MM-dd',
-                    onChange: (e) => {
-                        this._onUpdateField('exampleDatePicker', e.target.value);
-                    },
                     allowFuture: false,
                 },
+                validators: [{
+                    message: 'pung',
+                    validator(value) {
+                        console.log("hola");
+                        return false;
+                    },
+                }],
             },
         ];
         return (
@@ -119,7 +125,7 @@ class FormExample extends React.Component {
 }
 
 FormExample.childContextTypes = {
-    d2: React.PropTypes.object,
+    d2: PropTypes.object,
 };
 
 render(

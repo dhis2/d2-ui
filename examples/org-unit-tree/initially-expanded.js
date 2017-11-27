@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import OrgUnitTree from '../../src/org-unit-tree/OrgUnitTreeMultipleRoots.component';
 
@@ -17,6 +18,6 @@ function InitiallyExpandedExample(props) {
         </div>
     );
 }
-InitiallyExpandedExample.propTypes = { roots: React.PropTypes.any.isRequired };
+InitiallyExpandedExample.propTypes = { roots: PropTypes.any.isRequired };
 
 export default InitiallyExpandedExample;

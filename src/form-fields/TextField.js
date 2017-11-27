@@ -21,18 +21,27 @@ export default React.createClass({
         this.setState({ value: props.value });
     },
 
-    _change(e) {
+    change(e) {
         this.setState({ value: e.target.value });
     },
 
     render() {
+        const {
+            changeEvent,
+            ...other
+        } = this.props;
         const errorStyle = {
             lineHeight: this.props.multiLine ? '48px' : '12px',
             marginTop: this.props.multiLine ? -16 : 0,
         };
 
         return (
-            <TextField errorStyle={errorStyle} {...this.props} value={this.state.value} onChange={this._change} />
+            <TextField
+                errorStyle={errorStyle}
+                {...other}
+                value={this.state.value}
+                onChange={this.change}
+            />
         );
     },
 });

@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import {render} from 'react-dom';
 import IconPicker from '../../src/icon-picker';
 import Card from 'material-ui/Card/Card';
@@ -62,7 +64,7 @@ class ExampleWithMockD2 extends React.Component {
     }
 }
 ExampleWithMockD2.childContextTypes = {
-    d2: React.PropTypes.object,
+    d2: PropTypes.object,
 };
 
 function renderIconPicker() {
