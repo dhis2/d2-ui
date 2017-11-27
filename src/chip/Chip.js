@@ -14,13 +14,17 @@ const chipStyle = {
     pointer: 'auto',
 };
 
+export const clickableStyle = {
+    cursor: 'pointer',
+};
+
 const labelStyle = {
     fontSize: '13px',
     fontWeight: 500,
     lineHeight: size,
 };
 
-const colors = {
+export const colors = {
     'default': {
         backgroundColor: '#e0e0e0',
         color: color,
@@ -31,8 +35,8 @@ const colors = {
     },
 };
 
-const avatarProps = {
-    backgroundColor: '#00000011',
+export const avatarProps = {
+    backgroundColor: 'rgba(0,0,0,0.08)',
     color: color,
     style: {
         height: size,
@@ -40,22 +44,19 @@ const avatarProps = {
     },
 };
 
-const avatarIcons = {
+export const avatarIcons = {
     star: <IconStar/>,
-}
+};
 
-const disabledStyle = {
+export const disabledStyle = {
     cursor: 'auto',
     opacity: 0.5,
 };
 
-const getHandlerFunction = (fn, isDisabled) =>
-    isDisabled && typeof fn === 'function' ? Function.prototype : fn;
-
 const Chip = ({ avatar, color = 'default', disabled, label, onClick, onRequestDelete, selector }) => {
     const style = {
         ...chipStyle,
-        cursor: typeof onClick === 'function' ? 'pointer' : chipStyle.cursor,
+        ...(typeof onClick === 'function' ? clickableStyle : {}),
         ...(disabled ? disabledStyle : {}),
     };
 
@@ -63,8 +64,8 @@ const Chip = ({ avatar, color = 'default', disabled, label, onClick, onRequestDe
         className: createClassName('d2-ui-chip', selector),
         style: style,
         labelStyle: labelStyle,
-        onClick: getHandlerFunction(onClick, disabled),
-        onRequestDelete: getHandlerFunction(onRequestDelete, disabled),
+        onClick: disabled ? undefined : onClick,
+        onRequestDelete: disabled ? undefined : onRequestDelete,
         deleteIconStyle: { height: '22px' },
         ...colors[color],
     };
@@ -115,7 +116,7 @@ Chip.propTypes = {
     onRequestDelete: PropTypes.func,
 
     /**
-     * If set, adds a class to the element in the format d2-ui-button-selector
+     * If set, adds a class to the element on the format d2-ui-chip-selector
      */
     selector: PropTypes.string,
 };
