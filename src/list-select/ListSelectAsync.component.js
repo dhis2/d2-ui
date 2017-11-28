@@ -5,11 +5,9 @@ import log from 'loglevel';
 import ListSelect from './ListSelect.component';
 
 class ListSelectAsync extends Component {
-    getInitialState() {
-        return {
-            listSource: [],
-        };
-    }
+    state = {
+        listSource: [],
+    };
 
     componentWillMount() {
         if (!this.props.source) {

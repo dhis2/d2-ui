@@ -9,13 +9,6 @@ import { FormFieldStatuses } from './FormValidator';
 class Form extends Component {
     mixins = [Translate];
 
-    getDefaultProps() {
-        return {
-            fieldConfigs: [],
-            formValidator: createFormValidator([]),
-        };
-    }
-
     componentDidMount() {
         this.disposables = [];
         this.disposables.push(this.props.formValidator.status.subscribe(() => {
@@ -108,6 +101,11 @@ Form.propTypes = {
         PropTypes.array,
         PropTypes.object,
     ]),
+};
+
+Form.defaultProps = {
+    fieldConfigs: [],
+    formValidator: createFormValidator([]),
 };
 
 export default Form;

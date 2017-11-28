@@ -77,16 +77,14 @@ DropDownForSchemaReference.contextTypes = {
 };
 
 class ProgramOperandSelector extends Component {
-    mixins = [Translate];
+    state = {
+        programTrackedEntityAttributeOptions: [],
+        programIndicatorOptions: [],
+        programDataElementOptions: [],
+        programMenuItems: [],
+    };
 
-    getInitialState() {
-        return {
-            programTrackedEntityAttributeOptions: [],
-            programIndicatorOptions: [],
-            programDataElementOptions: [],
-            programMenuItems: [],
-        };
-    }
+    mixins = [Translate];
 
     componentDidMount() {
         this.context.d2.models.program.list({ paging: false, fields: 'id,displayName,programTrackedEntityAttributes[id,displayName,dimensionItem],programIndicators[id,displayName,dimensionItem]' })

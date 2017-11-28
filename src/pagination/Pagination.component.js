@@ -11,17 +11,6 @@ config.i18n.strings.add('of_page');
 class Pagination extends Component {
     mixins = [Translate];
 
-    getDefaultProps() {
-        return {
-            hasPreviousPage: noop,
-            hasNextPage: noop,
-            onPreviousPageClick: noop,
-            onNextPageClick: noop,
-            total: 0,
-            currentlyShown: 0,
-        };
-    }
-
     render() {
         const { hasPreviousPage, hasNextPage, onPreviousPageClick, onNextPageClick, currentlyShown, total } = this.props;
         const pagerButtonClasses = ['material-icons', 'waves-effect'];
@@ -62,6 +51,15 @@ Pagination.propTypes = {
         PropTypes.string,
         PropTypes.number,
     ]),
+};
+
+Pagination.defaultProps = {
+    hasPreviousPage: noop,
+    hasNextPage: noop,
+    onPreviousPageClick: noop,
+    onNextPageClick: noop,
+    total: 0,
+    currentlyShown: 0,
 };
 
 export default Pagination;

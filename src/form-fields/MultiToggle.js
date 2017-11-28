@@ -5,16 +5,14 @@ import PropTypes from 'prop-types';
 import Checkbox from 'material-ui/Checkbox';
 
 class MultiToggle extends Component {
-    getInitialState() {
-        return {
-            values: this.props.items.reduce((prev, curr) => {
-                if (curr.value) {
-                    prev.push(curr.name);
-                }
-                return prev;
-            }, []),
-        };
-    }
+    state = {
+        values: this.props.items.reduce((prev, curr) => {
+            if (curr.value) {
+                prev.push(curr.name);
+            }
+            return prev;
+        }, []),
+    };
 
     _handleToggle(value, event, checked) {
         this.setState((oldState) => {

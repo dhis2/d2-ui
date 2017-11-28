@@ -12,24 +12,15 @@ import { createDataElementOperandActions, subscribeDataElementActionsToStore } f
 config.i18n.strings.add('search_by_name');
 
 class DataElementOperandSelector extends Component {
+    state = {
+        isLoading: true,
+        pager: {
+            hasNextPage: () => false,
+            hasPreviousPage: () => false,
+        },
+    };
+
     mixins = [Translate];
-
-    getDefaultProps() {
-        return {
-            dataElementOperandSelectorActions: createDataElementOperandActions(),
-            dataElementOperandStore: Store.create(),
-        };
-    }
-
-    getInitialState() {
-        return {
-            isLoading: true,
-            pager: {
-                hasNextPage: () => false,
-                hasPreviousPage: () => false,
-            },
-        };
-    }
 
     componentWillMount() {
         this.actionSubscriptions = subscribeDataElementActionsToStore(this.props.dataElementOperandSelectorActions, this.props.dataElementOperandStore);
@@ -119,6 +110,11 @@ DataElementOperandSelector.propTypes = {
     dataElementOperandStore: PropTypes.object,
     onItemDoubleClick: PropTypes.func.isRequired,
     listStyle: PropTypes.object,
+};
+
+DataElementOperandSelector.defaultProps = {
+    dataElementOperandSelectorActions: createDataElementOperandActions(),
+    dataElementOperandStore: Store.create(),
 };
 
 export default DataElementOperandSelector;

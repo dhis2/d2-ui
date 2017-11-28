@@ -29,15 +29,9 @@ function saveToLocalStorage(headerData = {}) {
 }
 
 class InnerHeader extends Component {
-    getInitialState() {
-        this.unmount = new Subject();
-
-        return {
-            headerBar: {
-
-            },
-        };
-    }
+    state = {
+        headerBar: {},
+    };
 
     componentWillMount() {
         this.getSystemSettings(this.context.d2)
@@ -55,7 +49,6 @@ class InnerHeader extends Component {
     componentDidMount() {
         Observable
             .fromEvent(window, 'resize')
-            .takeUntil(this.unmount)
             .debounceTime(200)
             .subscribe(
                 () => this.forceUpdate(),
@@ -67,10 +60,6 @@ class InnerHeader extends Component {
         if (this.props.lastUpdate && (this.props.lastUpdate.getTime() - props.lastUpdate.getTime()) !== 0) {
             dhis2.menu.ui.bootstrapMenu();
         }
-    }
-
-    componentWillUnmount() {
-        this.unmount.next(true);
     }
 
     getSystemSettings(d2) {
