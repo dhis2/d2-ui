@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classes from 'classnames';
 import { config } from 'd2/lib/d2';
@@ -8,20 +8,8 @@ const noop = () => {};
 
 config.i18n.strings.add('of_page');
 
-const Pagination = React.createClass({
-    propTypes: {
-        hasPreviousPage: PropTypes.func,
-        hasNextPage: PropTypes.func,
-        onPreviousPageClick: PropTypes.func,
-        onNextPageClick: PropTypes.func,
-        total: PropTypes.number,
-        currentlyShown: PropTypes.oneOfType([
-            PropTypes.string,
-            PropTypes.number,
-        ]),
-    },
-
-    mixins: [Translate],
+class Pagination extends Component {
+    mixins = [Translate];
 
     getDefaultProps() {
         return {
@@ -32,7 +20,7 @@ const Pagination = React.createClass({
             total: 0,
             currentlyShown: 0,
         };
-    },
+    }
 
     render() {
         const { hasPreviousPage, hasNextPage, onPreviousPageClick, onNextPageClick, currentlyShown, total } = this.props;
@@ -61,7 +49,19 @@ const Pagination = React.createClass({
                 </ul>
             </div>
         );
-    },
-});
+    }
+}
+
+Pagination.propTypes = {
+    hasPreviousPage: PropTypes.func,
+    hasNextPage: PropTypes.func,
+    onPreviousPageClick: PropTypes.func,
+    onNextPageClick: PropTypes.func,
+    total: PropTypes.number,
+    currentlyShown: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+    ]),
+};
 
 export default Pagination;

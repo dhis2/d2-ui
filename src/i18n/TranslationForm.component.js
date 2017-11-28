@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import TextField from 'material-ui/TextField/TextField';
 import camelCaseToUnderscores from 'd2-utilizr/lib/camelCaseToUnderscores';
@@ -34,17 +34,12 @@ function getTranslationFormData(model) {
         );
 }
 
-const TranslationForm = React.createClass({
-    propTypes: {
-        onTranslationSaved: PropTypes.func.isRequired,
-        onTranslationError: PropTypes.func.isRequired,
-        objectToTranslate: PropTypes.shape({
-            id: PropTypes.string.isRequired,
-        }),
-        fieldsToTranslate: PropTypes.arrayOf(PropTypes.string),
-    },
+export function getTranslationFormFor(model) {
+    return withStateFrom(getTranslationFormData(model), TranslationForm);
+}
 
-    mixins: [Translate],
+class TranslationForm extends Component {
+    mixins = [Translate];
 
     getInitialState() {
         return {
@@ -53,13 +48,13 @@ const TranslationForm = React.createClass({
             translationValues: {},
             currentSelectedLocale: '',
         };
-    },
+    }
 
     getDefaultProps() {
         return {
             fieldsToTranslate: ['name', 'shortName', 'description'],
         };
-    },
+    }
 
     getLoadingdataElement() {
         return (
@@ -67,7 +62,7 @@ const TranslationForm = React.createClass({
                 <CircularProgress mode="indeterminate" />
             </div>
         );
-    },
+    }
 
     renderFieldsToTranslate() {
         return this.props.fieldsToTranslate
@@ -83,7 +78,7 @@ const TranslationForm = React.createClass({
                     <div>{this.props.objectToTranslate[fieldName]}</div>
                 </div>
             ));
-    },
+    }
 
     renderForm() {
         return (
@@ -101,7 +96,7 @@ const TranslationForm = React.createClass({
                 />
             </div>
         );
-    },
+    }
 
     renderHelpText() {
         return (
@@ -109,7 +104,7 @@ const TranslationForm = React.createClass({
                 <p>{this.getTranslation('select_a_locale_to_enter_translations_for_that_language')}</p>
             </div>
         );
-    },
+    }
 
     render() {
         if (!this.props.locales && !this.props.translations) {
@@ -122,7 +117,7 @@ const TranslationForm = React.createClass({
                 {this.state.currentSelectedLocale ? this.renderForm() : this.renderHelpText()}
             </div>
         );
-    },
+    }
 
     getTranslationValueFor(fieldName) {
         const translation = this.props.translations
@@ -134,13 +129,13 @@ const TranslationForm = React.createClass({
         if (translation) {
             return translation.value;
         }
-    },
+    }
 
     setCurrentLocale(locale) {
         this.setState({
             currentSelectedLocale: locale,
         });
-    },
+    }
 
     _setValue(property, event) {
         let newTranslations = [].concat(this.props.translations);
@@ -165,7 +160,7 @@ const TranslationForm = React.createClass({
         }
 
         this.props.setTranslations(newTranslations);
-    },
+    }
 
     _saveTranslations() {
         saveTranslations(this.props.objectToTranslate, this.props.translations)
@@ -173,11 +168,16 @@ const TranslationForm = React.createClass({
                 this.props.onTranslationSaved,
                 this.props.onTranslationError,
             );
-    },
-});
+    }
+}
+
+TranslationForm.propTypes = {
+    onTranslationSaved: PropTypes.func.isRequired,
+    onTranslationError: PropTypes.func.isRequired,
+    objectToTranslate: PropTypes.shape({
+        id: PropTypes.string.isRequired,
+    }),
+    fieldsToTranslate: PropTypes.arrayOf(PropTypes.string),
+};
 
 export default TranslationForm;
-
-export function getTranslationFormFor(model) {
-    return withStateFrom(getTranslationFormData(model), TranslationForm);
-}

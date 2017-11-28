@@ -1,5 +1,4 @@
-import React from 'react';
-
+import React, { Component } from 'react';
 import Draft from 'draft-js';
 
 const {
@@ -42,7 +41,7 @@ const rawContent = {
     },
 };
 
-export default class EntityEditorExample extends React.Component {
+class EntityEditorExample extends Component {
     constructor(props) {
         super(props);
 
@@ -196,3 +195,5 @@ const styles = {
 // }
 
 // export default FormulaEditor;
+
+export default EntityEditorExample;

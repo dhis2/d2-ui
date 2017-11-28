@@ -1,28 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import log from 'loglevel';
 
-export default React.createClass({
-    propTypes: {
-        children: PropTypes.element,
-        d2: PropTypes.shape({
-            then: PropTypes.func.isRequired,
-        }),
-    },
-
-    childContextTypes: {
-        d2: PropTypes.object,
-    },
-
+class DataTableHeader extends Component {
     getChildContext() {
         return {
             d2: this.state.d2,
         };
-    },
+    }
 
     getInitialState() {
         return {};
-    },
+    }
 
     componentDidMount() {
         if (!this.props.d2) {
@@ -31,7 +20,7 @@ export default React.createClass({
         this.props.d2
             .then(d2 => this.setState({ d2 }))
             .catch(error => log.error(error));
-    },
+    }
 
     render() {
         const getChildren = () => {
@@ -44,5 +33,18 @@ export default React.createClass({
                 {getChildren()}
             </div>
         );
-    },
-});
+    }
+}
+
+DataTableHeader.propTypes = {
+    children: PropTypes.element,
+    d2: PropTypes.shape({
+        then: PropTypes.func.isRequired,
+    }),
+};
+
+DataTableHeader.childContextTypes = {
+    d2: PropTypes.object,
+};
+
+export default DataTableHeader;
