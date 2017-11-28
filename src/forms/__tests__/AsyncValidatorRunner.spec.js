@@ -126,7 +126,6 @@ describe('AsyncValidatorRunner', () => {
                     },
                     e => done(e),
                 );
-
             asyncCold('---a--|', { a: 'Zoe' })
                 .subscribe(name => asyncValidatorRunner.run('name', asyncValidators, name));
 
@@ -175,14 +174,14 @@ describe('AsyncValidatorRunner', () => {
             asyncValidatorRunner.listenToValidatorsFor('name')
                 .subscribe(
                     () => {
-                        expect(nameValidators[0]).toBeCalledWith('Zoe');
-                        expect(nameValidators[1]).toBeCalledWith('Zoe');
-                        expect(nameValidators[2]).toBeCalledWith('Zoe');
+                        expect(nameValidators[0]).toHaveBeenCalledWith('Zoe');
+                        expect(nameValidators[1]).toHaveBeenCalledWith('Zoe');
+                        expect(nameValidators[2]).toHaveBeenCalledWith('Zoe');
                         done();
                     },
                     e => done(e),
                 );
-
+            console.log(asyncCold);
             asyncCold('---a--|', { a: 'Zoe' })
                 .subscribe(name => asyncValidatorRunner.run('name', nameValidators, name));
 

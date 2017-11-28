@@ -25,10 +25,10 @@ const buttons = (
             <Chip label={'With avatar'} avatar={'star'} color={'primary'} />
             <Chip label={'With onClick'} onClick={() => alert('clicked')} />
             <Chip label={'With onRequestDelete'} onRequestDelete={() => alert('delete')} />
-            <Chip label={'Disabled'} disabled={true} />
-            <Chip label={'With avatar'} avatar={'star'} disabled={true} />
-            <Chip label={'With onClick'} onClick={() => alert('clicked')} disabled={true} />
-            <Chip label={'With onRequestDelete'} onRequestDelete={() => alert('delete')} disabled={true} />
+            <Chip label={'Disabled'} disabled />
+            <Chip label={'With avatar'} avatar={'star'} disabled />
+            <Chip label={'With onClick'} onClick={() => alert('clicked')} disabled />
+            <Chip label={'With onRequestDelete'} onRequestDelete={() => alert('delete')} disabled />
         </div>
     </MuiThemeProvider>
 );

@@ -15,6 +15,7 @@ import SelectField from '../../src/form-fields/DropDown.component';
 import TextField from '../../src/form-fields/TextField';
 import DatePicker from '../../src/form-fields/DatePicker.component';
 import FormBuilder from '../../src/forms/FormBuilder.component';
+import { isStartDateBeforeEndDate, isEmptyString } from '../../src/forms/Validators';
 
 injectTapEventPlugin();
 
@@ -57,6 +58,12 @@ class FormExample extends React.Component {
                     hintText: 'Example hint text',
                     changeEvent: 'onBlur',
                 },
+                validators: [{
+                    message: isEmptyString.message,
+                    validator(value) {
+                        return isEmptyString(value);
+                    },
+                }],
             },
             {
                 name: 'exampleMultilineTextField',
@@ -93,18 +100,34 @@ class FormExample extends React.Component {
                 },
             },
             {
-                name: 'exampleDatePicker',
+                name: 'startDate',
                 value: new Date(),
                 component: DatePicker,
                 props: {
-                    floatingLabelText: 'Example Date Picker',
+                    floatingLabelText: 'Example Start Date Picker',
                     dateFormat: 'yyyy-MM-dd',
                     allowFuture: false,
                 },
                 validators: [{
-                    message: 'error',
-                    validator(value) {
-                        return false;
+                    message: isStartDateBeforeEndDate.message,
+                    validator(value, formModel) {
+                        return isStartDateBeforeEndDate(value, formModel.fields.endDate.value);
+                    },
+                }],
+            },
+            {
+                name: 'endDate',
+                value: new Date(),
+                component: DatePicker,
+                props: {
+                    floatingLabelText: 'Example End Date Picker',
+                    dateFormat: 'yyyy-MM-dd',
+                    allowFuture: false,
+                },
+                validators: [{
+                    message: isStartDateBeforeEndDate.message,
+                    validator(value, formModel) {
+                        return isStartDateBeforeEndDate(formModel.fields.startDate.value, value);
                     },
                 }],
             },

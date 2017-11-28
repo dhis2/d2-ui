@@ -333,7 +333,7 @@ class FormBuilder extends React.Component {
                     // disposed in the `componentWillUnmount` method. This way we don't have to create the
                     // subscription every time the field is changed.
                     this.asyncValidators[fieldName] = this.asyncValidationRunner
-                        .listenToValidatorsFor(fieldName)
+                        .listenToValidatorsFor(fieldName, stateClone)
                         .subscribe(
                             (status) => {
                                 this.setState(
