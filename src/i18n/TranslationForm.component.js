@@ -39,22 +39,14 @@ export function getTranslationFormFor(model) {
 }
 
 class TranslationForm extends Component {
+    state = {
+        loading: true,
+        translations: {},
+        translationValues: {},
+        currentSelectedLocale: '',
+    };
+
     mixins = [Translate];
-
-    getInitialState() {
-        return {
-            loading: true,
-            translations: {},
-            translationValues: {},
-            currentSelectedLocale: '',
-        };
-    }
-
-    getDefaultProps() {
-        return {
-            fieldsToTranslate: ['name', 'shortName', 'description'],
-        };
-    }
 
     getLoadingdataElement() {
         return (
@@ -178,6 +170,10 @@ TranslationForm.propTypes = {
         id: PropTypes.string.isRequired,
     }),
     fieldsToTranslate: PropTypes.arrayOf(PropTypes.string),
+};
+
+TranslationForm.defaultProps = {
+    fieldsToTranslate: ['name', 'shortName', 'description'],
 };
 
 export default TranslationForm;

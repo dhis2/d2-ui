@@ -46,22 +46,10 @@ const styles = {
 };
 
 class Sidebar extends Component {
-    getDefaultProps() {
-        return {
-            showSearchField: false,
-            styles: {
-                leftBar: {},
-            },
-            onSectionClick: () => {},
-        };
-    }
-
-    getInitialState() {
-        return {
-            currentSection: this.props.currentSection || (this.props.sections[0] && this.props.sections[0].key),
-            searchText: '',
-        };
-    }
+    state = {
+        currentSection: this.props.currentSection || (this.props.sections[0] && this.props.sections[0].key),
+        searchText: '',
+    };
 
     componentWillReceiveProps(props) {
         if (props.currentSection) {
@@ -196,6 +184,14 @@ Sidebar.propTypes = {
 Sidebar.contextTypes = {
     d2: PropTypes.object,
     muiTheme: PropTypes.object,
+};
+
+Sidebar.defaultProps = {
+    showSearchField: false,
+    styles: {
+        leftBar: {},
+    },
+    onSectionClick: () => {},
 };
 
 export default Sidebar;

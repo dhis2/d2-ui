@@ -3,15 +3,7 @@ import PropTypes from 'prop-types';
 import log from 'loglevel';
 
 class DataTableHeader extends Component {
-    getChildContext() {
-        return {
-            d2: this.state.d2,
-        };
-    }
-
-    getInitialState() {
-        return {};
-    }
+    state = {};
 
     componentDidMount() {
         if (!this.props.d2) {
@@ -45,6 +37,10 @@ DataTableHeader.propTypes = {
 
 DataTableHeader.childContextTypes = {
     d2: PropTypes.object,
+};
+
+DataTableHeader.childContext = {
+    d2: this.state.d2,
 };
 
 export default DataTableHeader;

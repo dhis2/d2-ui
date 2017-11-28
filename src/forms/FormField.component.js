@@ -17,16 +17,9 @@ const emptyComponent = () => {};
  * Pass the string `onBlur` to `updateEvent` to update the `<Form>` component on blur.
  */
 class FormField extends Component {  // eslint-disable-line react/no-multi-comp
-    getDefaultProps() {
-        return {
-            type: emptyComponent,
-            validators: [],
-        };
-    }
-
-    getInitialState() {
-        return { isFocused: false };
-    }
+    state = {
+        isFocused: false
+    };
 
     renderHelpText() {
         if ((!this.props.fieldOptions || !this.props.fieldOptions.helpText) || this.props.errorMessage) {
@@ -110,6 +103,11 @@ FormField.propTypes = {
     updateEvent: PropTypes.oneOf(['onChange', 'onBlur']),
     isValidating: PropTypes.bool,
     isRequired: PropTypes.bool,
+};
+
+FormField.defaultProps = {
+    type: emptyComponent,
+    validators: [],
 };
 
 export default FormField;

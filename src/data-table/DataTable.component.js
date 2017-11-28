@@ -8,9 +8,7 @@ import DataTableRow from './DataTableRow.component';
 import DataTableContextMenu from './DataTableContextMenu.component';
 
 class DataTable extends Component {
-    getInitialState() {
-        return this.getStateFromProps(this.props);
-    }
+    state = this.getStateFromProps(this.props);
 
     componentWillReceiveProps(newProps) {
         this.setState(this.getStateFromProps(newProps));

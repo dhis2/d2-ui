@@ -22,6 +22,15 @@ config.i18n.strings.add('remove_all');
 config.i18n.strings.add('hidden_by_filters');
 
 class GroupEditor extends Component {
+    state = {
+        // Number of items selected in the left/right columns
+        selectedLeft: 0,
+        selectedRight: 0,
+
+        // Loading
+        loading: true,
+    };
+
     mixins = [TranslateMixin];
 
     componentDidMount() {
@@ -44,24 +53,6 @@ class GroupEditor extends Component {
         this.disposables.forEach((disposable) => {
             disposable.unsubscribe();
         });
-    }
-
-    getDefaultProps() {
-        return {
-            height: 500,
-            filterText: '',
-        };
-    }
-
-    getInitialState() {
-        return {
-            // Number of items selected in the left/right columns
-            selectedLeft: 0,
-            selectedRight: 0,
-
-            // Loading
-            loading: true,
-        };
     }
 
     //
@@ -420,6 +411,11 @@ GroupEditor.propTypes = {
 
 GroupEditor.contextTypes = {
     d2: PropTypes.object,
+};
+
+GroupEditor.defaultProps = {
+    height: 500,
+    filterText: '',
 };
 
 export default GroupEditor;
