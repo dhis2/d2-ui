@@ -1,21 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Observable } from 'rxjs';
 import log from 'loglevel';
 import ListSelect from './ListSelect.component';
 
-const ListSelectAsync = React.createClass({
-    propTypes: {
-        source: PropTypes.instanceOf(Observable),
-        onItemDoubleClick: PropTypes.func.isRequired,
-        listStyle: PropTypes.object,
-    },
-
+class ListSelectAsync extends Component {
     getInitialState() {
         return {
             listSource: [],
         };
-    },
+    }
 
     componentWillMount() {
         if (!this.props.source) {
@@ -27,11 +21,11 @@ const ListSelectAsync = React.createClass({
                 listValues => this.setState({ listSource: listValues }),
                 error => log.error(error),
             );
-    },
+    }
 
     componentWillUnmount() {
         this.subscription && this.subscription.unsubscribe();
-    },
+    }
 
     render() {
         return (
@@ -42,7 +36,13 @@ const ListSelectAsync = React.createClass({
                 listStyle={this.props.listStyle}
             />
         );
-    },
-});
+    }
+}
+
+ListSelectAsync.propTypes = {
+    source: PropTypes.instanceOf(Observable),
+    onItemDoubleClick: PropTypes.func.isRequired,
+    listStyle: PropTypes.object,
+};
 
 export default ListSelectAsync;

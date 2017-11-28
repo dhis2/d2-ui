@@ -1,28 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 // Material UI
 import Checkbox from 'material-ui/Checkbox';
 
-
-// TODO: Rewrite as ES6 class
-/* eslint-disable react/prefer-es6-class */
-export default React.createClass({
-    propTypes: {
-        label: PropTypes.string.isRequired,
-        onChange: PropTypes.func.isRequired,
-        items: PropTypes.arrayOf(PropTypes.shape({
-            name: PropTypes.string.isRequired,
-            value: PropTypes.bool,
-            text: PropTypes.string.isRequired,
-        })),
-        style: PropTypes.object,
-    },
-
-    contextTypes: {
-        muiTheme: PropTypes.object,
-    },
-
+class MultiToggle extends Component {
     getInitialState() {
         return {
             values: this.props.items.reduce((prev, curr) => {
@@ -32,7 +14,7 @@ export default React.createClass({
                 return prev;
             }, []),
         };
-    },
+    }
 
     _handleToggle(value, event, checked) {
         this.setState((oldState) => {
@@ -47,7 +29,7 @@ export default React.createClass({
         }, () => {
             this.props.onChange({ target: { value: this.state.values } });
         });
-    },
+    }
 
     render() {
         const style = Object.assign({}, this.context.muiTheme.forms, this.props.style);
@@ -71,5 +53,22 @@ export default React.createClass({
                 })}
             </div>
         );
-    },
-});
+    }
+}
+
+MultiToggle.propTypes = {
+    label: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired,
+    items: PropTypes.arrayOf(PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        value: PropTypes.bool,
+        text: PropTypes.string.isRequired,
+    })),
+    style: PropTypes.object,
+};
+
+MultiToggle.contextTypes = {
+    muiTheme: PropTypes.object,
+};
+
+export default MultiToggle;

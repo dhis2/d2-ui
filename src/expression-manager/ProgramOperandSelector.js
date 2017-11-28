@@ -76,12 +76,8 @@ DropDownForSchemaReference.contextTypes = {
     d2: PropTypes.object,
 };
 
-export default React.createClass({
-    propTypes: {
-        programOperandSelected: PropTypes.func.isRequired,
-    },
-
-    mixins: [Translate],
+class ProgramOperandSelector extends Component {
+    mixins = [Translate];
 
     getInitialState() {
         return {
@@ -90,7 +86,7 @@ export default React.createClass({
             programDataElementOptions: [],
             programMenuItems: [],
         };
-    },
+    }
 
     componentDidMount() {
         this.context.d2.models.program.list({ paging: false, fields: 'id,displayName,programTrackedEntityAttributes[id,displayName,dimensionItem],programIndicators[id,displayName,dimensionItem]' })
@@ -126,7 +122,7 @@ export default React.createClass({
                 });
             })
             .catch(e => log.error(e));
-    },
+    }
 
     renderTabs() {
         const listStyle = { width: '100%', outline: 'none', border: 'none', padding: '0rem 1rem' };
@@ -165,7 +161,7 @@ export default React.createClass({
                 </Tab>
             </Tabs>
         );
-    },
+    }
 
     render() {
         return (
@@ -182,7 +178,7 @@ export default React.createClass({
                 {this.state.selectedProgram ? this.renderTabs() : null}
             </div>
         );
-    },
+    }
 
     _loadProgramDataOperands(event) {
         const api = this.context.d2.Api.getApi();
@@ -199,23 +195,29 @@ export default React.createClass({
                 });
             })
             .catch(error => log.error(error));
-    },
+    }
 
     _programTrackedEntityAttributeSelected(value) {
         const programTrackedEntityAttributeFormula = ['A{', value, '}'].join('');
 
         this.props.programOperandSelected(programTrackedEntityAttributeFormula);
-    },
+    }
 
     _programIndicatorSelected(value) {
         const programIndicatorFormula = ['I{', value, '}'].join('');
 
         this.props.programOperandSelected(programIndicatorFormula);
-    },
+    }
 
     _programDataElementSelected(value) {
         const programDataElementSelected = ['D{', value, '}'].join('');
 
         this.props.programOperandSelected(programDataElementSelected);
-    },
-});
+    }
+}
+
+ProgramOperandSelector.propTypes = {
+    programOperandSelected: PropTypes.func.isRequired,
+};
+
+export default ProgramOperandSelector;

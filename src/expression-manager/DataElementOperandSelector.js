@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { config } from 'd2/lib/d2';
 import TextField from 'material-ui/TextField/TextField';
@@ -11,22 +11,15 @@ import { createDataElementOperandActions, subscribeDataElementActionsToStore } f
 
 config.i18n.strings.add('search_by_name');
 
-const DataElementOperandSelector = React.createClass({
-    propTypes: {
-        dataElementOperandSelectorActions: PropTypes.object,
-        dataElementOperandStore: PropTypes.object,
-        onItemDoubleClick: PropTypes.func.isRequired,
-        listStyle: PropTypes.object,
-    },
-
-    mixins: [Translate],
+class DataElementOperandSelector extends Component {
+    mixins = [Translate];
 
     getDefaultProps() {
         return {
             dataElementOperandSelectorActions: createDataElementOperandActions(),
             dataElementOperandStore: Store.create(),
         };
-    },
+    }
 
     getInitialState() {
         return {
@@ -36,7 +29,7 @@ const DataElementOperandSelector = React.createClass({
                 hasPreviousPage: () => false,
             },
         };
-    },
+    }
 
     componentWillMount() {
         this.actionSubscriptions = subscribeDataElementActionsToStore(this.props.dataElementOperandSelectorActions, this.props.dataElementOperandStore);
@@ -63,22 +56,22 @@ const DataElementOperandSelector = React.createClass({
             .subscribe((pager) => {
                 this.setState({ pager });
             });
-    },
+    }
 
     componentWillUnmount() {
         this.disposable && this.disposable.unsubscribe();
         this.actionSubscriptions.forEach(subscription => subscription.unsubscribe());
-    },
+    }
 
     getNextPage() {
         this.setState({ isLoading: true });
         this.props.dataElementOperandSelectorActions.getNextPage(this.state.pager, this.state.searchValue);
-    },
+    }
 
     getPreviousPage() {
         this.setState({ isLoading: true });
         this.props.dataElementOperandSelectorActions.getPreviousPage(this.state.pager, this.state.searchValue);
-    },
+    }
 
     render() {
         return (
@@ -105,7 +98,7 @@ const DataElementOperandSelector = React.createClass({
                 />
             </div>
         );
-    },
+    }
 
     searchDataElement(event) {
         const value = event.target.value;
@@ -118,7 +111,14 @@ const DataElementOperandSelector = React.createClass({
             });
 
         this.setState({ isLoading: true });
-    },
-});
+    }
+}
+
+DataElementOperandSelector.propTypes = {
+    dataElementOperandSelectorActions: PropTypes.object,
+    dataElementOperandStore: PropTypes.object,
+    onItemDoubleClick: PropTypes.func.isRequired,
+    listStyle: PropTypes.object,
+};
 
 export default DataElementOperandSelector;

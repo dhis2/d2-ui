@@ -29,14 +29,6 @@ function saveToLocalStorage(headerData = {}) {
 }
 
 class InnerHeader extends Component {
-    propTypes = {
-        lastUpdate: PropTypes.instanceOf(Date),
-    };
-
-    contextTypes = {
-        d2: PropTypes.object.isRequired,
-    };
-
     getInitialState() {
         this.unmount = new Subject();
 
@@ -251,5 +243,13 @@ class InnerHeader extends Component {
         document.querySelector('head').appendChild(linkElement);
     }
 }
+
+InnerHeader.propTypes = {
+    lastUpdate: PropTypes.instanceOf(Date),
+};
+
+InnerHeader.contextTypes = {
+    d2: PropTypes.object.isRequired,
+};
 
 export default InnerHeader;

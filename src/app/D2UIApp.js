@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import CircularProgress from 'material-ui/CircularProgress';
@@ -7,7 +7,7 @@ import { init } from 'd2/lib/d2';
 import Paper from 'material-ui/Paper';
 import ErrorMessage from '../messages/ErrorMessage.component';
 
-export default class D2UIApp extends Component {
+class D2UIApp extends Component {
     constructor(props, context) {
         super(props, context);
 
@@ -71,3 +71,5 @@ D2UIApp.defaultProps = {
     muiTheme: getMuiTheme(),
     LoadingComponent: CircularProgress,
 };
+
+export default D2UIApp;
