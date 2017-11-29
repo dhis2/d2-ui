@@ -5,7 +5,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { blue500, blue700, lightBlack, grey300, grey500, white, darkBlack } from 'material-ui/styles/colors';
 import { fade } from 'material-ui/utils/colorManipulator';
 import Spacing from 'material-ui/styles/spacing';
-import FormulaEditor from '../../src/formula-editor';
+import FormulaEditor from '../../src/formula-editor/FormulaEditor.component';
 
 const style = {
     spacing: Spacing,
