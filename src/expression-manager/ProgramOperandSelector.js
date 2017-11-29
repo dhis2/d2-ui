@@ -5,7 +5,6 @@ import Tab from 'material-ui/Tabs/Tab';
 import { config } from 'd2/lib/d2';
 import log from 'loglevel';
 import ListSelect from '../list-select/ListSelect.component';
-import Translate from '../i18n/Translate.mixin';
 import CircularProgress from '../circular-progress/CircularProgress';
 import DropDown from '../form-fields/DropDown.component';
 
@@ -77,14 +76,18 @@ DropDownForSchemaReference.contextTypes = {
 };
 
 class ProgramOperandSelector extends Component {
+    constructor(props, context) {
+        super(props, context);
+
+        this.getTranslation = this.context.d2.i18n.getTranslation.bind(this);
+    }
+
     state = {
         programTrackedEntityAttributeOptions: [],
         programIndicatorOptions: [],
         programDataElementOptions: [],
         programMenuItems: [],
     };
-
-    mixins = [Translate];
 
     componentDidMount() {
         this.context.d2.models.program.list({ paging: false, fields: 'id,displayName,programTrackedEntityAttributes[id,displayName,dimensionItem],programIndicators[id,displayName,dimensionItem]' })
@@ -216,6 +219,10 @@ class ProgramOperandSelector extends Component {
 
 ProgramOperandSelector.propTypes = {
     programOperandSelected: PropTypes.func.isRequired,
+};
+
+ProgramOperandSelector.contextTypes = {
+    d2: PropTypes.object,
 };
 
 export default ProgramOperandSelector;

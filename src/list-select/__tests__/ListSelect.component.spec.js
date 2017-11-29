@@ -84,16 +84,4 @@ describe('ListSelect component', () => {
 
         expect(onItemDoubleClickSpy).toHaveBeenCalledWith('PvuaP6YALSA');
     });
-
-    it('should not call attempt to call the callback when none has been given', () => {
-        listSelectComponent.setProps({ onItemDoubleClick: undefined });
-
-        const optionElements = listSelectComponent
-            .find('select')
-            .find('option');
-
-        expect(
-            () => optionElements.first().simulate('doubleClick', { target: { value: 'PvuaP6YALSA' } }),
-        ).not.toThrow();
-    });
 });

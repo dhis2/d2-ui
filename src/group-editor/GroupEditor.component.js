@@ -10,7 +10,6 @@ import RaisedButton from 'material-ui/RaisedButton/RaisedButton';
 import { config } from 'd2/lib/d2';
 
 // D2-UI
-import TranslateMixin from '../i18n/Translate.mixin.js';
 import CircularProgress from '../circular-progress/CircularProgress';
 
 // TODO: TOAST!
@@ -22,6 +21,12 @@ config.i18n.strings.add('remove_all');
 config.i18n.strings.add('hidden_by_filters');
 
 class GroupEditor extends Component {
+    constructor(props, context) {
+        super(props, context);
+
+        this.getTranslation = this.context.d2.i18n.getTranslation.bind(this);
+    }
+
     state = {
         // Number of items selected in the left/right columns
         selectedLeft: 0,
@@ -30,8 +35,6 @@ class GroupEditor extends Component {
         // Loading
         loading: true,
     };
-
-    mixins = [TranslateMixin];
 
     componentDidMount() {
         this.disposables = [];

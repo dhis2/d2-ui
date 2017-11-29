@@ -16,6 +16,7 @@ describe('Heading component', () => {
     });
 
     it('should render a h2 tag with the title', () => {
+        console.error = jest.fn();
         renderComponent({ text: 'Facility Funding Agency', level: 2 });
 
         expect(renderedHeading.is('h2')).toBe(true);

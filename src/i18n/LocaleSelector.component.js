@@ -3,10 +3,12 @@ import PropTypes from 'prop-types';
 import SelectField from 'material-ui/SelectField/SelectField';
 import MenuItem from 'material-ui/MenuItem/MenuItem';
 
-import Translate from '../i18n/Translate.mixin';
-
 class LocaleSelector extends Component {
-    mixins = [Translate];
+    constructor(props, context) {
+        super(props, context);
+
+        this.getTranslation = this.context.d2.i18n.getTranslation.bind(this);
+    }
 
     render() {
         const localeMenuItems = [{ payload: '', text: '' }]
@@ -49,6 +51,10 @@ LocaleSelector.propTypes = {
         locale: PropTypes.string.isRequired,
     })).isRequired,
     onChange: PropTypes.func.isRequired,
+};
+
+LocaleSelector.contextTypes = {
+    d2: PropTypes.object,
 };
 
 export default LocaleSelector;

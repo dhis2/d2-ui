@@ -4,7 +4,6 @@ import TextField from 'material-ui/TextField/TextField';
 import camelCaseToUnderscores from 'd2-utilizr/lib/camelCaseToUnderscores';
 import RaisedButton from 'material-ui/RaisedButton/RaisedButton';
 import { Observable } from 'rxjs';
-import Translate from '../i18n/Translate.mixin';
 import LocaleSelector from '../i18n/LocaleSelector.component';
 import { getLocales, getTranslationsForModel, saveTranslations } from './translationForm.actions';
 import withStateFrom from '../component-helpers/withStateFrom';
@@ -39,14 +38,18 @@ export function getTranslationFormFor(model) {
 }
 
 class TranslationForm extends Component {
+    constructor(props, context) {
+        super(props, context);
+
+        this.getTranslation = this.context.d2.i18n.getTranslation.bind(this);
+    }
+
     state = {
         loading: true,
         translations: {},
         translationValues: {},
         currentSelectedLocale: '',
     };
-
-    mixins = [Translate];
 
     getLoadingdataElement() {
         return (
@@ -174,6 +177,10 @@ TranslationForm.propTypes = {
 
 TranslationForm.defaultProps = {
     fieldsToTranslate: ['name', 'shortName', 'description'],
+};
+
+TranslationForm.contextTypes = {
+    d2: PropTypes.object,
 };
 
 export default TranslationForm;

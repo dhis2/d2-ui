@@ -1,13 +1,14 @@
 import React from 'react';
 import {render} from 'react-dom';
 import PropTypes from 'prop-types';
-import IconPicker from '../../src/icon-picker';
 import Card from 'material-ui/Card/Card';
 import CardText from 'material-ui/Card/CardText';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
 import injectTapEventPlugin from 'react-tap-event-plugin';
+
+import IconPicker from '../../src/icon-picker/IconPicker.component';
+
 injectTapEventPlugin();
 
 const options = (function () {
