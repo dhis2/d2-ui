@@ -130,7 +130,7 @@ class GroupEditor extends Component {
     getSelectedCount() {
         return Math.max(this.getAvailableSelectedCount(), this.getAssignedSelectedCount());
     }
-    byAssignedItemsOrder(left, right) {
+    byAssignedItemsOrder = (left, right) => {
         const assignedItemStore = this.props.assignedItemStore.state;
 
         // Don't order anything if the assignedItemStore is not an array
@@ -140,7 +140,7 @@ class GroupEditor extends Component {
         }
 
         return assignedItemStore.indexOf(left.value) > assignedItemStore.indexOf(right.value) ? 1 : -1;
-    }
+    };
 
     //
     // Rendering
@@ -237,9 +237,7 @@ class GroupEditor extends Component {
                             multiple
                             style={styles.select}
                             onChange={onChangeLeft}
-                            ref={(r) => {
-                                this.leftSelect = findDOMNode(r);
-                            }}
+                            ref={(r) => { this.leftSelect = r; }}
                         >
                             {this.getAvailableItemsFiltered().map(item => (
                                 <option
@@ -287,9 +285,7 @@ class GroupEditor extends Component {
                             multiple
                             style={styles.select}
                             onChange={onChangeRight}
-                            ref={(r) => {
-                                this.rightSelect = findDOMNode(r);
-                            }}
+                            ref={(r) => { this.rightSelect = r; }}
                         >
                             {this.getAssignedItemsFiltered()
                                 .sort(this.byAssignedItemsOrder)
