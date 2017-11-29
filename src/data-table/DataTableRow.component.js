@@ -13,6 +13,19 @@ function getD2ModelValueType(dataSource, columnName) {
 }
 
 const DataTableRow = addD2Context(class extends Component {
+    iconMenuClick = (event) => {
+        this.props.itemClicked(event, this.props.dataSource);
+    };
+
+    handleContextClick = (event) => {
+        event && event.preventDefault();
+        this.props.itemClicked(event, this.props.dataSource);
+    };
+
+    handleClick = (event) => {
+        this.props.primaryClick(this.props.dataSource, event);
+    };
+
     render() {
         const classList = classes(
             'data-table__rows__row',
@@ -51,19 +64,6 @@ const DataTableRow = addD2Context(class extends Component {
                 </div>
             </div>
         );
-    }
-
-    iconMenuClick(event) {
-        this.props.itemClicked(event, this.props.dataSource);
-    }
-
-    handleContextClick(event) {
-        event && event.preventDefault();
-        this.props.itemClicked(event, this.props.dataSource);
-    }
-
-    handleClick(event) {
-        this.props.primaryClick(this.props.dataSource, event);
     }
 });
 

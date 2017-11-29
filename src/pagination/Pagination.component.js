@@ -2,14 +2,17 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classes from 'classnames';
 import { config } from 'd2/lib/d2';
-import Translate from '../i18n/Translate.mixin';
 
 const noop = () => {};
 
 config.i18n.strings.add('of_page');
 
 class Pagination extends Component {
-    mixins = [Translate];
+    constructor(props, context) {
+        super(props, context);
+
+        this.getTranslation = this.context.d2.i18n.getTranslation.bind(this);
+    }
 
     render() {
         const { hasPreviousPage, hasNextPage, onPreviousPageClick, onNextPageClick, currentlyShown, total } = this.props;
@@ -60,6 +63,10 @@ Pagination.defaultProps = {
     onNextPageClick: noop,
     total: 0,
     currentlyShown: 0,
+};
+
+Pagination.contextTypes = {
+    d2: PropTypes.object,
 };
 
 export default Pagination;

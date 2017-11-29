@@ -9,7 +9,15 @@ describe('ExpressionManager component', () => {
     let expressionManagerComponent;
 
     function renderComponent(props = {}) {
-        return shallow(<ExpressionManager {...props} />, {
+        const nops = {
+            descriptionLabel: '',
+            expressionStatusStore: { subscribe: () => {} },
+            expressionChanged: () => {},
+            descriptionValue: '',
+            formulaValue: '',
+            ...props,
+        };
+        return shallow(<ExpressionManager {...nops} />, {
             context: getStubContext(),
         });
     }

@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classes from 'classnames';
 import FormField from './FormField.component';
-import Translate from '../i18n/Translate.mixin';
 import createFormValidator from './FormValidator';
 import { FormFieldStatuses } from './FormValidator';
 
 class Form extends Component {
-    mixins = [Translate];
+    constructor(props, context) {
+        super(props, context);
+
+        this.getTranslation = this.context.d2.i18n.getTranslation.bind(this);
+    }
 
     componentDidMount() {
         this.disposables = [];
@@ -106,6 +109,12 @@ Form.propTypes = {
 Form.defaultProps = {
     fieldConfigs: [],
     formValidator: createFormValidator([]),
+    onFormFieldUpdate: () => {},
+    children: null,
+};
+
+Form.contextTypes = {
+    d2: PropTypes.object,
 };
 
 export default Form;

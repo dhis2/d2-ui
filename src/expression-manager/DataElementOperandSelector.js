@@ -5,13 +5,18 @@ import TextField from 'material-ui/TextField/TextField';
 import LinearProgress from 'material-ui/LinearProgress/LinearProgress';
 import ListSelectAsync from '../list-select/ListSelectAsync.component';
 import Pagination from '../pagination/Pagination.component';
-import Translate from '../i18n/Translate.mixin';
 import Store from '../store/Store';
 import { createDataElementOperandActions, subscribeDataElementActionsToStore } from './dataElementOperandSelector.actions';
 
 config.i18n.strings.add('search_by_name');
 
 class DataElementOperandSelector extends Component {
+    constructor(props, context) {
+        super(props, context);
+
+        this.getTranslation = this.context.d2.i18n.getTranslation.bind(this);
+    }
+
     state = {
         isLoading: true,
         pager: {
@@ -19,8 +24,6 @@ class DataElementOperandSelector extends Component {
             hasPreviousPage: () => false,
         },
     };
-
-    mixins = [Translate];
 
     componentWillMount() {
         this.actionSubscriptions = subscribeDataElementActionsToStore(this.props.dataElementOperandSelectorActions, this.props.dataElementOperandStore);
@@ -64,6 +67,19 @@ class DataElementOperandSelector extends Component {
         this.props.dataElementOperandSelectorActions.getPreviousPage(this.state.pager, this.state.searchValue);
     }
 
+    searchDataElement(event) {
+        const value = event.target.value;
+        this.props.dataElementOperandSelectorActions.search(value)
+            .subscribe(() => {
+                this.setState({
+                    isLoading: false,
+                    searchValue: value,
+                });
+            });
+
+        this.setState({ isLoading: true });
+    }
+
     render() {
         return (
             <div className="data-element-operand-selector">
@@ -90,19 +106,6 @@ class DataElementOperandSelector extends Component {
             </div>
         );
     }
-
-    searchDataElement(event) {
-        const value = event.target.value;
-        this.props.dataElementOperandSelectorActions.search(value)
-            .subscribe(() => {
-                this.setState({
-                    isLoading: false,
-                    searchValue: value,
-                });
-            });
-
-        this.setState({ isLoading: true });
-    }
 }
 
 DataElementOperandSelector.propTypes = {
@@ -115,6 +118,11 @@ DataElementOperandSelector.propTypes = {
 DataElementOperandSelector.defaultProps = {
     dataElementOperandSelectorActions: createDataElementOperandActions(),
     dataElementOperandStore: Store.create(),
+    listStyle: {},
+};
+
+DataElementOperandSelector.contextTypes = {
+    d2: PropTypes.object,
 };
 
 export default DataElementOperandSelector;

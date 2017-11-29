@@ -7,12 +7,19 @@ class DataTableHeader extends Component {
 
     componentDidMount() {
         if (!this.props.d2) {
-            return log.error('D2 is a required prop to <AppWithD2 />');
+            log.error('D2 is a required prop to <AppWithD2 />');
+        } else {
+            this.props.d2
+                .then(d2 => this.setState({ d2 }))
+                .catch(error => log.error(error));
         }
-        this.props.d2
-            .then(d2 => this.setState({ d2 }))
-            .catch(error => log.error(error));
     }
+
+    getChildContext = () => {
+        return {
+            d2: this.state.d2,
+        };
+    };
 
     render() {
         const getChildren = () => {
@@ -37,10 +44,6 @@ DataTableHeader.propTypes = {
 
 DataTableHeader.childContextTypes = {
     d2: PropTypes.object,
-};
-
-DataTableHeader.childContext = {
-    d2: this.state.d2,
 };
 
 export default DataTableHeader;

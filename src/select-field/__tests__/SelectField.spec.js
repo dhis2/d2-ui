@@ -1,9 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import MuiSelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
 import { getStubContext } from '../../../config/inject-theme';
 import SelectField from '../SelectField';
-import MenuItem from 'material-ui/MenuItem';
 
 const items = [{
     id: 'cat',
@@ -56,7 +56,8 @@ describe('SelectField', () => {
     });
 
     it('should render child nodes inside select field', () => {
-        const component = shallow(<SelectField><MenuItem value='cat' primaryText='Cat' /></SelectField>, {
+        const noop = () => {};
+        const component = shallow(<SelectField onChange={noop}><MenuItem value='cat' primaryText='Cat' /></SelectField>, {
             context: getStubContext(),
         });
 
