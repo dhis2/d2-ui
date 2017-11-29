@@ -44,6 +44,7 @@ function renderExamples(d2) {
         muiTheme: PropTypes.object,
         d2: PropTypes.object,
     };
+    Example.propTypes = { children: PropTypes.node.isRequired };
 
     const myRows = [
         { firstName: 'John', lastName: 'Traore', lastUpdated: '2014-11-11T21:56:05.469' },
@@ -51,7 +52,7 @@ function renderExamples(d2) {
     ];
 
     const cma = {
-        edit: function (...args) {
+        edit(...args) {
             console.log('Edit', ...args);
         },
     };
@@ -71,4 +72,12 @@ function renderExamples(d2) {
 const baseUrl = `${dhisDevConfig.baseUrl}/api`;
 
 D2Lib.config.baseUrl = baseUrl;
-D2Lib.init({ baseUrl }).then(renderExamples);
+D2Lib.init({ baseUrl }).then((d2) => {
+    Object.assign(d2.i18n.translations, {
+        first_name: 'First name',
+        last_name: 'Last name',
+        last_updated: 'Last updated',
+    });
+
+    renderExamples(d2);
+});

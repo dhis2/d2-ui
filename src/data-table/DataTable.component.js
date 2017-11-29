@@ -24,35 +24,25 @@ class DataTable extends Component {
         return {
             columns: isArrayOfStrings(props.columns) ? props.columns : ['name', 'lastUpdated'],
             dataRows,
+            activeRow: undefined,
         };
     }
 
-    renderContextMenu() {
-        const actionAccessChecker = (this.props.isContextActionAllowed && this.props.isContextActionAllowed.bind(null, this.state.activeRow)) || (() => true);
+    handleRowClick = (event, rowSource) => {
+        const cmt = event.currentTarget;
+        this.setState(state => ({
+            contextMenuTarget: cmt,
+            showContextMenu: true,
+            activeRow: rowSource !== state.activeRow ? rowSource : undefined,
+        }));
+    };
 
-        const actionsToShow = Object.keys(this.props.contextMenuActions || {})
-            .filter(actionAccessChecker)
-            .reduce((availableActions, actionKey) => {
-                availableActions[actionKey] = this.props.contextMenuActions[actionKey];
-                return availableActions;
-            }, {});
-
-        return (
-            <DataTableContextMenu
-                target={this.state.contextMenuTarget}
-                onRequestClose={this._hideContextMenu}
-                actions={actionsToShow}
-                activeItem={this.state.activeRow}
-                icons={this.props.contextMenuIcons}
-            />
-        );
-    }
-
-    renderHeaders() {
-        return this.state.columns.map((headerName, index) => (
-            <DataTableHeader key={index} isOdd={Boolean(index % 2)} name={headerName} />
-        ));
-    }
+    hideContextMenu = () => {
+        this.setState({
+            activeRow: undefined,
+            showContextMenu: false,
+        });
+    };
 
     renderRows() {
         return this.state.dataRows
@@ -68,6 +58,33 @@ class DataTable extends Component {
             ));
     }
 
+    renderHeaders() {
+        return this.state.columns.map((headerName, index) => (
+            <DataTableHeader key={headerName} isOdd={Boolean(index % 2)} name={headerName} />
+        ));
+    }
+
+    renderContextMenu() {
+        const actionAccessChecker = (this.props.isContextActionAllowed && this.props.isContextActionAllowed.bind(null, this.state.activeRow)) || (() => true);
+
+        const actionsToShow = Object.keys(this.props.contextMenuActions || {})
+            .filter(actionAccessChecker)
+            .reduce((availableActions, actionKey) => {
+                availableActions[actionKey] = this.props.contextMenuActions[actionKey]; // eslint-disable-line
+                return availableActions;
+            }, {});
+
+        return (
+            <DataTableContextMenu
+                target={this.state.contextMenuTarget}
+                onRequestClose={this.hideContextMenu}
+                actions={actionsToShow}
+                activeItem={this.state.activeRow}
+                icons={this.props.contextMenuIcons}
+            />
+        );
+    }
+
     render() {
         return (
             <div className="data-table">
@@ -81,21 +98,6 @@ class DataTable extends Component {
                 {this.renderContextMenu()}
             </div>
         );
-    }
-
-    handleRowClick(event, rowSource) {
-        this.setState({
-            contextMenuTarget: event.currentTarget,
-            showContextMenu: true,
-            activeRow: rowSource !== this.state.activeRow ? rowSource : undefined,
-        });
-    }
-
-    _hideContextMenu() {
-        this.setState({
-            activeRow: undefined,
-            showContextMenu: false,
-        });
     }
 }
 
