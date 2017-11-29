@@ -23,7 +23,8 @@ class OrgUnitSelectByLevel extends React.Component {
         this.handleSelect = this.handleSelect.bind(this);
         this.handleDeselect = this.handleDeselect.bind(this);
 
-        this.getTranslation = context.d2.i18n.getTranslation.bind(context.d2.i18n);
+        const i18n = context.d2.i18n;
+        this.getTranslation = i18n.getTranslation.bind(i18n);
     }
 
     getOrgUnitsForLevel(level, ignoreCache = false) {

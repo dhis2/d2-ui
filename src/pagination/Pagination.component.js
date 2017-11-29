@@ -11,7 +11,8 @@ class Pagination extends Component {
     constructor(props, context) {
         super(props, context);
 
-        this.getTranslation = this.context.d2.i18n.getTranslation.bind(this);
+        const i18n = this.context.d2.i18n;
+        this.getTranslation = i18n.getTranslation.bind(i18n);
     }
 
     render() {
