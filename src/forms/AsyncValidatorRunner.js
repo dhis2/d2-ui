@@ -10,7 +10,7 @@ import { Observable, Subject } from 'rxjs';
  */
 function runValidatorFunctions(validatorFunctions, value, formModel) {
     return Promise
-        .all(validatorFunctions.map(validator => validator.call(null, value)))
+        .all(validatorFunctions.map(validator => validator.call(null, value, formModel)))
         // All validators passed
         .then(() => ({ isValid: true }))
         // When one of the validators failed a failure status with error message are emitted
