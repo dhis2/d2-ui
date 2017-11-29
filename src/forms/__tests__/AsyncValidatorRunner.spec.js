@@ -170,13 +170,14 @@ describe('AsyncValidatorRunner', () => {
                 jest.fn(),
                 jest.fn(),
             ];
+            const formModel = {};
 
-            asyncValidatorRunner.listenToValidatorsFor('name')
+            asyncValidatorRunner.listenToValidatorsFor('name', formModel)
                 .subscribe(
                     () => {
-                        expect(nameValidators[0]).toHaveBeenCalledWith('Zoe', expect.toBeUndefined);
-                        expect(nameValidators[1]).toHaveBeenCalledWith('Zoe', expect.toBeUndefined);
-                        expect(nameValidators[2]).toHaveBeenCalledWith('Zoe', expect.toBeUndefined);
+                        expect(nameValidators[0]).toHaveBeenCalledWith('Zoe', {});
+                        expect(nameValidators[1]).toHaveBeenCalledWith('Zoe', {});
+                        expect(nameValidators[2]).toHaveBeenCalledWith('Zoe', {});
                         done();
                     },
                     e => done.fail(e),
