@@ -46,8 +46,7 @@ const SvgIcon = ({ icon, children, ...rest }) => {
     if (children && !icons[icon]) {
         Icon = MUISvgIcon;
     } else {
-        const component = icons[icon] || SentimentDissatisfied;
-        Icon = component;
+        Icon = icons[icon] || SentimentDissatisfied;
     }
 
     const propsWhiteList = ['className', 'classes', 'titleAccess'];
