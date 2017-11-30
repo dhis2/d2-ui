@@ -1,100 +1,50 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import SvgIcon from '../SvgIcon';
-import * as utils from '../../component-helpers/utils';
 
 describe('SvgIcon', () => {
-    const renderWithProps = props => shallow(<SvgIcon {...props} />);
+    const icon = props => shallow(<SvgIcon {...props} />);
 
-    const resolvePromise = () => {
-        return Promise.resolve('promise resolved').then();
-    };
-
-    it('should render a star icon', () => {
-        const wrapper = renderWithProps({ icon: 'star' });
-
-        return resolvePromise().then(() => {
-            expect(wrapper.text()).toContain('ToggleStar');
-        });
+    it('should render a predefined material icon', () => {
+        expect(icon({ icon: 'star' }).find('ToggleStar').length).toBe(1);
     });
 
-    it('should render a Loading message if invalid icon name supplied', () => {
-        const wrapper = renderWithProps({ icon: 'notthere' });
+    it('should render a Dissatisfied Icon if invalid icon name supplied', () => {
+        const el = icon({ icon: 'missing' });
 
-        return resolvePromise().then(() => {
-            expect(wrapper.text()).toContain('Loading');
-        });
+        expect(el.find('SocialSentimentDissatisfied').length).toBe(1);
     });
 
     it('should render a custom SvgIcon when child node provided', () => {
         const children = <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />;
-        const props = {
-            style: {
-                color: 'green',
-            },
-        };
-        const wrapper = shallow(<SvgIcon {...props}>{children}</SvgIcon>);
+        const customIcon = shallow(<SvgIcon>{children}</SvgIcon>);
 
-        return resolvePromise().then(() => {
-            expect(wrapper.text()).toContain('SvgIcon');
-        });
+        expect(customIcon.find('SvgIcon').length).toBe(1);
     });
 
     it('should not pass the "color" property on to the material-ui icon', () => {
-        const props = {
-            icon: 'star',
-            color: 'blue',
-        };
-        const spy = jest.spyOn(utils, 'getRestProps');
+        const props = { icon: 'star', color: 'blue' };
+        const el = icon(props).find('ToggleStar');
 
-        renderWithProps(props);
-
-        return resolvePromise().then(() => {
-            expect(spy).toHaveBeenCalled();
-            expect(spy.mock.calls[0][0]).toEqual(expect.objectContaining(props));
-            expect(spy.mock.calls[0][1]).toEqual(expect.arrayContaining(['icon', 'color']));
-            spy.mockReset();
-            spy.mockRestore();
-        });
+        expect(el.props()).not.toHaveProperty('color');
     });
 
-    it('should pass the "hoverColor" property on to the material-ui icon', () => {
+    it('should not pass the "hoverColor" property on to the material-ui icon', () => {
+        const props = { icon: 'star', hoverColor: 'blue' };
+        const el = icon(props).find('ToggleStar');
+
+        expect(el.props()).not.toHaveProperty('hoverColor');
+    });
+
+    it('should not pass the "style" property on to the material-ui icon', () => {
         const props = {
             icon: 'star',
             style: {
-                color: 'green',
+                fill: 'green',
             },
         };
-        const spy = jest.spyOn(utils, 'getRestProps');
+        const el = icon(props).find('ToggleStar');
 
-        renderWithProps(props);
-
-        return resolvePromise().then(() => {
-            expect(spy).toHaveBeenCalled();
-            expect(spy.mock.calls[0][0]).toEqual(expect.objectContaining(props));
-            expect(spy.mock.calls[0][1]).not.toEqual(expect.arrayContaining(['hoverColor']));
-            spy.mockReset();
-            spy.mockRestore();
-        });
-    });
-
-    it('should pass the "style" property on to the material-ui icon', () => {
-        const props = {
-            icon: 'star',
-            style: {
-                color: 'green',
-            },
-        };
-        const spy = jest.spyOn(utils, 'getRestProps');
-
-        renderWithProps(props);
-
-        return resolvePromise().then(() => {
-            expect(spy).toHaveBeenCalled();
-            expect(spy.mock.calls[0][0]).toEqual(expect.objectContaining(props));
-            expect(spy.mock.calls[0][1]).not.toEqual(expect.arrayContaining(['style']));
-            spy.mockReset();
-            spy.mockRestore();
-        });
+        expect(el.props()).not.toHaveProperty('style');
     });
 });

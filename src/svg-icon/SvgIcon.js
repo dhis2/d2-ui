@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ToggleStar from 'material-ui/svg-icons/toggle/star';
+import Star from 'material-ui/svg-icons/toggle/star';
 import NavArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
 import NavClose from 'material-ui/svg-icons/navigation/close';
 import NavArrowUpward from 'material-ui/svg-icons/navigation/arrow-upward';
@@ -21,57 +21,40 @@ import SentimentDissatisfied from 'material-ui/svg-icons/social/sentiment-dissat
 import MUISvgIcon from 'material-ui/SvgIcon';
 import { getRestProps } from '../component-helpers/utils';
 
-
 const icons = {
-    'toggle/star': ToggleStar,
-    'nav/arrow-drop-right': NavArrowDropRight,
-    'nav/close': NavClose,
-    'nav/arrow-upward': NavArrowUpward,
-    'nav/arrow-downward': NavArrowDownward,
-    'nav/chevron-left': NavChevronLeft,
-    'nav/chevron-right': NavChevronRight,
-    'nav/more-vert': NavMoreVert,
-    'nav/cancel': NavCancel,
-    'action/info-outline': ActionInfoOutline,
-    'action/room': ActionRoom,
-    'action/view-list': ActionViewList,
-    'action/delete': ActionDelete,
-    'action/visibility': ActionVisibility,
-    'action/visibility-off': ActionVisibilityOff,
-    'content/create': ContentCreate,
-    'edit/drag-handle': EdDragHandle,
+    star: Star,
+    arrowDropRight: NavArrowDropRight,
+    close: NavClose,
+    arrowUpward: NavArrowUpward,
+    arrowDownward: NavArrowDownward,
+    chevronLeft: NavChevronLeft,
+    chevronRight: NavChevronRight,
+    moreVert: NavMoreVert,
+    cancel: NavCancel,
+    infoOutline: ActionInfoOutline,
+    room: ActionRoom,
+    viewList: ActionViewList,
+    delete: ActionDelete,
+    visibility: ActionVisibility,
+    visibilityOff: ActionVisibilityOff,
+    create: ContentCreate,
+    dragHandle: EdDragHandle,
 };
 
-export default class SvgIcon extends React.Component {
-    state = { Icon: null };
-
-    componentWillMount() {
-        const { icon, children } = this.props;
-
-        if (children && !icons[icon]) {
-            this.setState({ Icon: MUISvgIcon });
-        } else {
-            const component = icons[icon] || SentimentDissatisfied;
-            this.setState({ Icon: component });
-        }
+const SvgIcon = ({ icon, children, ...rest }) => {
+    let Icon = null;
+    if (children && !icons[icon]) {
+        Icon = MUISvgIcon;
+    } else {
+        const component = icons[icon] || SentimentDissatisfied;
+        Icon = component;
     }
 
-    render() {
-        const { Icon } = this.state;
-        const omitProps = [
-            'icon',  // icon used internally only
-        ];
+    const propsWhiteList = ['className', 'classes', 'titleAccess'];
+    const other = getRestProps(rest, propsWhiteList);
 
-        const rest = getRestProps(this.props, omitProps);
-        const { children } = this.props;
-
-        return (
-            <Icon {...rest}>
-                {children}
-            </Icon>
-        );
-    }
-}
+    return <Icon {...other}>{children}</Icon>;
+};
 
 SvgIcon.propTypes = {
     icon: PropTypes.string,
@@ -82,3 +65,5 @@ SvgIcon.defaultProps = {
     icon: '',
     children: null,
 };
+
+export default SvgIcon;

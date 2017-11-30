@@ -12,8 +12,8 @@ describe('utils', () => {
     });
 
     describe('getRestProps', () => {
-        it('should filter out the given properties', () => {
-            const keepProps = {
+        it('should filter out non white-listed properties', () => {
+            const propsWhiteList = {
                 name: 'Bob',
                 age: '100',
             };
@@ -24,13 +24,12 @@ describe('utils', () => {
                     state: 'NY',
                 },
             };
-            const props = Object.assign({}, keepProps, omitProps);
+            const props = Object.assign({}, propsWhiteList, omitProps);
 
-            const res = getRestProps(props, Object.keys(omitProps));
+            const res = getRestProps(props, Object.keys(propsWhiteList));
 
-            expect(res).toEqual(expect.objectContaining(keepProps));
+            expect(res).toEqual(expect.objectContaining(propsWhiteList));
             expect(res).not.toEqual(expect.objectContaining(omitProps));
         });
     });
 });
-
