@@ -52,6 +52,7 @@ module.exports = {
             textfield: './examples/text-field',
             selectfield: './examples/select-field',
             tabs: './examples/tabs',
+            chip: './examples/chip',
         },
     devtool: 'source-map',
     output: {
