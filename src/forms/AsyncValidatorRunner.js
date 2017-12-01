@@ -8,9 +8,9 @@ import { Observable, Subject } from 'rxjs';
  * or with `{ isValid: false, message: '<error_message>'`} when one of the validators failed. The `message` property
  * contains the value that the failed validator function rejected with.
  */
-function runValidatorFunctions(validatorFunctions, value, formModel) {
+function runValidatorFunctions(validatorFunctions, value, formState) {
     return Promise
-        .all(validatorFunctions.map(validator => validator.call(null, value, formModel)))
+        .all(validatorFunctions.map(validator => validator.call(null, value, formState)))
         // All validators passed
         .then(() => ({ isValid: true }))
         // When one of the validators failed a failure status with error message are emitted
@@ -65,14 +65,14 @@ export default class AsyncValidatorRunner {
      * @param {string} fieldName The name of the field to filter statuses for.
      * @returns {Rx.Observable} Observable that represents validation results for the given `fieldName`.
      */
-    listenToValidatorsFor(fieldName, formModel) {
+    listenToValidatorsFor(fieldName, formState) {
         return this.validatorPipeline
             // Filter the values by fieldName to make sure we only deal with the values for the requested field
             .filter(field => field.fieldName === fieldName)
             // Only process the latest value within the specified time window
             .debounceTime(this.debounceTimeInMs, this.scheduler)
             // .do((v) => console.log(v.value))
-            .map(field => Observable.fromPromise(runValidatorFunctions(field.asyncValidators, field.value, formModel))
+            .map(field => Observable.fromPromise(runValidatorFunctions(field.asyncValidators, field.value, formState))
                 .map(status => Object.assign(status, { fieldName: field.fieldName, value: field.value })))
             // Flatten all observables in the correct order they should be processed
             .concatAll();

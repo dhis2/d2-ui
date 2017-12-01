@@ -8,7 +8,7 @@
     "examples": "npm run start",
     "coverage": "jest --coverage",
     "start": "webpack-dev-server",
-    "test": "jest --env node",
+    "test": "jest",
     "test:watch": "jest --watch",
     "lint": "eslint src/",
     "prebuild": "npm run validate && npm test",

@@ -6,14 +6,6 @@ import { DatePicker as MuiDatePicker } from 'material-ui';
 class DatePicker extends React.Component {
     constructor(props) {
         super(props);
-        const {
-            allowFuture,
-            dateFormat,
-            ...other
-        } = props;
-        this.other = other;
-
-        this.maxDate = allowFuture ? undefined : new Date();
         this.onDateSelect = this.onDateSelect.bind(this);
         this.formatDate = this.formatDate.bind(this);
         this.state = { value: this.props.value };
@@ -47,13 +39,19 @@ class DatePicker extends React.Component {
     }
 
     render() {
+        const {
+            allowFuture,
+            dateFormat,
+            ...other
+        } = this.props;
+
         return (
             <div>
                 <MuiDatePicker
-                    {...this.other}
+                    {...other}
                     value={this.state.value}
                     floatingLabelText={this.props.floatingLabelText}
-                    maxDate={this.maxDate}
+                    maxDate={allowFuture ? undefined : new Date()}
                     errorText={this.props.errorText}
                     formatDate={this.formatDate}
                     onChange={this.onDateSelect}
@@ -66,8 +64,12 @@ class DatePicker extends React.Component {
 DatePicker.propTypes = {
     floatingLabelText: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
-    dateFormat: PropTypes.string.isRequired,
-    allowFuture: PropTypes.bool.isRequired,
+    errorText: PropTypes.string,
+    dateFormat: PropTypes.oneOf([
+        'dd-MM-yyyy',
+        'yyyy-MM-dd',
+    ]),
+    allowFuture: PropTypes.bool,
     value: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object,
@@ -75,10 +77,13 @@ DatePicker.propTypes = {
 };
 
 DatePicker.defaultProps = {
+    errorText: '',
     value: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object,
     ]),
+    dateFormat: 'dd-MM-yyyy',
+    allowFuture: false,
 };
 
 export default DatePicker;

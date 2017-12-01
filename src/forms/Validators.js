@@ -23,8 +23,10 @@ export function isUndefined(value) {
 }
 
 export function isEmptyString(value) {
-    return value === '' || value !== undefined && value !== null && value.toString() === '';
+    return value === '' || (value !== undefined && value !== null && value.toString() === '');
 }
+isEmptyString.message = 'value_should_be_empty_string';
+
 
 export function isEmptyStringOrUndefined(value) {
     return isUndefined(value) || isEmptyString(value);
@@ -60,7 +62,7 @@ export function isUrlArray(value) {
     return (`${value}`)
         .split('\n')
         .filter(v => v.trim().length > 0)
-        .reduce((prev, curr) => prev === true && isUrl(curr) || isEmptyString(curr.trim()), true);
+        .reduce((prev, curr) => (prev === true && isUrl(curr)) || isEmptyString(curr.trim()), true);
 }
 isUrlArray.message = 'value_should_be_list_of_urls';
 

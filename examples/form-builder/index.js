@@ -109,7 +109,7 @@ class FormExample extends React.Component {
                     allowFuture: false,
                 },
                 validators: [{
-                    message: isStartDateBeforeEndDate.message,
+                    message: 'Closed date cannot be before open date',
                     validator(value, formModel) {
                         return isStartDateBeforeEndDate(value, formModel.fields.endDate.value);
                     },
@@ -125,7 +125,7 @@ class FormExample extends React.Component {
                     allowFuture: false,
                 },
                 validators: [{
-                    message: isStartDateBeforeEndDate.message,
+                    message: 'Closed date cannot be before open date',
                     validator(value, formModel) {
                         return isStartDateBeforeEndDate(formModel.fields.startDate.value, value);
                     },
