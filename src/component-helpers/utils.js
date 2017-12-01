@@ -2,6 +2,7 @@
  * @module lib/utils
  */
 
+
 /**
  * Function to create CSS class names
  *
