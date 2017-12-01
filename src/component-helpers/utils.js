@@ -9,7 +9,5 @@
  * @param {String} selector string to append to the base name
  * @returns String
  */
-// eslint-disable-next-line arrow-body-style
-export const createClassName = (name = '', selector = '') => {
-    return selector ? `${name} ${name}-${selector}` : name;
-};
+export const createClassName = (name = '', selector = '') =>
+    selector ? `${name} ${name}-${selector}` : name;
