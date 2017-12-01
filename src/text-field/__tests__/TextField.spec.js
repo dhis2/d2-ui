@@ -5,9 +5,15 @@ import { getStubContext } from '../../../config/inject-theme';
 import TextField from '../TextField';
 
 describe('TextField', () => {
-    const renderWithProps = (props) => shallow(<TextField {...props} />, {
-        context: getStubContext(),
-    });
+    const renderWithProps = (props) => {
+        const nops = {
+            onChange: () => {},
+            ...props,
+        };
+        return shallow(<TextField {...nops} />, {
+            context: getStubContext(),
+        });
+    };
 
     it('should render a MUI TextField', () => {
         expect(renderWithProps({}).type()).toBe(MuiTextField);

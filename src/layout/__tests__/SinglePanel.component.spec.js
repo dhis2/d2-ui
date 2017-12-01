@@ -7,13 +7,9 @@ describe('<SinglePanel />', () => {
     let component;
 
     beforeEach(() => {
-        jest.spyOn(log, 'warn');
+        log.warn = jest.fn();
 
         component = shallow(<SinglePanel />);
-    });
-
-    afterEach(() => {
-        log.warn.mockRestore();
     });
 
     it('should render a <main /> as the root', () => {
@@ -42,8 +38,8 @@ describe('<SinglePanel />', () => {
 
     it('should only render the first child if more children have been passed', () => {
         const childComponents = [
-            <div />,
-            <div />,
+            <div key="a" />,
+            <div key="b" />,
         ];
         component = shallow(<SinglePanel>{childComponents}</SinglePanel>);
 
@@ -52,8 +48,8 @@ describe('<SinglePanel />', () => {
 
     it('should log a warning when more than one child has been passed', () => {
         const childComponents = [
-            <div />,
-            <div />,
+            <div key="a" />,
+            <div key="b" />,
         ];
         component = shallow(<SinglePanel>{childComponents}</SinglePanel>);
 

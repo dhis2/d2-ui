@@ -1,8 +1,7 @@
 import log from 'loglevel';
 import { TestScheduler } from 'rxjs';
 import isEqual from 'lodash/isEqual';
-import createFormValidator from '../FormValidator';
-import { FormFieldStatuses } from '../FormValidator';
+import createFormValidator, { FormFieldStatuses } from '../FormValidator';
 
 describe('FormValidator', () => {
     let formValidator;
@@ -190,18 +189,6 @@ describe('FormValidator', () => {
             formValidator.runFor('name');
 
             formValidator.status.subscribe(statusCallback);
-        });
-
-        it('should log a warning when a validator is not a function', () => {
-            jest.spyOn(log, 'warn');
-
-            validators.push('Not a validator');
-
-            formValidator.runFor('name', 'Mark');
-
-            testScheduler.flush();
-
-            expect(log.warn).toHaveBeenCalledWith('Warning: One of the validators for \'name\' is not a function.');
         });
 
         it('should log an error when something fails', () => {

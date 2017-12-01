@@ -5,7 +5,6 @@ import Tab from 'material-ui/Tabs/Tab';
 import { config } from 'd2/lib/d2';
 import log from 'loglevel';
 import ListSelect from '../list-select/ListSelect.component';
-import Translate from '../i18n/Translate.mixin';
 import CircularProgress from '../circular-progress/CircularProgress';
 import DropDown from '../form-fields/DropDown.component';
 
@@ -76,21 +75,20 @@ DropDownForSchemaReference.contextTypes = {
     d2: PropTypes.object,
 };
 
-export default React.createClass({
-    propTypes: {
-        programOperandSelected: PropTypes.func.isRequired,
-    },
+class ProgramOperandSelector extends Component {
+    constructor(props, context) {
+        super(props, context);
 
-    mixins: [Translate],
+        const i18n = this.context.d2.i18n;
+        this.getTranslation = i18n.getTranslation.bind(i18n);
+    }
 
-    getInitialState() {
-        return {
-            programTrackedEntityAttributeOptions: [],
-            programIndicatorOptions: [],
-            programDataElementOptions: [],
-            programMenuItems: [],
-        };
-    },
+    state = {
+        programTrackedEntityAttributeOptions: [],
+        programIndicatorOptions: [],
+        programDataElementOptions: [],
+        programMenuItems: [],
+    };
 
     componentDidMount() {
         this.context.d2.models.program.list({ paging: false, fields: 'id,displayName,programTrackedEntityAttributes[id,displayName,dimensionItem],programIndicators[id,displayName,dimensionItem]' })
@@ -126,7 +124,7 @@ export default React.createClass({
                 });
             })
             .catch(e => log.error(e));
-    },
+    }
 
     renderTabs() {
         const listStyle = { width: '100%', outline: 'none', border: 'none', padding: '0rem 1rem' };
@@ -165,7 +163,7 @@ export default React.createClass({
                 </Tab>
             </Tabs>
         );
-    },
+    }
 
     render() {
         return (
@@ -182,7 +180,7 @@ export default React.createClass({
                 {this.state.selectedProgram ? this.renderTabs() : null}
             </div>
         );
-    },
+    }
 
     _loadProgramDataOperands(event) {
         const api = this.context.d2.Api.getApi();
@@ -199,23 +197,33 @@ export default React.createClass({
                 });
             })
             .catch(error => log.error(error));
-    },
+    }
 
     _programTrackedEntityAttributeSelected(value) {
         const programTrackedEntityAttributeFormula = ['A{', value, '}'].join('');
 
         this.props.programOperandSelected(programTrackedEntityAttributeFormula);
-    },
+    }
 
     _programIndicatorSelected(value) {
         const programIndicatorFormula = ['I{', value, '}'].join('');
 
         this.props.programOperandSelected(programIndicatorFormula);
-    },
+    }
 
     _programDataElementSelected(value) {
         const programDataElementSelected = ['D{', value, '}'].join('');
 
         this.props.programOperandSelected(programDataElementSelected);
-    },
-});
+    }
+}
+
+ProgramOperandSelector.propTypes = {
+    programOperandSelected: PropTypes.func.isRequired,
+};
+
+ProgramOperandSelector.contextTypes = {
+    d2: PropTypes.object,
+};
+
+export default ProgramOperandSelector;

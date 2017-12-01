@@ -35,7 +35,8 @@ class OrgUnitSelectAll extends React.Component {
         this.handleSelectAll = this.handleSelectAll.bind(this);
         this.handleDeselectAll = this.handleDeselectAll.bind(this);
 
-        this.getTranslation = context.d2.i18n.getTranslation.bind(context.d2.i18n);
+        const i18n = context.d2.i18n;
+        this.getTranslation = i18n.getTranslation.bind(i18n);
     }
 
     handleSelectAll() {

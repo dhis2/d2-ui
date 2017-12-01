@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import TextField from 'material-ui/TextField/TextField';
 import RaisedButton from 'material-ui/RaisedButton/RaisedButton';
 import FlatButton from 'material-ui/FlatButton/FlatButton';
@@ -24,7 +24,7 @@ config.i18n.strings.add('are_you_sure');
 config.i18n.strings.add('this_will_replace_the_current_legend_items');
 config.i18n.strings.add('create_legend_items');
 
-export default class Legend extends Component {
+class Legend extends Component {
     constructor(...args) {
         super(...args);
 
@@ -233,3 +233,5 @@ Legend.propTypes = {
 Legend.contextTypes = {
     d2: PropTypes.object,
 };
+
+export default Legend;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import isArrayOfStrings from 'd2-utilizr/lib/isArrayOfStrings';
 import isIterable from 'd2-utilizr/lib/isIterable';
@@ -7,21 +7,12 @@ import DataTableHeader from './DataTableHeader.component';
 import DataTableRow from './DataTableRow.component';
 import DataTableContextMenu from './DataTableContextMenu.component';
 
-const DataTable = React.createClass({
-    propTypes: {
-        contextMenuActions: PropTypes.object,
-        contextMenuIcons: PropTypes.object,
-        primaryAction: PropTypes.func,
-        isContextActionAllowed: PropTypes.func,
-    },
-
-    getInitialState() {
-        return this.getStateFromProps(this.props);
-    },
+class DataTable extends Component {
+    state = this.getStateFromProps(this.props);
 
     componentWillReceiveProps(newProps) {
         this.setState(this.getStateFromProps(newProps));
-    },
+    }
 
     getStateFromProps(props) {
         let dataRows = [];
@@ -33,35 +24,25 @@ const DataTable = React.createClass({
         return {
             columns: isArrayOfStrings(props.columns) ? props.columns : ['name', 'lastUpdated'],
             dataRows,
+            activeRow: undefined,
         };
-    },
+    }
 
-    renderContextMenu() {
-        const actionAccessChecker = (this.props.isContextActionAllowed && this.props.isContextActionAllowed.bind(null, this.state.activeRow)) || (() => true);
+    handleRowClick = (event, rowSource) => {
+        const cmt = event.currentTarget;
+        this.setState(state => ({
+            contextMenuTarget: cmt,
+            showContextMenu: true,
+            activeRow: rowSource !== state.activeRow ? rowSource : undefined,
+        }));
+    };
 
-        const actionsToShow = Object.keys(this.props.contextMenuActions || {})
-            .filter(actionAccessChecker)
-            .reduce((availableActions, actionKey) => {
-                availableActions[actionKey] = this.props.contextMenuActions[actionKey];
-                return availableActions;
-            }, {});
-
-        return (
-            <DataTableContextMenu
-                target={this.state.contextMenuTarget}
-                onRequestClose={this._hideContextMenu}
-                actions={actionsToShow}
-                activeItem={this.state.activeRow}
-                icons={this.props.contextMenuIcons}
-            />
-        );
-    },
-
-    renderHeaders() {
-        return this.state.columns.map((headerName, index) => (
-            <DataTableHeader key={index} isOdd={Boolean(index % 2)} name={headerName} />
-        ));
-    },
+    hideContextMenu = () => {
+        this.setState({
+            activeRow: undefined,
+            showContextMenu: false,
+        });
+    };
 
     renderRows() {
         return this.state.dataRows
@@ -75,7 +56,34 @@ const DataTable = React.createClass({
                     primaryClick={this.props.primaryAction || (() => {})}
                 />
             ));
-    },
+    }
+
+    renderHeaders() {
+        return this.state.columns.map((headerName, index) => (
+            <DataTableHeader key={headerName} isOdd={Boolean(index % 2)} name={headerName} />
+        ));
+    }
+
+    renderContextMenu() {
+        const actionAccessChecker = (this.props.isContextActionAllowed && this.props.isContextActionAllowed.bind(null, this.state.activeRow)) || (() => true);
+
+        const actionsToShow = Object.keys(this.props.contextMenuActions || {})
+            .filter(actionAccessChecker)
+            .reduce((availableActions, actionKey) => {
+                availableActions[actionKey] = this.props.contextMenuActions[actionKey]; // eslint-disable-line
+                return availableActions;
+            }, {});
+
+        return (
+            <DataTableContextMenu
+                target={this.state.contextMenuTarget}
+                onRequestClose={this.hideContextMenu}
+                actions={actionsToShow}
+                activeItem={this.state.activeRow}
+                icons={this.props.contextMenuIcons}
+            />
+        );
+    }
 
     render() {
         return (
@@ -90,22 +98,14 @@ const DataTable = React.createClass({
                 {this.renderContextMenu()}
             </div>
         );
-    },
+    }
+}
 
-    handleRowClick(event, rowSource) {
-        this.setState({
-            contextMenuTarget: event.currentTarget,
-            showContextMenu: true,
-            activeRow: rowSource !== this.state.activeRow ? rowSource : undefined,
-        });
-    },
-
-    _hideContextMenu() {
-        this.setState({
-            activeRow: undefined,
-            showContextMenu: false,
-        });
-    },
-});
+DataTable.propTypes = {
+    contextMenuActions: PropTypes.object,
+    contextMenuIcons: PropTypes.object,
+    primaryAction: PropTypes.func,
+    isContextActionAllowed: PropTypes.func,
+};
 
 export default DataTable;

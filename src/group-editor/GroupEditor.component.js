@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 
@@ -10,7 +10,6 @@ import RaisedButton from 'material-ui/RaisedButton/RaisedButton';
 import { config } from 'd2/lib/d2';
 
 // D2-UI
-import TranslateMixin from '../i18n/Translate.mixin.js';
 import CircularProgress from '../circular-progress/CircularProgress';
 
 // TODO: TOAST!
@@ -21,45 +20,29 @@ config.i18n.strings.add('assign_all');
 config.i18n.strings.add('remove_all');
 config.i18n.strings.add('hidden_by_filters');
 
-export default React.createClass({
-    propTypes: {
-        // itemStore: d2-ui store containing all available items, either as a D2 ModelCollection,
-        // or an array on the following format: [{value: 1, text: '1'}, {value: 2, text: '2'}, ...]
-        itemStore: PropTypes.object.isRequired,
+class GroupEditor extends Component {
+    constructor(props, context) {
+        super(props, context);
 
-        // assignedItemStore: d2-ui store containing all items assigned to the current group, either
-        // as a D2 ModelCollectionProperty or an array of ID's that match values in the itemStore
-        assignedItemStore: PropTypes.object.isRequired,
+        const i18n = this.context.d2.i18n;
+        this.getTranslation = i18n.getTranslation.bind(i18n);
+    }
 
-        // filterText: A string that will be used to filter items in both columns
-        filterText: PropTypes.string,
+    state = {
+        // Number of items selected in the left/right columns
+        selectedLeft: 0,
+        selectedRight: 0,
 
-        // Note: Callbacks should return a promise that will resolve when the operation succeeds
-        // and is rejected when it fails. The component will be in a loading state until the promise
-        // resolves or is rejected.
-
-        // assign items callback, called with an array of values to be assigned to the group
-        onAssignItems: PropTypes.func.isRequired,
-
-        // remove items callback, called with an array of values to be removed from the group
-        onRemoveItems: PropTypes.func.isRequired,
-
-        // The height of the component, defaults to 500px
-        height: PropTypes.number,
-    },
-
-    contextTypes: {
-        d2: PropTypes.object,
-    },
-
-    mixins: [TranslateMixin],
+        // Loading
+        loading: true,
+    };
 
     componentDidMount() {
         this.disposables = [];
 
         this.disposables.push(this.props.itemStore.subscribe(state => this.setState({ loading: !state })));
         this.disposables.push(this.props.assignedItemStore.subscribe(() => this.forceUpdate()));
-    },
+    }
 
     componentWillReceiveProps(props) {
         if (props.hasOwnProperty('filterText') && this.leftSelect && this.rightSelect) {
@@ -68,104 +51,86 @@ export default React.createClass({
                 selectedRight: [].filter.call(this.rightSelect.selectedOptions, item => item.text.toLowerCase().indexOf((`${props.filterText}`).trim().toLowerCase()) !== -1).length,
             });
         }
-    },
+    }
 
     componentWillUnmount() {
         this.disposables.forEach((disposable) => {
             disposable.unsubscribe();
         });
-    },
-
-    getDefaultProps() {
-        return {
-            height: 500,
-            filterText: '',
-        };
-    },
-
-    getInitialState() {
-        return {
-            // Number of items selected in the left/right columns
-            selectedLeft: 0,
-            selectedRight: 0,
-
-            // Loading
-            loading: true,
-        };
-    },
+    }
 
     //
     // Data handling utility functions
     //
     getItemStoreIsCollection() {
         return this.props.itemStore.state !== undefined && (typeof this.props.itemStore.state.values === 'function' && typeof this.props.itemStore.state.has === 'function');
-    },
+    }
     getItemStoreIsArray() {
         return this.props.itemStore.state !== undefined && this.props.itemStore.state.constructor.name === 'Array';
-    },
+    }
     getAssignedItemStoreIsCollection() {
         return this.props.assignedItemStore.state !== undefined && (typeof this.props.assignedItemStore.state.values === 'function' && typeof this.props.assignedItemStore.state.has === 'function');
-    },
+    }
     getAssignedItemStoreIsArray() {
         return this.props.assignedItemStore.state !== undefined && this.props.assignedItemStore.state.constructor.name === 'Array';
-    },
+    }
     getAllItems() {
         return this.getItemStoreIsCollection()
             ? Array.from(this.props.itemStore.state.values()).map(item => ({ value: item.id, text: item.name }))
             : (this.props.itemStore.state || []);
-    },
+    }
     getItemCount() {
         return this.getItemStoreIsCollection() && this.props.itemStore.state.size || this.getItemStoreIsArray() && this.props.itemStore.state.length || 0;
-    },
+    }
     getIsValueAssigned(value) {
         return this.getAssignedItemStoreIsCollection() ? this.props.assignedItemStore.state.has(value) : this.props.assignedItemStore.state && this.props.assignedItemStore.state.indexOf(value) !== -1;
-    },
+    }
     getAssignedItems() {
         return this.getAllItems().filter(item => this.getIsValueAssigned(item.value));
-    },
+    }
     getAvailableItems() {
         return this.getAllItems().filter(item => !this.getIsValueAssigned(item.value));
-    },
+    }
     getAllItemsFiltered() {
         return this.filterItems(this.getAllItems());
-    },
+    }
     getAssignedItemsFiltered() {
         return this.filterItems(this.getAssignedItems());
-    },
+    }
     getAvailableItemsFiltered() {
         return this.filterItems(this.getAvailableItems());
-    },
+    }
     getAssignedItemsCount() {
         return this.getAssignedItems().length;
-    },
+    }
     getAvailableItemsCount() {
         return this.getAvailableItems().length;
-    },
+    }
     getAssignedItemsFilterCount() {
         return this.getFilterText().length === 0 ? 0 : this.getAssignedItems().length - this.getAssignedItemsFiltered().length;
-    },
+    }
     getAvailableItemsFilterCount() {
         return this.getFilterText().length === 0 ? 0 : this.getAvailableItems().length - this.getAvailableItemsFiltered().length;
-    },
+    }
     getAssignedItemsUnfilteredCount() {
         return this.getFilterText().length === 0 ? this.getAssignedItemsCount() : this.getAssignedItemsCount() - this.getAssignedItemsFilterCount();
-    },
+    }
     getAvailableItemsUnfilteredCount() {
         return this.getFilterText().length === 0 ? this.getAvailableItemsCount() : this.getAvailableItemsCount() - this.getAvailableItemsFilterCount();
-    },
+    }
     getFilterText() {
         return this.props.filterText ? this.props.filterText.trim().toLowerCase() : '';
-    },
+    }
     getAvailableSelectedCount() {
         return Math.max(this.state.selectedLeft, 0);
-    },
+    }
     getAssignedSelectedCount() {
         return Math.max(this.state.selectedRight, 0);
-    },
+    }
     getSelectedCount() {
         return Math.max(this.getAvailableSelectedCount(), this.getAssignedSelectedCount());
-    },
-    byAssignedItemsOrder(left, right) {
+    }
+    byAssignedItemsOrder = (left, right) => {
         const assignedItemStore = this.props.assignedItemStore.state;
 
         // Don't order anything if the assignedItemStore is not an array
@@ -175,7 +140,7 @@ export default React.createClass({
         }
 
         return assignedItemStore.indexOf(left.value) > assignedItemStore.indexOf(right.value) ? 1 : -1;
-    },
+    };
 
     //
     // Rendering
@@ -272,9 +237,7 @@ export default React.createClass({
                             multiple
                             style={styles.select}
                             onChange={onChangeLeft}
-                            ref={(r) => {
-                                this.leftSelect = findDOMNode(r);
-                            }}
+                            ref={(r) => { this.leftSelect = r; }}
                         >
                             {this.getAvailableItemsFiltered().map(item => (
                                 <option
@@ -322,9 +285,7 @@ export default React.createClass({
                             multiple
                             style={styles.select}
                             onChange={onChangeRight}
-                            ref={(r) => {
-                                this.rightSelect = findDOMNode(r);
-                            }}
+                            ref={(r) => { this.rightSelect = r; }}
                         >
                             {this.getAssignedItemsFiltered()
                                 .sort(this.byAssignedItemsOrder)
@@ -347,7 +308,7 @@ export default React.createClass({
                 </div>
             </div>
         );
-    },
+    }
 
     clearSelection(left = true, right = true) {
         if (left) {
@@ -362,15 +323,15 @@ export default React.createClass({
             selectedLeft: left ? 0 : state.selectedLeft,
             selectedRight: right ? 0 : state.selectedRight,
         }));
-    },
+    }
 
     filterItems(items) {
         return items.filter(item => this.getFilterText().length === 0 || item.text.trim().toLowerCase().indexOf(this.getFilterText()) !== -1);
-    },
+    }
 
     getSelectedItems() {
         return [].map.call(this.rightSelect.selectedOptions, item => item.value);
-    },
+    }
 
     //
     // Event handlers
@@ -385,7 +346,7 @@ export default React.createClass({
             .catch(() => {
                 this.setState({ loading: false });
             });
-    },
+    }
 
     _removeItems() {
         this.setState({ loading: true });
@@ -397,7 +358,7 @@ export default React.createClass({
             .catch(() => {
                 this.setState({ loading: false });
             });
-    },
+    }
 
     _assignAll() {
         this.setState({ loading: true });
@@ -408,7 +369,7 @@ export default React.createClass({
             }).catch(() => {
                 this.setState({ loading: false });
             });
-    },
+    }
 
     _removeAll() {
         this.setState({ loading: true });
@@ -419,5 +380,42 @@ export default React.createClass({
             }).catch(() => {
                 this.setState({ loading: false });
             });
-    },
-});
+    }
+}
+
+GroupEditor.propTypes = {
+    // itemStore: d2-ui store containing all available items, either as a D2 ModelCollection,
+    // or an array on the following format: [{value: 1, text: '1'}, {value: 2, text: '2'}, ...]
+    itemStore: PropTypes.object.isRequired,
+
+    // assignedItemStore: d2-ui store containing all items assigned to the current group, either
+    // as a D2 ModelCollectionProperty or an array of ID's that match values in the itemStore
+    assignedItemStore: PropTypes.object.isRequired,
+
+    // filterText: A string that will be used to filter items in both columns
+    filterText: PropTypes.string,
+
+    // Note: Callbacks should return a promise that will resolve when the operation succeeds
+    // and is rejected when it fails. The component will be in a loading state until the promise
+    // resolves or is rejected.
+
+    // assign items callback, called with an array of values to be assigned to the group
+    onAssignItems: PropTypes.func.isRequired,
+
+    // remove items callback, called with an array of values to be removed from the group
+    onRemoveItems: PropTypes.func.isRequired,
+
+    // The height of the component, defaults to 500px
+    height: PropTypes.number,
+};
+
+GroupEditor.contextTypes = {
+    d2: PropTypes.object,
+};
+
+GroupEditor.defaultProps = {
+    height: 500,
+    filterText: '',
+};
+
+export default GroupEditor;

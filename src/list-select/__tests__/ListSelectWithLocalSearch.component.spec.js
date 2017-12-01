@@ -8,8 +8,9 @@ describe('ListComponentWithLocalSearch', () => {
     let listComponentWithLocalSearch;
 
     beforeEach(() => {
+        const noop = () => {};
         listComponentWithLocalSearch = shallow(
-            <ListSelectWithLocalSearch />,
+            <ListSelectWithLocalSearch onItemDoubleClick={noop} />,
             {
                 context: {
                     d2: {

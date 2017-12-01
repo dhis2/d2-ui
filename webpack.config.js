@@ -15,7 +15,7 @@ try {
     // console.warn(`\nWARNING! Failed to load DHIS config:`, e.message);
     // console.info('Using default config');
     dhisConfig = {
-        baseUrl: 'http://localhost:8080/dhis',
+        baseUrl: 'http://localhost:8080',
         authorization: 'Basic YWRtaW46ZGlzdHJpY3Q=', // admin:district
     };
 }
@@ -29,7 +29,7 @@ function log(req, res, opt) {
 module.exports = {
     context: __dirname,
     entry: isProduction() ? {
-            'header-bar': './src/app-header/index.js',
+            'header-bar': './src/app-header/initHeaderBar.js',
         } : {
             treeview: './examples/tree-view',
             datatable: './examples/data-table',
@@ -41,7 +41,7 @@ module.exports = {
             formbuilder: './examples/form-builder',
             // formulaeditor: './examples/formula-editor',
             headerbar: './examples/header-bar',
-            'header-bar': './src/app-header/index.js',
+            'header-bar': './src/app-header/initHeaderBar.js',
             legend: './examples/legend',
             // translation: './examples/translation',
             expressionmanager: './examples/expression-manager',
