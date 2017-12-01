@@ -1,47 +1,46 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Star from 'material-ui/svg-icons/toggle/star';
-import NavArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
-import NavClose from 'material-ui/svg-icons/navigation/close';
-import NavArrowUpward from 'material-ui/svg-icons/navigation/arrow-upward';
-import NavArrowDownward from 'material-ui/svg-icons/navigation/arrow-downward';
-import NavChevronLeft from 'material-ui/svg-icons/navigation/chevron-left';
-import NavChevronRight from 'material-ui/svg-icons/navigation/chevron-right';
-import NavMoreVert from 'material-ui/svg-icons/navigation/more-vert';
-import NavCancel from 'material-ui/svg-icons/navigation/cancel';
-import ActionInfoOutline from 'material-ui/svg-icons/action/info-outline';
-import ActionRoom from 'material-ui/svg-icons/action/room';
-import ActionViewList from 'material-ui/svg-icons/action/view-list';
-import ActionDelete from 'material-ui/svg-icons/action/delete';
-import ActionVisibility from 'material-ui/svg-icons/action/visibility';
-import ActionVisibilityOff from 'material-ui/svg-icons/action/visibility-off';
-import ContentCreate from 'material-ui/svg-icons/content/create';
-import EdDragHandle from 'material-ui/svg-icons/editor/drag-handle';
+import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
+import Close from 'material-ui/svg-icons/navigation/close';
+import ArrowUpward from 'material-ui/svg-icons/navigation/arrow-upward';
+import ArrowDownward from 'material-ui/svg-icons/navigation/arrow-downward';
+import ChevronLeft from 'material-ui/svg-icons/navigation/chevron-left';
+import ChevronRight from 'material-ui/svg-icons/navigation/chevron-right';
+import MoreVert from 'material-ui/svg-icons/navigation/more-vert';
+import Cancel from 'material-ui/svg-icons/navigation/cancel';
+import InfoOutline from 'material-ui/svg-icons/action/info-outline';
+import Room from 'material-ui/svg-icons/action/room';
+import ViewList from 'material-ui/svg-icons/action/view-list';
+import Delete from 'material-ui/svg-icons/action/delete';
+import Visibility from 'material-ui/svg-icons/action/visibility';
+import VisibilityOff from 'material-ui/svg-icons/action/visibility-off';
+import Create from 'material-ui/svg-icons/content/create';
+import DragHandle from 'material-ui/svg-icons/editor/drag-handle';
 import SentimentDissatisfied from 'material-ui/svg-icons/social/sentiment-dissatisfied';
 import MUISvgIcon from 'material-ui/SvgIcon';
-import { getRestProps } from '../component-helpers/utils';
 
 const icons = {
-    star: Star,
-    arrowDropRight: NavArrowDropRight,
-    close: NavClose,
-    arrowUpward: NavArrowUpward,
-    arrowDownward: NavArrowDownward,
-    chevronLeft: NavChevronLeft,
-    chevronRight: NavChevronRight,
-    moreVert: NavMoreVert,
-    cancel: NavCancel,
-    infoOutline: ActionInfoOutline,
-    room: ActionRoom,
-    viewList: ActionViewList,
-    delete: ActionDelete,
-    visibility: ActionVisibility,
-    visibilityOff: ActionVisibilityOff,
-    create: ContentCreate,
-    dragHandle: EdDragHandle,
+    Star,
+    ArrowDropRight,
+    Close,
+    ArrowUpward,
+    ArrowDownward,
+    ChevronLeft,
+    ChevronRight,
+    MoreVert,
+    Cancel,
+    InfoOutline,
+    Room,
+    ViewList,
+    Delete,
+    Visibility,
+    VisibilityOff,
+    Create,
+    DragHandle,
 };
 
-const SvgIcon = ({ icon, children, ...rest }) => {
+const SvgIcon = ({ icon, children, className }) => {
     let Icon = null;
     if (children && !icons[icon]) {
         Icon = MUISvgIcon;
@@ -49,20 +48,30 @@ const SvgIcon = ({ icon, children, ...rest }) => {
         Icon = icons[icon] || SentimentDissatisfied;
     }
 
-    const propsWhiteList = ['className', 'classes', 'titleAccess'];
-    const other = getRestProps(rest, propsWhiteList);
-
-    return <Icon {...other}>{children}</Icon>;
+    return <Icon className={className}>{children}</Icon>;
 };
 
 SvgIcon.propTypes = {
+    /**
+     * Name of the material icon to render
+     */
     icon: PropTypes.string,
+
+    /**
+     * A node representing a custom svg
+     */
     children: PropTypes.node,
+
+    /**
+     * The class name to apply to the component
+     */
+    className: PropTypes.string,
 };
 
 SvgIcon.defaultProps = {
     icon: '',
     children: null,
+    className: '',
 };
 
 export default SvgIcon;

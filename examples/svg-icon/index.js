@@ -28,84 +28,84 @@ const icons = (
     <MuiThemeProvider muiTheme={getMuiTheme()}>
         <div style={style}>
             <div style={cardStyle}>
-                <h3>Icon with no icon prop defined</h3>
+                <h3>Icon with no icon or children properties defined</h3>
                 <SvgIcon />
             </div>
             <div style={cardStyle}>
                 <h3>Icon not found</h3>
-                <SvgIcon icon={'doesntExist'} />
+                <SvgIcon icon={'DoesntExist'} />
             </div>
             <div style={cardStyle}>
                 <h3>Icon with custom defined path</h3>
                 <SvgIcon>{children}</SvgIcon>
             </div>
             <div style={cardStyle}>
-                <h3>star</h3>
-                <SvgIcon icon={'star'} />
+                <h3>Star, also with className prop</h3>
+                <SvgIcon icon={'Star'} className="my-starry-icon" />
             </div>
             <div style={cardStyle}>
-                <h3>arrowDropRight</h3>
-                <SvgIcon icon={'arrowDropRight'} />
+                <h3>ArrowDropRight</h3>
+                <SvgIcon icon={'ArrowDropRight'} />
             </div>
             <div style={cardStyle}>
-                <h3>close</h3>
-                <SvgIcon icon={'close'} />
+                <h3>Close</h3>
+                <SvgIcon icon={'Close'} />
             </div>
             <div style={cardStyle}>
-                <h3>arrowUpward</h3>
-                <SvgIcon icon={'arrowUpward'} />
+                <h3>ArrowUpward</h3>
+                <SvgIcon icon={'ArrowUpward'} />
             </div>
             <div style={cardStyle}>
-                <h3>arrowDownward</h3>
-                <SvgIcon icon={'arrowDownward'} />
+                <h3>ArrowDownward</h3>
+                <SvgIcon icon={'ArrowDownward'} />
             </div>
             <div style={cardStyle}>
-                <h3>chevronLeft</h3>
-                <SvgIcon icon={'chevronLeft'} />
+                <h3>ChevronLeft</h3>
+                <SvgIcon icon={'ChevronLeft'} />
             </div>
             <div style={cardStyle}>
-                <h3>chevronRight</h3>
-                <SvgIcon icon={'chevronRight'} />
+                <h3>ChevronRight</h3>
+                <SvgIcon icon={'ChevronRight'} />
             </div>
             <div style={cardStyle}>
-                <h3>moreVert</h3>
-                <SvgIcon icon={'moreVert'} />
+                <h3>MoreVert</h3>
+                <SvgIcon icon={'MoreVert'} />
             </div>
             <div style={cardStyle}>
-                <h3>cancel</h3>
-                <SvgIcon icon={'cancel'} />
+                <h3>Cancel</h3>
+                <SvgIcon icon={'Cancel'} />
             </div>
             <div style={cardStyle}>
-                <h3>infoOutline</h3>
-                <SvgIcon icon={'infoOutline'} />
+                <h3>InfoOutline</h3>
+                <SvgIcon icon={'InfoOutline'} />
             </div>
             <div style={cardStyle}>
-                <h3>room</h3>
-                <SvgIcon icon={'room'} />
+                <h3>Room</h3>
+                <SvgIcon icon={'Room'} />
             </div>
             <div style={cardStyle}>
-                <h3>viewList</h3>
-                <SvgIcon icon={'viewList'} />
+                <h3>ViewList</h3>
+                <SvgIcon icon={'ViewList'} />
             </div>
             <div style={cardStyle}>
-                <h3>delete</h3>
-                <SvgIcon icon={'delete'} />
+                <h3>Delete</h3>
+                <SvgIcon icon={'Delete'} />
             </div>
             <div style={cardStyle}>
-                <h3>visibility</h3>
-                <SvgIcon icon={'visibility'} />
+                <h3>Visibility</h3>
+                <SvgIcon icon={'Visibility'} />
             </div>
             <div style={cardStyle}>
-                <h3>visibilityOff</h3>
-                <SvgIcon icon={'visibilityOff'} />
+                <h3>VisibilityOff</h3>
+                <SvgIcon icon={'VisibilityOff'} />
             </div>
             <div style={cardStyle}>
-                <h3>create</h3>
-                <SvgIcon icon={'create'} />
+                <h3>Create</h3>
+                <SvgIcon icon={'Create'} />
             </div>
             <div style={cardStyle}>
-                <h3>dragHandle</h3>
-                <SvgIcon icon={'dragHandle'} />
+                <h3>DragHandle</h3>
+                <SvgIcon icon={'DragHandle'} />
             </div>
         </div>
     </MuiThemeProvider>
