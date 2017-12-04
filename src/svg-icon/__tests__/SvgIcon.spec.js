@@ -38,7 +38,13 @@ describe('SvgIcon', () => {
     });
 
     it('should not set default color if fill color is passed in style', () => {
-        const props = { icon: 'Star', disabled: true, style: { fill: 'red' } };
+        const props = {
+            icon: 'Star',
+            disabled: true,
+            style: {
+                fill: 'red'
+            }
+        };
         const el = icon(props).find('ToggleStar');
 
         expect(el.props().style.fill).toEqual('red');
