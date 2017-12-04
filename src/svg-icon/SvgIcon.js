@@ -1,43 +1,43 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Star from 'material-ui/svg-icons/toggle/star';
-import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
-import Close from 'material-ui/svg-icons/navigation/close';
-import ArrowUpward from 'material-ui/svg-icons/navigation/arrow-upward';
 import ArrowDownward from 'material-ui/svg-icons/navigation/arrow-downward';
+import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
+import ArrowUpward from 'material-ui/svg-icons/navigation/arrow-upward';
+import Cancel from 'material-ui/svg-icons/navigation/cancel';
 import ChevronLeft from 'material-ui/svg-icons/navigation/chevron-left';
 import ChevronRight from 'material-ui/svg-icons/navigation/chevron-right';
-import MoreVert from 'material-ui/svg-icons/navigation/more-vert';
-import Cancel from 'material-ui/svg-icons/navigation/cancel';
-import InfoOutline from 'material-ui/svg-icons/action/info-outline';
-import Room from 'material-ui/svg-icons/action/room';
-import ViewList from 'material-ui/svg-icons/action/view-list';
+import Close from 'material-ui/svg-icons/navigation/close';
+import Create from 'material-ui/svg-icons/content/create';
 import Delete from 'material-ui/svg-icons/action/delete';
+import DragHandle from 'material-ui/svg-icons/editor/drag-handle';
+import InfoOutline from 'material-ui/svg-icons/action/info-outline';
+import MoreVert from 'material-ui/svg-icons/navigation/more-vert';
+import Room from 'material-ui/svg-icons/action/room';
+import Star from 'material-ui/svg-icons/toggle/star';
+import ViewList from 'material-ui/svg-icons/action/view-list';
 import Visibility from 'material-ui/svg-icons/action/visibility';
 import VisibilityOff from 'material-ui/svg-icons/action/visibility-off';
-import Create from 'material-ui/svg-icons/content/create';
-import DragHandle from 'material-ui/svg-icons/editor/drag-handle';
 import SentimentDissatisfied from 'material-ui/svg-icons/social/sentiment-dissatisfied';
 import MUISvgIcon from 'material-ui/SvgIcon';
 
 const icons = {
-    Star,
-    ArrowDropRight,
-    Close,
-    ArrowUpward,
     ArrowDownward,
+    ArrowDropRight,
+    ArrowUpward,
+    Cancel,
     ChevronLeft,
     ChevronRight,
-    MoreVert,
-    Cancel,
-    InfoOutline,
-    Room,
-    ViewList,
+    Close,
+    Create,
     Delete,
+    DragHandle,
+    InfoOutline,
+    MoreVert,
+    Room,
+    Star,
+    ViewList,
     Visibility,
     VisibilityOff,
-    Create,
-    DragHandle,
 };
 
 const SvgIcon = ({ icon, children, className }) => {
