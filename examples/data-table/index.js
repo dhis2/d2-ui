@@ -1,6 +1,7 @@
 import React from 'react';
-import { render } from 'react-dom';
 import PropTypes from 'prop-types';
+import { render } from 'react-dom';
+
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { blue500, blue700, lightBlack, grey300, grey500, white, darkBlack } from 'material-ui/styles/colors';
 import { fade } from 'material-ui/utils/colorManipulator';

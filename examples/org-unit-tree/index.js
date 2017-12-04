@@ -1,6 +1,7 @@
 import React from 'react';
-import { render } from 'react-dom';
 import PropTypes from 'prop-types';
+import { render } from 'react-dom';
+
 import log from 'loglevel';
 import Card from 'material-ui/Card/Card';
 import CardText from 'material-ui/Card/CardText';
