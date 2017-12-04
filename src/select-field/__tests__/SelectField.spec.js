@@ -41,12 +41,6 @@ describe('SelectField', () => {
         const component = renderWithProps({ items, onChange: () => {} });
 
         expect(component.contains(<MenuItem value='mouse' primaryText='Mouse' />)).toBe(true);
-<<<<<<< HEAD
-    });
-
-    it('should render child nodes inside select field', () => {
-        const component = shallow(<SelectField><MenuItem value='cat' primaryText='Cat' /></SelectField>, {
-=======
     });
 
     it('should inset items when multiple select', () => {
@@ -64,7 +58,6 @@ describe('SelectField', () => {
     it('should render child nodes inside select field', () => {
         const noop = () => {};
         const component = shallow(<SelectField onChange={noop}><MenuItem value='cat' primaryText='Cat' /></SelectField>, {
->>>>>>> origin/master
             context: getStubContext(),
         });
 
