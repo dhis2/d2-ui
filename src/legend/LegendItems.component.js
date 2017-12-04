@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { generateUid } from 'd2/lib/uid';
 import FloatingActionButton from 'material-ui/FloatingActionButton/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
@@ -7,7 +7,7 @@ import DataTable from '../data-table/DataTable.component';
 import EditLegendItem from './EditLegendItem.component';
 import { openEditDialogFor } from './LegendItem.store';
 
-export default class LegendItems extends Component {
+class LegendItems extends Component {
     constructor(...args) {
         super(...args);
 
@@ -77,3 +77,5 @@ LegendItems.propTypes = {
 LegendItems.defaultProps = {
     items: [],
 };
+
+export default LegendItems;

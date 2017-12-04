@@ -1,13 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import MuiTextField from 'material-ui/TextField';
+import { createClassName } from '../component-helpers/utils';
 
 const TextField = ({ type, label, value, onChange, style, selector }) => {
-    let className = 'd2-ui-textfield';
-
-    if (selector) {
-        className = `${className} ${className}-${selector}`;
-    }
+    const className = createClassName('d2-ui-textfield', selector);
 
     return (
         <MuiTextField

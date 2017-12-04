@@ -7,8 +7,12 @@ describe('DataTableRow component', () => {
     let dataElement;
 
     function renderComponent(props = {}) {
+        const nops = {
+            itemClicked: () => {},
+            primaryClick: () => {},
+        };
         return shallow(
-            <DataTableRow {...Object.assign({ contextMenuActions: {} }, props)} />,
+            <DataTableRow {...Object.assign({ contextMenuActions: {} }, nops, props)} />,
             {
                 context: {
                     d2: {

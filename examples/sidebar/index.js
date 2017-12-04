@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 import FontIcon from 'material-ui/FontIcon';
 import Sidebar from '../../src/sidebar/Sidebar.component';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -158,8 +159,8 @@ function SidebarExample(props) {
     );
 }
 SidebarExample.propTypes = {
-    currentSection: React.PropTypes.string,
-    searchText: React.PropTypes.string,
+    currentSection: PropTypes.string,
+    searchText: PropTypes.string,
 };
 
 changeSectionHandler(sections[0].key);

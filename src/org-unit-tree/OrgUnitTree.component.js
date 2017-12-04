@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import LinearProgress from 'material-ui/LinearProgress';
 
 import ModelBase from 'd2/lib/model/Model';
@@ -258,28 +259,28 @@ OrgUnitTree.propTypes = {
      * `false` or an empty array. If the children property is undefined, the children will be fetched from
      * the server when the tree is expanded.
      */
-    root: React.PropTypes.instanceOf(ModelBase).isRequired,
+    root: PropTypes.instanceOf(ModelBase).isRequired,
 
     /**
      * An array of paths of selected OUs
      *
      * The path of an OU is the UIDs of the OU and all its parent OUs separated by slashes (/)
      */
-    selected: React.PropTypes.arrayOf(orgUnitPathPropValidator),
+    selected: PropTypes.arrayOf(orgUnitPathPropValidator),
 
     /**
      * An array of OU paths that will be expanded automatically as soon as they are encountered
      *
      * The path of an OU is the UIDs of the OU and all its parent OUs separated by slashes (/)
      */
-    initiallyExpanded: React.PropTypes.arrayOf(orgUnitPathPropValidator),
+    initiallyExpanded: PropTypes.arrayOf(orgUnitPathPropValidator),
 
     /**
      * onSelectClick callback, which is triggered when a click triggers the selection of an organisation unit
      *
      * The onSelectClick callback will receive two arguments: The original click event, and the OU that was clicked
      */
-    onSelectClick: React.PropTypes.func,
+    onSelectClick: PropTypes.func,
 
     /**
      * onChangeCurrentRoot callback, which is triggered when the change current root label is clicked. Setting this also
@@ -288,49 +289,49 @@ OrgUnitTree.propTypes = {
      * the onChangeCurrentRoot callback will receive two arguments: The original click event, and the organisation unit
      * model object that was selected as the new root
      */
-    onChangeCurrentRoot: React.PropTypes.func,
+    onChangeCurrentRoot: PropTypes.func,
 
     /**
      * Organisation unit model representing the current root
      */
-    currentRoot: React.PropTypes.object,
+    currentRoot: PropTypes.object,
 
     /**
      * onChildrenLoaded callback, which is triggered when the children of this root org unit have been loaded
      *
      * The callback receives one argument: A D2 ModelCollection object that contains all the newly loaded org units
      */
-    onChildrenLoaded: React.PropTypes.func,
+    onChildrenLoaded: PropTypes.func,
 
     /**
      * Custom styling for OU labels
      */
-    labelStyle: React.PropTypes.object,
+    labelStyle: PropTypes.object,
 
     /**
      * Custom styling for the labels of selected OUs
      */
-    selectedLabelStyle: React.PropTypes.object,
+    selectedLabelStyle: PropTypes.object,
 
     /**
      * An array of organisation unit IDs that should be reloaded from the API
      */
-    idsThatShouldBeReloaded: React.PropTypes.arrayOf(React.PropTypes.string),
+    idsThatShouldBeReloaded: PropTypes.arrayOf(PropTypes.string),
 
     /**
      * Custom arrow symbol
      */
-    arrowSymbol: React.PropTypes.string,
+    arrowSymbol: PropTypes.string,
 
     /**
      * If true, don't display checkboxes next to org unit labels
      */
-    hideCheckboxes: React.PropTypes.bool,
+    hideCheckboxes: PropTypes.bool,
 
     /**
      * if true, don't display the selected member count next to org unit labels
      */
-    hideMemberCount: React.PropTypes.bool,
+    hideMemberCount: PropTypes.bool,
 };
 
 OrgUnitTree.defaultProps = {

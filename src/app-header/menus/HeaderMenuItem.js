@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import styles from '../header-bar-styles';
 import { search, setSearchFieldFocusTo } from '../search/search.stores';
 
@@ -9,7 +9,7 @@ const onMouseUp = link => () => {
     window.location = link;
 };
 
-export default class HeaderMenuItem extends Component {
+class HeaderMenuItem extends Component {
     constructor() {
         super();
 
@@ -48,8 +48,11 @@ export default class HeaderMenuItem extends Component {
         });
     }
 }
+
 HeaderMenuItem.propTypes = {
     action: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
     icon: PropTypes.string,
 };
+
+export default HeaderMenuItem;

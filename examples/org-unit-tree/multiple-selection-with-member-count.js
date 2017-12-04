@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import TreeView from '../../src/tree-view/TreeView.component';
 import OrgUnitTree from '../../src/org-unit-tree/OrgUnitTree.component';
@@ -91,8 +92,8 @@ class MultipleSelectionExample extends React.Component {
 }
 
 MultipleSelectionExample.propTypes = {
-    memberCollection: React.PropTypes.string.isRequired,
-    memberObject: React.PropTypes.string.isRequired,
+    memberCollection: PropTypes.string.isRequired,
+    memberObject: PropTypes.string.isRequired,
 };
 
 export default MultipleSelectionExample;

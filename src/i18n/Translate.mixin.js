@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Translate = {
     contextTypes: {
-        d2: React.PropTypes.object.isRequired,
+        d2: PropTypes.object.isRequired,
     },
 
     getTranslation(key) {

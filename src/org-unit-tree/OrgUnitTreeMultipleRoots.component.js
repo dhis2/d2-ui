@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import OrgUnitTree from './OrgUnitTree.component';
 
 export default function OrgUnitTreeMultipleRoots(props) {
@@ -42,6 +43,6 @@ function OrgUnitModelArrayElementValidator(propValue, key, componentName, locati
 OrgUnitTreeMultipleRoots.propTypes = Object.assign({}, OrgUnitTree.propTypes,
     {
         root: OrgUnitModelValidator,
-        roots: React.PropTypes.arrayOf(OrgUnitModelArrayElementValidator),
+        roots: PropTypes.arrayOf(OrgUnitModelArrayElementValidator),
     },
 );

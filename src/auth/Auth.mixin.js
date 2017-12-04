@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Auth = {
     contextTypes: {
-        d2: React.PropTypes.object.isRequired,
+        d2: PropTypes.object.isRequired,
     },
 
     getCurrentUser() {

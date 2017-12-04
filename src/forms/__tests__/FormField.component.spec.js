@@ -8,7 +8,13 @@ describe('FormField component', () => {
     let fieldConfig;
 
     function renderComponent(props) {
-        return shallow(<FormField {...props} />);
+        const nops = {
+            isValid: true,
+            fieldOptions: {},
+            updateFn: () => {},
+            ...props,
+        };
+        return shallow(<FormField {...nops} />);
     }
 
     beforeEach(() => {

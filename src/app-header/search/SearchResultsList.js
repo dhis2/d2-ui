@@ -1,8 +1,8 @@
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import styles from '../header-bar-styles';
 
-export default class SearchResultsList extends Component {
+class SearchResultsList extends Component {
     render() {
         return (
             <div style={styles.searchResultList}>
@@ -11,6 +11,9 @@ export default class SearchResultsList extends Component {
         );
     }
 }
+
 SearchResultsList.propTypes = {
     children: PropTypes.array.isRequired,
 };
+
+export default SearchResultsList;

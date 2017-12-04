@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import log from 'loglevel';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
@@ -46,7 +47,8 @@ class PeriodPicker extends React.Component {
 
         this.state = {};
 
-        this.getTranslation = context.d2.i18n.getTranslation.bind(context.d2.i18n);
+        const i18n = context.d2.i18n;
+        this.getTranslation = i18n.getTranslation.bind(i18n);
     }
 
     getPeriod() {
@@ -250,7 +252,7 @@ class PeriodPicker extends React.Component {
     }
 }
 PeriodPicker.propTypes = {
-    periodType: React.PropTypes.oneOf([
+    periodType: PropTypes.oneOf([
         'Daily',
         'Weekly',
         'WeeklyWednesday',
@@ -268,8 +270,8 @@ PeriodPicker.propTypes = {
         'FinancialOct',
     ]).isRequired,
 
-    onPickPeriod: React.PropTypes.func.isRequired,
+    onPickPeriod: PropTypes.func.isRequired,
 };
-PeriodPicker.contextTypes = { d2: React.PropTypes.object.isRequired };
+PeriodPicker.contextTypes = { d2: PropTypes.object.isRequired };
 
 export default PeriodPicker;

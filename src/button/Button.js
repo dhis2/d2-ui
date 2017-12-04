@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
+import { createClassName } from '../component-helpers/utils';
 
 const Button = ({ raised, fab, color, disabled, onClick, children, style, selector }) => {
-    let className = 'd2-ui-button';
+    const className = createClassName('d2-ui-button', selector);
     let MuiButton;
 
     if (fab) { // Always raised
@@ -16,16 +17,12 @@ const Button = ({ raised, fab, color, disabled, onClick, children, style, select
         MuiButton = FlatButton;
     }
 
-    if (selector) {
-        className = `${className} ${className}-${selector}`;
-    }
-
     const props = {
         label: typeof children === 'string' ? children : null,
         primary: color === 'primary' || null,
         secondary: color === 'accent' || null,
         disabled,
-        onTouchTap: onClick,
+        onClick,
         className,
         style,
     };

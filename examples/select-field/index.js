@@ -47,6 +47,13 @@ const selectFields = (
                 onChange={() => {}}
             />
             <SelectField
+                label='Select multiple'
+                items={items}
+                value={['cat', 'dog']}
+                multiple={true}
+                onChange={() => {}}
+            />
+            <SelectField
                 label='Select animal'
                 value='dog'
                 items={items}

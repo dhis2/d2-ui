@@ -2,24 +2,28 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import MuiSelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
+import { createClassName } from '../component-helpers/utils';
 
-const SelectField = ({ label, items, value, onChange, style, selector, children }) => {
-    let className = 'd2-ui-selectfield';
-
-    if (selector) {
-        className = `${className} ${className}-${selector}`;
-    }
+const SelectField = ({ label, items, multiple, value, onChange, style, selector, children }) => {
+    const className = createClassName('d2-ui-selectfield', selector);
 
     return (
         <MuiSelectField
             floatingLabelText={label}
             value={value}
+            multiple={multiple}
             onChange={(event, index, value) => onChange(items[index] || value)}
             className={className}
             style={style}
         >
             {children ? children : items.map(item => (
-                <MenuItem key={item.id} value={item.id} primaryText={item.name} />
+                <MenuItem
+                    key={item.id}
+                    value={item.id}
+                    primaryText={item.name}
+                    insetChildren={multiple}
+                    checked={multiple && Array.isArray(value) && value.indexOf(item.id) > -1}
+                />
             ))}
         </MuiSelectField>
     );
@@ -42,6 +46,11 @@ SelectField.propTypes = {
     })),
 
     /**
+     * If true, the select field will support multiple selection. A check mark will show before selected items.
+     */
+    // multiple: PropTypes.bool,
+
+    /**
      * onChange callback, that is fired when the select field's value changes
      *
      * The onChange callback will receive one argument: The item selected (if items are provided) or the value selected
@@ -49,9 +58,16 @@ SelectField.propTypes = {
     onChange: PropTypes.func.isRequired,
 
     /**
-     * The value of the select field
+     * The value(s) of the select field
      */
-    value: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
+    value: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+        PropTypes.arrayOf(PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number
+        ]))
+    ]),
 
     /**
      * Override the inline-styles of the root element

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function MainContent(props) {
     const mainContentStyle = {
@@ -13,9 +14,9 @@ function MainContent(props) {
     );
 }
 MainContent.propTypes = {
-    children: React.PropTypes.oneOfType([
-        React.PropTypes.array.isRequired,
-        React.PropTypes.object.isRequired,
+    children: PropTypes.oneOfType([
+        PropTypes.array.isRequired,
+        PropTypes.object.isRequired,
     ]),
 };
 
