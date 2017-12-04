@@ -1,4 +1,4 @@
-import React,  { Component } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import isArrayOfStrings from 'd2-utilizr/lib/isArrayOfStrings';
 import isIterable from 'd2-utilizr/lib/isIterable';
