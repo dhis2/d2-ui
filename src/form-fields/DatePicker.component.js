@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { DatePicker as MuiDatePicker } from 'material-ui';
 
@@ -56,10 +57,10 @@ class DatePicker extends React.Component {
 }
 
 DatePicker.propTypes = {
-    floatingLabelText: React.PropTypes.string.isRequired,
-    onChange: React.PropTypes.func.isRequired,
-    dateFormat: React.PropTypes.string.isRequired,
-    allowFuture: React.PropTypes.bool.isRequired,
+    floatingLabelText: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired,
+    dateFormat: PropTypes.string.isRequired,
+    allowFuture: PropTypes.bool.isRequired,
 };
 
 export default DatePicker;

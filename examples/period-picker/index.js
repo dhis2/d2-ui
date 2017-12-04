@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 import { Card, CardText } from 'material-ui/Card';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -43,7 +44,7 @@ class PeriodPickerExample extends React.Component {
         const styles = {
             card: {
                 margin: 16,
-                width: 310,
+                width: 370,
                 float: 'left',
                 transition: 'all 175ms ease-out',
             },
@@ -117,7 +118,7 @@ class PeriodPickerExample extends React.Component {
         );
     }
 }
-PeriodPickerExample.childContextTypes = { d2: React.PropTypes.object.isRequired };
+PeriodPickerExample.childContextTypes = { d2: PropTypes.object.isRequired };
 
 ReactDOM.render(<div>Initialising D2...</div>, el);
 

@@ -7,3 +7,5 @@ d2-ui.iml
 node_modules/*
 coverage/*
 build/*
+
+yarn-error.log

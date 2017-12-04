@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import TextField from 'material-ui/TextField/TextField';
 import ListSelect from '../list-select/ListSelect.component';
 import addD2Context from '../component-helpers/addD2Context';

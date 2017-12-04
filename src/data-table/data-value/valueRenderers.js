@@ -4,7 +4,7 @@ import { isNil } from 'lodash/fp';
 import Color from './Color.component';
 import Translate from '../../i18n/Translate.component';
 
-function TextValue({ value = '', columnName }) {
+function TextValue({ value = '' }) {
     const textWrapStyle = {
         width: '100%',
         textOverflow: 'ellipsis',
@@ -81,7 +81,7 @@ function isObjectWithDisplayName({ value }) {
     return value && (value.displayName || value.name);
 }
 
-function PublicAccessValue({ columnName, value }) {
+function PublicAccessValue({ value }) {
     if (value) {
         if (value === 'rw------') {
             return <Translate>public_can_edit</Translate>;

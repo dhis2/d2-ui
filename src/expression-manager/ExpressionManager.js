@@ -1,6 +1,6 @@
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Observable } from 'rxjs';
-import React, { Component } from 'react';
 import Tabs from 'material-ui/Tabs/Tabs';
 import Tab from 'material-ui/Tabs/Tab';
 import Paper from 'material-ui/Paper/Paper';

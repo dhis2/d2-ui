@@ -1,13 +1,13 @@
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { config } from 'd2/lib/d2';
 import Dialog from 'material-ui/Dialog/Dialog';
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
 import { getTranslationFormFor } from './TranslationForm.component';
 
 config.i18n.strings.add('close');
 config.i18n.strings.add('sharing_settings');
 
-export default class TranslationDialog extends Component {
+class TranslationDialog extends Component {
     constructor(props, context) {
         super(props, context);
 
@@ -63,16 +63,18 @@ export default class TranslationDialog extends Component {
 }
 
 TranslationDialog.propTypes = {
-    objectToTranslate: React.PropTypes.shape({
-        id: React.PropTypes.string.isRequired,
+    objectToTranslate: PropTypes.shape({
+        id: PropTypes.string.isRequired,
     }).isRequired,
-    onTranslationSaved: React.PropTypes.func.isRequired,
-    onTranslationError: React.PropTypes.func.isRequired,
-    open: React.PropTypes.bool,
-    onRequestClose: React.PropTypes.func.isRequired,
-    fieldsToTranslate: React.PropTypes.array,
+    onTranslationSaved: PropTypes.func.isRequired,
+    onTranslationError: PropTypes.func.isRequired,
+    open: PropTypes.bool,
+    onRequestClose: PropTypes.func.isRequired,
+    fieldsToTranslate: PropTypes.array,
 };
 
 TranslationDialog.contextTypes = {
     d2: PropTypes.object,
 };
+
+export default TranslationDialog;

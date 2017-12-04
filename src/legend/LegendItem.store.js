@@ -1,4 +1,3 @@
-import React from 'react';
 import TextField from 'material-ui/TextField/TextField';
 import { Observable } from 'rxjs';
 import { getInstance, config } from 'd2/lib/d2';

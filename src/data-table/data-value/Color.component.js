@@ -1,7 +1,7 @@
 import React from 'react';
 import { hcl } from 'd3-color';
 
-export default function Color({ color, value }) {
+export default function Color({ value }) {
     const styles = {
         color: {
             backgroundColor: value,

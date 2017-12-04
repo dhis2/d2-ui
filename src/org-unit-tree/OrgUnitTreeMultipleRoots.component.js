@@ -1,5 +1,5 @@
 import React from 'react';
-import Model from 'd2/lib/model/Model';
+import PropTypes from 'prop-types';
 import OrgUnitTree from './OrgUnitTree.component';
 
 export default function OrgUnitTreeMultipleRoots(props) {
@@ -36,13 +36,13 @@ function OrgUnitModelValidator(props, propName, componentName) {
 
 function OrgUnitModelArrayElementValidator(propValue, key, componentName, location, propFullName) {
     if (!isOrgUnitModel(propValue[key])) {
-        return new Error(`Invalid org unit model supplied to \`${componentName}.${propName}\``);
+        return new Error(`Invalid org unit model supplied to \`${componentName}.${propFullName}\``);
     }
 }
 
 OrgUnitTreeMultipleRoots.propTypes = Object.assign({}, OrgUnitTree.propTypes,
     {
         root: OrgUnitModelValidator,
-        roots: React.PropTypes.arrayOf(OrgUnitModelArrayElementValidator),
+        roots: PropTypes.arrayOf(OrgUnitModelArrayElementValidator),
     },
 );

@@ -1,4 +1,4 @@
-const isProduction = () => process.argv.indexOf('-p') >= 0;
+const isProduction = () => process.env.NODE_ENV === 'production';
 const webpack = require('webpack');
 const path = require('path');
 require('colors');
@@ -15,12 +15,16 @@ try {
     // console.warn(`\nWARNING! Failed to load DHIS config:`, e.message);
     // console.info('Using default config');
     dhisConfig = {
-        baseUrl: 'http://localhost:8080/dhis',
+        baseUrl: 'http://localhost:8080',
         authorization: 'Basic YWRtaW46ZGlzdHJpY3Q=', // admin:district
     };
 }
 
 const identity = (v) => v;
+function log(req, res, opt) {
+    req.headers.Authorization = dhisConfig.authorization;
+    console.log('[PROXY]'.cyan.bold, req.method.green.bold, req.url.magenta, '=>'.dim, opt.target.dim);
+}
 
 module.exports = {
     context: __dirname,
@@ -37,13 +41,20 @@ module.exports = {
             formbuilder: './examples/form-builder',
             // formulaeditor: './examples/formula-editor',
             headerbar: './examples/header-bar',
+            'header-bar': './src/app-header/index.js',
             legend: './examples/legend',
             // translation: './examples/translation',
             expressionmanager: './examples/expression-manager',
             groupeditor: './examples/group-editor',
             periodpicker: './examples/period-picker',
             button: './examples/button',
+            svgicon: './examples/svg-icon',
+            textfield: './examples/text-field',
+            selectfield: './examples/select-field',
+            tabs: './examples/tabs',
+            chip: './examples/chip',
         },
+    devtool: 'source-map',
     output: {
         library: 'Dhis2HeaderBar',
         path: path.join(__dirname, '/dist'),
@@ -81,12 +92,8 @@ module.exports = {
             'react-addons-transition-group': 'var React.addons.TransitionGroup',
             'rx': 'Rx',
             'react-addons-create-fragment': 'var React.addons.createFragment',
-            // 'd2/lib/d2': 'var d2',
             'lodash': 'var _',
             'lodash/fp': 'var fp',
-            'lodash.merge': 'var _.merge',
-            'lodash.throttle': 'var _.throttle',
-            'lodash/merge': 'var _.merge',
         },
         /^lodash$/,
         /^lodash\/fp$/,
@@ -106,13 +113,15 @@ module.exports = {
             new webpack.DefinePlugin({
                 DHIS_CONFIG: JSON.stringify(dhisConfig),
             }),
-        new Visualizer(),
+        isProduction() ? null : new Visualizer(),
     ].filter(identity),
     devServer: {
-        contentBase: './examples/',
+        contentBase: [path.join(__dirname, '/examples/')],
         port: 8081,
         inline: true,
         compress: true,
+        proxy: [
+            { path: ['/api/', '/dhis-web-commons/', '/icons/'], target: dhisConfig.baseUrl, bypass: log },
+        ],
     },
-    devtool: 'sourcemap',
 };

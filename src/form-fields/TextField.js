@@ -1,28 +1,19 @@
-import React from 'react';
-import TextField from 'material-ui/TextField';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import MuiTextField from 'material-ui/TextField';
 
-
-// TODO: Rewrite as ES6 class
-/* eslint-disable react/prefer-es6-class */
-export default React.createClass({
-    propTypes: {
-        value: React.PropTypes.string,
-        multiLine: React.PropTypes.bool,
-    },
-
-    getInitialState() {
-        return {
-            value: this.props.value,
-        };
-    },
+class TextField extends Component {
+    state = {
+        value: this.props.value,
+    };
 
     componentWillReceiveProps(props) {
         this.setState({ value: props.value });
-    },
+    }
 
     change(e) {
         this.setState({ value: e.target.value });
-    },
+    }
 
     render() {
         const errorStyle = {
@@ -31,7 +22,14 @@ export default React.createClass({
         };
 
         return (
-            <TextField errorStyle={errorStyle} {...this.props} value={this.state.value} onChange={this.change} />
+            <MuiTextField errorStyle={errorStyle} {...this.props} value={this.state.value} onChange={this.change} />
         );
-    },
-});
+    }
+}
+
+TextField.propTypes = {
+    value: PropTypes.string,
+    multiLine: PropTypes.bool,
+};
+
+export default TextField;

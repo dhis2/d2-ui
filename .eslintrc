@@ -3,6 +3,6 @@
   "parser": "babel-eslint",
   "env": { "browser": true },
   "globals": {
-    "DHIS_CONFIG": true,
-  },
+    "DHIS_CONFIG": true
+  }
 }

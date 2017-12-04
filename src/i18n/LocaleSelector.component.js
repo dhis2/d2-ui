@@ -1,20 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import SelectField from 'material-ui/SelectField/SelectField';
 import MenuItem from 'material-ui/MenuItem/MenuItem';
 
-import Translate from '../i18n/Translate.mixin';
+class LocaleSelector extends Component {
+    constructor(props, context) {
+        super(props, context);
 
-export default React.createClass({
-    propTypes: {
-        value: React.PropTypes.string,
-        locales: React.PropTypes.arrayOf(React.PropTypes.shape({
-            name: React.PropTypes.string.isRequired,
-            locale: React.PropTypes.string.isRequired,
-        })).isRequired,
-        onChange: React.PropTypes.func.isRequired,
-    },
-
-    mixins: [Translate],
+        const i18n = this.context.d2.i18n;
+        this.getTranslation = i18n.getTranslation.bind(i18n);
+    }
 
     render() {
         const localeMenuItems = [{ payload: '', text: '' }]
@@ -39,7 +34,7 @@ export default React.createClass({
                 {localeMenuItems}
             </SelectField>
         );
-    },
+    }
 
     onLocaleChange(event, index, locale) {
         this.setState({
@@ -47,5 +42,20 @@ export default React.createClass({
         });
 
         this.props.onChange(locale, event);
-    },
-});
+    }
+}
+
+LocaleSelector.propTypes = {
+    value: PropTypes.string,
+    locales: PropTypes.arrayOf(PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        locale: PropTypes.string.isRequired,
+    })).isRequired,
+    onChange: PropTypes.func.isRequired,
+};
+
+LocaleSelector.contextTypes = {
+    d2: PropTypes.object,
+};
+
+export default LocaleSelector;

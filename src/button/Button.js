@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
+import { createClassName } from '../component-helpers/utils';
 
-const Button = ({ raised, fab, color, disabled, onClick, children, style }) => {
+const Button = ({ raised, fab, color, disabled, onClick, children, style, selector }) => {
+    const className = createClassName('d2-ui-button', selector);
     let MuiButton;
 
     if (fab) { // Always raised
@@ -20,7 +22,8 @@ const Button = ({ raised, fab, color, disabled, onClick, children, style }) => {
         primary: color === 'primary' || null,
         secondary: color === 'accent' || null,
         disabled,
-        onTouchTap: onClick,
+        onClick,
+        className,
         style,
     };
 
@@ -69,6 +72,11 @@ Button.propTypes = {
      * Override the inline-styles of the root element
      */
     style: PropTypes.object,
+
+    /**
+     * If set, adds a class to the element in the format d2-ui-button-selector
+     */
+    selector: PropTypes.string,
 };
 
 export default Button;

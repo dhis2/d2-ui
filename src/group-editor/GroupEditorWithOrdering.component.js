@@ -1,5 +1,5 @@
-import React from 'react';
-import { findDOMNode } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import IconButton from 'material-ui/IconButton/IconButton';
 import log from 'loglevel';
 import GroupEditor from './GroupEditor.component';
@@ -32,7 +32,7 @@ function moveItemOneSpotUpIn(currentlySelected) {
     };
 }
 
-export default class GroupEditorWithOrdering extends React.Component {
+class GroupEditorWithOrdering extends Component {
     render() {
         return (
             <div style={{ paddingRight: '2.5rem', position: 'relative' }}>
@@ -86,9 +86,13 @@ export default class GroupEditorWithOrdering extends React.Component {
         this.props.onOrderChanged(currentlySelected);
     }
 }
+
 GroupEditorWithOrdering.propTypes = {
-    onOrderChanged: React.PropTypes.func,
+    onOrderChanged: PropTypes.func,
 };
+
 GroupEditorWithOrdering.defaultProps = {
     onOrderChanged: () => {},
 };
+
+export default GroupEditorWithOrdering;

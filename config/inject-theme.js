@@ -35,11 +35,11 @@ export function getStubContext() {
                 },
             },
             Api: {
-                getApi: sinon.stub().returns({baseUrl: 'http://localhost:8080'}),
+                getApi: jest.fn().mockReturnValue({baseUrl: 'http://localhost:8080'}),
             },
             system: {
                 settings: {
-                    all: sinon.stub().returns(Promise.resolve({})),
+                    all: jest.fn().mockReturnValue(Promise.resolve({})),
                 },
             },
             currentUser: {

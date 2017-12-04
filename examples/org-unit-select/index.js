@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
+import PropTypes from 'prop-types';
 import log from 'loglevel';
 import Card from 'material-ui/Card/Card';
 import CardText from 'material-ui/Card/CardText';
@@ -113,6 +114,10 @@ class OrgUnitSelectExample extends React.Component {
     }
 
     render() {
+        const changeRoot = (currentRoot) => {
+            this.setState({ currentRoot });
+        };
+
         return (
             <MuiThemeProvider muiTheme={getMuiTheme()}>
                 <div>
@@ -146,9 +151,7 @@ class OrgUnitSelectExample extends React.Component {
                                     currentRoot={this.state.currentRoot}
                                     initiallyExpanded={[`/${this.props.rootWithMembers.id}`]}
                                     onSelectClick={this.handleOrgUnitClick}
-                                    onChangeCurrentRoot={(currentRoot) => {
-                                        this.setState({ currentRoot });
-                                    }}
+                                    onChangeCurrentRoot={changeRoot}
                                     memberCollection="dataSets"
                                     memberObject="TuL8IOPzpHh"
                                     onChildrenLoaded={this.handleChildrenLoaded}
@@ -157,10 +160,10 @@ class OrgUnitSelectExample extends React.Component {
                             <div style={styles.right}>
                                 <div>
                                     {this.state.currentRoot ? (
-                                            <div>For organisation units within <span style={styles.ouLabel}>{
-                                                this.state.currentRoot.displayName
-                                            }</span>:</div>
-                                        ) : <div>For all organisation units:</div>}
+                                        <div>For organisation units within <span style={styles.ouLabel}>{
+                                            this.state.currentRoot.displayName
+                                        }</span>:</div>
+                                    ) : <div>For all organisation units:</div>}
                                     <div style={{ marginBottom: -24, marginTop: -16 }}>
                                         <OrgUnitSelectByLevel
                                             levels={this.props.levels}
@@ -191,8 +194,8 @@ class OrgUnitSelectExample extends React.Component {
                     <Card style={styles.card}>
                         <CardText style={{ maxHeight: 250, overflowY: 'auto' }}>
                             <TreeView label={`Selected (${this.state.selected.length})`}>
-                                <div style={{fontFamily: 'monospace'}}>
-                                {this.state.selected.sort().map(ou => <div key={ou}>{ou}</div>)}
+                                <div style={{ fontFamily: 'monospace' }}>
+                                    {this.state.selected.sort().map(ou => <div key={ou}>{ou}</div>)}
                                 </div>
                             </TreeView>
                         </CardText>
@@ -203,42 +206,38 @@ class OrgUnitSelectExample extends React.Component {
     }
 }
 OrgUnitSelectExample.propTypes = {
-    d2: React.PropTypes.object.isRequired,
-    levels: React.PropTypes.oneOfType([
-        React.PropTypes.object,
-        React.PropTypes.array,
+    d2: PropTypes.object.isRequired,
+    levels: PropTypes.oneOfType([
+        PropTypes.object,
+        PropTypes.array,
     ]).isRequired,
-    groups: React.PropTypes.oneOfType([
-        React.PropTypes.object,
-        React.PropTypes.array,
+    groups: PropTypes.oneOfType([
+        PropTypes.object,
+        PropTypes.array,
     ]).isRequired,
-    root: React.PropTypes.object.isRequired,
 };
-OrgUnitSelectExample.childContextTypes = { d2: React.PropTypes.object.isRequired };
+OrgUnitSelectExample.childContextTypes = { d2: PropTypes.object.isRequired };
 
 render(<div>Initialising D2...</div>, el);
 
 D2Lib.config.baseUrl = baseUrl;
 D2Lib.init({ baseUrl })
-    .then(d2 => {
+    .then((d2) => {
         log.info('D2 initialised successfully', d2);
         render(<div>Loading Organisation Units...</div>, el);
         window.d2 = d2;
 
         // Hack in some translations since these examples don't have localisation files
-        d2.i18n.translations.organisation_unit_group = 'Organisation Unit Group';
-        d2.i18n.translations.organisation_unit_level = 'Organisation Unit Level';
-        d2.i18n.translations.select = 'Select';
-        d2.i18n.translations.deselect = 'Deselect';
-        d2.i18n.translations.select_all = 'Select All Org Units';
-        d2.i18n.translations.deselect_all = 'Deselect All Org Units';
+        Object.assign(d2.i18n.translations, {
+            organisation_unit_group: 'Organisation Unit Group',
+            organisation_unit_level: 'Organisation Unit Level',
+            select: 'Select',
+            deselect: 'Deselect',
+            select_all: 'Select All Org Units',
+            deselect_all: 'Deselect All Org Units',
+        });
 
         Promise.all([
-            d2.models.organisationUnits.list({
-                paging: false,
-                level: 1,
-                fields: 'id,displayName,level,path,children::isNotEmpty',
-            }),
             d2.models.organisationUnitLevels.list({
                 paging: false,
                 fields: 'id,level,displayName',
@@ -260,15 +259,19 @@ D2Lib.init({ baseUrl })
                 fields: 'organisationUnits[id,path]',
             }),
         ])
-            .then(([roots, levels, groups, rootWithDataSetMembers, dataSetMembers]) => {
-                const root = roots.toArray()[0];
+            .then(([levels, groups, rootWithDataSetMembers, dataSetMembers]) => {
                 const rootWithMembers = rootWithDataSetMembers.toArray()[0];
                 const selected = dataSetMembers.organisationUnits.toArray().map(ou => ou.path);
-                render(<OrgUnitSelectExample d2={d2} root={root} levels={levels} groups={groups}
-                                             rootWithMembers={rootWithMembers} selected={selected}/>, el);
+                render(<OrgUnitSelectExample
+                    d2={d2}
+                    levels={levels}
+                    groups={groups}
+                    rootWithMembers={rootWithMembers}
+                    selected={selected}
+                />, el);
             });
     })
-    .catch(err => {
+    .catch((err) => {
         log.error('Failed to initialise D2:', err);
         render(<div>Failed to initialise D2: {err}</div>, el);
     });

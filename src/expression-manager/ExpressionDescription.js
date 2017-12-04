@@ -1,13 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import TextField from 'material-ui/TextField/TextField';
 
-const ExpressionDescription = React.createClass({
-    propTypes: {
-        descriptionLabel: React.PropTypes.string,
-        descriptionValue: React.PropTypes.string,
-        onDescriptionChange: React.PropTypes.func.isRequired,
-        errorText: React.PropTypes.string,
-    },
+class ExpressionDescription extends Component {
+    handleDescriptionChange = (event) => {
+        const descriptionValue = event.target.value;
+        this.props.onDescriptionChange(descriptionValue);
+    };
 
     render() {
         const { descriptionLabel, descriptionValue, onDescriptionChange, ...textFieldProps } = this.props;
@@ -24,12 +23,18 @@ const ExpressionDescription = React.createClass({
                 />
             </div>
         );
-    },
+    }
+}
 
-    handleDescriptionChange(event) {
-        const descriptionValue = event.target.value;
-        this.props.onDescriptionChange(descriptionValue);
-    },
-});
+ExpressionDescription.propTypes = {
+    descriptionLabel: PropTypes.string.isRequired,
+    descriptionValue: PropTypes.string.isRequired,
+    onDescriptionChange: PropTypes.func.isRequired,
+    errorText: PropTypes.string,
+};
+
+ExpressionDescription.defaultProps = {
+    errorText: '',
+};
 
 export default ExpressionDescription;
