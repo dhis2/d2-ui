@@ -87,11 +87,6 @@ SvgIcon.propTypes = {
     disabled: PropTypes.bool,
 
     /**
-     * The color of the icon
-     */
-    color: PropTypes.string,
-
-    /**
      * Pass inline styles to the root element
      */
     style: PropTypes.object,
