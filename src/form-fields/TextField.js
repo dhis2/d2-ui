@@ -11,7 +11,7 @@ class TextField extends Component {
         this.setState({ value: props.value });
     }
 
-    _change(e) {
+    change(e) {
         this.setState({ value: e.target.value });
     }
 
@@ -22,7 +22,7 @@ class TextField extends Component {
         };
 
         return (
-            <MuiTextField errorStyle={errorStyle} {...this.props} value={this.state.value} onChange={this._change} />
+            <MuiTextField errorStyle={errorStyle} {...this.props} value={this.state.value} onChange={this.change} />
         );
     }
 }

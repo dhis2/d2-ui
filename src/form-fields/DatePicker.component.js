@@ -8,12 +8,12 @@ class DatePicker extends React.Component {
         super(props);
         this.maxDate = props.allowFuture ? undefined : new Date();
         this.props = props;
-        this._onDateSelect = this._onDateSelect.bind(this);
-        this._formatDate = this._formatDate.bind(this);
+        this.onDateSelect = this.onDateSelect.bind(this);
+        this.formatDate = this.formatDate.bind(this);
         this.state = { value: this.props.value };
     }
 
-    _onDateSelect(event, date) {
+    onDateSelect(event, date) {
         this.setState({ value: date });
         this.props.onChange({
             target: {
@@ -22,7 +22,7 @@ class DatePicker extends React.Component {
         });
     }
 
-    _formatDate(date) {
+    formatDate(date) {
         let dd = date.getDate();
         let mm = date.getMonth() + 1;
         const yyyy = date.getFullYear();
@@ -48,8 +48,8 @@ class DatePicker extends React.Component {
                     value={this.state.value}
                     floatingLabelText={this.props.floatingLabelText}
                     maxDate={this.maxDate}
-                    formatDate={this._formatDate}
-                    onChange={this._onDateSelect}
+                    formatDate={this.formatDate}
+                    onChange={this.onDateSelect}
                 />
             </div>
         );

@@ -69,7 +69,7 @@ class TranslationForm extends Component {
                         floatingLabelText={this.getTranslation(camelCaseToUnderscores(fieldName))}
                         value={this.getTranslationValueFor(fieldName)}
                         fullWidth
-                        onChange={this._setValue.bind(this, fieldName)}
+                        onChange={this.setValue.bind(this, fieldName)}
                     />
                     <div>{this.props.objectToTranslate[fieldName]}</div>
                 </div>
@@ -83,7 +83,7 @@ class TranslationForm extends Component {
                 <RaisedButton
                     label={this.getTranslation('save')}
                     primary
-                    onClick={this._saveTranslations}
+                    onClick={this.saveTranslations}
                 />
                 <RaisedButton
                     style={{ marginLeft: '1rem' }}
@@ -133,7 +133,7 @@ class TranslationForm extends Component {
         });
     }
 
-    _setValue(property, event) {
+    setValue(property, event) {
         let newTranslations = [].concat(this.props.translations);
         let translation = newTranslations
             .find(t => t.locale === this.state.currentSelectedLocale && t.property.toLowerCase() === camelCaseToUnderscores(property));
@@ -158,7 +158,7 @@ class TranslationForm extends Component {
         this.props.setTranslations(newTranslations);
     }
 
-    _saveTranslations() {
+    saveTranslations() {
         saveTranslations(this.props.objectToTranslate, this.props.translations)
             .subscribe(
                 this.props.onTranslationSaved,

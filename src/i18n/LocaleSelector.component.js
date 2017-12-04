@@ -29,14 +29,14 @@ class LocaleSelector extends Component {
                 {...this.props}
                 value={this.state && this.state.locale}
                 hintText={this.getTranslation('select_locale')}
-                onChange={this._localeChange}
+                onChange={this.onLocaleChange}
             >
                 {localeMenuItems}
             </SelectField>
         );
     }
 
-    _localeChange(event, index, locale) {
+    onLocaleChange(event, index, locale) {
         this.setState({
             locale,
         });

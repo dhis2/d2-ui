@@ -137,7 +137,7 @@ class ProgramOperandSelector extends Component {
                 <Tab label={this.getTranslation('program_data_elements')} style={{ color: '#333' }}>
                     {!this.state.programDataElementOptions.length ? <div style={noValueMessageStyle}>{this.getTranslation('no_program_data_elements')}</div> :
                         <ListSelect
-                        onItemDoubleClick={this._programDataElementSelected}
+                        onItemDoubleClick={this.onProgramDataElementSelected}
                         source={this.state.programDataElementOptions}
                         listStyle={listStyle}
                         size={10}
@@ -146,7 +146,7 @@ class ProgramOperandSelector extends Component {
                 <Tab label={this.getTranslation('program_tracked_entity_attributes')} style={{ color: '#333' }}>
                     {!this.state.programTrackedEntityAttributeOptions.length ? <div style={noValueMessageStyle}>{this.getTranslation('no_tracked_entity_attributes')}</div> :
                     <ListSelect
-                            onItemDoubleClick={this._programTrackedEntityAttributeSelected}
+                            onItemDoubleClick={this.onProgramTrackedEntityAttributeSelected}
                             source={this.state.programTrackedEntityAttributeOptions}
                             listStyle={listStyle}
                             size={10}
@@ -155,7 +155,7 @@ class ProgramOperandSelector extends Component {
                 <Tab label={this.getTranslation('program_indicators')} style={{ color: '#333' }}>
                     {!this.state.programIndicatorOptions.length ? <div style={noValueMessageStyle}>{this.getTranslation('no_program_indicators')}</div> :
                     <ListSelect
-                            onItemDoubleClick={this._programIndicatorSelected}
+                            onItemDoubleClick={this.onProgramIndicatorSelected}
                             source={this.state.programIndicatorOptions}
                             listStyle={listStyle}
                             size={10}
@@ -173,7 +173,7 @@ class ProgramOperandSelector extends Component {
                         schema="program"
                         value={this.state.selectedProgram}
                         fullWidth
-                        onChange={this._loadProgramDataOperands}
+                        onChange={this.onLoadProgramDataOperands}
                         hintText={this.getTranslation('please_select_a_program')}
                     />
                 </div>
@@ -182,7 +182,7 @@ class ProgramOperandSelector extends Component {
         );
     }
 
-    _loadProgramDataOperands(event) {
+    onLoadProgramDataOperands(event) {
         const api = this.context.d2.Api.getApi();
         const programId = event.target.value;
 
@@ -199,19 +199,19 @@ class ProgramOperandSelector extends Component {
             .catch(error => log.error(error));
     }
 
-    _programTrackedEntityAttributeSelected(value) {
+    onProgramTrackedEntityAttributeSelected(value) {
         const programTrackedEntityAttributeFormula = ['A{', value, '}'].join('');
 
         this.props.programOperandSelected(programTrackedEntityAttributeFormula);
     }
 
-    _programIndicatorSelected(value) {
+    onProgramIndicatorSelected(value) {
         const programIndicatorFormula = ['I{', value, '}'].join('');
 
         this.props.programOperandSelected(programIndicatorFormula);
     }
 
-    _programDataElementSelected(value) {
+    onProgramDataElementSelected(value) {
         const programDataElementSelected = ['D{', value, '}'].join('');
 
         this.props.programOperandSelected(programDataElementSelected);
