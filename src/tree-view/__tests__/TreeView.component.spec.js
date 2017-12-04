@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import TreeView from '../';
+import TreeView from '../TreeView.component';
 
 describe('TreeView component', () => {
     let wrapper;
@@ -50,8 +50,8 @@ describe('TreeView component', () => {
     });
 
     it('renders components as labels', () => {
-        wrapper = shallow(<TreeView label={<TreeView />} />);
-        expect(wrapper.children().contains(<TreeView />)).toBe(true);
+        wrapper = shallow(<TreeView label={<TreeView label={'more label'} />} />);
+        expect(wrapper.children().contains(<TreeView label={'more label'} />)).toBe(true);
     });
 
     describe('with onExpand() callback', () => {
@@ -139,9 +139,9 @@ describe('TreeView component', () => {
         describe('and initiallyExpanded children', () => {
             beforeEach(() => {
                 children = [
-                    <div className="child a">A</div>,
-                    <div className="child b">B</div>,
-                    <div className="child c">C</div>,
+                    <div key="a" className="child a">A</div>,
+                    <div key="b" className="child b">B</div>,
+                    <div key="c" className="child c">C</div>,
                 ];
                 wrapper = shallow(
                     <TreeView label="myLabel" onClick={onClick} initiallyExpanded>
@@ -232,9 +232,9 @@ describe('TreeView component', () => {
     describe('with children', () => {
         beforeEach(() => {
             children = [
-                <div className="child a">A</div>,
-                <div className="child b">B</div>,
-                <div className="child c">C</div>,
+                <div key="a" className="child a">A</div>,
+                <div key="b" className="child b">B</div>,
+                <div key="c" className="child c">C</div>,
             ];
             wrapper = shallow(
                 <TreeView label="myLabel">

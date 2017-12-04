@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Popover from 'material-ui/Popover/Popover';
 import IconOption from './IconOption.component';
@@ -17,7 +17,7 @@ function getImgSrc(imgPath, imgFileName) {
         .filter(v => v)
         .join('/');
 }
-class IconPicker extends React.Component {
+class IconPicker extends Component {
     constructor(...args) {
         super(...args);
 

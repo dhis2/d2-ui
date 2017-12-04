@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 import { Card, CardText } from 'material-ui/Card';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -170,7 +171,7 @@ class GroupEditorExample extends React.Component {
         );
     }
 }
-GroupEditorExample.childContextTypes = { d2: React.PropTypes.object };
+GroupEditorExample.childContextTypes = { d2: PropTypes.object };
 
 ReactDOM.render(<div>Initializing...</div>, el);
 

@@ -5,10 +5,8 @@ import FormField from '../FormField.component';
 import { FormFieldStatuses } from '../FormValidator';
 import { getStubContext } from '../../../config/inject-theme';
 
-class TextField extends React.Component {
-    render() {
-        return (<input {...this.props} />);
-    }
+function TextField(props) {
+    return (<input {...props} />);
 }
 
 function getSystemSettingsFormConfig() {
@@ -16,10 +14,10 @@ function getSystemSettingsFormConfig() {
         keyEmailPort: 587,
         keyEmailTls: true,
         keyCalendar: 'iso8601',
-        SMS_CONFIG: {},
-        orgUnitGroupSetAggregationLevel: 3,
-        omitIndicatorsZeroNumeratorDataMart: false,
-        keyScheduledPeriodTypes: [],
+        // SMS_CONFIG: {},
+        // orgUnitGroupSetAggregationLevel: 3,
+        // omitIndicatorsZeroNumeratorDataMart: false,
+        // keyScheduledPeriodTypes: [],
     };
 
     const fieldConfigs = [
@@ -33,10 +31,12 @@ function getSystemSettingsFormConfig() {
         {
             name: 'keyEmailTls',
             type: TextField,
+            fieldOptions: {},
         },
         {
             name: 'keyCalendar',
             type: TextField,
+            fieldOptions: {},
         },
     ];
 
@@ -46,7 +46,11 @@ function getSystemSettingsFormConfig() {
 describe('Form component', () => {
     let formComponent;
     const renderComponent = (props, children) => {
-        return shallow(<Form {...props}>{children}</Form>, {
+        const nops = {
+            source: {},
+            ...props,
+        };
+        return shallow(<Form {...nops}>{children}</Form>, {
             context: getStubContext(),
         });
     };
@@ -75,10 +79,11 @@ describe('Form component', () => {
 
     describe('formFields', () => {
         beforeEach(() => {
+            const noop = () => {};
             formComponent = renderComponent({}, [
-                <FormField type={TextField} />,
-                <FormField type={TextField} />,
-                <FormField type={TextField} />,
+                <FormField key="a" isValid updateFn={noop} fieldOptions={{}} type={TextField} />,
+                <FormField key="b" isValid updateFn={noop} fieldOptions={{}} type={TextField} />,
+                <FormField key="c" isValid updateFn={noop} fieldOptions={{}} type={TextField} />,
             ]);
         });
 
@@ -150,153 +155,4 @@ describe('Form component', () => {
         });
     });
 
-    // TODO: The onChange/onBlur can not be tested on the form component itself as the actual components are not being rendered. This functionality should be tested in the FormField component
-    xdescribe('updateEvent', () => {
-        let onFormFieldUpdateSpy;
-
-        beforeEach(() => {
-            const { systemSettings, fieldConfigs } = getSystemSettingsFormConfig();
-
-            onFormFieldUpdateSpy = jest.fn();
-
-            fieldConfigs[0].updateEvent = 'onBlur';
-
-            formComponent = renderComponent({
-                source: systemSettings,
-                fieldConfigs,
-                onFormFieldUpdate: onFormFieldUpdateSpy,
-            });
-        });
-
-        it('should call onFormFieldUpdate on blur', () => {
-            const renderedTextFieldComponent = formComponent.find(FormField).first();
-
-            jest.spyOn(formComponent.instance(), 'updateRequest');
-            expect(renderedTextFieldComponent.props().value).toBe(587);
-
-            renderedTextFieldComponent.simulate('blur', {
-                target: {
-                    value: '456',
-                },
-            });
-
-            expect(onFormFieldUpdateSpy).toHaveBeenCalledWith('keyEmailPort', '456');
-
-            formComponent.instance().updateRequest.restore();
-        });
-
-        it('should not call onFormFieldUpdate on change', () => {
-            const renderedTextFieldComponent = formComponent.find(FormField).first();
-
-            jest.spyOn(formComponent.instance(), 'updateRequest');
-            expect(renderedTextFieldComponent.props().value).toBe(587);
-
-            renderedTextFieldComponent.simulate('change', {
-                target: {
-                    value: '456',
-                },
-            });
-
-            expect(onFormFieldUpdateSpy).to.have.callCount(0);
-        });
-    });
-
-    // TODO: These are integration tests not unit tests... should mock the formValidator
-    // TODO: Possible rework of the validators might need readjustment of these tests
-    xdescribe('validation', () => {
-        let fieldConfig;
-
-        beforeEach(() => {
-            const failingValidator = jest.fn().mockReturnValue(false);
-            failingValidator.message = 'field_is_required';
-
-            fieldConfig = {
-                name: 'keyEmailPort',
-                type: TextField,
-                fieldOptions: {
-                    multiLine: true,
-                },
-                validators: [
-                    jest.fn().mockReturnValue(true),
-                    failingValidator,
-                ],
-            };
-
-            formComponent = renderComponent({ fieldConfigs: [fieldConfig] });
-
-            findRenderedComponentWithType(formComponent, FormField);
-        });
-
-        it('should create a formValidator if no validator was passed', () => {
-            formComponent = renderComponent({ fieldConfigs: [fieldConfig] });
-
-            expect(formComponent.state.formValidator).not.toBe(undefined);
-            expect(formComponent.state.formValidator.getStatusFor('keyEmailPort')).toEqual({
-                status: FormFieldStatuses.VALID,
-                messages: [],
-            });
-        });
-
-        it('should set the field status to VALIDATING when the validators are running', (done) => {
-            fieldConfig.validators.push(() => new Promise(() => {}));
-            formComponent = renderComponent({ fieldConfigs: [fieldConfig] });
-
-            formComponent.state.formValidator.runFor('keyEmailPort');
-
-            setTimeout(() => {
-                expect(formComponent.state.formValidator.getStatusFor('keyEmailPort')).toEqual({
-                    status: FormFieldStatuses.VALIDATING,
-                    messages: [],
-                });
-                done();
-            }, 301);
-        });
-
-        it('should set the state to INVALID when the validators are done running', (done) => {
-            formComponent = renderComponent({ fieldConfigs: [fieldConfig] });
-
-            formComponent.state.formValidator.runFor('keyEmailPort');
-
-            formComponent.state.formValidator.status.subscribe(() => {
-                expect(formComponent.state.formValidator.getStatusFor('keyEmailPort')).toEqual({
-                    status: FormFieldStatuses.INVALID,
-                    messages: ['field_is_required'],
-                });
-                done();
-            });
-        });
-
-        it('should pass the translated error message to the field component', (done) => {
-            function requiredValidator() {
-                return false;
-            }
-            requiredValidator.message = 'field_is_required';
-            fieldConfig.validators.push(requiredValidator);
-
-            formComponent = renderComponent({ fieldConfigs: [fieldConfig] });
-
-            formComponent.state.formValidator.runFor('keyEmailPort');
-
-            formComponent.state.formValidator.status.subscribe(() => {
-                const renderedTextFieldComponents = scryRenderedComponentsWithType(formComponent, FormField)[0];
-
-                expect(renderedTextFieldComponents.props.errorMessage).toBe('field_is_required_translated');
-                done();
-            });
-        });
-
-        it('should run validation for a specific field when the update request is being done', () => {
-            formComponent = renderComponent({ fieldConfigs: [fieldConfig] });
-
-            jest.spyOn(formComponent.state.formValidator, 'runFor');
-
-            const renderedTextFieldComponents = scryRenderedComponentsWithType(formComponent, TextField);
-            const inputDOMNode = React.findDOMNode(renderedTextFieldComponents[0]);
-
-            inputDOMNode.value = '456';
-            Simulate.change(inputDOMNode);
-
-            expect(formComponent.state.formValidator.runFor).toHaveBeenCalledWith('keyEmailPort', '456');
-        });
-    });
 });

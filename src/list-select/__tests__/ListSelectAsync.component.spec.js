@@ -82,6 +82,7 @@ describe('ListSelectAsync component', () => {
         });
 
         it('should log an error when the source emits one', () => {
+            log.error = jest.fn();
             fakeAsyncSource.error('Could not find the source items');
 
             expect(log.error).toHaveBeenCalledWith('Could not find the source items');

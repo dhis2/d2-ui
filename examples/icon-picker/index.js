@@ -1,12 +1,14 @@
 import React from 'react';
 import {render} from 'react-dom';
-import IconPicker from '../../src/icon-picker';
+import PropTypes from 'prop-types';
 import Card from 'material-ui/Card/Card';
 import CardText from 'material-ui/Card/CardText';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
 import injectTapEventPlugin from 'react-tap-event-plugin';
+
+import IconPicker from '../../src/icon-picker/IconPicker.component';
+
 injectTapEventPlugin();
 
 const options = (function () {
@@ -62,7 +64,7 @@ class ExampleWithMockD2 extends React.Component {
     }
 }
 ExampleWithMockD2.childContextTypes = {
-    d2: React.PropTypes.object,
+    d2: PropTypes.object,
 };
 
 function renderIconPicker() {

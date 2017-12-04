@@ -1,37 +1,25 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import log from 'loglevel';
 
-export default React.createClass({
-    propTypes: {
-        children: PropTypes.element,
-        d2: PropTypes.shape({
-            then: PropTypes.func.isRequired,
-        }),
-    },
-
-    childContextTypes: {
-        d2: PropTypes.object,
-    },
-
-    getChildContext() {
-        return {
-            d2: this.state.d2,
-        };
-    },
-
-    getInitialState() {
-        return {};
-    },
+class DataTableHeader extends Component {
+    state = {};
 
     componentDidMount() {
         if (!this.props.d2) {
-            return log.error('D2 is a required prop to <AppWithD2 />');
+            log.error('D2 is a required prop to <AppWithD2 />');
+        } else {
+            this.props.d2
+                .then(d2 => this.setState({ d2 }))
+                .catch(error => log.error(error));
         }
-        this.props.d2
-            .then(d2 => this.setState({ d2 }))
-            .catch(error => log.error(error));
-    },
+    }
+
+    getChildContext = () => {
+        return {
+            d2: this.state.d2,
+        };
+    };
 
     render() {
         const getChildren = () => {
@@ -44,5 +32,18 @@ export default React.createClass({
                 {getChildren()}
             </div>
         );
-    },
-});
+    }
+}
+
+DataTableHeader.propTypes = {
+    children: PropTypes.element,
+    d2: PropTypes.shape({
+        then: PropTypes.func.isRequired,
+    }),
+};
+
+DataTableHeader.childContextTypes = {
+    d2: PropTypes.object,
+};
+
+export default DataTableHeader;
