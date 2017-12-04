@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AddIcon from 'material-ui/svg-icons/content/add';
+import Add from 'material-ui/svg-icons/content/add';
 import ArrowDownward from 'material-ui/svg-icons/navigation/arrow-downward';
 import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
 import ArrowUpward from 'material-ui/svg-icons/navigation/arrow-upward';
@@ -22,7 +22,7 @@ import SentimentDissatisfied from 'material-ui/svg-icons/social/sentiment-dissat
 import MUISvgIcon from 'material-ui/SvgIcon';
 
 const icons = {
-    AddIcon,
+    Add,
     ArrowDownward,
     ArrowDropRight,
     ArrowUpward,
@@ -42,7 +42,7 @@ const icons = {
     VisibilityOff,
 };
 
-const SvgIcon = ({ icon, children, className }) => {
+const SvgIcon = ({ icon, children, className, style }) => {
     let Icon = null;
     if (children && !icons[icon]) {
         Icon = MUISvgIcon;
@@ -50,7 +50,7 @@ const SvgIcon = ({ icon, children, className }) => {
         Icon = icons[icon] || SentimentDissatisfied;
     }
 
-    return <Icon className={className}>{children}</Icon>;
+    return <Icon className={className} style={style}>{children}</Icon>;
 };
 
 SvgIcon.propTypes = {
@@ -68,12 +68,18 @@ SvgIcon.propTypes = {
      * The class name to apply to the component
      */
     className: PropTypes.string,
+
+    /**
+     * Pass inline styles to the root element
+     */
+    style: PropTypes.object,
 };
 
 SvgIcon.defaultProps = {
     icon: '',
     children: null,
     className: '',
+    styles: null,
 };
 
 export default SvgIcon;
