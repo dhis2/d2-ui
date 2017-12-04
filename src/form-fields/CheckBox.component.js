@@ -1,15 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Checkbox from 'material-ui/Checkbox';
 
-
-// TODO: Rewrite as ES6 class
-/* eslint-disable react/prefer-es6-class */
-export default React.createClass({
-    propTypes: {
-        onChange: PropTypes.func.isRequired,
-    },
-
+class CheckBox extends Component {
     render() {
         const {
             errorStyle,
@@ -21,5 +14,11 @@ export default React.createClass({
                 <Checkbox onCheck={this.props.onChange} {...other} />
             </div>
         );
-    },
-});
+    }
+}
+
+CheckBox.propTypes = {
+    onChange: PropTypes.func.isRequired,
+};
+
+export default CheckBox;

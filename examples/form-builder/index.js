@@ -15,7 +15,7 @@ import SelectField from '../../src/form-fields/DropDown.component';
 import TextField from '../../src/form-fields/TextField';
 import DatePicker from '../../src/form-fields/DatePicker.component';
 import FormBuilder from '../../src/forms/FormBuilder.component';
-import { isStartDateBeforeEndDate, isEmptyString } from '../../src/forms/Validators';
+import { isStartDateBeforeEndDate, isRequired } from '../../src/forms/Validators';
 
 injectTapEventPlugin();
 
@@ -59,9 +59,9 @@ class FormExample extends React.Component {
                     changeEvent: 'onBlur',
                 },
                 validators: [{
-                    message: isEmptyString.message,
+                    message: 'The field must have a value',
                     validator(value) {
-                        return isEmptyString(value);
+                        return isRequired(value);
                     },
                 }],
             },
@@ -73,7 +73,7 @@ class FormExample extends React.Component {
                     floatingLabelText: 'Multiline TextField',
                     style: { width: '100%' },
                     hintText: 'Press enter for new line',
-                    // multiLine: true,
+                    multiLine: true,
                     changeEvent: 'onBlur',
                 },
             },

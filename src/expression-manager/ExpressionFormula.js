@@ -1,7 +1,7 @@
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-export default class ExpressionFormula extends Component {
+class ExpressionFormula extends Component {
     render() {
         const textAreaStyle = {
             margin: 0,
@@ -38,3 +38,5 @@ ExpressionFormula.propTypes = {
     onFormulaChange: PropTypes.func.isRequired,
     formula: PropTypes.string,
 };
+
+export default ExpressionFormula;

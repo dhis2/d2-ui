@@ -1,4 +1,5 @@
-import { PropTypes, default as React } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 function Heading(props) {
     const {
@@ -23,10 +24,12 @@ function Heading(props) {
         <tag.type {...other} style={headingStyle}>{children || text}</tag.type>
     );
 }
+
 Heading.propTypes = {
     level: PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
     text: PropTypes.string,
 };
+
 Heading.defaultProps = {
     level: 1,
 };

@@ -1,9 +1,8 @@
 import React from 'react';
+import { render } from 'react-dom';
 import PropTypes from 'prop-types';
-
 import log from 'loglevel';
 import D2Lib from 'd2/lib/d2';
-import { render } from 'react-dom';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';

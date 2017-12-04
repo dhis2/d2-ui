@@ -15,7 +15,7 @@ try {
     // console.warn(`\nWARNING! Failed to load DHIS config:`, e.message);
     // console.info('Using default config');
     dhisConfig = {
-        baseUrl: 'http://localhost:8080/dhis',
+        baseUrl: 'http://localhost:8080',
         authorization: 'Basic YWRtaW46ZGlzdHJpY3Q=', // admin:district
     };
 }
@@ -48,6 +48,7 @@ module.exports = {
             groupeditor: './examples/group-editor',
             periodpicker: './examples/period-picker',
             button: './examples/button',
+            svgicon: './examples/svg-icon',
             textfield: './examples/text-field',
             selectfield: './examples/select-field',
             tabs: './examples/tabs',

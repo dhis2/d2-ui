@@ -20,7 +20,7 @@ function runValidatorFunctions(validatorFunctions, value, formState) {
 /**
  *
  */
-export default class AsyncValidatorRunner {
+class AsyncValidatorRunner {
     /**
      *
      * @param {Rx.Scheduler} [scheduler] Optional scheduler to be used for the Rx methods that can accept one.
@@ -90,3 +90,5 @@ export default class AsyncValidatorRunner {
         return new AsyncValidatorRunner(scheduler);
     }
 }
+
+export default AsyncValidatorRunner;

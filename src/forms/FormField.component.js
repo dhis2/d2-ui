@@ -1,9 +1,9 @@
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import React from 'react';
 import classes from 'classnames';
 import LinearProgress from 'material-ui/LinearProgress';
 
-const emptyComponent = React.createClass({ render() { return null; } });
+const emptyComponent = () => {};
 
 /**
  * Is required to be a direct child of the `Form.component`
@@ -16,32 +16,10 @@ const emptyComponent = React.createClass({ render() { return null; } });
  * The field fires an update request for the value by calling `onChange` by default but it is optional to set the update event to `onBlur`.
  * Pass the string `onBlur` to `updateEvent` to update the `<Form>` component on blur.
  */
-const FormField = React.createClass({  // eslint-disable-line react/no-multi-comp
-    propTypes: {
-        type: PropTypes.func.isRequired,
-        isValid: PropTypes.bool.isRequired,
-        errorMessage: PropTypes.string,
-        fieldOptions: PropTypes.shape({
-            helpText: PropTypes.string,
-            dynamicHelpText: PropTypes.bool,
-        }).isRequired,
-        value: PropTypes.any,
-        updateFn: PropTypes.func.isRequired,
-        updateEvent: PropTypes.oneOf(['onChange', 'onBlur']),
-        isValidating: PropTypes.bool,
-        isRequired: PropTypes.bool,
-    },
-
-    getDefaultProps() {
-        return {
-            type: emptyComponent,
-            validators: [],
-        };
-    },
-
-    getInitialState() {
-        return { isFocused: false };
-    },
+class FormField extends Component {  // eslint-disable-line react/no-multi-comp
+    state = {
+        isFocused: false
+    };
 
     renderHelpText() {
         if ((!this.props.fieldOptions || !this.props.fieldOptions.helpText) || this.props.errorMessage) {
@@ -69,16 +47,16 @@ const FormField = React.createClass({  // eslint-disable-line react/no-multi-com
                 <div style={helpStyle}>{helpText}</div>
             </div>
         );
-    },
+    }
 
     render() {
         const classList = classes('form-field');
 
         let onChangeFn = this.props.updateFn;
-        let onBlurFn = this._blur;
+        let onBlurFn = this.onBlur;
         if (this.props.updateEvent === 'onBlur') {
             onBlurFn = (e) => {
-                this._blur(e);
+                this.onBlur(e);
                 if (e.target.value !== (this.props.value ? this.props.value : '')) {
                     this.props.updateFn(e);
                 }
@@ -93,7 +71,7 @@ const FormField = React.createClass({  // eslint-disable-line react/no-multi-com
                     defaultValue={this.props.value}
                     onChange={onChangeFn}
                     onBlur={onBlurFn}
-                    onFocus={this._focus}
+                    onFocus={this.onFocus}
                     isRequired={this.props.isRequired}
                     {...this.props.fieldOptions}
                 />
@@ -101,15 +79,35 @@ const FormField = React.createClass({  // eslint-disable-line react/no-multi-com
                 {this.props.isValidating ? <LinearProgress mode="indeterminate" /> : null}
             </div>
         );
-    },
+    }
 
-    _focus() {
+    onFocus() {
         this.setState({ isFocused: true });
-    },
+    }
 
-    _blur() {
+    onBlur() {
         this.setState({ isFocused: false });
-    },
-});
+    }
+}
+
+FormField.propTypes = {
+    type: PropTypes.func.isRequired,
+    isValid: PropTypes.bool.isRequired,
+    errorMessage: PropTypes.string,
+    fieldOptions: PropTypes.shape({
+        helpText: PropTypes.string,
+        dynamicHelpText: PropTypes.bool,
+    }).isRequired,
+    value: PropTypes.any,
+    updateFn: PropTypes.func.isRequired,
+    updateEvent: PropTypes.oneOf(['onChange', 'onBlur']),
+    isValidating: PropTypes.bool,
+    isRequired: PropTypes.bool,
+};
+
+FormField.defaultProps = {
+    type: emptyComponent,
+    validators: [],
+};
 
 export default FormField;

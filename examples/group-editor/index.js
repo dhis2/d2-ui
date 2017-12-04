@@ -5,14 +5,12 @@ import ReactDOM from 'react-dom';
 import { Card, CardText } from 'material-ui/Card';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
 import injectTapEventPlugin from 'react-tap-event-plugin';
-injectTapEventPlugin();
-
 import D2Lib from 'd2/lib/d2';
 import Store from '../../src/store/Store';
 import GroupEditor from '../../src/group-editor/GroupEditor.component';
 
+injectTapEventPlugin();
 const itemStore = Store.create();
 const assignedItemStore = Store.create();
 
@@ -21,6 +19,25 @@ const dhisDevConfig = DHIS_CONFIG;
 const baseUrl = `${dhisDevConfig.baseUrl}/api`;
 
 class GroupEditorExample extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            filterText: '',
+        };
+
+        this.props.d2.i18n.translations['assign_all'] = 'Assign all';
+        this.props.d2.i18n.translations['hidden_by_filters'] = 'Hidden by filters';
+
+        this.filterChange = this.filterChange.bind(this);
+    }
+
+    getChildContext() {
+        return {
+            d2: this.props.d2,
+        };
+    }
+
     styles = {
         card: {
             margin: 16,
@@ -37,25 +54,6 @@ class GroupEditorExample extends React.Component {
             borderBottom: '1px solid #eeeeee',
         },
     };
-
-    getChildContext() {
-        return {
-            d2: this.props.d2
-        };
-    }
-
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            filterText: '',
-        };
-
-        this.props.d2.i18n.translations['assign_all'] = 'Assign all';
-        this.props.d2.i18n.translations['hidden_by_filters'] = 'Hidden by filters';
-
-        this.filterChange = this.filterChange.bind(this);
-    }
 
     static addItem() {
         if (!itemStore.state) {
@@ -140,15 +138,15 @@ class GroupEditorExample extends React.Component {
                         <h3 style={this.styles.cardHeader}>Data controls</h3>
                         <button onClick={GroupEditorExample.addItem}>+ Item</button>
                         <button onClick={GroupEditorExample.removeItem}>- Item</button>
-                        <br/>
+                        <br />
                         <button onClick={GroupEditorExample.addAssignedItem}>+ Assigned</button>
                         <button onClick={GroupEditorExample.removeAssignedItem}>- Assigned</button>
-                        <br/>
+                        <br />
                         <button onClick={GroupEditorExample.stopLoading}>Stop loading</button>
                         <button onClick={GroupEditorExample.startLoading}>Start loading</button>
-                        <br/>
+                        <br />
                         <label>Filter: <input onChange={this.filterChange} value={this.state.filterText} /></label>
-                        <br/>
+                        <br />
                         <button onClick={this.filterChange.bind(this, { target: { value: '' }})}>Clear filter</button>
                     </CardText>
                 </Card>
@@ -178,8 +176,7 @@ ReactDOM.render(<div>Initializing...</div>, el);
 
 D2Lib.config.baseUrl = baseUrl;
 D2Lib.init({ baseUrl })
-    .then(d2 => ReactDOM.render(<GroupEditorExample d2={d2}/>, el)
-    )
+    .then(d2 => ReactDOM.render(<GroupEditorExample d2={d2} />, el))
     .catch(err => {
         console.error(err);
         ReactDOM.render(<div>Fail!</div>, el)

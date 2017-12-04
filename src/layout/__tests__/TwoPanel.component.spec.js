@@ -35,9 +35,11 @@ describe('<TwoPanel />', () => {
         let childComponents;
 
         beforeEach(() => {
+            log.warn = jest.fn();
+
             childComponents = [
-                <div name="leftBar" />,
-                <div name="content" />,
+                <div key="a" name="leftBar" />,
+                <div key="b" name="content" />,
             ];
 
             component = shallow(<TwoPanel>{childComponents}</TwoPanel>);
@@ -86,9 +88,9 @@ describe('<TwoPanel />', () => {
         it('should only render two children even when more are passed', () => {
             component = shallow(
                 <TwoPanel>
-                    <div />
-                    <div />
-                    <div />
+                    <div key="a" />
+                    <div key="b" />
+                    <div key="c" />
                 </TwoPanel>,
             );
 
@@ -98,7 +100,7 @@ describe('<TwoPanel />', () => {
 
     describe('a warning', () => {
         beforeEach(() => {
-            jest.spyOn(log, 'warn');
+            log.warn = jest.fn();
         });
 
         afterEach(() => {
@@ -118,9 +120,9 @@ describe('<TwoPanel />', () => {
         it('should be logged when more than two children have been passed', () => {
             component = shallow(
                 <TwoPanel>
-                    <div />
-                    <div />
-                    <div />
+                    <div key="a" />
+                    <div key="b" />
+                    <div key="c" />
                 </TwoPanel>,
             );
 
@@ -130,8 +132,8 @@ describe('<TwoPanel />', () => {
         it('should not be logged when exactly two children are passed', () => {
             component = shallow(
                 <TwoPanel>
-                    <div />
-                    <div />
+                    <div key="a" />
+                    <div key="b" />
                 </TwoPanel>,
             );
 

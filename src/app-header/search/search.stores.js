@@ -21,7 +21,7 @@ const searchResultBoxStateStore$ = Store.create({
             selected: 0,
             searchResults: [],
         };
-    },
+    }
 });
 
 const getParentApp = get('parentApp');

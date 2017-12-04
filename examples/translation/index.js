@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { render } from 'react-dom';
+import PropTypes from 'prop-types';
 import TranslationDialog from '../../src/i18n/TranslationDialog.component';
 import { init, config } from 'd2/lib/d2';
 
