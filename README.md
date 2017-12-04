@@ -1,5 +1,7 @@
 # d2-ui
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/dhis2/d2-ui.svg)](https://greenkeeper.io/)
+
 [![Build Status](https://travis-ci.org/dhis2/d2-ui.svg)](https://travis-ci.org/dhis2/d2-ui)
 [![Test Coverage](https://codeclimate.com/github/dhis2/d2-ui/badges/coverage.svg)](https://codeclimate.com/github/dhis2/d2-ui/coverage)
 [![Code Climate](https://codeclimate.com/github/dhis2/d2-ui/badges/gpa.svg)](https://codeclimate.com/github/dhis2/d2-ui)
