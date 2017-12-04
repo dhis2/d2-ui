@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import AddIcon from 'material-ui/svg-icons/content/add';
 import ArrowDownward from 'material-ui/svg-icons/navigation/arrow-downward';
 import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
 import ArrowUpward from 'material-ui/svg-icons/navigation/arrow-upward';
@@ -21,6 +22,7 @@ import SentimentDissatisfied from 'material-ui/svg-icons/social/sentiment-dissat
 import MUISvgIcon from 'material-ui/SvgIcon';
 
 const icons = {
+    AddIcon,
     ArrowDownward,
     ArrowDropRight,
     ArrowUpward,
