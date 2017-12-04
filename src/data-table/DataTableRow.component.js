@@ -1,4 +1,5 @@
-import React, { isValidElement } from 'react';
+import React, { Component, isValidElement } from 'react';
+import PropTypes from 'prop-types';
 import classes from 'classnames';
 import { isObject } from 'lodash/fp';
 import { isString } from 'lodash/fp';
@@ -11,15 +12,19 @@ function getD2ModelValueType(dataSource, columnName) {
     return dataSource && dataSource.modelDefinition && dataSource.modelDefinition.modelValidations && dataSource.modelDefinition.modelValidations[columnName] && dataSource.modelDefinition.modelValidations[columnName].type;
 }
 
-const DataTableRow = addD2Context(React.createClass({
-    propTypes: {
-        columns: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
-        dataSource: React.PropTypes.object,
-        isEven: React.PropTypes.bool,
-        isOdd: React.PropTypes.bool,
-        itemClicked: React.PropTypes.func.isRequired,
-        primaryClick: React.PropTypes.func.isRequired,
-    },
+const DataTableRow = addD2Context(class extends Component {
+    iconMenuClick = (event) => {
+        this.props.itemClicked(event, this.props.dataSource);
+    };
+
+    handleContextClick = (event) => {
+        event && event.preventDefault();
+        this.props.itemClicked(event, this.props.dataSource);
+    };
+
+    handleClick = (event) => {
+        this.props.primaryClick(this.props.dataSource, event);
+    };
 
     render() {
         const classList = classes(
@@ -59,20 +64,16 @@ const DataTableRow = addD2Context(React.createClass({
                 </div>
             </div>
         );
-    },
+    }
+});
 
-    iconMenuClick(event) {
-        this.props.itemClicked(event, this.props.dataSource);
-    },
-
-    handleContextClick(event) {
-        event && event.preventDefault();
-        this.props.itemClicked(event, this.props.dataSource);
-    },
-
-    handleClick(event) {
-        this.props.primaryClick(this.props.dataSource, event);
-    },
-}));
+DataTableRow.propTypes = {
+    columns: PropTypes.arrayOf(PropTypes.string).isRequired,
+    dataSource: PropTypes.object,
+    isEven: PropTypes.bool,
+    isOdd: PropTypes.bool,
+    itemClicked: PropTypes.func.isRequired,
+    primaryClick: PropTypes.func.isRequired,
+};
 
 export default DataTableRow;

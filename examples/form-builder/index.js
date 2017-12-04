@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
+import PropTypes from 'prop-types';
 import log from 'loglevel';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -119,7 +120,7 @@ class FormExample extends React.Component {
 }
 
 FormExample.childContextTypes = {
-    d2: React.PropTypes.object,
+    d2: PropTypes.object,
 };
 
 render(

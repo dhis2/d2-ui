@@ -7,9 +7,15 @@ import { getStubContext } from '../../../config/inject-theme';
 import Button from '../Button';
 
 describe('Button', () => {
-    const renderWithProps = props => shallow(<Button {...props} />, {
-        context: getStubContext(),
-    });
+    const renderWithProps = props => {
+        const nops = {
+            onClick: () => {},
+            ...props,
+        };
+        return shallow(<Button {...nops}>label</Button>, {
+            context: getStubContext(),
+        });
+    };
 
     it('should render a FlatButton when no state is passed', () => {
         expect(renderWithProps({}).type()).toBe(FlatButton);
@@ -23,8 +29,25 @@ describe('Button', () => {
         expect(renderWithProps({ fab: true }).type()).toBe(FloatingActionButton);
     });
 
+    it('should set primary property to true when color=primary is passed', () => {
+        expect(renderWithProps({ color: 'primary' }).props().primary).toBeTruthy();
+    });
+
+    it('should set secondary property to true when color=accent is passed', () => {
+        expect(renderWithProps({ color: 'accent' }).props().secondary).toBeTruthy();
+    });
+
+    it('should add a class name', () => {
+        expect(renderWithProps({}).props().className).toMatch('d2-ui-button');
+    });
+
+    it('should add a custom class name when a selector is passed', () => {
+        expect(renderWithProps({ selector: 'my-button' }).props().className).toMatch('d2-ui-button-my-button');
+    });
+
     it('should render button text as a label property', () => {
-        const component = shallow(<Button>Label</Button>, {
+        const noop = () => {};
+        const component = shallow(<Button onClick={noop}>Label</Button>, {
             context: getStubContext(),
         });
 
@@ -32,20 +55,17 @@ describe('Button', () => {
     });
 
     it('should render child nodes inside button', () => {
-        const component = shallow(<Button><div>Label</div></Button>, {
+        const noop = () => {};
+        const component = shallow(<Button onClick={noop}><div>Label</div></Button>, {
             context: getStubContext(),
         });
 
         expect(component.children().contains(<div>Label</div>)).toBe(true);
     });
 
-    it('should call the onClick action when clicking the Button', () => {
-        const clickSpy = jest.fn();
+    it('should pass on the onClick handler to MUI onClick property', () => {
+        const onClick = jest.fn();
 
-        const component = shallow(<Button onClick={clickSpy}>Label</Button>, {
-            context: getStubContext(),
-        });
-
-        expect(component.props().onTouchTap).toEqual(clickSpy);
+        expect(renderWithProps({ onClick: onClick }).props().onClick).toEqual(onClick);
     });
 });

@@ -41,12 +41,12 @@ export function EditLegendItem({ fieldConfigs = [], open = false, onItemUpdate, 
         <FlatButton
             label={d2.i18n.getTranslation('cancel')}
             secondary
-            onTouchTap={onCancel}
+            onClick={onCancel}
         />,
         <FlatButton
             label={d2.i18n.getTranslation('ok')}
             primary
-            onTouchTap={onClose}
+            onClick={onClose}
             disabled={isCloseDisabled(isValid)}
         />,
     ];
