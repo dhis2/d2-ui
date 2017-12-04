@@ -40,6 +40,10 @@ const icons = (
                 <SvgIcon>{children}</SvgIcon>
             </div>
             <div style={cardStyle}>
+                <h3>Disabled icon</h3>
+                <SvgIcon icon={'Star'} disabled />
+            </div>
+            <div style={cardStyle}>
                 <h3>Star, also with className prop</h3>
                 <SvgIcon icon={'Star'} className="my-starry-icon" />
             </div>

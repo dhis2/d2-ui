@@ -20,6 +20,8 @@ import Visibility from 'material-ui/svg-icons/action/visibility';
 import VisibilityOff from 'material-ui/svg-icons/action/visibility-off';
 import SentimentDissatisfied from 'material-ui/svg-icons/social/sentiment-dissatisfied';
 import MUISvgIcon from 'material-ui/SvgIcon';
+import { grey600, grey200 } from 'material-ui/styles/colors';
+
 
 const icons = {
     Add,
@@ -42,7 +44,7 @@ const icons = {
     VisibilityOff,
 };
 
-const SvgIcon = ({ icon, children, className, style }) => {
+const SvgIcon = ({ icon, children, className, disabled, style }) => {
     let Icon = null;
     if (children && !icons[icon]) {
         Icon = MUISvgIcon;
@@ -50,7 +52,17 @@ const SvgIcon = ({ icon, children, className, style }) => {
         Icon = icons[icon] || SentimentDissatisfied;
     }
 
-    return <Icon className={className} style={style}>{children}</Icon>;
+    return (
+        <Icon
+            className={className}
+            style={{
+                ...style,
+                fill: style.fill || (disabled ? grey200 : grey600),
+            }}
+        >
+            {children}
+        </Icon>
+    );
 };
 
 SvgIcon.propTypes = {
@@ -70,6 +82,16 @@ SvgIcon.propTypes = {
     className: PropTypes.string,
 
     /**
+     * Whether icon should have a disabled look
+     */
+    disabled: PropTypes.bool,
+
+    /**
+     * The color of the icon
+     */
+    color: PropTypes.string,
+
+    /**
      * Pass inline styles to the root element
      */
     style: PropTypes.object,
@@ -79,7 +101,8 @@ SvgIcon.defaultProps = {
     icon: '',
     children: null,
     className: '',
-    styles: null,
+    disabled: false,
+    style: {},
 };
 
 export default SvgIcon;

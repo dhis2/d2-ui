@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import SvgIcon from '../SvgIcon';
+import { grey600, grey200 } from 'material-ui/styles/colors';
 
 describe('SvgIcon', () => {
     const icon = props => shallow(<SvgIcon {...props} />);
@@ -20,6 +21,27 @@ describe('SvgIcon', () => {
         const customIcon = shallow(<SvgIcon>{children}</SvgIcon>);
 
         expect(customIcon.find('SvgIcon').length).toBe(1);
+    });
+
+    it('should set a default color for the icon', () => {
+        const props = { icon: 'Star' };
+        const el = icon(props).find('ToggleStar');
+
+        expect(el.props().style.fill).toEqual(grey600);
+    });
+
+    it('should set a default disabled color for the icon', () => {
+        const props = { icon: 'Star', disabled: true };
+        const el = icon(props).find('ToggleStar');
+
+        expect(el.props().style.fill).toEqual(grey200);
+    });
+
+    it('should not set default color if fill color is passed in style', () => {
+        const props = { icon: 'Star', disabled: true, style: { fill: 'red' } };
+        const el = icon(props).find('ToggleStar');
+
+        expect(el.props().style.fill).toEqual('red');
     });
 
     it('should not pass the "color" property on to the material-ui icon', () => {
@@ -43,7 +65,7 @@ describe('SvgIcon', () => {
         expect(el.props()).toHaveProperty('className');
     });
 
-    it('should not pass the "style" property on to the material-ui icon', () => {
+    it('should pass the "style" property on to the material-ui icon', () => {
         const props = {
             icon: 'Star',
             style: {
@@ -52,6 +74,6 @@ describe('SvgIcon', () => {
         };
         const el = icon(props).find('ToggleStar');
 
-        expect(el.props()).not.toHaveProperty('style');
+        expect(el.props()).toHaveProperty('style');
     });
 });
