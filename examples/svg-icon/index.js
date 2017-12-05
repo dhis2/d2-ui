@@ -44,6 +44,10 @@ const icons = (
                 <SvgIcon icon={'Star'} disabled />
             </div>
             <div style={cardStyle}>
+                <h3>Icon color</h3>
+                <SvgIcon icon={'Star'} style={{ fill: 'red' }} />
+            </div>
+            <div style={cardStyle}>
                 <h3>Star, also with className prop</h3>
                 <SvgIcon icon={'Star'} className="my-starry-icon" />
             </div>
