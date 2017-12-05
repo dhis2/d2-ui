@@ -69,5 +69,8 @@
   "pre-commit": [
     "validate",
     "test"
-  ]
+  ],
+  "dependencies": {
+    "recompose": "^0.26.0"
+  }
 }

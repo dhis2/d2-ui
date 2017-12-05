@@ -8,69 +8,27 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Sharing from './Sharing.component';
 import LoadingMask from '../loading-mask/LoadingMask.component';
+import {
+    transformAccessObject,
+    transformObjectStructure,
+    restoreObjectStructure,
+} from './utils';
 
 config.i18n.strings.add('share');
 config.i18n.strings.add('close');
 config.i18n.strings.add('no_manage_access');
 
-function cachedAccessTypeToString(canView, canEdit) {
-    if (canView) {
-        return canEdit
-            ? 'rw------'
-            : 'r-------';
-    }
-
-    return '--------';
-}
-
-function transformAccessObject(access, type) {
-    return {
-        id: access.id,
-        name: access.name,
-        displayName: access.displayName,
-        type,
-        canView: access.access && access.access.includes('r'),
-        canEdit: access.access && access.access.includes('rw'),
-    };
-}
-
-function transformObjectStructure(apiMeta, apiObject) {
-    const userGroupAccesses = !apiObject.userGroupAccesses ? [] : apiObject.userGroupAccesses.map(
-        access => transformAccessObject(access, 'userGroup'));
-
-    const userAccesses = !apiObject.userAccesses ? [] : apiObject.userAccesses.map(
-        access => transformAccessObject(access, 'user'));
-
-    const combinedAccesses = userGroupAccesses.concat(userAccesses);
-    const authorOfSharableItem = apiObject.user && {
-        id: apiObject.user.id,
-        name: apiObject.user.name,
-    };
-
-    return {
-        authorOfSharableItem,
-        nameOfSharableItem: apiObject.name,
-        canSetPublicAccess: apiMeta.allowPublicAccess,
-        canSetExternalAccess: apiMeta.allowExternalAccess,
-        publicCanView: apiObject.publicAccess.includes('r'),
-        publicCanEdit: apiObject.publicAccess.includes('rw'),
-        isSharedExternally: apiObject.externalAccess,
-        accesses: combinedAccesses,
-    };
-}
-
 /**
  * A pop-up dialog for changing sharing preferences for a sharable object.
  */
 class SharingDialog extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            accessForbidden: false,
-            apiObject: null,
-            objectToShare: null,
-        };
+    state = {
+        accessForbidden: false,
+        apiObject: null,
+        objectToShare: null,
+    };
 
+    componentDidMount() {
         if (this.props.open) {
             this.loadObjectFromApi();
         }
@@ -111,7 +69,7 @@ class SharingDialog extends React.Component {
             ...updatedAttributes,
         };
 
-        const apiObject = this.restoreObjectStructure(objectToShare);
+        const apiObject = restoreObjectStructure(objectToShare, this.state.apiObject);
 
         return this.state.api.post(`sharing?type=${this.props.type}&id=${this.props.id}`, apiObject)
             .then(({ httpStatus, message }) => {
@@ -152,41 +110,6 @@ class SharingDialog extends React.Component {
                     });
                 });
         });
-    }
-
-    restoreObjectStructure(transformedObject) {
-        const userAccesses = [];
-        const userGroupAccesses = [];
-
-        transformedObject.accesses.forEach((access) => {
-            const apiAccess = {
-                id: access.id,
-                name: access.name,
-                displayName: access.name,
-                access: cachedAccessTypeToString(access.canView, access.canEdit),
-            };
-
-            if (access.type === 'user') {
-                userAccesses.push(apiAccess);
-            } else {
-                userGroupAccesses.push(apiAccess);
-            }
-        });
-
-        return {
-            meta: this.state.apiObject.meta,
-            object: {
-                ...this.state.apiObject.object,
-                userAccesses,
-                userGroupAccesses,
-
-                publicAccess: cachedAccessTypeToString(
-                    transformedObject.publicCanView,
-                    transformedObject.publicCanEdit,
-                ),
-                externalAccess: transformedObject.isSharedExternally,
-            },
-        };
     }
 
     closeSharingDialog = () => {

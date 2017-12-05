@@ -36,6 +36,20 @@ class Sharing extends React.Component {
         this.accessList = null;
     }
 
+    onAccessRulesChanged = id => ({ canView, canEdit }) => {
+        const accesses = [...this.props.accesses].map(accessRule => (
+            accessRule.id === id ? {
+                ...accessRule, canView, canEdit } : accessRule
+        ));
+
+        this.props.onSharingChanged({ accesses });
+    }
+
+    onUserGroupAccessRemove = userGroupId => () => {
+        const accesses = [...this.props.accesses].filter(userGroup => userGroup.id !== userGroupId);
+        this.props.onSharingChanged({ accesses });
+    }
+
     setAccessListRef = (ref) => {
         this.accessList = ref;
     }
@@ -51,24 +65,11 @@ class Sharing extends React.Component {
         this.props.onSharingChanged({ isSharedExternally: canView });
     }
 
-    accessRulesChanged = (id, canView, canEdit) => {
-        const accesses = [...this.props.accesses].map(accessRule => (
-            accessRule.id === id ? { ...accessRule, canView, canEdit } : accessRule
-        ));
-
-        this.props.onSharingChanged({ accesses });
-    }
-
     addUserGroupAccess = (userGroup) => {
         const accesses = [...this.props.accesses, userGroup];
         this.props.onSharingChanged({ accesses }, () => {
             this.scrollAccessListToBottom();
         });
-    }
-
-    removeUserGroupAccess = (userGroupId) => {
-        const accesses = [...this.props.accesses].filter(userGroup => userGroup.id !== userGroupId);
-        this.props.onSharingChanged({ accesses });
     }
 
     scrollAccessListToBottom = () => {
@@ -104,15 +105,8 @@ class Sharing extends React.Component {
                                 groupType={accessRules.type}
                                 canView={accessRules.canView}
                                 canEdit={accessRules.canEdit}
-
-                                // eslint-disable-next-line
-                                onRemove={() => { this.removeUserGroupAccess(accessRules.id); }}
-
-                                // eslint-disable-next-line
-                                onChange={(newAccessRules) => {
-                                    this.accessRulesChanged(accessRules.id, newAccessRules.canView,
-                                        newAccessRules.canEdit);
-                                }}
+                                onRemove={this.onUserGroupAccessRemove(accessRules.id)}
+                                onChange={this.onAccessRulesChanged(accessRules.id)}
                             />
                             <Divider />
                         </div>),

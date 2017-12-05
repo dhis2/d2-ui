@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { config } from 'd2/lib/d2';
 import AutoComplete from 'material-ui/AutoComplete';
 import PermissionPicker from './PermissionPicker.component';
+import { Subject, Observable } from 'rxjs';
 
 config.i18n.strings.add('add_users_and_user_groups');
 config.i18n.strings.add('enter_names');
@@ -37,33 +38,34 @@ const styles = {
     },
 };
 
-function debounce(inner, ms = 0) {
-    let timer = null;
-    let resolves = [];
-
-    return (...args) => {
-        clearTimeout(timer);
-        timer = setTimeout(() => {
-            const result = inner(...args);
-            resolves.forEach(r => r(result));
-            resolves = [];
-        }, ms);
-
-        return new Promise(r => resolves.push(r));
-    };
-}
+const searchDelay = 300;
 
 class UserSearch extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            initialViewAccess: true,
-            initialEditAccess: true,
-            searchText: '',
-            searchResult: [],
-        };
+    state = {
+        initialViewAccess: true,
+        initialEditAccess: true,
+        searchText: '',
+        searchResult: [],
+    };
 
-        this.debouncedSearch = debounce(this.fetchSearchResult.bind(this), 300);
+    inputStream = new Subject();
+
+    componentWillMount() {
+        this.inputStream
+            .debounce(() => Observable.timer(searchDelay))
+            .subscribe(searchText => {
+                this.fetchSearchResult(searchText);
+            });
+    }
+
+    fetchSearchResult = searchText => {
+        searchText === ''
+            ? this.setState({ searchResult: [] })
+            : this.props.onSearch(searchText).then(result => {
+                const alreadyInAccessList = res => !this.props.currentAccesses.some(access => access.id === res.id);
+                const searchResult = result.filter(alreadyInAccessList);
+                this.setState({ searchResult });
+            });
     }
 
     accessOptionsChanged = ({ canView, canEdit }) => {
@@ -71,19 +73,6 @@ class UserSearch extends Component {
             initialViewAccess: canView,
             initialEditAccess: canEdit,
         });
-    }
-
-    fetchSearchResult(searchText) {
-        if (searchText === '') {
-            this.setState({ searchResult: [] });
-        } else {
-            this.props.onSearch(searchText)
-                .then((searchResult) => {
-                    const noDuplicates = searchResult.filter(
-                        result => !this.props.currentAccesses.some(access => access.id === result.id));
-                    this.setState({ searchResult: noDuplicates });
-                });
-        }
     }
 
     groupWasSelected = (chosenRequest, index) => {
@@ -99,7 +88,7 @@ class UserSearch extends Component {
 
     handleUpdateInput = (searchText) => {
         this.setState({ searchText });
-        this.debouncedSearch(searchText);
+        this.inputStream.next(searchText);
     }
 
     generousFilter = () => true;
