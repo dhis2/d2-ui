@@ -33,10 +33,12 @@ class Popover extends Component {
         children: PropTypes.node,
         footer: PropTypes.node,
         className: PropTypes.string,
+        open: PropTypes.bool,
     };
 
     static defaultProps = {
         anchorEl: {},
+        open: false,
         header: '',
         children: '',
         footer: '',
@@ -53,6 +55,10 @@ class Popover extends Component {
         open: false,
         anchorEl: this.props.anchorEl || null,
     };
+
+    componentWillReceiveProps = (nextProps) => {
+        this.setState({ open: nextProps.open });
+    }
 
     handleOpen = (event) => {
         event.preventDefault();
