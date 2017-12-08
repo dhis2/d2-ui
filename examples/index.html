@@ -38,20 +38,37 @@
             margin: 16px;
             min-width: 200px;
         }
+
+        .data {
+            background: repeating-linear-gradient(
+                -45deg,
+                black, black 10px,
+                yellow 10px, yellow 20px
+            );
+            border-radius: 5px;
+        }
+
+        .data a {
+            background: white;
+            width: 100%;
+            height: 100%;
+            display: block;
+            padding: 13px;
+            margin: -13px;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
 <h1>D2-UI Examples</h1>
 <hr/>
-<section>
-    <h2>Pure UI components</h2>
     <div class="card">
         <a href="siderbar.html">SiderBar component</a>
     </div>
     <div class="card">
         <a href="tree-view.html">TreeView component</a>
     </div>
-    <div class="card">
+    <div class="card data">
         <a href="icon-picker.html">IconPicker component</a>
     </div>
     <div class="card">
