@@ -25,7 +25,7 @@ export const appTheme = {
 
 /* istanbul ignore next */
 export function getStubContext() {
-    const injectedTheme = appTheme || getMuiTheme(appTheme);
+    const injectedTheme = Object.assign({}, getMuiTheme(appTheme), appTheme);
     return {
         muiTheme: injectedTheme,
         d2: {
