@@ -4,9 +4,14 @@ import Checkbox from 'material-ui/Checkbox';
 
 class CheckBox extends Component {
     render() {
+        const {
+            errorStyle,
+            errorText,
+            ...other
+        } = this.props;
         return (
             <div style={{ marginTop: 12, marginBottom: 12 }}>
-                <Checkbox onCheck={this.props.onChange} {...this.props} />
+                <Checkbox onCheck={this.props.onChange} {...other} />
             </div>
         );
     }

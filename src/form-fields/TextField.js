@@ -3,9 +3,13 @@ import PropTypes from 'prop-types';
 import MuiTextField from 'material-ui/TextField';
 
 class TextField extends Component {
-    state = {
-        value: this.props.value,
-    };
+    constructor(props) {
+        super(props);
+        this.change = this.change.bind(this);
+        this.state = {
+            value: this.props.value,
+        };
+    }
 
     componentWillReceiveProps(props) {
         this.setState({ value: props.value });
@@ -16,13 +20,18 @@ class TextField extends Component {
     }
 
     render() {
+        const {
+            changeEvent,
+            ...other
+        } = this.props;
+
         const errorStyle = {
             lineHeight: this.props.multiLine ? '48px' : '12px',
             marginTop: this.props.multiLine ? -16 : 0,
         };
 
         return (
-            <MuiTextField errorStyle={errorStyle} {...this.props} value={this.state.value} onChange={this.change} />
+            <MuiTextField errorStyle={errorStyle} {...other} value={this.state.value} onChange={this.change} />
         );
     }
 }
@@ -30,6 +39,11 @@ class TextField extends Component {
 TextField.propTypes = {
     value: PropTypes.string,
     multiLine: PropTypes.bool,
+};
+
+TextField.defaultProps = {
+    value: '',
+    multiLine: false,
 };
 
 export default TextField;

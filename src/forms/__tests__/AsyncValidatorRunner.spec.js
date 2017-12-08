@@ -1,3 +1,7 @@
+/**
+ * @jest-environment node
+ */
+
 import { Subject, TestScheduler } from 'rxjs';
 import isEqual from 'lodash/isEqual';
 import AsyncValidatorRunner from '../AsyncValidatorRunner';
@@ -126,7 +130,6 @@ describe('AsyncValidatorRunner', () => {
                     },
                     e => done(e),
                 );
-
             asyncCold('---a--|', { a: 'Zoe' })
                 .subscribe(name => asyncValidatorRunner.run('name', asyncValidators, name));
 
@@ -171,18 +174,18 @@ describe('AsyncValidatorRunner', () => {
                 jest.fn(),
                 jest.fn(),
             ];
+            const formState = {};
 
-            asyncValidatorRunner.listenToValidatorsFor('name')
+            asyncValidatorRunner.listenToValidatorsFor('name', formState)
                 .subscribe(
                     () => {
-                        expect(nameValidators[0]).toBeCalledWith('Zoe');
-                        expect(nameValidators[1]).toBeCalledWith('Zoe');
-                        expect(nameValidators[2]).toBeCalledWith('Zoe');
+                        expect(nameValidators[0]).toHaveBeenCalledWith('Zoe', {});
+                        expect(nameValidators[1]).toHaveBeenCalledWith('Zoe', {});
+                        expect(nameValidators[2]).toHaveBeenCalledWith('Zoe', {});
                         done();
                     },
-                    e => done(e),
+                    e => done.fail(e),
                 );
-
             asyncCold('---a--|', { a: 'Zoe' })
                 .subscribe(name => asyncValidatorRunner.run('name', nameValidators, name));
 

@@ -99,7 +99,6 @@ class TreeView extends React.Component {
 
 // TODO: Documentation
 TreeView.propTypes = {
-    label: PropTypes.node.isRequired,
     children: PropTypes.node,
     persistent: PropTypes.bool,
     initiallyExpanded: PropTypes.bool,

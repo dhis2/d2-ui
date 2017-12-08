@@ -135,7 +135,7 @@ describe('FormBuilder component', () => {
 
                 textField.props().onChange({ target: { value: 'John1' } });
 
-                expect(fields[0].validators[0].validator).toHaveBeenCalledWith('John1');
+                expect(fields[0].validators[0].validator).toHaveBeenCalledWith('John1', expect.any(Object));
             });
 
             it('should emit the value of the field from the form', () => {
@@ -151,7 +151,7 @@ describe('FormBuilder component', () => {
 
                 textField.props().onChange({ target: { value: '' } });
 
-                expect(fields[0].validators[0].validator).toHaveBeenCalledWith('');
+                expect(fields[0].validators[0].validator).toHaveBeenCalledWith('', expect.any(Object));
             });
 
             it('should still emit the value from the form when it is invalid', () => {
