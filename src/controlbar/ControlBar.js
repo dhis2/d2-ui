@@ -49,8 +49,8 @@ const editModeBackgroundRGB = '255,249,196';
 
 
 /**
- * The ControlBar component can be used to put an expandable horizontal bar underneath the DHIS header bar, and is well
- * suited for UI elements that apply to the entire screen of the app.
+ * The ControlBar component can be used to put an expandable horizontal bar underneath the DHIS header bar, useful for
+ * UI elements that apply to the entire screen.
  */
 class ControlBar extends React.Component {
     constructor(props) {
