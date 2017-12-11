@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import List from 'material-ui/List/List';
 import ListItem from 'material-ui/List/ListItem';
 import TextField from 'material-ui/TextField';
 import FontIcon from 'material-ui/FontIcon';
-
 
 const styles = {
     container: {
@@ -46,50 +45,11 @@ const styles = {
     },
 };
 
-
-const Sidebar = React.createClass({
-    propTypes: {
-        sections: PropTypes.arrayOf(PropTypes.shape({
-            key: PropTypes.string,
-            label: PropTypes.string,
-            icon: PropTypes.oneOfType([
-                PropTypes.string,
-                PropTypes.element,
-            ]),
-        })).isRequired,
-        currentSection: PropTypes.string,
-        onChangeSection: PropTypes.func.isRequired,
-        onSectionClick: PropTypes.func,
-        showSearchField: PropTypes.bool,
-        searchFieldLabel: PropTypes.string,
-        onChangeSearchText: PropTypes.func,
-        sideBarButtons: PropTypes.element,
-        styles: PropTypes.shape({
-            leftBar: PropTypes.object,
-        }),
-    },
-
-    contextTypes: {
-        d2: PropTypes.object,
-        muiTheme: PropTypes.object,
-    },
-
-    getDefaultProps() {
-        return {
-            showSearchField: false,
-            styles: {
-                leftBar: {},
-            },
-            onSectionClick: () => {},
-        };
-    },
-
-    getInitialState() {
-        return {
-            currentSection: this.props.currentSection || (this.props.sections[0] && this.props.sections[0].key),
-            searchText: '',
-        };
-    },
+class Sidebar extends Component {
+    state = {
+        currentSection: this.props.currentSection || (this.props.sections[0] && this.props.sections[0].key),
+        searchText: '',
+    };
 
     componentWillReceiveProps(props) {
         if (props.currentSection) {
@@ -101,7 +61,7 @@ const Sidebar = React.createClass({
                 this.changeSearchText();
             });
         }
-    },
+    }
 
     setSection(key) {
         // TODO: Refactor as this behavior is sort of silly. The current version of the SideBar with managed state should
@@ -112,7 +72,7 @@ const Sidebar = React.createClass({
             this.setState({ currentSection: key });
             this.props.onChangeSection(key);
         }
-    },
+    }
 
     changeSearchText() {
         this.setState({ searchText: this.searchBox.getValue() }, () => {
@@ -120,19 +80,19 @@ const Sidebar = React.createClass({
                 this.props.onChangeSearchText(this.state.searchText);
             }
         });
-    },
+    }
 
-    _clear() {
+    onClear() {
         this.setState({ searchText: '' }, () => {
             if (this.props.onChangeSearchText) {
                 this.props.onChangeSearchText(this.state.searchText);
             }
         });
-    },
+    }
 
     clearSearchBox() {
         this.setState({ searchText: '' });
-    },
+    }
 
     renderSidebarButtons() {
         if (this.props.sideBarButtons) {
@@ -141,7 +101,7 @@ const Sidebar = React.createClass({
             );
         }
         return null;
-    },
+    }
 
     renderSearchField() {
         const d2 = this.context.d2;
@@ -156,13 +116,13 @@ const Sidebar = React.createClass({
                         onChange={this.changeSearchText}
                         ref={(ref) => { this.searchBox = ref; }}
                     />
-                    {this.state.searchText ? <FontIcon style={styles.closeButton} className="material-icons" onClick={this._clear}>clear</FontIcon> : undefined}
+                    {this.state.searchText ? <FontIcon style={styles.closeButton} className="material-icons" onClick={this.onClear}>clear</FontIcon> : undefined}
                 </div>
             );
         }
 
         return null;
-    },
+    }
 
     renderSections() {
         return (
@@ -187,7 +147,7 @@ const Sidebar = React.createClass({
                 })}
             </List>
         );
-    },
+    }
 
     render() {
         return (
@@ -197,7 +157,41 @@ const Sidebar = React.createClass({
                 {this.renderSections()}
             </div>
         );
+    }
+}
+
+Sidebar.propTypes = {
+    sections: PropTypes.arrayOf(PropTypes.shape({
+        key: PropTypes.string,
+        label: PropTypes.string,
+        icon: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.element,
+        ]),
+    })).isRequired,
+    currentSection: PropTypes.string,
+    onChangeSection: PropTypes.func.isRequired,
+    onSectionClick: PropTypes.func,
+    showSearchField: PropTypes.bool,
+    searchFieldLabel: PropTypes.string,
+    onChangeSearchText: PropTypes.func,
+    sideBarButtons: PropTypes.element,
+    styles: PropTypes.shape({
+        leftBar: PropTypes.object,
+    }),
+};
+
+Sidebar.contextTypes = {
+    d2: PropTypes.object,
+    muiTheme: PropTypes.object,
+};
+
+Sidebar.defaultProps = {
+    showSearchField: false,
+    styles: {
+        leftBar: {},
     },
-});
+    onSectionClick: () => {},
+};
 
 export default Sidebar;

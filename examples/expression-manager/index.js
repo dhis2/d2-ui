@@ -1,5 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { render } from 'react-dom';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { blue500, blue700, lightBlack, grey300, grey500, white, darkBlack } from 'material-ui/styles/colors';
 import { fade } from 'material-ui/utils/colorManipulator';
@@ -7,7 +10,6 @@ import Spacing from 'material-ui/styles/spacing';
 import D2Lib from 'd2/lib/d2';
 import Store from '../../src/store/Store';
 import ExpressionManager from '../../src/expression-manager/ExpressionManager';
-import injectTapEventPlugin from 'react-tap-event-plugin';
 
 // Needed for onTouchTap
 // http://stackoverflow.com/a/34015469/988941
@@ -44,8 +46,8 @@ function renderExamples(d2) {
         }
     }
     Example.childContextTypes = {
-        muiTheme: React.PropTypes.object,
-        d2: React.PropTypes.object,
+        muiTheme: PropTypes.object,
+        d2: PropTypes.object,
     };
 
     const store = Store.create();

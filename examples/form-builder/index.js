@@ -1,29 +1,28 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { render } from 'react-dom';
 import log from 'loglevel';
+
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-injectTapEventPlugin();
-
-import FormBuilder from '../../src/forms/FormBuilder.component.js';
 
 import Card from 'material-ui/Card/Card';
 import CardText from 'material-ui/Card/CardText';
 
-import CheckBox from '../../src/form-fields/CheckBox.component.js';
-import SelectField from '../../src/form-fields/DropDown.component.js';
-import TextField from '../../src/form-fields/TextField.js';
-import DatePicker from '../../src/form-fields/DatePicker.component.js';
+import CheckBox from '../../src/form-fields/CheckBox.component';
+import SelectField from '../../src/form-fields/DropDown.component';
+import TextField from '../../src/form-fields/TextField';
+import DatePicker from '../../src/form-fields/DatePicker.component';
+import FormBuilder from '../../src/forms/FormBuilder.component';
+import { isStartDateBeforeEndDate, isRequired } from '../../src/forms/Validators';
+
+injectTapEventPlugin();
 
 class FormExample extends React.Component {
     constructor() {
         super();
-        this._onUpdateField = this._onUpdateField.bind(this);
-    }
-
-    _onUpdateField(fieldName, newValue) {
-        log.info(fieldName, '=', newValue);
+        this.onUpdateField = this.onUpdateField.bind(this);
     }
 
     getChildContext() {
@@ -43,6 +42,10 @@ class FormExample extends React.Component {
         };
     }
 
+    onUpdateField(fieldName, newValue) {
+        log.info(fieldName, '=', newValue);
+    }
+
     render() {
         const fields = [
             {
@@ -55,6 +58,12 @@ class FormExample extends React.Component {
                     hintText: 'Example hint text',
                     changeEvent: 'onBlur',
                 },
+                validators: [{
+                    message: 'The field must have a value',
+                    validator(value) {
+                        return isRequired(value);
+                    },
+                }],
             },
             {
                 name: 'exampleMultilineTextField',
@@ -64,7 +73,7 @@ class FormExample extends React.Component {
                     floatingLabelText: 'Multiline TextField',
                     style: { width: '100%' },
                     hintText: 'Press enter for new line',
-                    // multiLine: true,
+                    multiLine: true,
                     changeEvent: 'onBlur',
                 },
             },
@@ -76,7 +85,7 @@ class FormExample extends React.Component {
                     label: 'Checkbox Example',
                     style: { width: '100%' },
                     onCheck: (e, v) => {
-                        this._onUpdateField('exampleCheckBox', v ? 'true' : 'false');
+                        this.onUpdateField('exampleCheckBox', v ? 'true' : 'false');
                     },
                 },
             },
@@ -91,17 +100,36 @@ class FormExample extends React.Component {
                 },
             },
             {
-                name: 'exampleDatePicker',
+                name: 'startDate',
                 value: new Date(),
                 component: DatePicker,
                 props: {
-                    floatingLabelText: 'Example Date Picker',
+                    floatingLabelText: 'Example Start Date Picker',
                     dateFormat: 'yyyy-MM-dd',
-                    onChange: (e) => {
-                        this._onUpdateField('exampleDatePicker', e.target.value);
-                    },
                     allowFuture: false,
                 },
+                validators: [{
+                    message: 'Closed date cannot be before open date',
+                    validator(value, formModel) {
+                        return isStartDateBeforeEndDate(value, formModel.fields.endDate.value);
+                    },
+                }],
+            },
+            {
+                name: 'endDate',
+                value: new Date(),
+                component: DatePicker,
+                props: {
+                    floatingLabelText: 'Example End Date Picker',
+                    dateFormat: 'yyyy-MM-dd',
+                    allowFuture: false,
+                },
+                validators: [{
+                    message: 'Closed date cannot be before open date',
+                    validator(value, formModel) {
+                        return isStartDateBeforeEndDate(formModel.fields.startDate.value, value);
+                    },
+                }],
             },
         ];
         return (
@@ -110,7 +138,7 @@ class FormExample extends React.Component {
                     Example Form
                     <FormBuilder
                         fields={fields}
-                        onUpdateField={this._onUpdateField}
+                        onUpdateField={this.onUpdateField}
                     />
                 </CardText>
             </Card>
@@ -119,12 +147,12 @@ class FormExample extends React.Component {
 }
 
 FormExample.childContextTypes = {
-    d2: React.PropTypes.object,
+    d2: PropTypes.object,
 };
 
 render(
     <MuiThemeProvider muiTheme={getMuiTheme()}>
         <FormExample />
     </MuiThemeProvider>,
-    document.querySelector('#form-builder')
+    document.querySelector('#form-builder'),
 );

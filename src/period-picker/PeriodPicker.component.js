@@ -47,7 +47,8 @@ class PeriodPicker extends React.Component {
 
         this.state = {};
 
-        this.getTranslation = context.d2.i18n.getTranslation.bind(context.d2.i18n);
+        const i18n = context.d2.i18n;
+        this.getTranslation = i18n.getTranslation.bind(i18n);
     }
 
     getPeriod() {

@@ -1,13 +1,13 @@
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { config } from 'd2/lib/d2';
 import Dialog from 'material-ui/Dialog/Dialog';
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
 import { getTranslationFormFor } from './TranslationForm.component';
 
 config.i18n.strings.add('close');
 config.i18n.strings.add('sharing_settings');
 
-export default class TranslationDialog extends Component {
+class TranslationDialog extends Component {
     constructor(props, context) {
         super(props, context);
 
@@ -76,3 +76,5 @@ TranslationDialog.propTypes = {
 TranslationDialog.contextTypes = {
     d2: PropTypes.object,
 };
+
+export default TranslationDialog;

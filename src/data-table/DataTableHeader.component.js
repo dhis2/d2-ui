@@ -1,16 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import camelCaseToUnderscores from 'd2-utilizr/lib/camelCaseToUnderscores';
 import classes from 'classnames';
-import Translate from '../i18n/Translate.mixin';
 
-const DataTableHeader = React.createClass({
-    propTypes: {
-        isOdd: PropTypes.bool,
-        name: PropTypes.string,
-    },
+class DataTableHeader extends Component {
+    constructor(props, context) {
+        super(props, context);
 
-    mixins: [Translate],
+        const i18n = this.context.d2.i18n;
+        this.getTranslation = i18n.getTranslation.bind(i18n);
+    }
 
     render() {
         const classList = classes(
@@ -26,7 +25,16 @@ const DataTableHeader = React.createClass({
                 {this.props.name ? this.getTranslation(camelCaseToUnderscores(this.props.name)) : null}
             </div>
         );
-    },
-});
+    }
+}
+
+DataTableHeader.propTypes = {
+    isOdd: PropTypes.bool,
+    name: PropTypes.string,
+};
+
+DataTableHeader.contextTypes = {
+    d2: PropTypes.object,
+};
 
 export default DataTableHeader;

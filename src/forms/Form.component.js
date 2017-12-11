@@ -1,39 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classes from 'classnames';
 import FormField from './FormField.component';
-import Translate from '../i18n/Translate.mixin';
 import createFormValidator from './FormValidator';
 import { FormFieldStatuses } from './FormValidator';
 
+class Form extends Component {
+    constructor(props, context) {
+        super(props, context);
 
-const Form = React.createClass({
-    propTypes: {
-        fieldConfigs: PropTypes.arrayOf(
-            PropTypes.shape({
-                name: PropTypes.string.isRequired,
-                type: PropTypes.func.isRequired,
-                fieldOptions: PropTypes.object,
-                validators: PropTypes.arrayOf(PropTypes.func),
-            }),
-        ).isRequired,
-        formValidator: PropTypes.object,
-        onFormFieldUpdate: PropTypes.func,
-        source: PropTypes.object.isRequired,
-        children: PropTypes.oneOfType([
-            PropTypes.array,
-            PropTypes.object,
-        ]),
-    },
-
-    mixins: [Translate],
-
-    getDefaultProps() {
-        return {
-            fieldConfigs: [],
-            formValidator: createFormValidator([]),
-        };
-    },
+        const i18n = this.context.d2.i18n;
+        this.getTranslation = i18n.getTranslation.bind(i18n);
+    }
 
     componentDidMount() {
         this.disposables = [];
@@ -41,19 +19,19 @@ const Form = React.createClass({
             // TODO: Should probably have some sort of check to see if it really needs to update? That update might be better at home in the formValidator however
             this.forceUpdate();
         }));
-    },
+    }
 
     componentWillReceiveProps(props) {
         if (props.hasOwnProperty('formValidator')) {
             this.forceUpdate();
         }
-    },
+    }
 
     componentWillUnmount() {
         this.disposables.forEach((d) => {
             d.unsubscribe();
         });
-    },
+    }
 
     renderFieldsFromFieldConfigs() {
         return this.props.fieldConfigs
@@ -84,7 +62,7 @@ const Form = React.createClass({
                     />
                 );
             });
-    },
+    }
 
     render() {
         const classList = classes('form');
@@ -95,20 +73,49 @@ const Form = React.createClass({
                 {this.props.children}
             </form>
         );
-    },
+    }
 
     isValid() {
         return true;
-    },
+    }
 
     updateRequest(fieldConfig, event) {
         this.props.formValidator.runFor(fieldConfig.name, event.target.value, this.props.source);
         this.props.onFormFieldUpdate && this.props.onFormFieldUpdate(
-            fieldConfig.name, fieldConfig.beforeUpdateConverter ?
-                fieldConfig.beforeUpdateConverter(event.target.value, fieldConfig) :
-                event.target.value,
+            fieldConfig.name, fieldConfig.beforeUpdateConverter
+                ? fieldConfig.beforeUpdateConverter(event.target.value, fieldConfig)
+                : event.target.value,
         );
-    },
-});
+    }
+}
+
+Form.propTypes = {
+    fieldConfigs: PropTypes.arrayOf(
+        PropTypes.shape({
+            name: PropTypes.string.isRequired,
+            type: PropTypes.func.isRequired,
+            fieldOptions: PropTypes.object,
+            validators: PropTypes.arrayOf(PropTypes.func),
+        }),
+    ).isRequired,
+    formValidator: PropTypes.object,
+    onFormFieldUpdate: PropTypes.func,
+    source: PropTypes.object.isRequired,
+    children: PropTypes.oneOfType([
+        PropTypes.array,
+        PropTypes.object,
+    ]),
+};
+
+Form.defaultProps = {
+    fieldConfigs: [],
+    formValidator: createFormValidator([]),
+    onFormFieldUpdate: () => {},
+    children: null,
+};
+
+Form.contextTypes = {
+    d2: PropTypes.object,
+};
 
 export default Form;

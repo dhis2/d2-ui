@@ -25,10 +25,10 @@ class SearchField extends Component {
             searchValue: '',
         };
 
-        this._setSearchValue = this._setSearchValue.bind(this);
-        this._focusSearchField = this._focusSearchField.bind(this);
-        this._onFocus = this._onFocus.bind(this);
-        this._onBlur = this._onBlur.bind(this);
+        this.setSearchValue = this.setSearchValue.bind(this);
+        this.focusSearchField = this.focusSearchField.bind(this);
+        this.onFocus = this.onFocus.bind(this);
+        this.onBlur = this.onBlur.bind(this);
         this.clearSearchField = this.clearSearchField.bind(this);
     }
 
@@ -46,7 +46,7 @@ class SearchField extends Component {
             .fromEvent(window, 'keyup') // TODO: Using the window global directly is bad for testability
             .filter(combineFilters(isCtrlPressed, isSpaceKey))
             .subscribe(
-                this._focusSearchField,
+                this.focusSearchField,
                 log.error,
             );
     }
@@ -64,19 +64,19 @@ class SearchField extends Component {
                     <TextField
                         fullWidth
                         value={this.props.searchValue || ''}
-                        onChange={this._setSearchValue}
-                        onFocus={this._onFocus}
-                        onBlur={this._onBlur}
+                        onChange={this.setSearchValue}
+                        onFocus={this.onFocus}
+                        onBlur={this.onBlur}
                         hintText={this.context.d2.i18n.getTranslation('app_search_placeholder')}
                         hintStyle={styles.searchFieldHintText}
                         inputStyle={styles.searchFieldInput}
-                        onKeyUp={this._onKeyUp}
+                        onKeyUp={this.onKeyUp}
                         ref="searchBox"
                         underlineFocusStyle={{ borderColor: white }}
                     />
                     {this.props.searchValue ? <ClearIcon style={styles.clearIcon} color={white} onClick={this.clearSearchField} /> : ''}
                 </div>
-                <IconButton onClick={this._focusSearchField}>
+                <IconButton onClick={this.focusSearchField}>
                     <AppsIcon color={white} />
                 </IconButton>
                 <SearchResults />
@@ -84,7 +84,7 @@ class SearchField extends Component {
         );
     }
 
-    _focusSearchField() {
+    focusSearchField() {
         const searchField = findDOMNode(this.refs.searchBox);
 
         if (searchField && searchField !== document.activeElement) {
@@ -94,27 +94,27 @@ class SearchField extends Component {
 
     clearSearchField() {
         if (this.state.hasFocus) {
-            this._focusSearchField();
+            this.focusSearchField();
         }
         search('');
     }
 
-    _setSearchValue(event) {
+    setSearchValue(event) {
         this.setState({ hasValue: Boolean(event.target.value) });
         search(event.target.value);
     }
 
-    _onFocus() {
+    onFocus() {
         this.setState({ hasFocus: true });
         setSearchFieldFocusTo(true);
     }
 
-    _onBlur() {
+    onBlur() {
         this.setState({ hasFocus: false });
         hideWhenNotHovering();
     }
 
-    _onKeyUp(event) {
+    onKeyUp(event) {
         handleKeyPress(event, Math.floor(event.currentTarget.clientWidth / MENU_ITEM_WIDTH));
     }
 }
