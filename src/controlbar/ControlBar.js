@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { createClassName } from '../component-helpers/utils';
-import Button from '../button/Button';
 import SvgIcon from '../svg-icon/SvgIcon';
 
 const styles = {
@@ -12,11 +11,16 @@ const styles = {
         left: 0,
         right: 0,
         background: 'white',
-        boxShadow: 'rgba(0, 0, 0, 0.2) 0px 3px 4px 0px',
+        boxShadow: 'rgba(0, 0, 0, 0.2) 0px 0px 6px 3px',
         transition: 'all ease-out 75ms',
         zIndex: 10,
         overflow: 'hidden',
         boxSizing: 'border-box',
+    },
+    content: {
+        position: 'relative',
+        height: '100%',
+        width: '100%',
     },
     endFlap: {
         position: 'absolute',
@@ -36,14 +40,7 @@ const styles = {
         transition: 'all ease-out 75ms',
         borderTop: '1px solid rgba(0,0,0,0.3)',
     },
-    expandButtonWrap: {
-        transition: 'all ease-out 75ms',
-    },
-    expandButton: {
-        bottom: 0,
-    },
 };
-const expandButtonHeight = 36;
 const editModeBackgroundRGB = '255,249,196';
 
 
@@ -70,7 +67,7 @@ class ControlBar extends React.Component {
         event.preventDefault();
         event.stopPropagation();
 
-        const newHeight = event.clientY - 52 - (this.showExpandButton() ? expandButtonHeight : 0);
+        const newHeight = event.clientY - 52;
 
         if (this.props.onChangeHeight && newHeight !== this.props.height && newHeight > 0) {
             requestAnimationFrame(() => {
@@ -85,63 +82,47 @@ class ControlBar extends React.Component {
         window.removeEventListener('mouseup', this.onEndDrag);
     };
 
-    showExpandButton() {
-        return this.props.expandButtonLabel && typeof this.props.onExpandClick === 'function';
-    }
-
     showDragHandle() {
         return typeof this.props.onChangeHeight === 'function';
     }
 
     endFlapHeight() {
-        return (
-            (this.showExpandButton() ? expandButtonHeight : 0) +
-            (this.showDragHandle() ? 10 : 0)
-        );
+        return this.showDragHandle() ? 10 : 0;
     }
 
-    renderEndFlap(showDragHandle, showExpandButton) {
+    renderEndFlap() {
         const backgroundColor = this.props.editMode ? editModeBackgroundRGB : '255,255,255';
 
         const endFlapStyle = Object.assign({},
             styles.endFlap,
             { height: this.endFlapHeight() },
-            { backgroundColor: `rgb(${backgroundColor})` },
-        );
-
-        const buttonWrapStyle = Object.assign({},
-            styles.expandButtonWrap,
         );
 
         const dragFlapStyle = Object.assign({},
             styles.dragHandle,
-            { height: showDragHandle ? 10 : 0 },
-            { borderTop: showDragHandle ? '1px solid rgba(0,0,0,0.3)' : '0px solid transparent' },
+            { height: this.showDragHandle() ? 10 : 0 },
+            { borderTop: this.showDragHandle() ? '1px solid rgba(0,0,0,0.3)' : '0px solid transparent' },
             { backgroundColor: `rgb(${backgroundColor})` },
         );
 
+        const props = Object.assign({}, this.showDragHandle() ? { onMouseDown: this.onStartDrag } : {});
+
+        // Disable jsx-a11y no-role rule, because what's the alternative?
+        /* eslint-disable jsx-a11y/no-static-element-interactions */
         return (
             <div style={endFlapStyle}>
-                {showExpandButton ? (
-                    <div style={buttonWrapStyle}>
-                        <Button
-                            onClick={this.props.onExpandClick}
-                            color="primary"
-                        >{this.props.expandButtonLabel}</Button>
-                    </div>
-                ) : null }
                 <div
                     style={dragFlapStyle}
-                    onMouseDown={showDragHandle ? this.onStartDrag : null}
+                    {...props}
                 ><SvgIcon icon={'DragHandle'} style={{ marginTop: -7, fill: 'rgba(0,0,0,0.3)' }} /></div>
             </div>
         );
+        /* eslint-enable jsx-a11y/no-static-element-interactions */
     }
 
     render() {
         const className = createClassName('d2-ui-control-bar', this.props.selector);
-        const showExpandButton = this.showExpandButton();
-        const showDragHandle = typeof this.props.onChangeHeight === 'function';
+        const contentClassName = createClassName('d2-ui-control-bar-contents', this.props.selector);
         const height = Math.max(this.props.height, 0) + this.endFlapHeight();
 
         const rootStyle = Object.assign(
@@ -153,14 +134,16 @@ class ControlBar extends React.Component {
             { background: this.props.editMode ? `rgb(${editModeBackgroundRGB})` : 'white' },
             // Disable animations while dragging
             this.state.dragging ? { transition: 'none' } : {},
-            // Make room for content at the bottom when there's an expand button
+            // Make room for the end flap
             { paddingBottom: this.endFlapHeight() },
         );
 
         return (
             <div style={rootStyle} className={className}>
-                {this.props.children}
-                {this.renderEndFlap(showDragHandle, showExpandButton)}
+                <div style={styles.content} className={contentClassName}>
+                    {this.props.children}
+                </div>
+                {this.renderEndFlap()}
             </div>
         );
     }
@@ -196,19 +179,6 @@ ControlBar.propTypes = {
     onChangeHeight: PropTypes.func,
 
     /**
-     * The label to use on the expand/collapse button. Default is 'Expand'.
-     */
-    expandButtonLabel: PropTypes.string,
-
-    /**
-     * Callback that gets called when the expand/collapse button is clicked.
-     * The callback receives one argument: The original click event from the Button component.
-     *
-     * If no callback is specified the control bar will not have an expand/collapse button.
-     */
-    onExpandClick: PropTypes.func,
-
-    /**
      * The contents of the control bar.
      */
     children: PropTypes.node.isRequired,
@@ -223,8 +193,6 @@ ControlBar.defaultProps = {
     height: 32,
     editMode: false,
     onChangeHeight: null,
-    expandButtonLabel: 'Expand',
-    onExpandClick: null,
     selector: '',
 };
 

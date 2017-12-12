@@ -22,6 +22,7 @@ const headerStyles = {
     right: 0,
     background: 'rgb(39, 102, 150)',
     color: 'white',
+    zIndex: 1400,
 };
 
 const controlBarStyles = {
@@ -35,6 +36,7 @@ const controlBarStyles = {
 const controlBarContentStyles = {
     position: 'absolute',
     height: '100%',
+    overflowY: 'auto',
 };
 
 const initialHeight = 48;
@@ -42,7 +44,6 @@ let height = initialHeight;
 let expandedHeight = 150;
 let editMode = false;
 let dragHandle = false;
-let expandButton = false;
 
 function renderControlBar() {
     render(<ControlBarWithLines />, rootEl);
@@ -52,8 +53,7 @@ function heightChangeHandler(newHeight) {
     height = Math.min(Math.max(newHeight, 1), 550);
 
     const marginHeight = (96 - initialHeight) +
-        (expandButton ? 36 : 0) +
-        (dragHandle && expandButton ? 10 : 0) +
+        (dragHandle ? 10 : 0) +
         height;
     document.body.style.marginTop = `${marginHeight}px`;
 
@@ -81,7 +81,6 @@ const addLines = num => () => { height += num * 36; heightChangeHandler(height);
 
 const toggleEditMode = () => { editMode = !editMode; heightChangeHandler(height); renderControlBar(); };
 const toggleDragHandle = () => { dragHandle = !dragHandle; heightChangeHandler(height); renderControlBar(); };
-const toggleExpandButton = () => { expandButton = !expandButton; heightChangeHandler(height); renderControlBar(); };
 
 function Contents() {
     return (
@@ -138,6 +137,9 @@ function Contents() {
                     <img src="http://via.placeholder.com/175x150" />
                 </div>
             </div>
+            <div style={{ position: 'absolute', bottom: 6, right: 8 }}>
+                <Button onClick={expandClick} raised>{ isExpanded() ? 'Collapse' : 'Expand' }</Button>
+            </div>
         </div>
     );
 }
@@ -153,9 +155,8 @@ function ExampleControls() {
                 <Button color="accent" onClick={addLines(-5)} style={{ marginRight: 16 }}>-5</Button>
                 <Button onClick={expandClick}>{ isExpanded() ? 'Collapse' : 'Expand' }</Button>
                 <div style={{ maxWidth: 250 }}>
-                    <Toggle style={{ display:'inline-block' }} onClick={toggleEditMode} label="Edit mode" />
-                    <Toggle style={{ display:'inline-block' }} onClick={toggleDragHandle} label="Draggable" />
-                    <Toggle style={{ display:'inline-block' }} onClick={toggleExpandButton} label="Expandable" />
+                    <Toggle style={{ display: 'inline-block' }} onClick={toggleEditMode} label="Edit mode" />
+                    <Toggle style={{ display: 'inline-block' }} onClick={toggleDragHandle} label="Draggable" />
                 </div>
             </div>
             <div>
@@ -165,7 +166,6 @@ function ExampleControls() {
                     <li>Expanded height: {expandedHeight}</li>
                     <li>Edit mode: {editMode ? 'Enabled' : 'Disabled'}</li>
                     <li>Drag handle: {dragHandle ? 'Enabled' : 'Disabled'}</li>
-                    <li>Expand button: {expandButton ? 'Enabled' : 'Disabled'}</li>
                 </ul>
             </div>
         </div>
@@ -180,9 +180,7 @@ function ControlBarWithLines() {
                 <ControlBar
                     editMode={editMode}
                     height={height}
-                    onChangeHeight={dragHandle && heightChangeHandler || null}
-                    onExpandClick={expandButton && expandClick || null}
-                    expandButtonLabel={isExpanded() ? 'Collapse' : 'Expand'}
+                    onChangeHeight={(dragHandle && heightChangeHandler) || null}
                 >
                     <Contents />
                 </ControlBar>
