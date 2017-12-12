@@ -1,4 +1,4 @@
-export function cachedAccessTypeToString(canView, canEdit) {
+export const cachedAccessTypeToString = (canView, canEdit) => {
     if (canView) {
         return canEdit
             ? 'rw------'
@@ -8,73 +8,44 @@ export function cachedAccessTypeToString(canView, canEdit) {
     return '--------';
 }
 
-export function transformAccessObject(access, type) {
-    return {
-        id: access.id,
-        name: access.name,
-        displayName: access.displayName,
-        type,
-        canView: access.access && access.access.includes('r'),
-        canEdit: access.access && access.access.includes('rw'),
-    };
-}
+export const transformAccessObject = (access, type) => ({
+    id: access.id,
+    name: access.name,
+    displayName: access.displayName,
+    type,
+    canView: access.access && access.access.includes('r'),
+    canEdit: access.access && access.access.includes('rw'),
+});
 
-export function transformObjectStructure(apiMeta, apiObject) {
-    const userGroupAccesses = !apiObject.userGroupAccesses ? [] : apiObject.userGroupAccesses.map(
-        access => transformAccessObject(access, 'userGroup'));
-
-    const userAccesses = !apiObject.userAccesses ? [] : apiObject.userAccesses.map(
-        access => transformAccessObject(access, 'user'));
-
-    const combinedAccesses = userGroupAccesses.concat(userAccesses);
-    const authorOfSharableItem = apiObject.user && {
-        id: apiObject.user.id,
-        name: apiObject.user.name,
-    };
-
-    return {
-        authorOfSharableItem,
-        nameOfSharableItem: apiObject.name,
-        canSetPublicAccess: apiMeta.allowPublicAccess,
-        canSetExternalAccess: apiMeta.allowExternalAccess,
-        publicCanView: apiObject.publicAccess.includes('r'),
-        publicCanEdit: apiObject.publicAccess.includes('rw'),
-        isSharedExternally: apiObject.externalAccess,
-        accesses: combinedAccesses,
-    };
-}
-
-export const restoreObjectStructure = (transformedObject, apiObject) => {
-    const userAccesses = [];
-    const userGroupAccesses = [];
-
-    transformedObject.accesses.forEach((access) => {
-        const apiAccess = {
-            id: access.id,
-            name: access.name,
-            displayName: access.name,
-            access: cachedAccessTypeToString(access.canView, access.canEdit),
+export const accessStringToObject = access => {
+    if (!access) {
+        return {
+            data: { canView: false, canEdit: false },
+            meta: { canView: false, canEdit: false },
         };
+    }
 
-        if (access.type === 'user') {
-            userAccesses.push(apiAccess);
-        } else {
-            userGroupAccesses.push(apiAccess);
-        }
-    });
+    const metaAccess = access.substring(0, 2);
+    const dataAccess = access.substring(2, 4);
 
     return {
-        meta: apiObject.meta,
-        object: {
-            ...apiObject.object,
-            userAccesses,
-            userGroupAccesses,
-
-            publicAccess: cachedAccessTypeToString(
-                transformedObject.publicCanView,
-                transformedObject.publicCanEdit,
-            ),
-            externalAccess: transformedObject.isSharedExternally,
+        meta: {
+            canView: metaAccess.includes('r'),
+            canEdit: metaAccess.includes('rw'),
         },
+        data: {
+            canView: dataAccess.includes('r'),
+            canEdit: dataAccess.includes('rw'),
+        }
     };
+}
+
+export const accessObjectToString = accessObject => {
+    const convert = ({ canEdit, canView }) => canEdit ? 'rw' : canView ? 'r-' : '--';
+    
+    let accessString = '';
+    accessString += convert(accessObject.meta);
+    accessString += convert(accessObject.data);
+
+    return (accessString + '----');
 }

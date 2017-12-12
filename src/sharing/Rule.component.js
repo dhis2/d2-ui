@@ -1,9 +1,22 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { compose, mapProps, withContext, getContext, withProps } from 'recompose';
 import FontIcon from 'material-ui/FontIcon';
-import IconButton from 'material-ui/IconButton';
-
 import PermissionPicker from './PermissionPicker.component';
+import IconButton from 'material-ui/IconButton';
+import { config } from 'd2/lib/d2';
+
+import {
+    accessStringToObject,
+    accessObjectToString,
+} from './utils';
+
+config.i18n.strings.add('public_access');
+config.i18n.strings.add('external_access');
+config.i18n.strings.add('anyone_can_view_without_a_login');
+config.i18n.strings.add('anyone_can_find_view_and_edit');
+config.i18n.strings.add('anyone_can_find_and_view');
+config.i18n.strings.add('no_access');
 
 const styles = {
     ruleView: {
@@ -22,20 +35,38 @@ const styles = {
     },
 };
 
-function getAccessIcon(userType) {
+const d2Context = {
+    d2: PropTypes.object.isRequired,
+};
+
+const getAccessIcon = userType => {
     switch (userType) {
-    case 'user': return 'person';
-    case 'userGroup': return 'group';
-    case 'external': return 'public';
-    case 'public': return 'business';
-    default: return 'person';
+        case 'user': return 'person';
+        case 'userGroup': return 'group';
+        case 'external': return 'public';
+        case 'public': return 'business';
+        default: return 'person';
     }
-}
+};
+
+const useAccessObjectFormat = props => ({
+    ...props,
+    access: accessStringToObject(props.access),
+    onChange: newAccess => {
+        props.onChange(accessObjectToString(newAccess));
+    },
+});
 
 const Rule = ({
-    accessType, primaryText, secondaryText, accessOptions, onChange, onRemove,
-    disabled, disableWritePermission, disableNoAccess,
-}) => (
+    access,
+    accessType,
+    accessOptions,
+    primaryText,
+    secondaryText,
+    onChange,
+    onRemove,
+    disabled,
+}, context) => (
     <div style={styles.ruleView}>
         <FontIcon className="material-icons">
             {getAccessIcon(accessType)}
@@ -46,8 +77,7 @@ const Rule = ({
         </div>
 
         <PermissionPicker
-            disableWritePermission={disableWritePermission}
-            disableNoAccess={disableNoAccess}
+            access={access}
             accessOptions={accessOptions}
             onChange={onChange}
             disabled={disabled}
@@ -62,16 +92,61 @@ const Rule = ({
     </div>
 );
 
-Rule.propTypes = {
-    accessType: PropTypes.oneOf(['user', 'userGroup', 'external', 'public']).isRequired,
-    primaryText: PropTypes.string.isRequired,
-    accessOptions: PropTypes.object.isRequired,
-    secondaryText: PropTypes.string,
-    onChange: PropTypes.func,
-    onRemove: PropTypes.func,
-    disabled: PropTypes.bool,
-    disableWritePermission: PropTypes.bool,
-    disableNoAccess: PropTypes.bool,
-};
+Rule.contextTypes = d2Context;
 
-export default Rule;
+export const GroupAccess = compose(
+    mapProps(useAccessObjectFormat),
+    withProps(props => {
+        return {
+            accessType: props.groupType,
+            primaryText: props.groupName,
+            accessOptions: {
+                meta: { canView: true, canEdit: true, noAccess: false },
+                data: { canView: true, canEdit: true, noAccess: true },
+            },
+        };
+    }),
+)(Rule);
+
+export const ExternalAccess = compose(
+    getContext(d2Context),
+    withProps(props => ({
+        accessType: "external",
+        primaryText: props.d2.i18n.getTranslation('external_access'),
+        secondaryText: props.access
+            ? props.d2.i18n.getTranslation('anyone_can_view_without_a_login')
+            : props.d2.i18n.getTranslation('no_access'),
+        access: {
+            meta: { canEdit: false, canView: props.access },
+            data: { canEdit: false, canView: false },
+        },
+        onChange: newAccess => {
+            props.onChange(newAccess.meta.canView);
+        },
+        accessOptions: {
+            meta: { canView: true, canEdit: false, noAccess: true },
+            data: { canView: false, canEdit: false, noAccess: false },
+        },
+    })),
+)(Rule);
+
+const constructSecondaryText = ({ canView, canEdit }) =>
+    canEdit
+        ? 'anyone_can_find_view_and_edit'
+        : canView
+            ? 'anyone_can_find_and_view'
+            : 'no_access';
+
+export const PublicAccess = compose(
+    mapProps(useAccessObjectFormat),
+    getContext(d2Context),
+    withProps(props => ({
+        accessType: "public",
+        primaryText: props.d2.i18n.getTranslation('public_access'),
+        secondaryText: props.d2.i18n.getTranslation(constructSecondaryText(props.access.meta)),
+        accessOptions: { 
+            meta: { canView: true, canEdit: true, noAccess: true },
+            data: { canView: true, canEdit: true, noAccess: true },
+        },
+    })),
+)(Rule);

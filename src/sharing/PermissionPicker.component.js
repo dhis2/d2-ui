@@ -1,26 +1,27 @@
 /* eslint react/jsx-no-bind: 0 */
 
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { Component } from 'react';
 import FontIcon from 'material-ui/FontIcon';
 import MenuItem from 'material-ui/MenuItem';
 import IconMenu from 'material-ui/IconMenu';
 import IconButton from 'material-ui/IconButton';
+import Divider from 'material-ui/Divider';
+import Popover from 'material-ui/Popover';
+import Menu from 'material-ui/Menu';
 import { config } from 'd2/lib/d2';
 
 config.i18n.strings.add('can_edit_and_view');
 config.i18n.strings.add('can_view_only');
 config.i18n.strings.add('no_access');
 
-function getAccessIcon(accessOptions) {
-    if (accessOptions.canView) {
-        return accessOptions.canEdit ? 'create' : 'remove_red_eye';
-    }
+const getAccessIcon = metaAccess => metaAccess.canEdit
+    ? 'create'
+    : metaAccess.canView
+        ? 'remove_red_eye'
+        : 'not_interested';
 
-    return 'not_interested';
-}
-
-function createMenuItem(text, canView, canEdit, isSelected, disabled) {
+const createMenuItem = (text, access, isSelected, disabled) => {
     return !disabled && (
         <MenuItem
             insetChildren
@@ -35,40 +36,131 @@ function createMenuItem(text, canView, canEdit, isSelected, disabled) {
     );
 }
 
-const PermissionPicker = ({ accessOptions, onChange, disabled, disableWritePermission, disableNoAccess }, context) => (
-    <IconMenu
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-        touchTapCloseDelay={1}
-        menuStyle={{ width: '200px' }}
-        onChange={(event, value) => onChange(value)}
-        iconButtonElement={
-            <IconButton
-                disabled={disabled}
-                iconClassName="material-icons"
-            >
-                {getAccessIcon(accessOptions)}
-            </IconButton>
-        }
-    >
-        { createMenuItem(context.d2.i18n.getTranslation('can_edit_and_view'),
-            true, true, accessOptions.canEdit, disableWritePermission) }
-        { createMenuItem(context.d2.i18n.getTranslation('can_view_only'),
-            true, false, accessOptions.canView && !accessOptions.canEdit) }
-        { createMenuItem(context.d2.i18n.getTranslation('no_access'),
-            false, false, !accessOptions.canView && !accessOptions.canEdit, disableNoAccess) }
-    </IconMenu>
-);
+class PermissionPicker extends Component {
+    state = {
+        open: false,
+    };
 
-PermissionPicker.propTypes = {
-    accessOptions: PropTypes.shape({
-        canView: PropTypes.bool.isRequired,
-        canEdit: PropTypes.bool,
-    }).isRequired,
-    onChange: PropTypes.func.isRequired,
-    disabled: PropTypes.bool,
-    disableWritePermission: PropTypes.bool,
-    disableNoAccess: PropTypes.bool,
-};
+    openMenu = event => {
+        event.preventDefault();
+        this.setState({
+            open: true,
+            anchor: event.currentTarget,
+        });
+    }
+
+    closeMenu = () => {
+        this.setState({
+            open: false,
+        });
+    }
+
+    onOptionClick = (event, menuItem) => {
+        const newAccess = {
+            ...this.props.access,
+            ...menuItem.props.value,
+        };
+
+        this.props.onChange(newAccess);
+    }
+
+    render = () => {
+        const { data, meta } = this.props.access;
+        const { data: dataOptions, meta: metaOptions } = this.props.accessOptions;
+
+        return (
+            <div>
+                <IconButton
+                    onClick={this.openMenu}
+                    disabled={this.props.disabled}
+                    iconClassName="material-icons"
+                >
+                    {getAccessIcon(meta)}
+                </IconButton>
+                <Popover
+                    open={this.state.open}
+                    anchorEl={this.state.anchor}
+                    onRequestClose={this.closeMenu}
+                >
+                    {this.context.d2.i18n.getTranslation('metadata')}
+                    <Menu onItemTouchTap={this.onOptionClick}>
+                        <MenuItem
+                            insetChildren
+                            disabled={!metaOptions.canEdit}
+                            value={{ meta: { canView: true, canEdit: true }}}
+                            primaryText={this.context.d2.i18n.getTranslation('can_edit_and_view')}
+                            leftIcon={
+                                <FontIcon className="material-icons">
+                                    {meta.canEdit ? 'done' : ''}
+                                </FontIcon>
+                            }
+                        />
+                        <MenuItem
+                            insetChildren
+                            disabled={!metaOptions.canView}
+                            value={{ meta: { canView: true, canEdit: false }}}
+                            primaryText={this.context.d2.i18n.getTranslation('can_view_only')}
+                            leftIcon={
+                                <FontIcon className="material-icons">
+                                    {!meta.canEdit && meta.canView ? 'done' : ''}
+                                </FontIcon>
+                            }
+                        />
+                        <MenuItem
+                            insetChildren
+                            disabled={!metaOptions.noAccess}
+                            value={{ meta: { canView: false, canEdit: false }}}
+                            primaryText={this.context.d2.i18n.getTranslation('no_access')}
+                            leftIcon={
+                                <FontIcon className="material-icons">
+                                    {!meta.canEdit && !meta.canView ? 'done' : ''}
+                                </FontIcon>
+                            }
+                        />
+                    </Menu>
+                    <Divider />
+
+                    {this.context.d2.i18n.getTranslation('data')}
+                    <Menu onItemTouchTap={this.onOptionClick}>
+                        <MenuItem
+                            insetChildren
+                            disabled={!dataOptions.canEdit}
+                            value={{ data: { canView: true, canEdit: true }}}
+                            primaryText={this.context.d2.i18n.getTranslation('can_capture_data')}
+                            leftIcon={
+                                <FontIcon className="material-icons">
+                                    {data.canEdit ? 'done' : ''}
+                                </FontIcon>
+                            }
+                        />
+                        <MenuItem
+                            insetChildren
+                            disabled={!dataOptions.canView}
+                            value={{ data: { canView: true, canEdit: false }}}
+                            primaryText={this.context.d2.i18n.getTranslation('can_view_data')}
+                            leftIcon={
+                                <FontIcon className="material-icons">
+                                    {!data.canEdit && data.canView ? 'done' : ''}
+                                </FontIcon>
+                            }
+                        />
+                        <MenuItem
+                            insetChildren
+                            disabled={!dataOptions.noAccess}
+                            value={{ data: { canView: false, canEdit: false }}}
+                            primaryText={this.context.d2.i18n.getTranslation('no_access')}
+                            leftIcon={
+                                <FontIcon className="material-icons">
+                                    {!data.canEdit && !data.canView ? 'done' : ''}
+                                </FontIcon>
+                            }
+                        />
+                    </Menu>
+                </Popover>
+            </div>
+        );
+    }
+}
 
 PermissionPicker.contextTypes = {
     d2: PropTypes.object.isRequired,

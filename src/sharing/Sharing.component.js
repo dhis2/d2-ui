@@ -7,9 +7,11 @@ import Subheader from 'material-ui/Subheader';
 import Heading from '../headings/Heading.component';
 import UserSearch from './UserSearch.component';
 import CreatedBy from './CreatedBy.component';
-import PublicAccess from './PublicAccess.component';
-import ExternalAccess from './ExternalAccess.component';
-import UserGroupAccess from './UserGroupAccess.component';
+import {
+    PublicAccess,
+    ExternalAccess,
+    GroupAccess,
+} from './Rule.component';
 
 config.i18n.strings.add('who_has_access');
 
@@ -31,92 +33,132 @@ const styles = {
  * preferences.
  */
 class Sharing extends React.Component {
-    constructor(props) {
-        super(props);
-        this.accessList = null;
-    }
-
-    onAccessRulesChanged = id => ({ canView, canEdit }) => {
-        const accesses = [...this.props.accesses].map(accessRule => (
-            accessRule.id === id ? {
-                ...accessRule, canView, canEdit } : accessRule
-        ));
-
-        this.props.onSharingChanged({ accesses });
-    }
-
-    onUserGroupAccessRemove = userGroupId => () => {
-        const accesses = [...this.props.accesses].filter(userGroup => userGroup.id !== userGroupId);
-        this.props.onSharingChanged({ accesses });
-    }
+    accessListRef = null;
 
     setAccessListRef = (ref) => {
-        this.accessList = ref;
+        this.accessListRef = ref;
     }
 
-    publicAccessChanged = ({ canView, canEdit }) => {
-        this.props.onSharingChanged({
-            publicCanView: canView,
-            publicCanEdit: canEdit,
+    onAccessRuleChange = id => accessRule => {
+        const changeWithId = rule => rule.id === id ? { ...rule, access: accessRule } : rule;
+        const userAccesses = (this.props.sharedObject.object.userAccesses || []).map(changeWithId);
+        const userGroupAccesses = (this.props.sharedObject.object.userGroupAccesses || []).map(changeWithId);
+
+        this.props.onChange({
+            userAccesses,
+            userGroupAccesses,
         });
     }
 
-    externalAccessChanged = ({ canView }) => {
-        this.props.onSharingChanged({ isSharedExternally: canView });
+    onAccessRemove = accessOwnerId => () => {
+        const withoutId = accessOwner => accessOwner.id !== accessOwnerId;
+        const userAccesses = (this.props.sharedObject.object.userAccesses || []).filter(withoutId);
+        const userGroupAccesses = (this.props.sharedObject.object.userGroupAccesses || []).filter(withoutId);
+
+        this.props.onChange({
+            userAccesses,
+            userGroupAccesses,
+        });
     }
 
-    addUserGroupAccess = (userGroup) => {
-        const accesses = [...this.props.accesses, userGroup];
-        this.props.onSharingChanged({ accesses }, () => {
-            this.scrollAccessListToBottom();
+    onPublicAccessChange = publicAccess => {
+        this.props.onChange({
+            publicAccess,
         });
+    }
+
+    onExternalAccessChange = externalAccess => {
+        this.props.onChange({
+            externalAccess,
+        });
+    }
+
+    addUserAccess = userAccess => {
+        const currentAccesses = this.props.sharedObject.object.userAccesses || [];
+        this.props.onChange({
+            userAccesses: [...currentAccesses, userAccess],
+        }, this.scrollAccessListToBottom()); 
+    }
+
+    addUserGroupAccess = userGroupAccess => {
+        const currentAccesses = this.props.sharedObject.object.userGroupAccesses || [];
+        this.props.onChange({
+            userGroupAccesses: [...currentAccesses, userGroupAccess],
+        }, this.scrollAccessListToBottom());
     }
 
     scrollAccessListToBottom = () => {
-        this.accessList.scrollTop = this.accessList.scrollHeight;
+        this.accessListRef.scrollTop = this.accessListRef.scrollHeight;
     }
 
     render() {
+        const {
+            user,
+            displayName,
+            userAccesses,
+            userGroupAccesses,
+            publicAccess,
+            externalAccess,
+        } = this.props.sharedObject.object;
+        const {
+            allowPublicAccess,
+            allowExternalAccess,
+        } = this.props.sharedObject.meta;
+
+        const accessIds = (userAccesses || []).map(access => access.id)
+             .concat((userGroupAccesses || []).map(access => access.id));
+
         return (
             <div>
-                <Heading text={this.props.nameOfSharableItem} level={2} />
-                <CreatedBy user={this.props.authorOfSharableItem} />
+                <Heading text={displayName} level={2} />
+                <CreatedBy author={user} />
                 <div style={styles.titleBodySpace} />
                 <Subheader>{this.context.d2.i18n.getTranslation('who_has_access')}</Subheader>
                 <Divider />
                 <div style={styles.rules} ref={this.setAccessListRef}>
                     <PublicAccess
-                        canView={this.props.publicCanView}
-                        canEdit={this.props.publicCanEdit}
-                        disabled={!this.props.canSetPublicAccess}
-                        onChange={this.publicAccessChanged}
+                        access={publicAccess}
+                        disabled={!allowPublicAccess}
+                        onChange={this.onPublicAccessChange}
                     />
                     <Divider />
                     <ExternalAccess
-                        canView={this.props.isSharedExternally}
-                        disabled={!this.props.canSetExternalAccess}
-                        onChange={this.externalAccessChanged}
+                        access={externalAccess}
+                        disabled={!allowExternalAccess}
+                        onChange={this.onExternalAccessChange}
                     />
                     <Divider />
-                    { this.props.accesses.map((accessRules, index) =>
-                        (<div key={index}>
-                            <UserGroupAccess
-                                nameOfGroup={accessRules.displayName}
-                                groupType={accessRules.type}
-                                canView={accessRules.canView}
-                                canEdit={accessRules.canEdit}
-                                onRemove={this.onUserGroupAccessRemove(accessRules.id)}
-                                onChange={this.onAccessRulesChanged(accessRules.id)}
+                    { userAccesses && userAccesses.map(access =>
+                        <div key={access.id}>
+                            <GroupAccess
+                                groupName={access.displayName}
+                                groupType={'userAccesses'}
+                                access={access.access}
+                                onRemove={this.onAccessRemove(access.id)}
+                                onChange={this.onAccessRuleChange(access.id)}
                             />
                             <Divider />
-                        </div>),
+                        </div>
+                    )}
+                    { userGroupAccesses && userGroupAccesses.map(access =>
+                        <div key={access.id}>
+                            <GroupAccess
+                                access={access.access}
+                                groupName={access.displayName}
+                                groupType={'userGroupAccesses'}
+                                onRemove={this.onAccessRemove(access.id)}
+                                onChange={this.onAccessRuleChange(access.id)}
+                            />
+                            <Divider />
+                        </div>
                     )}
                 </div>
                 <Divider />
                 <UserSearch
                     onSearch={this.props.onSearch}
+                    addUserAccess={this.addUserAccess}
                     addUserGroupAccess={this.addUserGroupAccess}
-                    currentAccesses={this.props.accesses}
+                    currentAccessIds={accessIds}
                 />
             </div>
         );
@@ -124,67 +166,16 @@ class Sharing extends React.Component {
 }
 
 Sharing.propTypes = {
-
     /**
-     * Author of the shared object.
+     * The object to share
      */
-    authorOfSharableItem: PropTypes.shape({
-        id: PropTypes.string,
-        name: PropTypes.string,
-    }).isRequired,
-
-    /**
-     * Display name of the shared object.
-     */
-    nameOfSharableItem: PropTypes.string.isRequired,
-
-    /**
-     * Is *true* if the public access options (publicCanView/publicCanEdit)
-     * can be changed
-     */
-    canSetPublicAccess: PropTypes.bool.isRequired,
-
-    /**
-     * Is *true* if the external access options (isSharedExternally) can be
-     * changed
-     */
-    canSetExternalAccess: PropTypes.bool.isRequired,
-
-    /**
-     * If *true*, the object can currently be found and viewed by all users of
-     * the DHIS instance.
-     */
-    publicCanView: PropTypes.bool.isRequired,
-
-    /**
-     * If *true*, the object can currently be found, viewed and changed by all
-     * users of the DHIS instance.
-     */
-    publicCanEdit: PropTypes.bool.isRequired,
-
-    /**
-     * If *true*, the object is shared outside of DHIS.
-     */
-    isSharedExternally: PropTypes.bool.isRequired,
-
-    /**
-     * A list of the access preferences of the sharable object. Each entry in
-     * the list consists of a type (user or userGroup), an id, a name and
-     * whether the user or group can view and/or edit the object.
-     */
-    accesses: PropTypes.arrayOf(PropTypes.shape({
-        type: PropTypes.oneOf(['user', 'userGroup']).isRequired,
-        id: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
-        canView: PropTypes.bool.isRequired,
-        canEdit: PropTypes.bool.isRequired,
-    })).isRequired,
+    sharedObject: PropTypes.object.isRequired,
 
     /**
      * Function that takes an object containing updated sharing preferences and
      * an optional callback fired when the change was successfully posted.
      */
-    onSharingChanged: PropTypes.func.isRequired,
+    onChange: PropTypes.func.isRequired,
 
     /**
      * Takes a string and a callback, and returns matching users and userGroups.
