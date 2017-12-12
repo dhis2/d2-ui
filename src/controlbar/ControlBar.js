@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import { createClassName } from '../component-helpers/utils';
 import Button from '../button/Button';
+import SvgIcon from '../svg-icon/SvgIcon';
 
 const styles = {
     root: {
@@ -23,7 +24,6 @@ const styles = {
         left: 0,
         right: 0,
         textAlign: 'center',
-        backgroundImage: 'linear-gradient(transparent, white 5px, white)',
         transition: 'all ease-out 75ms',
     },
     dragHandle: {
@@ -32,13 +32,12 @@ const styles = {
         left: 0,
         right: 0,
         height: 10,
-        backgroundImage: 'linear-gradient(transparent, white 10px, white)',
         cursor: 'ns-resize',
         transition: 'all ease-out 75ms',
+        borderTop: '1px solid rgba(0,0,0,0.3)',
     },
     expandButtonWrap: {
         transition: 'all ease-out 75ms',
-        marginTop: 5,
     },
     expandButton: {
         bottom: 0,
@@ -71,7 +70,7 @@ class ControlBar extends React.Component {
         event.preventDefault();
         event.stopPropagation();
 
-        const newHeight = event.clientY - 45 - (this.showExpandButton() ? expandButtonHeight : 0);
+        const newHeight = event.clientY - 52 - (this.showExpandButton() ? expandButtonHeight : 0);
 
         if (this.props.onChangeHeight && newHeight !== this.props.height && newHeight > 0) {
             requestAnimationFrame(() => {
@@ -96,43 +95,29 @@ class ControlBar extends React.Component {
 
     endFlapHeight() {
         return (
-            // (this.showExpandButton() || this.showDragHandle() ? 5 : 0) +
-            (this.showExpandButton() ? expandButtonHeight + 5 : 0) +
+            (this.showExpandButton() ? expandButtonHeight : 0) +
             (this.showDragHandle() ? 10 : 0)
         );
     }
 
     renderEndFlap(showDragHandle, showExpandButton) {
         const backgroundColor = this.props.editMode ? editModeBackgroundRGB : '255,255,255';
-        const dragLineColor = 'rgba(0,0,0,0.18)';
 
         const endFlapStyle = Object.assign({},
             styles.endFlap,
             { height: this.endFlapHeight() },
-            { backgroundImage: `linear-gradient(transparent, rgb(${backgroundColor}) 5px, rgb(${backgroundColor}))` },
+            { backgroundColor: `rgb(${backgroundColor})` },
         );
 
         const buttonWrapStyle = Object.assign({},
             styles.expandButtonWrap,
-            // { background: `rgb(${backgroundColor})` },
         );
 
         const dragFlapStyle = Object.assign({},
             styles.dragHandle,
-            {
-                backgroundImage: `linear-gradient(transparent,
-                                                  transparent 3px,
-                                                  ${dragLineColor} 3px,
-                                                  ${dragLineColor} 4px,
-                                                  transparent 4px,
-                                                  transparent 6px,
-                                                  ${dragLineColor} 6px,
-                                                  ${dragLineColor} 7px,
-                                                  transparent 7px,
-                                                  transparent 10px,
-                                                  transparent
-                                   )`,
-            },
+            { height: showDragHandle ? 10 : 0 },
+            { borderTop: showDragHandle ? '1px solid rgba(0,0,0,0.3)' : '0px solid transparent' },
+            { backgroundColor: `rgb(${backgroundColor})` },
         );
 
         return (
@@ -145,12 +130,10 @@ class ControlBar extends React.Component {
                         >{this.props.expandButtonLabel}</Button>
                     </div>
                 ) : null }
-                {showDragHandle ? (
-                    <div
-                        style={dragFlapStyle}
-                        onMouseDown={this.onStartDrag}
-                    />
-                ) : null }
+                <div
+                    style={dragFlapStyle}
+                    onMouseDown={showDragHandle ? this.onStartDrag : null}
+                ><SvgIcon icon={'DragHandle'} style={{ marginTop: -7, fill: 'rgba(0,0,0,0.3)' }} /></div>
             </div>
         );
     }
@@ -159,7 +142,7 @@ class ControlBar extends React.Component {
         const className = createClassName('d2-ui-control-bar', this.props.selector);
         const showExpandButton = this.showExpandButton();
         const showDragHandle = typeof this.props.onChangeHeight === 'function';
-        const height = Math.max(this.props.height, 0) + Math.max(this.endFlapHeight() - 12, 0);
+        const height = Math.max(this.props.height, 0) + this.endFlapHeight();
 
         const rootStyle = Object.assign(
             {},
@@ -171,7 +154,7 @@ class ControlBar extends React.Component {
             // Disable animations while dragging
             this.state.dragging ? { transition: 'none' } : {},
             // Make room for content at the bottom when there's an expand button
-            { paddingBottom: this.showExpandButton() ? expandButtonHeight : undefined },
+            { paddingBottom: this.endFlapHeight() },
         );
 
         return (

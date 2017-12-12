@@ -57,20 +57,20 @@ describe('ControlBar', () => {
         expect(renderControlBar({ editMode: true }).props().style.background).not.toBe('white');
     });
 
-    it('should not change height when an onChangeHeight callback is specified', () => {
+    it('should change height when an onChangeHeight callback is specified', () => {
         const plainBar = renderControlBar();
         const draggableBar = renderControlBar({ onChangeHeight: noop });
-        expect(draggableBar.props().style.height).toBe(plainBar.props().style.height);
+        expect(draggableBar.props().style.height).not.toBe(plainBar.props().style.height);
     });
 
     it('should change height when an onExpandClick callback is specified', () => {
         const expandableBar = renderControlBar({ onExpandClick: noop });
-        expect(expandableBar.props().style.height).toBe(61);
+        expect(expandableBar.props().style.height).toBe(68);
     });
 
     it('should change height when both an onExpandClick callback and an onChangeHeight callback is specified', () => {
         const expansivelyDraggableBar = renderControlBar({ onExpandClick: noop, onChangeHeight: noop });
-        expect(expansivelyDraggableBar.props().style.height).toBe(71);
+        expect(expansivelyDraggableBar.props().style.height).toBe(78);
     });
 
     it('should render an expand button when an onExpandClick callback is specified', () => {
@@ -200,7 +200,8 @@ describe('ControlBar', () => {
         });
         const dragFlap = controlBar.find('.c + div > div');
 
-        dragFlap.simulate('mousedown');
+        dragFlap.last().simulate('mousedown');
+
         // Material-UI/Button adds a 'keydown' event handler, so ignore that one
         expect(window.addEventListener.mock.calls.filter(args => args[0] !== 'keydown').length).toBe(0);
 
