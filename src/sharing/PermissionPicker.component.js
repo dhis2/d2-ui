@@ -3,13 +3,11 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import FontIcon from 'material-ui/FontIcon';
-import MenuItem from 'material-ui/MenuItem';
-import IconMenu from 'material-ui/IconMenu';
 import IconButton from 'material-ui/IconButton';
 import Divider from 'material-ui/Divider';
 import Popover from 'material-ui/Popover';
 import Menu from 'material-ui/Menu';
-import Heading from '../headings/Heading.component';
+import PermissionOption from './PermissionOption.component';
 import { config } from 'd2/lib/d2';
 
 config.i18n.strings.add('can_edit_and_view');
@@ -21,21 +19,6 @@ const getAccessIcon = metaAccess => metaAccess.canEdit
     : metaAccess.canView
         ? 'remove_red_eye'
         : 'not_interested';
-
-const createMenuItem = (text, access, isSelected, disabled) => {
-    return !disabled && (
-        <MenuItem
-            insetChildren
-            value={{ canView, canEdit }}
-            primaryText={text}
-            leftIcon={
-                <FontIcon className="material-icons">
-                    {isSelected ? 'done' : ''}
-                </FontIcon>
-            }
-        />
-    );
-}
 
 class PermissionPicker extends Component {
     state = {
@@ -65,6 +48,8 @@ class PermissionPicker extends Component {
         this.props.onChange(newAccess);
     }
 
+    translate = s => this.context.d2.i18n.getTranslation(s);
+
     render = () => {
         const { data, meta } = this.props.access;
         const { data: dataOptions, meta: metaOptions } = this.props.accessOptions;
@@ -83,80 +68,50 @@ class PermissionPicker extends Component {
                     anchorEl={this.state.anchor}
                     onRequestClose={this.closeMenu}
                 >
-                    <OptionHeader text={this.context.d2.i18n.getTranslation('metadata')} />
+                    <OptionHeader text={this.translate('metadata')} />
                     <Menu onItemTouchTap={this.onOptionClick}>
-                        <MenuItem
-                            insetChildren
+                        <PermissionOption
                             disabled={!metaOptions.canEdit}
                             value={{ meta: { canView: true, canEdit: true }}}
-                            primaryText={this.context.d2.i18n.getTranslation('can_edit_and_view')}
-                            leftIcon={
-                                <FontIcon className="material-icons">
-                                    {meta.canEdit ? 'done' : ''}
-                                </FontIcon>
-                            }
+                            primaryText={this.translate('can_edit_and_view')}
+                            icon={meta.canEdit ? 'done' : ''}
                         />
-                        <MenuItem
-                            insetChildren
+                        <PermissionOption
                             disabled={!metaOptions.canView}
                             value={{ meta: { canView: true, canEdit: false }}}
-                            primaryText={this.context.d2.i18n.getTranslation('can_view_only')}
-                            leftIcon={
-                                <FontIcon className="material-icons">
-                                    {!meta.canEdit && meta.canView ? 'done' : ''}
-                                </FontIcon>
-                            }
+                            primaryText={this.translate('can_view_only')}
+                            icon={!meta.canEdit && meta.canView ? 'done' : ''}
                         />
-                        <MenuItem
-                            insetChildren
+                        <PermissionOption
                             disabled={!metaOptions.noAccess}
                             value={{ meta: { canView: false, canEdit: false }}}
-                            primaryText={this.context.d2.i18n.getTranslation('no_access')}
-                            leftIcon={
-                                <FontIcon className="material-icons">
-                                    {!meta.canEdit && !meta.canView ? 'done' : ''}
-                                </FontIcon>
-                            }
+                            primaryText={this.translate('no_access')}
+                            icon={!meta.canEdit && !meta.canView ? 'done' : ''}
                         />
                     </Menu>
                     <Divider />
 
                     { dataOptions &&
                         <div>
-                            <OptionHeader text={this.context.d2.i18n.getTranslation('data')} />
+                            <OptionHeader text={this.translate('data')} />
                             <Menu onItemTouchTap={this.onOptionClick}>
-                                <MenuItem
-                                    insetChildren
+                                <PermissionOption
                                     disabled={!dataOptions.canEdit}
                                     value={{ data: { canView: true, canEdit: true }}}
-                                    primaryText={this.context.d2.i18n.getTranslation('can_capture_data')}
-                                    leftIcon={
-                                        <FontIcon className="material-icons">
-                                            {data.canEdit ? 'done' : ''}
-                                        </FontIcon>
-                                    }
+                                    primaryText={this.translate('can_capture_data')}
+                                    icon={data.canEdit ? 'done' : ''}
                                 />
-                                <MenuItem
-                                    insetChildren
+                                <PermissionOption
                                     disabled={!dataOptions.canView}
                                     value={{ data: { canView: true, canEdit: false }}}
-                                    primaryText={this.context.d2.i18n.getTranslation('can_view_data')}
-                                    leftIcon={
-                                        <FontIcon className="material-icons">
-                                            {!data.canEdit && data.canView ? 'done' : ''}
-                                        </FontIcon>
-                                    }
+                                    primaryText={this.translate('can_view_data')}
+                                    icon={!data.canEdit && data.canView ? 'done' : ''}
                                 />
-                                <MenuItem
-                                    insetChildren
+                                <PermissionOption
                                     disabled={!dataOptions.noAccess}
                                     value={{ data: { canView: false, canEdit: false }}}
-                                    primaryText={this.context.d2.i18n.getTranslation('no_access')}
-                                    leftIcon={
-                                        <FontIcon className="material-icons">
-                                            {!data.canEdit && !data.canView ? 'done' : ''}
-                                        </FontIcon>
-                                    }
+                                    primaryText={this.translate('no_access')}
+                                    icon={!data.canEdit && !data.canView ? 'done' : ''}
                                 />
                             </Menu>
                         </div>
