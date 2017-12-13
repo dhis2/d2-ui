@@ -44,7 +44,7 @@ class UserSearch extends Component {
     state = {
         defaultAccess: {
             meta: { canView: true, canEdit: true },
-            data: { canView: true, canEdit: true },
+            data: { canView: false, canEdit: false },
         },
         searchResult: [],
     };

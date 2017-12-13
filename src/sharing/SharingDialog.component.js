@@ -131,7 +131,7 @@ class SharingDialog extends React.Component {
     }
 
     closeSharingDialog = () => {
-        this.props.onRequestClose(this.state.apiObject.object);
+        this.props.onRequestClose(this.state.sharedObject.object);
     }
 
     render() {
