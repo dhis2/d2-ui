@@ -20,16 +20,20 @@ const styles = {
     },
 };
 
+const defaultState = {
+    accessForbidden: false,
+    dataShareableTypes: [],
+    sharedObject: null,
+}
+
 /**
  * A pop-up dialog for changing sharing preferences for a sharable object.
  */
 class SharingDialog extends React.Component {
-    state = {
-        accessForbidden: false,
-        sharedObject: null,
-    };
+    state = defaultState;
 
     componentDidMount() {
+        this.loadDataSharingSettings();
         if (this.props.open) {
             this.loadObjectFromApi();
         }
@@ -86,19 +90,33 @@ class SharingDialog extends React.Component {
     }
 
     resetState = () => {
-        this.setState({
-            sharedObject: null,
-            accessForbidden: false,
+        this.setState(defaultState);
+    }
+
+    loadDataSharingSettings = () => {
+        getInstance().then(d2 => {
+            const api = d2.Api.getApi();
+            
+            api.get('schemas', { fields: ['name', 'dataShareable'] })
+                .then(schemas => {
+                    const dataShareableTypes = schemas.schemas
+                        .filter(item => item.dataShareable)
+                        .map(item => item.name);
+
+                    this.setState({
+                        dataShareableTypes,
+                    });
+                });
         });
     }
 
-    loadObjectFromApi() {
-        getInstance().then((d2) => {
+    loadObjectFromApi = () => {
+        getInstance().then(d2 => {
             const api = d2.Api.getApi();
             const { type, id } = this.props;
 
             api.get('sharing', { type, id })
-                .then((sharedObject) => {
+                .then(sharedObject => {
                     this.setState({
                         api,
                         sharedObject,
@@ -140,6 +158,8 @@ class SharingDialog extends React.Component {
                 : null;
         }
 
+        const dataShareable = this.state.dataShareableTypes.indexOf(this.props.type) !== -1;
+
         return (
             <Dialog
                 autoDetectWindowHeight
@@ -152,6 +172,7 @@ class SharingDialog extends React.Component {
             >
                 <Sharing
                     sharedObject={this.state.sharedObject}
+                    dataShareable={dataShareable}
                     onChange={this.onSharingChanged}
                     onSearch={this.onSearchRequest}
                 />

@@ -11,7 +11,7 @@ import {
     PublicAccess,
     ExternalAccess,
     GroupAccess,
-} from './Rule.component';
+} from './Access.component';
 
 config.i18n.strings.add('who_has_access');
 
@@ -20,7 +20,7 @@ const styles = {
         color: '#818181',
     },
     titleBodySpace: {
-        paddingTop: 50,
+        paddingTop: 30,
     },
     rules: {
         height: '240px',
@@ -132,8 +132,9 @@ class Sharing extends React.Component {
                         <div key={access.id}>
                             <GroupAccess
                                 groupName={access.displayName}
-                                groupType={'userAccesses'}
+                                groupType="userAccesses"
                                 access={access.access}
+                                dataShareable={this.props.dataShareable}
                                 onRemove={this.onAccessRemove(access.id)}
                                 onChange={this.onAccessRuleChange(access.id)}
                             />
@@ -145,7 +146,8 @@ class Sharing extends React.Component {
                             <GroupAccess
                                 access={access.access}
                                 groupName={access.displayName}
-                                groupType={'userGroupAccesses'}
+                                groupType="userGroupAccesses"
+                                dataShareable={this.props.dataShareable}
                                 onRemove={this.onAccessRemove(access.id)}
                                 onChange={this.onAccessRuleChange(access.id)}
                             />
@@ -153,11 +155,11 @@ class Sharing extends React.Component {
                         </div>
                     )}
                 </div>
-                <Divider />
                 <UserSearch
                     onSearch={this.props.onSearch}
                     addUserAccess={this.addUserAccess}
                     addUserGroupAccess={this.addUserGroupAccess}
+                    dataShareable={this.props.dataShareable}
                     currentAccessIds={accessIds}
                 />
             </div>
@@ -170,6 +172,11 @@ Sharing.propTypes = {
      * The object to share
      */
     sharedObject: PropTypes.object.isRequired,
+
+    /*
+     * If true, the object's data should have their own settings.
+     */
+    dataShareable: PropTypes.bool.isRequired,
 
     /**
      * Function that takes an object containing updated sharing preferences and

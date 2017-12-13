@@ -12,7 +12,6 @@ config.i18n.strings.add('enter_names');
 const styles = {
     container: {
         fontWeight: '400',
-        marginTop: 16,
         padding: 16,
         backgroundColor: '#F5F5F5',
         display: 'flex',
@@ -128,7 +127,7 @@ class UserSearch extends Component {
                         access={this.state.defaultAccess}
                         accessOptions={{
                             meta: { canView: true, canEdit: true, noAccess: false },
-                            data: { canView: true, canEdit: true, noAccess: true },
+                            data: this.props.dataShareable && { canView: true, canEdit: true, noAccess: true },
                         }}
                         onChange={this.accessOptionsChanged}
                     />
@@ -141,6 +140,7 @@ class UserSearch extends Component {
 UserSearch.propTypes = {
     onSearch: PropTypes.func.isRequired,
     addUserAccess: PropTypes.func.isRequired,
+    dataShareable: PropTypes.bool.isRequired,
     addUserGroupAccess: PropTypes.func.isRequired,
     currentAccessIds: PropTypes.array.isRequired,
 };

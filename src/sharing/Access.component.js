@@ -19,7 +19,7 @@ config.i18n.strings.add('anyone_can_find_and_view');
 config.i18n.strings.add('no_access');
 
 const styles = {
-    ruleView: {
+    accessView: {
         fontWeight: '400',
         display: 'flex',
         flexDirection: 'row',
@@ -27,7 +27,7 @@ const styles = {
         alignItems: 'center',
         padding: '4px 8px',
     },
-    ruleDescription: {
+    accessDescription: {
         display: 'flex',
         flexDirection: 'column',
         flex: 1,
@@ -57,7 +57,7 @@ const useAccessObjectFormat = props => ({
     },
 });
 
-const Rule = ({
+const Access = ({
     access,
     accessType,
     accessOptions,
@@ -67,11 +67,11 @@ const Rule = ({
     onRemove,
     disabled,
 }, context) => (
-    <div style={styles.ruleView}>
+    <div style={styles.accessView}>
         <FontIcon className="material-icons">
             {getAccessIcon(accessType)}
         </FontIcon>
-        <div style={styles.ruleDescription}>
+        <div style={styles.accessDescription}>
             <div>{primaryText}</div>
             <div style={{ color: '#818181', paddingTop: 4 }}>{secondaryText || ' '}</div>
         </div>
@@ -92,7 +92,7 @@ const Rule = ({
     </div>
 );
 
-Rule.contextTypes = d2Context;
+Access.contextTypes = d2Context;
 
 export const GroupAccess = compose(
     mapProps(useAccessObjectFormat),
@@ -102,11 +102,11 @@ export const GroupAccess = compose(
             primaryText: props.groupName,
             accessOptions: {
                 meta: { canView: true, canEdit: true, noAccess: false },
-                data: { canView: true, canEdit: true, noAccess: true },
+                data: props.dataShareable && { canView: true, canEdit: true, noAccess: true },
             },
         };
     }),
-)(Rule);
+)(Access);
 
 export const ExternalAccess = compose(
     getContext(d2Context),
@@ -125,10 +125,9 @@ export const ExternalAccess = compose(
         },
         accessOptions: {
             meta: { canView: true, canEdit: false, noAccess: true },
-            data: { canView: false, canEdit: false, noAccess: false },
         },
     })),
-)(Rule);
+)(Access);
 
 const constructSecondaryText = ({ canView, canEdit }) =>
     canEdit
@@ -146,7 +145,6 @@ export const PublicAccess = compose(
         secondaryText: props.d2.i18n.getTranslation(constructSecondaryText(props.access.meta)),
         accessOptions: { 
             meta: { canView: true, canEdit: true, noAccess: true },
-            data: { canView: true, canEdit: true, noAccess: true },
         },
     })),
-)(Rule);
+)(Access);
