@@ -11,6 +11,8 @@ import PermissionOption from './PermissionOption.component';
 import { config } from 'd2/lib/d2';
 
 config.i18n.strings.add('can_edit_and_view');
+config.i18n.strings.add('can_capture_data');
+config.i18n.strings.add('can_view_data');
 config.i18n.strings.add('can_view_only');
 config.i18n.strings.add('no_access');
 
