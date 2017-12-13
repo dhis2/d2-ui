@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { config } from 'd2/lib/d2';
-import AutoComplete from 'material-ui/AutoComplete';
-import PermissionPicker from './PermissionPicker.component';
 import { Subject, Observable } from 'rxjs';
+import AutoComplete from 'material-ui/AutoComplete';
+
 import { accessObjectToString } from './utils';
+import PermissionPicker from './PermissionPicker.component';
 
 config.i18n.strings.add('add_users_and_user_groups');
 config.i18n.strings.add('enter_names');
@@ -49,24 +50,33 @@ class UserSearch extends Component {
         searchResult: [],
     };
 
-    inputStream = new Subject();
-
     componentWillMount() {
         this.inputStream
             .debounce(() => Observable.timer(searchDelay))
-            .subscribe(searchText => {
+            .subscribe((searchText) => {
                 this.fetchSearchResult(searchText);
             });
     }
 
+    onResultClick = (_, index) => {
+        const selection = this.state.searchResult[index];
+        const type = selection.type;
+        delete selection.type;
+
+        if (type === 'userAccess') {
+            this.props.addUserAccess({ ...selection, access: accessObjectToString(this.state.defaultAccess) });
+        } else this.props.addUserGroupAccess({ ...selection, access: accessObjectToString(this.state.defaultAccess) });
+    }
+
+    inputStream = new Subject();
+
     hasNoCurrentAccess = userOrGroup => this.props.currentAccessIds.indexOf(userOrGroup.id) === -1;
 
-    fetchSearchResult = searchText => {
-        searchText === ''
-            ? this.handleSearchResult([])
-            : this.props.onSearch(searchText).then(({ users, userGroups }) => {
-
-                // Add type to object to support dataSourceConfig in AutoComplete
+    fetchSearchResult = (searchText) => {
+        if (searchText === '') {
+            this.handleSearchResult([]);
+        } else {
+            this.props.onSearch(searchText).then(({ users, userGroups }) => {
                 const addType = type => result => ({ ...result, type });
                 const searchResult = users
                     .map(addType('userAccess'))
@@ -75,34 +85,27 @@ class UserSearch extends Component {
                         .map(addType('userGroupAccess'))
                         .filter(this.hasNoCurrentAccess)
                     );
-                
+
                 this.handleSearchResult(searchResult);
             });
+        }
     }
 
-    handleSearchResult = searchResult => {
+    handleSearchResult = (searchResult) => {
         this.setState({ searchResult });
     }
 
-    handleUpdateInput = searchText => {
+    handleUpdateInput = (searchText) => {
         this.inputStream.next(searchText);
     }
 
-    accessOptionsChanged = accessOptions => {
+    accessOptionsChanged = (accessOptions) => {
         this.setState({
             defaultAccess: accessOptions,
         });
     }
 
-    onResultClick = (_, index) => {
-        const selection = this.state.searchResult[index];
-        const type = selection.type;
-        delete selection.type;
-
-        type === 'userAccess'
-            ? this.props.addUserAccess({ ...selection, access: accessObjectToString(this.state.defaultAccess) })
-            : this.props.addUserGroupAccess({ ...selection, access: accessObjectToString(this.state.defaultAccess) })
-    }
+    noFilter = () => true;
 
     render() {
         return (
@@ -114,7 +117,7 @@ class UserSearch extends Component {
                     <AutoComplete
                         fullWidth
                         openOnFocus
-                        filter={() => true}
+                        filter={this.noFilter}
                         dataSource={this.state.searchResult}
                         dataSourceConfig={{ text: 'displayName', value: 'id' }}
                         hintText={this.context.d2.i18n.getTranslation('enter_names')}

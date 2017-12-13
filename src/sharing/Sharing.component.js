@@ -33,14 +33,8 @@ const styles = {
  * preferences.
  */
 class Sharing extends React.Component {
-    accessListRef = null;
-
-    setAccessListRef = (ref) => {
-        this.accessListRef = ref;
-    }
-
-    onAccessRuleChange = id => accessRule => {
-        const changeWithId = rule => rule.id === id ? { ...rule, access: accessRule } : rule;
+    onAccessRuleChange = id => (accessRule) => {
+        const changeWithId = rule => (rule.id === id ? { ...rule, access: accessRule } : rule);
         const userAccesses = (this.props.sharedObject.object.userAccesses || []).map(changeWithId);
         const userGroupAccesses = (this.props.sharedObject.object.userGroupAccesses || []).map(changeWithId);
 
@@ -61,26 +55,32 @@ class Sharing extends React.Component {
         });
     }
 
-    onPublicAccessChange = publicAccess => {
+    onPublicAccessChange = (publicAccess) => {
         this.props.onChange({
             publicAccess,
         });
     }
 
-    onExternalAccessChange = externalAccess => {
+    onExternalAccessChange = (externalAccess) => {
         this.props.onChange({
             externalAccess,
         });
     }
 
-    addUserAccess = userAccess => {
+    setAccessListRef = (ref) => {
+        this.accessListRef = ref;
+    }
+
+    accessListRef = null;
+
+    addUserAccess = (userAccess) => {
         const currentAccesses = this.props.sharedObject.object.userAccesses || [];
         this.props.onChange({
             userAccesses: [...currentAccesses, userAccess],
-        }, this.scrollAccessListToBottom()); 
+        }, this.scrollAccessListToBottom());
     }
 
-    addUserGroupAccess = userGroupAccess => {
+    addUserGroupAccess = (userGroupAccess) => {
         const currentAccesses = this.props.sharedObject.object.userGroupAccesses || [];
         this.props.onChange({
             userGroupAccesses: [...currentAccesses, userGroupAccess],
@@ -106,7 +106,7 @@ class Sharing extends React.Component {
         } = this.props.sharedObject.meta;
 
         const accessIds = (userAccesses || []).map(access => access.id)
-             .concat((userGroupAccesses || []).map(access => access.id));
+            .concat((userGroupAccesses || []).map(access => access.id));
 
         return (
             <div>
@@ -128,7 +128,7 @@ class Sharing extends React.Component {
                         onChange={this.onExternalAccessChange}
                     />
                     <Divider />
-                    { userAccesses && userAccesses.map(access =>
+                    { userAccesses && userAccesses.map(access => (
                         <div key={access.id}>
                             <GroupAccess
                                 groupName={access.displayName}
@@ -140,8 +140,8 @@ class Sharing extends React.Component {
                             />
                             <Divider />
                         </div>
-                    )}
-                    { userGroupAccesses && userGroupAccesses.map(access =>
+                    ))}
+                    { userGroupAccesses && userGroupAccesses.map(access => (
                         <div key={access.id}>
                             <GroupAccess
                                 access={access.access}
@@ -153,7 +153,7 @@ class Sharing extends React.Component {
                             />
                             <Divider />
                         </div>
-                    )}
+                    ))}
                 </div>
                 <UserSearch
                     onSearch={this.props.onSearch}

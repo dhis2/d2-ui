@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { compose, mapProps, withContext, getContext, withProps } from 'recompose';
+import { compose, mapProps, getContext, withProps } from 'recompose';
 import FontIcon from 'material-ui/FontIcon';
-import PermissionPicker from './PermissionPicker.component';
-import IconButton from 'material-ui/IconButton';
 import { config } from 'd2/lib/d2';
+import IconButton from 'material-ui/IconButton';
+
+import PermissionPicker from './PermissionPicker.component';
 
 import {
     accessStringToObject,
@@ -39,20 +40,20 @@ const d2Context = {
     d2: PropTypes.object.isRequired,
 };
 
-const getAccessIcon = userType => {
+const getAccessIcon = (userType) => {
     switch (userType) {
-        case 'user': return 'person';
-        case 'userGroup': return 'group';
-        case 'external': return 'public';
-        case 'public': return 'business';
-        default: return 'person';
+    case 'user': return 'person';
+    case 'userGroup': return 'group';
+    case 'external': return 'public';
+    case 'public': return 'business';
+    default: return 'person';
     }
 };
 
 const useAccessObjectFormat = props => ({
     ...props,
     access: accessStringToObject(props.access),
-    onChange: newAccess => {
+    onChange: (newAccess) => {
         props.onChange(accessObjectToString(newAccess));
     },
 });
@@ -66,7 +67,7 @@ const Access = ({
     onChange,
     onRemove,
     disabled,
-}, context) => (
+}) => (
     <div style={styles.accessView}>
         <FontIcon className="material-icons">
             {getAccessIcon(accessType)}
@@ -94,24 +95,39 @@ const Access = ({
 
 Access.contextTypes = d2Context;
 
+Access.propTypes = {
+    access: PropTypes.object.isRequired,
+    accessType: PropTypes.string.isRequired,
+    accessOptions: PropTypes.object.isRequired,
+    primaryText: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired,
+    disabled: PropTypes.bool,
+    secondaryText: PropTypes.string,
+    onRemove: PropTypes.func,
+};
+
+Access.defaultProps = {
+    secondaryText: undefined,
+    onRemove: undefined,
+    disabled: false,
+};
+
 export const GroupAccess = compose(
     mapProps(useAccessObjectFormat),
-    withProps(props => {
-        return {
-            accessType: props.groupType,
-            primaryText: props.groupName,
-            accessOptions: {
-                meta: { canView: true, canEdit: true, noAccess: false },
-                data: props.dataShareable && { canView: true, canEdit: true, noAccess: true },
-            },
-        };
-    }),
+    withProps(props => ({
+        accessType: props.groupType,
+        primaryText: props.groupName,
+        accessOptions: {
+            meta: { canView: true, canEdit: true, noAccess: false },
+            data: props.dataShareable && { canView: true, canEdit: true, noAccess: true },
+        },
+    })),
 )(Access);
 
 export const ExternalAccess = compose(
     getContext(d2Context),
     withProps(props => ({
-        accessType: "external",
+        accessType: 'external',
         primaryText: props.d2.i18n.getTranslation('external_access'),
         secondaryText: props.access
             ? props.d2.i18n.getTranslation('anyone_can_view_without_a_login')
@@ -120,7 +136,7 @@ export const ExternalAccess = compose(
             meta: { canEdit: false, canView: props.access },
             data: { canEdit: false, canView: false },
         },
-        onChange: newAccess => {
+        onChange: (newAccess) => {
             props.onChange(newAccess.meta.canView);
         },
         accessOptions: {
@@ -129,21 +145,24 @@ export const ExternalAccess = compose(
     })),
 )(Access);
 
-const constructSecondaryText = ({ canView, canEdit }) =>
-    canEdit
-        ? 'anyone_can_find_view_and_edit'
-        : canView
-            ? 'anyone_can_find_and_view'
-            : 'no_access';
+const constructSecondaryText = ({ canView, canEdit }) => {
+    if (canEdit) {
+        return 'anyone_can_find_view_and_edit';
+    }
+
+    return canView
+        ? 'anyone_can_find_and_view'
+        : 'no_access';
+};
 
 export const PublicAccess = compose(
     mapProps(useAccessObjectFormat),
     getContext(d2Context),
     withProps(props => ({
-        accessType: "public",
+        accessType: 'public',
         primaryText: props.d2.i18n.getTranslation('public_access'),
         secondaryText: props.d2.i18n.getTranslation(constructSecondaryText(props.access.meta)),
-        accessOptions: { 
+        accessOptions: {
             meta: { canView: true, canEdit: true, noAccess: true },
         },
     })),

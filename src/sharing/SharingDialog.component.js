@@ -1,5 +1,3 @@
-/* eslint no-console: 0 */
-
 import { config, getInstance } from 'd2/lib/d2';
 import Dialog from 'material-ui/Dialog/Dialog';
 import FlatButton from 'material-ui/FlatButton/FlatButton';
@@ -8,7 +6,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Sharing from './Sharing.component';
 import LoadingMask from '../loading-mask/LoadingMask.component';
-import { transformAccessObject } from './utils';
 
 config.i18n.strings.add('share');
 config.i18n.strings.add('close');
@@ -24,7 +21,7 @@ const defaultState = {
     accessForbidden: false,
     dataShareableTypes: [],
     sharedObject: null,
-}
+};
 
 /**
  * A pop-up dialog for changing sharing preferences for a sharable object.
@@ -63,7 +60,7 @@ class SharingDialog extends React.Component {
             },
         };
 
-        this.postChanges(updatedObject);        
+        this.postChanges(updatedObject, onSuccess);        
     }
 
     postChanges = (updatedObject, onSuccess) => {
@@ -76,16 +73,9 @@ class SharingDialog extends React.Component {
                     }, () => {
                         if (onSuccess) onSuccess();
                     });
-                } else {
-                    console.warn('Failed to post changes.');
-                    console.warn('SERVER SAID:', message);
                 }
 
                 return message;
-            })
-            .catch(({ message }) => {
-                console.warn('Failed to post changes.');
-                console.warn('SERVER SAID:', message);
             });
     }
 
@@ -94,11 +84,11 @@ class SharingDialog extends React.Component {
     }
 
     loadDataSharingSettings = () => {
-        getInstance().then(d2 => {
+        getInstance().then((d2) => {
             const api = d2.Api.getApi();
-            
+
             api.get('schemas', { fields: ['name', 'dataShareable'] })
-                .then(schemas => {
+                .then((schemas) => {
                     const dataShareableTypes = schemas.schemas
                         .filter(item => item.dataShareable)
                         .map(item => item.name);
@@ -111,18 +101,18 @@ class SharingDialog extends React.Component {
     }
 
     loadObjectFromApi = () => {
-        getInstance().then(d2 => {
+        getInstance().then((d2) => {
             const api = d2.Api.getApi();
             const { type, id } = this.props;
 
             api.get('sharing', { type, id })
-                .then(sharedObject => {
+                .then((sharedObject) => {
                     this.setState({
                         api,
                         sharedObject,
                     });
                 })
-                .catch(error => {
+                .catch(() => {
                     this.setState({
                         accessForbidden: true,
                     });

@@ -4,19 +4,26 @@ import FontIcon from 'material-ui/FontIcon';
 import MenuItem from 'material-ui/MenuItem';
 
 class PermissionOption extends Component {
+    ref = null;
+
     render = () => {
-        if (this.props.disabled)
+        if (this.props.disabled) {
             return null;
+        }
 
         return (
             <MenuItem
                 insetChildren
                 leftIcon={
                     <FontIcon className="material-icons">
-                        {this.props.icon}
+                        {this.props.isSelected ? 'done' : ''}
                     </FontIcon>
                 }
-                { ...this.props}
+                primaryText={this.props.primaryText}
+                value={this.props.value}
+                disabled={this.props.disabled}
+                onClick={this.props.onClick}
+                focusState={this.props.focusState}
             />
         );
     }
@@ -24,9 +31,16 @@ class PermissionOption extends Component {
 
 PermissionOption.propTypes = {
     disabled: PropTypes.bool.isRequired,
-    icon: PropTypes.string.isRequired,
+    isSelected: PropTypes.bool.isRequired,
     primaryText: PropTypes.string.isRequired,
     value: PropTypes.object.isRequired,
+    onClick: PropTypes.func,
+    focusState: PropTypes.string,
+};
+
+PermissionOption.defaultProps = {
+    onClick: undefined,
+    focusState: 'none',
 };
 
 PermissionOption.muiName = 'MenuItem';

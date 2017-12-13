@@ -14,7 +14,7 @@ const CreatedBy = ({ author }, context) => {
 };
 
 CreatedBy.propTypes = {
-    author: PropTypes.object,
+    author: PropTypes.object.isRequired,
 };
 
 CreatedBy.contextTypes = {

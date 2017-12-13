@@ -6,7 +6,7 @@ export const cachedAccessTypeToString = (canView, canEdit) => {
     }
 
     return '--------';
-}
+};
 
 export const transformAccessObject = (access, type) => ({
     id: access.id,
@@ -17,11 +17,11 @@ export const transformAccessObject = (access, type) => ({
     canEdit: access.access && access.access.includes('rw'),
 });
 
-export const accessStringToObject = access => {
+export const accessStringToObject = (access) => {
     if (!access) {
         return {
-            data: { canView: false, canEdit: false },
-            meta: { canView: false, canEdit: false },
+            data: { canView: false, canEdit: false },
+            meta: { canView: false, canEdit: false },
         };
     }
 
@@ -36,16 +36,23 @@ export const accessStringToObject = access => {
         data: {
             canView: dataAccess.includes('r'),
             canEdit: dataAccess.includes('rw'),
-        }
+        },
     };
-}
+};
 
-export const accessObjectToString = accessObject => {
-    const convert = ({ canEdit, canView }) => canEdit ? 'rw' : canView ? 'r-' : '--';
-    
+export const accessObjectToString = (accessObject) => {
+    const convert = ({ canEdit, canView }) => {
+        if (canEdit) {
+            return 'rw';
+        }
+
+        return canView ? 'r-' : '--';
+    };
+
     let accessString = '';
     accessString += convert(accessObject.meta);
     accessString += convert(accessObject.data);
+    accessString += '----';
 
-    return (accessString + '----');
-}
+    return accessString;
+};

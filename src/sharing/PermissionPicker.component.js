@@ -2,13 +2,13 @@
 
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import FontIcon from 'material-ui/FontIcon';
 import IconButton from 'material-ui/IconButton';
 import Divider from 'material-ui/Divider';
 import Popover from 'material-ui/Popover';
 import Menu from 'material-ui/Menu';
-import PermissionOption from './PermissionOption.component';
 import { config } from 'd2/lib/d2';
+
+import PermissionOption from './PermissionOption.component';
 
 config.i18n.strings.add('can_edit_and_view');
 config.i18n.strings.add('can_capture_data');
@@ -16,18 +16,40 @@ config.i18n.strings.add('can_view_data');
 config.i18n.strings.add('can_view_only');
 config.i18n.strings.add('no_access');
 
-const getAccessIcon = metaAccess => metaAccess.canEdit
-    ? 'create'
-    : metaAccess.canView
+const styles = {
+    optionHeader: {
+        paddingLeft: 16,
+        paddingTop: 16,
+        fontWeight: '400',
+        color: 'gray',
+    },
+};
+
+const getAccessIcon = (metaAccess) => {
+    if (metaAccess.canEdit) {
+        return 'create';
+    }
+
+    return metaAccess.canView
         ? 'remove_red_eye'
         : 'not_interested';
+};
 
 class PermissionPicker extends Component {
     state = {
         open: false,
     };
 
-    openMenu = event => {
+    onOptionClick = (event, menuItem) => {
+        const newAccess = {
+            ...this.props.access,
+            ...menuItem.props.value,
+        };
+
+        this.props.onChange(newAccess);
+    }
+
+    openMenu = (event) => {
         event.preventDefault();
         this.setState({
             open: true,
@@ -39,15 +61,6 @@ class PermissionPicker extends Component {
         this.setState({
             open: false,
         });
-    }
-
-    onOptionClick = (event, menuItem) => {
-        const newAccess = {
-            ...this.props.access,
-            ...menuItem.props.value,
-        };
-
-        this.props.onChange(newAccess);
     }
 
     translate = s => this.context.d2.i18n.getTranslation(s);
@@ -76,19 +89,19 @@ class PermissionPicker extends Component {
                             disabled={!metaOptions.canEdit}
                             value={{ meta: { canView: true, canEdit: true }}}
                             primaryText={this.translate('can_edit_and_view')}
-                            icon={meta.canEdit ? 'done' : ''}
+                            isSelected={meta.canEdit}
                         />
                         <PermissionOption
                             disabled={!metaOptions.canView}
                             value={{ meta: { canView: true, canEdit: false }}}
                             primaryText={this.translate('can_view_only')}
-                            icon={!meta.canEdit && meta.canView ? 'done' : ''}
+                            isSelected={!meta.canEdit && meta.canView}
                         />
                         <PermissionOption
                             disabled={!metaOptions.noAccess}
                             value={{ meta: { canView: false, canEdit: false }}}
                             primaryText={this.translate('no_access')}
-                            icon={!meta.canEdit && !meta.canView ? 'done' : ''}
+                            isSelected={!meta.canEdit && !meta.canView}
                         />
                     </Menu>
                     <Divider />
@@ -101,19 +114,19 @@ class PermissionPicker extends Component {
                                     disabled={!dataOptions.canEdit}
                                     value={{ data: { canView: true, canEdit: true }}}
                                     primaryText={this.translate('can_capture_data')}
-                                    icon={data.canEdit ? 'done' : ''}
+                                    isSelected={data.canEdit}
                                 />
                                 <PermissionOption
                                     disabled={!dataOptions.canView}
                                     value={{ data: { canView: true, canEdit: false }}}
                                     primaryText={this.translate('can_view_data')}
-                                    icon={!data.canEdit && data.canView ? 'done' : ''}
+                                    isSelected={!data.canEdit && data.canView}
                                 />
                                 <PermissionOption
                                     disabled={!dataOptions.noAccess}
                                     value={{ data: { canView: false, canEdit: false }}}
                                     primaryText={this.translate('no_access')}
-                                    icon={!data.canEdit && !data.canView ? 'done' : ''}
+                                    isSelected={!data.canEdit && !data.canView}
                                 />
                             </Menu>
                         </div>
@@ -124,19 +137,29 @@ class PermissionPicker extends Component {
     }
 }
 
+PermissionPicker.propTypes = {
+    access: PropTypes.object.isRequired,
+    accessOptions: PropTypes.object.isRequired,
+    onChange: PropTypes.func.isRequired,
+    disabled: PropTypes.bool,
+};
+
+PermissionPicker.defaultProps = {
+    disabled: false,
+};
+
 PermissionPicker.contextTypes = {
     d2: PropTypes.object.isRequired,
 };
 
 const OptionHeader = ({ text }) => (
-    <div style={{
-        paddingLeft: 16,
-        paddingTop: 16,
-        fontWeight: '400',
-        color: 'gray',
-    }}>
+    <div style={styles.optionHeader}>
         {text.toUpperCase()}
     </div>
 );
+
+OptionHeader.propTypes = {
+    text: PropTypes.string.isRequired,
+};
 
 export default PermissionPicker;
