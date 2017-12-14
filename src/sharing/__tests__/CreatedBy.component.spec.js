@@ -12,7 +12,7 @@ describe('Sharing: CreatedBy component', () => {
     };
 
     it('should render a div showing the author\'s name', () => {
-        const userObject = {
+        const authorObject = {
             id: 'GOLswS44mh8',
             name: 'Tom Wakiki',
             created: '2012-11-21T11:02:04.303+0000',
@@ -20,7 +20,7 @@ describe('Sharing: CreatedBy component', () => {
             href: 'http://localhost:8080/dhis/api/users/GOLswS44mh8',
         };
 
-        renderComponent({ user: userObject });
+        renderComponent({ author: authorObject });
         expect(createdByComponent.text()).toBe('created_by_translated: Tom Wakiki');
     });
 });

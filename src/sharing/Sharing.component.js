@@ -133,7 +133,7 @@ class Sharing extends React.Component {
                         <div key={access.id}>
                             <GroupAccess
                                 groupName={access.displayName}
-                                groupType="userAccesses"
+                                groupType="user"
                                 access={access.access}
                                 dataShareable={this.props.dataShareable}
                                 onRemove={this.onAccessRemove(access.id)}
@@ -147,7 +147,7 @@ class Sharing extends React.Component {
                             <GroupAccess
                                 access={access.access}
                                 groupName={access.displayName}
-                                groupType="userGroupAccesses"
+                                groupType="userGroup"
                                 dataShareable={this.props.dataShareable}
                                 onRemove={this.onAccessRemove(access.id)}
                                 onChange={this.onAccessRuleChange(access.id)}

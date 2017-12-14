@@ -58,7 +58,7 @@ const useAccessObjectFormat = props => ({
     },
 });
 
-const Access = ({
+export const Access = ({
     access,
     accessType,
     accessOptions,
