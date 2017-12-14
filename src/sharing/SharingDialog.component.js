@@ -18,9 +18,9 @@ const styles = {
 };
 
 const defaultState = {
-    accessForbidden: false,
     dataShareableTypes: [],
     sharedObject: null,
+    errorMessage: '',
 };
 
 /**
@@ -60,7 +60,7 @@ class SharingDialog extends React.Component {
             },
         };
 
-        this.postChanges(updatedObject, onSuccess);        
+        this.postChanges(updatedObject, onSuccess);
     }
 
     postChanges = (updatedObject, onSuccess) => {
@@ -76,6 +76,10 @@ class SharingDialog extends React.Component {
                 }
 
                 return message;
+            }).catch(({ message }) => {
+                this.setState({
+                    errorMessage: message,
+                });
             });
     }
 
@@ -114,7 +118,7 @@ class SharingDialog extends React.Component {
                 })
                 .catch(() => {
                     this.setState({
-                        accessForbidden: true,
+                        errorMessage: this.context.d2.i18n.getTranslation('no_manage_access'),
                     });
                 });
         });
@@ -125,6 +129,9 @@ class SharingDialog extends React.Component {
     }
 
     render() {
+        const dataShareable = this.state.dataShareableTypes.indexOf(this.props.type) !== -1;
+        const errorOccurred = this.state.errorMessage !== '';
+        const isLoading = !this.state.sharedObject && this.props.open && !errorOccurred;
         const sharingDialogActions = [
             <FlatButton
                 label={this.context.d2.i18n.getTranslation('close')}
@@ -132,41 +139,33 @@ class SharingDialog extends React.Component {
             />,
         ];
 
-        if (!this.state.sharedObject) {
-            if (this.state.accessForbidden) {
-                return (
-                    <Snackbar
-                        open
-                        autoHideDuration={3000}
-                        message={this.context.d2.i18n.getTranslation('no_manage_access')}
-                    />
-                );
-            }
-
-            return this.props.open
-                ? <LoadingMask style={styles.loadingMask} size={1} />
-                : null;
-        }
-
-        const dataShareable = this.state.dataShareableTypes.indexOf(this.props.type) !== -1;
-
         return (
-            <Dialog
-                autoDetectWindowHeight
-                autoScrollBodyContent
-                open={this.props.open}
-                title={this.context.d2.i18n.getTranslation('share')}
-                actions={sharingDialogActions}
-                onRequestClose={this.closeSharingDialog}
-                {...this.props}
-            >
-                <Sharing
-                    sharedObject={this.state.sharedObject}
-                    dataShareable={dataShareable}
-                    onChange={this.onSharingChanged}
-                    onSearch={this.onSearchRequest}
+            <div>
+                <Snackbar
+                    open={errorOccurred}
+                    message={this.state.errorMessage}
+                    autoHideDuration={3000}
                 />
-            </Dialog>
+                { isLoading && <LoadingMask style={styles.loadingMask} size={1} /> }
+                { this.state.sharedObject &&
+                    <Dialog
+                        autoDetectWindowHeight
+                        autoScrollBodyContent
+                        open={this.props.open}
+                        title={this.context.d2.i18n.getTranslation('share')}
+                        actions={sharingDialogActions}
+                        onRequestClose={this.closeSharingDialog}
+                        {...this.props}
+                    >
+                        <Sharing
+                            sharedObject={this.state.sharedObject}
+                            dataShareable={dataShareable}
+                            onChange={this.onSharingChanged}
+                            onSearch={this.onSearchRequest}
+                        />
+                    </Dialog>
+                }
+            </div>
         );
     }
 }

@@ -164,6 +164,7 @@ export const PublicAccess = compose(
         secondaryText: props.d2.i18n.getTranslation(constructSecondaryText(props.access.meta)),
         accessOptions: {
             meta: { canView: true, canEdit: true, noAccess: true },
+            data: props.dataShareable && { canView: true, canEdit: true, noAccess: true },
         },
     })),
 )(Access);

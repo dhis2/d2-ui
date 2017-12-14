@@ -87,19 +87,19 @@ class PermissionPicker extends Component {
                     <Menu onItemTouchTap={this.onOptionClick}>
                         <PermissionOption
                             disabled={!metaOptions.canEdit}
-                            value={{ meta: { canView: true, canEdit: true }}}
+                            value={{ meta: { canView: true, canEdit: true } }}
                             primaryText={this.translate('can_edit_and_view')}
                             isSelected={meta.canEdit}
                         />
                         <PermissionOption
                             disabled={!metaOptions.canView}
-                            value={{ meta: { canView: true, canEdit: false }}}
+                            value={{ meta: { canView: true, canEdit: false } }}
                             primaryText={this.translate('can_view_only')}
                             isSelected={!meta.canEdit && meta.canView}
                         />
                         <PermissionOption
                             disabled={!metaOptions.noAccess}
-                            value={{ meta: { canView: false, canEdit: false }}}
+                            value={{ meta: { canView: false, canEdit: false } }}
                             primaryText={this.translate('no_access')}
                             isSelected={!meta.canEdit && !meta.canView}
                         />
@@ -112,19 +112,19 @@ class PermissionPicker extends Component {
                             <Menu onItemTouchTap={this.onOptionClick}>
                                 <PermissionOption
                                     disabled={!dataOptions.canEdit}
-                                    value={{ data: { canView: true, canEdit: true }}}
+                                    value={{ data: { canView: true, canEdit: true } }}
                                     primaryText={this.translate('can_capture_data')}
                                     isSelected={data.canEdit}
                                 />
                                 <PermissionOption
                                     disabled={!dataOptions.canView}
-                                    value={{ data: { canView: true, canEdit: false }}}
+                                    value={{ data: { canView: true, canEdit: false } }}
                                     primaryText={this.translate('can_view_data')}
                                     isSelected={!data.canEdit && data.canView}
                                 />
                                 <PermissionOption
                                     disabled={!dataOptions.noAccess}
-                                    value={{ data: { canView: false, canEdit: false }}}
+                                    value={{ data: { canView: false, canEdit: false } }}
                                     primaryText={this.translate('no_access')}
                                     isSelected={!data.canEdit && !data.canView}
                                 />

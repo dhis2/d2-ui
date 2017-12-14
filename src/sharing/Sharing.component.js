@@ -99,11 +99,11 @@ class Sharing extends React.Component {
             userGroupAccesses,
             publicAccess,
             externalAccess,
-        } = this.props.sharedObject.object;
+        } = this.props.sharedObject.object;
         const {
             allowPublicAccess,
             allowExternalAccess,
-        } = this.props.sharedObject.meta;
+        } = this.props.sharedObject.meta;
 
         const accessIds = (userAccesses || []).map(access => access.id)
             .concat((userGroupAccesses || []).map(access => access.id));
@@ -119,6 +119,7 @@ class Sharing extends React.Component {
                     <PublicAccess
                         access={publicAccess}
                         disabled={!allowPublicAccess}
+                        dataShareable={this.props.dataShareable}
                         onChange={this.onPublicAccessChange}
                     />
                     <Divider />

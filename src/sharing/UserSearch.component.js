@@ -44,7 +44,7 @@ const searchDelay = 300;
 class UserSearch extends Component {
     state = {
         defaultAccess: {
-            meta: { canView: true, canEdit: true },
+            meta: { canView: true, canEdit: true },
             data: { canView: false, canEdit: false },
         },
         searchResult: [],
@@ -83,7 +83,7 @@ class UserSearch extends Component {
                     .filter(this.hasNoCurrentAccess)
                     .concat(userGroups
                         .map(addType('userGroupAccess'))
-                        .filter(this.hasNoCurrentAccess)
+                        .filter(this.hasNoCurrentAccess),
                     );
 
                 this.handleSearchResult(searchResult);
