@@ -8,14 +8,11 @@ import { getStubContext } from '../../../config/inject-theme';
 
 describe('LocaleSelector component', () => {
     let Component;
-    let locales;
     let onChangeLocaleSpy;
+    const locales = [{ locale: 'elf', name: 'Elfish' }, { locale: 'noren', name: 'Norglish' }];
 
     beforeEach(() => {
         onChangeLocaleSpy = jest.fn();
-
-        locales = [{ locale: 'elf', name: 'Elfish' }, { locale: 'noren', name: 'Norglish' }];
-
         Component = shallow(<LocaleSelector locales={locales} onChange={onChangeLocaleSpy} />, {
             context: getStubContext(),
         });
