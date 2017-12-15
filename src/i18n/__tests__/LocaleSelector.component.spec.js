@@ -31,7 +31,7 @@ describe('LocaleSelector component', () => {
     });
 
     it('should call onChange function when field content is changed', () => {
-        Component.simulate('change', {}, 6, 'noren');
+        Component.simulate('change', {}, 2, 'noren');
 
         expect(onChangeLocaleSpy).toHaveBeenCalled();
         expect(onChangeLocaleSpy.mock.calls[0][0]).toBe('noren');
@@ -40,7 +40,7 @@ describe('LocaleSelector component', () => {
     it('should change the local state when field content is changed', () => {
         expect(Component.state()).toBeNull();
 
-        Component.simulate('change', {}, 6, 'noren');
+        Component.simulate('change', {}, 2, 'noren');
 
         expect(Component.state().locale).toEqual('noren');
     });
