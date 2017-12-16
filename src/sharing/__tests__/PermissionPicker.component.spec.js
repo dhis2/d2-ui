@@ -1,16 +1,21 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import IconMenu from 'material-ui/IconMenu';
-import MenuItem from 'material-ui/MenuItem';
+import IconButton from 'material-ui/IconButton';
+import PermissionOption from '../PermissionOption.component';
 import PermissionPicker from '../PermissionPicker.component';
 import { getStubContext } from '../../../config/inject-theme';
 
 const permissionPickerProps = {
-    accessOptions: { canView: true, canEdit: true },
+    access: {
+        meta: { canView: true, canEdit: true },
+        data: { canView: true, canEdit: true },
+    },
+    accessOptions: {
+        meta: { canView: true, canEdit: true, noAccess: true },
+        data: { canView: true, canEdit: true, noAccess: true },
+    },
     onChange: () => {},
     disabled: false,
-    disableWritePermission: false,
-    disableNoAccess: false,
 };
 
 describe('Sharing: PermissionPicker component', () => {
@@ -26,61 +31,45 @@ describe('Sharing: PermissionPicker component', () => {
     });
 
     it('should render an IconButton', () => {
-        expect(permissionPickerComponent.find(IconMenu)).toHaveLength(1);
+        expect(permissionPickerComponent.find(IconButton)).toHaveLength(1);
     });
 
-    it('should render three MenuItems if all access options are available', () => {
-        expect(permissionPickerComponent.find(MenuItem)).toHaveLength(3);
-    });
-
-    it('should render two MenuItems if disableWritePermission is false', () => {
+    it('should render three PermissionOptions if no data options, but all metadata options are available', () => {
         permissionPickerComponent = renderComponent({
             ...permissionPickerProps,
-            disableWritePermission: true,
+            accessOptions: {
+                meta: { canView: true, canEdit: true, noAccess: true },
+            },
         });
 
-        expect(permissionPickerComponent.find(MenuItem)).toHaveLength(2);
+        expect(permissionPickerComponent.find(PermissionOption)).toHaveLength(3);
     });
 
-    it('should render two MenuItems if disableNoAccess is false', () => {
-        permissionPickerComponent = renderComponent({
-            ...permissionPickerProps,
-            disableNoAccess: true,
-        });
-
-        expect(permissionPickerComponent.find(MenuItem)).toHaveLength(2);
-    });
-
-    it('should render one MenuItems if disableWritePermission and disableNoAccess are both false', () => {
-        permissionPickerComponent = renderComponent({
-            ...permissionPickerProps,
-            disableWritePermission: true,
-            disableNoAccess: true,
-        });
-
-        expect(permissionPickerComponent.find(MenuItem)).toHaveLength(1);
+    it('should render six PermissionOptions if all access options are available', () => {
+        expect(permissionPickerComponent.find(PermissionOption)).toHaveLength(6);
     });
 
     it('should render the checkmark FontIcon according to the permission values', () => {
-        expect(permissionPickerComponent.find(MenuItem).at(0).props().leftIcon.props.children).toBe('done');
-        expect(permissionPickerComponent.find(MenuItem).at(1).props().leftIcon.props.children).toBe('');
-        expect(permissionPickerComponent.find(MenuItem).at(2).props().leftIcon.props.children).toBe('');
+        expect(permissionPickerComponent.find(PermissionOption).at(0).props().isSelected).toBe(true);
+        expect(permissionPickerComponent.find(PermissionOption).at(1).props().isSelected).toBe(false);
+        expect(permissionPickerComponent.find(PermissionOption).at(2).props().isSelected).toBe(false);
+        expect(permissionPickerComponent.find(PermissionOption).at(3).props().isSelected).toBe(true);
+        expect(permissionPickerComponent.find(PermissionOption).at(4).props().isSelected).toBe(false);
+        expect(permissionPickerComponent.find(PermissionOption).at(5).props().isSelected).toBe(false);
+
         permissionPickerComponent = renderComponent({
             ...permissionPickerProps,
-            accessOptions: { canEdit: false, canView: true },
-        });
-        expect(permissionPickerComponent.find(MenuItem).at(0).props().leftIcon.props.children).toBe('');
-        expect(permissionPickerComponent.find(MenuItem).at(1).props().leftIcon.props.children).toBe('done');
-    });
-
-    it('should fire the onChange callback on change', () => {
-        const onChangeSpy = jest.fn();
-        permissionPickerComponent = renderComponent({
-            ...permissionPickerProps,
-            onChange: onChangeSpy,
+            access: {
+                data: { canView: false, canEdit: false },
+                meta: { canView: false, canEdit: false },
+            },
         });
 
-        permissionPickerComponent.simulate('change');
-        expect(onChangeSpy).toHaveBeenCalled();
+        expect(permissionPickerComponent.find(PermissionOption).at(0).props().isSelected).toBe(false);
+        expect(permissionPickerComponent.find(PermissionOption).at(1).props().isSelected).toBe(false);
+        expect(permissionPickerComponent.find(PermissionOption).at(2).props().isSelected).toBe(true);
+        expect(permissionPickerComponent.find(PermissionOption).at(3).props().isSelected).toBe(false);
+        expect(permissionPickerComponent.find(PermissionOption).at(4).props().isSelected).toBe(false);
+        expect(permissionPickerComponent.find(PermissionOption).at(5).props().isSelected).toBe(true);
     });
 });
