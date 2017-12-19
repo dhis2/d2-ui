@@ -13,7 +13,9 @@ injectTapEventPlugin();
 
 class SharingExample extends React.Component {
     state = {
-        dialogOpen: false,
+        open: false,
+        id: '',
+        type: '',
     }
 
     getChildContext = () => ({
@@ -26,27 +28,42 @@ class SharingExample extends React.Component {
         },
     });
 
-    handleOpen = () => { this.setState({ dialogOpen: true }); };
-    handleClose = () => { this.setState({ dialogOpen: false }); };
+    handleOpen = (type, id) => () => {
+        this.setState({
+            open: true, id, type,
+        });
+    };
+
+    handleClose = () => {
+        this.setState({
+            open: false,
+        });
+    };
 
     render = () => (
         <MuiThemeProvider muiTheme={getMuiTheme()}>
             <div style={{ padding: 32 }}>
-                <RaisedButton label="Open" onClick={this.handleOpen} />
                 <SharingDialog
-                    open={this.state.dialogOpen}
-                    type={this.props.type}
-                    id={this.props.id}
+                    open={this.state.open}
+                    id={this.state.id}
+                    type={this.state.type}
                     onRequestClose={this.handleClose}
                 />
+                { this.props.examples.map(({ type, id }) => (
+                    <div key={type + id} style={{ padding: 16 }}>
+                        <RaisedButton key={type} label={`${type}/${id}`} onClick={this.handleOpen(type, id)} />
+                    </div>
+                ))}
             </div>
         </MuiThemeProvider>
     );
 }
 
 SharingExample.propTypes = {
-    type: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
+    examples: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        type: PropTypes.string.isRequired,
+    })).isRequired,
 };
 
 SharingExample.childContextTypes = {
@@ -65,10 +82,13 @@ D2Lib.init({ baseUrl })
         log.info('D2 initialized successfully', d2);
         window.d2 = d2;
 
-        const objectType = 'category';
-        const objectId = 'veGzholzPQm';
+        const examples = [
+            { type: 'category', id: 'veGzholzPQm' },
+            { type: 'categoryOption', id: 'FbLZS3ueWbQ' },
+            { type: 'categoryOption', id: 'K4gwuiVvW3z' },
+        ];
 
-        render(<SharingExample type={objectType} id={objectId} />, element);
+        render(<SharingExample examples={examples} />, element);
     })
     .catch((err) => {
         log.error('Failed to initialise D2:', err);

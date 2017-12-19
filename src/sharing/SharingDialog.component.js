@@ -18,7 +18,6 @@ const styles = {
 };
 
 const defaultState = {
-    dataShareableTypes: [],
     sharedObject: null,
     errorMessage: '',
 };
@@ -27,17 +26,22 @@ const defaultState = {
  * A pop-up dialog for changing sharing preferences for a sharable object.
  */
 class SharingDialog extends React.Component {
-    state = defaultState;
+    state = {
+        ...defaultState,
+        dataShareableTypes: [],
+    };
 
     componentDidMount() {
         this.loadDataSharingSettings();
-        if (this.props.open) {
+        if (this.props.open && this.props.type && this.props.id) {
             this.loadObjectFromApi();
         }
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.id !== this.props.id) {
+        const hasChanged = this.createPropsChecker(nextProps);
+
+        if (hasChanged('id') || hasChanged('type')) {
             this.resetState();
             if (nextProps.open) this.loadObjectFromApi();
         }
@@ -62,6 +66,8 @@ class SharingDialog extends React.Component {
 
         this.postChanges(updatedObject, onSuccess);
     }
+
+    createPropsChecker = nextProps => field => nextProps[field] !== this.props[field];
 
     postChanges = (updatedObject, onSuccess) => {
         const url = `sharing?type=${this.props.type}&id=${this.props.id}`;
@@ -116,9 +122,9 @@ class SharingDialog extends React.Component {
                         sharedObject,
                     });
                 })
-                .catch(() => {
+                .catch((error) => {
                     this.setState({
-                        errorMessage: this.context.d2.i18n.getTranslation('no_manage_access'),
+                        errorMessage: error.message,
                     });
                 });
         });
