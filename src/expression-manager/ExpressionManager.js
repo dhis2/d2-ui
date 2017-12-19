@@ -16,7 +16,8 @@ import OrganisationUnitGroupSelector from './OrganisationUnitGroupSelector';
 import ConstantSelector from './ConstantSelector';
 import addD2Context from '../component-helpers/addD2Context';
 import Action from '../action/Action';
-import { Row, Column } from '../layout';
+import Row from '../layout/Row.component';
+import Column from '../layout/Column.component';
 
 config.i18n.strings.add('data_elements');
 config.i18n.strings.add('description');
