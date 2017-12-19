@@ -53,6 +53,7 @@ module.exports = {
             selectfield: './examples/select-field',
             tabs: './examples/tabs',
             chip: './examples/chip',
+            controlbar: './examples/controlbar',
         },
     devtool: 'source-map',
     output: {
