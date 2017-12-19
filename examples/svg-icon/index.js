@@ -52,6 +52,10 @@ const icons = (
                 <SvgIcon icon={'Star'} className="my-starry-icon" />
             </div>
             <div style={cardStyle}>
+                <h3>StarBorder</h3>
+                <SvgIcon icon={'StarBorder'} />
+            </div>
+            <div style={cardStyle}>
                 <h3>ArrowDropRight</h3>
                 <SvgIcon icon={'ArrowDropRight'} />
             </div>
@@ -114,6 +118,26 @@ const icons = (
             <div style={cardStyle}>
                 <h3>DragHandle</h3>
                 <SvgIcon icon={'DragHandle'} />
+            </div>
+            <div style={cardStyle}>
+                <h3>GridOn</h3>
+                <SvgIcon icon={'GridOn'} />
+            </div>
+            <div style={cardStyle}>
+                <h3>ShowChart</h3>
+                <SvgIcon icon={'ShowChart'} />
+            </div>
+            <div style={cardStyle}>
+                <h3>InsertChart</h3>
+                <SvgIcon icon={'InsertChart'} />
+            </div>
+            <div style={cardStyle}>
+                <h3>Public</h3>
+                <SvgIcon icon={'Public'} />
+            </div>
+            <div style={cardStyle}>
+                <h3>Message</h3>
+                <SvgIcon icon={'Message'} />
             </div>
         </div>
     </MuiThemeProvider>
