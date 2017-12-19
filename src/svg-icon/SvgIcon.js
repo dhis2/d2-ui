@@ -11,14 +11,20 @@ import Close from 'material-ui/svg-icons/navigation/close';
 import Create from 'material-ui/svg-icons/content/create';
 import Delete from 'material-ui/svg-icons/action/delete';
 import DragHandle from 'material-ui/svg-icons/editor/drag-handle';
+import GridOn from 'material-ui/svg-icons/image/grid-on';
 import InfoOutline from 'material-ui/svg-icons/action/info-outline';
+import InsertChart from 'material-ui/svg-icons/editor/insert-chart';
+import Message from 'material-ui/svg-icons/communication/message';
 import MoreVert from 'material-ui/svg-icons/navigation/more-vert';
 import Room from 'material-ui/svg-icons/action/room';
+import ShowChart from 'material-ui/svg-icons/editor/show-chart';
 import Star from 'material-ui/svg-icons/toggle/star';
+import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 import ViewList from 'material-ui/svg-icons/action/view-list';
 import Visibility from 'material-ui/svg-icons/action/visibility';
 import VisibilityOff from 'material-ui/svg-icons/action/visibility-off';
 import SentimentDissatisfied from 'material-ui/svg-icons/social/sentiment-dissatisfied';
+import Public from 'material-ui/svg-icons/social/public';
 import MUISvgIcon from 'material-ui/SvgIcon';
 import { grey600, grey200 } from 'material-ui/styles/colors';
 
@@ -35,10 +41,16 @@ const icons = {
     Create,
     Delete,
     DragHandle,
+    GridOn,
     InfoOutline,
+    InsertChart,
+    Message,
     MoreVert,
+    Public,
     Room,
+    ShowChart,
     Star,
+    StarBorder,
     ViewList,
     Visibility,
     VisibilityOff,
