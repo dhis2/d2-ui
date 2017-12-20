@@ -94,6 +94,7 @@ class ProgramOperandSelector extends Component {
         this.context.d2.models.program.list({ paging: false, fields: 'id,displayName,programTrackedEntityAttributes[id,displayName,dimensionItem],programIndicators[id,displayName,dimensionItem]' })
             .then(programCollection => programCollection.toArray())
             .then((programs) => {
+                
                 const programMenuItems = programs
                     .map(program => ({
                         payload: program.id,
@@ -105,7 +106,7 @@ class ProgramOperandSelector extends Component {
                     programMenuItems,
                     programAttributes: new Map(programs.map(program => [
                         program.id,
-                        Array.from(program.programTrackedEntityAttributes.values())
+                        Array.from(program.programTrackedEntityAttributes)
                             .map(tea => ({
                                 value: tea.dimensionItem,
                                 label: tea.displayName,
@@ -182,10 +183,10 @@ class ProgramOperandSelector extends Component {
         );
     }
 
-    onLoadProgramDataOperands(event) {
+    onLoadProgramDataOperands = (event) => {
         const api = this.context.d2.Api.getApi();
         const programId = event.target.value;
-
+        
         api.get('programDataElements', { program: programId, fields: 'id,displayName,dimensionItem', paging: false, order: 'displayName:asc' })
             .then((programDataElements) => {
                 this.setState({
@@ -199,19 +200,19 @@ class ProgramOperandSelector extends Component {
             .catch(error => log.error(error));
     }
 
-    onProgramTrackedEntityAttributeSelected(value) {
+    onProgramTrackedEntityAttributeSelected = (value) => {
         const programTrackedEntityAttributeFormula = ['A{', value, '}'].join('');
 
         this.props.programOperandSelected(programTrackedEntityAttributeFormula);
     }
 
-    onProgramIndicatorSelected(value) {
+    onProgramIndicatorSelected = (value) => {
         const programIndicatorFormula = ['I{', value, '}'].join('');
 
         this.props.programOperandSelected(programIndicatorFormula);
     }
 
-    onProgramDataElementSelected(value) {
+    onProgramDataElementSelected = (value) => {
         const programDataElementSelected = ['D{', value, '}'].join('');
 
         this.props.programOperandSelected(programDataElementSelected);

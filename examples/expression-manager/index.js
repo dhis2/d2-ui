@@ -37,6 +37,22 @@ const style = {
 
 function renderExamples(d2) {
     class Example extends React.Component {
+        constructor(props) {
+            super(props);
+
+            d2.i18n.translations['search_by_name'] = 'Search by name';
+            d2.i18n.translations['field_is_required'] = 'Field is required';
+            d2.i18n.translations['organisation_unit_counts'] = 'Organisation Unit Counts';
+            d2.i18n.translations['please_select_a_program'] = 'Please select a program';
+
+            d2.i18n.translations['program_data_elements'] = 'Program data elements';
+            d2.i18n.translations['program_tracked_entity_attributes'] = 'Program tracked entity attributes';
+            d2.i18n.translations['program_indicators'] = 'Program indicators';
+
+            d2.i18n.translations['no_program_indicators'] = 'No program indicators for this program';
+            d2.i18n.translations['no_tracked_entity_attributes'] = 'No tracked entity attributes for this program';
+        }
+
         getChildContext() {
             return { muiTheme: getMuiTheme(style), d2 };
         }
@@ -58,7 +74,7 @@ function renderExamples(d2) {
                 titleText="My indicator expression manager"
                 descriptionLabel="description"
                 expressionStatusStore={store}
-                indicatorExpressionChanged={(...args) => console.log(args)}
+                expressionChanged={value => ({ ...value })}
                 descriptionValue=""
                 formulaValue=""
             />
