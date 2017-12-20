@@ -14,6 +14,7 @@ import CheckBox from '../../src/form-fields/CheckBox.component';
 import SelectField from '../../src/form-fields/DropDown.component';
 import TextField from '../../src/form-fields/TextField';
 import DatePicker from '../../src/form-fields/DatePicker.component';
+import MultiToggle from '../../src/form-fields/MultiToggle';
 import FormBuilder from '../../src/forms/FormBuilder.component';
 import { isStartDateBeforeEndDate, isRequired } from '../../src/forms/Validators';
 
@@ -130,6 +131,28 @@ class FormExample extends React.Component {
                         return isStartDateBeforeEndDate(formModel.fields.startDate.value, value);
                     },
                 }],
+            },
+            {
+                name: 'exampleMultiToggle',
+                value: '',
+                component: MultiToggle,
+                props: {
+                    items: [
+                        {
+                            name: 'Monday',
+                            value: true,
+                            text: 'Monday is best',
+                        },
+                        {
+                            name: 'Friday',
+                            text: 'Friday is worst',
+                        },
+                    ],
+                    label: 'Day of the week',
+                    onChange: (e, v) => {
+                        console.log('onChange happened with', e, v);
+                    },
+                },
             },
         ];
         return (
