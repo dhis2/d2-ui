@@ -11,17 +11,20 @@ class LocaleSelector extends Component {
         this.getTranslation = i18n.getTranslation.bind(i18n);
     }
 
+    onLocaleChange = (event, index, locale) => {
+        this.setState({
+            locale,
+        });
+
+        this.props.onChange(locale, event);
+    }
+
     render() {
         const localeMenuItems = [{ payload: '', text: '' }]
             .concat(this.props.locales)
             .map((locale, index) => (
-                <MenuItem
-                    key={index}
-                    primaryText={locale.name}
-                    value={locale.locale}
-                />
+                <MenuItem key={index} primaryText={locale.name} value={locale.locale} />
             ));
-
 
         return (
             <SelectField
@@ -35,22 +38,16 @@ class LocaleSelector extends Component {
             </SelectField>
         );
     }
-
-    onLocaleChange(event, index, locale) {
-        this.setState({
-            locale,
-        });
-
-        this.props.onChange(locale, event);
-    }
 }
 
 LocaleSelector.propTypes = {
     value: PropTypes.string,
-    locales: PropTypes.arrayOf(PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        locale: PropTypes.string.isRequired,
-    })).isRequired,
+    locales: PropTypes.arrayOf(
+        PropTypes.shape({
+            name: PropTypes.string.isRequired,
+            locale: PropTypes.string.isRequired,
+        })
+    ).isRequired,
     onChange: PropTypes.func.isRequired,
 };
 

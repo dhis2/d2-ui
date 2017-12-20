@@ -127,13 +127,13 @@ class TranslationForm extends Component {
         }
     }
 
-    setCurrentLocale(locale) {
+    setCurrentLocale = (locale) => {
         this.setState({
             currentSelectedLocale: locale,
         });
     }
 
-    setValue(property, event) {
+    setValue = (property, event) => {
         let newTranslations = [].concat(this.props.translations);
         let translation = newTranslations
             .find(t => t.locale === this.state.currentSelectedLocale && t.property.toLowerCase() === camelCaseToUnderscores(property));
@@ -158,7 +158,7 @@ class TranslationForm extends Component {
         this.props.setTranslations(newTranslations);
     }
 
-    saveTranslations() {
+    saveTranslations = () => {
         saveTranslations(this.props.objectToTranslate, this.props.translations)
             .subscribe(
                 this.props.onTranslationSaved,
