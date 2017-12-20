@@ -3,17 +3,17 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import AppWithD2 from '../AppWithD2.component';
-// import CheckBox from '../../form-fields/CheckBox.component';
 
 describe('AppWithD2 component', () => {
     let Component;
 
-    const children =
+    const children = (
         <section>
             <p key="a" className="child a">A</p>
             <p key="b" className="child b">B</p>
             <p key="c" className="child c">C</p>
-        </section>;
+        </section>
+    );
 
     beforeEach(() => {
         Component = shallow(<AppWithD2>{children}</AppWithD2>);
@@ -27,7 +27,7 @@ describe('AppWithD2 component', () => {
         expect(Component.find('p.child')).toHaveLength(3);
     });
 
-    it('should receive the d2 property', () => {
+    it('should set d2 in the local state', () => {
         const expectedD2 = { currentUser: {}, models: {}, Api: {} };
         const promiseToD2 = Promise.resolve(expectedD2);
 
