@@ -21,7 +21,7 @@ export const clickableStyle = {
 const labelStyle = {
     fontSize: '13px',
     fontWeight: 500,
-    lineHeight: size,
+    // lineHeight: size,
 };
 
 export const colors = {
@@ -76,11 +76,15 @@ const Chip = ({ avatar, color = 'default', disabled, label, onClick, onRequestDe
             {...avatarProps}
         />;
 
+    const wrapperClassName = createClassName('d2-ui-chip-wrapper', selector);
+    const wrapperStyle = { display: 'inline-block', verticalAlign: 'top' };
     return (
-        <MuiChip {...props}>
-            {avatarCmp}
-            {label}
-        </MuiChip>
+        <div className={wrapperClassName} style={wrapperStyle}>
+            <MuiChip {...props}>
+                {avatarCmp}
+                {label}
+            </MuiChip>
+        </div>
     );
 };
 
