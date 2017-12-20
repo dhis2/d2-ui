@@ -9,10 +9,9 @@ class LocaleSelector extends Component {
 
         const i18n = this.context.d2.i18n;
         this.getTranslation = i18n.getTranslation.bind(i18n);
-        this.onLocaleChange = this.onLocaleChange.bind(this);
     }
 
-    onLocaleChange(event, index, locale) {
+    onLocaleChange = (event, index, locale) => {
         this.setState({
             locale,
         });
