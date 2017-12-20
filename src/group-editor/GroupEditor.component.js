@@ -336,7 +336,7 @@ class GroupEditor extends Component {
     //
     // Event handlers
     //
-    onAssignItems() {
+    onAssignItems = () => {
         this.setState({ loading: true });
         this.props.onAssignItems([].map.call(this.leftSelect.selectedOptions, item => item.value))
             .then(() => {
@@ -348,7 +348,7 @@ class GroupEditor extends Component {
             });
     }
 
-    onRemoveItems() {
+    onRemoveItems = () => {
         this.setState({ loading: true });
         this.props.onRemoveItems([].map.call(this.rightSelect.selectedOptions, item => item.value))
             .then(() => {
@@ -360,7 +360,7 @@ class GroupEditor extends Component {
             });
     }
 
-    onAssignAll() {
+    onAssignAll = () => {
         this.setState({ loading: true });
         this.props.onAssignItems([].map.call(this.leftSelect.options, item => item.value))
             .then(() => {
@@ -371,7 +371,7 @@ class GroupEditor extends Component {
             });
     }
 
-    onRemoveAll() {
+    onRemoveAll = () => {
         this.setState({ loading: true });
         this.props.onRemoveItems([].map.call(this.rightSelect.options, item => item.value))
             .then(() => {
