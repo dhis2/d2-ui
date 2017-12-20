@@ -31,11 +31,13 @@ class MultiToggle extends Component {
 
     render() {
         const style = Object.assign({}, this.context.muiTheme.forms, this.props.style);
+
         return (
             <div>
                 <div style={{ marginTop: 16, marginBottom: 8 }}>{this.props.label}</div>
                 {this.props.items.map((item) => {
-                    const togglor = this.handleToggle.bind(null, item.name);
+                    const togglor = this.handleToggle.bind(this, item.name);
+
                     return (
                         <Checkbox
                             key={item.name}

@@ -148,10 +148,8 @@ class FormExample extends React.Component {
                             text: 'Friday is worst',
                         },
                     ],
-                    label: 'Day of the week',
-                    onChange: (e, v) => {
-                        console.log('onChange happened with', e, v);
-                    },
+                    label: 'Example of MultiToggle',
+                    onChange: () => {},
                 },
             },
         ];
