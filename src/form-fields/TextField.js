@@ -5,7 +5,6 @@ import MuiTextField from 'material-ui/TextField';
 class TextField extends Component {
     constructor(props) {
         super(props);
-        this.change = this.change.bind(this);
         this.state = {
             value: this.props.value,
         };
@@ -15,9 +14,9 @@ class TextField extends Component {
         this.setState({ value: props.value });
     }
 
-    change(e) {
-        this.setState({ value: e.target.value });
-    }
+    change = (e, value) => {
+        this.setState({ value });
+    };
 
     render() {
         const {
