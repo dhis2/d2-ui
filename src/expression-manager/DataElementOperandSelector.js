@@ -58,17 +58,17 @@ class DataElementOperandSelector extends Component {
         this.actionSubscriptions.forEach(subscription => subscription.unsubscribe());
     }
 
-    getNextPage() {
+    getNextPage = () => {
         this.setState({ isLoading: true });
         this.props.dataElementOperandSelectorActions.getNextPage(this.state.pager, this.state.searchValue);
     }
 
-    getPreviousPage() {
+    getPreviousPage = () => {
         this.setState({ isLoading: true });
         this.props.dataElementOperandSelectorActions.getPreviousPage(this.state.pager, this.state.searchValue);
     }
 
-    searchDataElement(event) {
+    searchDataElement = (event) => {
         const value = event.target.value;
         this.props.dataElementOperandSelectorActions.search(value)
             .subscribe(() => {
