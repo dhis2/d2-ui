@@ -81,13 +81,13 @@ class FormField extends Component {  // eslint-disable-line react/no-multi-comp
         );
     }
 
-    onFocus() {
+    onFocus = () => {
         this.setState({ isFocused: true });
-    }
+    };
 
-    onBlur() {
+    onBlur = () => {
         this.setState({ isFocused: false });
-    }
+    };
 }
 
 FormField.propTypes = {
