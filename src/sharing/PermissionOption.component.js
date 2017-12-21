@@ -1,7 +1,7 @@
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
-import FontIcon from 'material-ui/FontIcon';
-import MenuItem from 'material-ui/MenuItem';
+import PropTypes from "prop-types";
+import React, { Component } from "react";
+import SvgIcon from "../svg-icon/SvgIcon";
+import MenuItem from "material-ui/MenuItem";
 
 class PermissionOption extends Component {
     ref = null;
@@ -15,9 +15,7 @@ class PermissionOption extends Component {
             <MenuItem
                 insetChildren
                 leftIcon={
-                    <FontIcon className="material-icons">
-                        {this.props.isSelected ? 'done' : ''}
-                    </FontIcon>
+                    this.props.isSelected ? <SvgIcon icon="Done" /> : undefined
                 }
                 primaryText={this.props.primaryText}
                 value={this.props.value}
@@ -26,7 +24,7 @@ class PermissionOption extends Component {
                 focusState={this.props.focusState}
             />
         );
-    }
+    };
 }
 
 PermissionOption.propTypes = {
@@ -35,13 +33,13 @@ PermissionOption.propTypes = {
     primaryText: PropTypes.string.isRequired,
     value: PropTypes.object.isRequired,
     onClick: PropTypes.func,
-    focusState: PropTypes.string,
+    focusState: PropTypes.string
 };
 
 PermissionOption.defaultProps = {
     onClick: undefined,
-    focusState: 'none',
+    focusState: "none"
 };
 
-PermissionOption.muiName = 'MenuItem';
+PermissionOption.muiName = "MenuItem";
 export default PermissionOption;
