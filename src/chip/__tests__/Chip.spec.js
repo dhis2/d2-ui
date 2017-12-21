@@ -6,40 +6,51 @@ import { getStubContext } from '../../../config/inject-theme';
 import Chip, { disabledStyle, clickableStyle, colors, avatarProps, avatarIcons } from '../Chip';
 
 describe('Chip', () => {
-    const renderWithProps = (props) => shallow(<Chip {...props} />, {
+    const renderWithProps = props => shallow(<Chip {...props} />, {
         context: getStubContext(),
     });
 
     it('should render MUI Chip', () => {
-        expect(renderWithProps({}).type()).toBe(MuiChip);
+        expect(renderWithProps({}).find('Chip').type()).toBe(MuiChip);
+    });
+
+    it('should add a wrapper div with a class name that wraps the component', () => {
+        const wrapper = renderWithProps({}).find('div.d2-ui-chip-wrapper');
+        expect(wrapper.length).toBe(1);
+        expect(wrapper.find('.d2-ui-chip').length).toBe(1);
     });
 
     it('should add a class name', () => {
-        expect(renderWithProps({}).props().className).toMatch('d2-ui-chip');
+        expect(renderWithProps({}).find('.d2-ui-chip').length).toBe(1);
     });
 
     it('should render "pointer" cursor when onClick is a function', () => {
-        expect(renderWithProps({ onClick: () => {}}).props().style.cursor).toMatch(clickableStyle.cursor);
+        expect(renderWithProps({ onClick: () => {} }).find('.d2-ui-chip').props().style.cursor)
+            .toMatch(clickableStyle.cursor);
     });
 
     it('should set default colors when color=undefined', () => {
-        expect(renderWithProps({}).props().color).toMatch(colors['default'].color);
-        expect(renderWithProps({}).props().backgroundColor).toMatch(colors['default'].backgroundColor);
+        expect(renderWithProps({}).find('.d2-ui-chip').props().color).toMatch(colors.default.color);
+        expect(renderWithProps({}).find('.d2-ui-chip').props().backgroundColor)
+            .toMatch(colors.default.backgroundColor);
     });
 
     it('should set primary colors when color=primary', () => {
-        expect(renderWithProps({ color: 'primary' }).props().color).toMatch(colors.primary.color);
-        expect(renderWithProps({ color: 'primary' }).props().backgroundColor).toMatch(colors.primary.backgroundColor);
+        expect(renderWithProps({ color: 'primary' }).find('.d2-ui-chip').props().color).toMatch(colors.primary.color);
+        expect(renderWithProps({ color: 'primary' }).find('.d2-ui-chip').props().backgroundColor)
+            .toMatch(colors.primary.backgroundColor);
     });
 
     it('should deactivate click handlers when disabled=true is passed', () => {
-        expect(renderWithProps({ disabled: true }).props().onClick).toBe(undefined);
-        expect(renderWithProps({ disabled: true }).props().onRequestDelete).toBe(undefined);
+        expect(renderWithProps({ disabled: true }).find('.d2-ui-chip').props().onClick).toBe(undefined);
+        expect(renderWithProps({ disabled: true }).find('.d2-ui-chip').props().onRequestDelete).toBe(undefined);
     });
 
     it('should render disabled style when disabled=true is passed', () => {
-        expect(renderWithProps({ disabled: true }).props().style.cursor).toMatch(disabledStyle.cursor);
-        expect(renderWithProps({ disabled: true }).props().style.opacity).toEqual(disabledStyle.opacity);
+        expect(renderWithProps({ disabled: true }).find('.d2-ui-chip').props().style.cursor)
+            .toMatch(disabledStyle.cursor);
+        expect(renderWithProps({ disabled: true }).find('.d2-ui-chip').props().style.opacity)
+            .toEqual(disabledStyle.opacity);
     });
 
     it('should render label as child node', () => {
@@ -63,6 +74,14 @@ describe('Chip', () => {
     });
 
     it('should add a custom class name when a selector is passed', () => {
-        expect(renderWithProps({ selector: 'mySelector' }).props().className).toMatch('d2-ui-chip-mySelector');
+        const node = renderWithProps({ selector: 'mySelector' });
+        expect(node.find('.d2-ui-chip-mySelector').length).toBe(1);
+    });
+
+    it('should add a custom class name to the wrapper when a selector is passed', () => {
+        const node = renderWithProps({ selector: 'mySelector' });
+        const wrapper = node.find('.d2-ui-chip-wrapper-mySelector');
+        expect(wrapper.length).toBe(1);
+        expect(wrapper.find('.d2-ui-chip-mySelector').length).toBe(1);
     });
 });
