@@ -74,7 +74,7 @@ class Sidebar extends Component {
         }
     }
 
-    changeSearchText() {
+    changeSearchText = () => {
         this.setState({ searchText: this.searchBox.getValue() }, () => {
             if (this.props.onChangeSearchText) {
                 this.props.onChangeSearchText(this.state.searchText);
@@ -82,7 +82,7 @@ class Sidebar extends Component {
         });
     }
 
-    onClear() {
+    onClear = () => {
         this.setState({ searchText: '' }, () => {
             if (this.props.onChangeSearchText) {
                 this.props.onChangeSearchText(this.state.searchText);
