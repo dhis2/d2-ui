@@ -106,7 +106,7 @@ class ProgramOperandSelector extends Component {
                     programMenuItems,
                     programAttributes: new Map(programs.map(program => [
                         program.id,
-                        Array.from(program.programTrackedEntityAttributes)
+                        Array.from(program.programTrackedEntityAttributes.values())
                             .map(tea => ({
                                 value: tea.dimensionItem,
                                 label: tea.displayName,
