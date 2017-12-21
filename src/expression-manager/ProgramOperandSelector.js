@@ -106,7 +106,9 @@ class ProgramOperandSelector extends Component {
                     programMenuItems,
                     programAttributes: new Map(programs.map(program => [
                         program.id,
-                        Array.from(program.programTrackedEntityAttributes.values())
+                        Array.from(program.programTrackedEntityAttributes.values 
+                                ? program.programTrackedEntityAttributes.values()
+                                : [])
                             .map(tea => ({
                                 value: tea.dimensionItem,
                                 label: tea.displayName,
@@ -115,7 +117,9 @@ class ProgramOperandSelector extends Component {
                     ])),
                     programIndicators: new Map(programs.map(program => [
                         program.id,
-                        Array.from(program.programIndicators.values())
+                        Array.from(program.programIndicators.values 
+                                ? program.programIndicators.values()
+                                : []) 
                             .map(pi => ({
                                 value: pi.dimensionItem,
                                 label: pi.displayName,
