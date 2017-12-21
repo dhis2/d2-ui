@@ -6,7 +6,7 @@ import { getStubContext } from '../../../config/inject-theme';
 import Chip, { disabledStyle, clickableStyle, colors, avatarProps, avatarIcons } from '../Chip';
 
 describe('Chip', () => {
-    const renderWithProps = (props) => shallow(<Chip {...props} />, {
+    const renderWithProps = props => shallow(<Chip {...props} />, {
         context: getStubContext(),
     });
 
@@ -25,17 +25,20 @@ describe('Chip', () => {
     });
 
     it('should render "pointer" cursor when onClick is a function', () => {
-        expect(renderWithProps({ onClick: () => {}}).find('.d2-ui-chip').props().style.cursor).toMatch(clickableStyle.cursor);
+        expect(renderWithProps({ onClick: () => {} }).find('.d2-ui-chip').props().style.cursor)
+            .toMatch(clickableStyle.cursor);
     });
 
     it('should set default colors when color=undefined', () => {
-        expect(renderWithProps({}).find('.d2-ui-chip').props().color).toMatch(colors['default'].color);
-        expect(renderWithProps({}).find('.d2-ui-chip').props().backgroundColor).toMatch(colors['default'].backgroundColor);
+        expect(renderWithProps({}).find('.d2-ui-chip').props().color).toMatch(colors.default.color);
+        expect(renderWithProps({}).find('.d2-ui-chip').props().backgroundColor)
+            .toMatch(colors.default.backgroundColor);
     });
 
     it('should set primary colors when color=primary', () => {
         expect(renderWithProps({ color: 'primary' }).find('.d2-ui-chip').props().color).toMatch(colors.primary.color);
-        expect(renderWithProps({ color: 'primary' }).find('.d2-ui-chip').props().backgroundColor).toMatch(colors.primary.backgroundColor);
+        expect(renderWithProps({ color: 'primary' }).find('.d2-ui-chip').props().backgroundColor)
+            .toMatch(colors.primary.backgroundColor);
     });
 
     it('should deactivate click handlers when disabled=true is passed', () => {
@@ -44,8 +47,10 @@ describe('Chip', () => {
     });
 
     it('should render disabled style when disabled=true is passed', () => {
-        expect(renderWithProps({ disabled: true }).find('.d2-ui-chip').props().style.cursor).toMatch(disabledStyle.cursor);
-        expect(renderWithProps({ disabled: true }).find('.d2-ui-chip').props().style.opacity).toEqual(disabledStyle.opacity);
+        expect(renderWithProps({ disabled: true }).find('.d2-ui-chip').props().style.cursor)
+            .toMatch(disabledStyle.cursor);
+        expect(renderWithProps({ disabled: true }).find('.d2-ui-chip').props().style.opacity)
+            .toEqual(disabledStyle.opacity);
     });
 
     it('should render label as child node', () => {
