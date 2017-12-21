@@ -94,6 +94,7 @@ class ProgramOperandSelector extends Component {
         this.context.d2.models.program.list({ paging: false, fields: 'id,displayName,programTrackedEntityAttributes[id,displayName,dimensionItem],programIndicators[id,displayName,dimensionItem]' })
             .then(programCollection => programCollection.toArray())
             .then((programs) => {
+                
                 const programMenuItems = programs
                     .map(program => ({
                         payload: program.id,
@@ -185,7 +186,7 @@ class ProgramOperandSelector extends Component {
     onLoadProgramDataOperands = (event) => {
         const api = this.context.d2.Api.getApi();
         const programId = event.target.value;
-
+        
         api.get('programDataElements', { program: programId, fields: 'id,displayName,dimensionItem', paging: false, order: 'displayName:asc' })
             .then((programDataElements) => {
                 this.setState({

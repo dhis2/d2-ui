@@ -63,11 +63,7 @@ DropDown.propTypes = {
 };
 
 DropDown.defaultProps = {
-    value: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number,
-        PropTypes.bool,
-    ]),
+    value: null,
     menuItems: PropTypes.oneOfType([
         PropTypes.array,
         PropTypes.object,
