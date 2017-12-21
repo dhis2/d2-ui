@@ -1,45 +1,45 @@
-import React from "react";
-import { shallow } from "enzyme";
-import IconButton from "material-ui/IconButton";
-import PermissionOption from "../PermissionOption.component";
-import PermissionPicker from "../PermissionPicker.component";
-import { getStubContext } from "../../../config/inject-theme";
+import React from 'react';
+import { shallow } from 'enzyme';
+import IconButton from 'material-ui/IconButton';
+import PermissionOption from '../PermissionOption.component';
+import PermissionPicker from '../PermissionPicker.component';
+import { getStubContext } from '../../../config/inject-theme';
 
 const permissionPickerProps = {
     access: {
         meta: { canView: true, canEdit: true },
-        data: { canView: true, canEdit: true }
+        data: { canView: true, canEdit: true },
     },
     accessOptions: {
         meta: { canView: true, canEdit: true, noAccess: true },
-        data: { canView: true, canEdit: true, noAccess: true }
+        data: { canView: true, canEdit: true, noAccess: true },
     },
     onChange: () => {},
-    disabled: false
+    disabled: false,
 };
 
-describe("Sharing: PermissionPicker component", () => {
+describe('Sharing: PermissionPicker component', () => {
     let permissionPickerComponent;
 
     const renderComponent = (props = {}) =>
         shallow(<PermissionPicker {...props} />, {
-            context: getStubContext()
+            context: getStubContext(),
         });
 
     beforeEach(() => {
         permissionPickerComponent = renderComponent(permissionPickerProps);
     });
 
-    it("should render an IconButton", () => {
+    it('should render an IconButton', () => {
         expect(permissionPickerComponent.find(IconButton)).toHaveLength(1);
     });
 
-    it("should render three PermissionOptions if no data options, but all metadata options are available", () => {
+    it('should render three PermissionOptions if no data options, but all metadata options are available', () => {
         permissionPickerComponent = renderComponent({
             ...permissionPickerProps,
             accessOptions: {
-                meta: { canView: true, canEdit: true, noAccess: true }
-            }
+                meta: { canView: true, canEdit: true, noAccess: true },
+            },
         });
 
         expect(permissionPickerComponent.find(PermissionOption)).toHaveLength(
@@ -47,13 +47,13 @@ describe("Sharing: PermissionPicker component", () => {
         );
     });
 
-    it("should render six PermissionOptions if all access options are available", () => {
+    it('should render six PermissionOptions if all access options are available', () => {
         expect(permissionPickerComponent.find(PermissionOption)).toHaveLength(
             6
         );
     });
 
-    it("should render the checkmark SvgIcon according to the permission values", () => {
+    it('should render the checkmark SvgIcon according to the permission values', () => {
         expect(
             permissionPickerComponent
                 .find(PermissionOption)
@@ -95,8 +95,8 @@ describe("Sharing: PermissionPicker component", () => {
             ...permissionPickerProps,
             access: {
                 data: { canView: false, canEdit: false },
-                meta: { canView: false, canEdit: false }
-            }
+                meta: { canView: false, canEdit: false },
+            },
         });
 
         expect(

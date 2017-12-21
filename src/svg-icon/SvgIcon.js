@@ -1,39 +1,39 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Add from "material-ui/svg-icons/content/add";
-import ArrowDownward from "material-ui/svg-icons/navigation/arrow-downward";
-import ArrowDropRight from "material-ui/svg-icons/navigation-arrow-drop-right";
-import ArrowUpward from "material-ui/svg-icons/navigation/arrow-upward";
-import Business from "material-ui/svg-icons/communication/business";
-import Cancel from "material-ui/svg-icons/navigation/cancel";
-import ChevronLeft from "material-ui/svg-icons/navigation/chevron-left";
-import ChevronRight from "material-ui/svg-icons/navigation/chevron-right";
-import Clear from "material-ui/svg-icons/content/clear";
-import Close from "material-ui/svg-icons/navigation/close";
-import Create from "material-ui/svg-icons/content/create";
-import Delete from "material-ui/svg-icons/action/delete";
-import Done from "material-ui/svg-icons/action/done";
-import DragHandle from "material-ui/svg-icons/editor/drag-handle";
-import Group from "material-ui/svg-icons/social/group";
-import GridOn from "material-ui/svg-icons/image/grid-on";
-import InfoOutline from "material-ui/svg-icons/action/info-outline";
-import InsertChart from "material-ui/svg-icons/editor/insert-chart";
-import Message from "material-ui/svg-icons/communication/message";
-import MoreVert from "material-ui/svg-icons/navigation/more-vert";
-import NotInterested from "material-ui/svg-icons/av/not-interested";
-import Person from "material-ui/svg-icons/social/person";
-import Public from "material-ui/svg-icons/social/public";
-import RemoveRedEye from "material-ui/svg-icons/image/remove-red-eye";
-import Room from "material-ui/svg-icons/action/room";
-import ShowChart from "material-ui/svg-icons/editor/show-chart";
-import Star from "material-ui/svg-icons/toggle/star";
-import StarBorder from "material-ui/svg-icons/toggle/star-border";
-import ViewList from "material-ui/svg-icons/action/view-list";
-import Visibility from "material-ui/svg-icons/action/visibility";
-import VisibilityOff from "material-ui/svg-icons/action/visibility-off";
-import SentimentDissatisfied from "material-ui/svg-icons/social/sentiment-dissatisfied";
-import MUISvgIcon from "material-ui/SvgIcon";
-import { grey600, grey200 } from "material-ui/styles/colors";
+import React from 'react';
+import PropTypes from 'prop-types';
+import Add from 'material-ui/svg-icons/content/add';
+import ArrowDownward from 'material-ui/svg-icons/navigation/arrow-downward';
+import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
+import ArrowUpward from 'material-ui/svg-icons/navigation/arrow-upward';
+import Business from 'material-ui/svg-icons/communication/business';
+import Cancel from 'material-ui/svg-icons/navigation/cancel';
+import ChevronLeft from 'material-ui/svg-icons/navigation/chevron-left';
+import ChevronRight from 'material-ui/svg-icons/navigation/chevron-right';
+import Clear from 'material-ui/svg-icons/content/clear';
+import Close from 'material-ui/svg-icons/navigation/close';
+import Create from 'material-ui/svg-icons/content/create';
+import Delete from 'material-ui/svg-icons/action/delete';
+import Done from 'material-ui/svg-icons/action/done';
+import DragHandle from 'material-ui/svg-icons/editor/drag-handle';
+import Group from 'material-ui/svg-icons/social/group';
+import GridOn from 'material-ui/svg-icons/image/grid-on';
+import InfoOutline from 'material-ui/svg-icons/action/info-outline';
+import InsertChart from 'material-ui/svg-icons/editor/insert-chart';
+import Message from 'material-ui/svg-icons/communication/message';
+import MoreVert from 'material-ui/svg-icons/navigation/more-vert';
+import NotInterested from 'material-ui/svg-icons/av/not-interested';
+import Person from 'material-ui/svg-icons/social/person';
+import Public from 'material-ui/svg-icons/social/public';
+import RemoveRedEye from 'material-ui/svg-icons/image/remove-red-eye';
+import Room from 'material-ui/svg-icons/action/room';
+import ShowChart from 'material-ui/svg-icons/editor/show-chart';
+import Star from 'material-ui/svg-icons/toggle/star';
+import StarBorder from 'material-ui/svg-icons/toggle/star-border';
+import ViewList from 'material-ui/svg-icons/action/view-list';
+import Visibility from 'material-ui/svg-icons/action/visibility';
+import VisibilityOff from 'material-ui/svg-icons/action/visibility-off';
+import SentimentDissatisfied from 'material-ui/svg-icons/social/sentiment-dissatisfied';
+import MUISvgIcon from 'material-ui/SvgIcon';
+import { grey600, grey200 } from 'material-ui/styles/colors';
 
 const icons = {
     Add,
@@ -66,7 +66,7 @@ const icons = {
     StarBorder,
     ViewList,
     Visibility,
-    VisibilityOff
+    VisibilityOff,
 };
 
 const SvgIcon = ({ icon, children, className, disabled, style }) => {
@@ -82,7 +82,7 @@ const SvgIcon = ({ icon, children, className, disabled, style }) => {
             className={className}
             style={{
                 ...style,
-                fill: style.fill || (disabled ? grey200 : grey600)
+                fill: style.fill || (disabled ? grey200 : grey600),
             }}
         >
             {children}
@@ -114,15 +114,15 @@ SvgIcon.propTypes = {
     /**
      * Pass inline styles to the root element
      */
-    style: PropTypes.object
+    style: PropTypes.object,
 };
 
 SvgIcon.defaultProps = {
-    icon: "",
+    icon: '',
     children: null,
-    className: "",
+    className: '',
     disabled: false,
-    style: {}
+    style: {},
 };
 
 export default SvgIcon;
