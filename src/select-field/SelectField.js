@@ -36,7 +36,7 @@ const SelectField = ({ label, items, multiple, value, onChange, style, selector,
             {loading === true && <CircularProgress size={30} />}
             {isString(loading) && <div>{loading}</div>}
 
-            {!loading && children ? children : items.map(item => (
+            {!loading && Array.isArray(items) && items.map(item => (
                 <MenuItem
                     key={item.id}
                     value={item.id}
@@ -45,6 +45,8 @@ const SelectField = ({ label, items, multiple, value, onChange, style, selector,
                     checked={multiple && Array.isArray(value) && value.indexOf(item.id) > -1}
                 />
             ))}
+
+            {!loading && children ? children : null}
         </MuiSelectField>
     );
 };
