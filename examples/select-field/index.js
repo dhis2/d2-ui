@@ -81,6 +81,7 @@ const selectFields = (
             />
             <SelectField
                 errorText='Error text'
+                items={items}
             />
         </div>
     </MuiThemeProvider>

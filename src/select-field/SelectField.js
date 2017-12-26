@@ -6,8 +6,7 @@ import CircularProgress from 'material-ui/CircularProgress';
 import isString from 'lodash/fp/isString';
 import { createClassName } from '../component-helpers/utils';
 
-const SelectField = ({ label, items, multiple, value, onChange, style, selector, loading, errorText, children }) => {
-    const className = createClassName('d2-ui-selectfield', selector);
+const getLoadingStyle = (loading) => {
     let listStyle;
 
     if (loading === true) {
@@ -22,30 +21,54 @@ const SelectField = ({ label, items, multiple, value, onChange, style, selector,
         };
     }
 
+    return listStyle;
+};
+
+const getLoadingIndicator = (loading) => {
+    let node;
+
+    if (loading === true) {
+        node = <CircularProgress size={30} />;
+    } else if (isString(loading)) {
+        node = <div>{loading}</div>;
+    }
+
+    return node;
+};
+
+const getMenuItems = (items, isLoading, isMultiple, value) => {
+    if (isLoading || !Array.isArray(items)) {
+        return null;
+    }
+
+    return items.map(item => (
+        <MenuItem
+            key={item.id}
+            value={item.id}
+            primaryText={item.name}
+            insetChildren={isMultiple}
+            checked={isMultiple && Array.isArray(value) && value.indexOf(item.id) > -1}
+        />
+    ));
+};
+
+const SelectField = (props) => {
+    const { label, items, multiple, value, onChange, style, selector, loading, errorText, children } = props;
+    const className = createClassName('d2-ui-selectfield', selector);
+
     return (
         <MuiSelectField
             floatingLabelText={label}
             value={value}
             multiple={multiple}
-            onChange={onChange ? (event, index, value) => onChange(items[index] || value) : null}
+            onChange={onChange ? (event, index, val) => onChange(items[index] || val) : null}
             className={className}
             style={style}
-            listStyle={listStyle}
+            listStyle={getLoadingStyle(loading)}
             errorText={errorText}
         >
-            {loading === true && <CircularProgress size={30} />}
-            {isString(loading) && <div>{loading}</div>}
-
-            {!loading && Array.isArray(items) && items.map(item => (
-                <MenuItem
-                    key={item.id}
-                    value={item.id}
-                    primaryText={item.name}
-                    insetChildren={multiple}
-                    checked={multiple && Array.isArray(value) && value.indexOf(item.id) > -1}
-                />
-            ))}
-
+            {getLoadingIndicator(loading)}
+            {getMenuItems(items, loading, multiple, value)}
             {!loading && children ? children : null}
         </MuiSelectField>
     );
@@ -63,7 +86,7 @@ SelectField.propTypes = {
      * The select field items (rendered as MenuItems)
      */
     items: PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]).isRequired,
+        id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
         name: PropTypes.string,
     })),
 
@@ -77,7 +100,7 @@ SelectField.propTypes = {
      */
     loading: PropTypes.oneOfType([
         PropTypes.bool,
-        PropTypes.string
+        PropTypes.string,
     ]),
 
     /**
@@ -95,8 +118,8 @@ SelectField.propTypes = {
         PropTypes.number,
         PropTypes.arrayOf(PropTypes.oneOfType([
             PropTypes.string,
-            PropTypes.number
-        ]))
+            PropTypes.number,
+        ])),
     ]),
 
     /**
@@ -108,12 +131,31 @@ SelectField.propTypes = {
      * If set, adds a class to the element in the format d2-ui-selectfield-selector
      */
     selector: PropTypes.string,
+
+    /**
+     * If set, shows the error message below the SelectField
+     */
+    errorText: PropTypes.string,
+
+    /**
+     * MenuItems to show in the dropdown
+     */
+    children: PropTypes.node,
 };
 
 
 SelectField.defaultProps = {
+    errorText: null,
     items: [],
     loading: false,
+    label: null,
+    multiple: false,
+    onChange: null,
+    className: null,
+    selector: null,
+    style: null,
+    value: null,
+    children: null,
 };
 
 
