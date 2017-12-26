@@ -23,8 +23,10 @@ export function isUndefined(value) {
 }
 
 export function isEmptyString(value) {
-    return value === '' || value !== undefined && value !== null && value.toString() === '';
+    return value === '' || (value !== undefined && value !== null && value.toString() === '');
 }
+isEmptyString.message = 'value_should_be_empty_string';
+
 
 export function isEmptyStringOrUndefined(value) {
     return isUndefined(value) || isEmptyString(value);
@@ -60,7 +62,7 @@ export function isUrlArray(value) {
     return (`${value}`)
         .split('\n')
         .filter(v => v.trim().length > 0)
-        .reduce((prev, curr) => prev === true && isUrl(curr) || isEmptyString(curr.trim()), true);
+        .reduce((prev, curr) => (prev === true && isUrl(curr)) || isEmptyString(curr.trim()), true);
 }
 isUrlArray.message = 'value_should_be_list_of_urls';
 
@@ -102,6 +104,14 @@ export function isValidPassword(value) {
 }
 isValidPassword.message = 'invalid_password';
 
+export function isStartDateBeforeEndDate(startDate, endDate) {
+    if (isEmptyStringOrUndefined(startDate) || isEmptyStringOrUndefined(endDate)) {
+        return true;
+    }
+    return new Date(startDate) < new Date(endDate);
+}
+isStartDateBeforeEndDate.message = 'closed_date_cannot_be_before_open_date';
+
 export const wordToValidatorMap = new Map([
     ['required', isRequired],
     ['url', isUrl],
@@ -111,6 +121,7 @@ export const wordToValidatorMap = new Map([
     ['positive_number', isPositiveNumber],
     ['email', isEmail],
     ['is_valid_password', isValidPassword],
+    ['isStartDateBeforeEndDate', isStartDateBeforeEndDate],
 ]);
 
 export default {
@@ -123,4 +134,5 @@ export default {
     isNull,
     isUndefined,
     isValidPassword,
+    isStartDateBeforeEndDate,
 };

@@ -13,7 +13,6 @@ function renderMenuItems({ menuItems, includeEmpty, emptyLabel }) {
     if (includeEmpty) {
         renderedMenuItems.unshift(renderMenuItem({ value: 'null', text: emptyLabel }));
     }
-
     return renderedMenuItems;
 }
 
@@ -22,7 +21,7 @@ function createCallbackWithFakeEventFromMaterialSelectField(callback) {
 }
 
 function DropDown({ onFocus, onBlur, onChange, value, disabled, menuItems, includeEmpty, emptyLabel, noOptionsLabel, ...other }) {
-    const menuItemArray = Array.isArray(menuItems) && menuItems || menuItems.toArray();
+    const menuItemArray = Array.isArray(menuItems) ? menuItems : menuItems.toArray();
     const hasOptions = menuItemArray.length > 0;
 
     return (
@@ -34,11 +33,12 @@ function DropDown({ onFocus, onBlur, onChange, value, disabled, menuItems, inclu
         >
             {hasOptions
                 ? renderMenuItems({ menuItems: menuItemArray, includeEmpty, emptyLabel })
-                : <MenuItem value={1} primaryText={noOptionsLabel || '-'} />
+                : <MenuItem value={1} primaryText={noOptionsLabel} />
             }
         </SelectField>
     );
 }
+
 DropDown.propTypes = {
     defaultValue: PropTypes.oneOfType([
         PropTypes.string,
@@ -50,18 +50,27 @@ DropDown.propTypes = {
         PropTypes.number,
         PropTypes.bool,
     ]),
-    onFocus: PropTypes.func,
-    onBlur: PropTypes.func,
-    onChange: PropTypes.func.isRequired,
     menuItems: PropTypes.oneOfType([
         PropTypes.array,
         PropTypes.object,
     ]),
+    onFocus: PropTypes.func,
+    onBlur: PropTypes.func,
+    onChange: PropTypes.func.isRequired,
+    noOptionsLabel: PropTypes.string,
     includeEmpty: PropTypes.bool,
     emptyLabel: PropTypes.string,
-    noOptionsLabel: PropTypes.string,
 };
+
 DropDown.defaultProps = {
+    value: null,
+    menuItems: PropTypes.oneOfType([
+        PropTypes.array,
+        PropTypes.object,
+    ]),
+    onFocus: PropTypes.func,
+    onBlur: PropTypes.func,
+    noOptionsLabel: '-',
     includeEmpty: false,
     emptyLabel: '',
 };

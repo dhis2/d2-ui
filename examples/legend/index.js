@@ -1,18 +1,20 @@
-import injectTapEventPlugin from 'react-tap-event-plugin';
-
-// Needed for onTouchTap
-// http://stackoverflow.com/a/34015469/988941
-injectTapEventPlugin();
 
 import React from 'react';
-import {render} from 'react-dom';
 import PropTypes from 'prop-types';
+import { render } from 'react-dom';
+
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { blue500, blue700, lightBlack, grey300, grey500, white, darkBlack } from 'material-ui/styles/colors';
 import { fade } from 'material-ui/utils/colorManipulator';
 import Spacing from 'material-ui/styles/spacing';
 import D2Lib from 'd2/lib/d2';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 import '../../scss/DataTable.scss';
+import Legend from '../../src/legend/Legend.component';
+
+// Needed for onTouchTap
+// http://stackoverflow.com/a/34015469/988941
+injectTapEventPlugin();
 
 const style = {
     spacing: Spacing,
@@ -32,12 +34,8 @@ const style = {
     },
 };
 
-import Legend from '../../src/legend/Legend.component';
-
 const baseUrl = `${DHIS_CONFIG.baseUrl}/api`;
-
 D2Lib.config.baseUrl = baseUrl;
-D2Lib.init({ baseUrl }).then(renderExamples);
 
 function renderExamples(d2) {
     class Example extends React.Component {
@@ -112,7 +110,7 @@ function renderExamples(d2) {
         onItemsChange(items) {
             const newLegends = items.map(item => d2.models.legend.create(item));
 
-            this.setState({items: newLegends});
+            this.setState({ items: newLegends });
         }
 
         render() {
@@ -129,3 +127,5 @@ function renderExamples(d2) {
     );
     render(app, document.getElementById('app'));
 }
+
+D2Lib.init({ baseUrl }).then(renderExamples);

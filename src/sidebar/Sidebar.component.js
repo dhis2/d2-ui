@@ -74,7 +74,7 @@ class Sidebar extends Component {
         }
     }
 
-    changeSearchText() {
+    changeSearchText = () => {
         this.setState({ searchText: this.searchBox.getValue() }, () => {
             if (this.props.onChangeSearchText) {
                 this.props.onChangeSearchText(this.state.searchText);
@@ -82,7 +82,7 @@ class Sidebar extends Component {
         });
     }
 
-    _clear() {
+    onClear = () => {
         this.setState({ searchText: '' }, () => {
             if (this.props.onChangeSearchText) {
                 this.props.onChangeSearchText(this.state.searchText);
@@ -116,7 +116,7 @@ class Sidebar extends Component {
                         onChange={this.changeSearchText}
                         ref={(ref) => { this.searchBox = ref; }}
                     />
-                    {this.state.searchText ? <FontIcon style={styles.closeButton} className="material-icons" onClick={this._clear}>clear</FontIcon> : undefined}
+                    {this.state.searchText ? <FontIcon style={styles.closeButton} className="material-icons" onClick={this.onClear}>clear</FontIcon> : undefined}
                 </div>
             );
         }

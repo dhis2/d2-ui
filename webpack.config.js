@@ -29,7 +29,7 @@ function log(req, res, opt) {
 module.exports = {
     context: __dirname,
     entry: isProduction() ? {
-            'header-bar': './src/app-header/index.js',
+            'header-bar': './src/app-header/initHeaderBar.js',
         } : {
             treeview: './examples/tree-view',
             datatable: './examples/data-table',
@@ -41,7 +41,7 @@ module.exports = {
             formbuilder: './examples/form-builder',
             // formulaeditor: './examples/formula-editor',
             headerbar: './examples/header-bar',
-            'header-bar': './src/app-header/index.js',
+            'header-bar': './src/app-header/initHeaderBar.js',
             legend: './examples/legend',
             // translation: './examples/translation',
             expressionmanager: './examples/expression-manager',
@@ -53,6 +53,7 @@ module.exports = {
             selectfield: './examples/select-field',
             tabs: './examples/tabs',
             chip: './examples/chip',
+            controlbar: './examples/controlbar',
         },
     devtool: 'source-map',
     output: {

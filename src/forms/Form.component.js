@@ -82,9 +82,9 @@ class Form extends Component {
     updateRequest(fieldConfig, event) {
         this.props.formValidator.runFor(fieldConfig.name, event.target.value, this.props.source);
         this.props.onFormFieldUpdate && this.props.onFormFieldUpdate(
-            fieldConfig.name, fieldConfig.beforeUpdateConverter ?
-                fieldConfig.beforeUpdateConverter(event.target.value, fieldConfig) :
-                event.target.value,
+            fieldConfig.name, fieldConfig.beforeUpdateConverter
+                ? fieldConfig.beforeUpdateConverter(event.target.value, fieldConfig)
+                : event.target.value,
         );
     }
 }

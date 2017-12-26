@@ -5,12 +5,12 @@ import IconStar from 'material-ui/svg-icons/toggle/star';
 import MuiChip from 'material-ui/Chip';
 import { createClassName } from '../component-helpers/utils';
 
-const size = '30px';
-const color = '#333333';
+const chipSize = '30px';
+const chipColor = '#333333';
 
 const chipStyle = {
     margin: 3,
-    height: '30px',
+    height: chipSize,
     pointer: 'auto',
 };
 
@@ -21,31 +21,30 @@ export const clickableStyle = {
 const labelStyle = {
     fontSize: '13px',
     fontWeight: 500,
-    lineHeight: size,
 };
 
 export const colors = {
-    'default': {
+    default: {
+        color: chipColor,
         backgroundColor: '#e0e0e0',
-        color: color,
     },
     primary: {
+        color: chipColor,
         backgroundColor: '#b1deda',
-        color: color,
     },
 };
 
 export const avatarProps = {
+    color: chipColor,
     backgroundColor: 'rgba(0,0,0,0.08)',
-    color: color,
     style: {
-        height: size,
-        width: size,
+        height: chipSize,
+        width: chipSize,
     },
 };
 
 export const avatarIcons = {
-    star: <IconStar/>,
+    star: <IconStar />,
 };
 
 export const disabledStyle = {
@@ -76,11 +75,15 @@ const Chip = ({ avatar, color = 'default', disabled, label, onClick, onRequestDe
             {...avatarProps}
         />;
 
+    const wrapperClassName = createClassName('d2-ui-chip-wrapper', selector);
+    const wrapperStyle = { display: 'inline-block', verticalAlign: 'top' };
     return (
-        <MuiChip {...props}>
-            {avatarCmp}
-            {label}
-        </MuiChip>
+        <div className={wrapperClassName} style={wrapperStyle}>
+            <MuiChip {...props}>
+                {avatarCmp}
+                {label}
+            </MuiChip>
+        </div>
     );
 };
 
@@ -119,6 +122,15 @@ Chip.propTypes = {
      * If set, adds a class to the element on the format d2-ui-chip-selector
      */
     selector: PropTypes.string,
+};
+
+Chip.defaultProps = {
+    avatar: null,
+    disabled: false,
+    label: null,
+    onClick: null,
+    onRequestDelete: null,
+    selector: null,
 };
 
 export default Chip;

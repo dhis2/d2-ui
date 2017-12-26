@@ -10,31 +10,45 @@ import Sharing from '../Sharing.component';
 import { getStubContext } from '../../../config/inject-theme';
 
 const mockedObject = {
-    authorOfSharableItem: {
-        id: 'GOLswS44mh8',
-        name: 'Tom Wakiki',
+    sharedObject: {
+        meta: {
+            allowPublicAccess: true,
+            allowExternalAccess: false,
+        },
+        object: {
+            id: 'veGzholzPQm',
+            name: 'HIV age',
+            displayName: 'HIV age',
+            publicAccess: 'rw------',
+            externalAccess: false,
+            user: {
+                id: 'GOLswS44mh8',
+                name: 'Tom Wakiki',
+            },
+            userGroupAccesses: [{
+                id: 'Rg8wusV7QYi',
+                name: 'HIV Program Coordinators',
+                displayName: 'HIV Program Coordinators',
+                access: 'rw------'}
+            ],
+            userAccesses: [{
+                id: 'N3PZBUlN8vq',
+                name: 'John Kamara',
+                displayName: 'John Kamara',
+                access: 'r-------',
+            }],
+        },
     },
-    nameOfSharableItem: 'ANC: Overview Report (HTML-based)',
-    canSetPublicAccess: true,
-    canSetExternalAccess: true,
-    publicCanView: true,
-    publicCanEdit: true,
-    isSharedExternally: true,
-    accesses: [{
-        id: 'lFHP5lLkzVr',
-        name: 'System administrators',
-        displayName: 'System administrators',
-        type: 'userGroup',
-        canView: true,
-        canEdit: false,
-    }, {
-        id: 'rWLrZL8rP3K',
-        name: 'Guest User',
-        displayName: 'Guest User',
-        type: 'user',
-        canView: true,
-        canEdit: false,
-    }],
+    dataShareable: false,
+    onChange: () => {},
+    onSearch: () => {},
+};
+
+const sharingDialogProps = {
+    open: true,
+    type: 'report',
+    id: 'AMERNML55Tg',
+    onRequestClose: () => {},
 };
 
 describe('Sharing: SharingDialog component', () => {
@@ -48,22 +62,15 @@ describe('Sharing: SharingDialog component', () => {
 
     beforeEach(() => {
         onRequestClose = jest.fn();
-
         sharingDialogComponent = renderComponent({
-            open: true,
+            ...sharingDialogProps,
             onRequestClose,
-            type: 'report',
-            id: 'AMERNML55Tg',
         });
     });
 
-    jest.spyOn(SharingDialog.prototype, 'loadObjectFromApi');
-
     it('should show its dialog when objectToShare is defined', () => {
         sharingDialogComponent.setState({
-            api: null,
-            objectToShare: mockedObject,
-            fullObjectName: mockedObject.name,
+            sharedObject: mockedObject,
         });
 
         expect(sharingDialogComponent.find(Sharing)).toHaveLength(1);
@@ -72,9 +79,7 @@ describe('Sharing: SharingDialog component', () => {
     describe('close action', () => {
         beforeEach(() => {
             sharingDialogComponent.setState({
-                api: null,
-                objectToShare: mockedObject,
-                fullObjectName: mockedObject.name,
+                sharedObject: mockedObject,
             });
         });
 
@@ -90,12 +95,6 @@ describe('Sharing: SharingDialog component', () => {
         });
 
         it('should call onRequestClose from the props when the closeSharingDialog is called', () => {
-            sharingDialogComponent.setState({
-                apiObject: {
-                    object: null,
-                },
-            });
-
             sharingDialogComponent.instance().closeSharingDialog();
             expect(onRequestClose).toHaveBeenCalledTimes(1);
         });
@@ -106,9 +105,8 @@ describe('Sharing: SharingDialog component', () => {
             jest.fn(log, 'warn');
         });
 
-        it('should render when objectToShare is undefined and dialog is open', () => {
-            renderComponent({ open: true, onRequestClose: () => {}, type: 'report', id: 'AMERNML55Tg' });
-
+        it('should render when sharedObject is undefined and dialog is open', () => {
+            renderComponent(sharingDialogProps);
             expect(sharingDialogComponent.find(LoadingMask)).toHaveLength(1);
         });
     });

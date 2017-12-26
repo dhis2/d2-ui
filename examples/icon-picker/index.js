@@ -1,6 +1,7 @@
 import React from 'react';
-import {render} from 'react-dom';
 import PropTypes from 'prop-types';
+import { render } from 'react-dom';
+
 import Card from 'material-ui/Card/Card';
 import CardText from 'material-ui/Card/CardText';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -31,7 +32,7 @@ function preload(pictureUrls) {
     const images = [];
     for (i = 0; i < pictureUrls.length; i++) {
         images[i] = new Image();
-        images[i].src = './images/orgunitgroup/' + pictureUrls[i];
+        images[i].src = `./images/orgunitgroup/${pictureUrls[i]}`;
     }
 }
 

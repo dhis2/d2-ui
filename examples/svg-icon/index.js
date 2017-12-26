@@ -40,8 +40,20 @@ const icons = (
                 <SvgIcon>{children}</SvgIcon>
             </div>
             <div style={cardStyle}>
+                <h3>Disabled icon</h3>
+                <SvgIcon icon={'Star'} disabled />
+            </div>
+            <div style={cardStyle}>
+                <h3>Icon color</h3>
+                <SvgIcon icon={'Star'} style={{ fill: 'red' }} />
+            </div>
+            <div style={cardStyle}>
                 <h3>Star, also with className prop</h3>
                 <SvgIcon icon={'Star'} className="my-starry-icon" />
+            </div>
+            <div style={cardStyle}>
+                <h3>StarBorder</h3>
+                <SvgIcon icon={'StarBorder'} />
             </div>
             <div style={cardStyle}>
                 <h3>ArrowDropRight</h3>
@@ -106,6 +118,26 @@ const icons = (
             <div style={cardStyle}>
                 <h3>DragHandle</h3>
                 <SvgIcon icon={'DragHandle'} />
+            </div>
+            <div style={cardStyle}>
+                <h3>GridOn</h3>
+                <SvgIcon icon={'GridOn'} />
+            </div>
+            <div style={cardStyle}>
+                <h3>ShowChart</h3>
+                <SvgIcon icon={'ShowChart'} />
+            </div>
+            <div style={cardStyle}>
+                <h3>InsertChart</h3>
+                <SvgIcon icon={'InsertChart'} />
+            </div>
+            <div style={cardStyle}>
+                <h3>Public</h3>
+                <SvgIcon icon={'Public'} />
+            </div>
+            <div style={cardStyle}>
+                <h3>Message</h3>
+                <SvgIcon icon={'Message'} />
             </div>
         </div>
     </MuiThemeProvider>

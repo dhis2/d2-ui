@@ -42,20 +42,20 @@ class GroupEditorWithOrdering extends Component {
                         style={{ color: 'rgb(33, 150, 243)' }}
                         iconClassName="material-icons"
                         tooltip="Move up"
-                        onClick={this._moveUp.bind(this)}
+                        onClick={this.moveUp.bind(this)}
                     >arrow_upward</IconButton>
                     <IconButton
                         style={{ color: 'rgb(33, 150, 243)' }}
                         iconClassName="material-icons"
                         tooltip="Move down"
-                        onClick={this._moveDown.bind(this)}
+                        onClick={this.moveDown.bind(this)}
                     >arrow_downward</IconButton>
                 </div>
             </div>
         );
     }
 
-    _moveUp() {
+    moveUp() {
         if (!Array.isArray(this.props.assignedItemStore.getState())) {
             return log.warn('Moving in <GroupEditorWithOrdering /> is not supported (yet) when the assignedItemStore\'s state is a ModelCollectionProperty');
         }
@@ -70,7 +70,7 @@ class GroupEditorWithOrdering extends Component {
         this.props.onOrderChanged(currentlySelected);
     }
 
-    _moveDown() {
+    moveDown() {
         if (!Array.isArray(this.props.assignedItemStore.getState())) {
             return log.warn('Moving in <GroupEditorWithOrdering /> is not supported (yet) when the assignedItemStore\'s state is a ModelCollectionProperty');
         }

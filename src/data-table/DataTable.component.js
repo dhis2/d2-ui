@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import isArrayOfStrings from 'd2-utilizr/lib/isArrayOfStrings';
 import isIterable from 'd2-utilizr/lib/isIterable';
@@ -53,7 +53,7 @@ class DataTable extends Component {
                     columns={this.state.columns}
                     isActive={this.state.activeRow === dataRowsId}
                     itemClicked={this.handleRowClick}
-                    primaryClick={this.props.primaryAction || (() => {})}
+                    primaryClick={this.props.primaryAction || (() => { })}
                 />
             ));
     }
