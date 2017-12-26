@@ -34,30 +34,25 @@ const selectFields = (
         <div style={style}>
             <SelectField
                 items={items}
-                onChange={() => {}}
             />
             <SelectField
                 items={items}
                 value='cat'
-                onChange={() => {}}
             />
             <SelectField
                 label='Select animal'
                 items={items}
-                onChange={() => {}}
             />
             <SelectField
                 label='Select multiple'
                 items={items}
                 value={['cat', 'dog']}
                 multiple={true}
-                onChange={() => {}}
             />
             <SelectField
                 label='Select animal'
                 value='dog'
                 items={items}
-                onChange={() => {}}
             />
             <SelectField
                 label='onChange event'
@@ -76,6 +71,17 @@ const selectFields = (
                 <MenuItem value='mouse' primaryText='Mouse' />
                 <MenuItem value='dog' primaryText='Dog' />
             </SelectField>
+            <SelectField
+                label='Async with spinner'
+                loading={true}
+            />
+            <SelectField
+                label='Async with string'
+                loading='Loading...'
+            />
+            <SelectField
+                errorText='Error text'
+            />
         </div>
     </MuiThemeProvider>
 );

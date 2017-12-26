@@ -2,6 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import MuiSelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
+import CircularProgress from 'material-ui/CircularProgress';
 import { getStubContext } from '../../../config/inject-theme';
 import SelectField from '../SelectField';
 
@@ -22,35 +23,35 @@ describe('SelectField', () => {
     });
 
     it('should render a MUI SelectField', () => {
-        expect(renderWithProps({ onChange: () => {} }).type()).toBe(MuiSelectField);
+        expect(renderWithProps().type()).toBe(MuiSelectField);
     });
 
     it('should add a class name', () => {
-        expect(renderWithProps({ onChange: () => {} }).props().className).toMatch('d2-ui-selectfield');
+        expect(renderWithProps().props().className).toMatch('d2-ui-selectfield');
     });
 
     it('should add a custom class name when a selector is passed', () => {
-        expect(renderWithProps({ selector: 'my-selectfield', onChange: () => {} }).props().className).toMatch('d2-ui-selectfield-my-selectfield');
+        expect(renderWithProps({ selector: 'my-selectfield' }).props().className).toMatch('d2-ui-selectfield-my-selectfield');
     });
 
     it('should set floatingLabelText when label is passed', () => {
-        expect(renderWithProps({ label: 'My label', onChange: () => {} }).props().floatingLabelText).toEqual('My label');
+        expect(renderWithProps({ label: 'My label' }).props().floatingLabelText).toEqual('My label');
     });
 
     it('should render items array as menu items', () => {
-        const component = renderWithProps({ items, onChange: () => {} });
+        const component = renderWithProps({ items });
 
         expect(component.contains(<MenuItem value='mouse' primaryText='Mouse' />)).toBe(true);
     });
 
     it('should inset items when multiple select', () => {
-        const component = renderWithProps({ items, multiple: true, onChange: () => {} }); // multiple: true, value: ['cat']
+        const component = renderWithProps({ items, multiple: true }); // multiple: true, value: ['cat']
 
         expect(component.contains(<MenuItem value='cat' primaryText='Cat' insetChildren={true} checked={false} />)).toBe(true);
     });
 
     it('should check selected items when multiple select', () => {
-        const component = renderWithProps({ items, multiple: true, value: ['cat'], onChange: () => {} }); // multiple: true, value: ['cat']
+        const component = renderWithProps({ items, multiple: true, value: ['cat'] }); // multiple: true, value: ['cat']
 
         expect(component.contains(<MenuItem value='cat' primaryText='Cat' insetChildren={true} checked={true} />)).toBe(true);
     });
@@ -80,4 +81,22 @@ describe('SelectField', () => {
 
         expect(onChangeSpy).toHaveBeenCalledWith('cat');
     });
+
+    it('should show spinner when loading is set to true', () => {
+        const component = renderWithProps({ loading: true });
+
+        expect(component.contains(<CircularProgress size={30} />)).toBe(true);
+    });
+
+    it('should show text when loading is string', () => {
+        const message = 'Loading...';
+        const component = renderWithProps({ loading: message });
+
+        expect(component.contains(<div>{message}</div>)).toBe(true);
+    });
+
+    it('should show error text', () => {
+        expect(renderWithProps({ errorText: 'Error message' }).props().errorText).toEqual('Error message');
+    });
+
 });
