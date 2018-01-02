@@ -70,5 +70,5 @@
   "pre-commit": [
     "validate",
     "test"
-  ],
+  ]
 }
