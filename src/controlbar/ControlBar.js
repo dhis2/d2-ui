@@ -41,7 +41,7 @@ const styles = {
         borderTop: '1px solid rgba(0,0,0,0.3)',
     },
 };
-const editModeBackgroundRGB = '255,249,196';
+const editModeBackgroundRGB = '255,248,224';
 
 
 /**
