@@ -39,7 +39,7 @@ const RenameDialog = props => {
     };
 
     return (
-        <Dialog open={open} onRequestClose={toggleRenameDialog} maxWidth="xl">
+        <Dialog open={open} onRequestClose={toggleRenameDialog} maxWidth="md">
             <form onSubmit={handleSubmit}>
                 <DialogTitle>Rename favorite</DialogTitle>
                 <DialogContent>
