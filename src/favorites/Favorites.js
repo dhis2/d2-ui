@@ -1,17 +1,17 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import Dialog, {
     DialogActions,
     DialogContent,
-    DialogTitle
-} from "material-ui-next/Dialog";
-import Button from "material-ui-next/Button";
+    DialogTitle,
+} from 'material-ui-next/Dialog';
+import Button from 'material-ui-next/Button';
 
-import EnhancedToolbar from "./EnhancedToolbar";
-import EnhancedTable from "./EnhancedTable";
+import EnhancedToolbar from './EnhancedToolbar';
+import EnhancedTable from './EnhancedTable';
 
-import { fetchData } from "./actions";
+import { fetchData } from './actions';
 
 class Favorites extends Component {
     componentWillReceiveProps(nextProps) {
@@ -46,11 +46,11 @@ class Favorites extends Component {
 }
 
 const mapStateToProps = state => ({
-    dataIsLoaded: state.data.totalRecords > 0
+    dataIsLoaded: state.data.totalRecords > 0,
 });
 
 const mapDispatchToProps = {
-    fetchData
+    fetchData,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Favorites);

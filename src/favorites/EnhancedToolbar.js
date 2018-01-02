@@ -1,22 +1,22 @@
-import React from "react";
-import { connect } from "react-redux";
+import React from 'react';
+import { connect } from 'react-redux';
 
-import { withStyles } from "material-ui-next/styles";
-import { MenuItem } from "material-ui-next/Menu";
-import Select from "material-ui-next/Select";
-import TextField from "material-ui-next/TextField";
-import Toolbar from "material-ui-next/Toolbar";
-import Tooltip from "material-ui-next/Tooltip";
+import { withStyles } from 'material-ui-next/styles';
+import { MenuItem } from 'material-ui-next/Menu';
+import Select from 'material-ui-next/Select';
+import TextField from 'material-ui-next/TextField';
+import Toolbar from 'material-ui-next/Toolbar';
+import Tooltip from 'material-ui-next/Tooltip';
 
-import { filterData, searchData } from "./actions";
+import { filterData, searchData } from './actions';
 
 const toolbarStyles = theme => ({
     search: {
-        flex: "0 0 auto"
+        flex: '0 0 auto',
     },
     spacer: {
-        flex: "1 1 100%"
-    }
+        flex: '1 1 100%',
+    },
 });
 
 let EnhancedToolbar = props => {
@@ -25,7 +25,7 @@ let EnhancedToolbar = props => {
         createdByValue,
         searchValue,
         searchData,
-        filterData
+        filterData,
     } = props;
 
     return (
@@ -57,12 +57,12 @@ EnhancedToolbar = withStyles(toolbarStyles)(EnhancedToolbar);
 
 const mapStateToProps = state => ({
     createdByValue: state.filtering.createdByValue,
-    searchValue: state.filtering.searchValue
+    searchValue: state.filtering.searchValue,
 });
 
 const mapDispatchToProps = {
     searchData,
-    filterData
+    filterData,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(EnhancedToolbar);

@@ -1,23 +1,23 @@
-import React from "react";
-import { connect } from "react-redux";
+import React from 'react';
+import { connect } from 'react-redux';
 
-import Menu, { MenuItem } from "material-ui-next/Menu";
-import { ListItemIcon, ListItemText } from "material-ui-next/List";
-import DeleteDialog from "./DeleteDialog";
-import RenameDialog from "./RenameDialog";
-import SharingDialog from "d2-ui/lib/sharing/SharingDialog.component";
-import ModeEditIcon from "material-ui-icons/ModeEdit";
-import MoreVertIcon from "material-ui-icons/MoreVert";
-import ShareIcon from "material-ui-icons/Share";
-import DeleteIcon from "material-ui-icons/Delete";
+import Menu, { MenuItem } from 'material-ui-next/Menu';
+import { ListItemIcon, ListItemText } from 'material-ui-next/List';
+import DeleteDialog from './DeleteDialog';
+import RenameDialog from './RenameDialog';
+import SharingDialog from 'd2-ui/lib/sharing/SharingDialog.component';
+import ModeEditIcon from 'material-ui-icons/ModeEdit';
+import MoreVertIcon from 'material-ui-icons/MoreVert';
+import ShareIcon from 'material-ui-icons/Share';
+import DeleteIcon from 'material-ui-icons/Delete';
 
 import {
     toggleActionsMenu,
     toggleDeleteDialog,
     toggleRenameDialog,
     toggleShareDialog,
-    deleteFavorite
-} from "./actions";
+    deleteFavorite,
+} from './actions';
 
 const ActionsMenu = props => {
     const {
@@ -30,7 +30,7 @@ const ActionsMenu = props => {
         toggleRenameDialog,
         shareDialogIsOpen,
         deleteFavorite,
-        selectedFavoriteModel
+        selectedFavoriteModel,
     } = props;
 
     const deleteActionHandler = () => {
@@ -97,13 +97,13 @@ export default connect(
         anchorEl: state.actions.menuAnchorEl,
         deleteDialogIsOpen: state.actions.remove.dialogIsOpen,
         shareDialogIsOpen: state.actions.share.dialogIsOpen,
-        selectedFavoriteModel: state.actions.select.favoriteModel
+        selectedFavoriteModel: state.actions.select.favoriteModel,
     }),
     {
         toggleActionsMenu,
         toggleRenameDialog,
         toggleDeleteDialog,
         toggleShareDialog,
-        deleteFavorite
+        deleteFavorite,
     }
 )(ActionsMenu);

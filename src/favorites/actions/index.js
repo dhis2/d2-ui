@@ -1,27 +1,27 @@
-import { getInstance } from "d2/lib/d2";
-import { actionTypes } from "../reducers";
-import log from "loglevel";
+import { getInstance } from 'd2/lib/d2';
+import { actionTypes } from '../reducers';
+import log from 'loglevel';
 
 export const toggleLoading = () => ({ type: actionTypes.TOGGLE_LOADING });
 
 // actions context menu
 export const toggleActionsMenu = () => ({
-    type: actionTypes.TOGGLE_ACTIONS_MENU
+    type: actionTypes.TOGGLE_ACTIONS_MENU,
 });
 export const setActionsMenuAnchorEl = el => ({
     type: actionTypes.SET_ACTIONS_MENU_ANCHOR_EL,
-    payload: el
+    payload: el,
 });
 
 // select
 export const selectFavorite = model => ({
     type: actionTypes.SET_SELECTED_FAVORITE,
-    payload: model
+    payload: model,
 });
 
 // delete
 export const toggleDeleteDialog = () => ({
-    type: actionTypes.TOGGLE_DELETE_DIALOG
+    type: actionTypes.TOGGLE_DELETE_DIALOG,
 });
 export const deleteFavorite = event => {
     return (dispatch, getState) => {
@@ -35,14 +35,14 @@ export const deleteFavorite = event => {
                     dispatch(toggleDeleteDialog());
                     dispatch(fetchData());
                 })
-                .catch(error => log.error("favorites: delete error", error));
+                .catch(error => log.error('favorites: delete error', error));
         }
     };
 };
 
 // rename
 export const toggleRenameDialog = () => ({
-    type: actionTypes.TOGGLE_RENAME_DIALOG
+    type: actionTypes.TOGGLE_RENAME_DIALOG,
 });
 export const renameFavorite = () => {
     return (dispatch, getState) => {
@@ -81,7 +81,7 @@ export const renameFavorite = () => {
                             if (payload.name || payload.description) {
                                 api
                                     .request(
-                                        "PATCH",
+                                        'PATCH',
                                         model.href,
                                         JSON.stringify(payload)
                                     )
@@ -92,7 +92,7 @@ export const renameFavorite = () => {
                                     })
                                     .catch(error => {
                                         log.error(
-                                            "favorites: rename error",
+                                            'favorites: rename error',
                                             error
                                         );
                                         dispatch(toggleRenameDialog());
@@ -113,41 +113,41 @@ export const renameFavorite = () => {
 };
 export const setFormFieldValue = (field, value) => ({
     type: actionTypes.SET_FORM_FIELD_VALUE,
-    payload: { field, value }
+    payload: { field, value },
 });
 // share
 export const toggleShareDialog = () => ({
-    type: actionTypes.TOGGLE_SHARE_DIALOG
+    type: actionTypes.TOGGLE_SHARE_DIALOG,
 });
 export const setFavoriteType = type => ({
     type: actionTypes.SET_FAVORITE_TYPE,
-    payload: type
+    payload: type,
 });
 
 // data
 export const setData = data => ({
     type: actionTypes.SET_DATA,
-    payload: data
+    payload: data,
 });
 export const setSortOrder = order => ({
     type: actionTypes.SET_SORT_ORDER,
-    payload: order
+    payload: order,
 });
 export const setSortColumn = column => ({
     type: actionTypes.SET_SORT_COLUMN,
-    payload: column
+    payload: column,
 });
 export const setSearchValue = search => ({
     type: actionTypes.SET_SEARCH_VALUE,
-    payload: search
+    payload: search,
 });
 export const setTotalRecords = total => ({
     type: actionTypes.SET_TOTAL_RECORDS,
-    payload: total
+    payload: total,
 });
 export const setCreatedByValue = filter => ({
     type: actionTypes.SET_CREATEDBY_VALUE,
-    payload: filter
+    payload: filter,
 });
 export const searchData = event => {
     const searchValue = event.target.value;
@@ -169,16 +169,16 @@ export const sortData = (event, column) => {
     return (dispatch, getState) => {
         const state = getState();
 
-        let order = "desc";
+        let order = 'desc';
 
         if (state.sorting.column !== column) {
             order = state.sorting.order;
-        } else if (state.sorting.order === "desc") {
-            order = "asc";
+        } else if (state.sorting.order === 'desc') {
+            order = 'asc';
         }
 
         const data =
-            order === "desc"
+            order === 'desc'
                 ? state.data.records.sort(
                       (a, b) => (b[column] < a[column] ? -1 : 1)
                   )
@@ -205,19 +205,19 @@ export const fetchData = () => {
                     const currentUserId = d2.currentUser.id;
 
                     switch (state.filtering.createdByValue) {
-                        case "byme":
+                        case 'byme':
                             favoriteModel = favoriteModel
                                 .filter()
-                                .on("user.id")
+                                .on('user.id')
                                 .equals(currentUserId);
                             break;
-                        case "byothers":
+                        case 'byothers':
                             favoriteModel = favoriteModel
                                 .filter()
-                                .on("user.id")
+                                .on('user.id')
                                 .notEqual(currentUserId);
                             break;
-                        case "all":
+                        case 'all':
                         default:
                             break;
                     }
@@ -226,16 +226,16 @@ export const fetchData = () => {
                 if (state.filtering.searchValue) {
                     favoriteModel = favoriteModel
                         .filter()
-                        .on("displayName")
+                        .on('displayName')
                         .ilike(state.filtering.searchValue);
                 }
 
                 return favoriteModel.list({
                     fields:
-                        "id,displayName,title,displayDescription,created,lastUpdated,user,href",
-                    order: "name:asc",
+                        'id,displayName,title,displayDescription,created,lastUpdated,user,href',
+                    order: 'name:asc',
                     pageSize: state.pagination.rowsPerPage,
-                    page: state.pagination.page + 1
+                    page: state.pagination.page + 1,
                 });
             })
             .then(collection => {
@@ -243,18 +243,18 @@ export const fetchData = () => {
                 dispatch(setData(collection.toArray()));
                 dispatch(toggleLoading());
             })
-            .catch(error => log.error("favorites: fetch error", error));
+            .catch(error => log.error('favorites: fetch error', error));
     };
 };
 
 // pagination
 export const setPage = page => ({
     type: actionTypes.SET_PAGE,
-    payload: page
+    payload: page,
 });
 export const setRowsPerPage = event => ({
     type: actionTypes.SET_ROWS_PER_PAGE,
-    payload: event.target.value
+    payload: event.target.value,
 });
 export const changePage = (event, page) => {
     return (dispatch, getState) => {

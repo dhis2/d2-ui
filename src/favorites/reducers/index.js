@@ -1,24 +1,24 @@
-import { combineReducers } from "redux";
+import { combineReducers } from 'redux';
 
 export const actionTypes = {
-    SET_FAVORITE_TYPE: "SET_FAVORITE_TYPE",
-    SET_ACTIONS_MENU_ANCHOR_EL: "SET_ACTIONS_MENU_ANCHOR_EL",
-    SET_SORT_ORDER: "SET_SORT_ORDER",
-    SET_SORT_COLUMN: "SET_SORT_COLUMN",
-    SET_DATA: "SET_DATA",
-    SET_SEARCH_VALUE: "SET_SEARCH_VALUE",
-    SET_FILTER_VALUE: "SET_FILTER_VALUE",
-    SET_CREATEDBY_VALUE: "SET_CREATEDBY_VALUE",
-    SET_PAGE: "SET_PAGE",
-    SET_ROWS_PER_PAGE: "SET_ROWS_PER_PAGE",
-    SET_TOTAL_RECORDS: "SET_TOTAL_RECORDS",
-    SET_SELECTED_FAVORITE: "SET_SELECTED_FAVORITE",
-    SET_FORM_FIELD_VALUE: "SET_FORM_FIELD_VALUE",
-    TOGGLE_LOADING: "TOGGLE_LOADING",
-    TOGGLE_DELETE_DIALOG: "TOGGLE_DELETE_DIALOG",
-    TOGGLE_RENAME_DIALOG: "TOGGLE_RENAME_DIALOG",
-    TOGGLE_SHARE_DIALOG: "TOGGLE_SHARE_DIALOG",
-    TOGGLE_ACTIONS_MENU: "TOGGLE_ACTIONS_MENU"
+    SET_FAVORITE_TYPE: 'SET_FAVORITE_TYPE',
+    SET_ACTIONS_MENU_ANCHOR_EL: 'SET_ACTIONS_MENU_ANCHOR_EL',
+    SET_SORT_ORDER: 'SET_SORT_ORDER',
+    SET_SORT_COLUMN: 'SET_SORT_COLUMN',
+    SET_DATA: 'SET_DATA',
+    SET_SEARCH_VALUE: 'SET_SEARCH_VALUE',
+    SET_FILTER_VALUE: 'SET_FILTER_VALUE',
+    SET_CREATEDBY_VALUE: 'SET_CREATEDBY_VALUE',
+    SET_PAGE: 'SET_PAGE',
+    SET_ROWS_PER_PAGE: 'SET_ROWS_PER_PAGE',
+    SET_TOTAL_RECORDS: 'SET_TOTAL_RECORDS',
+    SET_SELECTED_FAVORITE: 'SET_SELECTED_FAVORITE',
+    SET_FORM_FIELD_VALUE: 'SET_FORM_FIELD_VALUE',
+    TOGGLE_LOADING: 'TOGGLE_LOADING',
+    TOGGLE_DELETE_DIALOG: 'TOGGLE_DELETE_DIALOG',
+    TOGGLE_RENAME_DIALOG: 'TOGGLE_RENAME_DIALOG',
+    TOGGLE_SHARE_DIALOG: 'TOGGLE_SHARE_DIALOG',
+    TOGGLE_ACTIONS_MENU: 'TOGGLE_ACTIONS_MENU',
 };
 
 const initialState = {
@@ -27,37 +27,37 @@ const initialState = {
         menuIsOpen: false,
         menuAnchorEl: null,
         remove: {
-            dialogIsOpen: false
+            dialogIsOpen: false,
         },
         rename: {
             dialogIsOpen: false,
             newName: null,
-            newDescription: null
+            newDescription: null,
         },
         share: {
-            dialogIsOpen: false
+            dialogIsOpen: false,
         },
         select: {
-            favoriteModel: null
-        }
+            favoriteModel: null,
+        },
     },
     data: {
         records: [],
         totalRecords: 0,
         filtering: {
-            type: "chart",
-            searchValue: "",
-            createdByValue: "all"
+            type: 'chart',
+            searchValue: '',
+            createdByValue: 'all',
         },
         sorting: {
-            order: "asc",
-            column: "displayName"
+            order: 'asc',
+            column: 'displayName',
         },
         pagination: {
             page: 0,
-            rowsPerPage: 10
-        }
-    }
+            rowsPerPage: 10,
+        },
+    },
 };
 
 const loading = (isLoading = initialState.isLoading, action) => {
@@ -80,32 +80,32 @@ const actions = (state = initialState.actions, action) => {
                 ...state,
                 share: {
                     ...state.share,
-                    dialogIsOpen: !state.share.dialogIsOpen
-                }
+                    dialogIsOpen: !state.share.dialogIsOpen,
+                },
             };
         case actionTypes.TOGGLE_DELETE_DIALOG:
             return {
                 ...state,
                 remove: {
                     ...state.remove,
-                    dialogIsOpen: !state.remove.dialogIsOpen
-                }
+                    dialogIsOpen: !state.remove.dialogIsOpen,
+                },
             };
         case actionTypes.TOGGLE_RENAME_DIALOG:
             return {
                 ...state,
                 rename: {
                     ...state.rename,
-                    dialogIsOpen: !state.rename.dialogIsOpen
-                }
+                    dialogIsOpen: !state.rename.dialogIsOpen,
+                },
             };
         case actionTypes.SET_FORM_FIELD_VALUE:
             return {
                 ...state,
                 rename: {
                     ...state.rename,
-                    [action.payload.field]: action.payload.value
-                }
+                    [action.payload.field]: action.payload.value,
+                },
             };
         case actionTypes.SET_SELECTED_FAVORITE:
             return { ...state, select: { favoriteModel: action.payload } };
@@ -166,5 +166,5 @@ export default combineReducers({
     pagination,
     sorting,
     data,
-    filtering
+    filtering,
 });

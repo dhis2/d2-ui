@@ -1,7 +1,7 @@
-import React from "react";
-import { connect } from "react-redux";
+import React from 'react';
+import { connect } from 'react-redux';
 
-import IconButton from "material-ui-next/IconButton";
+import IconButton from 'material-ui-next/IconButton';
 import Table, {
     TableBody,
     TableCell,
@@ -9,12 +9,12 @@ import Table, {
     TableHead,
     TablePagination,
     TableRow,
-    TableSortLabel
-} from "material-ui-next/Table";
-import Tooltip from "material-ui-next/Tooltip";
-import MoreVertIcon from "material-ui-icons/MoreVert";
+    TableSortLabel,
+} from 'material-ui-next/Table';
+import Tooltip from 'material-ui-next/Tooltip';
+import MoreVertIcon from 'material-ui-icons/MoreVert';
 
-import ActionsMenu from "./ActionsMenu";
+import ActionsMenu from './ActionsMenu';
 
 import {
     changePage,
@@ -22,15 +22,15 @@ import {
     sortData,
     toggleActionsMenu,
     setActionsMenuAnchorEl,
-    selectFavorite
-} from "./actions";
+    selectFavorite,
+} from './actions';
 
 const Time = ({ date }) => {
     const d = new Date(date);
-    const time = `${d.getFullYear()}-${("0" + d.getMonth() + 1).slice(-2)}-${(
-        "0" + d.getDate()
-    ).slice(-2)} ${("0" + d.getHours()).slice(-2)}:${(
-        "0" + d.getMinutes()
+    const time = `${d.getFullYear()}-${('0' + d.getMonth() + 1).slice(-2)}-${(
+        '0' + d.getDate()
+    ).slice(-2)} ${('0' + d.getHours()).slice(-2)}:${(
+        '0' + d.getMinutes()
     ).slice(-2)}`;
 
     return <time dateTime={d.toISOString()}>{time}</time>;
@@ -40,9 +40,9 @@ const EnhancedTableHead = props => {
     const { order, column, sortData } = props;
     // TODO i18n on labels
     const columns = [
-        { id: "displayName", label: "Name" },
-        { id: "created", label: "Created" },
-        { id: "lastUpdated", label: "Last updated" }
+        { id: 'displayName', label: 'Name' },
+        { id: 'created', label: 'Created' },
+        { id: 'lastUpdated', label: 'Last updated' },
     ];
 
     const createSortHandler = column => event => {
@@ -85,7 +85,7 @@ const EnhancedTable = props => {
         setActionsMenuAnchorEl,
         selectFavorite,
 
-        onFavoriteSelect
+        onFavoriteSelect,
     } = props;
 
     const actionsMenuHandler = model => event => {
@@ -113,7 +113,7 @@ const EnhancedTable = props => {
                                 <TableCell
                                     padding="dense"
                                     onClick={clickHandler(favorite.id)}
-                                    style={{ width: "60%", cursor: "pointer" }}
+                                    style={{ width: '60%', cursor: 'pointer' }}
                                 >
                                     {favorite.displayName}
                                 </TableCell>
@@ -163,7 +163,7 @@ const mapStateToProps = (state, ownProps) => ({
     page: state.pagination.page,
     rowsPerPage: state.pagination.rowsPerPage,
     totalRecords: state.data.totalRecords,
-    data: state.data.records
+    data: state.data.records,
 });
 
 const mapDispatchToProps = {
@@ -172,7 +172,7 @@ const mapDispatchToProps = {
     sortData,
     toggleActionsMenu,
     setActionsMenuAnchorEl,
-    selectFavorite
+    selectFavorite,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(EnhancedTable);

@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import { Provider } from "react-redux";
+import React, { Component } from 'react';
+import { Provider } from 'react-redux';
 
-import Favorites from "./Favorites";
+import Favorites from './Favorites';
 
-import configureStore from "./configureStore";
-import { setFavoriteType } from "./actions";
+import configureStore from './configureStore';
+import { setFavoriteType } from './actions';
 
 const store = configureStore();
 
