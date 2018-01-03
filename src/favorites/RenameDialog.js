@@ -1,19 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Dialog, {
-    DialogActions,
-    DialogContent,
-    DialogTitle,
-} from 'material-ui-next/Dialog';
+import Dialog, { DialogActions, DialogContent, DialogTitle } from 'material-ui-next/Dialog';
 import Button from 'material-ui-next/Button';
 import TextField from 'material-ui-next/TextField';
 import { FormControl } from 'material-ui-next/Form';
 
-import {
-    renameFavorite,
-    toggleRenameDialog,
-    setFormFieldValue,
-} from './actions';
+import { renameFavorite, toggleRenameDialog, setFormFieldValue } from './actions';
 
 const RenameDialog = props => {
     const {
@@ -39,17 +31,14 @@ const RenameDialog = props => {
     };
 
     return (
-        <Dialog open={open} onRequestClose={toggleRenameDialog} maxWidth="md">
+        <Dialog open={open} onClose={toggleRenameDialog} maxWidth="md">
             <form onSubmit={handleSubmit}>
                 <DialogTitle>Rename favorite</DialogTitle>
                 <DialogContent>
                     <FormControl fullWidth>
                         <TextField
                             label="Name"
-                            value={
-                                newName ||
-                                (favoriteModel ? favoriteModel.displayName : '')
-                            }
+                            value={newName || (favoriteModel ? favoriteModel.displayName : '')}
                             required
                             margin="normal"
                             onChange={handleChange('newName')}
@@ -62,9 +51,7 @@ const RenameDialog = props => {
                             label="Description"
                             value={
                                 newDescription ||
-                                (favoriteModel
-                                    ? favoriteModel.displayDescription
-                                    : '')
+                                (favoriteModel ? favoriteModel.displayDescription : '')
                             }
                             margin="normal"
                             multiline
@@ -77,11 +64,7 @@ const RenameDialog = props => {
                     <Button onClick={toggleRenameDialog} color="primary">
                         Cancel
                     </Button>
-                    <Button
-                        type="submit"
-                        onClick={handleSubmit}
-                        color="primary"
-                    >
+                    <Button type="submit" onClick={handleSubmit} color="primary">
                         Rename
                     </Button>
                 </DialogActions>

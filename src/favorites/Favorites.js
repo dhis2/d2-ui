@@ -31,7 +31,7 @@ class Favorites extends Component {
         };
 
         return (
-            <Dialog open={open} onRequestClose={onRequestClose} maxWidth="md">
+            <Dialog open={open} onClose={onRequestClose} maxWidth="md">
                 <DialogTitle>Favorites</DialogTitle>
                 <DialogContent>
                     <EnhancedToolbar />

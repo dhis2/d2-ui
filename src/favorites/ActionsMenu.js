@@ -49,11 +49,7 @@ const ActionsMenu = props => {
 
     return (
         <div>
-            <Menu
-                open={open}
-                onRequestClose={toggleActionsMenu}
-                anchorEl={anchorEl}
-            >
+            <Menu open={open} onClose={toggleActionsMenu} anchorEl={anchorEl}>
                 <MenuItem onClick={renameActionHandler}>
                     <ListItemIcon>
                         <ModeEditIcon />
