@@ -23,7 +23,6 @@ import MoreVert from 'material-ui/svg-icons/navigation/more-vert';
 import NotInterested from 'material-ui/svg-icons/av/not-interested';
 import Person from 'material-ui/svg-icons/social/person';
 import Public from 'material-ui/svg-icons/social/public';
-import RemoveRedEye from 'material-ui/svg-icons/image/remove-red-eye';
 import Room from 'material-ui/svg-icons/action/room';
 import ShowChart from 'material-ui/svg-icons/editor/show-chart';
 import Star from 'material-ui/svg-icons/toggle/star';
@@ -59,7 +58,6 @@ const icons = {
     NotInterested,
     Person,
     Public,
-    RemoveRedEye,
     Room,
     ShowChart,
     Star,

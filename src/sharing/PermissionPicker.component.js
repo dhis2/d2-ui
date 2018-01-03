@@ -31,7 +31,7 @@ const getAccessIcon = metaAccess => {
         return 'Create';
     }
 
-    return metaAccess.canView ? 'RemoveRedEye' : 'NotInterested';
+    return metaAccess.canView ? 'Visibility' : 'NotInterested';
 };
 
 class PermissionPicker extends Component {
