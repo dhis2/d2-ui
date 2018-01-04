@@ -18,15 +18,18 @@ import Group from 'material-ui/svg-icons/social/group';
 import GridOn from 'material-ui/svg-icons/image/grid-on';
 import InfoOutline from 'material-ui/svg-icons/action/info-outline';
 import InsertChart from 'material-ui/svg-icons/editor/insert-chart';
+import Launch from 'material-ui/svg-icons/action/launch';
 import Message from 'material-ui/svg-icons/communication/message';
 import MoreVert from 'material-ui/svg-icons/navigation/more-vert';
 import NotInterested from 'material-ui/svg-icons/av/not-interested';
 import Person from 'material-ui/svg-icons/social/person';
 import Public from 'material-ui/svg-icons/social/public';
+import Reply from 'material-ui/svg-icons/content/reply';
 import Room from 'material-ui/svg-icons/action/room';
 import ShowChart from 'material-ui/svg-icons/editor/show-chart';
 import Star from 'material-ui/svg-icons/toggle/star';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
+import ThumbUp from 'material-ui/svg-icons/action/thumb-up';
 import ViewList from 'material-ui/svg-icons/action/view-list';
 import Visibility from 'material-ui/svg-icons/action/visibility';
 import VisibilityOff from 'material-ui/svg-icons/action/visibility-off';
@@ -53,15 +56,18 @@ const icons = {
     Group,
     InfoOutline,
     InsertChart,
+    Launch,
     Message,
     MoreVert,
     NotInterested,
     Person,
     Public,
+    Reply,
     Room,
     ShowChart,
     Star,
     StarBorder,
+    ThumbUp,
     ViewList,
     Visibility,
     VisibilityOff,
