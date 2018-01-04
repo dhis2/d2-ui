@@ -7,6 +7,7 @@ import Divider from 'material-ui/Divider';
 import Popover from 'material-ui/Popover';
 import Menu from 'material-ui/Menu';
 import { config } from 'd2/lib/d2';
+import SvgIcon from '../svg-icon/SvgIcon';
 
 import PermissionOption from './PermissionOption.component';
 
@@ -25,14 +26,12 @@ const styles = {
     },
 };
 
-const getAccessIcon = (metaAccess) => {
+const getAccessIcon = metaAccess => {
     if (metaAccess.canEdit) {
-        return 'create';
+        return 'Create';
     }
 
-    return metaAccess.canView
-        ? 'remove_red_eye'
-        : 'not_interested';
+    return metaAccess.canView ? 'Visibility' : 'NotInterested';
 };
 
 class PermissionPicker extends Component {
@@ -47,36 +46,38 @@ class PermissionPicker extends Component {
         };
 
         this.props.onChange(newAccess);
-    }
+    };
 
-    openMenu = (event) => {
+    openMenu = event => {
         event.preventDefault();
         this.setState({
             open: true,
             anchor: event.currentTarget,
         });
-    }
+    };
 
     closeMenu = () => {
         this.setState({
             open: false,
         });
-    }
+    };
 
     translate = s => this.context.d2.i18n.getTranslation(s);
 
     render = () => {
         const { data, meta } = this.props.access;
-        const { data: dataOptions, meta: metaOptions } = this.props.accessOptions;
+        const {
+            data: dataOptions,
+            meta: metaOptions,
+        } = this.props.accessOptions;
 
         return (
             <div>
                 <IconButton
                     onClick={this.openMenu}
                     disabled={this.props.disabled}
-                    iconClassName="material-icons"
                 >
-                    {getAccessIcon(meta)}
+                    <SvgIcon icon={getAccessIcon(meta)} />
                 </IconButton>
                 <Popover
                     open={this.state.open}
@@ -106,35 +107,48 @@ class PermissionPicker extends Component {
                     </Menu>
                     <Divider />
 
-                    { dataOptions &&
+                    {dataOptions && (
                         <div>
                             <OptionHeader text={this.translate('data')} />
                             <Menu onItemTouchTap={this.onOptionClick}>
                                 <PermissionOption
                                     disabled={!dataOptions.canEdit}
-                                    value={{ data: { canView: true, canEdit: true } }}
-                                    primaryText={this.translate('can_capture_data')}
+                                    value={{
+                                        data: { canView: true, canEdit: true },
+                                    }}
+                                    primaryText={this.translate(
+                                        'can_capture_data'
+                                    )}
                                     isSelected={data.canEdit}
                                 />
                                 <PermissionOption
                                     disabled={!dataOptions.canView}
-                                    value={{ data: { canView: true, canEdit: false } }}
-                                    primaryText={this.translate('can_view_data')}
+                                    value={{
+                                        data: { canView: true, canEdit: false },
+                                    }}
+                                    primaryText={this.translate(
+                                        'can_view_data'
+                                    )}
                                     isSelected={!data.canEdit && data.canView}
                                 />
                                 <PermissionOption
                                     disabled={!dataOptions.noAccess}
-                                    value={{ data: { canView: false, canEdit: false } }}
+                                    value={{
+                                        data: {
+                                            canView: false,
+                                            canEdit: false,
+                                        },
+                                    }}
                                     primaryText={this.translate('no_access')}
                                     isSelected={!data.canEdit && !data.canView}
                                 />
                             </Menu>
                         </div>
-                    }
+                    )}
                 </Popover>
             </div>
         );
-    }
+    };
 }
 
 PermissionPicker.propTypes = {
@@ -153,9 +167,7 @@ PermissionPicker.contextTypes = {
 };
 
 const OptionHeader = ({ text }) => (
-    <div style={styles.optionHeader}>
-        {text.toUpperCase()}
-    </div>
+    <div style={styles.optionHeader}>{text.toUpperCase()}</div>
 );
 
 OptionHeader.propTypes = {
