@@ -108,6 +108,10 @@ const icons = (
                 <SvgIcon icon={'InsertChart'} />
             </div>
             <div style={cardStyle}>
+                <h3>Launch</h3>
+                <SvgIcon icon={'Launch'} />
+            </div>
+            <div style={cardStyle}>
                 <h3>Message</h3>
                 <SvgIcon icon={'Message'} />
             </div>
@@ -126,6 +130,10 @@ const icons = (
             <div style={cardStyle}>
                 <h3>Public</h3>
                 <SvgIcon icon={'Public'} />
+            </div>
+            <div style={cardStyle}>
+                <h3>Reply</h3>
+                <SvgIcon icon={'Reply'} />
             </div>
             <div style={cardStyle}>
                 <h3>Room</h3>
@@ -150,6 +158,10 @@ const icons = (
             <div style={cardStyle}>
                 <h3>StarBorder</h3>
                 <SvgIcon icon={'StarBorder'} />
+            </div>
+            <div style={cardStyle}>
+                <h3>ThumbUp</h3>
+                <SvgIcon icon={'ThumbUp'} />
             </div>
             <div style={cardStyle}>
                 <h3>ViewList</h3>
