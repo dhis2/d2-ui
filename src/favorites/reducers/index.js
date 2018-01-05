@@ -13,7 +13,6 @@ export const actionTypes = {
     SET_ROWS_PER_PAGE: 'SET_ROWS_PER_PAGE',
     SET_TOTAL_RECORDS: 'SET_TOTAL_RECORDS',
     SET_SELECTED_FAVORITE: 'SET_SELECTED_FAVORITE',
-    SET_FORM_FIELD_VALUE: 'SET_FORM_FIELD_VALUE',
     TOGGLE_LOADING: 'TOGGLE_LOADING',
     TOGGLE_DELETE_DIALOG: 'TOGGLE_DELETE_DIALOG',
     TOGGLE_RENAME_DIALOG: 'TOGGLE_RENAME_DIALOG',
@@ -31,8 +30,6 @@ const initialState = {
         },
         rename: {
             dialogIsOpen: false,
-            newName: null,
-            newDescription: null,
         },
         share: {
             dialogIsOpen: false,
@@ -97,14 +94,6 @@ const actions = (state = initialState.actions, action) => {
                 rename: {
                     ...state.rename,
                     dialogIsOpen: !state.rename.dialogIsOpen,
-                },
-            };
-        case actionTypes.SET_FORM_FIELD_VALUE:
-            return {
-                ...state,
-                rename: {
-                    ...state.rename,
-                    [action.payload.field]: action.payload.value,
                 },
             };
         case actionTypes.SET_SELECTED_FAVORITE:

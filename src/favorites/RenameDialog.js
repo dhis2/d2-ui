@@ -5,80 +5,88 @@ import Button from 'material-ui-next/Button';
 import TextField from 'material-ui-next/TextField';
 import { FormControl } from 'material-ui-next/Form';
 
-import { renameFavorite, toggleRenameDialog, setFormFieldValue } from './actions';
+import { renameFavorite, toggleRenameDialog } from './actions';
 
-const RenameDialog = props => {
-    const {
-        open,
-        favoriteModel,
-        newName,
-        newDescription,
-        toggleRenameDialog,
-        renameFavorite,
-        setFormFieldValue,
-    } = props;
+class RenameDialog extends React.Component {
+    constructor(props) {
+        super(props);
 
-    const handleSubmit = event => {
+        this.state = {
+            newName: '',
+            newDescription: '',
+        };
+    }
+
+    componentWillReceiveProps(nextProps) {
+        // reset form to initial value when reopening the rename dialog
+        if (nextProps.open === true) {
+            this.setState({
+                newName: nextProps.favoriteModel.displayName || '',
+                newDescription: nextProps.favoriteModel.displayDescription || '',
+            });
+        }
+    }
+
+    handleSubmit = event => {
         event.preventDefault();
 
-        renameFavorite();
+        this.props.renameFavorite(this.state);
     };
 
-    const handleChange = field => event => {
+    handleChange = field => event => {
         event.preventDefault();
 
-        setFormFieldValue(field, event.target.value);
+        this.setState({
+            [field]: event.target.value,
+        });
     };
 
-    return (
-        <Dialog open={open} onClose={toggleRenameDialog} maxWidth="md">
-            <form onSubmit={handleSubmit}>
-                <DialogTitle>Rename favorite</DialogTitle>
-                <DialogContent>
-                    <FormControl fullWidth>
-                        <TextField
-                            label="Name"
-                            value={newName || (favoriteModel ? favoriteModel.displayName : '')}
-                            required
-                            margin="normal"
-                            onChange={handleChange('newName')}
-                        />
-                    </FormControl>
-                    <FormControl fullWidth>
-                        <TextField
-                            id="description"
-                            name="description"
-                            label="Description"
-                            value={
-                                newDescription ||
-                                (favoriteModel ? favoriteModel.displayDescription : '')
-                            }
-                            margin="normal"
-                            multiline
-                            rowsMax={4}
-                            onChange={handleChange('newDescription')}
-                        />
-                    </FormControl>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={toggleRenameDialog} color="primary">
-                        Cancel
-                    </Button>
-                    <Button type="submit" onClick={handleSubmit} color="primary">
-                        Rename
-                    </Button>
-                </DialogActions>
-            </form>
-        </Dialog>
-    );
-};
+    render() {
+        const { open, toggleRenameDialog, renameFavorite } = this.props;
+
+        return (
+            <Dialog open={open} onClose={toggleRenameDialog} maxWidth="md">
+                <form onSubmit={this.handleSubmit}>
+                    <DialogTitle>Rename favorite</DialogTitle>
+                    <DialogContent>
+                        <FormControl fullWidth>
+                            <TextField
+                                label="Name"
+                                value={this.state.newName}
+                                required
+                                margin="normal"
+                                onChange={this.handleChange('newName')}
+                            />
+                        </FormControl>
+                        <FormControl fullWidth>
+                            <TextField
+                                label="Description"
+                                value={this.state.newDescription}
+                                margin="normal"
+                                multiline
+                                rowsMax={4}
+                                onChange={this.handleChange('newDescription')}
+                            />
+                        </FormControl>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={toggleRenameDialog} color="primary">
+                            Cancel
+                        </Button>
+                        <Button type="submit" onClick={this.handleSubmit} color="primary">
+                            Rename
+                        </Button>
+                    </DialogActions>
+                </form>
+            </Dialog>
+        );
+    }
+}
 
 export default connect(
     state => ({
         open: state.actions.rename.dialogIsOpen,
         favoriteModel: state.actions.select.favoriteModel,
-        newName: state.actions.rename.newName,
-        newDescription: state.actions.rename.newDescription,
     }),
-    { renameFavorite, toggleRenameDialog, setFormFieldValue }
+    { renameFavorite, toggleRenameDialog }
 )(RenameDialog);

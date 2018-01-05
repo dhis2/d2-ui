@@ -44,12 +44,12 @@ export const deleteFavorite = event => {
 export const toggleRenameDialog = () => ({
     type: actionTypes.TOGGLE_RENAME_DIALOG,
 });
-export const renameFavorite = () => {
+export const renameFavorite = form => {
     return (dispatch, getState) => {
         const state = getState();
         const favoriteModel = state.actions.select.favoriteModel;
-        const newName = state.actions.rename.newName;
-        const newDescription = state.actions.rename.newDescription;
+        const newName = form.newName;
+        const newDescription = form.newDescription;
         let api;
 
         if (favoriteModel) {
@@ -58,9 +58,7 @@ export const renameFavorite = () => {
                     api = d2.Api.getApi();
 
                     // the whole model is required for validation
-                    return d2.models[state.filtering.type].get(
-                        favoriteModel.id
-                    );
+                    return d2.models[state.filtering.type].get(favoriteModel.id);
                 })
                 .then(model => {
                     model.name = newName;
@@ -68,33 +66,25 @@ export const renameFavorite = () => {
 
                     model.validate().then(validationStatus => {
                         if (validationStatus.status === true) {
-                            const payload = {};
+                            const payload = {
+                                // can be empty
+                                description: newDescription,
+                            };
 
                             if (newName) {
                                 payload.name = newName;
                             }
 
-                            if (newDescription) {
-                                payload.description = newDescription;
-                            }
-
-                            if (payload.name || payload.description) {
+                            if (payload.name) {
                                 api
-                                    .request(
-                                        'PATCH',
-                                        model.href,
-                                        JSON.stringify(payload)
-                                    )
+                                    .request('PATCH', model.href, JSON.stringify(payload))
                                     .then(response => {
                                         dispatch(toggleRenameDialog());
                                         // refresh data
                                         dispatch(fetchData());
                                     })
                                     .catch(error => {
-                                        log.error(
-                                            'favorites: rename error',
-                                            error
-                                        );
+                                        log.error('favorites: rename error', error);
                                         dispatch(toggleRenameDialog());
                                     });
                             }
@@ -102,19 +92,12 @@ export const renameFavorite = () => {
                     });
                 })
                 .catch(error => {
-                    log.error(
-                        `favorites: favorite (${
-                            favoriteModel.id
-                        }) not found (${error})`
-                    );
+                    log.error(`favorites: favorite (${favoriteModel.id}) not found (${error})`);
                 });
         }
     };
 };
-export const setFormFieldValue = (field, value) => ({
-    type: actionTypes.SET_FORM_FIELD_VALUE,
-    payload: { field, value },
-});
+
 // share
 export const toggleShareDialog = () => ({
     type: actionTypes.TOGGLE_SHARE_DIALOG,
@@ -179,12 +162,8 @@ export const sortData = (event, column) => {
 
         const data =
             order === 'desc'
-                ? state.data.records.sort(
-                      (a, b) => (b[column] < a[column] ? -1 : 1)
-                  )
-                : state.data.records.sort(
-                      (a, b) => (a[column] < b[column] ? -1 : 1)
-                  );
+                ? state.data.records.sort((a, b) => (b[column] < a[column] ? -1 : 1))
+                : state.data.records.sort((a, b) => (a[column] < b[column] ? -1 : 1));
 
         dispatch(setSortOrder(order));
         dispatch(setSortColumn(column));
@@ -231,8 +210,7 @@ export const fetchData = () => {
                 }
 
                 return favoriteModel.list({
-                    fields:
-                        'id,displayName,title,displayDescription,created,lastUpdated,user,href',
+                    fields: 'id,displayName,title,displayDescription,created,lastUpdated,user,href',
                     order: 'name:asc',
                     pageSize: state.pagination.rowsPerPage,
                     page: state.pagination.page + 1,
