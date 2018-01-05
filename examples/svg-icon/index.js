@@ -145,6 +145,10 @@ const icons = (
                 <SvgIcon icon={'InsertChart'} />
             </div>
             <div style={cardStyle}>
+                <h3>Launch</h3>
+                <SvgIcon icon={'Launch'} />
+            </div>
+            <div style={cardStyle}>
                 <h3>Message</h3>
                 <SvgIcon icon={'Message'} />
             </div>
