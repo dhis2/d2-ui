@@ -210,7 +210,8 @@ export const fetchData = () => {
                 }
 
                 return favoriteModel.list({
-                    fields: 'id,displayName,title,displayDescription,created,lastUpdated,user,href',
+                    fields:
+                        'id,displayName,title,displayDescription,created,lastUpdated,user,access,href',
                     order: 'name:asc',
                     pageSize: state.pagination.rowsPerPage,
                     page: state.pagination.page + 1,

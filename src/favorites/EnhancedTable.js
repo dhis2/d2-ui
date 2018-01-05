@@ -29,9 +29,7 @@ const Time = ({ date }) => {
     const d = new Date(date);
     const time = `${d.getFullYear()}-${('0' + d.getMonth() + 1).slice(-2)}-${(
         '0' + d.getDate()
-    ).slice(-2)} ${('0' + d.getHours()).slice(-2)}:${(
-        '0' + d.getMinutes()
-    ).slice(-2)}`;
+    ).slice(-2)} ${('0' + d.getHours()).slice(-2)}:${('0' + d.getMinutes()).slice(-2)}`;
 
     return <time dateTime={d.toISOString()}>{time}</time>;
 };
@@ -101,11 +99,7 @@ const EnhancedTable = props => {
     return (
         <div>
             <Table>
-                <EnhancedTableHead
-                    order={order}
-                    column={column}
-                    sortData={sortData}
-                />
+                <EnhancedTableHead order={order} column={column} sortData={sortData} />
                 <TableBody>
                     {data.map(favorite => {
                         return (
@@ -124,15 +118,19 @@ const EnhancedTable = props => {
                                     <Time date={favorite.lastUpdated} />
                                 </TableCell>
                                 <TableCell padding="dense">
-                                    <Tooltip title="Actions" placement="bottom">
-                                        <IconButton
-                                            onClick={actionsMenuHandler(
-                                                favorite
-                                            )}
-                                        >
-                                            <MoreVertIcon />
+                                    {favorite.access.update &&
+                                    favorite.access.manage &&
+                                    favorite.access.delete ? (
+                                        <Tooltip title="Actions" placement="bottom">
+                                            <IconButton onClick={actionsMenuHandler(favorite)}>
+                                                <MoreVertIcon />
+                                            </IconButton>
+                                        </Tooltip>
+                                    ) : (
+                                        <IconButton disabled>
+                                            <MoreVertIcon color="disabled" />
                                         </IconButton>
-                                    </Tooltip>
+                                    )}
                                 </TableCell>
                             </TableRow>
                         );

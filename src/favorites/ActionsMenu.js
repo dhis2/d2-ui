@@ -50,19 +50,28 @@ const ActionsMenu = props => {
     return (
         <div>
             <Menu open={open} onClose={toggleActionsMenu} anchorEl={anchorEl}>
-                <MenuItem onClick={renameActionHandler}>
+                <MenuItem
+                    onClick={renameActionHandler}
+                    disabled={selectedFavoriteModel && !selectedFavoriteModel.access.update}
+                >
                     <ListItemIcon>
                         <ModeEditIcon />
                     </ListItemIcon>
                     <ListItemText primary="Rename" />
                 </MenuItem>
-                <MenuItem onClick={shareActionHandler}>
+                <MenuItem
+                    onClick={shareActionHandler}
+                    disabled={selectedFavoriteModel && !selectedFavoriteModel.access.manage}
+                >
                     <ListItemIcon>
                         <ShareIcon />
                     </ListItemIcon>
                     <ListItemText primary="Share" />
                 </MenuItem>
-                <MenuItem onClick={deleteActionHandler}>
+                <MenuItem
+                    onClick={deleteActionHandler}
+                    disabled={selectedFavoriteModel && !selectedFavoriteModel.access.delete}
+                >
                     <ListItemIcon>
                         <DeleteIcon />
                     </ListItemIcon>
