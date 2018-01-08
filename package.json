@@ -4,6 +4,7 @@
   "description": "d2-ui",
   "main": "index.js",
   "license": "BSD-3-Clause",
+  "author": "",
   "scripts": {
     "examples": "npm run start",
     "coverage": "jest --coverage",
