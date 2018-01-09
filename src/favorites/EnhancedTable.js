@@ -29,7 +29,7 @@ const Time = ({ date }) => {
     const d = new Date(date);
     const time = `${d.getFullYear()}-${('0' + d.getMonth() + 1).slice(-2)}-${(
         '0' + d.getDate()
-    ).slice(-2)} ${('0' + d.getHours()).slice(-2)}:${('0' + d.getMinutes()).slice(-2)}`;
+    ).slice(-2)}`;
 
     return <time dateTime={d.toISOString()}>{time}</time>;
 };
