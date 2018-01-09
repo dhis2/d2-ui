@@ -140,6 +140,10 @@ const icons = (
                 <SvgIcon icon={'Room'} />
             </div>
             <div style={cardStyle}>
+                <h3>Search</h3>
+                <SvgIcon icon={'Search'} />
+            </div>
+            <div style={cardStyle}>
                 <h3>ShowChart</h3>
                 <SvgIcon icon={'ShowChart'} />
             </div>
