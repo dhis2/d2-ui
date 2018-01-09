@@ -139,6 +139,10 @@ const icons = (
                 <h3>Message</h3>
                 <SvgIcon icon={'Message'} />
             </div>
+            <div style={cardStyle}>
+                <h3>List</h3>
+                <SvgIcon icon={'List'} />
+            </div>
         </div>
     </MuiThemeProvider>
 );
