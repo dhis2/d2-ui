@@ -14,6 +14,7 @@ import DragHandle from 'material-ui/svg-icons/editor/drag-handle';
 import GridOn from 'material-ui/svg-icons/image/grid-on';
 import InfoOutline from 'material-ui/svg-icons/action/info-outline';
 import InsertChart from 'material-ui/svg-icons/editor/insert-chart';
+import List from 'material-ui/svg-icons/action/list';
 import Message from 'material-ui/svg-icons/communication/message';
 import MoreVert from 'material-ui/svg-icons/navigation/more-vert';
 import Room from 'material-ui/svg-icons/action/room';
@@ -44,6 +45,7 @@ const icons = {
     GridOn,
     InfoOutline,
     InsertChart,
+    List,
     Message,
     MoreVert,
     Public,
