@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import FontIcon from 'material-ui/FontIcon';
+import SvgIcon from '../svg-icon/SvgIcon';
 import MenuItem from 'material-ui/MenuItem';
 
 class PermissionOption extends Component {
@@ -15,9 +15,7 @@ class PermissionOption extends Component {
             <MenuItem
                 insetChildren
                 leftIcon={
-                    <FontIcon className="material-icons">
-                        {this.props.isSelected ? 'done' : ''}
-                    </FontIcon>
+                    this.props.isSelected ? <SvgIcon icon="Done" /> : undefined
                 }
                 primaryText={this.props.primaryText}
                 value={this.props.value}
@@ -26,7 +24,7 @@ class PermissionOption extends Component {
                 focusState={this.props.focusState}
             />
         );
-    }
+    };
 }
 
 PermissionOption.propTypes = {

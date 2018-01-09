@@ -42,20 +42,54 @@ describe('Sharing: PermissionPicker component', () => {
             },
         });
 
-        expect(permissionPickerComponent.find(PermissionOption)).toHaveLength(3);
+        expect(permissionPickerComponent.find(PermissionOption)).toHaveLength(
+            3
+        );
     });
 
     it('should render six PermissionOptions if all access options are available', () => {
-        expect(permissionPickerComponent.find(PermissionOption)).toHaveLength(6);
+        expect(permissionPickerComponent.find(PermissionOption)).toHaveLength(
+            6
+        );
     });
 
-    it('should render the checkmark FontIcon according to the permission values', () => {
-        expect(permissionPickerComponent.find(PermissionOption).at(0).props().isSelected).toBe(true);
-        expect(permissionPickerComponent.find(PermissionOption).at(1).props().isSelected).toBe(false);
-        expect(permissionPickerComponent.find(PermissionOption).at(2).props().isSelected).toBe(false);
-        expect(permissionPickerComponent.find(PermissionOption).at(3).props().isSelected).toBe(true);
-        expect(permissionPickerComponent.find(PermissionOption).at(4).props().isSelected).toBe(false);
-        expect(permissionPickerComponent.find(PermissionOption).at(5).props().isSelected).toBe(false);
+    it('should render the checkmark SvgIcon according to the permission values', () => {
+        expect(
+            permissionPickerComponent
+                .find(PermissionOption)
+                .at(0)
+                .props().isSelected
+        ).toBe(true);
+        expect(
+            permissionPickerComponent
+                .find(PermissionOption)
+                .at(1)
+                .props().isSelected
+        ).toBe(false);
+        expect(
+            permissionPickerComponent
+                .find(PermissionOption)
+                .at(2)
+                .props().isSelected
+        ).toBe(false);
+        expect(
+            permissionPickerComponent
+                .find(PermissionOption)
+                .at(3)
+                .props().isSelected
+        ).toBe(true);
+        expect(
+            permissionPickerComponent
+                .find(PermissionOption)
+                .at(4)
+                .props().isSelected
+        ).toBe(false);
+        expect(
+            permissionPickerComponent
+                .find(PermissionOption)
+                .at(5)
+                .props().isSelected
+        ).toBe(false);
 
         permissionPickerComponent = renderComponent({
             ...permissionPickerProps,
@@ -65,11 +99,41 @@ describe('Sharing: PermissionPicker component', () => {
             },
         });
 
-        expect(permissionPickerComponent.find(PermissionOption).at(0).props().isSelected).toBe(false);
-        expect(permissionPickerComponent.find(PermissionOption).at(1).props().isSelected).toBe(false);
-        expect(permissionPickerComponent.find(PermissionOption).at(2).props().isSelected).toBe(true);
-        expect(permissionPickerComponent.find(PermissionOption).at(3).props().isSelected).toBe(false);
-        expect(permissionPickerComponent.find(PermissionOption).at(4).props().isSelected).toBe(false);
-        expect(permissionPickerComponent.find(PermissionOption).at(5).props().isSelected).toBe(true);
+        expect(
+            permissionPickerComponent
+                .find(PermissionOption)
+                .at(0)
+                .props().isSelected
+        ).toBe(false);
+        expect(
+            permissionPickerComponent
+                .find(PermissionOption)
+                .at(1)
+                .props().isSelected
+        ).toBe(false);
+        expect(
+            permissionPickerComponent
+                .find(PermissionOption)
+                .at(2)
+                .props().isSelected
+        ).toBe(true);
+        expect(
+            permissionPickerComponent
+                .find(PermissionOption)
+                .at(3)
+                .props().isSelected
+        ).toBe(false);
+        expect(
+            permissionPickerComponent
+                .find(PermissionOption)
+                .at(4)
+                .props().isSelected
+        ).toBe(false);
+        expect(
+            permissionPickerComponent
+                .find(PermissionOption)
+                .at(5)
+                .props().isSelected
+        ).toBe(true);
     });
 });

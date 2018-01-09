@@ -32,12 +32,116 @@ const icons = (
                 <SvgIcon />
             </div>
             <div style={cardStyle}>
+                <h3>Icon with custom defined path</h3>
+                <SvgIcon>{children}</SvgIcon>
+            </div>
+            <div style={cardStyle}>
                 <h3>Icon not found</h3>
                 <SvgIcon icon={'DoesntExist'} />
             </div>
             <div style={cardStyle}>
-                <h3>Icon with custom defined path</h3>
-                <SvgIcon>{children}</SvgIcon>
+                <h3>Add</h3>
+                <SvgIcon icon={'Add'} />
+            </div>
+            <div style={cardStyle}>
+                <h3>ArrowDownward</h3>
+                <SvgIcon icon={'ArrowDownward'} />
+            </div>
+            <div style={cardStyle}>
+                <h3>ArrowDropRight</h3>
+                <SvgIcon icon={'ArrowDropRight'} />
+            </div>
+            <div style={cardStyle}>
+                <h3>ArrowUpward</h3>
+                <SvgIcon icon={'ArrowUpward'} />
+            </div>
+            <div style={cardStyle}>
+                <h3>Business</h3>
+                <SvgIcon icon={'Business'} />
+            </div>
+            <div style={cardStyle}>
+                <h3>Cancel</h3>
+                <SvgIcon icon={'Cancel'} />
+            </div>
+            <div style={cardStyle}>
+                <h3>ChevronLeft</h3>
+                <SvgIcon icon={'ChevronLeft'} />
+            </div>
+            <div style={cardStyle}>
+                <h3>ChevronRight</h3>
+                <SvgIcon icon={'ChevronRight'} />
+            </div>
+            <div style={cardStyle}>
+                <h3>Close</h3>
+                <SvgIcon icon={'Close'} />
+            </div>
+            <div style={cardStyle}>
+                <h3>Create</h3>
+                <SvgIcon icon={'Create'} />
+            </div>
+            <div style={cardStyle}>
+                <h3>Delete</h3>
+                <SvgIcon icon={'Delete'} />
+            </div>
+            <div style={cardStyle}>
+                <h3>Done</h3>
+                <SvgIcon icon={'Done'} />
+            </div>
+            <div style={cardStyle}>
+                <h3>DragHandle</h3>
+                <SvgIcon icon={'DragHandle'} />
+            </div>
+            <div style={cardStyle}>
+                <h3>GridOn</h3>
+                <SvgIcon icon={'GridOn'} />
+            </div>
+            <div style={cardStyle}>
+                <h3>Group</h3>
+                <SvgIcon icon={'Group'} />
+            </div>
+            <div style={cardStyle}>
+                <h3>InfoOutline</h3>
+                <SvgIcon icon={'InfoOutline'} />
+            </div>
+            <div style={cardStyle}>
+                <h3>InsertChart</h3>
+                <SvgIcon icon={'InsertChart'} />
+            </div>
+            <div style={cardStyle}>
+                <h3>Launch</h3>
+                <SvgIcon icon={'Launch'} />
+            </div>
+            <div style={cardStyle}>
+                <h3>Message</h3>
+                <SvgIcon icon={'Message'} />
+            </div>
+            <div style={cardStyle}>
+                <h3>MoreVert</h3>
+                <SvgIcon icon={'MoreVert'} />
+            </div>
+            <div style={cardStyle}>
+                <h3>NotInterested</h3>
+                <SvgIcon icon={'NotInterested'} />
+            </div>
+            <div style={cardStyle}>
+                <h3>Person</h3>
+                <SvgIcon icon={'Person'} />
+            </div>
+            <div style={cardStyle}>
+                <h3>Public</h3>
+                <SvgIcon icon={'Public'} />
+            </div>
+            <div style={cardStyle}>
+                <h3>Reply</h3>
+                <SvgIcon icon={'Reply'} />
+            </div>
+            <div style={cardStyle}>
+                <h3>Room</h3>
+                <SvgIcon icon={'Room'} />
+            </div>
+            <div style={cardStyle}>
+                <h3>ShowChart</h3>
+                <SvgIcon icon={'ShowChart'} />
             </div>
             <div style={cardStyle}>
                 <h3>Disabled icon</h3>
@@ -56,52 +160,12 @@ const icons = (
                 <SvgIcon icon={'StarBorder'} />
             </div>
             <div style={cardStyle}>
-                <h3>ArrowDropRight</h3>
-                <SvgIcon icon={'ArrowDropRight'} />
-            </div>
-            <div style={cardStyle}>
-                <h3>Close</h3>
-                <SvgIcon icon={'Close'} />
-            </div>
-            <div style={cardStyle}>
-                <h3>ArrowUpward</h3>
-                <SvgIcon icon={'ArrowUpward'} />
-            </div>
-            <div style={cardStyle}>
-                <h3>ArrowDownward</h3>
-                <SvgIcon icon={'ArrowDownward'} />
-            </div>
-            <div style={cardStyle}>
-                <h3>ChevronLeft</h3>
-                <SvgIcon icon={'ChevronLeft'} />
-            </div>
-            <div style={cardStyle}>
-                <h3>ChevronRight</h3>
-                <SvgIcon icon={'ChevronRight'} />
-            </div>
-            <div style={cardStyle}>
-                <h3>MoreVert</h3>
-                <SvgIcon icon={'MoreVert'} />
-            </div>
-            <div style={cardStyle}>
-                <h3>Cancel</h3>
-                <SvgIcon icon={'Cancel'} />
-            </div>
-            <div style={cardStyle}>
-                <h3>InfoOutline</h3>
-                <SvgIcon icon={'InfoOutline'} />
-            </div>
-            <div style={cardStyle}>
-                <h3>Room</h3>
-                <SvgIcon icon={'Room'} />
+                <h3>ThumbUp</h3>
+                <SvgIcon icon={'ThumbUp'} />
             </div>
             <div style={cardStyle}>
                 <h3>ViewList</h3>
                 <SvgIcon icon={'ViewList'} />
-            </div>
-            <div style={cardStyle}>
-                <h3>Delete</h3>
-                <SvgIcon icon={'Delete'} />
             </div>
             <div style={cardStyle}>
                 <h3>Visibility</h3>
@@ -110,34 +174,6 @@ const icons = (
             <div style={cardStyle}>
                 <h3>VisibilityOff</h3>
                 <SvgIcon icon={'VisibilityOff'} />
-            </div>
-            <div style={cardStyle}>
-                <h3>Create</h3>
-                <SvgIcon icon={'Create'} />
-            </div>
-            <div style={cardStyle}>
-                <h3>DragHandle</h3>
-                <SvgIcon icon={'DragHandle'} />
-            </div>
-            <div style={cardStyle}>
-                <h3>GridOn</h3>
-                <SvgIcon icon={'GridOn'} />
-            </div>
-            <div style={cardStyle}>
-                <h3>ShowChart</h3>
-                <SvgIcon icon={'ShowChart'} />
-            </div>
-            <div style={cardStyle}>
-                <h3>InsertChart</h3>
-                <SvgIcon icon={'InsertChart'} />
-            </div>
-            <div style={cardStyle}>
-                <h3>Public</h3>
-                <SvgIcon icon={'Public'} />
-            </div>
-            <div style={cardStyle}>
-                <h3>Message</h3>
-                <SvgIcon icon={'Message'} />
             </div>
             <div style={cardStyle}>
                 <h3>List</h3>
