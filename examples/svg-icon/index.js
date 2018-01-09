@@ -36,6 +36,11 @@ const icons = (
                 <SvgIcon>{children}</SvgIcon>
             </div>
             <div style={cardStyle}>
+                <h3>Icon with custom dimensions</h3>
+                <SvgIcon icon="Launch" style={{ width: '20px', height: '20px' }} />
+                <SvgIcon icon="Launch" style={{ width: '32px', height: '32px' }} />
+            </div>
+            <div style={cardStyle}>
                 <h3>Icon not found</h3>
                 <SvgIcon icon={'DoesntExist'} />
             </div>
