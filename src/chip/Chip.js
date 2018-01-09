@@ -21,6 +21,7 @@ export const clickableStyle = {
 const labelStyle = {
     fontSize: '13px',
     fontWeight: 500,
+    lineHeight: '30px',
 };
 
 export const colors = {
@@ -128,8 +129,8 @@ Chip.defaultProps = {
     avatar: null,
     disabled: false,
     label: null,
-    onClick: null,
-    onRequestDelete: null,
+    onClick: undefined,
+    onRequestDelete: undefined,
     selector: null,
 };
 
