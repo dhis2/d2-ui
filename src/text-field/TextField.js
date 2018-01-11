@@ -94,18 +94,4 @@ TextField.propTypes = {
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
-TextField.defaultProps = {
-    fullWidth: false,
-    label: null,
-    multiline: false,
-    placeholder: '',
-    rows: 1,
-    rowsMax: null,
-    selector: null,
-    style: {},
-    type: 'text',
-    value: '',
-};
-
-
 export default TextField;

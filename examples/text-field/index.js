@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { render } from 'react-dom';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -16,45 +16,64 @@ const style = {
     justifyContent: 'space-between',
 };
 
-const textFields = (
-    <MuiThemeProvider muiTheme={getMuiTheme()}>
-        <div style={style}>
-            <TextField
-                label='Text'
-                onChange={() => {}}
-            />
-            <TextField
-                label='Number'
-                type='number'
-                onChange={() => {}}
-            />
-            <TextField
-                label='Default value'
-                type='number'
-                value={100}
-                onChange={() => {}}
-            />
-            <TextField
-                placeholder="Hint text"
-                type="text"
-                onChange={() => { }}
-            />
-            <TextField
-                placeholder="Multiline with Hint text"
-                type="text"
-                multiline
-                rows={2}
-                rowsMax={4}
-                onChange={() => { }}
-            />
-            <TextField
-                placeholder="Full width"
-                type="text"
-                fullWidth
-                onChange={() => { }}
-            />
-        </div>
-    </MuiThemeProvider>
-);
+class TextFields extends Component {
+    state = {
+        multiHintText: '',
+        singleHintText: '',
+    };
 
-render(textFields, document.getElementById('text-fields'));
+    onChangeMultiHintText = (multiHintText) => {
+        this.setState({ multiHintText });
+    }
+
+    onChangeSingleHintText = (singleHintText) => {
+        this.setState({ singleHintText });
+    }
+
+    render() {
+        return (
+            <MuiThemeProvider muiTheme={getMuiTheme()}>
+                <div style={style}>
+                    <TextField
+                        label='Text'
+                        onChange={() => { }}
+                    />
+                    <TextField
+                        label='Number'
+                        type='number'
+                        onChange={() => { }}
+                    />
+                    <TextField
+                        label='Default value'
+                        type='number'
+                        value={100}
+                        onChange={() => { }}
+                    />
+                    <TextField
+                        placeholder="Hint text"
+                        type="text"
+                        value={this.state.singleHintText}
+                        onChange={this.onChangeSingleHintText}
+                    />
+                    <TextField
+                        placeholder="Multiline field showing 2 rows and up to 4 rows"
+                        type="text"
+                        multiline
+                        rows={2}
+                        rowsMax={4}
+                        value={this.state.multiHintText}
+                        onChange={this.onChangeMultiHintText}
+                    />
+                    <TextField
+                        placeholder="Full width"
+                        type="text"
+                        fullWidth
+                        onChange={() => { }}
+                    />
+                </div>
+            </MuiThemeProvider>
+        );
+    }
+}
+
+render(<TextFields />, document.getElementById('text-fields'));
