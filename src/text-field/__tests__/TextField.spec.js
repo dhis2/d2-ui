@@ -37,4 +37,22 @@ describe('TextField', () => {
         renderWithProps({ onChange: onChangeSpy }).props().onChange({}, 'my text');
         expect(onChangeSpy).toHaveBeenCalledWith('my text');
     });
+
+    it('should render the MUITextField with the correct properties', () => {
+        const props = {
+            multiline: true,
+            fullWidth: true,
+            rows: 2,
+            rowsMax: 4,
+            placeholder: 'Getting warmer',
+        };
+
+        const muiField = renderWithProps(props).find(MuiTextField);
+
+        expect(muiField.props().multiLine).toEqual(props.multiline);
+        expect(muiField.props().fullWidth).toEqual(props.fullWidth);
+        expect(muiField.props().hintText).toEqual(props.placeholder);
+        expect(muiField.props().rows).toEqual(props.rows);
+        expect(muiField.props().rowsMax).toEqual(props.rowsMax);
+    });
 });
