@@ -20,15 +20,22 @@ class TextFields extends Component {
     state = {
         multiHintText: '',
         singleHintText: '',
+        valueField1: '',
+        valueField2: '',
+        valueField3: '',
+    };
+
+    onChangeValue = (field, value) => {
+        this.setState({ [field]: value });
     };
 
     onChangeMultiHintText = (multiHintText) => {
         this.setState({ multiHintText });
-    }
+    };
 
     onChangeSingleHintText = (singleHintText) => {
         this.setState({ singleHintText });
-    }
+    };
 
     render() {
         return (
@@ -36,18 +43,20 @@ class TextFields extends Component {
                 <div style={style}>
                     <TextField
                         label='Text'
-                        onChange={() => { }}
+                        value={this.state.valueField1}
+                        onChange={(value) => this.onChangeValue('valueField1', value)}
                     />
                     <TextField
                         label='Number'
                         type='number'
-                        onChange={() => { }}
+                        value={this.state.valueField2}
+                        onChange={(value) => this.onChangeValue('valueField2', value)}
                     />
                     <TextField
                         label='Default value'
                         type='number'
-                        value={100}
-                        onChange={() => { }}
+                        value={this.state.valueField3 || 100}
+                        onChange={(value) => this.onChangeValue('valueField3', value)}
                     />
                     <TextField
                         placeholder="Hint text"
