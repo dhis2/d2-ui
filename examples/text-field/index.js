@@ -34,6 +34,25 @@ const textFields = (
                 value={100}
                 onChange={() => {}}
             />
+            <TextField
+                placeholder="Hint text"
+                type="text"
+                onChange={() => { }}
+            />
+            <TextField
+                placeholder="Multiline with Hint text"
+                type="text"
+                multiline
+                rows={2}
+                rowsMax={4}
+                onChange={() => { }}
+            />
+            <TextField
+                placeholder="Full width"
+                type="text"
+                fullWidth
+                onChange={() => { }}
+            />
         </div>
     </MuiThemeProvider>
 );
