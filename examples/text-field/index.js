@@ -23,6 +23,7 @@ class TextFields extends Component {
         valueField1: '',
         valueField2: '',
         valueField3: '',
+        valueField4: '',
     };
 
     onChangeValue = (field, value) => {
@@ -42,21 +43,21 @@ class TextFields extends Component {
             <MuiThemeProvider muiTheme={getMuiTheme()}>
                 <div style={style}>
                     <TextField
-                        label='Text'
+                        label="Text"
                         value={this.state.valueField1}
-                        onChange={(value) => this.onChangeValue('valueField1', value)}
+                        onChange={(value) => this.onChangeValue("valueField1", value)}
                     />
                     <TextField
-                        label='Number'
-                        type='number'
+                        label="Number"
+                        type="number"
                         value={this.state.valueField2}
-                        onChange={(value) => this.onChangeValue('valueField2', value)}
+                        onChange={(value) => this.onChangeValue("valueField2", value)}
                     />
                     <TextField
-                        label='Default value'
-                        type='number'
+                        label="Default value"
+                        type="number"
                         value={this.state.valueField3 || 100}
-                        onChange={(value) => this.onChangeValue('valueField3', value)}
+                        onChange={(value) => this.onChangeValue("valueField3", value)}
                     />
                     <TextField
                         placeholder="Hint text"
@@ -77,7 +78,8 @@ class TextFields extends Component {
                         placeholder="Full width"
                         type="text"
                         fullWidth
-                        onChange={() => { }}
+                        value={this.state.valueField4}
+                        onChange={(value) => this.onChangeValue("valueField4", value)}
                     />
                 </div>
             </MuiThemeProvider>
