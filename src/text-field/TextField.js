@@ -14,6 +14,7 @@ const TextField = ({ type,
     selector,
     style,
     value,
+    onClick,
 }) => {
     const className = createClassName('d2-ui-textfield', selector);
 
@@ -30,6 +31,7 @@ const TextField = ({ type,
             style={style}
             type={type}
             value={value}
+            onClick={onClick}
         />
     );
 };
@@ -57,6 +59,12 @@ TextField.propTypes = {
      * The onChange callback will receive one argument: The new value of the text field
      */
     onChange: PropTypes.func.isRequired,
+
+    /**
+ * onClick callback, that is fired when the textfield is clicked
+ *
+ */
+    onClick: PropTypes.func,
 
     /**
      * If set, sets the Hint text (v0.19)
