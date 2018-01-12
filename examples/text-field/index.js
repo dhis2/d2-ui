@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { render } from 'react-dom';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -16,26 +16,75 @@ const style = {
     justifyContent: 'space-between',
 };
 
-const textFields = (
-    <MuiThemeProvider muiTheme={getMuiTheme()}>
-        <div style={style}>
-            <TextField
-                label='Text'
-                onChange={() => {}}
-            />
-            <TextField
-                label='Number'
-                type='number'
-                onChange={() => {}}
-            />
-            <TextField
-                label='Default value'
-                type='number'
-                value={100}
-                onChange={() => {}}
-            />
-        </div>
-    </MuiThemeProvider>
-);
+class TextFields extends Component {
+    state = {
+        multiHintText: '',
+        singleHintText: '',
+        valueField1: '',
+        valueField2: '',
+        valueField3: '',
+        valueField4: '',
+    };
 
-render(textFields, document.getElementById('text-fields'));
+    onChangeValue = (field, value) => {
+        this.setState({ [field]: value });
+    };
+
+    onChangeMultiHintText = (multiHintText) => {
+        this.setState({ multiHintText });
+    };
+
+    onChangeSingleHintText = (singleHintText) => {
+        this.setState({ singleHintText });
+    };
+
+    render() {
+        return (
+            <MuiThemeProvider muiTheme={getMuiTheme()}>
+                <div style={style}>
+                    <TextField
+                        label="Text"
+                        value={this.state.valueField1}
+                        onChange={(value) => this.onChangeValue("valueField1", value)}
+                    />
+                    <TextField
+                        label="Number"
+                        type="number"
+                        value={this.state.valueField2}
+                        onChange={(value) => this.onChangeValue("valueField2", value)}
+                    />
+                    <TextField
+                        label="Default value"
+                        type="number"
+                        value={this.state.valueField3 || 100}
+                        onChange={(value) => this.onChangeValue("valueField3", value)}
+                    />
+                    <TextField
+                        placeholder="Hint text"
+                        type="text"
+                        value={this.state.singleHintText}
+                        onChange={this.onChangeSingleHintText}
+                    />
+                    <TextField
+                        placeholder="Multiline field showing 2 rows and up to 4 rows"
+                        type="text"
+                        multiline
+                        rows={2}
+                        rowsMax={4}
+                        value={this.state.multiHintText}
+                        onChange={this.onChangeMultiHintText}
+                    />
+                    <TextField
+                        placeholder="Full width"
+                        type="text"
+                        fullWidth
+                        value={this.state.valueField4}
+                        onChange={(value) => this.onChangeValue("valueField4", value)}
+                    />
+                </div>
+            </MuiThemeProvider>
+        );
+    }
+}
+
+render(<TextFields />, document.getElementById('text-fields'));

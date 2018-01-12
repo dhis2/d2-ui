@@ -27,6 +27,7 @@ import Person from 'material-ui/svg-icons/social/person';
 import Public from 'material-ui/svg-icons/social/public';
 import Reply from 'material-ui/svg-icons/content/reply';
 import Room from 'material-ui/svg-icons/action/room';
+import Search from 'material-ui/svg-icons/action/search';
 import ShowChart from 'material-ui/svg-icons/editor/show-chart';
 import Star from 'material-ui/svg-icons/toggle/star';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
@@ -66,6 +67,7 @@ const icons = {
     Public,
     Reply,
     Room,
+    Search,
     ShowChart,
     Star,
     StarBorder,
