@@ -12,8 +12,10 @@ import Clear from 'material-ui/svg-icons/content/clear';
 import Close from 'material-ui/svg-icons/navigation/close';
 import Create from 'material-ui/svg-icons/content/create';
 import Delete from 'material-ui/svg-icons/action/delete';
+import Description from 'material-ui/svg-icons/action/description';
 import Done from 'material-ui/svg-icons/action/done';
 import DragHandle from 'material-ui/svg-icons/editor/drag-handle';
+import Extension from 'material-ui/svg-icons/action/extension';
 import Group from 'material-ui/svg-icons/social/group';
 import GridOn from 'material-ui/svg-icons/image/grid-on';
 import InfoOutline from 'material-ui/svg-icons/action/info-outline';
@@ -52,8 +54,10 @@ const icons = {
     Close,
     Create,
     Delete,
+    Description,
     Done,
     DragHandle,
+    Extension,
     GridOn,
     Group,
     InfoOutline,
