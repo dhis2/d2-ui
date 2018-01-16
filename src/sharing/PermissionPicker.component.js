@@ -110,7 +110,7 @@ class PermissionPicker extends Component {
                     {dataOptions && (
                         <div>
                             <OptionHeader text={this.translate('data')} />
-                            <Menu onItemTouchTap={this.onOptionClick}>
+                            <Menu onItemClick={this.onOptionClick}>
                                 <PermissionOption
                                     disabled={!dataOptions.canEdit}
                                     value={{
