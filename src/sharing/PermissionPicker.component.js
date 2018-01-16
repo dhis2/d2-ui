@@ -85,7 +85,7 @@ class PermissionPicker extends Component {
                     onRequestClose={this.closeMenu}
                 >
                     <OptionHeader text={this.translate('metadata')} />
-                    <Menu onItemTouchTap={this.onOptionClick}>
+                    <Menu onItemClick={this.onOptionClick}>
                         <PermissionOption
                             disabled={!metaOptions.canEdit}
                             value={{ meta: { canView: true, canEdit: true } }}
