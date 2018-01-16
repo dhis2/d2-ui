@@ -20,7 +20,7 @@ class PermissionOption extends Component {
                 primaryText={this.props.primaryText}
                 value={this.props.value}
                 disabled={this.props.disabled}
-                onClick={this.props.onClick}
+                onTouchTap={this.props.onTouchTap}
                 focusState={this.props.focusState}
             />
         );
@@ -32,12 +32,12 @@ PermissionOption.propTypes = {
     isSelected: PropTypes.bool.isRequired,
     primaryText: PropTypes.string.isRequired,
     value: PropTypes.object.isRequired,
-    onClick: PropTypes.func,
+    onTouchTap: PropTypes.func,
     focusState: PropTypes.string,
 };
 
 PermissionOption.defaultProps = {
-    onClick: undefined,
+    onTouchTap: undefined,
     focusState: 'none',
 };
 
