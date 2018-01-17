@@ -60,9 +60,11 @@ class ControlBar extends React.Component {
     }
 
     onStartDrag = () => {
-        this.setState({ dragging: true });
-        window.addEventListener('mousemove', this.onDrag);
-        window.addEventListener('mouseup', this.onEndDrag);
+        if (this.props.expandable) {
+            this.setState({ dragging: true });
+            window.addEventListener('mousemove', this.onDrag);
+            window.addEventListener('mouseup', this.onEndDrag);
+        }
     };
 
     onDrag = (event) => {
@@ -103,6 +105,7 @@ class ControlBar extends React.Component {
 
         const dragFlapStyle = {
             ...styles.dragHandle,
+            cursor: this.props.expandable ? 'ns-resize' : 'auto',
             height: this.getEndFlapHeight(),
             backgroundColor: `rgb(${backgroundColor})`,
             // borderTop: this.showDragHandle() ? '1px solid rgba(0,0,0,0.3)' : '0px solid transparent',
@@ -197,6 +200,11 @@ ControlBar.propTypes = {
      * If set, adds a class to the element in the format d2-ui-control-bar-selector
      */
     selector: PropTypes.string,
+
+    /**
+     * If set, the control bar is vertically expandable by dragging the end flap
+     */
+    expandable: PropTypes.bool,
 };
 
 ControlBar.defaultProps = {
@@ -204,6 +212,7 @@ ControlBar.defaultProps = {
     editMode: false,
     onChangeHeight: null,
     selector: '',
+    expandable: true,
 };
 
 export default ControlBar;
