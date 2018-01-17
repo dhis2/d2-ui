@@ -60,11 +60,9 @@ class ControlBar extends React.Component {
     }
 
     onStartDrag = () => {
-        if (this.props.expandable) {
-            this.setState({ dragging: true });
-            window.addEventListener('mousemove', this.onDrag);
-            window.addEventListener('mouseup', this.onEndDrag);
-        }
+        this.setState({ dragging: true });
+        window.addEventListener('mousemove', this.onDrag);
+        window.addEventListener('mouseup', this.onEndDrag);
     };
 
     onDrag = (event) => {
@@ -108,12 +106,11 @@ class ControlBar extends React.Component {
             cursor: this.props.expandable ? 'ns-resize' : 'auto',
             height: this.getEndFlapHeight(),
             backgroundColor: `rgb(${backgroundColor})`,
-            // borderTop: this.showDragHandle() ? '1px solid rgba(0,0,0,0.3)' : '0px solid transparent',
         };
 
         const props = Object.assign(
             {},
-            this.showDragHandle() ? { onMouseDown: this.onStartDrag } : {},
+            this.showDragHandle() && this.props.expandable ? { onMouseDown: this.onStartDrag } : {},
         );
 
         // Disable jsx-a11y no-role rule, because what's the alternative?
