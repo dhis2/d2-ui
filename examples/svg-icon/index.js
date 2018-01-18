@@ -89,12 +89,20 @@ const icons = (
                 <SvgIcon icon={'Delete'} />
             </div>
             <div style={cardStyle}>
+                <h3>Description</h3>
+                <SvgIcon icon={'Description'} />
+            </div>
+            <div style={cardStyle}>
                 <h3>Done</h3>
                 <SvgIcon icon={'Done'} />
             </div>
             <div style={cardStyle}>
                 <h3>DragHandle</h3>
                 <SvgIcon icon={'DragHandle'} />
+            </div>
+            <div style={cardStyle}>
+                <h3>Extension</h3>
+                <SvgIcon icon={'Extension'} />
             </div>
             <div style={cardStyle}>
                 <h3>GridOn</h3>
