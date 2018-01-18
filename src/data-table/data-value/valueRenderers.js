@@ -83,16 +83,18 @@ function isObjectWithDisplayName({ value }) {
 
 function PublicAccessValue({ value }) {
     if (value) {
-        if (value === 'rw------') {
-            return <Translate>public_can_edit</Translate>;
-        }
+        const metaData = value.substr(0, 2);
+        const data = value.substr(2, 2);
+        const other = value.substr(4, 4);
 
-        if (value === 'r-------') {
-            return <Translate>public_can_view</Translate>;
-        }
-
-        if (value === '--------') {
-            return <Translate>public_none</Translate>;
+        if (other === '----' && (data === '--' || data === 'r-' || data === 'rw')) {
+            if (metaData === 'rw') {
+                return <Translate>public_can_edit</Translate>;
+            } else if (metaData === 'r-') {
+                return <Translate>public_can_view</Translate>;
+            } else if (metaData === '--') {
+                return <Translate>public_none</Translate>;
+            }
         }
     }
 
