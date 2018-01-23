@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import { getStubContext } from '../../../config/inject-theme';
 
-import ControlBar from '../ControlBar';
+import ControlBar, { END_FLAP_HEIGHT } from '../ControlBar';
 
 ControlBar.contextTypes = {
     muiTheme: PropTypes.any,
@@ -49,7 +49,7 @@ describe('ControlBar', () => {
 
     it('should set the height of the end flap to 10 when an onChangeHeight callback is specified', () => {
         const controlBar = renderControlBar({ onChangeHeight: noop });
-        expect(controlBar.find('.d2-ui-control-bar-contents + div').props().style.height).toBe(10);
+        expect(controlBar.find('.d2-ui-control-bar-contents + div').props().style.height).toBe(END_FLAP_HEIGHT);
     });
 
     it('should change the background color in edit mode', () => {

@@ -1,24 +1,31 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Checkbox from 'material-ui/Checkbox';
 
-class CheckBox extends Component {
-    render() {
-        const {
-            errorStyle,
-            errorText,
-            ...other
-        } = this.props;
-        return (
-            <div style={{ marginTop: 12, marginBottom: 12 }}>
-                <Checkbox onCheck={this.props.onChange} {...other} />
-            </div>
-        );
-    }
-}
+const CheckBox = ({ onChange, wrapperStyle, errorStyle, errorText, ...other }) => {
+    const baseWrapperStyle = { marginTop: 12, marginBottom: 12 };
+    const mergedWrapperStyle = {
+        ...baseWrapperStyle,
+        ...wrapperStyle,
+    };
+    return (
+        <div style={mergedWrapperStyle}>
+            <Checkbox onCheck={onChange} {...other} />
+        </div>
+    );
+};
 
 CheckBox.propTypes = {
+    wrapperStyle: PropTypes.object,
+    errorStyle: PropTypes.object,
+    errorText: PropTypes.string,
     onChange: PropTypes.func.isRequired,
+};
+
+CheckBox.defaultProps = {
+    wrapperStyle: {},
+    errorStyle: {},
+    errorText: '',
 };
 
 export default CheckBox;

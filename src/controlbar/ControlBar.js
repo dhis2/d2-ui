@@ -44,7 +44,7 @@ const styles = {
 
 const BACKGROUND_RGB = '255,255,255';
 const BACKGROUND_RGB_EDIT = '255,248,224';
-const END_FLAP_HEIGHT = 7;
+export const END_FLAP_HEIGHT = 7;
 
 /**
  * The ControlBar component can be used to put an expandable horizontal bar underneath the DHIS header bar, useful for
