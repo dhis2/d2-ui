@@ -1,6 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { render } from 'react-dom';
 import log from 'loglevel';
+
 import Card from 'material-ui/Card/Card';
 import CardText from 'material-ui/Card/CardText';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -205,17 +207,17 @@ class OrgUnitSelectExample extends React.Component {
     }
 }
 OrgUnitSelectExample.propTypes = {
-    d2: React.PropTypes.object.isRequired,
-    levels: React.PropTypes.oneOfType([
-        React.PropTypes.object,
-        React.PropTypes.array,
+    d2: PropTypes.object.isRequired,
+    levels: PropTypes.oneOfType([
+        PropTypes.object,
+        PropTypes.array,
     ]).isRequired,
-    groups: React.PropTypes.oneOfType([
-        React.PropTypes.object,
-        React.PropTypes.array,
+    groups: PropTypes.oneOfType([
+        PropTypes.object,
+        PropTypes.array,
     ]).isRequired,
 };
-OrgUnitSelectExample.childContextTypes = { d2: React.PropTypes.object.isRequired };
+OrgUnitSelectExample.childContextTypes = { d2: PropTypes.object.isRequired };
 
 render(<div>Initialising D2...</div>, el);
 

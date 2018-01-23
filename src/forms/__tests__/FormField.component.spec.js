@@ -8,7 +8,13 @@ describe('FormField component', () => {
     let fieldConfig;
 
     function renderComponent(props) {
-        return shallow(<FormField {...props} />);
+        const nops = {
+            isValid: true,
+            fieldOptions: {},
+            updateFn: () => {},
+            ...props,
+        };
+        return shallow(<FormField {...nops} />);
     }
 
     beforeEach(() => {
@@ -68,6 +74,33 @@ describe('FormField component', () => {
 
         expect(onChangeSpy).toHaveBeenCalled();
     });
+
+    it('should trigger state change on blur', () => {
+        formFieldComponent = renderComponent({
+            ...fieldConfig,
+            value: 'Mark',
+        });
+
+        const renderedMaterialUIComponent = formFieldComponent.find(TextField);
+
+        renderedMaterialUIComponent.simulate('blur');
+
+        expect(formFieldComponent.state().isFocused).toBe(false);
+    });
+
+    it('should trigger state change on focus', () => {
+        formFieldComponent = renderComponent({
+            ...fieldConfig,
+            value: 'Mark',
+        });
+
+        const renderedMaterialUIComponent = formFieldComponent.find(TextField);
+
+        renderedMaterialUIComponent.simulate('focus');
+
+        expect(formFieldComponent.state().isFocused).toBe(true);
+    });
+
 
     describe('templateOptions', () => {
         it('should pass template options as props to the `type` component', () => {

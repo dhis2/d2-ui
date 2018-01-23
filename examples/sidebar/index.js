@@ -1,9 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import FontIcon from 'material-ui/FontIcon';
-import Sidebar from '../../src/sidebar/Sidebar.component';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
+import Sidebar from '../../src/sidebar/Sidebar.component';
 
 let currentSection;
 let lastSection;
@@ -16,9 +18,9 @@ function changeSectionHandler(key, searchText) {
     }
     ReactDOM.render(
         <MuiThemeProvider muiTheme={getMuiTheme()}>
-            <SidebarExample currentSection={currentSection} searchText={searchText}/>
+            <SidebarExample currentSection={currentSection} searchText={searchText} />
         </MuiThemeProvider>,
-        document.getElementById('app')
+        document.getElementById('app'),
     );
 }
 
@@ -97,7 +99,7 @@ function SidebarExample(props) {
                 </div>
                 <div style={styles.leftBar}>
                     <Sidebar
-                        sections={sections.slice(0,2)}
+                        sections={sections.slice(0, 2)}
                         onChangeSection={changeSectionHandler}
                         currentSection={props.currentSection}
                         showSearchField
@@ -138,7 +140,8 @@ function SidebarExample(props) {
                 <div style={styles.leftBar}>
                     <Sidebar
                         sections={sections.map(({ key, label }, i) => ({
-                            key, label,
+                            key,
+                            label,
                             icon: <FontIcon className="material-icons">{icons[i]}</FontIcon>,
                         }))}
                         onChangeSection={changeSectionHandler}
@@ -158,8 +161,8 @@ function SidebarExample(props) {
     );
 }
 SidebarExample.propTypes = {
-    currentSection: React.PropTypes.string,
-    searchText: React.PropTypes.string,
+    currentSection: PropTypes.string,
+    searchText: PropTypes.string,
 };
 
 changeSectionHandler(sections[0].key);

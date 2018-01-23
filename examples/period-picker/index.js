@@ -1,16 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
+
 import { Card, CardText } from 'material-ui/Card';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
 import injectTapEventPlugin from 'react-tap-event-plugin';
-injectTapEventPlugin();
-
 import D2Lib from 'd2/lib/d2';
-
 import PeriodPicker from '../../src/period-picker/PeriodPicker.component';
 import parsePeriod from 'd2/lib/period/parser';
+
+injectTapEventPlugin();
 
 const el = document.getElementById('app');
 const dhisDevConfig = DHIS_CONFIG;
@@ -39,7 +39,7 @@ class PeriodPickerExample extends React.Component {
         this.setState({ periodType, values: [] });
     }
 
-    render () {
+    render() {
         const styles = {
             card: {
                 margin: 16,
@@ -117,7 +117,7 @@ class PeriodPickerExample extends React.Component {
         );
     }
 }
-PeriodPickerExample.childContextTypes = { d2: React.PropTypes.object.isRequired };
+PeriodPickerExample.childContextTypes = { d2: PropTypes.object.isRequired };
 
 ReactDOM.render(<div>Initialising D2...</div>, el);
 

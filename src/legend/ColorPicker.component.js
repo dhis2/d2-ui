@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ChromePicker from 'react-color/lib/components/chrome/Chrome';
 import { hcl } from 'd3-color';
 
-export default class ColorPicker extends Component {
+class ColorPicker extends Component {
     constructor(...args) {
         super(...args);
 
@@ -76,3 +76,4 @@ export default class ColorPicker extends Component {
     }
 }
 
+export default ColorPicker;

@@ -7,7 +7,11 @@ describe('ExpressionFormula component', () => {
     let onFormulaChangeSpy;
 
     function renderComponent(props = {}) {
-        return shallow(<ExpressionFormula {...props} />);
+        const nops = {
+            onFormulaChange: () => {},
+            ...props,
+        };
+        return shallow(<ExpressionFormula {...nops} />);
     }
 
     beforeEach(() => {

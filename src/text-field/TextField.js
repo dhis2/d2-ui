@@ -3,17 +3,35 @@ import PropTypes from 'prop-types';
 import MuiTextField from 'material-ui/TextField';
 import { createClassName } from '../component-helpers/utils';
 
-const TextField = ({ type, label, value, onChange, style, selector }) => {
+const TextField = ({ type,
+    fullWidth,
+    label,
+    multiline,
+    onChange,
+    placeholder,
+    rows,
+    rowsMax,
+    selector,
+    style,
+    value,
+    onClick,
+}) => {
     const className = createClassName('d2-ui-textfield', selector);
 
     return (
         <MuiTextField
-            type={type}
-            floatingLabelText={label}
-            value={value}
-            onChange={(event, value) => onChange(value)}
             className={className}
+            floatingLabelText={label}
+            fullWidth={fullWidth}
+            hintText={placeholder}
+            multiLine={multiline}
+            onChange={(event, val) => onChange(val)}
+            rows={rows}
+            rowsMax={rowsMax}
             style={style}
+            type={type}
+            value={value}
+            onClick={onClick}
         />
     );
 };
@@ -21,9 +39,9 @@ const TextField = ({ type, label, value, onChange, style, selector }) => {
 
 TextField.propTypes = {
     /**
-     * The input type of the textfield
+     * If set, expands the TextField to the full width of its parent
      */
-    type: PropTypes.oneOf(['text', 'number']),
+    fullWidth: PropTypes.bool,
 
     /**
      * The textfield label
@@ -31,9 +49,9 @@ TextField.propTypes = {
     label: PropTypes.string,
 
     /**
-     * The value of the textfield
+     * If set, allows textfield to expand to more than one line
      */
-    value: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
+    multiline: PropTypes.bool,
 
     /**
      * onChange callback, that is fired when the textfield's value changes
@@ -43,14 +61,45 @@ TextField.propTypes = {
     onChange: PropTypes.func.isRequired,
 
     /**
-     * Override the inline-styles of the root element
+ * onClick callback, that is fired when the textfield is clicked
+ *
+ */
+    onClick: PropTypes.func,
+
+    /**
+     * If set, sets the Hint text (v0.19)
      */
-    style: PropTypes.object,
+    placeholder: PropTypes.string,
+
+    /**
+     * If set, and multiline is true, sets the initial number of lines
+     */
+    rows: PropTypes.number,
+
+    /**
+     * If set, and multiline is true, sets the maximum number of lines
+     */
+    rowsMax: PropTypes.number,
 
     /**
      * If set, adds a class to the element in the format d2-ui-textfield-selector
      */
     selector: PropTypes.string,
+
+    /**
+     * Override the inline-styles of the root element
+     */
+    style: PropTypes.object,
+
+    /**
+     * The input type of the textfield
+     */
+    type: PropTypes.oneOf(['text', 'number']),
+
+    /**
+     * The value of the textfield
+     */
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 export default TextField;

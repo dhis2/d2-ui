@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Popover from 'material-ui/Popover/Popover';
 import SelectField from 'material-ui/SelectField/SelectField';
 import MenuItem from 'material-ui/MenuItem/MenuItem';
@@ -47,7 +47,7 @@ const scales = [
 ];
 
 // Renders a color scale component consisting of a changeable color scale and number of classes
-export default class ColorScaleSelect extends Component {
+class ColorScaleSelect extends Component {
     constructor(...args) {
         super(...args);
 
@@ -151,3 +151,5 @@ export default class ColorScaleSelect extends Component {
 ColorScaleSelect.contextTypes = {
     d2: PropTypes.object,
 };
+
+export default ColorScaleSelect;

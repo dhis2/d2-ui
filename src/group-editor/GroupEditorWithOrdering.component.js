@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import IconButton from 'material-ui/IconButton/IconButton';
 import log from 'loglevel';
 import GroupEditor from './GroupEditor.component';
@@ -31,7 +32,7 @@ function moveItemOneSpotUpIn(currentlySelected) {
     };
 }
 
-export default class GroupEditorWithOrdering extends React.Component {
+class GroupEditorWithOrdering extends Component {
     render() {
         return (
             <div style={{ paddingRight: '2.5rem', position: 'relative' }}>
@@ -41,20 +42,20 @@ export default class GroupEditorWithOrdering extends React.Component {
                         style={{ color: 'rgb(33, 150, 243)' }}
                         iconClassName="material-icons"
                         tooltip="Move up"
-                        onClick={this._moveUp.bind(this)}
+                        onClick={this.moveUp.bind(this)}
                     >arrow_upward</IconButton>
                     <IconButton
                         style={{ color: 'rgb(33, 150, 243)' }}
                         iconClassName="material-icons"
                         tooltip="Move down"
-                        onClick={this._moveDown.bind(this)}
+                        onClick={this.moveDown.bind(this)}
                     >arrow_downward</IconButton>
                 </div>
             </div>
         );
     }
 
-    _moveUp() {
+    moveUp() {
         if (!Array.isArray(this.props.assignedItemStore.getState())) {
             return log.warn('Moving in <GroupEditorWithOrdering /> is not supported (yet) when the assignedItemStore\'s state is a ModelCollectionProperty');
         }
@@ -69,7 +70,7 @@ export default class GroupEditorWithOrdering extends React.Component {
         this.props.onOrderChanged(currentlySelected);
     }
 
-    _moveDown() {
+    moveDown() {
         if (!Array.isArray(this.props.assignedItemStore.getState())) {
             return log.warn('Moving in <GroupEditorWithOrdering /> is not supported (yet) when the assignedItemStore\'s state is a ModelCollectionProperty');
         }
@@ -85,9 +86,13 @@ export default class GroupEditorWithOrdering extends React.Component {
         this.props.onOrderChanged(currentlySelected);
     }
 }
+
 GroupEditorWithOrdering.propTypes = {
-    onOrderChanged: React.PropTypes.func,
+    onOrderChanged: PropTypes.func,
 };
+
 GroupEditorWithOrdering.defaultProps = {
     onOrderChanged: () => {},
 };
+
+export default GroupEditorWithOrdering;

@@ -9,9 +9,9 @@ class HeaderMenu extends Component {
 
         this.state = {};
 
-        this._mouseEnter = this._mouseEnter.bind(this);
-        this._mouseLeave = this._mouseLeave.bind(this);
-        this._onScroll = this._onScroll.bind(this);
+        this.onMouseEnter = this.onMouseEnter.bind(this);
+        this.onMouseLeave = this.onMouseLeave.bind(this);
+        this.onScroll = this.onScroll.bind(this);
     }
 
     render() {
@@ -30,15 +30,15 @@ class HeaderMenu extends Component {
             height: calculatedHeight > useScrollAfterNumberOfRows ? useScrollAfterNumberOfRows : calculatedHeight,
             width: this.state.showScrollBar ? menuWidth + 35 : menuWidth + 55,
             marginRight: this.state.showScrollBar ? 0 : -30,
-            onScroll: this._onScroll.bind(this),
+            onScroll: this.onScroll.bind(this),
             padding: this.props.padding,
         };
 
         return (
             <div
                 style={styles.headerMenu}
-                onMouseEnter={this._mouseEnter}
-                onMouseLeave={this._mouseLeave}
+                onMouseEnter={this.onMouseEnter}
+                onMouseLeave={this.onMouseLeave}
             >
                 {name}
                 <div style={{ paddingTop: 55 }}>
@@ -54,20 +54,20 @@ class HeaderMenu extends Component {
         );
     }
 
-    _mouseEnter(event) {
+    onMouseEnter(event) {
         this.setState({
             anchor: event.target,
             open: true,
         });
     }
 
-    _mouseLeave() {
+    onMouseLeave() {
         this.setState({
             open: false,
         });
     }
 
-    _onScroll(event) {
+    onScroll(event) {
         this.setState({
             showScrollBar: event.target.scrollTop > 1,
         });

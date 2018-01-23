@@ -1,18 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { DatePicker as MuiDatePicker } from 'material-ui';
 
 class DatePicker extends React.Component {
     constructor(props) {
         super(props);
-        this.maxDate = props.allowFuture ? undefined : new Date();
-        this.props = props;
-        this._onDateSelect = this._onDateSelect.bind(this);
-        this._formatDate = this._formatDate.bind(this);
+        this.onDateSelect = this.onDateSelect.bind(this);
+        this.formatDate = this.formatDate.bind(this);
         this.state = { value: this.props.value };
     }
 
-    _onDateSelect(event, date) {
+    onDateSelect(event, date) {
         this.setState({ value: date });
         this.props.onChange({
             target: {
@@ -21,7 +20,7 @@ class DatePicker extends React.Component {
         });
     }
 
-    _formatDate(date) {
+    formatDate(date) {
         let dd = date.getDate();
         let mm = date.getMonth() + 1;
         const yyyy = date.getFullYear();
@@ -32,7 +31,7 @@ class DatePicker extends React.Component {
             mm = `0${mm}`;
         }
 
-        switch (this.props.dateFormat) {
+        switch (this.dateFormat) {
         case 'dd-MM-yyyy': return `${dd}-${mm}-${yyyy}`;
         case 'yyyy-MM-dd': return `${yyyy}-${mm}-${dd}`;
         default: return `${dd}-${mm}-${yyyy}`;
@@ -40,15 +39,22 @@ class DatePicker extends React.Component {
     }
 
     render() {
+        const {
+            allowFuture,
+            dateFormat,
+            ...other
+        } = this.props;
+
         return (
             <div>
                 <MuiDatePicker
-                    {...this.props}
+                    {...other}
                     value={this.state.value}
                     floatingLabelText={this.props.floatingLabelText}
-                    maxDate={this.maxDate}
-                    formatDate={this._formatDate}
-                    onChange={this._onDateSelect}
+                    maxDate={allowFuture ? undefined : new Date()}
+                    errorText={this.props.errorText}
+                    formatDate={this.formatDate}
+                    onChange={this.onDateSelect}
                 />
             </div>
         );
@@ -56,10 +62,28 @@ class DatePicker extends React.Component {
 }
 
 DatePicker.propTypes = {
-    floatingLabelText: React.PropTypes.string.isRequired,
-    onChange: React.PropTypes.func.isRequired,
-    dateFormat: React.PropTypes.string.isRequired,
-    allowFuture: React.PropTypes.bool.isRequired,
+    floatingLabelText: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired,
+    errorText: PropTypes.string,
+    dateFormat: PropTypes.oneOf([
+        'dd-MM-yyyy',
+        'yyyy-MM-dd',
+    ]),
+    allowFuture: PropTypes.bool,
+    value: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object,
+    ]),
+};
+
+DatePicker.defaultProps = {
+    errorText: '',
+    value: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object,
+    ]),
+    dateFormat: 'dd-MM-yyyy',
+    allowFuture: false,
 };
 
 export default DatePicker;

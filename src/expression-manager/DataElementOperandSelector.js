@@ -1,41 +1,30 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { config } from 'd2/lib/d2';
 import TextField from 'material-ui/TextField/TextField';
 import LinearProgress from 'material-ui/LinearProgress/LinearProgress';
 import ListSelectAsync from '../list-select/ListSelectAsync.component';
 import Pagination from '../pagination/Pagination.component';
-import Translate from '../i18n/Translate.mixin';
 import Store from '../store/Store';
 import { createDataElementOperandActions, subscribeDataElementActionsToStore } from './dataElementOperandSelector.actions';
 
 config.i18n.strings.add('search_by_name');
 
-const DataElementOperandSelector = React.createClass({
-    propTypes: {
-        dataElementOperandSelectorActions: React.PropTypes.object,
-        dataElementOperandStore: React.PropTypes.object,
-        onItemDoubleClick: React.PropTypes.func.isRequired,
-        listStyle: React.PropTypes.object,
-    },
+class DataElementOperandSelector extends Component {
+    constructor(props, context) {
+        super(props, context);
 
-    mixins: [Translate],
+        const i18n = this.context.d2.i18n;
+        this.getTranslation = i18n.getTranslation.bind(i18n);
+    }
 
-    getDefaultProps() {
-        return {
-            dataElementOperandSelectorActions: createDataElementOperandActions(),
-            dataElementOperandStore: Store.create(),
-        };
-    },
-
-    getInitialState() {
-        return {
-            isLoading: true,
-            pager: {
-                hasNextPage: () => false,
-                hasPreviousPage: () => false,
-            },
-        };
-    },
+    state = {
+        isLoading: true,
+        pager: {
+            hasNextPage: () => false,
+            hasPreviousPage: () => false,
+        },
+    };
 
     componentWillMount() {
         this.actionSubscriptions = subscribeDataElementActionsToStore(this.props.dataElementOperandSelectorActions, this.props.dataElementOperandStore);
@@ -62,22 +51,35 @@ const DataElementOperandSelector = React.createClass({
             .subscribe((pager) => {
                 this.setState({ pager });
             });
-    },
+    }
 
     componentWillUnmount() {
         this.disposable && this.disposable.unsubscribe();
         this.actionSubscriptions.forEach(subscription => subscription.unsubscribe());
-    },
+    }
 
-    getNextPage() {
+    getNextPage = () => {
         this.setState({ isLoading: true });
         this.props.dataElementOperandSelectorActions.getNextPage(this.state.pager, this.state.searchValue);
-    },
+    }
 
-    getPreviousPage() {
+    getPreviousPage = () => {
         this.setState({ isLoading: true });
         this.props.dataElementOperandSelectorActions.getPreviousPage(this.state.pager, this.state.searchValue);
-    },
+    }
+
+    searchDataElement = (event) => {
+        const value = event.target.value;
+        this.props.dataElementOperandSelectorActions.search(value)
+            .subscribe(() => {
+                this.setState({
+                    isLoading: false,
+                    searchValue: value,
+                });
+            });
+
+        this.setState({ isLoading: true });
+    }
 
     render() {
         return (
@@ -104,20 +106,24 @@ const DataElementOperandSelector = React.createClass({
                 />
             </div>
         );
-    },
+    }
+}
 
-    searchDataElement(event) {
-        const value = event.target.value;
-        this.props.dataElementOperandSelectorActions.search(value)
-            .subscribe(() => {
-                this.setState({
-                    isLoading: false,
-                    searchValue: value,
-                });
-            });
+DataElementOperandSelector.propTypes = {
+    dataElementOperandSelectorActions: PropTypes.object,
+    dataElementOperandStore: PropTypes.object,
+    onItemDoubleClick: PropTypes.func.isRequired,
+    listStyle: PropTypes.object,
+};
 
-        this.setState({ isLoading: true });
-    },
-});
+DataElementOperandSelector.defaultProps = {
+    dataElementOperandSelectorActions: createDataElementOperandActions(),
+    dataElementOperandStore: Store.create(),
+    listStyle: {},
+};
+
+DataElementOperandSelector.contextTypes = {
+    d2: PropTypes.object,
+};
 
 export default DataElementOperandSelector;

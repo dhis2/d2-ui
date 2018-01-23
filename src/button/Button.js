@@ -22,7 +22,7 @@ const Button = ({ raised, fab, color, disabled, onClick, children, style, select
         primary: color === 'primary' || null,
         secondary: color === 'accent' || null,
         disabled,
-        onTouchTap: onClick,
+        onClick,
         className,
         style,
     };

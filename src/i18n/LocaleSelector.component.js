@@ -1,32 +1,30 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import SelectField from 'material-ui/SelectField/SelectField';
 import MenuItem from 'material-ui/MenuItem/MenuItem';
 
-import Translate from '../i18n/Translate.mixin';
+class LocaleSelector extends Component {
+    constructor(props, context) {
+        super(props, context);
 
-export default React.createClass({
-    propTypes: {
-        value: React.PropTypes.string,
-        locales: React.PropTypes.arrayOf(React.PropTypes.shape({
-            name: React.PropTypes.string.isRequired,
-            locale: React.PropTypes.string.isRequired,
-        })).isRequired,
-        onChange: React.PropTypes.func.isRequired,
-    },
+        const i18n = this.context.d2.i18n;
+        this.getTranslation = i18n.getTranslation.bind(i18n);
+    }
 
-    mixins: [Translate],
+    onLocaleChange = (event, index, locale) => {
+        this.setState({
+            locale,
+        });
+
+        this.props.onChange(locale, event);
+    }
 
     render() {
         const localeMenuItems = [{ payload: '', text: '' }]
             .concat(this.props.locales)
             .map((locale, index) => (
-                <MenuItem
-                    key={index}
-                    primaryText={locale.name}
-                    value={locale.locale}
-                />
+                <MenuItem key={index} primaryText={locale.name} value={locale.locale} />
             ));
-
 
         return (
             <SelectField
@@ -34,18 +32,27 @@ export default React.createClass({
                 {...this.props}
                 value={this.state && this.state.locale}
                 hintText={this.getTranslation('select_locale')}
-                onChange={this._localeChange}
+                onChange={this.onLocaleChange}
             >
                 {localeMenuItems}
             </SelectField>
         );
-    },
+    }
+}
 
-    _localeChange(event, index, locale) {
-        this.setState({
-            locale,
-        });
+LocaleSelector.propTypes = {
+    value: PropTypes.string,
+    locales: PropTypes.arrayOf(
+        PropTypes.shape({
+            name: PropTypes.string.isRequired,
+            locale: PropTypes.string.isRequired,
+        })
+    ).isRequired,
+    onChange: PropTypes.func.isRequired,
+};
 
-        this.props.onChange(locale, event);
-    },
-});
+LocaleSelector.contextTypes = {
+    d2: PropTypes.object,
+};
+
+export default LocaleSelector;

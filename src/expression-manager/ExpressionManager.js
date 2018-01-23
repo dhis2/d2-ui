@@ -1,6 +1,6 @@
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Observable } from 'rxjs';
-import React, { Component } from 'react';
 import Tabs from 'material-ui/Tabs/Tabs';
 import Tab from 'material-ui/Tabs/Tab';
 import Paper from 'material-ui/Paper/Paper';
@@ -16,7 +16,8 @@ import OrganisationUnitGroupSelector from './OrganisationUnitGroupSelector';
 import ConstantSelector from './ConstantSelector';
 import addD2Context from '../component-helpers/addD2Context';
 import Action from '../action/Action';
-import { Row, Column } from '../layout';
+import Row from '../layout/Row.component';
+import Column from '../layout/Column.component';
 
 config.i18n.strings.add('data_elements');
 config.i18n.strings.add('description');

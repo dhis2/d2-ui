@@ -1,5 +1,3 @@
-/* eslint no-console: 0 */
-
 import { config, getInstance } from 'd2/lib/d2';
 import Dialog from 'material-ui/Dialog/Dialog';
 import FlatButton from 'material-ui/FlatButton/FlatButton';
@@ -13,76 +11,38 @@ config.i18n.strings.add('share');
 config.i18n.strings.add('close');
 config.i18n.strings.add('no_manage_access');
 
-function cachedAccessTypeToString(canView, canEdit) {
-    if (canView) {
-        return canEdit
-            ? 'rw------'
-            : 'r-------';
-    }
+const styles = {
+    loadingMask: {
+        position: 'relative',
+    },
+};
 
-    return '--------';
-}
-
-function transformAccessObject(access, type) {
-    return {
-        id: access.id,
-        name: access.name,
-        displayName: access.displayName,
-        type,
-        canView: access.access && access.access.includes('r'),
-        canEdit: access.access && access.access.includes('rw'),
-    };
-}
-
-function transformObjectStructure(apiMeta, apiObject) {
-    const userGroupAccesses = !apiObject.userGroupAccesses ? [] : apiObject.userGroupAccesses.map(
-        access => transformAccessObject(access, 'userGroup'));
-
-    const userAccesses = !apiObject.userAccesses ? [] : apiObject.userAccesses.map(
-        access => transformAccessObject(access, 'user'));
-
-    const combinedAccesses = userGroupAccesses.concat(userAccesses);
-    const authorOfSharableItem = apiObject.user && {
-        id: apiObject.user.id,
-        name: apiObject.user.name,
-    };
-
-    return {
-        authorOfSharableItem,
-        nameOfSharableItem: apiObject.name,
-        canSetPublicAccess: apiMeta.allowPublicAccess,
-        canSetExternalAccess: apiMeta.allowExternalAccess,
-        publicCanView: apiObject.publicAccess.includes('r'),
-        publicCanEdit: apiObject.publicAccess.includes('rw'),
-        isSharedExternally: apiObject.externalAccess,
-        accesses: combinedAccesses,
-    };
-}
+const defaultState = {
+    sharedObject: null,
+    errorMessage: '',
+};
 
 /**
  * A pop-up dialog for changing sharing preferences for a sharable object.
  */
 class SharingDialog extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            accessForbidden: false,
-            apiObject: null,
-            objectToShare: null,
-        };
+    state = {
+        ...defaultState,
+        dataShareableTypes: [],
+    };
 
-        if (this.props.open) {
+    componentDidMount() {
+        this.loadDataSharingSettings();
+        if (this.props.open && this.props.type && this.props.id) {
             this.loadObjectFromApi();
         }
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.id !== this.props.id) {
-            this.setState({
-                accessForbidden: false,
-                objectToShare: null,
-            });
+        const hasChanged = this.createPropsChecker(nextProps);
 
+        if (hasChanged('id') || hasChanged('type')) {
+            this.resetState();
             if (nextProps.open) this.loadObjectFromApi();
         }
 
@@ -91,109 +51,93 @@ class SharingDialog extends React.Component {
         }
     }
 
-    onSearchRequest = (searchText) => {
-        const apiInstance = this.state.api;
-
-        return apiInstance.get('sharing/search', { key: searchText })
-            .then((searchResult) => {
-                const transformedResult = searchResult.users.map(
-                    user => transformAccessObject(user, 'user'));
-
-                return transformedResult.concat(
-                    searchResult.userGroups.map(
-                        userGroup => transformAccessObject(userGroup, 'userGroup')));
-            });
-    }
+    onSearchRequest = key =>
+        this.state.api.get('sharing/search', { key })
+            .then(searchResult => searchResult);
 
     onSharingChanged = (updatedAttributes, onSuccess) => {
-        const objectToShare = {
-            ...this.state.objectToShare,
-            ...updatedAttributes,
+        const updatedObject = {
+            meta: this.state.sharedObject.meta,
+            object: {
+                ...this.state.sharedObject.object,
+                ...updatedAttributes,
+            },
         };
 
-        const apiObject = this.restoreObjectStructure(objectToShare);
+        this.postChanges(updatedObject, onSuccess);
+    }
 
-        return this.state.api.post(`sharing?type=${this.props.type}&id=${this.props.id}`, apiObject)
+    createPropsChecker = nextProps => field => nextProps[field] !== this.props[field];
+
+    postChanges = (updatedObject, onSuccess) => {
+        const url = `sharing?type=${this.props.type}&id=${this.props.id}`;
+        return this.state.api.post(url, updatedObject)
             .then(({ httpStatus, message }) => {
                 if (httpStatus === 'OK') {
                     this.setState({
-                        objectToShare,
-                        apiObject,
+                        sharedObject: updatedObject,
                     }, () => {
                         if (onSuccess) onSuccess();
                     });
-                } else {
-                    console.warn('Failed to post changes.');
-                    console.warn('SERVER SAID:', message);
                 }
 
                 return message;
-            })
-            .catch(({ message }) => {
-                console.warn('Failed to post changes.');
-                console.warn('SERVER SAID:', message);
+            }).catch(({ message }) => {
+                this.setState({
+                    errorMessage: message,
+                });
             });
     }
 
-    loadObjectFromApi() {
+    resetState = () => {
+        this.setState(defaultState);
+    }
+
+    loadDataSharingSettings = () => {
         getInstance().then((d2) => {
-            const apiInstance = d2.Api.getApi();
-            apiInstance.get('sharing', { type: this.props.type, id: this.props.id })
-                .then((apiObject) => {
+            const api = d2.Api.getApi();
+
+            api.get('schemas', { fields: ['name', 'dataShareable'] })
+                .then((schemas) => {
+                    const dataShareableTypes = schemas.schemas
+                        .filter(item => item.dataShareable)
+                        .map(item => item.name);
+
                     this.setState({
-                        api: apiInstance,
-                        apiObject,
-                        objectToShare: transformObjectStructure(apiObject.meta, apiObject.object),
-                    });
-                })
-                .catch(() => {
-                    this.setState({
-                        accessForbidden: true,
+                        dataShareableTypes,
                     });
                 });
         });
     }
 
-    restoreObjectStructure(transformedObject) {
-        const userAccesses = [];
-        const userGroupAccesses = [];
+    loadObjectFromApi = () => {
+        getInstance().then((d2) => {
+            const api = d2.Api.getApi();
+            const { type, id } = this.props;
 
-        transformedObject.accesses.forEach((access) => {
-            const apiAccess = {
-                id: access.id,
-                name: access.name,
-                displayName: access.name,
-                access: cachedAccessTypeToString(access.canView, access.canEdit),
-            };
-
-            if (access.type === 'user') {
-                userAccesses.push(apiAccess);
-            } else {
-                userGroupAccesses.push(apiAccess);
-            }
+            api.get('sharing', { type, id })
+                .then((sharedObject) => {
+                    this.setState({
+                        api,
+                        sharedObject,
+                    });
+                })
+                .catch((error) => {
+                    this.setState({
+                        errorMessage: error.message,
+                    });
+                });
         });
-
-        return {
-            meta: this.state.apiObject.meta,
-            object: {
-                ...this.state.apiObject.object,
-                userAccesses,
-                userGroupAccesses,
-
-                publicAccess: cachedAccessTypeToString(
-                    transformedObject.publicCanView,
-                    transformedObject.publicCanEdit,
-                ),
-                externalAccess: transformedObject.isSharedExternally,
-            },
-        };
     }
 
     closeSharingDialog = () => {
-        this.props.onRequestClose(this.state.apiObject.object);
+        this.props.onRequestClose(this.state.sharedObject.object);
     }
 
     render() {
+        const dataShareable = this.state.dataShareableTypes.indexOf(this.props.type) !== -1;
+        const errorOccurred = this.state.errorMessage !== '';
+        const isLoading = !this.state.sharedObject && this.props.open && !errorOccurred;
         const sharingDialogActions = [
             <FlatButton
                 label={this.context.d2.i18n.getTranslation('close')}
@@ -201,51 +145,33 @@ class SharingDialog extends React.Component {
             />,
         ];
 
-        const loadingMaskStyle = {
-            position: 'relative',
-        };
-
-        if (!this.state.objectToShare) {
-            if (this.state.accessForbidden) {
-                return (
-                    <Snackbar
-                        open
-                        message={this.context.d2.i18n.getTranslation('no_manage_access')}
-                        autoHideDuration={3000}
-                    />
-                );
-            }
-
-            if (this.props.open) {
-                return (<LoadingMask style={loadingMaskStyle} size={1} />);
-            }
-
-            return null;
-        }
-
         return (
-            <Dialog
-                open={this.props.open}
-                title={this.context.d2.i18n.getTranslation('share')}
-                actions={sharingDialogActions}
-                autoDetectWindowHeight
-                autoScrollBodyContent
-                onRequestClose={this.closeSharingDialog}
-                {...this.props}
-            >
-                <Sharing
-                    authorOfSharableItem={this.state.objectToShare.authorOfSharableItem}
-                    nameOfSharableItem={this.state.objectToShare.nameOfSharableItem}
-                    canSetPublicAccess={this.state.objectToShare.canSetPublicAccess}
-                    canSetExternalAccess={this.state.objectToShare.canSetExternalAccess}
-                    publicCanView={this.state.objectToShare.publicCanView}
-                    publicCanEdit={this.state.objectToShare.publicCanEdit}
-                    isSharedExternally={this.state.objectToShare.isSharedExternally}
-                    accesses={this.state.objectToShare.accesses}
-                    onSharingChanged={this.onSharingChanged}
-                    onSearch={this.onSearchRequest}
+            <div>
+                <Snackbar
+                    open={errorOccurred}
+                    message={this.state.errorMessage}
+                    autoHideDuration={3000}
                 />
-            </Dialog>
+                { isLoading && <LoadingMask style={styles.loadingMask} size={1} /> }
+                { this.state.sharedObject &&
+                    <Dialog
+                        autoDetectWindowHeight
+                        autoScrollBodyContent
+                        open={this.props.open}
+                        title={this.context.d2.i18n.getTranslation('share')}
+                        actions={sharingDialogActions}
+                        onRequestClose={this.closeSharingDialog}
+                        {...this.props}
+                    >
+                        <Sharing
+                            sharedObject={this.state.sharedObject}
+                            dataShareable={dataShareable}
+                            onChange={this.onSharingChanged}
+                            onSearch={this.onSearchRequest}
+                        />
+                    </Dialog>
+                }
+            </div>
         );
     }
 }

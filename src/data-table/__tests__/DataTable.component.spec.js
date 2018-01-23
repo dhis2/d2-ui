@@ -147,7 +147,7 @@ describe('DataTable component', () => {
             const fakeRowSource = { name: 'My item' };
             dataTableComponent.setState({ contextMenuTarget: {}, activeRow: fakeRowSource });
 
-            dataTableComponent.instance()._hideContextMenu();
+            dataTableComponent.instance().hideContextMenu();
             dataTableComponent.update();
 
             const contextMenuComponent = dataTableComponent.find('.data-table__context-menu');
