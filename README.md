@@ -51,7 +51,7 @@ The d2-ui version tracks the DHIS2 version. So, when DHIS2 version 2.28 is relea
 After your pull request with functional changes has been merged to master, switch to the master branch locally and pull to get all the latest changes. The version upgrade will be done directly on the master branch:
 
 ```
-git co master
+git checkout master
 git pull
 ```
 
