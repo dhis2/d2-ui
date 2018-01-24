@@ -7,10 +7,11 @@ import Checkbox from '../CheckBox.component';
 describe('Checkbox component', () => {
     let Component;
     let onChangeSpy;
+    const wrapperStyle = { marginTop: 20 };
 
     beforeEach(() => {
         onChangeSpy = jest.fn();
-        Component = shallow(<Checkbox onChange={onChangeSpy} />);
+        Component = shallow(<Checkbox onChange={onChangeSpy} wrapperStyle={wrapperStyle} />);
     });
 
     it('should render a Checkbox component', () => {
@@ -23,5 +24,9 @@ describe('Checkbox component', () => {
         muiCheckbox.simulate('check', {});
 
         expect(onChangeSpy).toHaveBeenCalled();
+    });
+
+    it('should apply styles and override default styles to the wrapper div when a wrapperStyle prop is defined', () => {
+        expect(Component.find('div').props().style.marginTop).toBe(20);
     });
 });
