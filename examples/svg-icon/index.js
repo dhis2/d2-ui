@@ -105,6 +105,10 @@ const icons = (
                 <SvgIcon icon={'Extension'} />
             </div>
             <div style={cardStyle}>
+                <h3>FontDownload</h3>
+                <SvgIcon icon={'FontDownload'} />
+            </div>
+            <div style={cardStyle}>
                 <h3>GridOn</h3>
                 <SvgIcon icon={'GridOn'} />
             </div>
