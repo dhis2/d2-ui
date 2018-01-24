@@ -75,7 +75,7 @@ Next use yarn to upgrade the npm package version
 ```
 yarn version
 ```
-This is interactive and you will input the new version (remember, patch during development, major only when the new DHIS2 version is released)
+This is interactive and you will input the new version (remember, minor or patch during development, major only when the new DHIS2 version is released)
 
 After you have indicated the version, yarn will do two things:
 1. update package.json and create a commmit locally
