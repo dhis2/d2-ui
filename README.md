@@ -55,12 +55,11 @@ The major version is upgraded at the same time the next DHIS2 is released. So wh
 
 ##### Minor upgrade
 
-Minor upgrades are used during the development cycle for breaking changes.
+Minor upgrades are used during the development cycle for breaking changes that are due to client API changes, but not due to DHIS2 API (in other words, d2) breaking changes.
 
 ##### Patch upgrade
 
 Patch upgrades are for bug fixes and small implementations that are not breaking changes.
-
 
 #### Steps to publish
 
