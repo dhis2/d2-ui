@@ -61,7 +61,7 @@ yarn version
 ```
 This is interactive and you will input the new version (remember, patch during development, major only when the new DHIS2 version is released)
 
-After you have inidicated the version, yarn will do two things:
+After you have indicated the version, yarn will do two things:
 1. update package.json and create a commmit locally
 2. create a git tag named according to the new version (e.g., v28.0.35)
 
