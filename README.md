@@ -71,7 +71,7 @@ git push
 git push --tags
 ```
 
-You are done! Travis will detect the new git tag and start a deploy build. You can follow the build on https://travis-ci.org
+You are done! Travis will detect the new git tag and start a deploy build that publishes the new npm version. You can follow the build on https://travis-ci.org
 
 
 
