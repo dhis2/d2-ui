@@ -7,11 +7,10 @@ import Checkbox from '../CheckBox.component';
 describe('Checkbox component', () => {
     let Component;
     let onChangeSpy;
-    const wrapperStyle = { marginTop: 20 };
 
     beforeEach(() => {
         onChangeSpy = jest.fn();
-        Component = shallow(<Checkbox onChange={onChangeSpy} wrapperStyle={wrapperStyle} />);
+        Component = shallow(<Checkbox onChange={onChangeSpy} />);
     });
 
     it('should render a Checkbox component', () => {
@@ -27,6 +26,14 @@ describe('Checkbox component', () => {
     });
 
     it('should apply styles and override default styles to the wrapper div when a wrapperStyle prop is defined', () => {
-        expect(Component.find('div').props().style.marginTop).toBe(20);
+        const defaultMarginTop = Component.find('div').props().style.marginTop;
+        let customMarginTop = 20;
+        // Ensure the custom value is actually different from the default one
+        if (defaultMarginTop === customMarginTop || `${defaultMarginTop}px` === customMarginTop) {
+            customMarginTop = 40;
+        }
+        const wrapperStyle = { marginTop: customMarginTop };
+        const ComponentWithWrapperStyle = shallow(<Checkbox onChange={onChangeSpy} wrapperStyle={wrapperStyle} />);
+        expect(ComponentWithWrapperStyle.find('div').props().style.marginTop).toBe(customMarginTop);
     });
 });
