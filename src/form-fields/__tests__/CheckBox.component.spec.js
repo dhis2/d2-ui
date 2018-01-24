@@ -29,7 +29,7 @@ describe('Checkbox component', () => {
         const defaultMarginTop = Component.find('div').props().style.marginTop;
         let customMarginTop = 20;
         // Ensure the custom value is actually different from the default one
-        if (defaultMarginTop === customMarginTop || `${defaultMarginTop}px` === customMarginTop) {
+        if (defaultMarginTop === customMarginTop || defaultMarginTop === `${customMarginTop}px`) {
             customMarginTop = 40;
         }
         const wrapperStyle = { marginTop: customMarginTop };
