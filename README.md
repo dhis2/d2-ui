@@ -9,7 +9,7 @@ UI Component library for developing [DHIS2](http://www.dhis2.org) applications. 
 
 --
 
-### Get It!
+## Get It!
 
 __Latest stable version for your dhis2 release__
 
@@ -20,9 +20,9 @@ For example, if the DHIS2 release version is 2.28, then:
 yarn add d2-ui@28
 ```
 
-### Contributing
+## Contributing
 
-#### Development
+### Development
 
 The git repository is located here: [d2-ui github repo](https://github.com/dhis2/d2-ui)
 
@@ -39,14 +39,14 @@ yarn start
 Some of the examples require a local DHIS2 instance. Most developers have their DHIS2 instance running on http://localhost:8080. If this is the case for you, then the examples should just work.
 
 
-#### Publishing to npm
+### Publishing to npm
 
 The d2-ui library is published as an npm package: https://www.npmjs.com/package/d2-ui
 
-##### A note about d2-ui semver
+#### A note about d2-ui semver
 The d2-ui version tracks the DHIS2 version. So, when DHIS2 version 2.28 is released, then d2-ui will be upgraded to v28.0.0. Therefore, all version upgrades prior to the next DHIS2 release are generally patch upgrades, even if the changes are considered breaking.
 
-##### Steps to publish
+#### Steps to publish
 
 After your pull request with functional changes has been merged to master, switch to the master branch locally and pull to get all the latest changes. The version upgrade will be done directly on the master branch:
 
