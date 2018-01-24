@@ -43,8 +43,24 @@ Some of the examples require a local DHIS2 instance. Most developers have their 
 
 The d2-ui library is published as an npm package: https://www.npmjs.com/package/d2-ui
 
-#### A note about d2-ui semver
-The d2-ui version tracks the DHIS2 version. So, when DHIS2 version 2.28 is released, then d2-ui will be upgraded to v28.0.0. Therefore, all version upgrades prior to the next DHIS2 release are generally patch upgrades, even if the changes are considered breaking.
+#### How to determine the new version
+
+The d2-ui version is in the semver pattern, but the major version tracks the DHIS2 version. So, for DHIS2 version 2.28 the corresponding d2-ui version is v28.mm.pp. The reason for this is at least partly because d2-ui has a dependency on d2, which depends on the DHIS2 API version.
+
+So we follow our own defined version conventions as follows:
+
+##### Major upgrade
+
+The major version is upgraded at the same time the next DHIS2 is released. So when DHIS2 2.29 is released, v29.0.0 of d2-ui should be published.
+
+##### Minor upgrade
+
+Minor upgrades are used during the development cycle for breaking changes.
+
+##### Patch upgrade
+
+Patch upgrades are for bug fixes and small implementations that are not breaking changes.
+
 
 #### Steps to publish
 
