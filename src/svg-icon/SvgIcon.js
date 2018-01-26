@@ -15,6 +15,7 @@ import Delete from 'material-ui/svg-icons/action/delete';
 import Description from 'material-ui/svg-icons/action/description';
 import Done from 'material-ui/svg-icons/action/done';
 import DragHandle from 'material-ui/svg-icons/editor/drag-handle';
+import Email from 'material-ui/svg-icons/communication/email';
 import Extension from 'material-ui/svg-icons/action/extension';
 import FontDownload from 'material-ui/svg-icons/content/font-download';
 import Group from 'material-ui/svg-icons/social/group';
@@ -58,6 +59,7 @@ const icons = {
     Description,
     Done,
     DragHandle,
+    Email,
     Extension,
     FontDownload,
     GridOn,

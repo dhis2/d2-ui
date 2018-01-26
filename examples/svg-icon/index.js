@@ -101,6 +101,10 @@ const icons = (
                 <SvgIcon icon={'DragHandle'} />
             </div>
             <div style={cardStyle}>
+                <h3>Email</h3>
+                <SvgIcon icon={'Email'} />
+            </div>
+            <div style={cardStyle}>
                 <h3>Extension</h3>
                 <SvgIcon icon={'Extension'} />
             </div>
