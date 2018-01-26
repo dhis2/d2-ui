@@ -32,6 +32,7 @@ const TextField = ({ type,
             type={type}
             value={value}
             onClick={onClick}
+            floatingLabelStyle={{ whiteSpace: 'nowrap' }} // Avoids overlapping the input field
         />
     );
 };
