@@ -31,7 +31,6 @@ const Button = ({ raised, fab, color, disabled, onClick, children, style, select
     if (fab) {
         delete props.primary;
     }
-
     return (
         <MuiButton {...props}>
             {typeof children !== 'string' ? children : null}

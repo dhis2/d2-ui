@@ -14,6 +14,9 @@ const oneDigit = (/^(?=.*\d)/);
 // Atleast one uppercase character
 const oneUpperCase = (/^(?=.*[A-Z])/);
 
+// Atleast one special character
+const oneSpecialCharacter = (/[!@#$%^&*(),.?":{}|<>]/);
+
 export function isNull(value) {
     return value === null;
 }
@@ -100,7 +103,11 @@ export function isValidPassword(value) {
     if (isEmptyStringOrUndefined(value)) {
         return true;
     }
-    return oneDigit.test(value) && oneUpperCase.test(value) && value.length > 7 && value.length < 36;
+    return oneDigit.test(value) &&
+        oneUpperCase.test(value) &&
+        oneSpecialCharacter.test(value) &&
+        value.length > 7 &&
+        value.length < 36;
 }
 isValidPassword.message = 'invalid_password';
 
