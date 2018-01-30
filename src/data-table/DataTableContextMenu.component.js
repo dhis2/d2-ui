@@ -36,11 +36,10 @@ function DataTableContextMenu(props, context) {
                 {actionList.map((action) => {
                     const iconName = icons && icons[action] ? icons[action] : action;
                     const onClick = () => {
-                        props.actions[action].apply(props.actions, [props.activeItem]);
-
                         if (typeof props.onRequestClose === 'function') {
-                            setTimeout(() => props.onRequestClose(), 0);
+                            props.onRequestClose();
                         }
+                        props.actions[action].apply(props.actions, [props.activeItem]);
                     };
 
                     return (
