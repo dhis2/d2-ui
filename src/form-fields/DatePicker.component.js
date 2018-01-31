@@ -44,7 +44,6 @@ class DatePicker extends React.Component {
             dateFormat,
             ...other
         } = this.props;
-
         return (
             <div>
                 <MuiDatePicker
