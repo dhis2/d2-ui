@@ -20,7 +20,7 @@ function DataTableContextMenu(props, context) {
         actions,
         activeItem,
         icons,
-        ...popoverProps,
+        ...popoverProps
     } = props;
     return (
         <Popover
