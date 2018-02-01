@@ -100,7 +100,7 @@ class DataElementOperandSelector extends Component {
                 {this.state.isLoading ? <LinearProgress mode="indeterminate" /> : null}
                 <ListSelectAsync
                     size={12}
-                    onItemDoubleClick={this.props.onItemDoubleClick}
+                    onItemDoubleClick={this.props.onSelect}
                     source={this.storeObservable}
                     listStyle={this.props.listStyle}
                 />
@@ -112,7 +112,7 @@ class DataElementOperandSelector extends Component {
 DataElementOperandSelector.propTypes = {
     dataElementOperandSelectorActions: PropTypes.object,
     dataElementOperandStore: PropTypes.object,
-    onItemDoubleClick: PropTypes.func.isRequired,
+    onSelect: PropTypes.func.isRequired,
     listStyle: PropTypes.object,
 };
 

@@ -1,32 +1,39 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import log from 'loglevel';
 import { Observable } from 'rxjs';
+import { config } from 'd2/lib/d2';
+
 import Tabs from 'material-ui/Tabs/Tabs';
 import Tab from 'material-ui/Tabs/Tab';
 import Paper from 'material-ui/Paper/Paper';
-import log from 'loglevel';
-import { config } from 'd2/lib/d2';
+
 import ExpressionDescription from './ExpressionDescription';
 import ExpressionOperators from './ExpressionOperators';
 import ExpressionFormula from './ExpressionFormula';
-import DataElementOperandSelector from './DataElementOperandSelector';
-import ProgramOperandSelector from './ProgramOperandSelector';
-import Heading from '../headings/Heading.component';
+
 import OrganisationUnitGroupSelector from './OrganisationUnitGroupSelector';
+import DataElementOperandSelector from './DataElementOperandSelector';
+import ReportingRatesSelector from './ReportingRatesSelector';
+import ProgramOperandSelector from './ProgramOperandSelector';
 import ConstantSelector from './ConstantSelector';
+
+import Heading from '../headings/Heading.component';
 import addD2Context from '../component-helpers/addD2Context';
 import Action from '../action/Action';
 import Row from '../layout/Row.component';
 import Column from '../layout/Column.component';
 
-config.i18n.strings.add('data_elements');
 config.i18n.strings.add('description');
-config.i18n.strings.add('organisation_unit_counts');
 config.i18n.strings.add('program_tracked_entity_attributes');
 config.i18n.strings.add('program_indicators');
 config.i18n.strings.add('program_data_elements');
-config.i18n.strings.add('constants');
 config.i18n.strings.add('field_is_required');
+
+config.i18n.strings.add('organisation_unit_counts'); // shorten to org_unit_counts in maintenance
+config.i18n.strings.add('reporting_rates');
+config.i18n.strings.add('data_elements');
+config.i18n.strings.add('constants');
 config.i18n.strings.add('programs');
 
 const styles = {
@@ -134,67 +141,6 @@ class ExpressionManager extends Component {
         this.expressionStatusDisposable && this.expressionStatusDisposable.unsubscribe();
     }
 
-    render() {
-        const isDescriptionValid = () => this.state.description && this.state.description.trim();
-
-        return (
-            <Column>
-                <Heading level={3} text={this.props.titleText} />
-                <Row>
-                    <Paper style={styles.expressionFormulaWrap}>
-                        <Column>
-                            <ExpressionDescription
-                                descriptionValue={this.state.description}
-                                descriptionLabel={this.i18n.getTranslation('description')}
-                                onDescriptionChange={this.descriptionChange}
-                                errorText={!isDescriptionValid() ? this.i18n.getTranslation('field_is_required') : undefined}
-                                onBlur={this.requestExpressionStatus}
-                            />
-                            <ExpressionFormula
-                                onFormulaChange={this.formulaChange}
-                                formula={this.state.formula}
-                            />
-                            <ExpressionOperators operatorClicked={this.addOperatorToFormula} />
-                        </Column>
-                    </Paper>
-                    <Paper style={styles.expressionValueOptionsWrap}>
-                        <Tabs>
-                            <Tab label={this.i18n.getTranslation('data_elements')}>
-                                <DataElementOperandSelector
-                                    listStyle={styles.list}
-                                    onItemDoubleClick={this.dataElementOperandSelected}
-                                />
-                            </Tab>
-                            <Tab label={this.i18n.getTranslation('programs')}>
-                                <ProgramOperandSelector programOperandSelected={this.programOperandSelected} />
-                            </Tab>
-                            <Tab label={this.i18n.getTranslation('organisation_unit_counts')}>
-                                <OrganisationUnitGroupSelector
-                                    listStyle={styles.list}
-                                    onSelect={this.appendToFormula}
-                                />
-                            </Tab>
-                            <Tab label={this.i18n.getTranslation('constants')}>
-                                <ConstantSelector
-                                    listStyle={styles.list}
-                                    onSelect={this.appendToFormula}
-                                />
-                            </Tab>
-                        </Tabs>
-                    </Paper>
-                </Row>
-                <Column>
-                    <Paper style={styles.expressionDescription}>{this.state.expressionStatus.description}</Paper>
-                    <div
-                        style={this.state.expressionStatus.isValid ? styles.expressionMessage.valid : styles.expressionMessage.invalid}
-                    >
-                        {this.state.expressionStatus.message}
-                    </div>
-                </Column>
-            </Column>
-        );
-    }
-
     descriptionChange = (newDescription) => {
         this.setState({
             description: newDescription,
@@ -240,14 +186,90 @@ class ExpressionManager extends Component {
     requestExpressionStatus = () => {
         this.requestExpressionStatusAction(this.state.formula);
     }
+
+    render() {
+        const isDescriptionValid = () => this.state.description && this.state.description.trim();
+
+        return (
+            <Column>
+                <Heading level={3} text={this.props.titleText} />
+                <Row>
+                    <Paper style={styles.expressionFormulaWrap}>
+                        <Column>
+                            <ExpressionDescription
+                                descriptionValue={this.state.description}
+                                descriptionLabel={this.i18n.getTranslation('description')}
+                                onDescriptionChange={this.descriptionChange}
+                                errorText={!isDescriptionValid() ? this.i18n.getTranslation('field_is_required') : undefined}
+                                onBlur={this.requestExpressionStatus}
+                            />
+                            <ExpressionFormula
+                                onFormulaChange={this.formulaChange}
+                                formula={this.state.formula}
+                            />
+                            <ExpressionOperators operatorClicked={this.addOperatorToFormula} />
+                        </Column>
+                    </Paper>
+                    <Paper style={styles.expressionValueOptionsWrap}>
+                        <Tabs>
+                            <Tab label={this.i18n.getTranslation('data_elements')}>
+                                <DataElementOperandSelector
+                                    listStyle={styles.list}
+                                    onSelect={this.dataElementOperandSelected}
+                                />
+                            </Tab>
+                            <Tab label={this.i18n.getTranslation('programs')}>
+                                <ProgramOperandSelector
+                                    onSelect={this.programOperandSelected}
+                                />
+                            </Tab>
+                            <Tab label={this.i18n.getTranslation('organisation_unit_counts')}>
+                                <OrganisationUnitGroupSelector
+                                    listStyle={styles.list}
+                                    onSelect={this.appendToFormula}
+                                />
+                            </Tab>
+                            <Tab label={this.i18n.getTranslation('constants')}>
+                                <ConstantSelector
+                                    listStyle={styles.list}
+                                    onSelect={this.appendToFormula}
+                                />
+                            </Tab>
+
+                            <Tab label={this.i18n.getTranslation('reporting_rates')}>
+                                <ReportingRatesSelector
+                                    listStyle={styles.list}
+                                    onSelect={this.appendToFormula}
+                                />
+                            </Tab>
+                        </Tabs>
+                    </Paper>
+                </Row>
+                <Column>
+                    <Paper style={styles.expressionDescription}>{this.state.expressionStatus.description}</Paper>
+                    <div style={this.state.expressionStatus.isValid
+                        ? styles.expressionMessage.valid
+                        : styles.expressionMessage.invalid}
+                    >
+                        {this.state.expressionStatus.message}
+                    </div>
+                </Column>
+            </Column>
+        );
+    }
 }
 ExpressionManager.propTypes = {
-    descriptionLabel: PropTypes.string.isRequired,
     expressionStatusStore: PropTypes.object.isRequired,
     expressionChanged: PropTypes.func.isRequired,
-    descriptionValue: PropTypes.string.isRequired,
-    formulaValue: PropTypes.string.isRequired,
+    descriptionValue: PropTypes.string,
+    formulaValue: PropTypes.string,
     titleText: PropTypes.string,
+};
+
+ExpressionManager.defaultProps = {
+    descriptionValue: '',
+    formulaValue: '',
+    titleText: '',
 };
 
 export default addD2Context(ExpressionManager);
