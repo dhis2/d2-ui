@@ -7,7 +7,7 @@ import ListSelectAsync from '../../list-select/ListSelectAsync.component';
 
 describe('DataElementOperandSelector component', () => {
     let dataElementOperandSelectorComponent;
-    let onItemDoubleClickSpy;
+    let onSelectSpy;
 
     function renderComponent(props = {}) {
         return shallow(<DataElementOperandSelector {...props} />, {
@@ -16,9 +16,9 @@ describe('DataElementOperandSelector component', () => {
     }
 
     beforeEach(() => {
-        onItemDoubleClickSpy = jest.fn();
+        onSelectSpy = jest.fn();
 
-        dataElementOperandSelectorComponent = renderComponent({ onItemDoubleClick: onItemDoubleClickSpy });
+        dataElementOperandSelectorComponent = renderComponent({ onSelect: onSelectSpy });
     });
 
     it('should have the component name as a class', () => {
@@ -35,10 +35,10 @@ describe('DataElementOperandSelector component', () => {
         expect(asyncListSelect.props().source).toBe(dataElementOperandSelectorComponent.instance().storeObservable);
     });
 
-    it('should pass the onItemDoubleClick prop down to the asynclist', () => {
+    it('should pass the onSelect prop down to the asynclist', () => {
         const asyncListSelect = dataElementOperandSelectorComponent.find(ListSelectAsync);
 
-        expect(asyncListSelect.props().onItemDoubleClick).toBe(onItemDoubleClickSpy);
+        expect(asyncListSelect.props().onSelect).toBe(onSelectSpy);
     });
 
     it('should render a progress bar when the component is loading', () => {
