@@ -1,8 +1,24 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import TextField from 'material-ui/TextField/TextField';
+
 import ListSelect from '../list-select/ListSelect.component';
 import addD2Context from '../component-helpers/addD2Context';
+
+const styles = {
+    list: {
+        width: '100%',
+        outline: 'none',
+        border: 'none',
+        padding: '0rem 1rem',
+        overflowX: 'auto',
+    },
+    textField: {
+        marginLeft: '1rem',
+        marginBottom: '11px',
+    },
+};
 
 class ListSelectWithLocalSearch extends Component {
     constructor(props, context) {
@@ -22,21 +38,19 @@ class ListSelectWithLocalSearch extends Component {
     }
 
     render() {
-        const listStyle = { width: '100%', outline: 'none', border: 'none', padding: '0rem 1rem', overflowX: 'auto' };
-
         return (
             <div>
                 <TextField
-                    style={{ marginLeft: '1rem' }}
+                    style={styles.textField}
                     hintText={this.i18n.getTranslation('search_by_name')}
                     onChange={this.filterList}
                     value={this.state.textSearch}
                 />
                 <ListSelect
                     {...this.props}
-                    listStyle={listStyle}
+                    listStyle={styles.list}
                     source={this.props.source.filter(option => option.label.toLowerCase().indexOf(this.state.textSearch.toLowerCase()) !== -1)}
-                    size={10}
+                    size={12}
                 />
             </div>
         );

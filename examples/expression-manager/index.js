@@ -42,8 +42,10 @@ function renderExamples(d2) {
 
             d2.i18n.translations['search_by_name'] = 'Search by name';
             d2.i18n.translations['field_is_required'] = 'Field is required';
-            d2.i18n.translations['organisation_unit_counts'] = 'Organisation Unit Counts';
+            d2.i18n.translations['organisation_unit_counts'] = 'Org Unit Counts';
             d2.i18n.translations['please_select_a_program'] = 'Please select a program';
+            d2.i18n.translations['reporting_rates'] = 'Reporting rates';
+
 
             d2.i18n.translations['program_data_elements'] = 'Program data elements';
             d2.i18n.translations['program_tracked_entity_attributes'] = 'Program tracked entity attributes';
@@ -61,6 +63,11 @@ function renderExamples(d2) {
             return this.props.children;
         }
     }
+
+    Example.propTypes = {
+        children: PropTypes.object.isRequired,
+    };
+
     Example.childContextTypes = {
         muiTheme: PropTypes.object,
         d2: PropTypes.object,

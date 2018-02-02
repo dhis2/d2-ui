@@ -1,38 +1,35 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import log from 'loglevel';
 import { config } from 'd2/lib/d2';
 
 import ListSelect from '../list-select/ListSelect.component';
-import DropDownForSchemaReference from './DropDownForSchemaReference';
+import DropDown from '../form-fields/DropDown.component';
 
 config.i18n.strings.add('please_select_a_program');
 config.i18n.strings.add('no_tracked_entity_attributes');
 config.i18n.strings.add('no_program_indicators');
 config.i18n.strings.add('no_program_data_elements');
+config.i18n.strings.add('reporting_rates');
 
 const styles = {
-    listStyle: {
+    list: {
         width: '100%',
         outline: 'none',
         border: 'none',
         padding: '0rem 1rem',
     },
-    noValueMessageStyle: {
-        padding: '1rem',
-    },
-
     dropDownStyle: {
-        margin: '0 1rem',
+        marginLeft: '1rem',
+        marginRight: '1rem',
     },
 };
 
 const reportingRates = [
-    { value: 'REPORTING_RATE', label: 'Reporting rate' },
-    { value: 'REPORTING_RATE_ON_TIME', label: 'Reporting rate on time' },
-    { value: 'ACTUAL_REPORTS', label: 'Actual reports' },
-    { value: 'ACTUAL_REPORTS_ON_TIME', label: 'Actual reports on time' },
-    { value: 'EXPECTED_REPORTS', label: 'Expected reports' },
+    { id: 'REPORTING_RATE', displayName: 'Reporting rate' },
+    { id: 'REPORTING_RATE_ON_TIME', displayName: 'Reporting rate on time' },
+    { id: 'ACTUAL_REPORTS', displayName: 'Actual reports' },
+    { id: 'ACTUAL_REPORTS_ON_TIME', displayName: 'Actual reports on time' },
+    { id: 'EXPECTED_REPORTS', displayName: 'Expected reports' },
 ];
 
 class ReportingRatesSelector extends Component {
@@ -44,39 +41,54 @@ class ReportingRatesSelector extends Component {
     }
 
     state = {
-        dataSetId: '',
+        selectedReportingRate: 'REPORTING_RATE',
+        dataSets: [],
+        isLoaded: false,
     }
 
-    onSelectDataSet = (event) => {
+    componentDidMount() {
+        this.context.d2.models.dataSet.list({ paging: false, fields: 'id,displayName' })
+            .then(dataSetCollection => dataSetCollection.toArray())
+            .then((dataSets) => {
+                const dataSetItems = dataSets
+                    .map(dataSet => ({
+                        value: dataSet.id,
+                        label: dataSet.displayName,
+                    }));
+                this.setState({
+                    dataSets: dataSetItems,
+                    isLoaded: true,
+                });
+            });
+    }
+
+    onSelectReportingRate = (event) => {
         this.setState({
-            dataSetId: event.target.value,
+            selectedReportingRate: event.target.value,
         });
     }
 
-    onDoubleClickReportingRate = (reportingRate) => {
-        const reportingRateFormula = `S{${this.state.dataSetId}.${reportingRate}}`;
+    onDoubleClickDataSet = (dataSetId) => {
+        const reportingRateFormula = `R{${dataSetId}.${this.state.selectedReportingRate}}`;
         this.props.onSelect(reportingRateFormula);
-        console.log(reportingRateFormula);
     }
 
     render() {
         return (
             <div>
                 <div style={styles.dropDownStyle}>
-                    <DropDownForSchemaReference
-                        schema="dataSet"
-                        value={this.state.dataSetId}
-                        fullWidth
-                        onChange={this.onSelectDataSet}
-                        hintText={this.getTranslation('please_select_a_data_set')}
+                    <DropDown
+                        menuItems={reportingRates}
+                        value={this.state.selectedReportingRate}
+                        onChange={this.onSelectReportingRate}
                     />
                 </div>
-                {this.state.dataSetId &&
+                {this.state.isLoaded &&
                     <ListSelect
-                        onItemDoubleClick={this.onDoubleClickReportingRate}
-                        source={reportingRates}
-                        listStyle={styles.listStyle}
-                        size={10}
+                        onItemDoubleClick={this.onDoubleClickDataSet}
+                        source={this.state.dataSets}
+                        listStyle={this.props.listStyle}
+                        size={12}
                     />}
             </div>
         );
@@ -86,7 +98,13 @@ class ReportingRatesSelector extends Component {
 
 ReportingRatesSelector.propTypes = {
     onSelect: PropTypes.func.isRequired,
+    listStyle: PropTypes.object,
 };
+
+ReportingRatesSelector.defaultProps = {
+    listStyle: styles.list,
+};
+
 
 ReportingRatesSelector.contextTypes = {
     d2: PropTypes.object,

@@ -7,6 +7,7 @@ import { config } from 'd2/lib/d2';
 import Tabs from 'material-ui/Tabs/Tabs';
 import Tab from 'material-ui/Tabs/Tab';
 import Paper from 'material-ui/Paper/Paper';
+import Divider from 'material-ui/Divider';
 
 import ExpressionDescription from './ExpressionDescription';
 import ExpressionOperators from './ExpressionOperators';
@@ -41,7 +42,6 @@ const styles = {
         padding: '1rem',
         margin: '1rem 0',
     },
-
     expressionMessage: {
         valid: {
             padding: '1rem',
@@ -52,22 +52,26 @@ const styles = {
             color: '#8B0000',
         },
     },
-
     list: {
         width: '100%',
         outline: 'none',
         border: 'none',
         padding: '0rem 1rem',
     },
-
     expressionFormulaWrap: {
         padding: '1rem',
         maxWidth: '650px',
         marginRight: '1rem',
     },
-
     expressionValueOptionsWrap: {
-        minHeight: 395,
+        minHeight: 400,
+        minWidth: 600,
+    },
+    expressionContentWrap: {
+        minHeight: 360,
+    },
+    divider: {
+        padding: '0 1rem 1rem',
     },
 };
 
@@ -211,7 +215,7 @@ class ExpressionManager extends Component {
                         </Column>
                     </Paper>
                     <Paper style={styles.expressionValueOptionsWrap}>
-                        <Tabs>
+                        <Tabs style={styles.expressionContentWrap}>
                             <Tab label={this.i18n.getTranslation('data_elements')}>
                                 <DataElementOperandSelector
                                     listStyle={styles.list}
@@ -243,6 +247,9 @@ class ExpressionManager extends Component {
                                 />
                             </Tab>
                         </Tabs>
+                        <div style={styles.divider}>
+                            <Divider />
+                        </div>
                     </Paper>
                 </Row>
                 <Column>
