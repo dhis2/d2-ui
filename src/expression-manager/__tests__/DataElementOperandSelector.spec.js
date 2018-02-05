@@ -18,7 +18,7 @@ describe('DataElementOperandSelector component', () => {
     beforeEach(() => {
         onItemDoubleClickSpy = jest.fn();
 
-        dataElementOperandSelectorComponent = renderComponent({ onItemDoubleClick: onItemDoubleClickSpy });
+        dataElementOperandSelectorComponent = renderComponent({ onSelect: onItemDoubleClickSpy });
     });
 
     it('should have the component name as a class', () => {

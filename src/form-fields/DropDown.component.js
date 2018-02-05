@@ -3,12 +3,12 @@ import React from 'react';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 
-function renderMenuItem({ value, text }) {
-    return (<MenuItem key={value} value={value} primaryText={text} />);
+function renderMenuItem(id, displayName) {
+    return (<MenuItem key={id} value={id} primaryText={displayName} />);
 }
 
 function renderMenuItems({ menuItems, includeEmpty, emptyLabel }) {
-    const renderedMenuItems = menuItems.map(({ id, displayName }) => renderMenuItem({ value: id, text: displayName }));
+    const renderedMenuItems = menuItems.map(({ id, displayName }) => renderMenuItem(id, displayName));
 
     if (includeEmpty) {
         renderedMenuItems.unshift(renderMenuItem({ value: 'null', text: emptyLabel }));
@@ -20,13 +20,15 @@ function createCallbackWithFakeEventFromMaterialSelectField(callback) {
     return (event, index, value) => callback({ target: { value } });
 }
 
-function DropDown({ onFocus, onBlur, onChange, value, disabled, menuItems, includeEmpty, emptyLabel, noOptionsLabel, ...other }) {
+
+function DropDown({ fullWidth, onFocus, onBlur, onChange, value, disabled, menuItems, hintText, includeEmpty, emptyLabel, noOptionsLabel, ...other }) {
     const menuItemArray = Array.isArray(menuItems) ? menuItems : menuItems.toArray();
     const hasOptions = menuItemArray.length > 0;
-
     return (
         <SelectField
             value={hasOptions ? value : 1}
+            fullWidth
+            hintText={hintText}
             onChange={createCallbackWithFakeEventFromMaterialSelectField(onChange)}
             disabled={!hasOptions || disabled}
             {...other}
@@ -40,11 +42,6 @@ function DropDown({ onFocus, onBlur, onChange, value, disabled, menuItems, inclu
 }
 
 DropDown.propTypes = {
-    defaultValue: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number,
-        PropTypes.bool,
-    ]),
     value: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number,
@@ -55,7 +52,10 @@ DropDown.propTypes = {
         PropTypes.object,
     ]),
     onFocus: PropTypes.func,
+    disabled: PropTypes.bool,
+    fullWidth: PropTypes.bool,
     onBlur: PropTypes.func,
+    hintText: PropTypes.string,
     onChange: PropTypes.func.isRequired,
     noOptionsLabel: PropTypes.string,
     includeEmpty: PropTypes.bool,
@@ -64,10 +64,10 @@ DropDown.propTypes = {
 
 DropDown.defaultProps = {
     value: null,
-    menuItems: PropTypes.oneOfType([
-        PropTypes.array,
-        PropTypes.object,
-    ]),
+    menuItems: [],
+    disabled: false,
+    fullWidth: false,
+    hintText: 'Select item',
     onFocus: PropTypes.func,
     onBlur: PropTypes.func,
     noOptionsLabel: '-',

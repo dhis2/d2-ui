@@ -1,14 +1,34 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { config } from 'd2/lib/d2';
+
 import TextField from 'material-ui/TextField/TextField';
 import LinearProgress from 'material-ui/LinearProgress/LinearProgress';
+
 import ListSelectAsync from '../list-select/ListSelectAsync.component';
 import Pagination from '../pagination/Pagination.component';
 import Store from '../store/Store';
-import { createDataElementOperandActions, subscribeDataElementActionsToStore } from './dataElementOperandSelector.actions';
+import {
+    createDataElementOperandActions,
+    subscribeDataElementActionsToStore,
+} from './dataElementOperandSelector.actions';
 
 config.i18n.strings.add('search_by_name');
+
+const styles = {
+    list: {
+        width: '100%',
+        outline: 'none',
+        border: 'none',
+        padding: '0rem 1rem',
+    },
+    pagination: {
+        float: 'right',
+    },
+    textField: {
+        marginLeft: '1rem',
+    },
+};
 
 class DataElementOperandSelector extends Component {
     constructor(props, context) {
@@ -84,7 +104,7 @@ class DataElementOperandSelector extends Component {
     render() {
         return (
             <div className="data-element-operand-selector">
-                <div style={{ float: 'right' }}>
+                <div style={styles.pagination}>
                     <Pagination
                         hasNextPage={() => this.state.pager.hasNextPage()}
                         hasPreviousPage={() => this.state.pager.hasPreviousPage()}
@@ -93,14 +113,14 @@ class DataElementOperandSelector extends Component {
                     />
                 </div>
                 <TextField
-                    style={{ marginLeft: '1rem' }}
+                    style={styles.textField}
                     hintText={this.getTranslation('search_by_name')}
                     onChange={this.searchDataElement}
                 />
-                {this.state.isLoading ? <LinearProgress mode="indeterminate" /> : null}
+                {this.state.isLoading && <LinearProgress mode="indeterminate" />}
                 <ListSelectAsync
                     size={12}
-                    onItemDoubleClick={this.props.onItemDoubleClick}
+                    onItemDoubleClick={this.props.onSelect}
                     source={this.storeObservable}
                     listStyle={this.props.listStyle}
                 />
@@ -112,14 +132,14 @@ class DataElementOperandSelector extends Component {
 DataElementOperandSelector.propTypes = {
     dataElementOperandSelectorActions: PropTypes.object,
     dataElementOperandStore: PropTypes.object,
-    onItemDoubleClick: PropTypes.func.isRequired,
+    onSelect: PropTypes.func.isRequired,
     listStyle: PropTypes.object,
 };
 
 DataElementOperandSelector.defaultProps = {
     dataElementOperandSelectorActions: createDataElementOperandActions(),
     dataElementOperandStore: Store.create(),
-    listStyle: {},
+    listStyle: styles.list,
 };
 
 DataElementOperandSelector.contextTypes = {
