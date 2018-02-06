@@ -11,6 +11,7 @@ import ChevronRight from 'material-ui/svg-icons/navigation/chevron-right';
 import Clear from 'material-ui/svg-icons/content/clear';
 import Close from 'material-ui/svg-icons/navigation/close';
 import Create from 'material-ui/svg-icons/content/create';
+import CropFree from 'material-ui/svg-icons/image/crop-free';
 import Delete from 'material-ui/svg-icons/action/delete';
 import Description from 'material-ui/svg-icons/action/description';
 import Done from 'material-ui/svg-icons/action/done';
@@ -55,6 +56,7 @@ const icons = {
     Clear,
     Close,
     Create,
+    CropFree,
     Delete,
     Description,
     Done,
