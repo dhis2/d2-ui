@@ -54,6 +54,7 @@ module.exports = {
             tabs: './examples/tabs',
             chip: './examples/chip',
             controlbar: './examples/controlbar',
+            'period-selector-dialog': './examples/period-selector-dialog'
         },
     devtool: 'source-map',
     output: {
