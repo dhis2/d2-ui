@@ -48,6 +48,7 @@ class UserSearch extends Component {
             data: { canView: false, canEdit: false },
         },
         searchResult: [],
+        searchText: '',
     };
 
     componentWillMount() {
@@ -66,6 +67,8 @@ class UserSearch extends Component {
         if (type === 'userAccess') {
             this.props.addUserAccess({ ...selection, access: accessObjectToString(this.state.defaultAccess) });
         } else this.props.addUserGroupAccess({ ...selection, access: accessObjectToString(this.state.defaultAccess) });
+
+        this.clearSearchText();
     }
 
     inputStream = new Subject();
@@ -97,11 +100,18 @@ class UserSearch extends Component {
 
     handleUpdateInput = (searchText) => {
         this.inputStream.next(searchText);
+        this.setState({ searchText });
     }
 
     accessOptionsChanged = (accessOptions) => {
         this.setState({
             defaultAccess: accessOptions,
+        });
+    }
+
+    clearSearchText = () => {
+        this.setState({
+            searchText: '',
         });
     }
 
@@ -124,6 +134,7 @@ class UserSearch extends Component {
                         onNewRequest={this.onResultClick}
                         onUpdateInput={this.handleUpdateInput}
                         style={styles.searchBox}
+                        searchText={this.state.searchText}
                         underlineShow={false}
                     />
                     <PermissionPicker
