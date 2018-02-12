@@ -4,37 +4,12 @@ import { withStyles } from 'material-ui-next/styles';
 import TextField from 'material-ui-next/TextField';
 import { createClassName } from '../component-helpers/utils';
 
-const TextFieldTemp = ({
-    autoComplete,
-    defaultValue,
-    //disabled,
-    error,
-    //FormHelperTextProps,
-    fullWidth,
-    helperText,
-    //helperTextClassName,
-    id,
-    InputLabelProps,
-    InputProps,
-    //inputProps,
-    //inputRef,
-    label,
-    labelClassName,
-    margin,
-    multiline,
-    name,
-    onChange,
-    placeholder,
-    required,
-    rows,
-    rowsMax,
-    select,
-    selector,
-    style,
-    SelectProps,
-    type,
-    value,
-}) => { 
+const TextFieldTemp = props => { 
+    const { autoComplete, autoFocus, defaultValue, disabled, error, FormHelperTextProps,                fullWidth, helperText, helperTextClassName, id, InputLabelProps, InputProps,
+            inputProps, inputRef, label, labelClassName, margin, multiline, name, onChange,
+            placeholder, required, rows, rowsMax, select, selector, style, SelectProps, type, 
+            value } = props;
+    
     const className = createClassName('d2-ui-textfield', selector);
     return (
         <TextField
@@ -60,7 +35,9 @@ const TextFieldTemp = ({
             SelectProps={SelectProps}
             type={type}
             value={value}
-        />
+        >
+            {props.children}
+        </TextField>
     );
 };
 
@@ -173,7 +150,7 @@ TextFieldTemp.propTypes = {
     style: PropTypes.object,
 
     /**
-     * Sets the for the <Select/> element when select option is set to true.
+     * Sets the properties for the <Select/> element when select option is set to true.
      */
     SelectProps: PropTypes.object,
 
@@ -187,6 +164,10 @@ TextFieldTemp.propTypes = {
      * If set, sets the value of the <Input/> element, required for a controlled component
      */
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+
+};
+
+TextFieldTemp.defaultProps = {
 
 };
 

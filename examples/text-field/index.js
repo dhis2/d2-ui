@@ -8,7 +8,7 @@ import TextField from '../../src/text-field/TextField';
 
 import TextFieldTemp from '../../src/text-field/TextFieldTemp';
 //import { getMuiTheme as getMuiThemeNew } from 'material-ui-next/styles/getMuiTheme';
-import { MuiThemeProvider as MuiThemeNew } from 'material-ui-next/styles/MuiThemeProvider';
+import { MuiThemeProvider as NewMuiThemeProvider } from 'material-ui-next/styles/MuiThemeProvider';
 import createMuiTheme from 'material-ui-next/styles/createMuiTheme';
 
 
@@ -107,7 +107,7 @@ class TextFields extends Component {
                 Material-ui-next components
                 Rendered /src/TextFieldTemp.js
             */}
-            {/*<MuiThemeNew theme={theme}>*/}
+            {/*<NewMuiThemeProvider theme={theme}>*/}
             <div style={style}>
                 <h3> Material-ui v.1 </h3>
                 <TextFieldTemp
@@ -150,7 +150,7 @@ class TextFields extends Component {
                     onChange={(value) => this.onChangeValue("newValueField8", value)}
                 />
             </div>
-            {/*</MuiThemeNew>*/}
+            {/*</NewMuiThemeProvider>*/}
         </div>
         );
     }
