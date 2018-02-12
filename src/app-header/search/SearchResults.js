@@ -17,7 +17,7 @@ config.i18n.strings.add('manage_my_apps');
 const getBaseUrl = getBaseUrlFromD2ApiUrl;
 
 function SearchResults(props, { d2 }) {
-    const menuItems = (props.searchResults || []).map(item => (<HeaderMenuItem key={item.label} {...item} />));
+    const menuItems = (props.searchResults || []).map(item => (<HeaderMenuItem key={item.name} {...item} />));
 
     const moreAppsButton = (
         <FlatButton
