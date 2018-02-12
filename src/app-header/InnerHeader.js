@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import log from 'loglevel';
 import { Observable, Subject } from 'rxjs';
 import styles, { whenWidthLargerThan1150 } from './header-bar-styles';
-import getBaseUrlFromD2ApiUrl from './getBaseUrlFromD2ApiUrl';
+import getBaseUrlFromD2ApiUrl from './utils/getBaseUrlFromD2ApiUrl';
 
 const defaultStyle = 'light_blue';
 const defaultStylesheetUrl = 'light_blue/light_blue.css';

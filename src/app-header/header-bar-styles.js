@@ -127,17 +127,23 @@ styles = {
         top: 48,
     },
 
-    searchField: {
+    headerActions: {
         display: 'flex',
         flex: 1,
-        position: 'relative',
         flexDirection: 'row',
-        maxWidth: 550,
-        justifyContent: 'flex-end',
+        position: 'relative',
         minWidth: 420,
+        maxWidth: 550,
+    },
+
+    searchField: {
+        flex: 1,
+        display: 'flex',
+        flexDirection: 'row',
     },
 
     searchFieldInnerWrap: {
+        flex: 1,
         transition: 'width .5s cubic-bezier(0.39, -0.04, 0.2, 1)',
         position: 'relative',
     },
@@ -161,7 +167,6 @@ styles = {
 
     searchFieldInput: {
         color: white,
-        flex: 1,
     },
 
     searchFieldHintText: {
@@ -207,10 +212,16 @@ styles = {
     },
 
     clearIcon: {
+        fill: 'white',
         position: 'absolute',
         top: '10px',
         right: '5px',
     },
+
+    notifications: {
+        display: 'flex',
+        flexDirection: 'row',
+    }
 };
 
 export default styles;

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import getBaseUrlFromD2ApiUrl from './getBaseUrlFromD2ApiUrl';
-import SvgIcon from '../svg-icon/SvgIcon';
+import getBaseUrlFromD2ApiUrl from '../utils/getBaseUrlFromD2ApiUrl';
+import SvgIcon from '../../svg-icon/SvgIcon';
+import styles from '../header-bar-styles';
 import IconButton from 'material-ui/IconButton';
 
 class Notifications extends Component {
@@ -12,10 +13,7 @@ class Notifications extends Component {
         const messagesHref = `${this.getBaseUrl()}/dhis-web-messaging/message.action`;
 
         return (
-            <div style={{
-                display: 'flex',
-                flexDirection: 'row',
-            }}>
+            <div style={styles.notifications}>
                 <NotificationItem
                     icon="Message"
                     href={interpretationsHref}

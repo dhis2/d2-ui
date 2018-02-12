@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Add from 'material-ui/svg-icons/content/add';
+import Apps from 'material-ui/svg-icons/navigation/apps';
 import ArrowDownward from 'material-ui/svg-icons/navigation/arrow-downward';
 import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
 import ArrowUpward from 'material-ui/svg-icons/navigation/arrow-upward';
@@ -46,6 +47,7 @@ import { grey600, grey200 } from 'material-ui/styles/colors';
 
 const icons = {
     Add,
+    Apps,
     ArrowDownward,
     ArrowDropRight,
     ArrowUpward,
