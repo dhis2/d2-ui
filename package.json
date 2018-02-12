@@ -70,5 +70,8 @@
   "pre-commit": [
     "validate",
     "test"
-  ]
+  ],
+  "dependencies": {
+    "material-ui-next": "^1.0.0-beta.32"
+  }
 }
