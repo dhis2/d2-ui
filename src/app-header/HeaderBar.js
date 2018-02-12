@@ -3,6 +3,7 @@ import React from 'react';
 import LinearProgress from 'material-ui/LinearProgress';
 import ProfileMenu from './menus/ProfileMenu';
 import InnerHeader from './InnerHeader';
+import Notifications from './Notifications';
 import HeaderMenus from './menus/HeaderMenus';
 import SearchField from './search/SearchField';
 import styles, { applyUserStyle } from './header-bar-styles';
@@ -21,6 +22,7 @@ export default function HeaderBar(props, { d2 }) {
     return (
         <div style={applyUserStyle(d2.currentUser, styles.headerBar)}>
             <InnerHeader />
+            <Notifications />
             <SearchField />
             <HeaderMenus>
                 <ProfileMenu
