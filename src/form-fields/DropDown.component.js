@@ -27,7 +27,7 @@ function DropDown({ fullWidth, onFocus, onBlur, onChange, value, disabled, menuI
     return (
         <SelectField
             value={hasOptions ? value : 1}
-            fullWidth
+            fullWidth={fullWidth}
             hintText={hintText}
             onChange={createCallbackWithFakeEventFromMaterialSelectField(onChange)}
             disabled={!hasOptions || disabled}
