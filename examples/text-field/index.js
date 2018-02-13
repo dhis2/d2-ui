@@ -113,25 +113,25 @@ class TextFields extends Component {
                 <TextFieldTemp
                     label='Text'
                     value={this.state.newValueField5}
-                    onChange={(value) => this.onChangeValue("newValueField5", value)}
+                    onChange={event => this.onChangeValue("newValueField5", event.target.value)}
                 />
                 <TextFieldTemp
                     label='Number'
                     type='number'
                     value={this.state.newValueField6}
-                    onChange={(value) => this.onChangeValue("newValueField6", value)}
+                    onChange={event => this.onChangeValue("newValueField6", event.target.value)}
                 />
                 <TextFieldTemp
                     label='Default value'
                     type='number'
                     value={this.state.newValueField7 || 100}
-                    onChange={(value) => this.onChangeValue("newValueField7", value)}
+                    onChange={event => this.onChangeValue("newValueField7", event.target.value)}
                 />
                 <TextFieldTemp
                     placeholder='Short hint text'
                     type='text'
                     value={this.state.newSingleHintText}
-                    onChange={(value) => this.onChangeValue("newSingleHintText", value)}
+                    onChange={event => this.onChangeValue("newSingleHintText", event.target.value)}
                 />
                 <TextFieldTemp
                     placeholder='Multiline field, showing 2 rows and up to 4 rows'
@@ -140,14 +140,14 @@ class TextFields extends Component {
                     rows={2}
                     rowsMax={4}
                     value={this.state.newMultiHintText}
-                    onChange={(value) => this.onChangeValue("newMultiHintText", value)}
+                    onChange={event => this.onChangeValue("newMultiHintText", event.target.value)}
                 />
                 <TextFieldTemp
                     placeholder='Full Width'
                     fullWidth
                     type='text'
                     value={this.state.newValueField8}
-                    onChange={(value) => this.onChangeValue("newValueField8", value)}
+                    onChange={event => this.onChangeValue("newValueField8", event.target.value)}
                 />
             </div>
             {/*</NewMuiThemeProvider>*/}

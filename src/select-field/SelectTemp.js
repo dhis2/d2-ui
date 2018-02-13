@@ -1,32 +1,18 @@
 import React, { createClass } from 'react';
 import PropTypes from 'prop-types';
 import Select from 'material-ui-next/Select';
-import Input, { InputLabel } from 'material-ui-next/Input';
 import { MenuItem, MenuList } from 'material-ui-next/Menu';
-
 import { createClassName } from '../component-helpers/utils';
 
-const getMenuItems = items => {
-    if (!Array.isArray(items)) {
-        return null;
-    }
-    console.log(items);
-    return (
-        <MenuList>
-            {items.map(items => {
-                <MenuItem> {items.name} </MenuItem>
-            })}
-        </MenuList>
-        );
-};
 
 const SelectTemp = props => {
-    const { autoWidth, children, classes, displayEmpty, input, inputProps, MenuProps, 
-        multiple, native, onChange, onClose, onOpen, open, renderValue, value, selector
+    const { autoWidth, children, classes, displayEmpty, input, /*items,*/ inputProps, loading, MenuProps, 
+        multiple, native, onChange, onClose, onOpen, open, renderValue, value, selector, style,
     } = props;
     
     const className = createClassName('d2-ui-selectfield', selector);
-    
+    console.log(children);
+    //console.log(items); 
     return (
         <Select
             autoWidth={autoWidth}
@@ -44,9 +30,7 @@ const SelectTemp = props => {
             open={open}
             renderValue={renderValue}
             value={value}
-        >
-            {getMenuItems(children)}
-        </Select>
+        />
     );
 }
 

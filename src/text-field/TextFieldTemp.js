@@ -5,7 +5,7 @@ import TextField from 'material-ui-next/TextField';
 import { createClassName } from '../component-helpers/utils';
 
 const TextFieldTemp = props => { 
-    const { autoComplete, autoFocus, defaultValue, disabled, error, FormHelperTextProps,                fullWidth, helperText, helperTextClassName, id, InputLabelProps, InputProps,
+    const { autoComplete, autoFocus, children, defaultValue, disabled, error, FormHelperTextProps,                fullWidth, helperText, helperTextClassName, id, InputLabelProps, InputProps,
             inputProps, inputRef, label, labelClassName, margin, multiline, name, onChange,
             placeholder, required, rows, rowsMax, select, selector, style, SelectProps, type, 
             value } = props;
@@ -14,6 +14,7 @@ const TextFieldTemp = props => {
     return (
         <TextField
             autoComplete={autoComplete}
+            children={children}
             defaultValue={defaultValue}
             error={error}
             fullWidth={fullWidth}
@@ -25,7 +26,7 @@ const TextFieldTemp = props => {
             labelClassName={labelClassName}
             margin={margin}
             multiline={multiline}
-            onChange={(event) => onChange(event.target.value)}
+            onChange={onChange}
             placeholder={placeholder}
             required={required}
             rows={rows}
@@ -35,9 +36,7 @@ const TextFieldTemp = props => {
             SelectProps={SelectProps}
             type={type}
             value={value}
-        >
-            {props.children}
-        </TextField>
+        />
     );
 };
 
