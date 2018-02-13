@@ -26,7 +26,7 @@ export const toggleDeleteDialog = () => ({
 export const deleteFavorite = event => {
     return (dispatch, getState) => {
         const state = getState();
-        const selectedFavorite = state.actions.selected.favoriteModel;
+        const selectedFavorite = state.actions.select.favoriteModel;
 
         if (selectedFavorite) {
             selectedFavorite
