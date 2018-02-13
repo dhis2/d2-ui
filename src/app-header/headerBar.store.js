@@ -6,8 +6,8 @@ import { pick } from 'lodash/fp';
 import { get as pluck } from 'lodash/fp';
 import { Observable } from 'rxjs';
 import headerBarSettingsStore$ from './settings/settings.store';
-import { profileSource$, appsMenuSource$ } from './menu-sources';
-import getBaseUrlFromD2ApiUrl from './getBaseUrlFromD2ApiUrl';
+import { profileSource$, appsMenuSource$, notifications$ } from './utils/menu-sources';
+import getBaseUrlFromD2ApiUrl from './utils/getBaseUrlFromD2ApiUrl';
 
 const translate = curry((d2, key) => d2.i18n.getTranslation(key));
 
@@ -55,9 +55,10 @@ const headerBarStore$ = Observable
     .combineLatest(
         appsMenuItems$,
         profileMenuItems$,
+        notifications$,
         currentUser$,
         headerBarSettingsStore$,
-        (appItems, profileItems, currentUser, settings) => ({ appItems, profileItems, currentUser, settings }),
+        (appItems, profileItems, notifications, currentUser, settings) => ({ appItems, profileItems, notifications, currentUser, settings }),
     );
 
 export default headerBarStore$;

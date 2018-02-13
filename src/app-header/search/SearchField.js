@@ -4,16 +4,17 @@ import { Observable } from 'rxjs';
 import log from 'loglevel';
 import TextField from 'material-ui/TextField';
 import IconButton from 'material-ui/IconButton';
-import AppsIcon from 'material-ui/svg-icons/navigation/apps';
+import SvgIcon from '../../svg-icon/SvgIcon';
 import ClearIcon from 'material-ui/svg-icons/content/clear';
 import { white } from 'material-ui/styles/colors';
 import { config } from 'd2/lib/d2';
+import Notifications from '../notifications/Notifications';
 import styles, { MENU_ITEM_WIDTH } from '../header-bar-styles';
 import { search, handleKeyPress, setSearchFieldFocusTo, hideWhenNotHovering } from './search.stores';
 import addD2Context from '../../component-helpers/addD2Context';
-import SearchResults from './SearchResults';
 import withStateFrom from '../../component-helpers/withStateFrom';
 import { searchStore$ } from './search.stores';
+import SearchResults from './SearchResults';
 
 config.i18n.strings.add('app_search_placeholder');
 
@@ -60,7 +61,10 @@ class SearchField extends Component {
     render() {
         return (
             <div style={styles.searchField}>
-                <div style={Object.assign({ width: this.state.hasFocus ? '100%' : '50%' }, styles.searchFieldInnerWrap)}>
+                <div style={styles.searchIconContainer}>
+                    <SvgIcon icon="Search" style={styles.searchIcon} />
+                </div>
+                <div style={styles.searchFieldInnerWrap}>
                     <TextField
                         fullWidth
                         value={this.props.searchValue || ''}
@@ -76,8 +80,8 @@ class SearchField extends Component {
                     />
                     {this.props.searchValue ? <ClearIcon style={styles.clearIcon} color={white} onClick={this.clearSearchField} /> : ''}
                 </div>
-                <IconButton onClick={this.focusSearchField}>
-                    <AppsIcon color={white} />
+                <IconButton iconStyle={{ fill: 'white' }} onClick={this.focusSearchField}>
+                    <SvgIcon icon="Apps" />
                 </IconButton>
                 <SearchResults />
             </div>
