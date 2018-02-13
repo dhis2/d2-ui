@@ -1,6 +1,7 @@
+import log from 'loglevel';
 import { Observable } from 'rxjs';
 import { getInstance, config } from 'd2/lib/d2';
-import log from 'loglevel';
+
 import getBaseUrlFromD2ApiUrl from '../utils/getBaseUrlFromD2ApiUrl';
 
 // Profile menu
@@ -49,8 +50,8 @@ const profileMenuData = [
     },
 ];
 
-function addHelpLinkToProfileData() {
-    return getInstance()
+const addHelpLinkToProfileData = () =>
+    getInstance()
         .then(d2 => d2.system.settings.get('helpPageLink'))
         // When the request for the system setting fails we return false to not set the help link
         .catch(() => false)
@@ -64,13 +65,12 @@ function addHelpLinkToProfileData() {
                 return profileMenuItem;
             }),
         );
-}
 
 export const profileSource$ = Observable.fromPromise(addHelpLinkToProfileData(profileMenuData));
 
 // TODO: Remove this when we have proper support for `displayName` from the getModules.action.
-function getTranslationsForMenuItems({ modules }) {
-    return getInstance()
+const getTranslationsForMenuItems = ({ modules }) =>
+    getInstance()
         .then((d2) => {
             const api = d2.Api.getApi();
 
@@ -88,7 +88,6 @@ function getTranslationsForMenuItems({ modules }) {
 
             return { modules };
         });
-}
 
 /**
  * Module management is available though the More Apps button. We therefore do not display it in the menu as a separate item.
@@ -96,15 +95,12 @@ function getTranslationsForMenuItems({ modules }) {
  * @param modules
  * @returns {{modules: [module]}}
  */
-function removeMenuManagementModule({ modules }) {
-    return {
+const removeMenuManagementModule = ({ modules }) => ({
         modules: modules.filter(module => module.name !== 'dhis-web-menu-management'),
-    };
-}
+});
 
-
-function loadMenuItems() {
-    return getInstance()
+const loadMenuItems = () =>
+    getInstance()
         .then((d2) => {
             const api = d2.Api.getApi();
             const baseUrl = getBaseUrlFromD2ApiUrl(d2);
@@ -116,8 +112,21 @@ function loadMenuItems() {
         .then(getTranslationsForMenuItems)
         .then(removeMenuManagementModule)
         .then(({ modules }) => modules);
-}
+
+const loadNotifications = () =>
+    getInstance()
+        .then((d2) => {
+            const api = d2.Api.getApi();
+            return api.get('me/dashboard');
+        });
 
 export const appsMenuSource$ = Observable
     .fromPromise(loadMenuItems())
     .catch(Observable.of([]));
+
+export const notifications$ = Observable
+    .fromPromise(loadNotifications())
+    .catch(Observable.of({
+        unreadInterpretations: 0,
+        unreadMessageConversations: 0,
+    }));

@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { config } from 'd2/lib/d2';
 import IconButton from 'material-ui/IconButton';
+import Badge from 'material-ui/Badge';
 
+import NotificationItem from './NotificationItem';
 import getBaseUrlFromD2ApiUrl from '../utils/getBaseUrlFromD2ApiUrl';
 import SvgIcon from '../../svg-icon/SvgIcon';
 import styles from '../header-bar-styles';
@@ -14,6 +16,7 @@ class Notifications extends Component {
     getBaseUrl = () => getBaseUrlFromD2ApiUrl(this.context.d2);
 
     render = () => {
+        const { unreadInterpretations, unreadMessageConversations } = this.props.notifications;
         const interpretationsHref = `${this.getBaseUrl()}/dhis-web-interpretation/index.html`;
         const messagesHref = `${this.getBaseUrl()}/dhis-web-messaging/message.action`;
 
@@ -22,11 +25,14 @@ class Notifications extends Component {
                 <NotificationItem
                     icon="Message"
                     href={interpretationsHref}
+                    count={unreadInterpretations}
                     tooltip={this.context.d2.i18n.getTranslation('interpretations')}
+                    style={{ top: 2 }} // Message icon quick fix
                 />
                 <NotificationItem
                     icon="Email"
                     href={messagesHref}
+                    count={unreadMessageConversations}
                     tooltip={this.context.d2.i18n.getTranslation('messages')}
                 />
             </div>
@@ -34,20 +40,12 @@ class Notifications extends Component {
     }
 }
 
+Notifications.propTypes = {
+    notifications: PropTypes.object.isRequired,
+}
+
 Notifications.contextTypes = {
     d2: PropTypes.object.isRequired,
 };
-
-const NotificationItem = ({ icon, href, tooltip }) => {
-    return (
-        <IconButton
-            href={href}
-            iconStyle={{ fill: 'white' }}
-            tooltip={tooltip}
-        >
-            <SvgIcon icon={icon} />
-        </IconButton>
-    );
-}
 
 export default Notifications;

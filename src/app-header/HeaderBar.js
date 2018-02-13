@@ -10,7 +10,7 @@ import SearchField from './search/SearchField';
 import styles, { applyUserStyle } from './header-bar-styles';
 
 export default function HeaderBar(props, { d2 }) {
-    const { appItems, profileItems, currentUser, settings, noLoadingIndicator } = props;
+    const { appItems, profileItems, notifications, currentUser, settings, noLoadingIndicator } = props;
 
     // If the required props are not passed we're in a loading state.
     if (!appItems && !profileItems && !settings) {
@@ -24,7 +24,7 @@ export default function HeaderBar(props, { d2 }) {
         <div style={applyUserStyle(d2.currentUser, styles.headerBar)}>
             <InnerHeader />
             <div style={styles.headerActions}>
-                <Notifications />
+                <Notifications notifications={notifications}/>
                 <SearchField />
             </div>
             <HeaderMenus>

@@ -70,15 +70,18 @@ if (global.document) {
 
 styles = {
     avatar: {
-        fontSize: '1.3rem',
-        letterSpacing: -2,
+        fontSize: '1rem',
+        fontWeight: '500',
         lineHeight: '32px',
+        marginLeft: '-2px',
+        backgroundColor: '#6a94c2',
     },
 
     avatarBig: {
-        fontSize: '34px',
-        letterSpacing: -2,
+        fontSize: '2rem',
+        fontWeight: '500',
         lineHeight: '60px',
+        backgroundColor: '#6a94c2',
     },
 
     headerBar: {
@@ -128,12 +131,33 @@ styles = {
     },
 
     headerActions: {
-        display: 'flex',
         flex: 1,
+        display: 'flex',
         flexDirection: 'row',
         position: 'relative',
         minWidth: 420,
         maxWidth: 550,
+    },
+
+    notificationBadge: {
+        padding: 0,
+    },
+
+    notificationBadgeIcon: {
+        zIndex: 10,
+        width: 20,
+        height: 20,
+        top: 3,
+        backgroundColor: '#4ca899',
+        fontSize: '9px',
+    },
+
+    notificationIcon: {
+        fill: 'white',
+    },
+
+    notificationButton: {
+        width: 44,
     },
 
     searchField: {
@@ -146,6 +170,18 @@ styles = {
         flex: 1,
         transition: 'width .5s cubic-bezier(0.39, -0.04, 0.2, 1)',
         position: 'relative',
+    },
+
+    searchIcon: {
+        fill: 'white',
+        padding: '0px',
+    },
+
+    searchIconContainer: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: '0px 8px 0px 24px',
     },
 
     searchResultList: {
@@ -221,7 +257,51 @@ styles = {
     notifications: {
         display: 'flex',
         flexDirection: 'row',
-    }
+    },
+
+    profileRightSide: {
+        flex: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        padding: '1rem',
+        justifyContent: 'space-between',
+        borderLeft: '1px solid #CCC',
+        backgroundColor: '#F5F5F5',
+    },
+
+    profileFlexWrap: {
+        display: 'flex',
+        alignItems: 'center',
+        flexDirection: 'column',
+    },
+
+    profileName: {
+        width: '100%',
+        marginTop: '1rem',
+        lineHeight: '1.5rem',
+        fontWeight: 'bold',
+        textAlign: 'center',
+        wordBreak: 'break-word',
+    },
+
+    profileMail: {
+        width: '100%',
+        lineHeight: '1.5rem',
+        textAlign: 'center',
+        wordBreak: 'break-all',
+    },
+
+    logoutButton: {
+        width: '100%',
+        textAlign: 'center',
+    },
+
+    profileMenu: {
+        flexDirection: 'row',
+        width: 600,
+        padding: '0',
+    },
 };
 
 export default styles;

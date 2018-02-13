@@ -61,7 +61,9 @@ class SearchField extends Component {
     render() {
         return (
             <div style={styles.searchField}>
-                <SvgIcon icon="Search" style={{ fill: 'white', padding: 12 }} />
+                <div style={styles.searchIconContainer}>
+                    <SvgIcon icon="Search" style={styles.searchIcon} />
+                </div>
                 <div style={styles.searchFieldInnerWrap}>
                     <TextField
                         fullWidth
