@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { config } from 'd2/lib/d2';
+import IconButton from 'material-ui/IconButton';
+
 import getBaseUrlFromD2ApiUrl from '../utils/getBaseUrlFromD2ApiUrl';
 import SvgIcon from '../../svg-icon/SvgIcon';
 import styles from '../header-bar-styles';
-import IconButton from 'material-ui/IconButton';
+
+config.i18n.strings.add('interpretations');
+config.i18n.strings.add('messages');
 
 class Notifications extends Component {
     getBaseUrl = () => getBaseUrlFromD2ApiUrl(this.context.d2);
