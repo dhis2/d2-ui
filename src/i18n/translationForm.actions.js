@@ -53,7 +53,7 @@ saveTranslations.subscribe(({ data: [model, translations], complete, error }) =>
 
         api
             .update(translationHref, { translations }, { dataType: 'text' })
-            .then(complete)
+            .then(() => complete(translations))
             .catch(error);
     });
 });

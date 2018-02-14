@@ -4,9 +4,6 @@ import { config } from 'd2/lib/d2';
 import Dialog from 'material-ui/Dialog/Dialog';
 import { getTranslationFormFor } from './TranslationForm.component';
 
-config.i18n.strings.add('close');
-config.i18n.strings.add('sharing_settings');
-
 class TranslationDialog extends Component {
     constructor(props, context) {
         super(props, context);
@@ -19,7 +16,7 @@ class TranslationDialog extends Component {
 
         this.translationSaved = this.translationSaved.bind(this);
         this.translationError = this.translationError.bind(this);
-        this.closeSharingDialog = this.closeSharingDialog.bind(this);
+        this.closeTranslationDialog = this.closeTranslationDialog.bind(this);
     }
 
     render() {
@@ -33,7 +30,7 @@ class TranslationDialog extends Component {
                 <this.state.TranslationForm
                     onTranslationSaved={this.translationSaved}
                     onTranslationError={this.translationError}
-                    onCancel={this.closeSharingDialog}
+                    onCancel={this.closeTranslationDialog}
                     fieldsToTranslate={this.props.fieldsToTranslate}
                 />
             </Dialog>
@@ -48,17 +45,17 @@ class TranslationDialog extends Component {
         }
     }
 
-    closeSharingDialog() {
+    closeTranslationDialog() {
         this.props.onRequestClose();
     }
 
-    translationSaved() {
-        this.props.onTranslationSaved();
-        this.closeSharingDialog();
+    translationSaved(args) {
+        this.props.onTranslationSaved(args);
+        this.closeTranslationDialog();
     }
 
-    translationError() {
-        this.props.onTranslationError();
+    translationError(err) {
+        this.props.onTranslationError(err);
     }
 }
 
