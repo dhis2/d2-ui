@@ -109,15 +109,6 @@ class PeriodPicker extends React.Component {
     handleChange() {
         if (this.getPeriod()) {
             this.props.onPickPeriod(this.getPeriod());
-            // Reset detail fields
-            this.setState({
-                date: undefined,
-                week: undefined,
-                month: undefined,
-                biMonth: undefined,
-                quarter: undefined,
-                sixMonth: undefined,
-            });
         }
     }
 
