@@ -67,6 +67,15 @@ function OrgUnitTreeExample(props) {
                 </Card>
                 <Card style={styles.card}>
                     <CardText style={styles.cardText}>
+                        <h3 style={styles.cardHeader}>Plain OrgUnitTree with filter</h3>
+                        <OrgUnitTree
+                            root={props.root}
+                            orgUnitsPathsToInclude={['/ImspTQPwCqd/Vth0fbpFcsO/EjnIQNVAXGp', '/ImspTQPwCqd/TEQlaapDQoK/ZiOVcrSjSYe']}
+                        />
+                    </CardText>
+                </Card>
+                <Card style={styles.card}>
+                    <CardText style={styles.cardText}>
                         <h3 style={styles.cardHeader}>Three Independent Trees</h3>
                         {props.roots.length > 0 ? (
                             <div>
