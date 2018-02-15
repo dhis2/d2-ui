@@ -123,23 +123,30 @@ class OrgUnitTree extends React.Component {
             : (this.props.initiallyExpanded !== this.props.root.id && this.props.initiallyExpanded) || [];
 
         if (Array.isArray(this.state.children) && this.state.children.length > 0) {
-            return this.state.children.map(orgUnit => (
-                <OrgUnitTree
-                    key={orgUnit.id}
-                    root={orgUnit}
-                    selected={this.props.selected}
-                    initiallyExpanded={expandedProp}
-                    onSelectClick={this.props.onSelectClick}
-                    currentRoot={this.props.currentRoot}
-                    onChangeCurrentRoot={this.props.onChangeCurrentRoot}
-                    labelStyle={this.props.labelStyle}
-                    selectedLabelStyle={this.props.selectedLabelStyle}
-                    arrowSymbol={this.props.arrowSymbol}
-                    idsThatShouldBeReloaded={this.props.idsThatShouldBeReloaded}
-                    hideCheckboxes={this.props.hideCheckboxes}
-                    onChildrenLoaded={this.props.onChildrenLoaded}
-                    hideMemberCount={this.props.hideMemberCount}
-                />));
+            return this.state.children.map(orgUnit => {
+                if (!this.props.orgUnitsIdsToInclude || this.props.orgUnitsIdsToInclude.length === 0 || this.props.orgUnitsIdsToInclude.includes(orgUnit.id)) {
+                    return (
+                        <OrgUnitTree
+                            key={orgUnit.id}
+                            root={orgUnit}
+                            selected={this.props.selected}
+                            initiallyExpanded={expandedProp}
+                            onSelectClick={this.props.onSelectClick}
+                            currentRoot={this.props.currentRoot}
+                            onChangeCurrentRoot={this.props.onChangeCurrentRoot}
+                            labelStyle={this.props.labelStyle}
+                            selectedLabelStyle={this.props.selectedLabelStyle}
+                            arrowSymbol={this.props.arrowSymbol}
+                            idsThatShouldBeReloaded={this.props.idsThatShouldBeReloaded}
+                            hideCheckboxes={this.props.hideCheckboxes}
+                            onChildrenLoaded={this.props.onChildrenLoaded}
+                            hideMemberCount={this.props.hideMemberCount}
+                            orgUnitsIdsToInclude={this.props.orgUnitsIdsToInclude}
+                        />
+                    );
+                }
+                return null;
+            });
         }
 
         if (this.state.loading) {
@@ -332,6 +339,11 @@ OrgUnitTree.propTypes = {
      * if true, don't display the selected member count next to org unit labels
      */
     hideMemberCount: PropTypes.bool,
+
+    /**
+     * Array of ids of Organisation Units to include on tree. If not defined or empty, all children from root to leafs will be shown
+     */
+    orgUnitsIdsToInclude: PropTypes.array,
 };
 
 OrgUnitTree.defaultProps = {
@@ -347,6 +359,7 @@ OrgUnitTree.defaultProps = {
     arrowSymbol: undefined,
     hideCheckboxes: false,
     hideMemberCount: false,
+    orgUnitsIdsToInclude: null,
 };
 
 export default OrgUnitTree;
