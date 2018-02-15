@@ -119,16 +119,7 @@ class OrgUnitTree extends React.Component {
         if (!this.props.orgUnitsPathsToInclude || this.props.orgUnitsPathsToInclude.length === 0) {
             return true;
         }
-
-        // Use old fashinioned for loop from which you can return directly
-        const len = this.props.orgUnitsPathsToInclude.length;
-        for (let index = 0; index < len; index++) {
-            const pathToInclude = this.props.orgUnitsPathsToInclude[index];
-            if (pathToInclude.indexOf(orgUnit.id) > -1) {
-                return true;
-            }
-        }
-        return false;
+        return !!(this.props.orgUnitsPathsToInclude.some(ou => ou.includes(`/${orgUnit.id}`)));
     }
 
     renderChild(orgUnit, expandedProp) {
