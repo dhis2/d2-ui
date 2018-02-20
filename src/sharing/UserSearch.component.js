@@ -60,6 +60,11 @@ class UserSearch extends Component {
     }
 
     onResultClick = (_, index) => {
+        // Material UI triggers an 'onUpdateInput' when a search result is clicked. Therefore, we
+        // immediately pushes a new item to the search stream to prevent the stream from searching
+        // for the item again.
+        this.inputStream.next('');
+
         const selection = this.state.searchResult[index];
         const type = selection.type;
         delete selection.type;
