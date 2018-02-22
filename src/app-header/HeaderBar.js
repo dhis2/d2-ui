@@ -1,14 +1,16 @@
-import PropTypes from 'prop-types';
 import React from 'react';
+import PropTypes from 'prop-types';
 import LinearProgress from 'material-ui/LinearProgress';
+
 import ProfileMenu from './menus/ProfileMenu';
 import InnerHeader from './InnerHeader';
 import HeaderMenus from './menus/HeaderMenus';
+import Notifications from './notifications/Notifications';
 import SearchField from './search/SearchField';
 import styles, { applyUserStyle } from './header-bar-styles';
 
 export default function HeaderBar(props, { d2 }) {
-    const { appItems, profileItems, currentUser, settings, noLoadingIndicator } = props;
+    const { appItems, profileItems, notifications, currentUser, settings, noLoadingIndicator } = props;
 
     // If the required props are not passed we're in a loading state.
     if (!appItems && !profileItems && !settings) {
@@ -21,7 +23,10 @@ export default function HeaderBar(props, { d2 }) {
     return (
         <div style={applyUserStyle(d2.currentUser, styles.headerBar)}>
             <InnerHeader />
-            <SearchField />
+            <div style={styles.headerActions}>
+                <Notifications notifications={notifications}/>
+                <SearchField />
+            </div>
             <HeaderMenus>
                 <ProfileMenu
                     items={profileItems}

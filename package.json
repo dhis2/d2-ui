@@ -1,6 +1,6 @@
 {
   "name": "d2-ui",
-  "version": "29.0.1",
+  "version": "29.0.5",
   "description": "d2-ui",
   "main": "index.js",
   "license": "BSD-3-Clause",
@@ -39,7 +39,7 @@
     "codeclimate-test-reporter": "^0.5.0",
     "colors": "^1.1.2",
     "css-loader": "^0.28.7",
-    "d2": "^28.2.0",
+    "d2": "^29.0.0",
     "d2-utilizr": "^0.2.11",
     "d3-format": "^1.1.0",
     "d3-scale": "^1.0.3",

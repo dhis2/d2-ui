@@ -9,7 +9,7 @@ import addD2Context from '../../component-helpers/addD2Context';
 import { searchStore$, setHovering } from './search.stores';
 import styles, { getSearchResultsHeight } from '../header-bar-styles';
 import NoResults from './NoResults';
-import getBaseUrlFromD2ApiUrl from '../getBaseUrlFromD2ApiUrl';
+import getBaseUrlFromD2ApiUrl from '../utils/getBaseUrlFromD2ApiUrl';
 
 // App menu strings to be translated
 config.i18n.strings.add('manage_my_apps');
@@ -17,7 +17,7 @@ config.i18n.strings.add('manage_my_apps');
 const getBaseUrl = getBaseUrlFromD2ApiUrl;
 
 function SearchResults(props, { d2 }) {
-    const menuItems = (props.searchResults || []).map(item => (<HeaderMenuItem key={item.label} {...item} />));
+    const menuItems = (props.searchResults || []).map(item => (<HeaderMenuItem key={item.name} {...item} />));
 
     const moreAppsButton = (
         <FlatButton

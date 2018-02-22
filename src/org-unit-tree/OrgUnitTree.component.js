@@ -115,15 +115,16 @@ class OrgUnitTree extends React.Component {
         e.stopPropagation();
     }
 
-    renderChildren() {
-        // If initiallyExpanded is an array, remove the current root id and pass the rest on
-        // If it's a string, pass it on unless it's the current root id
-        const expandedProp = Array.isArray(this.props.initiallyExpanded)
-            ? this.props.initiallyExpanded.filter(id => id !== this.props.root.id)
-            : (this.props.initiallyExpanded !== this.props.root.id && this.props.initiallyExpanded) || [];
+    shouldIncludeOrgUnit(orgUnit) {
+        if (!this.props.orgUnitsPathsToInclude || this.props.orgUnitsPathsToInclude.length === 0) {
+            return true;
+        }
+        return !!(this.props.orgUnitsPathsToInclude.some(ou => ou.includes(`/${orgUnit.id}`)));
+    }
 
-        if (Array.isArray(this.state.children) && this.state.children.length > 0) {
-            return this.state.children.map(orgUnit => (
+    renderChild(orgUnit, expandedProp) {
+        if (this.shouldIncludeOrgUnit(orgUnit)) {
+            return (
                 <OrgUnitTree
                     key={orgUnit.id}
                     root={orgUnit}
@@ -139,7 +140,22 @@ class OrgUnitTree extends React.Component {
                     hideCheckboxes={this.props.hideCheckboxes}
                     onChildrenLoaded={this.props.onChildrenLoaded}
                     hideMemberCount={this.props.hideMemberCount}
-                />));
+                    orgUnitsPathsToInclude={this.props.orgUnitsPathsToInclude}
+                />
+            );
+        }
+        return null;
+    }
+
+    renderChildren() {
+        // If initiallyExpanded is an array, remove the current root id and pass the rest on
+        // If it's a string, pass it on unless it's the current root id
+        const expandedProp = Array.isArray(this.props.initiallyExpanded)
+            ? this.props.initiallyExpanded.filter(id => id !== this.props.root.id)
+            : (this.props.initiallyExpanded !== this.props.root.id && this.props.initiallyExpanded) || [];
+
+        if (Array.isArray(this.state.children) && this.state.children.length > 0) {
+            return this.state.children.map(orgUnit => this.renderChild(orgUnit, expandedProp));
         }
 
         if (this.state.loading) {
@@ -332,6 +348,11 @@ OrgUnitTree.propTypes = {
      * if true, don't display the selected member count next to org unit labels
      */
     hideMemberCount: PropTypes.bool,
+
+    /**
+     * Array of paths of Organisation Units to include on tree. If not defined or empty, all children from root to leafs will be shown
+     */
+    orgUnitsPathsToInclude: PropTypes.array,
 };
 
 OrgUnitTree.defaultProps = {
@@ -347,6 +368,7 @@ OrgUnitTree.defaultProps = {
     arrowSymbol: undefined,
     hideCheckboxes: false,
     hideMemberCount: false,
+    orgUnitsPathsToInclude: null,
 };
 
 export default OrgUnitTree;

@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 import Store from '../../store/Store';
-import { appsMenuSource$ } from '../menu-sources';
+import { appsMenuSource$ } from '../utils/menu-sources';
 
 const headerBarSettingsStore = Store.create();
 
