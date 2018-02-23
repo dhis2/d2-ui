@@ -3,12 +3,19 @@
   "version": "1.0.0",
   "description": "DHIS2 component for sharing dialog",
   "main": "./index.js",
-  "license": "MIT",
+  "license": "BSD-3-Clause",
   "private": true,
   "peerDependencies": {
       "react": "^15.0.0 || ^16.0.0",
       "react-dom": "^15.0.0 || ^16.0.0"
   },
+  "author": "Mark Polak",
+  "contributors": [
+    "Nicolay Ramm",
+    "Kjetil Svalestuen <kjetil@dhis2.org>",
+    "Viktor Varland <viktor@dhis2.org>",
+    "Edoardo Sabadelli <edoardo@dhis2.org>"
+  ],
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",

@@ -7,7 +7,7 @@ function copyFile(file) {
     console.log(`Copied ${file} to ${buildPath}`);
 }
 
-//['README.md', 'CHANGELOG.md', 'LICENSE'].map(copyFile)
+['README.md'].map(copyFile)
 
 const packageData = createPackageFile()
 
