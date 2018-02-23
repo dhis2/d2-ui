@@ -85,7 +85,6 @@ const icons = (
                 <SvgIcon icon={'Create'} />
             </div>
             <div style={cardStyle}>
-<<<<<<< e2bbdb1d9f74356bcb72e853419eba7215c761c2
                 <h3>CropFree</h3>
                 <SvgIcon icon={'CropFree'} />
             </div>
@@ -116,7 +115,6 @@ const icons = (
             <div style={cardStyle}>
                 <h3>FontDownload</h3>
                 <SvgIcon icon={'FontDownload'} />
-=======
                 <h3>Delete</h3>
                 <SvgIcon icon={'Delete'} />
             </div>
