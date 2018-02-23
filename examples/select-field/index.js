@@ -41,17 +41,22 @@ class SelectFields extends Component {
         selectValueField1: '',
         selectValueField2: '',
         selectValueField3: [],
+        selectValueField4: '',
+        selectValueField5: '',
+        selectValueField6: '',
     };
 
     onChangeValue = (field, value) => {
-            console.log(field, value);
             this.setState({ [field]: value });
     }
     
     render() {
+
+        const { classes } = this.props;
+
         return (
             <div>
-                        <h3> Material-ui v.0 </h3>
+                <h3> Material-ui v.0 </h3>
                 <MuiThemeProvider muiTheme={getMuiTheme()}>
                     <div style={style}>
                         <SelectField
@@ -108,47 +113,66 @@ class SelectFields extends Component {
                     </div>
                 </MuiThemeProvider>
         
-                        <h3> Material-ui v.1 </h3>
-                {/* <NewMuiThemeProvider theme={theme} >*/}
-                    <div style={style}>
-                        <TextFieldTemp
-                            select
-                            label={'TextField component with native Select'}
-                            value={this.state.selectValueField1}
-                            onChange={(event) => this.onChangeValue("selectValueField1", event.target.value)}
-                            SelectProps={{native: true}}
-                        >
-                            {items.map((option) => {
-                                return( <option key={option.id} value={option.id}> {option.name} </option> )
-                            })}                    
-                        </TextFieldTemp>
-                        <FormControl>
-                        <InputLabel>{'Simple Select component'}</InputLabel>
-                            <SelectTemp
-                                value={this.state.selectValueField2}    
-                                onChange={(event) => this.onChangeValue("selectValueField2", event.target.value)}
-                                >         
-                                {items.map(item => {
-                                    return (<MenuItem key={item.id} value={item.name}> {item.name} </MenuItem>);
-                                })}        
-                            </ SelectTemp>
-                    </FormControl>
+                <h3> Material-ui v.1 </h3>
+                <div style={style}>
+                <SelectTemp
+                        onChange={event => this.onChangeValue("selectValueField1", event.target.value)}
+                        value={this.state.selectValueField1}    
+                        inputLabelText={'Native Select'}
+                        selector={"test"}
+                        >         
+                        {items.map(item => {
+                            return (<option key={item.id} value={item.name}> {item.name} </option>);
+                        })}        
+                    </SelectTemp>
 
-                    <FormControl >
-                    <InputLabel>{'Multiple select component'}</InputLabel>
-                        <SelectTemp
-                            multiple
-                            value={this.state.selectValueField3}
-                            onChange={(event) => this.onChangeValue('selectValueField3', event.target.value)}
-                        >
-                            {items.map(item => {
-                                return (<MenuItem key={item.id} value={item.name}> {item.name} </MenuItem>);
-                            })}
-                        </SelectTemp>
-                    </FormControl>
+                    <SelectTemp
+                        onChange={event => this.onChangeValue("selectValueField2", event.target.value)}
+                        value={this.state.selectValueField2}    
+                        inputLabelText={'Simple Select'}
 
-                    </div>
-                {/* </NewMuiThemeProvider> */}  
+                        >         
+                        {items.map(item => {
+                            return (<MenuItem key={item.id} value={item.name}> {item.name} </MenuItem>);
+                        })}        
+                    </SelectTemp>
+                    
+                    <SelectTemp
+                        multiple
+                        value={this.state.selectValueField3}
+                        onChange={event => this.onChangeValue('selectValueField3', event.target.value)}
+                        inputLabelText={'Multiple select component'}
+                    >
+                        {items.map(item => {
+                            return (<MenuItem key={item.id} value={item.name}> {item.name} </MenuItem>);
+                        })}
+                    </SelectTemp>
+
+                    <SelectTemp
+                        value={this.state.selectValueField4}    
+                        onChange={event => this.onChangeValue("selectValueField4", event.target.value)}
+                        inputLabelText={'Async with spinner'}
+                        loading
+                        />
+
+                    <SelectTemp
+                        value={this.state.selectValueField5}    
+                        onChange={event => this.onChangeValue("selectValueField5", event.target.value)}
+                        inputLabelText={'Async with string'}
+                        loading={'Loading...'}
+                        />               
+
+                    <SelectTemp
+                        value={this.state.selectValueField6}    
+                        onChange={event => this.onChangeValue("selectValueField6", event.target.value)}
+                        inputLabelText={'Error text'}
+                        error
+                        >
+                        {items.map(item => {
+                            return (<option key={item.id} value={item.name}> {item.name} </option>);
+                        })}     
+                    </SelectTemp>         
+            </div>  
         </div>
     );
 }

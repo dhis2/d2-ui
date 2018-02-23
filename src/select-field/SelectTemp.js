@@ -1,36 +1,53 @@
-import React, { createClass } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Select from 'material-ui-next/Select';
 import { MenuItem, MenuList } from 'material-ui-next/Menu';
 import { createClassName } from '../component-helpers/utils';
+import { InputLabel } from 'material-ui-next/Input';
+import { FormControl }  from 'material-ui-next/Form';
+import { CircularProgress } from 'material-ui-next/Progress';
 
+import isString from 'lodash/fp/isString';
+
+const d2InputProps = {
+    //separate style fyle with "d2-ui" standardized style to inject as Props (?)
+    loadingIndicator: {
+        teaxtAlign: 'center'
+    },
+    formControl: {
+        minWidth: 200,
+    }
+}
+
+const displayLoadingIndicator = loading => {
+    let node;
+    
+    isString(loading) 
+    ? ( node = <div>{loading}</div> ) 
+    : ( node = <CircularProgress size={30} style={d2InputProps.loadingIndicator}/> ) 
+    
+    return node;
+}
 
 const SelectTemp = props => {
-    const { autoWidth, children, classes, displayEmpty, input, /*items,*/ inputProps, loading, MenuProps, 
-        multiple, native, onChange, onClose, onOpen, open, renderValue, value, selector, style,
-    } = props;
+
+    const { children, error, inputLabelText, loading, selector, ...passThroughProps } = props;
     
     const className = createClassName('d2-ui-selectfield', selector);
-    console.log(children);
-    //console.log(items); 
+
     return (
-        <Select
-            autoWidth={autoWidth}
-            children={children}
-            classes={classes}
-            displayEmpty={displayEmpty}
-            input={input}
-            inputProps={inputProps}
-            MenuProps={MenuProps}
-            multiple={multiple}
-            native={native}
-            onChange={onChange}
-            onClose={onClose}
-            onOpen={onOpen}
-            open={open}
-            renderValue={renderValue}
-            value={value}
-        />
+        <FormControl 
+            style={d2InputProps.formControl} 
+            error={error}
+            //...formcontrolprops / some HOC solution, or specify each prop (when wrapping multiple components like the new Select)? 
+        >
+            <InputLabel>{inputLabelText}</InputLabel>
+                <Select 
+                    {...passThroughProps}
+                >
+                    { !loading || children ? children : displayLoadingIndicator(loading) }
+                </Select>
+        </FormControl>
     );
 }
 
@@ -49,11 +66,9 @@ SelectTemp.PropTypes = {
     onOpen: PropTypes.func,
     open: PropTypes.bool,
     renderValue: PropTypes.func,
+    selector: PropTypes.string,
     value: PropTypes.value,
 };
 
-SelectTemp.defaultProps = {
-
-};
 
 export default SelectTemp;

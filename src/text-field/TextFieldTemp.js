@@ -1,41 +1,20 @@
 import React from  'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui-next/styles';
 import TextField from 'material-ui-next/TextField';
 import { createClassName } from '../component-helpers/utils';
 
+const d2InputProps = {
+
+}
+
 const TextFieldTemp = props => { 
-    const { autoComplete, autoFocus, children, defaultValue, disabled, error, FormHelperTextProps,                fullWidth, helperText, helperTextClassName, id, InputLabelProps, InputProps,
-            inputProps, inputRef, label, labelClassName, margin, multiline, name, onChange,
-            placeholder, required, rows, rowsMax, select, selector, style, SelectProps, type, 
-            value } = props;
+    const {  selector, ...passThroughProps } = props;
     
     const className = createClassName('d2-ui-textfield', selector);
+    
     return (
-        <TextField
-            autoComplete={autoComplete}
-            children={children}
-            defaultValue={defaultValue}
-            error={error}
-            fullWidth={fullWidth}
-            helperText={helperText}
-            id={id}
-            InputLabelProps={InputLabelProps}
-            InputProps={InputProps}
-            label={label}
-            labelClassName={labelClassName}
-            margin={margin}
-            multiline={multiline}
-            onChange={onChange}
-            placeholder={placeholder}
-            required={required}
-            rows={rows}
-            rowsMax={rowsMax}
-            select={select}
-            style={style}
-            SelectProps={SelectProps}
-            type={type}
-            value={value}
+        <TextField 
+            {...passThroughProps}
         />
     );
 };
@@ -166,8 +145,6 @@ TextFieldTemp.propTypes = {
 
 };
 
-TextFieldTemp.defaultProps = {
-
-};
+TextFieldTemp.defaultProps = d2InputProps;
 
 export default TextFieldTemp;

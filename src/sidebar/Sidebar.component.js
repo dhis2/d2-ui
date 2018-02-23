@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import List from 'material-ui/List/List';
 import ListItem from 'material-ui/List/ListItem';
-import TextField from 'material-ui/TextField';
 import FontIcon from 'material-ui/FontIcon';
+
+import TextFieldTemp from '../../src/text-field/TextFieldTemp';
 
 const styles = {
     container: {
@@ -109,8 +110,8 @@ class Sidebar extends Component {
         if (this.props.showSearchField) {
             return (
                 <div style={styles.container}>
-                    <TextField
-                        hintText={this.props.searchFieldLabel ? this.props.searchFieldLabel : d2.i18n.getTranslation('search')}
+                    <TextFieldTemp
+                        placeholder={this.props.searchFieldLabel ? this.props.searchFieldLabel : d2.i18n.getTranslation('search')}
                         style={{ width: '100%' }}
                         value={this.state.searchText}
                         onChange={this.changeSearchText}

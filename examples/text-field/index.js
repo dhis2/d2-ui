@@ -2,14 +2,10 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import TextField from '../../src/text-field/TextField';
 
 import TextFieldTemp from '../../src/text-field/TextFieldTemp';
-//import { getMuiTheme as getMuiThemeNew } from 'material-ui-next/styles/getMuiTheme';
-import { MuiThemeProvider as NewMuiThemeProvider } from 'material-ui-next/styles/MuiThemeProvider';
-import createMuiTheme from 'material-ui-next/styles/createMuiTheme';
 
 
 injectTapEventPlugin();
@@ -23,19 +19,18 @@ const style = {
     justifyContent: 'space-between',
 };
 
-const theme = createMuiTheme({
-
-});
 
 class TextFields extends Component {
     state = {
+        //v0 example states
         multiHintText: '',
         singleHintText: '',
         valueField1: '',
         valueField2: '',
         valueField3: '',
         valueField4: '',
-        
+
+        //v1 example states
         newMultiHintText: '',
         newSingleHintText: '',
         newValueField5: '',
@@ -48,42 +43,34 @@ class TextFields extends Component {
         this.setState({ [field]: value });
     };
 
-    onChangeMultiHintText = (multiHintText) => {
-        this.setState({ multiHintText });
-    };
-
-    onChangeSingleHintText = (singleHintText) => {
-        this.setState({ singleHintText });
-    };
-
     render() {
         return (
         <div>
+            <h3> Material-ui v.0 </h3>
             <MuiThemeProvider muiTheme={getMuiTheme()}>
                 <div style={style}>
-                    <h3> Material-ui v.0 </h3>
                     <TextField
                         label="Text"
                         value={this.state.valueField1}
-                        onChange={(value) => this.onChangeValue("valueField1", value)}
+                        onChange={value => this.onChangeValue("valueField1", value)}
                     />
                     <TextField
                         label="Number"
                         type="number"
                         value={this.state.valueField2}
-                        onChange={(value) => this.onChangeValue("valueField2", value)}
+                        onChange={value => this.onChangeValue("valueField2", value)}
                     />
                     <TextField
                         label="Default value"
                         type="number"
                         value={this.state.valueField3 || 100}
-                        onChange={(value) => this.onChangeValue("valueField3", value)}
+                        onChange={value => this.onChangeValue('valueField3', value)}
                     />
                     <TextField
                         placeholder="Hint text"
                         type="text"
                         value={this.state.singleHintText}
-                        onChange={this.onChangeSingleHintText}
+                        onChange={value => this.onChangeValue('sigleHintText', value)}
                     />
                     <TextField
                         placeholder="Multiline field showing 2 rows and up to 4 rows"
@@ -92,7 +79,7 @@ class TextFields extends Component {
                         rows={2}
                         rowsMax={4}
                         value={this.state.multiHintText}
-                        onChange={this.onChangeMultiHintText}
+                        onChange={value => this.onChangeValue('multiHintText', value)}
                     />
                     <TextField
                         placeholder="Full width"
@@ -107,9 +94,8 @@ class TextFields extends Component {
                 Material-ui-next components
                 Rendered /src/TextFieldTemp.js
             */}
-            {/*<NewMuiThemeProvider theme={theme}>*/}
+            <h3> Material-ui v.1 </h3>
             <div style={style}>
-                <h3> Material-ui v.1 </h3>
                 <TextFieldTemp
                     label='Text'
                     value={this.state.newValueField5}
@@ -150,7 +136,6 @@ class TextFields extends Component {
                     onChange={event => this.onChangeValue("newValueField8", event.target.value)}
                 />
             </div>
-            {/*</NewMuiThemeProvider>*/}
         </div>
         );
     }
