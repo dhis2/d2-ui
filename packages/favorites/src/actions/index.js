@@ -183,7 +183,6 @@ export const fetchData = () => {
 
         dispatch(toggleLoading());
 
-        console.log('foo')
         let favoriteModel = state.d2.models[state.filtering.type];
 
         if (state.filtering.createdByValue) {
