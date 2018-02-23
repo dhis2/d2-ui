@@ -1,6 +1,6 @@
 import React from 'react';
-import Dialog, { DialogActions, DialogContent, DialogTitle } from 'material-ui-next/Dialog';
-import Button from 'material-ui-next/Button';
+import Dialog, { DialogActions, DialogContent, DialogTitle } from 'material-ui/Dialog';
+import Button from 'material-ui/Button';
 
 const DeleteDialog = props => {
     const { open, onRequestClose, onRequestDelete } = props;

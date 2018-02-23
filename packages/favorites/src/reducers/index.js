@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 
 export const actionTypes = {
+    SET_D2: 'SET_D2',
     SET_FAVORITE_TYPE: 'SET_FAVORITE_TYPE',
     SET_ACTIONS_MENU_ANCHOR_EL: 'SET_ACTIONS_MENU_ANCHOR_EL',
     SET_SORT_ORDER: 'SET_SORT_ORDER',
@@ -21,6 +22,7 @@ export const actionTypes = {
 };
 
 const initialState = {
+    d2: null,
     isLoading: false,
     actions: {
         menuIsOpen: false,
@@ -63,6 +65,15 @@ const loading = (isLoading = initialState.isLoading, action) => {
             return !isLoading;
         default:
             return isLoading;
+    }
+};
+
+const d2 = (state = initialState.d2, action) => {
+    switch(action.type) {
+        case actionTypes.SET_D2:
+            return action.payload;
+        default:
+            return state;
     }
 };
 
@@ -156,4 +167,5 @@ export default combineReducers({
     sorting,
     data,
     filtering,
+    d2,
 });

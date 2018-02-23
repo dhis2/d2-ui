@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import SvgIcon from '../svg-icon/SvgIcon';
+import SvgIcon from 'd2-ui/lib/svg-icon/SvgIcon';
 import MenuItem from 'material-ui/MenuItem';
 
 class PermissionOption extends Component {
@@ -20,7 +20,7 @@ class PermissionOption extends Component {
                 primaryText={this.props.primaryText}
                 value={this.props.value}
                 disabled={this.props.disabled}
-                onTouchTap={this.props.onTouchTap}
+                onClick={this.props.onClick}
                 focusState={this.props.focusState}
             />
         );
@@ -32,12 +32,12 @@ PermissionOption.propTypes = {
     isSelected: PropTypes.bool.isRequired,
     primaryText: PropTypes.string.isRequired,
     value: PropTypes.object.isRequired,
-    onTouchTap: PropTypes.func,
+    onClick: PropTypes.func,
     focusState: PropTypes.string,
 };
 
 PermissionOption.defaultProps = {
-    onTouchTap: undefined,
+    onClick: undefined,
     focusState: 'none',
 };
 

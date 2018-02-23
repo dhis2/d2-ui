@@ -1,4 +1,3 @@
-import { getInstance } from 'd2/lib/d2';
 import { actionTypes } from '../reducers';
 import log from 'loglevel';
 
@@ -8,6 +7,7 @@ export const toggleLoading = () => ({ type: actionTypes.TOGGLE_LOADING });
 export const toggleActionsMenu = () => ({
     type: actionTypes.TOGGLE_ACTIONS_MENU,
 });
+
 export const setActionsMenuAnchorEl = el => ({
     type: actionTypes.SET_ACTIONS_MENU_ANCHOR_EL,
     payload: el,
@@ -23,6 +23,7 @@ export const selectFavorite = model => ({
 export const toggleDeleteDialog = () => ({
     type: actionTypes.TOGGLE_DELETE_DIALOG,
 });
+
 export const deleteFavorite = event => {
     return (dispatch, getState) => {
         const state = getState();
@@ -44,6 +45,7 @@ export const deleteFavorite = event => {
 export const toggleRenameDialog = () => ({
     type: actionTypes.TOGGLE_RENAME_DIALOG,
 });
+
 export const renameFavorite = form => {
     return (dispatch, getState) => {
         const state = getState();
@@ -53,50 +55,55 @@ export const renameFavorite = form => {
         let api;
 
         if (favoriteModel) {
-            getInstance()
-                .then(d2 => {
-                    api = d2.Api.getApi();
+            console.log('hello')
+            api = state.d2.Api.getApi();
 
-                    // the whole model is required for validation
-                    return d2.models[state.filtering.type].get(favoriteModel.id);
-                })
-                .then(model => {
-                    model.name = newName;
-                    model.description = newDescription;
+            // the whole model is required for validation
+            state.d2.models[state.filtering.type]
+            .get(favoriteModel.id)
+            .then(model => {
+                model.name = newName;
+                model.description = newDescription;
 
-                    model.validate().then(validationStatus => {
-                        if (validationStatus.status === true) {
-                            const payload = {
-                                // can be empty
-                                description: newDescription,
-                            };
+                model.validate().then(validationStatus => {
+                    if (validationStatus.status === true) {
+                        const payload = {
+                            // can be empty
+                            description: newDescription,
+                        };
 
-                            if (newName) {
-                                payload.name = newName;
-                            }
-
-                            if (payload.name) {
-                                api
-                                    .request('PATCH', model.href, JSON.stringify(payload))
-                                    .then(response => {
-                                        dispatch(toggleRenameDialog());
-                                        // refresh data
-                                        dispatch(fetchData());
-                                    })
-                                    .catch(error => {
-                                        log.error('favorites: rename error', error);
-                                        dispatch(toggleRenameDialog());
-                                    });
-                            }
+                        if (newName) {
+                            payload.name = newName;
                         }
-                    });
-                })
-                .catch(error => {
-                    log.error(`favorites: favorite (${favoriteModel.id}) not found (${error})`);
+
+                        if (payload.name) {
+                            api
+                                .request('PATCH', model.href, JSON.stringify(payload))
+                                .then(response => {
+                                    dispatch(toggleRenameDialog());
+                                    // refresh data
+                                    dispatch(fetchData());
+                                })
+                                .catch(error => {
+                                    log.error('favorites: rename error', error);
+                                    dispatch(toggleRenameDialog());
+                                });
+                        }
+                    }
                 });
+            })
+            .catch(error => {
+                log.error(`favorites: favorite (${favoriteModel.id}) not found (${error})`);
+            });
         }
     };
 };
+
+// d2
+export const setD2 = d2 => ({
+    type: actionTypes.SET_D2,
+    payload: d2,
+});
 
 // share
 export const toggleShareDialog = () => ({
@@ -176,53 +183,51 @@ export const fetchData = () => {
 
         dispatch(toggleLoading());
 
-        getInstance()
-            .then(d2 => {
-                let favoriteModel = d2.models[state.filtering.type];
+        console.log('foo')
+        let favoriteModel = state.d2.models[state.filtering.type];
 
-                if (state.filtering.createdByValue) {
-                    const currentUserId = d2.currentUser.id;
+        if (state.filtering.createdByValue) {
+            const currentUserId = state.d2.currentUser.id;
 
-                    switch (state.filtering.createdByValue) {
-                        case 'byme':
-                            favoriteModel = favoriteModel
-                                .filter()
-                                .on('user.id')
-                                .equals(currentUserId);
-                            break;
-                        case 'byothers':
-                            favoriteModel = favoriteModel
-                                .filter()
-                                .on('user.id')
-                                .notEqual(currentUserId);
-                            break;
-                        case 'all':
-                        default:
-                            break;
-                    }
-                }
-
-                if (state.filtering.searchValue) {
+            switch (state.filtering.createdByValue) {
+                case 'byme':
                     favoriteModel = favoriteModel
                         .filter()
-                        .on('displayName')
-                        .ilike(state.filtering.searchValue);
-                }
+                        .on('user.id')
+                        .equals(currentUserId);
+                    break;
+                case 'byothers':
+                    favoriteModel = favoriteModel
+                        .filter()
+                        .on('user.id')
+                        .notEqual(currentUserId);
+                    break;
+                case 'all':
+                default:
+                    break;
+            }
+        }
 
-                return favoriteModel.list({
-                    fields:
-                        'id,displayName,title,displayDescription,created,lastUpdated,user,access,href',
-                    order: 'name:asc',
-                    pageSize: state.pagination.rowsPerPage,
-                    page: state.pagination.page + 1,
-                });
-            })
-            .then(collection => {
-                dispatch(setTotalRecords(collection.pager.total));
-                dispatch(setData(collection.toArray()));
-                dispatch(toggleLoading());
-            })
-            .catch(error => log.error('favorites: fetch error', error));
+        if (state.filtering.searchValue) {
+            favoriteModel = favoriteModel
+                .filter()
+                .on('displayName')
+                .ilike(state.filtering.searchValue);
+        }
+
+        favoriteModel.list({
+            fields:
+                'id,displayName,title,displayDescription,created,lastUpdated,user,access,href',
+            order: 'name:asc',
+            pageSize: state.pagination.rowsPerPage,
+            page: state.pagination.page + 1,
+        })
+        .then(collection => {
+            dispatch(setTotalRecords(collection.pager.total));
+            dispatch(setData(collection.toArray()));
+            dispatch(toggleLoading());
+        })
+        .catch(error => log.error('favorites: fetch error', error));
     };
 };
 

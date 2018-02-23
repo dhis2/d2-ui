@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Dialog, { DialogActions, DialogContent, DialogTitle } from 'material-ui-next/Dialog';
-import Button from 'material-ui-next/Button';
-import TextField from 'material-ui-next/TextField';
-import { FormControl } from 'material-ui-next/Form';
+import Dialog, { DialogActions, DialogContent, DialogTitle } from 'material-ui/Dialog';
+import Button from 'material-ui/Button';
+import TextField from 'material-ui/TextField';
+import { FormControl } from 'material-ui/Form';
 
 import { renameFavorite, toggleRenameDialog } from './actions';
 

@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { withStyles } from 'material-ui-next/styles';
-import { MenuItem } from 'material-ui-next/Menu';
-import Select from 'material-ui-next/Select';
-import TextField from 'material-ui-next/TextField';
-import Toolbar from 'material-ui-next/Toolbar';
-import Tooltip from 'material-ui-next/Tooltip';
+import { withStyles } from 'material-ui/styles';
+import { MenuItem } from 'material-ui/Menu';
+import Select from 'material-ui/Select';
+import TextField from 'material-ui/TextField';
+import Toolbar from 'material-ui/Toolbar';
+import Tooltip from 'material-ui/Tooltip';
 
 import { filterData, searchData } from './actions';
 

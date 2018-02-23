@@ -4,7 +4,7 @@ import { config } from 'd2/lib/d2';
 import Divider from 'material-ui/Divider';
 import Subheader from 'material-ui/Subheader';
 
-import Heading from '../headings/Heading.component';
+import Heading from 'd2-ui/lib/headings/Heading.component';
 import UserSearch from './UserSearch.component';
 import CreatedBy from './CreatedBy.component';
 import {

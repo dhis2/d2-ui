@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { config } from 'd2/lib/d2';
 import { Subject, Observable } from 'rxjs';
 import AutoComplete from 'material-ui/AutoComplete';
 
 import { accessObjectToString } from './utils';
 import PermissionPicker from './PermissionPicker.component';
-
-config.i18n.strings.add('add_users_and_user_groups');
-config.i18n.strings.add('enter_names');
 
 const styles = {
     container: {
@@ -50,6 +46,11 @@ class UserSearch extends Component {
         searchResult: [],
         searchText: '',
     };
+
+    constructor(props, context) {
+        super(props);
+        context.d2.i18n.addStrings(['add_users_and_user_groups', 'enter_names']);
+    }
 
     componentWillMount() {
         this.inputStream

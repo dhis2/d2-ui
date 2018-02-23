@@ -5,8 +5,8 @@ import Dialog, {
     DialogActions,
     DialogContent,
     DialogTitle,
-} from 'material-ui-next/Dialog';
-import Button from 'material-ui-next/Button';
+} from 'material-ui/Dialog';
+import Button from 'material-ui/Button';
 
 import EnhancedToolbar from './EnhancedToolbar';
 import EnhancedTable from './EnhancedTable';

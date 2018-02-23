@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import Menu, { MenuItem } from 'material-ui-next/Menu';
-import { ListItemIcon, ListItemText } from 'material-ui-next/List';
+import PropTypes from 'prop-types';
+import Menu, { MenuItem } from 'material-ui/Menu';
+import { ListItemIcon, ListItemText } from 'material-ui/List';
 import DeleteDialog from './DeleteDialog';
 import RenameDialog from './RenameDialog';
-import SharingDialog from '../sharing/SharingDialog.component';
+import SharingDialog from 'd2-ui-sharing';
 import ModeEditIcon from 'material-ui-icons/ModeEdit';
 import MoreVertIcon from 'material-ui-icons/MoreVert';
 import ShareIcon from 'material-ui-icons/Share';
@@ -19,7 +20,7 @@ import {
     deleteFavorite,
 } from './actions';
 
-const ActionsMenu = props => {
+const ActionsMenu = (props, context) => {
     const {
         open,
         anchorEl,
@@ -37,6 +38,7 @@ const ActionsMenu = props => {
         toggleActionsMenu();
         toggleDeleteDialog();
     };
+
     const renameActionHandler = () => {
         toggleActionsMenu();
         toggleRenameDialog();
@@ -85,6 +87,7 @@ const ActionsMenu = props => {
                     id={selectedFavoriteModel.id}
                     type={selectedFavoriteModel.modelDefinition.name}
                     onRequestClose={toggleShareDialog}
+                    d2={context.d2}
                 />
             ) : null}
             <DeleteDialog
@@ -95,6 +98,10 @@ const ActionsMenu = props => {
         </div>
     );
 };
+
+ActionsMenu.contextTypes = {
+    d2: PropTypes.object.isRequired
+}
 
 export default connect(
     state => ({

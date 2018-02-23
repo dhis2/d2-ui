@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import IconButton from 'material-ui-next/IconButton';
+import IconButton from 'material-ui/IconButton';
 import Table, {
     TableBody,
     TableCell,
@@ -10,8 +10,8 @@ import Table, {
     TablePagination,
     TableRow,
     TableSortLabel,
-} from 'material-ui-next/Table';
-import Tooltip from 'material-ui-next/Tooltip';
+} from 'material-ui/Table';
+import Tooltip from 'material-ui/Tooltip';
 import MoreVertIcon from 'material-ui-icons/MoreVert';
 
 import ActionsMenu from './ActionsMenu';
