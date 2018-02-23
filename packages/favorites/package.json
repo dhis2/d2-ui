@@ -1,13 +1,13 @@
 {
   "name": "d2-ui-favorites",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Favorite component for DHIS2",
   "main": "./index.js",
   "license": "BSD-3-Clause",
   "private": true,
   "author": "Edoardo Sabadelli <edoardo@dhis2.org>",
   "contributors": [
-        "Viktor Varland <viktor@dhis2.org>"
+    "Viktor Varland <viktor@dhis2.org>"
   ],
   "peerDependencies": {
     "d2": "^29.0.1",
@@ -16,7 +16,7 @@
   },
   "scripts": {
     "prebuild": "rimraf ./build",
-    "build": "node ./scripts/copy-files.js && webpack"
+    "build": "node ./scripts/copy-files.js && webpack -p"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
