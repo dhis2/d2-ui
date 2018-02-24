@@ -82,6 +82,10 @@ class ControlBar extends React.Component {
         this.setState({ dragging: false });
         window.removeEventListener('mousemove', this.onDrag);
         window.removeEventListener('mouseup', this.onEndDrag);
+
+        if (this.props.onEndDrag) {
+            this.props.onEndDrag();
+        }
     };
 
     getEndFlapHeight() {
@@ -189,6 +193,14 @@ ControlBar.propTypes = {
     onChangeHeight: PropTypes.func,
 
     /**
+     * Callback function that is called when the control bar is dropped after being dragged.
+     * The callback receives one argument: The new height in pixels.
+     *
+     * Ignored if no "onChangeHeight" function is provided.
+     */
+    onEndDrag: PropTypes.func,
+
+    /**
      * The contents of the control bar.
      */
     children: PropTypes.node.isRequired,
@@ -208,6 +220,7 @@ ControlBar.defaultProps = {
     height: 32,
     editMode: false,
     onChangeHeight: null,
+    onEndDrag: null,
     selector: '',
     expandable: true,
 };
