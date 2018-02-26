@@ -19,23 +19,32 @@ class TextField extends Component {
     };
 
     render() {
-        const {
-            changeEvent,
-            ...other
-        } = this.props;
+        const { changeEvent, ...other } = this.props;
 
         const errorStyle = {
             lineHeight: this.props.multiLine ? '48px' : '12px',
             marginTop: this.props.multiLine ? -16 : 0,
         };
 
+        const inputStyle =
+            other.type === 'search'
+                ? { WebkitAppearance: 'textfield' }
+                : {};
+
         return (
-            <MuiTextField errorStyle={errorStyle} {...other} value={this.state.value} onChange={this.change} />
+            <MuiTextField
+                errorStyle={errorStyle}
+                {...other}
+                value={this.state.value}
+                onChange={this.change}
+                inputStyle={inputStyle}
+            />
         );
     }
 }
 
 TextField.propTypes = {
+    changeEvent: PropTypes.string.isRequired,
     value: PropTypes.string,
     multiLine: PropTypes.bool,
 };
