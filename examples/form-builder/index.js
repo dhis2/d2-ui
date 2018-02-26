@@ -58,6 +58,7 @@ class FormExample extends React.Component {
                     style: { width: '100%' },
                     hintText: 'Example hint text',
                     changeEvent: 'onBlur',
+                    type: 'search',
                 },
                 validators: [{
                     message: 'The field must have a value',
@@ -92,11 +93,11 @@ class FormExample extends React.Component {
             },
             {
                 name: 'exampleDropDown',
-                value: '1',
+                value: null,
                 component: SelectField,
                 props: {
                     menuItems: [{ id: '1', displayName: 'Option 1' }, { id: '2', displayName: 'Option 2' }],
-                    includeEmpty: false,
+                    includeEmpty: true,
                     emptyLabel: 'No Options',
                 },
             },

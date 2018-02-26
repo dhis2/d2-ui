@@ -11,7 +11,8 @@ function renderMenuItems({ menuItems, includeEmpty, emptyLabel }) {
     const renderedMenuItems = menuItems.map(({ id, displayName }) => renderMenuItem(id, displayName));
 
     if (includeEmpty) {
-        renderedMenuItems.unshift(renderMenuItem({ value: 'null', text: emptyLabel }));
+        // React will render an item with key = 'null' (String) so there is no problem here
+        renderedMenuItems.unshift(renderMenuItem(null, emptyLabel));
     }
     return renderedMenuItems;
 }
@@ -20,6 +21,11 @@ function createCallbackWithFakeEventFromMaterialSelectField(callback) {
     return (event, index, value) => callback({ target: { value } });
 }
 
+function selectionRenderer(value, menuItem) {
+    // Without this the empty option label would be showing together with the hintText
+    // this makes sure only the hint text is displayed when the empty option is selected
+    return value ? menuItem.props.primaryText : null;
+}
 
 function DropDown({ fullWidth, onFocus, onBlur, onChange, value, disabled, menuItems, hintText, includeEmpty, emptyLabel, noOptionsLabel, ...other }) {
     const menuItemArray = Array.isArray(menuItems) ? menuItems : menuItems.toArray();
@@ -31,6 +37,7 @@ function DropDown({ fullWidth, onFocus, onBlur, onChange, value, disabled, menuI
             hintText={hintText}
             onChange={createCallbackWithFakeEventFromMaterialSelectField(onChange)}
             disabled={!hasOptions || disabled}
+            selectionRenderer={selectionRenderer}
             {...other}
         >
             {hasOptions
