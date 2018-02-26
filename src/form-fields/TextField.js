@@ -44,12 +44,13 @@ class TextField extends Component {
 }
 
 TextField.propTypes = {
-    changeEvent: PropTypes.string.isRequired,
+    changeEvent: PropTypes.string,
     value: PropTypes.string,
     multiLine: PropTypes.bool,
 };
 
 TextField.defaultProps = {
+    changeEvent: 'onBlur',
     value: '',
     multiLine: false,
 };
