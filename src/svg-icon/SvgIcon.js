@@ -22,6 +22,7 @@ import Extension from 'material-ui/svg-icons/action/extension';
 import FontDownload from 'material-ui/svg-icons/content/font-download';
 import Group from 'material-ui/svg-icons/social/group';
 import GridOn from 'material-ui/svg-icons/image/grid-on';
+import Info from 'material-ui/svg-icons/action/info';
 import InfoOutline from 'material-ui/svg-icons/action/info-outline';
 import InsertChart from 'material-ui/svg-icons/editor/insert-chart';
 import List from 'material-ui/svg-icons/action/list';
@@ -68,6 +69,7 @@ const icons = {
     FontDownload,
     GridOn,
     Group,
+    Info,
     InfoOutline,
     InsertChart,
     List,
