@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { Access } from '../Access.component';
-import { getStubContext } from '../../../config/inject-theme';
+import { getStubContext } from '../../../../config/inject-theme';
 
 describe('Sharing: Access component', () => {
     let accessComponent;

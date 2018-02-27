@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import MenuItem from 'material-ui/MenuItem';
 import PermissionOption from '../PermissionOption.component';
-import { getStubContext } from '../../../config/inject-theme';
+import { getStubContext } from '../../../../config/inject-theme';
 
 const permissionOptionProps = {
     disabled: false,

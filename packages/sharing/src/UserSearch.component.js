@@ -72,8 +72,6 @@ class UserSearch extends Component {
 
         if (type === 'userAccess') {
             this.props.addUserAccess({ ...selection, access: accessObjectToString(this.state.defaultAccess) });
-        } else this.props.addUserGroupAccess({ ...selection, access: accessObjectToString(this.state.defaultAccess) });
-
         } else {
             this.props.addUserGroupAccess({ ...selection, access: accessObjectToString(this.state.defaultAccess) });
         }
