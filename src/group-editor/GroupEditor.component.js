@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { findDOMNode } from 'react-dom';
 
 // Material UI
 import Paper from 'material-ui/Paper/Paper';
@@ -57,6 +56,55 @@ class GroupEditor extends Component {
         this.disposables.forEach((disposable) => {
             disposable.unsubscribe();
         });
+    }
+
+    //
+    // Event handlers
+    //
+    onAssignItems = () => {
+        this.setState({ loading: true });
+        this.props.onAssignItems([].map.call(this.leftSelect.selectedOptions, item => item.value))
+            .then(() => {
+                this.clearSelection();
+                this.setState({ loading: false });
+            })
+            .catch(() => {
+                this.setState({ loading: false });
+            });
+    }
+
+    onRemoveItems = () => {
+        this.setState({ loading: true });
+        this.props.onRemoveItems([].map.call(this.rightSelect.selectedOptions, item => item.value))
+            .then(() => {
+                this.clearSelection();
+                this.setState({ loading: false });
+            })
+            .catch(() => {
+                this.setState({ loading: false });
+            });
+    }
+
+    onAssignAll = () => {
+        this.setState({ loading: true });
+        this.props.onAssignItems([].map.call(this.leftSelect.options, item => item.value))
+            .then(() => {
+                this.clearSelection();
+                this.setState({ loading: false });
+            }).catch(() => {
+                this.setState({ loading: false });
+            });
+    }
+
+    onRemoveAll = () => {
+        this.setState({ loading: true });
+        this.props.onRemoveItems([].map.call(this.rightSelect.options, item => item.value))
+            .then(() => {
+                this.clearSelection();
+                this.setState({ loading: false });
+            }).catch(() => {
+                this.setState({ loading: false });
+            });
     }
 
     //
@@ -130,6 +178,11 @@ class GroupEditor extends Component {
     getSelectedCount() {
         return Math.max(this.getAvailableSelectedCount(), this.getAssignedSelectedCount());
     }
+
+    getSelectedItems() {
+        return [].map.call(this.rightSelect.selectedOptions, item => item.value);
+    }
+
     byAssignedItemsOrder = (left, right) => {
         const assignedItemStore = this.props.assignedItemStore.state;
 
@@ -141,6 +194,25 @@ class GroupEditor extends Component {
 
         return assignedItemStore.indexOf(left.value) > assignedItemStore.indexOf(right.value) ? 1 : -1;
     };
+
+    clearSelection(left = true, right = true) {
+        if (left) {
+            this.leftSelect.selectedIndex = -1;
+        }
+
+        if (right) {
+            this.rightSelect.selectedIndex = -1;
+        }
+
+        this.setState(state => ({
+            selectedLeft: left ? 0 : state.selectedLeft,
+            selectedRight: right ? 0 : state.selectedRight,
+        }));
+    }
+
+    filterItems(items) {
+        return items.filter(item => this.getFilterText().length === 0 || item.text.trim().toLowerCase().indexOf(this.getFilterText()) !== -1);
+    }
 
     //
     // Rendering
@@ -309,78 +381,6 @@ class GroupEditor extends Component {
             </div>
         );
     }
-
-    clearSelection(left = true, right = true) {
-        if (left) {
-            this.leftSelect.selectedIndex = -1;
-        }
-
-        if (right) {
-            this.rightSelect.selectedIndex = -1;
-        }
-
-        this.setState(state => ({
-            selectedLeft: left ? 0 : state.selectedLeft,
-            selectedRight: right ? 0 : state.selectedRight,
-        }));
-    }
-
-    filterItems(items) {
-        return items.filter(item => this.getFilterText().length === 0 || item.text.trim().toLowerCase().indexOf(this.getFilterText()) !== -1);
-    }
-
-    getSelectedItems() {
-        return [].map.call(this.rightSelect.selectedOptions, item => item.value);
-    }
-
-    //
-    // Event handlers
-    //
-    onAssignItems = () => {
-        this.setState({ loading: true });
-        this.props.onAssignItems([].map.call(this.leftSelect.selectedOptions, item => item.value))
-            .then(() => {
-                this.clearSelection();
-                this.setState({ loading: false });
-            })
-            .catch(() => {
-                this.setState({ loading: false });
-            });
-    }
-
-    onRemoveItems = () => {
-        this.setState({ loading: true });
-        this.props.onRemoveItems([].map.call(this.rightSelect.selectedOptions, item => item.value))
-            .then(() => {
-                this.clearSelection();
-                this.setState({ loading: false });
-            })
-            .catch(() => {
-                this.setState({ loading: false });
-            });
-    }
-
-    onAssignAll = () => {
-        this.setState({ loading: true });
-        this.props.onAssignItems([].map.call(this.leftSelect.options, item => item.value))
-            .then(() => {
-                this.clearSelection();
-                this.setState({ loading: false });
-            }).catch(() => {
-                this.setState({ loading: false });
-            });
-    }
-
-    onRemoveAll = () => {
-        this.setState({ loading: true });
-        this.props.onRemoveItems([].map.call(this.rightSelect.options, item => item.value))
-            .then(() => {
-                this.clearSelection();
-                this.setState({ loading: false });
-            }).catch(() => {
-                this.setState({ loading: false });
-            });
-    }
 }
 
 GroupEditor.propTypes = {
@@ -405,6 +405,9 @@ GroupEditor.propTypes = {
     // remove items callback, called with an array of values to be removed from the group
     onRemoveItems: PropTypes.func.isRequired,
 
+    // remove items callback, called with an array of values to be removed from the group
+    onMoveItems: PropTypes.func,
+
     // The height of the component, defaults to 500px
     height: PropTypes.number,
 };
@@ -416,6 +419,7 @@ GroupEditor.contextTypes = {
 GroupEditor.defaultProps = {
     height: 500,
     filterText: '',
+    onMoveItems: () => {},
 };
 
 export default GroupEditor;

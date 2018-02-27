@@ -51,7 +51,7 @@ class ProgramOperandSelector extends Component {
     };
 
     componentDidMount() {
-        this.context.d2.models.program.list({ paging: false, fields: 'id,displayName,programTrackedEntityAttributes[id,displayName,dimensionItem],programIndicators[id,displayName,dimensionItem]' })
+        this.context.d2.models.program.list({ paging: false, fields: 'id,displayName,programTrackedEntityAttributes[id,displayName,trackedEntityAttribute],programIndicators[id,displayName,dimensionItem]' })
             .then(programCollection => programCollection.toArray())
             .then((programs) => {
                 const programMenuItems = programs
@@ -60,17 +60,15 @@ class ProgramOperandSelector extends Component {
                         text: program.displayName,
                     }))
                     .sort((left, right) => left.text.localeCompare(right.text.toLowerCase()));
-
+                
                 this.setState({
                     programMenuItems,
                     programAttributes: new Map(programs.map(program => [
                         program.id,
-                        Array.from(program.programTrackedEntityAttributes.values
-                            ? program.programTrackedEntityAttributes.values()
-                            : [])
-                            .map(tea => ({
-                                value: tea.dimensionItem,
-                                label: tea.displayName,
+                        program.programTrackedEntityAttributes
+                            .map(ptea => ({
+                                value: ptea.trackedEntityAttribute.id,
+                                label: ptea.displayName,
                             }))
                             .sort((left, right) => left.label.toLowerCase().localeCompare(right.label.toLowerCase())),
                     ])),
@@ -108,8 +106,7 @@ class ProgramOperandSelector extends Component {
     }
 
     onProgramTrackedEntityAttributeSelected = (value) => {
-        const programTrackedEntityAttributeFormula = ['A{', value, '}'].join('');
-
+        const programTrackedEntityAttributeFormula = ['A{', this.state.selectedProgram, '.', value, '}'].join('');
         this.props.onSelect(programTrackedEntityAttributeFormula);
     }
 
