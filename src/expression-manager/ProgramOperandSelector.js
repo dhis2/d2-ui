@@ -51,7 +51,11 @@ class ProgramOperandSelector extends Component {
     };
 
     componentDidMount() {
-        this.context.d2.models.program.list({ paging: false, fields: 'id,displayName,programTrackedEntityAttributes[id,displayName,dimensionItem],programIndicators[id,displayName,dimensionItem]' })
+        this.context.d2.models.program.list(
+            {
+                paging: false,
+                fields: 'id,displayName,programTrackedEntityAttributes[id,displayName,trackedEntityAttribute],programIndicators[id,displayName,dimensionItem]',
+            })
             .then(programCollection => programCollection.toArray())
             .then((programs) => {
                 const programMenuItems = programs
@@ -65,12 +69,10 @@ class ProgramOperandSelector extends Component {
                     programMenuItems,
                     programAttributes: new Map(programs.map(program => [
                         program.id,
-                        Array.from(program.programTrackedEntityAttributes.values
-                            ? program.programTrackedEntityAttributes.values()
-                            : [])
-                            .map(tea => ({
-                                value: tea.dimensionItem,
-                                label: tea.displayName,
+                        program.programTrackedEntityAttributes
+                            .map(ptea => ({
+                                value: ptea.trackedEntityAttribute.id,
+                                label: ptea.displayName,
                             }))
                             .sort((left, right) => left.label.toLowerCase().localeCompare(right.label.toLowerCase())),
                     ])),
@@ -94,12 +96,23 @@ class ProgramOperandSelector extends Component {
         const api = this.context.d2.Api.getApi();
         const programId = event.target.value;
 
-        api.get('programDataElements', { program: programId, fields: 'id,displayName,dimensionItem', paging: false, order: 'displayName:asc' })
+        api.get('programDataElements',
+            {
+                program: programId,
+                fields: 'id,displayName,dimensionItem',
+                paging: false,
+                order: 'displayName:asc',
+            })
             .then((programDataElements) => {
                 this.setState({
-                    selectedProgram: programId,
+                    selectedProgramID: programId,
                     programDataElementOptions: programDataElements.programDataElements
-                        .map(programDataElement => ({ value: programDataElement.dimensionItem, label: programDataElement.displayName })),
+                        .map(programDataElement => (
+                            {
+                                value: programDataElement.dimensionItem,
+                                label: programDataElement.displayName,
+                            }
+                        )),
                     programIndicatorOptions: this.state.programIndicators.get(programId) || [],
                     programTrackedEntityAttributeOptions: this.state.programAttributes.get(programId) || [],
                 });
@@ -107,21 +120,18 @@ class ProgramOperandSelector extends Component {
             .catch(error => log.error(error));
     }
 
-    onProgramTrackedEntityAttributeSelected = (value) => {
-        const programTrackedEntityAttributeFormula = ['A{', value, '}'].join('');
-
+    onProgramTrackedEntityAttributeSelected = (trackedEntityAttributeID) => {
+        const programTrackedEntityAttributeFormula = `A{${this.state.selectedProgramID}.${trackedEntityAttributeID}}`;
         this.props.onSelect(programTrackedEntityAttributeFormula);
     }
 
-    onProgramIndicatorSelected = (value) => {
-        const programIndicatorFormula = ['I{', value, '}'].join('');
-
+    onProgramIndicatorSelected = (programIndicatorID) => {
+        const programIndicatorFormula = `I{${programIndicatorID}}`;
         this.props.onSelect(programIndicatorFormula);
     }
 
-    onProgramDataElementSelected = (value) => {
-        const programDataElementSelected = ['D{', value, '}'].join('');
-
+    onProgramDataElementSelected = (programDataElementID) => {
+        const programDataElementSelected = `D{${programDataElementID}}`;
         this.props.onSelect(programDataElementSelected);
     }
 
@@ -170,13 +180,13 @@ class ProgramOperandSelector extends Component {
                 <div style={styles.dropDownStyle}>
                     <DropDownForSchemaReference
                         schema="program"
-                        value={this.state.selectedProgram}
+                        value={this.state.selectedProgramID}
                         fullWidth
                         onChange={this.onLoadProgramDataOperands}
                         hintText={this.getTranslation('please_select_a_program')}
                     />
                 </div>
-                {this.state.selectedProgram ? this.renderTabs() : null}
+                {this.state.selectedProgramID ? this.renderTabs() : null}
             </div>
         );
     }

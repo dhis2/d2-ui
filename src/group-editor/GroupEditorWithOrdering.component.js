@@ -32,30 +32,26 @@ function moveItemOneSpotUpIn(currentlySelected) {
     };
 }
 
-class GroupEditorWithOrdering extends Component {
-    render() {
-        return (
-            <div style={{ paddingRight: '2.5rem', position: 'relative' }}>
-                <GroupEditor ref={(r) => { this.groupEditor = r; }} {...this.props} />
-                <div style={{ width: '2.5rem', position: 'absolute', top: '45%', right: 0 }}>
-                    <IconButton
-                        style={{ color: 'rgb(33, 150, 243)' }}
-                        iconClassName="material-icons"
-                        tooltip="Move up"
-                        onClick={this.moveUp.bind(this)}
-                    >arrow_upward</IconButton>
-                    <IconButton
-                        style={{ color: 'rgb(33, 150, 243)' }}
-                        iconClassName="material-icons"
-                        tooltip="Move down"
-                        onClick={this.moveDown.bind(this)}
-                    >arrow_downward</IconButton>
-                </div>
-            </div>
-        );
-    }
+const styles = {
+    wrapper: {
+        paddingRight: '2.5rem',
+        position: 'relative',
+    },
+    arrowsDiv: {
+        width: '2.5rem',
+        position: 'absolute',
+        top: '45%',
+        right: 0,
+    },
+    arrow: {
+        color: 'rgb(33, 150, 243)',
+    },
+};
 
-    moveUp() {
+class GroupEditorWithOrdering extends Component {
+    setRef = (r) => { this.groupEditor = r; }
+
+    moveUp = () => {
         if (!Array.isArray(this.props.assignedItemStore.getState())) {
             return log.warn('Moving in <GroupEditorWithOrdering /> is not supported (yet) when the assignedItemStore\'s state is a ModelCollectionProperty');
         }
@@ -70,7 +66,7 @@ class GroupEditorWithOrdering extends Component {
         this.props.onOrderChanged(currentlySelected);
     }
 
-    moveDown() {
+    moveDown = () => {
         if (!Array.isArray(this.props.assignedItemStore.getState())) {
             return log.warn('Moving in <GroupEditorWithOrdering /> is not supported (yet) when the assignedItemStore\'s state is a ModelCollectionProperty');
         }
@@ -85,10 +81,38 @@ class GroupEditorWithOrdering extends Component {
         // Emit the changed order to the event handler
         this.props.onOrderChanged(currentlySelected);
     }
+
+    render() {
+        const {
+            onOrderChanged,
+            ...other
+        } = this.props;
+
+        return (
+            <div style={styles.wrapper}>
+                <GroupEditor ref={this.setRef} {...other} />
+                <div style={styles.arrowsDiv}>
+                    <IconButton
+                        style={styles.arrow}
+                        iconClassName="material-icons"
+                        tooltip="Move up"
+                        onClick={this.moveUp}
+                    >arrow_upward</IconButton>
+                    <IconButton
+                        style={styles.arrow}
+                        iconClassName="material-icons"
+                        tooltip="Move down"
+                        onClick={this.moveDown}
+                    >arrow_downward</IconButton>
+                </div>
+            </div>
+        );
+    }
 }
 
 GroupEditorWithOrdering.propTypes = {
     onOrderChanged: PropTypes.func,
+    assignedItemStore: PropTypes.array.isRequired,
 };
 
 GroupEditorWithOrdering.defaultProps = {
