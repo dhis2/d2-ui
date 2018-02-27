@@ -245,7 +245,6 @@ class ExpressionManager extends Component {
                                     onSelect={this.appendToFormula}
                                 />
                             </Tab>
-
                             <Tab style={styles.tabs} label={this.i18n.getTranslation('reporting_rates')}>
                                 <ReportingRatesSelector
                                     listStyle={styles.list}
