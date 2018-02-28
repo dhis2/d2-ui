@@ -44,7 +44,7 @@ class TextField extends Component {
 }
 
 TextField.propTypes = {
-    changeEvent: PropTypes.string,
+    changeEvent: PropTypes.any,
     value: PropTypes.string,
     multiLine: PropTypes.bool,
 };

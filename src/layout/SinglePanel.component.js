@@ -10,6 +10,8 @@ function SinglePanel(props) {
         display: 'flex',
         flexOrientation: 'row',
         marginTop: '8rem',
+        marginLeft: '2rem',
+        marginRight: '2rem',
         ...mainStyle,
     };
 
@@ -29,12 +31,16 @@ function SinglePanel(props) {
 }
 
 SinglePanel.propTypes = {
-    children: PropTypes.object.isRequired,
+    children: PropTypes.oneOfType([
+        PropTypes.array,
+        PropTypes.object,
+    ]),
     mainStyle: PropTypes.object,
 };
 
 SinglePanel.defaultProps = {
     mainStyle: {},
+    children: null,
 };
 
 export default SinglePanel;

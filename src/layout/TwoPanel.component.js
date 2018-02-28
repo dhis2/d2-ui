@@ -51,7 +51,10 @@ function TwoPanelSelector(props) {
     );
 }
 TwoPanelSelector.propTypes = {
-    children: PropTypes.array.isRequired,
+    children: PropTypes.oneOfType([
+        PropTypes.array,
+        PropTypes.object,
+    ]),
     childWrapStyle: PropTypes.object,
     mainStyle: PropTypes.object,
     sizeRatio: PropTypes.array,
