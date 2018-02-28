@@ -1,6 +1,6 @@
 {
   "name": "d2-ui-favorites",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Favorite component for DHIS2",
   "main": "./index.js",
   "license": "BSD-3-Clause",
