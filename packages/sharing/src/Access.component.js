@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { compose, mapProps, getContext, withProps } from 'recompose';
-import { config } from 'd2/lib/d2';
 import IconButton from 'material-ui/IconButton';
 import SvgIcon from 'd2-ui/lib/svg-icon/SvgIcon';
 

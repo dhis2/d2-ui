@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { config } from 'd2/lib/d2';
 import Divider from 'material-ui/Divider';
 import Subheader from 'material-ui/Subheader';
 
@@ -12,8 +11,6 @@ import {
     ExternalAccess,
     GroupAccess,
 } from './Access.component';
-
-config.i18n.strings.add('who_has_access');
 
 const styles = {
     createdBy: {
@@ -33,6 +30,11 @@ const styles = {
  * preferences.
  */
 class Sharing extends React.Component {
+    constructor(props, context) {
+        super(props);
+        context.d2.i18n.addStrings(['who_has_access']);
+    }
+
     onAccessRuleChange = id => (accessRule) => {
         const changeWithId = rule => (rule.id === id ? { ...rule, access: accessRule } : rule);
         const userAccesses = (this.props.sharedObject.object.userAccesses || []).map(changeWithId);

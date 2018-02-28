@@ -7,7 +7,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
-import SharingDialog from '../../src/sharing/SharingDialog.component';
+import SharingDialog from '../../packages/sharing/src/SharingDialog.component';
 
 injectTapEventPlugin();
 
