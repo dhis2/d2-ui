@@ -77,7 +77,7 @@ const styles = {
         color: 'white',
     },
     divider: {
-        padding: '0 1rem 1rem',
+        padding: '0 1rem 2rem',
     },
 };
 
