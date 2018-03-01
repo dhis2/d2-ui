@@ -135,15 +135,19 @@ class Sidebar extends Component {
                         ? <FontIcon className="material-icons">{section.icon}</FontIcon>
                         : section.icon;
 
-                    return (
-                        <ListItem
-                            key={section.key}
-                            primaryText={section.label}
-                            onClick={this.setSection.bind(this, section.key)}
-                            style={listItemStyle}
-                            leftIcon={icon}
-                        />
-                    );
+                    const listItem = <ListItem
+                        key={section.key}
+                        primaryText={section.label}
+                        onClick={this.setSection.bind(this, section.key)}
+                        style={listItemStyle}
+                        leftIcon={icon}
+                    />;
+
+                    if (section.path) {
+                        return <a href={section.path}>{listItem}</a>;
+                    } else {
+                        return listItem;
+                    }
                 })}
             </List>
         );
@@ -164,6 +168,7 @@ Sidebar.propTypes = {
     sections: PropTypes.arrayOf(PropTypes.shape({
         key: PropTypes.string,
         label: PropTypes.string,
+        path: PropTypes.string,
         icon: PropTypes.oneOfType([
             PropTypes.string,
             PropTypes.element,
