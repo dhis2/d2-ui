@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from 'react-dom';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import log from 'loglevel';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -8,7 +8,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import Snackbar from 'material-ui/Snackbar';
 
 import d2Lib from 'd2/lib/d2';
-import FavoritesDialog from '../../src/favorites/FavoritesDialog';
+import FavoritesDialog from '../../packages/favorites/src/FavoritesDialog';
 
 class FavoritesDialogExample extends React.Component {
     state = {
@@ -21,16 +21,6 @@ class FavoritesDialogExample extends React.Component {
             message: '',
         },
     };
-
-    getChildContext = () => ({
-        d2: {
-            i18n: {
-                getTranslation(key) {
-                    return key;
-                },
-            },
-        },
-    });
 
     toggleDialog = type => () => {
         this.setState({
@@ -82,6 +72,7 @@ class FavoritesDialogExample extends React.Component {
                     type={this.state.favoritesDialog.type}
                     onRequestClose={this.toggleDialog(this.state.type)}
                     onFavoriteSelect={this.onFavoriteSelect}
+                    d2={this.props.d2}
                 />
                 <Snackbar
                     open={this.state.snackbar.open}
@@ -94,10 +85,6 @@ class FavoritesDialogExample extends React.Component {
     );
 }
 
-FavoritesDialogExample.childContextTypes = {
-    d2: PropTypes.object,
-};
-
 const el = document.getElementById('favoritesDialog');
 const dhisDevConfig = DHIS_CONFIG;
 const baseUrl = `${dhisDevConfig.baseUrl}/api`;
@@ -106,9 +93,9 @@ d2Lib.config.baseUrl = baseUrl;
 d2Lib
     .init({ baseUrl })
     .then(d2 => {
-        render(<FavoritesDialogExample />, el);
+        ReactDOM.render(<FavoritesDialogExample d2={d2}/>, el);
     })
     .catch(error => {
         log.error('Failed to initialize d2', error);
-        render(<div>Failed to initialise d2: {error}</div>, el);
+        ReactDOM.render(<div>Failed to initialise d2: {error}</div>, el);
     });
