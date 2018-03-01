@@ -4,7 +4,15 @@ import List from 'material-ui/List/List';
 import ListItem from 'material-ui/List/ListItem';
 import FontIcon from 'material-ui/FontIcon';
 
+
 import TextFieldTemp from '../../src/text-field/TextFieldTemp';
+
+const d2InputProps = {
+    TextField: {
+        minWidth: 200,
+    }
+}
+
 
 const styles = {
     container: {
@@ -75,12 +83,8 @@ class Sidebar extends Component {
         }
     }
 
-    changeSearchText = () => {
-        this.setState({ searchText: this.searchBox.getValue() }, () => {
-            if (this.props.onChangeSearchText) {
-                this.props.onChangeSearchText(this.state.searchText);
-            }
-        });
+    changeSearchText = searchText => {
+        this.setState({ searchText });
     }
 
     onClear = () => {
@@ -112,12 +116,13 @@ class Sidebar extends Component {
                 <div style={styles.container}>
                     <TextFieldTemp
                         placeholder={this.props.searchFieldLabel ? this.props.searchFieldLabel : d2.i18n.getTranslation('search')}
-                        style={{ width: '100%' }}
+                        style={d2InputProps.TextField}
                         value={this.state.searchText}
-                        onChange={this.changeSearchText}
-                        ref={(ref) => { this.searchBox = ref; }}
+                        onChange={event => { this.changeSearchText(event.target.value )}}
                     />
-                    {this.state.searchText ? <FontIcon style={styles.closeButton} className="material-icons" onClick={this.onClear}>clear</FontIcon> : undefined}
+                    { this.state.searchText 
+                        ? <FontIcon style={styles.closeButton} className="material-icons" onClick={this.onClear}>clear</FontIcon> 
+                        : undefined }
                 </div>
             );
         }

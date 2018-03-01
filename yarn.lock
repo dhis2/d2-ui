@@ -4462,6 +4462,12 @@ material-colors@^1.2.1:
   version "1.2.5"
   resolved "https://registry.yarnpkg.com/material-colors/-/material-colors-1.2.5.tgz#5292593e6754cb1bcc2b98030e4e0d6a3afc9ea1"
 
+material-ui-icons@^1.0.0-beta.35:
+  version "1.0.0-beta.35"
+  resolved "https://registry.yarnpkg.com/material-ui-icons/-/material-ui-icons-1.0.0-beta.35.tgz#f795fafa385918ef7c88ee382e5e5bf4401f008c"
+  dependencies:
+    recompose "^0.26.0"
+
 material-ui-next@^1.0.0-beta.32:
   version "1.0.0-beta.32"
   resolved "https://registry.yarnpkg.com/material-ui-next/-/material-ui-next-1.0.0-beta.32.tgz#7cea7a23b3559470136b7e1db3563473f76ab868"

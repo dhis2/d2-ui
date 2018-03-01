@@ -7,6 +7,7 @@ import Button from '../../src/button/Button';
 import SvgIcon from '../../src/svg-icon/SvgIcon';
 
 import ButtonTemp from '../../src/button/ButtonTemp';
+import Add from 'material-ui-icons/Add';
 import Icon from 'material-ui-next/Icon';
 
 injectTapEventPlugin();
@@ -26,9 +27,9 @@ class Buttons extends Component {
 
     render = () => {
         return (
+                <MuiThemeProvider muiTheme={getMuiTheme()}>
             <div>
                 <h3> Material-ui v.0 </h3>
-                <MuiThemeProvider muiTheme={getMuiTheme()}>
                     <div style={style}>
                         <Button onClick={() => {}}>Default</Button>
                         <Button disabled onClick={() => {}}>Disabled</Button>
@@ -39,9 +40,8 @@ class Buttons extends Component {
                         <Button fab onClick={() => {}}><SvgIcon icon='Add' /></Button>
                         <Button fab color='accent' onClick={() => {}}><SvgIcon icon='Add' /></Button>
 
-
                     </div>
-                </MuiThemeProvider>
+
                 <h3> Material-ui v.1 </h3>
                 <div style={style}>
                     <ButtonTemp> {'Default'} </ButtonTemp>
@@ -51,15 +51,12 @@ class Buttons extends Component {
                     <ButtonTemp variant='raised' color='secondary'> {'Accent'} </ButtonTemp>
                     <ButtonTemp disabled variant='raised' color='inherit'> {'Disabled'} </ButtonTemp> 
                     
-                    <ButtonTemp variant='fab'>
-                        <Icon>{"add_circle"}</Icon>
-                    </ButtonTemp>
-                    
-                    <ButtonTemp variant='fab'> 
-                        <Icon>add_circle</Icon>
-                    </ButtonTemp>
+                    <ButtonTemp variant='fab'> <Icon>{"add_icon"}</Icon> </ButtonTemp>                    
+
+                    <ButtonTemp variant='fab'> <Add /> </ButtonTemp>
                 </div>
             </div>
+                </MuiThemeProvider>
             );
         }
 }

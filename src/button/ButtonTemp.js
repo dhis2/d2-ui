@@ -5,11 +5,10 @@ import { createClassName } from '../component-helpers/utils';
 
 const ButtonTemp = props => {
     const { selector, ...passThroughProps } = props;
-    
-    const className = createClassName('d2-ui-textfield', selector);    
-    return (
-        <Button {...passThroughProps}/>
-    );
+
+    const className = createClassName('d2-ui-textfield', selector);   
+
+    return ( <Button {...passThroughProps}/> );
 };
 
 export default ButtonTemp;

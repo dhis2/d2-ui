@@ -45,7 +45,9 @@ const SelectTemp = props => {
                 <Select 
                     {...passThroughProps}
                 >
-                    { !loading || children ? children : displayLoadingIndicator(loading) }
+                    { !loading || children 
+                        ? children 
+                        : displayLoadingIndicator(loading) }
                 </Select>
         </FormControl>
     );

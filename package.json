@@ -72,6 +72,7 @@
     "test"
   ],
   "dependencies": {
+    "material-ui-icons": "^1.0.0-beta.35",
     "material-ui-next": "^1.0.0-beta.32"
   }
 }
