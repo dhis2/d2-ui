@@ -1,9 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Subheader from 'material-ui/Subheader';
-import { getStubContext } from '../../../config/inject-theme';
+import { getStubContext } from '../../../../config/inject-theme';
 import Sharing from '../Sharing.component';
-import Heading from '../../headings/Heading.component';
+import Heading from 'd2-ui/lib/headings/Heading.component';
 import CreatedBy from '../CreatedBy.component';
 import UserSearch from '../UserSearch.component';
 import { PublicAccess, ExternalAccess, GroupAccess } from '../Access.component';

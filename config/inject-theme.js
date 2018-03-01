@@ -33,6 +33,7 @@ export function getStubContext() {
                 getTranslation(key) {
                     return `${key}_translated`;
                 },
+                addStrings: jest.fn().mockReturnValue(true),
             },
             Api: {
                 getApi: jest.fn().mockReturnValue({baseUrl: 'http://localhost:8080'}),

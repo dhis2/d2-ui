@@ -4,10 +4,10 @@ import { shallow } from 'enzyme';
 import Dialog from 'material-ui/Dialog/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import SharingDialog from '../SharingDialog.component';
-import LoadingMask from '../../loading-mask/LoadingMask.component';
+import LoadingMask from 'd2-ui/lib/loading-mask/LoadingMask.component';
 import Sharing from '../Sharing.component';
 
-import { getStubContext } from '../../../config/inject-theme';
+import { getStubContext } from '../../../../config/inject-theme';
 
 const mockedObject = {
     sharedObject: {
@@ -48,22 +48,23 @@ const sharingDialogProps = {
     open: true,
     type: 'report',
     id: 'AMERNML55Tg',
-    onRequestClose: () => {},
 };
 
 describe('Sharing: SharingDialog component', () => {
     let sharingDialogComponent;
     let onRequestClose;
+    let context = getStubContext();
 
     const renderComponent = (props = {}) =>
         shallow(<SharingDialog {...props} />, {
-            context: getStubContext(),
+            context,
         });
 
     beforeEach(() => {
         onRequestClose = jest.fn();
         sharingDialogComponent = renderComponent({
             ...sharingDialogProps,
+            d2: context.d2,
             onRequestClose,
         });
     });
@@ -78,7 +79,7 @@ describe('Sharing: SharingDialog component', () => {
 
     describe('close action', () => {
         beforeEach(() => {
-            sharingDialogComponent.setState({
+            sharingDialogComponent.instance().setState({
                 sharedObject: mockedObject,
             });
         });
@@ -106,7 +107,7 @@ describe('Sharing: SharingDialog component', () => {
         });
 
         it('should render when sharedObject is undefined and dialog is open', () => {
-            renderComponent(sharingDialogProps);
+            renderComponent({...sharingDialogProps, d2: context.d2});
             expect(sharingDialogComponent.find(LoadingMask)).toHaveLength(1);
         });
     });

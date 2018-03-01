@@ -6,16 +6,9 @@ import IconButton from 'material-ui/IconButton';
 import Divider from 'material-ui/Divider';
 import Popover from 'material-ui/Popover';
 import Menu from 'material-ui/Menu';
-import { config } from 'd2/lib/d2';
-import SvgIcon from '../svg-icon/SvgIcon';
+import SvgIcon from 'd2-ui/lib/svg-icon/SvgIcon';
 
 import PermissionOption from './PermissionOption.component';
-
-config.i18n.strings.add('can_edit_and_view');
-config.i18n.strings.add('can_capture_data');
-config.i18n.strings.add('can_view_data');
-config.i18n.strings.add('can_view_only');
-config.i18n.strings.add('no_access');
 
 const styles = {
     optionHeader: {
@@ -38,6 +31,17 @@ class PermissionPicker extends Component {
     state = {
         open: false,
     };
+
+    constructor(props, context) {
+        super(props);
+        context.d2.i18n.addStrings([
+            'can_edit_and_view',
+            'can_capture_data',
+            'can_view_data',
+            'can_view_only',
+            'no_access'
+        ]);
+    }
 
     onOptionClick = (event, menuItem) => {
         const newAccess = {

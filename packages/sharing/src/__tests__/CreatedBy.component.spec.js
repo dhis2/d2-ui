@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { getStubContext } from '../../../config/inject-theme';
+import { getStubContext } from '../../../../config/inject-theme';
 import CreatedBy from '../CreatedBy.component';
 
 describe('Sharing: CreatedBy component', () => {

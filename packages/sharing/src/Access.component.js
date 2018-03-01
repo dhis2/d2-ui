@@ -1,20 +1,12 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { compose, mapProps, getContext, withProps } from 'recompose';
-import { config } from 'd2/lib/d2';
 import IconButton from 'material-ui/IconButton';
-import SvgIcon from '../svg-icon/SvgIcon';
+import SvgIcon from 'd2-ui/lib/svg-icon/SvgIcon';
 
 import PermissionPicker from './PermissionPicker.component';
 
 import { accessStringToObject, accessObjectToString } from './utils';
-
-config.i18n.strings.add('public_access');
-config.i18n.strings.add('external_access');
-config.i18n.strings.add('anyone_can_view_without_a_login');
-config.i18n.strings.add('anyone_can_find_view_and_edit');
-config.i18n.strings.add('anyone_can_find_and_view');
-config.i18n.strings.add('no_access');
 
 const styles = {
     accessView: {
@@ -131,23 +123,33 @@ export const GroupAccess = compose(
 
 export const ExternalAccess = compose(
     getContext(d2Context),
-    withProps(props => ({
-        accessType: 'external',
-        primaryText: props.d2.i18n.getTranslation('external_access'),
-        secondaryText: props.access
-            ? props.d2.i18n.getTranslation('anyone_can_view_without_a_login')
-            : props.d2.i18n.getTranslation('no_access'),
-        access: {
-            meta: { canEdit: false, canView: props.access },
-            data: { canEdit: false, canView: false },
-        },
-        onChange: newAccess => {
-            props.onChange(newAccess.meta.canView);
-        },
-        accessOptions: {
-            meta: { canView: true, canEdit: false, noAccess: true },
-        },
-    }))
+    withProps(props => {
+        props.d2.i18n.addStrings([
+            'public_access',
+            'external_access',
+            'anyone_can_view_without_a_login',
+            'anyone_can_find_view_and_edit',
+            'anyone_can_find_and_view',
+            'no_access']);
+
+        return {
+            accessType: 'external',
+            primaryText: props.d2.i18n.getTranslation('external_access'),
+            secondaryText: props.access
+                ? props.d2.i18n.getTranslation('anyone_can_view_without_a_login')
+                : props.d2.i18n.getTranslation('no_access'),
+            access: {
+                meta: { canEdit: false, canView: props.access },
+                data: { canEdit: false, canView: false },
+            },
+            onChange: newAccess => {
+                props.onChange(newAccess.meta.canView);
+            },
+            accessOptions: {
+                meta: { canView: true, canEdit: false, noAccess: true },
+            },
+        }
+    })
 )(Access);
 
 const constructSecondaryText = ({ canView, canEdit }) => {
@@ -161,19 +163,28 @@ const constructSecondaryText = ({ canView, canEdit }) => {
 export const PublicAccess = compose(
     mapProps(useAccessObjectFormat),
     getContext(d2Context),
-    withProps(props => ({
-        accessType: 'public',
-        primaryText: props.d2.i18n.getTranslation('public_access'),
-        secondaryText: props.d2.i18n.getTranslation(
-            constructSecondaryText(props.access.meta)
-        ),
-        accessOptions: {
-            meta: { canView: true, canEdit: true, noAccess: true },
-            data: props.dataShareable && {
-                canView: true,
-                canEdit: true,
-                noAccess: true,
+    withProps(props => {
+        props.d2.i18n.addStrings([
+            'public_access',
+            'external_access',
+            'anyone_can_view_without_a_login',
+            'anyone_can_find_view_and_edit',
+            'anyone_can_find_and_view',
+            'no_access']);
+        return {
+            accessType: 'public',
+            primaryText: props.d2.i18n.getTranslation('public_access'),
+            secondaryText: props.d2.i18n.getTranslation(
+                constructSecondaryText(props.access.meta)
+            ),
+            accessOptions: {
+                meta: { canView: true, canEdit: true, noAccess: true },
+                data: props.dataShareable && {
+                    canView: true,
+                    canEdit: true,
+                    noAccess: true,
+                },
             },
-        },
-    }))
+        }
+    })
 )(Access);

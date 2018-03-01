@@ -1,15 +1,10 @@
-import { config, getInstance } from 'd2/lib/d2';
 import Dialog from 'material-ui/Dialog/Dialog';
 import FlatButton from 'material-ui/FlatButton/FlatButton';
 import Snackbar from 'material-ui/Snackbar';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Sharing from './Sharing.component';
-import LoadingMask from '../loading-mask/LoadingMask.component';
-
-config.i18n.strings.add('share');
-config.i18n.strings.add('close');
-config.i18n.strings.add('no_manage_access');
+import LoadingMask from 'd2-ui/lib/loading-mask/LoadingMask.component';
 
 const styles = {
     loadingMask: {
@@ -18,6 +13,7 @@ const styles = {
 };
 
 const defaultState = {
+    api: null,
     sharedObject: null,
     errorMessage: '',
 };
@@ -30,6 +26,20 @@ class SharingDialog extends React.Component {
         ...defaultState,
         dataShareableTypes: [],
     };
+
+    constructor(props) {
+        super(props);
+
+        if (props.d2) {
+            props.d2.i18n.addStrings(['share', 'close', 'no_manage_access']);
+        } else {
+            console.error('no d2');
+        }
+    }
+
+    getChildContext() {
+        return { d2: this.props.d2 };
+    }
 
     componentDidMount() {
         this.loadDataSharingSettings();
@@ -94,39 +104,37 @@ class SharingDialog extends React.Component {
     }
 
     loadDataSharingSettings = () => {
-        getInstance().then((d2) => {
-            const api = d2.Api.getApi();
+        const api = this.props.d2.Api.getApi();
 
-            api.get('schemas', { fields: ['name', 'dataShareable'] })
-                .then((schemas) => {
-                    const dataShareableTypes = schemas.schemas
-                        .filter(item => item.dataShareable)
-                        .map(item => item.name);
+        api
+        .get('schemas', { fields: ['name', 'dataShareable'] })
+        .then((schemas) => {
+            const dataShareableTypes = schemas.schemas
+                .filter(item => item.dataShareable)
+                .map(item => item.name);
 
-                    this.setState({
-                        dataShareableTypes,
-                    });
-                });
+            this.setState({
+                dataShareableTypes,
+            });
         });
     }
 
     loadObjectFromApi = () => {
-        getInstance().then((d2) => {
-            const api = d2.Api.getApi();
-            const { type, id } = this.props;
+        const api = this.props.d2.Api.getApi();
+        const { type, id } = this.props;
 
-            api.get('sharing', { type, id })
-                .then((sharedObject) => {
-                    this.setState({
-                        api,
-                        sharedObject,
-                    });
-                })
-                .catch((error) => {
-                    this.setState({
-                        errorMessage: error.message,
-                    });
-                });
+        api
+        .get('sharing', { type, id })
+        .then((sharedObject) => {
+            this.setState({
+                api,
+                sharedObject,
+            });
+        })
+        .catch((error) => {
+            this.setState({
+                errorMessage: error.message,
+            });
         });
     }
 
@@ -140,7 +148,7 @@ class SharingDialog extends React.Component {
         const isLoading = !this.state.sharedObject && this.props.open && !errorOccurred;
         const sharingDialogActions = [
             <FlatButton
-                label={this.context.d2.i18n.getTranslation('close')}
+                label={this.props.d2.i18n.getTranslation('close')}
                 onClick={this.closeSharingDialog}
             />,
         ];
@@ -158,7 +166,7 @@ class SharingDialog extends React.Component {
                         autoDetectWindowHeight
                         autoScrollBodyContent
                         open={this.props.open}
-                        title={this.context.d2.i18n.getTranslation('share')}
+                        title={this.props.d2.i18n.getTranslation('share')}
                         actions={sharingDialogActions}
                         onRequestClose={this.closeSharingDialog}
                         {...this.props}
@@ -175,6 +183,10 @@ class SharingDialog extends React.Component {
         );
     }
 }
+
+SharingDialog.childContextTypes = {
+    d2: PropTypes.object
+};
 
 SharingDialog.propTypes = {
     /**
@@ -197,9 +209,6 @@ SharingDialog.propTypes = {
      * Id of the sharable object.
      */
     id: PropTypes.string.isRequired,
-};
-
-SharingDialog.contextTypes = {
     d2: PropTypes.object.isRequired,
 };
 

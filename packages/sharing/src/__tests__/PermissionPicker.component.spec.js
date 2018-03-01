@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import IconButton from 'material-ui/IconButton';
 import PermissionOption from '../PermissionOption.component';
 import PermissionPicker from '../PermissionPicker.component';
-import { getStubContext } from '../../../config/inject-theme';
+import { getStubContext } from '../../../../config/inject-theme';
 
 const permissionPickerProps = {
     access: {
