@@ -4,6 +4,7 @@ import classes from 'classnames';
 import { isObject } from 'lodash/fp';
 import { isString } from 'lodash/fp';
 import IconButton from 'material-ui/IconButton';
+import FontIcon from 'material-ui/FontIcon';
 import MoreVert from 'material-ui/svg-icons/navigation/more-vert';
 import addD2Context from '../component-helpers/addD2Context';
 import { findValueRenderer } from './data-value/valueRenderers';
@@ -54,14 +55,32 @@ const DataTableRow = addD2Context(class extends Component {
                 </div>
             );
         });
+
         return (
             <div className={classList}>
                 {columns}
+                {this.props.hasContextMenu &&
+                    <div className={'data-table__rows__row__column'} style={{ width: '1%' }}>
+                        <IconButton tooltip={this.context.d2.i18n.getTranslation('actions')} onClick={this.iconMenuClick}>
+                            <MoreVert />
+                        </IconButton>
+                    </div>
+                }
+                {this.props.hasSingleAction &&
                 <div className={'data-table__rows__row__column'} style={{ width: '1%' }}>
-                    <IconButton tooltip={this.context.d2.i18n.getTranslation('actions')} onClick={this.iconMenuClick}>
-                        <MoreVert />
+
+                    <IconButton
+                        tooltip={this.context.d2.i18n.getTranslation(this.props.singleAction.label)}
+                        onClick={this.props.singleAction.action}
+                    >
+                        <FontIcon
+                            className={'material-icons'}
+                        >
+                            {this.props.singleAction.icon}
+                        </FontIcon>
                     </IconButton>
                 </div>
+                }
             </div>
         );
     }
@@ -74,6 +93,8 @@ DataTableRow.propTypes = {
     isOdd: PropTypes.bool,
     itemClicked: PropTypes.func.isRequired,
     primaryClick: PropTypes.func.isRequired,
+    hasContextMenu: PropTypes.bool,
+    hasSingleAction: PropTypes.bool,
 };
 
 export default DataTableRow;

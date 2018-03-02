@@ -44,6 +44,29 @@ class DataTable extends Component {
         });
     };
 
+    hasContextMenu = () => {
+        return Object.keys(this.props.contextMenuActions || {}).length > 1;
+    };
+
+    hasSingleAction = () => {
+        return Object.keys(this.props.contextMenuActions || {}).length === 1;
+    }
+
+    singleAction = () => {
+        if (this.hasSingleAction()) {
+            const actionKeys = Object.keys(this.props.contextMenuActions || {});
+            const label = actionKeys[0];
+            const action = this.props.contextMenuActions[label];
+            const icon = this.props.contextMenuIcons && this.props.contextMenuIcons[label] ? this.props.contextMenuIcons[label] : label;
+            return {
+                label: label,
+                action: action,
+                icon: icon,
+            };
+        }
+        return null;
+    }
+
     renderRows() {
         return this.state.dataRows
             .map((dataRowsSource, dataRowsId) => (
@@ -54,6 +77,9 @@ class DataTable extends Component {
                     isActive={this.state.activeRow === dataRowsId}
                     itemClicked={this.handleRowClick}
                     primaryClick={this.props.primaryAction || (() => { })}
+                    hasContextMenu={this.hasContextMenu()}
+                    hasSingleAction={this.hasSingleAction()}
+                    singleAction={this.singleAction()}
                 />
             ));
     }
@@ -90,12 +116,16 @@ class DataTable extends Component {
             <div className="data-table">
                 <div className="data-table__headers">
                     {this.renderHeaders()}
-                    <DataTableHeader />
+                    { (this.hasContextMenu() || this.hasSingleAction()) &&
+                        <DataTableHeader />
+                    }
                 </div>
                 <div className="data-table__rows">
                     {this.renderRows()}
                 </div>
-                {this.renderContextMenu()}
+                { this.hasContextMenu() &&
+                    this.renderContextMenu()
+                }
             </div>
         );
     }
