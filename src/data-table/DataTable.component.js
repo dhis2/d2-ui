@@ -50,22 +50,7 @@ class DataTable extends Component {
 
     hasSingleAction = () => {
         return Object.keys(this.props.contextMenuActions || {}).length === 1;
-    }
-
-    singleAction = () => {
-        if (this.hasSingleAction()) {
-            const actionKeys = Object.keys(this.props.contextMenuActions || {});
-            const label = actionKeys[0];
-            const action = this.props.contextMenuActions[label];
-            const icon = this.props.contextMenuIcons && this.props.contextMenuIcons[label] ? this.props.contextMenuIcons[label] : label;
-            return {
-                label: label,
-                action: action,
-                icon: icon,
-            };
-        }
-        return null;
-    }
+    };
 
     renderRows() {
         return this.state.dataRows
@@ -77,9 +62,8 @@ class DataTable extends Component {
                     isActive={this.state.activeRow === dataRowsId}
                     itemClicked={this.handleRowClick}
                     primaryClick={this.props.primaryAction || (() => { })}
-                    hasContextMenu={this.hasContextMenu()}
-                    hasSingleAction={this.hasSingleAction()}
-                    singleAction={this.singleAction()}
+                    contextMenuActions={this.props.contextMenuActions}
+                    contextMenuIcons={this.props.contextMenuIcons}
                 />
             ));
     }

@@ -27,6 +27,29 @@ const DataTableRow = addD2Context(class extends Component {
         this.props.primaryClick(this.props.dataSource, event);
     };
 
+    hasContextMenu = () => {
+        return Object.keys(this.props.contextMenuActions || {}).length > 1;
+    };
+
+    hasSingleAction = () => {
+        return Object.keys(this.props.contextMenuActions || {}).length === 1;
+    };
+
+    singleAction = () => {
+        if (this.hasSingleAction()) {
+            const actionKeys = Object.keys(this.props.contextMenuActions || {});
+            const label = actionKeys[0];
+            const action = this.props.contextMenuActions[label];
+            const icon = this.props.contextMenuIcons && this.props.contextMenuIcons[label] ? this.props.contextMenuIcons[label] : label;
+            return {
+                label: label,
+                action: action,
+                icon: icon,
+            };
+        }
+        return null;
+    };
+
     render() {
         const classList = classes(
             'data-table__rows__row',
@@ -59,24 +82,24 @@ const DataTableRow = addD2Context(class extends Component {
         return (
             <div className={classList}>
                 {columns}
-                {this.props.hasContextMenu &&
+                {this.hasContextMenu() &&
                     <div className={'data-table__rows__row__column'} style={{ width: '1%' }}>
                         <IconButton tooltip={this.context.d2.i18n.getTranslation('actions')} onClick={this.iconMenuClick}>
                             <MoreVert />
                         </IconButton>
                     </div>
                 }
-                {this.props.hasSingleAction &&
+                {this.hasSingleAction() &&
                 <div className={'data-table__rows__row__column'} style={{ width: '1%' }}>
 
                     <IconButton
-                        tooltip={this.context.d2.i18n.getTranslation(this.props.singleAction.label)}
-                        onClick={this.props.singleAction.action}
+                        tooltip={this.context.d2.i18n.getTranslation(this.singleAction().label)}
+                        onClick={this.singleAction().action}
                     >
                         <FontIcon
                             className={'material-icons'}
                         >
-                            {this.props.singleAction.icon}
+                            {this.singleAction().icon}
                         </FontIcon>
                     </IconButton>
                 </div>
@@ -93,8 +116,8 @@ DataTableRow.propTypes = {
     isOdd: PropTypes.bool,
     itemClicked: PropTypes.func.isRequired,
     primaryClick: PropTypes.func.isRequired,
-    hasContextMenu: PropTypes.bool,
-    hasSingleAction: PropTypes.bool,
+    contextMenuActions: PropTypes.object,
+    contextMenuIcons: PropTypes.object,
 };
 
 export default DataTableRow;
