@@ -146,7 +146,7 @@ class Sidebar extends Component {
                         onClick={this.setSection.bind(this, section.key)}
                         style={listItemStyle}
                         leftIcon={icon}
-                        { ... otherProps }
+                        { ...otherProps }
                     />);
                 })}
             </List>
