@@ -135,19 +135,19 @@ class Sidebar extends Component {
                         ? <FontIcon className="material-icons">{section.icon}</FontIcon>
                         : section.icon;
 
-                    const listItem = <ListItem
+                    const otherProps = {};
+                    if (section.path) {
+                        otherProps.containerElement = <a href={section.path} />;
+                    }
+
+                    return (<ListItem
                         key={section.key}
                         primaryText={section.label}
                         onClick={this.setSection.bind(this, section.key)}
                         style={listItemStyle}
                         leftIcon={icon}
-                    />;
-
-                    if (section.path) {
-                        return <a href={section.path}>{listItem}</a>;
-                    } else {
-                        return listItem;
-                    }
+                        { ... otherProps }
+                    />);
                 })}
             </List>
         );
@@ -175,7 +175,7 @@ Sidebar.propTypes = {
         ]),
     })).isRequired,
     currentSection: PropTypes.string,
-    onChangeSection: PropTypes.func.isRequired,
+    onChangeSection: PropTypes.func,
     onSectionClick: PropTypes.func,
     showSearchField: PropTypes.bool,
     searchFieldLabel: PropTypes.string,
