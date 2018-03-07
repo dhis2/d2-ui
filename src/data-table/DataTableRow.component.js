@@ -90,19 +90,13 @@ const DataTableRow = addD2Context(class extends Component {
                     </div>
                 }
                 {this.hasSingleAction() &&
-                <div className={'data-table__rows__row__column'} style={{ width: '1%' }}>
-
-                    <IconButton
-                        tooltip={this.context.d2.i18n.getTranslation(this.singleAction().label)}
-                        onClick={this.singleAction().action}
-                    >
-                        <FontIcon
-                            className={'material-icons'}
-                        >
-                            {this.singleAction().icon}
-                        </FontIcon>
-                    </IconButton>
-                </div>
+                    <div className={'data-table__rows__row__column'} style={{ width: '1%' }}>
+                        <IconButton tooltip={this.context.d2.i18n.getTranslation(this.singleAction().label)} onClick={this.singleAction().action}>
+                            <FontIcon className={'material-icons'}>
+                                {this.singleAction().icon}
+                            </FontIcon>
+                        </IconButton>
+                    </div>
                 }
             </div>
         );
