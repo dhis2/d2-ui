@@ -75,7 +75,8 @@ const sections = [
     { key: 's4', label: 'Section 4' },
 ];
 
-const icons = ['fingerprint', 'alarm', '', 'face'];
+const fonticons = ['fingerprint', 'alarm', '', 'face'];
+const svgicons = ['Fingerprint', 'Alarm', '', 'Face'];
 
 function SidebarExample(props) {
     return (
@@ -99,7 +100,7 @@ function SidebarExample(props) {
                 </div>
                 <div style={styles.leftBar}>
                     <Sidebar
-                        sections={sections.slice(0, 2)}
+                        sections={sections.slice(0, 3)}
                         onChangeSection={changeSectionHandler}
                         currentSection={props.currentSection}
                         showSearchField
@@ -121,7 +122,7 @@ function SidebarExample(props) {
                 </div>
                 <div style={styles.leftBar}>
                     <Sidebar
-                        sections={sections.map(({ key, label }, i) => ({ key, label, icon: icons[i] }))}
+                        sections={sections.map(({ key, label }, i) => ({ key, label, icon: svgicons[i] }))}
                         onChangeSection={changeSectionHandler}
                         currentSection={props.currentSection}
                     />
@@ -142,7 +143,7 @@ function SidebarExample(props) {
                         sections={sections.map(({ key, label }, i) => ({
                             key,
                             label,
-                            icon: <FontIcon className="material-icons">{icons[i]}</FontIcon>,
+                            icon: <FontIcon className="material-icons">{fonticons[i]}</FontIcon>,
                         }))}
                         onChangeSection={changeSectionHandler}
                         currentSection={props.currentSection}

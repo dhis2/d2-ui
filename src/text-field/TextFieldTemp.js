@@ -5,15 +5,15 @@ import { createClassName } from '../component-helpers/utils';
 
 const d2InputProps = {
 
-}
+};
 
-const TextFieldTemp = props => { 
-    const {  selector, ...passThroughProps } = props;
-    
+const TextFieldTemp = (props) => {
+    const { selector, ...passThroughProps } = props;
+
     const className = createClassName('d2-ui-textfield', selector);
-    
+
     return (
-        <TextField 
+        <TextField
             {...passThroughProps}
         />
     );

@@ -2,8 +2,12 @@ import React from 'react';
 import { render } from 'react-dom';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import Avatar from 'material-ui-next/Avatar';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import Chip from '../../src/chip/Chip';
+import ChipTemp from '../../src/chip/ChipTemp';
+
+import SvgIconTemp from '../../src/svg-icon/SvgIconTemp';
 
 injectTapEventPlugin();
 
@@ -22,6 +26,7 @@ const chipFactory = (label, index) => (
         onRequestDelete={index % 5 === 0 ? (...args) => console.log.apply(null, ['Delete:', ...args]) : null}
     />
 );
+
 
 const floatStyle = {
     display: 'inline-block',
@@ -49,24 +54,35 @@ const chipLabels = [
     'More chips',
     'Banana chips',
     'Potato chips',
-    'Computer chips'
+    'Computer chips',
 ];
 const buttons = (
     <MuiThemeProvider muiTheme={getMuiTheme()}>
-        <div style={style}>
-            <div style={floatLeftStyle}>Float left</div>
-            <div style={floatRightStyle}>Float right</div>
-            <Chip label={'Default'}/>
-            <Chip label={'With avatar'} avatar={'star'}/>
-            <Chip label={'Primary'} color={'primary'}/>
-            <Chip label={'With avatar'} avatar={'star'} color={'primary'}/>
-            <Chip label={'With onClick'} onClick={() => alert('clicked')}/>
-            <Chip label={'With onRequestDelete'} onRequestDelete={() => alert('delete')}/>
-            <Chip label={'Disabled'} disabled/>
-            <Chip label={'With avatar'} avatar={'star'} disabled/>
-            <Chip label={'With onClick'} onClick={() => alert('clicked')} disabled/>
-            <Chip label={'With onRequestDelete'} onRequestDelete={() => alert('delete')} disabled/>
-            {chipLabels.map(chipFactory)}
+        <div>
+            <div style={style}>
+                <div style={floatLeftStyle}>Float left</div>
+                <div style={floatRightStyle}>Float right</div>
+                <Chip label={'Default'} />
+                <Chip label={'With avatar'} avatar={'star'} />
+                <Chip label={'Primary'} color={'primary'} />
+                <Chip label={'With avatar'} avatar={'star'} color={'primary'} />
+                <Chip label={'With onClick'} onClick={() => alert('clicked')} />
+                <Chip label={'With onRequestDelete'} onRequestDelete={() => alert('delete')} />
+                <Chip label={'Disabled'} disabled />
+                <Chip label={'With avatar'} avatar={'star'} disabled />
+                <Chip label={'With onClick'} onClick={() => alert('clicked')} disabled />
+                <Chip label={'With onRequestDelete'} onRequestDelete={() => alert('delete')} disabled />
+                {chipLabels.map(chipFactory)}
+            </div>
+            <div style={style}>
+                <div style={floatLeftStyle}>Float left</div>
+                <div style={floatRightStyle}>Float right</div>
+                <ChipTemp label={'Default'} />
+                <ChipTemp label={'With avatar'} avatar={<SvgIconTemp icon={'Star'} />} />
+                <ChipTemp label={'Primary'} color={'primary'} />
+                <Chip label={'With avatar'} avatar={'star'} color={'primary'} />
+
+            </div>
         </div>
     </MuiThemeProvider>
 );

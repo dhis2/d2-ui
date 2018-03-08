@@ -2,26 +2,66 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { grey600, grey200 } from 'material-ui/styles/colors';
 import SvgIcon from 'material-ui-next/SvgIcon';
-import { Add, ArrowDownward, ArrowUpward, Business, Cancel, ChevronLeft, ChevronRight, Close, Create, CropFree, 
-         Delete, Description, Done, DragHandle, Email, Extension, FontDownload, GridOn, Group, InfoOutline, InsertChart,
-         Launch, Message, MoreVert, NotInterested, Person, Public, Reply, Room, Search, ShowChart, Star, StarBorder, 
-         SentimentDissatisfied, ThumbUp, ViewList, Visibility, VisibilityOff, List } from 'material-ui-icons';
+import { Add, Alarm, ArrowDownward, ArrowUpward, Business, Cancel, ChevronLeft, ChevronRight, Close, Create, CropFree,
+    Delete, Description, Done, DragHandle, Email, Extension, Face, Fingerprint, FontDownload, GridOn, Group, InfoOutline, InsertChart,
+    Launch, Message, MoreVert, NotInterested, Person, Public, Reply, Room, Search, ShowChart, Star, StarBorder,
+    SentimentDissatisfied, ThumbUp, ViewList, Visibility, VisibilityOff, List } from 'material-ui-icons';
 
 const iconAlternatives = {
-    Add, ArrowDownward, ArrowUpward, Business, Cancel, ChevronLeft, ChevronRight, Close, Create, CropFree, 
-    Delete, Description, Done, DragHandle, Email, Extension, FontDownload, GridOn, Group, InfoOutline, InsertChart,
-    Launch, Message, MoreVert, NotInterested, Person, Public, Reply, Room, Search, ShowChart, Star, StarBorder, ThumbUp,
-    ViewList, Visibility, VisibilityOff, List
+    Add,
+    Alarm,
+    ArrowDownward,
+    ArrowUpward,
+    Business,
+    Cancel,
+    ChevronLeft,
+    ChevronRight,
+    Close,
+    Create,
+    CropFree,
+    Delete,
+    Description,
+    Done,
+    DragHandle,
+    Email,
+    Extension,
+    Face,
+    Fingerprint,
+    FontDownload,
+    GridOn,
+    Group,
+    InfoOutline,
+    InsertChart,
+    Launch,
+    Message,
+    MoreVert,
+    NotInterested,
+    Person,
+    Public,
+    Reply,
+    Room,
+    Search,
+    ShowChart,
+    Star,
+    StarBorder,
+    ThumbUp,
+    ViewList,
+    Visibility,
+    VisibilityOff,
+    List,
 };
 
-const SvgIconTemp = props => {
+const SvgIconTemp = (props) => {
     const { disabled, icon, ...passThroughProps } = props;
     let Icon = null;
 
-    ((props.children && !iconAlternatives[icon]) 
-    ? Icon = SvgIcon
-    : Icon = iconAlternatives[icon] || SentimentDissatisfied );
-    
+    if (props.children && !iconAlternatives[icon]) {
+        Icon = SvgIcon;
+    } else {
+        Icon = iconAlternatives[icon] || SentimentDissatisfied;
+    }
+
+
     return (
         <Icon
             className={props.className}
@@ -32,7 +72,6 @@ const SvgIconTemp = props => {
             {props.children}
         </Icon>
     );
-
-}
+};
 
 export default SvgIconTemp;

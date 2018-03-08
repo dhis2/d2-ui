@@ -1,57 +1,53 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Select from 'material-ui-next/Select';
-import { MenuItem, MenuList } from 'material-ui-next/Menu';
-import { createClassName } from '../component-helpers/utils';
-import { InputLabel } from 'material-ui-next/Input';
-import { FormControl }  from 'material-ui-next/Form';
-import { CircularProgress } from 'material-ui-next/Progress';
-
 import isString from 'lodash/fp/isString';
+import Select from 'material-ui-next/Select';
+import { InputLabel } from 'material-ui-next/Input';
+import { FormControl } from 'material-ui-next/Form';
+import { CircularProgress } from 'material-ui-next/Progress';
+import { createClassName } from '../component-helpers/utils';
+
 
 const d2InputProps = {
-    //separate style fyle with "d2-ui" standardized style to inject as Props (?)
+    // separate style fyle with "d2-ui" standardized style to inject as Props (?)
     loadingIndicator: {
-        teaxtAlign: 'center'
+        teaxtAlign: 'center',
     },
     formControl: {
         minWidth: 200,
-    }
-}
+    },
+};
 
-const displayLoadingIndicator = loading => {
+const displayLoadingIndicator = (loading) => {
     let node;
-    
-    isString(loading) 
-    ? ( node = <div>{loading}</div> ) 
-    : ( node = <CircularProgress size={30} style={d2InputProps.loadingIndicator}/> ) 
-    
+    if (isString(loading)) node = <div>{loading}</div>;
+    else node = <CircularProgress size={30} style={d2InputProps.loadingIndicator} />;
+
     return node;
-}
+};
 
-const SelectTemp = props => {
-
+const SelectTemp = (props) => {
     const { children, error, inputLabelText, loading, selector, ...passThroughProps } = props;
-    
+
     const className = createClassName('d2-ui-selectfield', selector);
 
     return (
-        <FormControl 
-            style={d2InputProps.formControl} 
+        <FormControl
+            style={d2InputProps.formControl}
             error={error}
-            //...formcontrolprops / some HOC solution, or specify each prop (when wrapping multiple components like the new Select)? 
+            // ...formcontrolprops / some HOC solution, or specify each prop (when wrapping multiple components like the new Select)? 
         >
             <InputLabel>{inputLabelText}</InputLabel>
-                <Select 
-                    {...passThroughProps}
-                >
-                    { !loading || children 
-                        ? children 
-                        : displayLoadingIndicator(loading) }
-                </Select>
+            <Select
+                {...passThroughProps}
+            >
+                { !loading || children
+                    ? children
+                    : displayLoadingIndicator(loading) }
+            </Select>
         </FormControl>
     );
-}
+};
 
 SelectTemp.PropTypes = {
     autoWidth: PropTypes.bool,
