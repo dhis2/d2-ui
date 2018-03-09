@@ -61,17 +61,31 @@ const SvgIconTemp = (props) => {
         Icon = iconAlternatives[icon] || SentimentDissatisfied;
     }
 
-
     return (
         <Icon
-            className={props.className}
             style={{
                 ...props.style,
                 fill: props.style || (disabled ? grey200 : grey600) }}
+            {...passThroughProps}
         >
             {props.children}
         </Icon>
     );
+};
+
+SvgIconTemp.propTypes = {
+    disabled: PropTypes.bool,
+    icon: PropTypes.string,
+    children: PropTypes.node,
+    style: PropTypes.object,
+
+};
+
+SvgIconTemp.defaultProps = {
+    disabled: false,
+    icon: undefined,
+    children: undefined,
+    style: undefined,
 };
 
 export default SvgIconTemp;

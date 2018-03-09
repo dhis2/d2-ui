@@ -8,7 +8,7 @@ import { CircularProgress } from 'material-ui-next/Progress';
 import { createClassName } from '../component-helpers/utils';
 
 
-const d2InputProps = {
+const d2DefaultStyle = {
     // separate style fyle with "d2-ui" standardized style to inject as Props (?)
     loadingIndicator: {
         teaxtAlign: 'center',
@@ -21,7 +21,7 @@ const d2InputProps = {
 const displayLoadingIndicator = (loading) => {
     let node;
     if (isString(loading)) node = <div>{loading}</div>;
-    else node = <CircularProgress size={30} style={d2InputProps.loadingIndicator} />;
+    else node = <CircularProgress size={30} style={d2DefaultStyle.loadingIndicator} />;
 
     return node;
 };
@@ -33,7 +33,7 @@ const SelectTemp = (props) => {
 
     return (
         <FormControl
-            style={d2InputProps.formControl}
+            style={d2DefaultStyle.formControl}
             error={error}
             // ...formcontrolprops / some HOC solution, or specify each prop (when wrapping multiple components like the new Select)? 
         >
@@ -49,12 +49,18 @@ const SelectTemp = (props) => {
     );
 };
 
-SelectTemp.PropTypes = {
+SelectTemp.propTypes = {
     autoWidth: PropTypes.bool,
+    error: PropTypes.bool,
     children: PropTypes.node,
     classes: PropTypes.object,
     displayEmpty: PropTypes.bool,
+    loading: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.string,
+    ]),
     input: PropTypes.element,
+    inputLabelText: PropTypes.string,
     inputProps: PropTypes.object,
     MenuProps: PropTypes.object,
     multiple: PropTypes.bool,
@@ -65,8 +71,17 @@ SelectTemp.PropTypes = {
     open: PropTypes.bool,
     renderValue: PropTypes.func,
     selector: PropTypes.string,
-    value: PropTypes.value,
+    value: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+        PropTypes.arrayOf(PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number,
+        ])),
+    ]),
 };
 
+SelectTemp.defaultProps = {
+};
 
 export default SelectTemp;

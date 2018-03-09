@@ -22,7 +22,7 @@ const style = {
 
 class TextFields extends Component {
     state = {
-        //v0 example states
+        // v0 example states
         multiHintText: '',
         singleHintText: '',
         valueField1: '',
@@ -30,7 +30,7 @@ class TextFields extends Component {
         valueField3: '',
         valueField4: '',
 
-        //v1 example states
+        // v1 example states
         newMultiHintText: '',
         newSingleHintText: '',
         newValueField5: '',
@@ -45,98 +45,98 @@ class TextFields extends Component {
 
     render() {
         return (
-        <div>
-            <h3> Material-ui v.0 </h3>
-            <MuiThemeProvider muiTheme={getMuiTheme()}>
+            <div>
+                <h3> Material-ui v.0 </h3>
+                <MuiThemeProvider muiTheme={getMuiTheme()}>
+                    <div style={style}>
+                        <TextField
+                            label="Text"
+                            value={this.state.valueField1}
+                            onChange={value => this.onChangeValue('valueField1', value)}
+                        />
+                        <TextField
+                            label="Number"
+                            type="number"
+                            value={this.state.valueField2}
+                            onChange={value => this.onChangeValue('valueField2', value)}
+                        />
+                        <TextField
+                            label="Default value"
+                            type="number"
+                            value={this.state.valueField3 || 100}
+                            onChange={value => this.onChangeValue('valueField3', value)}
+                        />
+                        <TextField
+                            placeholder="Hint text"
+                            type="text"
+                            value={this.state.singleHintText}
+                            onChange={value => this.onChangeValue('sigleHintText', value)}
+                        />
+                        <TextField
+                            placeholder="Multiline field showing 2 rows and up to 4 rows"
+                            type="text"
+                            multiline
+                            rows={2}
+                            rowsMax={4}
+                            value={this.state.multiHintText}
+                            onChange={value => this.onChangeValue('multiHintText', value)}
+                        />
+                        <TextField
+                            placeholder="Full width"
+                            type="text"
+                            fullWidth
+                            value={this.state.valueField4}
+                            onChange={value => this.onChangeValue('valueField4', value)}
+                        />
+                    </div>
+                </MuiThemeProvider>
+                {/*
+                Material-ui-next components
+                Rendered /src/TextFieldTemp.js
+            */}
+                <h3> Material-ui v.1 </h3>
                 <div style={style}>
-                    <TextField
+                    <TextFieldTemp
                         label="Text"
-                        value={this.state.valueField1}
-                        onChange={value => this.onChangeValue("valueField1", value)}
+                        value={this.state.newValueField5}
+                        onChange={event => this.onChangeValue('newValueField5', event.target.value)}
                     />
-                    <TextField
+                    <TextFieldTemp
                         label="Number"
                         type="number"
-                        value={this.state.valueField2}
-                        onChange={value => this.onChangeValue("valueField2", value)}
+                        value={this.state.newValueField6}
+                        onChange={event => this.onChangeValue('newValueField6', event.target.value)}
                     />
-                    <TextField
+                    <TextFieldTemp
                         label="Default value"
                         type="number"
-                        value={this.state.valueField3 || 100}
-                        onChange={value => this.onChangeValue('valueField3', value)}
+                        value={this.state.newValueField7 || 100}
+                        onChange={event => this.onChangeValue('newValueField7', event.target.value)}
                     />
-                    <TextField
-                        placeholder="Hint text"
+                    <TextFieldTemp
+                        placeholder="Short hint text"
                         type="text"
-                        value={this.state.singleHintText}
-                        onChange={value => this.onChangeValue('sigleHintText', value)}
+                        value={this.state.newSingleHintText}
+                        onChange={event => this.onChangeValue('newSingleHintText', event.target.value)}
                     />
-                    <TextField
-                        placeholder="Multiline field showing 2 rows and up to 4 rows"
+                    <TextFieldTemp
+                        placeholder="Multiline field, showing 2 rows and up to 4 rows"
                         type="text"
                         multiline
                         rows={2}
                         rowsMax={4}
-                        value={this.state.multiHintText}
-                        onChange={value => this.onChangeValue('multiHintText', value)}
+                        value={this.state.newMultiHintText}
+                        onChange={event => this.onChangeValue('newMultiHintText', event.target.value)}
                     />
-                    <TextField
-                        placeholder="Full width"
-                        type="text"
+                    <TextFieldTemp
+                        placeholder="Full Width"
                         fullWidth
-                        value={this.state.valueField4}
-                        onChange={(value) => this.onChangeValue("valueField4", value)}
+                        type="text"
+                        value={this.state.newValueField8}
+                        onChange={event => this.onChangeValue('newValueField8', event.target.value)}
                     />
                 </div>
-            </MuiThemeProvider>
-            {/*
-                Material-ui-next components
-                Rendered /src/TextFieldTemp.js
-            */}
-            <h3> Material-ui v.1 </h3>
-            <div style={style}>
-                <TextFieldTemp
-                    label='Text'
-                    value={this.state.newValueField5}
-                    onChange={event => this.onChangeValue("newValueField5", event.target.value)}
-                />
-                <TextFieldTemp
-                    label='Number'
-                    type='number'
-                    value={this.state.newValueField6}
-                    onChange={event => this.onChangeValue("newValueField6", event.target.value)}
-                />
-                <TextFieldTemp
-                    label='Default value'
-                    type='number'
-                    value={this.state.newValueField7 || 100}
-                    onChange={event => this.onChangeValue("newValueField7", event.target.value)}
-                />
-                <TextFieldTemp
-                    placeholder='Short hint text'
-                    type='text'
-                    value={this.state.newSingleHintText}
-                    onChange={event => this.onChangeValue("newSingleHintText", event.target.value)}
-                />
-                <TextFieldTemp
-                    placeholder='Multiline field, showing 2 rows and up to 4 rows'
-                    type='text'
-                    multiline
-                    rows={2}
-                    rowsMax={4}
-                    value={this.state.newMultiHintText}
-                    onChange={event => this.onChangeValue("newMultiHintText", event.target.value)}
-                />
-                <TextFieldTemp
-                    placeholder='Full Width'
-                    fullWidth
-                    type='text'
-                    value={this.state.newValueField8}
-                    onChange={event => this.onChangeValue("newValueField8", event.target.value)}
-                />
             </div>
-        </div>
         );
     }
 }

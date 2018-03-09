@@ -2,16 +2,11 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { MuiThemeProvider as NewMuiThemeProvider } from 'material-ui-next/styles/MuiThemeProvider';
+import { MenuItem } from 'material-ui-next/Menu';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import SelectField from '../../src/select-field/SelectField';
-import { MenuItem } from 'material-ui-next/Menu';
-import { FormControl } from 'material-ui-next/Form';
-import Input, { InputLabel } from 'material-ui-next/Input';
-import { Chip } from 'material-ui-next/Chip';
 
 import SelectTemp from '../../src/select-field/SelectTemp';
-import TextFieldTemp from '../../src/text-field/TextFieldTemp';
 
 
 injectTapEventPlugin();
@@ -19,10 +14,10 @@ injectTapEventPlugin();
 const items = [{
     id: 'cat',
     name: 'Cat',
-},{
+}, {
     id: 'mouse',
     name: 'Mouse',
-},{
+}, {
     id: 'dog',
     name: 'Dog',
 }];
@@ -47,11 +42,10 @@ class SelectFields extends Component {
     };
 
     onChangeValue = (field, value) => {
-            this.setState({ [field]: value });
+        this.setState({ [field]: value });
     }
-    
-    render() {
 
+    render() {
         const { classes } = this.props;
 
         return (
@@ -64,119 +58,109 @@ class SelectFields extends Component {
                         />
                         <SelectField
                             items={items}
-                            value='cat'
+                            value="cat"
                         />
                         <SelectField
-                            label='Select animal'
+                            label="Select animal"
                             items={items}
                         />
                         <SelectField
-                            label='Select multiple'
+                            label="Select multiple"
                             items={items}
                             value={['cat', 'dog']}
-                            multiple={true}
+                            multiple
                         />
                         <SelectField
-                            label='Select animal'
-                            value='dog'
+                            label="Select animal"
+                            value="dog"
                             items={items}
                         />
                         <SelectField
-                            label='onChange event'
+                            label="onChange event"
                             items={items}
-                            onChange={(item) => alert(JSON.stringify(item))}
+                            onChange={item => alert(JSON.stringify(item))}
                         />
                         <SelectField
-                            label='Children'
-                            value='cat'
-                            onChange={(item) => alert(item)}
+                            label="Children"
+                            value="cat"
+                            onChange={item => alert(item)}
                         >
                             <MenuItem value={'none'}>
                                 <em>None</em>
                             </MenuItem>
-                            <MenuItem value='cat' primaryText='Cat' />
-                            <MenuItem value='mouse' primaryText='Mouse' />
-                            <MenuItem value='dog' primaryText='Dog' />
+                            <MenuItem value="cat" primaryText="Cat" />
+                            <MenuItem value="mouse" primaryText="Mouse" />
+                            <MenuItem value="dog" primaryText="Dog" />
                         </SelectField>
                         <SelectField
-                            label='Async with spinner'
-                            loading={true}
+                            label="Async with spinner"
+                            loading
                         />
                         <SelectField
-                            label='Async with string'
-                            loading='Loading...'
+                            label="Async with string"
+                            loading="Loading..."
                         />
                         <SelectField
-                            errorText='Error text'
+                            errorText="Error text"
                             items={items}
                         />
                     </div>
                 </MuiThemeProvider>
-        
+
                 <h3> Material-ui v.1 </h3>
                 <div style={style}>
-                <SelectTemp
-                        onChange={event => this.onChangeValue("selectValueField1", event.target.value)}
-                        value={this.state.selectValueField1}    
+                    <SelectTemp
+                        onChange={event => this.onChangeValue('selectValueField1', event.target.value)}
+                        value={this.state.selectValueField1}
                         inputLabelText={'Native Select'}
-                        selector={"test"}
-                        >         
-                        {items.map(item => {
-                            return (<option key={item.id} value={item.name}> {item.name} </option>);
-                        })}        
+                        selector={'test'}
+                    >
+                        {items.map(item => (<option key={item.id} value={item.name}> {item.name} </option>))}
                     </SelectTemp>
 
                     <SelectTemp
-                        onChange={event => this.onChangeValue("selectValueField2", event.target.value)}
-                        value={this.state.selectValueField2}    
+                        onChange={event => this.onChangeValue('selectValueField2', event.target.value)}
+                        value={this.state.selectValueField2}
                         inputLabelText={'Simple Select'}
-
-                        >         
-                        {items.map(item => {
-                            return (<MenuItem key={item.id} value={item.name}> {item.name} </MenuItem>);
-                        })}        
+                    >
+                        {items.map(item => (<MenuItem key={item.id} value={item.name}> {item.name} </MenuItem>))}
                     </SelectTemp>
-                    
+
                     <SelectTemp
                         multiple
                         value={this.state.selectValueField3}
                         onChange={event => this.onChangeValue('selectValueField3', event.target.value)}
                         inputLabelText={'Multiple select component'}
                     >
-                        {items.map(item => {
-                            return (<MenuItem key={item.id} value={item.name}> {item.name} </MenuItem>);
-                        })}
+                        {items.map(item => (<MenuItem key={item.id} value={item.name}> {item.name} </MenuItem>))}
                     </SelectTemp>
 
                     <SelectTemp
-                        value={this.state.selectValueField4}    
-                        onChange={event => this.onChangeValue("selectValueField4", event.target.value)}
+                        value={this.state.selectValueField4}
+                        onChange={event => this.onChangeValue('selectValueField4', event.target.value)}
                         inputLabelText={'Async with spinner'}
                         loading
-                        />
+                    />
 
                     <SelectTemp
-                        value={this.state.selectValueField5}    
-                        onChange={event => this.onChangeValue("selectValueField5", event.target.value)}
+                        value={this.state.selectValueField5}
+                        onChange={event => this.onChangeValue('selectValueField5', event.target.value)}
                         inputLabelText={'Async with string'}
                         loading={'Loading...'}
-                        />               
+                    />
 
                     <SelectTemp
-                        value={this.state.selectValueField6}    
-                        onChange={event => this.onChangeValue("selectValueField6", event.target.value)}
+                        value={this.state.selectValueField6}
+                        onChange={event => this.onChangeValue('selectValueField6', event.target.value)}
                         inputLabelText={'Error text'}
                         error
-                        >
-                        {items.map(item => {
-                            return (<option key={item.id} value={item.name}> {item.name} </option>);
-                        })}     
-                    </SelectTemp>         
-            </div>  
-        </div>
-    );
-}
-    
+                    >
+                        {items.map(item => (<option key={item.id} value={item.name}> {item.name} </option>))}
+                    </SelectTemp>
+                </div>
+            </div>
+        );
+    }
 }
 render(<SelectFields />, document.getElementById('select-fields'));
-    
+

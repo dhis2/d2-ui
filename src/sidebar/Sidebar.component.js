@@ -1,16 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import List, { ListItem, ListItemText } from 'material-ui-next/List';
-
-import TextFieldTemp from '../../src/text-field/TextFieldTemp';
-import SvgIconTemp from '../../src/svg-icon/SvgIconTemp';
-
-const d2InputProps = {
-    TextField: {
-        minWidth: 200,
-    },
-};
-
+import List from 'material-ui/List/List';
+import ListItem from 'material-ui/List/ListItem';
+import TextField from 'material-ui/TextField';
+import FontIcon from 'material-ui/FontIcon';
 
 const styles = {
     container: {
@@ -69,18 +62,10 @@ class Sidebar extends Component {
             });
         }
     }
-    onClear = () => {
-        this.setState({ searchText: '' }, () => {
-            if (this.props.onChangeSearchText) {
-                this.props.onChangeSearchText(this.state.searchText);
-            }
-        });
-    }
 
-    setSection = (key) => {
+    setSection(key) {
         // TODO: Refactor as this behavior is sort of silly. The current version of the SideBar with managed state should
         // probably be a HoC and a simpler version of the header bar should be available for more dynamic scenarios.
-
         this.props.onSectionClick(key);
 
         if (key !== this.state.currentSection) {
@@ -89,15 +74,27 @@ class Sidebar extends Component {
         }
     }
 
-    changeSearchText = (event) => {
-        this.setState({ searchText: event.target.value });
+    changeSearchText = () => {
+        this.setState({ searchText: this.searchBox.getValue() }, () => {
+            if (this.props.onChangeSearchText) {
+                this.props.onChangeSearchText(this.state.searchText);
+            }
+        });
     }
 
-    clearSearchBox = () => {
+    onClear = () => {
+        this.setState({ searchText: '' }, () => {
+            if (this.props.onChangeSearchText) {
+                this.props.onChangeSearchText(this.state.searchText);
+            }
+        });
+    }
+
+    clearSearchBox() {
         this.setState({ searchText: '' });
     }
 
-    renderSidebarButtons = () => {
+    renderSidebarButtons() {
         if (this.props.sideBarButtons) {
             return (
                 <div style={{ padding: '1rem 0 0' }}>{this.props.sideBarButtons}</div>
@@ -106,21 +103,20 @@ class Sidebar extends Component {
         return null;
     }
 
-    renderSearchField = () => {
+    renderSearchField() {
         const d2 = this.context.d2;
 
         if (this.props.showSearchField) {
             return (
                 <div style={styles.container}>
-                    <TextFieldTemp
-                        placeholder={this.props.searchFieldLabel ? this.props.searchFieldLabel : d2.i18n.getTranslation('search')}
-                        style={d2InputProps.TextField}
+                    <TextField
+                        hintText={this.props.searchFieldLabel ? this.props.searchFieldLabel : d2.i18n.getTranslation('search')}
+                        style={{ width: '100%' }}
                         value={this.state.searchText}
                         onChange={this.changeSearchText}
+                        ref={(ref) => { this.searchBox = ref; }}
                     />
-                    { this.state.searchText
-                        ? <SvgIconTemp style={styles.closeButton} icon={'Close'} onClick={this.onClear}>Clear</SvgIconTemp>
-                        : undefined }
+                    {this.state.searchText ? <FontIcon style={styles.closeButton} className="material-icons" onClick={this.onClear}>clear</FontIcon> : undefined}
                 </div>
             );
         }
@@ -128,35 +124,9 @@ class Sidebar extends Component {
         return null;
     }
 
-    renderSections = () => {
-        // console.log(this.props.sections);
-
+    renderSections() {
         return (
             <List style={styles.list}>
-                {this.props.sections.map((section) => {
-                    const listItemStyle = section.key === this.state.currentSection && !this.state.searchText
-                        ? styles.activeItem
-                        : styles.item;
-                    const icon = typeof section.icon === 'string' || section.icon instanceof String
-                        ? <SvgIconTemp icon={section.icon} />
-                        // <FontIcon className="material-icons">{section.icon}</FontIcon>
-                        : section.icon;
-                    return (
-                        <ListItem
-                            key={section.key}
-                            style={listItemStyle}
-                            onClick={this.setSection.bind(this, section.key)} // fix dette / TODO
-                        >
-                            <ListItemText primary={section.label} />
-                            {icon}
-                        </ListItem>
-                    );
-                })}
-            </List>
-        );
-    };
-    /*
-                <List style={styles.list}>
                 {this.props.sections.map((section) => {
                     const listItemStyle = section.key === this.state.currentSection && !this.state.searchText
                         ? styles.activeItem
@@ -176,14 +146,18 @@ class Sidebar extends Component {
                     );
                 })}
             </List>
-    */
-    render = () => (
-        <div style={Object.assign(styles.sidebar, this.props.styles.leftBar)} className="left-bar">
-            {this.renderSidebarButtons()}
-            {this.renderSearchField()}
-            {this.renderSections()}
-        </div>
-    )
+        );
+    }
+
+    render() {
+        return (
+            <div style={Object.assign(styles.sidebar, this.props.styles.leftBar)} className="left-bar">
+                {this.renderSidebarButtons()}
+                {this.renderSearchField()}
+                {this.renderSections()}
+            </div>
+        );
+    }
 }
 
 Sidebar.propTypes = {

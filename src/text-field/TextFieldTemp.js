@@ -1,22 +1,15 @@
-import React from  'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import TextField from 'material-ui-next/TextField';
-import { createClassName } from '../component-helpers/utils';
+// import { createClassName } from '../component-helpers/utils';
 
-const d2InputProps = {
-
-};
+// const d2DefaultStyle = {};
 
 const TextFieldTemp = (props) => {
     const { selector, ...passThroughProps } = props;
+    // const className = createClassName('d2-ui-textfield', selector);
 
-    const className = createClassName('d2-ui-textfield', selector);
-
-    return (
-        <TextField
-            {...passThroughProps}
-        />
-    );
+    return (<TextField {...passThroughProps} />);
 };
 
 TextFieldTemp.propTypes = {
@@ -145,6 +138,29 @@ TextFieldTemp.propTypes = {
 
 };
 
-TextFieldTemp.defaultProps = d2InputProps;
+TextFieldTemp.defaultProps = {
+    autoComplete: undefined,
+    defaultValue: undefined,
+    error: false,
+    fullWidth: false,
+    helperText: undefined,
+    id: undefined,
+    InputLabelProps: undefined,
+    InputProps: undefined,
+    label: undefined,
+    labelClassName: undefined,
+    margin: undefined,
+    multiline: false,
+    name: undefined,
+    placeholder: undefined,
+    rows: undefined,
+    rowsMax: undefined,
+    select: undefined,
+    selector: undefined,
+    style: undefined,
+    SelectProps: undefined,
+    type: undefined,
+    value: undefined,
+};
 
 export default TextFieldTemp;

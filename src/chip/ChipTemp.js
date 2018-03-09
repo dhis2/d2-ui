@@ -22,7 +22,7 @@ const labelStyle = {
 
 export const clickableStyle = { cursor: 'pointer' };
 export const disabledStyle = { cursor: 'auto', opacity: 0.5 };
-export const avatarIcons = { star: <SvgIconTemp icon={'star'} />};
+export const avatarIcons = { star: <SvgIconTemp icon={'star'} /> };
 
 export const colors = {
     default: {
@@ -32,37 +32,44 @@ export const colors = {
     primary: {
         color: chipColor,
         backgroundColor: '#b1deda',
-    }
+    },
 };
 
 export const avatarProps = {
     color: chipColor,
     backgroundColor: 'rgba(0,0,0,0.08)',
-    style: { height: chipSize, width: chipSize }
+    style: { height: chipSize, width: chipSize },
 };
 
 const ChipTemp = (props) => {
-
+    const { color, disabled, selector, ...passThroughProps } = props;
     const className = createClassName('d2-ui-chip', selector);
     const style = {
         ...chipStyle, // d2 chipstyle
-        ...(typeof onClick === 'function' ? clickableStyle: {}), // og ikkeno clickablestyle hvis det er funksjon (?)
-        ...(disabled ? disabledStyle: {}), // og ikkeno disabled style, hvis den er disabled (?) 
+        ...(typeof onClick === 'function' ? clickableStyle : {}), // og ikkeno clickablestyle hvis det er funksjon (?)
+        ...(disabled ? disabledStyle : {}), // og ikkeno disabled style, hvis den er disabled (?) 
     };
-   
-    const { color = 'default', disabled, selector, ...passThroughProps } = props;
 
     const wrapperClassName = createClassName('d2-ui-chip-wrapper', selector);
-    const wrapperStyle = { display: 'inline-block', verticalAlign: 'top'};
+    const wrapperStyle = { display: 'inline-block', verticalAlign: 'top' };
 
-    //TODO: bare prøv med v1
-    console.log(color);
-    console.log(passThroughProps);
     return (
         <div className={wrapperClassName} style={wrapperStyle}>
-           <Chip {...passThroughProps}/>
+            <Chip {...passThroughProps} style={style} />
         </div>
     );
 };
 
 export default ChipTemp;
+
+ChipTemp.propTypes = {
+    color: PropTypes.string,
+    disabled: PropTypes.bool,
+    selector: PropTypes.string,
+};
+
+ChipTemp.defaultProps = {
+    color: 'default',
+    disabled: false,
+    selector: undefined,
+};
