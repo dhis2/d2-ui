@@ -152,7 +152,6 @@ class SharingDialog extends React.Component {
                 onClick={this.closeSharingDialog}
             />,
         ];
-
         return (
             <div>
                 <Snackbar

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Subject, Observable } from 'rxjs';
+import { Subject } from 'rxjs/Subject';
+import { timer } from 'rxjs/observable/timer';
+import { debounce } from 'rxjs/operators';
 import AutoComplete from 'material-ui/AutoComplete';
 
 import { accessObjectToString } from './utils';
@@ -54,7 +56,7 @@ class UserSearch extends Component {
 
     componentWillMount() {
         this.inputStream
-            .debounce(() => Observable.timer(searchDelay))
+            .pipe(debounce(() => timer(searchDelay)))
             .subscribe((searchText) => {
                 this.fetchSearchResult(searchText);
             });
