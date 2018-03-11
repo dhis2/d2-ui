@@ -18,7 +18,8 @@ function createPackageFile() {
 
     const newPackageData = {
         ...packageDataOther,
-        main: './index.js',
+        main: './cjs/index.js',
+        module: './es/index.js',
         private: false,
     };
 
