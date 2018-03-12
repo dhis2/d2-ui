@@ -37,6 +37,7 @@ module.exports = {
             orgunitselect: './examples/org-unit-select',
             sharing: './examples/sharing',
             favoritesdialog: './examples/favorites-dialog',
+            feedbacksnackbar: './examples/feedback-snackbar',
             sidebar: './examples/sidebar',
             iconpicker: './examples/icon-picker',
             formbuilder: './examples/form-builder',
