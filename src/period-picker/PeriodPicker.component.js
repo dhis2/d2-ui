@@ -134,7 +134,7 @@ class PeriodPicker extends React.Component {
                 floatingLabelStyle={isInvalid ? { color: 'red' } : {}}
             >
                 <MenuItem key="" value={this.state[name]} primaryText="&nbsp;" />
-                {Object.keys(options).sort().map((value) => (
+                {Object.keys(options).sort().map(value => (
                     <MenuItem
                         key={value}
                         value={value}

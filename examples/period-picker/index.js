@@ -2,13 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 
+import { Card as CardTemp, CardContent } from 'material-ui-next';
+import { Typography } from 'material-ui-next';
+
 import { Card, CardText } from 'material-ui/Card';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import D2Lib from 'd2/lib/d2';
-import PeriodPicker from '../../src/period-picker/PeriodPicker.component';
 import parsePeriod from 'd2/lib/period/parser';
+import PeriodPicker from '../../src/period-picker/PeriodPicker.component';
+
+import TextFieldTemp from '../../src/text-field/TextFieldTemp';
 
 injectTapEventPlugin();
 
@@ -22,7 +27,9 @@ class PeriodPickerExample extends React.Component {
 
         this.state = {
             periodType: 'Daily',
+            periodType2: 'Daily',
             values: [],
+            values2: [],
         };
 
         this.changePeriodType = this.changePeriodType.bind(this);
@@ -37,6 +44,12 @@ class PeriodPickerExample extends React.Component {
     changePeriodType(event) {
         const periodType = event.target.value;
         this.setState({ periodType, values: [] });
+    }
+
+    changePeriodType2 = (event) => {
+        console.log(event.target.value);
+        const periodType2 = event.target.value;
+        this.setState({ periodType2, values2: [] });
     }
 
     render() {
@@ -64,6 +77,7 @@ class PeriodPickerExample extends React.Component {
         return (
             <MuiThemeProvider muiTheme={getMuiTheme()}>
                 <div>
+                    <h3> Material-UI v0 </h3>
                     <Card style={styles.card}>
                         <CardText style={styles.cardText}>
                             <h3 style={styles.cardHeader}>Props</h3>
@@ -112,6 +126,59 @@ class PeriodPickerExample extends React.Component {
                             </div>
                         </CardText>
                     </Card>
+
+                    <div>
+                        <h3> Matieral-UI v1 </h3>
+                        <CardTemp style={styles.card}>
+                            <CardContent>
+                                <h3 style={styles.cardHeader}> Props </h3>
+                                <div className="scroll">
+                                    <div>
+                                        <select
+                                            value={this.state.periodType2}
+                                            onChange={this.changePeriodType2}
+                                            style={{ marginBottom: 16 }}
+                                        >
+                                            <option>Daily</option>
+                                            <option>Weekly</option>
+                                            <option>WeeklyWednesday</option>
+                                            <option>WeeklyThursday</option>
+                                            <option>WeeklySaturday</option>
+                                            <option>WeeklySunday</option>
+                                            <option>Monthly</option>
+                                            <option>BiMonthly</option>
+                                            <option>Quarterly</option>
+                                            <option>SixMonthly</option>
+                                            <option>SixMonthlyApril</option>
+                                            <option>Yearly</option>
+                                            <option>FinancialApril</option>
+                                            <option>FinancialJuly</option>
+                                            <option>FinancialOct</option>
+                                            <option value="Invalid">Invalid period type</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </CardContent>
+                        </CardTemp>
+                        <CardTemp style={styles.card}>
+                            <CardContent>
+                                <h3 style={styles.cardHeader}> Period Picker </h3>
+                                <PeriodPicker
+                                    periodType={this.state.periodType2}
+                                    onPickPeriod={(value) => {
+                                        this.setState({ values: this.state.values2.concat(value) });
+                                        console.log(`New value: ${value}`);
+                                    }}
+                                />
+                            </CardContent>
+                        </CardTemp>
+                    </div>
+                    <TextFieldTemp
+                        label="temp"
+                        type="date"
+                        defaultValue="2018-01-01"
+                        InputLabelProps={{ shrink: true }}
+                    />
                 </div>
             </MuiThemeProvider>
         );
@@ -123,43 +190,43 @@ ReactDOM.render(<div>Initialising D2...</div>, el);
 
 D2Lib.config.baseUrl = baseUrl;
 D2Lib.init({ baseUrl })
-    .then(d2 => {
+    .then((d2) => {
         Object.assign(d2.i18n.translations, {
-            'day': 'Day',
-            'week': 'Week',
-            'year': 'Year',
-            'month': 'Month',
-            'jan': 'January',
-            'feb': 'February',
-            'mar': 'March',
-            'apr': 'April',
-            'may':' May',
-            'jun': 'June',
-            'jul': 'July',
-            'aug': 'August',
-            'sep': 'September',
-            'oct': 'October',
-            'nov': 'November',
-            'dec': 'December',
-            'biMonth': 'Bi-Month',
+            day: 'Day',
+            week: 'Week',
+            year: 'Year',
+            month: 'Month',
+            jan: 'January',
+            feb: 'February',
+            mar: 'March',
+            apr: 'April',
+            may: ' May',
+            jun: 'June',
+            jul: 'July',
+            aug: 'August',
+            sep: 'September',
+            oct: 'October',
+            nov: 'November',
+            dec: 'December',
+            biMonth: 'Bi-Month',
             'jan-feb': 'Jan/Feb',
             'mar-apr': 'March/Apr',
             'may-jun': 'May/June',
             'jul-aug': 'July/Aug',
             'sep-oct': 'Sept/Oct',
             'nov-dec': 'Nov/Dec',
-            'quarter': 'Quarter',
-            'Q1': 'Q1 Jan - March',
-            'Q2': 'Q2 April - June',
-            'Q3': 'Q3 July - Sept',
-            'Q4': 'Q4 Oct - Dec',
-            'sixMonth': 'Period',
+            quarter: 'Quarter',
+            Q1: 'Q1 Jan - March',
+            Q2: 'Q2 April - June',
+            Q3: 'Q3 July - Sept',
+            Q4: 'Q4 Oct - Dec',
+            sixMonth: 'Period',
             'jan-jun': 'Jan - June',
             'jul-dec': 'July - Dec',
-            'sixMonthApril': 'Period',
+            sixMonthApril: 'Period',
             'apr-sep': 'April - Sept',
             'oct-mar': 'Oct - March',
         });
 
-        ReactDOM.render(<PeriodPickerExample d2={d2}/>, el);
+        ReactDOM.render(<PeriodPickerExample d2={d2} />, el);
     });
