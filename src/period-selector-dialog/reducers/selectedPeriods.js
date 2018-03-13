@@ -1,15 +1,7 @@
 import actionTypes from '../actions/actionTypes';
+import _ from 'lodash';
 
-export const initialState = {
-    '2016W1': {
-        id: '2016W1',
-        name: 'First week of 2016'
-    },
-    '2016W2': {
-        id: '2016W2',
-        name: 'Second week of 2016'
-    }
-};
+export const initialState = {};
 
 export const selectedPeriods = (state = initialState, action) => {
     switch(action.type) {
@@ -19,9 +11,7 @@ export const selectedPeriods = (state = initialState, action) => {
                 [action.payload.id]: action.payload
             };
         case actionTypes.REMOVE_SELECTED_PERIOD:
-            return {
-                //
-            };
+            return _.omit(state, [action.payload.id]);
         default:
             return state;
     }
