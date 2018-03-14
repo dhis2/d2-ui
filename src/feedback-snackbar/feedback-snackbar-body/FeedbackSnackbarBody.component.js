@@ -32,30 +32,30 @@ class FeedbackSnackbarBody extends PureComponent {
     render() {
         let icon;
         switch (this.props.type) {
-        case SUCCESS:
-            icon = (
-                <FontIcon className='material-icons' style={styles.icon}>
-                    done
-                </FontIcon>
-            );
-            break;
-        case LOADING:
-            icon = <CircularProgress style={styles.icon} color={'#ffffff'} size={28} thickness={2} />;
-            break;
-        case ERROR:
-            icon = (
-                <FontIcon className='material-icons' style={styles.icon}>
-                    error
-                </FontIcon>
-            );
-            break;
-        default:
-            icon = (
-                <FontIcon className='material-icons' style={styles.icon}>
-                    warning
-                </FontIcon>
-            );
-            break;
+            case SUCCESS:
+                icon = (
+                    <FontIcon className='material-icons' style={styles.icon}>
+                        done
+                    </FontIcon>
+                );
+                break;
+            case LOADING:
+                icon = <CircularProgress style={styles.icon} color={'#ffffff'} size={28} thickness={2}/>;
+                break;
+            case ERROR:
+                icon = (
+                    <FontIcon className='material-icons' style={styles.icon}>
+                        error
+                    </FontIcon>
+                );
+                break;
+            default:
+                icon = (
+                    <FontIcon className='material-icons' style={styles.icon}>
+                        warning
+                    </FontIcon>
+                );
+                break;
         }
         const snackBarContent = (
             <div style={styles.content}>

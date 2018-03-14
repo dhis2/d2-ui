@@ -7,7 +7,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import Button from '../../src/button/Button';
 import FeedbackSnackbar from '../../src/feedback-snackbar/FeedbackSnackbar.component';
-import {ACTION_MESSAGE, ERROR, LOADING, SUCCESS, WARNING} from '../../src/feedback-snackbar/FeedbackSnackbarTypes';
+import { ACTION_MESSAGE, ERROR, LOADING, SUCCESS, WARNING } from '../../src/feedback-snackbar/FeedbackSnackbarTypes';
 
 injectTapEventPlugin();
 
@@ -82,7 +82,9 @@ class FeedbackExample extends PureComponent {
                     type: ACTION_MESSAGE,
                     message: 'Are you sure?',
                     action: 'CONFIRM',
-                    onActionClick: () => {this.showSnackbar(LOADING)},
+                    onActionClick: () => {
+                        this.showSnackbar(LOADING)
+                    },
                 };
                 break;
             default:
@@ -97,11 +99,11 @@ class FeedbackExample extends PureComponent {
     render() {
         return (
             <div>
-                <Button style={{...style.bnt, ...style.loading}} onClick={()=>this.showSnackbar(LOADING)}>Loading</Button>
-                <Button style={{...style.bnt, ...style.success}} onClick={()=>this.showSnackbar(SUCCESS)}>Success</Button>
-                <Button style={{...style.bnt, ...style.error}} onClick={()=>this.showSnackbar(ERROR)}>Error</Button>
-                <Button style={{...style.bnt, ...style.warning}} onClick={()=>this.showSnackbar(WARNING)}>Warning</Button>
-                <Button style={{...style.bnt, ...style.action}} onClick={()=>this.showSnackbar(ACTION_MESSAGE)}>Action</Button>
+                <Button style={{...style.bnt, ...style.loading}} onClick={() => this.showSnackbar(LOADING)}>Loading</Button>
+                <Button style={{...style.bnt, ...style.success}} onClick={() => this.showSnackbar(SUCCESS)}>Success</Button>
+                <Button style={{...style.bnt, ...style.error}} onClick={() => this.showSnackbar(ERROR)}>Error</Button>
+                <Button style={{...style.bnt, ...style.warning}} onClick={() => this.showSnackbar(WARNING)}>Warning</Button>
+                <Button style={{...style.bnt, ...style.action}} onClick={() => this.showSnackbar(ACTION_MESSAGE)}>Action</Button>
                 <FeedbackSnackbar show={this.state.show} conf={this.state.conf}/>
             </div>
         );
@@ -110,7 +112,7 @@ class FeedbackExample extends PureComponent {
 
 render(
     <MuiThemeProvider muiTheme={getMuiTheme()}>
-        <FeedbackExample />
+        <FeedbackExample/>
     </MuiThemeProvider>,
     document.querySelector('#feedback-snackbar'),
 );

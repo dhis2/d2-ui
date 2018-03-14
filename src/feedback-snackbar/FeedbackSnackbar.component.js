@@ -39,7 +39,7 @@ class FeedbackSnackbar extends PureComponent {
             action: '',
             onActionClick: null,
         },
-    }
+    };
 
     static getStyle(type) {
         switch (type) {
@@ -102,7 +102,7 @@ class FeedbackSnackbar extends PureComponent {
     render() {
         const snackBarContent = this.state.conf.type === ACTION_MESSAGE
             ? this.state.conf.message
-            : (<FeedbackSnackbarBody type={this.state.conf.type} message={this.state.conf.message} />);
+            : (<FeedbackSnackbarBody type={this.state.conf.type} message={this.state.conf.message}/>);
 
         return (
             <Snackbar

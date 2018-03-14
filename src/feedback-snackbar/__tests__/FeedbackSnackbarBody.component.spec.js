@@ -26,7 +26,7 @@ const errorProps = {
 
 const ownShallow = (props) => {
     return shallow(
-        <FeedbackSnackbarBody type={props.type} message={props.message} />,
+        <FeedbackSnackbarBody type={props.type} message={props.message}/>,
     );
 };
 

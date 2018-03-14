@@ -49,7 +49,7 @@ const actionProps = {
 
 const ownShallow = (props) => {
     return shallow(
-        <FeedbackSnackbar show={props.show} conf={props.conf} />,
+        <FeedbackSnackbar show={props.show} conf={props.conf}/>,
     );
 };
 
@@ -57,7 +57,7 @@ it('FeedbackSnackbar renders LOADING correctly.', () => {
     const wrapper = ownShallow(loadingProps);
     expect(wrapper.find(Snackbar)).toHaveLength(1);
     expect(wrapper.find(Snackbar).prop('message'))
-        .toMatchObject(<FeedbackSnackbarBody message={loadingProps.conf.message} type={loadingProps.conf.type} />);
+        .toMatchObject(<FeedbackSnackbarBody message={loadingProps.conf.message} type={loadingProps.conf.type}/>);
     expect(wrapper.state().show).toBeTruthy();
 });
 
@@ -65,7 +65,7 @@ it('FeedbackSnackbar renders SUCCESS correctly.', () => {
     const wrapper = ownShallow(successProps);
     expect(wrapper.find(Snackbar)).toHaveLength(1);
     expect(wrapper.find(Snackbar).prop('message'))
-        .toMatchObject(<FeedbackSnackbarBody message={successProps.conf.message} type={successProps.conf.type} />);
+        .toMatchObject(<FeedbackSnackbarBody message={successProps.conf.message} type={successProps.conf.type}/>);
     expect(wrapper.state().show).toBeTruthy();
 });
 
@@ -73,7 +73,7 @@ it('FeedbackSnackbar renders ERROR correctly.', () => {
     const wrapper = ownShallow(errorProps);
     expect(wrapper.find(Snackbar)).toHaveLength(1);
     expect(wrapper.find(Snackbar).prop('message'))
-        .toMatchObject(<FeedbackSnackbarBody message={errorProps.conf.message} type={errorProps.conf.type} />);
+        .toMatchObject(<FeedbackSnackbarBody message={errorProps.conf.message} type={errorProps.conf.type}/>);
     expect(wrapper.state().show).toBeTruthy();
 });
 
@@ -81,7 +81,7 @@ it('FeedbackSnackbar renders WARNING correctly.', () => {
     const wrapper = ownShallow(warningProps);
     expect(wrapper.find(Snackbar)).toHaveLength(1);
     expect(wrapper.find(Snackbar).prop('message'))
-        .toMatchObject(<FeedbackSnackbarBody message={warningProps.conf.message} type={warningProps.conf.type} />);
+        .toMatchObject(<FeedbackSnackbarBody message={warningProps.conf.message} type={warningProps.conf.type}/>);
     expect(wrapper.state().show).toBeTruthy();
 });
 
