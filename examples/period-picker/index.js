@@ -14,6 +14,7 @@ import parsePeriod from 'd2/lib/period/parser';
 import PeriodPicker from '../../src/period-picker/PeriodPicker.component';
 
 import TextFieldTemp from '../../src/text-field/TextFieldTemp';
+import PeriodPickerTemp from '../../src/period-picker/PeriodPicker.componentTemp';
 
 injectTapEventPlugin();
 
@@ -47,11 +48,12 @@ class PeriodPickerExample extends React.Component {
     }
 
     changePeriodType2 = (event) => {
-        console.log(event.target.value);
         const periodType2 = event.target.value;
         this.setState({ periodType2, values2: [] });
     }
-
+    handleChange = (event) => {
+        this.setState({ values2: this.state.values2.concat(event.target.value) });
+    }
     render() {
         const styles = {
             card: {
@@ -157,28 +159,23 @@ class PeriodPickerExample extends React.Component {
                                             <option value="Invalid">Invalid period type</option>
                                         </select>
                                     </div>
+                                    <ol>
+                                        {this.state.values2.map((v, i) => <li key={i}> {v} </li>)}
+                                    </ol>
                                 </div>
                             </CardContent>
                         </CardTemp>
+
                         <CardTemp style={styles.card}>
                             <CardContent>
                                 <h3 style={styles.cardHeader}> Period Picker </h3>
-                                <PeriodPicker
+                                <PeriodPickerTemp
                                     periodType={this.state.periodType2}
-                                    onPickPeriod={(value) => {
-                                        this.setState({ values: this.state.values2.concat(value) });
-                                        console.log(`New value: ${value}`);
-                                    }}
+                                    onPickPeriod={this.handleChange}
                                 />
                             </CardContent>
                         </CardTemp>
                     </div>
-                    <TextFieldTemp
-                        label="temp"
-                        type="date"
-                        defaultValue="2018-01-01"
-                        InputLabelProps={{ shrink: true }}
-                    />
                 </div>
             </MuiThemeProvider>
         );

@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import log from 'loglevel';
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
-import DatePicker from 'material-ui/DatePicker';
 import { is53WeekISOYear, getFirstDateOfWeek } from 'd2/lib/period/helpers';
+
+import MenuItem from 'material-ui-next/Menu';
+import SelectTemp from '../../src/select-field/SelectTemp';
+import TextFieldTemp from '../../src/text-field/TextFieldTemp';
 
 const styles = {
     datePicker: { width: '100%' },
@@ -41,7 +42,7 @@ const isWeekValid = (date, week) =>
     !is53WeekISOYear(date) && Number(week) !== 53
 ;
 
-class PeriodPicker extends React.Component {
+class PeriodPickerTemp extends React.Component {
     constructor(props, context) {
         super(props, context);
 
@@ -107,18 +108,7 @@ class PeriodPicker extends React.Component {
     }
 
     handleChange() {
-        if (this.getPeriod()) {
-            this.props.onPickPeriod(this.getPeriod());
-            // Reset detail fields
-            this.setState({
-                date: undefined,
-                week: undefined,
-                month: undefined,
-                biMonth: undefined,
-                quarter: undefined,
-                sixMonth: undefined,
-            });
-        }
+        this.setState()
     }
 
     renderOptionPicker(name, options) {
@@ -126,7 +116,7 @@ class PeriodPicker extends React.Component {
         const isInvalid = name === 'week' && this.state.invalidWeek;
 
         return (
-            <SelectField
+            <SelectTemp
                 value={this.state[name]}
                 onChange={changeState}
                 style={styles[name]}
@@ -145,7 +135,7 @@ class PeriodPicker extends React.Component {
                         }
                     />
                 ))}
-            </SelectField>
+            </SelectTemp>
         );
     }
 
@@ -199,8 +189,10 @@ class PeriodPicker extends React.Component {
 
     render() {
         const setDateState = (nothing, date) => {
-            console.log(nothing);
-            console.log(date);
+            const temp = nothing.target.value;
+
+            console.log(nothing.target.value);
+            console.log(temp);
             const year = getYear(date);
             const month = getTwoDigitMonth(date);
             this.setState({ date, year, month }, this.handleChange);
@@ -209,11 +201,11 @@ class PeriodPicker extends React.Component {
         switch (this.props.periodType) {
         case 'Daily':
             return (
-                <DatePicker
-                    floatingLabelText={this.getTranslation('day')}
-                    onChange={setDateState}
-                    autoOk
-                    container="inline"
+                <TextFieldTemp
+                    label={this.getTranslation('day')}
+                    type="date"
+                    InputLabelProps={{ shrink: true }}
+                    onChange={this.props.onPickPeriod}
                     style={styles.datePicker}
                 />
             );
@@ -253,7 +245,7 @@ class PeriodPicker extends React.Component {
         }
     }
 }
-PeriodPicker.propTypes = {
+PeriodPickerTemp.propTypes = {
     periodType: PropTypes.oneOf([
         'Daily',
         'Weekly',
@@ -274,6 +266,6 @@ PeriodPicker.propTypes = {
 
     onPickPeriod: PropTypes.func.isRequired,
 };
-PeriodPicker.contextTypes = { d2: PropTypes.object.isRequired };
+PeriodPickerTemp.contextTypes = { d2: PropTypes.object.isRequired };
 
-export default PeriodPicker;
+export default PeriodPickerTemp;
