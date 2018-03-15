@@ -156,14 +156,14 @@ function SidebarExample(props) {
             </div>
             <div style={styles.box}>
                 <div style={styles.header}>
-                    <div style={styles.headerText}>Simple Sidebar with paths</div>
+                    <div style={styles.headerText}>Simple Sidebar with container elements</div>
                 </div>
                 <div style={styles.leftBar}>
                     <Sidebar
                         sections={sections.map(({ key, label }, i) => ({
                             key,
                             label,
-                            path: key,
+                            containerElement: (<a href="path" />),
                         }))}
                         currentSection={props.currentSection}
                     />
