@@ -2,7 +2,7 @@ import React from 'react';
 import IconButton from 'material-ui/IconButton';
 import Badge from 'material-ui/Badge';
 
-import SvgIcon from '../../svg-icon/SvgIcon';
+import SvgIcon from 'd2-ui/lib/svg-icon/SvgIcon';
 import styles from '../header-bar-styles';
 
 const NotificationItem = (props) => {
@@ -20,7 +20,7 @@ const NotificationItem = (props) => {
             </Badge>
         );
     }
-    
+
     return (
         <NotificationIcon { ...props } />
     );

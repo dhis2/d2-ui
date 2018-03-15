@@ -1,0 +1,33 @@
+{
+  "name": "d2-ui-headerbar",
+  "version": "1.0.0",
+  "description": "The header bar for all applications ",
+  "main": "./index.js",
+  "license": "BSD-3-Clause",
+  "private": true,
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "fs-extra": "^5.0.0",
+    "rimraf": "^2.6.2",
+    "webpack": "^4.1.0",
+    "webpack-cli": "^2.0.10",
+    "webpack-dev-server": "^3.1.0"
+  },
+  "peerDependencies": {
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
+  },
+  "dependencies": {
+    "d2-ui": "^29.0.13",
+    "material-ui": "^0.20.0"
+  },
+  "scripts": {
+    "prebuild": "rimraf ./build",
+    "build": "node ./scripts/copy-files.js && webpack -p --progress"
+  }
+}

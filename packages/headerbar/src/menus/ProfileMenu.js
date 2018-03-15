@@ -4,7 +4,7 @@ import FlatButton from 'material-ui/FlatButton';
 
 import HeaderMenu from './HeaderMenu';
 import HeaderMenuItem from './HeaderMenuItem';
-import addD2Context from '../../component-helpers/addD2Context';
+import addD2Context from 'd2-ui/lib/component-helpers/addD2Context';
 import getBaseUrlFromD2ApiUrl from '../utils/getBaseUrlFromD2ApiUrl';
 import styles from '../header-bar-styles';
 

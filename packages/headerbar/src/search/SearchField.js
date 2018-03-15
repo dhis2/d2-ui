@@ -4,15 +4,15 @@ import { Observable } from 'rxjs';
 import log from 'loglevel';
 import TextField from 'material-ui/TextField';
 import IconButton from 'material-ui/IconButton';
-import SvgIcon from '../../svg-icon/SvgIcon';
+import SvgIcon from 'd2-ui/lib/svg-icon/SvgIcon';
 import ClearIcon from 'material-ui/svg-icons/content/clear';
 import { white } from 'material-ui/styles/colors';
 import { config } from 'd2/lib/d2';
 import Notifications from '../notifications/Notifications';
 import styles, { MENU_ITEM_WIDTH } from '../header-bar-styles';
 import { search, handleKeyPress, setSearchFieldFocusTo, hideWhenNotHovering } from './search.stores';
-import addD2Context from '../../component-helpers/addD2Context';
-import withStateFrom from '../../component-helpers/withStateFrom';
+import addD2Context from 'd2-ui/lib/component-helpers/addD2Context';
+import withStateFrom from 'd2-ui/lib/component-helpers/withStateFrom';
 import { searchStore$ } from './search.stores';
 import SearchResults from './SearchResults';
 
