@@ -11,7 +11,7 @@ const NotificationItem = (props) => {
     if (count && count > 0) {
         return (
             <Badge
-                secondary
+                color="secondary"
                 badgeContent={count > 99 ? '99+' : count}
                 style={styles.notificationBadge}
                 badgeStyle={styles.notificationBadgeIcon}

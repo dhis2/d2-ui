@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import { Observable } from 'rxjs';
 import log from 'loglevel';
@@ -11,7 +12,6 @@ import { config } from 'd2/lib/d2';
 import Notifications from '../notifications/Notifications';
 import styles, { MENU_ITEM_WIDTH } from '../header-bar-styles';
 import { search, handleKeyPress, setSearchFieldFocusTo, hideWhenNotHovering } from './search.stores';
-import addD2Context from 'd2-ui/lib/component-helpers/addD2Context';
 import withStateFrom from 'd2-ui/lib/component-helpers/withStateFrom';
 import { searchStore$ } from './search.stores';
 import SearchResults from './SearchResults';
@@ -75,7 +75,7 @@ class SearchField extends Component {
                         hintStyle={styles.searchFieldHintText}
                         inputStyle={styles.searchFieldInput}
                         onKeyUp={this.onKeyUp}
-                        ref="searchBox"
+                        ref={searchBox => { this.searchBox = searchBox; }}
                         underlineFocusStyle={{ borderColor: white }}
                     />
                     {this.props.searchValue ? <ClearIcon style={styles.clearIcon} color={white} onClick={this.clearSearchField} /> : ''}
@@ -89,7 +89,7 @@ class SearchField extends Component {
     }
 
     focusSearchField() {
-        const searchField = findDOMNode(this.refs.searchBox);
+        const searchField = this.searchBox;
 
         if (searchField && searchField !== document.activeElement) {
             searchField.querySelector('input').focus();
@@ -123,4 +123,8 @@ class SearchField extends Component {
     }
 }
 
-export default withStateFrom(searchStore$, addD2Context(SearchField));
+SearchField.contextTypes = {
+    d2: PropTypes.object.isRequired,
+};
+
+export default withStateFrom(searchStore$, SearchField);

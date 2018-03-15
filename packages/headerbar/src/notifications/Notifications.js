@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { config } from 'd2/lib/d2';
 import IconButton from 'material-ui/IconButton';
-import Badge from 'material-ui/Badge';
 
 import NotificationItem from './NotificationItem';
 import getBaseUrlFromD2ApiUrl from '../utils/getBaseUrlFromD2ApiUrl';
