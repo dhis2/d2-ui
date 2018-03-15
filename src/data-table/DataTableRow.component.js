@@ -18,6 +18,12 @@ const DataTableRow = addD2Context(class extends Component {
         this.props.itemClicked(event, this.props.dataSource);
     };
 
+    singleActionClick = () => {
+        if (this.hasSingleAction()) {
+            this.singleAction().action(this.props.dataSource);
+        }
+    };
+
     handleContextClick = (event) => {
         event && event.preventDefault();
         this.props.itemClicked(event, this.props.dataSource);
@@ -91,7 +97,7 @@ const DataTableRow = addD2Context(class extends Component {
                 }
                 {this.hasSingleAction() &&
                     <div className={'data-table__rows__row__column'} style={{ width: '1%' }}>
-                        <IconButton tooltip={this.context.d2.i18n.getTranslation(this.singleAction().label)} onClick={this.singleAction().action}>
+                        <IconButton tooltip={this.context.d2.i18n.getTranslation(this.singleAction().label)} onClick={this.singleActionClick}>
                             <FontIcon className={'material-icons'}>
                                 {this.singleAction().icon}
                             </FontIcon>
