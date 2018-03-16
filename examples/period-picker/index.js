@@ -49,10 +49,8 @@ class PeriodPickerExample extends React.Component {
 
     changePeriodType2 = (event) => {
         const periodType2 = event.target.value;
+        console.log(`Changing PeriodType to: ${periodType2}`);
         this.setState({ periodType2, values2: [] });
-    }
-    handleChange = (event) => {
-        this.setState({ values2: this.state.values2.concat(event.target.value) });
     }
     render() {
         const styles = {
@@ -160,7 +158,7 @@ class PeriodPickerExample extends React.Component {
                                         </select>
                                     </div>
                                     <ol>
-                                        {this.state.values2.map((v, i) => <li key={i}> {v} </li>)}
+                                        {this.state.values2.map((v, i) => <li key={i}>{parsePeriod(v).id} {parsePeriod(v).name}</li>)}
                                     </ol>
                                 </div>
                             </CardContent>
@@ -169,10 +167,15 @@ class PeriodPickerExample extends React.Component {
                         <CardTemp style={styles.card}>
                             <CardContent>
                                 <h3 style={styles.cardHeader}> Period Picker </h3>
-                                <PeriodPickerTemp
-                                    periodType={this.state.periodType2}
-                                    onPickPeriod={this.handleChange}
-                                />
+                                <div className="scroll">
+                                    <PeriodPickerTemp
+                                        periodType={this.state.periodType2}
+                                        onPickPeriod={(value) => {
+                                            this.setState({ values2: this.state.values2.concat(value) });
+                                            console.info(`New value: ${value}`);
+                                        }}
+                                    />
+                                </div>
                             </CardContent>
                         </CardTemp>
                     </div>

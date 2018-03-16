@@ -53,6 +53,8 @@ class PeriodPicker extends React.Component {
 
     getPeriod() {
         const date = this.state.year && this.state.week && getFirstDateOfWeek(this.state.year, this.state.week);
+        console.log("date is " + date);
+
         switch (this.props.periodType) {
         case 'Daily':
             return this.state.date && formattedDate(this.state.date);
@@ -122,7 +124,10 @@ class PeriodPicker extends React.Component {
     }
 
     renderOptionPicker(name, options) {
-        const changeState = (e, i, value) => this.setState({ [name]: value }, this.handleChange);
+        const changeState = (e, i, value) => {
+            console.log("changing state variable : " + name + " to : "+ value);
+            this.setState({ [name]: value }, this.handleChange);
+        };
         const isInvalid = name === 'week' && this.state.invalidWeek;
 
         return (
@@ -199,8 +204,6 @@ class PeriodPicker extends React.Component {
 
     render() {
         const setDateState = (nothing, date) => {
-            console.log(nothing);
-            console.log(date);
             const year = getYear(date);
             const month = getTwoDigitMonth(date);
             this.setState({ date, year, month }, this.handleChange);
@@ -267,8 +270,8 @@ PeriodPicker.propTypes = {
         'SixMonthly',
         'SixMonthlyApril',
         'Yearly',
-        'FinancialApril',
         'FinancialJuly',
+        'FinancialApril',
         'FinancialOct',
     ]).isRequired,
 

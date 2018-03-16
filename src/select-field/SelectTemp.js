@@ -30,10 +30,9 @@ const SelectTemp = (props) => {
     const { children, error, inputLabelText, loading, selector, ...passThroughProps } = props;
 
     const className = createClassName('d2-ui-selectfield', selector);
-
     return (
         <FormControl
-            style={d2DefaultStyle.formControl}
+            style={props.style || d2DefaultStyle.formControl}
             error={error}
             // ...formcontrolprops / some HOC solution, or specify each prop (when wrapping multiple components like the new Select)? 
         >
