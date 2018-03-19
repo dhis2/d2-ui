@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 import Store from 'd2-ui/lib/store/Store';
 import { appsMenuSource$ } from '../utils/menu-sources';
 

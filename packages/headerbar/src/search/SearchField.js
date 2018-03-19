@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 import log from 'loglevel';
 import TextField from 'material-ui/TextField';
 import IconButton from 'material-ui/IconButton';

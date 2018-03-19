@@ -4,7 +4,7 @@ import { map } from 'lodash/fp';
 import { curry } from 'lodash/fp';
 import { pick } from 'lodash/fp';
 import { get as pluck } from 'lodash/fp';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 import headerBarSettingsStore$ from './settings/settings.store';
 import { profileSource$, appsMenuSource$, notifications$ } from './utils/menu-sources';
 import getBaseUrlFromD2ApiUrl from './utils/getBaseUrlFromD2ApiUrl';

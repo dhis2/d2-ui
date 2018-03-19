@@ -1,5 +1,5 @@
 import { white, black } from 'material-ui/styles/colors';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 import log from 'loglevel';
 import { curry } from 'lodash/fp';
 

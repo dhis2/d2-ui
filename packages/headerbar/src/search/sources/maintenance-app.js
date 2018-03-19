@@ -1,7 +1,7 @@
 import { map } from 'lodash/fp';
 import { curry } from 'lodash/fp';
 import { compose } from 'lodash/fp';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 import { flatten } from 'lodash/fp';
 import { filter } from 'lodash/fp';
 import { mapValues } from 'lodash/fp';

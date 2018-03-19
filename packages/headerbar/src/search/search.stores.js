@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 import log from 'loglevel';
 import { uniqBy } from 'lodash/fp';
 import { curry } from 'lodash/fp';
