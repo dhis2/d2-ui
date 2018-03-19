@@ -1,8 +1,8 @@
 import { Observable } from 'rxjs/Observable';
 import log from 'loglevel';
-import { uniqBy } from 'lodash/fp';
-import { curry } from 'lodash/fp';
-import { get } from 'lodash/fp';
+import uniqBy from 'lodash/fp/uniqBy';
+import curry from 'lodash/fp/curry';
+import get from 'lodash/fp/get';
 import Action from 'd2-ui/lib/action/Action';
 import Store from 'd2-ui/lib/store/Store';
 import addDeepLinksForMaintenance from './sources/maintenance-app';

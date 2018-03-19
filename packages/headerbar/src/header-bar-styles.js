@@ -1,7 +1,7 @@
 import { white, black } from 'material-ui/styles/colors';
 import { Observable } from 'rxjs/Observable';
 import log from 'loglevel';
-import { curry } from 'lodash/fp';
+import { curry } from 'lodash/fp/curry';
 
 export const MENU_ITEM_WIDTH = 125;
 

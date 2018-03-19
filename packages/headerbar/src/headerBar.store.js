@@ -1,9 +1,9 @@
 import { getInstance } from 'd2/lib/d2';
-import { compose } from 'lodash/fp';
-import { map } from 'lodash/fp';
-import { curry } from 'lodash/fp';
-import { pick } from 'lodash/fp';
-import { get as pluck } from 'lodash/fp';
+import compose from 'lodash/fp/compose';
+import map from 'lodash/fp/map';
+import curry from 'lodash/fp/curry';
+import pick from 'lodash/fp/pick';
+import pluck from 'lodash/fp/get';
 import { Observable } from 'rxjs/Observable';
 import headerBarSettingsStore$ from './settings/settings.store';
 import { profileSource$, appsMenuSource$, notifications$ } from './utils/menu-sources';

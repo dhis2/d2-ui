@@ -1,4 +1,4 @@
-import { map } from 'lodash/fp';
+import map from 'lodash/fp/map';
 import { Observable } from 'rxjs/Observable';
 import { config, getInstance as getD2 } from 'd2/lib/d2';
 import getBaseUrlFromD2ApiUrl from '../../utils/getBaseUrlFromD2ApiUrl';
