@@ -75,6 +75,8 @@ styles = {
         lineHeight: '32px',
         marginLeft: '-2px',
         backgroundColor: '#6a94c2',
+		width: 32,
+		height: 32,
     },
 
     avatarBig: {
@@ -82,6 +84,8 @@ styles = {
         fontWeight: '500',
         lineHeight: '60px',
         backgroundColor: '#6a94c2',
+		width: 60,
+		height: 60,
     },
 
     headerBar: {
@@ -150,6 +154,7 @@ styles = {
         top: 3,
         backgroundColor: '#4ca899',
         fontSize: '9px',
+		right: 0,
     },
 
     notificationIcon: {
@@ -170,6 +175,7 @@ styles = {
         flex: 1,
         transition: 'width .5s cubic-bezier(0.39, -0.04, 0.2, 1)',
         position: 'relative',
+		top: '8px',
     },
 
     searchIcon: {
@@ -202,7 +208,7 @@ styles = {
     },
 
     searchFieldInput: {
-        color: white,
+        color: 'white',
     },
 
     searchFieldHintText: {

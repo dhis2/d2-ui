@@ -5,7 +5,6 @@ import IconButton from 'material-ui/IconButton';
 
 import NotificationItem from './NotificationItem';
 import getBaseUrlFromD2ApiUrl from '../utils/getBaseUrlFromD2ApiUrl';
-import SvgIcon from 'd2-ui/lib/svg-icon/SvgIcon';
 import styles from '../header-bar-styles';
 
 config.i18n.strings.add('interpretations');

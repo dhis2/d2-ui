@@ -10,26 +10,27 @@ import Notifications from './notifications/Notifications';
 import SearchField from './search/SearchField';
 import styles, { applyUserStyle } from './header-bar-styles';
 
+import D2UI from 'd2-ui/lib/app/D2UI';
 import withStateFrom from 'd2-ui/lib/component-helpers/withStateFrom';
 import headerBarStore$ from './headerBar.store';
 
-import packageInfo from '../package.json';
 import { setInstance } from 'd2/lib/d2';
-
-console.log(`Initializing Header Bar v${packageInfo.version}`); // eslint-disable-line no-console
 
 class HeaderBar extends Component {
     constructor (props) {
         super(props);
+        console.log(`Initializing Header Bar`); // eslint-disable-line no-console
+    }
 
-        if (props.d2) {
-            console.log('Setting d2');
-            setInstance(props.d2);
+    componentWillReceiveProps(nextProps) {
+        if (!this.props.d2 && nextProps.d2) {
+            console.log('Setting d2', nextProps.d2)
+            setInstance(nextProps.d2)
         }
     }
 
     getChildContext() {
-        return { d2: this.props.d2 };
+        return { d2: this.props.d2 }
     }
 
     render () {
@@ -41,38 +42,39 @@ class HeaderBar extends Component {
             settings,
             noLoadingIndicator } = this.props;
 
-        console.log(this.props);
-
         // If the required props are not passed we're in a loading state.
-        if (!appItems && !profileItems && !settings) {
+        if (!this.props.d2 || !appItems && !profileItems && !settings) {
             if (noLoadingIndicator) {
                 return <div style={{ display: 'none' }} />;
             }
+            console.info("Loading state", this.props.d2, appItems, profileItems, settings)
             return (<div style={styles.headerBar}><LinearProgress mode="indeterminate" /></div>);
         }
 
         return (
-            <div style={applyUserStyle(this.props.d2.currentUser, styles.headerBar)}>
-                <InnerHeader />
-                <div style={styles.headerActions}>
-                    <Notifications notifications={notifications}/>
-                    <SearchField />
+            <D2UI>
+                <div style={applyUserStyle(this.props.d2.currentUser, styles.headerBar)}>
+                    <InnerHeader />
+                    <div style={styles.headerActions}>
+                        <Notifications notifications={notifications}/>
+                        <SearchField />
+                    </div>
+                    <HeaderMenus>
+                        <ProfileMenu
+                            items={profileItems}
+                            rowItemCount={3}
+                            columnItemCount={3}
+                            currentUser={currentUser}
+                        />
+                    </HeaderMenus>
                 </div>
-                <HeaderMenus>
-                    <ProfileMenu
-                        items={profileItems}
-                        rowItemCount={3}
-                        columnItemCount={3}
-                        currentUser={currentUser}
-                    />
-                </HeaderMenus>
-            </div>
+            </D2UI>
         );
     }
 }
 
 HeaderBar.childContextTypes = {
-    d2: PropTypes.object.isRequired,
+    d2: PropTypes.object,
 }
 
 HeaderBar.propTypes = {

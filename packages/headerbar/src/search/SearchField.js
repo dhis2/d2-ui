@@ -16,6 +16,22 @@ import withStateFrom from 'd2-ui/lib/component-helpers/withStateFrom';
 import { searchStore$ } from './search.stores';
 import SearchResults from './SearchResults';
 
+import { withStyles } from 'material-ui/styles';
+
+const searchFieldStyles = theme => ({
+	inputUnderline: {
+		'&:hover::before': {
+			backgroundColor: 'rgba(255,255,255,0.5) !important',
+		},
+		'&:before': {
+			backgroundColor: 'rgba(255,255,255,0.5)',
+		},
+		'&:after': {
+			backgroundColor: 'white',
+		},
+	}
+});
+
 config.i18n.strings.add('app_search_placeholder');
 
 class SearchField extends Component {
@@ -59,6 +75,10 @@ class SearchField extends Component {
     }
 
     render() {
+//hintStyle=styles.searchFieldHintText}
+//inputStyle=styles.searchFieldInput}
+//underlineFocusStyle={ borderColor: white
+		const { classes } = this.props;
         return (
             <div style={styles.searchField}>
                 <div style={styles.searchIconContainer}>
@@ -71,17 +91,31 @@ class SearchField extends Component {
                         onChange={this.setSearchValue}
                         onFocus={this.onFocus}
                         onBlur={this.onBlur}
-                        hintText={this.context.d2.i18n.getTranslation('app_search_placeholder')}
-                        hintStyle={styles.searchFieldHintText}
-                        inputStyle={styles.searchFieldInput}
+                        placeholder={this.context.d2.i18n.getTranslation('app_search_placeholder')}
                         onKeyUp={this.onKeyUp}
+						InputProps={{
+							style: {
+								...styles.searchFieldInput,
+							},
+							classes: {
+								underline: classes.inputUnderline
+							}
+						}}
+						InputLabelProps={{
+							style: {
+								...styles.searchFieldHintText,
+							},
+						}}
                         ref={searchBox => { this.searchBox = searchBox; }}
-                        underlineFocusStyle={{ borderColor: white }}
                     />
-                    {this.props.searchValue ? <ClearIcon style={styles.clearIcon} color={white} onClick={this.clearSearchField} /> : ''}
+                    {this.props.searchValue
+						? <ClearIcon style={styles.clearIcon}
+								color={white}
+								onClick={this.clearSearchField} />
+						: ''}
                 </div>
-                <IconButton iconStyle={{ fill: 'white' }} onClick={this.focusSearchField}>
-                    <SvgIcon icon="Apps" />
+                <IconButton onClick={this.focusSearchField}>
+                    <SvgIcon icon="Apps" style={{ fill: 'white' }} />
                 </IconButton>
                 <SearchResults />
             </div>
@@ -127,4 +161,6 @@ SearchField.contextTypes = {
     d2: PropTypes.object.isRequired,
 };
 
-export default withStateFrom(searchStore$, SearchField);
+const StyledSearchField = withStyles(searchFieldStyles)(SearchField);
+
+export default withStateFrom(searchStore$, StyledSearchField);

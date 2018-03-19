@@ -22,7 +22,7 @@ const ProfileMenu = addD2Context((props, { d2 }) => {
     const rightSide = (
         <div style={styles.profileRightSide}>
             <div style={styles.profileFlexWrap}>
-                <Avatar size={60} style={styles.avatarBig}>{initials}</Avatar>
+                <Avatar style={styles.avatarBig}>{initials}</Avatar>
                 <div>
                     <div key={name} style={styles.profileName}>{currentUser.displayName}</div>
                     <div style={styles.profileMail}>{currentUser.email}</div>

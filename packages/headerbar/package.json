@@ -2,7 +2,8 @@
   "name": "d2-ui-headerbar",
   "version": "1.0.0",
   "description": "The header bar for all applications ",
-  "main": "./index.js",
+  "main": "./build/cjs/index.js",
+  "module": "./build/es/index.js",
   "license": "BSD-3-Clause",
   "private": true,
   "devDependencies": {
@@ -16,7 +17,13 @@
     "rimraf": "^2.6.2",
     "webpack": "^4.1.0",
     "webpack-cli": "^2.0.10",
-    "webpack-dev-server": "^3.1.0"
+    "webpack-dev-server": "^3.1.0",
+    "cross-env": "^5.1.4",
+    "babel-jest": "^22.4.1",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
+    "babel-plugin-transform-imports": "^1.5.0",
+    "jest": "^22.4.2",
+    "react-test-renderer": "^16.2.0"
   },
   "peerDependencies": {
     "react": "^16.2.0",
@@ -28,8 +35,18 @@
     "material-ui": "^1.0.0-beta.37",
     "rxjs": "^5.5.7"
   },
+  "jest": {
+    "transformIgnorePatterns": [
+      "node_modules/(?!react-native|react-navigation)/"
+    ]
+  },
   "scripts": {
     "prebuild": "rimraf ./build",
-    "build": "node ./scripts/copy-files.js && webpack -d --progress"
+    "copyfiles": "node ./scripts/copy-files.js",
+    "build": "npm run copyfiles && npm run build:commonjs && npm run build:es && npm run build:umd",
+    "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir build/cjs --ignore spec.js",
+    "build:es": "cross-env BABEL_ENV=es babel src --out-dir build/es --ignore spec.js",
+    "build:umd": "cross-env && webpack -p",
+    "watch": "npm run build:es --  --watch"
   }
 }

@@ -5,19 +5,30 @@ import Badge from 'material-ui/Badge';
 import SvgIcon from 'd2-ui/lib/svg-icon/SvgIcon';
 import styles from '../header-bar-styles';
 
+import { withStyles } from 'material-ui/styles';
+
+const badgeStyles = theme => ({
+	root: styles.notificationBadge,
+	badge: styles.notificationBadgeIcon
+})
+const StyledBadge = withStyles(badgeStyles)(Badge);
+
+const iconStyles = ({
+	root: styles.notificationButton,
+});
+const StyledIconButton = withStyles(iconStyles)(IconButton);
+
 const NotificationItem = (props) => {
     const { count } = props;
 
     if (count && count > 0) {
         return (
-            <Badge
+            <StyledBadge
                 color="secondary"
                 badgeContent={count > 99 ? '99+' : count}
-                style={styles.notificationBadge}
-                badgeStyle={styles.notificationBadgeIcon}
             >
                 <NotificationIcon { ...props } />
-            </Badge>
+            </StyledBadge>
         );
     }
 
@@ -27,14 +38,13 @@ const NotificationItem = (props) => {
 }
 
 const NotificationIcon = ({ icon, href, tooltip, style = {} }) => (
-    <IconButton
+    <StyledIconButton
         href={href}
-        style={{ ...styles.notificationButton, ...style}}
-        iconStyle={styles.notificationIcon}
         tooltip={tooltip}
+		style={style}
     >
-        <SvgIcon icon={icon} />
-    </IconButton>
+        <SvgIcon icon={icon} style={styles.notificationIcon}/>
+    </StyledIconButton>
 );
 
 export default NotificationItem;
