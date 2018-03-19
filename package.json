@@ -13,9 +13,9 @@
     "test:watch": "jest --watch",
     "lint": "eslint src/",
     "preversion": "npm run validate && npm test",
-    "build:sass": "node-sass ./scss --output ./lib/css",
     "build": "rm -rf lib/ && babel src --out-dir lib && npm run build:sass",
-    "postbuild": "rm -rf lib/**/__tests__",
+    "build:sass": "node-sass ./scss --output ./lib/css",
+    "postbuild-only": "rm -rf lib/**/__tests__",
     "validate": "yarn check || npm ls --depth 0"
   },
   "repository": {
