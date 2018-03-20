@@ -13,9 +13,14 @@ function DataTableContextMenu(props, context) {
         .keys(props.actions)
         .filter(menuActionKey => typeof props.actions[menuActionKey] === 'function');
 
+    // Transition and left styles were added to prevent initial rendering in top-left
+    // https://github.com/mui-org/material-ui/issues/8040
     const cmStyle = {
         position: 'fixed',
+        left: -1000,
+        transition: 'left 0s, top 0s',
     };
+
     const {
         actions,
         activeItem,
