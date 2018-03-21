@@ -1,20 +1,36 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 import log from 'loglevel';
 import TextField from 'material-ui/TextField';
 import IconButton from 'material-ui/IconButton';
-import SvgIcon from '../../svg-icon/SvgIcon';
+import SvgIcon from 'd2-ui/lib/svg-icon/SvgIcon';
 import ClearIcon from 'material-ui/svg-icons/content/clear';
 import { white } from 'material-ui/styles/colors';
 import { config } from 'd2/lib/d2';
 import Notifications from '../notifications/Notifications';
 import styles, { MENU_ITEM_WIDTH } from '../header-bar-styles';
 import { search, handleKeyPress, setSearchFieldFocusTo, hideWhenNotHovering } from './search.stores';
-import addD2Context from '../../component-helpers/addD2Context';
-import withStateFrom from '../../component-helpers/withStateFrom';
+import withStateFrom from 'd2-ui/lib/component-helpers/withStateFrom';
 import { searchStore$ } from './search.stores';
 import SearchResults from './SearchResults';
+
+import { withStyles } from 'material-ui/styles';
+
+const searchFieldStyles = theme => ({
+	inputUnderline: {
+		'&:hover::before': {
+			backgroundColor: 'rgba(255,255,255,0.5) !important',
+		},
+		'&:before': {
+			backgroundColor: 'rgba(255,255,255,0.5)',
+		},
+		'&:after': {
+			backgroundColor: 'white',
+		},
+	}
+});
 
 config.i18n.strings.add('app_search_placeholder');
 
@@ -59,6 +75,10 @@ class SearchField extends Component {
     }
 
     render() {
+//hintStyle=styles.searchFieldHintText}
+//inputStyle=styles.searchFieldInput}
+//underlineFocusStyle={ borderColor: white
+		const { classes } = this.props;
         return (
             <div style={styles.searchField}>
                 <div style={styles.searchIconContainer}>
@@ -71,17 +91,31 @@ class SearchField extends Component {
                         onChange={this.setSearchValue}
                         onFocus={this.onFocus}
                         onBlur={this.onBlur}
-                        hintText={this.context.d2.i18n.getTranslation('app_search_placeholder')}
-                        hintStyle={styles.searchFieldHintText}
-                        inputStyle={styles.searchFieldInput}
+                        placeholder={this.context.d2.i18n.getTranslation('app_search_placeholder')}
                         onKeyUp={this.onKeyUp}
-                        ref="searchBox"
-                        underlineFocusStyle={{ borderColor: white }}
+						InputProps={{
+							style: {
+								...styles.searchFieldInput,
+							},
+							classes: {
+								underline: classes.inputUnderline
+							}
+						}}
+						InputLabelProps={{
+							style: {
+								...styles.searchFieldHintText,
+							},
+						}}
+                        ref={searchBox => { this.searchBox = searchBox; }}
                     />
-                    {this.props.searchValue ? <ClearIcon style={styles.clearIcon} color={white} onClick={this.clearSearchField} /> : ''}
+                    {this.props.searchValue
+						? <ClearIcon style={styles.clearIcon}
+								color={white}
+								onClick={this.clearSearchField} />
+						: ''}
                 </div>
-                <IconButton iconStyle={{ fill: 'white' }} onClick={this.focusSearchField}>
-                    <SvgIcon icon="Apps" />
+                <IconButton onClick={this.focusSearchField}>
+                    <SvgIcon icon="Apps" style={{ fill: 'white' }} />
                 </IconButton>
                 <SearchResults />
             </div>
@@ -89,7 +123,7 @@ class SearchField extends Component {
     }
 
     focusSearchField() {
-        const searchField = findDOMNode(this.refs.searchBox);
+        const searchField = this.searchBox;
 
         if (searchField && searchField !== document.activeElement) {
             searchField.querySelector('input').focus();
@@ -123,4 +157,10 @@ class SearchField extends Component {
     }
 }
 
-export default withStateFrom(searchStore$, addD2Context(SearchField));
+SearchField.contextTypes = {
+    d2: PropTypes.object.isRequired,
+};
+
+const StyledSearchField = withStyles(searchFieldStyles)(SearchField);
+
+export default withStateFrom(searchStore$, StyledSearchField);

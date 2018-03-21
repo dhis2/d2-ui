@@ -6,21 +6,16 @@
   "license": "BSD-3-Clause",
   "author": "",
   "scripts": {
-    "examples": "npm run start",
     "coverage": "jest --coverage",
     "start": "webpack-dev-server",
-    "pretest": "cd packages && cd favorites && yarn install && cd .. && cd sharing && yarn install",
+    "pretest": "cd packages && cd favorites && yarn install && cd .. && cd sharing && yarn install && cd .. && cd headerbar && yarn install",
     "test": "jest",
     "test:watch": "jest --watch",
     "lint": "eslint src/",
-    "prebuild": "npm run validate && npm test",
     "preversion": "npm run validate && npm test",
-    "build": "npm run build-only",
+    "build": "rm -rf lib/ && babel src --out-dir lib && npm run build:sass",
     "build:sass": "node-sass ./scss --output ./lib/css",
-    "build-only": "rm -rf lib/ && babel src --out-dir lib && npm run build:sass && npm run build-stand-alone-header-bar",
     "postbuild-only": "rm -rf lib/**/__tests__",
-    "prebuild-stand-alone-header-bar": "rm -rf dist &>/dev/null || true",
-    "build-stand-alone-header-bar": "NODE_ENV=production webpack -p",
     "validate": "yarn check || npm ls --depth 0"
   },
   "repository": {
@@ -69,7 +64,7 @@
     "rxjs": "^5.4.3",
     "sass-loader": "^6.0.2",
     "style-loader": "^0.18.2",
-    "susy": "2",
+    "susy": "^2.0.0",
     "webpack": "^3.6.0",
     "webpack-dev-server": "^2.4.1",
     "webpack-visualizer-plugin": "^0.1.5"

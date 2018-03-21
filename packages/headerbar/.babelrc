@@ -1,0 +1,37 @@
+{
+    "presets": [["env", { "modules": false }], "react", "stage-2"],
+    "env": {
+        "commonjs": {
+            "presets": [
+                [
+                    "env",
+                    {
+                        "modules": "commonjs"
+                    }
+                ],
+                "react",
+                "stage-2"
+            ],
+            "plugins": ["transform-class-properties"]
+        },
+        "es": {
+            "presets": [
+                [
+                    "env",
+                    {
+                        "modules": false
+                    }
+                ],
+                "react",
+                "stage-2"
+            ]
+        },
+        "test": {
+            "presets": ["env", "react", "stage-2"],
+            "plugins": [
+                "transform-es2015-modules-commonjs"
+            ]
+        }
+    },
+}
+

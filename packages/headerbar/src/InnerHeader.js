@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import log from 'loglevel';
-import { Observable, Subject } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 import styles, { whenWidthLargerThan1150 } from './header-bar-styles';
 import getBaseUrlFromD2ApiUrl from './utils/getBaseUrlFromD2ApiUrl';
 
