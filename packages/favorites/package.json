@@ -2,7 +2,8 @@
   "name": "d2-ui-favorites",
   "version": "1.0.4",
   "description": "Favorite component for DHIS2",
-  "main": "./index.js",
+  "main": "./build/cjs/index.js",
+  "module": "./build/es/index.js",
   "license": "BSD-3-Clause",
   "private": true,
   "author": "Edoardo Sabadelli <edoardo@dhis2.org>",
@@ -16,20 +17,31 @@
   },
   "scripts": {
     "prebuild": "rimraf ./build",
-    "build": "node ./scripts/copy-files.js && webpack -p"
+    "copyfiles": "node ./scripts/copy-files.js",
+    "build": "npm run copyfiles && npm run build:commonjs && npm run build:es && npm run build:umd",
+    "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir build/cjs --ignore spec.js",
+    "build:es": "cross-env BABEL_ENV=es babel src --out-dir build/es --ignore spec.js",
+    "build:umd": "cross-env && webpack -p",
+    "watch": "npm run build:es --  --watch"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
+    "babel-jest": "^22.4.1",
     "babel-loader": "^7.1.2",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
+    "babel-plugin-transform-imports": "^1.5.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "cross-env": "^5.1.4",
     "fs-extra": "^5.0.0",
+    "jest": "^22.4.2",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "react-test-renderer": "^16.2.0",
     "rimraf": "^2.6.2",
-    "webpack": "^3.11.0",
+    "webpack": "3",
     "webpack-dev-server": "^2.11.1"
   },
   "dependencies": {
