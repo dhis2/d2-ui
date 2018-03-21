@@ -1,17 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { isArray } from 'lodash/fp';
 import log from 'loglevel';
 
 function TwoPanelSelector(props) {
-    const { children, childWrapStyle, sizeRatio, ...otherProps } = props;
-    const styles = {
-        mainStyle: {
-            flex: 1,
-            display: 'flex',
-            flexOrientation: 'row',
-            marginTop: '8rem',
-        },
+    const { children, childWrapStyle, mainStyle, sizeRatio, ...otherProps } = props;
+    const mergedMainStyle = {
+        flex: 1,
+        display: 'flex',
+        flexOrientation: 'row',
+        marginTop: '8rem',
+        ...mainStyle,
     };
+
     let childrenToRender;
 
     if (isArray(children)) {
@@ -44,15 +45,26 @@ function TwoPanelSelector(props) {
         });
 
     return (
-        <main {...otherProps} style={styles.mainStyle}>
+        <main {...otherProps} style={mergedMainStyle}>
             {flexedChilden}
         </main>
     );
 }
+TwoPanelSelector.propTypes = {
+    children: PropTypes.oneOfType([
+        PropTypes.array,
+        PropTypes.object,
+    ]),
+    childWrapStyle: PropTypes.object,
+    mainStyle: PropTypes.object,
+    sizeRatio: PropTypes.array,
+};
+
 TwoPanelSelector.defaultProps = {
     sizeRatio: ['0 0 320px', 1],
     children: [],
     childWrapStyle: {},
+    mainStyle: {},
 };
 
 export default TwoPanelSelector;
