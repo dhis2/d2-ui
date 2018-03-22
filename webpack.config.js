@@ -37,6 +37,7 @@ module.exports = {
             orgunitselect: './examples/org-unit-select',
             sharing: './examples/sharing',
             favoritesdialog: './examples/favorites-dialog',
+            feedbacksnackbar: './examples/feedback-snackbar',
             sidebar: './examples/sidebar',
             iconpicker: './examples/icon-picker',
             formbuilder: './examples/form-builder',
@@ -56,7 +57,7 @@ module.exports = {
             chip: './examples/chip',
             controlbar: './examples/controlbar',
             layout: './examples/layout',
-        },
+    },
     devtool: 'source-map',
     output: {
         library: 'Dhis2HeaderBar',
