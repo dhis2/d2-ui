@@ -5,6 +5,14 @@ import DataTableRow from '../DataTableRow.component';
 describe('DataTableRow component', () => {
     let dataTableRow;
     let dataElement;
+    const cma = {
+        edit(...args) {
+            console.log('Edit', ...args);
+        },
+        remove(...args) {
+            console.log('Remove', ...args);
+        },
+    };
 
     function renderComponent(props = {}) {
         const nops = {
@@ -12,7 +20,7 @@ describe('DataTableRow component', () => {
             primaryClick: () => {},
         };
         return shallow(
-            <DataTableRow {...Object.assign({ contextMenuActions: {} }, nops, props)} />,
+            <DataTableRow {...Object.assign({ contextMenuActions: cma }, nops, props)} />,
             {
                 context: {
                     d2: {

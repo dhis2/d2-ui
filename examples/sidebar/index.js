@@ -154,6 +154,21 @@ function SidebarExample(props) {
                     This allows using custom icon fonts, or even SVG icons.
                 </div>
             </div>
+            <div style={styles.box}>
+                <div style={styles.header}>
+                    <div style={styles.headerText}>Simple Sidebar with container elements</div>
+                </div>
+                <div style={styles.leftBar}>
+                    <Sidebar
+                        sections={sections.map(({ key, label }, i) => ({
+                            key,
+                            label,
+                            containerElement: (<a href="path" />),
+                        }))}
+                        currentSection={props.currentSection}
+                    />
+                </div>
+            </div>
 
             {/* TODO: With top buttons (sidebarButtons prop) */}
             {/* TODO: With custom styles */}

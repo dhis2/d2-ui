@@ -4,6 +4,7 @@ import classes from 'classnames';
 import { isObject } from 'lodash/fp';
 import { isString } from 'lodash/fp';
 import IconButton from 'material-ui/IconButton';
+import FontIcon from 'material-ui/FontIcon';
 import MoreVert from 'material-ui/svg-icons/navigation/more-vert';
 import addD2Context from '../component-helpers/addD2Context';
 import { findValueRenderer } from './data-value/valueRenderers';
@@ -17,6 +18,12 @@ const DataTableRow = addD2Context(class extends Component {
         this.props.itemClicked(event, this.props.dataSource);
     };
 
+    singleActionClick = () => {
+        if (this.hasSingleAction()) {
+            this.singleAction().action(this.props.dataSource);
+        }
+    };
+
     handleContextClick = (event) => {
         event && event.preventDefault();
         this.props.itemClicked(event, this.props.dataSource);
@@ -24,6 +31,29 @@ const DataTableRow = addD2Context(class extends Component {
 
     handleClick = (event) => {
         this.props.primaryClick(this.props.dataSource, event);
+    };
+
+    hasContextMenu = () => {
+        return Object.keys(this.props.contextMenuActions || {}).length > 1;
+    };
+
+    hasSingleAction = () => {
+        return Object.keys(this.props.contextMenuActions || {}).length === 1;
+    };
+
+    singleAction = () => {
+        if (this.hasSingleAction()) {
+            const actionKeys = Object.keys(this.props.contextMenuActions || {});
+            const label = actionKeys[0];
+            const action = this.props.contextMenuActions[label];
+            const icon = this.props.contextMenuIcons && this.props.contextMenuIcons[label] ? this.props.contextMenuIcons[label] : label;
+            return {
+                label: label,
+                action: action,
+                icon: icon,
+            };
+        }
+        return null;
     };
 
     render() {
@@ -54,14 +84,26 @@ const DataTableRow = addD2Context(class extends Component {
                 </div>
             );
         });
+
         return (
             <div className={classList}>
                 {columns}
-                <div className={'data-table__rows__row__column'} style={{ width: '1%' }}>
-                    <IconButton tooltip={this.context.d2.i18n.getTranslation('actions')} onClick={this.iconMenuClick}>
-                        <MoreVert />
-                    </IconButton>
-                </div>
+                {this.hasContextMenu() &&
+                    <div className={'data-table__rows__row__column'} style={{ width: '1%' }}>
+                        <IconButton tooltip={this.context.d2.i18n.getTranslation('actions')} onClick={this.iconMenuClick}>
+                            <MoreVert />
+                        </IconButton>
+                    </div>
+                }
+                {this.hasSingleAction() &&
+                    <div className={'data-table__rows__row__column'} style={{ width: '1%' }}>
+                        <IconButton tooltip={this.context.d2.i18n.getTranslation(this.singleAction().label)} onClick={this.singleActionClick}>
+                            <FontIcon className={'material-icons'}>
+                                {this.singleAction().icon}
+                            </FontIcon>
+                        </IconButton>
+                    </div>
+                }
             </div>
         );
     }
@@ -74,6 +116,8 @@ DataTableRow.propTypes = {
     isOdd: PropTypes.bool,
     itemClicked: PropTypes.func.isRequired,
     primaryClick: PropTypes.func.isRequired,
+    contextMenuActions: PropTypes.object,
+    contextMenuIcons: PropTypes.object,
 };
 
 export default DataTableRow;

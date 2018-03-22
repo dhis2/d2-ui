@@ -1,6 +1,6 @@
 {
   "name": "d2-ui-sharing",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "DHIS2 component for sharing dialog",
   "main": "./index.js",
   "license": "BSD-3-Clause",
