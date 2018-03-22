@@ -1,7 +1,8 @@
-import { white, black } from 'material-ui/styles/colors';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/fromEvent';
+import 'rxjs/add/operator/debounceTime';
 import log from 'loglevel';
-import { curry } from 'lodash/fp/curry';
+import curry from 'lodash/fp/curry';
 
 export const MENU_ITEM_WIDTH = 125;
 
@@ -225,7 +226,7 @@ styles = {
         alignItems: 'center',
         justifyContent: 'center',
         textDecoration: 'none',
-        color: black,
+        color: 'black',
         fontSize: '1rem',
     },
 
@@ -255,8 +256,9 @@ styles = {
 
     clearIcon: {
         fill: 'white',
+        color: 'white',
         position: 'absolute',
-        top: '10px',
+        top: '5px',
         right: '5px',
     },
 

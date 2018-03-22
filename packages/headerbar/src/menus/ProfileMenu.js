@@ -1,6 +1,6 @@
 import React from 'react';
 import Avatar from 'material-ui/Avatar';
-import FlatButton from 'material-ui/FlatButton';
+import Button from 'material-ui/Button';
 
 import HeaderMenu from './HeaderMenu';
 import HeaderMenuItem from './HeaderMenuItem';
@@ -28,9 +28,9 @@ const ProfileMenu = addD2Context((props, { d2 }) => {
                     <div style={styles.profileMail}>{currentUser.email}</div>
                 </div>
             </div>
-            <FlatButton style={styles.logoutButton} href={`${getBaseUrl(d2)}/dhis-web-commons-security/logout.action`}>
+            <Button style={styles.logoutButton} href={`${getBaseUrl(d2)}/dhis-web-commons-security/logout.action`}>
                 {d2.i18n.getTranslation('log_out')}
-            </FlatButton>
+            </Button>
         </div>
     );
 

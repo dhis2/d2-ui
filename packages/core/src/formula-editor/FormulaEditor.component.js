@@ -51,7 +51,7 @@ class EntityEditorExample extends Component {
             editorState: EditorState.createWithContent(ContentState.createFromBlockArray(blocks), decorator),
         };
 
-        this.focus = () => this.refs.editor.focus();
+        this.focus = () => this.editorRef.focus();
         this.onChange = editorState => this.setState({ editorState });
         this.logState = () => {
             const content = this.state.editorState.getCurrentContent();
@@ -88,7 +88,7 @@ class EntityEditorExample extends Component {
                         editorState={this.state.editorState}
                         onChange={this.onChange}
                         placeholder="Your formulae goes here..."
-                        ref="editor"
+                        ref={(ref) => { this.editorRef = ref}}
                     />
                 </div>
                 <input

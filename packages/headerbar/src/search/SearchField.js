@@ -6,8 +6,8 @@ import log from 'loglevel';
 import TextField from 'material-ui/TextField';
 import IconButton from 'material-ui/IconButton';
 import SvgIcon from 'd2-ui/lib/svg-icon/SvgIcon';
-import ClearIcon from 'material-ui/svg-icons/content/clear';
-import { white } from 'material-ui/styles/colors';
+import ClearIcon from 'material-ui-icons/Clear';
+import AppsIcon from 'material-ui-icons/Apps';
 import { config } from 'd2/lib/d2';
 import Notifications from '../notifications/Notifications';
 import styles, { MENU_ITEM_WIDTH } from '../header-bar-styles';
@@ -75,9 +75,6 @@ class SearchField extends Component {
     }
 
     render() {
-//hintStyle=styles.searchFieldHintText}
-//inputStyle=styles.searchFieldInput}
-//underlineFocusStyle={ borderColor: white
 		const { classes } = this.props;
         return (
             <div style={styles.searchField}>
@@ -110,12 +107,11 @@ class SearchField extends Component {
                     />
                     {this.props.searchValue
 						? <ClearIcon style={styles.clearIcon}
-								color={white}
 								onClick={this.clearSearchField} />
 						: ''}
                 </div>
                 <IconButton onClick={this.focusSearchField}>
-                    <SvgIcon icon="Apps" style={{ fill: 'white' }} />
+                    <AppsIcon style={{ fill: 'white' }} />
                 </IconButton>
                 <SearchResults />
             </div>

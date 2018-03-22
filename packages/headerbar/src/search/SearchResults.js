@@ -1,6 +1,6 @@
 import React from 'react';
 import Paper from 'material-ui/Paper';
-import FlatButton from 'material-ui/FlatButton';
+import Button from 'material-ui/Button';
 import { config } from 'd2/lib/d2';
 import SearchResultsList from './SearchResultsList';
 import HeaderMenuItem from '../menus/HeaderMenuItem';
@@ -20,12 +20,12 @@ function SearchResults(props, { d2 }) {
     const menuItems = (props.searchResults || []).map(item => (<HeaderMenuItem key={item.name} {...item} />));
 
     const moreAppsButton = (
-        <FlatButton
+        <Button
             style={styles.moreAppsButton}
             href={`${getBaseUrl(d2)}/dhis-web-menu-management`}
         >
             {d2.i18n.getTranslation('manage_my_apps')}
-        </FlatButton>
+        </Button>
     );
 
     const searchResultBoxContent = menuItems.length ? (<SearchResultsList>{menuItems}</SearchResultsList>) : (<NoResults />);

@@ -1,0 +1,34 @@
+{
+  "name": "d2-ui",
+  "version": "29.0.16",
+  "description": "d2-ui",
+  "main": "index.js",
+  "license": "BSD-3-Clause",
+  "author": "",
+  "scripts": {
+    "coverage": "jest --coverage",
+    "start": "webpack-dev-server",
+    "pretest": "cd packages && cd favorites && yarn install && cd .. && cd sharing && yarn install && cd .. && cd headerbar && yarn install",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint src/",
+    "preversion": "npm run validate && npm test",
+    "build": "rm -rf lib/ && babel src --out-dir lib && npm run build:sass",
+    "build:sass": "node-sass ./scss --output ./lib/css",
+    "postbuild-only": "rm -rf lib/**/__tests__",
+    "validate": "yarn check || npm ls --depth 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dhis2/d2-ui.git"
+  },
+  "peerDependencies": {
+    "d2": "^29.1.1",
+    "react": "^15.0.0 || ^16.0.0",
+    "react-dom": "^15.0.0 || ^16.0.0"
+  },
+  "pre-commit": [
+    "validate",
+    "test"
+  ]
+}
