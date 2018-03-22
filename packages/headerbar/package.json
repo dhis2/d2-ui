@@ -23,7 +23,7 @@
     ]
   },
   "scripts": {
-    "prebuild": "rimraf ./build",
+    "prebuild": "rimraf ./build/*",
     "copyfiles": "node ./scripts/copy-files.js",
     "build": "npm run copyfiles && npm run build:commonjs && npm run build:es && npm run build:umd",
     "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir build/cjs --ignore spec.js",

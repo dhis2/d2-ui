@@ -8,14 +8,13 @@
   "scripts": {
     "coverage": "jest --coverage",
     "start": "webpack-dev-server",
-    "pretest": "cd packages && cd favorites && yarn install && cd .. && cd sharing && yarn install && cd .. && cd headerbar && yarn install",
     "test": "jest",
     "test:watch": "jest --watch",
     "lint": "eslint src/",
     "preversion": "npm run validate && npm test",
-    "build": "rm -rf lib/ && babel src --out-dir lib && npm run build:sass",
+    "build": "rimraf lib/* && babel src --out-dir lib && npm run build:sass",
     "build:sass": "node-sass ./scss --output ./lib/css",
-    "postbuild-only": "rm -rf lib/**/__tests__",
+    "postbuild": "rimraf lib/**/__tests__",
     "validate": "yarn check || npm ls --depth 0"
   },
   "repository": {
