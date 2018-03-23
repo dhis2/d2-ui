@@ -21,10 +21,13 @@
     "type": "git",
     "url": "https://github.com/dhis2/d2-ui.git"
   },
+  "dependencies": {
+    "material-ui": "^0.20.0"
+  },
   "peerDependencies": {
     "d2": "^29.1.1",
-    "react": "^15.0.0 || ^16.0.0",
-    "react-dom": "^15.0.0 || ^16.0.0"
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
   },
   "pre-commit": [
     "validate",

@@ -30,13 +30,14 @@ function getSizes(large, small) {
 export default function CircularProgress({ large = false, small = false, style }) {
     const sizes = getSizes(large, small);
 
-    return (
-        <MUICircularProgress
-            mode="indeterminate"
-            size={sizes.size}
-            style={Object.assign({ margin: sizes.margin }, style)}
-        />
-    );
+    //return (
+    //    <MUICircularProgress
+    //        mode="indeterminate"
+    //        size={sizes.size}
+    //        style={Object.assign({ margin: sizes.margin }, style)}
+    //    />
+    //);
+    return null;
 }
 
 CircularProgress.propTypes = {
