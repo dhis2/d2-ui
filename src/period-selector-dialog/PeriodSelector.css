@@ -1,0 +1,8 @@
+.nav-button {
+    padding: 5px 13px 3px;
+}
+
+.nav-button.active, .nav-button.active:hover {
+    background: #117ad4;
+    color: #fff;
+}
