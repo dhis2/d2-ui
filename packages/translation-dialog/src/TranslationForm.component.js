@@ -4,11 +4,11 @@ import TextField from 'material-ui/TextField/TextField';
 import camelCaseToUnderscores from 'd2-utilizr/lib/camelCaseToUnderscores';
 import RaisedButton from 'material-ui/RaisedButton/RaisedButton';
 import { Observable } from 'rxjs';
-import LocaleSelector from '../i18n/LocaleSelector.component';
+import LocaleSelector from './LocaleSelector.component';
 import { getLocales, getTranslationsForModel, saveTranslations } from './translationForm.actions';
-import withStateFrom from '../component-helpers/withStateFrom';
-import Store from '../store/Store';
-import CircularProgress from '../circular-progress/CircularProgress';
+import withStateFrom from 'd2-ui/lib/component-helpers/withStateFrom';
+import Store from 'd2-ui/lib/store/Store';
+import CircularProgress from 'd2-ui/lib/circular-progress/CircularProgress';
 
 function getTranslationFormData(model) {
     const translationStore = Store.create();

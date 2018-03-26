@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 import { isNil } from 'lodash/fp';
 import Color from './Color.component';
-import Translate from '../../i18n/Translate.component';
+import Translate from 'd2-ui-translation-dialog';
 
 function TextValue({ value = '' }) {
     const textWrapStyle = {
