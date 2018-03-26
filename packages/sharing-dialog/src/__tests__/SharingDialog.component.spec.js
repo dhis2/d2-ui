@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import Dialog from 'material-ui/Dialog/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import SharingDialog from '../SharingDialog.component';
-import LoadingMask from 'd2-ui/lib/loading-mask/LoadingMask.component';
+import { LoadingMask } from 'd2-ui';
 import Sharing from '../Sharing.component';
 
 import { getStubContext } from '../../../../config/inject-theme';

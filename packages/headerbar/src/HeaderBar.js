@@ -10,8 +10,8 @@ import Notifications from './notifications/Notifications';
 import SearchField from './search/SearchField';
 import styles, { applyUserStyle } from './header-bar-styles';
 
-import D2UI from 'd2-ui/lib/app/D2UI';
-import withStateFrom from 'd2-ui/lib/component-helpers/withStateFrom';
+import { D2UI } from 'd2-ui';
+import { withStateFrom } from 'd2-ui';
 import headerBarStore$ from './headerBar.store';
 
 import { setInstance } from 'd2/lib/d2';

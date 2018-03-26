@@ -1,3 +1,3 @@
-import Store from 'd2-ui/lib/store/Store';
+import { Store } from 'd2-ui';
 
 export default Store.create();

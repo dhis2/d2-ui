@@ -2,10 +2,11 @@ import TextField from 'material-ui/TextField/TextField';
 import { Observable } from 'rxjs';
 import { getInstance, config } from 'd2/lib/d2';
 import camelCaseToUnderscores from 'd2-utilizr/lib/camelCaseToUnderscores';
-import Store from 'd2-ui/lib/store/Store';
 import ColorPicker from './ColorPicker.component';
-import { isRequired } from 'd2-ui/lib/forms/Validators';
-import mapProps from 'd2-ui/lib/component-helpers/mapProps';
+
+import { Store } from 'd2-ui';
+import { isRequired } from 'd2-ui';
+import { mapProps } from 'd2-ui';
 
 config.i18n.strings.add('required');
 config.i18n.strings.add('should_be_lower_than_end_value');

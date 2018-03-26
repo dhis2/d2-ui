@@ -6,7 +6,7 @@ import IconButton from 'material-ui/IconButton';
 import Divider from 'material-ui/Divider';
 import Popover from 'material-ui/Popover';
 import Menu from 'material-ui/Menu';
-import SvgIcon from 'd2-ui/lib/svg-icon/SvgIcon';
+import { SvgIcon } from 'd2-ui';
 
 import PermissionOption from './PermissionOption.component';
 

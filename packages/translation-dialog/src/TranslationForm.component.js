@@ -6,9 +6,9 @@ import RaisedButton from 'material-ui/RaisedButton/RaisedButton';
 import { Observable } from 'rxjs';
 import LocaleSelector from './LocaleSelector.component';
 import { getLocales, getTranslationsForModel, saveTranslations } from './translationForm.actions';
-import withStateFrom from 'd2-ui/lib/component-helpers/withStateFrom';
-import Store from 'd2-ui/lib/store/Store';
-import CircularProgress from 'd2-ui/lib/circular-progress/CircularProgress';
+import { withStateFrom } from 'd2-ui';
+import { Store } from 'd2-ui';
+import { CircularProgress } from 'd2-ui';
 
 function getTranslationFormData(model) {
     const translationStore = Store.create();

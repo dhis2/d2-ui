@@ -5,8 +5,8 @@ import Dialog from 'material-ui/Dialog/Dialog';
 import { config } from 'd2/lib/d2';
 import { legendItemStore, legendItemStore$, onFieldChange, onFormStatusChange } from './LegendItem.store';
 import { setDialogStateToAction } from './LegendItem.actions';
-import withStateFrom from 'd2-ui/lib/component-helpers/withStateFrom';
-import FormBuilder from 'd2-ui/lib/forms/FormBuilder.component';
+import { withStateFrom } from 'd2-ui';
+import { FormBuilder } from 'd2-ui';
 
 config.i18n.strings.add('ok');
 config.i18n.strings.add('cancel');
