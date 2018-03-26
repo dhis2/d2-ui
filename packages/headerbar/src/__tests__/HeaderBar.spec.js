@@ -8,7 +8,7 @@ import SearchField from '../search/SearchField';
 import styles from '../header-bar-styles';
 import ProfileMenu from '../menus/ProfileMenu';
 
-describe.skip('HeaderBar', () => {
+describe('HeaderBar', () => {
     const renderWithProps = props => shallow(<HeaderBar {...props} />, {
         context: getStubContext(),
     });
