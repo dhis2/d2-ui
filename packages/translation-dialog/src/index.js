@@ -1,1 +1,2 @@
-export { default as TranslationDialog } from './TranslationDialog.component'
+import TranslationDialog from './TranslationDialog.component'
+export default TranslationDialog
