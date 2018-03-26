@@ -41,7 +41,7 @@ const rawContent = {
     },
 };
 
-class EntityEditorExample extends Component {
+class FormulaEditor extends Component {
     constructor(props) {
         super(props);
 
@@ -196,4 +196,4 @@ const styles = {
 
 // export default FormulaEditor;
 
-export default EntityEditorExample;
+export default FormulaEditor;

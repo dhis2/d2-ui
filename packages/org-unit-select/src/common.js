@@ -1,7 +1,7 @@
 import React from 'react';
 import RaisedButton from 'material-ui/RaisedButton/RaisedButton';
 import LinearProgress from 'material-ui/LinearProgress/LinearProgress';
-import DropDown from '../form-fields/DropDown.component';
+import DropDown from 'd2-ui/lib/form-fields/DropDown.component';
 
 const style = {
     button: {
