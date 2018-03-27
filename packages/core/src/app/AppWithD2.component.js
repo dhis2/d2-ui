@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import log from 'loglevel';
 
-class DataTableHeader extends Component {
+class AppWithD2 extends Component {
     state = {};
 
     componentDidMount() {
@@ -35,15 +35,15 @@ class DataTableHeader extends Component {
     }
 }
 
-DataTableHeader.propTypes = {
+AppWithD2.propTypes = {
     children: PropTypes.element,
     d2: PropTypes.shape({
         then: PropTypes.func.isRequired,
     }),
 };
 
-DataTableHeader.childContextTypes = {
+AppWithD2.childContextTypes = {
     d2: PropTypes.object,
 };
 
-export default DataTableHeader;
+export default AppWithD2;
