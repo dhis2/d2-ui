@@ -54,6 +54,7 @@ module.exports = {
             tabs: './examples/tabs',
             chip: './examples/chip',
             controlbar: './examples/controlbar',
+            chartoptions: './examples/chart-options',
         },
     devtool: 'source-map',
     output: {

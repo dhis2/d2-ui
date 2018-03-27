@@ -9,7 +9,6 @@ import { createClassName } from '../component-helpers/utils';
 
 
 const d2DefaultStyle = {
-    // separate style fyle with "d2-ui" standardized style to inject as Props (?)
     loadingIndicator: {
         teaxtAlign: 'center',
     },
@@ -34,7 +33,6 @@ const SelectTemp = (props) => {
         <FormControl
             style={props.style || d2DefaultStyle.formControl}
             error={error}
-            // ...formcontrolprops / some HOC solution, or specify each prop (when wrapping multiple components like the new Select)? 
         >
             <InputLabel>{inputLabelText}</InputLabel>
             <Select
@@ -81,6 +79,7 @@ SelectTemp.propTypes = {
 };
 
 SelectTemp.defaultProps = {
+    
 };
 
 export default SelectTemp;

@@ -3,6 +3,8 @@ import { render } from 'react-dom';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { MenuItem } from 'material-ui-next/Menu';
+import Checkbox from 'material-ui-next/Checkbox';
+import { ListItemText } from 'material-ui-next/List';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import SelectField from '../../src/select-field/SelectField';
 
@@ -113,9 +115,10 @@ class SelectFields extends Component {
                         onChange={event => this.onChangeValue('selectValueField1', event.target.value)}
                         value={this.state.selectValueField1}
                         inputLabelText={'Native Select'}
-                        selector={'test'}
+                        native
                     >
-                        {items.map(item => (<option key={item.id} value={item.name}> {item.name} </option>))}
+                        {<option defaultValue={''} />}
+                        {items.map(item => (<option key={item.id} defaultValue={item.name} value={item.name}> {item.name} </option>))}
                     </SelectTemp>
 
                     <SelectTemp
@@ -131,8 +134,14 @@ class SelectFields extends Component {
                         value={this.state.selectValueField3}
                         onChange={event => this.onChangeValue('selectValueField3', event.target.value)}
                         inputLabelText={'Multiple select component'}
+                        renderValue={selected => selected.join(', ')}
                     >
-                        {items.map(item => (<MenuItem key={item.id} value={item.name}> {item.name} </MenuItem>))}
+                        {items.map(item => (
+                            <MenuItem key={item.id} value={item.name}>
+                                <Checkbox checked={this.state.selectValueField3.indexOf(item.name) > -1} />
+                                <ListItemText primary={item.name} />
+                            </MenuItem>
+                        ))}
                     </SelectTemp>
 
                     <SelectTemp
@@ -155,7 +164,7 @@ class SelectFields extends Component {
                         inputLabelText={'Error text'}
                         error
                     >
-                        {items.map(item => (<option key={item.id} value={item.name}> {item.name} </option>))}
+                        {items.map(item => (<MenuItem key={item.id} value={item.name}> {item.name} </MenuItem>))}
                     </SelectTemp>
                 </div>
             </div>

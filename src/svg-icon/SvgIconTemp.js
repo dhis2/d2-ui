@@ -60,7 +60,7 @@ const SvgIconTemp = (props) => {
     } else {
         Icon = iconAlternatives[icon] || SentimentDissatisfied;
     }
-
+    console.log(props);
     return (
         <Icon
             style={{
