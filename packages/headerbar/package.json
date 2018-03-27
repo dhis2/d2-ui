@@ -6,7 +6,6 @@
   "module": "./build/es/index.js",
   "files": [ "build" ],
   "license": "BSD-3-Clause",
-  "private": true,
   "peerDependencies": {
     "react": "^16.2.0",
     "react-dom": "^16.2.0"

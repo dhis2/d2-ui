@@ -8,7 +8,6 @@
     "build"
   ],
   "license": "BSD-3-Clause",
-  "private": true,
   "peerDependencies": {
     "d2": "^29.1.1",
     "react": "^16.0.0",

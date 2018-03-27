@@ -6,7 +6,6 @@
   "module": "./build/es/index.js",
   "files": [ "build" ],
   "license": "BSD-3-Clause",
-  "private": true,
   "author": "Edoardo Sabadelli <edoardo@dhis2.org>",
   "contributors": [
     "Viktor Varland <viktor@dhis2.org>"
