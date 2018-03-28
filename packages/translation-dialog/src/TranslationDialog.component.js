@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { config } from 'd2/lib/d2';
 import Dialog from 'material-ui/Dialog/Dialog';
 import { getTranslationFormFor } from './TranslationForm.component';
 
@@ -11,7 +10,7 @@ class TranslationDialog extends Component {
         this.i18n = context.d2.i18n;
 
         this.state = {
-            TranslationForm: getTranslationFormFor(this.props.objectToTranslate),
+            TranslationForm: getTranslationFormFor(props.objectToTranslate),
         };
 
         this.translationSaved = this.translationSaved.bind(this);
