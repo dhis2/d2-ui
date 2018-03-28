@@ -19,7 +19,7 @@ config.i18n.strings.add('assign_all');
 config.i18n.strings.add('remove_all');
 config.i18n.strings.add('hidden_by_filters');
 
-class GroupEditor extends Component {
+export default class GroupEditor extends Component {
     constructor(props, context) {
         super(props, context);
 
@@ -421,5 +421,3 @@ GroupEditor.defaultProps = {
     filterText: '',
     onMoveItems: () => {},
 };
-
-export default GroupEditor;

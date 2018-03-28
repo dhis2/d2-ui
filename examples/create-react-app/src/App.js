@@ -11,21 +11,20 @@ import ExpressionManager from './components/expression-manager'
 import FavoritesDialog from './components/favorites-dialog'
 import SharingDialog from './components/sharing'
 import FeedbackSnackbar from './components/feedback-snackbar'
-
-//import FormBuilder from './components/form-builder'
+import FormBuilder from './components/form-builder'
 //import FormEditor from './components/formula-editor'
-//import GroupEditor from './components/group-editor'
+import GroupEditor from './components/group-editor'
 //import HeaderBar from './components/header-bar'
-//import IconPicker from './components/icon-picker'
-//import Layout from './components/layout'
-//import Legend from './components/legend'
+import IconPicker from './components/icon-picker'
+import Layout from './components/layout'
+import Legend from './components/legend'
 //import OrgUnitSelect from './components/org-unit-select'
-//import PeriodPicker from './components/period-picker'
-//import SelectField from './components/select-field'
-//import Sidebar from './components/sidebar'
-//import SvgIcon from './components/svg-icon'
-//import TextField from './components/text-field'
-//import Tabs from './components/tabs'
+import PeriodPicker from './components/period-picker'
+import SelectField from './components/select-field'
+import Sidebar from './components/sidebar'
+import SvgIcon from './components/svg-icon'
+import TextField from './components/text-field'
+import Tabs from './components/tabs'
 //import Translation from './components/translation'
 
 class App extends Component {
@@ -77,31 +76,18 @@ class App extends Component {
 
         <h2>Feedback Snackbar</h2>
         <FeedbackSnackbar />
-  {/*
 
         <h2>FormBuilder</h2>
         <FormBuilder />
 
-        <h2>FormEditor</h2>
-        <FormEditor />
-
         <h2>GroupEditor</h2>
         <GroupEditor d2={this.state.d2} />
-
-        <h2>HeaderBar</h2>
-        <HeaderBar d2={this.state.d2} />
-
-        <h2>IconPicker</h2>
-        <IconPicker />
 
         <h2>Layout</h2>
         <Layout />
 
         <h2>Legend</h2>
-        <Legend />
-
-        <h2>OrgUnitSelect</h2>
-        <OrgUnitSelect />
+        <Legend d2={this.state.d2} />
 
         <h2>PeriodPicker</h2>
         <PeriodPicker d2={this.state.d2} />
@@ -120,6 +106,19 @@ class App extends Component {
 
         <h2>Tabs</h2>
         <Tabs />
+
+  {/*
+        <h2>OrgUnitSelect</h2>
+        <OrgUnitSelect />
+
+        <h2>FormEditor</h2>
+        <FormEditor />
+
+        <h2>HeaderBar</h2>
+        <HeaderBar d2={this.state.d2} />
+
+        <h2>IconPicker</h2>
+        <IconPicker d2={this.state.d2} />
 
         <h2>Translation</h2>
         <Translation />

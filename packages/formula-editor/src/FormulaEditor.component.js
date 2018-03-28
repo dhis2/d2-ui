@@ -41,7 +41,7 @@ const rawContent = {
     },
 };
 
-class FormulaEditor extends Component {
+export default class FormulaEditor extends Component {
     constructor(props) {
         super(props);
 
@@ -185,15 +185,3 @@ const styles = {
         padding: '2px 0',
     },
 };
-
-// function FormulaEditor(props, context) {
-//     return (
-//         <div>
-//             Formula Editor here
-//         </div>
-//     );
-// }
-
-// export default FormulaEditor;
-
-export default FormulaEditor;

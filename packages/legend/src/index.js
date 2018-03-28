@@ -1,1 +1,2 @@
-export { default as Legend } from './Legend.component'
+import Legend from './Legend.component'
+export default Legend
