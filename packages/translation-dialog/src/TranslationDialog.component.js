@@ -7,7 +7,7 @@ class TranslationDialog extends Component {
     constructor(props, context) {
         super(props, context);
 
-        this.i18n = context.d2.i18n;
+        this.i18n = props.d2.i18n;
 
         this.state = {
             TranslationForm: getTranslationFormFor(props.objectToTranslate),
@@ -16,6 +16,10 @@ class TranslationDialog extends Component {
         this.translationSaved = this.translationSaved.bind(this);
         this.translationError = this.translationError.bind(this);
         this.closeTranslationDialog = this.closeTranslationDialog.bind(this);
+    }
+
+    getChildContext() {
+        return { d2: this.props.d2 };
     }
 
     render() {
@@ -67,9 +71,10 @@ TranslationDialog.propTypes = {
     open: PropTypes.bool,
     onRequestClose: PropTypes.func.isRequired,
     fieldsToTranslate: PropTypes.array,
+    d2: PropTypes.object.isRequired,
 };
 
-TranslationDialog.contextTypes = {
+TranslationDialog.childContextTypes = {
     d2: PropTypes.object,
 };
 
