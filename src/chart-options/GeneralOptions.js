@@ -12,27 +12,26 @@ const GeneralOptions = props => (
             <FormControlLabel
                 label={strings.general.hideLegend}
                 control={<Checkbox
-                    checked={props.tabContent.hideChartLegend || false} 
-                    onChange={(event) => { props.handleChange('hideChartLegend', event); }} 
+                    checked={props.tabContent.hideChartLegend || false}
+                    onChange={(event) => { props.onChange('hideChartLegend', event.target.checked); }}
                 />}
             />
             <FormControlLabel
                 label={strings.general.hideChartTitle}
                 control={<Checkbox
-                    checked={props.tabContent.hideChartTitle || false} 
-                    onChange={(event) => { props.handleChange('hideChartTitle', event); }} 
+                    checked={props.tabContent.hideChartTitle || false}
+                    onChange={(event) => { props.onChange('hideChartTitle', event.target.checked); }}
                 />}
             />
             <FormControlLabel
                 label={strings.general.hideSubtitle}
                 control={<Checkbox
                     checked={props.tabContent.hideSubtitle || false}
-                    onChange={(event) => { props.handleChange('hideSubtitle', event); }}
+                    onChange={(event) => { props.onChange('hideSubtitle', event.target.checked); }}
                 />}
             />
             <div >
-                <Button variant="raised" size="small" color="primary"> OK </Button>
-                <Button variant="raised" size="small" color="primary"> Cancel </Button>
+                <Button variant="raised" size="small" color="primary"> Hide </Button>
             </div>
         </FormGroup>
     </div>

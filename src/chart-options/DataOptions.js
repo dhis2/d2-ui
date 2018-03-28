@@ -20,22 +20,22 @@ const DataOptions = props => (
             <FormControlLabel
                 label={strings.data.values}
                 control={<Checkbox
-                    checked={props.checkBoxContent.showValues || false}
-                    onChange={(event) => { props.handleCheckBoxChange('showValues', event); }}
+                    checked={props.tabContent.showValues || false}
+                    onChange={(event) => { props.onChange('showValues', event.target.checked); }}
                 />}
             />
             <FormControlLabel
                 label={strings.data.cumulative}
                 control={<Checkbox
-                    checked={props.checkBoxContent.useCumulative || false}
-                    onChange={(event) => { props.handleCheckBoxChange('useCumulative', event); }}
+                    checked={props.tabContent.useCumulative || false}
+                    onChange={(event) => { props.onChange('useCumulative', event.target.checked); }}
                 />}
             />
             <FormControlLabel
                 label={strings.data.stacked}
                 control={<Checkbox
-                    checked={props.checkBoxContent.useStacked || false}
-                    onChange={(event) => { props.handleCheckBoxChange('useStacked', event); }}
+                    checked={props.tabContent.useStacked || false}
+                    onChange={(event) => { props.onChange('useStacked', event.target.checked); }}
                 />}
             />
         </FormGroup>
@@ -43,7 +43,7 @@ const DataOptions = props => (
             <InputLabel>{strings.data.hideEmptyCategories.defaultValue}</InputLabel>
             <Select
                 value={props.tabContent.category || ''}
-                onChange={(event) => { props.handleFieldChange('category', event); }}
+                onChange={(event) => { props.onChange('category', event.target.value); }}
             >
                 {strings.data.hideEmptyCategories.alternatives.map((alternative, id) => (
                     <MenuItem key={id} value={alternative}> {alternative } </MenuItem>
@@ -56,7 +56,7 @@ const DataOptions = props => (
                 <InputLabel>{strings.data.trendLine.defaultValue}</InputLabel>
                 <Select
                     value={props.tabContent.trendLine || ''}
-                    onChange={(event) => { props.handleFieldChange('trendLine', event); }}
+                    onChange={(event) => { props.onChange('trendLine', event.target.value); }}
                 >
                     {strings.data.trendLine.alternatives.map((alternative, id) => (
                         <MenuItem key={id} value={alternative}> {alternative } </MenuItem>
@@ -67,13 +67,13 @@ const DataOptions = props => (
 
         <TextField
             label={strings.data.targetLineValue}
-            onChange={(event) => { props.handleFieldChange('targetLineValue', event); }}
+            onChange={(event) => { props.onChange('targetLineValue', event.target.value); }}
             type={'number'}
             value={props.tabContent.targetLineValue || ''}
         />
         <TextField
             label={strings.data.targetLineTitle}
-            onChange={(event) => { props.handleFieldChange('targetLineTitle', event); }}
+            onChange={(event) => { props.onChange('targetLineTitle', event.target.value); }}
             value={props.tabContent.targetLineTitle || ''}
         />
 
@@ -81,12 +81,12 @@ const DataOptions = props => (
             <TextField
                 label={strings.data.baseLineValue}
                 type={'number'}
-                onChange={(event) => { props.handleFieldChange('baseLineValue', event); }}
+                onChange={(event) => { props.onChange('baseLineValue', event.target.value); }}
                 value={props.tabContent.baseLineValue || ''}
             />
             <TextField
                 label={strings.data.baseLineTitle}
-                onChange={(event) => { props.handleFieldChange('baseLineTitle', event); }}
+                onChange={(event) => { props.onChange('baseLineTitle', event.target.value); }}
                 value={props.tabContent.baseLineTitle || ''}
             />
         </div>
@@ -96,7 +96,7 @@ const DataOptions = props => (
                 <InputLabel>{strings.data.sortOrder.defaultValue}</InputLabel>
                 <Select
                     value={props.tabContent.sortOrder || ''}
-                    onChange={(event) => { props.handleFieldChange('sortOrder', event); }}
+                    onChange={(event) => { props.onChange('sortOrder', event.target.value); }}
                 >
                     {strings.data.sortOrder.alternatives.map((alternative, id) => (
                         <MenuItem key={id} value={alternative}> {alternative} </MenuItem>

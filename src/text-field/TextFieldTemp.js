@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import TextField from 'material-ui-next/TextField';
-// import { createClassName } from '../component-helpers/utils';
+import { createClassName } from '../component-helpers/utils';
 
 // const d2DefaultStyle = {};
 
 const TextFieldTemp = (props) => {
     const { selector, ...passThroughProps } = props;
-    // const className = createClassName('d2-ui-textfield', selector);
+    const className = createClassName('d2-ui-textfield', selector);
 
     return (<TextField {...passThroughProps} />);
 };

@@ -11,7 +11,7 @@ const StyleOptions = props => (
             label={strings.chart.noSpace}
             control={<Checkbox
                 checked={props.tabContent.noSpace || false}
-                onChange={event => props.handleChange('noSpace', event)}
+                onChange={event => props.onChange('noSpace', event.target.checked)}
             />}
         />
         <FormGroup />

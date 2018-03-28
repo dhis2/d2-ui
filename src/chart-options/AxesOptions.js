@@ -8,13 +8,13 @@ const AxesOptions = props => (
             <TextField
                 label={strings.axes.min}
                 type={'number'}
-                onChange={(event) => { props.handleChange('axismin', event); }}
+                onChange={(event) => { props.onChange('axismin', event.target.value); }}
                 value={props.tabContent.axismin || ''}
             />
             <TextField
                 label={strings.axes.max}
                 type={'number'}
-                onChange={(event) => { props.handleChange('axismax', event); }}
+                onChange={(event) => { props.onChange('axismax', event.target.value); }}
                 value={props.tabContent.axismax || ''}
             />
         </div>
@@ -22,7 +22,7 @@ const AxesOptions = props => (
             <TextField
                 label={strings.axes.tickSteps}
                 type={'number'}
-                onChange={(event) => { props.handleChange('ticksteps', event); }}
+                onChange={(event) => { props.onChange('ticksteps', event.target.value); }}
                 value={props.tabContent.ticksteps || ''}
             />
         </div>
@@ -30,21 +30,21 @@ const AxesOptions = props => (
             <TextField
                 label={strings.axes.decimals}
                 type={'number'}
-                onChange={(event) => { props.handleChange('decimals', event); }}
+                onChange={(event) => { props.onChange('decimals', event.target.value); }}
                 value={props.tabContent.decimals || ''}
             />
         </div>
         <TextField
             label={strings.axes.rangeTitle}
             fullWidth
-            onChange={(event) => { props.handleChange('rangeTitle', event); }}
+            onChange={(event) => { props.onChange('rangeTitle', event.target.value); }}
             value={props.tabContent.rangeTitle || ''}
         />
         <div>
             <TextField
                 label={strings.axes.domainTitle}
                 fullWidth
-                onChange={(event) => { props.handleChange('domainTitle', event); }}
+                onChange={(event) => { props.onChange('domainTitle', event.target.value); }}
                 value={props.tabContent.domainTitle || ''}
             />
         </div>

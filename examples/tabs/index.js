@@ -5,7 +5,9 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import { Tabs, Tab } from '../../src/tabs/Tabs';
 
-import TabsTemp from '../../src/tabs/TabsTemp';
+import AppBar from 'material-ui-next/AppBar';
+
+import { TabsTemp, TabTemp } from '../../src/tabs/TabsTemp';
 
 injectTapEventPlugin();
 
@@ -25,9 +27,16 @@ const TabComponent = () => (
                 </Tabs>
             </div>
         </MuiThemeProvider>
-        <h3> Material-ui v.0 </h3>
-        <div>
-            <TabsTemp />
+        <h3> Material-ui v.1 </h3>
+
+        <div style={style}>
+            <AppBar position={'static'}>
+                <TabsTemp>
+                    <TabTemp label={'First'}> First Tab </TabTemp>
+                    <TabTemp label={'Second'}> Second Tab </TabTemp>
+                    <TabTemp label={'Third'}> Third Tab </TabTemp>
+                </TabsTemp>
+            </AppBar>
         </div>
     </div>
 );

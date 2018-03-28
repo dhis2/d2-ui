@@ -9,7 +9,7 @@ const ChartTabs = props => (
             <Tabs
                 centered
                 value={props.activeTab}
-                onChange={(event, value) => { props.handleChange(value); }}
+                onChange={(event, value) => { props.onChange(value); }}
             >
                 <Tab label={strings.tabs.dataLabel} />
                 <Tab label={strings.tabs.axesLabel} />

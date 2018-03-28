@@ -1,39 +1,30 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-// import { store } from './Store';
-// import { Provider } from 'react-redux';
-
 import ChartOptions from '../../src/chart-options/ChartOptions';
 
 class ChartOptionExample extends Component {
     state = {
         activeTab: 0,
-        tabContent: {
-            axes: {},
-            checkbox: {},
-            data: {},
-        },
+        optionsValues: {},
     };
-    handleAxesContentChange = () => {
-        console.log(' ## HANDLE AXES CHANGE ');
+    handleTabChange = (tabIndex) => {
+        this.setState({ activeTab: tabIndex });
     };
-    handleCheckBoxChange = () => {
-        console.log(' ## HANDLE CHECKBOX CHANGE ');
+    handleOptionsChange = (content, value) => {
+        this.setState({
+            ...this.state,
+            optionsValues: {
+                ...this.state.optionsValues,
+                [content]: value,
+            },
+        });
     };
-    handleDataContentChange = () => {
-        console.log(' ## HANDLE DATA CHANGE ');
-    };
-    handleTabChange = () => {
-        console.log(' ## HANDLE TAB CHANGE ');
-    }
     render = () => (
         <ChartOptions
             activeTab={this.state.activeTab}
-            tabContent={this.state.tabContent}
-            handleAxesContentChange={this.handleAxesContentChange}
-            handleCheckBoxChange={this.handleCheckBoxChange}
-            handleDataContentChange={this.handleDataContentChange}
-            handleTabChange={this.handleTabChange}
+            onTabChange={this.handleTabChange}
+            optionsValues={this.state.optionsValues}
+            onOptionsChange={this.handleOptionsChange}
         />
     );
 }
