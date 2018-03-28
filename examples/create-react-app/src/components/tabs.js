@@ -1,5 +1,4 @@
 import React from 'react';
-import { render } from 'react-dom';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Tabs, Tab } from 'd2-ui';

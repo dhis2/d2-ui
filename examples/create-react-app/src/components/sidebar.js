@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
 import FontIcon from 'material-ui/FontIcon';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -157,7 +156,7 @@ export default function SidebarExample(props) {
                             sections={sections.map(({ key, label }, i) => ({
                                 key,
                                 label,
-                                containerElement: (<a href="path" />),
+                                containerElement: (<a href="path">path</a>),
                             }))}
                             currentSection={props.currentSection}
                         />
