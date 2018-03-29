@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import CircularProgress from '../circular-progress/CircularProgress';
+import CircularProgressTemp from '../circular-progress/CircularProgressTemp'; // TODO
 import DropDown from '../form-fields/DropDown.component';
 
 class DropDownForSchemaReference extends Component {

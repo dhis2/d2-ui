@@ -7,7 +7,7 @@ import { createClassName } from '../component-helpers/utils';
 
 const TextFieldTemp = (props) => {
     const { selector, ...passThroughProps } = props;
-    const className = createClassName('d2-ui-textfield', selector);
+    const className = createClassName('d2-ui-textfieldtemp', selector);
 
     return (<TextField {...passThroughProps} />);
 };

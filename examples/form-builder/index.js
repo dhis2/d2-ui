@@ -7,12 +7,14 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import Card from 'material-ui/Card/Card';
-import CardText from 'material-ui/Card/CardText';
+import Card, { CardContent } from 'material-ui-next/Card';
 
 import CheckBox from '../../src/form-fields/CheckBox.component';
 import SelectField from '../../src/form-fields/DropDown.component';
+
 import TextField from '../../src/form-fields/TextField';
+// import TextFieldTemp from '../../src/text-field/TextFieldTemp';
+
 import DatePicker from '../../src/form-fields/DatePicker.component';
 import MultiToggle from '../../src/form-fields/MultiToggle';
 import FormBuilder from '../../src/forms/FormBuilder.component';
@@ -54,9 +56,9 @@ class FormExample extends React.Component {
                 value: 'Default Value',
                 component: TextField,
                 props: {
-                    floatingLabelText: 'Floating Label',
+                    label: 'Floating Label',
                     style: { width: '100%' },
-                    hintText: 'Example hint text',
+                    placeholder: 'Example hint text',
                     changeEvent: 'onBlur',
                 },
                 validators: [{
@@ -71,10 +73,10 @@ class FormExample extends React.Component {
                 value: 'DHIS2',
                 component: TextField,
                 props: {
-                    floatingLabelText: 'Multiline TextField',
+                    label: 'Multiline TextField',
                     style: { width: '100%' },
-                    hintText: 'Press enter for new line',
-                    multiLine: true,
+                    placeholder: 'Press enter for new line',
+                    multiline: true,
                     changeEvent: 'onBlur',
                 },
             },
@@ -155,13 +157,13 @@ class FormExample extends React.Component {
         ];
         return (
             <Card>
-                <CardText>
+                <CardContent>
                     Example Form
                     <FormBuilder
                         fields={fields}
                         onUpdateField={this.onUpdateField}
                     />
-                </CardText>
+                </CardContent>
             </Card>
         );
     }
