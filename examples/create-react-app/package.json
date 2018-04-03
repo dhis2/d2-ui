@@ -1,19 +1,9 @@
 {
-  "name": "create-react-app",
+  "name": "example-cra",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "d2-ui": "^29.0.18",
-    "d2-ui-controlbar": "^1.0.2",
-    "d2-ui-datatable": "^1.0.2",
-    "d2-ui-favorites-dialog": "^1.0.2",
-    "d2-ui-formula-editor": "^1.0.2",
-    "d2-ui-group-editor": "^1.0.2",
-    "d2-ui-legend": "^1.0.2",
-    "d2-ui-org-unit-select": "^1.0.2",
-    "d2-ui-org-unit-tree": "^1.0.2",
-    "d2-ui-sharing-dialog": "^1.0.2",
-    "d2-ui-translation-dialog": "^1.0.2",
+    "d2-ui": "^29.0.16",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-scripts": "1.1.1"

@@ -8,6 +8,7 @@
     "test": "lerna exec -- yarn test"
   },
   "workspaces": [
+    "examples/*",
     "packages/*"
   ],
   "devDependencies": {

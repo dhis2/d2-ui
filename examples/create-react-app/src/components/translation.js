@@ -40,8 +40,17 @@ export default class TranslationDialogExample extends React.Component {
             "user":{"id":"GOLswS44mh8"},
             "userGroupAccesses":[],
             "attributeValues":[],
-            "translations":[{"property":"NAME","locale":"nl","value":"Mark"},{"property":"NAME","locale":"en_FK","value":"aa"},{"property":"SHORT_NAME","locale":"en_GB","value":"Accute Flaccid Paral"},{"property":"FORM_NAME","locale":"en_FK","value":"aa"},{"property":"SHORT_NAME","locale":"fr","value":"Accute French"},{"property":"DESCRIPTION","locale":"en_FK","value":"aa"},{"property":"NAME","locale":"fr","value":"Accute French"},{"property":"SHORT_NAME","locale":"en_FK","value":"aa"},{"property":"NAME","locale":"fr","value":"Hello"},{"property":"NAME","locale":"en_GB","value":"Accute Flaccid Paralysis (Deaths < 5 yrs)"}],
-            "aggregationLevels":[]
+            "translations":[{"property":"NAME","locale":"nl","value":"Mark"},
+                {"property":"NAME","locale":"en_FK","value":"aa"},
+                {"property":"SHORT_NAME","locale":"en_GB","value":"Accute Flaccid Paral"},
+                {"property":"FORM_NAME","locale":"en_FK","value":"aa"},
+                {"property":"SHORT_NAME","locale":"fr","value":"Accute French"},
+                {"property":"DESCRIPTION","locale":"en_FK","value":"aa"},
+                {"property":"NAME","locale":"fr","value":"Accute French"},
+                {"property":"SHORT_NAME","locale":"en_FK","value":"aa"},
+                {"property":"NAME","locale":"fr","value":"Hello"},
+                {"property":"NAME","locale":"en_GB","value":"Accute Flaccid Paralysis (Deaths < 5 yrs)"}
+            ], "aggregationLevels":[]
         });
 
         return (<MuiThemeProvider muiTheme={getMuiTheme()}>

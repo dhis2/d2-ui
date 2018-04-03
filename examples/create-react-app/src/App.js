@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import logo from './logo.svg';
+
 import './App.css';
 
 import Buttons from './components/button'
@@ -50,8 +51,7 @@ class App extends Component {
     return (
       <div className="">
         <header className="header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">Welcome to the DHIS2 UI library</h1>
         </header>
 
         <h2>Buttons</h2>
