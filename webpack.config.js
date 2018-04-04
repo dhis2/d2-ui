@@ -50,6 +50,7 @@ module.exports = {
             groupeditor: './examples/group-editor',
             periodpicker: './examples/period-picker',
             button: './examples/button',
+            popover: './examples/popover',
             svgicon: './examples/svg-icon',
             textfield: './examples/text-field',
             selectfield: './examples/select-field',

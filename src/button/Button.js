@@ -5,7 +5,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import { createClassName } from '../component-helpers/utils';
 
-const Button = ({ raised, fab, color, disabled, onClick, children, style, selector }) => {
+const Button = ({ raised, fab, color, disabled, onClick, children, style, selector, label='' }) => {
     const className = createClassName('d2-ui-button', selector);
     let MuiButton;
 
@@ -18,7 +18,7 @@ const Button = ({ raised, fab, color, disabled, onClick, children, style, select
     }
 
     const props = {
-        label: typeof children === 'string' ? children : null,
+        label: typeof children === 'string' ? children : label,
         primary: color === 'primary' || null,
         secondary: color === 'accent' || null,
         disabled,
@@ -65,7 +65,7 @@ Button.propTypes = {
      * The onClick callback will receive one arguments: TouchTap event targeting the button
      *
      */
-    onClick: PropTypes.func.isRequired,
+    onClick: PropTypes.func,
 
     /**
      * Override the inline-styles of the root element
@@ -76,6 +76,13 @@ Button.propTypes = {
      * If set, adds a class to the element in the format d2-ui-button-selector
      */
     selector: PropTypes.string,
+
+    /**
+     * If set, sets the text of the button to the given string.
+     * 
+     * This prop is overridden by the children.
+     */
+    label: PropTypes.string,
 };
 
 export default Button;
