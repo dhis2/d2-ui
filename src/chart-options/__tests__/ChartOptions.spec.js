@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { getSubContext } from '../../../config/inject-theme';
+import { getStubContext } from '../../../config/inject-theme';
 import ChartOptions from '../ChartOptions';
 import StyleOptions from '../StyleOptions';
 
@@ -10,7 +10,7 @@ describe('Data Visualizer, chart options component', () => {
 
     function renderComponent(props = {}) {
         return shallow(<ChartOptions {...props} />, {
-            context: getSubContext(),
+            context: getStubContext(),
         });
     }
 

@@ -31,7 +31,7 @@ class ChartOptions extends Component {
       const className = createClassName('d2-ui-chartoptions', this.props.selector);
 
       return (
-          <div className="chart">
+          <div className={className}>
               <Card>
                   <CardContent>
                       <h3>Chart Options</h3>
