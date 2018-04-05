@@ -25,7 +25,7 @@ import Translation from './components/translation'
 import HeaderBar from './components/header-bar'
 
 //import OrgUnitSelect from './components/org-unit-select'
-//import FormEditor from './components/formula-editor'
+import FormEditor from './components/formula-editor'
 import IconPicker from './components/icon-picker'
 
 class App extends Component {
@@ -116,13 +116,14 @@ class App extends Component {
 
         <h2>IconPicker</h2>
         <IconPicker d2={this.state.d2} />
+
+        <h2>FormEditor</h2>
+        <FormEditor />
   {/*
 
         <h2>OrgUnitSelect</h2>
         <OrgUnitSelect />
 
-        <h2>FormEditor</h2>
-        <FormEditor />
   */}
 
       </div>
