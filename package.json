@@ -5,11 +5,13 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "build": "lerna exec -- yarn build",
-    "test": "lerna exec -- yarn test"
+    "test": "lerna exec -- yarn test",
+    "coverage": "lerna exec -- yarn coverage",
+    "clean": "lerna exec -- yarn clean"
   },
   "workspaces": [
-    "examples/*",
-    "packages/*"
+    "packages/*",
+    "examples/*"
   ],
   "devDependencies": {
     "babel-cli": "^6.26.0",

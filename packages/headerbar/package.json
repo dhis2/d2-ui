@@ -29,6 +29,7 @@
     "build:es": "cross-env BABEL_ENV=es babel src --out-dir build/es --ignore spec.js",
     "build:umd": "cross-env && webpack -p",
     "test": "jest",
-    "watch": "npm run build:es --  --watch"
+    "watch": "npm run build:es --  --watch",
+    "clean": "rimraf build"
   }
 }

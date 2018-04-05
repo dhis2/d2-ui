@@ -1,8 +1,9 @@
 sudo: false
 language: node_js
 node_js:
-- 6.9.0
+- 6.11.5
 script:
+- npm run bootstrap
 - npm run build
 notifications:
   slack:
@@ -11,6 +12,7 @@ env:
   global:
     secure: VwesyyyQuGgyjXYktKZW6YLa/OZnhnxw3LtrboshRC/5sc/TLtvN4QbIewUnN6wsczpBhwQXqGTBmDGr2fZx2oj7BEN5yhTpsE1YBmKU9t+YW2o0IsIpWIMfAmryHMieF8qNb8uSQQRcDMkEtgIlmvy8EEsZm1wfJy6jfKHtkxfJHPkvfwj+gvvKKz+6WK/JHQrmhlU5W5AdJfY5H6ZGbLpr2Km1fNb4DY/9T/gHwBHDHOsodPS786E6KWjBaefORIkgvHzWOVXV/hTQmPU14PuBEVjbGDyr09oNmqr6VcNuui963f6Osux8NlkVzG2f/boEmHKf2DLIay+LpLAv/IWHBE2b8bLdlYNpWZpw04V8cSxN4xJag444CRQRZbWPbp2nEJF3yYv+lCyHIp0SZpJj2ZTypLY7KfNFpsm7ZVBDeSf9Wcqk2Yuz5JZ7A3y+flCO3EgBlvFEMBM6/Xn9l9/FNLOohso1+UxnzGyPzDBfgHi08clN29KuEFz4Bu7elompGHNipw9co1284H00R0m3p8CZVMhEKZONYPo0R6cplZAShkqjnD2DivPIHS4+nzdOLNWrJmPt4orRx8zY7gYo42XBWvqljefViJVGtVvnysX6pUxvh4Ie8JLeNBxGdKuKypAe85Wk2Ak6m2cB2ZLu3ZARLpuYeETq5iazqBA=
 before_deploy:
+- npm run bootstrap
 - npm run build
 deploy:
   provider: npm

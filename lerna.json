@@ -6,6 +6,9 @@
   "command": {
      "publish": {
         "ignore": "example-*"
-     }
+     },
+     "build": {
+        "ignore": "example-*"
+    }
   }
 }

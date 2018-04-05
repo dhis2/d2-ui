@@ -4,6 +4,16 @@
   "private": true,
   "dependencies": {
     "d2-ui": "^29.0.16",
+    "d2-ui-datatable": "^1.0.2",
+    "d2-ui-favorites-dialog": "^1.0.2",
+    "d2-ui-formula-editor": "^1.0.2",
+    "d2-ui-group-editor": "^1.0.2",
+    "d2-ui-headerbar": "^1.0.0",
+    "d2-ui-legend": "^1.0.2",
+    "d2-ui-org-unit-select": "^1.0.2",
+    "d2-ui-org-unit-tree": "^1.0.2",
+    "d2-ui-sharing-dialog": "^1.0.2",
+    "d2-ui-translation-dialog": "^1.0.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-scripts": "1.1.1"
@@ -12,6 +22,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "clean": "rimraf build"
   }
 }

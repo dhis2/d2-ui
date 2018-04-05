@@ -125,10 +125,10 @@ function Contents() {
                     officia deserunt mollit anim id est laborum.
                 </p>
                 <div>
-                    <img src="http://via.placeholder.com/175x150" style={{ paddingRight: 16 }} />
-                    <img src="http://via.placeholder.com/175x150" style={{ paddingRight: 16 }} />
-                    <img src="http://via.placeholder.com/175x150" style={{ paddingRight: 16 }} />
-                    <img src="http://via.placeholder.com/175x150" />
+                    <img src="http://via.placeholder.com/175x150" alt="alt text" style={{ paddingRight: 16 }} />
+                    <img src="http://via.placeholder.com/175x150" alt="alt text" style={{ paddingRight: 16 }} />
+                    <img src="http://via.placeholder.com/175x150" alt="alt text" style={{ paddingRight: 16 }} />
+                    <img src="http://via.placeholder.com/175x150" alt="alt text" />
                 </div>
             </div>
             <div style={{ position: 'absolute', bottom: 6, right: 8 }}>
