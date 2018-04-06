@@ -32,7 +32,6 @@ class RenameMenuItem extends Component {
             try {
                 const validationStatus = await favoriteModel.validate();
 
-                console.log('validation status', validationStatus);
                 if (validationStatus.status === true) {
                     const payload = {
                         description: form.newDescription,

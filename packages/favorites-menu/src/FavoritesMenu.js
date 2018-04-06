@@ -54,7 +54,6 @@ class FavoritesMenu extends Component {
     };
 
     setFavoriteModel = async id => {
-        console.log('d2', this.props.d2);
         const model = await this.props.d2.models[this.props.favoriteType].get(id);
 
         this.setState({ favoriteModel: model });
