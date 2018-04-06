@@ -31,6 +31,7 @@
     "codeclimate-test-reporter": "^0.5.0",
     "colors": "^1.1.2",
     "cross-env": "^5.1.4",
+    "create-react-class": "^15.6.3",
     "css-loader": "^0.28.7",
     "d2-utilizr": "^0.2.11",
     "d3-format": "^1.1.0",
@@ -40,6 +41,7 @@
     "eslint-config-dhis2": "^3.0.2",
     "fs-extra": "^5.0.0",
     "jest": "^22.4.2",
+    "jest-enzyme": "^6.0.0",
     "lerna": "^2.9.0",
     "lodash": "^4.17.4",
     "loglevel": "^1.5.0",
@@ -48,6 +50,7 @@
     "react": "^16.2.0",
     "react-color": "^2.11.3",
     "react-dom": "^16.2.0",
+    "react-stub-context": "^0.8.1",
     "react-test-renderer": "^16.2.0",
     "recompose": "^0.26.0",
     "rimraf": "^2.6.2",
@@ -59,5 +62,8 @@
     "webpack-cli": "^2.0.10",
     "webpack-dev-server": "^3.1.0",
     "webpack-visualizer-plugin": "^0.1.5"
+  },
+  "resolutions": {
+    "jest-environment-jsdom": "22.4.3"
   }
 }
