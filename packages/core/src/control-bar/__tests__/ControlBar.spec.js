@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 import PropTypes from 'prop-types';
 
-import { getStubContext } from '../../../config/inject-theme';
+import { getStubContext } from '../../../../../config/inject-theme';
 
 import ControlBar, { END_FLAP_HEIGHT } from '../ControlBar';
 

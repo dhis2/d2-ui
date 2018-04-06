@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import MuiChip from 'material-ui/Chip';
 import Avatar from 'material-ui/Avatar';
-import { getStubContext } from '../../../config/inject-theme';
+import { getStubContext } from '../../../../../config/inject-theme';
 import Chip, { disabledStyle, clickableStyle, colors, avatarProps, avatarIcons } from '../Chip';
 
 describe('Chip', () => {

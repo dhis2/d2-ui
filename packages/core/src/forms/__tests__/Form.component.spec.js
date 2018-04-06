@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import Form from '../Form.component';
 import FormField from '../FormField.component';
 import { FormFieldStatuses } from '../FormValidator';
-import { getStubContext } from '../../../config/inject-theme';
+import { getStubContext } from '../../../../../config/inject-theme';
 
 function TextField(props) {
     return (<input {...props} />);

@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import MuiSelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import CircularProgress from 'material-ui/CircularProgress';
-import { getStubContext } from '../../../config/inject-theme';
+import { getStubContext } from '../../../../../config/inject-theme';
 import SelectField from '../SelectField';
 
 const items = [{

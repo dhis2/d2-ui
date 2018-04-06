@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import Checkbox from 'material-ui/Checkbox';
 import MultiToggle from '../MultiToggle';
 
-import { getStubContext } from '../../../config/inject-theme';
+import { getStubContext } from '../../../../../config/inject-theme';
 
 describe('MultiToggle component', () => {
     let Component;

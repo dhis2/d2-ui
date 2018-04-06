@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import TextField from 'material-ui/TextField/TextField';
 import FormBuilder from '../FormBuilder.component';
-import { getStubContext } from '../../../config/inject-theme';
+import { getStubContext } from '../../../../../config/inject-theme';
 import AsyncValidatorRunner from '../AsyncValidatorRunner';
 
 describe('FormBuilder component', () => {
