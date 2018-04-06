@@ -112,7 +112,10 @@ class GroupEditorWithOrdering extends Component {
 
 GroupEditorWithOrdering.propTypes = {
     onOrderChanged: PropTypes.func,
-    assignedItemStore: PropTypes.object.isRequired,
+    assignedItemStore: PropTypes.oneOfType([
+        PropTypes.object,
+        PropTypes.array,
+    ]).isRequired,
 };
 
 GroupEditorWithOrdering.defaultProps = {
