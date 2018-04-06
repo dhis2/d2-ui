@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import LinearProgress from 'material-ui/LinearProgress/LinearProgress';
-import { getStubContext } from '../../../config/inject-theme';
+import { getStubContext } from '../../../../../config/inject-theme';
 import DataElementOperandSelector from '../DataElementOperandSelector';
 import ListSelectAsync from '../../list-select/ListSelectAsync.component';
 

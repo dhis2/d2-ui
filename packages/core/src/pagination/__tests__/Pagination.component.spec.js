@@ -1,8 +1,8 @@
 import React from 'react';
-import { getStubContext } from '../../../config/inject-theme';
+import { shallow } from 'enzyme';
+import { getStubContext } from '../../../../../config/inject-theme';
 import Pagination from '../Pagination.component';
 
-import { shallow } from 'enzyme';
 
 describe('Pagination component', () => {
     let dataTablePagerComponent;

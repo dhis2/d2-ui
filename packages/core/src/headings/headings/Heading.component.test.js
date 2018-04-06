@@ -20,7 +20,8 @@ describe('Heading component', () => {
         renderComponent({ text: 'Facility Funding Agency', level: 2 });
 
         expect(renderedHeading.is('h2')).toBe(true);
-        expect(renderedHeading.children().nodes[0]).toBe('Facility Funding Agency');
+        expect(renderedHeading.children().length).toEqual(1);
+        expect(renderedHeading.childAt(0).text()).toBe('Facility Funding Agency');
     });
 
     it('should render a span instead of a h7 tag', () => {

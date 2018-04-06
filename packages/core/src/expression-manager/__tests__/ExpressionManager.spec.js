@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { getStubContext } from '../../../config/inject-theme';
+import { getStubContext } from '../../../../../config/inject-theme';
 import ExpressionManager from '../ExpressionManager';
 import DataElementOperandSelector from '../DataElementOperandSelector';
 import ProgramOperandSelector from '../ProgramOperandSelector';
