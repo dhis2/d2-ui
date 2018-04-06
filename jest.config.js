@@ -2,7 +2,9 @@ module.exports = {
     "setupTestFrameworkScriptFile": "<rootDir>/config/setup.js",
     "testPathIgnorePatterns": [
         "/node_modules/",
-        "<rootDir>/lib/"
+        "<rootDir>/examples/",
+        "<rootDir>/packages/core/lib/",
+        "<rootDir>/packages/*/build/"
     ],
     "verbose": false,
     "transform": {
@@ -15,8 +17,5 @@ module.exports = {
     ],
     "moduleDirectories": [
         "node_modules"
-    ],
-    "transformIgnorePatterns": [
-        "node_modules/(?!d2-ui)"
     ]
 };
