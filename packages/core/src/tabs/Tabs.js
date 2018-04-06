@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Tabs as MuiTabs, Tab as MuiTab } from 'material-ui/Tabs';
 import { createClassName } from '../component-helpers/utils';
 
-export function Tabs ({ style, selector, children }) {
+const Tabs = ({ style, selector, children }) => {
     const className = createClassName('d2-ui-tabs', selector);
 
     return (
@@ -28,6 +28,7 @@ Tabs.propTypes = {
     selector: PropTypes.string,
 };
 
+export default Tabs;
 
 export class Tab extends Component {
     static propTypes = {
@@ -39,7 +40,7 @@ export class Tab extends Component {
 
     static muiName = 'Tab';
 
-    render () {
+    render() {
         const className = createClassName('d2-ui-tab', this.props.selector);
 
         return (

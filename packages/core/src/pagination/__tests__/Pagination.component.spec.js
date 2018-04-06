@@ -77,8 +77,8 @@ describe('Pagination component', () => {
         const nextPageElement = dataTablePagerComponent.find('.data-table-pager--next-page');
         const previousPageElement = dataTablePagerComponent.find('.data-table-pager--previous-page');
 
-        expect(nextPageElement.node.type).toBe('li');
-        expect(previousPageElement.node.type).toBe('li');
+        expect(nextPageElement.getElement().type).toBe('li');
+        expect(previousPageElement.getElement().type).toBe('li');
     });
 
     it('should add the data-table-pager--buttons--button class to the next and previous buttons', () => {
@@ -90,8 +90,8 @@ describe('Pagination component', () => {
         const nextPageElement = dataTablePagerComponent.find('.data-table-pager--next-page');
         const previousPageElement = dataTablePagerComponent.find('.data-table-pager--previous-page');
 
-        expect(nextPageElement.node.type).toBe('li');
-        expect(previousPageElement.node.type).toBe('li');
+        expect(nextPageElement.getElement().type).toBe('li');
+        expect(previousPageElement.getElement().type).toBe('li');
     });
 
     it('should call the onNextPageClick handler when the nextPage button is clicked', () => {

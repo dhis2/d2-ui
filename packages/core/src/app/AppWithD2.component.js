@@ -5,6 +5,12 @@ import log from 'loglevel';
 class AppWithD2 extends Component {
     state = {};
 
+    getChildContext = () => {
+        return {
+            d2: this.state.d2,
+        };
+    };
+
     componentDidMount() {
         if (!this.props.d2) {
             log.error('D2 is a required prop to <AppWithD2 />');
@@ -14,12 +20,6 @@ class AppWithD2 extends Component {
                 .catch(error => log.error(error));
         }
     }
-
-    getChildContext = () => {
-        return {
-            d2: this.state.d2,
-        };
-    };
 
     render() {
         const getChildren = () => {
