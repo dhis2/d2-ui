@@ -35,9 +35,18 @@ yarn add d2-ui-favorites-menu
 import FavoritesMenu from 'd2-ui-favorites-menu';
 
 <FavoritesMenu
-    open={function}
-    onRequestClose={function}
     d2={d2}
+    favoriteType={string}
+    onNew={function}
+    onOpen={function}
+    onSave={function}
+    onSaveAs={function}
+    onRename={function}
+    onTranslate={function}
+    onShare={function}
+    onWriteInterpretation={function}
+    onDelete={function}
+    onError={function}
 />
 ```
 
