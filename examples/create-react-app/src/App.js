@@ -8,6 +8,7 @@ import Chips from './components/chip';
 import Controlbars from './components/controlbar';
 import DataTables from './components/data-table';
 import ExpressionManager from './components/expression-manager';
+import FavoritesMenu from './components/favorites-menu';
 import FavoritesDialog from './components/favorites-dialog';
 import SharingDialog from './components/sharing';
 import FeedbackSnackbar from './components/feedback-snackbar';
@@ -71,8 +72,8 @@ class App extends Component {
                 <h2>Expression Manager</h2>
                 <ExpressionManager d2={this.state.d2} />
 
-        <h2>Favorites Dialog</h2>
-        <FavoritesDialog d2={this.state.d2}/>
+                <h2>Favorites Menu</h2>
+                <FavoritesMenu d2={this.state.d2} />
 
                 <h2>Favorites Dialog</h2>
                 <FavoritesDialog d2={this.state.d2} />
