@@ -64,7 +64,7 @@ describe('Form component', () => {
     });
 
     it('should render a single form tag', () => {
-        expect(formComponent.node.type).toBe('form');
+        expect(formComponent.getElement().type).toBe('form');
     });
 
     describe('isValid method', () => {

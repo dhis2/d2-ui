@@ -78,7 +78,7 @@ describe('IconPicker', () => {
         });
 
         it('should pass the index as the key', () => {
-            expect(iconPicker.find(IconOption).first().node.key).toBe('0');
+            expect(iconPicker.find(IconOption).first().getElement().key).toBe('0');
         });
     });
 

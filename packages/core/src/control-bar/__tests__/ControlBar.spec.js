@@ -113,7 +113,9 @@ describe('ControlBar', () => {
         expect(controlBar.find('.d2-ui-control-bar').props().style.transition).not.toBe('none');
         dragFlap.simulate('mousedown');
         expect(controlBar.find('.d2-ui-control-bar').props().style.transition).toBe('none');
-        window.dispatchEvent(new Event('mouseup'));
+
+        window.dispatchEvent(new MouseEvent('mouseup'));
+        controlBar.update();
         expect(controlBar.find('.d2-ui-control-bar').props().style.transition).not.toBe('none');
     });
 

@@ -12,6 +12,9 @@ const MyApp = () => (<div>My App</div>);
 
 describe('D2UIApp component', () => {
     it('should render the MuiThemeProvider', () => {
+        d2.init = jest.fn()
+            .mockReturnValue(Promise.resolve({}));
+
         const component = shallow(
             <D2UIApp>
                 <div>My App</div>
@@ -22,6 +25,9 @@ describe('D2UIApp component', () => {
     });
 
     it('should render the MuiThemeProvider with the default theme', () => {
+        d2.init = jest.fn()
+            .mockReturnValue(Promise.resolve({}));
+
         const component = shallow(
             <D2UIApp>
                 <div>My App</div>
@@ -42,6 +48,9 @@ describe('D2UIApp component', () => {
     it('should use the provided theme object as the muiTheme', () => {
         const providedTheme = { name: 'MyTheme' };
 
+        d2.init = jest.fn()
+            .mockReturnValue(Promise.resolve({}));
+
         const component = shallow(
             <D2UIApp muiTheme={providedTheme}>
                 <div>My App</div>
@@ -52,11 +61,8 @@ describe('D2UIApp component', () => {
     });
 
     it('should initially render a CircularProgress', () => {
-        const promiseToD2 = new Promise(() => {});
-
-        // Mock d2 init
         d2.init = jest.fn()
-            .mockReturnValue(promiseToD2);
+            .mockReturnValue(Promise.resolve({}));
 
         const component = shallow(
             <D2UIApp>
@@ -69,11 +75,8 @@ describe('D2UIApp component', () => {
     });
 
     it('should pass the passed initConfig to the d2 init function', () => {
-        const promiseToD2 = new Promise(() => {});
-
-        // Mock d2 init
         d2.init = jest.fn()
-            .mockReturnValue(promiseToD2);
+            .mockReturnValue(Promise.resolve({}));
 
         shallow(
             <D2UIApp initConfig={{ baseUrl: 'http://play.dhis2.org/dev/api' }}>
@@ -104,6 +107,7 @@ describe('D2UIApp component', () => {
 
         return promiseToD2
             .then(() => {
+                component.update();
                 expect(component.children().type()).toBe(MyApp);
             });
     });
@@ -127,6 +131,7 @@ describe('D2UIApp component', () => {
         promiseToD2
             .catch(identity)
             .then(() => {
+                component.update();
                 expect(component.children().children().prop('message')).toBe('Unable to get schemas from the DHIS2 API');
                 done();
             })
@@ -157,8 +162,7 @@ describe('D2UIApp component', () => {
     });
 
     it('should render the App component when the state is set', () => {
-        const expectedD2 = { currentUser: {}, models: {}, Api: {} };
-        const promiseToD2 = Promise.resolve(expectedD2);
+        const promiseToD2 = Promise.resolve({});
 
         // Mock d2 init
         d2.init = jest.fn()
@@ -176,6 +180,7 @@ describe('D2UIApp component', () => {
         return promiseToD2
             .catch(identity)
             .then(() => {
+                component.update();
                 expect(component.children().first().type()).toBe(App);
             });
     });

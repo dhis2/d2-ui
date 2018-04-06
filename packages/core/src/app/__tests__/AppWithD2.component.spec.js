@@ -5,8 +5,10 @@ import { shallow } from 'enzyme';
 import AppWithD2 from '../AppWithD2.component';
 
 describe('AppWithD2 component', () => {
-    let Component;
-
+    let props;
+    let expectedD2;
+    let promiseToD2;
+    let shallowApp;
     const children = (
         <section>
             <p key="a" className="child a">A</p>
@@ -15,27 +17,35 @@ describe('AppWithD2 component', () => {
         </section>
     );
 
+    const appComponent = () => {
+        if (!shallowApp) {
+            shallowApp = shallow(<AppWithD2 {...props}>{children}</AppWithD2>, { lifecycleExperimental: true });
+        }
+        return shallowApp;
+    };
+
+
     beforeEach(() => {
-        Component = shallow(<AppWithD2>{children}</AppWithD2>);
+        expectedD2 = { currentUser: {}, models: {}, Api: {} };
+        promiseToD2 = Promise.resolve(expectedD2);
+
+        props = {
+            d2: promiseToD2,
+        };
     });
 
     it('should render an AppWithD2 component', () => {
-        expect(Component.find('div')).toHaveLength(1);
+        expect(appComponent().find('div')).toHaveLength(1);
     });
 
     it('should render all the children', () => {
-        expect(Component.find('p.child')).toHaveLength(3);
+        expect(appComponent().find('p.child')).toHaveLength(3);
     });
 
     it('should set d2 in the local state', () => {
-        const expectedD2 = { currentUser: {}, models: {}, Api: {} };
-        const promiseToD2 = Promise.resolve(expectedD2);
-
-        const AppComp = shallow(<AppWithD2 d2={promiseToD2}>{children}</AppWithD2>, { lifecycleExperimental: true });
-
         return promiseToD2
             .then(() => {
-                expect(AppComp.state().d2).toEqual(expectedD2);
+                expect(appComponent().state().d2).toEqual(expectedD2);
             });
     });
 });
