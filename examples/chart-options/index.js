@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import ChartOptions from '../../src/chart-options/ChartOptions';
 
-class ChartOptionExample extends Component {
+class ChartOptionsExample extends Component {
     state = {
         activeTab: 0,
         optionsValues: {},
@@ -28,4 +28,4 @@ class ChartOptionExample extends Component {
         />
     );
 }
-render(<ChartOptionExample />, document.getElementById('chart-options'));
+render(<ChartOptionsExample />, document.getElementById('chart-options'));

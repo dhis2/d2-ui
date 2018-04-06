@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Tabs, { Tab } from 'material-ui-next/Tabs';
 import AppBar from 'material-ui-next/AppBar';
 import strings from './utils';
@@ -19,4 +20,8 @@ const ChartTabs = props => (
     </div>
 );
 
+ChartTabs.propTypes = {
+    activeTab: PropTypes.number.isRequired,
+    onChange: PropTypes.func.isRequired,
+};
 export default ChartTabs;

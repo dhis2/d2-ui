@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Card, { CardContent } from 'material-ui-next/Card';
-
 import { createClassName } from '../component-helpers/utils';
 import ChartTabs from './ChartTabs';
 import DataOptions from './DataOptions';
 import StyleOptions from './StyleOptions';
 import AxesOptions from './AxesOptions';
 import GeneralOptions from './GeneralOptions';
-import './index.css';
 
+const chartStyle = {
+    chart: {
+        marginLeft: 120,
+        marginRight: 120,
+    },
+};
 class ChartOptions extends Component {
   showSelectedTab = (tabIndex) => {
       const tabComponentArray = [
@@ -31,7 +36,7 @@ class ChartOptions extends Component {
       const className = createClassName('d2-ui-chartoptions', this.props.selector);
 
       return (
-          <div className={className}>
+          <div className={className} style={chartStyle.chart}>
               <Card>
                   <CardContent>
                       <h3>Chart Options</h3>
@@ -50,4 +55,18 @@ class ChartOptions extends Component {
       );
   };
 }
+
+ChartOptions.propTypes = {
+    activeTab: PropTypes.number,
+    selector: PropTypes.string,
+    onTabChange: PropTypes.func.isRequired,
+    optionsValues: PropTypes.object,
+    onOptionsChange: PropTypes.func.isRequired,
+};
+
+ChartOptions.defaultProps = {
+    activeTab: 0,
+    selector: undefined,
+    optionsValues: {},
+};
 export default ChartOptions;
