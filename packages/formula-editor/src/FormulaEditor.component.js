@@ -45,10 +45,10 @@ export default class FormulaEditor extends Component {
     constructor(props) {
         super(props);
 
-        const blocks = convertFromRaw(rawContent);
+        const contentState = convertFromRaw(rawContent);
 
         this.state = {
-            editorState: EditorState.createWithContent(ContentState.createFromBlockArray(blocks), decorator),
+            editorState: EditorState.createWithContent(contentState, decorator),
         };
 
         this.focus = () => this.editorRef.focus();

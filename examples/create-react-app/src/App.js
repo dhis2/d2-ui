@@ -24,9 +24,12 @@ import Tabs from './components/tabs'
 import Translation from './components/translation'
 import HeaderBar from './components/header-bar'
 
+import FormEditor from './components/formula-editor'
+import IconPicker from './components/icon-picker'
+
+/** these examples need to be rewritten */
 //import OrgUnitSelect from './components/org-unit-select'
-//import FormEditor from './components/formula-editor'
-//import IconPicker from './components/icon-picker'
+//import OrgUnitTree from './components/org-unit-tree'
 
 class App extends Component {
   constructor (props) {
@@ -112,17 +115,13 @@ class App extends Component {
 
         <h2>HeaderBar</h2>
         <HeaderBar d2={this.state.d2} />
-  {/*
+        <p>Look at the top of the screen...</p>
+
         <h2>IconPicker</h2>
         <IconPicker d2={this.state.d2} />
 
-        <h2>OrgUnitSelect</h2>
-        <OrgUnitSelect />
-
         <h2>FormEditor</h2>
         <FormEditor />
-
-  */}
 
       </div>
     );
