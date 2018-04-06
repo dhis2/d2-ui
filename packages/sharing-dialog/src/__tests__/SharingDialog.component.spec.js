@@ -3,8 +3,8 @@ import log from 'loglevel';
 import { shallow } from 'enzyme';
 import Dialog from 'material-ui/Dialog/Dialog';
 import FlatButton from 'material-ui/FlatButton';
-import SharingDialog from '../SharingDialog.component';
 import { LoadingMask } from 'd2-ui';
+import SharingDialog from '../SharingDialog.component';
 import Sharing from '../Sharing.component';
 
 import { getStubContext } from '../../../../config/inject-theme';
@@ -53,7 +53,11 @@ const sharingDialogProps = {
 describe('Sharing: SharingDialog component', () => {
     let sharingDialogComponent;
     let onRequestClose;
-    let context = getStubContext();
+    const context = getStubContext();
+
+    context.d2.Api.getApi = jest.fn().mockReturnValue({
+        get: jest.fn().mockReturnValue(Promise.resolve({ schemas: [] })),
+    });
 
     const renderComponent = (props = {}) =>
         shallow(<SharingDialog {...props} />, {
@@ -77,37 +81,41 @@ describe('Sharing: SharingDialog component', () => {
         expect(sharingDialogComponent.find(Sharing)).toHaveLength(1);
     });
 
-    describe('close action', () => {
+    describe('when state contains a shared object', () => {
         beforeEach(() => {
             sharingDialogComponent.instance().setState({
                 sharedObject: mockedObject,
             });
         });
 
-        it('should render the close button', () => {
-            const buttons = sharingDialogComponent.find(Dialog).props().actions;
+        it('renders a single FlatButton', () => {
+            sharingDialogComponent.update();
+
+            const buttons = sharingDialogComponent.find(Dialog).first().prop('actions');
+
             expect(buttons.length).toBe(1);
             expect(buttons[0].type).toBe(FlatButton);
         });
 
-        it('should pass the close label to the close button', () => {
-            const buttons = sharingDialogComponent.find(Dialog).props().actions;
+        it('renders "close" text on FlatButton', () => {
+            sharingDialogComponent.update();
+            const buttons = sharingDialogComponent.find(Dialog).first().prop('actions');
+
             expect(buttons[0].props.label).toBe('close_translated');
         });
 
-        it('should call onRequestClose from the props when the closeSharingDialog is called', () => {
+        it('triggers onRequestClose from the props when the closeSharingDialog is called', () => {
             sharingDialogComponent.instance().closeSharingDialog();
             expect(onRequestClose).toHaveBeenCalledTimes(1);
         });
     });
 
-    describe('loadingMask', () => {
+    describe('when no sharedObject is defined and dialog is open', () => {
         beforeEach(() => {
             jest.fn(log, 'warn');
         });
 
-        it('should render when sharedObject is undefined and dialog is open', () => {
-            renderComponent({...sharingDialogProps, d2: context.d2});
+        it('renders a LoadingMask', () => {
             expect(sharingDialogComponent.find(LoadingMask)).toHaveLength(1);
         });
     });
