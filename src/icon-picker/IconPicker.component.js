@@ -1,118 +1,117 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import Popover from 'material-ui/Popover/Popover';
-import IconOption from './IconOption.component';
-import CurrentIcon from './CurrentIcon.component';
+import Icon from './Icon.component';
 
-// TODO: Move to d2-utilizr?
-function trimSlashesFromEnd(string) {
-    return string.replace(/\/+?$/, '');
-}
+const styles = {
+    iconPopoverContent: {
+        paddingTop: '1rem',
+        paddingLeft: '1rem',
+        width: '50%',
+    },
+    // TODO: Load partial style from material-ui
+    iconPickerLabel: {
+        transformOrigin: 'left top 0px',
+        pointerEvents: 'none',
+        color: 'rgba(0, 0, 0, 0.498039)',
+        padding: '1rem 0 .5rem',
+        transition: 'all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms',
+        transform: 'scale(.75)',
+        fontSize: '16px',
+    },
+};
 
-function getImgSrc(imgPath, imgFileName) {
-    if (!imgFileName) {
-        return '';
-    }
-    return [trimSlashesFromEnd(imgPath), imgFileName]
-        .filter(v => v)
-        .join('/');
-}
 class IconPicker extends Component {
-    constructor(...args) {
-        super(...args);
+    state = {
+        showIconOptions: false,
+        currentIconFileName: this.props.iconFileName,
+    };
 
-        this.state = {
-            showOptions: false,
-        };
+    onIconSelected = (event, value) => {
+        this.setState({
+            currentIconFileName: value,
+            showIconOptions: false,
+        }, () => {
+            this.props.onChange(value);
+        });
+    }
 
-        this.currentIconClicked = this.currentIconClicked.bind(this);
-        this.closeOptions = this.closeOptions.bind(this);
-        this.onIconSelected = this.onIconSelected.bind(this);
+    getIconSrc = (iconPath, iconFileName) => {
+        if (!iconFileName) {
+            return '';
+        }
+        return [this.trimSlashesFromEnd(iconPath), iconFileName]
+            .filter(v => v)
+            .join('/');
+    }
+
+    // TODO: Move to d2-utilizr?
+    trimSlashesFromEnd = string => string.replace(/\/+?$/, '')
+
+    closeOptions = () => {
+        this.setState({
+            showIconOptions: false,
+        });
+    }
+
+    currentIconClicked = (event) => {
+        this.setState({
+            anchorEl: event.currentTarget,
+            showIconOptions: true,
+        });
     }
 
     render() {
-        const styles = {
-            iconPopover: {
-                paddingTop: '1rem',
-                width: '50%',
-            },
-
-            // TODO: Load partial style from material-ui
-            iconPickerLabel: {
-                transformOrigin: 'left top 0px',
-                pointerEvents: 'none',
-                color: 'rgba(0, 0, 0, 0.498039)',
-                padding: '1rem 0 .5rem',
-                transition: 'all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms',
-                transform: 'scale(.75)',
-                fontSize: '16px',
-            },
-        };
-
-        const optionElements = this.props.options
-            .map((option, index) => {
-                const optionProps = {
-                    value: option,
-                    imgSrc: [trimSlashesFromEnd(this.props.imgPath), option].join('/'),
-                };
-
+        const iconOptions = this.props.options
+            .map((iconFileName) => {
+                const iconSrc = [this.trimSlashesFromEnd(this.props.iconPath), iconFileName].join('/');
                 return (
-                    <IconOption key={index} {...optionProps} onIconClicked={this.onIconSelected} />
+                    <Icon
+                        key={iconFileName}
+                        iconFileName={iconFileName}
+                        iconSrc={iconSrc}
+                        onIconClicked={this.onIconSelected}
+                    />
                 );
             });
 
         return (
             <div>
-                <div className="icon-picker__label-text" style={styles.iconPickerLabel}>{this.props.labelText}</div>
-                <CurrentIcon imgSrc={getImgSrc(this.props.imgPath, this.props.value)} onIconClicked={this.currentIconClicked} />
+                <div className="icon-picker__label-text" style={styles.iconPickerLabel}>
+                    {this.props.labelText}
+                </div>
+                <Icon
+                    iconSrc={this.getIconSrc(this.props.iconPath, this.state.currentIconFileName)}
+                    onIconClicked={this.currentIconClicked}
+                />
                 <Popover
-                    open={this.state.showOptions}
+                    open={this.state.showIconOptions}
                     anchorEl={this.state.anchorEl}
                     onRequestClose={this.closeOptions}
-                    style={Object.assign(styles.iconPopover, this.props.iconPopoverStyle)}
+                    style={Object.assign(styles.iconPopoverContent, this.props.iconPopoverStyle)}
                 >
-                    {optionElements}
+                    {iconOptions}
                 </Popover>
             </div>
         );
     }
-
-    currentIconClicked(event) {
-        this.setState({
-            anchorEl: event.currentTarget,
-            showOptions: !this.state.showOptions,
-        });
-    }
-
-    closeOptions() {
-        this.setState({
-            showOptions: false,
-        });
-    }
-
-    onIconSelected(event, value) {
-        this.setState({
-            showOptions: false,
-        }, () => {
-            this.props.onChange(value);
-        });
-    }
 }
 
 IconPicker.propTypes = {
-    imgPath: PropTypes.string,
-    options: PropTypes.array,
+    iconPath: PropTypes.string.isRequired,
+    iconFileName: PropTypes.string,
+    options: PropTypes.arrayOf(PropTypes.string).isRequired,
     labelText: PropTypes.string,
     onChange: PropTypes.func,
-    value: PropTypes.any,
     iconPopoverStyle: PropTypes.object,
 };
 
 IconPicker.defaultProps = {
-    imgPath: '',
-    options: [],
+    iconFileName: '',
     labelText: 'Icon picker',
     onChange: () => {},
+    iconPopoverStyle: {},
 };
 
 export default IconPicker;
