@@ -9,11 +9,12 @@ import styles from '../header-bar-styles';
 import ProfileMenu from '../menus/ProfileMenu';
 
 describe('HeaderBar', () => {
+    const context = getStubContext();
     const renderWithProps = props => shallow(<HeaderBar {...props} />, {
-        context: getStubContext(),
+        context,
     });
 
-    it.only('should render a ProgressIndicator when no state is passed', () => {
+    it('should render a ProgressIndicator when no state is passed', () => {
         const component = renderWithProps({});
 
         expect(component.find(LinearProgress)).toHaveLength(1);
@@ -30,29 +31,25 @@ describe('HeaderBar', () => {
 
         beforeEach(() => {
             component = renderWithProps({
-                appItems: [{ label: 'App item 1', action: 'actionurl', icon: 'icon.png' }],
+                d2: context.d2,
                 profileItems: [{ label: 'My Account', action: 'myaccount.html', icon: 'account.png' }],
-                settings: { grid: { x: 3, y: 3 } },
             });
         });
 
-        it('should render the inner header', () => {
+        it('renders the inner header', () => {
+            component.update();
             expect(component.find(InnerHeader)).toHaveLength(1);
         });
 
-        it('should render the search field', () => {
+        it('renders the search field', () => {
             expect(component.find(SearchField)).toHaveLength(1);
         });
 
-        it('should add the users color for the headerbar background', () => {
-            expect(component.props().style.background).toBe('#B40303');
-        });
-
-        it('should render the ProfileMenu', () => {
+        it('renders the ProfileMenu', () => {
             expect(component.find(ProfileMenu)).toHaveLength(1);
         });
 
-        it('should pass the profileItems to the ProfileMenu', () => {
+        it('passes the profileItems to the ProfileMenu', () => {
             expect(component.find(ProfileMenu).props().items).toEqual([{ label: 'My Account', action: 'myaccount.html', icon: 'account.png' }]);
         });
     });

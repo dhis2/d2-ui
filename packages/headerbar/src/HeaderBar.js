@@ -1,9 +1,7 @@
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { LinearProgress } from 'material-ui/Progress';
-import { withStyles } from 'material-ui/styles';
-import React, { Component } from 'react';
-import { D2UI } from 'd2-ui';
-import { withStateFrom } from 'd2-ui';
+import { D2UI, withStateFrom } from 'd2-ui';
 import { setInstance } from 'd2/lib/d2';
 
 import ProfileMenu from './menus/ProfileMenu';
@@ -28,26 +26,23 @@ export class HeaderBar extends Component {
 
     componentWillReceiveProps(nextProps) {
         if (!this.props.d2 && nextProps.d2) {
-            console.log('Setting d2', nextProps.d2);
             setInstance(nextProps.d2);
         }
     }
 
     render() {
         const {
-            appItems,
             profileItems,
             notifications,
             currentUser,
-            settings,
             noLoadingIndicator } = this.props;
 
         // If the required props are not passed we're in a loading state.
-        if (!this.props.d2 || !appItems && !profileItems && !settings) {
+        if (!this.props.d2 || !profileItems) {
             if (noLoadingIndicator) {
                 return <div style={{ display: 'none' }} />;
             }
-            console.info("Loading state", this.props.d2, appItems, profileItems, settings);
+
             return (<div style={styles.headerBar}><LinearProgress mode="indeterminate" /></div>);
         }
 
@@ -56,7 +51,7 @@ export class HeaderBar extends Component {
                 <div style={applyUserStyle(this.props.d2.currentUser, styles.headerBar)}>
                     <InnerHeader />
                     <div style={styles.headerActions}>
-                        <Notifications notifications={notifications}/>
+                        <Notifications notifications={notifications} />
                         <SearchField />
                     </div>
                     <HeaderMenus>
@@ -75,13 +70,12 @@ export class HeaderBar extends Component {
 
 HeaderBar.childContextTypes = {
     d2: PropTypes.object,
-}
+};
 
 HeaderBar.propTypes = {
-    appItems: PropTypes.array,
+    notifications: PropTypes.array,
     profileItems: PropTypes.array,
     currentUser: PropTypes.object,
-    settings: PropTypes.object,
     noLoadingIndicator: PropTypes.bool,
     d2: PropTypes.object,
 };
