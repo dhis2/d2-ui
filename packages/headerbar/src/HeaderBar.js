@@ -15,26 +15,25 @@ import styles, { applyUserStyle } from './header-bar-styles';
 
 import headerBarStore$ from './headerBar.store';
 
-
-
 export class HeaderBar extends Component {
-    constructor (props) {
+    constructor(props) {
         super(props);
-        console.log(`Initializing Header Bar`); // eslint-disable-line no-console
+        console.log('Initializing Header Bar'); // eslint-disable-line no-console
+    }
+
+
+    getChildContext() {
+        return { d2: this.props.d2 };
     }
 
     componentWillReceiveProps(nextProps) {
         if (!this.props.d2 && nextProps.d2) {
-            console.log('Setting d2', nextProps.d2)
-            setInstance(nextProps.d2)
+            console.log('Setting d2', nextProps.d2);
+            setInstance(nextProps.d2);
         }
     }
 
-    getChildContext() {
-        return { d2: this.props.d2 }
-    }
-
-    render () {
+    render() {
         const {
             appItems,
             profileItems,
@@ -48,7 +47,7 @@ export class HeaderBar extends Component {
             if (noLoadingIndicator) {
                 return <div style={{ display: 'none' }} />;
             }
-            console.info("Loading state", this.props.d2, appItems, profileItems, settings)
+            console.info("Loading state", this.props.d2, appItems, profileItems, settings);
             return (<div style={styles.headerBar}><LinearProgress mode="indeterminate" /></div>);
         }
 
