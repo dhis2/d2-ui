@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import LinearProgress from 'material-ui/LinearProgress/LinearProgress';
+import { LinearProgress } from 'material-ui/Progress';
 import { getStubContext } from '../../../../config/inject-theme';
 import { HeaderBar } from '../HeaderBar';
 import InnerHeader from '../InnerHeader';
@@ -15,12 +15,8 @@ describe('HeaderBar', () => {
 
     it.only('should render a ProgressIndicator when no state is passed', () => {
         const component = renderWithProps({});
-        // component.update();
 
-        // console.log('component', component);
-
-
-        // expect(component.find(LinearProgress)).toHaveLength(1);
+        expect(component.find(LinearProgress)).toHaveLength(1);
     });
 
     it('should render the correct style for the headerbar', () => {
