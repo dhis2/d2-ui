@@ -10,7 +10,6 @@
   "scripts": {
     "coverage": "jest --coverage",
     "start": "webpack-dev-server",
-    "test": "jest --config=../../jest.config.js",
     "test:watch": "jest --watch",
     "lint": "eslint src/",
     "preversion": "npm run validate && npm test",
