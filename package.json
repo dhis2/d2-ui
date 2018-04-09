@@ -5,7 +5,7 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "build": "lerna exec -- yarn build",
-    "test": "lerna exec -- yarn test",
+    "test": "jest",
     "coverage": "lerna exec -- yarn coverage",
     "clean": "lerna exec -- yarn clean"
   },

@@ -28,7 +28,7 @@
     "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir build/cjs --ignore spec.js",
     "build:es": "cross-env BABEL_ENV=es babel src --out-dir build/es --ignore spec.js",
     "build:umd": "cross-env && webpack -p",
-    "test": "jest",
+    "test": "jest --config=../../jest.config.js",
     "watch": "npm run build:es --  --watch",
     "clean": "rimraf build"
   }
