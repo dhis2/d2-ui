@@ -1,10 +1,11 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import { Translate } from 'd2-ui-translation-dialog';
 import Color from '../data-value/Color.component';
 import { findValueRenderer, addValueRenderer } from '../data-value/valueRenderers';
 
 describe('dataTableValueRenderers', () => {
-    describe.skip('publicAccess', () => {
+    describe('publicAccess', () => {
         it('should find the correct renderer', () => {
             const PublicAccessRenderer = findValueRenderer({ value: 'r-------', columnName: 'publicAccess' });
             const renderedComponent = shallow(<PublicAccessRenderer value="r-------" />);
