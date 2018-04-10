@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 import { isNil } from 'lodash/fp';
+import { Translate } from 'd2-ui-translation-dialog';
 import Color from './Color.component';
 
 function TextValue({ value = '' }) {
@@ -88,11 +89,11 @@ function PublicAccessValue({ value }) {
 
         if (other === '----' && (data === '--' || data === 'r-' || data === 'rw')) {
             if (metaData === 'rw') {
-                return <span>Public view/edit</span>;
+                return <Translate>public_can_edit</Translate>;
             } else if (metaData === 'r-') {
-                return <span>Public view</span>;
+                return <Translate>public_can_view</Translate>;
             } else if (metaData === '--') {
-                return <span>No public access</span>;
+                return <Translate>public_none</Translate>;
             }
         }
     }
