@@ -5,7 +5,6 @@ const {
     convertFromRaw,
     convertToRaw,
     CompositeDecorator,
-    ContentState,
     Editor,
     EditorState,
     Entity,
