@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Tabs as MuiTabs, Tab as MuiTab } from 'material-ui/Tabs';
 import { createClassName } from '../component-helpers/utils';
 
-const Tabs = ({ style, selector, children }) => {
+export const Tabs = ({ style, selector, children }) => {
     const className = createClassName('d2-ui-tabs', selector);
 
     return (
