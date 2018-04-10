@@ -14,12 +14,6 @@ import styles, { applyUserStyle } from './header-bar-styles';
 import headerBarStore$ from './headerBar.store';
 
 export class HeaderBar extends Component {
-    constructor(props) {
-        super(props);
-        console.log('Initializing Header Bar'); // eslint-disable-line no-console
-    }
-
-
     getChildContext() {
         return { d2: this.props.d2 };
     }
@@ -73,11 +67,15 @@ HeaderBar.childContextTypes = {
 };
 
 HeaderBar.propTypes = {
-    notifications: PropTypes.array,
+    notifications: PropTypes.object,
     profileItems: PropTypes.array,
     currentUser: PropTypes.object,
     noLoadingIndicator: PropTypes.bool,
     d2: PropTypes.object,
+};
+
+HeaderBar.defaultProps = {
+    notifications: {},
 };
 
 export default withStateFrom(headerBarStore$, HeaderBar);

@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 import { isNil } from 'lodash/fp';
 import Color from './Color.component';
-import Translate from 'd2-ui-translation-dialog';
 
 function TextValue({ value = '' }) {
     const textWrapStyle = {
@@ -89,11 +88,11 @@ function PublicAccessValue({ value }) {
 
         if (other === '----' && (data === '--' || data === 'r-' || data === 'rw')) {
             if (metaData === 'rw') {
-                return <Translate>public_can_edit</Translate>;
+                return <span>Public view/edit</span>;
             } else if (metaData === 'r-') {
-                return <Translate>public_can_view</Translate>;
+                return <span>Public view</span>;
             } else if (metaData === '--') {
-                return <Translate>public_none</Translate>;
+                return <span>No public access</span>;
             }
         }
     }
@@ -122,7 +121,7 @@ let valueRenderers = [
  *
  * @returns {function} A de-register function to unregister the checker. If you want to remove the valueRenderer from the list of renderers you can use this function to undo the add.
  */
-export function addValueRenderer(checker, component) {
+export const addValueRenderer = (checker, component) => {
     valueRenderers.unshift([checker, component]);
 
     /**
