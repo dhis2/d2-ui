@@ -17,20 +17,7 @@ import WriteInterpretationMenuItem from './WriteInterpretationMenuItem';
 import GetLinkMenuItem from './GetLinkMenuItem';
 import DeleteMenuItem from './DeleteMenuItem';
 
-const styles = theme => ({
-    menuItem: {
-        '&:focus': {
-            background: theme.palette.primary[500],
-            '& $text, & $icon': {
-                color: theme.palette.common.white,
-            },
-        },
-    },
-    icon: {},
-    text: {},
-});
-
-class FavoritesMenu extends Component {
+export class FavoritesMenu extends Component {
     constructor(props) {
         super(props);
 
@@ -107,11 +94,17 @@ class FavoritesMenu extends Component {
                     <NewMenuItem enabled={Boolean(this.state.favoriteModel)} onNew={onNew} />
                     <Divider light />
 
-                    <OpenMenuItem favoriteType={favoriteType} onOpen={this.selectFavorite} />
+                    <OpenMenuItem
+                        enabled={true}
+                        favoriteType={favoriteType}
+                        onOpen={this.selectFavorite}
+                    />
 
                     <Divider />
                     <SaveMenuItem
-                        enabled={this.state.favoriteModel && this.state.favoriteModel.access.update}
+                        enabled={Boolean(
+                            this.state.favoriteModel && this.state.favoriteModel.access.update
+                        )}
                         onSave={onSave}
                     />
                     <SaveAsMenuItem
@@ -121,26 +114,34 @@ class FavoritesMenu extends Component {
                     />
                     <Divider />
                     <RenameMenuItem
-                        enabled={this.state.favoriteModel && this.state.favoriteModel.access.update}
+                        enabled={Boolean(
+                            this.state.favoriteModel && this.state.favoriteModel.access.update
+                        )}
                         favoriteType={favoriteType}
                         favoriteModel={this.state.favoriteModel}
                         onRename={onRename}
                     />
                     <TranslateMenuItem
-                        enabled={this.state.favoriteModel && this.state.favoriteModel.access.update}
+                        enabled={Boolean(
+                            this.state.favoriteModel && this.state.favoriteModel.access.update
+                        )}
                         favoriteModel={this.state.favoriteModel}
                         onTranslate={onTranslate}
                         onError={onError}
                     />
                     <Divider />
                     <ShareMenuItem
-                        enabled={this.state.favoriteModel && this.state.favoriteModel.access.manage}
+                        enabled={Boolean(
+                            this.state.favoriteModel && this.state.favoriteModel.access.manage
+                        )}
                         favoriteType={favoriteType}
                         favoriteModel={this.state.favoriteModel}
                         onShare={onShare}
                     />
                     <WriteInterpretationMenuItem
-                        enabled={this.state.favoriteModel && this.state.favoriteModel.access.read}
+                        enabled={Boolean(
+                            this.state.favoriteModel && this.state.favoriteModel.access.read
+                        )}
                         favoriteType={favoriteType}
                         favoriteModel={this.state.favoriteModel}
                         onWriteInterpretation={onWriteInterpretation}
@@ -152,7 +153,9 @@ class FavoritesMenu extends Component {
                     />
                     <Divider />
                     <DeleteMenuItem
-                        enabled={this.state.favoriteModel && this.state.favoriteModel.access.delete}
+                        enabled={Boolean(
+                            this.state.favoriteModel && this.state.favoriteModel.access.delete
+                        )}
                         favoriteType={favoriteType}
                         favoriteModel={this.state.favoriteModel}
                         onDelete={onDelete}
@@ -182,5 +185,16 @@ FavoritesMenu.propTypes = {
     onDelete: PropTypes.func,
     onError: PropTypes.func,
 };
+
+const styles = theme => ({
+    menuItem: {
+        '&:focus': {
+            background: theme.palette.primary[500],
+            '& $text, & $icon': {
+                color: theme.palette.common.white,
+            },
+        },
+    },
+});
 
 export default withStyles(styles)(FavoritesMenu);
