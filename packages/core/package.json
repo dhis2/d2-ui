@@ -20,8 +20,7 @@
     "build:umd": "cross-env && webpack -p",
     "build:sass": "node-sass ./scss --output ./lib/css",
     "validate": "yarn check || npm ls --depth 0",
-    "watch": "npm run build:es --  --watch",
-    "clean": "rimraf lib"
+    "watch": "npm run build:es --  --watch"
   },
   "repository": {
     "type": "git",
