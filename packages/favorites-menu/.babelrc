@@ -24,7 +24,13 @@
                 "react",
                 "stage-2"
             ]
+        },
+        "test": {
+            "presets": ["env", "react", "stage-2"],
+            "plugins": [
+                "transform-es2015-modules-commonjs"
+            ]
         }
-    },
-    "plugins": ["transform-runtime"]
+   },
+   "plugins": ["transform-runtime"]
 }
