@@ -20,7 +20,7 @@ class WriteInterpretationMenuItem extends Component {
         this.setState({ dialogIsOpen: !this.state.dialogIsOpen });
     };
 
-    onRequestWriteInterpretation = async form => {
+    onWriteInterpretation = async form => {
         this.toggleWriteInterpretationDialog();
 
         const { favoriteType, favoriteModel } = this.props;
@@ -56,7 +56,7 @@ class WriteInterpretationMenuItem extends Component {
                     <WriteInterpretationDialog
                         open={this.state.dialogIsOpen}
                         onRequestClose={this.toggleWriteInterpretationDialog}
-                        onRequestWriteInterpretation={this.onRequestWriteInterpretation}
+                        onRequestWriteInterpretation={this.onWriteInterpretation}
                     />
                 ) : null}
             </Fragment>
@@ -72,7 +72,7 @@ WriteInterpretationMenuItem.propTypes = {
     enabled: PropTypes.bool,
     favoriteModel: PropTypes.object,
     favoriteType: PropTypes.string,
-    onRequestWriteInterpretation: PropTypes.func,
+    onWriteInterpretation: PropTypes.func,
 };
 
 export default WriteInterpretationMenuItem;

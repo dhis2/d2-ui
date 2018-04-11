@@ -18,7 +18,9 @@ class WriteInterpretationDialog extends Component {
     handleSubmit = event => {
         event.preventDefault();
 
-        this.props.onRequestWriteInterpretation(this.state);
+        if (this.props.onRequestWriteInterpretation) {
+            this.props.onRequestWriteInterpretation(this.state);
+        }
     };
 
     handleChange = field => event => {
