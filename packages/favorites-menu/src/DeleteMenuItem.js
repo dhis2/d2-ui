@@ -20,11 +20,11 @@ class DeleteMenuItem extends Component {
         this.setState({ dialogIsOpen: !this.state.dialogIsOpen });
     };
 
-    onRequestDelete = () => {
+    onDelete = () => {
         this.toggleDeleteDialog();
 
-        if (this.props.onRequestDelete) {
-            this.props.onRequestDelete();
+        if (this.props.onDelete) {
+            this.props.onDelete();
         }
     };
 
@@ -43,7 +43,7 @@ class DeleteMenuItem extends Component {
                     <DeleteDialog
                         open={this.state.dialogIsOpen}
                         onRequestClose={this.toggleDeleteDialog}
-                        onRequestDelete={this.onRequestDelete}
+                        onRequestDelete={this.onDelete}
                         favoriteModel={favoriteModel}
                     />
                 ) : null}
@@ -56,7 +56,7 @@ DeleteMenuItem.propTypes = {
     enabled: PropTypes.bool,
     favoriteModel: PropTypes.object,
     favoriteType: PropTypes.string,
-    onRequestDelete: PropTypes.func,
+    onDelete: PropTypes.func,
 };
 
 export default DeleteMenuItem;
