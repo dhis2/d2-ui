@@ -19,6 +19,14 @@ class ShareMenuItem extends Component {
         this.setState({ dialogIsOpen: !this.state.dialogIsOpen });
     };
 
+    onShare = () => {
+        this.toggleSharingDialog();
+
+        if (this.props.onShare) {
+            this.props.onShare();
+        }
+    };
+
     render() {
         const { enabled, favoriteModel, favoriteType } = this.props;
 
@@ -33,7 +41,7 @@ class ShareMenuItem extends Component {
                 {favoriteModel ? (
                     <SharingDialog
                         open={this.state.dialogIsOpen}
-                        onRequestClose={this.toggleSharingDialog}
+                        onRequestClose={this.onShare}
                         d2={this.context.d2}
                         id={favoriteModel.id}
                         type={favoriteType}
@@ -52,6 +60,7 @@ ShareMenuItem.propTypes = {
     enabled: PropTypes.bool,
     favoriteModel: PropTypes.object,
     favoriteType: PropTypes.string,
+    onShare: PropTypes.func,
 };
 
 export default ShareMenuItem;
