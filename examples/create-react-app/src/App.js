@@ -5,6 +5,7 @@ import './App.css';
 
 import Buttons from './components/button';
 import Chips from './components/chip';
+import CircularProgresses from './components/circular-progress';
 import Controlbars from './components/controlbar';
 import DataTables from './components/data-table';
 import ExpressionManager from './components/expression-manager';
@@ -62,6 +63,9 @@ class App extends Component {
 
                 <h2>Chips</h2>
                 <Chips />
+
+                <h2>Circular Progress</h2>
+                <CircularProgresses />
 
                 <h2>Controlbars</h2>
                 <Controlbars />
