@@ -7,7 +7,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'build'),
         filename: 'index.js',
-        library: 'SharingDialog',
+        library: 'DataTable',
         libraryTarget: 'umd',
     },
     module: {
