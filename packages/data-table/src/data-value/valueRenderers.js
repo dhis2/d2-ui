@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 import { isNil } from 'lodash/fp';
-import { Translate } from 'd2-ui-translation-dialog';
+import { addD2Context } from 'd2-ui';
 import Color from './Color.component';
+import PublicAccessValue from './PublicAccessValue.component';
 
 function TextValue({ value = '' }) {
     const textWrapStyle = {
@@ -81,24 +82,8 @@ function isObjectWithDisplayName({ value }) {
     return value && (value.displayName || value.name);
 }
 
-function PublicAccessValue({ value }) {
-    if (value) {
-        const metaData = value.substr(0, 2);
-        const data = value.substr(2, 2);
-        const other = value.substr(4, 4);
-
-        if (other === '----' && (data === '--' || data === 'r-' || data === 'rw')) {
-            if (metaData === 'rw') {
-                return <Translate>public_can_edit</Translate>;
-            } else if (metaData === 'r-') {
-                return <Translate>public_can_view</Translate>;
-            } else if (metaData === '--') {
-                return <Translate>public_none</Translate>;
-            }
-        }
-    }
-
-    return <TextValue value={value} />;
+function getPublicAccessValue({ value }) {
+    return value ? <PublicAccessValue value={value} /> : <TextValue value={value} />;
 }
 
 function isPublicAccess({ columnName }) {
@@ -106,7 +91,7 @@ function isPublicAccess({ columnName }) {
 }
 
 let valueRenderers = [
-    [isPublicAccess, PublicAccessValue],
+    [isPublicAccess, getPublicAccessValue],
     [isDateValue, DateValue],
     [isObjectWithDisplayName, ObjectWithDisplayName],
     [isColorValue, Color],

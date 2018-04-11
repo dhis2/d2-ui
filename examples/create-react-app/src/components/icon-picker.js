@@ -6,7 +6,7 @@ import CardText from 'material-ui/Card/CardText';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import {IconPicker} from 'd2-ui';
+import IconPicker from 'd2-ui-icon-picker';
 
 const options = (function () {
     const symbolUrls = [];
