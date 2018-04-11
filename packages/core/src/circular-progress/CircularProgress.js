@@ -27,20 +27,26 @@ function getSizes(large, small) {
     };
 }
 
-export default function CircularProgress({ large = false, small = false, style }) {
+export default function CircularProgress({ large, small, style }) {
     const sizes = getSizes(large, small);
 
-    //return (
-    //    <MUICircularProgress
-    //        mode="indeterminate"
-    //        size={sizes.size}
-    //        style={Object.assign({ margin: sizes.margin }, style)}
-    //    />
-    //);
-    return null;
+    return (
+        <MUICircularProgress
+            mode="indeterminate"
+            size={sizes.size}
+            style={Object.assign({ margin: sizes.margin }, style)}
+        />
+    );
 }
 
 CircularProgress.propTypes = {
     large: PropTypes.bool,
     small: PropTypes.bool,
+    style: PropTypes.object,
+};
+
+CircularProgress.defaultProps = {
+    large: false,
+    small: false,
+    style: {},
 };
