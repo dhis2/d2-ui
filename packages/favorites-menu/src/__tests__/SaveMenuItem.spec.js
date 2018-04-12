@@ -23,7 +23,7 @@ describe('Favorites: FavoritesMenu > SaveMenuItem component', () => {
         saveMenuItem = shallow(<SaveMenuItem {...props} />);
     });
 
-    it('should render the New button', () => {
+    it('should render the Save button', () => {
         expect(saveMenuItem.find(ListItemText).props().primary).toEqual('Save');
     });
 
