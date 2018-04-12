@@ -23,7 +23,7 @@ describe('Favorites: FavoritesMenu > TranslateMenuItem component', () => {
         props = {
             favoriteModel: { id: 'some-favorite' },
             onTranslate: onTranslate,
-            onError: onError,
+            onTranslateError: onError,
         };
 
         translateMenuItem = shallow(<TranslateMenuItem {...props} />, { context });

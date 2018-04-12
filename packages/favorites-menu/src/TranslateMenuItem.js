@@ -21,7 +21,7 @@ class TranslateMenuItem extends Component {
     };
 
     render() {
-        const { enabled, favoriteModel, onError, onTranslate } = this.props;
+        const { enabled, favoriteModel, onTranslateError, onTranslate } = this.props;
 
         return (
             <Fragment>
@@ -39,7 +39,7 @@ class TranslateMenuItem extends Component {
                         objectToTranslate={favoriteModel}
                         fieldsToTranslate={['name', 'description']}
                         onTranslationSaved={onTranslate}
-                        onTranslationError={onError}
+                        onTranslationError={onTranslateError}
                     />
                 ) : null}
             </Fragment>
@@ -55,7 +55,7 @@ TranslateMenuItem.propTypes = {
     enabled: PropTypes.bool,
     favoriteModel: PropTypes.object,
     onTranslate: PropTypes.func.isRequired,
-    onError: PropTypes.func.isRequired,
+    onTranslateError: PropTypes.func.isRequired,
 };
 
 export default TranslateMenuItem;
