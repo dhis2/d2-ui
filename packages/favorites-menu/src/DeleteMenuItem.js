@@ -29,7 +29,7 @@ class DeleteMenuItem extends Component {
     };
 
     render() {
-        const { enabled, favoriteModel } = this.props;
+        const { enabled, favoriteModel, onDeleteError } = this.props;
 
         return (
             <Fragment>
@@ -44,6 +44,7 @@ class DeleteMenuItem extends Component {
                         open={this.state.dialogIsOpen}
                         onRequestClose={this.toggleDeleteDialog}
                         onRequestDelete={this.onDelete}
+                        onRequestDeleteError={onDeleteError}
                         favoriteModel={favoriteModel}
                     />
                 ) : null}
@@ -57,6 +58,7 @@ DeleteMenuItem.propTypes = {
     favoriteModel: PropTypes.object,
     favoriteType: PropTypes.string,
     onDelete: PropTypes.func,
+    onDeleteError: PropTypes.func,
 };
 
 export default DeleteMenuItem;

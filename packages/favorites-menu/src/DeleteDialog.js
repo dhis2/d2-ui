@@ -5,11 +5,14 @@ import Dialog, { DialogActions, DialogContent, DialogTitle } from 'material-ui/D
 import Button from 'material-ui/Button';
 
 const DeleteDialog = props => {
-    const { open, favoriteModel, onRequestClose, onRequestDelete } = props;
+    const { open, favoriteModel, onRequestClose, onRequestDelete, onRequestDeleteError } = props;
 
     const deleteFavorite = () => {
         if (favoriteModel) {
-            favoriteModel.delete().then(onRequestDelete());
+            favoriteModel
+                .delete()
+                .then(onRequestDelete())
+                .catch(onRequestDeleteError());
         }
     };
 
@@ -34,6 +37,7 @@ DeleteDialog.propTypes = {
     favoriteModel: PropTypes.object,
     onRequestClose: PropTypes.func,
     onRequestDelete: PropTypes.func,
+    onRequestDeleteError: PropTypes.func,
 };
 
 export default DeleteDialog;

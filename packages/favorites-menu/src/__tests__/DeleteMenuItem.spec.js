@@ -10,6 +10,7 @@ import DeleteMenuItem from '../DeleteMenuItem';
 describe('Favorites: FavoritesMenu > DeleteMenuItem component', () => {
     let deleteMenuItem;
     let onDelete;
+    let onError;
     let props;
     let deleteDialog;
 
@@ -17,11 +18,13 @@ describe('Favorites: FavoritesMenu > DeleteMenuItem component', () => {
 
     beforeEach(() => {
         onDelete = jest.fn();
+        onError = jest.fn();
 
         props = {
             favoriteType: 'chart',
             favoriteModel: { id: 'some-favorite' },
             onDelete: onDelete,
+            onDeleteError: onError,
         };
 
         deleteMenuItem = shallow(<DeleteMenuItem {...props} />, { context });
@@ -50,5 +53,12 @@ describe('Favorites: FavoritesMenu > DeleteMenuItem component', () => {
         deleteDialog.props().onRequestDelete();
 
         expect(onDelete).toHaveBeenCalledTimes(1);
+    });
+
+    it('should trigger the onDeleteError callback upon unsuccessful delete', () => {
+        deleteDialog = deleteMenuItem.find(DeleteDialog);
+        deleteDialog.props().onRequestDeleteError();
+
+        expect(onError).toHaveBeenCalledTimes(1);
     });
 });
