@@ -5,9 +5,9 @@ const rxPaths = require('rxjs/_esm5/path-mapping');
 module.exports = {
     entry: './src/index.js',
     output: {
-        path: path.resolve(__dirname, 'lib'),
+        path: path.resolve(__dirname, 'build'),
         filename: 'index.js',
-        library: 'D2UI',
+        library: 'D2UICore',
         libraryTarget: 'umd',
     },
     module: {

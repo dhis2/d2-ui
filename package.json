@@ -5,6 +5,7 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "build": "lerna exec -- yarn build",
+    "build:umd": "lerna exec -- yarn build:umd",
     "watch": "lerna exec --parallel -- yarn watch",
     "test": "jest"
   },

@@ -9,7 +9,7 @@ import RaisedButton from 'material-ui/RaisedButton/RaisedButton';
 import { config } from 'd2/lib/d2';
 
 // D2-UI
-import { CircularProgress } from 'd2-ui';
+import { CircularProgress } from 'd2-ui-core';
 
 // TODO: TOAST!
 // TODO: Undo support (in TOAST?)

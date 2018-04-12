@@ -1,8 +1,8 @@
 import React from 'react';
 import FlatButton from 'material-ui/FlatButton/FlatButton';
-import { addD2Context } from 'd2-ui';
 import { isString } from 'lodash/fp';
 import { isFunction } from 'lodash/fp';
+import { addD2Context } from 'd2-ui-core';
 import log from 'loglevel';
 import IconOption from './IconOption.component';
 
