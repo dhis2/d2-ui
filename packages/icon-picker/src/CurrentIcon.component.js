@@ -5,7 +5,7 @@ import { isFunction } from 'lodash/fp';
 import IconOption from './IconOption.component';
 
 
-const TranslateInternal = ({ props, context }) => {
+export const TranslatedSpan = ({ props, context }) => {
     if (context.d2 && context.d2.i18n && isFunction(context.d2.i18n.getTranslation)) {
         return <span>{context.d2.i18n.getTranslation(props.children)}</span>;
     }
@@ -13,13 +13,13 @@ const TranslateInternal = ({ props, context }) => {
     return <span />;
 };
 
-const Translate = addD2Context(TranslateInternal);
+const Translate = addD2Context(TranslatedSpan);
 
 export default function CurrentIcon(props) {
     if (!props.imgSrc) {
         return (
             <FlatButton onClick={props.onIconClicked}>
-                <Translate>select</Translate>
+                <span>select</span>
             </FlatButton>
         );
     }
