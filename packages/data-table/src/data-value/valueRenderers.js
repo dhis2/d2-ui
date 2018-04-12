@@ -83,7 +83,16 @@ function isObjectWithDisplayName({ value }) {
 }
 
 function getPublicAccessValue({ value }) {
-    return value ? <PublicAccessValue value={value} /> : <TextValue value={value} />;
+    let Component = null;
+    if (value) {
+        Component = <PublicAccessValue value={value} />;
+    }
+
+    if (!Component) {
+        Component = <TextValue value={value} />;
+    }
+
+    return Component;
 }
 
 function isPublicAccess({ columnName }) {
