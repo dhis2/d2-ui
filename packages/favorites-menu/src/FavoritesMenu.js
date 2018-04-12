@@ -120,6 +120,7 @@ export class FavoritesMenu extends Component {
                         favoriteType={favoriteType}
                         favoriteModel={this.state.favoriteModel}
                         onRename={onRename}
+                        onRenameError={onError}
                     />
                     <TranslateMenuItem
                         enabled={Boolean(
@@ -127,7 +128,7 @@ export class FavoritesMenu extends Component {
                         )}
                         favoriteModel={this.state.favoriteModel}
                         onTranslate={onTranslate}
-                        onError={onError}
+                        onTranslateError={onError}
                     />
                     <Divider />
                     <ShareMenuItem
@@ -159,6 +160,7 @@ export class FavoritesMenu extends Component {
                         favoriteType={favoriteType}
                         favoriteModel={this.state.favoriteModel}
                         onDelete={onDelete}
+                        onDeleteError={onError}
                     />
                 </Menu>
             </div>
