@@ -29,7 +29,7 @@ class RenameDialog extends Component {
     handleSubmit = async event => {
         event.preventDefault();
 
-        const favoriteModel = this.props.favoriteModel;
+        const { favoriteModel, onRequestRename, onRequestRenameError } = this.props;
 
         if (favoriteModel) {
             const form = this.state;
@@ -52,14 +52,14 @@ class RenameDialog extends Component {
                     if (payload.name) {
                         await this.context.d2.Api.getApi().patch(favoriteModel.href, payload);
 
-                        if (this.props.onRequestRename) {
-                            this.props.onRequestRename();
+                        if (onRequestRename) {
+                            onRequestRename();
                         }
                     }
                 }
             } catch (err) {
-                if (this.props.onRequestRenameError) {
-                    this.props.onRequestRenameError(err);
+                if (onRequestRenameError) {
+                    onRequestRenameError(err);
                 }
             }
         }

@@ -20,16 +20,20 @@ class DeleteMenuItem extends Component {
         this.setState({ dialogIsOpen: !this.state.dialogIsOpen });
     };
 
-    onDelete = () => {
+    onDialogReturn = success => () => {
+        const { onDelete, onDeleteError } = this.props;
+
         this.toggleDeleteDialog();
 
-        if (this.props.onDelete) {
-            this.props.onDelete();
+        if (success && onDelete) {
+            onDelete();
+        } else if (onDeleteError) {
+            onDeleteError();
         }
     };
 
     render() {
-        const { enabled, favoriteModel, onDeleteError } = this.props;
+        const { enabled, favoriteModel } = this.props;
 
         return (
             <Fragment>
@@ -43,8 +47,8 @@ class DeleteMenuItem extends Component {
                     <DeleteDialog
                         open={this.state.dialogIsOpen}
                         onRequestClose={this.toggleDeleteDialog}
-                        onRequestDelete={this.onDelete}
-                        onRequestDeleteError={onDeleteError}
+                        onRequestDelete={this.onDialogReturn(true)}
+                        onRequestDeleteError={this.onDialogReturn(false)}
                         favoriteModel={favoriteModel}
                     />
                 ) : null}

@@ -20,8 +20,20 @@ class TranslateMenuItem extends Component {
         this.setState({ dialogIsOpen: !this.state.dialogIsOpen });
     };
 
+    onDialogReturn = success => () => {
+        const { onTranslate, onTranslateError } = this.props;
+
+        this.toggleTranslationDialog();
+
+        if (success && onTranslate) {
+            onTranslate();
+        } else if (onTranslateError) {
+            onTranslateError();
+        }
+    };
+
     render() {
-        const { enabled, favoriteModel, onTranslateError, onTranslate } = this.props;
+        const { enabled, favoriteModel } = this.props;
 
         return (
             <Fragment>
@@ -38,8 +50,8 @@ class TranslateMenuItem extends Component {
                         onRequestClose={this.toggleTranslationDialog}
                         objectToTranslate={favoriteModel}
                         fieldsToTranslate={['name', 'description']}
-                        onTranslationSaved={onTranslate}
-                        onTranslationError={onTranslateError}
+                        onTranslationSaved={this.onDialogReturn(true)}
+                        onTranslationError={this.onDialogReturn(false)}
                     />
                 ) : null}
             </Fragment>

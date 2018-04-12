@@ -20,8 +20,20 @@ class RenameMenuItem extends Component {
         this.setState({ dialogIsOpen: !this.state.dialogIsOpen });
     };
 
+    onDialogReturn = success => () => {
+        const { onRename, onRenameError } = this.props;
+
+        this.toggleRenameDialog();
+
+        if (success && onRename) {
+            onRename();
+        } else if (onRenameError) {
+            onRenameError();
+        }
+    };
+
     render() {
-        const { enabled, favoriteModel, onRename, onRenameError } = this.props;
+        const { enabled, favoriteModel } = this.props;
 
         return (
             <Fragment>
@@ -36,8 +48,8 @@ class RenameMenuItem extends Component {
                         open={this.state.dialogIsOpen}
                         favoriteModel={favoriteModel}
                         onRequestClose={this.toggleRenameDialog}
-                        onRequestRename={onRename}
-                        onRequestRenameError={onRenameError}
+                        onRequestRename={this.onDialogReturn(true)}
+                        onRequestRenameError={this.onDialogReturn(false)}
                     />
                 ) : null}
             </Fragment>
