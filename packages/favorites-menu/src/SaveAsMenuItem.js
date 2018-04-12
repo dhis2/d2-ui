@@ -42,9 +42,9 @@ class SaveAsMenuItem extends Component {
                 {favoriteModel ? (
                     <SaveAsDialog
                         open={this.state.dialogIsOpen}
+                        favoriteModel={favoriteModel}
                         onRequestClose={this.toggleSaveAsDialog}
                         onRequestSaveAs={this.onSaveAs}
-                        favoriteModel={favoriteModel}
                     />
                 ) : null}
             </Fragment>

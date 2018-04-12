@@ -29,7 +29,9 @@ class SaveAsDialog extends Component {
     handleSubmit = event => {
         event.preventDefault();
 
-        this.props.onRequestSaveAs(this.state);
+        if (this.props.onRequestSaveAs) {
+            this.props.onRequestSaveAs(this.state);
+        }
     };
 
     handleChange = field => event => {
@@ -49,12 +51,12 @@ class SaveAsDialog extends Component {
     };
 
     render() {
-        const { open, rename } = this.props;
+        const { open } = this.props;
 
         return (
             <Dialog open={open} onClose={this.onRequestClose} maxWidth="md">
                 <form onSubmit={this.handleSubmit}>
-                    <DialogTitle>{rename ? 'Rename favorite' : 'Save favorite as'}</DialogTitle>
+                    <DialogTitle>Save favorite as</DialogTitle>
                     <DialogContent>
                         <FormControl fullWidth>
                             <TextField
@@ -81,7 +83,7 @@ class SaveAsDialog extends Component {
                             Cancel
                         </Button>
                         <Button type="submit" onClick={this.handleSubmit} color="primary">
-                            {rename ? 'Rename' : 'Save'}
+                            Save
                         </Button>
                     </DialogActions>
                 </form>
@@ -96,7 +98,6 @@ SaveAsDialog.contextTypes = {
 
 SaveAsDialog.propTypes = {
     open: PropTypes.bool,
-    rename: PropTypes.bool,
     favoriteModel: PropTypes.object,
     onRequestClose: PropTypes.func,
     onRequestSaveAs: PropTypes.func,
