@@ -4,6 +4,16 @@ import Color from '../data-value/Color.component';
 import { findValueRenderer, addValueRenderer } from '../data-value/valueRenderers';
 
 describe('dataTableValueRenderers', () => {
+
+    describe('PublicAccessValue type', () => {
+        it.skip('should not transform an empty value', () => {
+            const PublicAccessValue = findValueRenderer({ value: '', columnName: 'publicAccess' });
+            const renderedComponent = shallow(<PublicAccessValue value="" />);
+
+            expect(renderedComponent.find('TextValue').prop('value')).toBe('');
+        });
+    });
+
     describe('DATE valueType', () => {
         const renderOptions = {
             context: {
@@ -16,6 +26,13 @@ describe('dataTableValueRenderers', () => {
                 },
             },
         };
+
+        it.skip('should find the correct renderer', () => {
+            const PublicAccessRenderer = findValueRenderer({ value: 'r-------', columnName: 'publicAccess' });
+            const renderedComponent = shallow(<PublicAccessRenderer value="r-------" />);
+
+            expect(renderedComponent.find(Translate)).toHaveLength(1);
+        });
 
         it('should find the correct renderer', () => {
             const DateValueRenderer = findValueRenderer({ value: '2016-02-18T11:21:32.992', columnName: 'lastUpdated', valueType: 'DATE' });

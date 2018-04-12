@@ -47,7 +47,7 @@ export default class Example extends React.Component {
                     contextMenuIcons={{ edit: 'edit' }}
                 />
                 <DataTable
-                    columns={['firstName', 'lastName', 'lastUpdated']}
+                    columns={['firstName', 'lastName', 'lastUpdated', 'publicAccess']}
                     rows={myRows}
                     contextMenuActions={emptyCma}
                 />
@@ -66,8 +66,8 @@ Example.propTypes = {
 };
 
 const myRows = [
-    { firstName: 'John', lastName: 'Traore', lastUpdated: '2014-11-11T21:56:05.469' },
-    { firstName: 'Tom', lastName: 'Wakiki', lastUpdated: '2015-08-06T13:28:05.512' },
+    { firstName: 'John', lastName: 'Traore', lastUpdated: '2014-11-11T21:56:05.469', publicAccess: 'rwrw----' },
+    { firstName: 'Tom', lastName: 'Wakiki', lastUpdated: '2015-08-06T13:28:05.512', publicAccess: 'r-rw----' },
 ];
 
 const multipleCma = {
