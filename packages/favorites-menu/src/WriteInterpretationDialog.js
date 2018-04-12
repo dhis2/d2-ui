@@ -15,11 +15,30 @@ class WriteInterpretationDialog extends Component {
         };
     }
 
-    handleSubmit = event => {
+    handleSubmit = async event => {
         event.preventDefault();
 
-        if (this.props.onRequestWriteInterpretation) {
-            this.props.onRequestWriteInterpretation(this.state);
+        const {
+            favoriteType,
+            favoriteModel,
+            onWriteInterpretation,
+            onWriteInterpretationError,
+        } = this.props;
+
+        if (favoriteModel) {
+            const form = this.state;
+            const url = `/interpretations/${favoriteType}/${favoriteModel.id}`;
+            const headers = { 'Content-Type': 'text/plain' };
+
+            try {
+                await this.context.d2.Api.getApi().post(url, form.interpretationText, { headers });
+
+                if (onWriteInterpretation) {
+                    onWriteInterpretation();
+                }
+            } catch (err) {
+                onWriteInterpretationError(err);
+            }
         }
     };
 
@@ -81,6 +100,7 @@ WriteInterpretationDialog.propTypes = {
     favoriteModel: PropTypes.object,
     onRequestClose: PropTypes.func,
     onRequestWriteInterpretation: PropTypes.func,
+    onRequestWriteInterpretationError: PropTypes.func,
 };
 
 export default WriteInterpretationDialog;

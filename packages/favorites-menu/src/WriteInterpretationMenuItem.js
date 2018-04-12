@@ -20,24 +20,15 @@ class WriteInterpretationMenuItem extends Component {
         this.setState({ dialogIsOpen: !this.state.dialogIsOpen });
     };
 
-    onWriteInterpretation = async form => {
+    onDialogReturn = success => () => {
+        const { onWriteInterpretation, onWriteInterpretationError } = this.props;
+
         this.toggleWriteInterpretationDialog();
 
-        const { favoriteType, favoriteModel } = this.props;
-
-        if (favoriteModel) {
-            const url = `/interpretations/${favoriteType}/${favoriteModel.id}`;
-            const headers = { 'Content-Type': 'text/plain' };
-
-            try {
-                await this.context.d2.Api.getApi().post(url, form.interpretationText, { headers });
-
-                if (this.props.onWriteInterpretation) {
-                    this.props.onWriteInterpretation();
-                }
-            } catch (err) {
-                this.props.onError(err);
-            }
+        if (success && onWriteInterpretation) {
+            onWriteInterpretation();
+        } else if (onWriteInterpretationError) {
+            onWriteInterpretationError();
         }
     };
 
@@ -50,13 +41,14 @@ class WriteInterpretationMenuItem extends Component {
                     <ListItemIcon>
                         <ModeEdit />
                     </ListItemIcon>
-                    <ListItemText primary="Write Interpretation" />
+                    <ListItemText primary="Write interpretation" />
                 </MenuItem>
                 {favoriteModel ? (
                     <WriteInterpretationDialog
                         open={this.state.dialogIsOpen}
                         onRequestClose={this.toggleWriteInterpretationDialog}
-                        onRequestWriteInterpretation={this.onWriteInterpretation}
+                        onRequestWriteInterpretation={this.onDialogReturn(true)}
+                        onRequestWriteInterpretationError={this.onDialogReturn(false)}
                     />
                 ) : null}
             </Fragment>
@@ -73,6 +65,7 @@ WriteInterpretationMenuItem.propTypes = {
     favoriteModel: PropTypes.object,
     favoriteType: PropTypes.string,
     onWriteInterpretation: PropTypes.func,
+    onWriteInterpretationError: PropTypes.func,
 };
 
 export default WriteInterpretationMenuItem;
