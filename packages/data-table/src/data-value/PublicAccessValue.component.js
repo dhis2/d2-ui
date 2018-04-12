@@ -1,6 +1,6 @@
 import React from 'react';
 import { isFunction } from 'lodash/fp';
-import { addD2Context } from 'd2-ui';
+import { addD2Context } from 'd2-ui-core';
 
 export const TranslatedSpan = ({ props, context }) => {
     if (context.d2 && context.d2.i18n && isFunction(context.d2.i18n.getTranslation)) {

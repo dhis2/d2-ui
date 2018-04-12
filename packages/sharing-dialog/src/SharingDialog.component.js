@@ -4,7 +4,7 @@ import Snackbar from 'material-ui/Snackbar';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Sharing from './Sharing.component';
-import { LoadingMask } from 'd2-ui';
+import { LoadingMask } from 'd2-ui-core';
 
 const styles = {
     loadingMask: {

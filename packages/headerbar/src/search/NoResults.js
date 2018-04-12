@@ -1,6 +1,6 @@
 import React from 'react';
 import { config } from 'd2/lib/d2';
-import { addD2Context } from 'd2-ui';
+import { addD2Context } from 'd2-ui-core';
 
 config.i18n.strings.add('no_results_found');
 

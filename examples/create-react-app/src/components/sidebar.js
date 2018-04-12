@@ -4,7 +4,7 @@ import FontIcon from 'material-ui/FontIcon';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import {Sidebar} from 'd2-ui';
+import {Sidebar} from 'd2-ui-core';
 
 let currentSection;
 let lastSection;

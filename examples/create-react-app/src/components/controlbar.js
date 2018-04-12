@@ -5,8 +5,8 @@ import Toggle from 'material-ui/Toggle';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import { Button } from 'd2-ui';
-import { ControlBar } from 'd2-ui';
+import { Button } from 'd2-ui-core';
+import { ControlBar } from 'd2-ui-core';
 
 const headerStyles = {
     position: 'fixed',

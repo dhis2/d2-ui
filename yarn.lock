@@ -2807,6 +2807,10 @@ d2-ui-sharing@^1.0.1:
     recompose "^0.26.0"
     rxjs "^5.4.3"
 
+d2-ui@^29.0.5:
+  version "29.0.18"
+  resolved "https://registry.yarnpkg.com/d2-ui/-/d2-ui-29.0.18.tgz#ad50a4ba58fb982cf7aee54f929b3576982cb6c2"
+
 d2-utilizr@^0.2.11:
   version "0.2.15"
   resolved "https://registry.yarnpkg.com/d2-utilizr/-/d2-utilizr-0.2.15.tgz#377fba849edf03f927ca7bd9e0fdd6339c293e0d"

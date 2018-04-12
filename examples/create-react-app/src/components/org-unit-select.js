@@ -13,7 +13,7 @@ import { OrgUnitSelectByLevel } from 'd2-ui-org-unit-select';
 import { OrgUnitSelectByGroup } from 'd2-ui-org-unit-select';
 import { OrgUnitSelectAll } from 'd2-ui-org-unit-select';
 
-import { TreeView } from 'd2-ui';
+import { TreeView } from 'd2-ui-core';
 
 import { mergeChildren, incrementMemberCount, decrementMemberCount } from '../../src/org-unit-tree/utils';
 

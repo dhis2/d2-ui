@@ -5,7 +5,7 @@ import { Card, CardText } from 'material-ui/Card';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import {Store} from 'd2-ui';
+import {Store} from 'd2-ui-core';
 import {GroupEditor} from 'd2-ui-group-editor';
 
 const itemStore = Store.create();

@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs/Observable';
-import { Store } from 'd2-ui';
+import { Store } from 'd2-ui-core';
 import { appsMenuSource$ } from '../utils/menu-sources';
 
 const headerBarSettingsStore = Store.create();
