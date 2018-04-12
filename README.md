@@ -59,3 +59,7 @@ parameter.
 See [how to
 contribute](https://github.com/dhis2/d2-ui/blob/master/docs/CONTRIBUTING).
 
+## Release process
+
+Documented in [RELEASING](https://github.com/dhis2/d2-ui/blob/master/docs/RELEASING).
+
