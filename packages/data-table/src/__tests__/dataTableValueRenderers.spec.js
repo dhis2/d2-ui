@@ -6,9 +6,9 @@ import { findValueRenderer, addValueRenderer } from '../data-value/valueRenderer
 describe('dataTableValueRenderers', () => {
 
     describe('PublicAccessValue type', () => {
-        it.skip('should not transform an empty value', () => {
-            const PublicAccessValue = findValueRenderer({ value: '', columnName: 'publicAccess' });
-            const renderedComponent = shallow(<PublicAccessValue value="" />);
+        it('should not transform an empty value', () => {
+            const PublicAccessValueRenderer = findValueRenderer({ value: '', columnName: 'publicAccess' });
+            const renderedComponent = shallow(<PublicAccessValueRenderer value="" />);
 
             expect(renderedComponent.find('TextValue').prop('value')).toBe('');
         });
@@ -27,11 +27,11 @@ describe('dataTableValueRenderers', () => {
             },
         };
 
-        it.skip('should find the correct renderer', () => {
+        it('should find the correct renderer', () => {
             const PublicAccessRenderer = findValueRenderer({ value: 'r-------', columnName: 'publicAccess' });
             const renderedComponent = shallow(<PublicAccessRenderer value="r-------" />);
 
-            expect(renderedComponent.find(Translate)).toHaveLength(1);
+            expect(renderedComponent.find('PublicAccessValue')).toHaveLength(1);
         });
 
         it('should find the correct renderer', () => {

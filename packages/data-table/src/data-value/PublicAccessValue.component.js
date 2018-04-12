@@ -13,7 +13,7 @@ function Translate(props, context) {
     return <span />;
 }
 
-const TranslateSpan = addD2Context(Translate);
+export const TranslateSpan = addD2Context(Translate);
 
 const PublicAccessValue = ({ value }) => {
     const metaData = value.substr(0, 2);
