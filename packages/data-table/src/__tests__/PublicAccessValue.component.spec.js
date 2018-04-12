@@ -4,7 +4,7 @@ import Color from '../data-value/Color.component';
 // import { findValueRenderer, addValueRenderer } from '../data-value/valueRenderers';
 import PublicAccessValue, { TranslatedSpan } from '../data-value/PublicAccessValue.component';
 
-describe('Public Access Value', () => {
+describe.skip('Public Access Value', () => {
     it('should render the r------- publicAccess pattern to its correct text value', () => {
         const renderedComponent = shallow(<PublicAccessValue value="r-------" />);
 
