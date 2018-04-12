@@ -5,7 +5,7 @@ import { ListItemIcon, ListItemText } from 'material-ui/List';
 import { MenuItem } from 'material-ui/Menu';
 import ModeEdit from 'material-ui-icons/ModeEdit';
 
-import SaveAsDialog from './SaveAsDialog';
+import RenameDialog from './RenameDialog';
 
 class RenameMenuItem extends Component {
     constructor(props) {
@@ -16,63 +16,28 @@ class RenameMenuItem extends Component {
         };
     }
 
-    toggleSaveAsDialog = () => {
+    toggleRenameDialog = () => {
         this.setState({ dialogIsOpen: !this.state.dialogIsOpen });
     };
 
-    onRequestRename = async form => {
-        this.toggleSaveAsDialog();
-
-        const favoriteModel = this.props.favoriteModel;
-
-        if (favoriteModel) {
-            favoriteModel.name = form.newName;
-            favoriteModel.description = form.newDescription;
-
-            try {
-                const validationStatus = await favoriteModel.validate();
-
-                if (validationStatus.status === true) {
-                    const payload = {
-                        description: form.newDescription,
-                    };
-
-                    if (form.newName) {
-                        payload.name = form.newName;
-                    }
-
-                    if (payload.name) {
-                        await this.context.d2.Api.getApi().patch(favoriteModel.href, payload);
-
-                        if (this.props.onRequestRename) {
-                            this.props.onRequestRename();
-                        }
-                    }
-                }
-            } catch (err) {
-                this.props.onError(err);
-            }
-        }
-    };
-
     render() {
-        const { enabled, favoriteModel } = this.props;
+        const { enabled, favoriteModel, onRename, onRenameError } = this.props;
 
         return (
             <Fragment>
-                <MenuItem disabled={!enabled} onClick={this.toggleSaveAsDialog}>
+                <MenuItem disabled={!enabled} onClick={this.toggleRenameDialog}>
                     <ListItemIcon>
                         <ModeEdit />
                     </ListItemIcon>
                     <ListItemText primary="Rename" />
                 </MenuItem>
                 {favoriteModel ? (
-                    <SaveAsDialog
+                    <RenameDialog
                         open={this.state.dialogIsOpen}
-                        rename={true}
-                        onRequestClose={this.toggleSaveAsDialog}
-                        onRequestSaveAs={this.onRequestRename}
                         favoriteModel={favoriteModel}
+                        onRequestClose={this.toggleRenameDialog}
+                        onRequestRename={onRename}
+                        onRequestRenameError={onRenameError}
                     />
                 ) : null}
             </Fragment>
@@ -86,9 +51,9 @@ RenameMenuItem.contextTypes = {
 
 RenameMenuItem.propTypes = {
     enabled: PropTypes.bool,
-    favoriteType: PropTypes.string,
     favoriteModel: PropTypes.object,
-    onRequestRename: PropTypes.func,
+    onRename: PropTypes.func,
+    onRenameError: PropTypes.func,
 };
 
 export default RenameMenuItem;
