@@ -5,7 +5,7 @@ import CurrentIcon from '../CurrentIcon.component';
 import IconOption from '../IconOption.component';
 
 
-describe('CurrentIcon component', () => {
+describe.skip('CurrentIcon component', () => {
     let props;
     let shallowComponent;
     const currentIcon = () => {
