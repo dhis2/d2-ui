@@ -16,10 +16,6 @@ class SaveAsMenuItem extends Component {
         };
     }
 
-    toggleSaveAsDialog = () => {
-        this.setState({ dialogIsOpen: !this.state.dialogIsOpen });
-    };
-
     onSaveAs = form => {
         this.toggleSaveAsDialog();
 
@@ -28,12 +24,16 @@ class SaveAsMenuItem extends Component {
         }
     };
 
+    toggleSaveAsDialog = () => {
+        this.setState({ dialogIsOpen: !this.state.dialogIsOpen });
+    };
+
     render() {
         const { enabled, favoriteModel } = this.props;
 
         return (
             <Fragment>
-                <MenuItem button={true} onClick={this.toggleSaveAsDialog} disabled={!enabled}>
+                <MenuItem button onClick={this.toggleSaveAsDialog} disabled={!enabled}>
                     <ListItemIcon>
                         <Save />
                     </ListItemIcon>
@@ -51,6 +51,12 @@ class SaveAsMenuItem extends Component {
         );
     }
 }
+
+SaveAsMenuItem.defaultProps = {
+    enabled: false,
+    favoriteModel: null,
+    onSaveAs: null,
+};
 
 SaveAsMenuItem.propTypes = {
     enabled: PropTypes.bool,

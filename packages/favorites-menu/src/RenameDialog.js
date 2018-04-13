@@ -26,6 +26,22 @@ class RenameDialog extends Component {
         }
     }
 
+    handleChange = field => event => {
+        event.preventDefault();
+
+        this.setState({
+            [field]: event.target.value,
+        });
+    };
+
+    onRequestClose = () => {
+        // reset form so when the dialog is reopened is consistent
+        // with the actual favorite
+        this.setState({ newName: '', newDescription: '' });
+
+        this.props.onRequestClose();
+    };
+
     handleSubmit = async event => {
         event.preventDefault();
 
@@ -63,22 +79,6 @@ class RenameDialog extends Component {
                 }
             }
         }
-    };
-
-    handleChange = field => event => {
-        event.preventDefault();
-
-        this.setState({
-            [field]: event.target.value,
-        });
-    };
-
-    onRequestClose = () => {
-        // reset form so when the dialog is reopened is consistent
-        // with the actual favorite
-        this.setState({ newName: '', newDescription: '' });
-
-        this.props.onRequestClose();
     };
 
     render() {
@@ -125,6 +125,14 @@ class RenameDialog extends Component {
 
 RenameDialog.contextTypes = {
     d2: PropTypes.object,
+};
+
+RenameDialog.defaultProps = {
+    open: false,
+    favoriteModel: null,
+    onRequestClose: null,
+    onRequestRename: null,
+    onRequestRenameError: null,
 };
 
 RenameDialog.propTypes = {

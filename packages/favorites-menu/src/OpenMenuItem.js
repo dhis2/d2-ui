@@ -37,7 +37,7 @@ class OpenMenuItem extends Component {
 
         return (
             <Fragment>
-                <MenuItem button={true} onClick={this.toggleFavoritesDialog}>
+                <MenuItem button onClick={this.toggleFavoritesDialog}>
                     <ListItemIcon>
                         <OpenInBrowser />
                     </ListItemIcon>
@@ -57,6 +57,11 @@ class OpenMenuItem extends Component {
 
 OpenMenuItem.contextTypes = {
     d2: PropTypes.object,
+};
+
+OpenMenuItem.defaultProps = {
+    favoriteType: null,
+    onOpen: null,
 };
 
 OpenMenuItem.propTypes = {

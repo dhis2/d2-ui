@@ -32,6 +32,14 @@ const DeleteDialog = props => {
     );
 };
 
+DeleteDialog.defaultProps = {
+    open: false,
+    favoriteModel: null,
+    onRequestClose: null,
+    onRequestDelete: null,
+    onRequestDeleteError: null,
+};
+
 DeleteDialog.propTypes = {
     open: PropTypes.bool,
     favoriteModel: PropTypes.object,

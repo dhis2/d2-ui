@@ -49,6 +49,12 @@ GetLinkMenuItem.contextTypes = {
     d2: PropTypes.object,
 };
 
+GetLinkMenuItem.defaultProps = {
+    enabled: false,
+    favoriteModel: null,
+    favoriteType: null,
+};
+
 GetLinkMenuItem.propTypes = {
     enabled: PropTypes.bool,
     favoriteModel: PropTypes.object,

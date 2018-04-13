@@ -28,11 +28,9 @@ export class FavoritesMenu extends Component {
         };
     }
 
-    getChildContext = () => {
-        return {
-            d2: this.props.d2,
-        };
-    };
+    getChildContext = () => ({
+        d2: this.props.d2,
+    });
 
     componentWillReceiveProps = nextProps => {
         if (nextProps.favoriteId) {
@@ -67,7 +65,6 @@ export class FavoritesMenu extends Component {
 
     render() {
         const {
-            classes,
             favoriteType,
             onNew,
             onSave,
@@ -84,7 +81,7 @@ export class FavoritesMenu extends Component {
             <div>
                 <Button onClick={this.toggleMenu}>Favorites</Button>
                 <Menu
-                    disableEnforceFocus={true}
+                    disableEnforceFocus
                     open={this.state.menuIsOpen}
                     onClose={this.closeMenu}
                     anchorEl={this.state.anchorEl}
@@ -95,7 +92,7 @@ export class FavoritesMenu extends Component {
                     <Divider light />
 
                     <OpenMenuItem
-                        enabled={true}
+                        enabled
                         favoriteType={favoriteType}
                         onOpen={this.selectFavorite}
                     />
@@ -170,6 +167,22 @@ export class FavoritesMenu extends Component {
 
 FavoritesMenu.childContextTypes = {
     d2: PropTypes.object,
+};
+
+FavoritesMenu.defaultProps = {
+    d2: null,
+    favoriteType: 'chart',
+    favoriteId: null,
+    onNew: null,
+    onOpen: null,
+    onSave: null,
+    onSaveAs: null,
+    onRename: null,
+    onTranslate: null,
+    onShare: null,
+    onWriteInterpretation: null,
+    onDelete: null,
+    onError: null,
 };
 
 FavoritesMenu.propTypes = {

@@ -15,31 +15,12 @@ class WriteInterpretationDialog extends Component {
         };
     }
 
-    handleSubmit = async event => {
-        event.preventDefault();
+    onRequestClose = () => {
+        // reset form so when the dialog is reopened is consistent
+        // with the actual favorite
+        this.setState({ interpretationText: '' });
 
-        const {
-            favoriteType,
-            favoriteModel,
-            onWriteInterpretation,
-            onWriteInterpretationError,
-        } = this.props;
-
-        if (favoriteModel) {
-            const form = this.state;
-            const url = `/interpretations/${favoriteType}/${favoriteModel.id}`;
-            const headers = { 'Content-Type': 'text/plain' };
-
-            try {
-                await this.context.d2.Api.getApi().post(url, form.interpretationText, { headers });
-
-                if (onWriteInterpretation) {
-                    onWriteInterpretation();
-                }
-            } catch (err) {
-                onWriteInterpretationError(err);
-            }
-        }
+        this.props.onRequestClose();
     };
 
     handleChange = field => event => {
@@ -50,12 +31,31 @@ class WriteInterpretationDialog extends Component {
         });
     };
 
-    onRequestClose = () => {
-        // reset form so when the dialog is reopened is consistent
-        // with the actual favorite
-        this.setState({ interpretationText: '' });
+    handleSubmit = async event => {
+        event.preventDefault();
 
-        this.props.onRequestClose();
+        const {
+            favoriteType,
+            favoriteModel,
+            onRequestWriteInterpretation,
+            onRequestWriteInterpretationError,
+        } = this.props;
+
+        if (favoriteModel) {
+            const form = this.state;
+            const url = `/interpretations/${favoriteType}/${favoriteModel.id}`;
+            const headers = { 'Content-Type': 'text/plain' };
+
+            try {
+                await this.context.d2.Api.getApi().post(url, form.interpretationText, { headers });
+
+                if (onRequestWriteInterpretation) {
+                    onRequestWriteInterpretation();
+                }
+            } catch (err) {
+                onRequestWriteInterpretationError(err);
+            }
+        }
     };
 
     render() {
@@ -93,6 +93,14 @@ class WriteInterpretationDialog extends Component {
 
 WriteInterpretationDialog.contextTypes = {
     d2: PropTypes.object,
+};
+
+WriteInterpretationDialog.defaultProps = {
+    open: false,
+    favoriteModel: null,
+    onRequestClose: null,
+    onRequestWriteInterpretation: null,
+    onRequestWriteInterpretationError: null,
 };
 
 WriteInterpretationDialog.propTypes = {

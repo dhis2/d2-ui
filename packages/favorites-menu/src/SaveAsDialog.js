@@ -26,12 +26,12 @@ class SaveAsDialog extends Component {
         }
     }
 
-    handleSubmit = event => {
-        event.preventDefault();
+    onRequestClose = () => {
+        // reset form so when the dialog is reopened is consistent
+        // with the actual favorite
+        this.setState({ newName: '', newDescription: '' });
 
-        if (this.props.onRequestSaveAs) {
-            this.props.onRequestSaveAs(this.state);
-        }
+        this.props.onRequestClose();
     };
 
     handleChange = field => event => {
@@ -42,12 +42,12 @@ class SaveAsDialog extends Component {
         });
     };
 
-    onRequestClose = () => {
-        // reset form so when the dialog is reopened is consistent
-        // with the actual favorite
-        this.setState({ newName: '', newDescription: '' });
+    handleSubmit = event => {
+        event.preventDefault();
 
-        this.props.onRequestClose();
+        if (this.props.onRequestSaveAs) {
+            this.props.onRequestSaveAs(this.state);
+        }
     };
 
     render() {
@@ -94,6 +94,13 @@ class SaveAsDialog extends Component {
 
 SaveAsDialog.contextTypes = {
     d2: PropTypes.object,
+};
+
+SaveAsDialog.defaultProps = {
+    open: false,
+    favoriteModel: null,
+    onRequestClose: null,
+    onRequestSaveAs: null,
 };
 
 SaveAsDialog.propTypes = {

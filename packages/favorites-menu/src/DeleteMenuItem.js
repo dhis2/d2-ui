@@ -16,10 +16,6 @@ class DeleteMenuItem extends Component {
         };
     }
 
-    toggleDeleteDialog = () => {
-        this.setState({ dialogIsOpen: !this.state.dialogIsOpen });
-    };
-
     onDialogReturn = success => () => {
         const { onDelete, onDeleteError } = this.props;
 
@@ -30,6 +26,10 @@ class DeleteMenuItem extends Component {
         } else if (onDeleteError) {
             onDeleteError();
         }
+    };
+
+    toggleDeleteDialog = () => {
+        this.setState({ dialogIsOpen: !this.state.dialogIsOpen });
     };
 
     render() {
@@ -57,10 +57,16 @@ class DeleteMenuItem extends Component {
     }
 }
 
+DeleteMenuItem.defaultProps = {
+    enabled: false,
+    favoriteModel: null,
+    onDelete: null,
+    onDeleteError: null,
+};
+
 DeleteMenuItem.propTypes = {
     enabled: PropTypes.bool,
     favoriteModel: PropTypes.object,
-    favoriteType: PropTypes.string,
     onDelete: PropTypes.func,
     onDeleteError: PropTypes.func,
 };

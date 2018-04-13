@@ -14,6 +14,11 @@ const NewMenuItem = ({ enabled, onNew }) => (
     </MenuItem>
 );
 
+NewMenuItem.defaultProps = {
+    enabled: false,
+    onNew: null,
+};
+
 NewMenuItem.propTypes = {
     enabled: PropTypes.bool,
     onNew: PropTypes.func,

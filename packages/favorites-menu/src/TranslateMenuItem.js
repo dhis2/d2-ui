@@ -16,10 +16,6 @@ class TranslateMenuItem extends Component {
         };
     }
 
-    toggleTranslationDialog = () => {
-        this.setState({ dialogIsOpen: !this.state.dialogIsOpen });
-    };
-
     onDialogReturn = success => () => {
         const { onTranslate, onTranslateError } = this.props;
 
@@ -30,6 +26,10 @@ class TranslateMenuItem extends Component {
         } else if (onTranslateError) {
             onTranslateError();
         }
+    };
+
+    toggleTranslationDialog = () => {
+        this.setState({ dialogIsOpen: !this.state.dialogIsOpen });
     };
 
     render() {
@@ -61,6 +61,13 @@ class TranslateMenuItem extends Component {
 
 TranslateMenuItem.contextTypes = {
     d2: PropTypes.object,
+};
+
+TranslateMenuItem.defaultProps = {
+    enabled: false,
+    favoriteModel: null,
+    onTranslate: null,
+    onTranslateError: null,
 };
 
 TranslateMenuItem.propTypes = {

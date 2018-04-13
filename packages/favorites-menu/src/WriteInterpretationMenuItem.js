@@ -16,10 +16,6 @@ class WriteInterpretationMenuItem extends Component {
         };
     }
 
-    toggleWriteInterpretationDialog = () => {
-        this.setState({ dialogIsOpen: !this.state.dialogIsOpen });
-    };
-
     onDialogReturn = success => () => {
         const { onWriteInterpretation, onWriteInterpretationError } = this.props;
 
@@ -32,8 +28,12 @@ class WriteInterpretationMenuItem extends Component {
         }
     };
 
+    toggleWriteInterpretationDialog = () => {
+        this.setState({ dialogIsOpen: !this.state.dialogIsOpen });
+    };
+
     render() {
-        const { enabled, favoriteModel, favoriteType } = this.props;
+        const { enabled, favoriteModel } = this.props;
 
         return (
             <Fragment>
@@ -46,6 +46,7 @@ class WriteInterpretationMenuItem extends Component {
                 {favoriteModel ? (
                     <WriteInterpretationDialog
                         open={this.state.dialogIsOpen}
+                        favoriteModel={favoriteModel}
                         onRequestClose={this.toggleWriteInterpretationDialog}
                         onRequestWriteInterpretation={this.onDialogReturn(true)}
                         onRequestWriteInterpretationError={this.onDialogReturn(false)}
@@ -60,10 +61,16 @@ WriteInterpretationMenuItem.contextTypes = {
     d2: PropTypes.object,
 };
 
+WriteInterpretationMenuItem.defaultProps = {
+    enabled: false,
+    favoriteModel: null,
+    onWriteInterpretation: null,
+    onWriteInterpretationError: null,
+};
+
 WriteInterpretationMenuItem.propTypes = {
     enabled: PropTypes.bool,
     favoriteModel: PropTypes.object,
-    favoriteType: PropTypes.string,
     onWriteInterpretation: PropTypes.func,
     onWriteInterpretationError: PropTypes.func,
 };
