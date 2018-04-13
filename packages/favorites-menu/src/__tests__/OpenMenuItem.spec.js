@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { MenuItem } from 'material-ui/Menu';
-import { ListItemText } from 'material-ui/List';
-import { getStubContext } from '../../../../config/inject-theme';
-
+import { ListItemText, ListItemIcon } from 'material-ui/List';
 import FavoritesDialog from 'd2-ui-favorites-dialog';
+
+import { getStubContext } from '../../../../config/inject-theme';
 import OpenMenuItem from '../OpenMenuItem';
 
 describe('Favorites: FavoritesMenu > OpenMenuItem component', () => {
@@ -20,13 +20,14 @@ describe('Favorites: FavoritesMenu > OpenMenuItem component', () => {
 
         props = {
             favoriteType: 'chart',
-            onOpen: onOpen,
+            onOpen,
         };
 
         openMenuItem = shallow(<OpenMenuItem {...props} />, { context });
     });
 
     it('should render the Open button', () => {
+        expect(openMenuItem.find(ListItemIcon)).toHaveLength(1);
         expect(openMenuItem.find(ListItemText).props().primary).toEqual('Open');
     });
 
@@ -38,7 +39,8 @@ describe('Favorites: FavoritesMenu > OpenMenuItem component', () => {
     });
 
     it('should close the Favorites dialog on click', () => {
-        openMenuItem.simulate('click');
+        openMenuItem.find(MenuItem).simulate('click');
+        openMenuItem.find(MenuItem).simulate('click');
 
         favoritesDialog = openMenuItem.find(FavoritesDialog);
         expect(favoritesDialog.props().open).toBe(false);

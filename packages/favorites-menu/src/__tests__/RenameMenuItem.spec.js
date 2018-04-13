@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { MenuItem } from 'material-ui/Menu';
-import { ListItemText } from 'material-ui/List';
+import { ListItemText, ListItemIcon } from 'material-ui/List';
 import { getStubContext } from '../../../../config/inject-theme';
 
 import RenameDialog from '../RenameDialog';
@@ -21,9 +21,10 @@ describe('Favorites: FavoritesMenu > RenameMenuItem component', () => {
         onError = jest.fn();
 
         props = {
+            enabled: true,
             favoriteType: 'chart',
             favoriteModel: { id: 'some-favorite' },
-            onRename: onRename,
+            onRename,
             onRenameError: onError,
         };
 
@@ -31,33 +32,36 @@ describe('Favorites: FavoritesMenu > RenameMenuItem component', () => {
     });
 
     it('should render the Rename button', () => {
+        expect(renameMenuItem.find(ListItemIcon)).toHaveLength(1);
         expect(renameMenuItem.find(ListItemText).props().primary).toEqual('Rename');
     });
 
     it('should open the Rename dialog on button click', () => {
-        renameMenuItem.find(MenuItem).simulate('click');
+        const menuItem = renameMenuItem.find(MenuItem);
+        expect(menuItem.props().disabled).toBe(false);
+
+        menuItem.simulate('click');
 
         renameDialog = renameMenuItem.find(RenameDialog);
         expect(renameDialog.props().open).toBe(true);
     });
 
     it('should close the Rename dialog on click', () => {
-        renameMenuItem.simulate('click');
+        renameMenuItem.find(MenuItem).simulate('click');
+        renameMenuItem.find(MenuItem).simulate('click');
 
         renameDialog = renameMenuItem.find(RenameDialog);
         expect(renameDialog.props().open).toBe(false);
     });
 
     it('should trigger the onRename callback upon successful rename', () => {
-        renameDialog = renameMenuItem.find(RenameDialog);
-        renameDialog.props().onRequestRename();
+        renameMenuItem.find(RenameDialog).simulate('requestRename');
 
         expect(onRename).toHaveBeenCalledTimes(1);
     });
 
     it('should trigger the onRenameError callback upon unsuccessful rename', () => {
-        renameDialog = renameMenuItem.find(RenameDialog);
-        renameDialog.props().onRequestRenameError();
+        renameMenuItem.find(RenameDialog).simulate('requestRenameError');
 
         expect(onError).toHaveBeenCalledTimes(1);
     });

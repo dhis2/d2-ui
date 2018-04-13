@@ -1,10 +1,11 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { MenuItem } from 'material-ui/Menu';
-import { ListItemText } from 'material-ui/List';
+import { ListItemText, ListItemIcon } from 'material-ui/List';
+import TranslationDialog from 'd2-ui-translation-dialog';
+
 import { getStubContext } from '../../../../config/inject-theme';
 
-import TranslationDialog from 'd2-ui-translation-dialog';
 import TranslateMenuItem from '../TranslateMenuItem';
 
 describe('Favorites: FavoritesMenu > TranslateMenuItem component', () => {
@@ -21,8 +22,9 @@ describe('Favorites: FavoritesMenu > TranslateMenuItem component', () => {
         onError = jest.fn();
 
         props = {
+            enabled: true,
             favoriteModel: { id: 'some-favorite' },
-            onTranslate: onTranslate,
+            onTranslate,
             onTranslateError: onError,
         };
 
@@ -30,18 +32,23 @@ describe('Favorites: FavoritesMenu > TranslateMenuItem component', () => {
     });
 
     it('should render the Translate button', () => {
+        expect(translateMenuItem.find(ListItemIcon)).toHaveLength(1);
         expect(translateMenuItem.find(ListItemText).props().primary).toEqual('Translate');
     });
 
     it('should open the Translation dialog on button click', () => {
-        translateMenuItem.find(MenuItem).simulate('click');
+        const menuItem = translateMenuItem.find(MenuItem);
+        expect(menuItem.props().disabled).toBe(false);
+
+        menuItem.simulate('click');
 
         translationDialog = translateMenuItem.find(TranslationDialog);
         expect(translationDialog.props().open).toBe(true);
     });
 
     it('should close the Translation dialog on click', () => {
-        translateMenuItem.simulate('click');
+        translateMenuItem.find(MenuItem).simulate('click');
+        translateMenuItem.find(MenuItem).simulate('click');
 
         translationDialog = translateMenuItem.find(TranslationDialog);
         expect(translationDialog.props().open).toBe(false);

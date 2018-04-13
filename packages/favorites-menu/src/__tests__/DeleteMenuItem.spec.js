@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { MenuItem } from 'material-ui/Menu';
-import { ListItemText } from 'material-ui/List';
+import { ListItemText, ListItemIcon } from 'material-ui/List';
 import { getStubContext } from '../../../../config/inject-theme';
 
 import DeleteDialog from '../DeleteDialog';
@@ -23,7 +23,7 @@ describe('Favorites: FavoritesMenu > DeleteMenuItem component', () => {
         props = {
             favoriteType: 'chart',
             favoriteModel: { id: 'some-favorite' },
-            onDelete: onDelete,
+            onDelete,
             onDeleteError: onError,
         };
 
@@ -31,6 +31,7 @@ describe('Favorites: FavoritesMenu > DeleteMenuItem component', () => {
     });
 
     it('should render the Delete button', () => {
+        expect(deleteMenuItem.find(ListItemIcon)).toHaveLength(1);
         expect(deleteMenuItem.find(ListItemText).props().primary).toEqual('Delete');
     });
 
@@ -42,22 +43,21 @@ describe('Favorites: FavoritesMenu > DeleteMenuItem component', () => {
     });
 
     it('should close the Delete dialog on click', () => {
-        deleteMenuItem.simulate('click');
+        deleteMenuItem.find(MenuItem).simulate('click');
+        deleteMenuItem.find(MenuItem).simulate('click');
 
         deleteDialog = deleteMenuItem.find(DeleteDialog);
         expect(deleteDialog.props().open).toBe(false);
     });
 
     it('should trigger the onDelete callback upon successful delete', () => {
-        deleteDialog = deleteMenuItem.find(DeleteDialog);
-        deleteDialog.props().onRequestDelete();
+        deleteMenuItem.find(DeleteDialog).simulate('requestDelete');
 
         expect(onDelete).toHaveBeenCalledTimes(1);
     });
 
     it('should trigger the onDeleteError callback upon unsuccessful delete', () => {
-        deleteDialog = deleteMenuItem.find(DeleteDialog);
-        deleteDialog.props().onRequestDeleteError();
+        deleteMenuItem.find(DeleteDialog).simulate('requestDeleteError');
 
         expect(onError).toHaveBeenCalledTimes(1);
     });
