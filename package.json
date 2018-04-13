@@ -75,5 +75,8 @@
   "pre-commit": [
     "validate",
     "test"
-  ]
+  ],
+  "dependencies": {
+    "d2-ui": "29"
+  }
 }
