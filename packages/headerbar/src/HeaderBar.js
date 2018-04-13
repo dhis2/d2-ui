@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { LinearProgress } from 'material-ui/Progress';
-import { D2UI, withStateFrom } from 'd2-ui';
+import { D2UI, withStateFrom } from 'd2-ui-core';
 import { setInstance } from 'd2/lib/d2';
 
 import ProfileMenu from './menus/ProfileMenu';

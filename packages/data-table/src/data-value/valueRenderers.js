@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 import { isNil } from 'lodash/fp';
-import { addD2Context } from 'd2-ui';
+import { addD2Context } from 'd2-ui-core';
 import Color from './Color.component';
 import PublicAccessValue from './PublicAccessValue.component';
 
@@ -83,7 +83,16 @@ function isObjectWithDisplayName({ value }) {
 }
 
 function getPublicAccessValue({ value }) {
-    return value ? <PublicAccessValue value={value} /> : <TextValue value={value} />;
+    let Component = null;
+    if (value) {
+        Component = <PublicAccessValue value={value} />;
+    }
+
+    if (!Component) {
+        Component = <TextValue value={value} />;
+    }
+
+    return Component;
 }
 
 function isPublicAccess({ columnName }) {

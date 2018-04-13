@@ -3,8 +3,8 @@ import React, { PureComponent } from 'react';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import { Button } from 'd2-ui';
-import { FeedbackSnackbar } from 'd2-ui';
+import { Button } from 'd2-ui-core';
+import { FeedbackSnackbar } from 'd2-ui-core';
 
 let ACTION_MESSAGE = 'ACTION_MESSAGE'
 let ERROR   = 'ERROR'

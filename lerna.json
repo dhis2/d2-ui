@@ -7,7 +7,7 @@
      "publish": {
         "ignore": "example-*"
      },
-     "build": {
+     "exec": {
         "ignore": "example-*"
     }
   }

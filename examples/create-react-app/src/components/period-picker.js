@@ -5,7 +5,7 @@ import { Card, CardText } from 'material-ui/Card';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import {PeriodPicker} from 'd2-ui';
+import {PeriodPicker} from 'd2-ui-core';
 import parsePeriod from 'd2/lib/period/parser';
 
 export default class PeriodPickerExample extends React.Component {
