@@ -114,7 +114,7 @@ const actions = (state = initialState.actions, action) => {
     }
 };
 
-const sorting = (state = initialState.data.sorting, action) => {
+export const sorting = (state = initialState.data.sorting, action) => {
     switch (action.type) {
         case actionTypes.SET_SORT_ORDER:
             return { ...state, order: action.payload };

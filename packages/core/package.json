@@ -9,8 +9,7 @@
   "author": "",
   "scripts": {
     "coverage": "jest --coverage",
-    "start": "webpack-dev-server",
-    "test:watch": "jest --watch",
+    "test-ci": "jest --config=../../jest.config.js packages/core",
     "lint": "eslint src/",
     "preversion": "npm run validate && npm test",
     "prebuild": "rimraf ./build/*",
