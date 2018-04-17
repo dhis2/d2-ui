@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import camelCaseToUnderscores from 'd2-utilizr/lib/camelCaseToUnderscores';
 import classes from 'classnames';
 
-class DataTableHeader extends Component {
+class TableHeader extends Component {
     constructor(props, context) {
         super(props, context);
 
@@ -28,13 +28,13 @@ class DataTableHeader extends Component {
     }
 }
 
-DataTableHeader.propTypes = {
+TableHeader.propTypes = {
     isOdd: PropTypes.bool,
     name: PropTypes.string,
 };
 
-DataTableHeader.contextTypes = {
+TableHeader.contextTypes = {
     d2: PropTypes.object,
 };
 
-export default DataTableHeader;
+export default TableHeader;

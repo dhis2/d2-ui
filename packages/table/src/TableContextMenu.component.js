@@ -8,7 +8,7 @@ import Paper from 'material-ui/Paper';
 import { addD2Context } from 'd2-ui-core';
 
 
-function DataTableContextMenu(props, context) {
+function TableContextMenu(props, context) {
     const actionList = Object
         .keys(props.actions)
         .filter(menuActionKey => typeof props.actions[menuActionKey] === 'function');
@@ -63,12 +63,12 @@ function DataTableContextMenu(props, context) {
     );
 }
 
-DataTableContextMenu.defaultProps = {
+TableContextMenu.defaultProps = {
     icons: {},
     actions: {},
 };
 
-DataTableContextMenu.propTypes = {
+TableContextMenu.propTypes = {
     actions: PropTypes.objectOf(PropTypes.func),
     activeItem: PropTypes.object,
     icons: PropTypes.object,
@@ -76,4 +76,4 @@ DataTableContextMenu.propTypes = {
     onRequestClose: PropTypes.func,
 };
 
-export default addD2Context(DataTableContextMenu);
+export default addD2Context(TableContextMenu);

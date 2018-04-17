@@ -1,9 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import MenuItem from 'material-ui/MenuItem/MenuItem';
-import DataTableContextMenu from '../DataTableContextMenu.component';
+import TableContextMenu from '../TableContextMenu.component';
 
-describe('DataTableContextMenu component', () => {
+describe('TableContextMenu component', () => {
     let contextMenuComponent;
     const activeItemSource = {
         id: 'DXyJmlo9rge',
@@ -16,7 +16,7 @@ describe('DataTableContextMenu component', () => {
 
     function renderComponent(props = {}) {
         return shallow(
-            <DataTableContextMenu {...Object.assign({ contextMenuActions: {} }, props)} />,
+            <TableContextMenu {...Object.assign({ contextMenuActions: {} }, props)} />,
             {
                 context: {
                     d2: {
@@ -53,7 +53,7 @@ describe('DataTableContextMenu component', () => {
     });
 
     it('should call the action from the action list', () => {
-        const actionItems = contextMenuComponent.find('.data-table__context-menu__item');
+        const actionItems = contextMenuComponent.find('.d2-ui-table__context-menu__item');
 
         actionItems.first().simulate('click');
 

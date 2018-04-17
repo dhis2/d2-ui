@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import DataTableHeader from '../DataTableHeader.component';
+import TableHeader from '../TableHeader.component';
 
-describe('DataTableHeader component', () => {
+describe('TableHeader component', () => {
     let dataTableComponent;
     const cma = {
         edit(...args) {
@@ -15,7 +15,7 @@ describe('DataTableHeader component', () => {
 
     function renderComponent(props = {}) {
         return shallow(
-            <DataTableHeader {...Object.assign({ contextMenuActions: cma }, props)} />,
+            <TableHeader {...Object.assign({ contextMenuActions: cma }, props)} />,
             {
                 context: {
                     d2: {
@@ -42,13 +42,13 @@ describe('DataTableHeader component', () => {
         expect(dataTableComponent.text()).toBe('last_updated_translated');
     });
 
-    it('should add the data-table__headers__header--even class', () => {
-        expect(dataTableComponent.hasClass('data-table__headers__header--even')).toBe(true);
+    it('should add the d2-ui-table__headers__header--even class', () => {
+        expect(dataTableComponent.hasClass('d2-ui-table__headers__header--even')).toBe(true);
     });
 
-    it('should add the data-table__headers__header--odd class', () => {
+    it('should add the d2-ui-table__headers__header--odd class', () => {
         dataTableComponent = renderComponent({ name: 'lastUpdated', isOdd: true });
 
-        expect(dataTableComponent.hasClass('data-table__headers__header--odd')).toBe(true);
+        expect(dataTableComponent.hasClass('d2-ui-table__headers__header--odd')).toBe(true);
     });
 });
