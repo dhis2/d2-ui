@@ -1,5 +1,5 @@
 {
-  "name": "d2-ui-headerbar",
+  "name": "d2-ui-header-bar",
   "version": "1.0.0",
   "description": "The header bar for all applications ",
   "main": "./build/cjs/index.js",
