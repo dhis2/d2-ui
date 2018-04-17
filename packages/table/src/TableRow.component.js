@@ -58,10 +58,10 @@ const DataTableRow = addD2Context(class extends Component {
 
     render() {
         const classList = classes(
-            'data-table__rows__row',
+            'd2-ui-table__rows__row',
             {
-                'data-table__rows__row--even': !this.props.isOdd,
-                'data-table__rows__row--odd': this.props.isOdd,
+                'd2-ui-table__rows__row--even': !this.props.isOdd,
+                'd2-ui-table__rows__row--odd': this.props.isOdd,
             });
 
         const columns = this.props.columns.map((columnName, index) => {
@@ -76,7 +76,7 @@ const DataTableRow = addD2Context(class extends Component {
             return (
                 <div
                     key={index}
-                    className={'data-table__rows__row__column'}
+                    className={'d2-ui-table__rows__row__column'}
                     onContextMenu={this.handleContextClick}
                     onClick={this.handleClick}
                 >
@@ -89,14 +89,14 @@ const DataTableRow = addD2Context(class extends Component {
             <div className={classList}>
                 {columns}
                 {this.hasContextMenu() &&
-                    <div className={'data-table__rows__row__column'} style={{ width: '1%' }}>
+                    <div className={'d2-ui-table__rows__row__column'} style={{ width: '1%' }}>
                         <IconButton tooltip={this.context.d2.i18n.getTranslation('actions')} onClick={this.iconMenuClick}>
                             <MoreVert />
                         </IconButton>
                     </div>
                 }
                 {this.hasSingleAction() &&
-                    <div className={'data-table__rows__row__column'} style={{ width: '1%' }}>
+                    <div className={'d2-ui-table__rows__row__column'} style={{ width: '1%' }}>
                         <IconButton tooltip={this.context.d2.i18n.getTranslation(this.singleAction().label)} onClick={this.singleActionClick}>
                             <FontIcon className={'material-icons'}>
                                 {this.singleAction().icon}

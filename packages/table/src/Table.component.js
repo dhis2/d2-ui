@@ -6,6 +6,7 @@ import isIterable from 'd2-utilizr/lib/isIterable';
 import TableHeader from './TableHeader.component';
 import TableRow from './TableRow.component';
 import TableContextMenu from './TableContextMenu.component';
+// import './Table.component.css';
 
 class Table extends Component {
     state = this.getStateFromProps(this.props);
@@ -97,14 +98,14 @@ class Table extends Component {
 
     render() {
         return (
-            <div className="data-table">
-                <div className="data-table__headers">
+            <div className="d2-ui-table">
+                <div className="d2-ui-table__headers">
                     {this.renderHeaders()}
                     { (this.hasContextMenu() || this.hasSingleAction()) &&
                         <TableHeader />
                     }
                 </div>
-                <div className="data-table__rows">
+                <div className="d2-ui-table__rows">
                     {this.renderRows()}
                 </div>
                 { this.hasContextMenu() &&

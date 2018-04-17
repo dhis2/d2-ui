@@ -37,7 +37,7 @@ function DataTableContextMenu(props, context) {
             style={cmStyle}
             animation={Paper}
         >
-            <Menu className="data-table__context-menu" desktop>
+            <Menu className="d2-ui-table__context-menu" desktop>
                 {actionList.map((action) => {
                     const iconName = icons && icons[action] ? icons[action] : action;
                     const onClick = () => {
@@ -51,7 +51,7 @@ function DataTableContextMenu(props, context) {
                         <MenuItem
                             key={action}
                             data-object-id={activeItem && activeItem.id}
-                            className={'data-table__context-menu__item'}
+                            className={'d2-ui-table__context-menu__item'}
                             onClick={onClick}
                             primaryText={context.d2.i18n.getTranslation(action)}
                             leftIcon={<FontIcon className="material-icons">{iconName}</FontIcon>}

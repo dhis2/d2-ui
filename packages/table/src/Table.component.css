@@ -1,0 +1,64 @@
+.d2-ui-table__rows__row {
+  cursor: pointer;
+  display: table-row;
+}
+
+.d2-ui-table__rows__row:hover .d2-ui-table__rows__row__column {
+    background-color: #F1F1F1;
+}
+
+.d2-ui-table__rows__row__column {
+  height: 50px;
+  padding: 0 1.6rem;
+  vertical-align: middle;
+  border-bottom: 1px solid #E0E0E0;
+  border-top: 0;
+  display: table-cell;
+  text-align: left;
+  transition: all .3s ease;
+  position: relative;
+}
+
+.d2-ui-table__headers {
+  display: table-row;
+}
+
+.d2-ui-table__headers__header {
+  height: 50px;
+  padding: 0 1.6rem;
+  vertical-align: middle;
+  border-bottom: 2px solid #E0E0E0;
+  color: #757575;
+  display: table-cell;
+  font-weight: 400;
+  text-align: left;
+  transition: all .3s ease;
+}
+
+.d2-ui-table {
+  background-color: #FFF;
+  border-spacing: 0;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .12), 0 1px 2px 0 rgba(0, 0, 0, .24);
+  color: #212121;
+  display: table;
+  margin-bottom: 2rem;
+  max-width: 100%;
+  width: 100%;
+}
+
+.d2-ui-table__rows {
+  display: table-row-group;
+}
+
+/* Context Menu Item */
+.d2-ui-table__context-menu__item {
+  cursor: pointer;
+  display: block;
+  padding: 0.5rem 1.6rem;
+  text-align: left;
+}
+
+.d2-ui-table__context-menu__item:hover {
+  background: rgba(200, 200, 255, .9);
+}
+

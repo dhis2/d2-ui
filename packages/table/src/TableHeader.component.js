@@ -13,10 +13,10 @@ class DataTableHeader extends Component {
 
     render() {
         const classList = classes(
-            'data-table__headers__header',
+            'd2-ui-table__headers__header',
             {
-                'data-table__headers__header--even': !this.props.isOdd,
-                'data-table__headers__header--odd': this.props.isOdd,
+                'd2-ui-table__headers__header--even': !this.props.isOdd,
+                'd2-ui-table__headers__header--odd': this.props.isOdd,
             },
         );
 
