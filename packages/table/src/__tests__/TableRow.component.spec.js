@@ -1,11 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import {TableRow} from '../TableRow.component';
-
-console.log('tablerow', TableRow);
+import TableRow from '../TableRow.component';
 
 describe('TableRow component', () => {
-    let TableRow;
+    let tableRowComponent;
     let dataElement;
     const cma = {
         edit(...args) {
@@ -63,33 +61,33 @@ describe('TableRow component', () => {
             },
         };
 
-        TableRow = renderComponent({ dataSource: dataElement, columns: ['name', 'code', 'objectValue1', 'objectValue2'] });
+        tableRowComponent = renderComponent({ dataSource: dataElement, columns: ['name', 'code', 'objectValue1', 'objectValue2'] });
     });
 
-    it.only('should render one row', () => {
-        expect(TableRow.hasClass('d2-ui-table__rows__row')).toBe(true);
+    it('should render one row', () => {
+        expect(tableRowComponent.hasClass('d2-ui-table__rows__row')).toBe(true);
     });
 
     it('should render the correct amount of columns', () => {
-        expect(TableRow.find('.d2-ui-table__rows__row__column')).toHaveLength(5);
+        expect(tableRowComponent.find('.d2-ui-table__rows__row__column')).toHaveLength(5);
     });
 
     it('should render the name into the first column', () => {
-        const firstColumn = TableRow.find('.d2-ui-table__rows__row__column').first();
+        const firstColumn = tableRowComponent.find('.d2-ui-table__rows__row__column').first();
 
         expect(firstColumn.find('TextValue').first().prop('columnName')).toBe('name');
         expect(firstColumn.find('TextValue').first().prop('value')).toBe('Centre de Diagnostic et de Traitement de Bongouanou');
     });
 
     it('should render the code into the second column', () => {
-        const secondColumn = TableRow.find('.d2-ui-table__rows__row__column').at(1);
+        const secondColumn = tableRowComponent.find('.d2-ui-table__rows__row__column').at(1);
 
         expect(secondColumn.find('TextValue').first().prop('columnName')).toBe('code');
         expect(secondColumn.find('TextValue').first().prop('value')).toBe('p.ci.ipsl.xxxx');
     });
 
     it('should render the ObjectWithDisplayName field type when the value has a displayName', () => {
-        const thirdColumn = TableRow.find('.d2-ui-table__rows__row__column').at(2);
+        const thirdColumn = tableRowComponent.find('.d2-ui-table__rows__row__column').at(2);
 
         expect(thirdColumn.find('ObjectWithDisplayName')).toHaveLength(1);
         expect(thirdColumn.find('ObjectWithDisplayName').prop('value')).toEqual(dataElement.objectValue1);
@@ -97,13 +95,13 @@ describe('TableRow component', () => {
 
     it('should fire the primaryClick callback when a row is clicked', () => {
         const primaryClickCallback = jest.fn();
-        TableRow = renderComponent({
+        tableRowComponent = renderComponent({
             dataSource: dataElement,
             columns: ['name', 'code', 'objectValue1', 'objectValue2'],
             primaryClick: primaryClickCallback,
         });
 
-        TableRow.find('.d2-ui-table__rows__row__column').first().simulate('click');
+        tableRowComponent.find('.d2-ui-table__rows__row__column').first().simulate('click');
 
         expect(primaryClickCallback).toHaveBeenCalled();
         expect(primaryClickCallback.mock.calls[0][0]).toBe(dataElement);
@@ -111,13 +109,13 @@ describe('TableRow component', () => {
 
     it('should fire the itemClicked callback when a row is clicked', () => {
         const contextClickCallback = jest.fn();
-        TableRow = renderComponent({
+        tableRowComponent = renderComponent({
             dataSource: dataElement,
             columns: ['name', 'code', 'objectValue1', 'objectValue2'],
             itemClicked: contextClickCallback,
         });
 
-        TableRow.find('.d2-ui-table__rows__row__column').first().simulate('contextMenu');
+        tableRowComponent.find('.d2-ui-table__rows__row__column').first().simulate('contextMenu');
 
         expect(contextClickCallback).toHaveBeenCalled();
         expect(contextClickCallback.mock.calls[0][1]).toBe(dataElement);
@@ -125,13 +123,13 @@ describe('TableRow component', () => {
 
     it('should fire the itemClicked callback when the icon is clicked', () => {
         const contextClickCallback = jest.fn();
-        TableRow = renderComponent({
+        tableRowComponent = renderComponent({
             dataSource: dataElement,
             columns: ['name', 'code', 'objectValue1', 'objectValue2'],
             itemClicked: contextClickCallback,
         });
 
-        TableRow.find('IconButton').first().simulate('click');
+        tableRowComponent.find('IconButton').first().simulate('click');
 
         expect(contextClickCallback).toHaveBeenCalled();
         expect(contextClickCallback.mock.calls[0][1]).toBe(dataElement);

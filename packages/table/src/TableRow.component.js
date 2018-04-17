@@ -13,7 +13,7 @@ function getD2ModelValueType(dataSource, columnName) {
     return dataSource && dataSource.modelDefinition && dataSource.modelDefinition.modelValidations && dataSource.modelDefinition.modelValidations[columnName] && dataSource.modelDefinition.modelValidations[columnName].type;
 }
 
-export class TableRow extends Component {
+const TableRow = addD2Context(class extends Component {
     iconMenuClick = (event) => {
         this.props.itemClicked(event, this.props.dataSource);
     };
@@ -107,7 +107,7 @@ export class TableRow extends Component {
             </div>
         );
     }
-};
+});
 
 TableRow.propTypes = {
     columns: PropTypes.arrayOf(PropTypes.string).isRequired,
@@ -120,4 +120,4 @@ TableRow.propTypes = {
     contextMenuIcons: PropTypes.object,
 };
 
-export default addD2Context(TableRow);
+export default TableRow;

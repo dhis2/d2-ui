@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import TableHeader from '../TableHeader.component';
 
 describe('TableHeader component', () => {
-    let dataTableComponent;
+    let tableHeaderComponent;
     const cma = {
         edit(...args) {
             console.log('Edit', ...args);
@@ -31,24 +31,24 @@ describe('TableHeader component', () => {
     }
 
     beforeEach(() => {
-        dataTableComponent = renderComponent({ name: 'lastUpdated' });
+        tableHeaderComponent = renderComponent({ name: 'lastUpdated' });
     });
 
     it('should load two columns', () => {
-        expect(dataTableComponent).toHaveLength(1);
+        expect(tableHeaderComponent).toHaveLength(1);
     });
 
     it('should transform display as underscores and translate', () => {
-        expect(dataTableComponent.text()).toBe('last_updated_translated');
+        expect(tableHeaderComponent.text()).toBe('last_updated_translated');
     });
 
     it('should add the d2-ui-table__headers__header--even class', () => {
-        expect(dataTableComponent.hasClass('d2-ui-table__headers__header--even')).toBe(true);
+        expect(tableHeaderComponent.hasClass('d2-ui-table__headers__header--even')).toBe(true);
     });
 
     it('should add the d2-ui-table__headers__header--odd class', () => {
-        dataTableComponent = renderComponent({ name: 'lastUpdated', isOdd: true });
+        tableHeaderComponent = renderComponent({ name: 'lastUpdated', isOdd: true });
 
-        expect(dataTableComponent.hasClass('d2-ui-table__headers__header--odd')).toBe(true);
+        expect(tableHeaderComponent.hasClass('d2-ui-table__headers__header--odd')).toBe(true);
     });
 });
