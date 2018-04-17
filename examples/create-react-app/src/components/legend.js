@@ -7,7 +7,7 @@ import { blue500, blue700, lightBlack, grey300, grey500, white, darkBlack } from
 import { fade } from 'material-ui/utils/colorManipulator';
 import Spacing from 'material-ui/styles/spacing';
 
-import 'd2-ui/lib/css/DataTable.css';
+import 'd2-ui-core/build/css/Table.css';
 import Legend from 'd2-ui-legend';
 
 const style = {

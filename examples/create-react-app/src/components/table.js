@@ -7,7 +7,7 @@ import { fade } from 'material-ui/utils/colorManipulator';
 import Spacing from 'material-ui/styles/spacing';
 
 import Table from 'd2-ui-table';
-import 'd2-ui/lib/css/DataTable.css';
+import 'd2-ui-core/build/css/Table.css';
 
 const style = {
     spacing: Spacing,

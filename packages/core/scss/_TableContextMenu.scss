@@ -1,0 +1,14 @@
+$d2-ui-table--context-menu--border-color: #FFF;
+$d2-ui-table--context-menu--background-color: rgba(255, 255, 255, 1);
+$d2-ui-table--context-menu--hover-background-color: rgba(200, 200, 255, .9);
+
+.d2-ui-table__context-menu__item {
+  cursor: pointer;
+  display: block;
+  padding: $default-margin / 2 $default-padding;
+  text-align: left;
+}
+
+.d2-ui-table__context-menu__item:hover {
+  background: $d2-ui-table--context-menu--hover-background-color;
+}

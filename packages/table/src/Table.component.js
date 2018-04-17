@@ -6,7 +6,6 @@ import isIterable from 'd2-utilizr/lib/isIterable';
 import TableHeader from './TableHeader.component';
 import TableRow from './TableRow.component';
 import TableContextMenu from './TableContextMenu.component';
-// import './Table.component.css';
 
 class Table extends Component {
     state = this.getStateFromProps(this.props);
