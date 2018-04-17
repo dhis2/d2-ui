@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import isArrayOfStrings from 'd2-utilizr/lib/isArrayOfStrings';
 import isIterable from 'd2-utilizr/lib/isIterable';
 
-import DataTableHeader from './DataTableHeader.component';
-import DataTableRow from './DataTableRow.component';
-import DataTableContextMenu from './DataTableContextMenu.component';
+import TableHeader from './TableHeader.component';
+import TableRow from './TableRow.component';
+import TableContextMenu from './TableContextMenu.component';
 
-class DataTable extends Component {
+class Table extends Component {
     state = this.getStateFromProps(this.props);
 
     componentWillReceiveProps(newProps) {
@@ -55,7 +55,7 @@ class DataTable extends Component {
     renderRows() {
         return this.state.dataRows
             .map((dataRowsSource, dataRowsId) => (
-                <DataTableRow
+                <TableRow
                     key={dataRowsId}
                     dataSource={dataRowsSource}
                     columns={this.state.columns}
@@ -70,7 +70,7 @@ class DataTable extends Component {
 
     renderHeaders() {
         return this.state.columns.map((headerName, index) => (
-            <DataTableHeader key={headerName} isOdd={Boolean(index % 2)} name={headerName} />
+            <TableHeader key={headerName} isOdd={Boolean(index % 2)} name={headerName} />
         ));
     }
 
@@ -85,7 +85,7 @@ class DataTable extends Component {
             }, {});
 
         return (
-            <DataTableContextMenu
+            <TableContextMenu
                 target={this.state.contextMenuTarget}
                 onRequestClose={this.hideContextMenu}
                 actions={actionsToShow}
@@ -101,7 +101,7 @@ class DataTable extends Component {
                 <div className="data-table__headers">
                     {this.renderHeaders()}
                     { (this.hasContextMenu() || this.hasSingleAction()) &&
-                        <DataTableHeader />
+                        <TableHeader />
                     }
                 </div>
                 <div className="data-table__rows">
@@ -115,11 +115,11 @@ class DataTable extends Component {
     }
 }
 
-DataTable.propTypes = {
+Table.propTypes = {
     contextMenuActions: PropTypes.object,
     contextMenuIcons: PropTypes.object,
     primaryAction: PropTypes.func,
     isContextActionAllowed: PropTypes.func,
 };
 
-export default DataTable;
+export default Table;

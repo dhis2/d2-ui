@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "d2-ui-core": "^1.0.0",
-    "d2-ui-datatable": "^1.0.2",
+    "d2-ui-table": "^1.0.2",
     "d2-ui-favorites-dialog": "^1.0.2",
     "d2-ui-formula-editor": "^1.0.2",
     "d2-ui-group-editor": "^1.0.2",

@@ -7,7 +7,7 @@ import Buttons from './components/button';
 import Chips from './components/chip';
 import CircularProgresses from './components/circular-progress';
 import Controlbars from './components/controlbar';
-import DataTables from './components/data-table';
+import Tables from './components/table';
 import ExpressionManager from './components/expression-manager';
 import FavoritesMenu from './components/favorites-menu';
 import FavoritesDialog from './components/favorites-dialog';
@@ -70,8 +70,8 @@ class App extends Component {
                 <h2>Controlbars</h2>
                 <Controlbars />
 
-                <h2>Data Tables</h2>
-                <DataTables d2={this.state.d2} />
+                <h2>Tables</h2>
+                <Tables d2={this.state.d2} />
 
                 <h2>Expression Manager</h2>
                 <ExpressionManager d2={this.state.d2} />

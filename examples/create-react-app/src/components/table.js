@@ -6,7 +6,7 @@ import { blue500, blue700, lightBlack, grey300, grey500, white, darkBlack } from
 import { fade } from 'material-ui/utils/colorManipulator';
 import Spacing from 'material-ui/styles/spacing';
 
-import DataTable from 'd2-ui-datatable';
+import Table from 'd2-ui-table';
 import 'd2-ui/lib/css/DataTable.css';
 
 const style = {
@@ -35,18 +35,18 @@ export default class Example extends React.Component {
     render() {
         return (
             <div>
-                <DataTable
+                <Table
                     columns={['firstName', 'lastName', 'lastUpdated']}
                     rows={myRows}
                     contextMenuActions={multipleCma}
                 />
-                <DataTable
+                <Table
                     columns={['firstName', 'lastName', 'lastUpdated']}
                     rows={myRows}
                     contextMenuActions={singleCma}
                     contextMenuIcons={{ edit: 'edit' }}
                 />
-                <DataTable
+                <Table
                     columns={['firstName', 'lastName', 'lastUpdated', 'publicAccess']}
                     rows={myRows}
                     contextMenuActions={emptyCma}
