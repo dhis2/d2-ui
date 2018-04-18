@@ -31,7 +31,7 @@ import IconPicker from './components/icon-picker';
 
 /** these examples need to be rewritten */
 import OrgUnitSelect from './components/org-unit-select';
-//import TreeViews from './components/tree-views'
+import TreeViews from './components/tree-view';
 
 class App extends Component {
     constructor(props) {
@@ -133,6 +133,9 @@ class App extends Component {
 
                 <h2>OrgUnitSelect</h2>
                 <OrgUnitSelect d2={this.state.d2} />
+
+                <h2>TreeViews</h2>
+                <TreeViews />
             </div>
         );
     }
