@@ -1,6 +1,6 @@
 {
-    "name": "d2-ui-favorites-menu",
-    "version": "1.0.1",
+    "name": "@dhis2/d2-ui-favorites-menu",
+    "version": "1.0.0",
     "description": "Favorites menu component for DHIS2",
     "main": "./build/cjs/index.js",
     "module": "./build/es/index.js",

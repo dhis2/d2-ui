@@ -1,6 +1,6 @@
 {
-    "name": "d2-ui-icon-picker",
-    "version": "1.0.2",
+    "name": "@dhis2/d2-ui-icon-picker",
+    "version": "1.0.0",
     "description": "DHIS2 component for selecting icon",
     "main": "./build/cjs/index.js",
     "module": "./build/es/index.js",
