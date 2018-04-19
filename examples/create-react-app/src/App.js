@@ -138,8 +138,10 @@ class App extends Component {
                 <h2>OrgUnitTree</h2>
                 <OrgUnitTree d2={this.state.d2} />
 
-                <h2>TreeViews</h2>
-                <TreeViews />
+                <div style={{clear:"both"}}>
+                    <h2>TreeViews</h2>
+                    <TreeViews />
+                </div>
             </div>
         );
     }
