@@ -1,6 +1,6 @@
 {
   "name": "@dhis2/d2-ui-translation-dialog",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Translation Dialog for DHIS2",
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",
@@ -30,7 +30,7 @@
     "test-ci": "jest --config=../../jest.config.js packages/translation-dialog"
   },
   "dependencies": {
-    "@dhis2/d2-ui-core": "^1.0.0",
+    "@dhis2/d2-ui-core": "^1.0.1",
     "material-ui": "^0.19.3",
     "prop-types": "^15.5.10",
     "recompose": "^0.26.0",
