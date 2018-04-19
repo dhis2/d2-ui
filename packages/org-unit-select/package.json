@@ -4,7 +4,9 @@
   "description": "Org Unit Selection component for D2-UI",
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",
-  "files": [ "build" ],
+  "files": [
+    "build"
+  ],
   "license": "BSD-3-Clause",
   "peerDependencies": {
     "d2": "^29.1.1",

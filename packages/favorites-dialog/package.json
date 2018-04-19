@@ -4,7 +4,9 @@
   "description": "Favorite Dialog component for DHIS2",
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",
-  "files": [ "build" ],
+  "files": [
+    "build"
+  ],
   "license": "BSD-3-Clause",
   "author": "Edoardo Sabadelli <edoardo@dhis2.org>",
   "contributors": [

@@ -24,10 +24,10 @@
         "test-ci": "jest --config=../../jest.config.js packages/favorites-menu"
     },
     "dependencies": {
-        "d2-ui": "^29.0.18",
         "@dhis2/d2-ui-favorites-dialog": "^1.0.0",
         "@dhis2/d2-ui-sharing-dialog": "^1.0.0",
         "@dhis2/d2-ui-translation-dialog": "^1.0.0",
+        "d2-ui": "^29.0.18",
         "material-ui": "^1.0.0-beta.34",
         "material-ui-icons": "^1.0.0-beta.17",
         "prop-types": "^15.6.0"
@@ -37,7 +37,7 @@
             "node_modules/(?!react-native|react-navigation)/"
         ]
     },
-  "publishConfig": {
-    "access": "public"
-  }
+    "publishConfig": {
+        "access": "public"
+    }
 }

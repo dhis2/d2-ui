@@ -39,7 +39,7 @@
             "node_modules/(?!react-native|react-navigation)/"
         ]
     },
-  "publishConfig": {
-    "access": "public"
-  }
+    "publishConfig": {
+        "access": "public"
+    }
 }
