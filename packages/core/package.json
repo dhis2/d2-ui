@@ -1,0 +1,40 @@
+{
+  "name": "@dhis2/d2-ui-core",
+  "version": "1.0.0",
+  "description": "Core components for DHIS2 in d2-ui",
+  "main": "./build/cjs/index.js",
+  "module": "./build/es/index.js",
+  "files": [ "build" ],
+  "license": "BSD-3-Clause",
+  "author": "",
+  "scripts": {
+    "coverage": "jest --coverage",
+    "test-ci": "jest --config=../../jest.config.js packages/core",
+    "lint": "eslint src/",
+    "preversion": "npm run validate && npm test",
+    "prebuild": "rimraf ./build/*",
+    "build": "npm run build:commonjs && npm run build:es && npm run build:sass",
+    "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir build/cjs --ignore spec.js",
+    "build:es": "cross-env BABEL_ENV=es babel src --out-dir build/es --ignore spec.js",
+    "build:umd": "cross-env && webpack -p",
+    "build:sass": "node-sass ./scss --output ./build/css",
+    "validate": "yarn check || npm ls --depth 0",
+    "watch": "npm run build:sass && npm run build:es --  --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dhis2/d2-ui.git"
+  },
+  "dependencies": {
+    "material-ui": "^0.20.0"
+  },
+  "peerDependencies": {
+    "d2": "^29.1.1",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
+  },
+  "pre-commit": [
+    "validate",
+    "test"
+  ]
+}

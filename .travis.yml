@@ -1,13 +1,11 @@
 sudo: false
 language: node_js
 node_js:
-- 6.9.0
-before_script:
-- gem install scss_lint -v 0.49.0
-- gem install compass normalize-scss breakpoint susy
+- 8.11.1
 script:
-- npm run build
-- npm run coverage
+- yarn bootstrap
+- yarn build
+- yarn test-ci
 notifications:
   slack:
     secure: KxP+fsA7PMmmoS+/F+8Sg0U7EZR0C2y4/QK4PL5XvgYqjesqWhA6VXBfh+UC3QjXozLEHHgIcknYpypnTHoR/yHISDS2yUj9rcYhuwa1qTYzuTuFrgWAAAXUVfe0tuCLqMIAOprUMAzKCkExpimgTbotiSbH25ZsPof4iDB8e3ItSO1dJ9khakFswCBCzrBeBMZBKByANBlk2NvKvZnsnem+gjcRgHwDROfIgeqWhZxlgrULHkRGaAS1+/7UzHg6fM5VzB3e8s+v+AVOU+Td89M2M75ec2PtE0rxPzpJzTszUR4qGFpa3ofWXc4h0pVMTx6iwklTEw+W84FiFKI2ce2nhMzavJplvM/YNvaj7t/LGd6rR+Vqp3wOb5WHaZ6dvul8388PCk7OEKynN9tZe0KdgfA5T2cCL7SvJwwygmmnbWc7acUBYivl9wOFE6gY/QNXZ7jtMKbagrDQsggMP2aVQNrAsLkXHAm0JhZRjOfaaERrFLhaXHzlJEzJ4vClDVzBiBw0XzYKkjHCK6d9ZEtZNhM5GIA0sbf39HMtM3+blllpgOakY+/NgvTtDymCLcxNj4TfQDEPnJV8oMzT5pm9Av1fv79z9b3T4bUKkOJa7pQo1y281sL98MyRwOqtSxPJpsFodZFAKJJGTKerQA+1d6+d/KY/8DAh1v491js=
@@ -15,10 +13,11 @@ env:
   global:
     secure: VwesyyyQuGgyjXYktKZW6YLa/OZnhnxw3LtrboshRC/5sc/TLtvN4QbIewUnN6wsczpBhwQXqGTBmDGr2fZx2oj7BEN5yhTpsE1YBmKU9t+YW2o0IsIpWIMfAmryHMieF8qNb8uSQQRcDMkEtgIlmvy8EEsZm1wfJy6jfKHtkxfJHPkvfwj+gvvKKz+6WK/JHQrmhlU5W5AdJfY5H6ZGbLpr2Km1fNb4DY/9T/gHwBHDHOsodPS786E6KWjBaefORIkgvHzWOVXV/hTQmPU14PuBEVjbGDyr09oNmqr6VcNuui963f6Osux8NlkVzG2f/boEmHKf2DLIay+LpLAv/IWHBE2b8bLdlYNpWZpw04V8cSxN4xJag444CRQRZbWPbp2nEJF3yYv+lCyHIp0SZpJj2ZTypLY7KfNFpsm7ZVBDeSf9Wcqk2Yuz5JZ7A3y+flCO3EgBlvFEMBM6/Xn9l9/FNLOohso1+UxnzGyPzDBfgHi08clN29KuEFz4Bu7elompGHNipw9co1284H00R0m3p8CZVMhEKZONYPo0R6cplZAShkqjnD2DivPIHS4+nzdOLNWrJmPt4orRx8zY7gYo42XBWvqljefViJVGtVvnysX6pUxvh4Ie8JLeNBxGdKuKypAe85Wk2Ak6m2cB2ZLu3ZARLpuYeETq5iazqBA=
 before_deploy:
-- npm run build
+- yarn bootstrap
+- yarn build
 deploy:
   provider: npm
-  email: ci@dhis2.org
+  email: deployment@dhis2.org
   skip_cleanup: true
   api_key:
     secure: m6aJd6WxN0UizDB+ZFGeRQFZf9lUC5YT7ImT4B/cMyPXdUri++PDgxqq0uBtESIGtgsSxNIi/BqEhuyPDmcBQ4k6W8UkZtIr2YRv6Ub6V8grwIi/SjkPWqL0bnDLyLYeyQI8ifuAJ2aRQzI+oxMKxuTYoyp/P1nRtCK862o/vp2F4xHIiHaxlkFINv7ZKgWHVD/iL0Xh1cUzikSZwzqpTtNl+n2wVAiamsPtzQhvsfgRqm8El0ICCBJhIsl8Sj5TWVkxDbYU+JQ/vLLJvYWeQqb1XUZQiymu1vGhjYdSsEdmnmfvuo90Jc+ynqqQ0ULRsHUtQzZe9+Bu1iikk6Q8G6+sy04lCZt5CHVkieM92xVhI99hY8mbnHL8KRzgTXXBbFJQhLR56MPgcNEkJ+01LzMoJDO67F/mSdNpQZF8JYA2A64xTbYulbz1Holp27FmgDn5Ur+OFWPxFbmjhwCwlNIpeJjr7pACwqJxeIPKbBChXsdptJ9jMD7ssmWobDApSQjY9bTRMqY4ZEMnQhRMSYYMYLzMmFwIKgt1HbZLX/O9h8CVTskkLgR27gcjDe73NVluuga/QULBxSJNr3QtPUQgJBJv5q7ZT9St7IsD4RJc8HVIn3TFwdsTe6z2kvrdz4MCe0XpPrZCStd5wwzsb4dRKfzO5dyWsqfEbcQnh90=

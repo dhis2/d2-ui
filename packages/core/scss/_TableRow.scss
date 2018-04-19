@@ -1,0 +1,19 @@
+.d2-ui-table__rows__row {
+  cursor: pointer;
+  display: table-row;
+
+  &:hover .d2-ui-table__rows__row__column {
+    background-color: $table-row-hover-color;
+  }
+}
+
+.d2-ui-table__rows__row__column {
+  @include d2-ui-table-cell;
+
+  border-bottom: 1px solid $table-row-border-color;
+  border-top: 0;
+  display: table-cell;
+  text-align: left;
+  transition: all .3s ease;
+  position: relative;
+}
