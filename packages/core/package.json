@@ -11,14 +11,12 @@
     "coverage": "jest --coverage",
     "test-ci": "jest --config=../../jest.config.js packages/core",
     "lint": "eslint src/",
-    "preversion": "npm run validate && npm test",
     "prebuild": "rimraf ./build/*",
     "build": "npm run build:commonjs && npm run build:es && npm run build:sass",
     "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir build/cjs --ignore spec.js",
     "build:es": "cross-env BABEL_ENV=es babel src --out-dir build/es --ignore spec.js",
     "build:umd": "cross-env && webpack -p",
     "build:sass": "node-sass ./scss --output ./build/css",
-    "validate": "yarn check || npm ls --depth 0",
     "watch": "npm run build:sass && npm run build:es --  --watch"
   },
   "repository": {
