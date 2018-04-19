@@ -59,8 +59,7 @@ class GroupEditorWithOrdering extends Component {
         const currentlySelected = Array.from(this.props.assignedItemStore.getState());
         const itemsToMoveUp = this.groupEditor.getSelectedItems();
 
-        itemsToMoveUp
-            .forEach(moveItemOneSpotUpIn(currentlySelected));
+        itemsToMoveUp.forEach(moveItemOneSpotUpIn(currentlySelected));
 
         // Emit the changed order to the event handler
         this.props.onOrderChanged(currentlySelected);
