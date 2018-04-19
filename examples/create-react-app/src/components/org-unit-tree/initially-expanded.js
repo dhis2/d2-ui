@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import OrgUnitTree from '../../src/org-unit-tree/OrgUnitTreeMultipleRoots.component';
-
+import { OrgUnitTree } from 'd2-ui-org-unit-tree';
 
 function InitiallyExpandedExample(props) {
     const expanded = [
@@ -14,7 +13,7 @@ function InitiallyExpandedExample(props) {
 
     return (
         <div>
-            <OrgUnitTree roots={roots} selected={expanded} initiallyExpanded={expanded} />
+            <OrgUnitTree root={props.root} roots={roots} selected={expanded} initiallyExpanded={expanded} />
         </div>
     );
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import OrgUnitTree from '../../src/org-unit-tree/OrgUnitTree.component';
+import { OrgUnitTree } from 'd2-ui-org-unit-tree';
 
 class SingleSelectionExample extends React.Component {
     constructor(props) {

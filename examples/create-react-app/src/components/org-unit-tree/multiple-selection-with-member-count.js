@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import TreeView from '../../src/tree-view/TreeView.component';
-import OrgUnitTree from '../../src/org-unit-tree/OrgUnitTree.component';
+import { OrgUnitTree } from 'd2-ui-org-unit-tree';
+import { TreeView } from 'd2-ui-core';
 
-import { mergeChildren, incrementMemberCount, decrementMemberCount } from '../../src/org-unit-tree/utils';
+import { mergeChildren, incrementMemberCount, decrementMemberCount } from 'd2-ui-org-unit-tree';
 
 class MultipleSelectionExample extends React.Component {
     constructor(props, context) {

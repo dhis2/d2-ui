@@ -1,7 +1,7 @@
 import React from 'react';
 
-import TreeView from '../../src/tree-view/TreeView.component';
-import OrgUnitTree from '../../src/org-unit-tree/OrgUnitTreeMultipleRoots.component';
+import { OrgUnitTree } from 'd2-ui-org-unit-tree';
+import { TreeView } from 'd2-ui-core';
 
 export default class extends React.Component {
     constructor(props) {
