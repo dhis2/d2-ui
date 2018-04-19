@@ -1,7 +1,7 @@
 {
-  "name": "d2-ui-org-unit-tree",
-  "version": "1.0.2",
-  "description": "DHIS2 component for sharing dialog",
+  "name": "@dhis2/d2-ui-org-unit-tree",
+  "version": "1.0.0",
+  "description": "Org Unit Tree component for d2-ui",
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",
   "files": [ "build" ],

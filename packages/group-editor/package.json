@@ -1,7 +1,7 @@
 {
-  "name": "d2-ui-group-editor",
-  "version": "1.0.2",
-  "description": "DHIS2 component for sharing dialog",
+  "name": "@dhis2/d2-ui-group-editor",
+  "version": "1.0.0",
+  "description": "Group editor component for DHIS2",
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",
   "files": [ "build" ],

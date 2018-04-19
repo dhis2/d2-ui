@@ -1,7 +1,7 @@
 {
-  "name": "d2-ui-header-bar",
+  "name": "@dhis2/d2-ui-header-bar",
   "version": "1.0.0",
-  "description": "The header bar for all applications ",
+  "description": "The header bar for all DHIS2 applications",
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",
   "files": [ "build" ],
