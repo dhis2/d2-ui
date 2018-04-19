@@ -1,6 +1,6 @@
 {
   "name": "@dhis2/d2-ui-sharing-dialog",
-  "version": "1.0.2",
+  "version": "1.0.0",
   "description": "DHIS2 component for sharing dialog",
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",
@@ -30,7 +30,7 @@
     "test-ci": "jest --config=../../jest.config.js packages/sharing-dialog"
   },
   "dependencies": {
-    "@dhis2/d2-ui-core": "^1.0.2",
+    "@dhis2/d2-ui-core": "^1.0.0",
     "material-ui": "^0.19.3",
     "prop-types": "^15.5.10",
     "recompose": "^0.26.0",
