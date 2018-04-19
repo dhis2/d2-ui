@@ -31,8 +31,12 @@ import IconPicker from './components/icon-picker';
 
 /** these examples need to be rewritten */
 import OrgUnitSelect from './components/org-unit-select';
+<<<<<<< HEAD
 import OrgUnitTree from './components/org-unit-tree';
 //import TreeViews from './components/tree-views'
+=======
+import TreeViews from './components/tree-view';
+>>>>>>> 13233b4f7ceb52c4567f0409834fe249d7d9a0f1
 
 class App extends Component {
     constructor(props) {
@@ -137,6 +141,9 @@ class App extends Component {
 
                 <h2>OrgUnitTree</h2>
                 <OrgUnitTree d2={this.state.d2} />
+
+                <h2>TreeViews</h2>
+                <TreeViews />
             </div>
         );
     }
