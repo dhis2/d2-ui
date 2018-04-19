@@ -1,5 +1,5 @@
 import React from 'react';
-import { TreeView } from 'd2-ui-core';
+import { TreeView } from '@dhis2/d2-ui-core';
 
 class ExampleComponent extends React.Component {
     constructor(props) {

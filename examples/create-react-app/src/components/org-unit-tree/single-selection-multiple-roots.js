@@ -1,5 +1,5 @@
 import React from 'react';
-import { OrgUnitTreeMultipleRoots } from 'd2-ui-org-unit-tree';
+import { OrgUnitTreeMultipleRoots } from '@dhis2/d2-ui-org-unit-tree';
 
 export default class extends React.Component {
     constructor(...args) {
