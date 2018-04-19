@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import {InputField} from 'd2-ui-core';
+import {InputField} from '@dhis2/d2-ui-core';
 
 const style = {
     margin: 16,

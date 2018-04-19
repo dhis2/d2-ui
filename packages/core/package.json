@@ -36,5 +36,8 @@
   "pre-commit": [
     "validate",
     "test"
-  ]
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
 }

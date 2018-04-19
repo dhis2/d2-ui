@@ -36,5 +36,8 @@
     "transformIgnorePatterns": [
       "node_modules/(?!react-native|react-navigation)/"
     ]
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

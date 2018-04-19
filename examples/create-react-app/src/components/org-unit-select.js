@@ -7,14 +7,14 @@ import CardText from 'material-ui/Card/CardText';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import { OrgUnitTree } from 'd2-ui-org-unit-tree';
-import { OrgUnitSelectByLevel } from 'd2-ui-org-unit-select';
-import { OrgUnitSelectByGroup } from 'd2-ui-org-unit-select';
-import { OrgUnitSelectAll } from 'd2-ui-org-unit-select';
+import { OrgUnitTree } from '@dhis2/d2-ui-org-unit-tree';
+import { OrgUnitSelectByLevel } from '@dhis2/d2-ui-org-unit-select';
+import { OrgUnitSelectByGroup } from '@dhis2/d2-ui-org-unit-select';
+import { OrgUnitSelectAll } from '@dhis2/d2-ui-org-unit-select';
 
-import { TreeView } from 'd2-ui-core';
+import { TreeView } from '@dhis2/d2-ui-core';
 
-import { mergeChildren, incrementMemberCount, decrementMemberCount } from 'd2-ui-org-unit-tree';
+import { mergeChildren, incrementMemberCount, decrementMemberCount } from '@dhis2/d2-ui-org-unit-tree';
 
 const styles = {
     card: {

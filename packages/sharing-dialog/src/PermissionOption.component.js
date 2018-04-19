@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { SvgIcon } from 'd2-ui-core';
+import { SvgIcon } from '@dhis2/d2-ui-core';
 import MenuItem from 'material-ui/MenuItem';
 
 class PermissionOption extends Component {

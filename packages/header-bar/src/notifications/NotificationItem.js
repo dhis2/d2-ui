@@ -2,7 +2,7 @@ import React from 'react';
 import IconButton from 'material-ui/IconButton';
 import Badge from 'material-ui/Badge';
 
-import { SvgIcon } from 'd2-ui-core';
+import { SvgIcon } from '@dhis2/d2-ui-core';
 import styles from '../header-bar-styles';
 
 import { withStyles } from 'material-ui/styles';

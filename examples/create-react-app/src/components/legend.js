@@ -8,7 +8,7 @@ import { fade } from 'material-ui/utils/colorManipulator';
 import Spacing from 'material-ui/styles/spacing';
 
 import 'd2-ui-core/build/css/Table.css';
-import Legend from 'd2-ui-legend';
+import Legend from '@dhis2/d2-ui-legend';
 
 const style = {
     spacing: Spacing,

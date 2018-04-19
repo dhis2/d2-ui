@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { MenuItem } from 'material-ui/Menu';
 import { ListItemText, ListItemIcon } from 'material-ui/List';
-import TranslationDialog from 'd2-ui-translation-dialog';
+import TranslationDialog from '@dhis2/d2-ui-translation-dialog';
 
 import { getStubContext } from '../../../../config/inject-theme';
 

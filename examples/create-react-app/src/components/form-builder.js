@@ -8,13 +8,13 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Card from 'material-ui/Card/Card';
 import CardText from 'material-ui/Card/CardText';
 
-import {CheckBox} from 'd2-ui-core';
-import {SelectField} from 'd2-ui-core';
-import {TextField} from 'd2-ui-core';
-import {DatePicker} from 'd2-ui-core';
-import {MultiToggle} from 'd2-ui-core';
-import {FormBuilder} from 'd2-ui-core';
-import { isStartDateBeforeEndDate, isRequired } from 'd2-ui-core';
+import {CheckBox} from '@dhis2/d2-ui-core';
+import {SelectField} from '@dhis2/d2-ui-core';
+import {TextField} from '@dhis2/d2-ui-core';
+import {DatePicker} from '@dhis2/d2-ui-core';
+import {MultiToggle} from '@dhis2/d2-ui-core';
+import {FormBuilder} from '@dhis2/d2-ui-core';
+import { isStartDateBeforeEndDate, isRequired } from '@dhis2/d2-ui-core';
 
 export default class FormExample extends React.Component {
     constructor() {

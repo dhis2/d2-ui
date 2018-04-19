@@ -1,7 +1,7 @@
 import React from 'react';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { Tabs, Tab } from 'd2-ui-core';
+import { Tabs, Tab } from '@dhis2/d2-ui-core';
 
 const style = {
     margin: 16,

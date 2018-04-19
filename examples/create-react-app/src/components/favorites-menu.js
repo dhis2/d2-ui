@@ -3,7 +3,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Snackbar from 'material-ui/Snackbar';
 
-import FavoritesMenu from 'd2-ui-favorites-menu';
+import FavoritesMenu from '@dhis2/d2-ui-favorites-menu';
 
 export default class FavoritesMenuExample extends React.Component {
     state = {

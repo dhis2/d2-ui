@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
-import TranslationDialog from 'd2-ui-translation-dialog';
+import TranslationDialog from '@dhis2/d2-ui-translation-dialog';
 
 import { ListItemIcon, ListItemText } from 'material-ui/List';
 import { MenuItem } from 'material-ui/Menu';

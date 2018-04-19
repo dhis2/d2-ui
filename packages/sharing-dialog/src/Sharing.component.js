@@ -3,7 +3,7 @@ import React from 'react';
 import Divider from 'material-ui/Divider';
 import Subheader from 'material-ui/Subheader';
 
-import { Heading } from 'd2-ui-core';
+import { Heading } from '@dhis2/d2-ui-core';
 import UserSearch from './UserSearch.component';
 import CreatedBy from './CreatedBy.component';
 import {

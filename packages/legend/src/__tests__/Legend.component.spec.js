@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { Column } from 'd2-ui-core';
+import { Column } from '@dhis2/d2-ui-core';
 
 import Legend from '../Legend.component';
 import { getStubContext } from '../../../../config/inject-theme';

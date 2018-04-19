@@ -1,6 +1,6 @@
 import React from 'react';
 
-import TranslationDialog from 'd2-ui-translation-dialog';
+import TranslationDialog from '@dhis2/d2-ui-translation-dialog';
 
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';

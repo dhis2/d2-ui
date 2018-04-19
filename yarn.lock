@@ -2797,17 +2797,7 @@ cyclist@~0.2.2:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/cyclist/-/cyclist-0.2.2.tgz#1b33792e11e914a2fd6d6ed6447464444e5fa640"
 
-d2-ui-sharing@^1.0.1:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/d2-ui-sharing/-/d2-ui-sharing-1.0.2.tgz#13a9240bb197e6c0e83cd970ce7d22691654cb39"
-  dependencies:
-    d2-ui "^29.0.5"
-    material-ui "^0.19.3"
-    prop-types "^15.5.10"
-    recompose "^0.26.0"
-    rxjs "^5.4.3"
-
-d2-ui@^29.0.18, d2-ui@^29.0.5:
+d2-ui@^29.0.18:
   version "29.0.18"
   resolved "https://registry.yarnpkg.com/d2-ui/-/d2-ui-29.0.18.tgz#ad50a4ba58fb982cf7aee54f929b3576982cb6c2"
 
@@ -9610,7 +9600,7 @@ rx-lite@*, rx-lite@^4.0.8:
   version "4.0.8"
   resolved "https://registry.yarnpkg.com/rx-lite/-/rx-lite-4.0.8.tgz#0b1e11af8bc44836f04a6407e92da42467b79444"
 
-rxjs@^5.4.2, rxjs@^5.4.3, rxjs@^5.5.2, rxjs@^5.5.7:
+rxjs@^5.4.2, rxjs@^5.5.2, rxjs@^5.5.7:
   version "5.5.7"
   resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-5.5.7.tgz#afb3d1642b069b2fbf203903d6501d1acb4cda27"
   dependencies:
