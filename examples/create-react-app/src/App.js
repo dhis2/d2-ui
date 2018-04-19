@@ -31,12 +31,8 @@ import IconPicker from './components/icon-picker';
 
 /** these examples need to be rewritten */
 import OrgUnitSelect from './components/org-unit-select';
-<<<<<<< HEAD
 import OrgUnitTree from './components/org-unit-tree';
-//import TreeViews from './components/tree-views'
-=======
 import TreeViews from './components/tree-view';
->>>>>>> 13233b4f7ceb52c4567f0409834fe249d7d9a0f1
 
 class App extends Component {
     constructor(props) {
