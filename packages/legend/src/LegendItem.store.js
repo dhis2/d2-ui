@@ -5,7 +5,7 @@ import camelCaseToUnderscores from 'd2-utilizr/lib/camelCaseToUnderscores';
 import ColorPicker from './ColorPicker.component';
 
 import { Store } from '@dhis2/d2-ui-core';
-import { isRequired } from '@dhis2/d2-ui-core';
+import { Validators } from '@dhis2/d2-ui-core';
 import { mapProps } from '@dhis2/d2-ui-core';
 
 config.i18n.strings.add('required');
@@ -34,8 +34,8 @@ const formFieldsConfigs = [{
     name: 'name',
     component: TextField,
     validators: [{
-        validator: isRequired,
-        message: isRequired.message,
+        validator: Validators.isRequired,
+        message: Validators.isRequired.message,
     }],
 }, {
     name: 'startValue',
