@@ -1,6 +1,6 @@
 {
   "name": "@dhis2/d2-ui-core",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Core components for DHIS2 in d2-ui",
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",
