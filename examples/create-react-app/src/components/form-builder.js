@@ -14,7 +14,7 @@ import {TextField} from '@dhis2/d2-ui-core';
 import {DatePicker} from '@dhis2/d2-ui-core';
 import {MultiToggle} from '@dhis2/d2-ui-core';
 import {FormBuilder} from '@dhis2/d2-ui-core';
-import { isStartDateBeforeEndDate, isRequired } from '@dhis2/d2-ui-core';
+import { Validators } from '@dhis2/d2-ui-core';
 
 export default class FormExample extends React.Component {
     constructor() {
@@ -59,7 +59,7 @@ export default class FormExample extends React.Component {
                 validators: [{
                     message: 'The field must have a value',
                     validator(value) {
-                        return isRequired(value);
+                        return Validators.isRequired(value);
                     },
                 }],
             },
@@ -109,7 +109,7 @@ export default class FormExample extends React.Component {
                 validators: [{
                     message: 'Closed date cannot be before open date',
                     validator(value, formModel) {
-                        return isStartDateBeforeEndDate(value, formModel.fields.endDate.value);
+                        return Validators.isStartDateBeforeEndDate(value, formModel.fields.endDate.value);
                     },
                 }],
             },
@@ -125,7 +125,7 @@ export default class FormExample extends React.Component {
                 validators: [{
                     message: 'Closed date cannot be before open date',
                     validator(value, formModel) {
-                        return isStartDateBeforeEndDate(formModel.fields.startDate.value, value);
+                        return Validators.isStartDateBeforeEndDate(formModel.fields.startDate.value, value);
                     },
                 }],
             },
