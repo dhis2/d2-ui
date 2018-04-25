@@ -6,7 +6,7 @@ import Menu, { MenuItem } from 'material-ui/Menu';
 import { ListItemIcon, ListItemText } from 'material-ui/List';
 import DeleteDialog from './DeleteDialog';
 import RenameDialog from './RenameDialog';
-import SharingDialog from 'd2-ui-sharing';
+import SharingDialog from '@dhis2/d2-ui-sharing-dialog';
 import ModeEditIcon from 'material-ui-icons/ModeEdit';
 import MoreVertIcon from 'material-ui-icons/MoreVert';
 import ShareIcon from 'material-ui-icons/Share';

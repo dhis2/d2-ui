@@ -3,7 +3,7 @@ import log from 'loglevel';
 import { shallow } from 'enzyme';
 import Dialog from 'material-ui/Dialog/Dialog';
 import FlatButton from 'material-ui/FlatButton';
-import { LoadingMask } from 'd2-ui-core';
+import { LoadingMask } from '@dhis2/d2-ui-core';
 import SharingDialog from '../SharingDialog.component';
 import Sharing from '../Sharing.component';
 

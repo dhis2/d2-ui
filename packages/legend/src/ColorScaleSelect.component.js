@@ -6,8 +6,8 @@ import MenuItem from 'material-ui/MenuItem/MenuItem';
 import { config } from 'd2/lib/d2';
 import ColorScale from './ColorScale.component';
 import colorbrewer from './colorbrewer';
-import { Row } from 'd2-ui-core';
-import { Column } from 'd2-ui-core';
+import { Row } from '@dhis2/d2-ui-core';
+import { Column } from '@dhis2/d2-ui-core';
 
 config.i18n.strings.add('number_of_items');
 

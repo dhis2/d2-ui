@@ -58,15 +58,3 @@ export { default as FormBuilder } from './forms/FormBuilder.component'
 export { default as FormField } from './forms/FormField.component'
 export { default as FormValidator } from './forms/FormValidator'
 export { default as Validators } from './forms/Validators'
-export {
-    isRequired,
-    isUrl,
-    isNumber,
-    isPositiveNumber,
-    isEmail,
-    isEmptyString,
-    isNull,
-    isUndefined,
-    isValidPassword,
-    isStartDateBeforeEndDate
-} from './forms/Validators'

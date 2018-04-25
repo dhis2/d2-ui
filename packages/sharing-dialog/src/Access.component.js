@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { compose, mapProps, getContext, withProps } from 'recompose';
 import IconButton from 'material-ui/IconButton';
-import { SvgIcon } from 'd2-ui-core';
+import { SvgIcon } from '@dhis2/d2-ui-core';
 
 import PermissionPicker from './PermissionPicker.component';
 

@@ -4,7 +4,7 @@ import Button from 'material-ui/Button';
 
 import HeaderMenu from './HeaderMenu';
 import HeaderMenuItem from './HeaderMenuItem';
-import { addD2Context } from 'd2-ui-core';
+import { addD2Context } from '@dhis2/d2-ui-core';
 import getBaseUrlFromD2ApiUrl from '../utils/getBaseUrlFromD2ApiUrl';
 import styles from '../header-bar-styles';
 

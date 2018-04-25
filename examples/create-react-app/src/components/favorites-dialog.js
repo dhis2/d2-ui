@@ -4,7 +4,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 import Snackbar from 'material-ui/Snackbar';
 
-import FavoritesDialog from 'd2-ui-favorites-dialog';
+import FavoritesDialog from '@dhis2/d2-ui-favorites-dialog';
 
 export default class FavoritesDialogExample extends React.Component {
     state = {

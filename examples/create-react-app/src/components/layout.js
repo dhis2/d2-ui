@@ -3,11 +3,11 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Paper from 'material-ui/Paper';
 
-import {TwoPanel} from 'd2-ui-core';
-import {SinglePanel} from 'd2-ui-core';
-import {MainContent} from 'd2-ui-core';
-import {Sidebar} from 'd2-ui-core';
-import {Heading} from 'd2-ui-core';
+import {TwoPanel} from '@dhis2/d2-ui-core';
+import {SinglePanel} from '@dhis2/d2-ui-core';
+import {MainContent} from '@dhis2/d2-ui-core';
+import {Sidebar} from '@dhis2/d2-ui-core';
+import {Heading} from '@dhis2/d2-ui-core';
 
 
 const styles = {

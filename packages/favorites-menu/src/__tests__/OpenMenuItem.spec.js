@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { MenuItem } from 'material-ui/Menu';
 import { ListItemText, ListItemIcon } from 'material-ui/List';
-import FavoritesDialog from 'd2-ui-favorites-dialog';
+import FavoritesDialog from '@dhis2/d2-ui-favorites-dialog';
 
 import { getStubContext } from '../../../../config/inject-theme';
 import OpenMenuItem from '../OpenMenuItem';

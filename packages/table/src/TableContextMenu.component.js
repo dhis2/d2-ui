@@ -5,7 +5,7 @@ import MenuItem from 'material-ui/MenuItem';
 import FontIcon from 'material-ui/FontIcon';
 import Popover from 'material-ui/Popover/Popover';
 import Paper from 'material-ui/Paper';
-import { addD2Context } from 'd2-ui-core';
+import { addD2Context } from '@dhis2/d2-ui-core';
 
 
 function TableContextMenu(props, context) {

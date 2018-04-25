@@ -11,8 +11,8 @@ import { generateUid } from 'd2/lib/uid';
 import ColorScaleSelect from './ColorScaleSelect.component';
 import LegendItems from './LegendItems.component';
 import { legendItemStore } from './LegendItem.store';
-import { Row } from 'd2-ui-core';
-import { Column } from 'd2-ui-core';
+import { Row } from '@dhis2/d2-ui-core';
+import { Column } from '@dhis2/d2-ui-core';
 
 config.i18n.strings.add('start_value');
 config.i18n.strings.add('end_value');

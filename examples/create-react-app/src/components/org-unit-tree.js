@@ -17,7 +17,7 @@ import MultipleSelectionMultipleRoots from './org-unit-tree/multiple-selection-m
 import ChangeRoot from './org-unit-tree/change-root';
 import MultipleSelectionChangeRoot from './org-unit-tree/multiple-selection-change-root';
 
-import { OrgUnitTreeMultipleRoots, OrgUnitTree } from 'd2-ui-org-unit-tree';
+import { OrgUnitTreeMultipleRoots, OrgUnitTree } from '@dhis2/d2-ui-org-unit-tree';
 
 const styles = {
 	card: {

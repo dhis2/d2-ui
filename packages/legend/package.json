@@ -1,10 +1,12 @@
 {
   "name": "@dhis2/d2-ui-legend",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Legend component for DHIS2",
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",
-  "files": [ "build" ],
+  "files": [
+    "build"
+  ],
   "license": "BSD-3-Clause",
   "peerDependencies": {
     "d2": "^29.1.1",
@@ -28,8 +30,8 @@
     "test-ci": "jest --config=../../jest.config.js packages/legend"
   },
   "dependencies": {
-    "d2-ui-core": "^1.0.0",
-    "d2-ui-table": "1.0.2",
+    "@dhis2/d2-ui-core": "1.0.2",
+    "@dhis2/d2-ui-table": "1.0.2",
     "material-ui": "^0.19.3",
     "prop-types": "^15.5.10",
     "recompose": "^0.26.0",
@@ -39,5 +41,8 @@
     "transformIgnorePatterns": [
       "node_modules/(?!react-native|react-navigation)/"
     ]
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

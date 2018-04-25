@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { OrgUnitTree } from 'd2-ui-org-unit-tree';
+import { OrgUnitTree } from '@dhis2/d2-ui-org-unit-tree';
 
 function BasicOrgUnitTreeExample(props) {
     return <OrgUnitTree rootUnit={props.rootUnit} />;

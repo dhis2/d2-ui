@@ -1,6 +1,6 @@
 {
     "name": "@dhis2/d2-ui-icon-picker",
-    "version": "1.0.0",
+    "version": "1.0.2",
     "description": "DHIS2 component for selecting icon",
     "main": "./build/cjs/index.js",
     "module": "./build/es/index.js",
@@ -30,7 +30,7 @@
         "test-ci": "jest --config=../../jest.config.js packages/icon-picker"
     },
     "dependencies": {
-        "d2-ui-core": "^1.0.0",
+        "@dhis2/d2-ui-core": "1.0.2",
         "material-ui": "^0.19.3",
         "prop-types": "^15.5.10"
     },
@@ -38,5 +38,8 @@
         "transformIgnorePatterns": [
             "node_modules/(?!react-native|react-navigation)/"
         ]
+    },
+    "publishConfig": {
+        "access": "public"
     }
 }

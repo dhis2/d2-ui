@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
-import SharingDialog from 'd2-ui-sharing-dialog';
+import SharingDialog from '@dhis2/d2-ui-sharing-dialog';
 
 export default class SharingExample extends React.Component {
     state = {

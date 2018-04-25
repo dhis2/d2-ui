@@ -6,7 +6,7 @@ import { isString } from 'lodash/fp';
 import IconButton from 'material-ui/IconButton';
 import FontIcon from 'material-ui/FontIcon';
 import MoreVert from 'material-ui/svg-icons/navigation/more-vert';
-import { addD2Context } from 'd2-ui-core';
+import { addD2Context } from '@dhis2/d2-ui-core';
 import { findValueRenderer } from './data-value/valueRenderers';
 
 function getD2ModelValueType(dataSource, columnName) {

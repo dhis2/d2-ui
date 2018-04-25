@@ -20,41 +20,41 @@ const oneUpperCase = (/^(?=.*[A-Z])/);
 const oneSpecialCharacter = (/[!@#$%^&*(),.?":{}|<>]/);
 
 
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *                     MISC VALIDATORS                     *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-export function isNull(value) {
+function isNull(value) {
     return value === null;
 }
 
-export function isUndefined(value) {
+function isUndefined(value) {
     return value === undefined;
 }
 
-export function isRequired(value) {
+function isRequired(value) {
     return (Boolean(value) || value === 0 || value === false);
 }
 isRequired.message = 'value_required';
 
 
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *                     STRING VALIDATORS                   *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-export function isEmptyString(value) {
+function isEmptyString(value) {
     return value === '' || (value !== undefined && value !== null && value.toString() === '');
 }
 isEmptyString.message = 'value_should_be_empty_string';
 
-export function isEmptyStringOrUndefined(value) {
+function isEmptyStringOrUndefined(value) {
     return isUndefined(value) || isEmptyString(value);
 }
 isEmptyStringOrUndefined.message = 'value_should_be_empty_string_or_undefined';
 
 
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *                     URL VALIDATORS                      *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-export function isUrl(value) {
+function isUrl(value) {
     if (isEmptyStringOrUndefined(value)) {
         return true;
     }
@@ -63,7 +63,7 @@ export function isUrl(value) {
 isUrl.message = 'value_should_be_a_url';
 
 // FIXME: Always returns true?
-export function isRelativeUrl(value) {
+function isRelativeUrl(value) {
     if (isEmptyStringOrUndefined(value)) {
         return true;
     }
@@ -71,7 +71,7 @@ export function isRelativeUrl(value) {
 }
 isRelativeUrl.message = 'value_should_be_a_relative_url';
 
-export function isUrlArray(value) {
+function isUrlArray(value) {
     if (isEmptyStringOrUndefined(value)) {
         return true;
     }
@@ -83,10 +83,10 @@ export function isUrlArray(value) {
 isUrlArray.message = 'value_should_be_list_of_urls';
 
 
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *                     EMAIL VALIDATORS                    *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-export function isEmail(value) {
+function isEmail(value) {
     if (isEmptyStringOrUndefined(value)) {
         return true;
     }
@@ -95,10 +95,10 @@ export function isEmail(value) {
 isEmail.message = 'value_should_be_an_email';
 
 
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *                     NUMBER VALIDATORS                   *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-export function isNumber(value) {
+function isNumber(value) {
     if (isNull(value)) {
         return false;
     }
@@ -124,7 +124,7 @@ function isInteger(value) {
 }
 isInteger.message = 'number_should_not_have_decimals';
 
-export function isPositiveNumber(value) {
+function isPositiveNumber(value) {
     if (isEmptyStringOrUndefined(value)) {
         return true;
     }
@@ -134,10 +134,10 @@ export function isPositiveNumber(value) {
 isPositiveNumber.message = 'value_should_be_a_positive_number';
 
 
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *                     PASSWORD VALIDATORS                 *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-export function isValidPassword(value) {
+function isValidPassword(value) {
     if (isEmptyStringOrUndefined(value)) {
         return true;
     }
@@ -150,10 +150,10 @@ export function isValidPassword(value) {
 isValidPassword.message = 'invalid_password';
 
 
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *                     DATE VALIDATORS                     *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-export function isStartDateBeforeEndDate(startDate, endDate) {
+function isStartDateBeforeEndDate(startDate, endDate) {
     if (isEmptyStringOrUndefined(startDate) || isEmptyStringOrUndefined(endDate)) {
         return true;
     }
@@ -162,7 +162,7 @@ export function isStartDateBeforeEndDate(startDate, endDate) {
 isStartDateBeforeEndDate.message = 'closed_date_cannot_be_before_open_date';
 
 
-export const wordToValidatorMap = new Map([
+const wordToValidatorMap = new Map([
     ['required', isRequired],
     ['url', isUrl],
     ['relative_url', isRelativeUrl],
@@ -176,13 +176,17 @@ export const wordToValidatorMap = new Map([
 
 export default {
     isRequired,
+    isRelativeUrl,
     isUrl,
     isNumber,
     isPositiveNumber,
+    isUrlArray,
     isEmail,
     isEmptyString,
     isNull,
     isUndefined,
     isValidPassword,
     isStartDateBeforeEndDate,
+    wordToValidatorMap,
+    isEmptyStringOrUndefined,
 };

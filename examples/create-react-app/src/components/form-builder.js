@@ -8,13 +8,13 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Card from 'material-ui/Card/Card';
 import CardText from 'material-ui/Card/CardText';
 
-import {CheckBox} from 'd2-ui-core';
-import {SelectField} from 'd2-ui-core';
-import {TextField} from 'd2-ui-core';
-import {DatePicker} from 'd2-ui-core';
-import {MultiToggle} from 'd2-ui-core';
-import {FormBuilder} from 'd2-ui-core';
-import { isStartDateBeforeEndDate, isRequired } from 'd2-ui-core';
+import {CheckBox} from '@dhis2/d2-ui-core';
+import {SelectField} from '@dhis2/d2-ui-core';
+import {TextField} from '@dhis2/d2-ui-core';
+import {DatePicker} from '@dhis2/d2-ui-core';
+import {MultiToggle} from '@dhis2/d2-ui-core';
+import {FormBuilder} from '@dhis2/d2-ui-core';
+import { Validators } from '@dhis2/d2-ui-core';
 
 export default class FormExample extends React.Component {
     constructor() {
@@ -59,7 +59,7 @@ export default class FormExample extends React.Component {
                 validators: [{
                     message: 'The field must have a value',
                     validator(value) {
-                        return isRequired(value);
+                        return Validators.isRequired(value);
                     },
                 }],
             },
@@ -109,7 +109,7 @@ export default class FormExample extends React.Component {
                 validators: [{
                     message: 'Closed date cannot be before open date',
                     validator(value, formModel) {
-                        return isStartDateBeforeEndDate(value, formModel.fields.endDate.value);
+                        return Validators.isStartDateBeforeEndDate(value, formModel.fields.endDate.value);
                     },
                 }],
             },
@@ -125,7 +125,7 @@ export default class FormExample extends React.Component {
                 validators: [{
                     message: 'Closed date cannot be before open date',
                     validator(value, formModel) {
-                        return isStartDateBeforeEndDate(formModel.fields.startDate.value, value);
+                        return Validators.isStartDateBeforeEndDate(formModel.fields.startDate.value, value);
                     },
                 }],
             },

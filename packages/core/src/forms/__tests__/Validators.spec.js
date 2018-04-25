@@ -1,4 +1,8 @@
-import {
+import
+    Validators
+ from '../Validators';
+
+const {
     isEmptyString,
     isEmptyStringOrUndefined,
     isEmail,
@@ -10,7 +14,7 @@ import {
     isNumber,
     isPositiveNumber,
     isValidPassword,
-} from '../Validators';
+} = Validators
 
 describe('Validators', () => {
     describe('isEmptyString', () => {

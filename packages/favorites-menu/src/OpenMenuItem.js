@@ -5,7 +5,7 @@ import { ListItemIcon, ListItemText } from 'material-ui/List';
 import { MenuItem } from 'material-ui/Menu';
 import OpenInBrowser from 'material-ui-icons/OpenInBrowser';
 
-import FavoritesDialog from 'd2-ui-favorites-dialog';
+import FavoritesDialog from '@dhis2/d2-ui-favorites-dialog';
 
 class OpenMenuItem extends Component {
     constructor(props) {

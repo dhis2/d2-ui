@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { ListItemIcon, ListItemText } from 'material-ui/List';
 import { MenuItem } from 'material-ui/Menu';
 import Share from 'material-ui-icons/Share';
-import SharingDialog from 'd2-ui-sharing-dialog';
+import SharingDialog from '@dhis2/d2-ui-sharing-dialog';
 
 class ShareMenuItem extends Component {
     constructor(props) {

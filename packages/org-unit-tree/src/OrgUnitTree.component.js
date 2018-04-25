@@ -5,7 +5,7 @@ import LinearProgress from 'material-ui/LinearProgress';
 import ModelBase from 'd2/lib/model/Model';
 import ModelCollection from 'd2/lib/model/ModelCollection';
 
-import { TreeView } from 'd2-ui-core';
+import { TreeView } from '@dhis2/d2-ui-core';
 
 
 const styles = {

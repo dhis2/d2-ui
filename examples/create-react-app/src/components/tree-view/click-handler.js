@@ -1,5 +1,5 @@
 import React from 'react';
-import { TreeView } from 'd2-ui-core';
+import { TreeView } from '@dhis2/d2-ui-core';
 
 export default class extends React.Component {
     handleClick(e) {

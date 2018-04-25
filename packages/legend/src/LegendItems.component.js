@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { generateUid } from 'd2/lib/uid';
 import FloatingActionButton from 'material-ui/FloatingActionButton/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
-import Table from 'd2-ui-table';
+import Table from '@dhis2/d2-ui-table';
 import EditLegendItem from './EditLegendItem.component';
 import { openEditDialogFor } from './LegendItem.store';
 

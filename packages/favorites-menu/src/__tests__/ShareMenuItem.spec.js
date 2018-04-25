@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { MenuItem } from 'material-ui/Menu';
 import { ListItemText, ListItemIcon } from 'material-ui/List';
-import SharingDialog from 'd2-ui-sharing-dialog';
+import SharingDialog from '@dhis2/d2-ui-sharing-dialog';
 
 import { getStubContext } from '../../../../config/inject-theme';
 import ShareMenuItem from '../ShareMenuItem';

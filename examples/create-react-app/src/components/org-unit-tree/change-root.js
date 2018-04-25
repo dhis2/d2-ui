@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { OrgUnitTree } from 'd2-ui-org-unit-tree';
+import { OrgUnitTree } from '@dhis2/d2-ui-org-unit-tree';
 
 class RootSelectionExample extends React.Component {
     constructor(props) {
