@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Button } from 'material-ui-next';
 import { connect } from 'react-redux';
 import { setPeriodType, addSelectedPeriod, removeSelectedPeriod } from "./actions";
-import SelectedPeriods from "./SelectedPeriods";
-
+import RelativePeriods from './RelativePeriods';
+import FixedPeriods from './FixedPeriods';
 import './PeriodSelector.css';
 
 class Periods extends Component {
@@ -12,7 +12,18 @@ class Periods extends Component {
     };
 
     render() {
-        return <div>
+        let PeriodOptions;
+
+        switch(this.props.periodType) {
+            case 'RELATIVE':
+                PeriodOptions = <RelativePeriods/>;
+                break;
+            case 'FIXED':
+                PeriodOptions = <FixedPeriods/>;
+                break;
+        }
+
+        return <div className="periods-component">
             <Button className={'nav-button ' + (this.props.periodType === 'RELATIVE' ? 'active' : '')}
                     onClick={() => this.props.setPeriodType('RELATIVE')}
             >
@@ -28,10 +39,15 @@ class Periods extends Component {
             >
                 Date range
             </Button>
-            <SelectedPeriods
-                periods={this.props.selectedPeriods}
-                removePeriod={this.props.removeSelectedPeriod}
-            />
+            <div>
+                <div className="block options">
+                    {PeriodOptions}
+                </div>
+                <div className="block buttons">
+                </div>
+                <div className="block selected-periods">
+                </div>
+            </div>
         </div>
     }
 }
