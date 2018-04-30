@@ -1,8 +1,17 @@
-.nav-button {
+button.nav-button {
     padding: 5px 13px 3px;
+    border-radius: 0;
 }
 
 .nav-button.active, .nav-button.active:hover {
     background: #117ad4;
     color: #fff;
 }
+
+.block { display: inline-block; }
+.block.options { width: 50%; }
+.block.buttons { width: 10%; }
+.block.selected-periods { width: 40%; }
+.selector-area { width: 100%; }
+.selector-area .form-control.period-type { width: 70%; }
+.selector-area .form-control.year { width: 30%; }
