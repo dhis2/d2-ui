@@ -18,6 +18,7 @@ class PeriodSelectorDialog extends React.Component {
             <Dialog
                 open={open}
                 onClose={onClose}
+                fullWidth={true}
                 maxWidth="sm"
             >
                 <DialogTitle>Period</DialogTitle>
