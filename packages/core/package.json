@@ -26,6 +26,7 @@
     "url": "https://github.com/dhis2/d2-ui.git"
   },
   "dependencies": {
+    "lodash": "^4.17.10",
     "material-ui": "^0.20.0"
   },
   "peerDependencies": {
