@@ -1,5 +1,4 @@
 export { createClassName } from './component-helpers/utils'
-export { getAllObjectsWithFields } from './data-helpers/index'
 
 export { default as Action } from './action/Action'
 export { default as AppWithD2 } from './app/AppWithD2.component'
@@ -41,16 +40,6 @@ export { default as SvgIcon } from './svg-icon/SvgIcon'
 export { Tabs, Tab } from './tabs/Tabs'
 export { default as InputField } from './text-field/TextField' // conflict with form fields textfield
 export { default as TreeView } from './tree-view/TreeView.component'
-export { default as ConstantSelector } from './expression-manager/ConstantSelector'
-export { default as DataElementOperandSelector } from './expression-manager/DataElementOperandSelector'
-export { default as DropDownForSchemaReference } from './expression-manager/DropDownForSchemaReference'
-export { default as ExpressionDescription } from './expression-manager/ExpressionDescription'
-export { default as ExpressionFormula } from './expression-manager/ExpressionFormula'
-export { default as ExpressionManager } from './expression-manager/ExpressionManager'
-export { default as ExpressionOperators } from './expression-manager/ExpressionOperators'
-export { default as OrganisationUnitGroupSelector } from './expression-manager/OrganisationUnitGroupSelector'
-export { default as ProgramOperandSelector } from './expression-manager/ProgramOperandSelector'
-export { default as ReportingRatesSelector } from './expression-manager/ReportingRatesSelector'
 
 export { default as AsyncValidatorRunner } from './forms/AsyncValidatorRunner'
 export { default as Form } from './forms/Form.component'

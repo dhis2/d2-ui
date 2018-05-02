@@ -1,19 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { config } from 'd2/lib/d2';
 
 import TextField from 'material-ui/TextField/TextField';
 import LinearProgress from 'material-ui/LinearProgress/LinearProgress';
 
-import ListSelectAsync from '../list-select/ListSelectAsync.component';
-import Pagination from '../pagination/Pagination.component';
-import Store from '../store/Store';
+import { ListSelectAsync } from '@dhis2/d2-ui-core';
+import { Pagination } from '@dhis2/d2-ui-core';
+import { Store } from '@dhis2/d2-ui-core';
 import {
     createDataElementOperandActions,
     subscribeDataElementActionsToStore,
 } from './dataElementOperandSelector.actions';
-
-config.i18n.strings.add('search_by_name');
 
 const styles = {
     list: {
@@ -35,6 +32,9 @@ class DataElementOperandSelector extends Component {
         super(props, context);
 
         const i18n = this.context.d2.i18n;
+
+        i18n.strings.add('search_by_name');
+
         this.getTranslation = i18n.getTranslation.bind(i18n);
     }
 

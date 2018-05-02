@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import CircularProgress from '../circular-progress/CircularProgress';
-import DropDown from '../form-fields/DropDown.component';
+import { CircularProgress } from '@dhis2/d2-ui-core';
+import { DropDown } from '@dhis2/d2-ui-core';
 
 class DropDownForSchemaReference extends Component {
     state = {
