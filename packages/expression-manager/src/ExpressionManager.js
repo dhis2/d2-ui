@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import log from 'loglevel';
 import { Observable } from 'rxjs';
-import { config } from 'd2/lib/d2';
 
 import Tabs from 'material-ui/Tabs/Tabs';
 import Tab from 'material-ui/Tabs/Tab';
@@ -23,6 +22,8 @@ import { Heading } from '@dhis2/d2-ui-core';
 import { Action } from '@dhis2/d2-ui-core';
 import { Row } from '@dhis2/d2-ui-core';
 import { Column } from '@dhis2/d2-ui-core';
+
+import { setInstance } from 'd2/lib/d2';
 
 const styles = {
     expressionDescription: {
@@ -80,6 +81,9 @@ class ExpressionManager extends Component {
                 isValid: false,
             },
         };
+
+        // override the d2 instance
+        setInstance(this.props.d2)
 
         this.i18n = this.props.d2.i18n;
 
