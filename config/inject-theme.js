@@ -34,6 +34,9 @@ export function getStubContext() {
                     return `${key}_translated`;
                 },
                 addStrings: jest.fn().mockReturnValue(true),
+                strings: {
+                    add: () => {},
+                },
             },
             Api: {
                 getApi: jest.fn().mockReturnValue({baseUrl: 'http://localhost:8080'}),
@@ -73,6 +76,9 @@ function injectTheme(Component, theme) {
                     all: stub().returns(Promise.resolve({})),
                 },
             },
+            strings: {
+                add: () => {},
+            }
         },
     });
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import ConstantSelector from '../ConstantSelector';
-import ListSelectWithLocalSearch from '../../list-select/ListSelectWithLocalSearch.component';
+import { ListSelectWithLocalSearch } from '@dhis2/d2-ui-core';
 import { shallow } from 'enzyme';
 
 xdescribe('ConstantSelector', () => {
