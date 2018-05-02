@@ -10,17 +10,19 @@ import {
     ListItemText
 } from 'material-ui-next';
 
+export const defaultState = {
+    periodType: '',
+    year: (new Date()).getFullYear(),
+    periods: []
+};
+
 class FixedPeriods extends Component {
     constructor(props) {
         super(props);
 
         this.periodsGenerator = new FixedPeriodsGenerator();
         this.years = this.getYears();
-        this.state = {
-            periodType: '',
-            year: (new Date()).getFullYear(),
-            periods: []
-        };
+        this.state = defaultState;
     }
 
     getYears = () => {
