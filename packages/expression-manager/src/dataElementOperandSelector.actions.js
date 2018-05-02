@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 import { getInstance } from 'd2/lib/d2';
 import Pager from 'd2/lib/pager/Pager';
-import Action from '../action/Action';
+import { Action } from '@dhis2/d2-ui-core';
 
 const createFakePager = response =>
     // Fake the modelCollection since dataElementOperands do not have a valid uid

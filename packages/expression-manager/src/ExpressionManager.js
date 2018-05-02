@@ -19,23 +19,10 @@ import ReportingRatesSelector from './ReportingRatesSelector';
 import ProgramOperandSelector from './ProgramOperandSelector';
 import ConstantSelector from './ConstantSelector';
 
-import Heading from '../headings/Heading.component';
-import addD2Context from '../component-helpers/addD2Context';
-import Action from '../action/Action';
-import Row from '../layout/Row.component';
-import Column from '../layout/Column.component';
-
-config.i18n.strings.add('description');
-config.i18n.strings.add('program_tracked_entity_attributes');
-config.i18n.strings.add('program_indicators');
-config.i18n.strings.add('program_data_elements');
-config.i18n.strings.add('field_is_required');
-
-config.i18n.strings.add('organisation_unit_counts'); // shorten to org_unit_counts in maintenance
-config.i18n.strings.add('reporting_rates');
-config.i18n.strings.add('data_elements');
-config.i18n.strings.add('constants');
-config.i18n.strings.add('programs');
+import { Heading } from '@dhis2/d2-ui-core';
+import { Action } from '@dhis2/d2-ui-core';
+import { Row } from '@dhis2/d2-ui-core';
+import { Column } from '@dhis2/d2-ui-core';
 
 const styles = {
     expressionDescription: {
@@ -82,8 +69,8 @@ const styles = {
 };
 
 class ExpressionManager extends Component {
-    constructor(props, context) {
-        super(props, context);
+    constructor(props) {
+        super(props);
 
         this.state = {
             formula: this.props.formulaValue,
@@ -94,8 +81,26 @@ class ExpressionManager extends Component {
             },
         };
 
-        this.i18n = this.context.d2.i18n;
+        this.i18n = this.props.d2.i18n;
+
+        this.i18n.strings.add('description');
+        this.i18n.strings.add('program_tracked_entity_attributes');
+        this.i18n.strings.add('program_indicators');
+        this.i18n.strings.add('program_data_elements');
+        this.i18n.strings.add('field_is_required');
+        this.i18n.strings.add('organisation_unit_counts'); // shorten to org_unit_counts in maintenance
+        this.i18n.strings.add('reporting_rates');
+        this.i18n.strings.add('data_elements');
+        this.i18n.strings.add('constants');
+        this.i18n.strings.add('programs');
+
         this.requestExpressionStatusAction = Action.create('requestExpressionStatus');
+    }
+
+    getChildContext() {
+        return {
+            d2: this.props.d2,
+        };
     }
 
     componentWillMount() {
@@ -133,7 +138,7 @@ class ExpressionManager extends Component {
                 const formula = action.data;
                 const url = 'expressions/description';
 
-                return Observable.fromPromise(this.context.d2.Api.getApi().get(url, { expression: formula }));
+                return Observable.fromPromise(this.props.d2.Api.getApi().get(url, { expression: formula }));
             })
             .concatAll()
             .subscribe(
@@ -284,4 +289,8 @@ ExpressionManager.defaultProps = {
     titleText: '',
 };
 
-export default addD2Context(ExpressionManager);
+ExpressionManager.childContextTypes = {
+    d2: PropTypes.object,
+};
+
+export default ExpressionManager;

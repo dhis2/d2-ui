@@ -1,8 +1,10 @@
 import { Observable } from 'rxjs';
 import { isFunction } from 'lodash';
-import ListSelectWithLocalSearch from '../list-select/ListSelectWithLocalSearch.component';
-import withPropsFromObservable from '../component-helpers/withPropsFromObservable';
-import { getAllObjectsWithFields } from '../data-helpers';
+
+import { ListSelectWithLocalSearch } from '@dhis2/d2-ui-core';
+import { withPropsFromObservable } from '@dhis2/d2-ui-core';
+
+import { getAllObjectsWithFields } from './data-helpers';
 
 const organisationUnitGroupSelectorProps$ = Observable.fromPromise(getAllObjectsWithFields('organisationUnitGroup'))
     .map(organisationUnitGroups => ({

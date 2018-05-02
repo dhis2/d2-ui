@@ -1,0 +1,44 @@
+{
+  "name": "@dhis2/d2-ui-expression-manager",
+  "version": "1.0.0",
+  "description": "Expression manager component for DHIS2 apps",
+  "main": "./build/cjs/index.js",
+  "module": "./build/es/index.js",
+  "files": [
+    "build"
+  ],
+  "license": "BSD-3-Clause",
+  "author": "",
+  "scripts": {
+    "coverage": "jest --coverage",
+    "test-ci": "jest --config=../../jest.config.js packages/expression-manager",
+    "lint": "eslint src/",
+    "prebuild": "rimraf ./build/*",
+    "build": "npm run build:commonjs && npm run build:es",
+    "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir build/cjs --ignore spec.js",
+    "build:es": "cross-env BABEL_ENV=es babel src --out-dir build/es --ignore spec.js",
+    "build:umd": "cross-env && webpack -p",
+    "watch": "npm run build:es --  --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dhis2/d2-ui.git"
+  },
+  "dependencies": {
+    "@dhis2/d2-ui-core": "1.0.2",
+    "rxjs": "^5.5.7",
+    "material-ui": "^0.20.0"
+  },
+  "peerDependencies": {
+    "d2": "^29.1.1",
+    "react": "^16.3.0",
+    "react-dom": "^16.3.0"
+  },
+  "pre-commit": [
+    "validate",
+    "test"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,18 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import log from 'loglevel';
-import { config } from 'd2/lib/d2';
 
 import Tabs from 'material-ui/Tabs/Tabs';
 import Tab from 'material-ui/Tabs/Tab';
 
-import ListSelect from '../list-select/ListSelect.component';
+import { ListSelect } from '@dhis2/d2-ui-core';
 import DropDownForSchemaReference from './DropDownForSchemaReference';
-
-config.i18n.strings.add('please_select_a_program');
-config.i18n.strings.add('no_tracked_entity_attributes');
-config.i18n.strings.add('no_program_indicators');
-config.i18n.strings.add('no_program_data_elements');
 
 const styles = {
     listStyle: {
@@ -40,6 +34,10 @@ class ProgramOperandSelector extends Component {
         super(props, context);
 
         const i18n = this.context.d2.i18n;
+        i18n.strings.add('please_select_a_program');
+        i18n.strings.add('no_tracked_entity_attributes');
+        i18n.strings.add('no_program_indicators');
+        i18n.strings.add('no_program_data_elements');
         this.getTranslation = i18n.getTranslation.bind(i18n);
     }
 
