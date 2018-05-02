@@ -30,7 +30,8 @@
     "test-ci": "jest --config=../../jest.config.js packages/formula-editor"
   },
   "dependencies": {
-    "draft-js": "^0.10.5"
+    "draft-js": "^0.10.5",
+    "lodash": "^4.17.10"
   },
   "jest": {
     "transformIgnorePatterns": [
