@@ -33,7 +33,7 @@ class FixedPeriods extends Component {
         return years;
     };
 
-    generatePeriods= (periodType, year) => {
+    generatePeriods = (periodType, year) => {
         const generator = this.periodsGenerator.get(periodType);
 
         return generator.generatePeriods({
@@ -89,19 +89,19 @@ class FixedPeriods extends Component {
                     })}
                 </Select>
             </FormControl>
-            <List component="nav">
-                {this.state.periods.map(period => {
-                return <ListItem key={period.id}>
-                    <ListItemText>{period.name}</ListItemText>
-                </ListItem>
-                })}
-            </List>
         </div>
     };
 
     render() {
         return <div className="selector-area">
             {this.renderOptions()}
+            <List component="nav">
+                {this.state.periods.map(period => {
+                    return <ListItem key={period.id}>
+                        <ListItemText>{period.name}</ListItemText>
+                    </ListItem>
+                })}
+            </List>
         </div>
     }
 }
