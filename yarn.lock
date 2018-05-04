@@ -2801,7 +2801,7 @@ d2-ui@^29.0.18:
   version "29.0.18"
   resolved "https://registry.yarnpkg.com/d2-ui/-/d2-ui-29.0.18.tgz#ad50a4ba58fb982cf7aee54f929b3576982cb6c2"
 
-d2-utilizr@^0.2.11:
+d2-utilizr@^0.2.15:
   version "0.2.15"
   resolved "https://registry.yarnpkg.com/d2-utilizr/-/d2-utilizr-0.2.15.tgz#377fba849edf03f927ca7bd9e0fdd6339c293e0d"
   dependencies:
@@ -6892,8 +6892,8 @@ lodash.isequal@^3.0:
     lodash._bindcallback "^3.0.0"
 
 lodash.isfunction@^3.0.8:
-  version "3.0.8"
-  resolved "https://registry.yarnpkg.com/lodash.isfunction/-/lodash.isfunction-3.0.8.tgz#4db709fc81bc4a8fd7127a458a5346c5cdce2c6b"
+  version "3.0.9"
+  resolved "https://registry.yarnpkg.com/lodash.isfunction/-/lodash.isfunction-3.0.9.tgz#06de25df4db327ac931981d1bdb067e5af68d051"
 
 lodash.ismap@^4.3.0:
   version "4.4.2"
