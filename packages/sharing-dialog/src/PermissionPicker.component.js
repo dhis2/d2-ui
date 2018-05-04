@@ -14,7 +14,7 @@ const styles = {
     optionHeader: {
         paddingLeft: 16,
         paddingTop: 16,
-        fontWeight: '400',
+        fontWeight: '500',
         color: 'gray',
     },
 };
@@ -36,8 +36,7 @@ class PermissionPicker extends Component {
         super(props);
         context.d2.i18n.addStrings([
             'can_edit_and_view',
-            'can_capture_data',
-            'can_view_data',
+            'can_capture_and_view',
             'can_view_only',
             'no_access'
         ]);
@@ -121,7 +120,7 @@ class PermissionPicker extends Component {
                                         data: { canView: true, canEdit: true },
                                     }}
                                     primaryText={this.translate(
-                                        'can_capture_data'
+                                        'can_capture_and_view'
                                     )}
                                     isSelected={data.canEdit}
                                 />
@@ -131,7 +130,7 @@ class PermissionPicker extends Component {
                                         data: { canView: true, canEdit: false },
                                     }}
                                     primaryText={this.translate(
-                                        'can_view_data'
+                                        'can_view_only'
                                     )}
                                     isSelected={!data.canEdit && data.canView}
                                 />
