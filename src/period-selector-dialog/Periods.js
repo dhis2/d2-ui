@@ -34,11 +34,6 @@ class Periods extends Component {
             >
                 Fixed periods
             </Button>
-            <Button className={'nav-button ' + (this.props.periodType === 'RANGE' ? 'active' : '')}
-                    onClick={() => this.props.setPeriodType('RANGE')}
-            >
-                Date range
-            </Button>
             <div>
                 <div className="block options">
                     {PeriodOptions}
