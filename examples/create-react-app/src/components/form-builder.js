@@ -13,8 +13,8 @@ import {SelectField} from '@dhis2/d2-ui-core';
 import {TextField} from '@dhis2/d2-ui-core';
 import {DatePicker} from '@dhis2/d2-ui-core';
 import {MultiToggle} from '@dhis2/d2-ui-core';
-import {FormBuilder} from '@dhis2/d2-ui-core';
-import { Validators } from '@dhis2/d2-ui-core';
+import { FormBuilder } from '@dhis2/d2-ui-forms';
+import { Validators } from '@dhis2/d2-ui-forms';
 
 export default class FormExample extends React.Component {
     constructor() {

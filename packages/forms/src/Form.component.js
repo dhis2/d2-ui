@@ -6,10 +6,10 @@ import createFormValidator from './FormValidator';
 import { FormFieldStatuses } from './FormValidator';
 
 class Form extends Component {
-    constructor(props, context) {
-        super(props, context);
+    constructor(props) {
+        super(props);
 
-        const i18n = this.context.d2.i18n;
+        const i18n = this.props.d2.i18n;
         this.getTranslation = i18n.getTranslation.bind(i18n);
     }
 
@@ -90,6 +90,7 @@ class Form extends Component {
 }
 
 Form.propTypes = {
+    d2: PropTypes.object.isRequired,
     fieldConfigs: PropTypes.arrayOf(
         PropTypes.shape({
             name: PropTypes.string.isRequired,
@@ -108,14 +109,11 @@ Form.propTypes = {
 };
 
 Form.defaultProps = {
+    d2: {},
     fieldConfigs: [],
     formValidator: createFormValidator([]),
     onFormFieldUpdate: () => {},
     children: null,
-};
-
-Form.contextTypes = {
-    d2: PropTypes.object,
 };
 
 export default Form;
