@@ -29,6 +29,8 @@ import HeaderBarExample from './components/header-bar';
 import FormEditor from './components/formula-editor';
 import IconPicker from './components/icon-picker';
 
+import ListSelectExamples from './components/list-select.js';
+
 /** these examples need to be rewritten */
 import OrgUnitSelect from './components/org-unit-select';
 import OrgUnitTree from './components/org-unit-tree';
@@ -104,6 +106,9 @@ class App extends Component {
 
                 <h2>Legend</h2>
                 <Legend d2={this.state.d2} />
+
+                <h2>List Select</h2>
+                <ListSelectExamples />
 
                 <h2>PeriodPicker</h2>
                 <PeriodPicker d2={this.state.d2} />

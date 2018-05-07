@@ -5,8 +5,8 @@ import classes from 'classnames';
 const noop = () => {};
 
 class Pagination extends Component {
-    constructor(props, context) {
-        super(props, context);
+    constructor(props) {
+        super(props);
     }
 
     render() {
@@ -58,10 +58,6 @@ Pagination.defaultProps = {
     onNextPageClick: noop,
     total: 0,
     currentlyShown: 0,
-};
-
-Pagination.contextTypes = {
-    d2: PropTypes.object,
 };
 
 export default Pagination;
