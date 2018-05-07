@@ -31,6 +31,7 @@
   },
   "dependencies": {
     "@dhis2/d2-ui-core": "^1.0.4",
+    "@dhis2/d2-ui-forms": "^1.0.0",
     "@dhis2/d2-ui-table": "^1.0.5",
     "d2-utilizr": "^0.2.15",
     "material-ui": "^0.19.3",

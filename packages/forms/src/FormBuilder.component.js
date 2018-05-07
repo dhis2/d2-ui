@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { isObject } from 'lodash';
 import AsyncValidatorRunner from './AsyncValidatorRunner';
 
-import CircularProgres from '../circular-progress/CircularProgress';
+import { CircularProgress } from '@dhis2/d2-ui-core';
 
 const noop = () => {};
 
@@ -111,7 +111,7 @@ class FormBuilder extends React.Component {
             return (
                 <div key={field.name} style={Object.assign({}, styles.field, this.props.fieldWrapStyle)}>
                     {fieldState.validating ? (
-                        <CircularProgres mode="indeterminate" size={0.33} style={styles.progress} />
+                        <CircularProgress mode="indeterminate" size={0.33} style={styles.progress} />
                     ) : undefined}
                     <field.component
                         value={fieldState.value}
