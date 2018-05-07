@@ -1,1 +1,15 @@
+# Releasing D2-ui
+
+## Building
+
+There is a shortcut command to run the `bootstrap`, `build`,
+`build:umd`, and `test`, commands in sequence:
+
+```
+yarn build:prod
+```
+
+## Publishing to NPM
+
 ** coming soon **
+
