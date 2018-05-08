@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { LinearProgress } from 'material-ui/Progress';
-import { D2UI, withStateFrom } from '@dhis2/d2-ui-core';
+import { withStateFrom } from '@dhis2/d2-ui-core';
 import { setInstance } from 'd2/lib/d2';
 
 import ProfileMenu from './menus/ProfileMenu';
@@ -11,6 +11,7 @@ import Notifications from './notifications/Notifications';
 import SearchField from './search/SearchField';
 import styles, { applyUserStyle } from './header-bar-styles';
 
+import D2UI from '@dhis2/d2-ui-app';
 import headerBarStore$ from './headerBar.store';
 
 export class HeaderBar extends Component {

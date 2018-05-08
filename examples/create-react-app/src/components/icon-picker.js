@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 
 import Card from 'material-ui/Card/Card';
 import CardText from 'material-ui/Card/CardText';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import IconPicker from '@dhis2/d2-ui-icon-picker';
 
@@ -47,32 +45,30 @@ export default class IconPickerExample extends React.Component {
 
     render() {
         return (
-            <MuiThemeProvider muiTheme={getMuiTheme()}>
-                <div>
-                    <Card>
-                        <CardText>
-                            Without initial value
-                            <IconPicker
-                                options={options}
-                                imgPath="./images/orgunitgroup"
-                                labelText="Symbol"
-                            />
-                        </CardText>
-                    </Card>
-                    <Card>
-                        <CardText>
-                            With initial value
-                            <IconPicker
-                                options={options}
-                                imgPath="./images/orgunitgroup"
-                                value={value}
-                                onChange={onChange}
-                                labelText="Symbol"
-                            />
-                        </CardText>
-                    </Card>
-                </div>
-            </MuiThemeProvider>
+            <div>
+                <Card>
+                    <CardText>
+                        Without initial value
+                        <IconPicker
+                            options={options}
+                            imgPath="./images/orgunitgroup"
+                            labelText="Symbol"
+                        />
+                    </CardText>
+                </Card>
+                <Card>
+                    <CardText>
+                        With initial value
+                        <IconPicker
+                            options={options}
+                            imgPath="./images/orgunitgroup"
+                            value={value}
+                            onChange={onChange}
+                            labelText="Symbol"
+                        />
+                    </CardText>
+                </Card>
+            </div>
         );
     }
 }

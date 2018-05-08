@@ -1,7 +1,5 @@
 import React from 'react';
 import { Card, CardText } from 'material-ui/Card';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import SimpleTreeExample from './tree-view/simple-tree';
 import MultiRootExample from './tree-view/multi-root';
@@ -33,64 +31,62 @@ const TreeViewExample = () => {
     });
 
     return (
-        <MuiThemeProvider muiTheme={getMuiTheme()}>
-            <div>
-                <Card style={styles.card}>
-                    <CardText style={styles.cardText}>
-                        <h3 style={styles.cardHeader}>Simple Tree View</h3>
-                        <div className="scroll">
-                            <SimpleTreeExample />
-                        </div>
-                    </CardText>
-                </Card>
-                <Card style={styles.card}>
-                    <CardText style={styles.cardText}>
-                        <h3 style={styles.cardHeader}>Multiple Roots</h3>
-                        <div className="scroll">
-                            <MultiRootExample />
-                        </div>
-                        <br />
-                        Also featuring: Custom arrows!
-                    </CardText>
-                </Card>
-                <Card style={styles.card}>
-                    <CardText style={styles.cardText}>
-                        <h3 style={styles.cardHeader}>Initially Expanded</h3>
-                        <div className="scroll">
-                            <MultiRootExpandedExample />
-                        </div>
-                    </CardText>
-                </Card>
-                <Card style={styles.card}>
-                    <CardText style={styles.cardText}>
-                        <h3 style={styles.cardHeader}>Persistent Tree View</h3>
-                        <div className="scroll">
-                            <PersistentTreeExample />
-                        </div>
-                        <br />
-                        The children remain in the DOM when the tree view is collapsed.
-                    </CardText>
-                </Card>
-                <Card style={styles.card}>
-                    <CardText style={styles.cardText}>
-                        <h3 style={styles.cardHeader}>Custom Click Handler</h3>
-                        <div className="scroll">
-                            <ClickHandlerExample />
-                        </div>
-                        <br />
-                        Expand nodes by clicking on their labels, not just on the arrows.
-                    </CardText>
-                </Card>
-                <Card style={Object.assign({}, styles.cardWide, { clear: 'both' })}>
-                    <CardText style={styles.cardText}>
-                        <h3 style={styles.cardHeader}>Huge tree</h3>
-                        <div className="scroll">
-                            <HugeTreeExample />
-                        </div>
-                    </CardText>
-                </Card>
-            </div>
-        </MuiThemeProvider>
+        <div>
+            <Card style={styles.card}>
+                <CardText style={styles.cardText}>
+                    <h3 style={styles.cardHeader}>Simple Tree View</h3>
+                    <div className="scroll">
+                        <SimpleTreeExample />
+                    </div>
+                </CardText>
+            </Card>
+            <Card style={styles.card}>
+                <CardText style={styles.cardText}>
+                    <h3 style={styles.cardHeader}>Multiple Roots</h3>
+                    <div className="scroll">
+                        <MultiRootExample />
+                    </div>
+                    <br />
+                    Also featuring: Custom arrows!
+                </CardText>
+            </Card>
+            <Card style={styles.card}>
+                <CardText style={styles.cardText}>
+                    <h3 style={styles.cardHeader}>Initially Expanded</h3>
+                    <div className="scroll">
+                        <MultiRootExpandedExample />
+                    </div>
+                </CardText>
+            </Card>
+            <Card style={styles.card}>
+                <CardText style={styles.cardText}>
+                    <h3 style={styles.cardHeader}>Persistent Tree View</h3>
+                    <div className="scroll">
+                        <PersistentTreeExample />
+                    </div>
+                    <br />
+                    The children remain in the DOM when the tree view is collapsed.
+                </CardText>
+            </Card>
+            <Card style={styles.card}>
+                <CardText style={styles.cardText}>
+                    <h3 style={styles.cardHeader}>Custom Click Handler</h3>
+                    <div className="scroll">
+                        <ClickHandlerExample />
+                    </div>
+                    <br />
+                    Expand nodes by clicking on their labels, not just on the arrows.
+                </CardText>
+            </Card>
+            <Card style={Object.assign({}, styles.cardWide, { clear: 'both' })}>
+                <CardText style={styles.cardText}>
+                    <h3 style={styles.cardHeader}>Huge tree</h3>
+                    <div className="scroll">
+                        <HugeTreeExample />
+                    </div>
+                </CardText>
+            </Card>
+        </div>
     );
 };
 

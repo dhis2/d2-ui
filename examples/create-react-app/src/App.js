@@ -31,6 +31,8 @@ import IconPicker from './components/icon-picker';
 
 import ListSelectExamples from './components/list-select.js';
 
+import D2UIApp from '@dhis2/d2-ui-app';
+
 /** these examples need to be rewritten */
 import OrgUnitSelect from './components/org-unit-select';
 import OrgUnitTree from './components/org-unit-tree';
@@ -56,7 +58,7 @@ class App extends Component {
         }
 
         return (
-            <div className="">
+            <D2UIApp>
                 <header className="header">
                     <h1 className="App-title">Welcome to the DHIS2 UI library</h1>
                 </header>
@@ -147,7 +149,7 @@ class App extends Component {
                     <h2>TreeViews</h2>
                     <TreeViews />
                 </div>
-            </div>
+            </D2UIApp>
         );
     }
 }
