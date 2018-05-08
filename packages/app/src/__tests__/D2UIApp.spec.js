@@ -3,7 +3,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import CircularProgress from 'material-ui/CircularProgress';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { shallow } from 'enzyme';
-import D2UIApp from '../D2UIApp';
+import D2UIApp from '../index';
 
 const identity = v => v;
 const isNotEqualTo = first => second => first !== second;
