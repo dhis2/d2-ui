@@ -1,6 +1,6 @@
 {
   "name": "@dhis2/d2-ui-forms",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Forms for D2-ui",
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",
@@ -25,7 +25,7 @@
     "url": "https://github.com/dhis2/d2-ui.git"
   },
   "dependencies": {
-    "@dhis2/d2-ui-core": "^1.0.4",
+    "@dhis2/d2-ui-core": "^1.1.0",
     "classnames": "^2.2.5",
     "d2": "^30.0.0",
     "lodash": "^4.17.10",

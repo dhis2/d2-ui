@@ -1,6 +1,6 @@
 {
   "name": "@dhis2/d2-ui-table",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Table components for d2-ui",
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",
@@ -30,8 +30,8 @@
     "test-ci": "jest --config=../../jest.config.js packages/table"
   },
   "dependencies": {
-    "@dhis2/d2-ui-core": "^1.0.4",
-    "@dhis2/d2-ui-translation-dialog": "^1.0.5",
+    "@dhis2/d2-ui-core": "^1.1.0",
+    "@dhis2/d2-ui-translation-dialog": "^1.0.6",
     "d2-utilizr": "^0.2.15",
     "lodash": "^4.17.10",
     "material-ui": "^0.19.3",
