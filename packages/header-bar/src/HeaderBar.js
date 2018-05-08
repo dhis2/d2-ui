@@ -18,9 +18,11 @@ export class HeaderBar extends Component {
         return { d2: this.props.d2 };
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (!this.props.d2 && nextProps.d2) {
-            setInstance(nextProps.d2);
+    constructor(props) {
+        super(props);
+
+        if (props.d2) {
+            setInstance(props.d2);
         }
     }
 
@@ -28,21 +30,29 @@ export class HeaderBar extends Component {
         const {
             profileItems,
             notifications,
-            currentUser,
             noLoadingIndicator } = this.props;
 
+        const currentUser = this.props.d2.currentUser;
+
+        console.log('Loading header bar...');
         // If the required props are not passed we're in a loading state.
         if (!this.props.d2 || !profileItems) {
             if (noLoadingIndicator) {
                 return <div style={{ display: 'none' }} />;
             }
 
-            return (<div style={styles.headerBar}><LinearProgress mode="indeterminate" /></div>);
+            return (
+                <div style={styles.headerBar}>
+                    <div style={{flexGrow: 1, alignSelf: 'flex-end'}}>
+                        <LinearProgress mode="indeterminate" />
+                    </div>
+                </div>);
         }
 
+        console.log('Loaded header bar!');
         return (
             <D2UI>
-                <div style={applyUserStyle(this.props.d2.currentUser, styles.headerBar)}>
+                <div style={applyUserStyle(currentUser, styles.headerBar)}>
                     <InnerHeader />
                     <div style={styles.headerActions}>
                         <Notifications notifications={notifications} />
@@ -69,9 +79,8 @@ HeaderBar.childContextTypes = {
 HeaderBar.propTypes = {
     notifications: PropTypes.object,
     profileItems: PropTypes.array,
-    currentUser: PropTypes.object,
     noLoadingIndicator: PropTypes.bool,
-    d2: PropTypes.object,
+    d2: PropTypes.object.isRequired,
 };
 
 HeaderBar.defaultProps = {

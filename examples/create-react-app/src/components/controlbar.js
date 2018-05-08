@@ -170,7 +170,6 @@ function ControlBarWithLines() {
     return (
         <MuiThemeProvider muiTheme={getMuiTheme()}>
             <div>
-                <div style={headerStyles}><div style={{ padding: 16 }}>Placeholder header bar</div></div>
                 <ControlBar
                     editMode={editMode}
                     height={height}
