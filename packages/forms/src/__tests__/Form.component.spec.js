@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import Form from '../Form.component';
 import FormField from '../FormField.component';
 import { FormFieldStatuses } from '../FormValidator';
-import { getStubContext } from '../../../../../config/inject-theme';
+import { getStubContext } from '../../../../config/inject-theme';
 
 function TextField(props) {
     return (<input {...props} />);
@@ -48,11 +48,10 @@ describe('Form component', () => {
     const renderComponent = (props, children) => {
         const nops = {
             source: {},
+            d2: getStubContext().d2,
             ...props,
         };
-        return shallow(<Form {...nops}>{children}</Form>, {
-            context: getStubContext(),
-        });
+        return shallow(<Form {...nops}>{children}</Form>);
     };
 
     beforeEach(() => {
