@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Card, CardText } from 'material-ui/Card';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import {Store} from '@dhis2/d2-ui-core';
 import {GroupEditor} from '@dhis2/d2-ui-group-editor';
@@ -125,7 +123,7 @@ export default class GroupEditorExample extends React.Component {
 
     render() {
         return (
-            <MuiThemeProvider muiTheme={getMuiTheme()}><div>
+            <div>
                 <Card style={Object.assign({}, this.styles.card, { width: 250 })}>
                     <CardText style={this.styles.cardText}>
                         <h3 style={this.styles.cardHeader}>Data controls</h3>
@@ -159,7 +157,7 @@ export default class GroupEditorExample extends React.Component {
                         </div>
                     </CardText>
                 </Card>
-            </div></MuiThemeProvider>
+            </div>
         );
     }
 }

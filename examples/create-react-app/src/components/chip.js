@@ -1,6 +1,4 @@
 import React from 'react';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import { Chip } from '@dhis2/d2-ui-core';
 
@@ -51,22 +49,20 @@ const chipLabels = [
 
 export default function Chips() {
     return (
-        <MuiThemeProvider muiTheme={getMuiTheme()}>
-            <div style={style}>
-                <div style={floatLeftStyle}>Float left</div>
-                <div style={floatRightStyle}>Float right</div>
-                <Chip label={'Default'}/>
-                <Chip label={'With avatar'} avatar={'star'}/>
-                <Chip label={'Primary'} color={'primary'}/>
-                <Chip label={'With avatar'} avatar={'star'} color={'primary'}/>
-                <Chip label={'With onClick'} onClick={() => alert('clicked')}/>
-                <Chip label={'With onRequestDelete'} onRequestDelete={() => alert('delete')}/>
-                <Chip label={'Disabled'} disabled/>
-                <Chip label={'With avatar'} avatar={'star'} disabled/>
-                <Chip label={'With onClick'} onClick={() => alert('clicked')} disabled/>
-                <Chip label={'With onRequestDelete'} onRequestDelete={() => alert('delete')} disabled/>
-                {chipLabels.map(chipFactory)}
-            </div>
-        </MuiThemeProvider>
+        <div style={style}>
+            <div style={floatLeftStyle}>Float left</div>
+            <div style={floatRightStyle}>Float right</div>
+            <Chip label={'Default'}/>
+            <Chip label={'With avatar'} avatar={'star'}/>
+            <Chip label={'Primary'} color={'primary'}/>
+            <Chip label={'With avatar'} avatar={'star'} color={'primary'}/>
+            <Chip label={'With onClick'} onClick={() => alert('clicked')}/>
+            <Chip label={'With onRequestDelete'} onRequestDelete={() => alert('delete')}/>
+            <Chip label={'Disabled'} disabled/>
+            <Chip label={'With avatar'} avatar={'star'} disabled/>
+            <Chip label={'With onClick'} onClick={() => alert('clicked')} disabled/>
+            <Chip label={'With onRequestDelete'} onRequestDelete={() => alert('delete')} disabled/>
+            {chipLabels.map(chipFactory)}
+        </div>
     );
 }

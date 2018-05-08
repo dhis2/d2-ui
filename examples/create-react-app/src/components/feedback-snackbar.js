@@ -1,8 +1,5 @@
 import React, { PureComponent } from 'react';
 
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
 import { Button } from '@dhis2/d2-ui-core';
 import { FeedbackSnackbar } from '@dhis2/d2-ui-core';
 
@@ -99,7 +96,6 @@ export default class FeedbackExample extends PureComponent {
 
     render() {
         return (
-            <MuiThemeProvider muiTheme={getMuiTheme()}>
             <div>
                 <Button style={{...style.bnt, ...style.loading}} onClick={() => this.showSnackbar(LOADING)}>Loading</Button>
                 <Button style={{...style.bnt, ...style.success}} onClick={() => this.showSnackbar(SUCCESS)}>Success</Button>
@@ -108,7 +104,6 @@ export default class FeedbackExample extends PureComponent {
                 <Button style={{...style.bnt, ...style.action}} onClick={() => this.showSnackbar(ACTION_MESSAGE)}>Action</Button>
                 <FeedbackSnackbar show={this.state.show} conf={this.state.conf}/>
             </div>
-            </MuiThemeProvider>
         )
     }
 }

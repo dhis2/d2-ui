@@ -1,9 +1,6 @@
 export { createClassName } from './component-helpers/utils'
 
 export { default as Action } from './action/Action'
-export { default as AppWithD2 } from './app/AppWithD2.component'
-export { default as D2UIApp } from './app/D2UIApp'
-export { default as D2UI } from './app/D2UI'
 export { default as Button } from './button/Button'
 export { default as Chip } from './chip/Chip'
 export { default as CircularProgress } from './circular-progress/CircularProgress'
