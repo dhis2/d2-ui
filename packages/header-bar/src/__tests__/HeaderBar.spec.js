@@ -10,9 +10,7 @@ import ProfileMenu from '../menus/ProfileMenu';
 
 describe('HeaderBar', () => {
     const context = getStubContext();
-    const renderWithProps = props => shallow(<HeaderBar {...props} />, {
-        context,
-    });
+    const renderWithProps = props => shallow(<HeaderBar {...props} d2={context.d2}/>);
 
     it('should render a ProgressIndicator when no state is passed', () => {
         const component = renderWithProps({});

@@ -13,6 +13,7 @@
     "react-dom": "^16.2.0"
   },
   "dependencies": {
+    "@dhis2/d2-ui-app": "^1.0.0",
     "@dhis2/d2-ui-core": "^1.0.4",
     "d2": "^29.1.3",
     "d2-utilizr": "^0.2.15",
