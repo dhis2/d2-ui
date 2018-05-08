@@ -1,4 +1,5 @@
 {
+    "private": true,
     "name": "@dhis2/d2-ui-favorites-menu",
     "version": "1.0.5",
     "description": "Favorites menu component for DHIS2",
