@@ -29,6 +29,7 @@
   "dependencies": {
     "@dhis2/d2-ui-core": "^1.1.1",
     "@dhis2/d2-ui-sharing-dialog": "^1.0.6",
+    "babel-runtime": "^6.26.0",
     "material-ui": "^1.0.0-beta.34",
     "material-ui-icons": "^1.0.0-beta.17",
     "prop-types": "^15.6.0",

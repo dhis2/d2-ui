@@ -27,6 +27,7 @@
         "@dhis2/d2-ui-favorites-dialog": "^1.0.6",
         "@dhis2/d2-ui-sharing-dialog": "^1.0.6",
         "@dhis2/d2-ui-translation-dialog": "^1.0.7",
+        "babel-runtime": "^6.26.0",
         "d2-ui": "^29.0.18",
         "material-ui": "^1.0.0-beta.34",
         "material-ui-icons": "^1.0.0-beta.17",
