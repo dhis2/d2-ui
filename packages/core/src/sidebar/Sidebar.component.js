@@ -104,13 +104,11 @@ class Sidebar extends Component {
     }
 
     renderSearchField() {
-        const d2 = this.context.d2;
-
         if (this.props.showSearchField) {
             return (
                 <div style={styles.container}>
                     <TextField
-                        hintText={this.props.searchFieldLabel ? this.props.searchFieldLabel : d2.i18n.getTranslation('search')}
+                        hintText={this.props.searchFieldLabel}
                         style={{ width: '100%' }}
                         value={this.state.searchText}
                         onChange={this.changeSearchText}
@@ -182,7 +180,6 @@ Sidebar.propTypes = {
 };
 
 Sidebar.contextTypes = {
-    d2: PropTypes.object,
     muiTheme: PropTypes.object,
 };
 

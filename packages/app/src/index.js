@@ -4,27 +4,25 @@ import PropTypes from 'prop-types';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-class D2UI extends Component {
-    constructor(props, context) {
-        super(props, context);
-    }
-
+class D2UIApp extends Component {
     render() {
         return (
             <MuiThemeProvider muiTheme={this.props.muiTheme}>
-                {this.props.children}
+                <div>
+                    {this.props.children}
+                </div>
             </MuiThemeProvider>
         );
     }
 }
 
-D2UI.propTypes = {
+D2UIApp.propTypes = {
     muiTheme: PropTypes.object,
     children: PropTypes.node,
 };
 
-D2UI.defaultProps = {
+D2UIApp.defaultProps = {
     muiTheme: getMuiTheme(),
 };
 
-export default D2UI;
+export default D2UIApp;

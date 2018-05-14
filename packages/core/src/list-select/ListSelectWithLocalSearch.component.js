@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import TextField from 'material-ui/TextField/TextField';
 
 import ListSelect from '../list-select/ListSelect.component';
-import addD2Context from '../component-helpers/addD2Context';
 
 const styles = {
     list: {
@@ -21,14 +20,12 @@ const styles = {
 };
 
 class ListSelectWithLocalSearch extends Component {
-    constructor(props, context) {
-        super(props, context);
+    constructor(props) {
+        super(props);
 
         this.state = {
             textSearch: '',
         };
-
-        this.i18n = context.d2.i18n;
     }
 
     filterList = (event) => {
@@ -42,7 +39,7 @@ class ListSelectWithLocalSearch extends Component {
             <div>
                 <TextField
                     style={styles.textField}
-                    hintText={this.i18n.getTranslation('search_by_name')}
+                    hintText={this.props.hintLabel}
                     onChange={this.filterList}
                     value={this.state.textSearch}
                 />
@@ -58,9 +55,12 @@ class ListSelectWithLocalSearch extends Component {
 }
 ListSelectWithLocalSearch.propTypes = {
     source: PropTypes.array.isRequired,
-};
-ListSelectWithLocalSearch.defaultProps = {
-    source: [],
+    hintLabel: PropTypes.string,
 };
 
-export default addD2Context(ListSelectWithLocalSearch);
+ListSelectWithLocalSearch.defaultProps = {
+    source: [],
+    hintLabel: '',
+};
+
+export default ListSelectWithLocalSearch;

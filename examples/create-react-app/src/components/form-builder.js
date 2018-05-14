@@ -2,9 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import log from 'loglevel';
 
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
 import Card from 'material-ui/Card/Card';
 import CardText from 'material-ui/Card/CardText';
 
@@ -13,8 +10,8 @@ import {SelectField} from '@dhis2/d2-ui-core';
 import {TextField} from '@dhis2/d2-ui-core';
 import {DatePicker} from '@dhis2/d2-ui-core';
 import {MultiToggle} from '@dhis2/d2-ui-core';
-import {FormBuilder} from '@dhis2/d2-ui-core';
-import { Validators } from '@dhis2/d2-ui-core';
+import { FormBuilder } from '@dhis2/d2-ui-forms';
+import { Validators } from '@dhis2/d2-ui-forms';
 
 export default class FormExample extends React.Component {
     constructor() {
@@ -151,17 +148,15 @@ export default class FormExample extends React.Component {
             },
         ];
         return (
-            <MuiThemeProvider muiTheme={getMuiTheme()}>
-                <Card>
-                    <CardText>
-                        Example Form
-                        <FormBuilder
-                            fields={fields}
-                            onUpdateField={this.onUpdateField}
-                        />
-                    </CardText>
-                </Card>
-            </MuiThemeProvider>
+            <Card>
+                <CardText>
+                    Example Form
+                    <FormBuilder
+                        fields={fields}
+                        onUpdateField={this.onUpdateField}
+                    />
+                </CardText>
+            </Card>
         );
     }
 }

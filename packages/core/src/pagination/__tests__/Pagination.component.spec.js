@@ -1,8 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { getStubContext } from '../../../../../config/inject-theme';
 import Pagination from '../Pagination.component';
-
 
 describe('Pagination component', () => {
     let dataTablePagerComponent;
@@ -19,7 +17,7 @@ describe('Pagination component', () => {
         };
 
         renderComponent = (props = mockPager) => {
-            dataTablePagerComponent = shallow(<Pagination {...props} />, { context: getStubContext() });
+            dataTablePagerComponent = shallow(<Pagination {...props} />);
         };
     });
 

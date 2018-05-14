@@ -1,6 +1,4 @@
 import React from 'react';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Paper from 'material-ui/Paper';
 
 import {TwoPanel} from '@dhis2/d2-ui-core';
@@ -44,27 +42,25 @@ function noop() {}
 
 export default function LayoutExample (props) {
     return (
-        <MuiThemeProvider muiTheme={getMuiTheme()}>
-            <div>
-                <TwoPanel mainStyle={styles.twoPanelMain}>
-                    <Sidebar
-                        sections={sections}
-                        onChangeSection={noop}
-                    />
-                    <MainContent>
-                        <Paper style={styles.paper}>
-                            <Heading>TwoPanelLayout &gt; MainContent &gt; Paper &gt; Heading </Heading>
-                        </Paper>
-                    </MainContent>
-                </TwoPanel>
-                <SinglePanel mainStyle={styles.singlePanelMain}>
-                    <MainContent>
-                        <Paper style={styles.paper}>
-                            <Heading>SinglePanelLayout &gt; MainContent &gt; Paper &gt; Heading </Heading>
-                        </Paper>
-                    </MainContent>
-                </SinglePanel>
-            </div>
-        </MuiThemeProvider>
+        <div>
+            <TwoPanel mainStyle={styles.twoPanelMain}>
+                <Sidebar
+                    sections={sections}
+                    onChangeSection={noop}
+                />
+                <MainContent>
+                    <Paper style={styles.paper}>
+                        <Heading>TwoPanelLayout &gt; MainContent &gt; Paper &gt; Heading </Heading>
+                    </Paper>
+                </MainContent>
+            </TwoPanel>
+            <SinglePanel mainStyle={styles.singlePanelMain}>
+                <MainContent>
+                    <Paper style={styles.paper}>
+                        <Heading>SinglePanelLayout &gt; MainContent &gt; Paper &gt; Heading </Heading>
+                    </Paper>
+                </MainContent>
+            </SinglePanel>
+        </div>
     );
 }

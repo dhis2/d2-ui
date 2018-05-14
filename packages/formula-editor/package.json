@@ -1,6 +1,6 @@
 {
   "name": "@dhis2/d2-ui-formula-editor",
-  "version": "1.0.1",
+  "version": "1.0.5",
   "description": "Formula editor component for DHIS2",
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",
@@ -30,6 +30,7 @@
     "test-ci": "jest --config=../../jest.config.js packages/formula-editor"
   },
   "dependencies": {
+    "babel-runtime": "^6.26.0",
     "draft-js": "^0.10.5",
     "lodash": "^4.17.10"
   },

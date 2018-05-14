@@ -24,10 +24,14 @@ import SvgIcon from './components/svg-icon';
 import TextField from './components/text-field';
 import Tabs from './components/tabs';
 import Translation from './components/translation';
-import HeaderBar from './components/header-bar';
+import HeaderBarExample from './components/header-bar';
 
 import FormEditor from './components/formula-editor';
 import IconPicker from './components/icon-picker';
+
+import ListSelectExamples from './components/list-select.js';
+
+import D2UIApp from '@dhis2/d2-ui-app';
 
 /** these examples need to be rewritten */
 import OrgUnitSelect from './components/org-unit-select';
@@ -54,10 +58,14 @@ class App extends Component {
         }
 
         return (
-            <div className="">
+            <D2UIApp>
                 <header className="header">
                     <h1 className="App-title">Welcome to the DHIS2 UI library</h1>
                 </header>
+
+                <h2>HeaderBar</h2>
+                <HeaderBarExample d2={this.state.d2} />
+                <p>Look at the top of the screen...</p>
 
                 <h2>Buttons</h2>
                 <Buttons />
@@ -101,6 +109,9 @@ class App extends Component {
                 <h2>Legend</h2>
                 <Legend d2={this.state.d2} />
 
+                <h2>List Select</h2>
+                <ListSelectExamples />
+
                 <h2>PeriodPicker</h2>
                 <PeriodPicker d2={this.state.d2} />
 
@@ -122,10 +133,6 @@ class App extends Component {
                 <h2>Translation</h2>
                 <Translation d2={this.state.d2} />
 
-                <h2>HeaderBar</h2>
-                <HeaderBar d2={this.state.d2} />
-                <p>Look at the top of the screen...</p>
-
                 <h2>IconPicker</h2>
                 <IconPicker d2={this.state.d2} />
 
@@ -142,7 +149,7 @@ class App extends Component {
                     <h2>TreeViews</h2>
                     <TreeViews />
                 </div>
-            </div>
+            </D2UIApp>
         );
     }
 }

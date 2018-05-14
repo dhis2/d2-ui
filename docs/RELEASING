@@ -6,7 +6,7 @@ There is a shortcut command to run the `bootstrap`, `build`,
 `build:umd`, and `test`, commands in sequence:
 
 ```
-yarn build:prod
+yarn release
 ```
 
 ## Publishing to NPM
