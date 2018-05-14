@@ -9,7 +9,7 @@
     "release": "npm run bootstrap && npm run build && npm run build:umd && npm run test",
     "watch": "lerna exec --parallel -- yarn watch",
     "test": "jest",
-    "test-ci": "lerna exec -- yarn test-ci"
+    "test-ci": "lerna exec --concurrency 1 -- yarn test-ci"
   },
   "workspaces": [
     "packages/*",
