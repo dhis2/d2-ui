@@ -5,10 +5,14 @@ export const setPeriodType = periodType => ({
     payload: periodType,
 });
 
-export const addOfferedPeriods = (periodsToAdd, periodsToExclude = []) => ({
+export const addOfferedPeriods = (periods) => ({
     type: actionTypes.ADD_OFFERED_PERIODS,
-    periodsToAdd,
-    periodsToExclude,
+    periods,
+});
+
+export const setOfferedPeriods = (periods) => ({
+    type: actionTypes.SET_OFFERED_PERIODS,
+    periods,
 });
 
 export const removeOfferedPeriods = (periodsToRemove) => ({
@@ -22,9 +26,9 @@ export const toggleOfferedPeriod = (period, index) => ({
     index,
 });
 
-export const addSelectedPeriods = (periodsToAdd) => ({
+export const addSelectedPeriods = (periods) => ({
     type: actionTypes.ADD_SELECTED_PERIODS,
-    periodsToAdd,
+    periods,
 });
 
 export const removeSelectedPeriods = (periodsToRemove) => ({
