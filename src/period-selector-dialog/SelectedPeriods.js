@@ -1,17 +1,25 @@
 import React from 'react';
+import { List, ListItem, ListItemText } from 'material-ui-next';
 
 class SelectedPeriods extends React.Component {
     render() {
-        const periods = Object.keys(this.props.periods).map(key => (
-            <li
-                key={key}
-                onClick={this.props.removeSelectedPeriod}
-            >
-                {this.props.periods[key].name}
-            </li>
-        ));
-
-        return <ul>{periods}</ul>;
+        return <div className="selector-area">
+            <h4 className="title">Selected periods</h4>
+            <List component="nav" className="periods-list">
+                {this.props.periods.map((period, index) => {
+                    return <ListItem onClick={() => this.props.onPeriodClick(period, index)}
+                                     className={"period-li " + (period.selected === true ? 'selected' : '')}
+                                     key={period.id}
+                                     button
+                    >
+                        <ListItemText>
+                            <i className="material-icons list-icon">stop</i>
+                            <span className="list-text">{period.name}</span>
+                        </ListItemText>
+                    </ListItem>
+                })}
+            </List>
+        </div>
     }
 }
 
