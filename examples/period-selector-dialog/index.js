@@ -4,14 +4,18 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 import log from 'loglevel';
-
 import d2Lib from 'd2/lib/d2';
 import PeriodSelectorDialog from '../../src/period-selector-dialog/PeriodSelectorDialog';
 import PropTypes from "prop-types";
+import Snackbar from 'material-ui-next/Snackbar';
 
 class PeriodSelectorDialogExample extends Component {
     state = {
         dialogOpened: false,
+        snackbar: {
+            open: false,
+            message: '',
+        },
     };
 
     toggleDialog = () => {
@@ -21,7 +25,21 @@ class PeriodSelectorDialogExample extends Component {
     };
 
     onPeriodSelect = (periods) => {
-        console.log(periods);
+        this.setState({
+            snackbar: {
+                open: true,
+                message: `Selected periods: ${periods.map(period => period.id).join(', ')}`,
+            },
+        });
+    };
+
+    onSnackbarClose = () => {
+        this.setState({
+            snackbar: {
+                open: false,
+                message: '',
+            },
+        });
     };
 
     render = () => (
@@ -33,7 +51,12 @@ class PeriodSelectorDialogExample extends Component {
                 <PeriodSelectorDialog
                     open={this.state.dialogOpened}
                     onClose={this.toggleDialog}
-                    onPeriodSelect={this.onPeriodSelect}
+                    onUpdate={this.onPeriodSelect}
+                />
+                <Snackbar open={this.state.snackbar.open}
+                          message={this.state.snackbar.message}
+                          autoHideDuration={4000}
+                          onClose={this.onSnackbarClose}
                 />
             </div>
         </MuiThemeProvider>
