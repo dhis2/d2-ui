@@ -1,24 +1,20 @@
-# Favorites Dialog D2-UI component
+# Interpretations D2-UI component
 
 # Usage
 
 ## Build
 
 ```
-$ pwd
-/path/to/d2-ui/packages/favorites
-
+$ cd packages/interpretations
 $ yarn build
 ```
 
 ## Publish
 
 ```
-$ pwd
-/path/to/d2-ui/packages/favorites
+$ cd packages/interpretations
 $ yarn version
-
-$ cd build # always publish from the build dir!
+$ cd build
 $ npm login
 $ npm publish
 ```
@@ -26,40 +22,33 @@ $ npm publish
 ## Install
 
 ```sh
-yarn add d2-ui-favorites
+$ yarn add d2-ui-interpretations
 ```
 
 ## Import
 
 ```js
-import FavoritesDialog from 'd2-ui-favorites';
+import Interpretations from '@dhis2/d2-ui-interpretations';
 
-<FavoritesDialog
-    type='string'
-    open={function}
-    onRequestClose={function}
-    onFavoriteSelect={function}
+<Interpretations
     d2={d2}
+    type={type}
+    id={id}
+    onChange={onChange}
+    currentInterpretationId={currentInterpretationId}
+    onCurrentInterpretationChange={onCurrentInterpretationChange}
 />
 
-```
-
-# Local development
+Local development:
 
 ```sh
-$ pwd
-/path/to/d2-ui/packages/favorites
-
-$ yarn build
-
-$ cd build
+$ cd packages/interpretations
 $ yarn link
+$ yarn watch
 ```
 
 In the integrating project:
 
 ```sh
-$ yarn link d2-ui-favorites
-$ ls node_modules/d2-ui-favorites/ # if there are more files here than below you did not link from the build dir!
-    index.js    package.json
+$ yarn link @dhis2/d2-ui-interpretations
 ```
