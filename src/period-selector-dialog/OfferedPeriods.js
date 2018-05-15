@@ -10,18 +10,18 @@ class OfferedPeriods extends Component {
     render() {
         let PeriodOptions;
 
-        const { periods, addOfferedPeriods, onPeriodClick } = this.props;
+        const { periods, setOfferedPeriods, onPeriodClick } = this.props;
 
         switch(this.props.periodType) {
             case 'RELATIVE':
                 PeriodOptions = <RelativePeriods periods={periods}
-                                                 addOfferedPeriods={addOfferedPeriods}
+                                                 setOfferedPeriods={setOfferedPeriods}
                                                  onPeriodClick={onPeriodClick}
                 />;
                 break;
             case 'FIXED':
                 PeriodOptions = <FixedPeriods periods={periods}
-                                              addOfferedPeriods={addOfferedPeriods}
+                                              setOfferedPeriods={setOfferedPeriods}
                                               onPeriodClick={onPeriodClick}
                 />;
                 break;

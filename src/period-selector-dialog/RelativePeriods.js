@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import RelativePeriodsGenerator from './RelativePeriodsGenerator';
+import RelativePeriodsGenerator from './utils/RelativePeriodsGenerator';
 import { FormControl, InputLabel, List, Select, MenuItem, ListItem, ListItemText } from 'material-ui-next';
 
 export const defaultState = {
     periodType: '',
-    periods: []
 };
 
 class RelativePeriods extends Component {
@@ -24,8 +23,9 @@ class RelativePeriods extends Component {
     onPeriodTypeChange = (event) => {
         this.setState({
             periodType: event.target.value,
-            periods: this.generatePeriods(event.target.value),
         });
+
+        this.props.setOfferedPeriods(this.generatePeriods(event.target.value));
     };
 
     renderOptions = () => {
@@ -48,10 +48,17 @@ class RelativePeriods extends Component {
     render() {
         return <div className="selector-area">
             {this.renderOptions()}
-            <List component="nav">
-                {this.state.periods.map(period => {
-                    return <ListItem key={period.id}>
-                        <ListItemText>{period.name}</ListItemText>
+            <List component="nav" className="periods-list">
+                {this.props.periods.map((period, index) => {
+                    return <ListItem onClick={() => this.props.onPeriodClick(period, index)}
+                                     className={"period-li " + (period.selected === true ? 'selected' : '')}
+                                     key={period.id}
+                                     button
+                    >
+                        <ListItemText>
+                            <i className="material-icons list-icon">stop</i>
+                            <span className="list-text">{period.name}</span>
+                        </ListItemText>
                     </ListItem>
                 })}
             </List>

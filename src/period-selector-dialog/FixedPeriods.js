@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import FixedPeriodsGenerator from './FixedPeriodsGenerator';
+import FixedPeriodsGenerator from './utils/FixedPeriodsGenerator';
 import {
     InputLabel,
     Select,
@@ -13,7 +13,6 @@ import {
 export const defaultState = {
     periodType: '',
     year: (new Date()).getFullYear(),
-    periods: []
 };
 
 class FixedPeriods extends Component {
@@ -44,23 +43,23 @@ class FixedPeriods extends Component {
     };
 
     onPeriodTypeChange = (event) => {
-        const state = { periodType: event.target.value };
+        this.setState({
+            periodType: event.target.value
+        });
 
         if (this.state.year) {
-            state.periods = this.generatePeriods(state.periodType, this.state.year);
+            this.props.setOfferedPeriods(this.generatePeriods(event.target.value, this.state.year));
         }
-
-        this.setState(state);
     };
 
     onYearChange = (event) => {
-        const state = { year: event.target.value };
+        this.setState({
+            year: event.target.value,
+        });
 
         if (this.state.periodType) {
-            state.periods = this.generatePeriods(this.state.periodType, state.year);
+            this.props.setOfferedPeriods(this.generatePeriods(this.state.periodType, event.target.value));
         }
-
-        this.setState(state);
     };
 
     renderOptions = () => {
@@ -95,10 +94,17 @@ class FixedPeriods extends Component {
     render() {
         return <div className="selector-area">
             {this.renderOptions()}
-            <List component="nav">
-                {this.state.periods.map(period => {
-                    return <ListItem key={period.id}>
-                        <ListItemText>{period.name}</ListItemText>
+            <List component="nav" className="periods-list">
+                {this.props.periods.map((period, index) => {
+                    return <ListItem onClick={() => this.props.onPeriodClick(period, index)}
+                                     className={"period-li " + (period.selected === true ? 'selected' : '')}
+                                     key={period.id}
+                                     button
+                    >
+                        <ListItemText>
+                            <i className="material-icons list-icon">stop</i>
+                            <span className="list-text">{period.name}</span>
+                        </ListItemText>
                     </ListItem>
                 })}
             </List>

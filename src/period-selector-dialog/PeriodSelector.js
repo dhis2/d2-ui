@@ -3,6 +3,7 @@ import { createStore } from "redux";
 import { Provider } from 'react-redux';
 import Periods from './Periods';
 import reducers from './reducers';
+import PropTypes from 'prop-types';
 
 const store = createStore(
     reducers,
@@ -17,10 +18,14 @@ class PeriodSelector extends Component {
     render() {
         return (
             <Provider store={store}>
-                <Periods/>
+                <Periods { ...this.props } />
             </Provider>
         );
     }
 }
+
+PeriodSelector.propTypes = {
+    onPeriodsSelect: PropTypes.func.isRequired,
+};
 
 export default PeriodSelector;

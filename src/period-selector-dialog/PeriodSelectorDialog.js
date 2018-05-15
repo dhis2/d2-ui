@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Dialog, {
     DialogTitle,
     DialogContent,
@@ -7,29 +8,47 @@ import Dialog, {
 import { Button } from 'material-ui-next';
 import PeriodSelector from './PeriodSelector';
 
+export const defaultState = {
+    periods: [],
+};
+
 class PeriodSelectorDialog extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = defaultState;
+    }
+
+    onPeriodsSelect = (periods) => {
+        this.setState({
+            periods,
+        });
+    };
+
+    onUpdateClick = () => {
+        this.props.onUpdate(this.state.periods);
+        this.props.onClose();
+    };
+
     render() {
-        const { open, onClose } = this.props;
-        const handleOnPeriodConfirm = () => {
-            onClose();
-        };
+        const { open, onClose, maxWidth, fullWidth } = this.props;
 
         return (
             <Dialog
                 open={open}
                 onClose={onClose}
-                fullWidth={true}
-                maxWidth="sm"
+                fullWidth={fullWidth}
+                maxWidth={maxWidth}
             >
                 <DialogTitle>Period</DialogTitle>
                 <DialogContent>
-                    <PeriodSelector/>
+                    <PeriodSelector onPeriodsSelect={this.onPeriodsSelect}/>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={onClose}>
+                    <Button onClick={this.onClose}>
                         Hide
                     </Button>
-                    <Button onClick={handleOnPeriodConfirm} color={'primary'}>
+                    <Button onClick={this.onUpdateClick} color={'primary'}>
                         Update
                     </Button>
                 </DialogActions>
@@ -38,5 +57,16 @@ class PeriodSelectorDialog extends React.Component {
 
     }
 }
+
+PeriodSelectorDialog.defaultProps = {
+    maxWidth: 'md',
+    fullWidth: true,
+};
+
+PeriodSelectorDialog.propTypes = {
+    fullWidth: PropTypes.bool,
+    maxWidth: PropTypes.string,
+    onUpdate: PropTypes.func.isRequired,
+};
 
 export default PeriodSelectorDialog;
