@@ -45,13 +45,20 @@ export function getStubContext() {
                 settings: {
                     all: jest.fn().mockReturnValue(Promise.resolve({})),
                 },
+                systemInfo: {
+                    contextPath: "http://test-dhis-server.org",
+                },
             },
             currentUser: {
                 firstName: 'Mark',
                 surname: 'Polak',
                 userSettings: {
                     keyStyle: 'vietnam/vietnam.css',
+                    settings: {
+                        keyUiLocale: "en",
+                    },
                 },
+                authorities: new Set(),
             },
         },
     };
