@@ -1,23 +1,26 @@
 import actionTypes from '../actions/actionTypes';
+import { arrayHasById } from '../utils';
 
 export const defaultState = [];
 
 export default (state = defaultState, action) => {
     switch(action.type) {
         case actionTypes.ADD_SELECTED_PERIODS: {
-            return [
-                ...state,
-                ...action.periodsToAdd.map(period => ({
+            const periods = action.periods
+                .map(period => ({
                     ...period,
                     selected: false,
-                })),
+                }))
+                .filter(period => !arrayHasById(period, state));
+
+            return [
+                ...state,
+                ...periods,
             ];
         }
 
         case actionTypes.REMOVE_SELECTED_PERIODS: {
-            return state.filter(period => {
-                return action.periodsToRemove.indexOf(period) === -1;
-            });
+            return state.filter(period => !arrayHasById(period, action.periodsToRemove));
         }
 
         case actionTypes.TOGGLE_SELECTED_PERIOD: {

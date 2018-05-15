@@ -1,36 +1,35 @@
 import actionTypes from '../actions/actionTypes';
+import { arrayHasById } from '../utils';
 
 export const defaultState = [];
 
 export default (state = defaultState, action) => {
     switch(action.type) {
         case actionTypes.ADD_OFFERED_PERIODS: {
-            const { periodsToAdd, periodsToExclude } = action;
-            const periods = [];
+            const periods = action.periods
+                .map(period => ({
+                    ...period,
+                    selected: false,
+                }))
+                .filter(period => !arrayHasById(period, state));
 
-            periodsToAdd.map(period => {
-                if (periodsToExclude.indexOf(period) === -1) {
-                    periods.push({
-                        ...period,
-                        selected: false,
-                    });
-                }
-            });
+            return [
+                ...state,
+                ...periods,
+            ];
+        }
 
-            return periods;
+        case actionTypes.SET_OFFERED_PERIODS: {
+            return action.periods.map(period => ({
+                ...period,
+                selected: false,
+            }));
         }
 
         case actionTypes.REMOVE_OFFERED_PERIODS: {
             const { periodsToRemove } = action;
-            const periods = [];
 
-            state.map(period => {
-                if (periodsToRemove.indexOf(period) === -1) {
-                    periods.push(period);
-                }
-            });
-
-            return periods;
+            return state.filter(period => !arrayHasById(period, periodsToRemove));
         }
 
         case actionTypes.TOGGLE_OFFERED_PERIOD: {
