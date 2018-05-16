@@ -38,7 +38,7 @@ describe('LocaleSelector component', () => {
     });
 
     it('should change the local state when field content is changed', () => {
-        expect(Component.state()).toEqual(null);
+        expect(Component.state()).toEqual({});
 
         Component.simulate('change', {}, 2, 'noren');
 
