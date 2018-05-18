@@ -37,7 +37,7 @@ class Periods extends Component {
 
     onSelectPeriods = () => {
         const { removeOfferedPeriods, addSelectedPeriods, offeredPeriods } = this.props;
-        const selectedOfferedPeriods = offeredPeriods.filter(period => period.selected === true);
+        const selectedOfferedPeriods = offeredPeriods.periods.filter(period => period.selected === true);
 
         addSelectedPeriods(selectedOfferedPeriods);
         removeOfferedPeriods(selectedOfferedPeriods);
@@ -99,7 +99,7 @@ class Periods extends Component {
             <div>
                 <div className="block options">
                     <OfferedPeriods periodType={periodType}
-                                    periods={offeredPeriods}
+                                    periods={offeredPeriods.periods}
                                     setOfferedPeriods={setOfferedPeriods}
                                     removeOfferedPeriods={removeOfferedPeriods}
                                     onPeriodClick={toggleOfferedPeriod}

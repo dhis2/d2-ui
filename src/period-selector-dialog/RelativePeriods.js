@@ -50,7 +50,7 @@ class RelativePeriods extends Component {
             {this.renderOptions()}
             <List component="nav" className="periods-list">
                 {this.props.periods.map((period, index) => {
-                    return <ListItem onClick={() => this.props.onPeriodClick(period, index)}
+                    return <ListItem onClick={(event) => this.props.onPeriodClick(period, index, event.shiftKey)}
                                      className={"period-li " + (period.selected === true ? 'selected' : '')}
                                      key={period.id}
                                      button
