@@ -1,7 +1,10 @@
 import actionTypes from '../actions/actionTypes';
 import { arrayHasById } from '../utils';
 
-export const defaultState = [];
+export const defaultState = {
+    periods: [],
+    lastClickedIndex: null,
+};
 
 export default (state = defaultState, action) => {
     switch(action.type) {
@@ -11,33 +14,57 @@ export default (state = defaultState, action) => {
                     ...period,
                     selected: false,
                 }))
-                .filter(period => !arrayHasById(period, state));
+                .filter(period => !arrayHasById(period, state.periods));
 
-            return [
-                ...state,
-                ...periods,
-            ];
+            return {
+                periods: [
+                    ...state.periods,
+                    ...periods,
+                ],
+            };
         }
 
         case actionTypes.REMOVE_SELECTED_PERIODS: {
-            return state.filter(period => !arrayHasById(period, action.periodsToRemove));
+            const { periodsToRemove } = action;
+
+            return {
+                periods: state.periods.filter(period => !arrayHasById(period, periodsToRemove)),
+            };
         }
 
         case actionTypes.TOGGLE_SELECTED_PERIOD: {
-            const { index } = action;
+            const { index, isShiftPressed } = action;
+            const minIndex = (state.lastClickedIndex > index) ? index : state.lastClickedIndex;
+            const maxIndex = (state.lastClickedIndex < index) ? index : state.lastClickedIndex;
 
-            return [
-                ...state.slice(0, index),
-                {
-                    ...state[index],
-                    selected: !state[index].selected
-                },
-                ...state.slice(index + 1, state.length)
-            ];
+            if (isShiftPressed && state.lastClickedIndex !== null) {
+                return {
+                    ...state,
+                    periods: [
+                        ...state.periods.slice(0, minIndex),
+                        ...state.periods.slice(minIndex, maxIndex + 1).map(period => ({
+                            ...period,
+                            selected: true,
+                        })),
+                        ...state.periods.slice(maxIndex + 1, state.periods.length)
+                    ],
+                };
+            }
+
+            return {
+                lastClickedIndex: (!isShiftPressed && state.periods[index].selected === true) ? state.lastClickedIndex : index,
+                periods: [
+                    ...state.periods.slice(0, index),
+                    {
+                        ...state.periods[index],
+                        selected: !state.periods[index].selected,
+                    },
+                    ...state.periods.slice(index + 1, state.periods.length)
+                ],
+            };
         }
 
-        default: {
+        default:
             return state;
-        }
     }
 };

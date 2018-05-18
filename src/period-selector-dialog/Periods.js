@@ -23,8 +23,8 @@ class Periods extends Component {
 
     componentWillUpdate(nextProps) {
         // based on periods array length fire on periods select event
-        if (nextProps.selectedPeriods.length !== this.props.selectedPeriods.length) {
-            this.props.onPeriodsSelect(nextProps.selectedPeriods);
+        if (nextProps.selectedPeriods.periods.length !== this.props.selectedPeriods.periods.length) {
+            this.props.onPeriodsSelect(nextProps.selectedPeriods.periods);
         }
     };
 
@@ -45,7 +45,7 @@ class Periods extends Component {
 
     onUnselectPeriods = () => {
         const { addOfferedPeriods, selectedPeriods, removeSelectedPeriods } = this.props;
-        const periods = selectedPeriods.filter(period => period.selected === true);
+        const periods = selectedPeriods.periods.filter(period => period.selected === true);
 
         removeSelectedPeriods(periods);
         addOfferedPeriods(periods);
@@ -107,7 +107,7 @@ class Periods extends Component {
                 </div><div className="block buttons">
                     {this.renderSelectButtons()}
                 </div><div className="block selected-periods">
-                    <SelectedPeriods periods={selectedPeriods}
+                    <SelectedPeriods periods={selectedPeriods.periods}
                                      addSelectedPeriods={addSelectedPeriods}
                                      removeSelectedPeriods={removeSelectedPeriods}
                                      onPeriodClick={toggleSelectedPeriod}
