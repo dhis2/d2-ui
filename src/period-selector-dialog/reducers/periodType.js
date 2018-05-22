@@ -1,8 +1,8 @@
 import actionTypes from '../actions/actionTypes';
 
-export const initialState = 'RELATIVE';
+export const defaultState = 'RELATIVE';
 
-export const periodType = (state = initialState, action) => {
+export const periodType = (state = defaultState, action) => {
     switch(action.type) {
         case actionTypes.SET_PERIOD_TYPE:
             return action.payload;
