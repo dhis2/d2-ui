@@ -27,7 +27,6 @@ class PeriodSelectorDialog extends React.Component {
 
     onUpdateClick = () => {
         this.props.onUpdate(this.state.periods);
-        this.props.onClose();
     };
 
     render() {
@@ -45,7 +44,7 @@ class PeriodSelectorDialog extends React.Component {
                     <PeriodSelector onPeriodsSelect={this.onPeriodsSelect}/>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={this.onClose}>
+                    <Button onClick={onClose}>
                         Hide
                     </Button>
                     <Button onClick={this.onUpdateClick} color={'primary'}>

@@ -26,6 +26,7 @@ class PeriodSelectorDialogExample extends Component {
 
     onPeriodSelect = (periods) => {
         this.setState({
+            dialogOpened: !this.state.dialogOpened,
             snackbar: {
                 open: true,
                 message: `Selected periods: ${periods.map(period => period.id).join(', ')}`,
