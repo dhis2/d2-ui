@@ -6,6 +6,12 @@ export const defaultState = {
     lastClickedIndex: null,
 };
 
+/**
+ * Reducer factory to reuse logic for both
+ * offered & selected periods which is the same
+ * @param periodType
+ * @returns {Function}
+ */
 export const periods = (periodType = 'offered') => {
     return (state = defaultState, action) => {
         switch(action.type) {

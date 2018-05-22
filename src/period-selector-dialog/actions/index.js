@@ -20,7 +20,7 @@ export const removeOfferedPeriods = (periodsToRemove) => ({
     periodsToRemove,
 });
 
-export const toggleOfferedPeriod = (period, index, isShiftPressed) => ({
+export const toggleOfferedPeriod = (period, index, isShiftPressed = false) => ({
     type: actionTypes.TOGGLE_OFFERED_PERIOD,
     period,
     index,

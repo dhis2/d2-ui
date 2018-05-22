@@ -1,4 +1,4 @@
-import { periodType as reducer} from '../periodType';
+import { periodType as reducer } from '../periodType';
 import { defaultState } from '../periodType';
 import actionTypes from '../../actions/actionTypes';
 
