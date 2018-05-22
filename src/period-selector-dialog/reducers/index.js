@@ -1,10 +1,9 @@
 import { combineReducers } from 'redux';
 import periodType from "./periodType";
-import offeredPeriods from './offeredPeriods';
-import selectedPeriods from './selectedPeriods';
+import periods from './periods';
 
 export default combineReducers({
     periodType,
-    offeredPeriods,
-    selectedPeriods,
+    offeredPeriods: periods('offered'),
+    selectedPeriods: periods('selected'),
 });
