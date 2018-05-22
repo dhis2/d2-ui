@@ -6,7 +6,7 @@ export const defaultState = {
     lastClickedIndex: null,
 };
 
-export default (periodType) => {
+export const periods = (periodType = 'offered') => {
     return (state = defaultState, action) => {
         switch(action.type) {
             case actionTypes[`ADD_${periodType.toUpperCase()}_PERIODS`]: {
@@ -18,6 +18,7 @@ export default (periodType) => {
                     .filter(period => !arrayHasById(period, state.periods));
 
                 return {
+                    ...state,
                     periods: [
                         ...state.periods,
                         ...periods,
@@ -27,6 +28,7 @@ export default (periodType) => {
 
             case actionTypes[`SET_${periodType.toUpperCase()}_PERIODS`]: {
                 return {
+                    ...state,
                     periods: action.periods.map(period => ({
                         ...period,
                         selected: false,
@@ -38,6 +40,7 @@ export default (periodType) => {
                 const { periodsToRemove } = action;
 
                 return {
+                    ...state,
                     periods: state.periods.filter(period => !arrayHasById(period, periodsToRemove)),
                 };
             }
@@ -62,6 +65,7 @@ export default (periodType) => {
                 }
 
                 return {
+                    ...state,
                     lastClickedIndex: (!isShiftPressed && state.periods[index].selected === true) ? state.lastClickedIndex : index,
                     periods: [
                         ...state.periods.slice(0, index),
@@ -78,4 +82,6 @@ export default (periodType) => {
                 return state;
         }
     };
-}
+};
+
+export default periods;
