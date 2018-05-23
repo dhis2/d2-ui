@@ -32,6 +32,11 @@ export const addSelectedPeriods = (periods) => ({
     periods,
 });
 
+export const setSelectedPeriods = (periods) => ({
+    type: actionTypes.SET_SELECTED_PERIODS,
+    periods,
+});
+
 export const removeSelectedPeriods = (periodsToRemove) => ({
     type: actionTypes.REMOVE_SELECTED_PERIODS,
     periodsToRemove,
