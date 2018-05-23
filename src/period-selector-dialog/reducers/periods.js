@@ -1,5 +1,4 @@
 import actionTypes from '../actions/actionTypes';
-import { arrayHasById } from '../utils';
 
 export const defaultState = {
     periods: [],
@@ -21,7 +20,7 @@ export const periods = (periodType = 'offered') => {
                         ...period,
                         selected: false,
                     }))
-                    .filter(period => !arrayHasById(period, state.periods));
+                    .filter(period => !state.periods.find(_period => _period.id === period.id));
 
                 return {
                     ...state,
@@ -47,7 +46,7 @@ export const periods = (periodType = 'offered') => {
 
                 return {
                     ...state,
-                    periods: state.periods.filter(period => !arrayHasById(period, periodsToRemove)),
+                    periods: state.periods.filter(period => !periodsToRemove.find(_period => _period.id === period.id)),
                 };
             }
 
