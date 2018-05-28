@@ -1,0 +1,15 @@
+{
+  "lerna": "2.9.0",
+  "version": "independent",
+  "npmClient": "yarn",
+  "npmClientArgs": ["--ignore-engines"],
+  "useWorkspaces": true,
+  "command": {
+     "publish": {
+        "ignore": "example-*"
+     },
+     "exec": {
+        "ignore": "example-*"
+    }
+  }
+}
