@@ -194,7 +194,7 @@ class InterpretationsCard extends React.Component {
                     showExpandableButton={true}
                     textStyle={styles.headerText}
                 >
-                    {getInterpretationButtons({
+                    {isExpanded && getInterpretationButtons({
                         d2: d2,
                         model: model,
                         currentInterpretation: currentInterpretation,
