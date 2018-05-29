@@ -30,10 +30,13 @@ class CommentTextarea extends React.Component {
     }
 
     onPost() {
-        const newComment = this.props.comment;
-        newComment.text = this.state.text;
-        this.props.onPost(newComment);
-        this.setState({ text: "" });
+        const newText = this.state.text;
+        if (newText && newText.trim()) {
+            const newComment = this.props.comment;
+            newComment.text = newText;
+            this.props.onPost(newComment);
+            this.setState({ text: "" });
+        }
     }
 
     render() {
