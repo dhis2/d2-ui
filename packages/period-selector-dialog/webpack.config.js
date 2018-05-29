@@ -6,7 +6,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'build'),
         filename: 'index.js',
-        library: 'FavoritesMenu',
+        library: 'PeriodSelectorDialog',
         libraryTarget: 'umd',
     },
     module: {

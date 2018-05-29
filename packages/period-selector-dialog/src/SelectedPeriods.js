@@ -1,5 +1,9 @@
 import React from 'react';
-import { List, ListItem, ListItemText } from 'material-ui-next';
+import {
+    List,
+    ListItem,
+    ListItemText
+} from 'material-ui';
 
 class SelectedPeriods extends React.Component {
     render() {

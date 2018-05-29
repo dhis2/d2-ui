@@ -23,11 +23,11 @@
     "build:es": "cross-env BABEL_ENV=es babel src --out-dir build/es --ignore spec.js",
     "build:umd": "cross-env && webpack -p",
     "watch": "npm run build:es --  --watch",
-    "test-ci": "jest --config=../../jest.config.js packages/favorites-dialog"
+    "test-ci": "jest --config=../../jest.config.js packages/period-selector-dialog"
   },
   "dependencies": {
-    "@material-ui/icons": "^1.1.0",
-    "material-ui-next": "^1.0.0-beta.47",
+    "material-ui": "^1.0.0-beta.34",
+    "material-ui-icons": "^1.0.0-beta.36",
     "prop-types": "^15.6.0",
     "react-redux": "^5.0.7",
     "redux": "^3.7.2"

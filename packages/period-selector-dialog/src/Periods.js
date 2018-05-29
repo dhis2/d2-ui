@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
-import { Button } from 'material-ui-next';
+import React, { Component, Fragment } from 'react';
+import { Button } from 'material-ui';
 import { connect } from 'react-redux';
+import { ArrowForward as ArrowForwardIcon, ArrowBack as ArrowBackIcon } from 'material-ui-icons';
 import OfferedPeriods from './OfferedPeriods';
 import SelectedPeriods from './SelectedPeriods';
 import './PeriodSelector.css';
@@ -52,7 +53,7 @@ class Periods extends Component {
     };
 
     renderPeriodTypeButtons = () => {
-        return <div>
+        return <Fragment>
             <Button className={'nav-button ' + (this.props.periodType === 'RELATIVE' ? 'active' : '')}
                     onClick={() => this.onPeriodTypeClick('RELATIVE')}
             >
@@ -63,22 +64,22 @@ class Periods extends Component {
             >
                 Fixed periods
             </Button>
-        </div>;
+        </Fragment>;
     };
 
     renderSelectButtons = () => {
-        return <div>
+        return <Fragment>
             <Button className="select-button"
                     onClick={this.onSelectPeriods}
             >
-                <i className="material-icons">arrow_forward</i>
+                <ArrowForwardIcon/>
             </Button>
             <Button className="select-button"
                     onClick={this.onUnselectPeriods}
             >
-                <i className="material-icons">arrow_back</i>
+                <ArrowBackIcon/>
             </Button>
-        </div>
+        </Fragment>
     };
 
     render() {

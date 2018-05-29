@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import FixedPeriodsGenerator from './utils/FixedPeriodsGenerator';
 import {
     InputLabel,
@@ -8,7 +8,7 @@ import {
     List,
     ListItem,
     ListItemText
-} from 'material-ui-next';
+} from 'material-ui';
 
 export const defaultState = {
     periodType: '',
@@ -63,7 +63,7 @@ class FixedPeriods extends Component {
     };
 
     renderOptions = () => {
-        return <div>
+        return <Fragment>
             <FormControl className="form-control period-type">
                 <InputLabel htmlFor="period-type">Period type</InputLabel>
                 <Select
@@ -88,7 +88,7 @@ class FixedPeriods extends Component {
                     })}
                 </Select>
             </FormControl>
-        </div>
+        </Fragment>
     };
 
     render() {

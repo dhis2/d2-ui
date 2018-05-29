@@ -1,6 +1,15 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
+import {
+    FormControl,
+    InputLabel,
+    List,
+    Select,
+    MenuItem,
+    ListItem,
+    ListItemText
+} from 'material-ui';
+import { Stop as StopIcon } from 'material-ui-icons';
 import RelativePeriodsGenerator from './utils/RelativePeriodsGenerator';
-import { FormControl, InputLabel, List, Select, MenuItem, ListItem, ListItemText } from 'material-ui-next';
 
 export const defaultState = {
     periodType: '',
@@ -29,7 +38,7 @@ class RelativePeriods extends Component {
     };
 
     renderOptions = () => {
-        return <div>
+        return <Fragment>
             <FormControl className="form-control period-type">
                 <InputLabel htmlFor="period-type">Period type</InputLabel>
                 <Select
@@ -42,7 +51,7 @@ class RelativePeriods extends Component {
                     })}
                 </Select>
             </FormControl>
-        </div>;
+        </Fragment>;
     };
 
     render() {
@@ -56,6 +65,7 @@ class RelativePeriods extends Component {
                                      button
                     >
                         <ListItemText>
+                            <StopIcon/>
                             <i className="material-icons list-icon">stop</i>
                             <span className="list-text">{period.name}</span>
                         </ListItemText>

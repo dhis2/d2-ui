@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Dialog, {
+import {
+    Dialog,
     DialogTitle,
     DialogContent,
     DialogActions,
-} from 'material-ui-next/Dialog';
-import { Button } from 'material-ui-next';
+    Button,
+} from 'material-ui';
 import PeriodSelector from './PeriodSelector';
 
 export const defaultState = {
