@@ -53,7 +53,7 @@ describe("Models > Comment", () => {
             });
 
             it("should PUT text to API", () => {
-                expect(api.apiFetch).toBeCalledWith("/interpretations/jkffgj34GGE/comments/gwebGGddaxD", "DELETE", {});
+                expect(api.apiFetch).toBeCalledWith("/interpretations/jkffgj34GGE/comments/gwebGGddaxD", "DELETE");
             });
         });
     });

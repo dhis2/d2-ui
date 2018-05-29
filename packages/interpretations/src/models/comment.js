@@ -17,6 +17,6 @@ export default class Comment {
     delete() {
         const interpretation = this._interpretation;
         const url = `/interpretations/${interpretation.id}/comments/${this.id}`;
-        return apiFetch(url, "DELETE", {});
+        return apiFetch(url, "DELETE");
     }
 }

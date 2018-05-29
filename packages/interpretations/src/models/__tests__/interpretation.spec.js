@@ -48,7 +48,7 @@ describe("Models > Interpretation", () => {
             });
 
             it("should PUT text to API", () => {
-                expect(api.apiFetch).toBeCalledWith("/interpretations/gwebGGddaxD", "DELETE", {});
+                expect(api.apiFetch).toBeCalledWith("/interpretations/gwebGGddaxD", "DELETE");
             });
         });
 
@@ -59,7 +59,7 @@ describe("Models > Interpretation", () => {
             });
 
             it("should PUT text to API", () => {
-                expect(api.apiFetch).toBeCalledWith("/interpretations/gwebGGddaxD/like", "POST", {});
+                expect(api.apiFetch).toBeCalledWith("/interpretations/gwebGGddaxD/like", "POST");
             });
         });
 
@@ -70,7 +70,7 @@ describe("Models > Interpretation", () => {
             });
 
             it("should PUT text to API", () => {
-                expect(api.apiFetch).toBeCalledWith("/interpretations/gwebGGddaxD/like", "DELETE", {});
+                expect(api.apiFetch).toBeCalledWith("/interpretations/gwebGGddaxD/like", "DELETE");
             });
         });
     });

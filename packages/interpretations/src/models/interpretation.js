@@ -18,10 +18,10 @@ export default class Interpretation {
     }
 
     delete() {
-        return apiFetch(`/interpretations/${this.id}`, "DELETE", {});
+        return apiFetch(`/interpretations/${this.id}`, "DELETE");
     }
 
     like(value) {
-        return apiFetch(`/interpretations/${this.id}/like`, value ? "POST" : "DELETE", {});
+        return apiFetch(`/interpretations/${this.id}/like`, value ? "POST" : "DELETE");
     }
 }
