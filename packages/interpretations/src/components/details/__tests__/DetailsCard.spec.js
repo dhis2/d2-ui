@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import { IntlProvider } from 'react-intl';
 
+import * as helpers from '../../../models/helpers';
 import DetailsCard from '../DetailsCard';
 import { getStubContext } from '../../../../../../config/inject-theme';
 
@@ -111,12 +112,7 @@ describe('Interpretations: Details -> DetailsCard component', () => {
         expect(detailsCard.find("DetailsDialog").props().open).toBe(false);
     });
 
-
-    it('should render a closed SharingDialog', () => {
-        expect(detailsCard.find("SharingDialog").props().open).toBe(false);
-    });
-
-    describe('when user clicks on the edit details buton', () => {
+    describe('when user clicks on the edit details button', () => {
         beforeEach(() => {
             detailsCard.find("ListItem").at(0).dive().find("EditButton").simulate("click");
             detailsCard.update();
@@ -125,9 +121,36 @@ describe('Interpretations: Details -> DetailsCard component', () => {
         it('should open the details dialog', () => {
             expect(detailsCard.find("DetailsDialog").props().open).toBe(true);
         });
+
+        describe('when user clicks on the save button', () => {
+            beforeEach(() => {
+                helpers.patch = jest.fn(() => Promise.resolve({}));
+                return detailsCard.find("DetailsDialog").props().onSave(favorite);
+            });
+
+            it('should close the details dialog', () => {
+                detailsCard.update();
+                expect(detailsCard.find("DetailsDialog").props().open).toBe(false);
+            });
+
+            it('should patch the favorite with attributes name and description', () => {
+                expect(helpers.patch).toBeCalledWith(favorite, ["name", "description"]);
+            });
+        });
+
+        describe('when user clicks on the close button', () => {
+            beforeEach(() => {
+                detailsCard.find("DetailsDialog").props().onClose();
+                detailsCard.update();
+            });
+
+            it('should close the details dialog', () => {
+                expect(detailsCard.find("DetailsDialog").props().open).toBe(false);
+            });
+        });
     });
 
-    describe('when user clicks on the sharing buton', () => {
+    describe('when user clicks on the sharing button', () => {
         beforeEach(() => {
             getListItem(detailsCard, "sharing").dive().find("EditButton").simulate("click");
             detailsCard.update();

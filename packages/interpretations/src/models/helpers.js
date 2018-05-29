@@ -1,5 +1,6 @@
-import { apiFetch } from '../util/api';
 import Interpretation from './interpretation';
+import pick from 'lodash/fp/pick';
+import { apiFetch } from '../util/api';
   
 const interpretationsFields = [
     'id',
@@ -34,9 +35,14 @@ export const getFavoriteWithInterpretations = (d2, type, id) => {
 
     return Promise.all([getModel, getViews])
         .then(([model, views]) => {
-            model.interpretations = model.interpretations
-                .map(attrs => new Interpretation(model, attrs));
+            const modelInterpretations = model.interpretations.map(attrs => new Interpretation(model, attrs));
+            model.interpretations = modelInterpretations;
             model.favoriteViews = views;
             return model;
         });
-}
+};
+
+export const patch = (model, attributeNames) => {
+    const attributes = pick(attributeNames, model);
+    return apiFetch(model.href, "PATCH", attributes);
+};

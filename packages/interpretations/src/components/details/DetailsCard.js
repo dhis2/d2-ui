@@ -1,18 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Card, CardHeader, CardText } from 'material-ui/Card';
-import Divider from 'material-ui/Divider';
 import IconButton from 'material-ui/IconButton';
 import { SvgIcon } from '@dhis2/d2-ui-core';
 import { grey600 } from 'material-ui/styles/colors';
-import size from 'lodash/fp/size';
-import pick from 'lodash/fp/pick';
 import SharingDialog from '@dhis2/d2-ui-sharing-dialog';
 import DetailsDialog from './DetailsDialog';
 import { config } from 'd2/lib/d2';
 import { injectIntl } from 'react-intl';
 
 import styles from './DetailsCardStyles.js';
+import { patch } from '../../models/helpers';
 
 config.i18n.strings.add('no_description');
 config.i18n.strings.add('public');
@@ -113,7 +111,7 @@ class DetailsCard extends React.Component {
     }
 
     saveDetailsAndCloseDialog(newModel) {
-        newModel.save().then(() => {
+        patch(newModel, ["name", "description"]).then(() => {
             this.notifyModelChanges(newModel);
             this.closeDetailsDialog();
         });
