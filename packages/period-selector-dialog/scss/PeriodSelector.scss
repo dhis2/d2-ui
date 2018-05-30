@@ -34,34 +34,36 @@ button.nav-button {
     width: 38%;
     vertical-align: top;
 }
-.selector-area {
-    margin-top: 20px;
-    border: 1px solid #e8e8e8;
-    padding: 10px;
-}
 
-.selector-area .periods-list {
-    overflow: auto;
-    height: 300px;
-}
-
-.selected-periods .selector-area .periods-list {
+.selected-periods {
+  .selector-area .periods-list {
     height: 318px;
-}
+  }
 
-.selected-periods .title {
+  .title {
     margin: 0 -10px;
     padding: 0 0 10px 10px;
     font-weight: 500;
     color: #4b4b4b;
     border-bottom: 1px solid #e8e8e8;
+  }
 }
 
-.selector-area .form-control.period-type { width: 70%; }
-.selector-area .form-control.year { width: 30%; }
+.selector-area {
+  margin-top: 20px;
+  border: 1px solid #e8e8e8;
+  padding: 10px;
 
-.selector-area .period-li { padding: 5px 5px 2px; }
-.selector-area .period-li.selected { background: #1E88E5; }
-.selector-area .period-li.selected h3 { color: white; }
-.selector-area .period-li .list-icon { font-size: 14px; margin-right: 3px; }
-.selector-area .period-li span.list-text { position: relative; bottom: 2px; }
+  .periods-list {
+    overflow: auto;
+    height: 300px;
+  }
+
+  .form-control.period-type { width: 70%; }
+  .form-control.year { width: 30%; }
+  .period-li { padding: 5px 5px 2px; }
+  .period-li.selected { background: #1E88E5; }
+  .period-li.selected h3 { color: white; }
+  .period-li .list-icon { font-size: 14px; margin-right: 3px; }
+  .period-li span.list-text { position: relative; bottom: 2px; }
+}
