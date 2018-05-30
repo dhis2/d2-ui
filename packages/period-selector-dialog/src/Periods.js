@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { ArrowForward as ArrowForwardIcon, ArrowBack as ArrowBackIcon } from 'material-ui-icons';
 import OfferedPeriods from './OfferedPeriods';
 import SelectedPeriods from './SelectedPeriods';
-import './PeriodSelector.css';
+import '../css/PeriodSelector.css';
 
 import {
     setPeriodType,

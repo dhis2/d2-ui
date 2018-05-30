@@ -1,14 +1,12 @@
 import React, { Component, Fragment } from 'react';
-import FixedPeriodsGenerator from './utils/FixedPeriodsGenerator';
 import {
     InputLabel,
     Select,
     MenuItem,
     FormControl,
-    List,
-    ListItem,
-    ListItemText
 } from 'material-ui';
+import FixedPeriodsGenerator from './utils/FixedPeriodsGenerator';
+import PeriodsList from './PeriodsList';
 
 export const defaultState = {
     periodType: '',
@@ -94,20 +92,7 @@ class FixedPeriods extends Component {
     render() {
         return <div className="selector-area">
             {this.renderOptions()}
-            <List component="nav" className="periods-list">
-                {this.props.periods.map((period, index) => {
-                    return <ListItem onClick={(event) => this.props.onPeriodClick(period, index, event.shiftKey)}
-                                     className={"period-li " + (period.selected === true ? 'selected' : '')}
-                                     key={period.id}
-                                     button
-                    >
-                        <ListItemText>
-                            <i className="material-icons list-icon">stop</i>
-                            <span className="list-text">{period.name}</span>
-                        </ListItemText>
-                    </ListItem>
-                })}
-            </List>
+            <PeriodsList periods={this.props.periods} onPeriodClick={this.props.onPeriodClick}/>
         </div>
     }
 }

@@ -2,14 +2,11 @@ import React, { Component, Fragment } from 'react';
 import {
     FormControl,
     InputLabel,
-    List,
     Select,
     MenuItem,
-    ListItem,
-    ListItemText
 } from 'material-ui';
-import { Stop as StopIcon } from 'material-ui-icons';
 import RelativePeriodsGenerator from './utils/RelativePeriodsGenerator';
+import PeriodsList from './PeriodsList';
 
 export const defaultState = {
     periodType: '',
@@ -57,21 +54,7 @@ class RelativePeriods extends Component {
     render() {
         return <div className="selector-area">
             {this.renderOptions()}
-            <List component="nav" className="periods-list">
-                {this.props.periods.map((period, index) => {
-                    return <ListItem onClick={(event) => this.props.onPeriodClick(period, index, event.shiftKey)}
-                                     className={"period-li " + (period.selected === true ? 'selected' : '')}
-                                     key={period.id}
-                                     button
-                    >
-                        <ListItemText>
-                            <StopIcon/>
-                            <i className="material-icons list-icon">stop</i>
-                            <span className="list-text">{period.name}</span>
-                        </ListItemText>
-                    </ListItem>
-                })}
-            </List>
+            <PeriodsList periods={this.props.periods} onPeriodClick={this.props.onPeriodClick}/>
         </div>
     }
 }
