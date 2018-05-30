@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
-import Snackbar from 'material-ui-next/Snackbar';
+import Snackbar from 'material-ui/Snackbar';
 
 import PeriodSelectorDialog from '@dhis2/d2-ui-period-selector-dialog';
 
