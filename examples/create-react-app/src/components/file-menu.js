@@ -1,9 +1,9 @@
 import React from 'react';
 import Snackbar from 'material-ui/Snackbar';
 
-import FavoritesMenu from '@dhis2/d2-ui-favorites-menu';
+import FileMenu from '@dhis2/d2-ui-file-menu';
 
-export default class FavoritesMenuExample extends React.Component {
+export default class FileMenuExample extends React.Component {
     state = {
         snackbar: {
             open: false,
@@ -11,7 +11,7 @@ export default class FavoritesMenuExample extends React.Component {
         },
     };
 
-    onFavoritesMenuAction = action => () => {
+    onFileMenuAction = action => () => {
         this.setState({
             snackbar: {
                 open: true,
@@ -20,7 +20,7 @@ export default class FavoritesMenuExample extends React.Component {
         });
     };
 
-    onFavoritesMenuError = error => {
+    onFileMenuError = error => {
         this.setState({
             snackbar: {
                 open: true,
@@ -40,19 +40,19 @@ export default class FavoritesMenuExample extends React.Component {
 
     render = () => (
         <div>
-            <FavoritesMenu
+            <FileMenu
                 d2={this.props.d2}
-                favoriteType="chart"
-                onNew={this.onFavoritesMenuAction('New')}
-                onOpen={this.onFavoritesMenuAction('Open')}
-                onSave={this.onFavoritesMenuAction('Save')}
-                onSaveAs={this.onFavoritesMenuAction('Save as')}
-                onRename={this.onFavoritesMenuAction('Rename')}
-                onTranslate={this.onFavoritesMenuAction('Translate')}
-                onShare={this.onFavoritesMenuAction('Share')}
-                onWriteInterpretation={this.onFavoritesMenuAction('Write interpretation')}
-                onDelete={this.onFavoritesMenuAction('Delete')}
-                onError={this.onFavoritesMenuError}
+                fileType="chart"
+                onNew={this.onFileMenuAction('New')}
+                onOpen={this.onFileMenuAction('Open')}
+                onSave={this.onFileMenuAction('Save')}
+                onSaveAs={this.onFileMenuAction('Save as')}
+                onRename={this.onFileMenuAction('Rename')}
+                onTranslate={this.onFileMenuAction('Translate')}
+                onShare={this.onFileMenuAction('Share')}
+                onWriteInterpretation={this.onFileMenuAction('Write interpretation')}
+                onDelete={this.onFileMenuAction('Delete')}
+                onError={this.onFileMenuError}
             />
             <Snackbar
                 open={this.state.snackbar.open}
