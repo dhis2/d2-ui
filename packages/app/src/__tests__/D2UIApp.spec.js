@@ -4,6 +4,7 @@ import CircularProgress from 'material-ui/CircularProgress';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { shallow } from 'enzyme';
 import D2UIApp from '../index';
+import {theme} from '@dhis2/d2-ui-core';
 
 const identity = v => v;
 const isNotEqualTo = first => second => first !== second;
@@ -29,7 +30,7 @@ describe('D2UIApp component', () => {
         );
 
         const muiProvided = component.prop('muiTheme');
-        const muiExpected = getMuiTheme();
+        const muiExpected = getMuiTheme(theme);
 
         // Somewhat convoluted way tp check for equal styles, but the prepareStyles function will fail the deep equal comparison.
         Object.keys(muiProvided)
