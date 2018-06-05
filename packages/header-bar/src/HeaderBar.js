@@ -50,11 +50,12 @@ export class HeaderBar extends Component {
                 </div>);
         }
 
-        console.log('Loaded header bar!');
+        console.log('Loaded header bar!', this.props);
         return (
             <D2UI>
                 <div style={applyUserStyle(currentUser, styles.headerBar)}>
                     <InnerHeader />
+                    <div>{this.props.children}</div>
                     <div style={styles.headerActions}>
                         <Notifications notifications={notifications} />
                         <SearchField />
