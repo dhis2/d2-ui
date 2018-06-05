@@ -1,6 +1,6 @@
 {
   "name": "example-cra",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
   "dependencies": {
     "@dhis2/d2-ui-app": "^1.0.5",
@@ -13,7 +13,7 @@
     "@dhis2/d2-ui-group-editor": "^1.0.10",
     "@dhis2/d2-ui-header-bar": "^1.0.14",
     "@dhis2/d2-ui-interpretations": "^1.0.1",
-    "@dhis2/d2-ui-legend": "^1.0.11",
+    "@dhis2/d2-ui-legend": "^1.1.0",
     "@dhis2/d2-ui-org-unit-select": "^1.0.10",
     "@dhis2/d2-ui-org-unit-tree": "^1.0.10",
     "@dhis2/d2-ui-sharing-dialog": "^1.0.10",
