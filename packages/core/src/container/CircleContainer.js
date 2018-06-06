@@ -1,7 +1,7 @@
 import React from 'react';
 
-import D2Paper from './Container';
+import Container from './Container';
 
-const CirclePaper = ({style, children}) => (<D2Paper style={style} circle>{children}</D2Paper>);
+const CircleContainer = ({style, children}) => (<Container style={style} circle>{children}</Container>);
 
-export default CirclePaper;
+export default CircleContainer;

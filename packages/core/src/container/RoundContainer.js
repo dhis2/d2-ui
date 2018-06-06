@@ -1,7 +1,7 @@
 import React from 'react';
 
-import D2Paper from './Container';
+import Container from './Container';
 
-const RoundPaper = ({style, children}) => (<D2Paper style={style} rounded>{children}</D2Paper>);
+const RoundContainer = ({style, children}) => (<Container style={style} rounded>{children}</Container>);
 
-export default RoundPaper;
+export default RoundContainer;

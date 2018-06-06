@@ -1,7 +1,7 @@
 import React from 'react';
 
-import D2Paper from './Container';
+import Container from './Container';
 
-const FlatPaper = ({style, children}) => (<D2Paper style={style} rounded={false}>{children}</D2Paper>);
+const FlatContainer = ({style, children}) => (<Container style={style} rounded={false}>{children}</Container>);
 
-export default FlatPaper;
+export default FlatContainer;
