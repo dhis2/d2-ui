@@ -26,7 +26,7 @@ import Tabs from './components/tabs';
 import Translation from './components/translation';
 import HeaderBarExample from './components/header-bar';
 import InterpretationsExample from './components/interpretations';
-import Paper from './components/paper';
+import Containers from './components/containers';
 
 import FormEditor from './components/formula-editor';
 import IconPicker from './components/icon-picker';
@@ -69,8 +69,8 @@ class App extends Component {
                 <HeaderBarExample d2={this.state.d2} />
                 <p>Look at the top of the screen...</p>
 
-                <h2>Paper</h2>
-                <Paper />
+                <h2>Containers</h2>
+                <Containers />
 
                 <h2>Buttons</h2>
                 <Buttons />
