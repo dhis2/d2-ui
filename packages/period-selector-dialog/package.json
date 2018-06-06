@@ -24,7 +24,9 @@
     "build:sass": "node-sass ./scss --output ./build/css",
     "build:umd": "cross-env && webpack -p",
     "watch": "npm run build:es --  --watch",
-    "test-ci": "jest --config=../../jest.config.js packages/period-selector-dialog"
+    "test-ci": "jest --config=../../jest.config.js packages/period-selector-dialog",
+    "test": "jest",
+    "test:watch": "npm test -- --watch"
   },
   "dependencies": {
     "material-ui": "^1.0.0-beta.34",
@@ -35,5 +37,9 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "devDependencies": {
+    "babel-jest": "^23.0.1",
+    "jest": "^23.1.0"
   }
 }
