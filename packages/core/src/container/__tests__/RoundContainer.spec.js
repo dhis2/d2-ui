@@ -1,11 +1,11 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Container from '../Container';
-import RoundContainer from '../RoundContainer';
+import RoundedContainer from '../RoundedContainer';
 import { getStubContext } from '../../../../../config/inject-theme';
 
-describe('RoundContainer', () => {
-    const render = () => shallow(<RoundContainer>Round Container</RoundContainer>, {
+describe('RoundedContainer', () => {
+    const render = () => shallow(<RoundedContainer>Round Container</RoundedContainer>, {
         context: getStubContext(),
     });
 
@@ -14,7 +14,7 @@ describe('RoundContainer', () => {
         wrapper = render();
     });
 
-    it('should render a FlatContainer with a Container component', () => {
+    it('should render a RoundedContainer with a Container component', () => {
         expect(wrapper.find(Container)).toHaveLength(1);
     });
 

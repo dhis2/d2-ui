@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {FlatContainer, RoundContainer, CircleContainer} from '@dhis2/d2-ui-core';
+import {FlatContainer, RoundedContainer, CircleContainer} from '@dhis2/d2-ui-core';
 
 const style = {
     container: {
@@ -21,9 +21,9 @@ export default () => (
         <FlatContainer style={style.paper}>
             Flat Paper Container
         </FlatContainer>
-        <RoundContainer style={style.paper}>
-            Round Paper Container
-        </RoundContainer>
+        <RoundedContainer style={style.paper}>
+            Rounded Paper Container
+        </RoundedContainer>
         <CircleContainer style={style.paper}>
             Circle Paper Container
         </CircleContainer>
