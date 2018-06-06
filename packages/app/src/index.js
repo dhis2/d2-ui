@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import {theme} from '@dhis2/d2-ui-core';
 
 class D2UIApp extends Component {
     render() {
@@ -22,7 +23,7 @@ D2UIApp.propTypes = {
 };
 
 D2UIApp.defaultProps = {
-    muiTheme: getMuiTheme(),
+    muiTheme: getMuiTheme(theme),
 };
 
 export default D2UIApp;
