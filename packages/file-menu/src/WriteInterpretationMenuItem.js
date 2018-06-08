@@ -17,6 +17,14 @@ class WriteInterpretationMenuItem extends Component {
         };
     }
 
+    onClose = () => {
+        this.toggleWriteInterpretationDialog();
+
+        if (this.props.onClose) {
+            this.props.onClose();
+        }
+    };
+
     onDialogReturn = success => () => {
         const { onWriteInterpretation, onWriteInterpretationError } = this.props;
 
@@ -49,7 +57,7 @@ class WriteInterpretationMenuItem extends Component {
                         open={this.state.dialogIsOpen}
                         fileType={fileType}
                         fileModel={fileModel}
-                        onRequestClose={this.toggleWriteInterpretationDialog}
+                        onRequestClose={this.onClose}
                         onRequestWriteInterpretation={this.onDialogReturn(true)}
                         onRequestWriteInterpretationError={this.onDialogReturn(false)}
                     />
@@ -69,6 +77,7 @@ WriteInterpretationMenuItem.defaultProps = {
     fileModel: null,
     onWriteInterpretation: null,
     onWriteInterpretationError: null,
+    onClose: null,
 };
 
 WriteInterpretationMenuItem.propTypes = {
@@ -77,6 +86,7 @@ WriteInterpretationMenuItem.propTypes = {
     fileModel: PropTypes.object,
     onWriteInterpretation: PropTypes.func,
     onWriteInterpretationError: PropTypes.func,
+    onClose: PropTypes.func,
 };
 
 export default WriteInterpretationMenuItem;
