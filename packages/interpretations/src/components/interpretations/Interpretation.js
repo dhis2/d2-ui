@@ -9,7 +9,7 @@ import { Link, ActionSeparator, WithAvatar, getUserLink } from './misc';
 import { userCanManage } from '../../util/auth';
 import { config } from 'd2/lib/d2';
 import styles from './InterpretationsStyles.js';
-import _ from 'lodash';
+import some from 'lodash/fp/some';
 
 config.i18n.strings.add('edit');
 config.i18n.strings.add('delete');
@@ -95,13 +95,14 @@ class Interpretation extends React.Component {
     }
 
     render() {
-        const {  interpretation, extended } = this.props;
+        const { interpretation, extended } = this.props;
         const { interpretationToEdit } = this.state;
         const { d2 } = this.context;
         const showActions = extended;
         const showComments = extended;
-        const likedByTooltip = _(interpretation.likedBy).map(user => user.displayName).sortBy().join("\n");
-        const currentUserLikesInterpretation = _(interpretation.likedBy).some(user => user.id === d2.currentUser.id);
+        const likedBy = interpretation.likedBy || [];
+        const likedByTooltip = likedBy.map(user => user.displayName).sort().join("\n");
+        const currentUserLikesInterpretation = some(user => user.id === d2.currentUser.id, likedBy);
 
         return (
             <div>

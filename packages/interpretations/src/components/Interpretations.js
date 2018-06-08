@@ -5,7 +5,8 @@ import { LoadingMask } from '@dhis2/d2-ui-core';
 import { getFavoriteWithInterpretations } from '../models/helpers';
 import DetailsCard from './details/DetailsCard';
 import InterpretationsCard from './interpretations/InterpretationsCard';
-import _ from 'lodash';
+import isEqual from 'lodash/fp/isEqual'
+import pick from 'lodash/fp/pick'
 
 class Interpretations extends React.Component {
     state = { model: null };
@@ -26,8 +27,8 @@ class Interpretations extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         const fields = ["type", "id", "lastUpdated"];
-        const modelFieldChanged = !_.isEqual(_.pick(this.props, fields), _.pick(nextProps, fields))
-        if (modelFieldChanged) {
+        const modelFieldsChanged = !isEqual(pick(fields, this.props), pick(fields, nextProps));
+        if (modelFieldsChanged) {
             this.loadModel(nextProps);
         }
     }
