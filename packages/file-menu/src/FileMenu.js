@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-mport PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 import { withStyles } from 'material-ui/styles';
 import Menu from 'material-ui/Menu';
