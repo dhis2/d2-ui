@@ -17,15 +17,23 @@ class RenameMenuItem extends Component {
         };
     }
 
-    onDialogReturn = success => () => {
+    onClose = () => {
+        this.toggleRenameDialog();
+
+        if (this.props.onClose) {
+            this.props.onClose();
+        }
+    };
+
+    onDialogReturn = success => args => {
         const { onRename, onRenameError } = this.props;
 
         this.toggleRenameDialog();
 
         if (success && onRename) {
-            onRename();
+            onRename(args);
         } else if (onRenameError) {
-            onRenameError();
+            onRenameError(args);
         }
     };
 
@@ -49,7 +57,7 @@ class RenameMenuItem extends Component {
                         open={this.state.dialogIsOpen}
                         fileType={fileType}
                         fileModel={fileModel}
-                        onRequestClose={this.toggleRenameDialog}
+                        onRequestClose={this.onClose}
                         onRequestRename={this.onDialogReturn(true)}
                         onRequestRenameError={this.onDialogReturn(false)}
                     />
@@ -69,6 +77,7 @@ RenameMenuItem.defaultProps = {
     fileModel: null,
     onRename: null,
     onRenameError: null,
+    onClose: null,
 };
 
 RenameMenuItem.propTypes = {
@@ -77,6 +86,7 @@ RenameMenuItem.propTypes = {
     fileModel: PropTypes.object,
     onRename: PropTypes.func,
     onRenameError: PropTypes.func,
+    onClose: PropTypes.func,
 };
 
 export default RenameMenuItem;
