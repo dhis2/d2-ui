@@ -33,8 +33,6 @@ export function getWindowWidth() {
 
 export const toggleStyle = curry((predicateFn, whenTrue, whenFalse) => (predicateFn() ? whenTrue : whenFalse));
 
-export const whenWidthLargerThan1150 = toggleStyle(() => getWindowWidth() > 1150);
-
 /**
  * Calculates the height of the search results box. When the user has a large screen height we fit a max of four rows
  * of search results onto the screen. If four rows is too big for the current screen size we limit the search results box
