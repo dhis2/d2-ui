@@ -6,7 +6,7 @@ import { FormattedRelative } from 'react-intl';
 import PropTypes from 'prop-types';
 import CommentModel from '../../models/comment';
 import { config } from 'd2/lib/d2';
-import _ from 'lodash';
+import orderBy from 'lodash/fp/orderBy';
 import styles from './InterpretationsStyles.js';
 
 config.i18n.strings.add('edit');
@@ -78,7 +78,7 @@ export default class InterpretationComments extends React.Component {
         const { interpretation } = this.props;
         const { d2 } = this.context;
         const { commentToEdit } = this.state;
-        const comments = _(interpretation.comments).sortBy("created").reverse().value();
+        const comments = orderBy(["created"], ["desc"], interpretation.comments);
         const newComment = new CommentModel(interpretation, {text: ""});
 
         return (

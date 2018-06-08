@@ -4,8 +4,6 @@ import { Card, CardHeader, CardText } from 'material-ui/Card';
 import IconButton from 'material-ui/IconButton';
 import { SvgIcon } from '@dhis2/d2-ui-core';
 import { grey600 } from 'material-ui/styles/colors';
-import SharingDialog from '@dhis2/d2-ui-sharing-dialog';
-import DetailsDialog from './DetailsDialog';
 import { config } from 'd2/lib/d2';
 import { injectIntl } from 'react-intl';
 
@@ -25,7 +23,6 @@ config.i18n.strings.add('created');
 config.i18n.strings.add('last_updated');
 config.i18n.strings.add('views');
 config.i18n.strings.add('sharing');
-config.i18n.strings.add('edit_sharing');
 
 const List = ({children}) => (
     <div style={styles.detailsCardList}>{children}</div>
@@ -90,84 +87,23 @@ const getSharingText = (d2, model) => {
 class DetailsCard extends React.Component {
     state = {
         isExpanded: true,
-        isSharingDialogOpen: false,
-        isDetailsDialogOpen: false,
     };
 
     constructor(props) {
         super(props);
         this.toggleDetailsExpand = this.toggleDetailsExpand.bind(this);
-        this.updateModelAndCloseDialog = this.updateModelAndCloseDialog.bind(this);
-        this.saveDetailsAndCloseDialog = this.saveDetailsAndCloseDialog.bind(this);
-        this.closeDetailsDialog = this.closeDetailsDialog.bind(this);
-        this.openDetailsDialog = this.openDetailsDialog.bind(this);
-        this.openSharingDialog = this.openSharingDialog.bind(this);
-    }
-
-    notifyModelChanges(model) {
-        if (this.props.onChange) {
-            this.props.onChange(model);
-        }
-    }
-
-    saveDetailsAndCloseDialog(newModel) {
-        patch(newModel, ["name", "description"]).then(() => {
-            this.notifyModelChanges(newModel);
-            this.closeDetailsDialog();
-        });
-    }
-
-    updateModelAndCloseDialog(newAttributes) {
-        const newModel = this.props.model.clone();
-        Object.assign(newModel, newAttributes);
-        this.closeSharingDialog();
-        this.notifyModelChanges(newModel);
     }
 
     toggleDetailsExpand() {
         this.setState({isExpanded: !this.state.isExpanded});
     }
 
-    openDetailsDialog() {
-        this.setState({isDetailsDialogOpen: true});
-    }
-
-    closeDetailsDialog() {
-        this.setState({isDetailsDialogOpen: false});
-    }
-
-    openSharingDialog() {
-        this.setState({isSharingDialogOpen: true});
-    }
-
-    closeSharingDialog() {
-        this.setState({isSharingDialogOpen: false});
-    }
-
     render() {
         const { model, intl: { formatDate } } = this.props;
-        const { isExpanded, isSharingDialogOpen, isDetailsDialogOpen } = this.state;
+        const { isExpanded } = this.state;
         const { d2 } = this.context;
         const getTranslation = d2.i18n.getTranslation.bind(d2.i18n);
         const owner = model.user ? model.user.displayName : '-';
-
-        const createButton = (
-            <EditButton
-                icon="Create"
-                model={model}
-                tooltip={getTranslation('edit_details')}
-                onClick={this.openDetailsDialog}
-            />
-        );
-
-        const userGroupsButton = (
-            <EditButton
-                icon="Group"
-                model={model}
-                tooltip={getTranslation("edit_sharing")}
-                onClick={this.openSharingDialog}
-            />
-        );
 
         return (
             <Card
@@ -176,21 +112,6 @@ class DetailsCard extends React.Component {
                 expanded={isExpanded}
                 onExpandChange={this.toggleDetailsExpand}
             >
-                <SharingDialog
-                    open={isSharingDialogOpen}
-                    type={model.modelDefinition.name}
-                    id={model.id}
-                    onRequestClose={this.updateModelAndCloseDialog}
-                    d2={d2}
-                />
-
-                <DetailsDialog
-                    open={isDetailsDialogOpen}
-                    model={model}
-                    onSave={this.saveDetailsAndCloseDialog}
-                    onClose={this.closeDetailsDialog}
-                />
-
                 <CardHeader
                     style={styles.detailsCardHeader}
                     title={getTranslation('details')}
@@ -201,12 +122,12 @@ class DetailsCard extends React.Component {
 
                 <CardText expandable={true} style={styles.body}>
                     <List>
-                        <ListItem text={getDescription(d2, model)} button={createButton} />
+                        <ListItem text={getDescription(d2, model)} />
                         <ListItem label={getTranslation('owner')} text={owner} />
                         <ListItem label={getTranslation('created')} text={formatDate(model.created)} />
                         <ListItem label={getTranslation('last_updated')} text={formatDate(model.lastUpdated)} />
                         <ListItem label={getTranslation('views')} text={model.favoriteViews} />
-                        <ListItem label={getTranslation('sharing')} text={getSharingText(d2, model)} button={userGroupsButton} />
+                        <ListItem label={getTranslation('sharing')} text={getSharingText(d2, model)} />
                     </List>
                 </CardText>
             </Card>
@@ -216,7 +137,6 @@ class DetailsCard extends React.Component {
 
 DetailsCard.propTypes = {
     model: PropTypes.object.isRequired,
-    onChange: PropTypes.func,
 };
 
 DetailsCard.contextTypes = {

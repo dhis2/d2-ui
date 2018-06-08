@@ -8,7 +8,7 @@ import IconButton from 'material-ui/IconButton';
 import { SvgIcon } from '@dhis2/d2-ui-core';
 import { grey600 } from 'material-ui/styles/colors';
 import { config } from 'd2/lib/d2';
-import _ from 'lodash';
+import orderBy from 'lodash/fp/orderBy';
 import InterpretationDialog from './InterpretationDialog';
 import Interpretation from './Interpretation';
 import { EditButton } from './misc';
@@ -52,7 +52,7 @@ const getInterpretationsList = props => {
 
 const getInterpretationDetails = props => {
     const { d2, model, interpretation, onChange } = props;
-    const comments = _(interpretation.comments).sortBy("created").reverse().value();
+    const comments = orderBy(["created"], ["desc"], interpretation.comments);
 
     return (
         <Interpretation
@@ -115,6 +115,10 @@ class InterpretationsCard extends React.Component {
     }
 
     componentDidMount() {
+        const currentInterpretation = this.getCurrentInterpretation();
+        if (currentInterpretation && this.props.onCurrentInterpretationChange) {
+            this.props.onCurrentInterpretationChange(currentInterpretation);
+        }
         if (this.props.currentInterpretationId == "new") {
             this.openNewInterpretationDialog();
         }
@@ -163,14 +167,20 @@ class InterpretationsCard extends React.Component {
         this.closeInterpretationDialog();
     }
 
-    render() {
+    getCurrentInterpretation() {
         const { model } = this.props;
-        const { isExpanded, interpretationToEdit, currentInterpretationId } = this.state;
-        const { d2 } = this.context;
-        const sortedInterpretations = _(model.interpretations).sortBy("created").reverse().value();
-        const currentInterpretation = currentInterpretationId
+        const { currentInterpretationId } = this.state;
+        return model && model.interpretations && currentInterpretationId
             ? model.interpretations.find(interpretation => interpretation.id === currentInterpretationId)
             : null;
+    }
+
+    render() {
+        const { model } = this.props;
+        const { isExpanded, interpretationToEdit } = this.state;
+        const { d2 } = this.context;
+        const sortedInterpretations = orderBy(["created"], ["desc"], model.interpretations);
+        const currentInterpretation = this.getCurrentInterpretation();
 
         return (
             <Card

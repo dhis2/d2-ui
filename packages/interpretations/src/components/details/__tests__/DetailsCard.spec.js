@@ -63,7 +63,6 @@ const childContextTypes = {muiTheme: PropTypes.object, d2: PropTypes.object};
 
 const baseProps = {
     model: favorite,
-    onChange: jest.fn(),
 };
 
 const renderComponent = (partialProps = {}) => {
@@ -106,58 +105,5 @@ describe('Interpretations: Details -> DetailsCard component', () => {
     it('should render sharing info', () => {
         expect(getListItem(detailsCard, "sharing").props().text)
             .toEqual("public_translated: access_read_translated + Administrators");
-    });
-
-    it('should render a closed DetailsDialog', () => {
-        expect(detailsCard.find("DetailsDialog").props().open).toBe(false);
-    });
-
-    describe('when user clicks on the edit details button', () => {
-        beforeEach(() => {
-            detailsCard.find("ListItem").at(0).dive().find("EditButton").simulate("click");
-            detailsCard.update();
-        });
-
-        it('should open the details dialog', () => {
-            expect(detailsCard.find("DetailsDialog").props().open).toBe(true);
-        });
-
-        describe('when user clicks on the save button', () => {
-            beforeEach(() => {
-                helpers.patch = jest.fn(() => Promise.resolve({}));
-                return detailsCard.find("DetailsDialog").props().onSave(favorite);
-            });
-
-            it('should close the details dialog', () => {
-                detailsCard.update();
-                expect(detailsCard.find("DetailsDialog").props().open).toBe(false);
-            });
-
-            it('should patch the favorite with attributes name and description', () => {
-                expect(helpers.patch).toBeCalledWith(favorite, ["name", "description"]);
-            });
-        });
-
-        describe('when user clicks on the close button', () => {
-            beforeEach(() => {
-                detailsCard.find("DetailsDialog").props().onClose();
-                detailsCard.update();
-            });
-
-            it('should close the details dialog', () => {
-                expect(detailsCard.find("DetailsDialog").props().open).toBe(false);
-            });
-        });
-    });
-
-    describe('when user clicks on the sharing button', () => {
-        beforeEach(() => {
-            getListItem(detailsCard, "sharing").dive().find("EditButton").simulate("click");
-            detailsCard.update();
-        });
-
-        it('should open the details dialog', () => {
-            expect(detailsCard.find("SharingDialog").props().open).toBe(true);
-        });
     });
 });
