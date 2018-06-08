@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component, Fragment } from 'react';
+mport PropTypes from 'prop-types';
 
 import { withStyles } from 'material-ui/styles';
 import Menu from 'material-ui/Menu';
@@ -8,7 +8,6 @@ import Divider from 'material-ui/Divider';
 
 import i18n from '@dhis2/d2-i18n';
 
-import { getFileTypeLabel } from './util';
 import NewMenuItem from './NewMenuItem';
 import OpenMenuItem from './OpenMenuItem';
 import SaveMenuItem from './SaveMenuItem';
@@ -16,7 +15,6 @@ import SaveAsMenuItem from './SaveAsMenuItem';
 import RenameMenuItem from './RenameMenuItem';
 import TranslateMenuItem from './TranslateMenuItem';
 import ShareMenuItem from './ShareMenuItem';
-import WriteInterpretationMenuItem from './WriteInterpretationMenuItem';
 import GetLinkMenuItem from './GetLinkMenuItem';
 import DeleteMenuItem from './DeleteMenuItem';
 
@@ -35,54 +33,80 @@ export class FileMenu extends Component {
         d2: this.props.d2,
     });
 
-    componentWillReceiveProps = (nextProps) => {
+    componentWillReceiveProps = nextProps => {
         if (nextProps.fileId) {
             this.setFileModel(nextProps.fileId);
         }
     };
 
-    setFileModel = async (id) => {
+    setFileModel = async id => {
         const model = await this.props.d2.models[this.props.fileType].get(id);
 
         this.setState({ fileModel: model });
     };
 
-    toggleMenu = (event) => {
+    clearFileModel = () => {
+        this.setState({ fileModel: null });
+    };
+
+    toggleMenu = event => {
         this.setState({
             menuIsOpen: !this.state.menuIsOpen,
             anchorEl: this.state.menuIsOpen ? null : event.currentTarget,
         });
     };
 
-    closeMenu = (event) => {
-        this.toggleMenu(event);
+    closeMenu = () => {
+        this.setState({
+            menuIsOpen: false,
+            anchorEl: null,
+        });
     };
 
-    selectFile = (id) => {
+    onOpen = id => {
         this.setFileModel(id);
+
+        this.closeMenu();
 
         if (this.props.onOpen) {
             this.props.onOpen(id);
         }
     };
 
+    onNew = () => {
+        this.clearFileModel();
+
+        this.closeMenu();
+
+        if (this.props.onNew) {
+            this.props.onNew();
+        }
+    };
+
+    onDelete = () => {
+        this.clearFileModel();
+
+        this.closeMenu();
+
+        if (this.props.onDelete) {
+            this.props.onDelete();
+        }
+    };
+
+    onAction = callback => args => {
+        this.closeMenu();
+
+        if (callback) {
+            callback(args);
+        }
+    };
+
     render() {
-        const {
-            fileType,
-            onNew,
-            onSave,
-            onSaveAs,
-            onRename,
-            onTranslate,
-            onShare,
-            onWriteInterpretation,
-            onDelete,
-            onError,
-        } = this.props;
+        const { fileType, onSave, onSaveAs, onRename, onTranslate, onShare, onError } = this.props;
 
         return (
-            <div>
-                <Button onClick={this.toggleMenu}>{i18n.t(getFileTypeLabel(fileType))}</Button>
+            <Fragment>
+                <Button onClick={this.toggleMenu}>{i18n.t('File')}</Button>
                 <Menu
                     disableEnforceFocus
                     open={this.state.menuIsOpen}
@@ -91,80 +115,81 @@ export class FileMenu extends Component {
                     anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
                     getContentAnchorEl={null}
                 >
-                    <NewMenuItem enabled={Boolean(this.state.fileModel)} onNew={onNew} />
+                    <NewMenuItem enabled={Boolean(this.state.fileModel)} onNew={this.onNew} />
                     <Divider light />
 
                     <OpenMenuItem
                         enabled
                         fileType={fileType}
-                        onOpen={this.selectFile}
+                        onOpen={this.onOpen}
+                        onClose={this.onAction()}
                     />
 
                     <Divider />
                     <SaveMenuItem
                         enabled={Boolean(
-                            this.state.fileModel && this.state.fileModel.access.update,
+                            !this.state.fileModel ||
+                                (this.state.fileModel && this.state.fileModel.access.update)
                         )}
-                        onSave={onSave}
+                        onSave={this.onAction(onSave)}
+                        onClose={this.onAction()}
                     />
                     <SaveAsMenuItem
                         enabled={Boolean(this.state.fileModel)}
                         fileType={fileType}
                         fileModel={this.state.fileModel}
-                        onSaveAs={onSaveAs}
+                        onSaveAs={this.onAction(onSaveAs)}
+                        onClose={this.onAction()}
                     />
                     <Divider />
                     <RenameMenuItem
                         enabled={Boolean(
-                            this.state.fileModel && this.state.fileModel.access.update,
+                            this.state.fileModel && this.state.fileModel.access.update
                         )}
                         fileType={fileType}
                         fileModel={this.state.fileModel}
-                        onRename={onRename}
-                        onRenameError={onError}
+                        onRename={this.onAction(onRename)}
+                        onRenameError={this.onAction(onError)}
+                        onClose={this.onAction()}
                     />
                     <TranslateMenuItem
                         enabled={Boolean(
-                            this.state.fileModel && this.state.fileModel.access.update,
+                            this.state.fileModel && this.state.fileModel.access.update
                         )}
                         fileModel={this.state.fileModel}
-                        onTranslate={onTranslate}
-                        onTranslateError={onError}
+                        onTranslate={this.onAction(onTranslate)}
+                        onTranslateError={this.onAction(onError)}
+                        onClose={this.onAction()}
                     />
                     <Divider />
                     <ShareMenuItem
                         enabled={Boolean(
-                            this.state.fileModel && this.state.fileModel.access.manage,
+                            this.state.fileModel && this.state.fileModel.access.manage
                         )}
                         fileType={fileType}
                         fileModel={this.state.fileModel}
-                        onShare={onShare}
-                    />
-                    <WriteInterpretationMenuItem
-                        enabled={Boolean(
-                            this.state.fileModel && this.state.fileModel.access.read,
-                        )}
-                        fileType={fileType}
-                        fileModel={this.state.fileModel}
-                        onWriteInterpretation={onWriteInterpretation}
+                        onShare={this.onAction(onShare)}
+                        onClose={this.onAction()}
                     />
                     <GetLinkMenuItem
                         enabled={Boolean(this.state.fileModel)}
                         fileType={fileType}
                         fileModel={this.state.fileModel}
+                        onClose={this.onAction()}
                     />
                     <Divider />
                     <DeleteMenuItem
                         enabled={Boolean(
-                            this.state.fileModel && this.state.fileModel.access.delete,
+                            this.state.fileModel && this.state.fileModel.access.delete
                         )}
                         fileType={fileType}
                         fileModel={this.state.fileModel}
-                        onDelete={onDelete}
-                        onDeleteError={onError}
+                        onDelete={this.onDelete}
+                        onDeleteError={this.onAction(onError)}
+                        onClose={this.onAction()}
                     />
                 </Menu>
-            </div>
+            </Fragment>
         );
     }
 }
@@ -184,7 +209,6 @@ FileMenu.defaultProps = {
     onRename: null,
     onTranslate: null,
     onShare: null,
-    onWriteInterpretation: null,
     onDelete: null,
     onError: null,
 };
@@ -200,7 +224,6 @@ FileMenu.propTypes = {
     onRename: PropTypes.func,
     onTranslate: PropTypes.func,
     onShare: PropTypes.func,
-    onWriteInterpretation: PropTypes.func,
     onDelete: PropTypes.func,
     onError: PropTypes.func,
 };
@@ -209,9 +232,6 @@ const styles = theme => ({
     menuItem: {
         '&:focus': {
             background: theme.palette.primary[500],
-            '& $text, & $icon': {
-                color: theme.palette.common.white,
-            },
         },
     },
 });

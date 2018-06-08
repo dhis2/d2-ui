@@ -14,17 +14,17 @@ class SaveAsDialog extends Component {
         super(props);
 
         this.state = {
-            newName: '',
-            newDescription: '',
+            name: '',
+            description: '',
         };
     }
 
     componentWillReceiveProps(nextProps) {
         // reset form to initial value when reopening the save as dialog
-        if (nextProps.open === true && !this.state.newName) {
+        if (nextProps.open === true && !this.state.name) {
             this.setState({
-                newName: nextProps.fileModel.displayName || '',
-                newDescription: nextProps.fileModel.displayDescription || '',
+                name: nextProps.fileModel.displayName || '',
+                description: nextProps.fileModel.displayDescription || '',
             });
         }
     }
@@ -32,12 +32,12 @@ class SaveAsDialog extends Component {
     onRequestClose = () => {
         // reset form so when the dialog is reopened is consistent
         // with the actual favorite
-        this.setState({ newName: '', newDescription: '' });
+        this.setState({ name: '', description: '' });
 
         this.props.onRequestClose();
     };
 
-    handleChange = field => (event) => {
+    handleChange = field => event => {
         event.preventDefault();
 
         this.setState({
@@ -45,7 +45,7 @@ class SaveAsDialog extends Component {
         });
     };
 
-    handleSubmit = (event) => {
+    handleSubmit = event => {
         event.preventDefault();
 
         if (this.props.onRequestSaveAs) {
@@ -58,38 +58,40 @@ class SaveAsDialog extends Component {
 
         return (
             <Dialog open={open} onClose={this.onRequestClose} maxWidth="md">
-                <form onSubmit={this.handleSubmit}>
-                    <DialogTitle>{i18n.t('Save {{what}} as', { what: getFileTypeLabel(fileType) })}</DialogTitle>
-                    <DialogContent>
+                <DialogTitle>
+                    {i18n.t('Save {{what}} as', { what: getFileTypeLabel(fileType) })}
+                </DialogTitle>
+                <DialogContent>
+                    <form onSubmit={this.handleSubmit}>
                         <FormControl fullWidth>
                             <TextField
                                 label={i18n.t('Name')}
-                                value={this.state.newName}
+                                value={this.state.name}
                                 required
                                 margin="normal"
-                                onChange={this.handleChange('newName')}
+                                onChange={this.handleChange('name')}
                             />
                         </FormControl>
                         <FormControl fullWidth>
                             <TextField
                                 label={i18n.t('Description')}
-                                value={this.state.newDescription}
+                                value={this.state.description}
                                 margin="normal"
                                 multiline
                                 rowsMax={4}
-                                onChange={this.handleChange('newDescription')}
+                                onChange={this.handleChange('description')}
                             />
                         </FormControl>
-                    </DialogContent>
-                    <DialogActions>
-                        <Button onClick={this.onRequestClose} color="primary">
-                            {i18n.t('Cancel')}
-                        </Button>
-                        <Button type="submit" onClick={this.handleSubmit} color="primary">
-                            {i18n.t('Save')}
-                        </Button>
-                    </DialogActions>
-                </form>
+                    </form>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={this.onRequestClose} color="primary">
+                        {i18n.t('Cancel')}
+                    </Button>
+                    <Button type="submit" onClick={this.handleSubmit} color="primary">
+                        {i18n.t('Save')}
+                    </Button>
+                </DialogActions>
             </Dialog>
         );
     }

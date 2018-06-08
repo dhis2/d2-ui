@@ -17,6 +17,14 @@ class GetLinkMenuItem extends Component {
         };
     }
 
+    onClose = () => {
+        this.toggleGetLinkDialog();
+
+        if (this.props.onClose) {
+            this.props.onClose();
+        }
+    };
+
     toggleGetLinkDialog = () => {
         this.setState({ dialogIsOpen: !this.state.dialogIsOpen });
     };
@@ -35,7 +43,7 @@ class GetLinkMenuItem extends Component {
                 {fileModel ? (
                     <GetLinkDialog
                         open={this.state.dialogIsOpen}
-                        onRequestClose={this.toggleGetLinkDialog}
+                        onRequestClose={this.onClose}
                         fileType={fileType}
                         fileModel={fileModel}
                     />
@@ -53,12 +61,14 @@ GetLinkMenuItem.defaultProps = {
     enabled: false,
     fileType: null,
     fileModel: null,
+    onClose: null,
 };
 
 GetLinkMenuItem.propTypes = {
     enabled: PropTypes.bool,
     fileType: PropTypes.oneOf(['chart', 'eventChart', 'reportTable', 'eventReport', 'map']),
     fileModel: PropTypes.object,
+    onClose: PropTypes.func,
 };
 
 export default GetLinkMenuItem;

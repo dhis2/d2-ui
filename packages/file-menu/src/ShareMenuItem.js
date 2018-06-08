@@ -17,6 +17,14 @@ class ShareMenuItem extends Component {
         };
     }
 
+    onClose = () => {
+        this.toggleSharingDialog();
+
+        if (this.props.onClose) {
+            this.props.onClose();
+        }
+    };
+
     onShare = () => {
         this.toggleSharingDialog();
 
@@ -63,6 +71,7 @@ ShareMenuItem.defaultProps = {
     fileType: null,
     fileModel: null,
     onShare: null,
+    onClose: null,
 };
 
 ShareMenuItem.propTypes = {
@@ -70,6 +79,7 @@ ShareMenuItem.propTypes = {
     fileType: PropTypes.oneOf(['chart', 'eventChart', 'reportTable', 'eventReport', 'map']),
     fileModel: PropTypes.object,
     onShare: PropTypes.func,
+    onClose: PropTypes.func,
 };
 
 export default ShareMenuItem;

@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2018-05-14T11:15:41.268Z\n"
-"PO-Revision-Date: 2018-05-14T11:15:41.268Z\n"
+"POT-Creation-Date: 2018-06-07T12:57:17.631Z\n"
+"PO-Revision-Date: 2018-06-07T12:57:17.631Z\n"
 
 msgid "Delete {{what}}"
 msgstr ""
@@ -17,10 +17,16 @@ msgstr ""
 msgid "Delete"
 msgstr ""
 
+msgid "File"
+msgstr ""
+
 msgid "Open in this app"
 msgstr ""
 
 msgid "Open in web API"
+msgstr ""
+
+msgid "Close"
 msgstr ""
 
 msgid "Get link"

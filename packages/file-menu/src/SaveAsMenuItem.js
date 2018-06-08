@@ -17,6 +17,14 @@ class SaveAsMenuItem extends Component {
         };
     }
 
+    onClose = () => {
+        this.toggleSaveAsDialog();
+
+        if (this.props.onClose) {
+            this.props.onClose();
+        }
+    };
+
     onSaveAs = form => {
         this.toggleSaveAsDialog();
 
@@ -45,7 +53,7 @@ class SaveAsMenuItem extends Component {
                         open={this.state.dialogIsOpen}
                         fileType={fileType}
                         fileModel={fileModel}
-                        onRequestClose={this.toggleSaveAsDialog}
+                        onRequestClose={this.onClose}
                         onRequestSaveAs={this.onSaveAs}
                     />
                 ) : null}
@@ -59,6 +67,7 @@ SaveAsMenuItem.defaultProps = {
     fileType: null,
     fileModel: null,
     onSaveAs: null,
+    onClose: null,
 };
 
 SaveAsMenuItem.propTypes = {
@@ -66,6 +75,7 @@ SaveAsMenuItem.propTypes = {
     fileType: PropTypes.oneOf(['chart', 'eventChart', 'reportTable', 'eventReport', 'map']),
     fileModel: PropTypes.object,
     onSaveAs: PropTypes.func,
+    onClose: PropTypes.func,
 };
 
 export default SaveAsMenuItem;
