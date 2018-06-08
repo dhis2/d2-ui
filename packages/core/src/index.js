@@ -37,5 +37,8 @@ export { Tabs, Tab } from './tabs/Tabs'
 export { default as InputField } from './text-field/TextField' // conflict with form fields textfield
 export { default as TreeView } from './tree-view/TreeView.component'
 export { default as theme } from './theme/theme'
+export { default as FlatContainer } from './container/FlatContainer'
+export { default as RoundedContainer } from './container/RoundedContainer'
+export { default as CircleContainer } from './container/CircleContainer'
 
 export { default as PeriodPicker } from './period-picker/PeriodPicker.component'
