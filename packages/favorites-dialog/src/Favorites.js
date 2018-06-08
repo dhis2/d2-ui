@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import Dialog, {
-    DialogActions,
-    DialogContent,
-    DialogTitle,
-} from 'material-ui/Dialog';
+import Dialog, { DialogActions, DialogContent } from 'material-ui/Dialog';
 import Button from 'material-ui/Button';
 
 import EnhancedToolbar from './EnhancedToolbar';
@@ -32,7 +28,6 @@ class Favorites extends Component {
 
         return (
             <Dialog open={open} onClose={onRequestClose} disableEnforceFocus={true} maxWidth="md">
-                <DialogTitle>Favorites</DialogTitle>
                 <DialogContent>
                     <EnhancedToolbar />
                     <EnhancedTable onFavoriteSelect={handleOnFavoriteSelect} />
