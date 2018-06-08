@@ -115,6 +115,10 @@ class InterpretationsCard extends React.Component {
     }
 
     componentDidMount() {
+        const currentInterpretation = this.getCurrentInterpretation();
+        if (currentInterpretation && this.props.onCurrentInterpretationChange) {
+            this.props.onCurrentInterpretationChange(currentInterpretation);
+        }
         if (this.props.currentInterpretationId == "new") {
             this.openNewInterpretationDialog();
         }
@@ -163,14 +167,20 @@ class InterpretationsCard extends React.Component {
         this.closeInterpretationDialog();
     }
 
-    render() {
+    getCurrentInterpretation() {
         const { model } = this.props;
-        const { isExpanded, interpretationToEdit, currentInterpretationId } = this.state;
-        const { d2 } = this.context;
-        const sortedInterpretations = _(model.interpretations).sortBy("created").reverse().value();
-        const currentInterpretation = currentInterpretationId
+        const { currentInterpretationId } = this.state;
+        return model && model.interpretations && currentInterpretationId
             ? model.interpretations.find(interpretation => interpretation.id === currentInterpretationId)
             : null;
+    }
+
+    render() {
+        const { model } = this.props;
+        const { isExpanded, interpretationToEdit } = this.state;
+        const { d2 } = this.context;
+        const sortedInterpretations = _(model.interpretations).sortBy("created").reverse().value();
+        const currentInterpretation = this.getCurrentInterpretation();
 
         return (
             <Card
