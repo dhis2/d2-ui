@@ -5,6 +5,7 @@ import { LoadingMask } from '@dhis2/d2-ui-core';
 import { getFavoriteWithInterpretations } from '../models/helpers';
 import DetailsCard from './details/DetailsCard';
 import InterpretationsCard from './interpretations/InterpretationsCard';
+import _ from 'lodash';
 
 class Interpretations extends React.Component {
     state = { model: null };
@@ -24,7 +25,9 @@ class Interpretations extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (this.props.type !== nextProps.type || this.props.id !== nextProps.id) {
+        const fields = ["type", "id", "lastUpdated"];
+        const modelFieldChanged = !_.isEqual(_.pick(this.props, fields), _.pick(nextProps, fields))
+        if (modelFieldChanged) {
             this.loadModel(nextProps);
         }
     }
@@ -80,6 +83,7 @@ Interpretations.propTypes = {
     d2: PropTypes.object.isRequired,
     type: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
+    lastUpdated: PropTypes.string,
     currentInterpretationId: PropTypes.string,
     onChange: PropTypes.func,
     onCurrentInterpretationChange: PropTypes.func,
