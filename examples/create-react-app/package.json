@@ -12,7 +12,7 @@
     "@dhis2/d2-ui-formula-editor": "^1.0.0",
     "@dhis2/d2-ui-group-editor": "^1.0.10",
     "@dhis2/d2-ui-header-bar": "^1.0.14",
-    "@dhis2/d2-ui-interpretations": "^1.0.1",
+    "@dhis2/d2-ui-interpretations": "^1.0.0",
     "@dhis2/d2-ui-legend": "^1.1.0",
     "@dhis2/d2-ui-org-unit-select": "^1.0.10",
     "@dhis2/d2-ui-org-unit-tree": "^1.0.10",

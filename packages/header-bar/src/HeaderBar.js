@@ -55,7 +55,7 @@ export class HeaderBar extends Component {
             <D2UI>
                 <div style={applyUserStyle(currentUser, styles.headerBar)}>
                     <InnerHeader />
-                    <div>{this.props.children}</div>
+                    <div className="d2-ui-header-bar--CustomArea">{this.props.children}</div>
                     <div style={styles.headerActions}>
                         <Notifications notifications={notifications} />
                         <SearchField />
