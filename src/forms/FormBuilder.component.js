@@ -378,7 +378,6 @@ class FormBuilder extends React.Component {
             .reduce((pass, currentValidator) => (pass === true
                 ? (currentValidator.validator(newValue, stateClone) === true || currentValidator.message) : pass
             ), true);
-        console.log(field)
         if (get(field, 'fieldOptions.disabled')) {
             validatorResult = true;
         }
