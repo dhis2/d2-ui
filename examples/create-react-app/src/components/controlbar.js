@@ -2,9 +2,6 @@ import React from 'react';
 
 import Toggle from 'material-ui/Toggle';
 
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
 import { Button } from '@dhis2/d2-ui-core';
 import { ControlBar } from '@dhis2/d2-ui-core';
 
@@ -168,19 +165,16 @@ function ExampleControls() {
 
 function ControlBarWithLines() {
     return (
-        <MuiThemeProvider muiTheme={getMuiTheme()}>
-            <div>
-                <div style={headerStyles}><div style={{ padding: 16 }}>Placeholder header bar</div></div>
-                <ControlBar
-                    editMode={editMode}
-                    height={height}
-                    onChangeHeight={(dragHandle && heightChangeHandler) || null}
-                >
-                    <Contents />
-                </ControlBar>
-                <ExampleControls />
-            </div>
-        </MuiThemeProvider>
+        <div>
+            <ControlBar
+                editMode={editMode}
+                height={height}
+                onChangeHeight={(dragHandle && heightChangeHandler) || null}
+            >
+                <Contents />
+            </ControlBar>
+            <ExampleControls />
+        </div>
     );
 }
 

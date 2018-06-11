@@ -1,7 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 import SharingDialog from '@dhis2/d2-ui-sharing-dialog';
 
@@ -41,7 +39,7 @@ export default class SharingExample extends React.Component {
             { type: 'categoryOption', id: 'K4gwuiVvW3z' },
         ];
 
-        return (<MuiThemeProvider muiTheme={getMuiTheme()}>
+        return (
             <div style={{ padding: 32 }}>
                 <SharingDialog
                     open={this.state.open}
@@ -56,7 +54,7 @@ export default class SharingExample extends React.Component {
                     </div>
                 ))}
             </div>
-        </MuiThemeProvider>)
+        )
     }
 }
 

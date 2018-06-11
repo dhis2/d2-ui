@@ -1,6 +1,6 @@
 {
   "name": "@dhis2/d2-ui-core",
-  "version": "1.0.2",
+  "version": "1.2.0",
   "description": "Core components for DHIS2 in d2-ui",
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",
@@ -26,10 +26,11 @@
     "url": "https://github.com/dhis2/d2-ui.git"
   },
   "dependencies": {
+    "babel-runtime": "^6.26.0",
+    "lodash": "^4.17.10",
     "material-ui": "^0.20.0"
   },
   "peerDependencies": {
-    "d2": "^29.1.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0"
   },

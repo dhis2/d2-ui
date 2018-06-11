@@ -1,0 +1,58 @@
+{
+    "name": "@dhis2/d2-ui-file-menu",
+    "version": "1.0.3",
+    "description": "File menu component for DHIS2",
+    "main": "./build/cjs/index.js",
+    "module": "./build/es/index.js",
+    "files": [
+        "build"
+    ],
+    "license": "BSD-3-Clause",
+    "author": "Edoardo Sabadelli <edoardo@dhis2.org>",
+    "peerDependencies": {
+        "d2": "^29.1.1",
+        "react": "^15.0.0 || ^16.0.0",
+        "react-dom": "^15.0.0 || ^16.0.0"
+    },
+    "scripts": {
+        "prebuild": "rimraf ./build/*",
+        "build": "npm run localize && npm run build:commonjs && npm run build:es",
+        "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir build/cjs --ignore spec.js",
+        "build:es": "cross-env BABEL_ENV=es babel src --out-dir build/es --ignore spec.js",
+        "build:umd": "cross-env && webpack -p",
+        "watch": "npm run build:es -- --watch",
+        "test-ci": "jest --config=../../jest.config.js packages/file-menu",
+        "extract-pot": "d2-i18n-extract -p src/ -o i18n/",
+        "prettify": "prettier \"src/**/*.{js,jsx,json,css}\" --write",
+        "localize": "npm run extract-pot && d2-i18n-generate -n d2-ui-file-menu -p ./i18n/ -o ./src/locales/"
+    },
+    "dependencies": {
+        "@dhis2/d2-i18n": "^1.0.3",
+        "@dhis2/d2-ui-favorites-dialog": "^1.0.11",
+        "@dhis2/d2-ui-sharing-dialog": "^1.0.10",
+        "@dhis2/d2-ui-translation-dialog": "^1.0.11",
+        "d2-ui": "^29.0.18",
+        "material-ui": "^1.0.0-beta.34",
+        "material-ui-icons": "^1.0.0-beta.17",
+        "prop-types": "^15.6.0"
+    },
+    "jest": {
+        "transformIgnorePatterns": [
+            "node_modules/(?!react-native|react-navigation)/"
+        ]
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "npm run extract-pot && npm run prettify && git add ./i18n ./src/locales"
+        }
+    },
+    "devDependencies": {
+        "@dhis2/d2-i18n-extract": "^1.0.6",
+        "@dhis2/d2-i18n-generate": "^1.0.18",
+        "husky": "^1.0.0-rc.4",
+        "prettier": "^1.12.1"
+    }
+}

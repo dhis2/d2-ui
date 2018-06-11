@@ -6,7 +6,7 @@ import { config } from 'd2/lib/d2';
 import { legendItemStore, legendItemStore$, onFieldChange, onFormStatusChange } from './LegendItem.store';
 import { setDialogStateToAction } from './LegendItem.actions';
 import { withStateFrom } from '@dhis2/d2-ui-core';
-import { FormBuilder } from '@dhis2/d2-ui-core';
+import { FormBuilder } from '@dhis2/d2-ui-forms';
 
 config.i18n.strings.add('ok');
 config.i18n.strings.add('cancel');

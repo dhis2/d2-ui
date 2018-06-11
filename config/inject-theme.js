@@ -34,6 +34,9 @@ export function getStubContext() {
                     return `${key}_translated`;
                 },
                 addStrings: jest.fn().mockReturnValue(true),
+                strings: {
+                    add: () => {},
+                },
             },
             Api: {
                 getApi: jest.fn().mockReturnValue({baseUrl: 'http://localhost:8080'}),
@@ -42,13 +45,20 @@ export function getStubContext() {
                 settings: {
                     all: jest.fn().mockReturnValue(Promise.resolve({})),
                 },
+                systemInfo: {
+                    contextPath: "http://test-dhis-server.org",
+                },
             },
             currentUser: {
                 firstName: 'Mark',
                 surname: 'Polak',
                 userSettings: {
                     keyStyle: 'vietnam/vietnam.css',
+                    settings: {
+                        keyUiLocale: "en",
+                    },
                 },
+                authorities: new Set(),
             },
         },
     };
@@ -73,6 +83,9 @@ function injectTheme(Component, theme) {
                     all: stub().returns(Promise.resolve({})),
                 },
             },
+            strings: {
+                add: () => {},
+            }
         },
     });
 }

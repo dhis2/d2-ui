@@ -81,7 +81,10 @@ class SearchField extends Component {
                 <div style={styles.searchIconContainer}>
                     <SvgIcon icon="Search" style={styles.searchIcon} />
                 </div>
-                <div style={styles.searchFieldInnerWrap}>
+                <div
+                    ref={searchBox => { this.searchBox = searchBox; }}
+                    style={styles.searchFieldInnerWrap}
+                >
                     <TextField
                         fullWidth
                         value={this.props.searchValue || ''}
@@ -103,7 +106,6 @@ class SearchField extends Component {
 								...styles.searchFieldHintText,
 							},
 						}}
-                        ref={searchBox => { this.searchBox = searchBox; }}
                     />
                     {this.props.searchValue
 						? <ClearIcon style={styles.clearIcon}
@@ -119,10 +121,10 @@ class SearchField extends Component {
     }
 
     focusSearchField() {
-        const searchField = this.searchBox;
+        const searchBox = this.searchBox;
 
-        if (searchField && searchField !== document.activeElement) {
-            searchField.querySelector('input').focus();
+        if (searchBox && searchBox !== document.activeElement) {
+            searchBox.querySelector('input').focus();
         }
     }
 

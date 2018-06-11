@@ -2,8 +2,6 @@ import React from 'react';
 
 import TranslationDialog from '@dhis2/d2-ui-translation-dialog';
 
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 
 export default class TranslationDialogExample extends React.Component {
@@ -53,7 +51,7 @@ export default class TranslationDialogExample extends React.Component {
             ], "aggregationLevels":[]
         });
 
-        return (<MuiThemeProvider muiTheme={getMuiTheme()}>
+        return (
             <div>
                 <div style={{ padding: 16 }}>
                     <RaisedButton
@@ -70,6 +68,6 @@ export default class TranslationDialogExample extends React.Component {
                     onRequestClose={this.toggleDialog()}
                 />
             </div>
-        </MuiThemeProvider>);
+        );
     }
 }

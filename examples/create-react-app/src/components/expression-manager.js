@@ -7,7 +7,7 @@ import { fade } from 'material-ui/utils/colorManipulator';
 import Spacing from 'material-ui/styles/spacing';
 
 import { Store } from '@dhis2/d2-ui-core';
-import { ExpressionManager } from '@dhis2/d2-ui-core';
+import { ExpressionManager } from '@dhis2/d2-ui-expression-manager';
 
 const style = {
     spacing: Spacing,
@@ -55,6 +55,7 @@ export default class Example extends React.Component {
 
     render() {
         return (<ExpressionManager
+            d2={this.props.d2}
             titleText="My indicator expression manager"
             descriptionLabel="description"
             expressionStatusStore={store}

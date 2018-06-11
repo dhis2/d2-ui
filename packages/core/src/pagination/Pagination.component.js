@@ -1,18 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classes from 'classnames';
-import { config } from 'd2/lib/d2';
 
 const noop = () => {};
 
-config.i18n.strings.add('of_page');
-
 class Pagination extends Component {
-    constructor(props, context) {
-        super(props, context);
-
-        const i18n = this.context.d2.i18n;
-        this.getTranslation = i18n.getTranslation.bind(i18n);
+    constructor(props) {
+        super(props);
     }
 
     render() {
@@ -26,7 +20,7 @@ class Pagination extends Component {
             <div className="data-table-pager">
                 <ul className="data-table-pager--buttons">
                     {total ?
-                        <li className="data-table-pager--page-info"><span>{currentlyShown} {`${this.getTranslation('of_page')}`} {total}</span></li> : ''}
+                        <li className="data-table-pager--page-info"><span>{currentlyShown} / {total}</span></li> : ''}
                     <li className="data-table-pager--previous-page">
                         <i
                             className={previousPageClasses}
@@ -64,10 +58,6 @@ Pagination.defaultProps = {
     onNextPageClick: noop,
     total: 0,
     currentlyShown: 0,
-};
-
-Pagination.contextTypes = {
-    d2: PropTypes.object,
 };
 
 export default Pagination;

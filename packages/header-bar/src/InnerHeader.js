@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import log from 'loglevel';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
-import styles, { whenWidthLargerThan1150 } from './header-bar-styles';
+import styles from './header-bar-styles';
 import getBaseUrlFromD2ApiUrl from './utils/getBaseUrlFromD2ApiUrl';
 
 const defaultStyle = 'light_blue';
@@ -136,7 +136,7 @@ class InnerHeader extends Component {
             alignItems: 'center',
             justifyItems: 'center',
             display: 'flex',
-            minWidth: whenWidthLargerThan1150(450, 'auto'),
+            minWidth: 'auto',
             paddingRight: '1rem',
             boxSizing: 'border-box',
         };
@@ -158,12 +158,10 @@ class InnerHeader extends Component {
 
         const linkHref = [this.getBaseUrl(), 'dhis-web-commons-about/redirect.action'].join('/');
 
-        const largeScreensInnerHeader = Object.assign({ display: 'flex', minWidth: 450 + 175, overflow: 'hidden', textOverflow: 'ellipsis' }, styles.headerTitle);
-
-        const smallerScreensInnerHeader = Object.assign({ display: 'flex', overflow: 'hidden', textOverflow: 'ellipsis' }, styles.headerTitle);
+        const innerHeaderStyles = Object.assign({ display: 'flex', overflow: 'hidden', textOverflow: 'ellipsis' }, styles.headerTitle);
 
         return (
-            <div style={whenWidthLargerThan1150(largeScreensInnerHeader, smallerScreensInnerHeader)}>
+            <div style={innerHeaderStyles}>
                 <a href={linkHref} title={this.state.headerBar.title} style={logoHref} className="title-link">
                     <div style={headerBannerWrapperStyle}>
                         <div>
