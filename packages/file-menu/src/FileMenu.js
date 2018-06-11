@@ -102,11 +102,22 @@ export class FileMenu extends Component {
     };
 
     render() {
-        const { fileType, onSave, onSaveAs, onRename, onTranslate, onShare, onError } = this.props;
+        const {
+            classes,
+            fileType,
+            onSave,
+            onSaveAs,
+            onRename,
+            onTranslate,
+            onShare,
+            onError,
+        } = this.props;
 
         return (
             <Fragment>
-                <Button onClick={this.toggleMenu}>{i18n.t('File')}</Button>
+                <Button className={classes.menuButton} onClick={this.toggleMenu}>
+                    {i18n.t('File')}
+                </Button>
                 <Menu
                     disableEnforceFocus
                     open={this.state.menuIsOpen}
@@ -229,10 +240,10 @@ FileMenu.propTypes = {
 };
 
 const styles = theme => ({
-    menuItem: {
-        '&:focus': {
-            background: theme.palette.primary[500],
-        },
+    menuButton: {
+        textTransform: 'none',
+        fontSize: '16px',
+        fontWeight: 400,
     },
 });
 
