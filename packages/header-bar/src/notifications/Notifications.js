@@ -16,7 +16,7 @@ class Notifications extends Component {
     render = () => {
         const { unreadInterpretations, unreadMessageConversations } = this.props.notifications;
         const interpretationsHref = `${this.getBaseUrl()}/dhis-web-interpretation/index.html`;
-        const messagesHref = `${this.getBaseUrl()}/dhis-web-messaging/message.action`;
+        const messagesHref = `${this.getBaseUrl()}/dhis-web-messaging`;
 
         return (
             <div style={styles.notifications}>
