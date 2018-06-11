@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { isObject } from 'lodash';
+import { isObject, get } from 'lodash';
 import AsyncValidatorRunner from './AsyncValidatorRunner';
 
 import CircularProgres from '../circular-progress/CircularProgress';
@@ -374,10 +374,13 @@ class FormBuilder extends React.Component {
     validateField(stateClone, fieldName, newValue) {
         const field = this.getFieldProp(fieldName);
 
-        const validatorResult = (field.validators || [])
+        let validatorResult = (field.validators || [])
             .reduce((pass, currentValidator) => (pass === true
                 ? (currentValidator.validator(newValue, stateClone) === true || currentValidator.message) : pass
             ), true);
+        if (get(field, 'fieldOptions.disabled')) {
+            validatorResult = true;
+        }
 
         this.updateFieldState(stateClone, fieldName, {
             valid: validatorResult === true,
