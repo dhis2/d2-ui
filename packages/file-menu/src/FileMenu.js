@@ -142,7 +142,10 @@ export class FileMenu extends Component {
                             !this.state.fileModel ||
                                 (this.state.fileModel && this.state.fileModel.access.update)
                         )}
+                        fileType={fileType}
+                        fileModel={this.state.fileModel}
                         onSave={this.onAction(onSave)}
+                        onSaveAs={this.onAction(onSaveAs)}
                         onClose={this.onAction()}
                     />
                     <SaveAsMenuItem

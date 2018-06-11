@@ -21,7 +21,7 @@ class SaveAsDialog extends Component {
 
     componentWillReceiveProps(nextProps) {
         // reset form to initial value when reopening the save as dialog
-        if (nextProps.open === true && !this.state.name) {
+        if (nextProps.open === true && nextProps.fileModel && !this.state.name) {
             this.setState({
                 name: nextProps.fileModel.displayName || '',
                 description: nextProps.fileModel.displayDescription || '',
