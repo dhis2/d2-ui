@@ -1,0 +1,71 @@
+button.nav-button {
+    padding: 5px 13px 3px;
+    border-radius: 0;
+}
+
+.nav-button.active, .nav-button.active:hover {
+    background: #117ad4;
+    color: #fff;
+}
+
+.block {
+    display: inline-block;
+    vertical-align: middle;
+}
+.block.options {
+    width: 50%;
+}
+
+.block.buttons {
+    width: 10%;
+    padding: 0 5px;
+}
+
+.block.buttons button {
+    min-width: 0;
+    box-shadow: 0 2px 5px #b1b1b1;
+    padding: 7px 10px 5px;
+    margin: 0 auto;
+    display: block;
+}
+
+.block.buttons button:first-child {
+    margin-bottom: 20px;
+}
+
+.block.selected-periods {
+    width: 38%;
+    vertical-align: top;
+}
+
+
+.selected-periods .selector-area .periods-list {
+    height: 318px;
+}
+
+.selected-periods .title {
+    margin: 0 -10px;
+    padding: 0 0 10px 10px;
+    font-weight: 500;
+    color: #4b4b4b;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.selector-area {
+  margin-top: 20px;
+  border: 1px solid #e8e8e8;
+  padding: 10px;
+}
+
+.selector-area .periods-list {
+    overflow: auto;
+    height: 300px;
+}
+
+.selector-area .form-control.period-type { width: 70%; }
+.selector-area .form-control.year { width: 30%; }
+.selector-area .period-li { padding: 5px 5px 2px; }
+.selector-area .period-li.selected { background: #1E88E5; }
+.selector-area .period-li.selected h3 { color: white; }
+.selector-area .period-li .list-icon { font-size: 14px; margin-right: 3px; }
+.selector-area .period-li span.list-text { position: relative; bottom: 2px; }
