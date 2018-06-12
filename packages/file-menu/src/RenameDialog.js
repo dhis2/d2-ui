@@ -37,7 +37,7 @@ class RenameDialog extends Component {
         this.props.onRequestClose();
     };
 
-    handleChange = field => (event) => {
+    handleChange = field => event => {
         event.preventDefault();
 
         this.setState({
@@ -45,7 +45,7 @@ class RenameDialog extends Component {
         });
     };
 
-    handleSubmit = async (event) => {
+    handleSubmit = async event => {
         event.preventDefault();
 
         const { fileModel, onRequestRename, onRequestRenameError } = this.props;
@@ -53,27 +53,25 @@ class RenameDialog extends Component {
         if (fileModel) {
             const form = this.state;
 
-            fileModel.name = form.newName;
-            fileModel.description = form.newDescription;
-
             try {
-                const validationStatus = await fileModel.validate();
+                const payload = {
+                    description: form.newDescription,
+                };
 
-                if (validationStatus.status === true) {
-                    const payload = {
-                        description: form.newDescription,
-                    };
+                if (form.newName) {
+                    payload.name = form.newName;
+                }
 
-                    if (form.newName) {
-                        payload.name = form.newName;
-                    }
+                if (payload.name) {
+                    const response = await this.context.d2.Api.getApi().patch(
+                        fileModel.href,
+                        payload
+                    );
 
-                    if (payload.name) {
-                        await this.context.d2.Api.getApi().patch(fileModel.href, payload);
-
-                        if (onRequestRename) {
-                            onRequestRename();
-                        }
+                    if (response.status === 'ERROR') {
+                        throw new Error(response);
+                    } else if (onRequestRename) {
+                        onRequestRename();
                     }
                 }
             } catch (err) {
@@ -90,7 +88,9 @@ class RenameDialog extends Component {
         return (
             <Dialog open={open} onClose={this.onRequestClose} maxWidth="md">
                 <form onSubmit={this.handleSubmit}>
-                    <DialogTitle>{i18n.t('Rename {{what}}', { what: getFileTypeLabel(fileType) })}</DialogTitle>
+                    <DialogTitle>
+                        {i18n.t('Rename {{what}}', { what: getFileTypeLabel(fileType) })}
+                    </DialogTitle>
                     <DialogContent>
                         <FormControl fullWidth>
                             <TextField

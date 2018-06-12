@@ -17,15 +17,23 @@ class TranslateMenuItem extends Component {
         };
     }
 
-    onDialogReturn = success => () => {
+    onClose = () => {
+        this.toggleTranslationDialog();
+
+        if (this.props.onClose) {
+            this.props.onClose();
+        }
+    };
+
+    onDialogReturn = success => args => {
         const { onTranslate, onTranslateError } = this.props;
 
         this.toggleTranslationDialog();
 
         if (success && onTranslate) {
-            onTranslate();
+            onTranslate(args);
         } else if (onTranslateError) {
-            onTranslateError();
+            onTranslateError(args);
         }
     };
 
@@ -48,7 +56,7 @@ class TranslateMenuItem extends Component {
                     <TranslationDialog
                         d2={this.context.d2}
                         open={this.state.dialogIsOpen}
-                        onRequestClose={this.toggleTranslationDialog}
+                        onRequestClose={this.onClose}
                         objectToTranslate={fileModel}
                         fieldsToTranslate={['name', 'description']}
                         onTranslationSaved={this.onDialogReturn(true)}
@@ -69,13 +77,15 @@ TranslateMenuItem.defaultProps = {
     fileModel: null,
     onTranslate: null,
     onTranslateError: null,
+    onClose: null,
 };
 
 TranslateMenuItem.propTypes = {
     enabled: PropTypes.bool,
     fileModel: PropTypes.object,
-    onTranslate: PropTypes.func.isRequired,
-    onTranslateError: PropTypes.func.isRequired,
+    onTranslate: PropTypes.func,
+    onTranslateError: PropTypes.func,
+    onClose: PropTypes.func,
 };
 
 export default TranslateMenuItem;

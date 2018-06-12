@@ -139,14 +139,34 @@ describe('Interpretations: Interpretations component', () => {
             });
         });
 
-        describe("change of type/id props", () => {
+        describe("change of prop type", () => {
             beforeEach(() => {
-                interpretationsComponent.setProps({type: "chart", id: "hR4gkeEfe12"});
+                interpretationsComponent.setProps({type: "chart"});
             });
 
-            it("should load new model", () => {
-                expect(helpers.getFavoriteWithInterpretations).toBeCalledWith(context.d2, "chart", "hR4gkeEfe12")
+            it("should reload new model", () => {
+                expect(helpers.getFavoriteWithInterpretations).toBeCalledWith(context.d2, "chart", "zDP78aJU8nX")
             });
-        })
+        });
+
+        describe("change of prop id", () => {
+            beforeEach(() => {
+                interpretationsComponent.setProps({id: "hR4gkeEfe12"});
+            });
+
+            it("should reload new model", () => {
+                expect(helpers.getFavoriteWithInterpretations).toBeCalledWith(context.d2, "map", "hR4gkeEfe12")
+            });
+        });
+
+        describe("change of prop lastUpdated", () => {
+            beforeEach(() => {
+                interpretationsComponent.setProps({lastUpdated: "2018-05-11T12:59:45.165"});
+            });
+
+            it("should reload new model", () => {
+                expect(helpers.getFavoriteWithInterpretations).toBeCalledWith(context.d2, "map", "zDP78aJU8nX")
+            });
+        });
     });
 });

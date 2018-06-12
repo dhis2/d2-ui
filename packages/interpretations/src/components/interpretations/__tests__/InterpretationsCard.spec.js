@@ -175,6 +175,12 @@ describe('Interpretations: Interpretations -> InterpretationsCard component', ()
                 expect(interpretationsCard.find("Interpretation").find({extended: true})).toHaveLength(1);
             });
 
+            it("should call the current interpretation prop", () => {
+                const interpretation = interpretationsCard.find("Interpretation").at(0).prop("interpretation");
+                const { onCurrentInterpretationChange } = interpretationsCard.instance().props;
+                expect(onCurrentInterpretationChange).toBeCalledWith(interpretation);
+            });
+
             describe("when click on back action", () => {
                 beforeEach(() => {
                     interpretationsCard.find("IconButton").find({tooltip: "clear_interpretation_translated"}).simulate("click");

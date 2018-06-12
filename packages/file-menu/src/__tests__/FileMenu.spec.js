@@ -23,7 +23,6 @@ describe('File: FileMenu component', () => {
             onRename: jest.fn(),
             onTranslate: jest.fn(),
             onShare: jest.fn(),
-            onWriteInterpretation: jest.fn(),
             onDelete: jest.fn(),
             onError: jest.fn(),
         };
@@ -57,16 +56,11 @@ describe('File: FileMenu component', () => {
     const buttons = [
         { name: 'New', componentName: 'NewMenuItem', enabled: false },
         { name: 'Open', componentName: 'OpenMenuItem', enabled: true },
-        { name: 'Save', componentName: 'SaveMenuItem', enabled: false },
+        { name: 'Save', componentName: 'SaveMenuItem', enabled: true },
         { name: 'Save as...', componentName: 'SaveAsMenuItem', enabled: false },
         { name: 'Rename', componentName: 'RenameMenuItem', enabled: false },
         { name: 'Translate', componentName: 'TranslateMenuItem', enabled: false },
         { name: 'Share', componentName: 'ShareMenuItem', enabled: false },
-        {
-            name: 'Write interpretation',
-            componentName: 'WriteInterpretationMenuItem',
-            enabled: false,
-        },
         { name: 'Get link', componentName: 'GetLinkMenuItem', enabled: false },
         { name: 'Delete', componentName: 'DeleteMenuItem', enabled: false },
     ];
