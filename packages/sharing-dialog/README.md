@@ -26,13 +26,13 @@ $ npm publish
 ## Install
 
 ```sh
-yarn add d2-ui-sharing
+yarn add @dhis2/d2-ui-sharing-dialog
 ```
 
 ## Import
 
 ```js
-import SharingDialog from 'd2-ui-sharing';
+import SharingDialog from '@dhis2/d2-ui-sharing-dialog';
 
 <SharingDialog
     open={function}
