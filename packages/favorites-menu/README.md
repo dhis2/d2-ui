@@ -26,13 +26,13 @@ $ npm publish
 ## Install
 
 ```sh
-yarn add d2-ui-favorites-menu
+yarn add @dhis2/d2-ui-favorites-menu
 ```
 
 ## Import
 
 ```js
-import FavoritesMenu from 'd2-ui-favorites-menu';
+import FavoritesMenu from '@dhis2/d2-ui-favorites-menu';
 
 <FavoritesMenu
     d2={d2}

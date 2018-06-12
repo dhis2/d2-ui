@@ -20,7 +20,7 @@ $ npm publish
 ## Install
 
 ```sh
-$ yarn add d2-ui-interpretations
+$ yarn add @dhis2/d2-ui-interpretations
 ```
 
 ## Local development
