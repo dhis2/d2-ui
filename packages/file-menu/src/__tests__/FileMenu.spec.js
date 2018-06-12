@@ -14,6 +14,9 @@ describe('File: FileMenu component', () => {
 
     beforeEach(() => {
         props = {
+            classes: {
+                menuButton: { textDecoration: 'none' },
+            },
             d2: context.d2,
             fileType: 'chart',
             onNew: jest.fn(),
