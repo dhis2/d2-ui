@@ -26,13 +26,13 @@ $ npm publish
 ## Install
 
 ```sh
-yarn add d2-ui-file-menu
+yarn add @dhis2/d2-ui-file-menu
 ```
 
 ## Import
 
 ```js
-import FileMenu from 'd2-ui-file-menu';
+import FileMenu from '@dhis2/d2-ui-file-menu';
 
 <FileMenu
     d2={d2}
