@@ -11,6 +11,24 @@ describe('File: FileMenu component', () => {
     let props;
 
     const context = getStubContext();
+    context.d2.models = {
+        chart: {
+            get: jest.fn().mockReturnValue(
+                Promise.resolve({
+                    id: 'some-test-id',
+                    access: {
+                        update: true,
+                        manage: true,
+                        delete: true,
+                    },
+                })
+            ),
+        },
+    };
+
+    const renderComponent = props => {
+        return shallow(<FileMenu {...props} />);
+    };
 
     beforeEach(() => {
         props = {
@@ -30,7 +48,7 @@ describe('File: FileMenu component', () => {
             onError: jest.fn(),
         };
 
-        fileMenu = shallow(<FileMenu {...props} />);
+        fileMenu = renderComponent(props);
     });
 
     it('should have rendered a result', () => {
@@ -85,5 +103,32 @@ describe('File: FileMenu component', () => {
 
         button.simulate('click', { currentTarget: button });
         expect(fileMenu.find(Menu).props().open).toBe(false);
+    });
+
+    it('should enable the SaveAs button when an id is passed to props', () => {
+        fileMenu = renderComponent({ ...props, fileId: 'some-test-id' });
+
+        // test async
+        Promise.resolve()
+            .then(() => {
+                fileMenu.update();
+
+                return expect(fileMenu.find('SaveAsMenuItem').props().enabled).toBe(true);
+            })
+            .then(() => {
+                return expect(fileMenu.find('RenameMenuItem').props().enabled).toBe(true);
+            })
+            .then(() => {
+                return expect(fileMenu.find('TranslateMenuItem').props().enabled).toBe(true);
+            })
+            .then(() => {
+                return expect(fileMenu.find('ShareMenuItem').props().enabled).toBe(true);
+            })
+            .then(() => {
+                return expect(fileMenu.find('GetLinkMenuItem').props().enabled).toBe(true);
+            })
+            .then(() => {
+                return expect(fileMenu.find('DeleteMenuItem').props().enabled).toBe(true);
+            });
     });
 });
