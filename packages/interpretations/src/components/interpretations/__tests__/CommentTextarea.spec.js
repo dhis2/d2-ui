@@ -41,12 +41,12 @@ describe('Interpretations: Interpretations -> CommentTextarea component', () => 
         });
 
         it('should render a post link', () => {
-            expect(commentTextarea.find("Link")).toHaveProp("label", "post_comment_translated")
+            expect(commentTextarea.find("Link")).toHaveProp("label", "Post comment")
         });
 
         it('should not render a cancel link', () => {
             const links = commentTextarea.find("Link");
-            const cancelLinks = links.findWhere(link => link.props().label === "cancel_translated");
+            const cancelLinks = links.findWhere(link => link.props().label === "Cancel");
             expect(cancelLinks).not.toExist();
         });
 
@@ -54,7 +54,7 @@ describe('Interpretations: Interpretations -> CommentTextarea component', () => 
             beforeEach(() => {
                 commentTextarea.find("textarea").simulate('change', {target: {value: "new text"}});
                 const links = commentTextarea.find("Link");
-                const postLink = links.findWhere(link => link.props().label === "post_comment_translated");
+                const postLink = links.findWhere(link => link.props().label === "Post comment");
                 postLink.simulate("click");
             });
 
@@ -82,14 +82,14 @@ describe('Interpretations: Interpretations -> CommentTextarea component', () => 
         it('should render an ok link', () => {
             const okLinks = commentTextarea
                 .find("Link")
-                .findWhere(link => link.props().label === "ok_translated");
+                .findWhere(link => link.props().label === "OK");
             expect(okLinks).toExist();
         });
 
         it('should render a cancel link', () => {
             const cancelLinks = commentTextarea
                 .find("Link")
-                .findWhere(link => link.props().label === "cancel_translated");
+                .findWhere(link => link.props().label === "Cancel");
             expect(cancelLinks).toExist();
         });
 
@@ -97,7 +97,7 @@ describe('Interpretations: Interpretations -> CommentTextarea component', () => 
             beforeEach(() => {
                 commentTextarea
                     .find("Link")
-                    .findWhere(link => link.props().label === "cancel_translated")
+                    .findWhere(link => link.props().label === "Cancel")
                     .simulate("click");
             });
 
@@ -111,7 +111,7 @@ describe('Interpretations: Interpretations -> CommentTextarea component', () => 
             beforeEach(() => {
                 commentTextarea
                     .find("Link")
-                    .findWhere(link => link.props().label === "ok_translated")
+                    .findWhere(link => link.props().label === "OK")
                     .simulate("click");
             });
 

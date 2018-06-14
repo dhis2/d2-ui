@@ -1,5 +1,4 @@
 import React from 'react';
-import { IntlProvider, addLocaleData } from 'react-intl';
 import PropTypes from 'prop-types';
 import { LoadingMask } from '@dhis2/d2-ui-core';
 import { getFavoriteWithInterpretations } from '../models/helpers';
@@ -7,6 +6,12 @@ import DetailsCard from './details/DetailsCard';
 import InterpretationsCard from './interpretations/InterpretationsCard';
 import isEqual from 'lodash/fp/isEqual'
 import pick from 'lodash/fp/pick'
+import i18n from '../locales';
+
+function configI18n(d2) {
+    const locale = d2.currentUser.userSettings.settings.keyUiLocale;
+    i18n.changeLanguage(locale);
+}
 
 class Interpretations extends React.Component {
     state = { model: null };
@@ -21,8 +26,8 @@ class Interpretations extends React.Component {
     }
 
     componentDidMount() {
+        configI18n(this.props.d2);
         this.loadModel(this.props);
-        this.initLocale(this.props.d2);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -35,10 +40,6 @@ class Interpretations extends React.Component {
 
     getLocale(d2) {
         return d2.currentUser.userSettings.settings.keyUiLocale || "en";
-    }
-
-    initLocale(d2) {
-        addLocaleData(require(`react-intl/locale-data/${this.getLocale(d2)}`));
     }
 
     loadModel(props) {
@@ -62,20 +63,18 @@ class Interpretations extends React.Component {
           return <LoadingMask style={{position: "relative"}} size={1} />;
 
         return (
-            <IntlProvider locale={locale}>
-                <div>
-                    <DetailsCard
-                        model={model}
-                    />
+            <div>
+                <DetailsCard
+                    model={model}
+                />
 
-                    <InterpretationsCard
-                        model={model}
-                        onChange={this.onChange}
-                        currentInterpretationId={currentInterpretationId}
-                        onCurrentInterpretationChange={onCurrentInterpretationChange}
-                    />
-                </div>
-            </IntlProvider>
+                <InterpretationsCard
+                    model={model}
+                    onChange={this.onChange}
+                    currentInterpretationId={currentInterpretationId}
+                    onCurrentInterpretationChange={onCurrentInterpretationChange}
+                />
+            </div>
         );
     }
 }

@@ -2,34 +2,30 @@ import React from 'react';
 import { Link, ActionSeparator, WithAvatar, getUserLink } from './misc';
 import CommentTextarea from './CommentTextarea';
 import { userCanManage } from '../../util/auth';
-import { FormattedRelative } from 'react-intl';
 import PropTypes from 'prop-types';
 import CommentModel from '../../models/comment';
-import { config } from 'd2/lib/d2';
+import i18n from '@dhis2/d2-i18n'
 import orderBy from 'lodash/fp/orderBy';
 import styles from './InterpretationsStyles.js';
+import { formatRelative } from '../../util/i18n';
 
-config.i18n.strings.add('edit');
-config.i18n.strings.add('delete');
-config.i18n.strings.add('delete_comment_confirmation');
-
-const Comment = ({ d2, comment, showActions, onEdit, onDelete }) => (
+const Comment = ({ comment, showActions, onEdit, onDelete }) => (
     <div>
         <div style={styles.commentText}>
             {comment.text}
         </div>
 
         <span style={styles.tipText}>
-            <FormattedRelative value={comment.created} />
+            {formatRelative(comment.created)}
         </span>
 
         <ActionSeparator labelText="" />
 
         {showActions &&
             <span>
-                <Link label={d2.i18n.getTranslation('edit')} onClick={() => onEdit(comment)} />
+                <Link label={i18n.t('Edit')} onClick={() => onEdit(comment)} />
                 <ActionSeparator />
-                <Link label={d2.i18n.getTranslation('delete')} onClick={() => onDelete(comment)} />
+                <Link label={i18n.t('Delete')} onClick={() => onDelete(comment)} />
             </span>}
     </div>
 );
@@ -64,7 +60,7 @@ export default class InterpretationComments extends React.Component {
     }
 
     onDelete(comment) {
-        if (confirm(this.context.d2.i18n.getTranslation('delete_comment_confirmation'))) {
+        if (confirm(i18n.t('Are you sure you want to remove this comment?'))) {
             this.props.onDelete(comment);
         }
     }
@@ -103,7 +99,6 @@ export default class InterpretationComments extends React.Component {
                                     />
                                 :
                                     <Comment
-                                        d2={d2}
                                         comment={comment}
                                         showActions={userCanManage(d2, comment)}
                                         onEdit={() => this.onEdit(comment)}
