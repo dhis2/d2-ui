@@ -1,12 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 import { Link, ActionSeparator } from './misc';
-import { config } from 'd2/lib/d2';
+import i18n from '@dhis2/d2-i18n'
 import styles from './InterpretationsStyles.js';
-
-config.i18n.strings.add('post_comment');
-config.i18n.strings.add('ok');
-config.i18n.strings.add('cancel');
 
 class CommentTextarea extends React.Component {
     static propTypes = {
@@ -40,10 +36,9 @@ class CommentTextarea extends React.Component {
     }
 
     render() {
-        const { d2 } = this.context;
         const { comment, onCancel } = this.props;
         const { text } = this.state;
-        const postText = onCancel ? d2.i18n.getTranslation("ok") : d2.i18n.getTranslation('post_comment');
+        const postText = onCancel ? i18n.t("OK") : i18n.t('Post comment');
 
         return (
             <div>
@@ -52,7 +47,7 @@ class CommentTextarea extends React.Component {
                 {onCancel &&
                     <span>
                         <ActionSeparator />
-                        <Link label={d2.i18n.getTranslation('cancel')} onClick={onCancel} />
+                        <Link label={i18n.t('Cancel')} onClick={onCancel} />
                     </span>}
             </div>
         );
@@ -63,10 +58,6 @@ CommentTextarea.propTypes = {
     comment: PropTypes.object.isRequired,
     onPost: PropTypes.func.isRequired,
     onCancel: PropTypes.func,
-};
-
-CommentTextarea.contextTypes = {
-    d2: PropTypes.object.isRequired,
 };
 
 export default CommentTextarea;

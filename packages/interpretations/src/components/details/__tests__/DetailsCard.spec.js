@@ -2,7 +2,6 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 import PropTypes from 'prop-types';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import { IntlProvider } from 'react-intl';
 
 import * as helpers from '../../../models/helpers';
 import DetailsCard from '../DetailsCard';
@@ -66,13 +65,12 @@ const baseProps = {
 };
 
 const renderComponent = (partialProps = {}) => {
-    const { intl } = new IntlProvider({ locale: 'en' }, {}).getChildContext();
-    const props = { ...baseProps, ...partialProps, intl };
-    return shallow(<DetailsCard.WrappedComponent {...props} />, { context, childContextTypes });
+    const props = { ...baseProps, ...partialProps };
+    return shallow(<DetailsCard {...props} />, { context, childContextTypes });
 };
 
 const getListItem = (detailsCard, label) => {
-    return detailsCard.find("ListItem").findWhere(item => item.props().label === `${label}_translated`);
+    return detailsCard.find("ListItem").findWhere(item => item.props().label === label);
 };
 
 describe('Interpretations: Details -> DetailsCard component', () => {
@@ -87,23 +85,23 @@ describe('Interpretations: Details -> DetailsCard component', () => {
     });
 
     it('should render owner', () => {
-        expect(getListItem(detailsCard, "owner").props().text).toEqual("John Traore");
+        expect(getListItem(detailsCard, "Owner").props().text).toEqual("John Traore");
     });
 
     it('should render created', () => {
-        expect(getListItem(detailsCard, "created").props().text).toEqual("5/17/2018");
+        expect(getListItem(detailsCard, "Created").props().text).toEqual("05/17/2018");
     });
 
     it('should render last updated', () => {
-        expect(getListItem(detailsCard, "last_updated").props().text).toEqual("5/21/2018");
+        expect(getListItem(detailsCard, "Last updated").props().text).toEqual("05/21/2018");
     });
 
     it('should render favorite views', () => {
-        expect(getListItem(detailsCard, "views").props().text).toEqual(5);
+        expect(getListItem(detailsCard, "Views").props().text).toEqual(5);
     });
 
     it('should render sharing info', () => {
-        expect(getListItem(detailsCard, "sharing").props().text)
-            .toEqual("public_translated: access_read_translated + Administrators");
+        expect(getListItem(detailsCard, "Sharing").props().text)
+            .toEqual("Public: Read + Administrators");
     });
 });
