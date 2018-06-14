@@ -73,12 +73,12 @@ const commonExpectations = () => {
     });
 
     it('should show the creation date', () => {
-        expect(interpretationComponent.find("FormattedDate")).toHaveProp("value", interpretation.created);
+        expect(interpretationComponent.text()).toMatch("4/14/2018");
     });
 
     it('should show how many people like it', () => {
         const count = interpretation.likedBy.length;
-        expect(interpretationComponent.text()).toMatch(`${count} people_like_this_translated`);
+        expect(interpretationComponent.text()).toMatch(`${count} people like this`);
     });
 
     it('should show who likes it', () => {
@@ -88,7 +88,7 @@ const commonExpectations = () => {
 
     it('should show how many comments it has', () => {
         const count = interpretation.comments.length;
-        expect(interpretationComponent.text()).toMatch(`${count} people_commented_translated`);
+        expect(interpretationComponent.text()).toMatch(`${count} people commented`);
     });
 };
 
@@ -136,12 +136,12 @@ describe('Interpretations: Interpretations -> Interpretation component', () => {
             });
 
             it("should show like action", () => {
-                expect(interpretationComponent.find("Link").find({label: "like_translated"})).toExist();
+                expect(interpretationComponent.find("Link").find({label: "Like"})).toExist();
             });
 
             describe('when like is clicked', () => {
                 beforeEach(() => {
-                    interpretationComponent.find("Link").find({label: "like_translated"}).simulate("click");
+                    interpretationComponent.find("Link").find({label: "Like"}).simulate("click");
                 });
 
                 it("should like interpretation", () => {
@@ -162,12 +162,12 @@ describe('Interpretations: Interpretations -> Interpretation component', () => {
             });
 
             it("should show unlike action", () => {
-                expect(interpretationComponent.find("Link").find({label: "unlike_translated"})).toExist();
+                expect(interpretationComponent.find("Link").find({label: "Unlike"})).toExist();
             });
 
             describe('when unlike is clicked', () => {
                 beforeEach(() => {
-                    interpretationComponent.find("Link").find({label: "unlike_translated"}).simulate("click");
+                    interpretationComponent.find("Link").find({label: "Unlike"}).simulate("click");
                 });
 
                 it("should unlike interpretation", () => {
@@ -189,16 +189,16 @@ describe('Interpretations: Interpretations -> Interpretation component', () => {
                 });
 
                 it("should show an edit action", () => {
-                    expect(interpretationComponent.find("Link").find({label: "edit_translated"})).toExist();
+                    expect(interpretationComponent.find("Link").find({label: "Edit"})).toExist();
                 });
 
                 it("should show a delete action", () => {
-                    expect(interpretationComponent.find("Link").find({label: "delete_translated"})).toExist();
+                    expect(interpretationComponent.find("Link").find({label: "Delete"})).toExist();
                 });
 
                 describe("when edit action clicked", () => {
                     beforeEach(() => {
-                        interpretationComponent.find("Link").find({label: "edit_translated"}).simulate("click");
+                        interpretationComponent.find("Link").find({label: "Edit"}).simulate("click");
                         interpretationComponent.update();
                     });
 
@@ -210,7 +210,7 @@ describe('Interpretations: Interpretations -> Interpretation component', () => {
                 describe("when delete action clicked", () => {
                     beforeEach(() => {
                         window.confirm = jest.fn(() => true);
-                        interpretationComponent.find("Link").find({label: "delete_translated"}).simulate("click");
+                        interpretationComponent.find("Link").find({label: "Delete"}).simulate("click");
                         interpretationComponent.update();
                     });
 
@@ -236,11 +236,11 @@ describe('Interpretations: Interpretations -> Interpretation component', () => {
                 });
 
                 it("should not show an edit action", () => {
-                    expect(interpretationComponent.find("Link").find({label: "edit_translated"})).not.toExist();
+                    expect(interpretationComponent.find("Link").find({label: "Edit"})).not.toExist();
                 });
 
                 it("should not show a delete action", () => {
-                    expect(interpretationComponent.find("Link").find({label: "delete_translated"})).not.toExist();
+                    expect(interpretationComponent.find("Link").find({label: "Delete"})).not.toExist();
                 });
             });
         });

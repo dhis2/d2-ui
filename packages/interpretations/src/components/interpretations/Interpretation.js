@@ -2,22 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FlatButton from 'material-ui/FlatButton/FlatButton';
 import { SvgIcon } from '@dhis2/d2-ui-core';
-import { FormattedDate } from 'react-intl';
 import InterpretationComments from './InterpretationComments';
 import InterpretationDialog from './InterpretationDialog';
 import { Link, ActionSeparator, WithAvatar, getUserLink } from './misc';
 import { userCanManage } from '../../util/auth';
-import { config } from 'd2/lib/d2';
+import i18n from '@dhis2/d2-i18n'
 import styles from './InterpretationsStyles.js';
 import some from 'lodash/fp/some';
-
-config.i18n.strings.add('edit');
-config.i18n.strings.add('delete');
-config.i18n.strings.add('delete_interpretation_confirmation');
-config.i18n.strings.add('like');
-config.i18n.strings.add('unlike');
-config.i18n.strings.add('people_like_this');
-config.i18n.strings.add('people_commented');
+import { formatDate } from '../../util/i18n';
 
 const EllipsisText = ({ max, text }) => {
     const finalText = text && text.length > max ? `${text.slice(0, max)} ...` : text;
@@ -62,9 +54,8 @@ class Interpretation extends React.Component {
 
     deleteInterpretation() {
         const { interpretation } = this.props;
-        const { d2 } = this.context;
 
-        if (confirm(d2.i18n.getTranslation('delete_interpretation_confirmation'))) {
+        if (confirm(i18n.t('Are you sure you want to remove this interpretation?'))) {
             interpretation.delete().then(() => this.notifyChange(null));
         }
     }
@@ -119,7 +110,7 @@ class Interpretation extends React.Component {
                         {getUserLink(d2, interpretation.user)}
 
                         <span style={styles.date}>
-                            <FormattedDate value={interpretation.created} day="2-digit" month="short" year="numeric" />
+                            {formatDate(interpretation.created)}
                         </span>
                     </div>
 
@@ -133,14 +124,14 @@ class Interpretation extends React.Component {
                         {showActions &&
                             <div className="actions">
                                 {currentUserLikesInterpretation
-                                    ? <Link label={d2.i18n.getTranslation('unlike')} onClick={this.unlike} />
-                                    : <Link label={d2.i18n.getTranslation('like')} onClick={this.like} />}
+                                    ? <Link label={i18n.t('Unlike')} onClick={this.unlike} />
+                                    : <Link label={i18n.t('Like')} onClick={this.like} />}
                                 {userCanManage(d2, interpretation) &&
                                     <span className="owner-actions">
                                         <ActionSeparator />
-                                        <Link label={d2.i18n.getTranslation('edit')} onClick={this.openInterpretationDialog} />
+                                        <Link label={i18n.t('Edit')} onClick={this.openInterpretationDialog} />
                                         <ActionSeparator />
-                                        <Link label={d2.i18n.getTranslation('delete')} onClick={this.deleteInterpretation} />
+                                        <Link label={i18n.t('Delete')} onClick={this.deleteInterpretation} />
                                     </span>}
                             </div>
                         }
@@ -150,12 +141,12 @@ class Interpretation extends React.Component {
                                 <SvgIcon icon="ThumbUp" style={styles.likeIcon} />
 
                                 <span style={{color: "#22A"}} className="liked-by" title={likedByTooltip}>
-                                    {interpretation.likes} {d2.i18n.getTranslation('people_like_this')}
+                                    {interpretation.likes} {i18n.t('people like this')}
                                 </span>
 
                                 <ActionSeparator />
 
-                                {`${interpretation.comments.length} ${d2.i18n.getTranslation('people_commented')}`}
+                                {`${interpretation.comments.length} ${i18n.t('people commented')}`}
                             </div>
 
                             {showComments &&

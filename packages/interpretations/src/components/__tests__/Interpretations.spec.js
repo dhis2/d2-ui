@@ -93,12 +93,12 @@ describe('Interpretations: Interpretations component', () => {
     describe("details card", () => {
         it("should be shown", () => {
             interpretationsComponent.update();
-            expect(interpretationsComponent.find("InjectIntl(DetailsCard)")).toExist();
+            expect(interpretationsComponent.find("DetailsCard")).toExist();
         });
 
         it("should have favorite as model", () => {
             interpretationsComponent.update();
-            const detailsCard = interpretationsComponent.find("InjectIntl(DetailsCard)");
+            const detailsCard = interpretationsComponent.find("DetailsCard");
             expect(detailsCard).toHaveProp("model", favorite);
         });
     });
