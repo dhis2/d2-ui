@@ -33,15 +33,20 @@ export class FileMenu extends Component {
         d2: this.props.d2,
     });
 
-    componentWillReceiveProps = nextProps => {
-        if (nextProps.fileId) {
-            this.setFileModel(nextProps.fileId);
+    componentDidMount = () => {
+        if (this.props.fileId) {
+            this.setFileModel(this.props.fileId);
+        }
+    };
+
+    componentDidUpdate = prevProps => {
+        if (this.props.fileId && prevProps.fileId !== this.props.fileId) {
+            this.setFileModel(this.props.fileId);
         }
     };
 
     setFileModel = async id => {
         const model = await this.props.d2.models[this.props.fileType].get(id);
-
         this.setState({ fileModel: model });
     };
 
@@ -230,7 +235,7 @@ FileMenu.defaultProps = {
 FileMenu.propTypes = {
     d2: PropTypes.object,
     fileType: PropTypes.oneOf(['chart', 'eventChart', 'reportTable', 'eventReport', 'map']),
-    fileId: PropTypes.object,
+    fileId: PropTypes.string,
     onNew: PropTypes.func,
     onOpen: PropTypes.func,
     onSave: PropTypes.func,
