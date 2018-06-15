@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import List, { ListItem, ListItemText } from 'material-ui/List';
-import { withStyles } from 'material-ui/styles';
-import debounce from 'lodash.debounce';
+import PropTypes from 'prop-types';
+import debounce from 'lodash/debounce';
+
+import UserList from './UserList';
 
 const defaultState = {
     element: null,
@@ -11,41 +12,6 @@ const defaultState = {
     users: [],
     selectedUserIndex: 0,
 };
-
-const styles = theme => ({
-    selected: {
-        backgroundColor: 'lightgrey', // TODO not the same color as the MUI one, also clashes when the mouse is moved on the list, as the selection done programmatically remains active
-    },
-});
-
-const UserList = withStyles(styles)(({ classes, users, selectedUser, onUserSelect }) => {
-    const onClick = user => event => {
-        event.stopPropagation();
-
-        onUserSelect(user);
-    };
-
-    return (
-        <List dense disablePadding>
-            {users.length
-                ? users.map(u => (
-                      <ListItem
-                          button
-                          key={u.id}
-                          onClick={onClick(u)}
-                          className={
-                              selectedUser && selectedUser.id === u.id ? classes.selected : null
-                          }
-                      >
-                          <ListItemText
-                              primary={`${u.displayName} (${u.userCredentials.username})`}
-                          />
-                      </ListItem>
-                  ))
-                : null}
-        </List>
-    );
-});
 
 class MentionsWrapper extends Component {
     constructor(props) {
@@ -146,8 +112,16 @@ class MentionsWrapper extends Component {
             .slice(this.state.captureStartPosition - 1)
             .replace(/^@\w*/, `@${user.userCredentials.username}`)}`;
 
-        // trigger onChange on the input/textarea component to keep its state aligned
-        this.props.children.props.onChange(newValue);
+        const component = this.props.children;
+
+        // for a controlled component
+        // trigger onChange on the component to keep its state aligned
+        // otherwise try to set the value directly
+        if (component.props.onChange) {
+            component.props.onChange(newValue);
+        } else {
+            this.state.element.value = newValue;
+        }
 
         // need to refocus on the input/textarea
         this.state.element.focus();
@@ -186,5 +160,13 @@ class MentionsWrapper extends Component {
         );
     }
 }
+
+MentionsWrapper.defaultProps = {
+    d2: null,
+};
+
+MentionsWrapper.propTypes = {
+    d2: PropTypes.object,
+};
 
 export default MentionsWrapper;
