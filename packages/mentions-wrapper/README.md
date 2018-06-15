@@ -35,7 +35,7 @@ yarn add d2-ui-mentions-wrapper
 import FileMenu from 'd2-ui-mentions-wrapper';
 
 <MentionsWrapper d2={d2}>
-    <input />
+    <TextField ... />
 </MentionsWrapper>;
 ```
 
