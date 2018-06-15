@@ -24,8 +24,16 @@ export const getUserLink = (d2, user) => {
 };
 
 export const Link = (props) => {
-    const { label, ...otherProps } = props;
-    return <a style={styles.interpretationLink} {...otherProps}>{label}</a>;
+    const { label, value, onClick, ...otherProps } = props;
+    return (
+        <a
+            style={styles.interpretationLink}
+            onClick={ev => onClick(value)}
+            {...otherProps}
+        >
+            {label}
+        </a>
+    );
 };
 
 export const ActionSeparator = ({labelText = "·"}) => (

@@ -2,6 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import _ from 'lodash';
 import InterpretationComments from '../InterpretationComments';
+import InterpretationModel from '../../../models/interpretation';
 import { getStubContext } from '../../../../../../config/inject-theme';
 
 const context = getStubContext();
@@ -35,7 +36,7 @@ const interpretation = {
 
 const renderComponent = (partialProps = {}, partialContext = {}) => {
     const baseProps = {
-        interpretation: interpretation,
+        interpretation: new InterpretationModel({}, interpretation),
         onSave: jest.fn(),
         onDelete: jest.fn(),
     };
@@ -63,29 +64,23 @@ describe('Interpretations: Interpretations -> InterpretationComments component',
         commentComponents = interpretationComments.find("Comment");
     });
 
-    it('should render a non-cancellable comment text area component', () => {
-        const commentTextarea = interpretationComments.find("CommentTextarea");
-        expect(commentTextarea.props().comment.text).toEqual("");
-        expect(commentTextarea).not.toHaveProp("onCancel");
-    });
-
     describe('list of comments', () => {
         it('should render interpretation comments', () => {
             expect(commentComponents).toHaveLength(interpretation.comments.length);
         });
 
-        it('should be sorted by date (from newest to oldest)', () => {
+        it('should be sorted by date (from oldest to newest)', () => {
             const commentIds = commentComponents.map(commentComponent => commentComponent.props().comment.id);
-            expect(commentIds).toEqual(["gerk24EJ22x", "tEvCRL8r9KW"]);
+            expect(commentIds).toEqual(["tEvCRL8r9KW", "gerk24EJ22x"]);
         });
 
         it('should render actions for a comment if current user is its author', () => {
             commentComponents.forEach(commentComponent => {
-                const showActions = commentComponent.props().showActions;
+                const showManageActions = commentComponent.props().showManageActions;
                 if (commentComponent.props().comment.user.id == currentUser.id) {
-                    expect(showActions).toBe(true);
+                    expect(showManageActions).toBe(true);
                 } else {
-                    expect(showActions).toBe(false);
+                    expect(showManageActions).toBe(false);
                 }
             });
         });
@@ -169,6 +164,22 @@ describe('Interpretations: Interpretations -> InterpretationComments component',
             expect(onDeleteCall[0]).toEqual(expect.objectContaining({
                 id: commentToDelete.id,
             }));
+        });
+    });
+
+    describe('click on reply link', () => {
+        beforeEach(() => {
+            commentComponent = commentComponents.at(1);
+            const commentToReplyTo = commentComponent.props().comment;
+            commentComponent.props().onReply(commentToReplyTo);
+            interpretationComments.update();
+        });
+
+        it('should render a non-cancellable comment text area component', () => {
+            const commentTextarea = interpretationComments.find("CommentTextarea");
+            expect(commentTextarea).toHaveLength(1);
+            expect(commentTextarea.props().comment.text).toEqual("");
+            expect(commentTextarea).not.toHaveProp("onCancel");
         });
     });
 });

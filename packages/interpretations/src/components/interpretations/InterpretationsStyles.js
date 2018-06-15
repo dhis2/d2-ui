@@ -41,6 +41,10 @@ export default {
         "marginLeft": 4,
     },
 
+    actions: {
+        "marginBottom": 5,
+    },
+
     greyBackground: {
         "backgroundColor": "#efefef",
         "marginTop": 2,
@@ -80,10 +84,19 @@ export default {
         "display": "inline-block",
     },
 
-    interpretationText: {
+    interpretationTextWrapper: {
         "marginBottom": 5,
         "marginLeft": 0,
         "marginTop": 5,
+    },
+
+    interpretationTextLimited: {
+        "display": "block",
+        "textOverflow": "ellipsis",
+        "wordWrap": "break-word",
+        "overflow": "hidden",
+        "maxHeight": "3.0em",
+        "lineHeight": "1.5em",
     },
 
     interpretationsCard: {
@@ -146,4 +159,20 @@ export default {
         "fontWeight": "bold",
         "textDecoration": "none",
     },
+
+    showMoreComments: {
+        "fontSize": "11px",
+        "textTransform": "uppercase",
+        "paddingLeft": "16px",
+        "paddingRight": "16px",
+        "fontWeight": "500",
+    },
+
+    richTextCss: `
+        .richText p { margin: 0; padding: 0 }
+        .richText img { width: 1.3em; height: 1.3em; }
+        .richText strong { font-weight: bold; }
+        .richText em { font-style: italic; }
+        .richText a { text-decoration: none; }
+    `,
 };
