@@ -29,7 +29,6 @@ class SharingDialog extends React.Component {
 
     constructor(props) {
         super(props);
-
         if (props.d2) {
             props.d2.i18n.addStrings(['share', 'close', 'no_manage_access']);
         } else {
@@ -49,14 +48,17 @@ class SharingDialog extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        console.warn('Received new props:', nextProps);
         const hasChanged = this.createPropsChecker(nextProps);
-
-        if (hasChanged('id') || hasChanged('type')) {
+        
+        if ((hasChanged('id') || hasChanged('type')) && nextProps.id && nextProps.type) {
+            console.warn('Ready to fetch from API!');
             this.resetState();
             if (nextProps.open) this.loadObjectFromApi(nextProps);
         }
-
-        if (!this.props.open && nextProps.open) {
+        
+        if (!this.props.open && nextProps.open && nextProps.id && nextProps.type) {
+            console.warn('Ready to fetch from API!');
             this.loadObjectFromApi(nextProps);
         }
     }
@@ -199,15 +201,24 @@ SharingDialog.propTypes = {
     onRequestClose: PropTypes.func.isRequired,
 
     /**
-     * Type of the sharable object.
+     * Type of the sharable object. Can be supplied after initial render.
      */
-    type: PropTypes.string.isRequired,
+    type: PropTypes.string,
 
     /**
-     * Id of the sharable object.
+     * Id of the sharable object. Can be supplied after initial render.
      */
-    id: PropTypes.string.isRequired,
+    id: PropTypes.string,
+
+    /**
+     * d2 instance to use.
+     */
     d2: PropTypes.object.isRequired,
+};
+
+SharingDialog.defaultProps = {
+    type: '',
+    id: '',
 };
 
 export default SharingDialog;
