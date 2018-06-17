@@ -4,6 +4,7 @@
 [![Test Coverage](https://codeclimate.com/github/dhis2/d2-ui/badges/coverage.svg)](https://codeclimate.com/github/dhis2/d2-ui/coverage)
 [![Code Climate](https://codeclimate.com/github/dhis2/d2-ui/badges/gpa.svg)](https://codeclimate.com/github/dhis2/d2-ui)
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdhis2%2Fd2-ui.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdhis2%2Fd2-ui?ref=badge_shield)
 
 ## Introduction
 
@@ -63,3 +64,7 @@ contribute](https://github.com/dhis2/d2-ui/blob/master/docs/CONTRIBUTING).
 
 Documented in [RELEASING](https://github.com/dhis2/d2-ui/blob/master/docs/RELEASING).
 
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdhis2%2Fd2-ui.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdhis2%2Fd2-ui?ref=badge_large)
