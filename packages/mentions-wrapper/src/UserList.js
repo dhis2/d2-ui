@@ -11,7 +11,9 @@ const styles = theme => ({
 
 export const UserList = ({ classes, users, selectedUser, onUserSelect }) => {
     const onClick = user => event => {
-        event.stopPropagation();
+        if (event) {
+            event.stopPropagation();
+        }
 
         onUserSelect(user);
     };
