@@ -57,7 +57,7 @@ describe('File: FileMenu component', () => {
     });
 
     const buttons = [
-        { name: 'New', componentName: 'NewMenuItem', enabled: false },
+        { name: 'New', componentName: 'NewMenuItem', enabled: true },
         { name: 'Open', componentName: 'OpenMenuItem', enabled: true },
         { name: 'Save', componentName: 'SaveMenuItem', enabled: true },
         { name: 'Save as...', componentName: 'SaveAsMenuItem', enabled: false },
