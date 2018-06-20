@@ -126,7 +126,7 @@ export class FileMenu extends Component {
                     anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
                     getContentAnchorEl={null}
                 >
-                    <NewMenuItem enabled={Boolean(this.state.fileModel)} onNew={this.onNew} />
+                    <NewMenuItem enabled={true} onNew={this.onNew} />
                     <Divider light />
 
                     <OpenMenuItem
