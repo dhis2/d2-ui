@@ -9,15 +9,12 @@ import { userCanManage } from '../../util/auth';
 import i18n from '@dhis2/d2-i18n'
 import styles from './InterpretationsStyles.js';
 import some from 'lodash/fp/some';
+import CommentModel from '../../models/comment';
 import { formatDate } from '../../util/i18n';
-
-const EllipsisText = ({ max, text }) => {
-    const finalText = text && text.length > max ? `${text.slice(0, max)} ...` : text;
-    return <span>{finalText}</span>;
-};
 
 class Interpretation extends React.Component {
     state = {
+        newComment: null,
         interpretationToEdit: null,
     };
 
@@ -29,6 +26,7 @@ class Interpretation extends React.Component {
         this.deleteInterpretation = this.deleteInterpretation.bind(this);
         this.openInterpretationDialog = this.openInterpretationDialog.bind(this);
         this.like = this.like.bind(this);
+        this.reply = this.reply.bind(this);
         this.unlike = this.unlike.bind(this);
         this.saveComment = this.saveComment.bind(this);
         this.deleteComment = this.deleteComment.bind(this);
@@ -50,6 +48,11 @@ class Interpretation extends React.Component {
 
     unlike() {
         this.saveInterpretationLike(this.props.interpretation, false);
+    }
+
+    reply() {
+        const newComment = CommentModel.getReplyForInterpretation(this.context.d2, this.props.interpretation);
+        this.setState({ newComment });
     }
 
     deleteInterpretation() {
@@ -86,8 +89,8 @@ class Interpretation extends React.Component {
     }
 
     render() {
-        const { interpretation, extended } = this.props;
-        const { interpretationToEdit } = this.state;
+        const { interpretation, extended, mentions } = this.props;
+        const { interpretationToEdit, newComment } = this.state;
         const { d2 } = this.context;
         const showActions = extended;
         const showComments = extended;
@@ -102,6 +105,7 @@ class Interpretation extends React.Component {
                         interpretation={interpretationToEdit}
                         onSave={this.saveInterpretationAndClose}
                         onClose={this.closeInterpretationDialog}
+                        mentions={mentions}
                     />
                 }
 
@@ -114,18 +118,26 @@ class Interpretation extends React.Component {
                         </span>
                     </div>
 
-                    <div style={styles.interpretationText}>
-                        <div>
-                            <EllipsisText max={200} text={interpretation.text} />
+                    <div style={styles.interpretationTextWrapper}>
+                        <style>{styles.richTextCss}</style>
+                        
+                        <div className="richText"
+                            style={extended ? {} : styles.interpretationTextLimited}
+                            dangerouslySetInnerHTML={{__html: interpretation.text}}>
                         </div>
                     </div>
 
                     <div>
                         {showActions &&
-                            <div className="actions">
+                            <div className="actions" style={styles.actions}>
                                 {currentUserLikesInterpretation
                                     ? <Link label={i18n.t('Unlike')} onClick={this.unlike} />
                                     : <Link label={i18n.t('Like')} onClick={this.like} />}
+                                    
+                                <ActionSeparator />
+
+                                <Link label={i18n.t('Reply')} onClick={this.reply} />
+
                                 {userCanManage(d2, interpretation) &&
                                     <span className="owner-actions">
                                         <ActionSeparator />
@@ -155,6 +167,8 @@ class Interpretation extends React.Component {
                                     interpretation={interpretation}
                                     onSave={this.saveComment}
                                     onDelete={this.deleteComment}
+                                    mentions={mentions}
+                                    newComment={newComment}
                                 />}
                         </div>
                     </div>

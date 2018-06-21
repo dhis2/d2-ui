@@ -41,16 +41,15 @@ describe('Interpretations: Interpretations -> InterpretationDialog component', (
         interpretationDialog = renderComponent();
     });
 
-    it('should render a multiline text field with the interpretation text', () => {
-        const textField = interpretationDialog.find("TextField");
-        expect(textField).toHaveProp("value", interpretation.text);
-        expect(textField.props().multiLine).toBe(true);
+    it('should render a RichEditor component field with the interpretation as initial text', () => {
+        const textField = interpretationDialog.find("RichEditor");
+        expect(textField).toHaveProp("initialContent", interpretation.text);
     });
 
     describe("when save is clicked with new text", () => {
         beforeEach(() => {
-            interpretationDialog.find("TextField").simulate('change', {}, "new text");
-            interpretationDialog.instance().save();
+            interpretationDialog.find("RichEditor").props().onEditorChange("new text");
+            interpretationDialog.instance()._save();
         });
 
         it("should call onSave with the updated interpretation", () => {
@@ -66,8 +65,8 @@ describe('Interpretations: Interpretations -> InterpretationDialog component', (
 
     describe("when cancel is clicked with new text", () => {
         beforeEach(() => {
-            interpretationDialog.find("TextField").simulate('change', {}, "new text");
-            interpretationDialog.instance().cancel();
+            interpretationDialog.find("RichEditor").props().onEditorChange("new text");
+            interpretationDialog.instance()._cancel();
         });
 
         it("should call onClose", () => {
