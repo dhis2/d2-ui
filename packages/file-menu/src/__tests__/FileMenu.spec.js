@@ -109,26 +109,15 @@ describe('File: FileMenu component', () => {
         fileMenu = renderComponent({ ...props, fileId: 'some-test-id' });
 
         // test async
-        Promise.resolve()
-            .then(() => {
-                fileMenu.update();
+        Promise.resolve().then(() => {
+            fileMenu.update();
 
-                return expect(fileMenu.find('SaveAsMenuItem').props().enabled).toBe(true);
-            })
-            .then(() => {
-                return expect(fileMenu.find('RenameMenuItem').props().enabled).toBe(true);
-            })
-            .then(() => {
-                return expect(fileMenu.find('TranslateMenuItem').props().enabled).toBe(true);
-            })
-            .then(() => {
-                return expect(fileMenu.find('ShareMenuItem').props().enabled).toBe(true);
-            })
-            .then(() => {
-                return expect(fileMenu.find('GetLinkMenuItem').props().enabled).toBe(true);
-            })
-            .then(() => {
-                return expect(fileMenu.find('DeleteMenuItem').props().enabled).toBe(true);
-            });
+            expect(fileMenu.find('SaveAsMenuItem').props().enabled).toBe(true);
+            expect(fileMenu.find('RenameMenuItem').props().enabled).toBe(true);
+            expect(fileMenu.find('TranslateMenuItem').props().enabled).toBe(true);
+            expect(fileMenu.find('ShareMenuItem').props().enabled).toBe(true);
+            expect(fileMenu.find('GetLinkMenuItem').props().enabled).toBe(true);
+            expect(fileMenu.find('DeleteMenuItem').props().enabled).toBe(true);
+        });
     });
 });
