@@ -51,8 +51,10 @@ const sharingDialogProps = {
 };
 
 describe('Sharing: SharingDialog component', () => {
-    let sharingDialogComponent;
-    let onRequestClose;
+    let sharingDialogComponent,
+        onRequestClose,
+        onConfirm;
+
     const context = getStubContext();
 
     context.d2.Api.getApi = jest.fn().mockReturnValue({
@@ -66,10 +68,12 @@ describe('Sharing: SharingDialog component', () => {
 
     beforeEach(() => {
         onRequestClose = jest.fn();
+        onConfirm = jest.fn();
         sharingDialogComponent = renderComponent({
             ...sharingDialogProps,
             d2: context.d2,
             onRequestClose,
+            onConfirm,
         });
     });
 
@@ -104,9 +108,14 @@ describe('Sharing: SharingDialog component', () => {
             expect(buttons[0].props.label).toBe('close_translated');
         });
 
-        it('triggers onRequestClose from the props when the closeSharingDialog is called', () => {
-            sharingDialogComponent.instance().closeSharingDialog();
+        it('triggers onRequestClose from the props when the closeDialog is called', () => {
+            sharingDialogComponent.instance().closeDialog();
             expect(onRequestClose).toHaveBeenCalledTimes(1);
+        });
+
+        it('triggers onConfirm from the props when the confirmAndCloseDialog is called', () => {
+            sharingDialogComponent.instance().confirmAndCloseDialog();
+            expect(onConfirm).toHaveBeenCalledTimes(1);
         });
     });
 
