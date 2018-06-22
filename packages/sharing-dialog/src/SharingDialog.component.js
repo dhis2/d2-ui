@@ -233,13 +233,26 @@ SharingDialog.propTypes = {
     open: PropTypes.bool.isRequired,
 
     /**
+     * Type of the sharable object. Can be supplied after initial render.
+     */
+    type: PropTypes.string,
+
+    /**
+     * Id of the sharable object. Can be supplied after initial render.
+     */
+    id: PropTypes.string,
+
+    /**
      * Do not post new sharing settings. Rather, let the user save the new
-     * settings returned from onRequestClose.
+     * settings returned from onRequestClose or onConfirm. Combine with
+     * 'sharedObject' prop to skip all network requests.
      */
     doNotPost: PropTypes.bool,
 
     /**
-     * Supply your own shared object, ignore 'id' prop.
+     * Supply your own shared object. Will try to POST sharing settings
+     * to the 'id' and 'type' combination. Use 'doNotPost' prop if you
+     * want full control over network requests.
      */
     sharedObject: PropTypes.shape({
         object: PropTypes.shape({
@@ -263,20 +276,10 @@ SharingDialog.propTypes = {
     onRequestClose: PropTypes.func.isRequired,
 
     /**
-     * Function to be called when user applies the settings. Is only shown
-     * when doNotPost is true.
+     * Function to be called when user applies the settings. Similar to
+     * onRequestClose, but is only shown when doNotPost is true.
      */
     onConfirm: PropTypes.func,
-
-    /**
-     * Type of the sharable object. Can be supplied after initial render.
-     */
-    type: PropTypes.string,
-
-    /**
-     * Id of the sharable object. Can be supplied after initial render.
-     */
-    id: PropTypes.string,
 
     /**
      * d2 instance to use.
