@@ -29,7 +29,7 @@ class PermissionOption extends Component {
 
 PermissionOption.propTypes = {
     disabled: PropTypes.bool.isRequired,
-    isSelected: PropTypes.bool.isRequired,
+    isSelected: PropTypes.bool,
     primaryText: PropTypes.string.isRequired,
     value: PropTypes.object.isRequired,
     onClick: PropTypes.func,
@@ -39,6 +39,7 @@ PermissionOption.propTypes = {
 PermissionOption.defaultProps = {
     onClick: undefined,
     focusState: 'none',
+    isSelected: false,
 };
 
 PermissionOption.muiName = 'MenuItem';
