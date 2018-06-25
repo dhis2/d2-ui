@@ -1,0 +1,17 @@
+$d2-ui-table--headers--header--text-color: #757575;
+$d2-ui-table--headers--header--border-color: #E0E0E0;
+
+.d2-ui-table__headers {
+  display: table-row;
+}
+
+.d2-ui-table__headers__header {
+  @include d2-ui-table-cell;
+
+  border-bottom: 2px solid $d2-ui-table--headers--header--border-color;
+  color: $d2-ui-table--headers--header--text-color;
+  display: table-cell;
+  font-weight: 400;
+  text-align: left;
+  transition: all .3s ease;
+}
