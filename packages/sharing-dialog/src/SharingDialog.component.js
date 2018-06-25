@@ -186,6 +186,7 @@ class SharingDialog extends React.Component {
         if (this.props.doNotPost) sharingDialogActions.push(
             <RaisedButton
                 primary
+                style={{ marginLeft: '8px' }}
                 label={this.translate('apply')}
                 onClick={this.confirmAndCloseDialog}
             />
