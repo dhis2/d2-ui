@@ -23,7 +23,6 @@ if (!baseUrl) {
 init({
     baseUrl: baseUrl + '/api/29'
 }).then(d2 => {
-    console.log(d2);
     injectCkeditor(baseUrl);
     ReactDOM.render(<App d2={d2}/>, document.getElementById('root'));
     registerServiceWorker();
