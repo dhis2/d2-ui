@@ -11,6 +11,7 @@ const styles = {
     year: { width: 95, marginRight: 16 },
     month: { width: 125 },
     week: { width: 105 },
+    biWeek: { width: 105 },
     biMonth: { width: 200 },
     quarter: { width: 200 },
     sixMonth: { width: 200 },
@@ -81,6 +82,8 @@ class PeriodPicker extends React.Component {
                 this.setState({ invalidWeek: !isWeekValid(date, this.state.week) });
             }
             return date && isWeekValid(date, this.state.week) && `${getWeekYear(date)}SunW${this.state.week}`;
+        case 'BiWeekly':
+            return this.state.year && this.state.biWeek && `${this.state.year}BiW${this.state.biWeek}`;
         case 'Monthly':
             return this.state.year && this.state.month && `${this.state.year}${this.state.month}`;
         case 'BiMonthly':
@@ -178,6 +181,18 @@ class PeriodPicker extends React.Component {
         return this.renderOptionPicker('week', weeks);
     }
 
+    renderBiWeekPicker() {
+        const weeks = {};
+        const weekLimit = 52;
+        for (let week = 1; week < weekLimit; week+=2) {
+            const firstWeek = `0${week}`.substr(-2);
+            const secondWeek = `0${week + 1}`.substr(-2);
+            weeks[`0${week}`.substr(-2)] = `${firstWeek}-${secondWeek}`;
+        }
+
+        return this.renderOptionPicker('biWeek', weeks);
+    }
+
     renderBiMonthPicker() {
         const biMonths = { 1: 'jan-feb', 2: 'mar-apr', 3: 'may-jun', 4: 'jul-aug', 5: 'sep-oct', 6: 'nov-dec' };
         return this.renderOptionPicker('biMonth', biMonths);
@@ -212,6 +227,8 @@ class PeriodPicker extends React.Component {
         case 'WeeklySaturday':
         case 'WeeklySunday':
             return <div style={styles.line}>{this.renderYearPicker()}{this.renderWeekPicker()}</div>;
+        case 'BiWeekly':
+            return <div style={styles.line}>{this.renderYearPicker()}{this.renderBiWeekPicker()}</div>;
         case 'Monthly':
             return <div style={styles.line}>{this.renderYearPicker()}{this.renderMonthPicker()}</div>;
         case 'BiMonthly':
@@ -250,6 +267,7 @@ PeriodPicker.propTypes = {
         'WeeklyThursday',
         'WeeklySaturday',
         'WeeklySunday',
+        'BiWeekly',
         'Monthly',
         'BiMonthly',
         'Quarterly',

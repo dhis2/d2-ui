@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { Card, CardText } from 'material-ui/Card';
 
 import {PeriodPicker} from '@dhis2/d2-ui-core';
-import parsePeriod from 'd2/lib/period/parser';
 
 export default class PeriodPickerExample extends React.Component {
     constructor(props) {
@@ -70,6 +69,7 @@ export default class PeriodPickerExample extends React.Component {
                                     <option>WeeklySaturday</option>
                                     <option>WeeklySunday</option>
                                     <option>Monthly</option>
+                                    <option>BiWeekly</option>
                                     <option>BiMonthly</option>
                                     <option>Quarterly</option>
                                     <option>SixMonthly</option>
@@ -82,7 +82,7 @@ export default class PeriodPickerExample extends React.Component {
                                 </select>
                             </div>
                             <ol>
-                                {this.state.values.map((v, i) => <li key={i}>{parsePeriod(v).id} {parsePeriod(v).name}</li>)}
+                                {this.state.values.map((value) => <li key={value}>{value}</li>)}
                             </ol>
                         </div>
                     </CardText>
