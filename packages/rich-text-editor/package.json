@@ -1,0 +1,57 @@
+{
+    "name": "@dhis2/d2-ui-rich-text-editor",
+    "version": "1.0.0",
+    "description": "Rich text editor component for DHIS2",
+    "main": "./build/cjs/index.js",
+    "module": "./build/es/index.js",
+    "files": ["build"],
+    "license": "BSD-3-Clause",
+    "author": "Arnau Sanchez <arnau@eyeseetea.com>",
+    "contributors": ["Edoardo Sabadelli <edoardo@dhis2.org>"],
+    "peerDependencies": {
+        "d2": "^29.1.1",
+        "react": "^15.0.0 || ^16.0.0",
+        "react-dom": "^15.0.0 || ^16.0.0"
+    },
+    "scripts": {
+        "prebuild": "rimraf ./build/*",
+        "build": "yarn localize && yarn build:commonjs && yarn build:es",
+        "build:commonjs":
+            "cross-env BABEL_ENV=commonjs babel src --out-dir build/cjs --ignore spec.js",
+        "build:es": "cross-env BABEL_ENV=es babel src --out-dir build/es --ignore spec.js",
+        "build:umd": "cross-env && webpack -p",
+        "watch": "yarn build:es -- --watch",
+        "test-ci": "jest --config=../../jest.config.js packages/rich-text-editor",
+        "extract-pot": "d2-i18n-extract -p src/ -o i18n/",
+        "prettify": "prettier \"src/**/*.{js,jsx,json,css}\" --write",
+        "localize":
+            "yarn extract-pot && d2-i18n-generate -n d2-ui-rich-text-editor -p ./i18n/ -o ./src/locales/"
+    },
+    "dependencies": {
+        "@dhis2/d2-i18n": "^1.0.3",
+        "d2-ui": "^29.0.18",
+        "lodash": "^4.17.10",
+        "lodash.debounce": "^4.0.8",
+        "loglevel": "^1.6.1",
+        "material-ui": "^1.0.0-beta.34",
+        "prop-types": "^15.6.0",
+        "react-portal": "^4.1.5"
+    },
+    "jest": {
+        "transformIgnorePatterns": ["node_modules/(?!react-native|react-navigation)/"]
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "yarn extract-pot && CI=true yarn test && git add ./i18n/"
+        }
+    },
+    "devDependencies": {
+        "@dhis2/d2-i18n-extract": "^1.0.6",
+        "@dhis2/d2-i18n-generate": "^1.0.18",
+        "husky": "^1.0.0-rc.4",
+        "prettier": "^1.12.1"
+    }
+}

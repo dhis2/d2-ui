@@ -26,6 +26,7 @@ import Tabs from './components/tabs';
 import Translation from './components/translation';
 import HeaderBarExample from './components/header-bar';
 import InterpretationsExample from './components/interpretations';
+import RichTextEditor from './components/rich-text-editor';
 
 import FormEditor from './components/formula-editor';
 import IconPicker from './components/icon-picker';
@@ -63,96 +64,69 @@ class App extends Component {
                 <header className="header">
                     <h1 className="App-title">Welcome to the DHIS2 UI library</h1>
                 </header>
-
                 <h2>HeaderBar</h2>
                 <HeaderBarExample d2={this.state.d2} />
                 <p>Look at the top of the screen...</p>
-
                 <h2>Buttons</h2>
                 <Buttons />
-
                 <h2>Chips</h2>
                 <Chips />
-
                 <h2>Circular Progress</h2>
                 <CircularProgresses />
-
                 <h2>Controlbars</h2>
                 <Controlbars />
-
                 <h2>Tables</h2>
                 <Tables d2={this.state.d2} />
-
                 <h2>Expression Manager</h2>
                 <ExpressionManager d2={this.state.d2} />
-
                 <h2>File Menu</h2>
                 <FileMenu d2={this.state.d2} />
-
                 <h2>Favorites Dialog</h2>
                 <FavoritesDialog d2={this.state.d2} />
-
                 <h2>Sharing Dialog</h2>
                 <SharingDialog d2={this.state.d2} />
-
                 <h2>Feedback Snackbar</h2>
                 <FeedbackSnackbar />
-
                 <h2>FormBuilder</h2>
                 <FormBuilder />
-
                 <h2>GroupEditor</h2>
                 <GroupEditor d2={this.state.d2} />
-
                 <h2>Layout</h2>
                 <Layout />
-
                 <h2>Legend</h2>
                 <Legend d2={this.state.d2} />
-
                 <h2>List Select</h2>
                 <ListSelectExamples />
-
                 <h2>PeriodPicker</h2>
                 <PeriodPicker d2={this.state.d2} />
-
                 <h2>SelectField</h2>
                 <SelectField />
-
                 <h2>Sidebar</h2>
                 <Sidebar />
-
                 <h2>SvgIcon</h2>
                 <SvgIcon />
-
                 <h2>TextField</h2>
                 <TextField />
-
                 <h2>Tabs</h2>
                 <Tabs />
-
                 <h2>Translation</h2>
                 <Translation d2={this.state.d2} />
-
                 <h2>IconPicker</h2>
                 <IconPicker d2={this.state.d2} />
-
                 <h2>FormEditor</h2>
                 <FormEditor />
-
                 <h2>OrgUnitSelect</h2>
                 <OrgUnitSelect d2={this.state.d2} />
-
                 <h2>OrgUnitTree</h2>
                 <OrgUnitTree d2={this.state.d2} />
-
-                <div style={{clear:"both"}}>
+                <div style={{ clear: 'both' }}>
                     <h2>TreeViews</h2>
                     <TreeViews />
                 </div>
-
                 <h2>Intepretations</h2>
                 <InterpretationsExample d2={this.state.d2} />
+                <h2>Rich text editor</h2>
+                <RichTextEditor d2={this.state.d2} />
             </D2UIApp>
         );
     }
