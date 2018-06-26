@@ -37,7 +37,7 @@ class WrappedEditor {
         const range = this.editor.getSelection().getRanges()[0];
         const bbox = range ? range.startContainer.$.parentNode.getBoundingClientRect() : {top: 0, left: 0};
         const iframe = this.editor.container.$.getElementsByTagName("iframe")[0];
-        const iframeBbox = iframe.getBoundingClientRect();
+        const iframeBbox = getAbsoluteElementOffset(iframe);
         const pos = { top: bbox.top + iframeBbox.top, left: bbox.left + iframeBbox.left };
         return offset ? { top: pos.top + offset.top, left: pos.left + offset.left } : pos;
     }
@@ -80,6 +80,11 @@ class WrappedEditor {
     }
 }
 
+function getAbsoluteElementOffset(el) {
+  const box = el.getBoundingClientRect();
+  return {left: box.left + window.scrollX, top: box.top + window.scrollY};
+}
+
 export default class CKEditor extends Component {
     static defaultOptions = {
         plugins: [
@@ -109,6 +114,10 @@ export default class CKEditor extends Component {
     `;
 
     static externalCss = `
+        .cke_dialog_body {
+            border: 1px solid #CCC;
+        }
+
         .cke_top {
             padding: 0 !important;
         }
@@ -142,7 +151,7 @@ export default class CKEditor extends Component {
         }
 
         .cke_dialog_contents_body {
-            padding: 9px 10px 9px 10px !important;
+            padding: 4px 5px 4px 5px !important;
             height: auto !important;
         }
 

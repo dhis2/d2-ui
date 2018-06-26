@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import Dialog from 'material-ui/Dialog';
 import { Portal } from 'react-portal';
@@ -126,9 +127,11 @@ export default class RichEditor extends Component {
     }
 
     insertUser(user) {
-        this.editor.replaceCurrentWord(`@${user.username}`);
-        this.props.onEditorChange(this.editor.getValue());
-        this.clearMentions();
+        if (user) {
+            this.editor.replaceCurrentWord(`@${user.username}`);
+            this.props.onEditorChange(this.editor.getValue());
+            this.clearMentions();
+        }
     }
 
     clearMentions() {
