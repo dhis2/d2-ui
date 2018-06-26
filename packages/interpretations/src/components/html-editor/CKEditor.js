@@ -114,6 +114,10 @@ export default class CKEditor extends Component {
     `;
 
     static externalCss = `
+        .cke_dialog_body {
+            border: 1px solid #CCC;
+        }
+
         .cke_top {
             padding: 0 !important;
         }
@@ -147,7 +151,7 @@ export default class CKEditor extends Component {
         }
 
         .cke_dialog_contents_body {
-            padding: 9px 10px 9px 10px !important;
+            padding: 4px 5px 4px 5px !important;
             height: auto !important;
         }
 
