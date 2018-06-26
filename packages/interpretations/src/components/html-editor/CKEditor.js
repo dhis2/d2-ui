@@ -180,6 +180,7 @@ export default class CKEditor extends Component {
 
         if (!window.CKEDITOR) {
             log.error('CKEDITOR namespace can not be found on the window. You probably forgot to load the CKEditor script');
+            return;
         }
 
         if (!CKEDITOR.getCss().includes(editorCss)) {
