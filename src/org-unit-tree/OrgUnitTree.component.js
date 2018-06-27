@@ -102,7 +102,7 @@ class OrgUnitTree extends React.Component {
             this.setState({ loading: true });
 
             const root = this.props.root;
-            root.children.load({ fields: 'id,displayName,children::isNotEmpty,path,parent' }).then((children) => {
+            root.children.load({ fields: 'id,displayName,access,children::isNotEmpty,path,parent' }).then((children) => {
                 this.setChildState(children);
             });
         }
