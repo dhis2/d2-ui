@@ -24,6 +24,8 @@ const favoriteFields = [
     'lastUpdated',
     'access',
     'publicAccess',
+    'externalAccess',
+    'userAccesses',
     'userGroupAccesses',
     `interpretations[${interpretationsFields.join(',')}]`,
 ];
