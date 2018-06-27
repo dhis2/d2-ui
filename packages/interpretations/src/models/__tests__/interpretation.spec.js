@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import sinon from 'sinon';
 import Interpretation from '../interpretation';
 import * as api from '../../util/api';
 
@@ -6,6 +7,20 @@ const favorite = {
     id: "zDP78aJU8nX",
     name: "ANC: 1st visit coverage (%) by district last year",
     modelDefinition: {name: "map"},
+    publicAccess: "rw------",
+    externalAccess: true,
+    userGroupAccesses: [{
+        access: "rw------",
+        userGroupUid: "zz6XckBrLlj",
+        displayName: "Administrators",
+        id: "zz6XckBrLlj"
+    }],
+    userAccesses: [{
+        access: "rw------",
+        displayName: "John Traore",
+        id: "xE7jOejl9FI",
+        userUid: "xE7jOejl9FI"
+    }],
 };
 
 const interpretationAttributes = {
@@ -83,11 +98,40 @@ describe("Models > Interpretation", () => {
         describe("save", () => {
             beforeEach(() => {
                 api.apiFetch = jest.fn(() => Promise.resolve({}));
+
+                const apiFetchWithResponseStub = sinon.stub();
+                apiFetchWithResponseStub.withArgs(
+                    "/interpretations/map/zDP78aJU8nX",
+                    "POST",
+                    interpretationAttributes.text,
+                ).returns(Promise.resolve({headers: {get: (key) => ({location: "1234"}[key])}}));
+                apiFetchWithResponseStub.throws();
+                api.apiFetchWithResponse = apiFetchWithResponseStub;
+
                 return interpretation.save();
             });
 
-            it("should PUT text to API", () => {
-                expect(api.apiFetch).toBeCalledWith("/interpretations/map/zDP78aJU8nX", "POST", interpretationAttributes.text);
+            it("should save sharing of interpretation from object", () => {
+                const expectedSharing = {
+                    object: {
+                        publicAccess: "rw------",
+                        externalAccess: true,
+                        userGroupAccesses: [{
+                            access: "rw------",
+                            userGroupUid: "zz6XckBrLlj",
+                            displayName: "Administrators",
+                            id: "zz6XckBrLlj"
+                        }],
+                        userAccesses: [{
+                            access: "rw------",
+                            displayName: "John Traore",
+                            id: "xE7jOejl9FI",
+                            userUid: "xE7jOejl9FI"
+                        }],
+                    },
+                };
+                expect(api.apiFetch)
+                    .toBeCalledWith("/sharing?type=interpretation&id=1234", "PUT", expectedSharing);
             });
         });
     });

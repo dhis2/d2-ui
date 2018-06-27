@@ -39,7 +39,7 @@ describe("getFavoriteWithInterpretations", () => {
     describe("api calls", () => {
         it("should call the model D2 get with the required fields", () => {
             const expectedFields = "id,name,href,user[id,displayName],displayName,description," +
-                "created,lastUpdated,access,publicAccess,userGroupAccesses," +
+                "created,lastUpdated,access,publicAccess,externalAccess,userAccesses,userGroupAccesses," +
                 "interpretations[id,user[id,displayName,userCredentials[username]],created,likes,likedBy[id,displayName],"
                 + "text,comments[id,text,created,user[id,displayName,userCredentials[username]]]]";
             expect(d2.models.map.get).toBeCalledWith("1", {fields: expectedFields});

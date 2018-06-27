@@ -14,3 +14,18 @@ export const apiFetch = async (urlOrPath, method, body = null) => {
 
     return api.request(method, url, payload, options);
 };
+
+export const apiFetchWithResponse = async (urlOrPath, method, body = null) => {
+    const d2 = await getInstance();
+    const api = d2.Api.getApi();
+    const url = urlOrPath.startsWith("/") ? (api.baseUrl + urlOrPath) : urlOrPath;
+    const options = {
+        method,
+        body,
+        mode: 'cors',
+        credentials: 'include',
+        cache: 'default',
+    };
+
+    return fetch(url, options);
+};
