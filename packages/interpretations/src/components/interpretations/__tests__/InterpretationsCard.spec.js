@@ -97,7 +97,7 @@ describe('Interpretations: Interpretations -> InterpretationsCard component', ()
 
             describe("when click new interpretation action", () => {
                 beforeEach(() => {
-                    interpretationsCard.find("IconButton").find({tooltip: "write_new_interpretation_translated"}).simulate("click");
+                    interpretationsCard.find("IconButton").find({tooltip: "Write new interpretation"}).simulate("click");
                 });
 
                 it("should show an interpretations dialog", () => {
@@ -183,7 +183,7 @@ describe('Interpretations: Interpretations -> InterpretationsCard component', ()
 
             describe("when click on back action", () => {
                 beforeEach(() => {
-                    interpretationsCard.find("IconButton").find({tooltip: "clear_interpretation_translated"}).simulate("click");
+                    interpretationsCard.find("IconButton").find({tooltip: "Clear interpretation"}).simulate("click");
                 });
 
                 it("should call current interpretation prop with no interpretation", () => {
@@ -222,7 +222,7 @@ describe('Interpretations: Interpretations -> InterpretationsCard component', ()
 
             describe("when back button clicked", () => {
                 beforeEach(() => {
-                    interpretationsCard.find("IconButton").find({tooltip: "clear_interpretation_translated"}).simulate("click");
+                    interpretationsCard.find("IconButton").find({tooltip: "Clear interpretation"}).simulate("click");
                     interpretationsCard.update();
                 });
 

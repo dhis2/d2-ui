@@ -20,7 +20,7 @@ $ npm publish
 ## Install
 
 ```sh
-$ yarn add d2-ui-interpretations
+$ yarn add @dhis2/d2-ui-interpretations
 ```
 
 ## Local development
@@ -38,6 +38,24 @@ $ yarn link @dhis2/d2-ui-interpretations
 ```
 
 ## Usage
+
+This component uses CKEditor, so you'll need to load this resource from _dhis-web-core-resource_. Typically,
+this means adding this entry to `./webpack.config.js` under _vendorScripts_ (see an example [here](https://github.com/dhis2/maintenance-app/blob/bd75c6855eee603ce24fbd7b31464b6e1071d3c2/webpack.config.js#L124)):
+
+```js
+  plugins: [
+    new HTMLWebpackPlugin({
+      ...
+      vendorScripts: [
+        ...
+        [`${scriptPrefix}/dhis-web-core-resource/ckeditor/4.6.1/ckeditor.js`, 'defer async'],
+      ],
+    })
+  ]
+  ...
+```
+
+Finally, use the component in your React code:
 
 ```js
 import Interpretations from '@dhis2/d2-ui-interpretations';

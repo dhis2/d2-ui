@@ -4,25 +4,11 @@ import { Card, CardHeader, CardText } from 'material-ui/Card';
 import IconButton from 'material-ui/IconButton';
 import { SvgIcon } from '@dhis2/d2-ui-core';
 import { grey600 } from 'material-ui/styles/colors';
-import { config } from 'd2/lib/d2';
-import { injectIntl } from 'react-intl';
+import i18n from '@dhis2/d2-i18n'
 
 import styles from './DetailsCardStyles.js';
 import { patch } from '../../models/helpers';
-
-config.i18n.strings.add('no_description');
-config.i18n.strings.add('public');
-config.i18n.strings.add('access_none');
-config.i18n.strings.add('access_read');
-config.i18n.strings.add('access_read_write');
-config.i18n.strings.add('access_unknown');
-config.i18n.strings.add('user_groups');
-config.i18n.strings.add('details');
-config.i18n.strings.add('owner');
-config.i18n.strings.add('created');
-config.i18n.strings.add('last_updated');
-config.i18n.strings.add('views');
-config.i18n.strings.add('sharing');
+import { formatDate } from '../../util/i18n';
 
 const List = ({children}) => (
     <div style={styles.detailsCardList}>{children}</div>
@@ -53,11 +39,11 @@ const EditButton = props => {
 
 const descriptionMaxLength = 250;
 
-const getDescription = (d2, model) => {
+const getDescription = (model) => {
     const {description} = model;
 
     if (!description) {
-        return (<i>{d2.i18n.getTranslation('no_description')}</i>)
+        return (<i>{i18n.t('No description')}</i>)
     } else if (description.length < descriptionMaxLength) {
         return description;
     } else {
@@ -66,19 +52,18 @@ const getDescription = (d2, model) => {
 };
 
 const accessMapping = {
-    "--------": "none",
-    "r-------": "read",
-    "rw------": "read_write",
+    "--------": i18n.t("None"),
+    "r-------": i18n.t("Read"),
+    "rw------": i18n.t("Read/Write"),
 };
 
-const getSharingText = (d2, model) => {
-    const publicAccessKey = accessMapping[model.publicAccess] || "unknown";
-    const publicAccess = d2.i18n.getTranslation('public') + ": " +
-        d2.i18n.getTranslation("access_" + publicAccessKey);
+const getSharingText = (model) => {
+    const publicAccessValue = accessMapping[model.publicAccess] || i18n.t("Unknown");
+    const publicAccess = i18n.t('Public') + ": " + publicAccessValue;
 
     const userGroupsCount = (model.userGroupAccesses || []).length;
     const userGroupsInfo = userGroupsCount > 2
-        ? `${userGroupsCount} ${d2.i18n.getTranslation('user_groups')}`
+        ? `${userGroupsCount} ${i18n.t('user groups')}`
         : (model.userGroupAccesses || []).map(userGroup => userGroup.displayName).join(", ");
 
     return publicAccess + (userGroupsInfo ? ` + ${userGroupsInfo}` : "");
@@ -99,10 +84,8 @@ class DetailsCard extends React.Component {
     }
 
     render() {
-        const { model, intl: { formatDate } } = this.props;
+        const { model } = this.props;
         const { isExpanded } = this.state;
-        const { d2 } = this.context;
-        const getTranslation = d2.i18n.getTranslation.bind(d2.i18n);
         const owner = model.user ? model.user.displayName : '-';
 
         return (
@@ -114,7 +97,7 @@ class DetailsCard extends React.Component {
             >
                 <CardHeader
                     style={styles.detailsCardHeader}
-                    title={getTranslation('details')}
+                    title={i18n.t('Details')}
                     showExpandableButton={true}
                     textStyle={styles.headerText}
                 >
@@ -122,12 +105,12 @@ class DetailsCard extends React.Component {
 
                 <CardText expandable={true} style={styles.body}>
                     <List>
-                        <ListItem text={getDescription(d2, model)} />
-                        <ListItem label={getTranslation('owner')} text={owner} />
-                        <ListItem label={getTranslation('created')} text={formatDate(model.created)} />
-                        <ListItem label={getTranslation('last_updated')} text={formatDate(model.lastUpdated)} />
-                        <ListItem label={getTranslation('views')} text={model.favoriteViews} />
-                        <ListItem label={getTranslation('sharing')} text={getSharingText(d2, model)} />
+                        <ListItem text={getDescription(model)} />
+                        <ListItem label={i18n.t('Owner')} text={owner} />
+                        <ListItem label={i18n.t('Created')} text={formatDate(model.created)} />
+                        <ListItem label={i18n.t('Last updated')} text={formatDate(model.lastUpdated)} />
+                        <ListItem label={i18n.t('Views')} text={model.favoriteViews} />
+                        <ListItem label={i18n.t('Sharing')} text={getSharingText(model)} />
                     </List>
                 </CardText>
             </Card>
@@ -139,8 +122,4 @@ DetailsCard.propTypes = {
     model: PropTypes.object.isRequired,
 };
 
-DetailsCard.contextTypes = {
-    d2: PropTypes.object.isRequired,
-};
-
-export default injectIntl(DetailsCard);
+export default DetailsCard;

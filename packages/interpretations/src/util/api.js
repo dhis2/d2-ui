@@ -4,7 +4,7 @@ import { getInstance } from 'd2/lib/d2';
 export const apiFetch = async (urlOrPath, method, body = null) => {
     const d2 = await getInstance();
     const api = d2.Api.getApi();
-    const payload = isObject(body) ? JSON.stringify(body) : body;
+    const payload = isObject(body) && method !== "GET" ? JSON.stringify(body) : body;
     const options = {
         headers: {
             "Content-Type": isObject(body) ? 'application/json' : 'text/plain',
@@ -13,4 +13,19 @@ export const apiFetch = async (urlOrPath, method, body = null) => {
     const url = urlOrPath.startsWith("/") ? (api.baseUrl + urlOrPath) : urlOrPath;
 
     return api.request(method, url, payload, options);
+};
+
+export const apiFetchWithResponse = async (urlOrPath, method, body = null) => {
+    const d2 = await getInstance();
+    const api = d2.Api.getApi();
+    const url = urlOrPath.startsWith("/") ? (api.baseUrl + urlOrPath) : urlOrPath;
+    const options = {
+        method,
+        body,
+        mode: 'cors',
+        credentials: 'include',
+        cache: 'default',
+    };
+
+    return fetch(url, options);
 };

@@ -26,13 +26,13 @@ $ npm publish
 ## Install
 
 ```sh
-yarn add d2-ui-favorites
+yarn add @dhis2/d2-ui-favorites
 ```
 
 ## Import
 
 ```js
-import FavoritesDialog from 'd2-ui-favorites';
+import FavoritesDialog from '@dhis2/d2-ui-favorites';
 
 <FavoritesDialog
     type='string'

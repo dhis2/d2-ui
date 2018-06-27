@@ -1,32 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 import { Link, ActionSeparator } from './misc';
-import { config } from 'd2/lib/d2';
+import i18n from '@dhis2/d2-i18n'
 import styles from './InterpretationsStyles.js';
-
-config.i18n.strings.add('post_comment');
-config.i18n.strings.add('ok');
-config.i18n.strings.add('cancel');
+import RichEditor from '../html-editor/RichEditor';
 
 class CommentTextarea extends React.Component {
     static propTypes = {
         comment: PropTypes.object.isRequired,
         onPost: PropTypes.func.isRequired,
         onCancel: PropTypes.func,
+        mentions: PropTypes.object,
     };
 
     constructor(props) {
         super(props);
-        this.state = { text: props.comment.text || "" };
+        this.state = { text: props.comment.text || "", refresh: new Date() };
         this.onPost = this.onPost.bind(this);
+        this.onChange = this.onChange.bind(this);
     }
 
-    componentWillReceiveProps(nextProps) {
-        this.setState({ text: nextProps.comment.text });
+    componentWillReceiveProps(newProps) {
+        if (this.props.comment !== newProps.comment) {
+            this.setState({ text: newProps.comment.text, refresh: new Date() });
+        }
     }
 
-    onChange(ev) {
-        this.setState({ text: ev.target.value });
+    onChange(newText) {
+        this.setState({ text: newText });
     }
 
     onPost() {
@@ -35,24 +36,30 @@ class CommentTextarea extends React.Component {
             const newComment = this.props.comment;
             newComment.text = newText;
             this.props.onPost(newComment);
-            this.setState({ text: "" });
+            this.setState({ text: "", refresh: new Date().getTime() });
         }
     }
 
     render() {
-        const { d2 } = this.context;
-        const { comment, onCancel } = this.props;
-        const { text } = this.state;
-        const postText = onCancel ? d2.i18n.getTranslation("ok") : d2.i18n.getTranslation('post_comment');
+        const { comment, onCancel, mentions } = this.props;
+        const { text, refresh } = this.state;
+        const postText = onCancel ? i18n.t("OK") : i18n.t('Post comment');
 
         return (
             <div>
-                <textarea style={styles.commentArea} value={text} rows={4} onChange={ev => this.onChange(ev)} />
+                <RichEditor
+                    onEditorChange={this.onChange}
+                    initialContent={text}
+                    refresh={refresh}
+                    mentions={mentions}
+                />
+
                 <Link disabled={!text} label={postText} onClick={this.onPost} />
+
                 {onCancel &&
                     <span>
                         <ActionSeparator />
-                        <Link label={d2.i18n.getTranslation('cancel')} onClick={onCancel} />
+                        <Link label={i18n.t('Cancel')} onClick={onCancel} />
                     </span>}
             </div>
         );
@@ -63,10 +70,6 @@ CommentTextarea.propTypes = {
     comment: PropTypes.object.isRequired,
     onPost: PropTypes.func.isRequired,
     onCancel: PropTypes.func,
-};
-
-CommentTextarea.contextTypes = {
-    d2: PropTypes.object.isRequired,
 };
 
 export default CommentTextarea;

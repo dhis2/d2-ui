@@ -33,15 +33,20 @@ export class FileMenu extends Component {
         d2: this.props.d2,
     });
 
-    componentWillReceiveProps = nextProps => {
-        if (nextProps.fileId) {
-            this.setFileModel(nextProps.fileId);
+    componentDidMount = () => {
+        if (this.props.fileId) {
+            this.setFileModel(this.props.fileId);
+        }
+    };
+
+    componentDidUpdate = prevProps => {
+        if (this.props.fileId && prevProps.fileId !== this.props.fileId) {
+            this.setFileModel(this.props.fileId);
         }
     };
 
     setFileModel = async id => {
         const model = await this.props.d2.models[this.props.fileType].get(id);
-
         this.setState({ fileModel: model });
     };
 
@@ -102,11 +107,22 @@ export class FileMenu extends Component {
     };
 
     render() {
-        const { fileType, onSave, onSaveAs, onRename, onTranslate, onShare, onError } = this.props;
+        const {
+            classes,
+            fileType,
+            onSave,
+            onSaveAs,
+            onRename,
+            onTranslate,
+            onShare,
+            onError,
+        } = this.props;
 
         return (
             <Fragment>
-                <Button onClick={this.toggleMenu}>{i18n.t('File')}</Button>
+                <Button className={classes.menuButton} onClick={this.toggleMenu}>
+                    {i18n.t('File')}
+                </Button>
                 <Menu
                     disableEnforceFocus
                     open={this.state.menuIsOpen}
@@ -115,7 +131,7 @@ export class FileMenu extends Component {
                     anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
                     getContentAnchorEl={null}
                 >
-                    <NewMenuItem enabled={Boolean(this.state.fileModel)} onNew={this.onNew} />
+                    <NewMenuItem enabled={true} onNew={this.onNew} />
                     <Divider light />
 
                     <OpenMenuItem
@@ -131,7 +147,10 @@ export class FileMenu extends Component {
                             !this.state.fileModel ||
                                 (this.state.fileModel && this.state.fileModel.access.update)
                         )}
+                        fileType={fileType}
+                        fileModel={this.state.fileModel}
                         onSave={this.onAction(onSave)}
+                        onSaveAs={this.onAction(onSaveAs)}
                         onClose={this.onAction()}
                     />
                     <SaveAsMenuItem
@@ -216,7 +235,7 @@ FileMenu.defaultProps = {
 FileMenu.propTypes = {
     d2: PropTypes.object,
     fileType: PropTypes.oneOf(['chart', 'eventChart', 'reportTable', 'eventReport', 'map']),
-    fileId: PropTypes.object,
+    fileId: PropTypes.string,
     onNew: PropTypes.func,
     onOpen: PropTypes.func,
     onSave: PropTypes.func,
@@ -229,10 +248,10 @@ FileMenu.propTypes = {
 };
 
 const styles = theme => ({
-    menuItem: {
-        '&:focus': {
-            background: theme.palette.primary[500],
-        },
+    menuButton: {
+        textTransform: 'none',
+        fontSize: '16px',
+        fontWeight: 400,
     },
 });
 

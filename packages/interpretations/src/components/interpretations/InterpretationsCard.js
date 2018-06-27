@@ -7,18 +7,13 @@ import AddCircle from 'material-ui/svg-icons/content/add-circle-outline';
 import IconButton from 'material-ui/IconButton';
 import { SvgIcon } from '@dhis2/d2-ui-core';
 import { grey600 } from 'material-ui/styles/colors';
-import { config } from 'd2/lib/d2';
+import i18n from '@dhis2/d2-i18n'
 import orderBy from 'lodash/fp/orderBy';
 import InterpretationDialog from './InterpretationDialog';
 import Interpretation from './Interpretation';
 import { EditButton } from './misc';
 import InterpretationModel from '../../models/interpretation';
 import styles from './InterpretationsStyles.js';
-
-config.i18n.strings.add('no_interpretations');
-config.i18n.strings.add('clear_interpretation');
-config.i18n.strings.add('write_new_interpretation');
-config.i18n.strings.add('interpretations');
 
 const getInterpretationsList = props => {
     const { d2, model, interpretations, setCurrentInterpretation, onChange } = props;
@@ -27,7 +22,7 @@ const getInterpretationsList = props => {
     return (
         <div>
             <div style={{fontStyle: "italic", marginLeft: 15}}>
-                {interpretations.length === 0 && <span>{d2.i18n.getTranslation('no_interpretations')}</span>}
+                {interpretations.length === 0 && <span>{i18n.t('No interpretations')}</span>}
             </div>
 
             {interpretations.map(interpretation => (
@@ -43,6 +38,7 @@ const getInterpretationsList = props => {
                         interpretation={interpretation}
                         onChange={onChange}
                         extended={false}
+                        mentions={model.mentions}
                     />
                 </div>
             ))}
@@ -61,6 +57,7 @@ const getInterpretationDetails = props => {
             interpretation={interpretation}
             onChange={onChange}
             extended={true}
+            mentions={model.mentions}
         />
     );
 };
@@ -73,7 +70,7 @@ const getInterpretationButtons = props => {
             <IconButton
                 style={styles.back}
                 onClick={() => setCurrentInterpretation(null)}
-                tooltip={d2.i18n.getTranslation('clear_interpretation')}
+                tooltip={i18n.t('Clear interpretation')}
                 tooltipPosition="top-left"
             >
                <SvgIcon icon="ChevronLeft" color={grey600} />
@@ -82,7 +79,7 @@ const getInterpretationButtons = props => {
             <IconButton
                 style={styles.newInterpretation}
                 onClick={openNewInterpretationDialog}
-                tooltip={d2.i18n.getTranslation('write_new_interpretation')}
+                tooltip={i18n.t('Write new interpretation')}
                 tooltipPosition="top-left"
             >
                 <SvgIcon icon="Add" color={grey600} />
@@ -195,12 +192,13 @@ class InterpretationsCard extends React.Component {
                         interpretation={interpretationToEdit}
                         onSave={this.saveInterpretationAndClose}
                         onClose={this.closeInterpretationDialog}
+                        mentions={model.mentions}
                     />
                 }
 
                 <CardHeader
                     style={styles.interpretationsCardHeader}
-                    title={d2.i18n.getTranslation('interpretations')}
+                    title={i18n.t('Interpretations')}
                     showExpandableButton={true}
                     textStyle={styles.headerText}
                 >
