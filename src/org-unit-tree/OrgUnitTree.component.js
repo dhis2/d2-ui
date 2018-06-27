@@ -104,13 +104,13 @@ class OrgUnitTree extends React.Component {
                 root.modelDefinition.list({
                     filter: `parent.id:eq:${root.id}`,
                     paging: false,
-                    fields: 'id,displayName,children::isNotEmpty,path,parent,memberCount',
+                    fields: 'id,displayName,access,children::isNotEmpty,path,parent,memberCount',
                     memberObject: this.props.memberObject,
                     memberCollection: this.props.memberCollection,
                 }).then(units => this.setChildState(units));
             } else {
                 root.modelDefinition.get(root.id, {
-                    fields: 'children[id,displayName,children::isNotEmpty,path,parent]',
+                    fields: 'children[id,displayName,access,children::isNotEmpty,path,parent]',
                 }).then(unit => this.setChildState(unit.children));
             }
         }
