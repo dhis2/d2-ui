@@ -9,6 +9,7 @@ import debounce from 'lodash/debounce';
 import i18n from '@dhis2/d2-i18n';
 
 import CKEditor from './CKEditor';
+import UserMatch from './UserMatch';
 
 const styles = {
     mentions: {
@@ -23,58 +24,7 @@ const styles = {
         maxHeight: '200px',
         overflowY: 'auto',
     },
-    userMention: {
-        cursor: 'pointer',
-        padding: '5px 15px',
-        borderBottom: '1px solid rgb(224, 224, 224)',
-        fontSize: '0.75rem',
-    },
-    userMentionSelected: {
-        backgroundColor: '#ACD',
-    },
 };
-
-class UserMatch extends Component {
-    onUserClick = () => {
-        this.props.onClick(this.props.user);
-    };
-
-    onChangeSelected = isSelected => () => {
-        this.props.onMouseSelected(this.props.user, isSelected);
-    };
-
-    render() {
-        const { user, isSelected, pattern } = this.props;
-        const style = { ...styles.userMention, ...(isSelected ? styles.userMentionSelected : {}) };
-        const text = `${user.displayName} (${user.userCredentials.username})`;
-
-        let formatted = text;
-
-        if (pattern) {
-            formatted = text
-                .split(new RegExp(`(${pattern})`, 'gi'))
-                .map(
-                    (part, idx) =>
-                        part.toLowerCase() === pattern.toLowerCase() ? (
-                            <b key={idx}>{part}</b>
-                        ) : (
-                            part
-                        )
-                );
-        }
-
-        return (
-            <li
-                style={style}
-                onClick={this.onUserClick}
-                onMouseEnter={this.onChangeSelected(true)}
-                onMouseLeave={this.onChangeSelected(false)}
-            >
-                <span>{formatted}</span>
-            </li>
-        );
-    }
-}
 
 const keycodes = { up: 38, down: 40, enter: 13, tab: 9 };
 
