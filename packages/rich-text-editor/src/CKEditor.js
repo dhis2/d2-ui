@@ -162,21 +162,16 @@ export default class CKEditor extends Component {
         }
     `;
 
-    componentDidUpdate = prevProps => {
+    componentDidUpdate(prevProps) {
         if (this.editor && prevProps.refresh !== this.props.refresh) {
             this.editor.setData(this.props.initialContent);
             const wrappedEditor = new WrappedEditor(this.editor);
             wrappedEditor.setCursorAtEnd();
         }
-    };
+    }
 
-    componentDidMount = () => {
-        const {
-            onEditorChange = noop,
-            onEditorInitialized = noop,
-            options = {},
-            onEditorKey,
-        } = this.props;
+    componentDidMount() {
+        const { onEditorChange, onEditorInitialized, options = {}, onEditorKey } = this.props;
         const { editorCss } = this.constructor;
 
         if (!window.CKEDITOR) {
@@ -193,8 +188,8 @@ export default class CKEditor extends Component {
         this.editor = window.CKEDITOR.replace(this.editorContainer, fullOptions);
 
         this.editor.setData(this.props.initialContent);
-        this.editor.on('dialogShow', this.onDialogShow.bind(this));
-        this.editor.on('dialogHide', this.onDialogHide.bind(this));
+        this.editor.on('dialogShow', this.onDialogShow);
+        this.editor.on('dialogHide', this.onDialogHide);
         this.editor.on('change', () => onEditorChange(this.editor.getData()));
         if (onEditorKey) this.editor.on('key', onEditorKey);
 
@@ -203,7 +198,7 @@ export default class CKEditor extends Component {
         wrappedEditor.setCursorAtEnd();
 
         onEditorInitialized(wrappedEditor);
-    };
+    }
 
     componentWillUnmount() {
         if (this.editor) {
@@ -301,8 +296,8 @@ export default class CKEditor extends Component {
 
 CKEditor.defaultProps = {
     options: null,
-    onEditorChange: null,
-    onEditorInitialized: null,
+    onEditorChange: noop,
+    onEditorInitialized: noop,
     initialContent: null,
     refresh: null,
     onEditorKey: null,
