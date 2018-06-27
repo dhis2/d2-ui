@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { noop, some } from 'lodash/fp';
+import { noop } from 'lodash/fp';
 import log from 'loglevel';
 
 /* Additions from standard CKEditor:
@@ -12,28 +12,32 @@ import log from 'loglevel';
     - Hide dialogs on click outside dialog.
 */
 
+const getAbsoluteElementOffset = el => {
+    const box = el.getBoundingClientRect();
+    return { left: box.left + window.scrollX, top: box.top + window.scrollY };
+};
+
 class WrappedEditor {
     constructor(editor) {
         this.editor = editor;
     }
 
-    getValue() {
-        return this.editor.getData();
-    }
+    getValue = () => this.editor.getData();
 
-    setCursorAtEnd() {
+    setCursorAtEnd = () =>
         setTimeout(() => {
             this.editor.focus();
+
             const range = this.editor.createRange();
             const selection = this.editor.getSelection();
+
             if (range && selection) {
                 range.moveToElementEditEnd(range.root);
                 this.editor.getSelection().selectRanges([range]);
             }
         }, 300);
-    }
 
-    getPosition(offset = null) {
+    getPosition = (offset = null) => {
         const range = this.editor.getSelection().getRanges()[0];
         const bbox = range
             ? range.startContainer.$.parentNode.getBoundingClientRect()
@@ -42,10 +46,11 @@ class WrappedEditor {
         const iframeBbox = getAbsoluteElementOffset(iframe);
         const pos = { top: bbox.top + iframeBbox.top, left: bbox.left + iframeBbox.left };
         return offset ? { top: pos.top + offset.top, left: pos.left + offset.left } : pos;
-    }
+    };
 
-    getCurrentWord() {
+    getCurrentWord = () => {
         const range = this.editor.getSelection().getRanges()[0];
+
         if (range) {
             const text =
                 range.startContainer.type === CKEDITOR.NODE_TEXT
@@ -57,13 +62,14 @@ class WrappedEditor {
                 .split(/\s+/)
                 .slice(-1)[0]
                 .replace(/[^\x00-\x7F]/g, '');
-        } else {
-            return '';
         }
-    }
 
-    replaceCurrentWord(newText) {
+        return '';
+    };
+
+    replaceCurrentWord = newText => {
         const range = this.editor.getSelection().getRanges()[0];
+
         if (range) {
             // Replace current word
             const container = range.startContainer.$;
@@ -83,16 +89,11 @@ class WrappedEditor {
             this.editor.getSelection().selectRanges([newRange]);
 
             return containerText;
-        } else {
-            return null;
         }
-    }
-}
 
-const getAbsoluteElementOffset = el => {
-    const box = el.getBoundingClientRect();
-    return { left: box.left + window.scrollX, top: box.top + window.scrollY };
-};
+        return null;
+    };
+}
 
 export default class CKEditor extends Component {
     static defaultOptions = {
@@ -161,21 +162,15 @@ export default class CKEditor extends Component {
         }
     `;
 
-    constructor(props) {
-        super(props);
-        this._onDocumentClick = this._onDocumentClick.bind(this);
-        this.setContainerRef = this.setContainerRef.bind(this);
-    }
-
-    componentWillReceiveProps(newProps) {
-        if (this.editor && newProps.refresh !== this.props.refresh) {
-            this.editor.setData(newProps.initialContent);
+    componentDidUpdate = prevProps => {
+        if (this.editor && prevProps.refresh !== this.props.refresh) {
+            this.editor.setData(this.props.initialContent);
             const wrappedEditor = new WrappedEditor(this.editor);
             wrappedEditor.setCursorAtEnd();
         }
-    }
+    };
 
-    componentDidMount() {
+    componentDidMount = () => {
         const {
             onEditorChange = noop,
             onEditorInitialized = noop,
@@ -198,25 +193,30 @@ export default class CKEditor extends Component {
         this.editor = window.CKEDITOR.replace(this.editorContainer, fullOptions);
 
         this.editor.setData(this.props.initialContent);
-        this.editor.on('dialogShow', this._onDialogShow.bind(this));
-        this.editor.on('dialogHide', this._onDialogHide.bind(this));
+        this.editor.on('dialogShow', this.onDialogShow.bind(this));
+        this.editor.on('dialogHide', this.onDialogHide.bind(this));
         this.editor.on('change', () => onEditorChange(this.editor.getData()));
-        if (onEditorKey) this.editor.on('key', this._onEditorKey.bind(this, onEditorKey));
+        if (onEditorKey) this.editor.on('key', onEditorKey);
 
         // Callback to the parent to pass the editor instance so the parent can call functions on it like insertHTML.
-        onEditorInitialized(new WrappedEditor(this.editor));
+        const wrappedEditor = new WrappedEditor(this.editor);
+        wrappedEditor.setCursorAtEnd();
+
+        onEditorInitialized(wrappedEditor);
+    };
+
+    componentWillUnmount() {
+        if (this.editor) {
+            this.editor.destroy();
+        }
     }
 
-    _onEditorKey(onEditorKey, ev) {
-        onEditorKey(ev);
-    }
-
-    _onDialogShow(ev) {
+    onDialogShow = ev => {
         const { data: dialog, editor } = ev;
         const { name, element } = dialog._;
         this.dialog = dialog;
 
-        const button = document.getElementsByClassName('cke_button__' + name)[0];
+        const button = document.getElementsByClassName(`cke_button__${name}`)[0];
         if (button) {
             button.classList.add('active');
         }
@@ -225,37 +225,45 @@ export default class CKEditor extends Component {
             element.addClass('cke_smiley');
         }
 
-        document.body.addEventListener('click', this._onDocumentClick);
-        this._setDialogPosition(editor, dialog);
-    }
+        document.body.addEventListener('click', this.onDocumentClick);
+        this.setDialogPosition(editor, dialog);
+    };
 
-    _onDialogHide(ev) {
+    onDialogHide = ev => {
         Array.from(document.getElementsByClassName('cke_button')).forEach(el =>
             el.classList.remove('active')
         );
-        document.body.removeEventListener('click', this._onDocumentClick);
+        document.body.removeEventListener('click', this.onDocumentClick);
         this.dialog = null;
-    }
+    };
 
-    _onDocumentClick(ev) {
+    onDocumentClick = ev => {
         if (!this.dialog) return;
+
         let parents = [];
         let el = ev.target;
+
         while (el) {
             parents.push(el);
             el = el.parentElement;
         }
-        const clickInsideDialog = some(node => node.classList.contains('cke_dialog'), parents);
+
+        const clickInsideDialog = parents.some(node => node.classList.contains('cke_dialog'));
+
         if (!clickInsideDialog) {
             this.dialog.hide();
         }
-    }
+    };
 
-    _setDialogPosition(editor, dialog) {
-        const buttonObj = editor.toolbar[0].items.find(item => item.name == 'smiley');
-        if (dialog._.name != 'smiley' || !buttonObj) return;
+    setDialogPosition = (editor, dialog) => {
+        const buttonObj = editor.toolbar[0].items.find(item => item.name === 'smiley');
+
+        if (dialog._.name !== 'smiley' || !buttonObj) return;
+
         const button = document.getElementById(buttonObj._.id);
+
         if (!button) return;
+
         const {
             top: buttonTop,
             left: buttonLeft,
@@ -275,31 +283,30 @@ export default class CKEditor extends Component {
         };
 
         dialog.move(newDialogPosition.left, newDialogPosition.top);
-    }
+    };
 
-    componentWillUnmount() {
-        if (this.editor) {
-            this.editor.destroy();
-        }
-    }
-
-    shouldComponentUpdate() {
-        return false;
-    }
-
-    setContainerRef(textarea) {
+    setContainerRef = textarea => {
         this.editorContainer = textarea;
-    }
+    };
 
     render() {
         return (
-            <div>
+            <Fragment>
                 <style>{this.constructor.externalCss}</style>
                 <textarea ref={this.setContainerRef} />
-            </div>
+            </Fragment>
         );
     }
 }
+
+CKEditor.defaultProps = {
+    options: null,
+    onEditorChange: null,
+    onEditorInitialized: null,
+    initialContent: null,
+    refresh: null,
+    onEditorKey: null,
+};
 
 CKEditor.propTypes = {
     /**

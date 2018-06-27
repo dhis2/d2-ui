@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import Dialog from 'material-ui/Dialog';
 import { Portal } from 'react-portal';
-import { findIndex } from 'lodash/fp';
 import debounce from 'lodash/debounce';
-
-import i18n from '@dhis2/d2-i18n';
 
 import CKEditor from './CKEditor';
 import UserMatch from './UserMatch';
@@ -28,12 +23,7 @@ const styles = {
 
 const keycodes = { up: 38, down: 40, enter: 13, tab: 9 };
 
-export default class RichTextEditor extends Component {
-    static propTypes = {
-        ...CKEditor.propTypes,
-        d2: PropTypes.object,
-    };
-
+export class RichTextEditor extends Component {
     constructor(props) {
         super(props);
         this.userMatchRefs = {};
@@ -55,7 +45,7 @@ export default class RichTextEditor extends Component {
     }
 
     onDocumentClick = event => {
-        const area = ReactDOM.findDOMNode(this.mentionsArea);
+        const area = this.mentionsArea;
 
         if (area && !area.contains(event.target)) {
             this.clearMentions();
@@ -85,27 +75,30 @@ export default class RichTextEditor extends Component {
         const { matchingUsers, currentUserIndex } = this.state;
         const nUsers = matchingUsers.length;
         const newIndex = (currentUserIndex + offset + nUsers) % nUsers;
+
         this.setState({ currentUserIndex: newIndex });
+
         const el = this.userMatchRefs[newIndex];
-        if (el) {
-            ReactDOM.findDOMNode(el).scrollIntoView();
-        }
+        el.scrollIntoView();
     };
 
     onEditorKey = ev => {
         const { matchingUsers, currentUserIndex } = this.state;
         const { keyCode } = ev.data;
 
-        if (currentUserIndex === null) {
-            return;
-        } else if (keyCode == keycodes.up) {
+        if (currentUserIndex === null) return;
+
+        if (keyCode === keycodes.up) {
             ev.cancel();
+
             this.selectUser(-1);
-        } else if (keyCode == keycodes.down) {
+        } else if (keyCode === keycodes.down) {
             ev.cancel();
+
             this.selectUser(+1);
-        } else if (keyCode == keycodes.enter || keyCode == keycodes.tab) {
+        } else if (keyCode === keycodes.enter || keyCode === keycodes.tab) {
             ev.cancel();
+
             const currentUser = matchingUsers[currentUserIndex];
             this.insertUser(currentUser);
         }
@@ -147,17 +140,10 @@ export default class RichTextEditor extends Component {
 
     onMouseSelected = (user, isSelected) => {
         if (isSelected) {
-            const index = findIndex(u => user.id === u.id, this.state.matchingUsers);
+            const index = this.state.matchingUsers.findIndex(u => user.id === u.id);
+
             if (index >= 0) this.setState({ currentUserIndex: index });
         }
-    };
-
-    setMentionsRef = mentionsArea => {
-        this.mentionsArea = mentionsArea;
-    };
-
-    setUserMatchRef = (userMatchEl, idx) => {
-        this.userMatchRefs[idx] = userMatchEl;
     };
 
     render() {
@@ -171,11 +157,11 @@ export default class RichTextEditor extends Component {
                         <Portal>
                             <ul
                                 style={{ ...styles.mentions, ...position }}
-                                ref={this.setMentionsRef}
+                                ref={node => (this.mentionsArea = node)}
                             >
                                 {matchingUsers.map((user, idx) => [
                                     <UserMatch
-                                        ref={el => this.setUserMatchRef(el, idx)}
+                                        ref={el => (this.userMatchRefs[idx] = el)}
                                         key={`user-${user.id}`}
                                         pattern={pattern}
                                         isSelected={idx === currentUserIndex}
@@ -198,3 +184,14 @@ export default class RichTextEditor extends Component {
         );
     }
 }
+
+RichTextEditor.propTypes = {
+    ...CKEditor.propTypes,
+    d2: PropTypes.object,
+};
+
+RichTextEditor.defaultProps = {
+    d2: null,
+};
+
+export default RichTextEditor;
