@@ -41,21 +41,27 @@ class InterpretationDialog extends Component {
         this.props.onClose();
     }
 
-    _save() {
+    _saveInterpretation() {
         const { interpretation, onSave } = this.props;
         const { value } = this.state;
         interpretation.text = value;
-        return interpretation.save().then(() => {
-            onSave(interpretation);
-            return interpretation;
+        return interpretation.save();
+    }
+
+    _save() {
+        return this._saveInterpretation().then(savedInterpretation => {
+            this.props.onSave(savedInterpretation);
+            this.props.onClose();
         });
     }
 
     onChange = (newValue) => { this.setState({ value: newValue }); }
 
     _saveAndShare = () => {
-        this._save().then(savedInterpretation =>
-            this.setState({ savedInterpretation, sharingDialogIsOpen: true }));
+        return this._saveInterpretation().then(savedInterpretation => {
+            this.props.onSave(savedInterpretation);
+            this.setState({ savedInterpretation, sharingDialogIsOpen: true });
+        });
     }
 
     render() {
@@ -69,9 +75,9 @@ class InterpretationDialog extends Component {
         const buttonProps = {color: "primary", disabled: !value};
         const actions = compact([
             <Button color="primary" onClick={this.cancel}>{i18n.t('Cancel')}</Button>,
-            isActionEdit
-                ? <Button {...buttonProps} onClick={this.save}>{i18n.t('Save')}</Button>
-                : <Button {...buttonProps} onClick={this.saveAndShare}>{i18n.t('Save & share')}</Button>,
+            !isActionEdit &&
+                <Button {...buttonProps} onClick={this.saveAndShare}>{i18n.t('Save & share')}</Button>,
+            <Button {...buttonProps} onClick={this.save}>{i18n.t('Save')}</Button>,
         ]);
 
         if (sharingDialogIsOpen) {
