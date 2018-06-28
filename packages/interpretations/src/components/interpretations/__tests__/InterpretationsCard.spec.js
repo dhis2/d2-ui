@@ -104,7 +104,7 @@ describe('Interpretations: Interpretations -> InterpretationsCard component', ()
                     expect(interpretationsCard.find("InterpretationDialog")).toExist();
                 });
 
-                describe("when dialog close", () => {
+                describe("when click on close", () => {
                     beforeEach(() => {
                         interpretationsCard.find("InterpretationDialog").props().onClose();
                         interpretationsCard.update()
@@ -115,22 +115,13 @@ describe('Interpretations: Interpretations -> InterpretationsCard component', ()
                     });
                 });
 
-                describe("when dialog save", () => {
+                describe("when click on save", () => {
                     beforeEach(() => {
                         newInterpretation = {
                             text: "New text",
                             save: jest.fn(() => Promise.resolve()),
                         };
-                        interpretationsCard.find("InterpretationDialog").props().onSave(newInterpretation);
-                        interpretationsCard.update()
-                    });
-
-                    it("closes the dialog", () => {
-                        expect(interpretationsCard.find("InterpretationDialog")).not.toExist();
-                    });
-
-                    it("should save the interpretation", () => {
-                        expect(newInterpretation.save).toHaveBeenCalled();
+                        return interpretationsCard.find("InterpretationDialog").props().onSave(newInterpretation);
                     });
 
                     it("should notify change", () => {
