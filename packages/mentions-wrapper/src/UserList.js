@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import List, { ListItem, ListItemText } from 'material-ui/List';
 import { withStyles } from 'material-ui/styles';
@@ -19,7 +18,7 @@ export const UserList = ({ classes, users, open, selectedUser, onUserSelect }) =
         onUserSelect(user);
     };
 
-    return ReactDOM.createPortal(
+    return (
         <div
             style={{
                 backgroundColor: '#fff',
@@ -53,8 +52,7 @@ export const UserList = ({ classes, users, open, selectedUser, onUserSelect }) =
                       ))
                     : null}
             </List>
-        </div>,
-        document.body
+        </div>
     );
 };
 

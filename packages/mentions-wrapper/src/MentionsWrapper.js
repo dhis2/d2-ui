@@ -142,7 +142,7 @@ class MentionsWrapper extends Component {
         const { children } = this.props;
 
         return (
-            <div onKeyDown={this.onKeyDown}>
+            <div onKeyDown={this.onKeyDown} style={{ position: 'relative' }}>
                 {children}
                 <UserList
                     open={Boolean(
