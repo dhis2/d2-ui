@@ -25,15 +25,15 @@ class DeleteMenuItem extends Component {
         }
     };
 
-    onDialogReturn = success => () => {
+    onDialogReturn = success => args => {
         const { onDelete, onDeleteError } = this.props;
 
         this.toggleDeleteDialog();
 
         if (success && onDelete) {
-            onDelete();
+            onDelete(args);
         } else if (onDeleteError) {
-            onDeleteError();
+            onDeleteError(args);
         }
     };
 
