@@ -18,7 +18,8 @@ export const UserList = ({ classes, coordinates, users, open, selectedUser, onUs
 
         onUserSelect(user);
     };
-    return (
+
+    return ReactDOM.createPortal(
         <div
             style={{
                 backgroundColor: '#fff',
@@ -52,7 +53,8 @@ export const UserList = ({ classes, coordinates, users, open, selectedUser, onUs
                       ))
                     : null}
             </List>
-        </div>
+        </div>,
+        document.body
     );
 };
 
