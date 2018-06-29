@@ -68,11 +68,19 @@ class MentionsWrapper extends Component {
                         break;
                     case 'ArrowDown':
                         event.preventDefault();
-                        this.setState({ selectedUserIndex: this.state.selectedUserIndex + 1 });
+
+                        if (this.state.selectedUserIndex < this.state.users.length - 1) {
+                            this.setState({ selectedUserIndex: this.state.selectedUserIndex + 1 });
+                        }
+
                         break;
                     case 'ArrowUp':
                         event.preventDefault();
-                        this.setState({ selectedUserIndex: this.state.selectedUserIndex - 1 });
+
+                        if (this.state.selectedUserIndex > 0) {
+                            this.setState({ selectedUserIndex: this.state.selectedUserIndex - 1 });
+                        }
+
                         break;
                 }
             }
