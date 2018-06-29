@@ -151,7 +151,7 @@ class MentionsWrapper extends Component {
                         top: 41, // TODO probably compute this somehow?!
                         left: 0,
                         display: this.state.users.length ? 'block' : 'none',
-                        maxHeight: 210, // TODO probably compute this somehow?!
+                        maxHeight: 180,
                         overflow: 'auto',
                         borderStyle: 'solid',
                         borderWidth: 1,
