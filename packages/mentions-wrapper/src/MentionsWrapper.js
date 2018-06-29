@@ -142,29 +142,16 @@ class MentionsWrapper extends Component {
         const { children } = this.props;
 
         return (
-            <div onKeyDown={this.onKeyDown} style={{ position: 'relative' }}>
+            <div onKeyDown={this.onKeyDown}>
                 {children}
-                <div
-                    style={{
-                        backgroundColor: '#fff',
-                        position: 'absolute',
-                        top: 41, // TODO probably compute this somehow?!
-                        left: 0,
-                        display: this.state.users.length ? 'block' : 'none',
-                        maxHeight: 180,
-                        overflow: 'auto',
-                        borderStyle: 'solid',
-                        borderWidth: 1,
-                        borderColor: 'lightgrey', // TODO use colors from app theme
-                        zIndex: 9,
-                    }}
-                >
-                    <UserList
-                        users={this.state.users}
-                        selectedUser={this.state.users[this.state.selectedUserIndex]}
-                        onUserSelect={this.onUserSelect}
-                    />
-                </div>
+                <UserList
+                    open={Boolean(
+                        this.state.element === document.activeElement && this.state.users.length
+                    )}
+                    users={this.state.users}
+                    selectedUser={this.state.users[this.state.selectedUserIndex]}
+                    onUserSelect={this.onUserSelect}
+                />
             </div>
         );
     }
