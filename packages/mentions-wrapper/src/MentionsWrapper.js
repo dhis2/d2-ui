@@ -51,6 +51,7 @@ class MentionsWrapper extends Component {
         } else if (this.state.captureText) {
             if (
                 key === ' ' ||
+                key === 'Escape' ||
                 (key === 'Backspace' && selectionStart <= this.state.captureStartPosition)
             ) {
                 // XXX
