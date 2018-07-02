@@ -17,7 +17,7 @@ const favorite = {
     publicAccess: "r-------",
     description: "Some Description",
     externalAccess: false,
-    displayDescription: "Description3",
+    displayDescription: "Some translated Description",
     favorite: false,
     access: {
         read: true,
@@ -81,7 +81,7 @@ describe('Interpretations: Details -> DetailsCard component', () => {
     });
 
     it('should render description as first item', () => {
-        expect(detailsCard.find("ListItem").get(0).props.text).toEqual(favorite.description);
+        expect(detailsCard.find("ListItem").get(0).props.text).toEqual("Some translated Description");
     });
 
     it('should render owner', () => {

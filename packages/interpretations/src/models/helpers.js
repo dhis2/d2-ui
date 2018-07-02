@@ -19,6 +19,7 @@ const favoriteFields = [
     'user[id,displayName]',
     'displayName',
     'description',
+    'displayDescription',
     'created',
     'lastUpdated',
     'access',
