@@ -19,21 +19,16 @@ const styles = {
 };
 
 class InterpretationDialog extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            value: props.interpretation.text,
-            sharingDialogIsOpen: false,
-        };
-        this.save = this.save.bind(this);
-        this.cancel = this.cancel.bind(this);
-    }
+    state = {
+        value: this.props.interpretation.text,
+        sharingDialogIsOpen: false,
+    };
 
-    cancel() {
+    cancel = () => {
         this.props.onClose();
     }
 
-    save() {
+    save = () => {
         const { interpretation, onSave } = this.props;
         const { value } = this.state;
         interpretation.text = value;
