@@ -40,7 +40,7 @@ const EditButton = props => {
 const descriptionMaxLength = 250;
 
 const getDescription = (model) => {
-    const {description} = model;
+    const { displayDescription: description } = model;
 
     if (!description) {
         return (<i>{i18n.t('No description')}</i>)
