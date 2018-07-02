@@ -12,9 +12,8 @@ import { formatRelative } from '../../util/i18n';
 
 const Comment = ({ comment, showManageActions, onEdit, onDelete, onReply }) => (
     <div>
-        <style>{styles.richTextCss}</style>
-
-        <div className="richText" style={styles.commentText} dangerouslySetInnerHTML={{__html: comment.text}}>
+        <div style={styles.commentText}>
+            {comment.text}
         </div>
 
         <span style={styles.tipText}>
@@ -107,7 +106,7 @@ export default class InterpretationComments extends React.Component {
 
     render() {
         const { d2 } = this.context;
-        const { interpretation, mentions } = this.props;
+        const { interpretation } = this.props;
         const { commentToEdit, newComment, showOnlyFirstComments } = this.state;
         const sortedComments = orderBy(["created"], ["asc"], interpretation.comments);
         const commentsToShowOnInit = 3;
@@ -129,7 +128,6 @@ export default class InterpretationComments extends React.Component {
                                         comment={comment}
                                         onPost={this.onUpdate}
                                         onCancel={this.onCancelEdit}
-                                        mentions={mentions}
                                     />
                                 :
                                     <Comment
@@ -159,7 +157,6 @@ export default class InterpretationComments extends React.Component {
                         <CommentTextarea
                             comment={newComment}
                             onPost={this.onSave}
-                            mentions={mentions}
                         />
                     </WithAvatar>
                 }
