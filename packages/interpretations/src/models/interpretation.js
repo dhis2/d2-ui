@@ -31,11 +31,13 @@ export default class Interpretation {
 
             return apiFetchWithResponse(`/interpretations/${modelName}/${modelId}`, "POST", this.text)
                 .then(getInterpretationIdFromResponse)
-                .then(interpretationId =>
-                    apiFetch(`/sharing?type=interpretation&id=${interpretationId}`, "PUT", sharingPayload)
-                );
+                .then(interpretationId => {
+                    this.id = interpretationId;
+                    const sharingUrl = `/sharing?type=interpretation&id=${interpretationId}`;
+                    return apiFetch(sharingUrl, "PUT", sharingPayload).then(() => this);
+                });
         } else {
-            return apiFetch(`/interpretations/${this.id}`, "PUT", this.text);
+            return apiFetch(`/interpretations/${this.id}`, "PUT", this.text).then(() => this);
         }
     }
 

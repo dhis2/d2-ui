@@ -20,7 +20,8 @@ const interpretation = {
             id: "xE7jOejl9FI",
             displayName: "John Traore"
         }
-    }]
+    }],
+    save: jest.fn(() => Promise.resolve(interpretation)),
 };
 
 const renderComponent = (partialProps = {}) => {
@@ -49,7 +50,7 @@ describe('Interpretations: Interpretations -> InterpretationDialog component', (
     describe("when save is clicked with new text", () => {
         beforeEach(() => {
             interpretationDialog.find("RichEditor").props().onEditorChange("new text");
-            interpretationDialog.instance()._save();
+            return interpretationDialog.instance()._save();
         });
 
         it("should call onSave with the updated interpretation", () => {

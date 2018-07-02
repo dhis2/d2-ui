@@ -22,8 +22,10 @@ class InterpretationDialog extends Component {
             value: props.interpretation.text,
             showEditor: true,
             sharingDialogIsOpen: false,
+            savedInterpretation: null,
         };
         this.save = this.hideEditorAndThen(this._save.bind(this));
+        this.saveAndShare = this.hideEditorAndThen(this._saveAndShare.bind(this));
         this.cancel = this.hideEditorAndThen(this._cancel.bind(this));
     }
 
@@ -39,64 +41,76 @@ class InterpretationDialog extends Component {
         this.props.onClose();
     }
 
-    _save() {
+    _saveInterpretation() {
         const { interpretation, onSave } = this.props;
         const { value } = this.state;
         interpretation.text = value;
-        onSave(interpretation);
+        return interpretation.save();
+    }
+
+    _save() {
+        return this._saveInterpretation().then(savedInterpretation => {
+            this.props.onSave(savedInterpretation);
+            this.props.onClose();
+        });
     }
 
     onChange = (newValue) => { this.setState({ value: newValue }); }
 
-    openSharingDialog = () => { this.setState({ sharingDialogIsOpen: true }); }
-
-    closeSharingDialog = () => { this.setState({ sharingDialogIsOpen: false }); }
+    _saveAndShare = () => {
+        return this._saveInterpretation().then(savedInterpretation => {
+            this.props.onSave(savedInterpretation);
+            this.setState({ savedInterpretation, sharingDialogIsOpen: true });
+        });
+    }
 
     render() {
         const { d2 } = this.context;
         const { interpretation, mentions } = this.props;
-        const { value, showEditor, sharingDialogIsOpen } = this.state;
-        const renderSharingDialog = interpretation && interpretation.id;
-        const title = interpretation && interpretation.id
+        const { value, showEditor, sharingDialogIsOpen, savedInterpretation } = this.state;
+        const isActionEdit = !!interpretation.id;
+        const title = isActionEdit
             ? i18n.t('Edit interpretation')
             : i18n.t('Create interpretation');
+        const buttonProps = {color: "primary", disabled: !value};
         const actions = compact([
             <Button color="primary" onClick={this.cancel}>{i18n.t('Cancel')}</Button>,
-            interpretation.id
-                ? <Button color="primary" onClick={this.openSharingDialog}>{i18n.t('Share')}</Button>
-                : null,
-            <Button color="primary" disabled={!value} onClick={this.save}>{i18n.t('Save')}</Button>,
+            !isActionEdit &&
+                <Button {...buttonProps} onClick={this.saveAndShare}>{i18n.t('Save & share')}</Button>,
+            <Button {...buttonProps} onClick={this.save}>{i18n.t('Save')}</Button>,
         ]);
 
-        return (
-            <Dialog
-                title={title}
-                open={true}
-                onRequestClose={this.cancel}
-                actions={actions}
-                contentStyle={styles.dialog}
-                repositionOnUpdate={false}
-            >
-                {showEditor &&
-                    <RichEditor
-                        options={{height: 150}}
-                        initialContent={value}
-                        onEditorChange={this.onChange}
-                        mentions={mentions}
-                    />
-                }
-
-                {renderSharingDialog &&
-                    <SharingDialog
-                        open={sharingDialogIsOpen}
-                        onRequestClose={this.closeSharingDialog}
-                        d2={d2}
-                        id={interpretation.id}
-                        type={"interpretation"}
-                    />
-                }
-            </Dialog>
-        );
+        if (sharingDialogIsOpen) {
+            return (
+                <SharingDialog
+                    open={true}
+                    onRequestClose={this.cancel}
+                    d2={d2}
+                    id={savedInterpretation.id}
+                    type={"interpretation"}
+                />
+            );
+        } else {
+            return (
+                <Dialog
+                    title={title}
+                    open={true}
+                    onRequestClose={this.cancel}
+                    actions={actions}
+                    contentStyle={styles.dialog}
+                    repositionOnUpdate={false}
+                >
+                    {showEditor &&
+                        <RichEditor
+                            options={{height: 150}}
+                            initialContent={value}
+                            onEditorChange={this.onChange}
+                            mentions={mentions}
+                        />
+                    }
+                </Dialog>
+            );
+        }
     }
 }
 
