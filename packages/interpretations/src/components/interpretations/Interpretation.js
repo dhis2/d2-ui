@@ -95,7 +95,7 @@ class Interpretation extends React.Component {
     closeSharingDialog = () => { this.setState({ sharingDialogIsOpen: false }); }
 
     render() {
-        const { interpretation, extended, mentions } = this.props;
+        const { interpretation, extended } = this.props;
         const { interpretationToEdit, newComment, sharingDialogIsOpen } = this.state;
         const { d2 } = this.context;
         const showActions = extended;
@@ -111,7 +111,6 @@ class Interpretation extends React.Component {
                         interpretation={interpretationToEdit}
                         onSave={this.saveInterpretationAndClose}
                         onClose={this.closeInterpretationDialog}
-                        mentions={mentions}
                     />
                 }
                 {sharingDialogIsOpen &&
@@ -134,11 +133,8 @@ class Interpretation extends React.Component {
                     </div>
 
                     <div style={styles.interpretationTextWrapper}>
-                        <style>{styles.richTextCss}</style>
-                        
-                        <div className="richText"
-                            style={extended ? {} : styles.interpretationTextLimited}
-                            dangerouslySetInnerHTML={{__html: interpretation.text}}>
+                        <div style={extended ? styles.interpretationText : styles.interpretationTextLimited}>
+                          {interpretation.text}
                         </div>
                     </div>
 
@@ -184,7 +180,6 @@ class Interpretation extends React.Component {
                                     interpretation={interpretation}
                                     onSave={this.saveComment}
                                     onDelete={this.deleteComment}
-                                    mentions={mentions}
                                     newComment={newComment}
                                 />}
                         </div>
