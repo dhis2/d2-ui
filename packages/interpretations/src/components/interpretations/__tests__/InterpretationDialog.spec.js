@@ -20,7 +20,8 @@ const interpretation = {
             id: "xE7jOejl9FI",
             displayName: "John Traore"
         }
-    }]
+    }],
+    save: jest.fn(() => Promise.resolve(interpretation)),
 };
 
 const renderComponent = (partialProps = {}) => {
