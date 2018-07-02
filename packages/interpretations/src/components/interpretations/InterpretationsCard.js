@@ -38,7 +38,6 @@ const getInterpretationsList = props => {
                         interpretation={interpretation}
                         onChange={onChange}
                         extended={false}
-                        mentions={model.mentions}
                     />
                 </div>
             ))}
@@ -57,7 +56,6 @@ const getInterpretationDetails = props => {
             interpretation={interpretation}
             onChange={onChange}
             extended={true}
-            mentions={model.mentions}
         />
     );
 };
@@ -192,7 +190,6 @@ class InterpretationsCard extends React.Component {
                         interpretation={interpretationToEdit}
                         onSave={this.saveInterpretationAndClose}
                         onClose={this.closeInterpretationDialog}
-                        mentions={model.mentions}
                     />
                 }
 

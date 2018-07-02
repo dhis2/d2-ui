@@ -6,12 +6,15 @@ import defer from 'lodash/fp/defer';
 import i18n from '@dhis2/d2-i18n'
 import { compact } from 'lodash/fp';
 import SharingDialog from '@dhis2/d2-ui-sharing-dialog';
-import RichEditor from '../html-editor/RichEditor';
+import TextField from 'material-ui/TextField';
 
 const styles = {
     dialog: {
         maxWidth: 600,
         height: 500,
+    },
+    textfield: {
+        width: '100%',
     },
 };
 
@@ -20,33 +23,24 @@ class InterpretationDialog extends Component {
         super(props);
         this.state = {
             value: props.interpretation.text,
-            showEditor: true,
             sharingDialogIsOpen: false,
         };
-        this.save = this.hideEditorAndThen(this._save.bind(this));
-        this.cancel = this.hideEditorAndThen(this._cancel.bind(this));
+        this.save = this.save.bind(this);
+        this.cancel = this.cancel.bind(this);
     }
 
-    hideEditorAndThen(fn) {
-        // Method componentWillUnmount of child components of Dialog are called *after* their nodes
-        // are removed from the DOM (bug in mui?), which triggers errors in CKEditor.destroy.
-        // Workaround: Manually unmount the component using a flag in state.
-        return (...args) =>
-            this.setState({ showEditor: false }, () => defer(() => fn(...args)));
-    }
-
-    _cancel() {
+    cancel() {
         this.props.onClose();
     }
 
-    _save() {
+    save() {
         const { interpretation, onSave } = this.props;
         const { value } = this.state;
         interpretation.text = value;
         onSave(interpretation);
     }
 
-    onChange = (newValue) => { this.setState({ value: newValue }); }
+    onChange = (ev, newValue) => { this.setState({ value: newValue }); }
 
     openSharingDialog = () => { this.setState({ sharingDialogIsOpen: true }); }
 
@@ -54,8 +48,8 @@ class InterpretationDialog extends Component {
 
     render() {
         const { d2 } = this.context;
-        const { interpretation, mentions } = this.props;
-        const { value, showEditor, sharingDialogIsOpen } = this.state;
+        const { interpretation } = this.props;
+        const { value, sharingDialogIsOpen } = this.state;
         const renderSharingDialog = interpretation && interpretation.id;
         const title = interpretation && interpretation.id
             ? i18n.t('Edit interpretation')
@@ -77,14 +71,14 @@ class InterpretationDialog extends Component {
                 contentStyle={styles.dialog}
                 repositionOnUpdate={false}
             >
-                {showEditor &&
-                    <RichEditor
-                        options={{height: 150}}
-                        initialContent={value}
-                        onEditorChange={this.onChange}
-                        mentions={mentions}
-                    />
-                }
+                <TextField
+                    name="interpretation"
+                    value={value}
+                    multiLine={true}
+                    rows={1}
+                    onChange={this.onChange}
+                    style={styles.textfield}
+                />
 
                 {renderSharingDialog &&
                     <SharingDialog
@@ -104,7 +98,6 @@ InterpretationDialog.propTypes = {
     interpretation: PropTypes.object.isRequired,
     onSave: PropTypes.func.isRequired,
     onClose: PropTypes.func.isRequired,
-    mentions: RichEditor.propTypes.mentions,
 };
 
 InterpretationDialog.contextTypes = {
