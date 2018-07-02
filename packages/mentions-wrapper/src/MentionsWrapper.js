@@ -6,6 +6,7 @@ import UserList from './UserList';
 
 const defaultState = {
     element: null,
+    listIsOpen: false,
     captureText: false,
     captureStartPosition: null,
     capturedText: null,
@@ -29,9 +30,12 @@ class MentionsWrapper extends Component {
                 fields: 'id,displayName,userCredentials[username]',
             })
             .then(response => {
-                this.setState({
-                    users: response.users,
-                });
+                if (response.users.length) {
+                    this.setState({
+                        users: response.users,
+                        listIsOpen: true,
+                    });
+                }
             });
     };
 
@@ -51,7 +55,6 @@ class MentionsWrapper extends Component {
         } else if (this.state.captureText) {
             if (
                 key === ' ' ||
-                key === 'Escape' ||
                 (key === 'Backspace' && selectionStart <= this.state.captureStartPosition)
             ) {
                 // XXX
@@ -112,6 +115,10 @@ class MentionsWrapper extends Component {
         }, 0);
     };
 
+    onUserListClose = () => {
+        this.setState(defaultState);
+    };
+
     onUserSelect = user => {
         const originalValue = this.state.element.value;
         const newValue = `${originalValue.slice(
@@ -140,17 +147,18 @@ class MentionsWrapper extends Component {
 
     render() {
         const { children } = this.props;
+        const { element, listIsOpen, users, selectedUserIndex } = this.state;
 
         return (
-            <div onKeyDown={this.onKeyDown} style={{ position: 'relative' }}>
+            <div onKeyDown={this.onKeyDown}>
                 {children}
                 <UserList
-                    open={Boolean(
-                        this.state.element === document.activeElement && this.state.users.length
-                    )}
-                    users={this.state.users}
-                    selectedUser={this.state.users[this.state.selectedUserIndex]}
-                    onUserSelect={this.onUserSelect}
+                    anchorEl={element}
+                    open={listIsOpen}
+                    users={users}
+                    selectedUser={users[selectedUserIndex]}
+                    onClose={this.onUserListClose}
+                    onSelect={this.onUserSelect}
                 />
             </div>
         );
