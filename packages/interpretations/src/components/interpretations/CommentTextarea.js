@@ -5,26 +5,17 @@ import i18n from '@dhis2/d2-i18n'
 import styles from './InterpretationsStyles.js';
 
 class CommentTextarea extends React.Component {
-    static propTypes = {
-        comment: PropTypes.object.isRequired,
-        onPost: PropTypes.func.isRequired,
-        onCancel: PropTypes.func,
+    state = {
+        text: this.props.comment.text || "",
     };
-
-    constructor(props) {
-        super(props);
-        this.state = { text: props.comment.text || "" };
-        this.onPost = this.onPost.bind(this);
-        this.onChange = this.onChange.bind(this);
-    }
 
     componentWillReceiveProps(newProps) {
         if (this.props.comment !== newProps.comment) {
-            this.setState({ text: newProps.comment.text }, this.focus.bind(this));
+            this.setState({ text: newProps.comment.text }, this.focus);
         }
     }
 
-    focus() {
+    focus = () => {
         const { textarea } = this;
         if (textarea) {
             textarea.focus();
@@ -37,11 +28,11 @@ class CommentTextarea extends React.Component {
         this.focus();
     }
 
-    onChange(ev) {
+    onChange = (ev) => {
         this.setState({ text: ev.target.value });
     }
 
-    onPost() {
+    onPost = () => {
         const newText = this.state.text;
         if (newText && newText.trim()) {
             const newComment = this.props.comment;
