@@ -139,7 +139,7 @@ class MentionsWrapper extends Component {
         // need to refocus on the input/textarea
         this.state.element.focus();
         // position the cursor at the end
-        const pos = this.state.element.length;
+        const pos = newValue.length;
         this.state.element.setSelectionRange(pos, pos);
 
         this.setState(defaultState);
