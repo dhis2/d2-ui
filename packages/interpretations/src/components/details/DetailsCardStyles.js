@@ -12,6 +12,7 @@ export default {
         zIndex: 1010,
         margin: "8px 4px 8px 4px",
         color: "red",
+        paddingBottom: 7,
     },
 
     detailsCardHeader: {
