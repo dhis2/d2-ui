@@ -38,12 +38,12 @@ class MentionsWrapper extends Component {
 
     // event bubbles up from the wrapped input/textarea
     onKeyDown = event => {
-        const { key, shiftKey } = event;
+        const { key } = event;
         const element = event.target;
         const { selectionStart, selectionEnd } = element;
 
         // '@' triggers the user lookup/suggestion
-        if (!this.state.captureText && key === '@' && shiftKey === true) {
+        if (!this.state.captureText && key === '@') {
             this.setState({
                 element,
                 captureText: true,
