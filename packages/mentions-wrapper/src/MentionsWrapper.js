@@ -10,7 +10,6 @@ const defaultState = {
     captureText: false,
     captureStartPosition: null,
     capturedText: null,
-    users: [],
     selectedUserIndex: 0,
 };
 
@@ -18,7 +17,7 @@ class MentionsWrapper extends Component {
     constructor(props) {
         super(props);
 
-        this.state = defaultState;
+        this.state = { ...defaultState, users: [] };
 
         this.lookupUser = debounce(this.lookupUser, 250);
     }
@@ -30,12 +29,10 @@ class MentionsWrapper extends Component {
                 fields: 'id,displayName,userCredentials[username]',
             })
             .then(response => {
-                if (response.users.length) {
-                    this.setState({
-                        users: response.users,
-                        listIsOpen: true,
-                    });
-                }
+                this.setState({
+                    users: response.users,
+                    listIsOpen: true,
+                });
             });
     };
 
@@ -141,22 +138,26 @@ class MentionsWrapper extends Component {
 
         // need to refocus on the input/textarea
         this.state.element.focus();
+        // position the cursor at the end
+        const pos = this.state.element.length;
+        this.state.element.setSelectionRange(pos, pos);
 
         this.setState(defaultState);
     };
 
     render() {
         const { children } = this.props;
-        const { element, listIsOpen, users, selectedUserIndex } = this.state;
+        const { element, listIsOpen, users, selectedUserIndex, capturedText } = this.state;
 
         return (
             <div onKeyDown={this.onKeyDown}>
                 {children}
                 <UserList
-                    anchorEl={element}
                     open={listIsOpen}
+                    anchorEl={element}
                     users={users}
                     selectedUser={users[selectedUserIndex]}
+                    filter={capturedText}
                     onClose={this.onUserListClose}
                     onSelect={this.onUserSelect}
                 />
