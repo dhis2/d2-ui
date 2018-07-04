@@ -32,6 +32,7 @@ export const UserList = ({
     const onClick = user => event => {
         if (event) {
             event.stopPropagation();
+            event.preventDefault();
         }
 
         onSelect(user);

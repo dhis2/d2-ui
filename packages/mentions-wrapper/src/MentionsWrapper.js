@@ -54,7 +54,6 @@ class MentionsWrapper extends Component {
                 key === ' ' ||
                 (key === 'Backspace' && selectionStart <= this.state.captureStartPosition)
             ) {
-                // XXX
                 this.setState(defaultState);
             } else if (this.state.users.length) {
                 const selectedUserIndex = this.state.selectedUserIndex;
@@ -125,24 +124,20 @@ class MentionsWrapper extends Component {
             .slice(this.state.captureStartPosition - 1)
             .replace(/^@\w*/, `@${user.userCredentials.username}`)}`;
 
-        const component = this.props.children;
+        this.setState(defaultState);
 
-        // for a controlled component
-        // trigger onChange on the component to keep its state aligned
-        // otherwise try to set the value directly
-        if (component.props.onChange) {
-            component.props.onChange(newValue);
-        } else {
-            this.state.element.value = newValue;
+        // typically for connected components we want the state to be updated too
+        // but the logic belongs to the wrapped component, so we just invoke the supplied callback
+        if (this.props.onUserSelect) {
+            this.props.onUserSelect(newValue);
         }
 
         // need to refocus on the input/textarea
         this.state.element.focus();
+
         // position the cursor at the end
         const pos = newValue.length;
         this.state.element.setSelectionRange(pos, pos);
-
-        this.setState(defaultState);
     };
 
     render() {
@@ -172,6 +167,7 @@ MentionsWrapper.defaultProps = {
 
 MentionsWrapper.propTypes = {
     d2: PropTypes.object,
+    onUserSelect: PropTypes.func.isRequired,
 };
 
 export default MentionsWrapper;
