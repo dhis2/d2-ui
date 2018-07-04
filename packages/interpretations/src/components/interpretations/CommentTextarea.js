@@ -1,12 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import { Link, ActionSeparator } from './misc';
-import i18n from '@dhis2/d2-i18n'
+import i18n from '@dhis2/d2-i18n';
 import styles from './InterpretationsStyles.js';
 
 class CommentTextarea extends React.Component {
     state = {
-        text: this.props.comment.text || "",
+        text: this.props.comment.text || '',
     };
 
     componentWillReceiveProps(newProps) {
@@ -21,16 +21,16 @@ class CommentTextarea extends React.Component {
             textarea.focus();
             textarea.setSelectionRange(textarea.value.length, textarea.value.length);
         }
-    }
+    };
 
-    setTextareaRef = (textarea) => {
+    setTextareaRef = textarea => {
         this.textarea = textarea;
         this.focus();
-    }
+    };
 
-    onChange = (ev) => {
+    onChange = ev => {
         this.setState({ text: ev.target.value });
-    }
+    };
 
     onPost = () => {
         const newText = this.state.text;
@@ -38,14 +38,14 @@ class CommentTextarea extends React.Component {
             const newComment = this.props.comment;
             newComment.text = newText;
             this.props.onPost(newComment);
-            this.setState({ text: "" });
+            this.setState({ text: '' });
         }
-    }
+    };
 
     render() {
         const { comment, onCancel } = this.props;
         const { text } = this.state;
-        const postText = onCancel ? i18n.t("OK") : i18n.t('Post comment');
+        const postText = onCancel ? i18n.t('OK') : i18n.t('Post comment');
 
         return (
             <div>
@@ -60,15 +60,16 @@ class CommentTextarea extends React.Component {
 
                 <Link disabled={!text} label={postText} onClick={this.onPost} />
 
-                {onCancel &&
+                {onCancel && (
                     <span>
                         <ActionSeparator />
                         <Link label={i18n.t('Cancel')} onClick={onCancel} />
-                    </span>}
+                    </span>
+                )}
             </div>
         );
     }
-};
+}
 
 CommentTextarea.propTypes = {
     comment: PropTypes.object.isRequired,
