@@ -4,6 +4,8 @@ import { Link, ActionSeparator } from './misc';
 import i18n from '@dhis2/d2-i18n';
 import styles from './InterpretationsStyles.js';
 
+import MentionsWrapper from '@dhis2/d2-ui-mentions-wrapper';
+
 class CommentTextarea extends React.Component {
     state = {
         text: this.props.comment.text || '',
@@ -28,8 +30,8 @@ class CommentTextarea extends React.Component {
         this.focus();
     };
 
-    onChange = ev => {
-        this.setState({ text: ev.target.value });
+    onChange = text => {
+        this.setState({ text });
     };
 
     onPost = () => {
@@ -44,19 +46,22 @@ class CommentTextarea extends React.Component {
 
     render() {
         const { comment, onCancel } = this.props;
+        const { d2 } = this.context;
         const { text } = this.state;
         const postText = onCancel ? i18n.t('OK') : i18n.t('Post comment');
 
         return (
             <div>
-                <textarea
-                    ref={this.setTextareaRef}
-                    style={styles.commentArea}
-                    value={text}
-                    rows={4}
-                    autoFocus={true}
-                    onChange={this.onChange}
-                />
+                <MentionsWrapper d2={d2} onUserSelect={this.onChange}>
+                    <textarea
+                        ref={this.setTextareaRef}
+                        style={styles.commentArea}
+                        value={text}
+                        rows={4}
+                        autoFocus={true}
+                        onChange={event => this.onChange(event.target.value)}
+                    />
+                </MentionsWrapper>
 
                 <Link disabled={!text} label={postText} onClick={this.onPost} />
 
@@ -70,6 +75,10 @@ class CommentTextarea extends React.Component {
         );
     }
 }
+
+CommentTextarea.contextTypes = {
+    d2: PropTypes.object,
+};
 
 CommentTextarea.propTypes = {
     comment: PropTypes.object.isRequired,
