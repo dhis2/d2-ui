@@ -21,7 +21,6 @@ const styles = {
 class InterpretationDialog extends Component {
     state = {
         value: this.props.interpretation.text,
-        showEditor: true,
         sharingDialogIsOpen: false,
         savedInterpretation: null,
     };
@@ -56,7 +55,7 @@ class InterpretationDialog extends Component {
     render() {
         const { d2 } = this.context;
         const { interpretation } = this.props;
-        const { value, showEditor, sharingDialogIsOpen, savedInterpretation } = this.state;
+        const { value, sharingDialogIsOpen, savedInterpretation } = this.state;
         const isActionEdit = !!interpretation.id;
         const title = isActionEdit ? i18n.t('Edit interpretation') : i18n.t('Create interpretation');
         const buttonProps = {color: "primary", disabled: !value};
