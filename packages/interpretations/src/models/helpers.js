@@ -16,6 +16,7 @@ const favoriteFields = [
     'id',
     'name',
     'href',
+    'subscribed',
     'user[id,displayName]',
     'displayName',
     'description',
@@ -44,11 +45,17 @@ export const getFavoriteWithInterpretations = (d2, type, id) => {
             return Object.assign(model, {
                 interpretations: modelInterpretations,
                 favoriteViews: views,
+                modelName: type,
             });
         });
 };
 
-export const patch = (model, attributeNames) => {
-    const attributes = pick(attributeNames, model);
-    return apiFetch(model.href, "PATCH", attributes);
+export const setSubscription = (model, newSubscriptionValue) => {
+    if (!model || !model.href) {
+        return Promise.reject(new Error(`Attribute href not found in model`));
+    } else {
+        var path = model.href + "/" + "subscriber";
+        var method = newSubscriptionValue ? "POST" : "DELETE";
+        return apiFetch(path, method);
+    }
 };
