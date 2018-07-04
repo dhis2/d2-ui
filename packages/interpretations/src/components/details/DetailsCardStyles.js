@@ -38,4 +38,10 @@ export default {
         transform: 'translateY(-50%)',
         paddingRight: 0,
     },
+
+    subscriberIcon: {
+        position: "absolute",
+        top: 30,
+        right: 10,
+    },
 };

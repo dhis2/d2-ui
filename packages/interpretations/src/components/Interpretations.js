@@ -66,6 +66,7 @@ class Interpretations extends React.Component {
             <div>
                 <DetailsCard
                     model={model}
+                    onChange={this.onChange}
                 />
 
                 <InterpretationsCard

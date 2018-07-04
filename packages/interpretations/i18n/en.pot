@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2018-07-02T12:32:53.634Z\n"
-"PO-Revision-Date: 2018-07-02T12:32:53.634Z\n"
+"POT-Creation-Date: 2018-07-04T08:51:47.874Z\n"
+"PO-Revision-Date: 2018-07-04T08:51:47.874Z\n"
 
 msgid "No description"
 msgstr ""
@@ -27,6 +27,12 @@ msgid "Public"
 msgstr ""
 
 msgid "user groups"
+msgstr ""
+
+msgid "Unsubscribe from this {{object}} and stop receiving notifications"
+msgstr ""
+
+msgid "Subscribe to this {{object}} and start receiving notifications"
 msgstr ""
 
 msgid "Details"
@@ -111,4 +117,22 @@ msgid "Write new interpretation"
 msgstr ""
 
 msgid "Interpretations"
+msgstr ""
+
+msgid "chart"
+msgstr ""
+
+msgid "pivot table"
+msgstr ""
+
+msgid "map"
+msgstr ""
+
+msgid "event chart"
+msgstr ""
+
+msgid "event report"
+msgstr ""
+
+msgid "object"
 msgstr ""
