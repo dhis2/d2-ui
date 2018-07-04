@@ -18,9 +18,12 @@ export const EditButton = props => {
 };
 
 export const getUserLink = (d2, user) => {
-    const baseurl = d2.system.systemInfo.contextPath;
-    const userUrl =`${baseurl}/dhis-web-messaging/profile.action?id=${user.id}`;
-    return (<a href={userUrl} style={styles.userLink} className="author" target="_blank">{user.displayName}</a>);
+    // Currently there is no public page for users (DHIS2-691), just use a <span> for now
+    return (
+        <span style={styles.userLink} className="author">
+            {user.displayName}
+        </span>
+    );
 };
 
 export const Link = (props) => {

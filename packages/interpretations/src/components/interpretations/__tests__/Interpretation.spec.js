@@ -67,9 +67,8 @@ let currentUser;
 
 const commonExpectations = () => {
     it('should show the author with a link', () => {
-        const link = interpretationComponent.find("a.author");
+        const link = interpretationComponent.find(".author");
         expect(link.text()).toMatch(interpretation.user.displayName);
-        expect(link.prop("href")).toMatch(interpretation.user.id);
     });
 
     it('should show the creation date', () => {
