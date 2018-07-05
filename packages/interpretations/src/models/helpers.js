@@ -59,4 +59,3 @@ export const setSubscription = (model, newSubscriptionValue) => {
         return apiFetch(path, method);
     }
 };
-

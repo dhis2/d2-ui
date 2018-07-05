@@ -28,4 +28,3 @@ export function translateModelName(modelName) {
         return i18n.t('object');
     }
  }
- 

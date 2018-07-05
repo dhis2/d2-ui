@@ -26,6 +26,7 @@ import Tabs from './components/tabs';
 import Translation from './components/translation';
 import HeaderBarExample from './components/header-bar';
 import InterpretationsExample from './components/interpretations';
+import MentionsWrapperExample from './components/mentions-wrapper';
 
 import FormEditor from './components/formula-editor';
 import IconPicker from './components/icon-picker';
@@ -146,13 +147,16 @@ class App extends Component {
                 <h2>OrgUnitTree</h2>
                 <OrgUnitTree d2={this.state.d2} />
 
-                <div style={{clear:"both"}}>
+                <div style={{ clear: 'both' }}>
                     <h2>TreeViews</h2>
                     <TreeViews />
                 </div>
 
                 <h2>Intepretations</h2>
                 <InterpretationsExample d2={this.state.d2} />
+
+                <h2>Mentions wrapper</h2>
+                <MentionsWrapperExample d2={this.state.d2} />
             </D2UIApp>
         );
     }
