@@ -5,6 +5,8 @@ import Popover from 'material-ui/Popover';
 import Typography from 'material-ui/Typography';
 import { withStyles } from 'material-ui/styles';
 
+import i18n from '@dhis2/d2-i18n';
+
 const styles = theme => ({
     popover: {
         // ensure the popover show on top of other dialogs/modals
@@ -59,7 +61,9 @@ export const UserList = ({
             {users.length ? (
                 <Fragment>
                     <Typography variant="subheading">
-                        <em className={classes.filter}>Searching for "{filter}"</em>
+                        <em className={classes.filter}>
+                            {i18n.t('Searching for "{{filter}}"', { filter })}
+                        </em>
                     </Typography>
                     <List dense disablePadding className={classes.list}>
                         {users.map(u => (
@@ -81,7 +85,9 @@ export const UserList = ({
                     </List>
                 </Fragment>
             ) : (
-                <em className={classes.filter}>No results found for "{filter}"</em>
+                <em className={classes.filter}>
+                    {i18n.t('No results found for "{{filter}}"', { filter })}
+                </em>
             )}
         </Popover>
     );
