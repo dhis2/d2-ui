@@ -32,9 +32,9 @@ yarn add d2-ui-mentions-wrapper
 ## Import
 
 ```js
-import FileMenu from 'd2-ui-mentions-wrapper';
+import MentionsWrapper from 'd2-ui-mentions-wrapper';
 
-<MentionsWrapper d2={d2}>
+<MentionsWrapper d2={d2} onUserSelect={console.log()}>
     <TextField ... />
 </MentionsWrapper>;
 ```
