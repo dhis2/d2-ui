@@ -122,7 +122,7 @@ class MentionsWrapper extends Component {
             this.state.captureStartPosition - 1
         )}${originalValue
             .slice(this.state.captureStartPosition - 1)
-            .replace(/^@\w*/, `@${user.userCredentials.username}`)}`;
+            .replace(/^@\w*/, `@${user.userCredentials.username} `)}`;
 
         this.setState(defaultState);
 
