@@ -14,6 +14,7 @@ describe('Mentions: MentionsWrapper component', () => {
     beforeEach(() => {
         props = {
             d2: context.d2,
+            onUserSelect: jest.fn(),
         };
 
         mentionsWrapper = shallow(

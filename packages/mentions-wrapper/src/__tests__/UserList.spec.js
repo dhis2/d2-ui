@@ -1,16 +1,19 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import List, { ListItem, ListItemText } from 'material-ui/List';
+import Popover from 'material-ui/Popover';
 
 import { UserList } from '../UserList';
 
 describe('Mentions: MentionsWrapper > UserList component', () => {
     let userList;
-    let onUserSelect;
+    let onSelect;
+    let onClose;
     let props;
 
     beforeEach(() => {
-        onUserSelect = jest.fn();
+        onSelect = jest.fn();
+        onClose = jest.fn();
 
         props = {
             classes: { selected: { backgroundColor: 'lightgrey' } },
@@ -28,10 +31,15 @@ describe('Mentions: MentionsWrapper > UserList component', () => {
                 displayName: 'Justin Johnson',
                 userCredentials: { username: 'slide' },
             },
-            onUserSelect,
+            onSelect,
+            onClose,
         };
 
         userList = shallow(<UserList {...props} />);
+    });
+
+    it('should render a Popover component', () => {
+        expect(userList.find(Popover)).toHaveLength(1);
     });
 
     it('should render the users list', () => {
@@ -48,12 +56,12 @@ describe('Mentions: MentionsWrapper > UserList component', () => {
         ).toEqual('Johnny Cash (sue)');
     });
 
-    it('should trigger the onUserSelect callback when an item in the list is clicked', () => {
+    it('should trigger the onSelect callback when an item in the list is clicked', () => {
         const listItem = userList.find(ListItem).first();
 
         listItem.simulate('click');
 
-        expect(onUserSelect).toHaveBeenCalledTimes(1);
-        expect(onUserSelect).toHaveBeenCalledWith(props.users[0]);
+        expect(onSelect).toHaveBeenCalledTimes(1);
+        expect(onSelect).toHaveBeenCalledWith(props.users[0]);
     });
 });
