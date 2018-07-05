@@ -1,6 +1,6 @@
 {
   "name": "@dhis2/d2-ui-table",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "Table components for d2-ui",
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",
@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@dhis2/d2-ui-core": "^1.2.0",
-    "@dhis2/d2-ui-translation-dialog": "^1.0.11",
+    "@dhis2/d2-ui-translation-dialog": "^1.0.12",
     "babel-runtime": "^6.26.0",
     "d2-utilizr": "^0.2.15",
     "lodash": "^4.17.10",
