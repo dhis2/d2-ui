@@ -2,9 +2,14 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import List, { ListItem, ListItemText } from 'material-ui/List';
 import Popover from 'material-ui/Popover';
+import Typography from 'material-ui/Typography';
 import { withStyles } from 'material-ui/styles';
 
 const styles = theme => ({
+    popover: {
+        // ensure the popover show on top of other dialogs/modals
+        zIndex: 2000,
+    },
     list: {
         maxHeight: 180,
     },
@@ -13,9 +18,9 @@ const styles = theme => ({
     },
     filter: {
         display: 'block',
-        padding: '8px 16px',
+        padding: '8px 24px',
         color: 'gray',
-        fontSize: 13,
+        fontSize: '0.8125rem',
     },
 });
 
@@ -49,10 +54,13 @@ export const UserList = ({
             anchorPosition={{ top: 15, left: 0 }}
             disableAutoFocus
             onClose={onClose}
+            className={classes.popover}
         >
             {users.length ? (
                 <Fragment>
-                    <em className={classes.filter}>Searching for "{filter}"</em>
+                    <Typography variant="subheading">
+                        <em className={classes.filter}>Searching for "{filter}"</em>
+                    </Typography>
                     <List dense disablePadding className={classes.list}>
                         {users.map(u => (
                             <ListItem
