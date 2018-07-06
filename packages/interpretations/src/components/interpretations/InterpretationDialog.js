@@ -6,6 +6,7 @@ import defer from 'lodash/fp/defer';
 import i18n from '@dhis2/d2-i18n';
 import { compact } from 'lodash/fp';
 import SharingDialog from '@dhis2/d2-ui-sharing-dialog';
+import MentionsWrapper from '@dhis2/d2-ui-mentions-wrapper';
 import TextField from 'material-ui/TextField';
 
 const styles = {
@@ -36,7 +37,7 @@ class InterpretationDialog extends Component {
         this.props.onClose();
     };
 
-    onChange = (ev, newValue) => {
+    onChange = newValue => {
         this.setState({ value: newValue });
     };
 
@@ -97,14 +98,16 @@ class InterpretationDialog extends Component {
                     contentStyle={styles.dialog}
                     repositionOnUpdate={false}
                 >
-                    <TextField
-                        name="interpretation"
-                        value={value}
-                        multiLine={true}
-                        rows={1}
-                        onChange={this.onChange}
-                        style={styles.textfield}
-                    />
+                    <MentionsWrapper d2={d2} onUserSelect={this.onChange}>
+                        <TextField
+                            name="interpretation"
+                            value={value}
+                            multiLine={true}
+                            rows={1}
+                            onChange={(event, value) => this.onChange(value)}
+                            style={styles.textfield}
+                        />
+                    </MentionsWrapper>
                 </Dialog>
             );
         }
