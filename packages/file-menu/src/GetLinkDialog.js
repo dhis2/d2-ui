@@ -47,11 +47,15 @@ const GetLinkDialog = (props, context) => {
                         {getAppUrl(fileType, fileModel.id, context)}
                     </a>
                 </DialogContentText>
-                <DialogContentText>
-                    {i18n.t('Open in web API')}
-                    <br />
-                    <a href={`${fileModel.href}/data.html+css`}>{fileModel.href}/data.html+css</a>
-                </DialogContentText>
+                {fileType !== 'map' && (
+                    <DialogContentText>
+                        {i18n.t('Open in web API')}
+                        <br />
+                        <a href={`${fileModel.href}/data.html+css`}>
+                            {fileModel.href}/data.html+css
+                        </a>
+                    </DialogContentText>
+                )}
             </DialogContent>
             <DialogActions>
                 <Button onClick={onRequestClose} color="primary">
