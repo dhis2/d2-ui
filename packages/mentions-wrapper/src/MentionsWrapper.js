@@ -136,7 +136,9 @@ class MentionsWrapper extends Component {
         this.state.element.focus();
 
         // position the cursor at the end
-        this.state.element.setSelectionRange(-1, -1);
+        const element = this.state.element;
+
+        setTimeout(() => element.setSelectionRange(-1, -1), 0);
     };
 
     render() {
