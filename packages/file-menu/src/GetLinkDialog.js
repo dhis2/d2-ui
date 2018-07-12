@@ -31,7 +31,10 @@ const getAppUrl = (fileType, fileId, context) => {
             appName = '';
     }
 
-    return `${baseUrl}/${appName}/index.html?id=${fileId}`;
+    // DHIS2-4253: force URL to be absolute
+    const url = new URL(`${baseUrl}/${appName}/index.html?id=${fileId}`, window.location.origin);
+
+    return url.href;
 };
 
 const GetLinkDialog = (props, context) => {
