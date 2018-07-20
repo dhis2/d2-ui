@@ -32,7 +32,10 @@ const getAppUrl = (fileType, fileId, context) => {
     }
 
     // DHIS2-4253: force URL to be absolute
-    const url = new URL(`${baseUrl}/${appName}/index.html?id=${fileId}`, window.location.origin);
+    const url = new URL(
+        `${baseUrl}/${appName}/index.html?id=${fileId}`,
+        `${window.location.origin}${window.location.pathname}`
+    );
 
     return url.href;
 };
