@@ -27,6 +27,7 @@ import Translation from './components/translation';
 import HeaderBarExample from './components/header-bar';
 import InterpretationsExample from './components/interpretations';
 import MentionsWrapperExample from './components/mentions-wrapper';
+import RichTextEditorExample from './components/rich-text-editor';
 
 import FormEditor from './components/formula-editor';
 import IconPicker from './components/icon-picker';
@@ -157,6 +158,9 @@ class App extends Component {
 
                 <h2>Mentions wrapper</h2>
                 <MentionsWrapperExample d2={this.state.d2} />
+
+                <h2>Rich text editor</h2>
+                <RichTextEditorExample />
             </D2UIApp>
         );
     }
