@@ -9,7 +9,7 @@ interfaces in dhis2 applications.
 yarn add @dhis2/d2-ui-core
 ```
 
-## Basic usage
+## Usage
 
 Importing components
 ```
