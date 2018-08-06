@@ -2,13 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FlatButton from 'material-ui/FlatButton/FlatButton';
 import { SvgIcon } from '@dhis2/d2-ui-core';
+import i18n from '@dhis2/d2-i18n'
+import SharingDialog from '@dhis2/d2-ui-sharing-dialog';
+import some from 'lodash/fp/some';
 import InterpretationComments from './InterpretationComments';
 import InterpretationDialog from './InterpretationDialog';
 import { Link, ActionSeparator, WithAvatar, getUserLink } from './misc';
 import { userCanManage } from '../../util/auth';
-import i18n from '@dhis2/d2-i18n'
 import styles from './InterpretationsStyles.js';
-import some from 'lodash/fp/some';
 import CommentModel from '../../models/comment';
 import { formatDate } from '../../util/i18n';
 
@@ -16,6 +17,7 @@ class Interpretation extends React.Component {
     state = {
         newComment: null,
         interpretationToEdit: null,
+        sharingDialogIsOpen: false,
     };
 
     constructor(props) {
@@ -88,9 +90,13 @@ class Interpretation extends React.Component {
         this.closeInterpretationDialog();
     }
 
+    openSharingDialog = () => { this.setState({ sharingDialogIsOpen: true }); }
+
+    closeSharingDialog = () => { this.setState({ sharingDialogIsOpen: false }); }
+
     render() {
-        const { interpretation, extended, mentions } = this.props;
-        const { interpretationToEdit, newComment } = this.state;
+        const { interpretation, extended } = this.props;
+        const { interpretationToEdit, newComment, sharingDialogIsOpen } = this.state;
         const { d2 } = this.context;
         const showActions = extended;
         const showComments = extended;
@@ -105,7 +111,15 @@ class Interpretation extends React.Component {
                         interpretation={interpretationToEdit}
                         onSave={this.saveInterpretationAndClose}
                         onClose={this.closeInterpretationDialog}
-                        mentions={mentions}
+                    />
+                }
+                {sharingDialogIsOpen &&
+                    <SharingDialog
+                        open={true}
+                        onRequestClose={this.closeSharingDialog}
+                        d2={d2}
+                        id={interpretation.id}
+                        type={"interpretation"}
                     />
                 }
 
@@ -119,11 +133,8 @@ class Interpretation extends React.Component {
                     </div>
 
                     <div style={styles.interpretationTextWrapper}>
-                        <style>{styles.richTextCss}</style>
-                        
-                        <div className="richText"
-                            style={extended ? {} : styles.interpretationTextLimited}
-                            dangerouslySetInnerHTML={{__html: interpretation.text}}>
+                        <div style={extended ? styles.interpretationText : styles.interpretationTextLimited}>
+                          {interpretation.text}
                         </div>
                     </div>
 
@@ -142,6 +153,8 @@ class Interpretation extends React.Component {
                                     <span className="owner-actions">
                                         <ActionSeparator />
                                         <Link label={i18n.t('Edit')} onClick={this.openInterpretationDialog} />
+                                        <ActionSeparator />
+                                        <Link label={i18n.t('Share')} onClick={this.openSharingDialog} />
                                         <ActionSeparator />
                                         <Link label={i18n.t('Delete')} onClick={this.deleteInterpretation} />
                                     </span>}
@@ -167,7 +180,6 @@ class Interpretation extends React.Component {
                                     interpretation={interpretation}
                                     onSave={this.saveComment}
                                     onDelete={this.deleteComment}
-                                    mentions={mentions}
                                     newComment={newComment}
                                 />}
                         </div>

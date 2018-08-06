@@ -38,7 +38,6 @@ const getInterpretationsList = props => {
                         interpretation={interpretation}
                         onChange={onChange}
                         extended={false}
-                        mentions={model.mentions}
                     />
                 </div>
             ))}
@@ -57,7 +56,6 @@ const getInterpretationDetails = props => {
             interpretation={interpretation}
             onChange={onChange}
             extended={true}
-            mentions={model.mentions}
         />
     );
 };
@@ -100,7 +98,6 @@ class InterpretationsCard extends React.Component {
         this.toggleExpand = this.toggleExpand.bind(this);
         this.openNewInterpretationDialog = this.openNewInterpretationDialog.bind(this);
         this.closeInterpretationDialog = this.closeInterpretationDialog.bind(this);
-        this.saveInterpretationAndClose = this.saveInterpretationAndClose.bind(this);
         this.setCurrentInterpretation = this.setCurrentInterpretation.bind(this);
         this.isControlledComponent = !!props.onCurrentInterpretationChange;
     }
@@ -122,11 +119,7 @@ class InterpretationsCard extends React.Component {
     }
 
     notifyChange(interpretation) {
-        this.setCurrentInterpretation(interpretation ? interpretation.id : null);
-
-        if (this.props.onChange) {
-            this.props.onChange();
-        }
+        this.props.onChange();
     }
 
     toggleExpand() {
@@ -142,10 +135,6 @@ class InterpretationsCard extends React.Component {
         this.setState({ interpretationToEdit: null });
     }
 
-    saveInterpretation(interpretation) {
-        interpretation.save().then(this.notifyChange);
-    }
-
     setCurrentInterpretation(interpretationId) {
         const { model, onCurrentInterpretationChange } = this.props;
 
@@ -157,11 +146,6 @@ class InterpretationsCard extends React.Component {
         } else {
             this.setState({ currentInterpretationId: interpretationId });
         }
-    }
-
-    saveInterpretationAndClose(interpretation) {
-        this.saveInterpretation(interpretation);
-        this.closeInterpretationDialog();
     }
 
     getCurrentInterpretation() {
@@ -190,9 +174,8 @@ class InterpretationsCard extends React.Component {
                     <InterpretationDialog
                         model={model}
                         interpretation={interpretationToEdit}
-                        onSave={this.saveInterpretationAndClose}
+                        onSave={this.notifyChange}
                         onClose={this.closeInterpretationDialog}
-                        mentions={model.mentions}
                     />
                 }
 

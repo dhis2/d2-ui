@@ -11,6 +11,7 @@ coverage/
 dist/
 build/
 lib/
+**/src/locales/
 
 stats.json
 npm-debug.log

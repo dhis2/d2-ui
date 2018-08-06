@@ -2,87 +2,115 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Dialog from 'material-ui/Dialog';
 import { Button } from '@dhis2/d2-ui-core';
-import TextField from 'material-ui/TextField';
-import RichEditor from '../html-editor/RichEditor';
 import defer from 'lodash/fp/defer';
-import i18n from '@dhis2/d2-i18n'
+import i18n from '@dhis2/d2-i18n';
+import { compact } from 'lodash/fp';
+import SharingDialog from '@dhis2/d2-ui-sharing-dialog';
+import MentionsWrapper from '@dhis2/d2-ui-mentions-wrapper';
+import TextField from 'material-ui/TextField';
 
 const styles = {
     dialog: {
         maxWidth: 600,
         height: 500,
     },
+    textfield: {
+        width: '100%',
+    },
 };
 
 class InterpretationDialog extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { value: props.interpretation ? props.interpretation.text : "", showEditor: true };
-        this.save = this.hideEditorAndThen(this._save.bind(this));
-        this.cancel = this.hideEditorAndThen(this._cancel.bind(this));
-        this.onChange = this.onChange.bind(this);
-    }
+    state = {
+        value: this.props.interpretation.text,
+        sharingDialogIsOpen: false,
+        savedInterpretation: null,
+    };
 
-    hideEditorAndThen(fn) {
-        // Method componentWillUnmount of child components of Dialog are called *after* their nodes
-        // are removed from the DOM (bug in mui?), which triggers errors in CKEditor.destroy.
-        // Workaround: Manually unmount the component using a flag in state.
-        return (...args) =>
-            this.setState({ showEditor: false }, () => defer(() => fn(...args)));
-    }
-
-    _cancel() {
-        this.props.onClose();
-    }
-
-    _save() {
+    _saveInterpretation() {
         const { interpretation, onSave } = this.props;
         const { value } = this.state;
         interpretation.text = value;
-        onSave(interpretation);
+        return interpretation.save();
     }
 
-    onChange(newValue) {
+    cancel = () => {
+        this.props.onClose();
+    };
+
+    onChange = newValue => {
         this.setState({ value: newValue });
-    }
+    };
+
+    save = () => {
+        return this._saveInterpretation().then(savedInterpretation => {
+            this.props.onSave(savedInterpretation);
+            this.props.onClose();
+        });
+    };
+
+    saveAndShare = () => {
+        return this._saveInterpretation().then(savedInterpretation => {
+            this.props.onSave(savedInterpretation);
+            this.setState({ savedInterpretation, sharingDialogIsOpen: true });
+        });
+    };
 
     render() {
-        const { interpretation, onSave, mentions } = this.props;
-        const { value, showEditor } = this.state;
-        const title = interpretation && interpretation.id
+        const { d2 } = this.context;
+        const { interpretation } = this.props;
+        const { value, sharingDialogIsOpen, savedInterpretation } = this.state;
+        const isActionEdit = !!interpretation.id;
+        const title = isActionEdit
             ? i18n.t('Edit interpretation')
             : i18n.t('Create interpretation');
+        const buttonProps = { color: 'primary', disabled: !value };
+        const actions = compact([
+            <Button color="primary" onClick={this.cancel}>
+                {i18n.t('Cancel')}
+            </Button>,
+            !isActionEdit && (
+                <Button {...buttonProps} onClick={this.saveAndShare}>
+                    {i18n.t('Save & share')}
+                </Button>
+            ),
+            <Button {...buttonProps} onClick={this.save}>
+                {i18n.t('Save')}
+            </Button>,
+        ]);
 
-        return (
-            <Dialog
-                title={title}
-                open={true}
-                onRequestClose={this.cancel}
-                actions={[
-                    <Button color="primary" onClick={this.cancel}>
-                        {i18n.t('Cancel')}
-                    </Button>,
-                    <Button
-                        color="primary"
-                        disabled={value ? false : true}
-                        onClick={this.save}
-                    >
-                        {i18n.t('Save')}
-                    </Button>,
-                ]}
-                contentStyle={styles.dialog}
-                repositionOnUpdate={false}
-            >
-                {showEditor &&
-                    <RichEditor
-                        options={{height: 150}}
-                        initialContent={value}
-                        onEditorChange={this.onChange}
-                        mentions={mentions}
-                    />
-                }
-            </Dialog>
-        );
+        if (sharingDialogIsOpen) {
+            return (
+                <SharingDialog
+                    open={true}
+                    onRequestClose={this.cancel}
+                    d2={d2}
+                    id={savedInterpretation.id}
+                    type={'interpretation'}
+                />
+            );
+        } else {
+            return (
+                <Dialog
+                    title={title}
+                    open={true}
+                    onRequestClose={this.cancel}
+                    actions={actions}
+                    contentStyle={styles.dialog}
+                    repositionOnUpdate={false}
+                >
+                    <MentionsWrapper d2={d2} onUserSelect={this.onChange}>
+                        <TextField
+                            name="interpretation"
+                            value={value}
+                            multiLine={true}
+                            rows={1}
+                            onChange={(event, value) => this.onChange(value)}
+                            style={styles.textfield}
+                        />
+                    </MentionsWrapper>
+                </Dialog>
+            );
+        }
     }
 }
 
@@ -90,6 +118,10 @@ InterpretationDialog.propTypes = {
     interpretation: PropTypes.object.isRequired,
     onSave: PropTypes.func.isRequired,
     onClose: PropTypes.func.isRequired,
+};
+
+InterpretationDialog.contextTypes = {
+    d2: PropTypes.object.isRequired,
 };
 
 export default InterpretationDialog;

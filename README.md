@@ -58,11 +58,11 @@ parameter.
 ## Contributing
 
 See [how to
-contribute](https://github.com/dhis2/d2-ui/blob/master/docs/CONTRIBUTING).
+contribute](https://github.com/dhis2/d2-ui/blob/master/docs/CONTRIBUTING.md).
 
 ## Release process
 
-Documented in [RELEASING](https://github.com/dhis2/d2-ui/blob/master/docs/RELEASING).
+Documented in [RELEASING](https://github.com/dhis2/d2-ui/blob/master/docs/RELEASING.md).
 
 
 
