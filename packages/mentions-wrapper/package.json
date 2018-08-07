@@ -1,6 +1,6 @@
 {
     "name": "@dhis2/d2-ui-mentions-wrapper",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "Mentions wrapper component for DHIS2",
     "main": "./build/cjs/index.js",
     "module": "./build/es/index.js",
