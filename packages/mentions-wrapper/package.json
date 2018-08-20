@@ -1,7 +1,7 @@
 {
-    "name": "@dhis2/d2-ui-file-menu",
-    "version": "1.0.14",
-    "description": "File menu component for DHIS2",
+    "name": "@dhis2/d2-ui-mentions-wrapper",
+    "version": "1.0.5",
+    "description": "Mentions wrapper component for DHIS2",
     "main": "./build/cjs/index.js",
     "module": "./build/es/index.js",
     "files": [
@@ -11,30 +11,26 @@
     "author": "Edoardo Sabadelli <edoardo@dhis2.org>",
     "peerDependencies": {
         "d2": "^29.1.1",
-        "react": "^15.0.0 || ^16.0.0",
-        "react-dom": "^15.0.0 || ^16.0.0"
+        "react": "^16.4.0",
+        "react-dom": "^16.4.0"
     },
     "scripts": {
         "prebuild": "rimraf ./build/*",
-        "build": "npm run localize && npm run build:commonjs && npm run build:es",
+        "build": "yarn localize && yarn build:commonjs && yarn build:es",
         "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir build/cjs --ignore spec.js",
         "build:es": "cross-env BABEL_ENV=es babel src --out-dir build/es --ignore spec.js",
         "build:umd": "cross-env && webpack -p",
-        "watch": "npm run build:es -- --watch",
-        "test-ci": "jest --config=../../jest.config.js packages/file-menu",
+        "watch": "yarn build:es -- --watch",
+        "test-ci": "jest --config=../../jest.config.js packages/mentions-wrapper",
         "extract-pot": "d2-i18n-extract -p src/ -o i18n/",
         "prettify": "prettier \"src/**/*.{js,jsx,json,css}\" --write",
-        "localize": "npm run extract-pot && d2-i18n-generate -n d2-ui-file-menu -p ./i18n/ -o ./src/locales/"
+        "localize": "yarn extract-pot && d2-i18n-generate -n d2-ui-mentions-wrapper -p ./i18n/ -o ./src/locales/"
     },
     "dependencies": {
         "@dhis2/d2-i18n": "^1.0.3",
-        "@dhis2/d2-ui-favorites-dialog": "^1.0.16",
-        "@dhis2/d2-ui-sharing-dialog": "^1.0.15",
-        "@dhis2/d2-ui-translation-dialog": "^1.0.15",
-        "d2-ui": "^29.0.18",
+        "lodash": "^4.17.10",
         "material-ui": "^1.0.0-beta.34",
-        "material-ui-icons": "^1.0.0-beta.17",
-        "prop-types": "^15.6.0"
+        "prop-types": "^15.6.2"
     },
     "jest": {
         "transformIgnorePatterns": [
@@ -46,7 +42,7 @@
     },
     "husky": {
         "hooks": {
-            "pre-commit": "npm run extract-pot && npm run prettify && git add ./i18n ./src/locales"
+            "pre-commit": "yarn extract-pot && git add ./i18n/"
         }
     },
     "devDependencies": {

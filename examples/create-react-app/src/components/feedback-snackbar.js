@@ -47,6 +47,18 @@ export default class FeedbackExample extends PureComponent {
         this.showSnackbar = this.showSnackbar.bind(this);
     }
 
+    onClose = () => {
+        this.setState({
+            show: false,
+            conf: {
+                type: '',
+                message: '',
+                action: '',
+                onActionClick: null,
+            },
+        });
+    };
+
     // FIXME: Add translator
     showSnackbar(type) {
         let conf;
@@ -102,7 +114,11 @@ export default class FeedbackExample extends PureComponent {
                 <Button style={{...style.bnt, ...style.error}} onClick={() => this.showSnackbar(ERROR)}>Error</Button>
                 <Button style={{...style.bnt, ...style.warning}} onClick={() => this.showSnackbar(WARNING)}>Warning</Button>
                 <Button style={{...style.bnt, ...style.action}} onClick={() => this.showSnackbar(ACTION_MESSAGE)}>Action</Button>
-                <FeedbackSnackbar show={this.state.show} conf={this.state.conf}/>
+                <FeedbackSnackbar
+                    show={this.state.show}
+                    conf={this.state.conf}
+                    onClose={this.onClose}
+                />
             </div>
         )
     }

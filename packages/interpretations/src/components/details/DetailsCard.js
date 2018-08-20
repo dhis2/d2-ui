@@ -4,11 +4,13 @@ import { Card, CardHeader, CardText } from 'material-ui/Card';
 import IconButton from 'material-ui/IconButton';
 import { SvgIcon } from '@dhis2/d2-ui-core';
 import { grey600 } from 'material-ui/styles/colors';
+import SubscriberIconEnabled from 'material-ui/svg-icons/social/notifications';
+import SubscriberIconDisabled from 'material-ui/svg-icons/alert/add-alert';
 import i18n from '@dhis2/d2-i18n'
 
 import styles from './DetailsCardStyles.js';
-import { patch } from '../../models/helpers';
-import { formatDate } from '../../util/i18n';
+import { setSubscription } from '../../models/helpers';
+import { formatDate, translateModelName } from '../../util/i18n';
 
 const List = ({children}) => (
     <div style={styles.detailsCardList}>{children}</div>
@@ -74,13 +76,33 @@ class DetailsCard extends React.Component {
         isExpanded: true,
     };
 
-    constructor(props) {
-        super(props);
-        this.toggleDetailsExpand = this.toggleDetailsExpand.bind(this);
+    toggleDetailsExpand = () => {
+        this.setState({isExpanded: !this.state.isExpanded});
     }
 
-    toggleDetailsExpand() {
-        this.setState({isExpanded: !this.state.isExpanded});
+    toggleSubscription = () => {
+        const { model, onChange } = this.props;
+        return setSubscription(model, !model.subscribed).then(onChange);
+    }
+
+    renderSubscriptionButton(model) {
+        const tOpts = { object: translateModelName(model.modelName) };
+        const [SubscriberIcon, subscriptionTooltip] = model.subscribed
+            ? [SubscriberIconEnabled,
+                i18n.t("Unsubscribe from this {{object}} and stop receiving notifications", tOpts)]
+            : [SubscriberIconDisabled,
+                i18n.t("Subscribe to this {{object}} and start receiving notifications", tOpts)];
+
+        return (
+            <IconButton
+                style={styles.subscriberIcon}
+                tooltip={subscriptionTooltip}
+                tooltipPosition="bottom-left"
+                onClick={this.toggleSubscription}
+            >
+                <SubscriberIcon />
+            </IconButton>
+        );
     }
 
     render() {
@@ -104,6 +126,8 @@ class DetailsCard extends React.Component {
                 </CardHeader>
 
                 <CardText expandable={true} style={styles.body}>
+                    {this.renderSubscriptionButton(model)}
+
                     <List>
                         <ListItem text={getDescription(model)} />
                         <ListItem label={i18n.t('Owner')} text={owner} />
@@ -120,6 +144,7 @@ class DetailsCard extends React.Component {
 
 DetailsCard.propTypes = {
     model: PropTypes.object.isRequired,
+    onChange: PropTypes.func.isRequired,
 };
 
 export default DetailsCard;

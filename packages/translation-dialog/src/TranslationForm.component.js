@@ -54,7 +54,7 @@ class TranslationForm extends Component {
 
     getLoadingdataElement() {
         return (
-            <div style={{ textAlign: 'center' }}>
+            <div style={{ textAlign: 'center', minHeight: 350 }}>
                 <CircularProgress mode="indeterminate" />
             </div>
         );
@@ -80,16 +80,18 @@ class TranslationForm extends Component {
         return (
             <div>
                 {this.renderFieldsToTranslate()}
-                <RaisedButton
-                    label={this.getTranslation('save')}
-                    primary
-                    onClick={this.saveTranslations}
-                />
-                <RaisedButton
-                    style={{ marginLeft: '1rem' }}
-                    label={this.getTranslation('cancel')}
-                    onClick={this.props.onCancel}
-                />
+                <div style={{ paddingTop: '1rem' }}>
+                    <RaisedButton
+                        label={this.getTranslation('save')}
+                        primary
+                        onClick={this.saveTranslations}
+                    />
+                    <RaisedButton
+                        style={{ marginLeft: '1rem' }}
+                        label={this.getTranslation('cancel')}
+                        onClick={this.props.onCancel}
+                    />
+                </div>
             </div>
         );
     }
@@ -108,7 +110,7 @@ class TranslationForm extends Component {
         }
 
         return (
-            <div style={{ minHeight: 250 }}>
+            <div style={{ minHeight: 350 }}>
                 <LocaleSelector locales={this.props.locales} onChange={this.setCurrentLocale} />
                 {this.state.currentSelectedLocale ? this.renderForm() : this.renderHelpText()}
             </div>

@@ -161,7 +161,7 @@ export default {
     },
 
     userLink: {
-        "color": "#3162c5",
+        "color": "#3d4245",
         "fontWeight": "bold",
         "textDecoration": "none",
     },
