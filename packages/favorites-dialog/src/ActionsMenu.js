@@ -7,7 +7,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import SharingDialog from '@dhis2/d2-ui-sharing-dialog';
-import ModeEditIcon from '@material-ui/icons/ModeEdit';
+import EditIcon from '@material-ui/icons/Edit';
 import ShareIcon from '@material-ui/icons/Share';
 import DeleteIcon from '@material-ui/icons/Delete';
 import DeleteDialog from './DeleteDialog';
@@ -58,7 +58,7 @@ const ActionsMenu = (props, context) => {
                     disabled={selectedFavoriteModel && !selectedFavoriteModel.access.update}
                 >
                     <ListItemIcon>
-                        <ModeEditIcon />
+                        <EditIcon />
                     </ListItemIcon>
                     <ListItemText primary="Rename" />
                 </MenuItem>
