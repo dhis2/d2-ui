@@ -1,16 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { withStyles } from 'material-ui/styles';
-import { MenuItem } from 'material-ui/Menu';
-import Select from 'material-ui/Select';
-import TextField from 'material-ui/TextField';
-import Toolbar from 'material-ui/Toolbar';
-import Tooltip from 'material-ui/Tooltip';
+import { withStyles } from '@material-ui/core/styles';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
+import TextField from '@material-ui/core/TextField';
+import Toolbar from '@material-ui/core/Toolbar';
+import Tooltip from '@material-ui/core/Tooltip';
 
 import { filterData, searchData } from './actions';
 
-const toolbarStyles = theme => ({
+const toolbarStyles = () => ({
     search: {
         flex: '0 0 auto',
     },

@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-
-import Favorites from './Favorites';
 import PropTypes from 'prop-types';
 
+import Favorites from './Favorites';
 import configureStore from './configureStore';
 import { setFavoriteType, setD2 } from './actions';
 
