@@ -192,7 +192,7 @@ You probably were not actually logged in to npm. To check this:
 npm whoami
 ```
 
-If you are not logged in, follow either the npm or yarn workflow below:
+If you are not logged in, then follow either the npm or yarn workflow below to log in and publish each package separately:
 
 npm:
 ```
