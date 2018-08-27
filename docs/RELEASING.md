@@ -52,11 +52,8 @@ or
 $ yarn login
 ```
 
-Double-check that you are actually logged in. The following command should return your npm username, if you are logged in. (Note, that some have had problems with `lerna publish`
+Double-check that you are actually logged in. `npm whoami` should return your npm username, if you are logged in. (Note, that some have had problems with `lerna publish`
 not authenticating, if `yarn login` was used instead of `npm login` )
-```
-npm whoami
-```
 
 
 Proceed with the `publish` command:
