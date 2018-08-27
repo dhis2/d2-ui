@@ -187,7 +187,7 @@ shouldn't be published (`example-cra`) or because they are deprecated
 
 ## The git tags were pushed, but the packages were not published to npm
 
-First double check that you are logged in to npm
+You probably were not actually logged in to npm. To check this:
 ```
 npm whoami
 ```
