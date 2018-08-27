@@ -29,6 +29,11 @@ Familiarise yourself with [Lerna](http://lernajs.io/) before proceeding.
 
 You will need it installed globally.
 
+Before running the following lerna commands, make sure you have the latest git tags locally
+```
+git fetch --tags
+```
+
 Use the `updated` and `diff` commands to get an idea of what Lerna thinks should be updated.
 
 ```
@@ -39,11 +44,20 @@ $ lerna diff        # used internally to diff against the last released tag and
 ```
 
 To avoid creating tags, pushing them, etc. only to fail on the actual
-publishing to NPM make sure you are logged in:
+publishing to NPM make sure you are logged in.
 
 ```
+$ npm login
+or
 $ yarn login
 ```
+
+Double-check that you are actually logged in. The following command should return your npm username, if you are logged in. (Note, that some have had problems with `lerna publish`
+not authenticating, if `yarn login` was used instead of `npm login` )
+```
+npm whoami
+```
+
 
 Proceed with the `publish` command:
 
@@ -171,3 +185,19 @@ as changed.
 We use this fact to ignore certain packages, either because they
 shouldn't be published (`example-cra`) or because they are deprecated
 (`@dhis2/d2-ui-favorites-menu`).
+
+# Troubleshooting
+
+## The git tags were pushed, but the packages were not published to npm
+
+First double check that you are logged in to npm
+```
+npm whoami
+```
+If you are not logged in, use `npm login` (not `yarn login`) and check `npm whoami` again.
+Then you can manually publish each of the packages that should have been published:
+
+```
+$ cd packages/d2-ui-file-menu
+$ npm publish
+```
