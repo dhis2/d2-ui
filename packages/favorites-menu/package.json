@@ -1,7 +1,7 @@
 {
     "private": true,
     "name": "@dhis2/d2-ui-favorites-menu",
-    "version": "1.0.19",
+    "version": "1.0.20",
     "description": "Favorites menu component for DHIS2",
     "main": "./build/cjs/index.js",
     "module": "./build/es/index.js",
