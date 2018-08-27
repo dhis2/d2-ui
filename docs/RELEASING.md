@@ -191,10 +191,31 @@ First double check that you are logged in to npm
 ```
 npm whoami
 ```
-If you are not logged in, use `npm login` (not `yarn login`) and check `npm whoami` again.
-Then you can manually publish each of the packages that should have been published:
 
+If you are not logged in, follow either the npm or yarn workflow below:
+
+npm:
 ```
+$ npm login
+... (entering credentials)
+
+$ npm whoami
+mynpmUserName
+
 $ cd packages/d2-ui-file-menu
+
 $ npm publish
+... (publishes)
+```
+
+yarn:
+```
+$ yarn login
+... (entering username, email)
+
+$ cd packages/d2-ui-file-menu
+
+$ yarn publish
+...(requests password & publishes)
+
 ```
