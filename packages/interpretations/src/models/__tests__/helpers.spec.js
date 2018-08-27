@@ -38,10 +38,10 @@ describe("getFavoriteWithInterpretations", () => {
 
     describe("api calls", () => {
         it("should call the model D2 get with the required fields", () => {
-            const expectedFields = "id,name,href,user[id,displayName],displayName,description," +
+            const expectedFields = "id,name,href,subscribed,user[id,displayName],displayName,description,displayDescription," +
                 "created,lastUpdated,access,publicAccess,externalAccess,userAccesses,userGroupAccesses," +
-                "interpretations[id,user[id,displayName,userCredentials[username]],created,likes,likedBy[id,displayName],"
-                + "text,comments[id,text,created,user[id,displayName,userCredentials[username]]]]";
+                "interpretations[id,user[id,displayName,userCredentials[username]],created,likes,likedBy[id,displayName]," +
+                "text,comments[id,text,created,user[id,displayName,userCredentials[username]]]]";
             expect(d2.models.map.get).toBeCalledWith("1", {fields: expectedFields});
         });
 
@@ -56,7 +56,12 @@ describe("getFavoriteWithInterpretations", () => {
             expect(favorite.name).toEqual("My favorite");
         });
 
-        it("should have favoriteViews", () => {
+        it("should have new field modelName", () => {
+            expect(favorite.modelName).toEqual("map");
+        });
+
+
+        it("should have new field favoriteViews", () => {
             expect(favorite.favoriteViews).toEqual(mockedViews);
         });
 

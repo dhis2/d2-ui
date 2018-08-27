@@ -1,7 +1,6 @@
 import Interpretation from './interpretation';
 import pick from 'lodash/fp/pick';
 import { apiFetch } from '../util/api';
-import { getMentions } from './users';
   
 const interpretationsFields = [
     'id',
@@ -17,9 +16,11 @@ const favoriteFields = [
     'id',
     'name',
     'href',
+    'subscribed',
     'user[id,displayName]',
     'displayName',
     'description',
+    'displayDescription',
     'created',
     'lastUpdated',
     'access',
@@ -35,22 +36,26 @@ export const getFavoriteWithInterpretations = (d2, type, id) => {
     const api = d2.Api.getApi();
     const model$ = modelClass.get(id, {fields: favoriteFields.join(',')});
     const views$ = api.get(`dataStatistics/favorites/${id}`).then(json => json.views);
-    const mentions$ = getMentions(d2);
 
-    return Promise.all([model$, views$, mentions$])
-        .then(([model, views, mentions]) => {
+    return Promise.all([model$, views$])
+        .then(([model, views]) => {
             const modelInterpretations = model.interpretations
                 .map(attrs => new Interpretation(model, attrs));
 
             return Object.assign(model, {
                 interpretations: modelInterpretations,
                 favoriteViews: views,
-                mentions: mentions,
+                modelName: type,
             });
         });
 };
 
-export const patch = (model, attributeNames) => {
-    const attributes = pick(attributeNames, model);
-    return apiFetch(model.href, "PATCH", attributes);
+export const setSubscription = (model, newSubscriptionValue) => {
+    if (!model || !model.href) {
+        return Promise.reject(new Error(`Attribute href not found in model`));
+    } else {
+        var path = model.href + "/" + "subscriber";
+        var method = newSubscriptionValue ? "POST" : "DELETE";
+        return apiFetch(path, method);
+    }
 };

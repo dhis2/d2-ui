@@ -29,6 +29,7 @@ export default {
 
     commentText: {
         "marginBottom": 2,
+        "whiteSpace": "pre-line",
     },
 
     container: {
@@ -84,6 +85,10 @@ export default {
         "display": "inline-block",
     },
 
+    interpretationText: {
+        "whiteSpace": "pre-line",
+    },
+
     interpretationTextWrapper: {
         "marginBottom": 5,
         "marginLeft": 0,
@@ -97,6 +102,7 @@ export default {
         "overflow": "hidden",
         "maxHeight": "3.0em",
         "lineHeight": "1.5em",
+        "whiteSpace": "pre-line",
     },
 
     interpretationsCard: {
@@ -155,7 +161,7 @@ export default {
     },
 
     userLink: {
-        "color": "#3162c5",
+        "color": "#3d4245",
         "fontWeight": "bold",
         "textDecoration": "none",
     },
@@ -167,12 +173,4 @@ export default {
         "paddingRight": "16px",
         "fontWeight": "500",
     },
-
-    richTextCss: `
-        .richText p { margin: 0; padding: 0 }
-        .richText img { width: 1.3em; height: 1.3em; }
-        .richText strong { font-weight: bold; }
-        .richText em { font-style: italic; }
-        .richText a { text-decoration: none; }
-    `,
 };

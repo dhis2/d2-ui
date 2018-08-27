@@ -30,6 +30,7 @@ class FeedbackSnackbar extends PureComponent {
             action: PropTypes.string,
             onActionClick: PropTypes.func,
         }),
+        onClose: PropTypes.func,
     };
 
     static defaultProps = {
@@ -39,6 +40,7 @@ class FeedbackSnackbar extends PureComponent {
             action: '',
             onActionClick: null,
         },
+        onClose: null,
     };
 
     static getStyle(type) {
@@ -96,6 +98,10 @@ class FeedbackSnackbar extends PureComponent {
             this.setState({
                 show: false,
             });
+
+            if (this.props.onClose) {
+                this.props.onClose();
+            }
         }
     };
 

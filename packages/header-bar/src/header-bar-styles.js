@@ -237,6 +237,7 @@ styles = {
         flex: '1 1 auto',
         maxWidth: '100%',
         textAlign: 'center',
+        wordWrap: 'break-word',
     },
 
     moreAppsButton: {

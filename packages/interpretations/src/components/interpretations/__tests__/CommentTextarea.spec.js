@@ -36,8 +36,8 @@ describe('Interpretations: Interpretations -> CommentTextarea component', () => 
             commentTextarea = renderComponent({onPost: jest.fn(), onCancel: undefined});
         });
 
-        it('should render a RichEditor with the comment text', () => {
-            expect(commentTextarea.find("RichEditor")).toHaveProp("initialContent", comment.text)
+        it('should render a textarea with the comment text', () => {
+            expect(commentTextarea.find("textarea")).toHaveProp("value", comment.text)
         });
 
         it('should render a post link', () => {
@@ -52,7 +52,7 @@ describe('Interpretations: Interpretations -> CommentTextarea component', () => 
 
         describe("when post is clicked with new text on textarea", () => {
             beforeEach(() => {
-                commentTextarea.find("RichEditor").props().onEditorChange("new text");
+                commentTextarea.find("textarea").props().onChange({ target: { value: "new text" } });
                 const links = commentTextarea.find("Link");
                 const postLink = links.findWhere(link => link.props().label === "Post comment");
                 postLink.simulate("click");
@@ -76,7 +76,7 @@ describe('Interpretations: Interpretations -> CommentTextarea component', () => 
         });
 
         it('should render a textarea with the comment text', () => {
-            expect(commentTextarea.find("RichEditor")).toHaveProp("initialContent", comment.text)
+            expect(commentTextarea.find("textarea")).toHaveProp("value", comment.text)
         });
 
         it('should render an ok link', () => {
@@ -125,8 +125,8 @@ describe('Interpretations: Interpretations -> CommentTextarea component', () => 
                 }));
             });
 
-            it("should clear the RichEditor", () => {
-                expect(commentTextarea.find("RichEditor")).toHaveProp("initialContent", "");
+            it("should clear the textarea", () => {
+                expect(commentTextarea.find("textarea")).toHaveProp("value", "");
             });
         });
     });

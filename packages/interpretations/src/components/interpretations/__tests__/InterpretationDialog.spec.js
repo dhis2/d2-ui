@@ -20,7 +20,8 @@ const interpretation = {
             id: "xE7jOejl9FI",
             displayName: "John Traore"
         }
-    }]
+    }],
+    save: jest.fn(() => Promise.resolve(interpretation)),
 };
 
 const renderComponent = (partialProps = {}) => {
@@ -41,15 +42,15 @@ describe('Interpretations: Interpretations -> InterpretationDialog component', (
         interpretationDialog = renderComponent();
     });
 
-    it('should render a RichEditor component field with the interpretation as initial text', () => {
-        const textField = interpretationDialog.find("RichEditor");
-        expect(textField).toHaveProp("initialContent", interpretation.text);
+    it('should render a text field with the interpretation as initial text', () => {
+        const textField = interpretationDialog.find("TextField");
+        expect(textField).toHaveProp("value", interpretation.text);
     });
 
     describe("when save is clicked with new text", () => {
         beforeEach(() => {
-            interpretationDialog.find("RichEditor").props().onEditorChange("new text");
-            interpretationDialog.instance()._save();
+            interpretationDialog.find("TextField").props().onChange(null, "new text");
+            interpretationDialog.instance().save();
         });
 
         it("should call onSave with the updated interpretation", () => {
@@ -65,8 +66,8 @@ describe('Interpretations: Interpretations -> InterpretationDialog component', (
 
     describe("when cancel is clicked with new text", () => {
         beforeEach(() => {
-            interpretationDialog.find("RichEditor").props().onEditorChange("new text");
-            interpretationDialog.instance()._cancel();
+            interpretationDialog.find("TextField").props().onChange(null, "new text");
+            interpretationDialog.instance().cancel();
         });
 
         it("should call onClose", () => {

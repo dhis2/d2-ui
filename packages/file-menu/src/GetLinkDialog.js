@@ -31,7 +31,13 @@ const getAppUrl = (fileType, fileId, context) => {
             appName = '';
     }
 
-    return `${baseUrl}/${appName}/index.html?id=${fileId}`;
+    // DHIS2-4253: force URL to be absolute
+    const url = new URL(
+        `${baseUrl}/${appName}/index.html?id=${fileId}`,
+        `${window.location.origin}${window.location.pathname}`
+    );
+
+    return url.href;
 };
 
 const GetLinkDialog = (props, context) => {
@@ -47,11 +53,15 @@ const GetLinkDialog = (props, context) => {
                         {getAppUrl(fileType, fileModel.id, context)}
                     </a>
                 </DialogContentText>
-                <DialogContentText>
-                    {i18n.t('Open in web API')}
-                    <br />
-                    <a href={`${fileModel.href}/data.html+css`}>{fileModel.href}/data.html+css</a>
-                </DialogContentText>
+                {fileType !== 'map' && (
+                    <DialogContentText>
+                        {i18n.t('Open in web API')}
+                        <br />
+                        <a href={`${fileModel.href}/data.html+css`}>
+                            {fileModel.href}/data.html+css
+                        </a>
+                    </DialogContentText>
+                )}
             </DialogContent>
             <DialogActions>
                 <Button onClick={onRequestClose} color="primary">
