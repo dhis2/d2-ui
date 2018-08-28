@@ -16,7 +16,7 @@ class Editor extends Component {
         };
     }
 
-    onKeyDown = event => {
+    onKeyDown = (event) => {
         const { key, ctrlKey, metaKey } = event;
         const element = event.target;
 
@@ -31,13 +31,13 @@ class Editor extends Component {
         }
     };
 
-    toggleMode = mode => {
+    toggleMode = (mode) => {
         const prop = `${mode}Mode`;
 
         this.setState({ [prop]: !this.state[prop] });
     };
 
-    insertMarkers = mode => {
+    insertMarkers = (mode) => {
         const element = this.state.element;
         const { selectionStart, selectionEnd, value } = element;
 
