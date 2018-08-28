@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 
 import TranslationDialog from '@dhis2/d2-ui-translation-dialog';
 
-import { ListItemIcon, ListItemText } from 'material-ui/List';
-import { MenuItem } from 'material-ui/Menu';
-import Translate from 'material-ui-icons/Translate';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import MenuItem from '@material-ui/core/MenuItem';
+import Translate from '@material-ui/icons/Translate';
 
 class TranslateMenuItem extends Component {
     constructor(props) {

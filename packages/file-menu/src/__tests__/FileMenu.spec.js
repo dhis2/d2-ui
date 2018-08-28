@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Button from 'material-ui/Button';
-import Menu from 'material-ui/Menu';
+import Button from '@material-ui/core/Button';
+import Menu from '@material-ui/core/Menu';
 import { getStubContext } from '../../../../config/inject-theme';
 
 import { FileMenu } from '../FileMenu';

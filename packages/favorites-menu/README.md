@@ -1,5 +1,6 @@
 # Favorites Menu D2-UI component
 
+This component is **DEPRECATED**. Use the [d2-ui-file-menu](https://www.npmjs.com/package/@dhis2/d2-ui-file-menu) instead.
 # Usage
 
 ## Build

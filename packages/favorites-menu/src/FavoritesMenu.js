@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { withStyles } from 'material-ui/styles';
-import Menu from 'material-ui/Menu';
-import Button from 'material-ui/Button';
-import Divider from 'material-ui/Divider';
+import { withStyles } from '@material-ui/core/styles';
+import Menu from '@material-ui/core/Menu';
+import Button from '@material-ui/core/Button';
+import Divider from '@material-ui/core/Divider';
 
 import NewMenuItem from './NewMenuItem';
 import OpenMenuItem from './OpenMenuItem';

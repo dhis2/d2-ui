@@ -1,9 +1,10 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
-import { ListItemIcon, ListItemText } from 'material-ui/List';
-import { MenuItem } from 'material-ui/Menu';
-import Share from 'material-ui-icons/Share';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import MenuItem from '@material-ui/core/MenuItem';
+import Share from '@material-ui/icons/Share';
 import SharingDialog from '@dhis2/d2-ui-sharing-dialog';
 
 class ShareMenuItem extends Component {

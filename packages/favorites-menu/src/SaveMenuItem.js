@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { ListItemIcon, ListItemText } from 'material-ui/List';
-import { MenuItem } from 'material-ui/Menu';
-import Save from 'material-ui-icons/Save';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import MenuItem from '@material-ui/core/MenuItem';
+import Save from '@material-ui/icons/Save';
 
 const SaveMenuItem = props => (
     <MenuItem button onClick={props.onSave} disabled={!props.enabled}>

@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import Dialog, { DialogActions, DialogContent, DialogTitle } from 'material-ui/Dialog';
-import Button from 'material-ui/Button';
-import TextField from 'material-ui/TextField';
-import { FormControl } from 'material-ui/Form';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import FormControl from '@material-ui/core/FormControl';
 
 class WriteInterpretationDialog extends Component {
     constructor(props) {

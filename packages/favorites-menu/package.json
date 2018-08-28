@@ -1,7 +1,7 @@
 {
     "private": true,
     "name": "@dhis2/d2-ui-favorites-menu",
-    "version": "1.0.18",
+    "version": "1.0.20",
     "description": "Favorites menu component for DHIS2",
     "main": "./build/cjs/index.js",
     "module": "./build/es/index.js",
@@ -25,13 +25,13 @@
         "test-ci": "jest --config=../../jest.config.js packages/favorites-menu"
     },
     "dependencies": {
-        "@dhis2/d2-ui-favorites-dialog": "^1.0.16",
+        "@dhis2/d2-ui-favorites-dialog": "^2.0.0",
         "@dhis2/d2-ui-sharing-dialog": "^1.0.15",
         "@dhis2/d2-ui-translation-dialog": "^1.0.15",
+        "@material-ui/core": "^1.5.1",
+        "@material-ui/icons": "^2.0.3",
         "babel-runtime": "^6.26.0",
         "d2-ui": "^29.0.18",
-        "material-ui": "^1.0.0-beta.34",
-        "material-ui-icons": "^1.0.0-beta.17",
         "prop-types": "^15.6.0"
     },
     "jest": {
