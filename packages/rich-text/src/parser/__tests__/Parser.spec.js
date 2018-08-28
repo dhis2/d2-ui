@@ -5,7 +5,7 @@ import Parser from '../Parser';
 
 describe('RichText: Parser component', () => {
     let richTextParser;
-    const props = {
+    const defaultProps = {
         style: { color: 'blue' },
     };
 
@@ -20,9 +20,9 @@ describe('RichText: Parser component', () => {
     });
 
     it('should have rendered a result with the style prop', () => {
-        richTextParser = renderComponent(props, 'test prop');
+        richTextParser = renderComponent(defaultProps, 'test prop');
 
-        expect(richTextParser.props().style).toEqual(props.style);
+        expect(richTextParser.props().style).toEqual(defaultProps.style);
     });
 
     it('should have rendered a plain text content', () => {
