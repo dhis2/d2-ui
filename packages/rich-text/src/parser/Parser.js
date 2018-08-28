@@ -3,81 +3,67 @@ import PropTypes from 'prop-types';
 
 import MarkdownIt from 'markdown-it';
 
+const codes = {
+    bold: {
+        name: 'bold',
+        char: '*',
+        domEl: 'strong',
+        encodedChar: 0x2a,
+        regexString: '^\\*([^*]+)\\*',
+    },
+    italic: {
+        name: 'italic',
+        char: '_',
+        domEl: 'em',
+        encodedChar: 0x5f,
+        regexString: '^_([^_]+)_',
+    },
+};
+
+const getMyFn = code => (state, silent) => {
+    if (silent) return false;
+
+    const start = state.pos;
+    const marker = state.src.charCodeAt(start);
+
+    // marker character: "_", "*"
+    if (marker !== codes[code].encodedChar) {
+        return false;
+    }
+
+    const MARKER_REGEX = new RegExp(codes[code].regexString);
+
+    const token = state.src.slice(start);
+
+    if (MARKER_REGEX.test(token)) {
+        const markerMatch = token.match(MARKER_REGEX);
+
+        const text = markerMatch[0].slice(1, -1);
+
+        state.push(`${codes[code].domEl}_open`, codes[code].domEl, 1);
+
+        const t = state.push('text', '', 0);
+        t.content = text;
+
+        state.push(`${codes.bold.domEl}_close`, codes[code].domEl, -1);
+
+        state.pos += markerMatch[0].length;
+
+        return true;
+    }
+
+    return false;
+};
+
 const initParser = () => {
     // disable all rules, enable autolink for URLs and email addresses
     const md = new MarkdownIt('zero', { linkify: true });
 
     // *bold* -> <strong>bold</strong>
-    md.inline.ruler.push('strong', (state, silent) => {
-        if (silent) return false;
-
-        const start = state.pos;
-        const marker = state.src.charCodeAt(start);
-
-        // marker character: "*"
-        if (marker !== 0x2a) {
-            return false;
-        }
-
-        const BOLD_RE = /^\*([^*]+)\*/;
-
-        const token = state.src.slice(start);
-
-        if (BOLD_RE.test(token)) {
-            const boldMatch = token.match(BOLD_RE);
-
-            const text = boldMatch[0].slice(1, -1);
-
-            state.push('strong_open', 'strong', 1);
-
-            const t = state.push('text', '', 0);
-            t.content = text;
-
-            state.push('strong_close', 'strong', -1);
-
-            state.pos += boldMatch[0].length;
-
-            return true;
-        }
-
-        return false;
-    });
+    md.inline.ruler.push('strong', getMyFn(codes.bold.name));
 
     // _italic_ -> <em>italic</em>
-    md.inline.ruler.push('italic', (state, silent) => {
-        if (silent) return false;
-
-        const start = state.pos;
-        const marker = state.src.charCodeAt(start);
-
-        // marker character: "_"
-        if (marker !== 0x5f) {
-            return false;
-        }
-
-        const ITALIC_RE = /^_([^_]+)_/;
-
-        const token = state.src.slice(start);
-
-        if (ITALIC_RE.test(token)) {
-            const italicMatch = token.match(ITALIC_RE);
-
-            const text = italicMatch[0].slice(1, -1);
-
-            state.push('em_open', 'em', 1);
-
-            const t = state.push('text', '', 0);
-            t.content = text;
-
-            state.push('em_close', 'em', -1);
-
-            state.pos += italicMatch[0].length;
-
-            return true;
-        }
-
-        return false;
-    });
+    md.inline.ruler.push('italic', getMyFn(codes.italic.name));
 
     // :-) :) :-( :( :+1 :-1 -> <span>[unicode]</span>
     md.inline.ruler.push('emoji', (state, silent) => {
