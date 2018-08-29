@@ -4,7 +4,9 @@
     "description": "Rich text components for DHIS2 in d2-ui",
     "main": "./build/cjs/index.js",
     "module": "./build/es/index.js",
-    "files": ["build"],
+    "files": [
+        "build"
+    ],
     "license": "BSD-3-Clause",
     "author": "Edoardo Sabadelli <edoardo@dhis2.org>",
     "scripts": {
@@ -13,8 +15,7 @@
         "lint": "eslint src/",
         "prebuild": "rimraf ./build/*",
         "build": "yarn build:commonjs && yarn build:es",
-        "build:commonjs":
-            "cross-env BABEL_ENV=commonjs babel src --out-dir build/cjs --ignore spec.js",
+        "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir build/cjs --ignore spec.js",
         "build:es": "cross-env BABEL_ENV=es babel src --out-dir build/es --ignore spec.js",
         "build:umd": "cross-env && webpack -p",
         "watch": "yarn build:es --  --watch"
@@ -25,16 +26,17 @@
     },
     "dependencies": {
         "babel-runtime": "^6.26.0",
-        "lodash": "^4.17.10",
         "markdown-it": "^8.4.2",
-        "material-ui": "^0.20.0",
         "prop-types": "^15.6.2"
     },
     "peerDependencies": {
         "react": "^16.4.0",
         "react-dom": "^16.4.0"
     },
-    "pre-commit": ["validate", "test"],
+    "pre-commit": [
+        "validate",
+        "test"
+    ],
     "publishConfig": {
         "access": "public"
     }
