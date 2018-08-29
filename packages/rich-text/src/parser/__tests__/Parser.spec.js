@@ -35,6 +35,8 @@ describe('RichText: Parser component', () => {
         const tests = [
             ['_italic_', '<em>italic</em>'],
             ['*bold*', '<strong>bold</strong>'],
+            ['* not bold because there is a space *', '* not bold because there is a space *'],
+            ['_ not italic because there is a space _', '_ not italic because there is a space _'],
             [':-)', '<span>\u{1F642}</span>'],
             [':)', '<span>\u{1F642}</span>'],
             [':-(', '<span>\u{1F641}</span>'],
