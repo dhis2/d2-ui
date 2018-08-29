@@ -47,12 +47,16 @@ describe('RichText: Parser component', () => {
                 'mixed _italic_ *bold* and :+1',
                 'mixed <em>italic</em> <strong>bold</strong> and <span>\u{1F44D}</span>',
             ],
-            // _ inside italic not allowed, it closes the <em>
-            ['_italic with _ inside_', '<em>italic with </em> inside_'],
             ['_italic with * inside_', '<em>italic with * inside</em>'],
-            // * inside bold not allowed, it closes the <strong>
-            ['*bold with * inside*', '<strong>bold with </strong> inside*'],
             ['*bold with _ inside*', '<strong>bold with _ inside</strong>'],
+            // italic marker inside an italic string not allowed
+            ['_italic with _ inside_', '_italic with _ inside_'],
+            // bold marker inside a bold string not allowed
+            ['*bold with * inside*', '*bold with * inside*'],
+            [
+                '_multiple_ italic in the _same line_',
+                '<em>multiple</em> italic in the <em>same line</em>',
+            ],
             // nested italic/bold combinations not allowed
             ['_italic with *bold* inside_', '<em>italic with *bold* inside</em>'],
             ['*bold with _italic_ inside*', '<strong>bold with _italic_ inside</strong>'],
