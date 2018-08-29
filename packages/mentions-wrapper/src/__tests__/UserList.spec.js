@@ -1,7 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import List, { ListItem, ListItemText } from 'material-ui/List';
-import Popover from 'material-ui/Popover';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItem from '@material-ui/core/ListItem';
+import List from '@material-ui/core/List';
+import Popover from '@material-ui/core/Popover';
+
 
 import { UserList } from '../UserList';
 
