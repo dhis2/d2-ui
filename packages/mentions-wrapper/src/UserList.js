@@ -1,13 +1,16 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import List, { ListItem, ListItemText } from 'material-ui/List';
-import Popover from 'material-ui/Popover';
-import Typography from 'material-ui/Typography';
-import { withStyles } from 'material-ui/styles';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItem from '@material-ui/core/ListItem';
+import List from '@material-ui/core/List';
+
+import Popover from '@material-ui/core/Popover';
+import Typography from '@material-ui/core/Typography';
+import { withStyles } from '@material-ui/core/styles';
 
 import i18n from '@dhis2/d2-i18n';
 
-const styles = theme => ({
+const styles = () => ({
     popover: {
         // ensure the popover show on top of other dialogs/modals
         zIndex: 2000,

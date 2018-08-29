@@ -28,8 +28,8 @@
     },
     "dependencies": {
         "@dhis2/d2-i18n": "^1.0.3",
+        "@material-ui/core": "^1.5.1",
         "lodash": "^4.17.10",
-        "material-ui": "^1.0.0-beta.34",
         "prop-types": "^15.6.2"
     },
     "jest": {
