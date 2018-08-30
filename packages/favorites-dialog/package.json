@@ -1,6 +1,6 @@
 {
   "name": "@dhis2/d2-ui-favorites-dialog",
-  "version": "1.0.13",
+  "version": "2.0.0",
   "description": "Favorite Dialog component for DHIS2",
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",
@@ -27,11 +27,10 @@
     "test-ci": "jest --config=../../jest.config.js packages/favorites-dialog"
   },
   "dependencies": {
-    "@dhis2/d2-ui-core": "^1.2.0",
-    "@dhis2/d2-ui-sharing-dialog": "^1.0.12",
+    "@dhis2/d2-ui-sharing-dialog": "^1.0.15",
+    "@material-ui/core": "^1.5.1",
+    "@material-ui/icons": "^2.0.3",
     "babel-runtime": "^6.26.0",
-    "material-ui": "^1.0.0-beta.34",
-    "material-ui-icons": "^1.0.0-beta.17",
     "prop-types": "^15.6.0",
     "react-redux": "^5.0.7",
     "redux": "^3.7.2",

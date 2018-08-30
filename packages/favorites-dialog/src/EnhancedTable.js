@@ -1,18 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import IconButton from 'material-ui/IconButton';
-import Table, {
-    TableBody,
-    TableCell,
-    TableFooter,
-    TableHead,
-    TablePagination,
-    TableRow,
-    TableSortLabel,
-} from 'material-ui/Table';
-import Tooltip from 'material-ui/Tooltip';
-import MoreVertIcon from 'material-ui-icons/MoreVert';
+import IconButton from '@material-ui/core/IconButton';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableFooter from '@material-ui/core/TableFooter';
+import TableHead from '@material-ui/core/TableHead';
+import TablePagination from '@material-ui/core/TablePagination';
+import TableRow from '@material-ui/core/TableRow';
+import TableSortLabel from '@material-ui/core/TableSortLabel';
+import Tooltip from '@material-ui/core/Tooltip';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 import ActionsMenu from './ActionsMenu';
 
