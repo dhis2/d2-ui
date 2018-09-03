@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import TextField from 'material-ui/TextField/TextField';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 import camelCaseToUnderscores from 'd2-utilizr/lib/camelCaseToUnderscores';
-import RaisedButton from 'material-ui/RaisedButton/RaisedButton';
 import { Observable } from 'rxjs';
 import LocaleSelector from './LocaleSelector.component';
 import { getLocales, getTranslationsForModel, saveTranslations } from './translationForm.actions';
@@ -81,12 +81,14 @@ class TranslationForm extends Component {
             <div>
                 {this.renderFieldsToTranslate()}
                 <div style={{ paddingTop: '1rem' }}>
-                    <RaisedButton
+                    <Button
+                        variant="contained"
                         label={this.getTranslation('save')}
                         primary
                         onClick={this.saveTranslations}
                     />
-                    <RaisedButton
+                    <Button
+                        variant="contained"
                         style={{ marginLeft: '1rem' }}
                         label={this.getTranslation('cancel')}
                         onClick={this.props.onCancel}

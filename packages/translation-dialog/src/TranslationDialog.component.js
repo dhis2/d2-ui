@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Dialog from 'material-ui/Dialog/Dialog';
+import Dialog from '@material-ui/core/Dialog';
 import { getTranslationFormFor } from './TranslationForm.component';
 
 class TranslationDialog extends Component {

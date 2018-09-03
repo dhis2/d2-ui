@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import MuiSelectField from 'material-ui/SelectField/SelectField';
-import MenuItem from 'material-ui/MenuItem';
+import MuiSelectField from '@material-ui/core/SelectField';
+import MenuItem from '@material-ui/core/MenuItem';
 
 import LocaleSelector from '../LocaleSelector.component';
 import { getStubContext } from '../../../../config/inject-theme';
