@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import SelectField from 'material-ui/SelectField/SelectField';
-import MenuItem from 'material-ui/MenuItem/MenuItem';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+
 
 class LocaleSelector extends Component {
     constructor(props, context) {
@@ -9,10 +12,14 @@ class LocaleSelector extends Component {
 
         const i18n = this.context.d2.i18n;
         this.getTranslation = i18n.getTranslation.bind(i18n);
-        this.state = {};
+        this.state = {
+            locale: '',
+        };
     }
 
-    onLocaleChange = (event, index, locale) => {
+    onLocaleChange = (event) => {
+        const locale = event.target.value;
+
         this.setState({
             locale,
         });
@@ -24,19 +31,24 @@ class LocaleSelector extends Component {
         const localeMenuItems = [{ payload: '', text: '' }]
             .concat(this.props.locales)
             .map((locale, index) => (
-                <MenuItem key={index} primaryText={locale.name} value={locale.locale} />
+                <MenuItem key={`${locale.name}-${ index}`} value={locale.locale}>{locale.name}</MenuItem>
             ));
 
         return (
-            <SelectField
-                fullWidth
-                {...this.props}
-                value={this.state && this.state.locale}
-                hintText={this.getTranslation('select_locale')}
-                onChange={this.onLocaleChange}
-            >
-                {localeMenuItems}
-            </SelectField>
+            <FormControl fullWidth>
+                <InputLabel htmlFor="locale-selector">{this.getTranslation('select_locale')}</InputLabel>
+                <Select
+                    {...this.props}
+                    value={this.state.locale}
+                    onChange={this.onLocaleChange}
+                    inputProps={{
+                        name: 'locale',
+                        id: 'locale-selector',
+                    }}
+                >
+                    {localeMenuItems}
+                </Select>
+            </FormControl>
         );
     }
 }

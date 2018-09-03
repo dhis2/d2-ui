@@ -1,7 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
 import camelCaseToUnderscores from 'd2-utilizr/lib/camelCaseToUnderscores';
 import { Observable } from 'rxjs';
 import LocaleSelector from './LocaleSelector.component';
@@ -33,9 +35,12 @@ function getTranslationFormData(model) {
         );
 }
 
-export function getTranslationFormFor(model) {
-    return withStateFrom(getTranslationFormData(model), TranslationForm);
-}
+const LoadingDataElement = () =>
+    (
+        <div style={{ textAlign: 'center', minHeight: 350 }}>
+            <CircularProgress mode="indeterminate" />
+        </div>
+    );
 
 class TranslationForm extends Component {
     constructor(props, context) {
@@ -52,12 +57,12 @@ class TranslationForm extends Component {
         currentSelectedLocale: '',
     };
 
-    getLoadingdataElement() {
-        return (
-            <div style={{ textAlign: 'center', minHeight: 350 }}>
-                <CircularProgress mode="indeterminate" />
-            </div>
-        );
+    saveTranslations = () => {
+        saveTranslations(this.props.objectToTranslate, this.props.translations)
+            .subscribe(
+                this.props.onTranslationSaved,
+                this.props.onTranslationError,
+            );
     }
 
     renderFieldsToTranslate() {
@@ -66,10 +71,15 @@ class TranslationForm extends Component {
             .map(fieldName => (
                 <div key={fieldName}>
                     <TextField
-                        floatingLabelText={this.getTranslation(camelCaseToUnderscores(fieldName))}
+                        placeholder={this.getTranslation(camelCaseToUnderscores(fieldName))}
+                        label={this.getTranslationValueFor(fieldName)}
                         value={this.getTranslationValueFor(fieldName)}
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
                         fullWidth
                         onChange={this.setValue.bind(this, fieldName)}
+                        margin="normal"
                     />
                     <div>{this.props.objectToTranslate[fieldName]}</div>
                 </div>
@@ -78,22 +88,26 @@ class TranslationForm extends Component {
 
     renderForm() {
         return (
-            <div>
+            <DialogContent>
                 {this.renderFieldsToTranslate()}
-                <div style={{ paddingTop: '1rem' }}>
-                    <Button
-                        variant="contained"
-                        primary
-                        onClick={this.saveTranslations}
-                    >{this.getTranslation('save')}</Button>
-                    <Button
-                        variant="contained"
-                        style={{ marginLeft: '1rem' }}
-                        onClick={this.props.onCancel}
-                    >{this.getTranslation('cancel')}</Button>
-                </div>
-            </div>
+            </DialogContent>
         );
+    }
+
+    renderActionButtons() {
+        return (
+            <DialogActions>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={this.saveTranslations}
+                >{this.getTranslation('save')}</Button>
+                <Button
+                    variant="contained"
+                    onClick={this.props.onCancel}
+                >{this.getTranslation('cancel')}</Button>
+            </DialogActions>
+        )
     }
 
     renderHelpText() {
@@ -106,14 +120,19 @@ class TranslationForm extends Component {
 
     render() {
         if (!this.props.locales && !this.props.translations) {
-            return this.getLoadingdataElement();
+            return <LoadingDataElement />;
         }
 
         return (
-            <div style={{ minHeight: 350 }}>
-                <LocaleSelector locales={this.props.locales} onChange={this.setCurrentLocale} />
-                {this.state.currentSelectedLocale ? this.renderForm() : this.renderHelpText()}
-            </div>
+            <Fragment>
+                <DialogContent>
+                    <div style={{ minHeight: 350 }}>
+                        <LocaleSelector locales={this.props.locales} onChange={this.setCurrentLocale} />
+                        {this.state.currentSelectedLocale ? this.renderForm() : this.renderHelpText()}
+                    </div>
+                </DialogContent>
+                {this.state.currentSelectedLocale && this.renderActionButtons()}
+            </Fragment>
         );
     }
 
@@ -159,14 +178,6 @@ class TranslationForm extends Component {
 
         this.props.setTranslations(newTranslations);
     }
-
-    saveTranslations = () => {
-        saveTranslations(this.props.objectToTranslate, this.props.translations)
-            .subscribe(
-                this.props.onTranslationSaved,
-                this.props.onTranslationError,
-            );
-    }
 }
 
 TranslationForm.propTypes = {
@@ -185,5 +196,9 @@ TranslationForm.defaultProps = {
 TranslationForm.contextTypes = {
     d2: PropTypes.object,
 };
+
+export function getTranslationFormFor(model) {
+    return withStateFrom(getTranslationFormData(model), TranslationForm);
+}
 
 export default TranslationForm;

@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Dialog from '@material-ui/core/Dialog';
+import DialogTitle from '@material-ui/core/DialogTitle';
+
+
 import { getTranslationFormFor } from './TranslationForm.component';
 
 class TranslationDialog extends Component {
@@ -12,32 +15,10 @@ class TranslationDialog extends Component {
         this.state = {
             TranslationForm: getTranslationFormFor(props.objectToTranslate),
         };
-
-        this.translationSaved = this.translationSaved.bind(this);
-        this.translationError = this.translationError.bind(this);
-        this.closeTranslationDialog = this.closeTranslationDialog.bind(this);
     }
 
     getChildContext() {
         return { d2: this.props.d2 };
-    }
-
-    render() {
-        return (
-            <Dialog
-                title={this.i18n.getTranslation('translation_dialog_title')}
-                autoDetectWindowHeight
-                autoScrollBodyContent
-                {...this.props}
-            >
-                <this.state.TranslationForm
-                    onTranslationSaved={this.translationSaved}
-                    onTranslationError={this.translationError}
-                    onCancel={this.closeTranslationDialog}
-                    fieldsToTranslate={this.props.fieldsToTranslate}
-                />
-            </Dialog>
-        );
     }
 
     componentWillReceiveProps(newProps) {
@@ -48,17 +29,31 @@ class TranslationDialog extends Component {
         }
     }
 
-    closeTranslationDialog() {
+    closeTranslationDialog = () => {
         this.props.onRequestClose();
     }
 
-    translationSaved(args) {
+    translationSaved = (args) => {
         this.props.onTranslationSaved(args);
         this.closeTranslationDialog();
     }
 
-    translationError(err) {
+    translationError = (err) => {
         this.props.onTranslationError(err);
+    }
+
+    render() {
+        return (
+            <Dialog {...this.props}>
+                <DialogTitle id="form-dialog-title">{this.i18n.getTranslation('translation_dialog_title')}</DialogTitle>
+                <this.state.TranslationForm
+                    onTranslationSaved={this.translationSaved}
+                    onTranslationError={this.translationError}
+                    onCancel={this.closeTranslationDialog}
+                    fieldsToTranslate={this.props.fieldsToTranslate}
+                />
+            </Dialog>
+        );
     }
 }
 
