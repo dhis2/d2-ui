@@ -83,16 +83,14 @@ class TranslationForm extends Component {
                 <div style={{ paddingTop: '1rem' }}>
                     <Button
                         variant="contained"
-                        label={this.getTranslation('save')}
                         primary
                         onClick={this.saveTranslations}
-                    />
+                    >{this.getTranslation('save')}</Button>
                     <Button
                         variant="contained"
                         style={{ marginLeft: '1rem' }}
-                        label={this.getTranslation('cancel')}
                         onClick={this.props.onCancel}
-                    />
+                    >{this.getTranslation('cancel')}</Button>
                 </div>
             </div>
         );
