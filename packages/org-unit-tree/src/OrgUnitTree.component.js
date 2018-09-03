@@ -206,10 +206,21 @@ class OrgUnitTree extends React.Component {
             this.props.onChangeCurrentRoot(currentOu);
         };
 
+        // const onClickFn = (canBecomeCurrentRoot && setCurrentRoot) || (isSelectable && this.handleSelectClick)
+        const onClickFn = () => {
+            if (canBecomeCurrentRoot) {
+                return setCurrentRoot;
+            }
+            if (isSelectable) {
+                return this.handleSelectClick;
+            }
+            return undefined;
+        }
+
         const label = (
             <div
                 style={labelStyle}
-                onClick={(canBecomeCurrentRoot && setCurrentRoot) || (isSelectable && this.handleSelectClick)}
+                onClick={onClickFn}
                 role="button"
                 tabIndex={0}
             >
@@ -247,7 +258,7 @@ class OrgUnitTree extends React.Component {
 
         return (
             <div
-                onClick={isSelectable && this.handleSelectClick}
+                onClick={isSelectable ? this.handleSelectClick : undefined}
                 className="orgunit without-children"
                 style={ouContainerStyle}
                 role="button"
