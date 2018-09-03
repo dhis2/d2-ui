@@ -206,7 +206,6 @@ class OrgUnitTree extends React.Component {
             this.props.onChangeCurrentRoot(currentOu);
         };
 
-        // const onClickFn = (canBecomeCurrentRoot && setCurrentRoot) || (isSelectable && this.handleSelectClick)
         const onClickFn = () => {
             if (canBecomeCurrentRoot) {
                 return setCurrentRoot;
