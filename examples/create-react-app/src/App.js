@@ -150,7 +150,7 @@ class App extends Component {
                 <OrgUnitTree d2={this.state.d2} />
 
                 <h2>Period selector dialog</h2>
-                <PeriodSelectorDialog/>
+                <PeriodSelectorDialog d2={this.state.d2}/>
 
                 <div style={{ clear: 'both' }}>
                     <h2>TreeViews</h2>

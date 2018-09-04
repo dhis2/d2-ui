@@ -1,12 +1,11 @@
 import React, { Component, Fragment } from 'react';
-import {
-    InputLabel,
-    Select,
-    MenuItem,
-    FormControl,
-} from 'material-ui';
+import InputLabel from '@material-ui/core/InputLabel'
+import Select from '@material-ui/core/Select'
+import MenuItem from '@material-ui/core/MenuItem'
+import FormControl from '@material-ui/core/FormControl'
 import FixedPeriodsGenerator from './utils/FixedPeriodsGenerator';
 import PeriodsList from './PeriodsList';
+import PropTypes from 'prop-types';
 
 export const defaultState = {
     periodType: '',
@@ -14,10 +13,11 @@ export const defaultState = {
 };
 
 class FixedPeriods extends Component {
-    constructor(props) {
+    constructor(props, context) {
         super(props);
 
         this.periodsGenerator = new FixedPeriodsGenerator();
+        this.i18n = context.d2.i18n;
         this.years = this.getYears();
         this.state = defaultState;
     }
@@ -63,7 +63,9 @@ class FixedPeriods extends Component {
     renderOptions = () => {
         return <Fragment>
             <FormControl className="form-control period-type">
-                <InputLabel htmlFor="period-type">Period type</InputLabel>
+                <InputLabel htmlFor="period-type">
+                    {this.i18n.getTranslation('Period type')}
+                </InputLabel>
                 <Select
                     onChange={this.onPeriodTypeChange}
                     value={this.state.periodType}
@@ -75,7 +77,9 @@ class FixedPeriods extends Component {
                 </Select>
             </FormControl>
             <FormControl className="form-control year">
-                <InputLabel htmlFor="year">Year</InputLabel>
+                <InputLabel htmlFor="year">
+                    {this.i18n.getTranslation('Year')}
+                </InputLabel>
                 <Select
                     onChange={this.onYearChange}
                     value={this.state.year}
@@ -96,5 +100,9 @@ class FixedPeriods extends Component {
         </div>
     }
 }
+
+FixedPeriods.contextTypes = {
+    d2: PropTypes.object
+};
 
 export default FixedPeriods;

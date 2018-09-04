@@ -50,6 +50,7 @@ export default class PeriodSelectorDialogExample extends Component {
                     open={this.state.dialogOpened}
                     onClose={this.toggleDialog}
                     onUpdate={this.onPeriodSelect}
+                    d2={this.props.d2}
                 />
                 <Snackbar open={this.state.snackbar.open}
                           message={this.state.snackbar.message}

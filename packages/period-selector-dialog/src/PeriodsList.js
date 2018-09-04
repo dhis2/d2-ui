@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { List, ListItem, ListItemText } from 'material-ui';
-import { Stop as StopIcon } from 'material-ui-icons';
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemText from '@material-ui/core/ListItemText'
+import StopIcon from '@material-ui/icons/Stop'
 
 class PeriodsList extends Component {
     render() {

@@ -1,5 +1,4 @@
-import { periods } from '../periods';
-import { defaultState } from '../periods';
+import { periods, defaultState } from '../periods';
 import actionTypes from '../../actions/actionTypes';
 
 const testPeriods = (reducer, periodType) => () => {

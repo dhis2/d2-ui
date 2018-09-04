@@ -1,12 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-    Dialog,
-    DialogTitle,
-    DialogContent,
-    DialogActions,
-    Button,
-} from 'material-ui';
+import Dialog from '@material-ui/core/Dialog'
+import DialogTitle from '@material-ui/core/DialogTitle'
+import DialogContent from '@material-ui/core/DialogContent'
+import DialogActions from '@material-ui/core/DialogActions'
+import Button from '@material-ui/core/Button'
 import PeriodSelector from './PeriodSelector';
 
 export const defaultState = {
@@ -18,6 +16,7 @@ class PeriodSelectorDialog extends React.Component {
         super(props);
 
         this.state = defaultState;
+        this.i18n = this.props.d2.i18n;
     }
 
     onPeriodsSelect = (periods) => {
@@ -40,16 +39,18 @@ class PeriodSelectorDialog extends React.Component {
                 fullWidth={fullWidth}
                 maxWidth={maxWidth}
             >
-                <DialogTitle>Period</DialogTitle>
+                <DialogTitle>{this.i18n.getTranslation('Period')}</DialogTitle>
                 <DialogContent>
-                    <PeriodSelector onPeriodsSelect={this.onPeriodsSelect}/>
+                    <PeriodSelector d2={this.props.d2}
+                                    onPeriodsSelect={this.onPeriodsSelect}
+                    />
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={onClose}>
-                        Hide
+                        {this.i18n.getTranslation('hide')}
                     </Button>
                     <Button onClick={this.onUpdateClick} color={'primary'}>
-                        Update
+                        {this.i18n.getTranslation('update')}
                     </Button>
                 </DialogActions>
             </Dialog>
@@ -64,6 +65,7 @@ PeriodSelectorDialog.defaultProps = {
 };
 
 PeriodSelectorDialog.propTypes = {
+    d2: PropTypes.object.isRequired,
     fullWidth: PropTypes.bool,
     maxWidth: PropTypes.string,
     onUpdate: PropTypes.func.isRequired,

@@ -1,7 +1,9 @@
 import React, { Component, Fragment } from 'react';
-import { Button } from 'material-ui';
 import { connect } from 'react-redux';
-import { ArrowForward as ArrowForwardIcon, ArrowBack as ArrowBackIcon } from 'material-ui-icons';
+import PropTypes from 'prop-types';
+import Button from '@material-ui/core/Button';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward'
+import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 import OfferedPeriods from './OfferedPeriods';
 import SelectedPeriods from './SelectedPeriods';
 import '../css/PeriodSelector.css';
@@ -18,8 +20,10 @@ import {
 } from './actions';
 
 class Periods extends Component {
-    constructor(props) {
+    constructor(props, context) {
         super(props);
+
+        this.i18n = context.d2.i18n;
     };
 
     componentWillUpdate(nextProps) {
@@ -57,12 +61,12 @@ class Periods extends Component {
             <Button className={'nav-button ' + (this.props.periodType === 'RELATIVE' ? 'active' : '')}
                     onClick={() => this.onPeriodTypeClick('RELATIVE')}
             >
-                Relative periods
+                {this.i18n.getTranslation('Relative periods')}
             </Button>
             <Button className={'nav-button ' + (this.props.periodType === 'FIXED' ? 'active' : '')}
                     onClick={() => this.onPeriodTypeClick('FIXED')}
             >
-                Fixed periods
+                {this.i18n.getTranslation('Fixed periods')}
             </Button>
         </Fragment>;
     };
@@ -118,6 +122,10 @@ class Periods extends Component {
         </div>
     }
 }
+
+Periods.contextTypes = {
+    d2: PropTypes.object,
+};
 
 const mapStateToProps = (state) => ({
     periodType: state.periodType,
