@@ -28,6 +28,7 @@ import Translation from './components/translation';
 import HeaderBarExample from './components/header-bar';
 import InterpretationsExample from './components/interpretations';
 import MentionsWrapperExample from './components/mentions-wrapper';
+import RichTextExample from './components/rich-text.js';
 
 import FormEditor from './components/formula-editor';
 import IconPicker from './components/icon-picker';
@@ -70,14 +71,14 @@ class App extends Component {
                 <HeaderBarExample d2={this.state.d2} />
                 <p>Look at the top of the screen...</p>
 
+                <h2>Rich Text</h2>
+                <RichTextExample />
+
                 <h2>Buttons</h2>
                 <Buttons />
 
                 <h2>Chips</h2>
                 <Chips />
-
-                <h2>Circular Progress</h2>
-                <CircularProgresses />
 
                 <h2>Controlbars</h2>
                 <Controlbars />
@@ -161,6 +162,10 @@ class App extends Component {
 
                 <h2>Mentions wrapper</h2>
                 <MentionsWrapperExample d2={this.state.d2} />
+
+                <h2>Circular Progress</h2>
+                <CircularProgresses />
+
             </D2UIApp>
         );
     }

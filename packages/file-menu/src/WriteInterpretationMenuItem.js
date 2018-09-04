@@ -1,9 +1,10 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
-import { ListItemIcon, ListItemText } from 'material-ui/List';
-import { MenuItem } from 'material-ui/Menu';
-import ModeEdit from 'material-ui-icons/ModeEdit';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import MenuItem from '@material-ui/core/MenuItem';
+import Edit from '@material-ui/icons/Edit';
 
 import i18n from '@dhis2/d2-i18n';
 import WriteInterpretationDialog from './WriteInterpretationDialog';
@@ -48,7 +49,7 @@ class WriteInterpretationMenuItem extends Component {
             <Fragment>
                 <MenuItem disabled={!enabled} onClick={this.toggleWriteInterpretationDialog}>
                     <ListItemIcon>
-                        <ModeEdit />
+                        <Edit />
                     </ListItemIcon>
                     <ListItemText primary={i18n.t('Write interpretation')} />
                 </MenuItem>

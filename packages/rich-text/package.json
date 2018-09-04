@@ -1,0 +1,43 @@
+{
+    "name": "@dhis2/d2-ui-rich-text",
+    "version": "1.0.0",
+    "description": "Rich text components for DHIS2 in d2-ui",
+    "main": "./build/cjs/index.js",
+    "module": "./build/es/index.js",
+    "files": [
+        "build"
+    ],
+    "license": "BSD-3-Clause",
+    "author": "Edoardo Sabadelli <edoardo@dhis2.org>",
+    "scripts": {
+        "coverage": "jest --coverage",
+        "test-ci": "jest --config=../../jest.config.js packages/rich-text",
+        "lint": "eslint src/",
+        "prebuild": "rimraf ./build/*",
+        "build": "yarn build:commonjs && yarn build:es",
+        "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir build/cjs --ignore spec.js",
+        "build:es": "cross-env BABEL_ENV=es babel src --out-dir build/es --ignore spec.js",
+        "build:umd": "cross-env && webpack -p",
+        "watch": "yarn build:es --  --watch"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/dhis2/d2-ui.git"
+    },
+    "dependencies": {
+        "babel-runtime": "^6.26.0",
+        "markdown-it": "^8.4.2",
+        "prop-types": "^15.6.2"
+    },
+    "peerDependencies": {
+        "react": "^16.4.0",
+        "react-dom": "^16.4.0"
+    },
+    "pre-commit": [
+        "validate",
+        "test"
+    ],
+    "publishConfig": {
+        "access": "public"
+    }
+}

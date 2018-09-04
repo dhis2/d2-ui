@@ -1,10 +1,10 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
-import { withStyles } from 'material-ui/styles';
-import Menu from 'material-ui/Menu';
-import Button from 'material-ui/Button';
-import Divider from 'material-ui/Divider';
+import { withStyles } from '@material-ui/core/styles';
+import Menu from '@material-ui/core/Menu';
+import Button from '@material-ui/core/Button';
+import Divider from '@material-ui/core/Divider';
 
 import i18n from '@dhis2/d2-i18n';
 

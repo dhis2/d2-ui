@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import debounce from 'lodash/debounce';
 
-import UserList from './UserList';
+import UserListContainer from './UserList';
 
 const defaultState = {
     element: null,
@@ -148,7 +148,7 @@ class MentionsWrapper extends Component {
         return (
             <div onKeyDown={this.onKeyDown}>
                 {children}
-                <UserList
+                <UserListContainer
                     open={listIsOpen}
                     anchorEl={element}
                     users={users}
