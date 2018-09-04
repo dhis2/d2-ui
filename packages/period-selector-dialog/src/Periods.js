@@ -6,6 +6,7 @@ import ArrowForwardIcon from '@material-ui/icons/ArrowForward'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 import OfferedPeriods from './OfferedPeriods';
 import SelectedPeriods from './SelectedPeriods';
+import PeriodTypes from './PeriodTypes';
 import '../css/PeriodSelector.css';
 
 import {
@@ -58,13 +59,13 @@ class Periods extends Component {
 
     renderPeriodTypeButtons = () => {
         return <Fragment>
-            <Button className={'nav-button ' + (this.props.periodType === 'RELATIVE' ? 'active' : '')}
-                    onClick={() => this.onPeriodTypeClick('RELATIVE')}
+            <Button className={'nav-button ' + (this.props.periodType === PeriodTypes.RELATIVE ? 'active' : '')}
+                    onClick={() => this.onPeriodTypeClick(PeriodTypes.RELATIVE)}
             >
                 {this.i18n.getTranslation('Relative periods')}
             </Button>
-            <Button className={'nav-button ' + (this.props.periodType === 'FIXED' ? 'active' : '')}
-                    onClick={() => this.onPeriodTypeClick('FIXED')}
+            <Button className={'nav-button ' + (this.props.periodType === PeriodTypes.FIXED ? 'active' : '')}
+                    onClick={() => this.onPeriodTypeClick(PeriodTypes.FIXED)}
             >
                 {this.i18n.getTranslation('Fixed periods')}
             </Button>

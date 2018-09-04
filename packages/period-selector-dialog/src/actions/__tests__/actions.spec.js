@@ -1,9 +1,10 @@
 import * as actions from '../index'
 import actionTypes from '../actionTypes'
+import PeriodTypes from '../../PeriodTypes'
 
 describe('actions', () => {
     it('should create an action to set period type', () => {
-        const periodType = 'RELATIVE';
+        const periodType = PeriodTypes.RELATIVE;
 
         const expectedAction = {
             type: actionTypes.SET_PERIOD_TYPE,

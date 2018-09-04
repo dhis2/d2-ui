@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import RelativePeriods from './RelativePeriods';
 import FixedPeriods from './FixedPeriods';
+import PeriodTypes from './PeriodTypes';
 
 class OfferedPeriods extends Component {
     constructor(props) {
@@ -13,13 +14,13 @@ class OfferedPeriods extends Component {
         const { periods, setOfferedPeriods, onPeriodClick } = this.props;
 
         switch(this.props.periodType) {
-            case 'RELATIVE':
+            case PeriodTypes.RELATIVE:
                 PeriodOptions = <RelativePeriods periods={periods}
                                                  setOfferedPeriods={setOfferedPeriods}
                                                  onPeriodClick={onPeriodClick}
                 />;
                 break;
-            case 'FIXED':
+            case PeriodTypes.FIXED:
                 PeriodOptions = <FixedPeriods periods={periods}
                                               setOfferedPeriods={setOfferedPeriods}
                                               onPeriodClick={onPeriodClick}

@@ -1,6 +1,7 @@
 import actionTypes from '../actions/actionTypes';
+import PeriodTypes from '../PeriodTypes'
 
-export const defaultState = 'RELATIVE';
+export const defaultState = PeriodTypes.RELATIVE;
 
 export const periodType = (state = defaultState, action) => {
     switch(action.type) {
