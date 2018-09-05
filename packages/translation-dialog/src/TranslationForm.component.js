@@ -81,17 +81,9 @@ class TranslationForm extends Component {
                         onChange={this.setValue.bind(this, fieldName)}
                         margin="normal"
                     />
-                    <div>{this.props.objectToTranslate[fieldName]}</div>
+                    <div style={{ ƒfontSize: '16px', color: 'rgba(0,0,0,0.6)' }}>{this.props.objectToTranslate[fieldName]}</div>
                 </div>
             ));
-    }
-
-    renderForm() {
-        return (
-            <DialogContent>
-                {this.renderFieldsToTranslate()}
-            </DialogContent>
-        );
     }
 
     renderActionButtons() {
@@ -99,13 +91,13 @@ class TranslationForm extends Component {
             <DialogActions>
                 <Button
                     variant="contained"
+                    onClick={this.props.onCancel}
+                >{this.getTranslation('cancel')}</Button>
+                <Button
+                    variant="contained"
                     color="primary"
                     onClick={this.saveTranslations}
                 >{this.getTranslation('save')}</Button>
-                <Button
-                    variant="contained"
-                    onClick={this.props.onCancel}
-                >{this.getTranslation('cancel')}</Button>
             </DialogActions>
         )
     }
@@ -128,7 +120,7 @@ class TranslationForm extends Component {
                 <DialogContent>
                     <div style={{ minHeight: 350 }}>
                         <LocaleSelector locales={this.props.locales} onChange={this.setCurrentLocale} />
-                        {this.state.currentSelectedLocale ? this.renderForm() : this.renderHelpText()}
+                        {this.state.currentSelectedLocale ? this.renderFieldsToTranslate() : this.renderHelpText()}
                     </div>
                 </DialogContent>
                 {this.state.currentSelectedLocale && this.renderActionButtons()}

@@ -44,7 +44,7 @@ class TranslationDialog extends Component {
 
     render() {
         return (
-            <Dialog {...this.props}>
+            <Dialog PaperProps={{ style: { width: '75%', maxWidth: '768px' } }} {...this.props}>
                 <DialogTitle id="form-dialog-title">{this.i18n.getTranslation('translation_dialog_title')}</DialogTitle>
                 <this.state.TranslationForm
                     onTranslationSaved={this.translationSaved}
