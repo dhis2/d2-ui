@@ -1,6 +1,6 @@
-import * as actions from '../index'
-import actionTypes from '../actionTypes'
-import PeriodTypes from '../../PeriodTypes'
+import * as actions from '../index';
+import actionTypes from '../actionTypes';
+import PeriodTypes from '../../PeriodTypes';
 
 describe('actions', () => {
     it('should create an action to set period type', () => {
@@ -8,25 +8,25 @@ describe('actions', () => {
 
         const expectedAction = {
             type: actionTypes.SET_PERIOD_TYPE,
-            payload: periodType
+            payload: periodType,
         };
 
-        expect(actions.setPeriodType(periodType)).toEqual(expectedAction)
+        expect(actions.setPeriodType(periodType)).toEqual(expectedAction);
     });
 
     it('should create an action to add offered periods', () => {
-       const expectedAction = {
-           type: actionTypes.ADD_OFFERED_PERIODS,
-           periods: []
-       };
+        const expectedAction = {
+            type: actionTypes.ADD_OFFERED_PERIODS,
+            periods: [],
+        };
 
-       expect(actions.addOfferedPeriods([])).toEqual(expectedAction);
+        expect(actions.addOfferedPeriods([])).toEqual(expectedAction);
     });
 
     it('should create an action to set offered periods', () => {
         const expectedAction = {
             type: actionTypes.SET_OFFERED_PERIODS,
-            periods: []
+            periods: [],
         };
 
         expect(actions.setOfferedPeriods([])).toEqual(expectedAction);
@@ -42,9 +42,9 @@ describe('actions', () => {
     });
 
     it('should create an action to toggle offered period', () => {
-        const period =  {},
-            index = 0,
-            isShiftPressed = false;
+        const period = {};
+        const index = 0;
+        const isShiftPressed = false;
 
         const expectedAction = {
             type: actionTypes.TOGGLE_OFFERED_PERIOD,
@@ -59,7 +59,7 @@ describe('actions', () => {
     it('should create an action to add selected periods', () => {
         const expectedAction = {
             type: actionTypes.ADD_SELECTED_PERIODS,
-            periods: []
+            periods: [],
         };
 
         expect(actions.addSelectedPeriods([])).toEqual(expectedAction);
@@ -68,7 +68,7 @@ describe('actions', () => {
     it('should create an action to set selected periods', () => {
         const expectedAction = {
             type: actionTypes.SET_SELECTED_PERIODS,
-            periods: []
+            periods: [],
         };
 
         expect(actions.setSelectedPeriods([])).toEqual(expectedAction);
@@ -84,9 +84,9 @@ describe('actions', () => {
     });
 
     it('should create an action to toggle selected period', () => {
-        const period =  {},
-            index = 0,
-            isShiftPressed = false;
+        const period = {};
+        const index = 0;
+        const isShiftPressed = false;
 
         const expectedAction = {
             type: actionTypes.TOGGLE_SELECTED_PERIOD,

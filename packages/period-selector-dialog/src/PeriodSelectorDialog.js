@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Dialog from '@material-ui/core/Dialog'
-import DialogTitle from '@material-ui/core/DialogTitle'
-import DialogContent from '@material-ui/core/DialogContent'
-import DialogActions from '@material-ui/core/DialogActions'
-import Button from '@material-ui/core/Button'
+import Dialog from '@material-ui/core/Dialog';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogActions from '@material-ui/core/DialogActions';
+import Button from '@material-ui/core/Button';
 import PeriodSelector from './PeriodSelector';
 
 export const defaultState = {
@@ -41,8 +41,9 @@ class PeriodSelectorDialog extends React.Component {
             >
                 <DialogTitle>{this.i18n.getTranslation('Period')}</DialogTitle>
                 <DialogContent>
-                    <PeriodSelector d2={this.props.d2}
-                                    onPeriodsSelect={this.onPeriodsSelect}
+                    <PeriodSelector
+                        d2={this.props.d2}
+                        onPeriodsSelect={this.onPeriodsSelect}
                     />
                 </DialogContent>
                 <DialogActions>
@@ -55,19 +56,21 @@ class PeriodSelectorDialog extends React.Component {
                 </DialogActions>
             </Dialog>
         );
-
     }
 }
 
 PeriodSelectorDialog.defaultProps = {
     maxWidth: 'md',
     fullWidth: true,
+    onClose: () => null,
 };
 
 PeriodSelectorDialog.propTypes = {
     d2: PropTypes.object.isRequired,
     fullWidth: PropTypes.bool,
     maxWidth: PropTypes.string,
+    open: PropTypes.bool.isRequired,
+    onClose: PropTypes.func,
     onUpdate: PropTypes.func.isRequired,
 };
 

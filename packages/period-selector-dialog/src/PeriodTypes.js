@@ -1,4 +1,4 @@
 export default {
     FIXED: 'FIXED',
-    RELATIVE: 'RELATIVE'
-}
+    RELATIVE: 'RELATIVE',
+};

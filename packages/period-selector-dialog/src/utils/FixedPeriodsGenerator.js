@@ -1,80 +1,22 @@
 // generatePeriods config object: { boolean offset, boolean filterFuturePeriods, boolean reversePeriods }
 
-export default PeriodType;
+function DailyPeriodType(formatYyyyMmDd, fnFilter) {
+    this.generatePeriods = (config) => {
+        let periods = [];
+        const offset = parseInt(config.offset, 10);
+        const isFilter = config.filterFuturePeriods;
+        const isReverse = config.reversePeriods;
+        const year = new Date().getFullYear() + offset;
+        const date = new Date(`01 Jan ${year}`);
 
-function PeriodType()
-{
-    let monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
-            'July', 'August', 'September', 'October', 'November', 'December'],
-
-        format_yyyymmdd = function(date) {
-            let y = date.getFullYear(),
-                m = String(date.getMonth() + 1),
-                d = String(date.getDate());
-            m = m.length < 2 ? '0' + m : m;
-            d = d.length < 2 ? '0' + d : d;
-            return y + '-' + m + '-' + d;
-        },
-
-        filterFuturePeriods = function(periods) {
-            let array = [],
-                now = new Date();
-
-            for (let i = 0; i < periods.length; i++)
-            {
-                if (new Date(periods[i]['startDate']) <= now)
-                {
-                    array.push(periods[i]);
-                }
-            }
-
-            return array;
-        };
-
-    let periodTypes = [];
-    periodTypes['Daily'] = new DailyPeriodType(format_yyyymmdd, filterFuturePeriods);
-    periodTypes['Weekly'] = new WeeklyPeriodType(format_yyyymmdd, filterFuturePeriods);
-    periodTypes['Monthly'] = new MonthlyPeriodType(format_yyyymmdd, monthNames, filterFuturePeriods);
-    periodTypes['BiMonthly'] = new BiMonthlyPeriodType(format_yyyymmdd, monthNames, filterFuturePeriods);
-    periodTypes['Quarterly'] = new QuarterlyPeriodType(format_yyyymmdd, monthNames, filterFuturePeriods);
-    periodTypes['SixMonthly'] = new SixMonthlyPeriodType(monthNames, filterFuturePeriods);
-    periodTypes['SixMonthlyApril'] = new SixMonthlyAprilPeriodType(monthNames, filterFuturePeriods);
-    periodTypes['Yearly'] = new YearlyPeriodType(format_yyyymmdd, filterFuturePeriods);
-    periodTypes['FinancialOct'] = new FinancialOctoberPeriodType(format_yyyymmdd, monthNames, filterFuturePeriods);
-    periodTypes['FinancialJuly'] = new FinancialJulyPeriodType(format_yyyymmdd, monthNames, filterFuturePeriods);
-    periodTypes['FinancialApril'] = new FinancialAprilPeriodType(format_yyyymmdd, monthNames, filterFuturePeriods);
-
-    this.get = function(key)
-    {
-        return periodTypes[key];
-    };
-
-    this.getOptions = function()
-    {
-        return Object.keys(periodTypes);
-    }
-}
-
-function DailyPeriodType(format_yyyymmdd, fnFilter)
-{
-    this.generatePeriods = function(config)
-    {
-        let periods = [],
-            offset = parseInt(config.offset),
-            isFilter = config.filterFuturePeriods,
-            isReverse = config.reversePeriods,
-            year = new Date().getFullYear() + offset;
-        let date = new Date('01 Jan ' + year);
-
-        while (date.getFullYear() === year)
-        {
-            let period = {};
-            period['startDate'] = format_yyyymmdd(date);
-            period['endDate'] = period['startDate'];
-            period['name'] = period['startDate'];
-            //period['id'] = 'Daily_' + period['startDate'];
-            period['iso'] = period['startDate'].replace(/-/g, '');
-            period['id'] = period['iso'];
+        while (date.getFullYear() === year) {
+            const period = {};
+            period.startDate = formatYyyyMmDd(date);
+            period.endDate = period.startDate;
+            period.name = period.startDate;
+            // period['id'] = 'Daily_' + period['startDate'];
+            period.iso = period.startDate.replace(/-/g, '');
+            period.id = period.iso;
             periods.push(period);
             date.setDate(date.getDate() + 1);
         }
@@ -86,41 +28,36 @@ function DailyPeriodType(format_yyyymmdd, fnFilter)
     };
 }
 
-function WeeklyPeriodType(format_yyyymmdd, fnFilter)
-{
-    this.generatePeriods = function(config)
-    {
-        let periods = [],
-            offset = parseInt(config.offset),
-            isFilter = config.filterFuturePeriods,
-            isReverse = config.reversePeriods,
-            year = new Date().getFullYear() + offset,
-            date = new Date('01 Jan ' + year),
-            day = date.getDay(),
-            week = 1;
+function WeeklyPeriodType(formatYyyyMmDd, fnFilter) {
+    this.generatePeriods = (config) => {
+        let periods = [];
+        const offset = parseInt(config.offset, 10);
+        const isFilter = config.filterFuturePeriods;
+        const isReverse = config.reversePeriods;
+        const year = new Date().getFullYear() + offset;
+        const date = new Date(`01 Jan ${year}`);
+        const day = date.getDay();
+        let week = 1;
 
-        if (day <= 4)
-        {
+        if (day <= 4) {
             date.setDate(date.getDate() - (day - 1));
-        }
-        else
-        {
+        } else {
             date.setDate(date.getDate() + (8 - day));
         }
 
-        while (date.getFullYear() <= year)
-        {
-            let period = {};
-            period['startDate'] = format_yyyymmdd(date);
-            //period['id'] = 'Weekly_' + period['startDate'];
-            period['iso'] = year + 'W' + week;
-            period['id'] = period['iso'];
+        while (date.getFullYear() <= year) {
+            const period = {};
+            period.startDate = formatYyyyMmDd(date);
+            // period['id'] = 'Weekly_' + period['startDate'];
+            period.iso = `${year}W${week}`;
+            period.id = period.iso;
             date.setDate(date.getDate() + 6);
-            period['endDate'] = format_yyyymmdd(date);
-            period['name'] = 'W' + week + ' - ' + period['startDate'] + ' - ' + period['endDate'];
+            period.endDate = formatYyyyMmDd(date);
+            period.name = `W${week} - ${period.startDate} - ${period.endDate}`;
             periods.push(period);
             date.setDate(date.getDate() + 1);
-            week++;
+
+            week += 1;
         }
 
         periods = isFilter ? fnFilter(periods) : periods;
@@ -130,34 +67,35 @@ function WeeklyPeriodType(format_yyyymmdd, fnFilter)
     };
 }
 
-function MonthlyPeriodType(format_yyyymmdd, monthNames, fnFilter)
-{
-    let format_iso = function(date) {
-        let y = date.getFullYear(),
-            m = String(date.getMonth() + 1);
-        m = m.length < 2 ? '0' + m : m;
+function MonthlyPeriodType(formatYyyyMmDd, monthNames, fnFilter) {
+    const formatIso = (date) => {
+        const y = date.getFullYear();
+        let m = String(date.getMonth() + 1);
+
+        m = m.length < 2 ? `0${m}` : m;
+
         return y + m;
     };
 
-    this.generatePeriods = function(config)
-    {
-        let periods = [],
-            offset = parseInt(config.offset),
-            isFilter = config.filterFuturePeriods,
-            isReverse = config.reversePeriods,
-            year = new Date().getFullYear() + offset,
-            date = new Date('31 Dec ' + year);
+    this.generatePeriods = (config) => {
+        let periods = [];
 
-        while (date.getFullYear() === year)
-        {
-            let period = {};
-            period['endDate'] = format_yyyymmdd(date);
+        const offset = parseInt(config.offset, 10);
+        const isFilter = config.filterFuturePeriods;
+        const isReverse = config.reversePeriods;
+        const year = new Date().getFullYear() + offset;
+        const date = new Date(`31 Dec ${year}`);
+
+        while (date.getFullYear() === year) {
+            const period = {};
+
+            period.endDate = formatYyyyMmDd(date);
             date.setDate(1);
-            period['startDate'] = format_yyyymmdd(date);
-            period['name'] = monthNames[date.getMonth()] + ' ' + date.getFullYear();
-            //period['id'] = 'Monthly_' + period['startDate'];
-            period['iso'] = format_iso(date);
-            period['id'] = period['iso'];
+            period.startDate = formatYyyyMmDd(date);
+            period.name = `${monthNames[date.getMonth()]} ${date.getFullYear()}`;
+            // period['id'] = 'Monthly_' + period['startDate'];
+            period.iso = formatIso(date);
+            period.id = period.iso;
             periods.push(period);
             date.setDate(0);
         }
@@ -170,35 +108,35 @@ function MonthlyPeriodType(format_yyyymmdd, monthNames, fnFilter)
     };
 }
 
-function BiMonthlyPeriodType(format_yyyymmdd, monthNames, fnFilter)
-{
-    let format_iso = function(date) {
-        let y = date.getFullYear(),
-            m = String(date.getMonth() + 1);
-        m = m.length < 2 ? '0' + m : m;
-        return y + m + 'B';
+function BiMonthlyPeriodType(formatYyyyMmDd, monthNames, fnFilter) {
+    const formatIso = (date) => {
+        const y = date.getFullYear();
+        let m = String(date.getMonth() + 1);
+
+        m = m.length < 2 ? `0${m}` : m;
+
+        return `${y + m}B`;
     };
 
-    this.generatePeriods = function(config)
-    {
-        let periods = [],
-            offset = parseInt(config.offset),
-            isFilter = config.filterFuturePeriods,
-            isReverse = config.reversePeriods,
-            year = new Date().getFullYear() + offset,
-            date = new Date('31 Dec ' + year);
+    this.generatePeriods = (config) => {
+        let periods = [];
+        const offset = parseInt(config.offset, 10);
+        const isFilter = config.filterFuturePeriods;
+        const isReverse = config.reversePeriods;
+        const year = new Date().getFullYear() + offset;
+        const date = new Date(`31 Dec ${year}`);
 
-        while (date.getFullYear() === year)
-        {
-            let period = {};
-            period['endDate'] = format_yyyymmdd(date);
+        while (date.getFullYear() === year) {
+            const period = {};
+
+            period.endDate = formatYyyyMmDd(date);
             date.setDate(0);
             date.setDate(1);
-            period['startDate'] = format_yyyymmdd(date);
-            period['name'] = monthNames[date.getMonth()] + ' - ' + monthNames[date.getMonth() + 1] + ' ' + date.getFullYear();
-            //period['id'] = 'BiMonthly_' + period['startDate'];
-            period['iso'] = format_iso(date);
-            period['id'] = period['iso'];
+            period.startDate = formatYyyyMmDd(date);
+            period.name = `${monthNames[date.getMonth()]} - ${monthNames[date.getMonth() + 1]} ${date.getFullYear()}`;
+            // period['id'] = 'BiMonthly_' + period['startDate'];
+            period.iso = formatIso(date);
+            period.id = period.iso;
             periods.push(period);
             date.setDate(0);
         }
@@ -211,33 +149,30 @@ function BiMonthlyPeriodType(format_yyyymmdd, monthNames, fnFilter)
     };
 }
 
-function QuarterlyPeriodType(format_yyyymmdd, monthNames, fnFilter)
-{
-    this.generatePeriods = function(config)
-    {
-        let periods = [],
-            offset = parseInt(config.offset),
-            isFilter = config.filterFuturePeriods,
-            isReverse = config.reversePeriods,
-            year = new Date().getFullYear() + offset,
-            date = new Date('31 Dec ' + year),
-            quarter = 4;
+function QuarterlyPeriodType(formatYyyyMmDd, monthNames, fnFilter) {
+    this.generatePeriods = (config) => {
+        let periods = [];
+        const offset = parseInt(config.offset, 10);
+        const isFilter = config.filterFuturePeriods;
+        const isReverse = config.reversePeriods;
+        const year = new Date().getFullYear() + offset;
+        const date = new Date(`31 Dec ${year}`);
+        let quarter = 4;
 
-        while (date.getFullYear() === year)
-        {
-            let period = {};
-            period['endDate'] = format_yyyymmdd(date);
+        while (date.getFullYear() === year) {
+            const period = {};
+            period.endDate = formatYyyyMmDd(date);
             date.setDate(0);
             date.setDate(0);
             date.setDate(1);
-            period['startDate'] = format_yyyymmdd(date);
-            period['name'] = monthNames[date.getMonth()] + ' - ' + monthNames[date.getMonth() + 2] + ' ' + date.getFullYear();
-            //period['id'] = 'Quarterly_' + period['startDate'];
-            period['iso'] = year + 'Q' + quarter;
-            period['id'] = period['iso'];
+            period.startDate = formatYyyyMmDd(date);
+            period.name = `${monthNames[date.getMonth()]} - ${monthNames[date.getMonth() + 2]} ${date.getFullYear()}`;
+            // period['id'] = 'Quarterly_' + period['startDate'];
+            period.iso = `${year}Q${quarter}`;
+            period.id = period.iso;
             periods.push(period);
             date.setDate(0);
-            quarter--;
+            quarter -= 1;
         }
 
         periods = isFilter ? fnFilter(periods) : periods;
@@ -248,32 +183,30 @@ function QuarterlyPeriodType(format_yyyymmdd, monthNames, fnFilter)
     };
 }
 
-function SixMonthlyPeriodType(monthNames, fnFilter)
-{
-    this.generatePeriods = function(config)
-    {
-        let periods = [],
-            offset = parseInt(config.offset),
-            isFilter = config.filterFuturePeriods,
-            isReverse = config.reversePeriods,
-            year = new Date().getFullYear() + offset;
+function SixMonthlyPeriodType(monthNames, fnFilter) {
+    this.generatePeriods = (config) => {
+        let periods = [];
+        const offset = parseInt(config.offset, 10);
+        const isFilter = config.filterFuturePeriods;
+        const isReverse = config.reversePeriods;
+        const year = new Date().getFullYear() + offset;
 
         let period = {};
-        period['startDate'] = year + '-01-01';
-        period['endDate'] = year + '-06-30';
-        period['name'] = monthNames[0] + ' - ' + monthNames[5] + ' ' + year;
-        //period['id'] = 'SixMonthly_' + period['startDate'];
-        period['iso'] = year + 'S1';
-        period['id'] = period['iso'];
+        period.startDate = `${year}-01-01`;
+        period.endDate = `${year}-06-30`;
+        period.name = `${monthNames[0]} - ${monthNames[5]} ${year}`;
+        // period['id'] = 'SixMonthly_' + period['startDate'];
+        period.iso = `${year}S1`;
+        period.id = period.iso;
         periods.push(period);
 
         period = {};
-        period['startDate'] = year + '-07-01';
-        period['endDate'] = year + '-12-31';
-        period['name'] = monthNames[6] + ' - ' + monthNames[11] + ' ' + year;
-        //period['id'] = 'SixMonthly_' + period['startDate'];
-        period['iso'] = year + 'S2';
-        period['id'] = period['iso'];
+        period.startDate = `${year}-07-01`;
+        period.endDate = `${year}-12-31`;
+        period.name = `${monthNames[6]} - ${monthNames[11]} ${year}`;
+        // period['id'] = 'SixMonthly_' + period['startDate'];
+        period.iso = `${year}S2`;
+        period.id = period.iso;
         periods.push(period);
 
         periods = isFilter ? fnFilter(periods) : periods;
@@ -283,32 +216,30 @@ function SixMonthlyPeriodType(monthNames, fnFilter)
     };
 }
 
-function SixMonthlyAprilPeriodType(monthNames, fnFilter)
-{
-    this.generatePeriods = function(config)
-    {
-        let periods = [],
-            offset = parseInt(config.offset),
-            isFilter = config.filterFuturePeriods,
-            isReverse = config.reversePeriods,
-            year = new Date().getFullYear() + offset;
+function SixMonthlyAprilPeriodType(monthNames, fnFilter) {
+    this.generatePeriods = (config) => {
+        let periods = [];
+        const offset = parseInt(config.offset, 10);
+        const isFilter = config.filterFuturePeriods;
+        const isReverse = config.reversePeriods;
+        const year = new Date().getFullYear() + offset;
 
         let period = {};
-        period['startDate'] = year + '-04-01';
-        period['endDate'] = year + '-09-30';
-        period['name'] = monthNames[3] + ' - ' + monthNames[8] + ' ' + year;
-        //period['id'] = 'SixMonthlyApril_' + period['startDate'];
-        period['iso'] = year + 'AprilS1';
-        period['id'] = period['iso'];
+        period.startDate = `${year}-04-01`;
+        period.endDate = `${year}-09-30`;
+        period.name = `${monthNames[3]} - ${monthNames[8]} ${year}`;
+        // period['id'] = 'SixMonthlyApril_' + period['startDate'];
+        period.iso = `${year}AprilS1`;
+        period.id = period.iso;
         periods.push(period);
 
         period = {};
-        period['startDate'] = year + '-10-01';
-        period['endDate'] = (year + 1) + '-03-31';
-        period['name'] = monthNames[9] + ' ' + year + ' - ' + monthNames[2] + ' ' + (year + 1);
-        //period['id'] = 'SixMonthlyApril_' + period['startDate'];
-        period['iso'] = year + 'AprilS2';
-        period['id'] = period['iso'];
+        period.startDate = `${year}-10-01`;
+        period.endDate = `${year + 1}-03-31`;
+        period.name = `${monthNames[9]} ${year} - ${monthNames[2]} ${year + 1}`;
+        // period['id'] = 'SixMonthlyApril_' + period['startDate'];
+        period.iso = `${year}AprilS2`;
+        period.id = period.iso;
         periods.push(period);
 
         periods = isFilter ? fnFilter(periods) : periods;
@@ -318,27 +249,24 @@ function SixMonthlyAprilPeriodType(monthNames, fnFilter)
     };
 }
 
-function YearlyPeriodType(format_yyyymmdd, fnFilter)
-{
-    this.generatePeriods = function(config)
-    {
-        let periods = [],
-            offset = parseInt(config.offset),
-            isFilter = config.filterFuturePeriods,
-            isReverse = config.reversePeriods,
-            year = new Date().getFullYear() + offset,
-            date = new Date('31 Dec ' + year);
+function YearlyPeriodType(formatYyyyMmDd, fnFilter) {
+    this.generatePeriods = (config) => {
+        let periods = [];
+        const offset = parseInt(config.offset, 10);
+        const isFilter = config.filterFuturePeriods;
+        const isReverse = config.reversePeriods;
+        const year = new Date().getFullYear() + offset;
+        const date = new Date(`31 Dec ${year}`);
 
-        while ((year - date.getFullYear()) < 10)
-        {
-            let period = {};
-            period['endDate'] = format_yyyymmdd(date);
+        while ((year - date.getFullYear()) < 10) {
+            const period = {};
+            period.endDate = formatYyyyMmDd(date);
             date.setMonth(0, 1);
-            period['startDate'] = format_yyyymmdd(date);
-            period['name'] = date.getFullYear().toString();
-            //period['id'] = 'Yearly_' + period['startDate'];
-            period['iso'] = date.getFullYear().toString();
-            period['id'] = period['iso'].toString();
+            period.startDate = formatYyyyMmDd(date);
+            period.name = date.getFullYear().toString();
+            // period['id'] = 'Yearly_' + period['startDate'];
+            period.iso = date.getFullYear().toString();
+            period.id = period.iso.toString();
             periods.push(period);
             date.setDate(0);
         }
@@ -351,26 +279,23 @@ function YearlyPeriodType(format_yyyymmdd, fnFilter)
     };
 }
 
-function FinancialOctoberPeriodType(format_yyyymmdd, monthNames, fnFilter)
-{
-    this.generatePeriods = function(config)
-    {
-        let periods = [],
-            offset = parseInt(config.offset),
-            isFilter = config.filterFuturePeriods,
-            isReverse = config.reversePeriods,
-            year = new Date().getFullYear() + offset,
-            date = new Date('30 Sep ' + (year + 1));
+function FinancialOctoberPeriodType(formatYyyyMmDd, monthNames, fnFilter) {
+    this.generatePeriods = (config) => {
+        let periods = [];
+        const offset = parseInt(config.offset, 10);
+        const isFilter = config.filterFuturePeriods;
+        const isReverse = config.reversePeriods;
+        const year = new Date().getFullYear() + offset;
+        const date = new Date(`30 Sep ${year + 1}`);
 
-        for (let i = 0; i < 10; i++)
-        {
-            let period = {};
-            period['endDate'] = format_yyyymmdd(date);
+        for (let i = 0; i < 10; i++) {
+            const period = {};
+            period.endDate = formatYyyyMmDd(date);
             date.setYear(date.getFullYear() - 1);
             date.setDate(date.getDate() + 1);
-            period['startDate'] = format_yyyymmdd(date);
-            period['name'] = monthNames[9] + ' ' + date.getFullYear() + ' - ' + monthNames[8] + ' ' + (date.getFullYear() + 1);
-            period['id'] = date.getFullYear() + 'Oct';
+            period.startDate = formatYyyyMmDd(date);
+            period.name = `${monthNames[9]} ${date.getFullYear()} - ${monthNames[8]} ${date.getFullYear() + 1}`;
+            period.id = `${date.getFullYear()}Oct`;
             periods.push(period);
             date.setDate(date.getDate() - 1);
         }
@@ -383,26 +308,23 @@ function FinancialOctoberPeriodType(format_yyyymmdd, monthNames, fnFilter)
     };
 }
 
-function FinancialJulyPeriodType(format_yyyymmdd, monthNames, fnFilter)
-{
-    this.generatePeriods = function(config)
-    {
-        let periods = [],
-            offset = parseInt(config.offset),
-            isFilter = config.filterFuturePeriods,
-            isReverse = config.reversePeriods,
-            year = new Date().getFullYear() + offset,
-            date = new Date('30 Jun ' + (year + 1));
+function FinancialJulyPeriodType(formatYyyyMmDd, monthNames, fnFilter) {
+    this.generatePeriods = (config) => {
+        let periods = [];
+        const offset = parseInt(config.offset, 10);
+        const isFilter = config.filterFuturePeriods;
+        const isReverse = config.reversePeriods;
+        const year = new Date().getFullYear() + offset;
+        const date = new Date(`30 Jun ${year + 1}`);
 
-        for (let i = 0; i < 10; i++)
-        {
-            let period = {};
-            period['endDate'] = format_yyyymmdd(date);
+        for (let i = 0; i < 10; i++) {
+            const period = {};
+            period.endDate = formatYyyyMmDd(date);
             date.setYear(date.getFullYear() - 1);
             date.setDate(date.getDate() + 1);
-            period['startDate'] = format_yyyymmdd(date);
-            period['name'] = monthNames[6] + ' ' + date.getFullYear() + ' - ' + monthNames[5] + ' ' + (date.getFullYear() + 1);
-            period['id'] = date.getFullYear() + 'July';
+            period.startDate = formatYyyyMmDd(date);
+            period.name = `${monthNames[6]} ${date.getFullYear()} - ${monthNames[5]} ${date.getFullYear() + 1}`;
+            period.id = `${date.getFullYear()}July`;
             periods.push(period);
             date.setDate(date.getDate() - 1);
         }
@@ -415,26 +337,23 @@ function FinancialJulyPeriodType(format_yyyymmdd, monthNames, fnFilter)
     };
 }
 
-function FinancialAprilPeriodType(format_yyyymmdd, monthNames, fnFilter)
-{
-    this.generatePeriods = function(config)
-    {
-        let periods = [],
-            offset = parseInt(config.offset),
-            isFilter = config.filterFuturePeriods,
-            isReverse = config.reversePeriods,
-            year = new Date().getFullYear() + offset,
-            date = new Date('31 Mar ' + (year + 1));
+function FinancialAprilPeriodType(formatYyyyMmDd, monthNames, fnFilter) {
+    this.generatePeriods = (config) => {
+        let periods = [];
+        const offset = parseInt(config.offset, 10);
+        const isFilter = config.filterFuturePeriods;
+        const isReverse = config.reversePeriods;
+        const year = new Date().getFullYear() + offset;
+        const date = new Date(`31 Mar ${year + 1}`);
 
-        for (let i = 0; i < 10; i++)
-        {
-            let period = {};
-            period['endDate'] = format_yyyymmdd(date);
+        for (let i = 0; i < 10; i++) {
+            const period = {};
+            period.endDate = formatYyyyMmDd(date);
             date.setYear(date.getFullYear() - 1);
             date.setDate(date.getDate() + 1);
-            period['startDate'] = format_yyyymmdd(date);
-            period['name'] = monthNames[3] + ' ' + date.getFullYear() + ' - ' + monthNames[2] + ' ' + (date.getFullYear() + 1);
-            period['id'] = date.getFullYear() + 'April';
+            period.startDate = formatYyyyMmDd(date);
+            period.name = `${monthNames[3]} ${date.getFullYear()} - ${monthNames[2]} ${date.getFullYear() + 1}`;
+            period.id = `${date.getFullYear()}April`;
             periods.push(period);
             date.setDate(date.getDate() - 1);
         }
@@ -446,3 +365,63 @@ function FinancialAprilPeriodType(format_yyyymmdd, monthNames, fnFilter)
         return periods;
     };
 }
+
+function PeriodType() {
+    const monthNames = [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December',
+    ];
+
+    const formatYyyyMmDd = (date) => {
+        const y = date.getFullYear();
+        let m = String(date.getMonth() + 1);
+        let d = String(date.getDate());
+
+        m = m.length < 2 ? `0${m}` : m;
+        d = d.length < 2 ? `0${d}` : d;
+
+        return `${y}-${m}-${d}`;
+    };
+
+    const filterFuturePeriods = (periods) => {
+        const array = [];
+        const now = new Date();
+
+        for (let i = 0; i < periods.length; i++) {
+            if (new Date(periods[i].startDate) <= now) {
+                array.push(periods[i]);
+            }
+        }
+
+        return array;
+    };
+
+    const periodTypes = [];
+
+    periodTypes.Daily = new DailyPeriodType(formatYyyyMmDd, filterFuturePeriods);
+    periodTypes.Weekly = new WeeklyPeriodType(formatYyyyMmDd, filterFuturePeriods);
+    periodTypes.Monthly = new MonthlyPeriodType(formatYyyyMmDd, monthNames, filterFuturePeriods);
+    periodTypes.BiMonthly = new BiMonthlyPeriodType(formatYyyyMmDd, monthNames, filterFuturePeriods);
+    periodTypes.Quarterly = new QuarterlyPeriodType(formatYyyyMmDd, monthNames, filterFuturePeriods);
+    periodTypes.SixMonthly = new SixMonthlyPeriodType(monthNames, filterFuturePeriods);
+    periodTypes.SixMonthlyApril = new SixMonthlyAprilPeriodType(monthNames, filterFuturePeriods);
+    periodTypes.Yearly = new YearlyPeriodType(formatYyyyMmDd, filterFuturePeriods);
+    periodTypes.FinancialOct = new FinancialOctoberPeriodType(formatYyyyMmDd, monthNames, filterFuturePeriods);
+    periodTypes.FinancialJuly = new FinancialJulyPeriodType(formatYyyyMmDd, monthNames, filterFuturePeriods);
+    periodTypes.FinancialApril = new FinancialAprilPeriodType(formatYyyyMmDd, monthNames, filterFuturePeriods);
+
+    this.get = key => periodTypes[key];
+    this.getOptions = () => Object.keys(periodTypes);
+}
+
+export default PeriodType;

@@ -1,22 +1,18 @@
 export default class Generator {
     options = {
-        'Days': DaysPeriodType,
-        'Weeks': WeeksPeriodType,
-        'Months': MonthsPeriodType,
-        'BiMonths': BiMonthsPeriodType,
-        'Quarters': QuartersPeriodType,
-        'SixMonths': SixMonthsPeriodType,
+        Days: DaysPeriodType,
+        Weeks: WeeksPeriodType,
+        Months: MonthsPeriodType,
+        BiMonths: BiMonthsPeriodType,
+        Quarters: QuartersPeriodType,
+        SixMonths: SixMonthsPeriodType,
         'Financial Years': FinancialYearsPeriodType,
-        'Years': YearsPeriodType
+        Years: YearsPeriodType,
     };
 
-    get = (key) => {
-        return this.options[key];
-    };
+    get = key => this.options[key];
 
-    getOptions = () => {
-        return Object.keys(this.options);
-    }
+    getOptions = () => Object.keys(this.options)
 }
 
 const DaysPeriodType = {
@@ -28,7 +24,7 @@ const DaysPeriodType = {
             { id: 'LAST_7_DAYS', name: 'Last 7 days' },
             { id: 'LAST_14_DAYS', name: 'Last 14 days' },
         ];
-    }
+    },
 };
 
 const WeeksPeriodType = {
@@ -41,7 +37,7 @@ const WeeksPeriodType = {
             { id: 'LAST_52_WEEKS', name: 'Last 52 weeks' },
             { id: 'WEEKS_THIS_YEAR', name: 'Weeks this year' },
         ];
-    }
+    },
 };
 
 const MonthsPeriodType = {
@@ -52,20 +48,20 @@ const MonthsPeriodType = {
             { id: 'LAST_3_MONTHS', name: 'Last 3 months' },
             { id: 'LAST_6_MONTHS', name: 'Last 6 months' },
             { id: 'LAST_12_MONTHS', name: 'Last 12 months' },
-            { id: 'MONTHS_THIS_YEAR', name: 'Months this year' }
+            { id: 'MONTHS_THIS_YEAR', name: 'Months this year' },
         ];
-    }
+    },
 };
 
 const BiMonthsPeriodType = {
     generatePeriods() {
         return [
-            { id: 'THIS_BIMOTNH', name: 'This bi-month'} ,
+            { id: 'THIS_BIMOTNH', name: 'This bi-month' },
             { id: 'LAST_BIMONTH', name: 'Last bi-month' },
             { id: 'LAST_6_BIMONTHS', name: 'Last 6 bi-months' },
             { id: 'BIMONTHS_THIS_YEAR', name: 'Bi-months this year' },
         ];
-    }
+    },
 };
 
 const QuartersPeriodType = {
@@ -76,7 +72,7 @@ const QuartersPeriodType = {
             { id: 'LAST_4_QUARTERS', name: 'Last 4 quarters' },
             { id: 'QUARTERS_THIS_YEAR', name: 'Quarters this year' },
         ];
-    }
+    },
 };
 
 const SixMonthsPeriodType = {
@@ -86,7 +82,7 @@ const SixMonthsPeriodType = {
             { id: 'LAST_SIX_MONTH', name: 'Last six-month' },
             { id: 'LAST_2_SIXMONTHS', name: 'Last 2 six-month' },
         ];
-    }
+    },
 };
 
 const FinancialYearsPeriodType = {
@@ -96,7 +92,7 @@ const FinancialYearsPeriodType = {
             { id: 'LAST_FINANCIAL_YEAR', name: 'Last financial year' },
             { id: 'LAST_5_FINANCIAL_YEARS', name: 'Last 5 financial years' },
         ];
-    }
+    },
 };
 
 const YearsPeriodType = {
@@ -106,5 +102,5 @@ const YearsPeriodType = {
             { id: 'LAST_YEAR', name: 'Last year' },
             { id: 'LAST_5_YEARS', name: 'Last 5 years' },
         ];
-    }
+    },
 };

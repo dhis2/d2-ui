@@ -1,4 +1,4 @@
-import { periods, defaultState } from '../periods';
+import Periods, { defaultState } from '../periods';
 import actionTypes from '../../actions/actionTypes';
 
 const testPeriods = (reducer, periodType) => () => {
@@ -10,8 +10,8 @@ const testPeriods = (reducer, periodType) => () => {
         const action = {
             type: actionTypes[`SET_${periodType.toUpperCase()}_PERIODS`],
             periods: [
-                { id: 'LAST_12_MONTHS', name: 'Last 12 months', 'selected': false },
-                { id: 'LAST_14_DAYS', name: 'Last 14 days', 'selected': false },
+                { id: 'LAST_12_MONTHS', name: 'Last 12 months', selected: false },
+                { id: 'LAST_14_DAYS', name: 'Last 14 days', selected: false },
             ],
         };
 
@@ -34,17 +34,17 @@ const testPeriods = (reducer, periodType) => () => {
         const action = {
             type: actionTypes[`ADD_${periodType.toUpperCase()}_PERIODS`],
             periods: [
-                { id: 'LAST_12_MONTHS', name: 'Last 12 months', 'selected': false },
-                { id: 'LAST_14_DAYS', name: 'Last 14 days', 'selected': false },
+                { id: 'LAST_12_MONTHS', name: 'Last 12 months', selected: false },
+                { id: 'LAST_14_DAYS', name: 'Last 14 days', selected: false },
             ],
         };
 
         const currentState = {
             ...defaultState,
             periods: [
-                { id: 'THIS_WEEK', name: 'This week', 'selected': false },
-                { id: 'LAST_WEEK', name: 'Last week', 'selected': false },
-            ]
+                { id: 'THIS_WEEK', name: 'This week', selected: false },
+                { id: 'LAST_WEEK', name: 'Last week', selected: false },
+            ],
         };
 
         const expectedState = {
@@ -74,16 +74,16 @@ const testPeriods = (reducer, periodType) => () => {
         const action = {
             type: actionTypes[`REMOVE_${periodType.toUpperCase()}_PERIODS`],
             periodsToRemove: [
-                { id: 'LAST_12_MONTHS', name: 'Last 12 months', 'selected': false },
-                { id: 'LAST_14_DAYS', name: 'Last 14 days', 'selected': false },
+                { id: 'LAST_12_MONTHS', name: 'Last 12 months', selected: false },
+                { id: 'LAST_14_DAYS', name: 'Last 14 days', selected: false },
             ],
         };
 
         const currentState = {
             ...defaultState,
             periods: [
-                { id: 'LAST_12_MONTHS', name: 'Last 12 months', 'selected': false },
-                { id: 'LAST_14_DAYS', name: 'Last 14 days', 'selected': false },
+                { id: 'LAST_12_MONTHS', name: 'Last 12 months', selected: false },
+                { id: 'LAST_14_DAYS', name: 'Last 14 days', selected: false },
             ],
         };
 
@@ -100,14 +100,14 @@ const testPeriods = (reducer, periodType) => () => {
         const currentState = {
             ...defaultState,
             periods: [
-                { id: 'LAST_12_MONTHS', name: 'Last 12 months', 'selected': false },
-                { id: 'LAST_14_DAYS', name: 'Last 14 days', 'selected': false },
+                { id: 'LAST_12_MONTHS', name: 'Last 12 months', selected: false },
+                { id: 'LAST_14_DAYS', name: 'Last 14 days', selected: false },
             ],
         };
 
         const action = {
             type: actionTypes[`TOGGLE_${periodType.toUpperCase()}_PERIOD`],
-            period: { id: 'LAST_12_MONTHS', name: 'Last 12 months', 'selected': false },
+            period: { id: 'LAST_12_MONTHS', name: 'Last 12 months', selected: false },
             index: 0,
         };
 
@@ -115,8 +115,8 @@ const testPeriods = (reducer, periodType) => () => {
             ...defaultState,
             lastClickedIndex: action.index,
             periods: [
-                { id: 'LAST_12_MONTHS', name: 'Last 12 months', 'selected': true },
-                { id: 'LAST_14_DAYS', name: 'Last 14 days', 'selected': false },
+                { id: 'LAST_12_MONTHS', name: 'Last 12 months', selected: true },
+                { id: 'LAST_14_DAYS', name: 'Last 14 days', selected: false },
             ],
         };
 
@@ -130,16 +130,16 @@ const testPeriods = (reducer, periodType) => () => {
             ...defaultState,
             lastClickedIndex: 0,
             periods: [
-                { id: 'LAST_12_MONTHS', name: 'Last 12 months', 'selected': true },
-                { id: 'LAST_14_DAYS', name: 'Last 14 days', 'selected': false },
-                { id: 'THIS_WEEK', name: 'This week', 'selected': false },
-                { id: 'LAST_WEEK', name: 'Last week', 'selected': false },
+                { id: 'LAST_12_MONTHS', name: 'Last 12 months', selected: true },
+                { id: 'LAST_14_DAYS', name: 'Last 14 days', selected: false },
+                { id: 'THIS_WEEK', name: 'This week', selected: false },
+                { id: 'LAST_WEEK', name: 'Last week', selected: false },
             ],
         };
 
         const action = {
             type: actionTypes[`TOGGLE_${periodType.toUpperCase()}_PERIOD`],
-            period: { id: 'LAST_WEEK', name: 'Last week', 'selected': false },
+            period: { id: 'LAST_WEEK', name: 'Last week', selected: false },
             index: 3,
             isShiftPressed: true,
         };
@@ -156,5 +156,5 @@ const testPeriods = (reducer, periodType) => () => {
     });
 };
 
-describe('offered periods reducer', testPeriods(periods('offered'), 'offered'));
-describe('selected periods reducer', testPeriods(periods('selected'), 'selected'));
+describe('offered periods reducer', testPeriods(Periods('offered'), 'offered'));
+describe('selected periods reducer', testPeriods(Periods('selected'), 'selected'));

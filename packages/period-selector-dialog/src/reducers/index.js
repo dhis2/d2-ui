@@ -1,17 +1,17 @@
-import { combineReducers } from 'redux';
-import { createStore } from "redux";
-import periodType from "./periodType";
-import periods from './periods';
+import { createStore, combineReducers } from 'redux';
+import periodTypeReducer from './periodType';
+import periodsReducer from './periods';
 
 export const reducers = combineReducers({
-    periodType,
-    offeredPeriods: periods('offered'),
-    selectedPeriods: periods('selected'),
+    periodTypeReducer,
+    offeredPeriods: periodsReducer('offered'),
+    selectedPeriods: periodsReducer('selected'),
 });
 
 export const Store = createStore(
     reducers,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    // eslint-disable-next-line no-underscore-dangle
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 );
 
 export default Store;

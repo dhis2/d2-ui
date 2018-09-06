@@ -1,6 +1,6 @@
-import { periodType as reducer, defaultState } from '../periodType';
+import reducer, { defaultState } from '../periodType';
 import actionTypes from '../../actions/actionTypes';
-import PeriodTypes from '../../PeriodTypes'
+import periodTypes from '../../PeriodTypes';
 
 describe('period type reducer', () => {
     it('has default state', () => {
@@ -10,10 +10,10 @@ describe('period type reducer', () => {
     it('handles set action', () => {
         const action = {
             type: actionTypes.SET_PERIOD_TYPE,
-            payload: PeriodTypes.FIXED,
+            payload: periodTypes.FIXED,
         };
 
-        const expectedState = PeriodTypes.FIXED;
+        const expectedState = periodTypes.FIXED;
 
         expect(reducer(defaultState, action)).toEqual(expectedState);
     });
