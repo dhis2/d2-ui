@@ -46,11 +46,11 @@ class PeriodSelectorDialog extends React.Component {
                         onPeriodsSelect={this.onPeriodsSelect}
                     />
                 </DialogContent>
-                <DialogActions>
+                <DialogActions style={{ padding: '24px' }}>
                     <Button onClick={onClose}>
                         {this.i18n.getTranslation('hide')}
                     </Button>
-                    <Button onClick={this.onUpdateClick} color={'primary'}>
+                    <Button onClick={this.onUpdateClick} variant="contained" color="primary">
                         {this.i18n.getTranslation('update')}
                     </Button>
                 </DialogActions>
