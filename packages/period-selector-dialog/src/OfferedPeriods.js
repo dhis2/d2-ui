@@ -10,7 +10,13 @@ class OfferedPeriods extends Component {
 
         const { periods, setOfferedPeriods, onPeriodClick } = this.props;
 
-        const defaultOptions = (<RelativePeriods
+        const relativePeriods = (<RelativePeriods
+            periods={periods}
+            setOfferedPeriods={setOfferedPeriods}
+            onPeriodClick={onPeriodClick}
+        />);
+
+        const fixedPeriods = (<FixedPeriods
             periods={periods}
             setOfferedPeriods={setOfferedPeriods}
             onPeriodClick={onPeriodClick}
@@ -18,15 +24,13 @@ class OfferedPeriods extends Component {
 
         switch (this.props.periodType) {
         case PeriodTypes.FIXED:
-            PeriodOptions = (<FixedPeriods
-                periods={periods}
-                setOfferedPeriods={setOfferedPeriods}
-                onPeriodClick={onPeriodClick}
-            />);
+            PeriodOptions = fixedPeriods;
             break;
         case PeriodTypes.RELATIVE:
+            PeriodOptions = relativePeriods;
+            break;
         default:
-            PeriodOptions = defaultOptions;
+            PeriodOptions = relativePeriods;
         }
 
         return PeriodOptions;

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import PropTypes from 'prop-types';
 import Periods from './Periods';
-import { Store } from './reducers';
+import Store from './reducers';
 
 class PeriodSelector extends Component {
     getChildContext() {

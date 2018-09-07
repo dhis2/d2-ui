@@ -4,8 +4,9 @@ import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import OfferedPeriods from './OfferedPeriods';
+import PeriodTypeButton from './PeriodTypeButton';
 import SelectedPeriods from './SelectedPeriods';
+import OfferedPeriods from './OfferedPeriods';
 import PeriodTypes from './PeriodTypes';
 import '../css/PeriodSelector.css';
 
@@ -35,9 +36,7 @@ class Periods extends Component {
         }
     }
 
-    onPeriodTypeClick = (e) => {
-        const periodType = e.target.dataset.periodtype;
-
+    onPeriodTypeClick = (periodType) => {
         if (this.props.periodType !== periodType) {
             this.props.setPeriodType(periodType);
             this.props.setOfferedPeriods([]);
@@ -65,20 +64,18 @@ class Periods extends Component {
     };
 
     renderPeriodTypeButtons = () => (<Fragment>
-        <Button
-            className={`nav-button ${this.props.periodType === PeriodTypes.RELATIVE ? 'active' : ''}`}
+        <PeriodTypeButton
+            periodType={PeriodTypes.RELATIVE}
+            activePeriodType={this.props.periodType}
+            text={'Relative periods'}
             onClick={this.onPeriodTypeClick}
-            data-periodtype={PeriodTypes.RELATIVE}
-        >
-            {this.i18n.getTranslation('Relative periods')}
-        </Button>
-        <Button
-            className={`nav-button ${this.props.periodType === PeriodTypes.FIXED ? 'active' : ''}`}
+        />
+        <PeriodTypeButton
+            periodType={PeriodTypes.FIXED}
+            activePeriodType={this.props.periodType}
+            text={'Fixed periods'}
             onClick={this.onPeriodTypeClick}
-            data-periodtype={PeriodTypes.FIXED}
-        >
-            {this.i18n.getTranslation('Fixed periods')}
-        </Button>
+        />
     </Fragment>);
 
     renderSelectButtons = () => (<Fragment>
@@ -122,12 +119,8 @@ class Periods extends Component {
     }
 }
 
-Periods.defaultProps = {
-    periodType: PeriodTypes.RELATIVE,
-};
-
 Periods.propTypes = {
-    periodType: PropTypes.string,
+    periodType: PropTypes.string.isRequired,
     offeredPeriods: PropTypes.object.isRequired,
     selectedPeriods: PropTypes.object.isRequired,
     setPeriodType: PropTypes.func.isRequired,
