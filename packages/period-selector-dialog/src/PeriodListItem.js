@@ -6,7 +6,7 @@ import StopIcon from '@material-ui/icons/Stop';
 
 class PeriodListItem extends Component {
     onPeriodClick = (event) => {
-        this.props.onPeriodClick(this.props.period, this.props.index, event.shiftKey);
+        this.props.onPeriodClick(this.props.period, this.props.index, event.shiftKey, event.metaKey);
     };
 
     render() {
