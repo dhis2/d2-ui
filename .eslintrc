@@ -2,6 +2,15 @@
   "extends": "dhis2",
   "parser": "babel-eslint",
   "env": { "browser": true },
+  "rules": {
+      "import/no-extraneous-dependencies": [
+          "error", {
+              "devDependencies": true,
+              "optionalDependencies": true,
+              "peerDependencies": true
+          }
+      ]
+  },
   "globals": {
     "DHIS_CONFIG": true
   }

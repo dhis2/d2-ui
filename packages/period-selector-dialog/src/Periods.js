@@ -125,7 +125,7 @@ class Periods extends Component {
 
 Periods.defaultProps = {
     periodType: PeriodTypes.RELATIVE,
-}
+};
 
 Periods.propTypes = {
     periodType: PropTypes.string,
