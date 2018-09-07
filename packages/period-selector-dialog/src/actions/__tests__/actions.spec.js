@@ -45,15 +45,17 @@ describe('actions', () => {
         const period = {};
         const index = 0;
         const isShiftPressed = false;
+        const isCtrlPressed = false;
 
         const expectedAction = {
             type: actionTypes.TOGGLE_OFFERED_PERIOD,
             period,
             index,
             isShiftPressed,
+            isCtrlPressed,
         };
 
-        expect(actions.toggleOfferedPeriod(period, index, isShiftPressed)).toEqual(expectedAction);
+        expect(actions.toggleOfferedPeriod(period, index, isShiftPressed, isCtrlPressed)).toEqual(expectedAction);
     });
 
     it('should create an action to add selected periods', () => {
@@ -87,14 +89,16 @@ describe('actions', () => {
         const period = {};
         const index = 0;
         const isShiftPressed = false;
+        const isCtrlPressed = false;
 
         const expectedAction = {
             type: actionTypes.TOGGLE_SELECTED_PERIOD,
             period,
             index,
             isShiftPressed,
+            isCtrlPressed,
         };
 
-        expect(actions.toggleSelectedPeriod(period, index, isShiftPressed)).toEqual(expectedAction);
+        expect(actions.toggleSelectedPeriod(period, index, isShiftPressed, isCtrlPressed)).toEqual(expectedAction);
     });
 });
