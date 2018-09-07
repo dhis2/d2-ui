@@ -13,6 +13,7 @@ import {
     setPeriodType,
     addOfferedPeriods,
     setOfferedPeriods,
+    setSelectedPeriods,
     removeOfferedPeriods,
     toggleOfferedPeriod,
     addSelectedPeriods,
@@ -54,7 +55,6 @@ class Periods extends Component {
     };
 
     onUnselectPeriods = () => {
-        // const { addOfferedPeriods, selectedPeriods, removeSelectedPeriods } = this.props;
         const periods = this.props
             .selectedPeriods
             .periods
@@ -105,7 +105,6 @@ class Periods extends Component {
                         periodType={this.props.periodType}
                         periods={this.props.offeredPeriods.periods}
                         setOfferedPeriods={this.props.setOfferedPeriods}
-                        removeOfferedPeriods={this.props.removeOfferedPeriods}
                         onPeriodClick={this.props.toggleOfferedPeriod}
                     />
                 </div><div className="block buttons">
@@ -113,9 +112,9 @@ class Periods extends Component {
                 </div><div className="block selected-periods">
                     <SelectedPeriods
                         periods={this.props.selectedPeriods.periods}
-                        addSelectedPeriods={this.props.addSelectedPeriods}
-                        removeSelectedPeriods={this.props.removeSelectedPeriods}
                         onPeriodClick={this.props.toggleSelectedPeriod}
+                        setSelectedPeriods={this.props.setSelectedPeriods}
+                        addOfferedPeriods={this.props.addOfferedPeriods}
                     />
                 </div>
             </div>
@@ -133,6 +132,7 @@ Periods.propTypes = {
     selectedPeriods: PropTypes.object.isRequired,
     setPeriodType: PropTypes.func.isRequired,
     setOfferedPeriods: PropTypes.func.isRequired,
+    setSelectedPeriods: PropTypes.func.isRequired,
     onPeriodsSelect: PropTypes.func.isRequired,
     addSelectedPeriods: PropTypes.func.isRequired,
     addOfferedPeriods: PropTypes.func.isRequired,
@@ -156,6 +156,7 @@ const mapDispatchToProps = {
     setPeriodType,
     addOfferedPeriods,
     setOfferedPeriods,
+    setSelectedPeriods,
     removeOfferedPeriods,
     toggleOfferedPeriod,
     addSelectedPeriods,
