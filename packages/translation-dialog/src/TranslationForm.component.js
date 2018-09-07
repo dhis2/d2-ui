@@ -68,22 +68,27 @@ class TranslationForm extends Component {
     renderFieldsToTranslate() {
         return this.props.fieldsToTranslate
             .filter(fieldName => fieldName)
-            .map(fieldName => (
-                <div key={fieldName}>
-                    <TextField
-                        placeholder={this.getTranslation(camelCaseToUnderscores(fieldName))}
-                        label={this.getTranslationValueFor(fieldName)}
-                        value={this.getTranslationValueFor(fieldName)}
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                        fullWidth
-                        onChange={this.setValue.bind(this, fieldName)}
-                        margin="normal"
-                    />
-                    <div style={{ ƒfontSize: '16px', color: 'rgba(0,0,0,0.6)' }}>{this.props.objectToTranslate[fieldName]}</div>
-                </div>
-            ));
+            .map((fieldName) => {
+                const labelPlaceholder = this.getTranslation(camelCaseToUnderscores(fieldName));
+                const val = this.getTranslationValueFor(fieldName) || '';
+
+                return (
+                    <div key={fieldName}>
+                        <TextField
+                            placeholder={labelPlaceholder}
+                            label={labelPlaceholder}
+                            value={val}
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            fullWidth
+                            onChange={this.setValue.bind(this, fieldName)}
+                            margin="normal"
+                        />
+                        <div style={{ color: 'rgba(0,0,0,0.6)' }}>{this.props.objectToTranslate[fieldName]}</div>
+                    </div>
+                );
+            });
     }
 
     renderActionButtons() {
@@ -99,7 +104,7 @@ class TranslationForm extends Component {
                     onClick={this.saveTranslations}
                 >{this.getTranslation('save')}</Button>
             </DialogActions>
-        )
+        );
     }
 
     renderHelpText() {
@@ -119,7 +124,11 @@ class TranslationForm extends Component {
             <Fragment>
                 <DialogContent>
                     <div style={{ minHeight: 350 }}>
-                        <LocaleSelector locales={this.props.locales} onChange={this.setCurrentLocale} />
+                        <LocaleSelector
+                            currentLocale={this.state.currentSelectedLocale}
+                            locales={this.props.locales}
+                            onChange={this.setCurrentLocale}
+                        />
                         {this.state.currentSelectedLocale ? this.renderFieldsToTranslate() : this.renderHelpText()}
                     </div>
                 </DialogContent>
@@ -175,14 +184,18 @@ class TranslationForm extends Component {
 TranslationForm.propTypes = {
     onTranslationSaved: PropTypes.func.isRequired,
     onTranslationError: PropTypes.func.isRequired,
+    onCancel: PropTypes.func,
     objectToTranslate: PropTypes.shape({
         id: PropTypes.string.isRequired,
     }),
+    locales: PropTypes.array,
+    translations: PropTypes.array,
     fieldsToTranslate: PropTypes.arrayOf(PropTypes.string),
 };
 
 TranslationForm.defaultProps = {
     fieldsToTranslate: ['name', 'shortName', 'description'],
+    locales: [],
 };
 
 TranslationForm.contextTypes = {

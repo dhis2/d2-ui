@@ -42,9 +42,26 @@ class TranslationDialog extends Component {
         this.props.onTranslationError(err);
     }
 
+    muiDialogProps = () => {
+        const pick = ({
+            open,
+            onClose,
+            onEnter,
+            onExit,
+            onExited }) => ({
+            open,
+            onClose,
+            onEnter,
+            onExit,
+            onExited,
+        });
+
+        return pick(this.props);
+    }
+
     render() {
         return (
-            <Dialog PaperProps={{ style: { width: '75%', maxWidth: '768px' } }} {...this.props}>
+            <Dialog PaperProps={{ style: { width: '75%', maxWidth: '768px' } }} {...this.muiDialogProps()}>
                 <DialogTitle id="form-dialog-title">{this.i18n.getTranslation('translation_dialog_title')}</DialogTitle>
                 <this.state.TranslationForm
                     onTranslationSaved={this.translationSaved}
@@ -63,7 +80,7 @@ TranslationDialog.propTypes = {
     }).isRequired,
     onTranslationSaved: PropTypes.func.isRequired,
     onTranslationError: PropTypes.func.isRequired,
-    open: PropTypes.bool,
+    open: PropTypes.bool.isRequired,
     onRequestClose: PropTypes.func.isRequired,
     fieldsToTranslate: PropTypes.array,
     d2: PropTypes.object.isRequired,
@@ -72,5 +89,6 @@ TranslationDialog.propTypes = {
 TranslationDialog.childContextTypes = {
     d2: PropTypes.object,
 };
+
 
 export default TranslationDialog;

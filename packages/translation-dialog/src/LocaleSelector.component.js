@@ -5,41 +5,31 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 
-
 class LocaleSelector extends Component {
     constructor(props, context) {
         super(props, context);
 
         const i18n = this.context.d2.i18n;
         this.getTranslation = i18n.getTranslation.bind(i18n);
-        this.state = {
-            locale: '',
-        };
     }
 
     onLocaleChange = (event) => {
-        const locale = event.target.value;
-
-        this.setState({
-            locale,
-        });
-
-        this.props.onChange(locale, event);
+        this.props.onChange(event.target.value);
     }
 
     render() {
-        const localeMenuItems = [{ payload: '', text: '' }]
+        const localeMenuItems = [{ dummy: '', item: '' }]
             .concat(this.props.locales)
-            .map((locale, index) => (
-                <MenuItem key={`${locale.name}-${ index}`} value={locale.locale}>{locale.name}</MenuItem>
-            ));
+            .map((locale, i) => {
+                const k = `${locale.name}-${i}`;
+                return <MenuItem key={k} value={locale.locale}>{locale.name}</MenuItem>;
+            });
 
         return (
-            <FormControl fullWidth>
+            <FormControl fullWidth style={{ marginBottom: '10px' }}>
                 <InputLabel htmlFor="locale-selector">{this.getTranslation('select_locale')}</InputLabel>
                 <Select
-                    {...this.props}
-                    value={this.state.locale}
+                    value={this.props.currentLocale}
                     onChange={this.onLocaleChange}
                     inputProps={{
                         name: 'locale',
@@ -61,6 +51,7 @@ LocaleSelector.propTypes = {
             locale: PropTypes.string.isRequired,
         })
     ).isRequired,
+    currentLocale: PropTypes.string,
     onChange: PropTypes.func.isRequired,
 };
 
