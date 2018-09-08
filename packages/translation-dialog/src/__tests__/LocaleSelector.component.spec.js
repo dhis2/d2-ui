@@ -1,23 +1,17 @@
 import React from 'react';
-import { createShallow } from '@material-ui/core/test-utils';
+import { shallow } from 'enzyme';
 import MuiFormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
-import renderer from 'react-test-renderer';
 
 import LocaleSelector from '../LocaleSelector.component';
 import { getStubContext } from '../../../../config/inject-theme';
 
 describe('LocaleSelector component', () => {
-    let shallow;
     let Component;
     let onChangeLocaleSpy;
     let SelectComponent;
     const locales = [{ locale: 'elf', name: 'Elfish' }, { locale: 'noren', name: 'Norglish' }];
-
-    beforeAll(() => {
-        shallow = createShallow();
-    });
 
     beforeEach(() => {
         onChangeLocaleSpy = jest.fn();

@@ -2,13 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
-
-
 import { getTranslationFormFor } from './TranslationForm.component';
 
 class TranslationDialog extends Component {
-    constructor(props, context) {
-        super(props, context);
+    constructor(props) {
+        super(props);
 
         this.i18n = props.d2.i18n;
 
