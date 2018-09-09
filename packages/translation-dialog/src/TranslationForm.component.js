@@ -57,6 +57,52 @@ class TranslationForm extends Component {
         currentSelectedLocale: '',
     };
 
+
+    getTranslationValueFor(fieldName) {
+        const translation = this.props.translations
+            .find(t =>
+                t.locale === this.state.currentSelectedLocale &&
+                t.property.toLowerCase() === camelCaseToUnderscores(fieldName),
+            );
+
+        if (translation) {
+            return translation.value;
+        }
+
+        return '';
+    }
+
+    setCurrentLocale = (locale) => {
+        this.setState({
+            currentSelectedLocale: locale,
+        });
+    }
+
+    setValue = (property, event) => {
+        let newTranslations = [].concat(this.props.translations);
+        let translation = newTranslations
+            .find(t => t.locale === this.state.currentSelectedLocale && t.property.toLowerCase() === camelCaseToUnderscores(property));
+
+        if (translation) {
+            if (event.target.value) {
+                translation.value = event.target.value;
+            } else {
+                // Remove translation from the array
+                newTranslations = newTranslations.filter(t => t !== translation);
+            }
+        } else {
+            translation = {
+                property: camelCaseToUnderscores(property).toUpperCase(),
+                locale: this.state.currentSelectedLocale,
+                value: event.target.value,
+            };
+
+            newTranslations.push(translation);
+        }
+
+        this.props.setTranslations(newTranslations);
+    }
+
     saveTranslations = () => {
         saveTranslations(this.props.objectToTranslate, this.props.translations)
             .subscribe(
@@ -70,7 +116,7 @@ class TranslationForm extends Component {
             .filter(fieldName => fieldName)
             .map((fieldName) => {
                 const labelPlaceholder = this.getTranslation(camelCaseToUnderscores(fieldName));
-                const val = this.getTranslationValueFor(fieldName) || '';
+                const val = this.getTranslationValueFor(fieldName);
 
                 return (
                     <div key={fieldName}>
@@ -136,49 +182,6 @@ class TranslationForm extends Component {
             </Fragment>
         );
     }
-
-    getTranslationValueFor(fieldName) {
-        const translation = this.props.translations
-            .find(t =>
-                t.locale === this.state.currentSelectedLocale &&
-                t.property.toLowerCase() === camelCaseToUnderscores(fieldName),
-            );
-
-        if (translation) {
-            return translation.value;
-        }
-    }
-
-    setCurrentLocale = (locale) => {
-        this.setState({
-            currentSelectedLocale: locale,
-        });
-    }
-
-    setValue = (property, event) => {
-        let newTranslations = [].concat(this.props.translations);
-        let translation = newTranslations
-            .find(t => t.locale === this.state.currentSelectedLocale && t.property.toLowerCase() === camelCaseToUnderscores(property));
-
-        if (translation) {
-            if (event.target.value) {
-                translation.value = event.target.value;
-            } else {
-                // Remove translation from the array
-                newTranslations = newTranslations.filter(t => t !== translation);
-            }
-        } else {
-            translation = {
-                property: camelCaseToUnderscores(property).toUpperCase(),
-                locale: this.state.currentSelectedLocale,
-                value: event.target.value,
-            };
-
-            newTranslations.push(translation);
-        }
-
-        this.props.setTranslations(newTranslations);
-    }
 }
 
 TranslationForm.propTypes = {
@@ -190,6 +193,7 @@ TranslationForm.propTypes = {
     }),
     locales: PropTypes.array,
     translations: PropTypes.array,
+    setTranslations: PropTypes.func,
     fieldsToTranslate: PropTypes.arrayOf(PropTypes.string),
 };
 
@@ -201,6 +205,9 @@ TranslationForm.defaultProps = {
 TranslationForm.contextTypes = {
     d2: PropTypes.object,
 };
+
+// export const getTranslationFormFor = () => console.log('gotTranslationForm For');
+// export const getTranslationFormFor = model => withStateFrom(getTranslationFormData(model), TranslationForm);
 
 export function getTranslationFormFor(model) {
     return withStateFrom(getTranslationFormData(model), TranslationForm);

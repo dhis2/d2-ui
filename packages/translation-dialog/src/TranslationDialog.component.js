@@ -4,6 +4,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { getTranslationFormFor } from './TranslationForm.component';
 
+// const getTranslationFormFor = () => <div />;
 class TranslationDialog extends Component {
     constructor(props) {
         super(props);
