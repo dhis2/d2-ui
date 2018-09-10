@@ -206,9 +206,6 @@ TranslationForm.contextTypes = {
     d2: PropTypes.object,
 };
 
-// export const getTranslationFormFor = () => console.log('gotTranslationForm For');
-// export const getTranslationFormFor = model => withStateFrom(getTranslationFormData(model), TranslationForm);
-
 export function getTranslationFormFor(model) {
     return withStateFrom(getTranslationFormData(model), TranslationForm);
 }

@@ -1,14 +1,12 @@
+import React from 'react';
+import { shallow } from 'enzyme';
+import MuiDialog from '@material-ui/core/Dialog';
+import TranslationDialog from '../TranslationDialog.component';
+
 jest.mock('../TranslationForm.component', () => ({
     __esModule: true,
     getTranslationFormFor: () => <div />,
 }));
-
-import React from 'react';
-import { shallow } from 'enzyme';
-import MuiDialog from '@material-ui/core/Dialog';
-// import { getTranslationFormFor } from '../TranslationForm.component';
-import TranslationDialog from '../TranslationDialog.component';
-
 
 describe('TranslationDialog component', () => {
     const defaultProps = {
