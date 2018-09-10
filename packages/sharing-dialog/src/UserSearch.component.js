@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Subject } from 'rxjs/Subject';
 import { timer } from 'rxjs/observable/timer';
 import { debounce } from 'rxjs/operators';
-import AutoComplete from 'material-ui/AutoComplete';
 
 import { accessObjectToString } from './utils';
 import PermissionPicker from './PermissionPicker.component';
@@ -40,6 +39,11 @@ const styles = {
 const searchDelay = 300;
 
 class UserSearch extends Component {
+    constructor(props, context) {
+        super(props);
+        context.d2.i18n.addStrings(['add_users_and_user_groups', 'enter_names']);
+    }
+
     state = {
         defaultAccess: {
             meta: { canView: true, canEdit: true },
@@ -48,11 +52,6 @@ class UserSearch extends Component {
         searchResult: [],
         searchText: '',
     };
-
-    constructor(props, context) {
-        super(props);
-        context.d2.i18n.addStrings(['add_users_and_user_groups', 'enter_names']);
-    }
 
     componentWillMount() {
         this.inputStream
@@ -133,7 +132,7 @@ class UserSearch extends Component {
                     {this.context.d2.i18n.getTranslation('add_users_and_user_groups')}
                 </div>
                 <div style={styles.innerContainer}>
-                    <AutoComplete
+                    {/* <AutoComplete
                         fullWidth
                         openOnFocus
                         filter={this.noFilter}
@@ -145,7 +144,7 @@ class UserSearch extends Component {
                         style={styles.searchBox}
                         searchText={this.state.searchText}
                         underlineShow={false}
-                    />
+                    /> */}
                     <PermissionPicker
                         access={this.state.defaultAccess}
                         accessOptions={{

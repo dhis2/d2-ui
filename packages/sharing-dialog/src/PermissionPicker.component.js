@@ -1,11 +1,9 @@
-/* eslint react/jsx-no-bind: 0 */
-
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import IconButton from 'material-ui/IconButton';
-import Divider from 'material-ui/Divider';
-import Popover from 'material-ui/Popover';
-import Menu from 'material-ui/Menu';
+import IconButton from '@material-ui/core/IconButton';
+import Divider from '@material-ui/core/Divider';
+import Popover from '@material-ui/core/Popover';
+import Menu from '@material-ui/core/Menu';
 import { SvgIcon } from '@dhis2/d2-ui-core';
 
 import PermissionOption from './PermissionOption.component';
@@ -19,7 +17,7 @@ const styles = {
     },
 };
 
-const getAccessIcon = metaAccess => {
+const getAccessIcon = (metaAccess) => {
     if (metaAccess.canEdit) {
         return 'Create';
     }
@@ -28,19 +26,19 @@ const getAccessIcon = metaAccess => {
 };
 
 class PermissionPicker extends Component {
-    state = {
-        open: false,
-    };
-
     constructor(props, context) {
         super(props);
         context.d2.i18n.addStrings([
             'can_edit_and_view',
             'can_capture_and_view',
             'can_view_only',
-            'no_access'
+            'no_access',
         ]);
     }
+
+    state = {
+        open: false,
+    };
 
     onOptionClick = (event, menuItem) => {
         const newAccess = {
@@ -51,7 +49,7 @@ class PermissionPicker extends Component {
         this.props.onChange(newAccess);
     };
 
-    openMenu = event => {
+    openMenu = (event) => {
         event.preventDefault();
         this.setState({
             open: true,

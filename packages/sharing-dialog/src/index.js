@@ -1,2 +1,3 @@
-import SharingDialog from './SharingDialog.component'
-export default SharingDialog
+import SharingDialog from './SharingDialog.component';
+
+export default SharingDialog;

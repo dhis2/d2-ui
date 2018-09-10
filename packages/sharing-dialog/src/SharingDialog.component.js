@@ -1,9 +1,11 @@
-import Dialog from 'material-ui/Dialog/Dialog';
-import FlatButton from 'material-ui/FlatButton/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
-import Snackbar from 'material-ui/Snackbar';
-import PropTypes from 'prop-types';
 import React from 'react';
+import Dialog from '@material-ui/core/Dialog';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogActions from '@material-ui/core/DialogActions';
+import Button from '@material-ui/core/Button';
+import Snackbar from '@material-ui/core/Snackbar';
+import PropTypes from 'prop-types';
 import Sharing from './Sharing.component';
 import { LoadingMask } from '@dhis2/d2-ui-core';
 
@@ -22,11 +24,6 @@ const defaultState = {
  * A pop-up dialog for changing sharing preferences for a sharable object.
  */
 class SharingDialog extends React.Component {
-    state = {
-        ...defaultState,
-        dataShareableTypes: [],
-    };
-
     constructor(props) {
         super(props);
         if (props.d2) {
@@ -35,6 +32,11 @@ class SharingDialog extends React.Component {
             console.error('no d2');
         }
     }
+
+    state = {
+        ...defaultState,
+        dataShareableTypes: [],
+    };
 
     getChildContext() {
         return { d2: this.props.d2 };
@@ -51,10 +53,6 @@ class SharingDialog extends React.Component {
         if (this.props.open && this.isReadyToLoadObject(this.props)) {
             this.loadObjectFromApi(this.props);
         }
-    }
-
-    isReadyToLoadObject = (props) => {
-        return props.type && (props.id || props.sharedObject);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -93,6 +91,8 @@ class SharingDialog extends React.Component {
             this.postChanges(updatedObject, onSuccess);
         }
     }
+
+    isReadyToLoadObject = props => props.type && (props.id || props.sharedObject);
 
     createPropsChecker = nextProps => field => nextProps[field] !== this.props[field];
 
@@ -140,7 +140,7 @@ class SharingDialog extends React.Component {
     }
 
     loadObjectFromApi = (props) => {
-        const setSharedObject = sharedObject => {
+        const setSharedObject = (sharedObject) => {
             this.setState({
                 sharedObject,
             });
@@ -151,7 +151,7 @@ class SharingDialog extends React.Component {
         } else {
             this.props.d2.Api.getApi()
                 .get('sharing', { type: props.type, id: props.id })
-                .then((sharedObject) => setSharedObject(sharedObject))
+                .then(sharedObject => setSharedObject(sharedObject))
                 .catch((error) => {
                     this.setState({
                         errorMessage: error.message,
@@ -163,34 +163,50 @@ class SharingDialog extends React.Component {
     addId = object => ({ ...object, id: this.props.id });
 
     closeDialog = () => {
-        this.props.onRequestClose(this.addId(this.state.sharedObject.object, this.props.id))
+        this.props.onRequestClose(this.addId(this.state.sharedObject.object, this.props.id));
     }
 
     confirmAndCloseDialog = () => {
         this.props.onConfirm(this.addId(this.state.sharedObject.object, this.props.id));
     }
 
-    translate = s => this.props.d2.i18n.getTranslation(s)
+    translate = s => this.props.d2.i18n.getTranslation(s);
+
+    muiDialogProps = () => {
+        const pick = ({
+            open,
+            onEnter,
+            onExit,
+            onExited }) => ({
+            open,
+            onEnter,
+            onExit,
+            onExited,
+        });
+
+        return pick(this.props);
+    }
 
     render() {
         const dataShareable = this.state.dataShareableTypes.indexOf(this.props.type) !== -1;
         const errorOccurred = this.state.errorMessage !== '';
         const isLoading = !this.state.sharedObject && this.props.open && !errorOccurred;
         const sharingDialogActions = [
-            <FlatButton
-                label={this.translate('close')}
-                onClick={this.closeDialog}
-            />,
+            <Button variant="contained" onClick={this.closeDialog}>{this.translate('close')}</Button>,
         ];
 
-        if (this.props.doNotPost) sharingDialogActions.push(
-            <RaisedButton
-                primary
-                style={{ marginLeft: '8px' }}
-                label={this.translate('apply')}
-                onClick={this.confirmAndCloseDialog}
-            />
-        )
+        if (this.props.doNotPost) {
+            sharingDialogActions.push(
+                <Button
+                    variant="contained"
+                    color="primary"
+                    style={{ marginLeft: '8px' }}
+                    onClick={this.confirmAndCloseDialog}
+                >
+                    {this.translate('apply')}
+                </Button>,
+            );
+        }
 
         return (
             <div>
@@ -200,23 +216,25 @@ class SharingDialog extends React.Component {
                     autoHideDuration={3000}
                 />
                 <Dialog
-                    autoDetectWindowHeight
-                    autoScrollBodyContent
-                    open={this.props.open}
-                    title={this.props.d2.i18n.getTranslation('share')}
-                    actions={sharingDialogActions}
-                    onRequestClose={this.closeDialog}
-                    {...this.props}
+                    PaperProps={{ style: { width: '75%', maxWidth: '768px' } }}
+                    onClose={this.closeDialog}
+                    {...this.muiDialogProps()}
                 >
-                    { isLoading && <LoadingMask style={styles.loadingMask} size={1} /> }
-                    { this.state.sharedObject &&
-                        <Sharing
-                            sharedObject={this.state.sharedObject}
-                            dataShareable={dataShareable}
-                            onChange={this.onSharingChanged}
-                            onSearch={this.onSearchRequest}
-                        />
-                    }
+                    <DialogTitle>{this.props.d2.i18n.getTranslation('share')}</DialogTitle>
+                    <DialogContent>
+                        { isLoading && <LoadingMask style={styles.loadingMask} size={1} /> }
+                        { this.state.sharedObject &&
+                            <Sharing
+                                sharedObject={this.state.sharedObject}
+                                dataShareable={dataShareable}
+                                onChange={this.onSharingChanged}
+                                onSearch={this.onSearchRequest}
+                            />
+                        }
+                    </DialogContent>
+                    <DialogActions>
+                        {sharingDialogActions}
+                    </DialogActions>
                 </Dialog>
             </div>
         );
