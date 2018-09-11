@@ -101,7 +101,9 @@ class DataTable extends Component {
                 <div className="data-table__headers">
                     {this.renderHeaders()}
                     { (this.hasContextMenu() || this.hasSingleAction()) &&
-                        <DataTableHeader />
+                        <DataTableHeader>
+                            {this.props.contextMenuHeader}
+                        </DataTableHeader>
                     }
                 </div>
                 <div className="data-table__rows">
@@ -120,6 +122,7 @@ DataTable.propTypes = {
     contextMenuIcons: PropTypes.object,
     primaryAction: PropTypes.func,
     isContextActionAllowed: PropTypes.func,
+    contextMenuHeader: PropTypes.node,
 };
 
 export default DataTable;

@@ -23,6 +23,7 @@ class DataTableHeader extends Component {
         return (
             <div className={classList}>
                 {this.props.name ? this.getTranslation(camelCaseToUnderscores(this.props.name)) : null}
+                {this.props.children}
             </div>
         );
     }
