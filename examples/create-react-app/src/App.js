@@ -143,14 +143,14 @@ class App extends Component {
                 <h2>FormEditor</h2>
                 <FormEditor />
 
+                <h2>Period selector dialog</h2>
+                <PeriodSelectorDialog d2={this.state.d2} />
+
                 <h2>OrgUnitSelect</h2>
                 <OrgUnitSelect d2={this.state.d2} />
 
                 <h2>OrgUnitTree</h2>
                 <OrgUnitTree d2={this.state.d2} />
-
-                <h2>Period selector dialog</h2>
-                <PeriodSelectorDialog d2={this.state.d2}/>
 
                 <div style={{ clear: 'both' }}>
                     <h2>TreeViews</h2>
