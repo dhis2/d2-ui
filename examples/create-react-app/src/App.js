@@ -19,6 +19,7 @@ import Layout from './components/layout';
 import Legend from './components/legend';
 import PeriodPicker from './components/period-picker';
 import PeriodSelectorDialog from './components/period-selector-dialog';
+import PeriodSelector from './components/period-selector';
 import SelectField from './components/select-field';
 import Sidebar from './components/sidebar';
 import SvgIcon from './components/svg-icon';
@@ -145,6 +146,9 @@ class App extends Component {
 
                 <h2>Period selector dialog</h2>
                 <PeriodSelectorDialog d2={this.state.d2} />
+
+                <h2>Period selector</h2>
+                <PeriodSelector d2={this.state.d2} />
 
                 <h2>OrgUnitSelect</h2>
                 <OrgUnitSelect d2={this.state.d2} />
