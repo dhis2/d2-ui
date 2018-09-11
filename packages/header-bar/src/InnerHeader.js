@@ -113,8 +113,10 @@ class InnerHeader extends Component {
 
     render() {
         const headerBannerWrapperStyle = {
-            width: 155,
-            height: 44,
+            minWidth: 48,
+            height: 48,
+            marginRight: 8,
+            borderRight: '1px solid rgba(0,0,0,0.1)',
             verticalAlign: 'middle',
             textAlign: 'center',
             flexDirection: 'row',
@@ -125,7 +127,7 @@ class InnerHeader extends Component {
 
         const headerBannerStyle = {
             maxWidth: 175,
-            maxHeight: 44,
+            maxHeight: 25,
         };
 
         const linkWrapStyle = {
@@ -153,7 +155,7 @@ class InnerHeader extends Component {
         };
 
         const logoHref = {
-            minWidth: 175,
+            minWidth: 48,
         };
 
         const linkHref = [this.getBaseUrl(), 'dhis-web-commons-about/redirect.action'].join('/');
