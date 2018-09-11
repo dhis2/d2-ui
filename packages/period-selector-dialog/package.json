@@ -1,0 +1,48 @@
+{
+  "name": "@dhis2/d2-ui-period-selector-dialog",
+  "version": "0.1.0",
+  "description": "Period selector dialog component for DHIS2",
+  "main": "./build/cjs/index.js",
+  "module": "./build/es/index.js",
+  "files": [
+    "build"
+  ],
+  "license": "BSD-3-Clause",
+  "author": "Ilya Nee <ilya@dhis2.org>",
+  "contributors": [
+    "Viktor Varland <viktor@dhis2.org>"
+  ],
+  "peerDependencies": {
+    "react": "^15.0.0 || ^16.0.0",
+    "react-dom": "^15.0.0 || ^16.0.0"
+  },
+  "scripts": {
+    "prebuild": "rimraf ./build/*",
+    "build": "npm run build:commonjs && npm run build:es && npm run build:umd",
+    "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir build/cjs --ignore spec.js",
+    "build:es": "cross-env BABEL_ENV=es babel src --out-dir build/es --ignore spec.js && npm run build:css",
+    "build:css": "cp -R ./css ./build/",
+    "build:umd": "cross-env && webpack -p",
+    "watch": "npm run build:es --  --watch",
+    "test-ci": "jest --config=../../jest.config.js packages/period-selector-dialog",
+    "test": "jest",
+    "test:watch": "npm test -- --watch"
+  },
+  "dependencies": {
+    "babel-runtime": "^6.26.0",
+    "@material-ui/core": "^1.5.1",
+    "@material-ui/icons": "^2.0.3",
+    "prop-types": "^15.6.0",
+    "react-redux": "^5.0.7",
+    "redux": "^3.7.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "babel-jest": "^23.0.1",
+    "css-loader": "^0.28.11",
+    "jest": "^23.1.0",
+    "style-loader": "^0.21.0"
+  }
+}
