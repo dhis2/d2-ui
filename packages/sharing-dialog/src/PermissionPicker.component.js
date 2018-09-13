@@ -4,6 +4,9 @@ import IconButton from '@material-ui/core/IconButton';
 import Divider from '@material-ui/core/Divider';
 import Popover from '@material-ui/core/Popover';
 import { SvgIcon } from '@dhis2/d2-ui-core';
+import NotInterestedIcon from '@material-ui/icons/NotInterested';
+import CreateIcon from '@material-ui/icons/Create';
+import VisibilityIcon from '@material-ui/icons/Visibility';
 
 import PermissionOption from './PermissionOption.component';
 
@@ -16,12 +19,15 @@ const styles = {
     },
 };
 
-const getAccessIcon = (metaAccess) => {
+const AccessIcon = ({metaAccess, disabled}) => {
+    const iconProps = {
+        color: disabled ? "disabled" : "action"
+    };
     if (metaAccess.canEdit) {
-        return 'Create';
+        return <CreateIcon {...iconProps} />;
     }
 
-    return metaAccess.canView ? 'Visibility' : 'NotInterested';
+    return metaAccess.canView ? <VisibilityIcon {...iconProps} /> : <NotInterestedIcon {...iconProps} />;
 };
 
 class PermissionPicker extends Component {
@@ -77,7 +83,7 @@ class PermissionPicker extends Component {
                     onClick={this.openMenu}
                     disabled={this.props.disabled}
                 >
-                    <SvgIcon icon={getAccessIcon(meta)} />
+                    <AccessIcon metaAccess={meta} disabled={this.props.disabled} />
                 </IconButton>
                 <Popover
                     open={this.state.open}

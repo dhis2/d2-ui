@@ -3,6 +3,7 @@ import React from 'react';
 import { compose, mapProps, getContext, withProps } from 'recompose';
 import IconButton from '@material-ui/core/IconButton';
 import { SvgIcon } from '@dhis2/d2-ui-core';
+import ClearIcon from '@material-ui/icons/Clear';
 import PermissionPicker from './PermissionPicker.component';
 import { accessStringToObject, accessObjectToString } from './utils';
 
@@ -76,7 +77,7 @@ export const Access = ({
             disabled={!onRemove}
             onClick={onRemove || (() => {})}
         >
-            <SvgIcon icon="Clear" />
+            <ClearIcon color={!onRemove ? "disabled" : "action"} />
         </IconButton>
     </div>
 );
