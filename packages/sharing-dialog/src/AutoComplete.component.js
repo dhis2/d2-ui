@@ -49,10 +49,13 @@ Suggestion.propTypes = {
 const styles = theme => ({
     root: {
         flexGrow: 1,
-        height: 80,
+        height: 60,
     },
     popper: {
         zIndex: 2000,
+        height: '420px',
+        overflowY: 'hidden',
+        boxShadow: '0px 0px 1px 1px rgba(0,0,0,0.2)',
     },
     container: {
         flexGrow: 1,
@@ -101,7 +104,7 @@ class AutoComplete extends Component {
                             <div {...getMenuProps()}>
                                 {isOpen && (
                                     <Popper className={classes.popper} open={isOpen} anchorEl={popperNode}>
-                                        <Paper square style={{ maxHeight: '200px', width: popperNode ? popperNode.clientWidth : null }}>
+                                        <Paper square style={{ width: popperNode ? popperNode.clientWidth : null }}>
                                             {dataSource.map((suggestion, index) => {
                                                 return (
                                                     <Suggestion
