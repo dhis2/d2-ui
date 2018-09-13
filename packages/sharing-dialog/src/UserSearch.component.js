@@ -159,7 +159,7 @@ class UserSearch extends Component {
                         onInputChanged={this.handleUpdateInput}
                         style={styles.searchBox}
                         searchText={this.state.searchText}
-                        classes={{ root: '', container: '', paper: '' }}
+                        classes={{}}
                     />
                     <PermissionPicker
                         access={this.state.defaultAccess}

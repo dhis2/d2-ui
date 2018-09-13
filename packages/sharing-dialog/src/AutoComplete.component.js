@@ -6,6 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 import MenuItem from '@material-ui/core/MenuItem';
+import Popper from '@material-ui/core/Popper';
 
 const Input = ({ InputProps }) => {
     return (
@@ -48,36 +49,30 @@ Suggestion.propTypes = {
 const styles = theme => ({
     root: {
         flexGrow: 1,
-        height: 250,
+        height: 80,
+    },
+    popper: {
+        zIndex: 2000,
     },
     container: {
         flexGrow: 1,
         position: 'relative',
     },
-    paper: {
-        position: 'absolute',
-        zIndex: 1,
-        marginTop: theme.spacing.unit,
-        left: 0,
-        right: 0,
-    },
     inputRoot: {
         flexWrap: 'wrap',
     },
-    divider: {
-        height: theme.spacing.unit * 2,
-    },
 });
+
+let popperNode;
 
 class AutoComplete extends Component {
     render() {
         const { classes, placeholderText, dataSource, searchText } = this.props;
 
-        console.log('searchText', searchText);
-
         return (
+            <div className={classes.root}>
             <Downshift
-                id="downshift-simple"
+                id="user-autocomplete"
                 onInputValueChange={this.props.onInputChanged}
                 onChange={this.props.onResultSelected}
                 itemToString={item => (item ? item.name : '')}
@@ -98,38 +93,44 @@ class AutoComplete extends Component {
                                 classes={classes}
                                 InputProps={getInputProps({
                                     placeholder: placeholderText,
+                                    inputRef: (node) => {
+                                        popperNode = node;
+                                    },
                                 })}
                             />
                             <div {...getMenuProps()}>
                                 {isOpen && (
-                                    <Paper className={classes.paper} square>
-                                        {dataSource.map((suggestion, index) => {
-                                            return (
-                                                <Suggestion
-                                                    key={suggestion.displayName}
-                                                    suggestion={suggestion}
-                                                    itemProps={getItemProps({
-                                                        item: {
-                                                            name:
-                                                                suggestion.displayName,
-                                                            id: suggestion.id,
-                                                        },
-                                                    })}
-                                                    isHighlighted={
-                                                        highlightedIndex ===
-                                                        index
-                                                    }
-                                                    selectedItem={selectedItem}
-                                                />
-                                            );
-                                        })}
-                                    </Paper>
+                                    <Popper className={classes.popper} open={isOpen} anchorEl={popperNode}>
+                                        <Paper square style={{ maxHeight: '200px', width: popperNode ? popperNode.clientWidth : null }}>
+                                            {dataSource.map((suggestion, index) => {
+                                                return (
+                                                    <Suggestion
+                                                        key={suggestion.id}
+                                                        suggestion={suggestion}
+                                                        itemProps={getItemProps({
+                                                            item: {
+                                                                name:
+                                                                    suggestion.displayName,
+                                                                id: suggestion.id,
+                                                            },
+                                                        })}
+                                                        isHighlighted={
+                                                            highlightedIndex ===
+                                                            index
+                                                        }
+                                                        selectedItem={selectedItem}
+                                                    />
+                                                );
+                                            })}
+                                        </Paper>
+                                    </Popper>
                                 )}
                             </div>
                         </div>
                     );
                 }}
             </Downshift>
+            </div>
         );
     }
 }

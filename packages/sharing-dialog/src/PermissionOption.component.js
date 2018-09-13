@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { SvgIcon } from '@dhis2/d2-ui-core';
 import MenuItem from '@material-ui/core/MenuItem';
 
