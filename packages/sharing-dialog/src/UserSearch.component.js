@@ -28,13 +28,6 @@ const styles = {
         color: '#818181',
         paddingBottom: 8,
     },
-
-    searchBox: {
-        backgroundColor: 'white',
-        boxShadow: '2px 2px 2px #cccccc',
-        padding: '0px 16px',
-        marginRight: '16px',
-    },
 };
 
 const searchDelay = 300;
@@ -65,7 +58,7 @@ class UserSearch extends Component {
             });
     }
 
-    onResultSelected = selected => {
+    onItemSelected = selected => {
         // Material UI triggers an 'onUpdateInput' when a search result is clicked. Therefore, we
         // immediately pushes a new item to the search stream to prevent the stream from searching
         // for the item again.
@@ -74,8 +67,6 @@ class UserSearch extends Component {
         const selection = this.state.searchResult.find(
             r => r.id === selected.id
         );
-
-        console.log('selection', selection);
 
         const type = selection.type;
         delete selection.type;
@@ -123,7 +114,7 @@ class UserSearch extends Component {
         this.setState({ searchResult });
     };
 
-    handleUpdateInput = searchText => {
+    onInputChanged = searchText => {
         this.inputStream.next(searchText);
         this.setState({ searchText });
     };
@@ -150,14 +141,12 @@ class UserSearch extends Component {
                 </div>
                 <div style={styles.innerContainer}>
                     <AutoComplete
-                        dataSource={this.state.searchResult}
-                        dataSourceConfig={{ text: 'displayName', value: 'id' }}
+                        suggestions={this.state.searchResult}
                         placeholderText={this.context.d2.i18n.getTranslation(
                             'enter_names'
                         )}
-                        onResultSelected={this.onResultSelected}
-                        onInputChanged={this.handleUpdateInput}
-                        style={styles.searchBox}
+                        onItemSelected={this.onItemSelected}
+                        onInputChanged={this.onInputChanged}
                         searchText={this.state.searchText}
                         classes={{}}
                     />

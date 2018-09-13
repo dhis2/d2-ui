@@ -53,7 +53,7 @@ const styles = theme => ({
     },
     popper: {
         zIndex: 2000,
-        height: '420px',
+        maxHeight: '420px',
         overflowY: 'hidden',
         boxShadow: '0px 0px 1px 1px rgba(0,0,0,0.2)',
     },
@@ -70,14 +70,14 @@ let popperNode;
 
 class AutoComplete extends Component {
     render() {
-        const { classes, placeholderText, dataSource, searchText } = this.props;
+        const { classes, placeholderText, suggestions, searchText } = this.props;
 
         return (
             <div className={classes.root}>
             <Downshift
                 id="user-autocomplete"
                 onInputValueChange={this.props.onInputChanged}
-                onChange={this.props.onResultSelected}
+                onChange={this.props.onItemSelected}
                 itemToString={item => (item ? item.name : '')}
                 inputValue={searchText}
             >
@@ -103,9 +103,9 @@ class AutoComplete extends Component {
                             />
                             <div {...getMenuProps()}>
                                 {isOpen && (
-                                    <Popper className={classes.popper} open={isOpen} anchorEl={popperNode}>
+                                    <Popper className={classes.popper} open anchorEl={popperNode}>
                                         <Paper square style={{ width: popperNode ? popperNode.clientWidth : null }}>
-                                            {dataSource.map((suggestion, index) => {
+                                            {suggestions.map((suggestion, index) => {
                                                 return (
                                                     <Suggestion
                                                         key={suggestion.id}
@@ -142,8 +142,8 @@ AutoComplete.propTypes = {
     classes: PropTypes.object.isRequired,
     placeholderText: PropTypes.string,
     onInputChanged: PropTypes.func.isRequired,
-    onResultSelected: PropTypes.func.isRequired,
-    dataSource: PropTypes.array.isRequired,
+    onItemSelected: PropTypes.func.isRequired,
+    suggestions: PropTypes.array.isRequired,
 };
 
 AutoComplete.defaultProps = {
