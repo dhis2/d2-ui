@@ -78,7 +78,7 @@ class PermissionPicker extends Component {
         } = this.props.accessOptions;
 
         return (
-            <div>
+            <Fragment>
                 <IconButton
                     onClick={this.openMenu}
                     disabled={this.props.disabled}
@@ -152,7 +152,7 @@ class PermissionPicker extends Component {
                         </Fragment>
                     )}
                 </Popover>
-            </div>
+            </Fragment>
         );
     };
 }

@@ -1,8 +1,8 @@
 import React from 'react';
 import log from 'loglevel';
 import { shallow } from 'enzyme';
-import Dialog from 'material-ui/Dialog/Dialog';
-import FlatButton from 'material-ui/FlatButton';
+import DialogActions from '@material-ui/core/DialogActions';
+import Button from '@material-ui/core/Button';
 import { LoadingMask } from '@dhis2/d2-ui-core';
 import SharingDialog from '../SharingDialog.component';
 import Sharing from '../Sharing.component';
@@ -92,20 +92,19 @@ describe('Sharing: SharingDialog component', () => {
             });
         });
 
-        it('renders a single FlatButton', () => {
+        it('renders a single Button', () => {
             sharingDialogComponent.update();
+            const button = sharingDialogComponent.find(DialogActions).find(Button);
 
-            const buttons = sharingDialogComponent.find(Dialog).first().prop('actions');
-
-            expect(buttons.length).toBe(1);
-            expect(buttons[0].type).toBe(FlatButton);
+            expect(button.length).toBe(1);
+            expect(button.type()).toBe(Button);
         });
 
-        it('renders "close" text on FlatButton', () => {
+        it('renders "close" text on Button', () => {
             sharingDialogComponent.update();
-            const buttons = sharingDialogComponent.find(Dialog).first().prop('actions');
+            const button = sharingDialogComponent.find(DialogActions).find(Button);
 
-            expect(buttons[0].props.label).toBe('close_translated');
+            expect(button.childAt(0).text()).toBe('close_translated');
         });
 
         it('triggers onRequestClose from the props when the closeDialog is called', () => {
