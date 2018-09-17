@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import LinearProgress from 'material-ui/LinearProgress';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 import ModelBase from 'd2/lib/model/Model';
 import ModelCollection from 'd2/lib/model/ModelCollection';
