@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ReactSelect from './ReactSelect';
+import AutoComplete from './AutoComplete.component';
 
 class LocaleSelector extends Component {
     constructor(props, context) {
@@ -16,7 +16,7 @@ class LocaleSelector extends Component {
 
     render() {
         return (
-            <ReactSelect
+            <AutoComplete
                 suggestions={this.props.locales}
                 suggestionConfig={{valueField: 'locale', labelField: 'name'}}
                 placeholder={this.getTranslation('select_locale')}

@@ -6,7 +6,6 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 import MenuItem from '@material-ui/core/MenuItem';
-import { emphasize } from '@material-ui/core/styles/colorManipulator';
 
 const styles = theme => ({
   root: {
@@ -23,16 +22,7 @@ const styles = theme => ({
     flex: 1,
     alignItems: 'center',
   },
-  chip: {
-    margin: `${theme.spacing.unit / 2}px ${theme.spacing.unit / 4}px`,
-  },
-  chipFocused: {
-    backgroundColor: emphasize(
-      theme.palette.type === 'light' ? theme.palette.grey[300] : theme.palette.grey[700],
-      0.08,
-    ),
-  },
-  noOptionsMessage: {
+ noOptionsMessage: {
     padding: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px`,
   },
   singleValue: {
@@ -95,9 +85,6 @@ function Option(props) {
       buttonRef={props.innerRef}
       selected={props.isFocused}
       component="div"
-      style={{
-        fontWeight: props.isSelected ? 500 : 400,
-      }}
       {...props.innerProps}
     >
       {props.children}
@@ -147,7 +134,7 @@ const components = {
   ValueContainer,
 };
 
-class IntegrationReactSelect extends React.Component {
+class AutoComplete extends React.Component {
   state = {
     value: null,
   };
@@ -196,7 +183,7 @@ class IntegrationReactSelect extends React.Component {
   }
 }
 
-IntegrationReactSelect.propTypes = {
+AutoComplete.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
   suggestions: PropTypes.array.isRequired,
@@ -205,4 +192,4 @@ IntegrationReactSelect.propTypes = {
   onItemSelected: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(IntegrationReactSelect);
+export default withStyles(styles, { withTheme: true })(AutoComplete);
