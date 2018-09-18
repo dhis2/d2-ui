@@ -6,7 +6,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import camelCaseToUnderscores from 'd2-utilizr/lib/camelCaseToUnderscores';
 import { Observable } from 'rxjs';
-import LocaleSelector from './AutoComplete.component';
+import LocaleSelector from './LocaleSelector.component';
 import { getLocales, getTranslationsForModel, saveTranslations } from './translationForm.actions';
 import { withStateFrom } from '@dhis2/d2-ui-core';
 import { Store } from '@dhis2/d2-ui-core';

@@ -25,6 +25,7 @@ const styles = theme => ({
   placeholder: {
     position: 'absolute',
     left: 2,
+    fontSize: 16,
   },
   paper: {
     position: 'absolute',
@@ -147,6 +148,5 @@ LocaleSelector.defaultProps = {
 LocaleSelector.contextTypes = {
     d2: PropTypes.object,
 };
-
 
 export default withStyles(styles, { withTheme: true })(LocaleSelector);
