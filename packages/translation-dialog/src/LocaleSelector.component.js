@@ -18,7 +18,6 @@ class LocaleSelector extends Component {
         return (
             <AutoComplete
                 suggestions={this.props.locales}
-                placeholder={this.getTranslation('select_locale')}
                 onItemSelected={this.onLocaleChange}
                 value={this.props.currentLocale}
             />

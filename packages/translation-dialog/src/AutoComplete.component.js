@@ -87,6 +87,13 @@ const components = {
 };
 
 class AutoComplete extends React.Component {
+    constructor(props, context) {
+        super(props, context);
+
+        const i18n = this.context.d2.i18n;
+        this.getTranslation = i18n.getTranslation.bind(i18n);
+    }
+
     mappedItem = item => {
         return {
             value: item.locale,
@@ -101,7 +108,7 @@ class AutoComplete extends React.Component {
     }
 
     render() {
-        const { classes, placeholder, onItemSelected } = this.props;
+        const { classes, onItemSelected } = this.props;
 
         return (
         <div className={classes.root}>
@@ -111,7 +118,7 @@ class AutoComplete extends React.Component {
                 components={components}
                 value={this.getCurrentValue()}
                 onChange={onItemSelected}
-                placeholder={placeholder}
+                placeholder={this.getTranslation('select_locale')}
             />
         </div>
         );
@@ -121,7 +128,6 @@ class AutoComplete extends React.Component {
 AutoComplete.propTypes = {
     classes: PropTypes.object.isRequired,
     suggestions: PropTypes.array.isRequired,
-    placeholder: PropTypes.string.isRequired,
     onItemSelected: PropTypes.func.isRequired,
     value: PropTypes.string,
 };
@@ -129,5 +135,10 @@ AutoComplete.propTypes = {
 AutoComplete.defaultProps = {
     value: ''
 };
+
+AutoComplete.contextTypes = {
+    d2: PropTypes.object,
+};
+
 
 export default withStyles(styles, { withTheme: true })(AutoComplete);
