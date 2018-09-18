@@ -87,28 +87,17 @@ const components = {
 };
 
 class AutoComplete extends React.Component {
-    getSuggestions = () => {
-        const config = this.props.suggestionConfig;
-        return this.props.suggestions.map(s =>
-            ({
-                value: s[config.valueField],
-                label: s[config.labelField],
-            })
-        )
-    };
+    mappedItem = item => {
+        return {
+            value: item.locale,
+            label: item.name
+        }
+    }
+    getSuggestions = () => this.props.suggestions.map(s => this.mappedItem(s));
 
     getCurrentValue = () => {
         const item = this.props.suggestions.find(s => s.locale === this.props.value);
-
-        if (item) {
-            const config = this.props.suggestionConfig;
-            return {
-                value: item[config.valueField],
-                label: item[config.labelField]
-            }
-        }
-
-        return null;
+        return item ? this.mappedItem(item) : null;
     }
 
     render() {
@@ -132,7 +121,6 @@ class AutoComplete extends React.Component {
 AutoComplete.propTypes = {
     classes: PropTypes.object.isRequired,
     suggestions: PropTypes.array.isRequired,
-    suggestionConfig: PropTypes.object.isRequired,
     placeholder: PropTypes.string.isRequired,
     onItemSelected: PropTypes.func.isRequired,
     value: PropTypes.string,
