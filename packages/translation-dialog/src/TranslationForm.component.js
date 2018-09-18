@@ -171,6 +171,7 @@ class TranslationForm extends Component {
                 <DialogContent>
                     <div style={{ minHeight: 350 }}>
                         <LocaleSelector
+                            classes={{}}
                             currentLocale={this.state.currentSelectedLocale}
                             locales={this.props.locales}
                             onChange={this.setCurrentLocale}

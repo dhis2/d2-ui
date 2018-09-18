@@ -86,7 +86,7 @@ const components = {
     ValueContainer,
 };
 
-class AutoComplete extends React.Component {
+class LocaleSelector extends React.Component {
     constructor(props, context) {
         super(props, context);
 
@@ -94,12 +94,10 @@ class AutoComplete extends React.Component {
         this.getTranslation = i18n.getTranslation.bind(i18n);
     }
 
-    mappedItem = item => {
-        return {
-            value: item.locale,
-            label: item.name
-        }
-    }
+    mappedItem = item => ({
+        value: item.locale,
+        label: item.name
+    });
 
     onLocaleChange = (locale) => {
         this.props.onChange(locale.value);
@@ -130,7 +128,7 @@ class AutoComplete extends React.Component {
     }
 }
 
-AutoComplete.propTypes = {
+LocaleSelector.propTypes = {
     classes: PropTypes.object.isRequired,
     locales: PropTypes.arrayOf(
         PropTypes.shape({
@@ -142,13 +140,13 @@ AutoComplete.propTypes = {
     currentLocale: PropTypes.string,
 };
 
-AutoComplete.defaultProps = {
+LocaleSelector.defaultProps = {
     currentLocale: ''
 };
 
-AutoComplete.contextTypes = {
+LocaleSelector.contextTypes = {
     d2: PropTypes.object,
 };
 
 
-export default withStyles(styles, { withTheme: true })(AutoComplete);
+export default withStyles(styles, { withTheme: true })(LocaleSelector);
