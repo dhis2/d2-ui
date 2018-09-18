@@ -4,7 +4,6 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { getTranslationFormFor } from './TranslationForm.component';
 
-// const getTranslationFormFor = () => <div />;
 class TranslationDialog extends Component {
     constructor(props) {
         super(props);
@@ -28,13 +27,13 @@ class TranslationDialog extends Component {
         }
     }
 
-    closeTranslationDialog = () => {
+    closeDialog = () => {
         this.props.onRequestClose();
     }
 
     translationSaved = (args) => {
         this.props.onTranslationSaved(args);
-        this.closeTranslationDialog();
+        this.closeDialog();
     }
 
     translationError = (err) => {
@@ -44,12 +43,10 @@ class TranslationDialog extends Component {
     muiDialogProps = () => {
         const pick = ({
             open,
-            onClose,
             onEnter,
             onExit,
             onExited }) => ({
             open,
-            onClose,
             onEnter,
             onExit,
             onExited,
@@ -60,12 +57,12 @@ class TranslationDialog extends Component {
 
     render() {
         return (
-            <Dialog PaperProps={{ style: { width: '75%', maxWidth: '768px' } }} {...this.muiDialogProps()}>
+            <Dialog onClose={this.closeDialog} PaperProps={{ style: { width: '75%', maxWidth: '768px' } }} {...this.muiDialogProps()}>
                 <DialogTitle id="form-dialog-title">{this.i18n.getTranslation('translation_dialog_title')}</DialogTitle>
                 <this.state.TranslationForm
                     onTranslationSaved={this.translationSaved}
                     onTranslationError={this.translationError}
-                    onCancel={this.closeTranslationDialog}
+                    onCancel={this.closeDialog}
                     fieldsToTranslate={this.props.fieldsToTranslate}
                 />
             </Dialog>
