@@ -65,11 +65,7 @@ class TranslationForm extends Component {
                 t.property.toLowerCase() === camelCaseToUnderscores(fieldName),
             );
 
-        if (translation) {
-            return translation.value;
-        }
-
-        return '';
+        return translation ? translation.value : '';
     }
 
     setCurrentLocale = (locale) => {
