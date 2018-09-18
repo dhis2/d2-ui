@@ -87,7 +87,7 @@ const components = {
     ValueContainer,
 };
 
-class LocaleSelector extends React.Component {
+export class LocaleSelector extends React.Component {
     constructor(props, context) {
         super(props, context);
 
