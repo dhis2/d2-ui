@@ -40,9 +40,6 @@ const styles = theme => ({
     left: 0,
     right: 0,
   },
-  divider: {
-    height: theme.spacing.unit * 2,
-  },
 });
 
 function NoOptionsMessage(props) {
@@ -104,14 +101,6 @@ function Placeholder(props) {
   );
 }
 
-function SingleValue(props) {
-  return (
-    <Typography className={props.selectProps.classes.singleValue} {...props.innerProps}>
-      {props.children}
-    </Typography>
-  );
-}
-
 function ValueContainer(props) {
   return <div className={props.selectProps.classes.valueContainer}>{props.children}</div>;
 }
@@ -127,10 +116,9 @@ function Menu(props) {
 const components = {
   Control,
   Menu,
-  NoOptionsMessage,
+//   NoOptionsMessage,
   Option,
   Placeholder,
-  SingleValue,
   ValueContainer,
 };
 
@@ -190,6 +178,7 @@ AutoComplete.propTypes = {
   suggestionConfig: PropTypes.object.isRequired,
   placeholder: PropTypes.string.isRequired,
   onItemSelected: PropTypes.func.isRequired,
+
 };
 
 export default withStyles(styles, { withTheme: true })(AutoComplete);
