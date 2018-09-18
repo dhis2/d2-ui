@@ -100,15 +100,20 @@ class AutoComplete extends React.Component {
             label: item.name
         }
     }
-    getSuggestions = () => this.props.suggestions.map(s => this.mappedItem(s));
+
+    onLocaleChange = (locale) => {
+        this.props.onChange(locale.value);
+    }
+
+    getSuggestions = () => this.props.locales.map(s => this.mappedItem(s));
 
     getCurrentValue = () => {
-        const item = this.props.suggestions.find(s => s.locale === this.props.value);
+        const item = this.props.locales.find(s => s.locale === this.props.currentLocale);
         return item ? this.mappedItem(item) : null;
     }
 
     render() {
-        const { classes, onItemSelected } = this.props;
+        const { classes } = this.props;
 
         return (
         <div className={classes.root}>
@@ -117,7 +122,7 @@ class AutoComplete extends React.Component {
                 options={this.getSuggestions()}
                 components={components}
                 value={this.getCurrentValue()}
-                onChange={onItemSelected}
+                onChange={this.onLocaleChange}
                 placeholder={this.getTranslation('select_locale')}
             />
         </div>
@@ -127,13 +132,18 @@ class AutoComplete extends React.Component {
 
 AutoComplete.propTypes = {
     classes: PropTypes.object.isRequired,
-    suggestions: PropTypes.array.isRequired,
-    onItemSelected: PropTypes.func.isRequired,
-    value: PropTypes.string,
+    locales: PropTypes.arrayOf(
+        PropTypes.shape({
+            name: PropTypes.string.isRequired,
+            locale: PropTypes.string.isRequired,
+        })
+    ).isRequired,
+    onChange: PropTypes.func.isRequired,
+    currentLocale: PropTypes.string,
 };
 
 AutoComplete.defaultProps = {
-    value: ''
+    currentLocale: ''
 };
 
 AutoComplete.contextTypes = {
