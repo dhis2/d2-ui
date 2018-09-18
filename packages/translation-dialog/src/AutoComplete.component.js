@@ -116,7 +116,7 @@ function Menu(props) {
 const components = {
   Control,
   Menu,
-//   NoOptionsMessage,
+  NoOptionsMessage,
   Option,
   Placeholder,
   ValueContainer,
@@ -143,23 +143,12 @@ class AutoComplete extends React.Component {
   };
 
   render() {
-    const { classes, theme } = this.props;
-
-    const selectStyles = {
-      input: base => ({
-        ...base,
-        color: theme.palette.text.primary,
-        '& input': {
-          font: 'inherit',
-        },
-      }),
-    };
+    const { classes } = this.props;
 
     return (
       <div className={classes.root}>
           <Select
             classes={classes}
-            styles={selectStyles}
             options={this.getSuggestions()}
             components={components}
             value={this.state.value}
@@ -173,7 +162,6 @@ class AutoComplete extends React.Component {
 
 AutoComplete.propTypes = {
   classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
   suggestions: PropTypes.array.isRequired,
   suggestionConfig: PropTypes.object.isRequired,
   placeholder: PropTypes.string.isRequired,
