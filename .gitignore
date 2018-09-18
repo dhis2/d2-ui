@@ -5,7 +5,6 @@
 node_modules*/
 .sass-cache
 .nyc_output
-css/
 coverage/
 
 dist/
