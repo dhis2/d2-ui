@@ -22,16 +22,9 @@ const styles = theme => ({
     flex: 1,
     alignItems: 'center',
   },
- noOptionsMessage: {
-    padding: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px`,
-  },
-  singleValue: {
-    fontSize: 16,
-  },
   placeholder: {
     position: 'absolute',
     left: 2,
-    fontSize: 16,
   },
   paper: {
     position: 'absolute',
@@ -42,131 +35,111 @@ const styles = theme => ({
   },
 });
 
-function NoOptionsMessage(props) {
-  return (
-    <Typography
-      color="textSecondary"
-      className={props.selectProps.classes.noOptionsMessage}
-      {...props.innerProps}
-    >
-      {props.children}
-    </Typography>
-  );
-}
+const inputComponent = ({ inputRef, ...props }) => <div ref={inputRef} {...props} />;
 
-function inputComponent({ inputRef, ...props }) {
-  return <div ref={inputRef} {...props} />;
-}
-
-function Control(props) {
-  return (
+const Control = ({selectProps, innerRef, innerProps, children}) =>
     <TextField
-      fullWidth
-      InputProps={{
+        fullWidth
+        InputProps={{
         inputComponent,
         inputProps: {
-          className: props.selectProps.classes.input,
-          inputRef: props.innerRef,
-          children: props.children,
-          ...props.innerProps,
+            className: selectProps.classes.input,
+            inputRef: innerRef,
+            children: children,
+            ...innerProps,
         },
-      }}
-      {...props.selectProps.textFieldProps}
-    />
-  );
-}
+        }}
+        {...selectProps.textFieldProps}
+    />;
 
-function Option(props) {
-  return (
+const Option = ({innerRef, isFocused, innerProps, children}) =>
     <MenuItem
-      buttonRef={props.innerRef}
-      selected={props.isFocused}
+      buttonRef={innerRef}
+      selected={isFocused}
       component="div"
-      {...props.innerProps}
+      {...innerProps}
     >
-      {props.children}
-    </MenuItem>
-  );
-}
+        {children}
+    </MenuItem>;
 
-function Placeholder(props) {
-  return (
+const Placeholder = ({selectProps, innerProps, children}) =>
     <Typography
       color="textSecondary"
-      className={props.selectProps.classes.placeholder}
-      {...props.innerProps}
+      className={selectProps.classes.placeholder}
+      {...innerProps}
     >
-      {props.children}
-    </Typography>
-  );
-}
+        {children}
+    </Typography>;
 
-function ValueContainer(props) {
-  return <div className={props.selectProps.classes.valueContainer}>{props.children}</div>;
-}
+const ValueContainer = ({selectProps, children}) => <div className={selectProps.classes.valueContainer}>{children}</div>;
 
-function Menu(props) {
-  return (
-    <Paper square className={props.selectProps.classes.paper} {...props.innerProps}>
-      {props.children}
-    </Paper>
-  );
-}
+const Menu = ({selectProps, innerProps, children}) =>
+    <Paper square className={selectProps.classes.paper} {...innerProps}>
+        {children}
+    </Paper>;
 
 const components = {
-  Control,
-  Menu,
-  NoOptionsMessage,
-  Option,
-  Placeholder,
-  ValueContainer,
+    Control,
+    Menu,
+    Option,
+    Placeholder,
+    ValueContainer,
 };
 
 class AutoComplete extends React.Component {
-  state = {
-    value: null,
-  };
+    getSuggestions = () => {
+        const config = this.props.suggestionConfig;
+        return this.props.suggestions.map(s =>
+            ({
+                value: s[config.valueField],
+                label: s[config.labelField],
+            })
+        )
+    };
 
-  getSuggestions = () => {
-    const config = this.props.suggestionConfig;
-    return this.props.suggestions.map(s =>
-        ({
-            value: s[config.valueField],
-            label: s[config.labelField],
-        })
-    )
-};
+    getCurrentValue = () => {
+        const item = this.props.suggestions.find(s => s.locale === this.props.value);
 
-  handleChange = value => {
-    this.setState({ value });
-    this.props.onItemSelected(value);
-  };
+        if (item) {
+            const config = this.props.suggestionConfig;
+            return {
+                value: item[config.valueField],
+                label: item[config.labelField]
+            }
+        }
 
-  render() {
-    const { classes } = this.props;
+        return null;
+    }
 
-    return (
-      <div className={classes.root}>
-          <Select
-            classes={classes}
-            options={this.getSuggestions()}
-            components={components}
-            value={this.state.value}
-            onChange={this.handleChange}
-            placeholder={this.props.placeholder}
-          />
-      </div>
-    );
-  }
+    render() {
+        const { classes, placeholder, onItemSelected } = this.props;
+
+        return (
+        <div className={classes.root}>
+            <Select
+                classes={classes}
+                options={this.getSuggestions()}
+                components={components}
+                value={this.getCurrentValue()}
+                onChange={onItemSelected}
+                placeholder={placeholder}
+            />
+        </div>
+        );
+    }
 }
 
 AutoComplete.propTypes = {
-  classes: PropTypes.object.isRequired,
-  suggestions: PropTypes.array.isRequired,
-  suggestionConfig: PropTypes.object.isRequired,
-  placeholder: PropTypes.string.isRequired,
-  onItemSelected: PropTypes.func.isRequired,
+    classes: PropTypes.object.isRequired,
+    suggestions: PropTypes.array.isRequired,
+    suggestionConfig: PropTypes.object.isRequired,
+    placeholder: PropTypes.string.isRequired,
+    onItemSelected: PropTypes.func.isRequired,
+    value: PropTypes.string,
+};
 
+AutoComplete.defaultProps = {
+    value: ''
 };
 
 export default withStyles(styles, { withTheme: true })(AutoComplete);

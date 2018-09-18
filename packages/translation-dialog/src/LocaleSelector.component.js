@@ -21,21 +21,21 @@ class LocaleSelector extends Component {
                 suggestionConfig={{valueField: 'locale', labelField: 'name'}}
                 placeholder={this.getTranslation('select_locale')}
                 onItemSelected={this.onLocaleChange}
+                value={this.props.currentLocale}
             />
         )
     }
 }
 
 LocaleSelector.propTypes = {
-    value: PropTypes.string,
     locales: PropTypes.arrayOf(
         PropTypes.shape({
             name: PropTypes.string.isRequired,
             locale: PropTypes.string.isRequired,
         })
     ).isRequired,
-    currentLocale: PropTypes.string,
     onChange: PropTypes.func.isRequired,
+    currentLocale: PropTypes.string,
 };
 
 LocaleSelector.contextTypes = {
