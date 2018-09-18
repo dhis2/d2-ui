@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
+import ReactSelect from './ReactSelect';
 
 class LocaleSelector extends Component {
     constructor(props, context) {
@@ -13,33 +10,19 @@ class LocaleSelector extends Component {
         this.getTranslation = i18n.getTranslation.bind(i18n);
     }
 
-    onLocaleChange = (event) => {
-        this.props.onChange(event.target.value);
+    onLocaleChange = (locale) => {
+        this.props.onChange(locale.value);
     }
 
     render() {
-        const localeMenuItems = [{ dummy: '', item: '' }]
-            .concat(this.props.locales)
-            .map((locale, i) => {
-                const k = `${locale.name}-${i}`;
-                return <MenuItem key={k} value={locale.locale}>{locale.name}</MenuItem>;
-            });
-
         return (
-            <FormControl fullWidth style={{ marginBottom: '10px' }}>
-                <InputLabel htmlFor="locale-selector">{this.getTranslation('select_locale')}</InputLabel>
-                <Select
-                    value={this.props.currentLocale}
-                    onChange={this.onLocaleChange}
-                    inputProps={{
-                        name: 'locale',
-                        id: 'locale-selector',
-                    }}
-                >
-                    {localeMenuItems}
-                </Select>
-            </FormControl>
-        );
+            <ReactSelect
+                suggestions={this.props.locales}
+                suggestionConfig={{valueField: 'locale', labelField: 'name'}}
+                placeholder={this.getTranslation('select_locale')}
+                onItemSelected={this.onLocaleChange}
+            />
+        )
     }
 }
 
