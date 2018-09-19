@@ -1,11 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { compose, mapProps, getContext, withProps } from 'recompose';
-import IconButton from 'material-ui/IconButton';
+import IconButton from '@material-ui/core/IconButton';
 import { SvgIcon } from '@dhis2/d2-ui-core';
-
+import ClearIcon from '@material-ui/icons/Clear';
 import PermissionPicker from './PermissionPicker.component';
-
 import { accessStringToObject, accessObjectToString } from './utils';
 
 const styles = {
@@ -29,27 +28,25 @@ const d2Context = {
     d2: PropTypes.object.isRequired,
 };
 
-const getAccessIcon = userType => {
+const getAccessIcon = (userType) => {
     switch (userType) {
-        case 'user':
-            return 'Person';
-        case 'userGroup':
-            return 'Group';
-        case 'external':
-            return 'Public';
-        case 'public':
-            return 'Business';
-        default:
-            return 'Person';
+    case 'user':
+        return 'Person';
+    case 'userGroup':
+        return 'Group';
+    case 'external':
+        return 'Public';
+    case 'public':
+        return 'Business';
+    default:
+        return 'Person';
     }
 };
 
 const useAccessObjectFormat = props => ({
     ...props,
     access: accessStringToObject(props.access),
-    onChange: newAccess => {
-        props.onChange(accessObjectToString(newAccess));
-    },
+    onChange: newAccess => props.onChange(accessObjectToString(newAccess)),
 });
 
 export const Access = ({
@@ -78,10 +75,9 @@ export const Access = ({
         />
         <IconButton
             disabled={!onRemove}
-            iconStyle={{ color: '#bbbbbb' }}
             onClick={onRemove || (() => {})}
         >
-            <SvgIcon icon="Clear" />
+            <ClearIcon color={!onRemove ? "disabled" : "action"} />
         </IconButton>
     </div>
 );
@@ -123,7 +119,7 @@ export const GroupAccess = compose(
 
 export const ExternalAccess = compose(
     getContext(d2Context),
-    withProps(props => {
+    withProps((props) => {
         props.d2.i18n.addStrings([
             'public_access',
             'external_access',
@@ -142,9 +138,7 @@ export const ExternalAccess = compose(
                 meta: { canEdit: false, canView: props.access },
                 data: { canEdit: false, canView: false },
             },
-            onChange: newAccess => {
-                props.onChange(newAccess.meta.canView);
-            },
+            onChange: newAccess => props.onChange(newAccess.meta.canView),
             accessOptions: {
                 meta: { canView: true, canEdit: false, noAccess: true },
             },
@@ -163,7 +157,7 @@ const constructSecondaryText = ({ canView, canEdit }) => {
 export const PublicAccess = compose(
     mapProps(useAccessObjectFormat),
     getContext(d2Context),
-    withProps(props => {
+    withProps((props) => {
         props.d2.i18n.addStrings([
             'public_access',
             'external_access',
@@ -185,6 +179,6 @@ export const PublicAccess = compose(
                     noAccess: true,
                 },
             },
-        }
-    })
+        };
+    }),
 )(Access);

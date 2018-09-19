@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import IconButton from '@material-ui/core/IconButton';
 import { Access } from '../Access.component';
 import { getStubContext } from '../../../../config/inject-theme';
 
@@ -31,9 +32,9 @@ describe('Sharing: Access component', () => {
     renderComponent(accessProps);
 
     it('should render subcomponents', () => {
-        expect(accessComponent.find('SvgIcon')).toHaveLength(2);
+        expect(accessComponent.find('SvgIcon')).toHaveLength(1);
         expect(accessComponent.find('PermissionPicker')).toHaveLength(1);
-        expect(accessComponent.find('IconButton')).toHaveLength(1);
+        expect(accessComponent.find(IconButton)).toHaveLength(1);
     });
 
     it('should show the primary and secondary text', () => {

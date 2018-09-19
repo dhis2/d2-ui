@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { Subject } from 'rxjs/Subject';
 import { timer } from 'rxjs/observable/timer';
 import { debounce } from 'rxjs/operators';
-import AutoComplete from 'material-ui/AutoComplete';
 
 import { accessObjectToString } from './utils';
 import PermissionPicker from './PermissionPicker.component';
+import AutoComplete from './AutoComplete.component';
 
 const styles = {
     container: {
@@ -28,18 +28,19 @@ const styles = {
         color: '#818181',
         paddingBottom: 8,
     },
-
-    searchBox: {
-        backgroundColor: 'white',
-        boxShadow: '2px 2px 2px #cccccc',
-        padding: '0px 16px',
-        marginRight: '16px',
-    },
 };
 
 const searchDelay = 300;
 
 class UserSearch extends Component {
+    constructor(props, context) {
+        super(props);
+        context.d2.i18n.addStrings([
+            'add_users_and_user_groups',
+            'enter_names',
+        ]);
+    }
+
     state = {
         defaultAccess: {
             meta: { canView: true, canEdit: true },
@@ -49,42 +50,47 @@ class UserSearch extends Component {
         searchText: '',
     };
 
-    constructor(props, context) {
-        super(props);
-        context.d2.i18n.addStrings(['add_users_and_user_groups', 'enter_names']);
-    }
-
     componentWillMount() {
         this.inputStream
             .pipe(debounce(() => timer(searchDelay)))
-            .subscribe((searchText) => {
+            .subscribe(searchText => {
                 this.fetchSearchResult(searchText);
             });
     }
 
-    onResultClick = (_, index) => {
+    onItemSelected = selected => {
         // Material UI triggers an 'onUpdateInput' when a search result is clicked. Therefore, we
         // immediately pushes a new item to the search stream to prevent the stream from searching
         // for the item again.
         this.inputStream.next('');
 
-        const selection = this.state.searchResult[index];
+        const selection = this.state.searchResult.find(
+            r => r.id === selected.id
+        );
+
         const type = selection.type;
         delete selection.type;
 
         if (type === 'userAccess') {
-            this.props.addUserAccess({ ...selection, access: accessObjectToString(this.state.defaultAccess) });
+            this.props.addUserAccess({
+                ...selection,
+                access: accessObjectToString(this.state.defaultAccess),
+            });
         } else {
-            this.props.addUserGroupAccess({ ...selection, access: accessObjectToString(this.state.defaultAccess) });
+            this.props.addUserGroupAccess({
+                ...selection,
+                access: accessObjectToString(this.state.defaultAccess),
+            });
         }
         this.clearSearchText();
-    }
+    };
 
     inputStream = new Subject();
 
-    hasNoCurrentAccess = userOrGroup => this.props.currentAccessIds.indexOf(userOrGroup.id) === -1;
+    hasNoCurrentAccess = userOrGroup =>
+        this.props.currentAccessIds.indexOf(userOrGroup.id) === -1;
 
-    fetchSearchResult = (searchText) => {
+    fetchSearchResult = searchText => {
         if (searchText === '') {
             this.handleSearchResult([]);
         } else {
@@ -93,64 +99,70 @@ class UserSearch extends Component {
                 const searchResult = users
                     .map(addType('userAccess'))
                     .filter(this.hasNoCurrentAccess)
-                    .concat(userGroups
-                        .map(addType('userGroupAccess'))
-                        .filter(this.hasNoCurrentAccess),
+                    .concat(
+                        userGroups
+                            .map(addType('userGroupAccess'))
+                            .filter(this.hasNoCurrentAccess)
                     );
 
                 this.handleSearchResult(searchResult);
             });
         }
-    }
+    };
 
-    handleSearchResult = (searchResult) => {
+    handleSearchResult = searchResult => {
         this.setState({ searchResult });
-    }
+    };
 
-    handleUpdateInput = (searchText) => {
+    onInputChanged = searchText => {
         this.inputStream.next(searchText);
         this.setState({ searchText });
-    }
+    };
 
-    accessOptionsChanged = (accessOptions) => {
+    accessOptionsChanged = accessOptions => {
         this.setState({
             defaultAccess: accessOptions,
         });
-    }
+    };
 
     clearSearchText = () => {
         this.setState({
             searchText: '',
         });
-    }
-
-    noFilter = () => true;
+    };
 
     render() {
         return (
             <div style={styles.container}>
                 <div style={styles.title}>
-                    {this.context.d2.i18n.getTranslation('add_users_and_user_groups')}
+                    {this.context.d2.i18n.getTranslation(
+                        'add_users_and_user_groups'
+                    )}
                 </div>
                 <div style={styles.innerContainer}>
                     <AutoComplete
-                        fullWidth
-                        openOnFocus
-                        filter={this.noFilter}
-                        dataSource={this.state.searchResult}
-                        dataSourceConfig={{ text: 'displayName', value: 'id' }}
-                        hintText={this.context.d2.i18n.getTranslation('enter_names')}
-                        onNewRequest={this.onResultClick}
-                        onUpdateInput={this.handleUpdateInput}
-                        style={styles.searchBox}
+                        suggestions={this.state.searchResult}
+                        placeholderText={this.context.d2.i18n.getTranslation(
+                            'enter_names'
+                        )}
+                        onItemSelected={this.onItemSelected}
+                        onInputChanged={this.onInputChanged}
                         searchText={this.state.searchText}
-                        underlineShow={false}
+                        classes={{}}
                     />
                     <PermissionPicker
                         access={this.state.defaultAccess}
                         accessOptions={{
-                            meta: { canView: true, canEdit: true, noAccess: false },
-                            data: this.props.dataShareable && { canView: true, canEdit: true, noAccess: true },
+                            meta: {
+                                canView: true,
+                                canEdit: true,
+                                noAccess: false,
+                            },
+                            data: this.props.dataShareable && {
+                                canView: true,
+                                canEdit: true,
+                                noAccess: true,
+                            },
                         }}
                         onChange={this.accessOptionsChanged}
                     />

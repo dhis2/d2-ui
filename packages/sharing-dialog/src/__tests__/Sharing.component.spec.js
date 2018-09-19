@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Subheader from 'material-ui/Subheader';
+import Typography from '@material-ui/core/Typography';
 import { getStubContext } from '../../../../config/inject-theme';
 import Sharing from '../Sharing.component';
 import { Heading } from '@dhis2/d2-ui-core';
@@ -74,7 +74,7 @@ describe('Sharing: Sharing component', () => {
     });
 
     it('should render a sub header above the permissions list', () => {
-        const subheaderComponent = sharingComponent.find(Subheader);
+        const subheaderComponent = sharingComponent.find(Typography);
         expect(subheaderComponent.childAt(0).text()).toBe('who_has_access_translated');
     });
 

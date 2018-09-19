@@ -1,28 +1,29 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import MenuItem from 'material-ui/MenuItem';
+import MenuItem from '@material-ui/core/MenuItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
 import PermissionOption from '../PermissionOption.component';
-import { getStubContext } from '../../../../config/inject-theme';
 
 const permissionOptionProps = {
     disabled: false,
     isSelected: false,
     primaryText: 'Test',
-    value: {},
-    onClick: undefined,
-    focusState: 'none',
+    onClick: () => {},
 };
 
 describe('Sharing: PermissionOption component', () => {
     let permissionOptionComponent;
 
     const renderComponent = (props = {}) =>
-        shallow(<PermissionOption {...props} />, {
-            context: getStubContext(),
-        });
+        shallow(<PermissionOption {...props} />);
 
     beforeEach(() => {
         permissionOptionComponent = renderComponent(permissionOptionProps);
+    });
+
+    it('should render a MenuItem', () => {
+        expect(permissionOptionComponent.find(MenuItem)).toHaveLength(1);
     });
 
     it('should not render a MenuItem when disabled prop is passed', () => {
@@ -34,39 +35,20 @@ describe('Sharing: PermissionOption component', () => {
         expect(permissionOptionComponent.find(MenuItem)).toHaveLength(0);
     });
 
-    it('should render a MenuItem', () => {
-        expect(permissionOptionComponent.find(MenuItem)).toHaveLength(1);
-    });
-
     it('should render the text according to the primaryText prop', () => {
-        expect(permissionOptionComponent.find(MenuItem).props().primaryText).toEqual(
+        expect(permissionOptionComponent.find(MenuItem).dive().find(ListItemText).props().primary).toEqual(
             permissionOptionProps.primaryText
         );
     });
 
-    it('should set the MenuItem leftIcon prop according to the isSelected prop', () => {
-        expect(permissionOptionComponent.find(MenuItem).props().leftIcon).toBeUndefined();
+    it('should set the MenuItem left icon according to the isSelected prop', () => {
+        expect(permissionOptionComponent.find(ListItemIcon)).toHaveLength(0);
 
         permissionOptionComponent = renderComponent({
             ...permissionOptionProps,
             isSelected: true,
         });
 
-        expect(permissionOptionComponent.find(MenuItem).props().leftIcon).not.toBeUndefined();
-    });
-
-    it('should set the value prop', () => {
-        expect(permissionOptionComponent.find(MenuItem).props().value).toEqual(
-            permissionOptionProps.value
-        );
-
-        const newValue = { somekey: 'somevalue' };
-
-        permissionOptionComponent = renderComponent({
-            ...permissionOptionProps,
-            value: newValue,
-        });
-
-        expect(permissionOptionComponent.find(MenuItem).props().value).toEqual(newValue);
+        expect(permissionOptionComponent.find(ListItemIcon)).toHaveLength(1);
     });
 });
