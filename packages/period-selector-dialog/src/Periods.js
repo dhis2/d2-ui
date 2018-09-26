@@ -27,6 +27,10 @@ class Periods extends Component {
         super(props);
 
         this.i18n = context.d2.i18n;
+
+        if (this.props.periods.length > 0) {
+            this.props.setSelectedPeriods(this.props.periods);
+        }
     }
 
     componentWillUpdate(nextProps) {
@@ -120,6 +124,7 @@ class Periods extends Component {
 }
 
 Periods.propTypes = {
+    periods: PropTypes.array.isRequired,
     periodType: PropTypes.string.isRequired,
     offeredPeriods: PropTypes.object.isRequired,
     selectedPeriods: PropTypes.object.isRequired,
