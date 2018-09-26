@@ -1,6 +1,6 @@
 {
   "name": "@dhis2/d2-ui-sharing-dialog",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "DHIS2 component for sharing dialog",
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",

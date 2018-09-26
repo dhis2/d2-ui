@@ -1,6 +1,6 @@
 {
   "name": "@dhis2/d2-ui-translation-dialog",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Translation Dialog for DHIS2",
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",
