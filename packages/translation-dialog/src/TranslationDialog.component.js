@@ -1,43 +1,22 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Dialog from 'material-ui/Dialog/Dialog';
+import Dialog from '@material-ui/core/Dialog';
+import DialogTitle from '@material-ui/core/DialogTitle';
 import { getTranslationFormFor } from './TranslationForm.component';
 
 class TranslationDialog extends Component {
-    constructor(props, context) {
-        super(props, context);
+    constructor(props) {
+        super(props);
 
         this.i18n = props.d2.i18n;
 
         this.state = {
             TranslationForm: getTranslationFormFor(props.objectToTranslate),
         };
-
-        this.translationSaved = this.translationSaved.bind(this);
-        this.translationError = this.translationError.bind(this);
-        this.closeTranslationDialog = this.closeTranslationDialog.bind(this);
     }
 
     getChildContext() {
         return { d2: this.props.d2 };
-    }
-
-    render() {
-        return (
-            <Dialog
-                title={this.i18n.getTranslation('translation_dialog_title')}
-                autoDetectWindowHeight
-                autoScrollBodyContent
-                {...this.props}
-            >
-                <this.state.TranslationForm
-                    onTranslationSaved={this.translationSaved}
-                    onTranslationError={this.translationError}
-                    onCancel={this.closeTranslationDialog}
-                    fieldsToTranslate={this.props.fieldsToTranslate}
-                />
-            </Dialog>
-        );
     }
 
     componentWillReceiveProps(newProps) {
@@ -48,17 +27,46 @@ class TranslationDialog extends Component {
         }
     }
 
-    closeTranslationDialog() {
+    closeDialog = () => {
         this.props.onRequestClose();
     }
 
-    translationSaved(args) {
+    translationSaved = (args) => {
         this.props.onTranslationSaved(args);
-        this.closeTranslationDialog();
+        this.closeDialog();
     }
 
-    translationError(err) {
+    translationError = (err) => {
         this.props.onTranslationError(err);
+    }
+
+    muiDialogProps = () => {
+        const pick = ({
+            open,
+            onEnter,
+            onExit,
+            onExited }) => ({
+            open,
+            onEnter,
+            onExit,
+            onExited,
+        });
+
+        return pick(this.props);
+    }
+
+    render() {
+        return (
+            <Dialog onClose={this.closeDialog} PaperProps={{ style: { width: '75%', maxWidth: '768px' } }} {...this.muiDialogProps()}>
+                <DialogTitle id="form-dialog-title">{this.i18n.getTranslation('translation_dialog_title')}</DialogTitle>
+                <this.state.TranslationForm
+                    onTranslationSaved={this.translationSaved}
+                    onTranslationError={this.translationError}
+                    onCancel={this.closeDialog}
+                    fieldsToTranslate={this.props.fieldsToTranslate}
+                />
+            </Dialog>
+        );
     }
 }
 
@@ -68,7 +76,7 @@ TranslationDialog.propTypes = {
     }).isRequired,
     onTranslationSaved: PropTypes.func.isRequired,
     onTranslationError: PropTypes.func.isRequired,
-    open: PropTypes.bool,
+    open: PropTypes.bool.isRequired,
     onRequestClose: PropTypes.func.isRequired,
     fieldsToTranslate: PropTypes.array,
     d2: PropTypes.object.isRequired,
@@ -77,5 +85,6 @@ TranslationDialog.propTypes = {
 TranslationDialog.childContextTypes = {
     d2: PropTypes.object,
 };
+
 
 export default TranslationDialog;

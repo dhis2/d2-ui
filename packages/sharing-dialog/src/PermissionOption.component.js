@@ -1,46 +1,40 @@
+import React from 'react';
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
 import { SvgIcon } from '@dhis2/d2-ui-core';
-import MenuItem from 'material-ui/MenuItem';
+import MenuItem from '@material-ui/core/MenuItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
 
-class PermissionOption extends Component {
-    ref = null;
+const PermissionOption = props => {
+    if (props.disabled) {
+        return null;
+    }
 
-    render = () => {
-        if (this.props.disabled) {
-            return null;
-        }
-
-        return (
-            <MenuItem
-                insetChildren
-                leftIcon={
-                    this.props.isSelected ? <SvgIcon icon="Done" /> : undefined
-                }
-                primaryText={this.props.primaryText}
-                value={this.props.value}
-                disabled={this.props.disabled}
-                onClick={this.props.onClick}
-                focusState={this.props.focusState}
-            />
-        );
-    };
+    return (
+        <MenuItem
+            disabled={props.disabled}
+            onClick={props.onClick}
+            selected={props.isSelected}
+        >
+            {props.isSelected &&
+            <ListItemIcon>
+                <SvgIcon icon="Done" />
+            </ListItemIcon>
+            }
+            <ListItemText inset primary={props.primaryText}/>
+        </MenuItem>
+    );
 }
 
 PermissionOption.propTypes = {
     disabled: PropTypes.bool.isRequired,
     isSelected: PropTypes.bool,
     primaryText: PropTypes.string.isRequired,
-    value: PropTypes.object.isRequired,
-    onClick: PropTypes.func,
-    focusState: PropTypes.string,
+    onClick: PropTypes.func.isRequired,
 };
 
 PermissionOption.defaultProps = {
-    onClick: undefined,
-    focusState: 'none',
     isSelected: false,
 };
 
-PermissionOption.muiName = 'MenuItem';
 export default PermissionOption;

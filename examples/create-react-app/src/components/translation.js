@@ -63,7 +63,7 @@ export default class TranslationDialogExample extends React.Component {
                     d2={this.props.d2}
                     open={this.state.translationDialog.open}
                     objectToTranslate={dataElement}
-                    onTranslationSaved={() => console.log('saved')}
+                    onTranslationSaved={(val) => console.log('saved', val)}
                     onTranslationError={() => console.error('error')}
                     onRequestClose={this.toggleDialog()}
                 />

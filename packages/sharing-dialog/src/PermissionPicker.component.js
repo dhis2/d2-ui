@@ -1,12 +1,12 @@
-/* eslint react/jsx-no-bind: 0 */
-
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
-import IconButton from 'material-ui/IconButton';
-import Divider from 'material-ui/Divider';
-import Popover from 'material-ui/Popover';
-import Menu from 'material-ui/Menu';
+import React, { Component, Fragment } from 'react';
+import IconButton from '@material-ui/core/IconButton';
+import Divider from '@material-ui/core/Divider';
+import Popover from '@material-ui/core/Popover';
 import { SvgIcon } from '@dhis2/d2-ui-core';
+import NotInterestedIcon from '@material-ui/icons/NotInterested';
+import CreateIcon from '@material-ui/icons/Create';
+import VisibilityIcon from '@material-ui/icons/Visibility';
 
 import PermissionOption from './PermissionOption.component';
 
@@ -19,39 +19,42 @@ const styles = {
     },
 };
 
-const getAccessIcon = metaAccess => {
+const AccessIcon = ({metaAccess, disabled}) => {
+    const iconProps = {
+        color: disabled ? "disabled" : "action"
+    };
     if (metaAccess.canEdit) {
-        return 'Create';
+        return <CreateIcon {...iconProps} />;
     }
 
-    return metaAccess.canView ? 'Visibility' : 'NotInterested';
+    return metaAccess.canView ? <VisibilityIcon {...iconProps} /> : <NotInterestedIcon {...iconProps} />;
 };
 
 class PermissionPicker extends Component {
-    state = {
-        open: false,
-    };
-
     constructor(props, context) {
         super(props);
         context.d2.i18n.addStrings([
             'can_edit_and_view',
             'can_capture_and_view',
             'can_view_only',
-            'no_access'
+            'no_access',
         ]);
     }
 
-    onOptionClick = (event, menuItem) => {
+    state = {
+        open: false,
+    };
+
+    onOptionClick = (access) => () => {
         const newAccess = {
             ...this.props.access,
-            ...menuItem.props.value,
+            ...access,
         };
 
         this.props.onChange(newAccess);
     };
 
-    openMenu = event => {
+    openMenu = (event) => {
         event.preventDefault();
         this.setState({
             open: true,
@@ -75,81 +78,81 @@ class PermissionPicker extends Component {
         } = this.props.accessOptions;
 
         return (
-            <div>
+            <Fragment>
                 <IconButton
                     onClick={this.openMenu}
                     disabled={this.props.disabled}
                 >
-                    <SvgIcon icon={getAccessIcon(meta)} />
+                    <AccessIcon metaAccess={meta} disabled={this.props.disabled} />
                 </IconButton>
                 <Popover
                     open={this.state.open}
                     anchorEl={this.state.anchor}
-                    onRequestClose={this.closeMenu}
+                    onClose={this.closeMenu}
                 >
                     <OptionHeader text={this.translate('metadata')} />
-                    <Menu onItemTouchTap={this.onOptionClick}>
+
                         <PermissionOption
                             disabled={!metaOptions.canEdit}
-                            value={{ meta: { canView: true, canEdit: true } }}
                             primaryText={this.translate('can_edit_and_view')}
                             isSelected={meta.canEdit}
+                            onClick={this.onOptionClick({ meta: { canView: true, canEdit: true } })}
                         />
                         <PermissionOption
                             disabled={!metaOptions.canView}
-                            value={{ meta: { canView: true, canEdit: false } }}
                             primaryText={this.translate('can_view_only')}
                             isSelected={!meta.canEdit && meta.canView}
+                            onClick={this.onOptionClick({ meta: { canView: true, canEdit: false } })}
                         />
                         <PermissionOption
                             disabled={!metaOptions.noAccess}
-                            value={{ meta: { canView: false, canEdit: false } }}
                             primaryText={this.translate('no_access')}
                             isSelected={!meta.canEdit && !meta.canView}
+                            onClick={this.onOptionClick({ meta: { canView: false, canEdit: false } })}
                         />
-                    </Menu>
+
                     <Divider />
 
                     {dataOptions && (
-                        <div>
+                        <Fragment>
                             <OptionHeader text={this.translate('data')} />
-                            <Menu onItemTouchTap={this.onOptionClick}>
+
                                 <PermissionOption
                                     disabled={!dataOptions.canEdit}
-                                    value={{
-                                        data: { canView: true, canEdit: true },
-                                    }}
                                     primaryText={this.translate(
                                         'can_capture_and_view'
                                     )}
                                     isSelected={data.canEdit}
+                                    onClick={this.onOptionClick({
+                                        data: { canView: true, canEdit: true },
+                                    })}
                                 />
                                 <PermissionOption
                                     disabled={!dataOptions.canView}
-                                    value={{
-                                        data: { canView: true, canEdit: false },
-                                    }}
                                     primaryText={this.translate(
                                         'can_view_only'
                                     )}
                                     isSelected={!data.canEdit && data.canView}
+                                    onClick={this.onOptionClick({
+                                        data: { canView: true, canEdit: false },
+                                    })}
                                 />
                                 <PermissionOption
                                     disabled={!dataOptions.noAccess}
-                                    value={{
+                                    primaryText={this.translate('no_access')}
+                                    isSelected={!data.canEdit && !data.canView}
+                                    onClick={this.onOptionClick({
                                         data: {
                                             canView: false,
                                             canEdit: false,
                                         },
-                                    }}
-                                    primaryText={this.translate('no_access')}
-                                    isSelected={!data.canEdit && !data.canView}
+                                    })}
                                 />
-                            </Menu>
-                        </div>
+
+                        </Fragment>
                     )}
                 </Popover>
-            </div>
+            </Fragment>
         );
     };
 }

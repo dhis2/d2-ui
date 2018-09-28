@@ -22,7 +22,12 @@ class PeriodSelector extends Component {
 
 PeriodSelector.propTypes = {
     d2: PropTypes.object.isRequired,
+    periods: PropTypes.array,
     onPeriodsSelect: PropTypes.func.isRequired,
+};
+
+PeriodSelector.defaultProps = {
+    periods: [],
 };
 
 PeriodSelector.childContextTypes = {
