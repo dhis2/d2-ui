@@ -207,4 +207,32 @@ export function getTranslationFormFor(model) {
     return withStateFrom(getTranslationFormData(model), TranslationForm);
 }
 
+
+class WithObservableState extends Component {
+    componentDidMount() {
+        this.disposable = this.props.stateSource$
+            .subscribe(
+                state => this.setState(state),
+                error => log.error(error),
+            );
+    }
+
+    componentWillUnmount() {
+        this.disposable && this.disposable.unsubscribe && this.disposable.unsubscribe();
+    }
+
+    render() {
+        return React.cloneElement(React.Children.only(this.props.children), {
+            ...this.state,
+        });
+    }
+
+}
+
+export const TranslationFormWithData = ({ model, ...props }) => (
+    <WithObservableState stateSource$={getTranslationFormData(model)}>
+        <TranslationForm {...props} />
+    </WithObservableState>
+);
+
 export default TranslationForm;

@@ -19,6 +19,7 @@ class TranslateMenuItem extends Component {
     }
 
     onClose = () => {
+        console.log('bubbledUp:close');
         this.toggleTranslationDialog();
 
         if (this.props.onClose) {
@@ -27,6 +28,7 @@ class TranslateMenuItem extends Component {
     };
 
     onDialogReturn = success => args => {
+        console.log('bubbledUp');
         const { onTranslate, onTranslateError } = this.props;
 
         this.toggleTranslationDialog();
