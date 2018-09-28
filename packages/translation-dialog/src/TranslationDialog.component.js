@@ -2,30 +2,18 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { TranslationFormWithData } from './TranslationForm.component';
+import TranslationFormWithData from './TranslationForm.component';
 
 class TranslationDialog extends Component {
     constructor(props) {
         super(props);
 
         this.i18n = props.d2.i18n;
-
-        // this.state = {
-        //     TranslationForm: getTranslationFormFor(props.objectToTranslate),
-        // };
     }
 
     getChildContext() {
         return { d2: this.props.d2 };
     }
-
-    // componentWillReceiveProps(newProps) {
-    //     if (newProps.objectToTranslate !== this.props.objectToTranslate) {
-    //         this.setState({
-    //             TranslationForm: getTranslationFormFor(newProps.objectToTranslate),
-    //         });
-    //     }
-    // }
 
     closeDialog = () => {
         this.props.onRequestClose();
@@ -59,7 +47,6 @@ class TranslationDialog extends Component {
         return (
             <Dialog onClose={this.closeDialog} PaperProps={{ style: { width: '75%', maxWidth: '768px' } }} {...this.muiDialogProps()}>
                 <DialogTitle id="form-dialog-title">{this.i18n.getTranslation('translation_dialog_title')}</DialogTitle>
-                
                 <TranslationFormWithData
                     model={this.props.objectToTranslate}
                     onTranslationSaved={this.translationSaved}
