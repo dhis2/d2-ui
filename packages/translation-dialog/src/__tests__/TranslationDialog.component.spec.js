@@ -3,11 +3,6 @@ import { shallow } from 'enzyme';
 import MuiDialog from '@material-ui/core/Dialog';
 import TranslationDialog from '../TranslationDialog.component';
 
-jest.mock('../TranslationForm.component', () => ({
-    __esModule: true,
-    getTranslationFormFor: () => <div />,
-}));
-
 describe('TranslationDialog component', () => {
     const defaultProps = {
         open: false,
