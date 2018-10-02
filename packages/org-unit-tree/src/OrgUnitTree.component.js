@@ -102,7 +102,9 @@ class OrgUnitTree extends React.Component {
             this.setState({ loading: true });
 
             const root = this.props.root;
-            root.children.load({ fields: 'id,displayName,children::isNotEmpty,path,parent' }).then((children) => {
+            // d2.ModelCollectionProperty.load takes a second parameter `forceReload` and will just return
+            // the current valueMap unless either `this.hasUnloadedData` or `forceReload` are true
+            root.children.load({ fields: 'id,displayName,children::isNotEmpty,path,parent' }, true).then((children) => {
                 this.setChildState(children);
             });
         }
