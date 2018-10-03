@@ -51,7 +51,7 @@ Now you are able to change any component in
 [packages/](https://github.com/dhis2/d2-ui/blob/master/packages) and the
 changes will be reflected live in the example application.
 
-Too do more complex lerna operations you need to learn
+To do more complex lerna operations you need to learn
 [Lerna](https://github.com/lerna/lerna). See e.g. the `--scope`
 parameter.
 
