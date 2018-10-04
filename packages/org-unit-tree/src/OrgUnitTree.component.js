@@ -209,7 +209,7 @@ class OrgUnitTree extends React.Component {
         const label = (
             <div
                 style={labelStyle}
-                onClick={(canBecomeCurrentRoot && setCurrentRoot) || (isSelectable && this.handleSelectClick)}
+                onClick={canBecomeCurrentRoot ? setCurrentRoot : (isSelectable ? this.handleSelectClick : undefined)}
                 role="button"
                 tabIndex={0}
             >
@@ -247,7 +247,7 @@ class OrgUnitTree extends React.Component {
 
         return (
             <div
-                onClick={isSelectable && this.handleSelectClick}
+                onClick={isSelectable ? this.handleSelectClick : undefined}
                 className="orgunit without-children"
                 style={ouContainerStyle}
                 role="button"

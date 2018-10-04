@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import Snackbar from 'material-ui/Snackbar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -39,16 +39,18 @@ class PeriodSelectorExample extends Component {
     render() {
         return (
             <MuiThemeProvider muiTheme={getMuiTheme()}>
-                <PeriodSelector
-                    onPeriodsSelect={this.onPeriodsSelect}
-                    d2={this.props.d2}
-                />
-                <Snackbar
-                    open={this.state.snackbar.open}
-                    message={this.state.snackbar.message}
-                    autoHideDuration={4000}
-                    onClose={this.onSnackbarClose}
-                />
+                <Fragment>
+                    <PeriodSelector
+                        onPeriodsSelect={this.onPeriodsSelect}
+                        d2={this.props.d2}
+                    />
+                    <Snackbar
+                        open={this.state.snackbar.open}
+                        message={this.state.snackbar.message}
+                        autoHideDuration={4000}
+                        onClose={this.onSnackbarClose}
+                    />
+                </Fragment>
             </MuiThemeProvider>
         );
     }
