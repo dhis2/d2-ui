@@ -56,9 +56,11 @@ describe('File: FileMenu > RenameMenuItem component', () => {
     });
 
     it('should trigger the onRename callback upon successful rename', () => {
-        renameMenuItem.find(RenameDialog).simulate('requestRename');
+        renameMenuItem
+            .find(RenameDialog)
+            .simulate('requestRename', { name: 'test', description: 'test description' });
 
-        expect(onRename).toHaveBeenCalledTimes(1);
+        expect(onRename).toHaveBeenCalledWith({ name: 'test', description: 'test description' });
     });
 
     it('should trigger the onRenameError callback upon unsuccessful rename', () => {
