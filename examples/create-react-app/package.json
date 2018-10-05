@@ -1,13 +1,13 @@
 {
   "name": "example-cra",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "private": true,
   "dependencies": {
     "@dhis2/d2-ui-app": "^1.0.8",
     "@dhis2/d2-ui-core": "^1.3.2",
     "@dhis2/d2-ui-expression-manager": "^1.0.10",
-    "@dhis2/d2-ui-favorites-dialog": "^2.0.1",
-    "@dhis2/d2-ui-file-menu": "^3.1.1",
+    "@dhis2/d2-ui-favorites-dialog": "^3.0.0",
+    "@dhis2/d2-ui-file-menu": "^3.2.0",
     "@dhis2/d2-ui-forms": "^1.0.10",
     "@dhis2/d2-ui-formula-editor": "^1.0.7",
     "@dhis2/d2-ui-group-editor": "^1.0.13",
