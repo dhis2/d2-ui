@@ -22,8 +22,8 @@ class Favorites extends Component {
     render() {
         const { open, onRequestClose, onFavoriteSelect } = this.props;
 
-        const handleOnFavoriteSelect = model => {
-            onFavoriteSelect(model);
+        const handleOnFavoriteSelect = id => {
+            onFavoriteSelect(id);
             // XXX should this be in the favoriteSelect callback?
             onRequestClose();
         };

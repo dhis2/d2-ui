@@ -1,12 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import TextField from 'material-ui/TextField/TextField';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
 import camelCaseToUnderscores from 'd2-utilizr/lib/camelCaseToUnderscores';
-import RaisedButton from 'material-ui/RaisedButton/RaisedButton';
 import { Observable } from 'rxjs';
 import LocaleSelector from './LocaleSelector.component';
 import { getLocales, getTranslationsForModel, saveTranslations } from './translationForm.actions';
-import { withStateFrom } from '@dhis2/d2-ui-core';
 import { Store } from '@dhis2/d2-ui-core';
 import { CircularProgress } from '@dhis2/d2-ui-core';
 
@@ -33,9 +34,12 @@ function getTranslationFormData(model) {
         );
 }
 
-export function getTranslationFormFor(model) {
-    return withStateFrom(getTranslationFormData(model), TranslationForm);
-}
+const LoadingDataElement = () =>
+    (
+        <div style={{ textAlign: 'center', minHeight: 350 }}>
+            <CircularProgress mode="indeterminate" />
+        </div>
+    );
 
 class TranslationForm extends Component {
     constructor(props, context) {
@@ -52,70 +56,6 @@ class TranslationForm extends Component {
         currentSelectedLocale: '',
     };
 
-    getLoadingdataElement() {
-        return (
-            <div style={{ textAlign: 'center', minHeight: 350 }}>
-                <CircularProgress mode="indeterminate" />
-            </div>
-        );
-    }
-
-    renderFieldsToTranslate() {
-        return this.props.fieldsToTranslate
-            .filter(fieldName => fieldName)
-            .map(fieldName => (
-                <div key={fieldName}>
-                    <TextField
-                        floatingLabelText={this.getTranslation(camelCaseToUnderscores(fieldName))}
-                        value={this.getTranslationValueFor(fieldName)}
-                        fullWidth
-                        onChange={this.setValue.bind(this, fieldName)}
-                    />
-                    <div>{this.props.objectToTranslate[fieldName]}</div>
-                </div>
-            ));
-    }
-
-    renderForm() {
-        return (
-            <div>
-                {this.renderFieldsToTranslate()}
-                <div style={{ paddingTop: '1rem' }}>
-                    <RaisedButton
-                        label={this.getTranslation('save')}
-                        primary
-                        onClick={this.saveTranslations}
-                    />
-                    <RaisedButton
-                        style={{ marginLeft: '1rem' }}
-                        label={this.getTranslation('cancel')}
-                        onClick={this.props.onCancel}
-                    />
-                </div>
-            </div>
-        );
-    }
-
-    renderHelpText() {
-        return (
-            <div>
-                <p>{this.getTranslation('select_a_locale_to_enter_translations_for_that_language')}</p>
-            </div>
-        );
-    }
-
-    render() {
-        if (!this.props.locales && !this.props.translations) {
-            return this.getLoadingdataElement();
-        }
-
-        return (
-            <div style={{ minHeight: 350 }}>
-                <LocaleSelector locales={this.props.locales} onChange={this.setCurrentLocale} />
-                {this.state.currentSelectedLocale ? this.renderForm() : this.renderHelpText()}
-            </div>
-        );
-    }
 
     getTranslationValueFor(fieldName) {
         const translation = this.props.translations
@@ -124,9 +64,7 @@ class TranslationForm extends Component {
                 t.property.toLowerCase() === camelCaseToUnderscores(fieldName),
             );
 
-        if (translation) {
-            return translation.value;
-        }
+        return translation ? translation.value : '';
     }
 
     setCurrentLocale = (locale) => {
@@ -167,23 +105,128 @@ class TranslationForm extends Component {
                 this.props.onTranslationError,
             );
     }
+
+    renderFieldsToTranslate() {
+        return this.props.fieldsToTranslate
+            .filter(fieldName => fieldName)
+            .map((fieldName) => {
+                const labelPlaceholder = this.getTranslation(camelCaseToUnderscores(fieldName));
+                const val = this.getTranslationValueFor(fieldName);
+
+                return (
+                    <div key={fieldName}>
+                        <TextField
+                            placeholder={labelPlaceholder}
+                            label={labelPlaceholder}
+                            value={val}
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            fullWidth
+                            onChange={this.setValue.bind(this, fieldName)}
+                            margin="normal"
+                        />
+                        <div style={{ color: 'rgba(0,0,0,0.6)' }}>{this.props.objectToTranslate[fieldName]}</div>
+                    </div>
+                );
+            });
+    }
+
+    renderActionButtons() {
+        return (
+            <DialogActions>
+                <Button
+                    variant="contained"
+                    onClick={this.props.onCancel}
+                >{this.getTranslation('cancel')}</Button>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={this.saveTranslations}
+                >{this.getTranslation('save')}</Button>
+            </DialogActions>
+        );
+    }
+
+    renderHelpText() {
+        return (
+            <div>
+                <p>{this.getTranslation('select_a_locale_to_enter_translations_for_that_language')}</p>
+            </div>
+        );
+    }
+
+    render() {
+        if (!this.props.locales && !this.props.translations) {
+            return <LoadingDataElement />;
+        }
+
+        return (
+            <Fragment>
+                <DialogContent>
+                    <div style={{ minHeight: 350 }}>
+                        <LocaleSelector
+                            classes={{}}
+                            currentLocale={this.state.currentSelectedLocale}
+                            locales={this.props.locales}
+                            onChange={this.setCurrentLocale}
+                        />
+                        {this.state.currentSelectedLocale ? this.renderFieldsToTranslate() : this.renderHelpText()}
+                    </div>
+                </DialogContent>
+                {this.state.currentSelectedLocale && this.renderActionButtons()}
+            </Fragment>
+        );
+    }
 }
 
 TranslationForm.propTypes = {
     onTranslationSaved: PropTypes.func.isRequired,
     onTranslationError: PropTypes.func.isRequired,
+    onCancel: PropTypes.func,
     objectToTranslate: PropTypes.shape({
         id: PropTypes.string.isRequired,
     }),
+    locales: PropTypes.array,
+    translations: PropTypes.array,
+    setTranslations: PropTypes.func,
     fieldsToTranslate: PropTypes.arrayOf(PropTypes.string),
 };
 
 TranslationForm.defaultProps = {
     fieldsToTranslate: ['name', 'shortName', 'description'],
+    locales: [],
 };
 
 TranslationForm.contextTypes = {
     d2: PropTypes.object,
 };
 
-export default TranslationForm;
+
+class WithObservableState extends Component {
+    componentDidMount() {
+        this.disposable = this.props.stateSource$
+            .subscribe(
+                state => this.setState(state),
+                error => log.error(error),
+            );
+    }
+
+    componentWillUnmount() {
+        this.disposable && this.disposable.unsubscribe && this.disposable.unsubscribe();
+    }
+
+    render() {
+        return React.cloneElement(React.Children.only(this.props.children), {
+            ...this.state,
+        });
+    }
+}
+
+const TranslationFormWithData = ({ model, ...props }) => (
+    <WithObservableState stateSource$={getTranslationFormData(model)}>
+        <TranslationForm {...props} />
+    </WithObservableState>
+);
+
+export default TranslationFormWithData;

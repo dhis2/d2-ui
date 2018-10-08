@@ -91,8 +91,8 @@ const EnhancedTable = props => {
         toggleActionsMenu();
     };
 
-    const clickHandler = model => event => {
-        onFavoriteSelect(model);
+    const clickHandler = id => event => {
+        onFavoriteSelect(id);
     };
 
     return (

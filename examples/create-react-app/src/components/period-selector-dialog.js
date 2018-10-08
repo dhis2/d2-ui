@@ -8,6 +8,12 @@ import PeriodSelectorDialog from '@dhis2/d2-ui-period-selector-dialog';
 
 class PeriodSelectorDialogExample extends Component {
     state = {
+        // example of initially selected periods
+        periods: [
+            { id: 'TODAY', name: 'Today' },
+            { id: 'YESTERDAY', name: 'Yesterday' },
+            { id: 'LAST_3_DAYS', name: 'Last 3 days' },
+        ],
         dialogOpened: false,
         snackbar: {
             open: false,
@@ -17,6 +23,7 @@ class PeriodSelectorDialogExample extends Component {
 
     onPeriodSelect = (periods) => {
         this.setState({
+            periods,
             dialogOpened: !this.state.dialogOpened,
             snackbar: {
                 open: true,
@@ -53,6 +60,7 @@ class PeriodSelectorDialogExample extends Component {
                     open={this.state.dialogOpened}
                     onClose={this.toggleDialog}
                     onUpdate={this.onPeriodSelect}
+                    periods={this.state.periods}
                     d2={this.props.d2}
                 />
                 <Snackbar

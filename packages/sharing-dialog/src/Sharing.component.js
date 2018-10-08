@@ -1,8 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import Divider from 'material-ui/Divider';
-import Subheader from 'material-ui/Subheader';
-
+import Divider from '@material-ui/core/Divider';
+import Typography from '@material-ui/core/Typography';
 import { Heading } from '@dhis2/d2-ui-core';
 import UserSearch from './UserSearch.component';
 import CreatedBy from './CreatedBy.component';
@@ -115,7 +114,7 @@ class Sharing extends React.Component {
                 <Heading text={displayName} level={2} />
                 <CreatedBy author={user} />
                 <div style={styles.titleBodySpace} />
-                <Subheader>{this.context.d2.i18n.getTranslation('who_has_access')}</Subheader>
+                <Typography variant="subheading">{this.context.d2.i18n.getTranslation('who_has_access')}</Typography>
                 <Divider />
                 <div style={styles.rules} ref={this.setAccessListRef}>
                     <PublicAccess
