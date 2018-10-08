@@ -18,7 +18,7 @@ before_deploy:
 - npm run build
 deploy:
   provider: npm
-  email: ci@dhis2.org
+  email: deployment@dhis2.org
   skip_cleanup: true
   api_key:
     secure: H3rbaRsqEnoiDZ+mZ8qSzHAsxpT8YqOHj+uhs9BafXluLQWZKvGVn+lqLAK+mrS3WK+GOtPT76wJYw+gr7i2i0jxrsNt4kov6GeHzmkKkVEQaejOgqV3UZl0f4VAXzATjbvBgdbcQPSqPbPruj3cCywfvzfIJdAB5sYd8Vb4uevA/GaquvzTsNLU/Wvxx8GTt5hGhqf6+V7jWgV3zDz/udO1KmHzDaZu719U3fkv9vW8KQKXp0Jld/a6u5r4pBcObfUVld+tgLPMj/4XDGqK9nZyauJQPkr8UohcIU6krf19aXWcCxdwwQNlBspbnRtLVj5mkIgDNjli45/229alxVJ94aYAQgysMMvMinAoheSnv3ANQhMDxNZmSa6y53r3enRkeF2iQDR0xxnjk1Gp242JGxl9J8QBON1na0Eh+0UL+aIq3CTc2Dx+svEJWIUMPdprNnSYXzou4TsPn04sJaDKIvFHOPmy+g3EOOslKBvCLAjCBQLCbTsBQLU7WZI0nL2raypQGlwTinSfsxwlgYYkX1QjaLmpodXzNPoU1B2kw5MIr1FTZPbb+sjCjV6nSW7WotngCqGEmr8hjbo59/1PY4PqaaXJFjxlrDMzdCu6ZkA5lbHW+pB+rRQ8mhYZPequfDL2geaNhF5hp9bDsEbiGZLA6A8KQxbmhyxnWcM=
