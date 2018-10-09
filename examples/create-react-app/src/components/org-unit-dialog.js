@@ -49,15 +49,6 @@ export default class OrgUnitDialogExample extends Component {
                 });
             });
 
-        setTimeout(() => {
-            this.setState({
-                selected: [
-                    { id: 'O6uvpzGd5pu', path: '/ImspTQPwCqd/O6uvpzGd5pu' },
-                    { id: 'EjnIQNVAXGp', path: '/ImspTQPwCqd/Vth0fbpFcsO/EjnIQNVAXGp' },
-                ],
-            });
-        }, 10000);
-
         this.loadOrgUnitLevels();
         this.loadOrgUnitGroups();
     }
