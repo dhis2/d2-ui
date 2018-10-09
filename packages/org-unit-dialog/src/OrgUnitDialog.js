@@ -70,11 +70,6 @@ const styles = {
     },
 };
 
-export const defaultState = {
-    orgUnitLevelOptions: [],
-    orgUnitGroupOptions: [],
-};
-
 class OrgUnitDialog extends React.PureComponent {
     static getDerivedStateFromProps(props, state) {
         return {

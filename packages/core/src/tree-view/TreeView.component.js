@@ -75,7 +75,7 @@ class TreeView extends React.Component {
             },
             children: {
                 position: 'relative',
-                marginLeft: 6,
+                marginLeft: 16,
                 height: this.state.collapsed ? 0 : 'inherit',
             },
         };
