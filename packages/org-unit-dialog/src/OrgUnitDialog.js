@@ -85,7 +85,6 @@ class OrgUnitDialog extends React.PureComponent {
         this.d2 = props.d2;
 
         this.state = {
-            ...defaultState,
             initiallyExpanded: this.props
                 .selected
                 .map(ou => removeLastPathSegment(ou.path)),

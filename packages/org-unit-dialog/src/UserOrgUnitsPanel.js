@@ -1,11 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import Grid from '@material-ui/core/Grid/Grid';
 import Checkbox from '@material-ui/core/Checkbox/Checkbox';
 import InputLabel from '@material-ui/core/InputLabel/InputLabel';
 import StopIcon from '@material-ui/icons/Stop';
-
 import userOrgUnits from './userOrgUnits';
 
 const UserOrgUnitsPanel = props => (
@@ -18,8 +16,7 @@ const UserOrgUnitsPanel = props => (
         {userOrgUnits.map(orgUnitType => (
             <Grid key={orgUnitType.id} item>
                 <Checkbox
-                    checked={props
-                        .userOrgUnits
+                    checked={props.userOrgUnits
                         .some(ouType => ouType.id === orgUnitType.id)
                     }
                     onChange={props.handleUserOrgUnitClick}
