@@ -131,7 +131,7 @@ class OrgUnitTree extends React.Component {
             // the current valueMap unless either `this.hasUnloadedData` or `forceReload` are true
             root.children.load(
                 { fields: 'id,displayName,children::isNotEmpty,path,parent' },
-                this.props.foreceReloadChildren,
+                this.props.forceReloadChildren,
             ).then((children) => {
                 this.setChildState(children);
             });
@@ -179,10 +179,10 @@ class OrgUnitTree extends React.Component {
                     onChildrenLoaded={this.props.onChildrenLoaded}
                     hideMemberCount={this.props.hideMemberCount}
                     orgUnitsPathsToInclude={this.props.orgUnitsPathsToInclude}
-                    foreceReloadChildren={this.props.foreceReloadChildren}
                     treeStyle={this.props.treeStyle}
                     searchResults={this.props.searchResults}
                     highlightSearchResults={this.props.searchResults}
+                    forceReloadChildren={this.props.forceReloadChildren}
                 />
             );
         }
@@ -426,7 +426,7 @@ OrgUnitTree.propTypes = {
      * If true `root.children.load` (a method on d2.ModelCollectionProperty) will be called with forceReload set to true, which is required
      * for dynamic OrgUnitTrees, i.e. in cases where parent-child relations are updated
      */
-    foreceReloadChildren: PropTypes.bool,
+    forceReloadChildren: PropTypes.bool,
 
     /**
      * Results from search
@@ -456,7 +456,7 @@ OrgUnitTree.defaultProps = {
     hideCheckboxes: false,
     hideMemberCount: false,
     orgUnitsPathsToInclude: null,
-    foreceReloadChildren: false,
+    forceReloadChildren: false,
     searchResults: [],
     highlightSearchResults: false,
 };
