@@ -19,7 +19,11 @@ class TreeView extends React.Component {
             hasBeenExpanded: true,
         }), () => {
             if (!this.state.collapsed && typeof this.props.onExpand === 'function') {
-                this.props.onExpand();
+                this.props.onExpand(this.props.model);
+            }
+
+            if (this.state.collapsed && typeof this.props.onCollapse === 'function') {
+                this.props.onCollapse(this.props.model);
             }
         });
     }
@@ -71,7 +75,7 @@ class TreeView extends React.Component {
             },
             children: {
                 position: 'relative',
-                marginLeft: 16,
+                marginLeft: 6,
                 height: this.state.collapsed ? 0 : 'inherit',
             },
         };
@@ -93,12 +97,14 @@ class TreeView extends React.Component {
         );
 
         const className = `tree-view ${this.props.className}`;
-        return <div className={className} style={Object.assign(styles.tree, this.props.style)}>{label}{children}</div>;
+        return <div className={className} style={{ ...styles.tree, ...this.props.style }}>{label}{children}</div>;
     }
 }
 
 // TODO: Documentation
 TreeView.propTypes = {
+    label: PropTypes.string,
+    model: PropTypes.object,
     children: PropTypes.node,
     persistent: PropTypes.bool,
     initiallyExpanded: PropTypes.bool,
@@ -106,6 +112,7 @@ TreeView.propTypes = {
     style: PropTypes.object,
     className: PropTypes.string,
     onExpand: PropTypes.func,
+    onCollapse: PropTypes.func,
     onClick: PropTypes.func,
 };
 
