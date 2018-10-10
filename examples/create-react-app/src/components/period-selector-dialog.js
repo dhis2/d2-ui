@@ -41,6 +41,10 @@ class PeriodSelectorDialogExample extends Component {
         });
     };
 
+    onClose = (periods) => {
+        this.onPeriodSelect(periods);
+    };
+
     toggleDialog = () => {
         this.setState({
             dialogOpened: !this.state.dialogOpened,
@@ -58,7 +62,7 @@ class PeriodSelectorDialogExample extends Component {
                 </div>
                 <PeriodSelectorDialog
                     open={this.state.dialogOpened}
-                    onClose={this.toggleDialog}
+                    onClose={this.onClose}
                     onUpdate={this.onPeriodSelect}
                     periods={this.state.periods}
                     d2={this.props.d2}
