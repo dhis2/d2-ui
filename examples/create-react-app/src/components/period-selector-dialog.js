@@ -66,7 +66,7 @@ class PeriodSelectorDialogExample extends Component {
                     onUpdate={this.onPeriodSelect}
                     periods={this.state.periods}
                     d2={this.props.d2}
-                    listHeight={100}
+                    listHeight={300}
                 />
                 <Snackbar
                     open={this.state.snackbar.open}
