@@ -102,7 +102,12 @@ class OrgUnitTree extends React.Component {
             this.setState({ loading: true });
 
             const root = this.props.root;
-            root.children.load({ fields: 'id,displayName,children::isNotEmpty,path,parent' }).then((children) => {
+            // d2.ModelCollectionProperty.load takes a second parameter `forceReload` and will just return
+            // the current valueMap unless either `this.hasUnloadedData` or `forceReload` are true
+            root.children.load(
+                { fields: 'id,displayName,children::isNotEmpty,path,parent' },
+                this.props.forceReloadChildren,
+            ).then((children) => {
                 this.setChildState(children);
             });
         }
@@ -141,6 +146,7 @@ class OrgUnitTree extends React.Component {
                     onChildrenLoaded={this.props.onChildrenLoaded}
                     hideMemberCount={this.props.hideMemberCount}
                     orgUnitsPathsToInclude={this.props.orgUnitsPathsToInclude}
+                    forceReloadChildren={this.props.forceReloadChildren}
                 />
             );
         }
@@ -209,7 +215,7 @@ class OrgUnitTree extends React.Component {
         const label = (
             <div
                 style={labelStyle}
-                onClick={(canBecomeCurrentRoot && setCurrentRoot) || (isSelectable && this.handleSelectClick)}
+                onClick={canBecomeCurrentRoot ? setCurrentRoot : (isSelectable ? this.handleSelectClick : undefined)}
                 role="button"
                 tabIndex={0}
             >
@@ -247,7 +253,7 @@ class OrgUnitTree extends React.Component {
 
         return (
             <div
-                onClick={isSelectable && this.handleSelectClick}
+                onClick={isSelectable ? this.handleSelectClick : undefined}
                 className="orgunit without-children"
                 style={ouContainerStyle}
                 role="button"
@@ -353,6 +359,12 @@ OrgUnitTree.propTypes = {
      * Array of paths of Organisation Units to include on tree. If not defined or empty, all children from root to leafs will be shown
      */
     orgUnitsPathsToInclude: PropTypes.array,
+
+    /**
+     * If true `root.children.load` (a method on d2.ModelCollectionProperty) will be called with forceReload set to true, which is required
+     * for dynamic OrgUnitTrees, i.e. in cases where parent-child relations are updated
+     */
+    forceReloadChildren: PropTypes.bool,
 };
 
 OrgUnitTree.defaultProps = {
@@ -369,6 +381,7 @@ OrgUnitTree.defaultProps = {
     hideCheckboxes: false,
     hideMemberCount: false,
     orgUnitsPathsToInclude: null,
+    forceReloadChildren: false,
 };
 
 export default OrgUnitTree;

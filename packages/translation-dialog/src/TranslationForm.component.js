@@ -8,7 +8,6 @@ import camelCaseToUnderscores from 'd2-utilizr/lib/camelCaseToUnderscores';
 import { Observable } from 'rxjs';
 import LocaleSelector from './LocaleSelector.component';
 import { getLocales, getTranslationsForModel, saveTranslations } from './translationForm.actions';
-import { withStateFrom } from '@dhis2/d2-ui-core';
 import { Store } from '@dhis2/d2-ui-core';
 import { CircularProgress } from '@dhis2/d2-ui-core';
 
@@ -203,8 +202,31 @@ TranslationForm.contextTypes = {
     d2: PropTypes.object,
 };
 
-export function getTranslationFormFor(model) {
-    return withStateFrom(getTranslationFormData(model), TranslationForm);
+
+class WithObservableState extends Component {
+    componentDidMount() {
+        this.disposable = this.props.stateSource$
+            .subscribe(
+                state => this.setState(state),
+                error => log.error(error),
+            );
+    }
+
+    componentWillUnmount() {
+        this.disposable && this.disposable.unsubscribe && this.disposable.unsubscribe();
+    }
+
+    render() {
+        return React.cloneElement(React.Children.only(this.props.children), {
+            ...this.state,
+        });
+    }
 }
 
-export default TranslationForm;
+const TranslationFormWithData = ({ model, ...props }) => (
+    <WithObservableState stateSource$={getTranslationFormData(model)}>
+        <TranslationForm {...props} />
+    </WithObservableState>
+);
+
+export default TranslationFormWithData;
