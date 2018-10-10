@@ -49,6 +49,7 @@ class PeriodSelectorDialog extends React.Component {
                         d2={this.props.d2}
                         periods={this.props.periods}
                         onPeriodsSelect={this.onPeriodsSelect}
+                        listHeight={this.props.listHeight}
                     />
                 </DialogContent>
                 <DialogActions style={{ padding: '24px' }}>
@@ -69,9 +70,11 @@ PeriodSelectorDialog.defaultProps = {
     fullWidth: true,
     onClose: () => null,
     periods: [],
+    listHeight: 320,
 };
 
 PeriodSelectorDialog.propTypes = {
+    listHeight: PropTypes.number,
     periods: PropTypes.array,
     d2: PropTypes.object.isRequired,
     fullWidth: PropTypes.bool,

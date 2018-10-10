@@ -3,8 +3,12 @@ import PropTypes from 'prop-types';
 import List from '@material-ui/core/List';
 import PeriodListItem from './PeriodListItem';
 
-const PeriodsList = props => (
-    <List component="nav" className="periods-list">
+const PeriodsList = (props, context) => (
+    <List
+        component="nav"
+        className="periods-list"
+        style={{ height: context.listHeight }}
+    >
         {props.periods.map((period, index) =>
             (<PeriodListItem
                 onPeriodClick={props.onPeriodClick}
@@ -19,6 +23,10 @@ const PeriodsList = props => (
 PeriodsList.propTypes = {
     periods: PropTypes.array.isRequired,
     onPeriodClick: PropTypes.func.isRequired,
+};
+
+PeriodsList.contextTypes = {
+    listHeight: PropTypes.number,
 };
 
 export default PeriodsList;
