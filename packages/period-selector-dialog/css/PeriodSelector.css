@@ -38,11 +38,6 @@ button.nav-button {
     vertical-align: top;
 }
 
-
-.selected-periods .selector-area .periods-list {
-    height: 318px;
-}
-
 .selected-periods .title {
     margin: 0 -10px;
     padding: 0 0 10px 10px;

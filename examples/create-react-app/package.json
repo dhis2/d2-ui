@@ -1,6 +1,6 @@
 {
   "name": "example-cra",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "private": true,
   "dependencies": {
     "@dhis2/d2-ui-app": "^1.0.8",
