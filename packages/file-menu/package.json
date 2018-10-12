@@ -1,6 +1,6 @@
 {
     "name": "@dhis2/d2-ui-file-menu",
-    "version": "3.2.0",
+    "version": "3.2.1",
     "description": "File menu component for DHIS2",
     "main": "./build/cjs/index.js",
     "module": "./build/es/index.js",
@@ -46,7 +46,7 @@
     },
     "husky": {
         "hooks": {
-            "pre-commit": "npm run extract-pot && npm run prettify && git add ./i18n ./src/locales"
+            "pre-commit": "npm run extract-pot && npm run prettify && git add ./i18n"
         }
     },
     "devDependencies": {
