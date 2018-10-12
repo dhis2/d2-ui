@@ -60,40 +60,50 @@ class FixedPeriods extends Component {
         });
     };
 
-    renderOptions = () => (<Fragment>
-        <FormControl className="form-control period-type">
-            <InputLabel htmlFor="period-type">
-                {this.i18n.getTranslation('Period type')}
-            </InputLabel>
-            <Select
-                onChange={this.onPeriodTypeChange}
-                value={this.state.periodType}
-                inputProps={{ name: 'periodType', id: 'period-type' }}
-            >
-                {this.periodsGenerator.getOptions().map(option =>
-                    <MenuItem value={option} key={option}>{option}</MenuItem>,
-                )}
-            </Select>
-        </FormControl>
-        <FormControl className="form-control year">
-            <InputLabel htmlFor="year">
-                {this.i18n.getTranslation('Year')}
-            </InputLabel>
-            <Select
-                onChange={this.onYearChange}
-                value={this.state.year}
-                inputProps={{ name: 'year', id: 'year' }}
-            >
-                {this.years.sort().map(year => <MenuItem value={year} key={year}>{year}</MenuItem>)}
-            </Select>
-        </FormControl>
-    </Fragment>);
+    renderOptions = () => (
+        <div className="options-area">
+            <FormControl className="form-control period-type">
+                <InputLabel htmlFor="period-type">
+                    {this.i18n.getTranslation('Period type')}
+                </InputLabel>
+                <Select
+                    onChange={this.onPeriodTypeChange}
+                    value={this.state.periodType}
+                    inputProps={{ name: 'periodType', id: 'period-type' }}
+                    disableUnderline
+                >
+                    {this.periodsGenerator.getOptions().map(option =>
+                        <MenuItem value={option} key={option}>{option}</MenuItem>,
+                    )}
+                </Select>
+            </FormControl>
+            <FormControl className="form-control year">
+                <InputLabel htmlFor="year">
+                    {this.i18n.getTranslation('Year')}
+                </InputLabel>
+                <Select
+                    onChange={this.onYearChange}
+                    value={this.state.year}
+                    inputProps={{ name: 'year', id: 'year' }}
+                    disableUnderline
+                >
+                    {this.years.sort().map(year => <MenuItem value={year} key={year}>{year}</MenuItem>)}
+                </Select>
+            </FormControl>
+        </div>
+    );
 
     render() {
-        return (<div className="selector-area">
-            {this.renderOptions()}
-            <PeriodsList periods={this.props.periods} onPeriodClick={this.props.onPeriodClick} />
-        </div>);
+        return (
+            <div className="selector-area">
+                {this.renderOptions()}
+                <PeriodsList
+                    periods={this.props.periods}
+                    onPeriodClick={this.props.onPeriodClick}
+                    listName={'periods-list-offered'}
+                />
+            </div>
+        );
     }
 }
 

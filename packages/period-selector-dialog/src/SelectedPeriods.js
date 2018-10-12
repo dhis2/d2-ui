@@ -16,18 +16,21 @@ class SelectedPeriods extends React.Component {
     };
 
     render() {
-        return (<div className="selector-area">
-            <h4 className="title">
-                {this.i18n.getTranslation('Selected periods')}
-            </h4>
-            <PeriodsList
-                periods={this.props.periods}
-                onPeriodClick={this.props.onPeriodClick}
-            />
-            <div style={{ textAlign: 'center' }}>
-                <Button onClick={this.clearPeriods}>{this.i18n.getTranslation('Clear all')}</Button>
+        return (
+            <div className="selector-area">
+                <h3 className="title"> {this.i18n.getTranslation('Selected periods')} </h3>
+                <PeriodsList
+                    periods={this.props.periods}
+                    onPeriodClick={this.props.onPeriodClick}
+                    listName={'periods-list-selected'}
+                />
+                <div style={{ textAlign: 'center'}}>
+                    <Button onClick={this.clearPeriods} >
+                        {this.i18n.getTranslation('Clear all')}
+                    </Button>
+                </div>
             </div>
-        </div>);
+        );
     }
 }
 

@@ -34,28 +34,37 @@ class RelativePeriods extends Component {
         return generator.generatePeriods();
     };
 
-    renderOptions = () => (<Fragment>
-        <FormControl className="form-control period-type">
-            <InputLabel htmlFor="period-type">
-                {this.i18n.getTranslation('Period type')}
-            </InputLabel>
-            <Select
-                onChange={this.onPeriodTypeChange}
-                value={this.state.periodType}
-                inputProps={{ name: 'periodType', id: 'period-type' }}
-            >
-                {this.periodsGenerator.getOptions().map(option =>
-                    (<MenuItem value={option} key={option}>{option}</MenuItem>))
-                }
-            </Select>
-        </FormControl>
-    </Fragment>);
+    renderOptions = () => (
+        <div className="options-area">
+            <FormControl className="form-control period-type">
+                <InputLabel htmlFor="period-type">
+                    {this.i18n.getTranslation('Period type')}
+                </InputLabel>
+                <Select
+                    onChange={this.onPeriodTypeChange}
+                    value={this.state.periodType}
+                    inputProps={{ name: 'periodType', id: 'period-type' }}
+                    disableUnderline
+                >
+                    {this.periodsGenerator.getOptions().map(option =>
+                        (<MenuItem value={option} key={option}>{option}</MenuItem>))
+                    }
+                </Select>
+            </FormControl>
+        </div>
+    );
 
     render() {
-        return (<div className="selector-area">
-            {this.renderOptions()}
-            <PeriodsList periods={this.props.periods} onPeriodClick={this.props.onPeriodClick} />
-        </div>);
+        return (
+            <div className="selector-area">
+                {this.renderOptions()}
+                <PeriodsList
+                    periods={this.props.periods}
+                    onPeriodClick={this.props.onPeriodClick}
+                    listName={'periods-list-offered'}
+                />
+            </div>
+        );
     }
 }
 

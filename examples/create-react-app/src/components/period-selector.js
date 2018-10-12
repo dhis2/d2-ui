@@ -36,13 +36,23 @@ class PeriodSelectorExample extends Component {
         });
     };
 
+    selectPeriodDimension = (period) => {
+        console.log('selected period:', period);
+    };
+
+    deselectPeriodDimension = (period) => {
+        console.log('de-selected period: ', period);
+    };
+
     render() {
         return (
             <MuiThemeProvider muiTheme={getMuiTheme()}>
                 <Fragment>
                     <PeriodSelector
-                        onPeriodsSelect={this.onPeriodsSelect}
                         d2={this.props.d2}
+                        onPeriodsSelect={this.onPeriodsSelect}
+                        onSelect={this.selectPeriodDimension}
+                        onDeselect={this.deselectPeriodDimension}
                     />
                     <Snackbar
                         open={this.state.snackbar.open}

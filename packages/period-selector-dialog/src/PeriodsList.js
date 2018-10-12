@@ -1,13 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import List from '@material-ui/core/List';
 import PeriodListItem from './PeriodListItem';
 
-const PeriodsList = (props, context) => (
-    <List
-        component="nav"
-        className="periods-list"
-        style={{ height: context.listHeight }}
+const PeriodsList = props => (
+    <ul
+        className={props.listName}
     >
         {props.periods.map((period, index) =>
             (<PeriodListItem
@@ -15,13 +12,15 @@ const PeriodsList = (props, context) => (
                 period={period}
                 index={index}
                 key={period.id}
+                listName={props.listName}
             />),
         )}
-    </List>
+    </ul>
 );
 
 PeriodsList.propTypes = {
     periods: PropTypes.array.isRequired,
+    listName: PropTypes.string.isRequired,
     onPeriodClick: PropTypes.func.isRequired,
 };
 

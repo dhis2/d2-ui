@@ -53,6 +53,7 @@ class Periods extends Component {
             .periods
             .filter(period => period.selected === true);
 
+        this.props.onSelect(selectedOfferedPeriods);
         this.props.addSelectedPeriods(selectedOfferedPeriods);
         this.props.removeOfferedPeriods(selectedOfferedPeriods);
     };
@@ -63,63 +64,72 @@ class Periods extends Component {
             .periods
             .filter(period => period.selected === true);
 
+        this.props.onDeselect(periods);
         this.props.removeSelectedPeriods(periods);
         this.props.addOfferedPeriods(periods);
     };
 
-    renderPeriodTypeButtons = () => (<Fragment>
-        <PeriodTypeButton
-            periodType={PeriodTypes.RELATIVE}
-            activePeriodType={this.props.periodType}
-            text={'Relative periods'}
-            onClick={this.onPeriodTypeClick}
-        />
-        <PeriodTypeButton
-            periodType={PeriodTypes.FIXED}
-            activePeriodType={this.props.periodType}
-            text={'Fixed periods'}
-            onClick={this.onPeriodTypeClick}
-        />
-    </Fragment>);
+    renderPeriodTypeButtons = () => (
+        <Fragment>
+            <PeriodTypeButton
+                periodType={PeriodTypes.RELATIVE}
+                activePeriodType={this.props.periodType}
+                text={'Relative periods'}
+                onClick={this.onPeriodTypeClick}
+            />
+            <PeriodTypeButton
+                periodType={PeriodTypes.FIXED}
+                activePeriodType={this.props.periodType}
+                text={'Fixed periods'}
+                onClick={this.onPeriodTypeClick}
+            />
+        </Fragment>
+    );
 
-    renderSelectButtons = () => (<Fragment>
-        <Button
-            className="select-button"
-            onClick={this.onSelectPeriods}
-        >
-            <ArrowForwardIcon />
-        </Button>
-        <Button
-            className="select-button"
-            onClick={this.onUnselectPeriods}
-        >
-            <ArrowBackIcon />
-        </Button>
-    </Fragment>);
+    renderSelectButtons = () => (
+        <Fragment>
+            <Button
+                className="select-button"
+                onClick={this.onSelectPeriods}
+            >
+                <ArrowForwardIcon />
+            </Button>
+            <Button
+                className="select-button"
+                onClick={this.onUnselectPeriods}
+            >
+                <ArrowBackIcon />
+            </Button>
+        </Fragment>
+    );
 
     render() {
-        return (<div className="periods-component">
-            {this.renderPeriodTypeButtons()}
-            <div>
-                <div className="block options">
-                    <OfferedPeriods
-                        periodType={this.props.periodType}
-                        periods={this.props.offeredPeriods.periods}
-                        setOfferedPeriods={this.props.setOfferedPeriods}
-                        onPeriodClick={this.props.toggleOfferedPeriod}
-                    />
-                </div><div className="block buttons">
-                    {this.renderSelectButtons()}
-                </div><div className="block selected-periods">
-                    <SelectedPeriods
-                        periods={this.props.selectedPeriods.periods}
-                        onPeriodClick={this.props.toggleSelectedPeriod}
-                        setSelectedPeriods={this.props.setSelectedPeriods}
-                        addOfferedPeriods={this.props.addOfferedPeriods}
-                    />
+        return (
+            <div className="periods-component">
+                {this.renderPeriodTypeButtons()}
+                <div className="periods-container">
+                    <div className="block options">
+                        <OfferedPeriods
+                            periodType={this.props.periodType}
+                            periods={this.props.offeredPeriods.periods}
+                            setOfferedPeriods={this.props.setOfferedPeriods}
+                            onPeriodClick={this.props.toggleOfferedPeriod}
+                        />
+                    </div>
+                    <div className="block buttons">
+                        {this.renderSelectButtons()}
+                    </div>
+                    <div className="block selected-periods">
+                        <SelectedPeriods
+                            periods={this.props.selectedPeriods.periods}
+                            onPeriodClick={this.props.toggleSelectedPeriod}
+                            setSelectedPeriods={this.props.setSelectedPeriods}
+                            addOfferedPeriods={this.props.addOfferedPeriods}
+                        />
+                    </div>
                 </div>
             </div>
-        </div>);
+        );
     }
 }
 
@@ -132,6 +142,8 @@ Periods.propTypes = {
     setOfferedPeriods: PropTypes.func.isRequired,
     setSelectedPeriods: PropTypes.func.isRequired,
     onPeriodsSelect: PropTypes.func.isRequired,
+    onSelect: PropTypes.func,
+    onDeselect: PropTypes.func,
     addSelectedPeriods: PropTypes.func.isRequired,
     addOfferedPeriods: PropTypes.func.isRequired,
     removeOfferedPeriods: PropTypes.func.isRequired,
@@ -142,6 +154,11 @@ Periods.propTypes = {
 
 Periods.contextTypes = {
     d2: PropTypes.object,
+};
+
+Periods.defaultProps = {
+    onSelect: () => null,
+    onDeselect: () => null,
 };
 
 const mapStateToProps = state => ({

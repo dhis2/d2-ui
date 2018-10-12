@@ -42,6 +42,7 @@ class PeriodSelectorDialog extends React.Component {
                 onClose={this.onCloseClick}
                 fullWidth={fullWidth}
                 maxWidth={maxWidth}
+                
             >
                 <DialogTitle>{this.i18n.getTranslation('Period')}</DialogTitle>
                 <DialogContent>
