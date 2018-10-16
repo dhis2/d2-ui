@@ -13,10 +13,7 @@
         "react": "^16.0.0",
         "react-dom": "^16.0.0"
     },
-    "author": "Mark Polak",
-    "contributors": [
-        "Ilya Nee <ilya@dhis2.org>"
-    ],
+    "author": "Ilya Nee <ilya@dhis2.org>",
     "scripts": {
         "prebuild": "rimraf ./build/*",
         "build": "npm run build:commonjs && npm run build:es",
@@ -24,7 +21,7 @@
         "build:es": "cross-env BABEL_ENV=es babel src --out-dir build/es --ignore spec.js",
         "build:umd": "cross-env && webpack -p",
         "watch": "npm run build:es --  --watch",
-        "test-ci": "jest --config=../../jest.config.js packages/org-unit-tree"
+        "test-ci": "jest --config=../../jest.config.js packages/org-unit-dialog"
     },
     "dependencies": {
         "@dhis2/d2-ui-core": "^1.3.2",
