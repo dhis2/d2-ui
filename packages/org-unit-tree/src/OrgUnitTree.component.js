@@ -193,6 +193,7 @@ class OrgUnitTree extends React.Component {
                     highlightSearchResults={this.props.highlightSearchResults}
                     forceReloadChildren={this.props.forceReloadChildren}
                     showFolderIcon={this.props.showFolderIcon}
+                    disableSpacer={this.props.disableSpacer}
                 />
             );
         }
@@ -317,7 +318,7 @@ class OrgUnitTree extends React.Component {
                 role="button"
                 tabIndex={0}
             >
-                <div style={styles.spacer} />
+                {!this.props.disableSpacer && <div style={styles.spacer} />}
                 {label}
             </div>
         );
@@ -457,6 +458,11 @@ OrgUnitTree.propTypes = {
      * Indicates if showing folder icon is enabled
      */
     showFolderIcon: PropTypes.bool,
+
+    /**
+     * Prop indicating if spacer should be enabled
+     */
+    disableSpacer: PropTypes.bool,
 };
 
 OrgUnitTree.defaultProps = {
@@ -480,6 +486,7 @@ OrgUnitTree.defaultProps = {
     searchResults: [],
     highlightSearchResults: false,
     showFolderIcon: false,
+    disableSpacer: false,
 };
 
 export default OrgUnitTree;

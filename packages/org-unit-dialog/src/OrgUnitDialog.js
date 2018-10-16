@@ -42,10 +42,8 @@ const styles = {
             fontWeight: 400,
             fontSize: 14,
             color: 'inherit',
-            marginBottom: '3px',
         },
         labelStyle: {
-            marginBottom: '3px',
             fontSize: 14,
             fontWeight: 400,
 
@@ -284,6 +282,7 @@ class OrgUnitDialog extends React.PureComponent {
                                 labelStyle={styles.orgUnitTree.labelStyle}
                                 selectedLabelStyle={styles.orgUnitTree.selectedLabelStyle}
                                 showFolderIcon
+                                disableSpacer
                             />
                         </div>
                     </div>
