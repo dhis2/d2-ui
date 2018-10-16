@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import FolderIcon from '@material-ui/icons/Folder';
 import FolderOpenIcon from '@material-ui/icons/FolderOpen';
+import StopIcon from '@material-ui/icons/Stop';
 
 import ModelBase from 'd2/lib/model/Model';
 import ModelCollection from 'd2/lib/model/ModelCollection';
@@ -49,13 +50,6 @@ const styles = {
         fontSize: '0.75rem',
         marginLeft: 4,
     },
-    folderIcon: {
-        fontSize: 18,
-        position: 'relative',
-        top: 3,
-        margin: '0 4px 0 2px',
-        color: '#6eadff',
-    }
 };
 
 class OrgUnitTree extends React.Component {
@@ -281,9 +275,12 @@ class OrgUnitTree extends React.Component {
                         style={this.props.labelStyle.checkbox}
                     />
                 )}
-                {this.props.showFolderIcon && (isInitiallyExpanded
-                    ? <FolderOpenIcon style={{ ...styles.folderIcon, ...this.props.labelStyle.folderIconStyle }} />
-                    : <FolderIcon style={{ ...styles.folderIcon, ...this.props.labelStyle.folderIconStyle }} />
+                {this.props.showFolderIcon && hasChildren && (isInitiallyExpanded
+                    ? <FolderOpenIcon style={{ ...styles.folderIcon, ...this.props.labelStyle.folderIcon }} />
+                    : <FolderIcon style={{ ...styles.folderIcon, ...this.props.labelStyle.folderIcon }} />
+                )}
+                {this.props.showFolderIcon && !hasChildren && (
+                    <StopIcon style={{ ...styles.stopIcon, ...this.props.labelStyle.stopIcon }} />
                 )}
                 {currentOu.displayName}
                 {hasChildren && !this.props.hideMemberCount && !!memberCount && (

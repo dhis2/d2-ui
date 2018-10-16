@@ -78,15 +78,26 @@ class TreeView extends React.Component {
                 position: 'relative',
                 marginLeft: 16,
                 height: this.state.collapsed ? 0 : 'inherit',
+                ...this.props.style,
             },
         };
 
         const label = (
             <div style={styles.itemLabel}>
-                <div className="arrow" style={styles.arrow} onClick={this.toggleCollapsed.bind(this)}>
+                <div
+                    className="arrow"
+                    style={styles.arrow}
+                    onClick={this.toggleCollapsed.bind(this)}
+                >
                     <div style={styles.arrowSymbol}>{this.props.arrowSymbol}</div>
                 </div>
-                <div className="label" onClick={this.handleClick} style={styles.clickTarget}>{this.props.label}</div>
+                <div
+                    className="label"
+                    onClick={this.handleClick}
+                    style={styles.clickTarget}
+                >
+                    {this.props.label}
+                </div>
             </div>
         );
 

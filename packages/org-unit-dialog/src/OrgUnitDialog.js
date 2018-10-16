@@ -51,6 +51,20 @@ const styles = {
                 position: 'relative',
                 bottom: 3,
             },
+            folderIcon: {
+                fontSize: 18,
+                position: 'relative',
+                top: 3,
+                margin: '0 4px 0 2px',
+                color: '#6eadff',
+            },
+            stopIcon: {
+                color: '#a8a7a8',
+                fontSize: 15,
+                position: 'relative',
+                top: 3,
+                margin: '0px 2px 0px 0px',
+            },
         },
         treeStyle: {
             marginLeft: 5,
