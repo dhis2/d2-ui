@@ -38,17 +38,36 @@ const styles = {
         },
     },
     orgUnitTree: {
+        selectedLabelStyle: {
+            fontWeight: 400,
+            fontSize: 14,
+            color: 'inherit',
+        },
         labelStyle: {
             marginBottom: '3px',
+            fontSize: 14,
+            fontWeight: 400,
+
+            checkbox: {
+                position: 'relative',
+                bottom: 3,
+            }
         },
         treeStyle: {
             marginLeft: 5,
+            arrow: {
+                color: '#a7a7a7',
+                fontSize: 15
+            }
         },
     },
     userOrgUnits: {
         index: {
             background: '#F4F5F8',
             margin: '0 0px 10px',
+        },
+        checkbox: {
+            fontSize: 16,
         },
         stopIcon: {
             position: 'relative',
@@ -71,13 +90,6 @@ const styles = {
 };
 
 class OrgUnitDialog extends React.PureComponent {
-    static getDerivedStateFromProps(props, state) {
-        return {
-            ...state,
-            initiallyExpanded: props.selected.map(ou => removeLastPathSegment(ou.path)),
-        };
-    }
-
     constructor(props) {
         super(props);
 
@@ -95,6 +107,38 @@ class OrgUnitDialog extends React.PureComponent {
         return {
             d2: this.props.d2,
         };
+    }
+
+    componentDidUpdate(prevProps) {
+        // if props.periods.length changed by more than 1, then new/favorite was selected
+        if (Math.abs(prevProps.selected.length - this.props.selected.length) > 1) {
+            // In this case refresh expanded org units
+            this.setState({
+                initiallyExpanded: this.props.selected.map(ou => removeLastPathSegment(ou.path)),
+            });
+        } else {
+            // If props.periods.length changed by 1 or didnt change
+            // then check if new/favorite was selected by comparing ids
+            // if more than 1 ids are different, then new/favorite was selected
+            // and we should refresh expanded org units
+            let counter = 0;
+
+            const periods = prevProps.selected.length < this.props.selected.length
+                ? prevProps.selected
+                : this.props.selected;
+
+            for (let i = 0; i < periods.length; ++i) {
+                if (prevProps.selected[i].id !== this.props.selected[i].id) {
+                    counter += 1;
+
+                    if (counter > 1) {
+                        this.setState({
+                            initiallyExpanded: this.props.selected.map(ou => removeLastPathSegment(ou.path)),
+                        });
+                    }
+                }
+            }
+        }
     }
 
     onUpdateClick = () => {
@@ -143,6 +187,65 @@ class OrgUnitDialog extends React.PureComponent {
         return '';
     };
 
+    renderOptionsPanel = () => (
+        <Grid
+            spacing={8}
+            style={styles.footer.index}
+            container
+        >
+            <Grid item xs={4}>
+                <InputLabel htmlFor="level">{this.i18n.getTranslation('Level')}</InputLabel>
+                <Select
+                    value={this.props.level}
+                    onChange={this.props.setLevel}
+                    input={<Input name="level" id="level" />}
+                    renderValue={this.renderLevelOptions}
+                    disabled={this.props.userOrgUnits.length > 0}
+                    multiple
+                    displayEmpty
+                    fullWidth
+                >
+                    <MenuItem value="">
+                        <em>{this.i18n.getTranslation('Select a level')}</em>
+                    </MenuItem>
+                    {this.props.levelOptions.map(option => (
+                        <MenuItem
+                            key={option.id}
+                            value={option.id}
+                        >
+                            {option.displayName}
+                        </MenuItem>
+                    ))}
+                </Select>
+            </Grid>
+            <Grid item xs={4}>
+                <InputLabel htmlFor="group">{this.i18n.getTranslation('Group')}</InputLabel>
+                <Select
+                    value={this.props.group}
+                    onChange={this.props.setGroup}
+                    input={<Input name="group" id="group" />}
+                    renderValue={this.renderGroupOptions}
+                    disabled={this.props.userOrgUnits.length > 0}
+                    multiple
+                    displayEmpty
+                    fullWidth
+                >
+                    <MenuItem value="">
+                        <em>{this.i18n.getTranslation('Select a group')}</em>
+                    </MenuItem>
+                    {this.props.groupOptions.map(option => (
+                        <MenuItem
+                            key={option.id}
+                            value={option.id}
+                        >
+                            {option.displayName}
+                        </MenuItem>
+                    ))}
+                </Select>
+            </Grid>
+        </Grid>
+    );
+
     render = () => (
         <Dialog
             open={this.props.open}
@@ -176,67 +279,14 @@ class OrgUnitDialog extends React.PureComponent {
                                 onCollapse={this.onCollapse}
                                 treeStyle={styles.orgUnitTree.treeStyle}
                                 labelStyle={styles.orgUnitTree.labelStyle}
+                                selectedLabelStyle={styles.orgUnitTree.selectedLabelStyle}
+                                showFolderIcon
                             />
                         </div>
                     </div>
                 </div>
                 <div>
-                    <Grid
-                        spacing={8}
-                        style={styles.footer.index}
-                        container
-                    >
-                        <Grid item xs={4}>
-                            <InputLabel htmlFor="level">{this.i18n.getTranslation('Level')}</InputLabel>
-                            <Select
-                                value={this.props.level}
-                                onChange={this.props.setLevel}
-                                input={<Input name="level" id="level" />}
-                                renderValue={this.renderLevelOptions}
-                                disabled={this.props.userOrgUnits.length > 0}
-                                multiple
-                                displayEmpty
-                                fullWidth
-                            >
-                                <MenuItem value="">
-                                    <em>{this.i18n.getTranslation('Select a level')}</em>
-                                </MenuItem>
-                                {this.props.levelOptions.map(option => (
-                                    <MenuItem
-                                        key={option.id}
-                                        value={option.id}
-                                    >
-                                        {option.displayName}
-                                    </MenuItem>
-                                ))}
-                            </Select>
-                        </Grid>
-                        <Grid item xs={4}>
-                            <InputLabel htmlFor="group">{this.i18n.getTranslation('Group')}</InputLabel>
-                            <Select
-                                value={this.props.group}
-                                onChange={this.props.setGroup}
-                                input={<Input name="group" id="group" />}
-                                renderValue={this.renderGroupOptions}
-                                disabled={this.props.userOrgUnits.length > 0}
-                                multiple
-                                displayEmpty
-                                fullWidth
-                            >
-                                <MenuItem value="">
-                                    <em>{this.i18n.getTranslation('Select a group')}</em>
-                                </MenuItem>
-                                {this.props.groupOptions.map(option => (
-                                    <MenuItem
-                                        key={option.id}
-                                        value={option.id}
-                                    >
-                                        {option.displayName}
-                                    </MenuItem>
-                                ))}
-                            </Select>
-                        </Grid>
-                    </Grid>
+                    {this.renderOptionsPanel()}
                 </div>
             </DialogContent>
             <DialogActions style={{ padding: '24px' }}>

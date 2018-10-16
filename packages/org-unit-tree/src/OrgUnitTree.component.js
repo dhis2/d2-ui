@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import LinearProgress from '@material-ui/core/LinearProgress';
+import FolderIcon from '@material-ui/icons/Folder';
+import FolderOpenIcon from '@material-ui/icons/FolderOpen';
 
 import ModelBase from 'd2/lib/model/Model';
 import ModelCollection from 'd2/lib/model/ModelCollection';
@@ -47,6 +49,13 @@ const styles = {
         fontSize: '0.75rem',
         marginLeft: 4,
     },
+    folderIcon: {
+        fontSize: 18,
+        position: 'relative',
+        top: 3,
+        margin: '0 4px 0 2px',
+        color: '#6eadff',
+    }
 };
 
 class OrgUnitTree extends React.Component {
@@ -169,7 +178,7 @@ class OrgUnitTree extends React.Component {
                     onChangeCurrentRoot={this.props.onChangeCurrentRoot}
                     labelStyle={{
                         ...this.props.labelStyle,
-                        fontWeight: highlighted ? 500 : 300,
+                        fontWeight: highlighted ? 500 : this.props.labelStyle.fontWeight,
                         color: highlighted ? 'orange' : 'inherit',
                     }}
                     selectedLabelStyle={this.props.selectedLabelStyle}
@@ -181,8 +190,9 @@ class OrgUnitTree extends React.Component {
                     orgUnitsPathsToInclude={this.props.orgUnitsPathsToInclude}
                     treeStyle={this.props.treeStyle}
                     searchResults={this.props.searchResults}
-                    highlightSearchResults={this.props.searchResults}
+                    highlightSearchResults={this.props.highlightSearchResults}
                     forceReloadChildren={this.props.forceReloadChildren}
+                    showFolderIcon={this.props.showFolderIcon}
                 />
             );
         }
@@ -267,7 +277,12 @@ class OrgUnitTree extends React.Component {
                         disabled={!isSelectable}
                         checked={isSelected}
                         onClick={this.handleSelectClick}
+                        style={this.props.labelStyle.checkbox}
                     />
+                )}
+                {this.props.showFolderIcon && (isInitiallyExpanded
+                    ? <FolderOpenIcon style={{ ...styles.folderIcon, ...this.props.labelStyle.folderIconStyle }} />
+                    : <FolderIcon style={{ ...styles.folderIcon, ...this.props.labelStyle.folderIconStyle }} />
                 )}
                 {currentOu.displayName}
                 {hasChildren && !this.props.hideMemberCount && !!memberCount && (
@@ -437,6 +452,11 @@ OrgUnitTree.propTypes = {
      * Indicates if search results should be highlighted
      */
     highlightSearchResults: PropTypes.bool,
+
+    /**
+     * Indicates if showing folder icon is enabled
+     */
+    showFolderIcon: PropTypes.bool,
 };
 
 OrgUnitTree.defaultProps = {
@@ -459,6 +479,7 @@ OrgUnitTree.defaultProps = {
     forceReloadChildren: false,
     searchResults: [],
     highlightSearchResults: false,
+    showFolderIcon: false,
 };
 
 export default OrgUnitTree;

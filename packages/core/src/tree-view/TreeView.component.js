@@ -64,6 +64,7 @@ class TreeView extends React.Component {
                 paddingLeft: 4,
                 textAlign: 'center',
                 cursor: 'pointer',
+                ...this.props.style.arrow,
             },
             arrowSymbol: {
                 transition: 'transform 150ms ease-out',

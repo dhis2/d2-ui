@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid/Grid';
 import Checkbox from '@material-ui/core/Checkbox/Checkbox';
+import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
+import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import InputLabel from '@material-ui/core/InputLabel/InputLabel';
 import StopIcon from '@material-ui/icons/Stop';
 import userOrgUnits from './userOrgUnits';
@@ -24,6 +26,8 @@ const UserOrgUnitsPanel = props => (
                         id: orgUnitType.id,
                         name: orgUnitType.id,
                     }}
+                    checkedIcon={<CheckBoxIcon style={props.styles.checkbox} />}
+                    icon={<CheckBoxOutlineBlankIcon style={props.styles.checkbox} />}
                     color="primary"
                 />
                 <InputLabel htmlFor={orgUnitType.id}>
