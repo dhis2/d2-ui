@@ -42,6 +42,7 @@ const styles = {
             fontWeight: 400,
             fontSize: 14,
             color: 'inherit',
+            marginBottom: '3px',
         },
         labelStyle: {
             marginBottom: '3px',
@@ -51,14 +52,14 @@ const styles = {
             checkbox: {
                 position: 'relative',
                 bottom: 3,
-            }
+            },
         },
         treeStyle: {
             marginLeft: 5,
             arrow: {
                 color: '#a7a7a7',
-                fontSize: 15
-            }
+                fontSize: 15,
+            },
         },
     },
     userOrgUnits: {
