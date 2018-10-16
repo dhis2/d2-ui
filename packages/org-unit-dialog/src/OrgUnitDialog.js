@@ -169,6 +169,7 @@ class OrgUnitDialog extends React.PureComponent {
             const options = this.props.groupOptions.reduce(this.normalizeOptions, {});
 
             return selected
+                .filter(id => options[id])
                 .map(id => options[id].displayName)
                 .join(', ');
         }
@@ -181,6 +182,7 @@ class OrgUnitDialog extends React.PureComponent {
             const options = this.props.levelOptions.reduce(this.normalizeOptions, {});
 
             return selected
+                .filter(id => options[id])
                 .map(id => options[id].displayName)
                 .join(', ');
         }
