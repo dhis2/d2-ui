@@ -1,21 +1,22 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Dialog from 'material-ui/Dialog';
-import { Button } from '@dhis2/d2-ui-core';
-import defer from 'lodash/fp/defer';
-import i18n from '@dhis2/d2-i18n';
 import { compact } from 'lodash/fp';
+import defer from 'lodash/fp/defer';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import FormControl from '@material-ui/core/FormControl';
+import TextField from '@material-ui/core/TextField';
+import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import i18n from '@dhis2/d2-i18n';
 import SharingDialog from '@dhis2/d2-ui-sharing-dialog';
 import MentionsWrapper from '@dhis2/d2-ui-mentions-wrapper';
-import TextField from 'material-ui/TextField';
 
 const styles = {
     dialog: {
-        maxWidth: 600,
-        height: 500,
-    },
-    textfield: {
-        width: '100%',
+        width: 550,
     },
 };
 
@@ -37,8 +38,8 @@ class InterpretationDialog extends Component {
         this.props.onClose();
     };
 
-    onChange = newValue => {
-        this.setState({ value: newValue });
+    onChange = event => {
+        this.setState({ value: event.target.value });
     };
 
     save = () => {
@@ -57,26 +58,13 @@ class InterpretationDialog extends Component {
 
     render() {
         const { d2 } = this.context;
-        const { interpretation } = this.props;
+        const { interpretation, classes } = this.props;
         const { value, sharingDialogIsOpen, savedInterpretation } = this.state;
         const isActionEdit = !!interpretation.id;
         const title = isActionEdit
             ? i18n.t('Edit interpretation')
             : i18n.t('Create interpretation');
         const buttonProps = { color: 'primary', disabled: !value };
-        const actions = compact([
-            <Button color="primary" onClick={this.cancel}>
-                {i18n.t('Cancel')}
-            </Button>,
-            !isActionEdit && (
-                <Button {...buttonProps} onClick={this.saveAndShare}>
-                    {i18n.t('Save & share')}
-                </Button>
-            ),
-            <Button {...buttonProps} onClick={this.save}>
-                {i18n.t('Save')}
-            </Button>,
-        ]);
 
         if (sharingDialogIsOpen) {
             return (
@@ -91,23 +79,43 @@ class InterpretationDialog extends Component {
         } else {
             return (
                 <Dialog
-                    title={title}
                     open={true}
-                    onRequestClose={this.cancel}
-                    actions={actions}
-                    contentStyle={styles.dialog}
-                    repositionOnUpdate={false}
+                    onClose={this.cancel}
+                    maxWidth="md"
+                    classes={{paper: classes.dialog}}
                 >
-                    <MentionsWrapper d2={d2} onUserSelect={this.onChange}>
-                        <TextField
-                            name="interpretation"
-                            value={value}
-                            multiLine={true}
-                            rows={1}
-                            onChange={(event, value) => this.onChange(value)}
-                            style={styles.textfield}
-                        />
-                    </MentionsWrapper>
+                    <DialogTitle>{title}</DialogTitle>
+
+                    <DialogContent>
+                        <MentionsWrapper d2={d2} onUserSelect={this.onChange}>
+                            <FormControl fullWidth>
+                                <TextField
+                                    name="interpretation"
+                                    value={value}
+                                    margin="normal"
+                                    multiline={true}
+                                    rowsMax={4}
+                                    onChange={this.onChange}
+                                />
+                            </FormControl>
+                        </MentionsWrapper>
+                    </DialogContent>
+
+                    <DialogActions>
+                        <Button color="primary" onClick={this.cancel}>
+                            {i18n.t('Cancel')}
+                        </Button>
+
+                        {!isActionEdit && (
+                            <Button {...buttonProps} onClick={this.saveAndShare}>
+                                {i18n.t('Save & share')}
+                            </Button>
+                        )}
+
+                        <Button {...buttonProps} onClick={this.save}>
+                            {i18n.t('Save')}
+                        </Button>
+                    </DialogActions>
                 </Dialog>
             );
         }
@@ -124,4 +132,4 @@ InterpretationDialog.contextTypes = {
     d2: PropTypes.object.isRequired,
 };
 
-export default InterpretationDialog;
+export default withStyles(styles)(InterpretationDialog);
