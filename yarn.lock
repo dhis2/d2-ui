@@ -139,7 +139,7 @@
     i18next-conv "^6.0.0"
     i18next-scanner "^2.4.4"
 
-"@dhis2/d2-i18n-generate@^1.0.18":
+"@dhis2/d2-i18n-generate@^1.0.18", "@dhis2/d2-i18n-generate@^1.0.19":
   version "1.0.19"
   resolved "https://registry.yarnpkg.com/@dhis2/d2-i18n-generate/-/d2-i18n-generate-1.0.19.tgz#263bce81d7cd0f58d33fcce9703481046f3c8e93"
   dependencies:
@@ -6000,6 +6000,21 @@ husky@^1.0.0-rc.4, husky@^1.0.0-rc.8:
     run-node "^1.0.0"
     slash "^2.0.0"
 
+husky@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/husky/-/husky-1.1.2.tgz#574c2bb16958db8a8120b63306efaff110525c23"
+  dependencies:
+    cosmiconfig "^5.0.6"
+    execa "^0.9.0"
+    find-up "^3.0.0"
+    get-stdin "^6.0.0"
+    is-ci "^1.2.1"
+    pkg-dir "^3.0.0"
+    please-upgrade-node "^3.1.1"
+    read-pkg "^4.0.1"
+    run-node "^1.0.0"
+    slash "^2.0.0"
+
 hyphenate-style-name@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/hyphenate-style-name/-/hyphenate-style-name-1.0.2.tgz#31160a36930adaf1fc04c6074f7eb41465d4ec4b"
@@ -10091,7 +10106,7 @@ postcss-reduce-transforms@^1.0.3:
     postcss "^5.0.8"
     postcss-value-parser "^3.0.1"
 
-postcss-rtl@^1.3.0:
+postcss-rtl@^1.3.0, postcss-rtl@^1.3.2:
   version "1.3.2"
   resolved "https://registry.yarnpkg.com/postcss-rtl/-/postcss-rtl-1.3.2.tgz#54748ca913d0852236c09eceb2aecf597ed7bf95"
   dependencies:
@@ -10170,6 +10185,10 @@ preserve@^0.2.0:
 prettier@^1.12.1:
   version "1.14.2"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.14.2.tgz#0ac1c6e1a90baa22a62925f41963c841983282f9"
+
+prettier@^1.14.3:
+  version "1.14.3"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.14.3.tgz#90238dd4c0684b7edce5f83b0fb7328e48bd0895"
 
 pretty-bytes@^4.0.2:
   version "4.0.2"
