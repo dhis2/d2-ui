@@ -26,15 +26,15 @@ class RenameMenuItem extends Component {
         }
     };
 
-    onDialogReturn = success => args => {
+    onDialogReturn = success => (...args) => {
         const { onRename, onRenameError } = this.props;
 
         this.toggleRenameDialog();
 
         if (success) {
-            onRename(args);
+            onRename(...args);
         } else {
-            onRenameError(args);
+            onRenameError(...args);
         }
     };
 
