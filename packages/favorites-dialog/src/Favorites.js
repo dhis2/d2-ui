@@ -50,4 +50,7 @@ const mapDispatchToProps = {
     fetchData,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Favorites);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Favorites);

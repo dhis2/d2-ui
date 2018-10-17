@@ -214,19 +214,20 @@ export const fetchData = () => {
                 .ilike(state.filtering.searchValue);
         }
 
-        favoriteModel.list({
-            fields:
-                'id,displayName,title,displayDescription,created,lastUpdated,user,access,href',
-            order: 'name:asc',
-            pageSize: state.pagination.rowsPerPage,
-            page: state.pagination.page + 1,
-        })
-        .then(collection => {
-            dispatch(setTotalRecords(collection.pager.total));
-            dispatch(setData(collection.toArray()));
-            dispatch(toggleLoading());
-        })
-        .catch(error => log.error('favorites: fetch error', error));
+        favoriteModel
+            .list({
+                fields:
+                    'id,displayName,title,displayDescription,created,lastUpdated,user,access,href',
+                order: 'name:asc',
+                pageSize: state.pagination.rowsPerPage,
+                page: state.pagination.page + 1,
+            })
+            .then(collection => {
+                dispatch(setTotalRecords(collection.pager.total));
+                dispatch(setData(collection.toArray()));
+                dispatch(toggleLoading());
+            })
+            .catch(error => log.error('favorites: fetch error', error));
     };
 };
 

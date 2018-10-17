@@ -101,8 +101,8 @@ const ActionsMenu = (props, context) => {
 };
 
 ActionsMenu.contextTypes = {
-    d2: PropTypes.object.isRequired
-}
+    d2: PropTypes.object.isRequired,
+};
 
 export default connect(
     state => ({

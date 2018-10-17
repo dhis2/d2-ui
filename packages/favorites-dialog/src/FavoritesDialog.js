@@ -26,7 +26,7 @@ class FavoritesDialog extends Component {
 
     getChildContext() {
         return {
-            d2: this.props.d2
+            d2: this.props.d2,
         };
     }
 
@@ -47,7 +47,7 @@ class FavoritesDialog extends Component {
 }
 
 FavoritesDialog.childContextTypes = {
-    d2: PropTypes.object.isRequired
+    d2: PropTypes.object.isRequired,
 };
 
 export default FavoritesDialog;
