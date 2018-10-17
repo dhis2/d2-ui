@@ -73,9 +73,7 @@ export class FileMenu extends Component {
 
         this.closeMenu();
 
-        if (this.props.onOpen) {
-            this.props.onOpen(id);
-        }
+        this.props.onOpen(id);
     };
 
     onNew = () => {
@@ -83,9 +81,7 @@ export class FileMenu extends Component {
 
         this.closeMenu();
 
-        if (this.props.onNew) {
-            this.props.onNew();
-        }
+        this.props.onNew();
     };
 
     onDelete = () => {
@@ -93,8 +89,7 @@ export class FileMenu extends Component {
 
         this.closeMenu();
 
-        if (this.props.onDelete) {
-            this.props.onDelete();
+            this.props.onDelete(id);
         }
     };
 
@@ -107,16 +102,7 @@ export class FileMenu extends Component {
     };
 
     render() {
-        const {
-            classes,
-            fileType,
-            onSave,
-            onSaveAs,
-            onRename,
-            onTranslate,
-            onShare,
-            onError,
-        } = this.props;
+        const { classes, fileType, onSave, onSaveAs, onTranslate, onShare, onError } = this.props;
 
         return (
             <Fragment>
@@ -221,15 +207,15 @@ FileMenu.defaultProps = {
     d2: null,
     fileType: 'chart',
     fileId: null,
-    onNew: null,
-    onOpen: null,
-    onSave: null,
-    onSaveAs: null,
-    onRename: null,
-    onTranslate: null,
-    onShare: null,
-    onDelete: null,
-    onError: null,
+    onNew: Function.prototype,
+    onOpen: Function.prototype,
+    onSave: Function.prototype,
+    onSaveAs: Function.prototype,
+    onRename: Function.prototype,
+    onTranslate: Function.prototype,
+    onShare: Function.prototype,
+    onDelete: Function.prototype,
+    onError: Function.prototype,
 };
 
 FileMenu.propTypes = {

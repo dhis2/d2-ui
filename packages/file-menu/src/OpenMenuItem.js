@@ -21,17 +21,13 @@ class OpenMenuItem extends Component {
     onClose = () => {
         this.toggleFavoritesDialog();
 
-        if (this.props.onClose) {
-            this.props.onClose();
-        }
+        this.props.onClose();
     };
 
     onOpen = id => {
         this.toggleFavoritesDialog();
 
-        if (this.props.onOpen) {
-            this.props.onOpen(id);
-        }
+        this.props.onOpen(id);
     };
 
     toggleFavoritesDialog = () => {
@@ -67,8 +63,8 @@ OpenMenuItem.contextTypes = {
 
 OpenMenuItem.defaultProps = {
     fileType: null,
-    onOpen: null,
-    onClose: null,
+    onOpen: Function.prototype,
+    onClose: Function.prototype,
 };
 
 OpenMenuItem.propTypes = {

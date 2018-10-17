@@ -21,9 +21,7 @@ class DeleteMenuItem extends Component {
     onClose = () => {
         this.toggleDeleteDialog();
 
-        if (this.props.onClose) {
-            this.props.onClose();
-        }
+        this.props.onClose();
     };
 
     onDialogReturn = success => args => {
@@ -31,9 +29,9 @@ class DeleteMenuItem extends Component {
 
         this.toggleDeleteDialog();
 
-        if (success && onDelete) {
+        if (success) {
             onDelete(args);
-        } else if (onDeleteError) {
+        } else {
             onDeleteError(args);
         }
     };
@@ -72,9 +70,9 @@ DeleteMenuItem.defaultProps = {
     enabled: false,
     fileType: null,
     fileModel: null,
-    onDelete: null,
-    onDeleteError: null,
-    onClose: null,
+    onDelete: Function.prototype,
+    onDeleteError: Function.prototype,
+    onClose: Function.prototype,
 };
 
 DeleteMenuItem.propTypes = {

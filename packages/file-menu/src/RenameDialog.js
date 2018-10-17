@@ -73,14 +73,12 @@ class RenameDialog extends Component {
 
                     if (response.status === 'ERROR') {
                         throw new Error(response);
-                    } else if (onRequestRename) {
+                    } else {
                         onRequestRename(payload);
                     }
                 }
             } catch (err) {
-                if (onRequestRenameError) {
-                    onRequestRenameError(err);
-                }
+                onRequestRenameError(err);
             }
         }
     };
@@ -137,9 +135,9 @@ RenameDialog.defaultProps = {
     open: false,
     fileType: null,
     fileModel: null,
-    onRequestClose: null,
-    onRequestRename: null,
-    onRequestRenameError: null,
+    onRequestClose: Function.prototype,
+    onRequestRename: Function.prototype,
+    onRequestRenameError: Function.prototype,
 };
 
 RenameDialog.propTypes = {
