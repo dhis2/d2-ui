@@ -19,26 +19,26 @@ class PeriodSelectorDialog extends React.Component {
         this.i18n = this.props.d2.i18n;
     }
 
-    onPeriodsSelect = (periods) => {
-        this.setState({
-            periods,
-        });
+    onCloseClick = () => {
+        this.props.onClose();
     };
 
     onUpdateClick = () => {
         this.props.onUpdate(this.state.periods);
     };
 
-    onCloseClick = () => {
-        this.props.onClose(this.state.periods);
-    };
-
-    onSelect = () => {
+    onSelect = (periods) => {
+        this.setState({ periods });
         this.props.onSelect(this.state.periods);
     };
 
-    onDeselect = () => {
-        this.props.onDeselect(this.state.periods);
+    onDeselect = (periods) => {
+        const filteredItems = this.state.periods.filter(periodRange =>
+            !periods.includes(periodRange) && periodRange,
+        );
+
+        this.setState({ periods: filteredItems });
+        this.props.onDeselect(filteredItems);
     };
 
     render = () => {
@@ -53,10 +53,7 @@ class PeriodSelectorDialog extends React.Component {
             >
                 <DialogTitle>{this.i18n.getTranslation('Period')}</DialogTitle>
                 <DialogContent>
-                    <PeriodSelector
-                        onPeriodsSelect={this.onPeriodsSelect}
-                        {...remaindingProps}
-                    />
+                    <PeriodSelector {...remaindingProps} />
                 </DialogContent>
                 <DialogActions style={{ padding: '24px' }}>
                     <Button onClick={this.onCloseClick}>

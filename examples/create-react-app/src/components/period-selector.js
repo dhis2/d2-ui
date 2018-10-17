@@ -27,22 +27,16 @@ class PeriodSelectorExample extends Component {
         });
     };
 
-    onPeriodsSelect = (periods) => {
-        this.setState({
-            ...this.state,
-            snackbar: {
-                open: true,
-                message: `Selected periods: ${periods.map(period => period.name).join(', ')}`,
-            },
-        });
-    };
-
     selectPeriods = (periods) => {
-        console.log('selected period:', periods);
+        this.setState({ periods });
     };
 
     deselectPeriods = (periods) => {
-        console.log('de-selected period: ', periods);
+        const filteredItems = this.state.periods.filter(periodRange =>
+            !periods.includes(periodRange) && periodRange,
+        );
+
+        this.setState({ periods: filteredItems });
     };
 
     render() {
@@ -51,7 +45,6 @@ class PeriodSelectorExample extends Component {
                 <Fragment>
                     <PeriodSelector
                         d2={this.props.d2}
-                        onPeriodsSelect={this.onPeriodsSelect}
                         onSelect={this.selectPeriods}
                         onDeselect={this.deselectPeriods}
                         periods={this.state.periods}

@@ -18,7 +18,6 @@ class PeriodSelector extends Component {
 
 PeriodSelector.propTypes = {
     d2: PropTypes.object.isRequired,
-    onPeriodsSelect: PropTypes.func.isRequired,
     onSelect: PropTypes.func,
     onDeselect: PropTypes.func,
     periods: PropTypes.array,

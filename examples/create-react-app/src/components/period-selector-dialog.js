@@ -21,7 +21,6 @@ class PeriodSelectorDialogExample extends Component {
         },
     };
 
-
     onSnackbarClose = () => {
         this.setState({
             snackbar: {
@@ -34,7 +33,7 @@ class PeriodSelectorDialogExample extends Component {
     onUpdate = (periods) => {
         this.setState({
             periods,
-            dialogOpened: !this.state.dialogOpened,
+            dialogOpened: false,
             snackbar: {
                 open: true,
                 message: `Selected periods: ${periods.map(period => period.id).join(', ')}`,
@@ -42,8 +41,14 @@ class PeriodSelectorDialogExample extends Component {
         });
     };
 
-    onClose = (periods) => {
-        this.onUpdate(periods);
+    onClose = () => {
+        this.setState({
+            dialogOpened: false,
+            snackbar: {
+                open: true,
+                message: `Selected periods: ${this.state.periods.map(period => period.id).join(', ')}`,
+            },
+        });
     };
 
     toggleDialog = () => {

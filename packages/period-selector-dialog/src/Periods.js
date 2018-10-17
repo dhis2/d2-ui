@@ -51,13 +51,6 @@ class Periods extends Component {
         }
     }
 
-    componentWillUpdate = (nextProps) => {
-        // based on periods array length fire on periods select event
-        if (nextProps.selectedPeriods.periods.length !== this.props.selectedPeriods.periods.length) {
-            this.props.onPeriodsSelect(nextProps.selectedPeriods.periods);
-        }
-    }
-
     onPeriodTypeClick = (periodType) => {
         if (this.props.periodType !== periodType) {
             this.props.setPeriodType(periodType);
@@ -89,7 +82,7 @@ class Periods extends Component {
 
     onDoubleClick = (period) => {
         const itemToAdd = [period];
-        this.props.onSelect(period);
+        this.props.onSelect(itemToAdd);
         this.props.addSelectedPeriods(itemToAdd);
         this.props.removeOfferedPeriods(itemToAdd);
     }
@@ -168,7 +161,6 @@ Periods.propTypes = {
     setPeriodType: PropTypes.func.isRequired,
     setOfferedPeriods: PropTypes.func.isRequired,
     setSelectedPeriods: PropTypes.func.isRequired,
-    onPeriodsSelect: PropTypes.func.isRequired,
     onSelect: PropTypes.func.isRequired,
     onDeselect: PropTypes.func.isRequired,
     addSelectedPeriods: PropTypes.func.isRequired,
