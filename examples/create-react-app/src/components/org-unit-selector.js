@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import Button from '@material-ui/core/Button';
-import Snackbar from '@material-ui/core/Snackbar';
 import PropTypes from 'prop-types';
-import OrgUnitDialog from '@dhis2/d2-ui-org-unit-dialog';
+import Card from '@material-ui/core/Card';
+import { OrgUnitSelector } from '@dhis2/d2-ui-org-unit-dialog';
 
 export const defaultState = {
     orgUnitDialog: {
@@ -25,10 +24,11 @@ export const defaultState = {
     level: ['tTUf91fCytl', 'wjP19dkFeIk'],
     levelOptions: [],
     groupOptions: [],
+    loaded: false,
 };
 
 
-export default class OrgUnitDialogExample extends Component {
+export default class OrgUnitSelectorExample extends Component {
     constructor(props) {
         super(props);
 
@@ -46,40 +46,13 @@ export default class OrgUnitDialogExample extends Component {
             .then((loadRootUnit) => {
                 this.setState({
                     root: loadRootUnit,
+                    loaded: true,
                 });
             });
 
         this.loadOrgUnitLevels();
         this.loadOrgUnitGroups();
     }
-
-    onOrgUnitSelect = () => {
-        const selectedOrgUnits = this.state.userOrgUnits.length > 0
-            ? this.state.userOrgUnits.map(orgUnit => orgUnit.path || orgUnit.id)
-            : this.state.selected.map(orgUnit => orgUnit.path || orgUnit.id);
-
-        this.setState({
-            snackbar: {
-                open: true,
-                message: `Selected org units: ${selectedOrgUnits.join(', ')},
-                        levels: ${this.state.level.join(', ')}
-                        groups: ${this.state.group.join(', ')}
-                `,
-            },
-            orgUnitDialog: {
-                open: false,
-            },
-        });
-    };
-
-    onSnackbarClose = () => {
-        this.setState({
-            snackbar: {
-                open: false,
-                message: '',
-            },
-        });
-    };
 
     onLevelChange = (event) => {
         this.setState({
@@ -90,14 +63,6 @@ export default class OrgUnitDialogExample extends Component {
     onGroupChange = (event) => {
         this.setState({
             group: event.target.value,
-        });
-    };
-
-    toggleDialog = () => {
-        this.setState({
-            orgUnitDialog: {
-                open: !this.state.orgUnitDialog.open,
-            },
         });
     };
 
@@ -148,46 +113,35 @@ export default class OrgUnitDialogExample extends Component {
         }
     };
 
-    render = () => (
-        <div>
-            <div style={{ padding: 16 }}>
-                <Button
-                    onClick={this.toggleDialog}
-                    variant="raised"
-                >
-                    Select org units
-                </Button>
-            </div>
-            <OrgUnitDialog
-                open={this.state.orgUnitDialog.open}
-                root={this.state.root}
-                d2={this.props.d2}
+    render = () => {
+        if (this.state.loaded) {
+            return (<Card>
+                <OrgUnitSelector
+                    root={this.state.root}
+                    d2={this.props.d2}
 
-                selected={this.state.selected}
-                userOrgUnits={this.state.userOrgUnits}
-                level={this.state.level}
-                group={this.state.group}
-                levelOptions={this.state.levelOptions}
-                groupOptions={this.state.groupOptions}
+                    selected={this.state.selected}
+                    userOrgUnits={this.state.userOrgUnits}
 
-                onLevelChange={this.onLevelChange}
-                onGroupChange={this.onGroupChange}
-                handleUserOrgUnitClick={this.handleUserOrgUnitClick}
-                handleOrgUnitClick={this.handleOrgUnitClick}
+                    level={this.state.level}
+                    group={this.state.group}
 
-                onClose={this.toggleDialog}
-                onUpdate={this.onOrgUnitSelect}
-            />
-            <Snackbar
-                open={this.state.snackbar.open}
-                message={this.state.snackbar.message}
-                autoHideDuration={4000}
-                onClose={this.onSnackbarClose}
-            />
-        </div>
-    );
+                    levelOptions={this.state.levelOptions}
+                    groupOptions={this.state.groupOptions}
+
+                    onLevelChange={this.onLevelChange}
+                    onGroupChange={this.onGroupChange}
+
+                    handleUserOrgUnitClick={this.handleUserOrgUnitClick}
+                    handleOrgUnitClick={this.handleOrgUnitClick}
+                />
+            </Card>);
+        }
+
+        return 'loading...';
+    }
 }
 
-OrgUnitDialogExample.propTypes = {
+OrgUnitSelectorExample.propTypes = {
     d2: PropTypes.object.isRequired,
 };
