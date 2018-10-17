@@ -32,24 +32,23 @@ class OrgUnitDialog extends React.PureComponent {
     }
 
     componentDidUpdate(prevProps) {
-        // if props.periods.length changed by more than 1, then new/favorite was selected
+        // if props.selected.length changed by more than 1, then another analytic object was selected
         if (Math.abs(prevProps.selected.length - this.props.selected.length) > 1) {
             // In this case refresh expanded org units
             this.setState({
                 initiallyExpanded: this.props.selected.map(ou => removeLastPathSegment(ou.path)),
             });
         } else {
-            // If props.periods.length changed by 1 or didnt change
-            // then check if new/favorite was selected by comparing ids
-            // if more than 1 ids are different, then new/favorite was selected
-            // and we should refresh expanded org units
+            // If props.selected.length changed by 1 or didnt change
+            // then check if analytic object was changed by comparing ids
+            // if more than 1 ids are different, then and we should refresh expanded org units
             let counter = 0;
 
-            const periods = prevProps.selected.length < this.props.selected.length
+            const orgUnits = prevProps.selected.length < this.props.selected.length
                 ? prevProps.selected
                 : this.props.selected;
 
-            for (let i = 0; i < periods.length; ++i) {
+            for (let i = 0; i < orgUnits.length; ++i) {
                 if (prevProps.selected[i].id !== this.props.selected[i].id) {
                     counter += 1;
 
