@@ -24,7 +24,7 @@ const DeleteDialog = props => {
         if (fileModel) {
             fileModel
                 .delete()
-                .then(onRequestDelete)
+                .then(onRequestDelete(fileModel.id))
                 .catch(onRequestDeleteError);
         }
     };

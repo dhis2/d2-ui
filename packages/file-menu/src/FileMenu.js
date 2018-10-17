@@ -26,6 +26,7 @@ export class FileMenu extends Component {
             menuIsOpen: false,
             anchorEl: null,
             fileModel: null,
+            refreshDialogData: false,
         };
     }
 
@@ -70,10 +71,22 @@ export class FileMenu extends Component {
 
     onOpen = id => {
         this.setFileModel(id);
+        this.setState({ refreshDialogData: false });
 
         this.closeMenu();
 
         this.props.onOpen(id);
+    };
+
+    onRename = (form, id) => {
+        if (this.state.fileModel.id === id) {
+            this.setFileModel(this.state.fileModel.id);
+            this.setState({ refreshDialogData: true });
+
+            this.closeMenu();
+
+            this.props.onRename(form, id);
+        }
     };
 
     onNew = () => {
@@ -84,17 +97,23 @@ export class FileMenu extends Component {
         this.props.onNew();
     };
 
-    onDelete = () => {
-        this.clearFileModel();
+    onDelete = id => {
+        if (this.state.fileModel.id === id) {
+            this.clearFileModel();
+            this.setState({ refreshDialogData: true });
 
-        this.closeMenu();
+            this.closeMenu();
 
             this.props.onDelete(id);
         }
     };
 
-    onAction = callback => args => {
+    onAction = (callback, refreshDialogData) => args => {
         this.closeMenu();
+
+        if (refreshDialogData) {
+            this.setState({ refreshDialogData: true });
+        }
 
         if (callback) {
             callback(args);
@@ -123,8 +142,11 @@ export class FileMenu extends Component {
                     <OpenMenuItem
                         enabled
                         fileType={fileType}
+                        refreshDialogData={this.state.refreshDialogData}
                         onOpen={this.onOpen}
                         onClose={this.onAction()}
+                        onRename={this.onRename}
+                        onDelete={this.onDelete}
                     />
 
                     <Divider />
@@ -135,15 +157,15 @@ export class FileMenu extends Component {
                         )}
                         fileType={fileType}
                         fileModel={this.state.fileModel}
-                        onSave={this.onAction(onSave)}
-                        onSaveAs={this.onAction(onSaveAs)}
+                        onSave={this.onAction(onSave, true)}
+                        onSaveAs={this.onAction(onSaveAs, true)}
                         onClose={this.onAction()}
                     />
                     <SaveAsMenuItem
                         enabled={Boolean(this.state.fileModel)}
                         fileType={fileType}
                         fileModel={this.state.fileModel}
-                        onSaveAs={this.onAction(onSaveAs)}
+                        onSaveAs={this.onAction(onSaveAs, true)}
                         onClose={this.onAction()}
                     />
                     <Divider />
@@ -153,7 +175,7 @@ export class FileMenu extends Component {
                         )}
                         fileType={fileType}
                         fileModel={this.state.fileModel}
-                        onRename={this.onAction(onRename)}
+                        onRename={this.onRename}
                         onRenameError={this.onAction(onError)}
                         onClose={this.onAction()}
                     />

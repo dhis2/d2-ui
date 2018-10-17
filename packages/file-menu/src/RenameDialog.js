@@ -74,7 +74,7 @@ class RenameDialog extends Component {
                     if (response.status === 'ERROR') {
                         throw new Error(response);
                     } else {
-                        onRequestRename(payload);
+                        onRequestRename(payload, fileModel.id);
                     }
                 }
             } catch (err) {

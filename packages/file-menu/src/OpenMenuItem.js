@@ -35,7 +35,7 @@ class OpenMenuItem extends Component {
     };
 
     render() {
-        const { fileType } = this.props;
+        const { refreshDialogData, fileType, onRename, onDelete } = this.props;
 
         return (
             <Fragment>
@@ -47,10 +47,13 @@ class OpenMenuItem extends Component {
                 </MenuItem>
                 <FavoritesDialog
                     open={this.state.dialogIsOpen}
+                    refreshData={refreshDialogData}
                     type={fileType}
                     d2={this.context.d2}
                     onRequestClose={this.onClose}
                     onFavoriteSelect={this.onOpen}
+                    onFavoriteRename={onRename}
+                    onFavoriteDelete={onDelete}
                 />
             </Fragment>
         );
@@ -62,15 +65,21 @@ OpenMenuItem.contextTypes = {
 };
 
 OpenMenuItem.defaultProps = {
+    refreshData: false,
     fileType: null,
     onOpen: Function.prototype,
     onClose: Function.prototype,
+    onRename: Function.prototype,
+    onDelete: Function.prototype,
 };
 
 OpenMenuItem.propTypes = {
+    refreshData: PropTypes.bool,
     fileType: PropTypes.oneOf(['chart', 'eventChart', 'reportTable', 'eventReport', 'map']),
     onOpen: PropTypes.func,
     onClose: PropTypes.func,
+    onRename: PropTypes.func,
+    onDelete: PropTypes.func,
 };
 
 export default OpenMenuItem;
