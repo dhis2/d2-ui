@@ -11,29 +11,34 @@ class SelectedPeriods extends React.Component {
     }
 
     clearPeriods = () => {
+        this.props.onClearAll(this.props.periods);
         this.props.addOfferedPeriods(this.props.periods);
         this.props.setSelectedPeriods([]);
     };
 
-    render() {
-        return (<div className="selector-area">
-            <h4 className="title">
-                {this.i18n.getTranslation('Selected periods')}
-            </h4>
+    render = () => (
+        <div className="selector-area">
+            <h3 className="title"> {this.i18n.getTranslation('Selected periods')} </h3>
             <PeriodsList
                 periods={this.props.periods}
                 onPeriodClick={this.props.onPeriodClick}
+                onRemovePeriodClick={this.props.onRemovePeriodClick}
+                listClassName={'periods-list-selected'}
             />
             <div style={{ textAlign: 'center' }}>
-                <Button onClick={this.clearPeriods}>{this.i18n.getTranslation('Clear all')}</Button>
+                <Button onClick={this.clearPeriods} >
+                    {this.i18n.getTranslation('Clear all')}
+                </Button>
             </div>
-        </div>);
-    }
+        </div>
+    )
 }
 
 SelectedPeriods.propTypes = {
     periods: PropTypes.array.isRequired,
+    onClearAll: PropTypes.func.isRequired,
     onPeriodClick: PropTypes.func.isRequired,
+    onRemovePeriodClick: PropTypes.func.isRequired,
     setSelectedPeriods: PropTypes.func.isRequired,
     addOfferedPeriods: PropTypes.func.isRequired,
 };

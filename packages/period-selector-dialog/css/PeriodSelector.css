@@ -1,3 +1,8 @@
+.periods-container {
+    min-width: 709px;
+    margin-top: 18px;
+}
+
 button.nav-button {
     padding: 5px 13px 3px;
     border-radius: 0;
@@ -14,6 +19,15 @@ button.nav-button {
 }
 .block.options {
     width: 50%;
+    height: 460px;
+    border: 1px solid #e8e8e8;
+}
+
+.block.selected-periods {
+    width: 38%;
+    height: 460px;
+    vertical-align: top;
+    border: 1px solid #e8e8e8;
 }
 
 .block.buttons {
@@ -33,35 +47,107 @@ button.nav-button {
     margin-bottom: 20px;
 }
 
-.block.selected-periods {
-    width: 38%;
-    vertical-align: top;
+.options-area {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 0px;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.periods-list-selected { 
+    height: 366px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    list-style: none;
+    overflow: auto;
+}
+
+.period-dimension-item {
+    display: flex;
+    min-height: 24px;
+    padding: 2px;
+}
+
+.period-selected-label {
+    display: flex;
+    width: fit-content;
+    border-radius: 4px;   
+    background: #BBDEFB;
+    padding-right: 5px;
+    padding-left: 5px;
+    outline: none;
+}
+
+.periods-list-offered {
+    height: 395px;
+    padding-left: 10px;
+    padding-right: 10px;
+    list-style: none;
+    overflow: auto;
+}
+
+.period-offered-label {
+    display: flex;
+    border-radius: 4px;
+    outline: none;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 .selected-periods .title {
-    margin: 0 -10px;
-    padding: 0 0 10px 10px;
+    margin: 0;
+    padding: 10px;
     font-weight: 500;
     color: #4b4b4b;
     border-bottom: 1px solid #e8e8e8;
 }
 
 .selector-area {
-  margin-top: 20px;
-  border: 1px solid #e8e8e8;
-  padding: 10px;
+    position: relative;
+    height: 460px;
 }
 
 .selector-area .periods-list {
     overflow: auto;
-    height: 300px;
 }
 
-.selector-area .form-control.period-type { width: 70%; }
-.selector-area .form-control.year { width: 30%; }
+.unselected-icon {
+    background-color: grey;
+    position: relative;
+    top: 40%;
+    height: 6px;
+    width: 6px;
+    margin-right: 5px;
+}
+
+.selected-icon {
+    background-color: blue;
+    position: relative;
+    top: 40%;
+    height: 6px;
+    width: 6px;
+    margin-right: 5px;
+}
+
+.remove-item-button {
+    border: none;
+    background: none;
+    padding: 0px;
+    padding-top: 5px;
+    padding-left: 1px;
+    margin-left: 5px;
+    width: 10px;
+}
+
+.list-text { margin-top: 4px; }
+
+.selector-area .form-control.period-type { width: 65%; padding-right: 10px; }
+.selector-area .form-control.year { width: 30%; border-bottom: 1px solid #e8e8e8; }
 .selector-area .period-li { padding: 5px 5px 2px; }
 .selector-area .period-li.selected { background: #42a0ff !important; }
 .selected-periods .period-li { background: #BBDEFB !important; }
 .selector-area .period-li.selected h3 { color: white; }
 .selector-area .period-li .list-icon { font-size: 14px; margin-right: 3px; color: #9e9e9e; }
-.selector-area .period-li span.list-text { position: relative; bottom: 2px; }

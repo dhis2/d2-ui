@@ -21,16 +21,6 @@ class PeriodSelectorDialogExample extends Component {
         },
     };
 
-    onPeriodSelect = (periods) => {
-        this.setState({
-            periods,
-            dialogOpened: !this.state.dialogOpened,
-            snackbar: {
-                open: true,
-                message: `Selected periods: ${periods.map(period => period.id).join(', ')}`,
-            },
-        });
-    };
 
     onSnackbarClose = () => {
         this.setState({
@@ -41,8 +31,19 @@ class PeriodSelectorDialogExample extends Component {
         });
     };
 
+    onUpdate = (periods) => {
+        this.setState({
+            periods,
+            dialogOpened: !this.state.dialogOpened,
+            snackbar: {
+                open: true,
+                message: `Selected periods: ${periods.map(period => period.id).join(', ')}`,
+            },
+        });
+    };
+
     onClose = (periods) => {
-        this.onPeriodSelect(periods);
+        this.onUpdate(periods);
     };
 
     toggleDialog = () => {
@@ -61,12 +62,11 @@ class PeriodSelectorDialogExample extends Component {
                     />
                 </div>
                 <PeriodSelectorDialog
+                    d2={this.props.d2}
                     open={this.state.dialogOpened}
                     onClose={this.onClose}
-                    onUpdate={this.onPeriodSelect}
+                    onUpdate={this.onUpdate}
                     periods={this.state.periods}
-                    d2={this.props.d2}
-                    listHeight={300}
                 />
                 <Snackbar
                     open={this.state.snackbar.open}
