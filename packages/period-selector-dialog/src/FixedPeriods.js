@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -86,6 +86,7 @@ class FixedPeriods extends Component {
                     value={this.state.year}
                     inputProps={{ name: 'year', id: 'year' }}
                     disableUnderline
+                    variant="filled"
                 >
                     {this.years.sort().map(year => <MenuItem value={year} key={year}>{year}</MenuItem>)}
                 </Select>
@@ -93,24 +94,24 @@ class FixedPeriods extends Component {
         </div>
     );
 
-    render() {
-        return (
-            <div className="selector-area">
-                {this.renderOptions()}
-                <PeriodsList
-                    periods={this.props.periods}
-                    onPeriodClick={this.props.onPeriodClick}
-                    listName={'periods-list-offered'}
-                />
-            </div>
-        );
-    }
+    render = () => (
+        <div className="selector-area">
+            {this.renderOptions()}
+            <PeriodsList
+                periods={this.props.periods}
+                onDoubleClick={this.props.onDoubleClick}
+                onPeriodClick={this.props.onPeriodClick}
+                listClassName={'periods-list-offered'}
+            />
+        </div>
+    )
 }
 
 FixedPeriods.propTypes = {
-    setOfferedPeriods: PropTypes.func.isRequired,
     periods: PropTypes.array.isRequired,
     onPeriodClick: PropTypes.func.isRequired,
+    onDoubleClick: PropTypes.func.isRequired,
+    setOfferedPeriods: PropTypes.func.isRequired,
 };
 
 FixedPeriods.contextTypes = {

@@ -33,8 +33,16 @@ class PeriodSelectorDialog extends React.Component {
         this.props.onClose(this.state.periods);
     };
 
-    render() {
-        const { open, maxWidth, fullWidth } = this.props;
+    onSelect = () => {
+        this.props.onSelect(this.state.periods);
+    };
+
+    onDeselect = () => {
+        this.props.onDeselect(this.state.periods);
+    };
+
+    render = () => {
+        const { open, maxWidth, fullWidth, ...remaindingProps } = this.props;
 
         return (
             <Dialog
@@ -42,23 +50,20 @@ class PeriodSelectorDialog extends React.Component {
                 onClose={this.onCloseClick}
                 fullWidth={fullWidth}
                 maxWidth={maxWidth}
-                
             >
                 <DialogTitle>{this.i18n.getTranslation('Period')}</DialogTitle>
                 <DialogContent>
                     <PeriodSelector
-                        d2={this.props.d2}
-                        periods={this.props.periods}
                         onPeriodsSelect={this.onPeriodsSelect}
-                        listHeight={this.props.listHeight}
+                        {...remaindingProps}
                     />
                 </DialogContent>
                 <DialogActions style={{ padding: '24px' }}>
                     <Button onClick={this.onCloseClick}>
-                        {this.i18n.getTranslation('hide')}
+                        {this.i18n.getTranslation('Hide')}
                     </Button>
                     <Button onClick={this.onUpdateClick} variant="contained" color="primary">
-                        {this.i18n.getTranslation('update')}
+                        {this.i18n.getTranslation('Update')}
                     </Button>
                 </DialogActions>
             </Dialog>
@@ -70,19 +75,21 @@ PeriodSelectorDialog.defaultProps = {
     maxWidth: 'md',
     fullWidth: true,
     onClose: () => null,
+    onSelect: () => null,
+    onDeselect: () => null,
     periods: [],
-    listHeight: 320,
 };
 
 PeriodSelectorDialog.propTypes = {
-    listHeight: PropTypes.number,
-    periods: PropTypes.array,
     d2: PropTypes.object.isRequired,
+    open: PropTypes.bool.isRequired,
     fullWidth: PropTypes.bool,
     maxWidth: PropTypes.string,
-    open: PropTypes.bool.isRequired,
     onClose: PropTypes.func,
     onUpdate: PropTypes.func.isRequired,
+    onSelect: PropTypes.func,
+    onDeselect: PropTypes.func,
+    periods: PropTypes.array,
 };
 
 export default PeriodSelectorDialog;

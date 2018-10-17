@@ -2,47 +2,19 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Close } from '@material-ui/icons';
 
-const style = {
-    selecticon: {
-        backgroundColor: 'blue', // color
-        position: 'relative',
-        top: '44%',
-        height: 6,
-        width: 6,
-        marginRight: 5,
-    },
-    icon: {
-        backgroundColor: 'grey', // color
-        position: 'relative',
-        top: '44%',
-        height: 6,
-        width: 6,
-        marginRight: 5,
-    },
-    deleteButton: {
-        border: 'none',
-        background: 'none',
-        padding: 0,
-        paddingTop: 5,
-        paddingLeft: 1,
-        marginLeft: 5,
-        width: 10,
-    },
-    deleteButtonIcon: {
-        fill: 'blue',
-        height: 13,
-        width: 10,
-    },
-};
-
 const OFFERED_LIST = 'periods-list-offered';
 
-const UnselectedIcon = () => <div style={style.icon} className="unselected-icon" />;
-const SelectedIcon = () => <div style={style.selecticon} />;
+const UnselectedIcon = () => <div className="unselected-icon" />;
+const SelectedIcon = () => <div className="selected-icon" />;
 
 const RemoveItemButton = ({ action }) => (
-    <button style={style.deleteButton} className="remove-item-button" onClick={action} tabIndex={0}>
-        <Close style={style.deleteButtonIcon} />
+    <button className="remove-item-button" onClick={action} tabIndex={0}>
+        <Close style={{
+            fill: 'blue',
+            outline: 'none',
+            height: 13,
+            width: 10 }}
+        />
     </button>
 );
 
@@ -51,21 +23,29 @@ class PeriodListItem extends Component {
         this.props.onPeriodClick(this.props.period, this.props.index, event.shiftKey, event.metaKey);
     };
 
-    onRemovePeriodClick = () => {
+    onDoubleClick = () => {
+        this.props.onDoubleClick(this.props.period);
+    }
 
+    onRemovePeriodClick = (event) => {
+        event.stopPropagation();
+        this.props.onRemovePeriodClick(this.props.period);
     };
 
-    getIcon = () => (
-        this.props.listName === OFFERED_LIST
+    isOfferedList = () => this.props.listClassName === OFFERED_LIST;
+
+    renderIcon = () => (
+        this.isOfferedList()
             ? <UnselectedIcon />
             : <SelectedIcon />
     );
 
     render = () => {
-        const Icon = this.getIcon();
-        const RemoveButton = this.props.listName === OFFERED_LIST
+        const className = this.isOfferedList() ? 'period-offered-label' : 'period-selected-label';
+        const Icon = this.renderIcon();
+        const RemoveButton = this.isOfferedList()
             ? null
-            : <RemoveItemButton action={this.onPeriodClick} />;
+            : <RemoveItemButton action={this.onRemovePeriodClick} />;
 
         return (
             <li
@@ -75,9 +55,10 @@ class PeriodListItem extends Component {
                 <div
                     role="button"
                     tabIndex={0}
+                    style={this.props.period.selected ? { backgroundColor: '#7EBFF5' } : {}}
                     onClick={this.onPeriodClick}
-                    onDoubleClick={this.onPeriodClick}
-                    className={this.props.listName === OFFERED_LIST ? 'period-offered-label' : 'period-selected-label'}
+                    onDoubleClick={this.onDoubleClick}
+                    className={className}
                 >
                     {Icon}
                     <span className="list-text">{this.props.period.name}</span>
@@ -91,8 +72,10 @@ class PeriodListItem extends Component {
 PeriodListItem.propTypes = {
     index: PropTypes.number.isRequired,
     onPeriodClick: PropTypes.func.isRequired,
+    onDoubleClick: PropTypes.func.isRequired,
+    onRemovePeriodClick: PropTypes.func.isRequired,
     period: PropTypes.object.isRequired,
-    listName: PropTypes.string.isRequired,
+    listClassName: PropTypes.string.isRequired,
 };
 
 export default PeriodListItem;
