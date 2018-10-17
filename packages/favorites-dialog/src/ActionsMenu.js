@@ -33,6 +33,9 @@ const ActionsMenu = (props, context) => {
         shareDialogIsOpen,
         deleteFavorite,
         selectedFavoriteModel,
+
+        onFavoriteDelete,
+        onFavoriteRename,
     } = props;
 
     const deleteActionHandler = () => {
@@ -48,6 +51,10 @@ const ActionsMenu = (props, context) => {
     const shareActionHandler = () => {
         toggleActionsMenu();
         toggleShareDialog();
+    };
+
+    const deleteFavoriteHandler = event => {
+        deleteFavorite(onFavoriteDelete);
     };
 
     return (
@@ -81,7 +88,7 @@ const ActionsMenu = (props, context) => {
                     <ListItemText primary="Delete" />
                 </MenuItem>
             </Menu>
-            <RenameDialog />
+            <RenameDialog onRequestRename={onFavoriteRename} />
             {selectedFavoriteModel ? (
                 <SharingDialog
                     open={shareDialogIsOpen}
@@ -94,7 +101,7 @@ const ActionsMenu = (props, context) => {
             <DeleteDialog
                 open={deleteDialogIsOpen}
                 onRequestClose={toggleDeleteDialog}
-                onRequestDelete={deleteFavorite}
+                onRequestDelete={deleteFavoriteHandler}
             />
         </div>
     );

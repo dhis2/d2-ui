@@ -24,7 +24,7 @@ export const toggleDeleteDialog = () => ({
     type: actionTypes.TOGGLE_DELETE_DIALOG,
 });
 
-export const deleteFavorite = event => {
+export const deleteFavorite = callback => {
     return (dispatch, getState) => {
         const state = getState();
         const selectedFavorite = state.actions.select.favoriteModel;
@@ -35,6 +35,8 @@ export const deleteFavorite = event => {
                 .then(() => {
                     dispatch(toggleDeleteDialog());
                     dispatch(fetchData());
+
+                    callback(selectedFavorite.id);
                 })
                 .catch(error => log.error('favorites: delete error', error));
         }
@@ -46,7 +48,7 @@ export const toggleRenameDialog = () => ({
     type: actionTypes.TOGGLE_RENAME_DIALOG,
 });
 
-export const renameFavorite = form => {
+export const renameFavorite = (form, callback) => {
     return (dispatch, getState) => {
         const state = getState();
         const favoriteModel = state.actions.select.favoriteModel;
@@ -55,46 +57,47 @@ export const renameFavorite = form => {
         let api;
 
         if (favoriteModel) {
-            console.log('hello')
             api = state.d2.Api.getApi();
 
             // the whole model is required for validation
             state.d2.models[state.filtering.type]
-            .get(favoriteModel.id)
-            .then(model => {
-                model.name = newName;
-                model.description = newDescription;
+                .get(favoriteModel.id)
+                .then(model => {
+                    model.name = newName;
+                    model.description = newDescription;
 
-                model.validate().then(validationStatus => {
-                    if (validationStatus.status === true) {
-                        const payload = {
-                            // can be empty
-                            description: newDescription,
-                        };
+                    model.validate().then(validationStatus => {
+                        if (validationStatus.status === true) {
+                            const payload = {
+                                // can be empty
+                                description: newDescription,
+                            };
 
-                        if (newName) {
-                            payload.name = newName;
+                            if (newName) {
+                                payload.name = newName;
+                            }
+
+                            if (payload.name) {
+                                api
+                                    .request('PATCH', model.href, JSON.stringify(payload))
+                                    .then(response => {
+                                        dispatch(toggleRenameDialog());
+                                        // refresh data
+                                        dispatch(fetchData());
+
+                                        callback(form, favoriteModel.id);
+                                    })
+                                    .catch(error => {
+                                        log.error('favorites: rename error', error);
+                                        dispatch(toggleRenameDialog());
+                                    });
+                            }
                         }
-
-                        if (payload.name) {
-                            api
-                                .request('PATCH', model.href, JSON.stringify(payload))
-                                .then(response => {
-                                    dispatch(toggleRenameDialog());
-                                    // refresh data
-                                    dispatch(fetchData());
-                                })
-                                .catch(error => {
-                                    log.error('favorites: rename error', error);
-                                    dispatch(toggleRenameDialog());
-                                });
-                        }
-                    }
+                    });
+                })
+                .catch(error => {
+                    log.error(`favorites: favorite (${favoriteModel.id}) not found (${error})`);
                 });
-            })
-            .catch(error => {
-                log.error(`favorites: favorite (${favoriteModel.id}) not found (${error})`);
-            });
         }
     };
 };
