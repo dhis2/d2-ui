@@ -26,8 +26,6 @@ class OrgUnitDialog extends React.PureComponent {
     constructor(props) {
         super(props);
 
-        this.d2 = props.d2;
-
         this.state = {
             initiallyExpanded: this.props.selected.map(ou => removeLastPathSegment(ou.path)),
         };
@@ -283,11 +281,6 @@ OrgUnitDialog.propTypes = {
     handleUserOrgUnitClick: PropTypes.func.isRequired,
 
     /**
-    * D2 object
-    */
-    d2: PropTypes.object.isRequired,
-
-    /**
     * Root organisation unit
     */
     root: PropTypes.object.isRequired,
@@ -298,10 +291,6 @@ OrgUnitDialog.propTypes = {
     open: PropTypes.bool,
     fullWidth: PropTypes.bool,
     maxWidth: PropTypes.string,
-};
-
-OrgUnitDialog.childContextTypes = {
-    d2: PropTypes.object,
 };
 
 export default OrgUnitDialog;
