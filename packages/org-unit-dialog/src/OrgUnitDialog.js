@@ -7,118 +7,29 @@ import DialogActions from '@material-ui/core/DialogActions/DialogActions';
 import Grid from '@material-ui/core/Grid';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
+import i18n from '@dhis2/d2-i18n';
 import MenuItem from '@material-ui/core/MenuItem';
 import { OrgUnitTree } from '@dhis2/d2-ui-org-unit-tree';
 import PropTypes from 'prop-types';
 import Select from '@material-ui/core/Select';
 import UserOrgUnitsPanel from './UserOrgUnitsPanel';
-import { removeLastPathSegment } from './util';
+import styles from './styles/OrgUnitDialog.style';
 
-const styles = {
-    orgUnitsContainer: {
-        border: '1px solid #dedede',
-    },
-    scrollableContainer: {
-        index: {
-            height: '400px',
-            overflowY: 'auto',
-        },
-        overlayContainer: {
-            position: 'relative',
-            paddingLeft: 20,
-        },
-        overlay: {
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            height: '100%',
-            width: '100%',
-            zIndex: 10,
-            backgroundColor: 'rgba(255,255,255, 0.8)',
-        },
-    },
-    orgUnitTree: {
-        selectedLabelStyle: {
-            fontWeight: 400,
-            fontSize: 14,
-            color: 'inherit',
-        },
-        labelStyle: {
-            fontSize: 14,
-            fontWeight: 400,
-
-            checkbox: {
-                position: 'relative',
-                bottom: 3,
-            },
-            folderIcon: {
-                fontSize: 18,
-                position: 'relative',
-                top: 3,
-                margin: '0 4px 0 2px',
-                color: '#6eadff',
-            },
-            stopIcon: {
-                color: '#a8a7a8',
-                fontSize: 15,
-                position: 'relative',
-                top: 3,
-                margin: '0px 2px 0px 0px',
-            },
-        },
-        treeStyle: {
-            marginLeft: 5,
-            arrow: {
-                color: '#a7a7a7',
-                fontSize: 15,
-            },
-        },
-    },
-    userOrgUnits: {
-        index: {
-            background: '#F4F5F8',
-            margin: '0 0px 10px',
-        },
-        checkbox: {
-            fontSize: 16,
-        },
-        stopIcon: {
-            position: 'relative',
-            top: '4px',
-            color: '#9e9e9e',
-            fontSize: '15px',
-            margin: '0 3px 0 -10px',
-        },
-        text: {
-            color: '#000',
-            position: 'relative',
-            top: '3px',
-        },
-    },
-    footer: {
-        index: {
-            marginTop: 10,
-        },
-    },
-};
+/**
+ * Remove last segment from OU path
+ * @param path
+ * @returns {string | *}
+ */
+const removeLastPathSegment = path => path.substr(0, path.lastIndexOf('/'));
 
 class OrgUnitDialog extends React.PureComponent {
     constructor(props) {
         super(props);
 
-        this.i18n = props.d2.i18n;
         this.d2 = props.d2;
 
         this.state = {
-            initiallyExpanded: this.props
-                .selected
-                .map(ou => removeLastPathSegment(ou.path)),
-        };
-    }
-
-    getChildContext() {
-        return {
-            d2: this.props.d2,
+            initiallyExpanded: this.props.selected.map(ou => removeLastPathSegment(ou.path)),
         };
     }
 
@@ -148,6 +59,8 @@ class OrgUnitDialog extends React.PureComponent {
                         this.setState({
                             initiallyExpanded: this.props.selected.map(ou => removeLastPathSegment(ou.path)),
                         });
+
+                        break;
                     }
                 }
             }
@@ -209,7 +122,7 @@ class OrgUnitDialog extends React.PureComponent {
             container
         >
             <Grid item xs={4}>
-                <InputLabel htmlFor="level">{this.i18n.getTranslation('Level')}</InputLabel>
+                <InputLabel htmlFor="level">{i18n.t('Level')}</InputLabel>
                 <Select
                     value={this.props.level}
                     onChange={this.props.setLevel}
@@ -221,20 +134,15 @@ class OrgUnitDialog extends React.PureComponent {
                     fullWidth
                 >
                     <MenuItem value="">
-                        <em>{this.i18n.getTranslation('Select a level')}</em>
+                        <em>{i18n.t('Select a level')}</em>
                     </MenuItem>
                     {this.props.levelOptions.map(option => (
-                        <MenuItem
-                            key={option.id}
-                            value={option.id}
-                        >
-                            {option.displayName}
-                        </MenuItem>
+                        <MenuItem key={option.id} value={option.id}>{option.displayName}</MenuItem>
                     ))}
                 </Select>
             </Grid>
             <Grid item xs={4}>
-                <InputLabel htmlFor="group">{this.i18n.getTranslation('Group')}</InputLabel>
+                <InputLabel htmlFor="group">{i18n.t('Group')}</InputLabel>
                 <Select
                     value={this.props.group}
                     onChange={this.props.setGroup}
@@ -246,15 +154,10 @@ class OrgUnitDialog extends React.PureComponent {
                     fullWidth
                 >
                     <MenuItem value="">
-                        <em>{this.i18n.getTranslation('Select a group')}</em>
+                        <em>{i18n.t('Select a group')}</em>
                     </MenuItem>
                     {this.props.groupOptions.map(option => (
-                        <MenuItem
-                            key={option.id}
-                            value={option.id}
-                        >
-                            {option.displayName}
-                        </MenuItem>
+                        <MenuItem key={option.id} value={option.id}>{option.displayName}</MenuItem>
                     ))}
                 </Select>
             </Grid>
@@ -268,9 +171,7 @@ class OrgUnitDialog extends React.PureComponent {
             fullWidth={this.props.fullWidth}
             maxWidth={this.props.maxWidth}
         >
-            <DialogTitle>
-                {this.i18n.getTranslation('Organisation units')}
-            </DialogTitle>
+            <DialogTitle>{i18n.t('Organisation units')}</DialogTitle>
             <DialogContent>
                 <div style={styles.orgUnitsContainer}>
                     <div style={styles.scrollableContainer.index}>
@@ -282,9 +183,9 @@ class OrgUnitDialog extends React.PureComponent {
                             />
                         </div>
                         <div style={styles.scrollableContainer.overlayContainer}>
-                            {this.props.userOrgUnits.length > 0 &&
+                            {this.props.userOrgUnits.length > 0 && (
                                 <div style={styles.scrollableContainer.overlay} />
-                            }
+                            )}
                             <OrgUnitTree
                                 root={this.props.root}
                                 selected={this.props.selected.map(orgUnit => orgUnit.path)}
@@ -301,19 +202,12 @@ class OrgUnitDialog extends React.PureComponent {
                         </div>
                     </div>
                 </div>
-                <div>
-                    {this.renderOptionsPanel()}
-                </div>
+                <div>{this.renderOptionsPanel()}</div>
             </DialogContent>
             <DialogActions style={{ padding: '24px' }}>
-                <Button onClick={this.props.onClose}>
-                    {this.i18n.getTranslation('Hide')}
-                </Button>
-                <Button
-                    color={'primary'}
-                    onClick={this.onUpdateClick}
-                >
-                    {this.i18n.getTranslation('Update')}
+                <Button onClick={this.props.onClose}>{i18n.t('Hide')}</Button>
+                <Button color="primary" onClick={this.onUpdateClick}>
+                    {i18n.t('Update')}
                 </Button>
             </DialogActions>
         </Dialog>
@@ -336,66 +230,66 @@ OrgUnitDialog.defaultProps = {
 
 OrgUnitDialog.propTypes = {
     /**
-     * Array of objects with required param id
-     */
+    * Array of objects with required param id
+    */
     selected: PropTypes.array,
 
     /**
-     * Array of user organisation units
-     * See userOrgUnits.js for static options
-     */
+    * Array of user organisation units
+    * See userOrgUnits.js for static options
+    */
     userOrgUnits: PropTypes.array,
 
     /**
-     * Level multiselect array of ids
-     */
+    * Level multiselect array of ids
+    */
     level: PropTypes.array,
 
     /**
-     * Group multiselect array of ids
-     */
+    * Group multiselect array of ids
+    */
     group: PropTypes.array,
 
     /**
-     * Org unit level options.
-     */
+    * Org unit level options.
+    */
     levelOptions: PropTypes.array,
 
     /**
-     * Org unit groups options.
-     */
+    * Org unit groups options.
+    */
     groupOptions: PropTypes.array,
 
     /**
-     * Setter function for level multiselect value
-     */
+    * Setter function for level multiselect value
+    */
     setLevel: PropTypes.func.isRequired,
 
     /**
-     * Setter for group multiselect value
-     */
+    * Setter for group multiselect value
+    */
     setGroup: PropTypes.func.isRequired,
 
     /**
-     * Callback handler for selecting orgunit
-     * Arguments supplied in callback: event, orgunit
-     */
+    * Callback handler for selecting orgunit
+    * Arguments supplied in callback: event, orgunit
+    */
     handleOrgUnitClick: PropTypes.func.isRequired,
 
     /**
-     * Callback handler for selecting user orgunit
-     * Arguments supplied in callback: event, checked
-     */
+    * Callback handler for selecting user orgunit
+    * Arguments supplied in callback: event, checked
+    */
     handleUserOrgUnitClick: PropTypes.func.isRequired,
 
     /**
-     * D2 object
-     */
+    * D2 object
+    */
     d2: PropTypes.object.isRequired,
 
     /**
-     * Root organisation unit
-     */
+    * Root organisation unit
+    */
     root: PropTypes.object.isRequired,
 
     // Dialog related props
