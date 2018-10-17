@@ -5,6 +5,7 @@ import Checkbox from '@material-ui/core/Checkbox/Checkbox';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import InputLabel from '@material-ui/core/InputLabel/InputLabel';
+import i18n from '@dhis2/d2-i18n';
 import StopIcon from '@material-ui/icons/Stop';
 import userOrgUnits from './userOrgUnits';
 
@@ -18,9 +19,7 @@ const UserOrgUnitsPanel = props => (
         {userOrgUnits.map(orgUnitType => (
             <Grid key={orgUnitType.id} item>
                 <Checkbox
-                    checked={props.userOrgUnits
-                        .some(ouType => ouType.id === orgUnitType.id)
-                    }
+                    checked={props.userOrgUnits.some(ouType => ouType.id === orgUnitType.id)}
                     onChange={props.handleUserOrgUnitClick}
                     inputProps={{
                         id: orgUnitType.id,
@@ -32,7 +31,7 @@ const UserOrgUnitsPanel = props => (
                 />
                 <InputLabel htmlFor={orgUnitType.id}>
                     <StopIcon style={props.styles.stopIcon} />
-                    <span style={props.styles.text}>{orgUnitType.displayName}</span>
+                    <span style={props.styles.text}>{i18n.t(orgUnitType.displayName)}</span>
                 </InputLabel>
             </Grid>
         ))}
