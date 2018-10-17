@@ -10,6 +10,7 @@ class PeriodSelectorExample extends Component {
         super(props);
 
         this.state = {
+            periods: [],
             snackbar: {
                 open: false,
                 message: '',
@@ -36,13 +37,24 @@ class PeriodSelectorExample extends Component {
         });
     };
 
+    selectPeriods = (periods) => {
+        console.log('selected period:', periods);
+    };
+
+    deselectPeriods = (periods) => {
+        console.log('de-selected period: ', periods);
+    };
+
     render() {
         return (
             <MuiThemeProvider muiTheme={getMuiTheme()}>
                 <Fragment>
                     <PeriodSelector
-                        onPeriodsSelect={this.onPeriodsSelect}
                         d2={this.props.d2}
+                        onPeriodsSelect={this.onPeriodsSelect}
+                        onSelect={this.selectPeriods}
+                        onDeselect={this.deselectPeriods}
+                        periods={this.state.periods}
                     />
                     <Snackbar
                         open={this.state.snackbar.open}

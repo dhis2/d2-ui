@@ -29,6 +29,7 @@ import List from 'material-ui/svg-icons/action/list';
 import Launch from 'material-ui/svg-icons/action/launch';
 import Message from 'material-ui/svg-icons/communication/message';
 import MoreVert from 'material-ui/svg-icons/navigation/more-vert';
+import MoreHoriz from 'material-ui/svg-icons/navigation/more-horiz';
 import NotInterested from 'material-ui/svg-icons/av/not-interested';
 import Person from 'material-ui/svg-icons/social/person';
 import Public from 'material-ui/svg-icons/social/public';
@@ -76,6 +77,7 @@ const icons = {
     Launch,
     Message,
     MoreVert,
+    MoreHoriz,
     NotInterested,
     Person,
     Public,

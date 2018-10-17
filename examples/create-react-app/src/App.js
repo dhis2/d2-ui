@@ -20,6 +20,7 @@ import Legend from './components/legend';
 import PeriodPicker from './components/period-picker';
 import PeriodSelectorDialog from './components/period-selector-dialog';
 import PeriodSelector from './components/period-selector';
+import OrgUnitDialog from './components/org-unit-dialog'
 import SelectField from './components/select-field';
 import Sidebar from './components/sidebar';
 import SvgIcon from './components/svg-icon';
@@ -155,6 +156,9 @@ class App extends Component {
 
                 <h2>OrgUnitTree</h2>
                 <OrgUnitTree d2={this.state.d2} />
+
+                <h2>Org unit dialog</h2>
+                <OrgUnitDialog d2={this.state.d2} />
 
                 <div style={{ clear: 'both' }}>
                     <h2>TreeViews</h2>
