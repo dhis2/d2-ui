@@ -1,6 +1,6 @@
 {
   "name": "@dhis2/d2-ui-expression-manager",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "Expression manager component for DHIS2 apps",
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",
@@ -25,7 +25,7 @@
     "url": "https://github.com/dhis2/d2-ui.git"
   },
   "dependencies": {
-    "@dhis2/d2-ui-core": "^1.3.3",
+    "@dhis2/d2-ui-core": "^1.3.4",
     "babel-runtime": "^6.26.0",
     "classnames": "^2.2.5",
     "d2": "^30.0.0",
