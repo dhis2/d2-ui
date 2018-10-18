@@ -4,7 +4,7 @@ import InterpretationDialog from '../InterpretationDialog';
 import PropTypes from 'prop-types';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 
-import { getStubContext } from '../../../../config/test-context';
+import { getStubContext, getMuiTheme } from '../../../../config/test-context';
 
 const context = getStubContext();
 const childContextTypes = {muiTheme: PropTypes.object, d2: PropTypes.object};
@@ -32,9 +32,10 @@ const renderComponent = (partialProps = {}) => {
         onClose: jest.fn(),
     };
     const props = {...baseProps, ...partialProps};
+    const muiTheme = getMuiTheme();
 
     return mount(
-        <MuiThemeProvider theme={context.muiTheme}>
+        <MuiThemeProvider theme={muiTheme}>
             <InterpretationDialog {...props} />
         </MuiThemeProvider>,
         {context, childContextTypes}

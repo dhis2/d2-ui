@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 
 import InterpretationsCard from '../InterpretationsCard';
-import { getStubContext } from '../../../../config/test-context';
+import { getStubContext, getMuiTheme } from '../../../../config/test-context';
 
 const favorite = {
     lastUpdated: "2018-05-11T12:57:25.365",
@@ -68,7 +68,7 @@ const favorite = {
     favoriteViews: 5,
 };
 
-const childContextTypes = {muiTheme: PropTypes.object, d2: PropTypes.object};
+const childContextTypes = {d2: PropTypes.object};
 
 const renderComponent = (partialProps = {}, partialContext = {}) => {
     const baseProps = {
@@ -80,9 +80,10 @@ const renderComponent = (partialProps = {}, partialContext = {}) => {
 
     const props = {...baseProps, ...partialProps};
     const context = getStubContext();
+    const muiTheme = getMuiTheme();
     const fullContext = _.merge(context, partialContext);
     return mount(
-        <MuiThemeProvider theme={context.muiTheme}>
+        <MuiThemeProvider theme={muiTheme}>
             <InterpretationsCard {...props} />
         </MuiThemeProvider>,
         { context: fullContext, childContextTypes }

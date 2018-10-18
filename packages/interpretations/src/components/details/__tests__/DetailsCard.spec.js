@@ -60,7 +60,7 @@ const favorite = {
 
 const context = getStubContext();
 
-const childContextTypes = {muiTheme: PropTypes.object, d2: PropTypes.object};
+const childContextTypes = {d2: PropTypes.object};
 
 const baseProps = {
     model: favorite,
