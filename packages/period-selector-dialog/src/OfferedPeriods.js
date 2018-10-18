@@ -23,7 +23,7 @@ export const OfferedPeriods = (props) => {
 
 OfferedPeriods.propTypes = {
     periodType: PropTypes.string.isRequired,
-    periods: PropTypes.array.isRequired,
+    items: PropTypes.array.isRequired,
     onDoubleClick: PropTypes.func.isRequired,
     onPeriodClick: PropTypes.func.isRequired,
     setOfferedPeriods: PropTypes.func.isRequired,
