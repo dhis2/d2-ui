@@ -7,15 +7,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import RelativePeriodsGenerator from './utils/RelativePeriodsGenerator';
 import PeriodsList from './PeriodsList';
 
-const styles = {
-    inputLabel: {
-        color: '#616161', // color
-        fontSize: 13,
-        paddingBottom: 15,
-        fontWeight: 300,
-    },
-};
-
 export const defaultState = {
     periodType: 'Weeks',
 };

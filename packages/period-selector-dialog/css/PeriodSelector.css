@@ -57,37 +57,33 @@ button.nav-button {
 }
 
 .periods-list-selected { 
-    height: 366px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-top: 5px;
-    margin-bottom: 10px;
-    list-style: none;
     overflow: auto;
+    list-style: none;
+    height: 382px;
+    padding-left: 0px;
+    margin: 0px;
 }
 
 .period-dimension-item {
     display: flex;
-    min-height: 24px;
-    padding: 2px;
+    margin: 5px;
 }
 
-.period-selected-label {
+.period-selected-label {  
     display: flex;
-    width: fit-content;
-    border-radius: 4px;   
-    background: #BBDEFB;
-    padding-right: 5px;
-    padding-left: 5px;
     outline: none;
+    border-radius: 4px;
+    background-color: rgb(187, 222, 251);
+    padding: 2px;
+
 }
 
 .periods-list-offered {
-    height: 395px;
-    padding-left: 10px;
-    padding-right: 10px;
     list-style: none;
     overflow: auto;
+    height: 406px;
+    margin: 0px;
+    padding-left: 0px;
 }
 
 .period-offered-label {
@@ -98,12 +94,20 @@ button.nav-button {
     padding-right: 5px;
 }
 
-.selected-periods .title {
-    margin: 0;
-    padding: 10px;
+.subtitle-container {
+    border-bottom: 1px solid #E0E0E0;
+    height: 42px;
+}
+
+.selected-periods .subtitle {
+    position: relative;
+    color: black;
+    font-family: Roboto;
+    height: 20px;
+    font-size: 15px;
     font-weight: 500;
-    color: #4b4b4b;
-    border-bottom: 1px solid #e8e8e8;
+    top: 12px;
+    left: 8px;
 }
 
 .selector-area {
@@ -118,7 +122,7 @@ button.nav-button {
 .unselected-icon {
     background-color: grey;
     position: relative;
-    top: 40%;
+    top: 35%;
     height: 6px;
     width: 6px;
     margin-right: 5px;
@@ -127,23 +131,32 @@ button.nav-button {
 .selected-icon {
     background-color: #1976D2;
     position: relative;
-    top: 40%;
+    top: 35%;
     height: 6px;
     width: 6px;
     margin-right: 5px;
+    margin-left: 5px;
 }
 
 .remove-item-button {
     border: none;
     background: none;
     padding: 0px;
-    padding-top: 5px;
+    padding-top: 3px;
     padding-left: 1px;
     margin-left: 5px;
+    margin-right: 3px;
     width: 10px;
 }
 
-.list-text { margin-top: 4px; }
+.list-text { 
+    font-family: Roboto;
+    font-size: 14px;
+    margin-top: 2px;
+    margin-bottom: 1px;
+    padding-left: 2px;
+    padding-right: 2px;
+ }
 
 .selector-area .form-control.period-type { width: 65%; padding-right: 10px; }
 .selector-area .form-control.year { width: 32%; }

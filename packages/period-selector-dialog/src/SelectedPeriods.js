@@ -15,7 +15,9 @@ class SelectedPeriods extends React.Component {
 
     render = () => (
         <div className="selector-area">
-            <h3 className="title"> {this.i18n.getTranslation('Selected periods')} </h3>
+            <div className="subtitle-container">
+                <span className="subtitle"> {this.i18n.getTranslation('Selected periods')} </span>
+            </div>
             <PeriodsList
                 items={this.props.items}
                 onPeriodClick={this.props.onPeriodClick}

@@ -36,7 +36,7 @@ class PeriodSelectorDialogExample extends Component {
             dialogOpened: false,
             snackbar: {
                 open: true,
-                message: `Selected periods: ${selectedPeriods.map(period => period.id).join(', ')}`,
+                message: `Selected periods: ${selectedPeriods.map(period => period.name).join(', ')}`,
             },
         });
     };
@@ -46,7 +46,7 @@ class PeriodSelectorDialogExample extends Component {
             dialogOpened: false,
             snackbar: {
                 open: true,
-                message: `Selected periods: ${this.state.selectedPeriods.map(period => period.id).join(', ')}`,
+                message: `Selected periods: ${this.state.selectedPeriods.map(period => period.name).join(', ')}`,
             },
         });
     };

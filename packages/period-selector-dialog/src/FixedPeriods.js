@@ -7,16 +7,6 @@ import PropTypes from 'prop-types';
 import FixedPeriodsGenerator from './utils/FixedPeriodsGenerator';
 import PeriodsList from './PeriodsList';
 
-
-const styles = {
-    inputLabel: {
-        color: '#616161', // color
-        fontSize: 13,
-        paddingBottom: 15,
-        fontWeight: 300,
-    },
-};
-
 export const defaultState = {
     periodType: 'Weekly',
     year: (new Date()).getFullYear(),
