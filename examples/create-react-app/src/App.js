@@ -161,6 +161,8 @@ class App extends Component {
                     <TreeViews />
                 </div>
 
+                <div style={{ clear: 'both' }}></div>
+
                 <h2>Intepretations</h2>
                 <InterpretationsExample d2={this.state.d2} />
 
