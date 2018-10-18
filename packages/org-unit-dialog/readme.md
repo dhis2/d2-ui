@@ -12,16 +12,8 @@ $ yarn build
 ```
 
 ## Publish
-
-```
-$ pwd
-/path/to/d2-ui/packages/org-unit-dialog
-$ yarn version
-
-$ cd build # always publish from the build dir!
-$ npm login
-$ npm publish
-```
+Publish instructions are available here:
+https://github.com/dhis2/d2-ui/blob/master/docs/RELEASING.md
 
 ## Install
 
