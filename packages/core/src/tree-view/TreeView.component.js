@@ -115,7 +115,10 @@ class TreeView extends React.Component {
 
 // TODO: Documentation
 TreeView.propTypes = {
-    label: PropTypes.oneOfType(PropTypes.string, PropTypes.object),
+    label: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object,
+    ]),
     model: PropTypes.object,
     children: PropTypes.node,
     persistent: PropTypes.bool,
