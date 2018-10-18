@@ -10,7 +10,7 @@ class PeriodSelectorExample extends Component {
         super(props);
 
         this.state = {
-            periods: [],
+            selectedPeriods: [],
             snackbar: {
                 open: false,
                 message: '',
@@ -27,16 +27,16 @@ class PeriodSelectorExample extends Component {
         });
     };
 
-    selectPeriods = (periods) => {
-        this.setState({ periods });
+    selectPeriods = (selectedPeriods) => {
+        this.setState({ selectedPeriods });
     };
 
-    deselectPeriods = (periods) => {
-        const filteredItems = this.state.periods.filter(periodRange =>
-            !periods.includes(periodRange) && periodRange,
+    deselectPeriods = (removedPeriods) => {
+        const selectedPeriods = this.state.selectedPeriods.filter(period =>
+            !removedPeriods.includes(period) && period,
         );
 
-        this.setState({ periods: filteredItems });
+        this.setState({ selectedPeriods });
     };
 
     render() {
@@ -47,7 +47,7 @@ class PeriodSelectorExample extends Component {
                         d2={this.props.d2}
                         onSelect={this.selectPeriods}
                         onDeselect={this.deselectPeriods}
-                        periods={this.state.periods}
+                        selectedItems={this.state.selectedPeriods}
                     />
                     <Snackbar
                         open={this.state.snackbar.open}

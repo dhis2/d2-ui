@@ -7,8 +7,18 @@ import PropTypes from 'prop-types';
 import FixedPeriodsGenerator from './utils/FixedPeriodsGenerator';
 import PeriodsList from './PeriodsList';
 
+
+const styles = {
+    inputLabel: {
+        color: '#616161', // color
+        fontSize: 13,
+        paddingBottom: 15,
+        fontWeight: 300,
+    },
+};
+
 export const defaultState = {
-    periodType: '',
+    periodType: 'Weekly',
     year: (new Date()).getFullYear(),
 };
 
@@ -60,10 +70,14 @@ class FixedPeriods extends Component {
         });
     };
 
+    componentDidMount = () => {
+        this.props.setOfferedPeriods(this.generatePeriods(this.state.periodType, this.state.year));
+    };
+
     renderOptions = () => (
         <div className="options-area">
             <FormControl className="form-control period-type">
-                <InputLabel htmlFor="period-type">
+                <InputLabel className="input-label" htmlFor="period-type">
                     {this.i18n.getTranslation('Period type')}
                 </InputLabel>
                 <Select
@@ -78,7 +92,7 @@ class FixedPeriods extends Component {
                 </Select>
             </FormControl>
             <FormControl className="form-control year">
-                <InputLabel htmlFor="year">
+                <InputLabel className="input-label" htmlFor="year">
                     {this.i18n.getTranslation('Year')}
                 </InputLabel>
                 <Select
@@ -86,7 +100,6 @@ class FixedPeriods extends Component {
                     value={this.state.year}
                     inputProps={{ name: 'year', id: 'year' }}
                     disableUnderline
-                    variant="filled"
                 >
                     {this.years.sort().map(year => <MenuItem value={year} key={year}>{year}</MenuItem>)}
                 </Select>
@@ -94,23 +107,27 @@ class FixedPeriods extends Component {
         </div>
     );
 
-    render = () => (
-        <div className="selector-area">
-            {this.renderOptions()}
-            <PeriodsList
-                periods={this.props.periods}
-                onDoubleClick={this.props.onDoubleClick}
-                onPeriodClick={this.props.onPeriodClick}
-                listClassName={'periods-list-offered'}
-            />
-        </div>
-    )
+    render = () => {
+        const Options = this.renderOptions();
+
+        return (
+            <div className="selector-area">
+                {Options}
+                <PeriodsList
+                    items={this.props.items}
+                    onDoubleClick={this.props.onDoubleClick}
+                    onPeriodClick={this.props.onPeriodClick}
+                    listClassName={'periods-list-offered'}
+                />
+            </div>
+        );
+    };
 }
 
 FixedPeriods.propTypes = {
-    periods: PropTypes.array.isRequired,
-    onPeriodClick: PropTypes.func.isRequired,
+    items: PropTypes.array.isRequired,
     onDoubleClick: PropTypes.func.isRequired,
+    onPeriodClick: PropTypes.func.isRequired,
     setOfferedPeriods: PropTypes.func.isRequired,
 };
 

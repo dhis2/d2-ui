@@ -20,13 +20,13 @@ PeriodSelector.propTypes = {
     d2: PropTypes.object.isRequired,
     onSelect: PropTypes.func,
     onDeselect: PropTypes.func,
-    periods: PropTypes.array,
+    selectedItems: PropTypes.array,
 };
 
 PeriodSelector.defaultProps = {
-    periods: [],
     onSelect: () => null,
     onDeselect: () => null,
+    selectedItems: [],
 };
 
 PeriodSelector.childContextTypes = {

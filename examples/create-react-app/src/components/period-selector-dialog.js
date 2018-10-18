@@ -9,7 +9,7 @@ import PeriodSelectorDialog from '@dhis2/d2-ui-period-selector-dialog';
 class PeriodSelectorDialogExample extends Component {
     state = {
         // example of initially selected periods
-        periods: [
+        selectedPeriods: [
             { id: 'TODAY', name: 'Today' },
             { id: 'YESTERDAY', name: 'Yesterday' },
             { id: 'LAST_3_DAYS', name: 'Last 3 days' },
@@ -30,13 +30,13 @@ class PeriodSelectorDialogExample extends Component {
         });
     };
 
-    onUpdate = (periods) => {
+    onUpdate = (selectedPeriods) => {
         this.setState({
-            periods,
+            selectedPeriods,
             dialogOpened: false,
             snackbar: {
                 open: true,
-                message: `Selected periods: ${periods.map(period => period.id).join(', ')}`,
+                message: `Selected periods: ${selectedPeriods.map(period => period.id).join(', ')}`,
             },
         });
     };
@@ -46,7 +46,7 @@ class PeriodSelectorDialogExample extends Component {
             dialogOpened: false,
             snackbar: {
                 open: true,
-                message: `Selected periods: ${this.state.periods.map(period => period.id).join(', ')}`,
+                message: `Selected periods: ${this.state.selectedPeriods.map(period => period.id).join(', ')}`,
             },
         });
     };
@@ -71,7 +71,7 @@ class PeriodSelectorDialogExample extends Component {
                     open={this.state.dialogOpened}
                     onClose={this.onClose}
                     onUpdate={this.onUpdate}
-                    periods={this.state.periods}
+                    selectedItems={this.state.selectedPeriods}
                 />
                 <Snackbar
                     open={this.state.snackbar.open}

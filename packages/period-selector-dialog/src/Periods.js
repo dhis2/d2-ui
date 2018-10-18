@@ -45,10 +45,7 @@ class Periods extends Component {
         super(props);
 
         this.i18n = context.d2.i18n;
-
-        if (this.props.periods.length > 0) {
-            this.props.setSelectedPeriods(this.props.periods);
-        }
+        this.props.setSelectedPeriods(this.props.selectedItems);
     }
 
     onPeriodTypeClick = (periodType) => {
@@ -59,43 +56,47 @@ class Periods extends Component {
     };
 
     onSelectPeriods = () => {
-        const selectedOfferedPeriods = this.props
+        const itemsToAdd = this.props
             .offeredPeriods
             .periods
             .filter(period => period.selected === true);
 
-        this.props.onSelect(selectedOfferedPeriods);
-        this.props.addSelectedPeriods(selectedOfferedPeriods);
-        this.props.removeOfferedPeriods(selectedOfferedPeriods);
+        this.props.onSelect(itemsToAdd);
+        this.props.addSelectedPeriods(itemsToAdd);
+        this.props.removeOfferedPeriods(itemsToAdd);
     };
 
     onDeselectPeriods = () => {
-        const periods = this.props
+        const removedPeriods = this.props
             .selectedPeriods
             .periods
             .filter(period => period.selected === true);
 
-        this.props.onDeselect(periods);
-        this.props.removeSelectedPeriods(periods);
-        this.props.addOfferedPeriods(periods);
+        this.props.onDeselect(removedPeriods);
+        this.props.removeSelectedPeriods(removedPeriods);
+        this.props.addOfferedPeriods(removedPeriods);
     };
 
-    onDoubleClick = (period) => {
-        const itemToAdd = [period];
+    onDoubleClick = (selectedPeriod) => {
+        const itemToAdd = [selectedPeriod];
+
         this.props.onSelect(itemToAdd);
         this.props.addSelectedPeriods(itemToAdd);
         this.props.removeOfferedPeriods(itemToAdd);
     }
 
-    onRemovePeriod = (period) => {
-        const itemToRemove = [period];
+    onRemovePeriod = (removedPeriod) => {
+        const itemToRemove = [removedPeriod];
+
         this.props.onDeselect(itemToRemove);
         this.props.removeSelectedPeriods(itemToRemove);
         this.props.addOfferedPeriods(itemToRemove);
     };
 
-    onClearAll = (periods) => {
-        this.props.onDeselect(periods);
+    onClearAll = (removedPeriods) => {
+        this.props.onDeselect(removedPeriods);
+        this.props.addOfferedPeriods(removedPeriods);
+        this.props.setSelectedPeriods([]);
     };
 
     renderPeriodTypeButtons = () => (
@@ -122,47 +123,50 @@ class Periods extends Component {
         </Fragment>
     );
 
-    render = () => (
-        <div>
-            {this.renderPeriodTypeButtons()}
-            <div className="periods-container">
-                <div className="block options">
-                    <OfferedPeriods
-                        periodType={this.props.periodType}
-                        periods={this.props.offeredPeriods.periods}
-                        setOfferedPeriods={this.props.setOfferedPeriods}
-                        onDoubleClick={this.onDoubleClick}
-                        onPeriodClick={this.props.toggleOfferedPeriod}
-                    />
-                </div>
-                <div className="block buttons">
-                    {this.renderSelectButtons()}
-                </div>
-                <div className="block selected-periods">
-                    <SelectedPeriods
-                        periods={this.props.selectedPeriods.periods}
-                        onClearAll={this.onClearAll}
-                        onPeriodClick={this.props.toggleSelectedPeriod}
-                        onRemovePeriodClick={this.onRemovePeriod}
-                        setSelectedPeriods={this.props.setSelectedPeriods}
-                        addOfferedPeriods={this.props.addOfferedPeriods}
-                    />
+    render = () => {
+        const PeriodTypeButtons = this.renderPeriodTypeButtons();
+        const SelectButtons = this.renderSelectButtons();
+
+        return (
+            <div>
+                {PeriodTypeButtons}
+                <div className="periods-container">
+                    <div className="block options">
+                        <OfferedPeriods
+                            periodType={this.props.periodType}
+                            items={this.props.offeredPeriods.periods}
+                            onDoubleClick={this.onDoubleClick}
+                            onPeriodClick={this.props.toggleOfferedPeriod}
+                            setOfferedPeriods={this.props.setOfferedPeriods}
+                        />
+                    </div>
+                    <div className="block buttons">
+                        {SelectButtons}
+                    </div>
+                    <div className="block selected-periods">
+                        <SelectedPeriods
+                            items={this.props.selectedPeriods.periods}
+                            onClearAll={this.onClearAll}
+                            onPeriodClick={this.props.toggleSelectedPeriod}
+                            onRemovePeriodClick={this.onRemovePeriod}
+                        />
+                    </div>
                 </div>
             </div>
-        </div>
-    )
+        );
+    };
 }
 
 Periods.propTypes = {
-    periods: PropTypes.array.isRequired,
+    onSelect: PropTypes.func.isRequired,
+    onDeselect: PropTypes.func.isRequired,
+    selectedItems: PropTypes.array.isRequired,
     periodType: PropTypes.string.isRequired,
     offeredPeriods: PropTypes.object.isRequired,
     selectedPeriods: PropTypes.object.isRequired,
     setPeriodType: PropTypes.func.isRequired,
     setOfferedPeriods: PropTypes.func.isRequired,
     setSelectedPeriods: PropTypes.func.isRequired,
-    onSelect: PropTypes.func.isRequired,
-    onDeselect: PropTypes.func.isRequired,
     addSelectedPeriods: PropTypes.func.isRequired,
     addOfferedPeriods: PropTypes.func.isRequired,
     removeOfferedPeriods: PropTypes.func.isRequired,

@@ -7,15 +7,24 @@ import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
 import PeriodSelector from './PeriodSelector';
 
-export const defaultState = {
-    periods: [],
+const styles = {
+    dialogContent: {
+        paddingBottom: 0,
+        paddingTop: 0,
+        overflow: 'hidden',
+    },
+    dialogActions: {
+        padding: '24px',
+        marginTop: 0,
+        borderTop: '1px solid #E0E0E0',
+
+    },
 };
 
 class PeriodSelectorDialog extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = defaultState;
         this.i18n = this.props.d2.i18n;
     }
 
@@ -24,21 +33,19 @@ class PeriodSelectorDialog extends React.Component {
     };
 
     onUpdateClick = () => {
-        this.props.onUpdate(this.state.periods);
+        this.props.onUpdate(this.props.selectedItems);
     };
 
-    onSelect = (periods) => {
-        this.setState({ periods });
-        this.props.onSelect(this.state.periods);
+    onSelect = (selectedPeriods) => {
+        this.props.onSelect(selectedPeriods);
     };
 
-    onDeselect = (periods) => {
-        const filteredItems = this.state.periods.filter(periodRange =>
-            !periods.includes(periodRange) && periodRange,
+    onDeselect = (removedPeriods) => {
+        const selectedPeriods = this.props.selectedItems.filter(period =>
+            !removedPeriods.includes(period) && period,
         );
 
-        this.setState({ periods: filteredItems });
-        this.props.onDeselect(filteredItems);
+        this.props.onDeselect(selectedPeriods);
     };
 
     render = () => {
@@ -52,14 +59,14 @@ class PeriodSelectorDialog extends React.Component {
                 maxWidth={maxWidth}
             >
                 <DialogTitle>{this.i18n.getTranslation('Period')}</DialogTitle>
-                <DialogContent>
+                <DialogContent style={styles.dialogContent}>
                     <PeriodSelector {...remaindingProps} />
                 </DialogContent>
-                <DialogActions style={{ padding: '24px' }}>
+                <DialogActions style={styles.dialogActions}>
                     <Button onClick={this.onCloseClick}>
                         {this.i18n.getTranslation('Hide')}
                     </Button>
-                    <Button onClick={this.onUpdateClick} variant="contained" color="primary">
+                    <Button style={{ backgroundColor: '#004BA0', color: 'white' }} onClick={this.onUpdateClick}>
                         {this.i18n.getTranslation('Update')}
                     </Button>
                 </DialogActions>
@@ -71,10 +78,9 @@ class PeriodSelectorDialog extends React.Component {
 PeriodSelectorDialog.defaultProps = {
     maxWidth: 'md',
     fullWidth: true,
-    onClose: () => null,
     onSelect: () => null,
     onDeselect: () => null,
-    periods: [],
+    selectedItems: [],
 };
 
 PeriodSelectorDialog.propTypes = {
@@ -82,11 +88,11 @@ PeriodSelectorDialog.propTypes = {
     open: PropTypes.bool.isRequired,
     fullWidth: PropTypes.bool,
     maxWidth: PropTypes.string,
-    onClose: PropTypes.func,
+    onClose: PropTypes.func.isRequired,
     onUpdate: PropTypes.func.isRequired,
     onSelect: PropTypes.func,
     onDeselect: PropTypes.func,
-    periods: PropTypes.array,
+    selectedItems: PropTypes.array,
 };
 
 export default PeriodSelectorDialog;

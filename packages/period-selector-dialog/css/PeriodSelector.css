@@ -5,11 +5,12 @@
 
 button.nav-button {
     padding: 5px 13px 3px;
-    border-radius: 0;
+    border: 1px solid #ECEFF1;
+    border-radius: 2px 0 0 2px;
 }
 
 .nav-button.active, .nav-button.active:hover {
-    background: #117ad4;
+    background-color: #00796B;
     color: #fff;
 }
 
@@ -124,7 +125,7 @@ button.nav-button {
 }
 
 .selected-icon {
-    background-color: blue;
+    background-color: #1976D2;
     position: relative;
     top: 40%;
     height: 6px;
@@ -145,7 +146,7 @@ button.nav-button {
 .list-text { margin-top: 4px; }
 
 .selector-area .form-control.period-type { width: 65%; padding-right: 10px; }
-.selector-area .form-control.year { width: 30%; border-bottom: 1px solid #e8e8e8; }
+.selector-area .form-control.year { width: 32%; }
 .selector-area .period-li { padding: 5px 5px 2px; }
 .selector-area .period-li.selected { background: #42a0ff !important; }
 .selected-periods .period-li { background: #BBDEFB !important; }

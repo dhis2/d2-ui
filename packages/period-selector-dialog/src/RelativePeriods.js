@@ -7,8 +7,17 @@ import MenuItem from '@material-ui/core/MenuItem';
 import RelativePeriodsGenerator from './utils/RelativePeriodsGenerator';
 import PeriodsList from './PeriodsList';
 
+const styles = {
+    inputLabel: {
+        color: '#616161', // color
+        fontSize: 13,
+        paddingBottom: 15,
+        fontWeight: 300,
+    },
+};
+
 export const defaultState = {
-    periodType: '',
+    periodType: 'Weeks',
 };
 
 class RelativePeriods extends Component {
@@ -19,6 +28,10 @@ class RelativePeriods extends Component {
         this.i18n = context.d2.i18n;
         this.periodsGenerator = new RelativePeriodsGenerator();
     }
+
+    componentDidMount = () => {
+        this.props.setOfferedPeriods(this.generatePeriods(this.state.periodType));
+    };
 
     onPeriodTypeChange = (event) => {
         this.setState({
@@ -36,7 +49,7 @@ class RelativePeriods extends Component {
     renderOptions = () => (
         <div className="options-area">
             <FormControl className="form-control period-type">
-                <InputLabel htmlFor="period-type">
+                <InputLabel className="input-label" htmlFor="period-type">
                     {this.i18n.getTranslation('Period type')}
                 </InputLabel>
                 <Select
@@ -54,21 +67,25 @@ class RelativePeriods extends Component {
         </div>
     );
 
-    render = () => (
-        <div className="selector-area">
-            {this.renderOptions()}
-            <PeriodsList
-                periods={this.props.periods}
-                onPeriodClick={this.props.onPeriodClick}
-                onDoubleClick={this.props.onDoubleClick}
-                listClassName={'periods-list-offered'}
-            />
-        </div>
-    )
+    render = () => {
+        const Options = this.renderOptions();
+
+        return (
+            <div className="selector-area">
+                {Options}
+                <PeriodsList
+                    items={this.props.items}
+                    onPeriodClick={this.props.onPeriodClick}
+                    onDoubleClick={this.props.onDoubleClick}
+                    listClassName={'periods-list-offered'}
+                />
+            </div>
+        );
+    };
 }
 
 RelativePeriods.propTypes = {
-    periods: PropTypes.array.isRequired,
+    items: PropTypes.array.isRequired,
     setOfferedPeriods: PropTypes.func.isRequired,
     onDoubleClick: PropTypes.func.isRequired,
     onPeriodClick: PropTypes.func.isRequired,
