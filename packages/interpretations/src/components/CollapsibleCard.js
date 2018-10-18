@@ -103,8 +103,4 @@ CollapsibleCard.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-CollapsibleCard.contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
-};
-
 export default withStyles(styles)(CollapsibleCard);
