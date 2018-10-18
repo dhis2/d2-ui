@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import LinearProgress from 'material-ui/LinearProgress';
+import LinearProgress from '@material-ui/core/LinearProgress';
+import FolderIcon from '@material-ui/icons/Folder';
+import FolderOpenIcon from '@material-ui/icons/FolderOpen';
+import StopIcon from '@material-ui/icons/Stop';
 
 import ModelBase from 'd2/lib/model/Model';
 import ModelCollection from 'd2/lib/model/ModelCollection';
@@ -56,7 +59,7 @@ class OrgUnitTree extends React.Component {
         this.state = {
             children: (
                 props.root.children === false ||
-                Array.isArray(props.root.children) && props.root.children.length === 0
+                (Array.isArray(props.root.children) && props.root.children.length === 0)
             )
                 ? []
                 : undefined,
@@ -86,14 +89,39 @@ class OrgUnitTree extends React.Component {
         }
     }
 
+    onCollapse = (orgUnit) => {
+        if (typeof this.props.onCollapse === 'function') {
+            this.props.onCollapse(orgUnit);
+        }
+    };
+
+    onExpand = (orgUnit) => {
+        this.loadChildren();
+
+        if (typeof this.props.onExpand === 'function') {
+            this.props.onExpand(orgUnit);
+        }
+    };
+
     setChildState(children) {
+        let data = children;
+
         if (this.props.onChildrenLoaded) {
             this.props.onChildrenLoaded(children);
         }
+
+        if (!Array.isArray(children)) {
+            data = children.toArray();
+        }
+
         this.setState({
-            children: children.toArray().sort((a, b) => a.displayName.localeCompare(b.displayName)),
+            children: data.sort((a, b) => a.displayName.localeCompare(b.displayName)),
             loading: false,
         });
+    }
+
+    hideChildren() {
+        this.setChildState([]);
     }
 
     loadChildren() {
@@ -129,16 +157,24 @@ class OrgUnitTree extends React.Component {
 
     renderChild(orgUnit, expandedProp) {
         if (this.shouldIncludeOrgUnit(orgUnit)) {
+            const highlighted = this.props.searchResults.includes(orgUnit.path) && this.props.highlightSearchResults;
+
             return (
                 <OrgUnitTree
                     key={orgUnit.id}
                     root={orgUnit}
+                    onExpand={this.onExpand}
+                    onCollapse={this.onCollapse}
                     selected={this.props.selected}
                     initiallyExpanded={expandedProp}
                     onSelectClick={this.props.onSelectClick}
                     currentRoot={this.props.currentRoot}
                     onChangeCurrentRoot={this.props.onChangeCurrentRoot}
-                    labelStyle={this.props.labelStyle}
+                    labelStyle={{
+                        ...this.props.labelStyle,
+                        fontWeight: highlighted ? 500 : this.props.labelStyle.fontWeight,
+                        color: highlighted ? 'orange' : 'inherit',
+                    }}
                     selectedLabelStyle={this.props.selectedLabelStyle}
                     arrowSymbol={this.props.arrowSymbol}
                     idsThatShouldBeReloaded={this.props.idsThatShouldBeReloaded}
@@ -146,7 +182,12 @@ class OrgUnitTree extends React.Component {
                     onChildrenLoaded={this.props.onChildrenLoaded}
                     hideMemberCount={this.props.hideMemberCount}
                     orgUnitsPathsToInclude={this.props.orgUnitsPathsToInclude}
+                    treeStyle={this.props.treeStyle}
+                    searchResults={this.props.searchResults}
+                    highlightSearchResults={this.props.highlightSearchResults}
                     forceReloadChildren={this.props.forceReloadChildren}
+                    showFolderIcon={this.props.showFolderIcon}
+                    disableSpacer={this.props.disableSpacer}
                 />
             );
         }
@@ -204,7 +245,12 @@ class OrgUnitTree extends React.Component {
         }, isSelected ? this.props.selectedLabelStyle : this.props.labelStyle);
 
         // Styles for this OU and OUs contained within it
-        const ouContainerStyle = Object.assign({}, styles.ouContainer, isCurrentRoot ? styles.currentOuContainer : {});
+        const ouContainerStyle = Object.assign(
+            {},
+            styles.ouContainer,
+            isCurrentRoot ? styles.currentOuContainer : {},
+            this.props.treeStyle,
+        );
 
         // Wrap the change root click handler in order to stop event propagation
         const setCurrentRoot = (e) => {
@@ -226,7 +272,15 @@ class OrgUnitTree extends React.Component {
                         disabled={!isSelectable}
                         checked={isSelected}
                         onClick={this.handleSelectClick}
+                        style={this.props.labelStyle.checkbox}
                     />
+                )}
+                {this.props.showFolderIcon && hasChildren && (isInitiallyExpanded
+                    ? <FolderOpenIcon style={{ ...styles.folderIcon, ...this.props.labelStyle.folderIcon }} />
+                    : <FolderIcon style={{ ...styles.folderIcon, ...this.props.labelStyle.folderIcon }} />
+                )}
+                {this.props.showFolderIcon && !hasChildren && (
+                    <StopIcon style={{ ...styles.stopIcon, ...this.props.labelStyle.stopIcon }} />
                 )}
                 {currentOu.displayName}
                 {hasChildren && !this.props.hideMemberCount && !!memberCount && (
@@ -239,12 +293,14 @@ class OrgUnitTree extends React.Component {
             return (
                 <TreeView
                     label={label}
-                    onExpand={this.loadChildren}
-                    persistent
+                    onExpand={this.onExpand}
+                    onCollapse={this.onCollapse}
+                    model={this.props.root}
                     initiallyExpanded={isInitiallyExpanded}
                     arrowSymbol={this.props.arrowSymbol}
                     className="orgunit with-children"
                     style={ouContainerStyle}
+                    persistent
                 >
                     {this.renderChildren()}
                 </TreeView>
@@ -259,7 +315,7 @@ class OrgUnitTree extends React.Component {
                 role="button"
                 tabIndex={0}
             >
-                <div style={styles.spacer} />
+                {!this.props.disableSpacer && <div style={styles.spacer} />}
                 {label}
             </div>
         );
@@ -298,6 +354,20 @@ OrgUnitTree.propTypes = {
     initiallyExpanded: PropTypes.arrayOf(orgUnitPathPropValidator),
 
     /**
+     * onExpand callback is triggered when user expands organisation unit
+     *
+     * Will receive one argument - OU that was expanded
+     */
+    onExpand: PropTypes.func,
+
+    /**
+     * onCollapse callback is triggered when user collapses organisation unit
+     *
+     * Will receive one argument - OU that was collapsed
+     */
+    onCollapse: PropTypes.func,
+
+    /**
      * onSelectClick callback, which is triggered when a click triggers the selection of an organisation unit
      *
      * The onSelectClick callback will receive two arguments: The original click event, and the OU that was clicked
@@ -329,6 +399,11 @@ OrgUnitTree.propTypes = {
      * Custom styling for OU labels
      */
     labelStyle: PropTypes.object,
+
+    /**
+     * Custom styling for trees
+     */
+    treeStyle: PropTypes.object,
 
     /**
      * Custom styling for the labels of selected OUs
@@ -365,16 +440,39 @@ OrgUnitTree.propTypes = {
      * for dynamic OrgUnitTrees, i.e. in cases where parent-child relations are updated
      */
     forceReloadChildren: PropTypes.bool,
+
+    /**
+     * Results from search
+     */
+    searchResults: PropTypes.array,
+
+    /**
+     * Indicates if search results should be highlighted
+     */
+    highlightSearchResults: PropTypes.bool,
+
+    /**
+     * Indicates if showing folder icon is enabled
+     */
+    showFolderIcon: PropTypes.bool,
+
+    /**
+     * Prop indicating if spacer should be enabled
+     */
+    disableSpacer: PropTypes.bool,
 };
 
 OrgUnitTree.defaultProps = {
     selected: [],
     initiallyExpanded: [],
     onSelectClick: undefined,
+    onExpand: undefined,
+    onCollapse: undefined,
     onChangeCurrentRoot: undefined,
     currentRoot: undefined,
     onChildrenLoaded: undefined,
     labelStyle: {},
+    treeStyle: {},
     selectedLabelStyle: {},
     idsThatShouldBeReloaded: [],
     arrowSymbol: undefined,
@@ -382,6 +480,10 @@ OrgUnitTree.defaultProps = {
     hideMemberCount: false,
     orgUnitsPathsToInclude: null,
     forceReloadChildren: false,
+    searchResults: [],
+    highlightSearchResults: false,
+    showFolderIcon: false,
+    disableSpacer: false,
 };
 
 export default OrgUnitTree;
