@@ -1,6 +1,6 @@
 {
     "name": "@dhis2/d2-ui-org-unit-dialog",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "description": "Org Unit Dialog component for d2-ui",
     "main": "./build/cjs/index.js",
     "module": "./build/es/index.js",
@@ -28,8 +28,8 @@
     },
     "dependencies": {
         "@dhis2/d2-i18n": "^1.0.3",
-        "@dhis2/d2-ui-core": "^1.3.4",
-        "@dhis2/d2-ui-org-unit-tree": "^1.0.18",
+        "@dhis2/d2-ui-core": "^1.3.5",
+        "@dhis2/d2-ui-org-unit-tree": "^1.0.19",
         "@material-ui/core": "^1.5.1",
         "@material-ui/icons": "^2.0.3",
         "prop-types": "^15.5.10"
