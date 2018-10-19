@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import _ from 'lodash';
 import Interpretations from '../Interpretations';
-import { getStubContext } from '../../../../../config/inject-theme';
+import { getStubContext } from '../../../config/test-context';
 import * as helpers from '../../models/helpers';
 
 const context = getStubContext();

@@ -1,13 +1,12 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import PropTypes from 'prop-types';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import SubscriberIconEnabled from 'material-ui/svg-icons/social/notifications';
-import SubscriberIconDisabled from 'material-ui/svg-icons/alert/add-alert';
+import SubscriberIconEnabled from '@material-ui/icons/Notifications';
+import SubscriberIconDisabled from '@material-ui/icons/AddAlert';
 
 import * as helpers from '../../../models/helpers';
 import DetailsCard from '../DetailsCard';
-import { getStubContext } from '../../../../../../config/inject-theme';
+import { getStubContext } from '../../../../config/test-context';
 
 const favorite = {
     lastUpdated: "2018-05-21T12:57:25.365",
@@ -61,7 +60,7 @@ const favorite = {
 
 const context = getStubContext();
 
-const childContextTypes = {muiTheme: PropTypes.object, d2: PropTypes.object};
+const childContextTypes = {d2: PropTypes.object};
 
 const baseProps = {
     model: favorite,
@@ -70,7 +69,7 @@ const baseProps = {
 
 const renderComponent = (partialProps = {}) => {
     const props = { ...baseProps, ...partialProps };
-    return shallow(<DetailsCard {...props} />, { context, childContextTypes });
+    return mount(<DetailsCard {...props} />, { context, childContextTypes });
 };
 
 const getListItem = (detailsCard, label) => {
@@ -123,7 +122,10 @@ describe('Interpretations: Details -> DetailsCard component', () => {
             describe('when icon clicked', () => {
                 beforeEach(() => {
                     helpers.setSubscription = jest.fn(() => Promise.resolve({}));
-                    detailsCard.find("IconButton").simulate("click");
+                    detailsCard
+                        .find("button")
+                        .find({title: "Subscribe to this map and start receiving notifications"})
+                        .simulate("click");
                     detailsCard.update();
                 });
 
@@ -150,7 +152,11 @@ describe('Interpretations: Details -> DetailsCard component', () => {
             describe('when icon clicked', () => {
                 beforeEach(() => {
                     helpers.setSubscription = jest.fn(() => Promise.resolve({}));
-                    detailsCard.find("IconButton").simulate("click");
+                    detailsCard
+                        .find("button")
+                        .find({title: "Unsubscribe from this map and stop receiving notifications"})
+                        .simulate("click");
+
                     detailsCard.update();
                 });
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, ActionSeparator, WithAvatar, getUserLink } from './misc';
 import CommentTextarea from './CommentTextarea';
 import { userCanManage } from '../../util/auth';
-import { Button } from '@dhis2/d2-ui-core';
+import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 import CommentModel from '../../models/comment';
 import i18n from '@dhis2/d2-i18n'
