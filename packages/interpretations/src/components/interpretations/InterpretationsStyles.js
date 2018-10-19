@@ -1,7 +1,10 @@
 export default {
-    action: {
+    back: {
         "height": 32,
         "padding": 5,
+        "position": "absolute",
+        "right": 48,
+        "top": 0,
         "width": 32,
     },
 
@@ -131,13 +134,6 @@ export default {
         "paddingTop": 4,
     },
 
-    icon: {
-        "width": 14,
-        "height": 14,
-        "padding": 0,
-        "marginLeft": 2,
-    },
-
     likeIcon: {
         "height": 16,
         "marginRight": 5,
@@ -148,6 +144,15 @@ export default {
     linkArea: {
         "paddingLeft": 5,
         "paddingRight": 5,
+    },
+
+    newInterpretation: {
+        "height": 32,
+        "padding": 5,
+        "position": "absolute",
+        "right": 48,
+        "top": 0,
+        "width": 32,
     },
 
     tipText: {
@@ -167,33 +172,5 @@ export default {
         "paddingLeft": "16px",
         "paddingRight": "16px",
         "fontWeight": "500",
-    },
-
-    avatarWrapper: {
-        "display": "flex",
-        "marginTop": 10,
-        "marginBottom": 10,
-        "backgroundColor": "#efefef",
-        "marginTop": 2,
-        "paddingBottom": 4,
-        "paddingTop": 4,
-    },
-
-    avatarBox: {
-        "width": 32,
-        "marginLeft": 5,
-        "marginRight": 5,
-    },
-
-    avatarBoxContent: {
-        "width": '90%',
-    },
-
-    avatar: {
-        "color": "black",
-        "fontSize": 15,
-        "fontWeight": 'bold',
-        "width": 32,
-        "height": 32,
     },
 };
