@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import _ from 'lodash';
 import InterpretationComments from '../InterpretationComments';
 import InterpretationModel from '../../../models/interpretation';
-import { getStubContext } from '../../../../../../config/inject-theme';
+import { getStubContext } from '../../../../config/test-context';
 
 const context = getStubContext();
 

@@ -28,7 +28,8 @@ export default {
     },
 
     detailsCardList: {
-        marginLeft: "15px",
+        marginLeft: "11px",
+        fontSize: 14,
     },
 
     headerText: {
@@ -40,8 +41,8 @@ export default {
     },
 
     subscriberIcon: {
-        position: "absolute",
-        top: 30,
+        float: "right",
+        top: 0,
         right: 10,
     },
 };

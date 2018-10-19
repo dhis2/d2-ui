@@ -1,9 +1,10 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import InterpretationDialog from '../InterpretationDialog';
 import PropTypes from 'prop-types';
+import { MuiThemeProvider } from '@material-ui/core/styles';
 
-import { getStubContext } from '../../../../../../config/inject-theme';
+import { getStubContext, getMuiTheme } from '../../../../config/test-context';
 
 const context = getStubContext();
 const childContextTypes = {muiTheme: PropTypes.object, d2: PropTypes.object};
@@ -30,9 +31,15 @@ const renderComponent = (partialProps = {}) => {
         onSave: jest.fn(),
         onClose: jest.fn(),
     };
-
     const props = {...baseProps, ...partialProps};
-    return shallow(<InterpretationDialog {...props} />, { context, childContextTypes });
+    const muiTheme = getMuiTheme();
+
+    return mount(
+        <MuiThemeProvider theme={muiTheme}>
+            <InterpretationDialog {...props} />
+        </MuiThemeProvider>,
+        {context, childContextTypes}
+    );
 };
 
 let interpretationDialog;
@@ -49,12 +56,12 @@ describe('Interpretations: Interpretations -> InterpretationDialog component', (
 
     describe("when save is clicked with new text", () => {
         beforeEach(() => {
-            interpretationDialog.find("TextField").props().onChange(null, "new text");
-            interpretationDialog.instance().save();
+            interpretationDialog.find("TextField").props().onChange({target: {value: "new text"}});
+            interpretationDialog.find("InterpretationDialog").instance().save();
         });
 
         it("should call onSave with the updated interpretation", () => {
-            const onSave = interpretationDialog.instance().props.onSave;
+            const onSave = interpretationDialog.find("InterpretationDialog").instance().props.onSave;
             expect(onSave).toHaveBeenCalledTimes(1);
             const onSaveCall = onSave.mock.calls[0];
             expect(onSaveCall[0]).toEqual(expect.objectContaining({
@@ -66,17 +73,17 @@ describe('Interpretations: Interpretations -> InterpretationDialog component', (
 
     describe("when cancel is clicked with new text", () => {
         beforeEach(() => {
-            interpretationDialog.find("TextField").props().onChange(null, "new text");
-            interpretationDialog.instance().cancel();
+            interpretationDialog.find("TextField").props().onChange({target: { value: "new text"}});
+            interpretationDialog.find("InterpretationDialog").instance().cancel();
         });
 
         it("should call onClose", () => {
-            const onClose = interpretationDialog.instance().props.onClose;
+            const onClose = interpretationDialog.find("InterpretationDialog").instance().props.onClose;
             expect(onClose).toHaveBeenCalledTimes(1);
         });
 
         it("should not call onSave", () => {
-            const onSave = interpretationDialog.instance().props.onSave;
+            const onSave = interpretationDialog.find("InterpretationDialog").instance().props.onSave;
             expect(onSave).toHaveBeenCalledTimes(0);
         });
     });

@@ -2,11 +2,10 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import CommentTextarea from '../CommentTextarea';
 import PropTypes from 'prop-types';
-
-import { getStubContext } from '../../../../../../config/inject-theme';
+import { getStubContext } from '../../../../config/test-context';
 
 const context = getStubContext();
-const childContextTypes = {muiTheme: PropTypes.object, d2: PropTypes.object};
+const childContextTypes = {d2: PropTypes.object};
 
 const comment = {
     id: "tEvCRL8r9KW",
