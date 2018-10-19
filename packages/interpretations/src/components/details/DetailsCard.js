@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import IconButton from '@material-ui/core/IconButton';
-import SubscriberIconEnabled from '@material-ui/icons/Notifications';
-import SubscriberIconDisabled from '@material-ui/icons/AddAlert';
+import { Card, CardHeader, CardText } from 'material-ui/Card';
+import IconButton from 'material-ui/IconButton';
+import { SvgIcon } from '@dhis2/d2-ui-core';
+import { grey600 } from 'material-ui/styles/colors';
+import SubscriberIconEnabled from 'material-ui/svg-icons/social/notifications';
+import SubscriberIconDisabled from 'material-ui/svg-icons/alert/add-alert';
 import i18n from '@dhis2/d2-i18n'
 
-import CollapsibleCard from '../CollapsibleCard';
 import styles from './DetailsCardStyles.js';
 import { setSubscription } from '../../models/helpers';
 import { formatDate, translateModelName } from '../../util/i18n';
@@ -21,6 +23,21 @@ const ListItem = ({label, text, button}) => (
         {button}
     </div>
 );
+
+const EditButton = props => {
+    const { model, tooltip, icon, onClick } = props;
+    const iconStyle = { width: 14, height: 14, padding: 0, marginLeft: 2 };
+
+    if (model && model.access && model.access.update) {
+        return (
+            <IconButton tooltip={tooltip} onClick={onClick} style={iconStyle} iconStyle={iconStyle}>
+                <SvgIcon icon={icon} color={grey600} />
+            </IconButton>
+        );
+    } else {
+        return null;
+    }
+};
 
 const descriptionMaxLength = 250;
 
@@ -79,7 +96,8 @@ class DetailsCard extends React.Component {
         return (
             <IconButton
                 style={styles.subscriberIcon}
-                title={subscriptionTooltip}
+                tooltip={subscriptionTooltip}
+                tooltipPosition="bottom-left"
                 onClick={this.toggleSubscription}
             >
                 <SubscriberIcon />
@@ -89,21 +107,37 @@ class DetailsCard extends React.Component {
 
     render() {
         const { model } = this.props;
+        const { isExpanded } = this.state;
         const owner = model.user ? model.user.displayName : '-';
 
         return (
-            <CollapsibleCard title={i18n.t('Details')}>
-                {this.renderSubscriptionButton(model)}
+            <Card
+                style={styles.detailsCard}
+                containerStyle={styles.container}
+                expanded={isExpanded}
+                onExpandChange={this.toggleDetailsExpand}
+            >
+                <CardHeader
+                    style={styles.detailsCardHeader}
+                    title={i18n.t('Details')}
+                    showExpandableButton={true}
+                    textStyle={styles.headerText}
+                >
+                </CardHeader>
 
-                <List>
-                    <ListItem text={getDescription(model)} />
-                    <ListItem label={i18n.t('Owner')} text={owner} />
-                    <ListItem label={i18n.t('Created')} text={formatDate(model.created)} />
-                    <ListItem label={i18n.t('Last updated')} text={formatDate(model.lastUpdated)} />
-                    <ListItem label={i18n.t('Views')} text={model.favoriteViews} />
-                    <ListItem label={i18n.t('Sharing')} text={getSharingText(model)} />
-                </List>
-            </CollapsibleCard>
+                <CardText expandable={true} style={styles.body}>
+                    {this.renderSubscriptionButton(model)}
+
+                    <List>
+                        <ListItem text={getDescription(model)} />
+                        <ListItem label={i18n.t('Owner')} text={owner} />
+                        <ListItem label={i18n.t('Created')} text={formatDate(model.created)} />
+                        <ListItem label={i18n.t('Last updated')} text={formatDate(model.lastUpdated)} />
+                        <ListItem label={i18n.t('Views')} text={model.favoriteViews} />
+                        <ListItem label={i18n.t('Sharing')} text={getSharingText(model)} />
+                    </List>
+                </CardText>
+            </Card>
         );
     }
 }

@@ -1,15 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import AddIcon from '@material-ui/icons/Add';
+import { Card, CardHeader, CardText } from 'material-ui/Card';
+import Divider from 'material-ui/Divider';
+import Button from 'material-ui/FlatButton';
+import AddCircle from 'material-ui/svg-icons/content/add-circle-outline';
+import IconButton from 'material-ui/IconButton';
+import { SvgIcon } from '@dhis2/d2-ui-core';
+import { grey600 } from 'material-ui/styles/colors';
 import i18n from '@dhis2/d2-i18n'
 import orderBy from 'lodash/fp/orderBy';
-
-import CollapsibleCard from '../CollapsibleCard';
 import InterpretationDialog from './InterpretationDialog';
 import Interpretation from './Interpretation';
+import { EditButton } from './misc';
 import InterpretationModel from '../../models/interpretation';
 import styles from './InterpretationsStyles.js';
 
@@ -64,19 +66,21 @@ const getInterpretationButtons = props => {
     return (
         currentInterpretation ?
             <IconButton
-                style={styles.action}
+                style={styles.back}
                 onClick={() => setCurrentInterpretation(null)}
-                title={i18n.t('Clear interpretation')}
+                tooltip={i18n.t('Clear interpretation')}
+                tooltipPosition="top-left"
             >
-               <ChevronLeftIcon />
+               <SvgIcon icon="ChevronLeft" color={grey600} />
             </IconButton>
         :
             <IconButton
-                style={styles.action}
+                style={styles.newInterpretation}
                 onClick={openNewInterpretationDialog}
-                title={i18n.t('Write new interpretation')}
+                tooltip={i18n.t('Write new interpretation')}
+                tooltipPosition="top-left"
             >
-                <AddIcon />
+                <SvgIcon icon="Add" color={grey600} />
             </IconButton>
     );
 };
@@ -85,11 +89,13 @@ class InterpretationsCard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            isExpanded: true,
             interpretationToEdit: null,
             currentInterpretationId: props.currentInterpretationId,
         };
 
         this.notifyChange = this.notifyChange.bind(this);
+        this.toggleExpand = this.toggleExpand.bind(this);
         this.openNewInterpretationDialog = this.openNewInterpretationDialog.bind(this);
         this.closeInterpretationDialog = this.closeInterpretationDialog.bind(this);
         this.setCurrentInterpretation = this.setCurrentInterpretation.bind(this);
@@ -114,6 +120,10 @@ class InterpretationsCard extends React.Component {
 
     notifyChange(interpretation) {
         this.props.onChange();
+    }
+
+    toggleExpand() {
+        this.setState({ isExpanded: !this.state.isExpanded });
     }
 
     openNewInterpretationDialog() {
@@ -148,22 +158,17 @@ class InterpretationsCard extends React.Component {
 
     render() {
         const { model } = this.props;
-        const { interpretationToEdit } = this.state;
+        const { isExpanded, interpretationToEdit } = this.state;
         const { d2 } = this.context;
         const sortedInterpretations = orderBy(["created"], ["desc"], model.interpretations);
         const currentInterpretation = this.getCurrentInterpretation();
-        const actions = getInterpretationButtons({
-            d2: d2,
-            model: model,
-            currentInterpretation: currentInterpretation,
-            setCurrentInterpretation: this.setCurrentInterpretation,
-            openNewInterpretationDialog: this.openNewInterpretationDialog,
-        });
 
         return (
-            <CollapsibleCard
-                title={i18n.t('Interpretations')}
-                actions={actions}
+            <Card
+                style={styles.interpretationsCard}
+                containerStyle={styles.container}
+                expanded={isExpanded}
+                onExpandChange={this.toggleExpand}
             >
                 {interpretationToEdit &&
                     <InterpretationDialog
@@ -174,24 +179,41 @@ class InterpretationsCard extends React.Component {
                     />
                 }
 
-                {currentInterpretation
-                    ?
-                        getInterpretationDetails({
-                            d2: d2,
-                            model: model,
-                            interpretation: currentInterpretation,
-                            onChange: this.notifyChange,
-                        })
-                    :
-                        getInterpretationsList({
-                            d2: d2,
-                            model: model,
-                            interpretations: sortedInterpretations,
-                            setCurrentInterpretation: this.setCurrentInterpretation,
-                            onChange: this.notifyChange,
-                        })
-                }
-            </CollapsibleCard>
+                <CardHeader
+                    style={styles.interpretationsCardHeader}
+                    title={i18n.t('Interpretations')}
+                    showExpandableButton={true}
+                    textStyle={styles.headerText}
+                >
+                    {isExpanded && getInterpretationButtons({
+                        d2: d2,
+                        model: model,
+                        currentInterpretation: currentInterpretation,
+                        setCurrentInterpretation: this.setCurrentInterpretation,
+                        openNewInterpretationDialog: this.openNewInterpretationDialog,
+                    })}
+                </CardHeader>
+
+                <CardText expandable={true} style={styles.body}>
+                    {currentInterpretation
+                        ?
+                            getInterpretationDetails({
+                                d2: d2,
+                                model: model,
+                                interpretation: currentInterpretation,
+                                onChange: this.notifyChange,
+                            })
+                        :
+                            getInterpretationsList({
+                                d2: d2,
+                                model: model,
+                                interpretations: sortedInterpretations,
+                                setCurrentInterpretation: this.setCurrentInterpretation,
+                                onChange: this.notifyChange,
+                            })
+                    }
+                </CardText>
+            </Card>
         );
     }
 }

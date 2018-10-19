@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import { getFavoriteWithInterpretations } from '../helpers';
 import Interpretation from '../interpretation';
-import { getStubContext } from '../../../config/test-context';
+import { getStubContext } from '../../../../../config/inject-theme';
 import * as users from '../users';
 
 const context = getStubContext();

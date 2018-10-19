@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ThumbUpIcon from '@material-ui/icons/ThumbUp';
+import FlatButton from 'material-ui/FlatButton/FlatButton';
+import { SvgIcon } from '@dhis2/d2-ui-core';
 import i18n from '@dhis2/d2-i18n'
 import SharingDialog from '@dhis2/d2-ui-sharing-dialog';
 import some from 'lodash/fp/some';
@@ -162,7 +163,7 @@ class Interpretation extends React.Component {
 
                         <div style={styles.interpretationCommentArea}>
                             <div style={styles.likeArea}>
-                                <ThumbUpIcon style={styles.likeIcon} />
+                                <SvgIcon icon="ThumbUp" style={styles.likeIcon} />
 
                                 <span style={{color: "#22A"}} className="liked-by" title={likedByTooltip}>
                                     {interpretation.likes} {i18n.t('people like this')}

@@ -1,11 +1,10 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import _ from 'lodash';
-import PropTypes from 'prop-types';
-import { MuiThemeProvider } from '@material-ui/core/styles';
-
 import InterpretationsCard from '../InterpretationsCard';
-import { getStubContext, getMuiTheme } from '../../../../config/test-context';
+import { getStubContext } from '../../../../../../config/inject-theme';
+
+const context = getStubContext();
 
 const favorite = {
     lastUpdated: "2018-05-11T12:57:25.365",
@@ -38,21 +37,9 @@ const favorite = {
     translations: [],
     mapViews: [],
     interpretations: [{
-        id: "LOECMJN3DRF",
-        created: "2018-11-03T11:02:30.780",
-        comments: [],
-        user: {
-                id: "xE7jOejl9FI",
-                displayName: "John Traore"
-            },
+        id: "LOECMJN3DRF"
     }, {
-        id: "LqumKmXxc1k",
-        created: "2018-11-03T11:02:30.780",
-        comments: [],
-        user: {
-            id: "xE7jOejl9FI",
-            displayName: "John Traore"
-        },
+        id: "LqumKmXxc1k"
     }],
     userGroupAccesses: [
         {
@@ -68,8 +55,6 @@ const favorite = {
     favoriteViews: 5,
 };
 
-const childContextTypes = {d2: PropTypes.object};
-
 const renderComponent = (partialProps = {}, partialContext = {}) => {
     const baseProps = {
         model: favorite,
@@ -79,15 +64,8 @@ const renderComponent = (partialProps = {}, partialContext = {}) => {
     };
 
     const props = {...baseProps, ...partialProps};
-    const context = getStubContext();
-    const muiTheme = getMuiTheme();
     const fullContext = _.merge(context, partialContext);
-    return mount(
-        <MuiThemeProvider theme={muiTheme}>
-            <InterpretationsCard {...props} />
-        </MuiThemeProvider>,
-        { context: fullContext, childContextTypes }
-    );
+    return shallow(<InterpretationsCard {...props} />, { context: fullContext });
 };
 
 const currentUser = {id: "xE7jOejl9FI", displayName: "John Traore"};
@@ -101,8 +79,8 @@ describe('Interpretations: Interpretations -> InterpretationsCard component', ()
     });
 
     describe("initial component", () => {
-        it("should show a card", () => {
-            expect(interpretationsCard.find("CollapsibleCard")).toExist();
+        it("should show an expanded card", () => {
+            expect(interpretationsCard.find("Card").find({expanded: true})).toExist();
         });
 
         it("should not show an interpretations dialog", () => {
@@ -119,7 +97,7 @@ describe('Interpretations: Interpretations -> InterpretationsCard component', ()
 
             describe("when click new interpretation action", () => {
                 beforeEach(() => {
-                    interpretationsCard.find("button").find({title: "Write new interpretation"}).simulate("click");
+                    interpretationsCard.find("IconButton").find({tooltip: "Write new interpretation"}).simulate("click");
                 });
 
                 it("should show an interpretations dialog", () => {
@@ -147,7 +125,7 @@ describe('Interpretations: Interpretations -> InterpretationsCard component', ()
                     });
 
                     it("should notify change", () => {
-                        const { onChange } = interpretationsCard.find("InterpretationsCard").instance().props;
+                        const { onChange } = interpretationsCard.instance().props;
                         expect(onChange).toHaveBeenCalledWith();
                     });
                 });
@@ -161,7 +139,7 @@ describe('Interpretations: Interpretations -> InterpretationsCard component', ()
 
                 it("should call the current interpretation prop", () => {
                     const interpretation = interpretationsCard.find("Interpretation").at(0).prop("interpretation");
-                    const { onCurrentInterpretationChange } = interpretationsCard.find("InterpretationsCard").instance().props;
+                    const { onCurrentInterpretationChange } = interpretationsCard.instance().props;
                     expect(onCurrentInterpretationChange).toBeCalledWith(interpretation);
                 });
             });
@@ -183,24 +161,24 @@ describe('Interpretations: Interpretations -> InterpretationsCard component', ()
                 const currentInterpretationId = favorite.interpretations[0].id;
                 interpretationsCard = renderComponent({currentInterpretationId}, {d2: {currentUser}});
             });
-
+            
             it("should show only current interpretation", () => {
                 expect(interpretationsCard.find("Interpretation").find({extended: true})).toHaveLength(1);
             });
 
             it("should call the current interpretation prop", () => {
                 const interpretation = interpretationsCard.find("Interpretation").at(0).prop("interpretation");
-                const { onCurrentInterpretationChange } = interpretationsCard.find("InterpretationsCard").instance().props;
+                const { onCurrentInterpretationChange } = interpretationsCard.instance().props;
                 expect(onCurrentInterpretationChange).toBeCalledWith(interpretation);
             });
 
             describe("when click on back action", () => {
                 beforeEach(() => {
-                    interpretationsCard.find("button").find({title: "Clear interpretation"}).simulate("click");
+                    interpretationsCard.find("IconButton").find({tooltip: "Clear interpretation"}).simulate("click");
                 });
 
                 it("should call current interpretation prop with no interpretation", () => {
-                    const { onCurrentInterpretationChange } = interpretationsCard.find("InterpretationsCard").instance().props;
+                    const { onCurrentInterpretationChange } = interpretationsCard.instance().props;
                     expect(onCurrentInterpretationChange).toBeCalledWith(null);
                 });
             });
@@ -235,7 +213,7 @@ describe('Interpretations: Interpretations -> InterpretationsCard component', ()
 
             describe("when back button clicked", () => {
                 beforeEach(() => {
-                    interpretationsCard.find("button").find({title: "Clear interpretation"}).simulate("click");
+                    interpretationsCard.find("IconButton").find({tooltip: "Clear interpretation"}).simulate("click");
                     interpretationsCard.update();
                 });
 

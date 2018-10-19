@@ -1,11 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import _ from 'lodash';
-
 import Interpretation from '../Interpretation';
-import InterpretationDialog from '../InterpretationDialog';
-import InterpretationComments from '../InterpretationComments';
-import { getStubContext } from '../../../../config/test-context';
+import { getStubContext } from '../../../../../../config/inject-theme';
+
+const context = getStubContext();
 
 const interpretation = {
     name: "LOECMJN3DRF",
@@ -59,7 +58,6 @@ const renderComponent = (partialProps = {}, partialContext = {}) => {
     };
 
     const props = {...baseProps, ...partialProps};
-    const context = getStubContext();
     const fullContext = _.merge(context, partialContext);
     return shallow(<Interpretation {...props} />, { context: fullContext });
 };
@@ -110,7 +108,7 @@ describe('Interpretations: Interpretations -> Interpretation component', () => {
         });
 
         it("should not show comments", () => {
-            expect(interpretationComponent.find(InterpretationComments)).not.toExist();
+            expect(interpretationComponent.find("InterpretationComments")).not.toExist();
         });
     });
 
@@ -127,7 +125,7 @@ describe('Interpretations: Interpretations -> Interpretation component', () => {
         });
 
         it("should show comments", () => {
-            expect(interpretationComponent.find(InterpretationComments)).toExist();
+            expect(interpretationComponent.find("InterpretationComments")).toExist();
         });
 
         describe('not liked by current user', () => {
@@ -204,7 +202,7 @@ describe('Interpretations: Interpretations -> Interpretation component', () => {
                     });
 
                     it("should open a InterpretationDialog", () => {
-                        expect(interpretationComponent.find(InterpretationDialog)).toExist();
+                        expect(interpretationComponent.find("InterpretationDialog")).toExist();
                     });
                 });
 
