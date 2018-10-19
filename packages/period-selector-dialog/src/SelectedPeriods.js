@@ -6,21 +6,20 @@ import PeriodsList from './PeriodsList';
 class SelectedPeriods extends React.Component {
     constructor(props, context) {
         super(props);
-
         this.i18n = context.d2.i18n;
     }
 
     clearPeriods = () => {
-        this.props.onClearAll(this.props.periods);
-        this.props.addOfferedPeriods(this.props.periods);
-        this.props.setSelectedPeriods([]);
+        this.props.onClearAll(this.props.items);
     };
 
     render = () => (
         <div className="selector-area">
-            <h3 className="title"> {this.i18n.getTranslation('Selected periods')} </h3>
+            <div className="subtitle-container">
+                <span className="subtitle"> {this.i18n.getTranslation('Selected periods')} </span>
+            </div>
             <PeriodsList
-                periods={this.props.periods}
+                items={this.props.items}
                 onPeriodClick={this.props.onPeriodClick}
                 onRemovePeriodClick={this.props.onRemovePeriodClick}
                 listClassName={'periods-list-selected'}
@@ -35,12 +34,10 @@ class SelectedPeriods extends React.Component {
 }
 
 SelectedPeriods.propTypes = {
-    periods: PropTypes.array.isRequired,
+    items: PropTypes.array.isRequired,
     onClearAll: PropTypes.func.isRequired,
     onPeriodClick: PropTypes.func.isRequired,
     onRemovePeriodClick: PropTypes.func.isRequired,
-    setSelectedPeriods: PropTypes.func.isRequired,
-    addOfferedPeriods: PropTypes.func.isRequired,
 };
 
 SelectedPeriods.contextTypes = {

@@ -158,26 +158,25 @@ export default class OrgUnitDialogExample extends Component {
                     Select org units
                 </Button>
             </div>
-            <OrgUnitDialog
-                open={this.state.orgUnitDialog.open}
-                root={this.state.root}
-                d2={this.props.d2}
-
-                selected={this.state.selected}
-                userOrgUnits={this.state.userOrgUnits}
-                level={this.state.level}
-                group={this.state.group}
-                levelOptions={this.state.levelOptions}
-                groupOptions={this.state.groupOptions}
-
-                onLevelChange={this.onLevelChange}
-                onGroupChange={this.onGroupChange}
-                handleUserOrgUnitClick={this.handleUserOrgUnitClick}
-                handleOrgUnitClick={this.handleOrgUnitClick}
-
-                onClose={this.toggleDialog}
-                onUpdate={this.onOrgUnitSelect}
-            />
+            {this.state.root &&
+                <OrgUnitDialog
+                    open={this.state.orgUnitDialog.open}
+                    root={this.state.root}
+                    d2={this.props.d2}
+                    selected={this.state.selected}
+                    userOrgUnits={this.state.userOrgUnits}
+                    level={this.state.level}
+                    group={this.state.group}
+                    levelOptions={this.state.levelOptions}
+                    groupOptions={this.state.groupOptions}
+                    onLevelChange={this.onLevelChange}
+                    onGroupChange={this.onGroupChange}
+                    handleUserOrgUnitClick={this.handleUserOrgUnitClick}
+                    handleOrgUnitClick={this.handleOrgUnitClick}
+                    onClose={this.toggleDialog}
+                    onUpdate={this.onOrgUnitSelect}
+                />
+            }
             <Snackbar
                 open={this.state.snackbar.open}
                 message={this.state.snackbar.message}

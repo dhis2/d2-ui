@@ -1,6 +1,6 @@
 {
     "name": "@dhis2/d2-ui-icon-picker",
-    "version": "1.0.15",
+    "version": "1.0.16",
     "description": "DHIS2 component for selecting icon",
     "main": "./build/cjs/index.js",
     "module": "./build/es/index.js",
@@ -30,7 +30,7 @@
         "test-ci": "jest --config=../../jest.config.js packages/icon-picker"
     },
     "dependencies": {
-        "@dhis2/d2-ui-core": "^1.3.4",
+        "@dhis2/d2-ui-core": "^1.3.5",
         "babel-runtime": "^6.26.0",
         "lodash": "^4.17.10",
         "material-ui": "^0.19.3",

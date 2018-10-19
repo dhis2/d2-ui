@@ -24,7 +24,6 @@ export const defaultState = {
     level: ['tTUf91fCytl', 'wjP19dkFeIk'],
     levelOptions: [],
     groupOptions: [],
-    loaded: false,
 };
 
 
@@ -46,7 +45,6 @@ export default class OrgUnitSelectorExample extends Component {
             .then((loadRootUnit) => {
                 this.setState({
                     root: loadRootUnit,
-                    loaded: true,
                 });
             });
 
@@ -114,24 +112,18 @@ export default class OrgUnitSelectorExample extends Component {
     };
 
     render = () => {
-        if (this.state.loaded) {
+        if (this.state.root) {
             return (<Card>
                 <OrgUnitSelector
                     root={this.state.root}
-                    d2={this.props.d2}
-
                     selected={this.state.selected}
                     userOrgUnits={this.state.userOrgUnits}
-
                     level={this.state.level}
                     group={this.state.group}
-
                     levelOptions={this.state.levelOptions}
                     groupOptions={this.state.groupOptions}
-
                     onLevelChange={this.onLevelChange}
                     onGroupChange={this.onGroupChange}
-
                     handleUserOrgUnitClick={this.handleUserOrgUnitClick}
                     handleOrgUnitClick={this.handleOrgUnitClick}
                 />
