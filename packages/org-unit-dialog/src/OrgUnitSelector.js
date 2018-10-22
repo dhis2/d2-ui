@@ -15,7 +15,14 @@ import UserOrgUnitsPanel from './UserOrgUnitsPanel';
  * @param path
  * @returns {string | *}
  */
-const removeLastPathSegment = path => path.substr(0, path.lastIndexOf('/'));
+export const removeLastPathSegment = (path) => {
+    // if root path, then return unprocessed path
+    if (path.match(/\//g).length === 1) {
+        return path;
+    }
+
+    return path.substr(0, path.lastIndexOf('/'));
+};
 
 class OrgUnitSelector extends Component {
     constructor(props) {
