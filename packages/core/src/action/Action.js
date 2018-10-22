@@ -1,5 +1,6 @@
 import { isString } from 'lodash/fp';
-import { Subject, Observable } from 'rxjs';
+import { Subject } from 'rxjs/Subject';
+import { Observable } from 'rxjs/Observable';
 import log from 'loglevel';
 
 /**
