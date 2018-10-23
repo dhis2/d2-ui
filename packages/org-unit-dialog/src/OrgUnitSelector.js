@@ -9,20 +9,7 @@ import PropTypes from 'prop-types';
 import Select from '@material-ui/core/Select/Select';
 import styles from './styles/OrgUnitDialog.style';
 import UserOrgUnitsPanel from './UserOrgUnitsPanel';
-
-/**
- * Remove last segment from OU path
- * @param path
- * @returns {string | *}
- */
-export const removeLastPathSegment = (path) => {
-    // if root path, then return unprocessed path
-    if (path.match(/\//g).length === 1) {
-        return path;
-    }
-
-    return path.substr(0, path.lastIndexOf('/'));
-};
+import removeLastPathSegment from './util';
 
 class OrgUnitSelector extends Component {
     constructor(props) {
