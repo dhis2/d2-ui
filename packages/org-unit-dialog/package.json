@@ -1,6 +1,6 @@
 {
     "name": "@dhis2/d2-ui-org-unit-dialog",
-    "version": "0.1.4",
+    "version": "0.1.5",
     "description": "Org Unit Dialog component for d2-ui",
     "main": "./build/cjs/index.js",
     "module": "./build/es/index.js",
