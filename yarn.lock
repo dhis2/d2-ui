@@ -4042,11 +4042,6 @@ cyclist@~0.2.2:
   resolved "https://registry.yarnpkg.com/cyclist/-/cyclist-0.2.2.tgz#1b33792e11e914a2fd6d6ed6447464444e5fa640"
   integrity sha1-GzN5LhHpFKL9bW7WRHRkRE5fpkA=
 
-d2-ui@^29.0.18:
-  version "29.0.25"
-  resolved "https://registry.yarnpkg.com/d2-ui/-/d2-ui-29.0.25.tgz#122c804f8bf2a3c57df509c1fa1b6e956dffe790"
-  integrity sha512-bKApeX8lUlkDBSNUSghlnCLTpB7fvFlO4VgqoFDs48/uiJI2YBL5KlpEVzz+U3MdLfw9LV8Mez/NiCxR2Ijerg==
-
 d2-utilizr@^0.2.15:
   version "0.2.16"
   resolved "https://registry.yarnpkg.com/d2-utilizr/-/d2-utilizr-0.2.16.tgz#b71df7ca8c7ab5125ca8bdb4899611bc6782a754"
