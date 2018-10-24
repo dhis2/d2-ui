@@ -4,7 +4,7 @@ import log from 'loglevel';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import DatePicker from 'material-ui/DatePicker';
-import { is53WeekISOYear, getFirstDateOfWeek } from 'd2/lib/period/helpers';
+import { is53WeekISOYear, getFirstDateOfWeek } from 'd2/period/helpers';
 
 const styles = {
     datePicker: { width: '100%' },

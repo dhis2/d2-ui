@@ -7,7 +7,7 @@ import Dialog from 'material-ui/Dialog/Dialog';
 import { scaleLinear } from 'd3-scale';
 import { precisionFixed } from 'd3-format';
 import { config } from 'd2';
-import { generateUid } from 'd2/lib/uid';
+import { generateUid } from 'd2/uid';
 import ColorScaleSelect from './ColorScaleSelect.component';
 import LegendItems from './LegendItems.component';
 import { legendItemStore } from './LegendItem.store';
