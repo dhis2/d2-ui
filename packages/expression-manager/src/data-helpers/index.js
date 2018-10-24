@@ -1,4 +1,4 @@
-import { getInstance } from 'd2/lib/d2';
+import { getInstance } from 'd2';
 
 /**
  * Retrieve a list of objects from the api. Will load all objects (without paging) from the api.

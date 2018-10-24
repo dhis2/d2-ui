@@ -31,7 +31,7 @@
     "material-ui": "^0.20.0"
   },
   "peerDependencies": {
-    "d2": "^30.0.0",
+    "d2": "^31.1.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0"
   },

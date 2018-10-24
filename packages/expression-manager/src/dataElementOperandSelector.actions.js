@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { getInstance } from 'd2/lib/d2';
+import { getInstance } from 'd2';
 import Pager from 'd2/lib/pager/Pager';
 import { Action } from '@dhis2/d2-ui-core';
 

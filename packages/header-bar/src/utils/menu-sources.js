@@ -1,6 +1,6 @@
 import log from 'loglevel';
 import { Observable } from 'rxjs/Observable';
-import { getInstance, config } from 'd2/lib/d2';
+import { getInstance, config } from 'd2';
 
 import getBaseUrlFromD2ApiUrl from '../utils/getBaseUrlFromD2ApiUrl';
 

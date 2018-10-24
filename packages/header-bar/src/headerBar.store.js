@@ -1,4 +1,4 @@
-import { getInstance } from 'd2/lib/d2';
+import { getInstance } from 'd2';
 import compose from 'lodash/fp/compose';
 import map from 'lodash/fp/map';
 import curry from 'lodash/fp/curry';

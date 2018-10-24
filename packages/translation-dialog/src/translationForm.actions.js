@@ -1,6 +1,6 @@
-import { getInstance as getD2 } from 'd2/lib/d2';
+import { getInstance as getD2 } from 'd2';
 import { Observable } from 'rxjs';
-import { getInstance } from 'd2/lib/d2';
+import { getInstance } from 'd2';
 import { Action } from '@dhis2/d2-ui-core';
 
 export function getLocales() {

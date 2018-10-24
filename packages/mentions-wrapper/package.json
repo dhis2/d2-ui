@@ -10,7 +10,7 @@
     "license": "BSD-3-Clause",
     "author": "Edoardo Sabadelli <edoardo@dhis2.org>",
     "peerDependencies": {
-        "d2": "^29.1.1",
+        "d2": "^31.1.0",
         "react": "^16.4.0",
         "react-dom": "^16.4.0"
     },

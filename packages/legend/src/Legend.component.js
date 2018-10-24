@@ -6,7 +6,7 @@ import FlatButton from 'material-ui/FlatButton/FlatButton';
 import Dialog from 'material-ui/Dialog/Dialog';
 import { scaleLinear } from 'd3-scale';
 import { precisionFixed } from 'd3-format';
-import { config } from 'd2/lib/d2';
+import { config } from 'd2';
 import { generateUid } from 'd2/lib/uid';
 import ColorScaleSelect from './ColorScaleSelect.component';
 import LegendItems from './LegendItems.component';
