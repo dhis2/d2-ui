@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Model from 'd2/lib/model/Model';
-import ModelDefinition from 'd2/lib/model/ModelDefinition';
+import Model from 'd2/model/Model';
+import ModelDefinition from 'd2/model/ModelDefinition';
 import { TreeView } from '@dhis2/d2-ui-core';
 import OrgUnitTree from '../OrgUnitTree.component';
 

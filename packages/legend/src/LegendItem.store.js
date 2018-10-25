@@ -1,6 +1,6 @@
 import TextField from 'material-ui/TextField/TextField';
 import { Observable } from 'rxjs';
-import { getInstance, config } from 'd2/lib/d2';
+import { getInstance, config } from 'd2';
 import camelCaseToUnderscores from 'd2-utilizr/lib/camelCaseToUnderscores';
 import ColorPicker from './ColorPicker.component';
 

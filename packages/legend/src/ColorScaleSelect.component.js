@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Popover from 'material-ui/Popover/Popover';
 import SelectField from 'material-ui/SelectField/SelectField';
 import MenuItem from 'material-ui/MenuItem/MenuItem';
-import { config } from 'd2/lib/d2';
+import { config } from 'd2';
 import ColorScale from './ColorScale.component';
 import colorbrewer from './colorbrewer';
 import { Row } from '@dhis2/d2-ui-core';

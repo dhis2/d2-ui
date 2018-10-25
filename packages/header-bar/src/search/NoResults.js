@@ -1,5 +1,5 @@
 import React from 'react';
-import { config } from 'd2/lib/d2';
+import { config } from 'd2';
 import { addD2Context } from '@dhis2/d2-ui-core';
 
 config.i18n.strings.add('no_results_found');

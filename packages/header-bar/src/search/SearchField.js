@@ -8,7 +8,7 @@ import IconButton from 'material-ui/IconButton';
 import { SvgIcon } from '@dhis2/d2-ui-core';
 import ClearIcon from 'material-ui-icons/Clear';
 import AppsIcon from 'material-ui-icons/Apps';
-import { config } from 'd2/lib/d2';
+import { config } from 'd2';
 import Notifications from '../notifications/Notifications';
 import styles, { MENU_ITEM_WIDTH } from '../header-bar-styles';
 import { search, handleKeyPress, setSearchFieldFocusTo, hideWhenNotHovering } from './search.stores';
