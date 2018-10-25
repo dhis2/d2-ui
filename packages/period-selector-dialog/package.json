@@ -1,6 +1,6 @@
 {
   "name": "@dhis2/d2-ui-period-selector-dialog",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Period selector dialog component for DHIS2",
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",
