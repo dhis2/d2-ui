@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Card, CardText } from 'material-ui/Card';
 
 import {PeriodPicker} from '@dhis2/d2-ui-core';
-import parsePeriod from 'd2/lib/period/parser';
+import parsePeriod from 'd2/period/parser';
 
 export default class PeriodPickerExample extends React.Component {
     constructor(props) {

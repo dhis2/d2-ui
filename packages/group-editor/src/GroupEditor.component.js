@@ -6,7 +6,7 @@ import Paper from 'material-ui/Paper/Paper';
 import RaisedButton from 'material-ui/RaisedButton/RaisedButton';
 
 // D2
-import { config } from 'd2/lib/d2';
+import { config } from 'd2';
 
 // D2-UI
 import { CircularProgress } from '@dhis2/d2-ui-core';

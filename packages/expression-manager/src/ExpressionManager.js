@@ -23,7 +23,7 @@ import { Action } from '@dhis2/d2-ui-core';
 import { Row } from '@dhis2/d2-ui-core';
 import { Column } from '@dhis2/d2-ui-core';
 
-import { setInstance } from 'd2/lib/d2';
+import { setInstance } from 'd2';
 
 const styles = {
     expressionDescription: {

@@ -1,6 +1,6 @@
 {
   "name": "@dhis2/d2-ui-period-selector-dialog",
-  "version": "1.0.0",
+  "version": "2.0.1",
   "description": "Period selector dialog component for DHIS2",
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",
@@ -18,7 +18,7 @@
   },
   "scripts": {
     "prebuild": "rimraf ./build/*",
-    "build": "npm run build:commonjs && npm run build:es && npm run build:umd",
+    "build": "npm run build:commonjs && npm run build:es",
     "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir build/cjs --ignore spec.js",
     "build:es": "cross-env BABEL_ENV=es babel src --out-dir build/es --ignore spec.js && npm run build:css",
     "build:css": "cp -R ./css ./build/",
@@ -29,12 +29,12 @@
     "test:watch": "npm test -- --watch"
   },
   "dependencies": {
-    "@material-ui/core": "^1.5.1",
-    "@material-ui/icons": "^2.0.3",
+    "@material-ui/core": "^3.3.1",
+    "@material-ui/icons": "^3.0.1",
     "babel-runtime": "^6.26.0",
     "prop-types": "^15.6.0",
     "react-redux": "^5.0.7",
-    "redux": "^3.7.2"
+    "redux": "^4.0.1"
   },
   "publishConfig": {
     "access": "public"

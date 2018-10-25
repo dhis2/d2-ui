@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import flatten from 'lodash/fp/flatten';
 import filter from 'lodash/fp/filter';
 import mapValues from 'lodash/fp/mapValues';
-import { config, getInstance } from 'd2/lib/d2';
+import { config, getInstance } from 'd2';
 import camelCaseToUnderscores from 'd2-utilizr/lib/camelCaseToUnderscores';
 import { prepareMenuItems, translate$, translateMenuItemNames, getBaseUrlFromD2 } from '../../headerBar.store';
 
