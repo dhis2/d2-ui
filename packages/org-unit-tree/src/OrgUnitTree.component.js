@@ -5,8 +5,8 @@ import FolderIcon from '@material-ui/icons/Folder';
 import FolderOpenIcon from '@material-ui/icons/FolderOpen';
 import StopIcon from '@material-ui/icons/Stop';
 
-import ModelBase from 'd2/lib/model/Model';
-import ModelCollection from 'd2/lib/model/ModelCollection';
+import ModelBase from 'd2/model/Model';
+import ModelCollection from 'd2/model/ModelCollection';
 
 import { TreeView } from '@dhis2/d2-ui-core';
 

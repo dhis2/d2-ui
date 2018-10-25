@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import FlatButton from 'material-ui/FlatButton/FlatButton';
 import Dialog from 'material-ui/Dialog/Dialog';
-import { config } from 'd2/lib/d2';
+import { config } from 'd2';
 import { legendItemStore, legendItemStore$, onFieldChange, onFormStatusChange } from './LegendItem.store';
 import { setDialogStateToAction } from './LegendItem.actions';
 import { withStateFrom } from '@dhis2/d2-ui-core';

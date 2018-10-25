@@ -1,6 +1,6 @@
 {
   "name": "@dhis2/d2-ui-period-selector-dialog",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Period selector dialog component for DHIS2",
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",
@@ -18,7 +18,7 @@
   },
   "scripts": {
     "prebuild": "rimraf ./build/*",
-    "build": "npm run build:commonjs && npm run build:es && npm run build:umd",
+    "build": "npm run build:commonjs && npm run build:es",
     "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir build/cjs --ignore spec.js",
     "build:es": "cross-env BABEL_ENV=es babel src --out-dir build/es --ignore spec.js && npm run build:css",
     "build:css": "cp -R ./css ./build/",

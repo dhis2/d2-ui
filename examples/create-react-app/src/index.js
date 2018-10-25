@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import { init } from 'd2/lib/d2'
+import { init } from 'd2'
 
 let baseUrl = process.env.REACT_APP_DHIS2_BASE_URL;
 

@@ -1,5 +1,5 @@
 import isObject from 'lodash/fp/isObject';
-import { getInstance } from 'd2/lib/d2';
+import { getInstance } from 'd2';
 
 export const apiFetch = async (urlOrPath, method, body = null) => {
     const d2 = await getInstance();
