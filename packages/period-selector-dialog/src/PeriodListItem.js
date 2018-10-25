@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Close } from '@material-ui/icons';
+import Close from '@material-ui/icons/Close';
 
 const OFFERED_LIST = 'periods-list-offered';
 
