@@ -1,11 +1,11 @@
 import React from 'react';
-import IconButton from 'material-ui/IconButton';
-import Badge from 'material-ui/Badge';
+import IconButton from '@material-ui/core/IconButton';
+import Badge from '@material-ui/core/Badge';
 
 import { SvgIcon } from '@dhis2/d2-ui-core';
 import styles from '../header-bar-styles';
 
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 
 const badgeStyles = theme => ({
 	root: styles.notificationBadge,

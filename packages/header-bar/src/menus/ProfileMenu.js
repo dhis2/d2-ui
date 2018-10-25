@@ -1,6 +1,6 @@
 import React from 'react';
-import Avatar from 'material-ui/Avatar';
-import Button from 'material-ui/Button';
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
 
 import HeaderMenu from './HeaderMenu';
 import HeaderMenuItem from './HeaderMenuItem';

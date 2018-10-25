@@ -28,8 +28,8 @@
         "@dhis2/d2-ui-favorites-dialog": "^4.0.0",
         "@dhis2/d2-ui-sharing-dialog": "^3.0.0",
         "@dhis2/d2-ui-translation-dialog": "^3.0.0",
-        "@material-ui/core": "^1.5.1",
-        "@material-ui/icons": "^2.0.3",
+        "@material-ui/core": "^3.3.1",
+        "@material-ui/icons": "^3.0.1",
         "babel-runtime": "^6.26.0",
         "prop-types": "^15.6.0"
     },
