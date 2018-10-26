@@ -15,6 +15,9 @@ export function getLocales() {
             }));
     }
 
+    console.log('transl-form fromPromise', Observable.fromPromise);
+
+
     return Observable.fromPromise(getLocales.localePromise);
 }
 
