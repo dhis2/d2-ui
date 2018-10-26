@@ -11,6 +11,8 @@ import { getLocales, getTranslationsForModel, saveTranslations } from './transla
 import { Store } from '@dhis2/d2-ui-core';
 import { CircularProgress } from '@dhis2/d2-ui-core';
 
+console.log('Observable.fromPromise', Observable.fromPromise);
+
 function getTranslationFormData(model) {
     const translationStore = Store.create();
 
