@@ -1,3 +1,6 @@
+const webpack = require('webpack');
+const rxPaths = require('rxjs/_esm5/path-mapping');
+
 const path = require('path')
 
 module.exports = {
@@ -7,6 +10,9 @@ module.exports = {
         filename: 'index.js',
         library: 'HeaderBar',
         libraryTarget: 'umd',
+    },
+    resolve: {
+        alias: rxPaths(),
     },
     module: {
         rules: [
@@ -21,5 +27,6 @@ module.exports = {
             commonjs2: 'react',
             commonjs: 'react'
         }
-    }
+    },
+    plugins: [new webpack.optimize.ModuleConcatenationPlugin()],
 }
