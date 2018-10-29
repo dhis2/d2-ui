@@ -4,9 +4,6 @@
   "description": "The header bar for all DHIS2 applications",
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",
-  "files": [
-    "build"
-  ],
   "license": "BSD-3-Clause",
   "peerDependencies": {
     "react": "^16.2.0",

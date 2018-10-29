@@ -4,9 +4,6 @@
   "description": "Translation Dialog for DHIS2",
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",
-  "files": [
-    "build"
-  ],
   "license": "BSD-3-Clause",
   "peerDependencies": {
     "d2": "^31.1.1",

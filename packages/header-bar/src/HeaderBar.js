@@ -11,7 +11,7 @@ import Notifications from './notifications/Notifications';
 import SearchField from './search/SearchField';
 import styles, { applyUserStyle } from './header-bar-styles';
 
-import D2UI from '@dhis2/d2-ui-app';
+import {App as D2UI} from '@dhis2/d2-ui-core';
 import headerBarStore$ from './headerBar.store';
 
 export class HeaderBar extends Component {
