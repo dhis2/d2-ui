@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import { Observable } from 'rxjs/Observable';
 import log from 'loglevel';
-import TextField from 'material-ui/TextField';
-import IconButton from 'material-ui/IconButton';
+import TextField from '@material-ui/core/TextField';
+import IconButton from '@material-ui/core/IconButton';
 import { SvgIcon } from '@dhis2/d2-ui-core';
-import ClearIcon from 'material-ui-icons/Clear';
-import AppsIcon from 'material-ui-icons/Apps';
+import ClearIcon from '@material-ui/icons/Clear';
+import AppsIcon from '@material-ui/icons/Apps';
 import { config } from 'd2';
 import Notifications from '../notifications/Notifications';
 import styles, { MENU_ITEM_WIDTH } from '../header-bar-styles';
@@ -16,18 +16,18 @@ import { withStateFrom } from '@dhis2/d2-ui-core';
 import { searchStore$ } from './search.stores';
 import SearchResults from './SearchResults';
 
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 
 const searchFieldStyles = theme => ({
 	inputUnderline: {
 		'&:hover::before': {
-			backgroundColor: 'rgba(255,255,255,0.5) !important',
+			borderColor: 'rgba(255,255,255,0.5) !important',
 		},
 		'&:before': {
-			backgroundColor: 'rgba(255,255,255,0.5)',
+			borderColor: 'rgba(255,255,255,0.5) !important',
 		},
 		'&:after': {
-			backgroundColor: 'white',
+			borderColor: 'white',
 		},
 	}
 });

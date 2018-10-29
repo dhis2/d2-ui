@@ -1,6 +1,6 @@
 import React from 'react';
-import Paper from 'material-ui/Paper';
-import Button from 'material-ui/Button';
+import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
 import { config } from 'd2';
 import SearchResultsList from './SearchResultsList';
 import HeaderMenuItem from '../menus/HeaderMenuItem';

@@ -161,6 +161,7 @@ styles = {
     },
 
     notificationButton: {
+        padding: 0,
         width: 44,
     },
 

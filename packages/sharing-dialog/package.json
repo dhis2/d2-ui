@@ -31,8 +31,8 @@
   },
   "dependencies": {
     "@dhis2/d2-ui-core": "^1.4.0",
-    "@material-ui/core": "^3.0.0",
-    "@material-ui/icons": "^v3.0.0",
+    "@material-ui/core": "^3.3.1",
+    "@material-ui/icons": "^3.0.1",
     "babel-runtime": "^6.26.0",
     "downshift": "^2.2.2",
     "prop-types": "^15.5.10",
