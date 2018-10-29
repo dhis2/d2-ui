@@ -35,7 +35,7 @@
     "@dhis2/d2-ui-table": "^2.0.0",
     "babel-runtime": "^6.26.0",
     "d2-utilizr": "^0.2.15",
-    "material-ui": "^0.19.3",
+    "material-ui": "^0.20.0",
     "prop-types": "^15.5.10",
     "recompose": "^0.26.0",
     "rxjs": "^5.5.7"

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Paper from 'material-ui/Paper';
+import Paper from '@material-ui/core/Paper';
 import styles, { MENU_ITEM_WIDTH } from '../header-bar-styles';
 import HeaderMenuItems from './HeaderMenuItems';
 

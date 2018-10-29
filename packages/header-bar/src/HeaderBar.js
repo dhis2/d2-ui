@@ -10,7 +10,7 @@ import 'rxjs/add/operator/filter';
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { LinearProgress } from 'material-ui/Progress';
+import LinearProgress from '@material-ui/core/LinearProgress';
 import { withStateFrom } from '@dhis2/d2-ui-core';
 import { setInstance } from 'd2';
 
