@@ -1,6 +1,5 @@
 const webpack = require('webpack');
 const path = require('path');
-const rxPaths = require('rxjs/_esm5/path-mapping');
 
 module.exports = {
     entry: './src/index.js',
@@ -16,9 +15,6 @@ module.exports = {
             { test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/ },
             { test: /\.css$/, loader: 'style-loader!css-loader'},
         ],
-    },
-    resolve: {
-        alias: rxPaths(),
     },
     devtool: 'source-map',
     externals: {

@@ -1,5 +1,4 @@
 const webpack = require('webpack');
-const rxPaths = require('rxjs/_esm5/path-mapping');
 
 const path = require('path')
 
@@ -10,9 +9,6 @@ module.exports = {
         filename: 'index.js',
         library: 'HeaderBar',
         libraryTarget: 'umd',
-    },
-    resolve: {
-        alias: rxPaths(),
     },
     module: {
         rules: [
