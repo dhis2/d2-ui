@@ -7,7 +7,7 @@ import { fade } from 'material-ui/utils/colorManipulator';
 import Spacing from 'material-ui/styles/spacing';
 
 import { Store } from '@dhis2/d2-ui-core';
-import { ExpressionManager } from '@dhis2/d2-ui-expression-manager';
+import { ExpressionManager } from '@dhis2/d2-ui-editors';
 
 const style = {
     spacing: Spacing,

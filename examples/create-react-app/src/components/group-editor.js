@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Card, CardText } from 'material-ui/Card';
 
 import {Store} from '@dhis2/d2-ui-core';
-import {GroupEditor} from '@dhis2/d2-ui-group-editor';
+import { GroupEditor } from '@dhis2/d2-ui-editors';
 
 const itemStore = Store.create();
 const assignedItemStore = Store.create();

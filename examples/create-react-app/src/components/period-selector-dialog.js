@@ -4,7 +4,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 import Snackbar from 'material-ui/Snackbar';
 import PropTypes from 'prop-types';
-import PeriodSelectorDialog from '@dhis2/d2-ui-period-selector-dialog';
+import { PeriodSelectorDialog } from '@dhis2/d2-ui-dialogs';
 
 class PeriodSelectorDialogExample extends Component {
     state = {
