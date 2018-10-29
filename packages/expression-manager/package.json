@@ -4,9 +4,6 @@
   "description": "Expression manager component for DHIS2 apps",
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",
-  "files": [
-    "build"
-  ],
   "license": "BSD-3-Clause",
   "author": "",
   "scripts": {

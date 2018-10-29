@@ -1,5 +1,6 @@
 export { createClassName } from './component-helpers/utils'
 
+export { default as App } from './app'
 export { default as Action } from './action/Action'
 export { default as Button } from './button/Button'
 export { default as Chip } from './chip/Chip'

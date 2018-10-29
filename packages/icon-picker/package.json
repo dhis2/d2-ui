@@ -4,9 +4,6 @@
     "description": "DHIS2 component for selecting icon",
     "main": "./build/cjs/index.js",
     "module": "./build/es/index.js",
-    "files": [
-        "build"
-    ],
     "license": "BSD-3-Clause",
     "peerDependencies": {
         "d2": "^31.1.1",
