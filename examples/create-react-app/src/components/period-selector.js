@@ -3,7 +3,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import Snackbar from 'material-ui/Snackbar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import PropTypes from 'prop-types';
-import { PeriodSelector } from '@dhis2/d2-ui-period-selector-dialog';
+import { PeriodSelector } from '@dhis2/d2-ui-dialogs';
 
 class PeriodSelectorExample extends Component {
     constructor(props) {
