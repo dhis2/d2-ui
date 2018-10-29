@@ -27,9 +27,6 @@ const Action = {
         const subject = Object.assign(
             (...actionArgs) => {
                 log.trace(`Firing action: ${subject.id.toString()}`);
-                console.log('Action Observable.fromPromise', Observable.fromPromise);
-
-
                 return Observable.fromPromise(new Promise((resolve, reject) => {
                     subject.next({
                         // Pass one argument if there is just one else pass the arguments as an array
