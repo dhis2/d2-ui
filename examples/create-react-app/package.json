@@ -20,6 +20,7 @@
     "@dhis2/d2-ui-sharing-dialog": "^3.0.0",
     "@dhis2/d2-ui-table": "^2.0.0",
     "@dhis2/d2-ui-translation-dialog": "^3.0.0",
+    "d2": "^31.1.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-scripts": "1.1.1"

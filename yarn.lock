@@ -82,14 +82,6 @@
   dependencies:
     regenerator-runtime "^0.12.0"
 
-"@babel/runtime@7.0.0-beta.42":
-  version "7.0.0-beta.42"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.0.0-beta.42.tgz#352e40c92e0460d3e82f49bd7e79f6cda76f919f"
-  integrity sha512-iOGRzUoONLOtmCvjUsZv3mZzgCT6ljHQY5fr1qG1QIiJQwtM7zbPWGGpa3QWETq+UqwWyJnoi5XZDZRwZDFciQ==
-  dependencies:
-    core-js "^2.5.3"
-    regenerator-runtime "^0.11.1"
-
 "@babel/runtime@7.1.2", "@babel/runtime@^7.0.0":
   version "7.1.2"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.1.2.tgz#81c89935f4647706fc54541145e6b4ecfef4b8e3"
@@ -167,31 +159,6 @@
   integrity sha512-xI2j69q3bwlb374JOAs3wpo47V4BqDAz4h1PfGLVhdORPLAuz0CkKuwesfpW2eunDSHiKpMbOg7goTip/5ROew==
   dependencies:
     i18next "^10.3"
-
-"@dhis2/d2-ui-sharing-dialog@^1.0.15":
-  version "1.0.15"
-  resolved "https://registry.yarnpkg.com/@dhis2/d2-ui-sharing-dialog/-/d2-ui-sharing-dialog-1.0.15.tgz#2cc6cc1bd5cd401dd6163776c775bec79a018b71"
-  integrity sha512-5HyDSAZCnx0SZlWRG14igrPM96cDIVSJ5CC+kyL+sNzURnafOmPlHgqB1NSCjIF0PhEsJOvRnxhm6qaQssDeUg==
-  dependencies:
-    "@dhis2/d2-ui-core" "^1.3.2"
-    babel-runtime "^6.26.0"
-    material-ui "^0.19.3"
-    prop-types "^15.5.10"
-    recompose "^0.26.0"
-    rxjs "^5.5.7"
-
-"@dhis2/d2-ui-translation-dialog@^1.0.15":
-  version "1.0.15"
-  resolved "https://registry.yarnpkg.com/@dhis2/d2-ui-translation-dialog/-/d2-ui-translation-dialog-1.0.15.tgz#7e245b75d58c5be5298fbf65b1053216778ffb6c"
-  integrity sha512-5VGHs7H+7Px5+lPbOrrBwz6YEsw+fqgL7Ie+9yduaKrF+nP2c7iALryAAA4k1Xz++KtCCs4qyeifyMkMy1JJMw==
-  dependencies:
-    "@dhis2/d2-ui-core" "^1.3.2"
-    babel-runtime "^6.26.0"
-    d2-utilizr "^0.2.15"
-    material-ui "^0.19.3"
-    prop-types "^15.5.10"
-    recompose "^0.26.0"
-    rxjs "^5.5.7"
 
 "@emotion/babel-utils@^0.6.4":
   version "0.6.10"
@@ -1273,6 +1240,10 @@ babel-jest@20.0.3, babel-jest@^20.0.3:
   version "20.0.3"
   resolved "https://registry.yarnpkg.com/babel-jest/-/babel-jest-20.0.3.tgz#e4a03b13dc10389e140fc645d09ffc4ced301671"
   integrity sha1-5KA7E9wQOJ4UD8ZF0J/8TO0wFnE=
+  dependencies:
+    babel-core "^6.0.0"
+    babel-plugin-istanbul "^4.0.0"
+    babel-preset-jest "^20.0.3"
 
 babel-jest@^22.4.3:
   version "22.4.4"
@@ -3295,7 +3266,7 @@ core-js@^1.0.0:
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-1.2.7.tgz#652294c14651db28fa93bd2d5ff2983a4f08c636"
   integrity sha1-ZSKUwUZR2yj6k70tX/KYOk8IxjY=
 
-core-js@^2.4.0, core-js@^2.5.0, core-js@^2.5.3:
+core-js@^2.4.0, core-js@^2.5.0:
   version "2.5.7"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.5.7.tgz#f972608ff0cead68b841a16a932d0b183791814e"
   integrity sha512-RszJCAxg/PP6uzXVXL6BsxSXx/B05oJAQ2vkJRjyjrEcNVycaqOmNb5OTxZPE3xa5gwZduqza6L9JOCenh/Ecw==
@@ -5134,7 +5105,7 @@ fbjs@^0.6.1:
     ua-parser-js "^0.7.9"
     whatwg-fetch "^0.9.0"
 
-fbjs@^0.8.1, fbjs@^0.8.15, fbjs@^0.8.16, fbjs@^0.8.9:
+fbjs@^0.8.1, fbjs@^0.8.15, fbjs@^0.8.9:
   version "0.8.17"
   resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.8.17.tgz#c4d598ead6949112653d6588b01a5cdcd9f90fdd"
   integrity sha1-xNWY6taUkRJlPWWIsBpc3Nn5D90=
@@ -6282,7 +6253,7 @@ ini@^1.3.2, ini@^1.3.4, ini@~1.3.0:
   resolved "https://registry.yarnpkg.com/ini/-/ini-1.3.5.tgz#eee25f56db1c9ec6085e0c22778083f596abf927"
   integrity sha512-RZY5huIKCMRWDUqZlEi72f/lmXKMvuszcMBduliQ3nnWbx9X/ZBQO7DijMEYS9EhHBb2qacRUMtC7svLwe0lcw==
 
-inline-style-prefixer@^3.0.2, inline-style-prefixer@^3.0.8:
+inline-style-prefixer@^3.0.8:
   version "3.0.8"
   resolved "https://registry.yarnpkg.com/inline-style-prefixer/-/inline-style-prefixer-3.0.8.tgz#8551b8e5b4d573244e66a34b04f7d32076a2b534"
   integrity sha1-hVG45bTVcyROZqNLBPfTIHaitTQ=
@@ -8314,23 +8285,6 @@ material-colors@^1.2.1:
   resolved "https://registry.yarnpkg.com/material-colors/-/material-colors-1.2.6.tgz#6d1958871126992ceecc72f4bcc4d8f010865f46"
   integrity sha512-6qE4B9deFBIa9YSpOc9O0Sgc43zTeVYbgDT5veRKSlB2+ZuHNoVVxA1L/ckMUayV9Ay9y7Z/SZCLcGteW9i7bg==
 
-material-ui@^0.19.3:
-  version "0.19.4"
-  resolved "https://registry.yarnpkg.com/material-ui/-/material-ui-0.19.4.tgz#ca9cdca8aa8bb594dfac5db38ec9ff045a323587"
-  integrity sha1-ypzcqKqLtZTfrF2zjsn/BFoyNYc=
-  dependencies:
-    babel-runtime "^6.23.0"
-    inline-style-prefixer "^3.0.2"
-    keycode "^2.1.8"
-    lodash.merge "^4.6.0"
-    lodash.throttle "^4.1.1"
-    prop-types "^15.5.7"
-    react-event-listener "^0.5.1"
-    react-transition-group "^1.2.1"
-    recompose "^0.26.0"
-    simple-assign "^0.1.0"
-    warning "^3.0.0"
-
 material-ui@^0.20.0:
   version "0.20.2"
   resolved "https://registry.yarnpkg.com/material-ui/-/material-ui-0.20.2.tgz#5fc9b4b62b691d3b16c89d8e54597a0412b52c7d"
@@ -10275,16 +10229,6 @@ react-error-overlay@^4.0.1:
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-4.0.1.tgz#417addb0814a90f3a7082eacba7cee588d00da89"
   integrity sha512-xXUbDAZkU08aAkjtUvldqbvI04ogv+a1XdHxvYuHPYKIVk/42BIOD0zSKTHAWV4+gDy3yGm283z2072rA2gdtw==
 
-react-event-listener@^0.5.1:
-  version "0.5.10"
-  resolved "https://registry.yarnpkg.com/react-event-listener/-/react-event-listener-0.5.10.tgz#378403c555fe616f312891507a742ecbbe2c90de"
-  integrity sha512-YZklRszh9hq3WP3bdNLjFwJcTCVe7qyTf5+LWNaHfZQaZrptsefDK2B5HHpOsEEaMHvjllUPr0+qIFVTSsurow==
-  dependencies:
-    "@babel/runtime" "7.0.0-beta.42"
-    fbjs "^0.8.16"
-    prop-types "^15.6.0"
-    warning "^3.0.0"
-
 react-event-listener@^0.6.2:
   version "0.6.4"
   resolved "https://registry.yarnpkg.com/react-event-listener/-/react-event-listener-0.6.4.tgz#d0ea5ed897da1a796616c44b5a8758898140f203"
@@ -10694,7 +10638,7 @@ regenerator-runtime@^0.10.5:
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.10.5.tgz#336c3efc1220adcedda2c9fab67b5a7955a33658"
   integrity sha1-M2w+/BIgrc7dosn6tntaeVWjNlg=
 
-regenerator-runtime@^0.11.0, regenerator-runtime@^0.11.1:
+regenerator-runtime@^0.11.0:
   version "0.11.1"
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.11.1.tgz#be05ad7f9bf7d22e056f9726cee5017fbf19e2e9"
   integrity sha512-MguG95oij0fC3QV3URf4V2SDYGJhJnJGqvIIgdECeODCT98wSWDAJ94SSuVpYQUoTcGUIL6L4yNB7j1DFFHSBg==
@@ -11058,6 +11002,8 @@ rxjs@^5.5.7:
   version "5.5.12"
   resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-5.5.12.tgz#6fa61b8a77c3d793dbaf270bee2f43f652d741cc"
   integrity sha512-xx2itnL5sBbqeeiVgNPVuQQ1nC8Jp2WfNJhXWHmElW9YmrpS9UVnNzhP3EH3HFqexO5Tlp8GhYY+WEcqcVMvGw==
+  dependencies:
+    symbol-observable "1.0.1"
 
 safe-buffer@5.1.2, safe-buffer@^5.0.1, safe-buffer@^5.1.0, safe-buffer@^5.1.1, safe-buffer@^5.1.2, safe-buffer@~5.1.0, safe-buffer@~5.1.1:
   version "5.1.2"

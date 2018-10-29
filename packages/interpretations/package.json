@@ -16,6 +16,7 @@
   "author": "Arnau Sanchez <arnau@eyeseetea.com>",
   "contributors": [],
   "scripts": {
+    "prebuild": "rm -rf ./build",
     "build": "yarn localize && npm run build:commonjs && npm run build:es",
     "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --copy-files --out-dir build/cjs --ignore spec.js",
     "build:es": "cross-env BABEL_ENV=es babel src --copy-files --out-dir build/es --ignore spec.js",
@@ -37,7 +38,7 @@
     "@dhis2/d2-i18n-generate": "^1.0.18",
     "@dhis2/d2-ui-core": "^1.4.0",
     "@dhis2/d2-ui-mentions-wrapper": "^3.0.0",
-    "@dhis2/d2-ui-sharing-dialog": "^1.0.15",
+    "@dhis2/d2-ui-sharing-dialog": "^3.0.0",
     "@material-ui/core": "^3.3.1",
     "@material-ui/icons": "^3.0.1",
     "babel-runtime": "^6.26.0",
