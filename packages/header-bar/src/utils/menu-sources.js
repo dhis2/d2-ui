@@ -1,6 +1,6 @@
 import log from 'loglevel';
-import { Observable } from 'rxjs/Observable';
 import { getInstance, config } from 'd2';
+import { Observable } from 'rxjs/Observable';
 
 import getBaseUrlFromD2ApiUrl from '../utils/getBaseUrlFromD2ApiUrl';
 
@@ -66,8 +66,6 @@ const addHelpLinkToProfileData = () =>
             }),
         );
 
-export const profileSource$ = Observable.fromPromise(addHelpLinkToProfileData(profileMenuData));
-
 // TODO: Remove this when we have proper support for `displayName` from the getModules.action.
 const getTranslationsForMenuItems = ({ modules }) =>
     getInstance()
@@ -119,6 +117,9 @@ const loadNotifications = () =>
             const api = d2.Api.getApi();
             return api.get('me/dashboard');
         });
+
+export const profileSource$ = Observable
+    .fromPromise(addHelpLinkToProfileData(profileMenuData));
 
 export const appsMenuSource$ = Observable
     .fromPromise(loadMenuItems())

@@ -12,6 +12,7 @@ import getBaseUrlFromD2ApiUrl from './utils/getBaseUrlFromD2ApiUrl';
 const translate = curry((d2, key) => d2.i18n.getTranslation(key));
 
 const d2Offline = { currentUser: { userSettings: {} } };
+
 const d2$ = Observable.fromPromise(getInstance()).catch(Observable.of(d2Offline));
 const currentUser$ = d2$.map(pluck('currentUser'));
 

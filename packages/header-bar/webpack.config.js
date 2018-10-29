@@ -1,3 +1,5 @@
+const webpack = require('webpack');
+
 const path = require('path')
 
 module.exports = {
@@ -21,5 +23,6 @@ module.exports = {
             commonjs2: 'react',
             commonjs: 'react'
         }
-    }
+    },
+    plugins: [new webpack.optimize.ModuleConcatenationPlugin()],
 }
