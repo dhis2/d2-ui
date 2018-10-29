@@ -11,7 +11,7 @@
   "author": "",
   "scripts": {
     "coverage": "jest --coverage",
-    "test-ci": "jest --config=../../jest.config.js packages/core",
+    "test-ci": "jest --config=../../jest.config.js packages/app",
     "lint": "eslint src/",
     "prebuild": "rimraf ./build/*",
     "build": "npm run build:commonjs && npm run build:es",

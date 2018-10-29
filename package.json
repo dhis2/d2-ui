@@ -7,7 +7,7 @@
     "build": "lerna exec -- yarn build",
     "release": "npm run bootstrap && npm run build && npm run test",
     "watch": "lerna exec --parallel -- yarn watch",
-    "test": "jest",
+    "test": "lerna run test-ci",
     "test-ci": "lerna exec --concurrency 1 -- yarn test-ci"
   },
   "workspaces": [
