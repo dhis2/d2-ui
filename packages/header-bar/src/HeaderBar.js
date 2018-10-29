@@ -35,7 +35,6 @@ export class HeaderBar extends Component {
 
         const currentUser = this.props.d2.currentUser;
 
-        console.log('Loading header bar...');
         // If the required props are not passed we're in a loading state.
         if (!this.props.d2 || !profileItems) {
             if (noLoadingIndicator) {
@@ -50,7 +49,6 @@ export class HeaderBar extends Component {
                 </div>);
         }
 
-        console.log('Loaded header bar!', this.props);
         return (
             <D2UI>
                 <div style={applyUserStyle(currentUser, styles.headerBar)}>
