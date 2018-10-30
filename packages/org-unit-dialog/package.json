@@ -19,7 +19,6 @@
         "build": "npm run localize && npm run build:commonjs && npm run build:es",
         "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir build/cjs --ignore spec.js",
         "build:es": "cross-env BABEL_ENV=es babel src --out-dir build/es --ignore spec.js",
-        "build:umd": "cross-env && webpack -p",
         "watch": "npm run build:es --  --watch",
         "test-ci": "jest --config=../../jest.config.js packages/org-unit-dialog",
         "extract-pot": "d2-i18n-extract -p src/ -o i18n/",
