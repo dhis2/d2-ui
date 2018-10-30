@@ -55,7 +55,6 @@ export const renameFavorite = form => {
         let api;
 
         if (favoriteModel) {
-            console.log('hello')
             api = state.d2.Api.getApi();
 
             // the whole model is required for validation
