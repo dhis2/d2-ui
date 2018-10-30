@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import log from 'loglevel';
 
 import Card from 'material-ui/Card/Card';
 import CardText from 'material-ui/Card/CardText';
@@ -125,14 +124,6 @@ export default class OrgUnitSelectExample extends React.Component {
     }
 
     handleChildrenLoaded(children) {
-        function countChildren(root) {
-            if (root.children && root.children.size && root.children.size > 0) {
-                return root.children.toArray().reduce((sum, child) => sum + countChildren(child), 1);
-            }
-
-            return 1;
-        }
-
         this.setState(state => ({
             rootWithMembers: mergeChildren(state.rootWithMembers, children)
         }));

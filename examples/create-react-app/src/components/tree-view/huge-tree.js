@@ -93,7 +93,7 @@ class ExampleComponent extends React.Component {
         return (
             <div key={level.label} style={styles.leafNode}>
                 <div style={styles.line}>{isLastChild ? '└' : '├'}</div>
-                {level.label} <span style={styles.leafLabel}>🍂</span>
+                {level.label} <span style={styles.leafLabel} role="img" aria-label="leaf">🍂</span>
             </div>
         );
     }
