@@ -5,7 +5,6 @@ import Button from '@material-ui/core/Button';
 class PeriodTypeButton extends Component {
     constructor(props, context) {
         super(props);
-
         this.i18n = context.d2.i18n;
     }
 
@@ -13,16 +12,14 @@ class PeriodTypeButton extends Component {
         this.props.onClick(this.props.periodType);
     };
 
-    render() {
-        return (
-            <Button
-                className={`nav-button ${this.props.periodType === this.props.activePeriodType ? 'active' : ''}`}
-                onClick={this.handleClick}
-            >
-                {this.i18n.getTranslation(this.props.text)}
-            </Button>
-        );
-    }
+    render = () => (
+        <Button
+            className={`nav-button ${this.props.periodType === this.props.activePeriodType ? 'active' : ''}`}
+            onClick={this.handleClick}
+        >
+            {this.i18n.getTranslation(this.props.text)}
+        </Button>
+    )
 }
 
 PeriodTypeButton.propTypes = {

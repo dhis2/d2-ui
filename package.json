@@ -5,10 +5,9 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "build": "lerna exec -- yarn build",
-    "build:umd": "lerna exec -- yarn build:umd",
-    "release": "npm run bootstrap && npm run build && npm run build:umd && npm run test",
+    "release": "npm run bootstrap && npm run build && npm run test",
     "watch": "lerna exec --parallel -- yarn watch",
-    "test": "jest",
+    "test": "lerna run test-ci",
     "test-ci": "lerna exec --concurrency 1 -- yarn test-ci"
   },
   "workspaces": [
@@ -56,17 +55,13 @@
     "react-test-renderer": "^16.2.0",
     "recompose": "^0.26.0",
     "rimraf": "^2.6.2",
-    "rxjs": "^5.5.7",
     "sass-loader": "^6.0.2",
     "style-loader": "^0.18.2",
     "susy": "^2.0.0",
-    "webpack": "^4.1.0",
-    "webpack-cli": "^2.0.10",
+    "webpack": "4",
+    "webpack-cli": "3",
     "webpack-dev-server": "^3.1.0",
     "webpack-visualizer-plugin": "^0.1.5"
-  },
-  "resolutions": {
-    "jest-environment-jsdom": "22.4.3"
   },
   "dependencies": {
     "jest-environment-jsdom": "^23.4.0"

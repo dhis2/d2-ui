@@ -1,5 +1,5 @@
 import React from 'react';
-import {SvgIcon} from '@dhis2/d2-ui-core';
+import { SvgIcon } from '@dhis2/d2-ui-core';
 
 const style = {
     margin: 16,
@@ -21,7 +21,7 @@ const cardStyle = {
 
 const children = <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />;
 
-export default function SvgIconExample (props) {
+export default function SvgIconExample() {
     return (
         <div style={style}>
             <div style={cardStyle}>
@@ -210,8 +210,8 @@ export default function SvgIconExample (props) {
                 <SvgIcon icon={'VisibilityOff'} />
             </div>
             <div style={cardStyle}>
-                <h3>MoreVert</h3>
-                <SvgIcon icon={'MoreVert'} />
+                <h3>MoreHoriz</h3>
+                <SvgIcon icon={'MoreHoriz'} />
             </div>
             <div style={cardStyle}>
                 <h3>NotInterested</h3>

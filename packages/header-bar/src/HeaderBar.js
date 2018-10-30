@@ -1,8 +1,18 @@
+import 'rxjs/add/observable/fromPromise';
+import 'rxjs/add/observable/of';
+import 'rxjs/add/observable/combineLatest';
+
+import 'rxjs/add/operator/combineLatest';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/mergeMap';
+import 'rxjs/add/operator/filter';
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { LinearProgress } from 'material-ui/Progress';
+import LinearProgress from '@material-ui/core/LinearProgress';
 import { withStateFrom } from '@dhis2/d2-ui-core';
-import { setInstance } from 'd2/lib/d2';
+import { setInstance } from 'd2';
 
 import ProfileMenu from './menus/ProfileMenu';
 import InnerHeader from './InnerHeader';
@@ -35,7 +45,6 @@ export class HeaderBar extends Component {
 
         const currentUser = this.props.d2.currentUser;
 
-        console.log('Loading header bar...');
         // If the required props are not passed we're in a loading state.
         if (!this.props.d2 || !profileItems) {
             if (noLoadingIndicator) {
@@ -50,7 +59,6 @@ export class HeaderBar extends Component {
                 </div>);
         }
 
-        console.log('Loaded header bar!', this.props);
         return (
             <D2UI>
                 <div style={applyUserStyle(currentUser, styles.headerBar)}>

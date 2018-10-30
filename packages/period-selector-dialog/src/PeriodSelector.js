@@ -5,37 +5,32 @@ import Periods from './Periods';
 import Store from './reducers';
 
 class PeriodSelector extends Component {
-    getChildContext() {
-        return {
-            listHeight: this.props.listHeight,
-            d2: this.props.d2,
-        };
-    }
+    getChildContext = () => ({
+        d2: this.props.d2,
+    })
 
-    render() {
-        return (
-            <Provider store={Store}>
-                <Periods {...this.props} />
-            </Provider>
-        );
-    }
+    render = () => (
+        <Provider store={Store}>
+            <Periods {...this.props} />
+        </Provider>
+    )
 }
 
 PeriodSelector.propTypes = {
     d2: PropTypes.object.isRequired,
-    periods: PropTypes.array,
-    onPeriodsSelect: PropTypes.func.isRequired,
-    listHeight: PropTypes.number,
+    onSelect: PropTypes.func,
+    onDeselect: PropTypes.func,
+    selectedItems: PropTypes.array,
 };
 
 PeriodSelector.defaultProps = {
-    periods: [],
-    listHeight: 320,
+    onSelect: () => null,
+    onDeselect: () => null,
+    selectedItems: [],
 };
 
 PeriodSelector.childContextTypes = {
     d2: PropTypes.object,
-    listHeight: PropTypes.number,
 };
 
 export default PeriodSelector;

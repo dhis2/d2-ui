@@ -1,7 +1,7 @@
 import React from 'react';
-import Paper from 'material-ui/Paper';
-import Button from 'material-ui/Button';
-import { config } from 'd2/lib/d2';
+import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
+import { config } from 'd2';
 import SearchResultsList from './SearchResultsList';
 import HeaderMenuItem from '../menus/HeaderMenuItem';
 import { withStateFrom } from '@dhis2/d2-ui-core';

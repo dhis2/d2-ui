@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { LoadingMask } from '@dhis2/d2-ui-core';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import isEqual from 'lodash/fp/isEqual'
+import pick from 'lodash/fp/pick'
+
 import { getFavoriteWithInterpretations } from '../models/helpers';
 import DetailsCard from './details/DetailsCard';
 import InterpretationsCard from './interpretations/InterpretationsCard';
-import isEqual from 'lodash/fp/isEqual'
-import pick from 'lodash/fp/pick'
 import i18n from '../locales';
 
 function configI18n(d2) {
@@ -60,7 +61,7 @@ class Interpretations extends React.Component {
         const locale = this.getLocale(d2);
 
         if (!model)
-          return <LoadingMask style={{position: "relative"}} size={1} />;
+            return <CircularProgress />
 
         return (
             <div>

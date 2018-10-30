@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { generateUid } from 'd2/lib/uid';
+import { generateUid } from 'd2/uid';
 import FloatingActionButton from 'material-ui/FloatingActionButton/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import Table from '@dhis2/d2-ui-table';

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import log from 'loglevel';
 import Card from 'material-ui/Card/Card';
 import CardText from 'material-ui/Card/CardText';
 
@@ -103,7 +102,6 @@ export default class OrgUnitTreeExample extends React.Component {
 	render () {
 		const { root, roots, preRoot } = this.state;
 
-		console.log(root, roots, preRoot)
 		if (!root || !roots || !preRoot) {
 			return null;
 		}

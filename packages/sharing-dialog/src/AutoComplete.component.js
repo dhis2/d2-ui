@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import deburr from 'lodash/deburr';
 import Downshift from 'downshift';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';

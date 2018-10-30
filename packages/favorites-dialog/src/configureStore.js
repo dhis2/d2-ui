@@ -1,13 +1,11 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import { createLogger } from 'redux-logger';
 import thunk from 'redux-thunk';
-// import observable from 'redux-observable';
 import reducer from './reducers';
 
 const configureStore = () => {
     const middlewares = [
         thunk,
-        // observable,
     ];
 
     const composeEnhancers =

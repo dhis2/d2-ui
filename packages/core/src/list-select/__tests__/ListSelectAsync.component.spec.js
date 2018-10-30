@@ -1,5 +1,5 @@
 import React from 'react';
-import { ReplaySubject } from 'rxjs';
+import { ReplaySubject } from 'rxjs/ReplaySubject';
 import log from 'loglevel';
 import { shallow } from 'enzyme';
 import ListSelectAsync from '../ListSelectAsync.component';

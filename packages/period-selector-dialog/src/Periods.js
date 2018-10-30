@@ -6,7 +6,7 @@ import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import PeriodTypeButton from './PeriodTypeButton';
 import SelectedPeriods from './SelectedPeriods';
-import OfferedPeriods from './OfferedPeriods';
+import { OfferedPeriods } from './OfferedPeriods';
 import PeriodTypes from './PeriodTypes';
 import '../css/PeriodSelector.css';
 
@@ -22,22 +22,30 @@ import {
     toggleSelectedPeriod,
 } from './actions';
 
+const SelectButton = ({ action }) => (
+    <Button
+        className="select-button"
+        onClick={action}
+    >
+        <ArrowForwardIcon />
+    </Button>
+);
+
+const DeselectButton = ({ action }) => (
+    <Button
+        className="select-button"
+        onClick={action}
+    >
+        <ArrowBackIcon />
+    </Button>
+);
+
 class Periods extends Component {
     constructor(props, context) {
         super(props);
 
         this.i18n = context.d2.i18n;
-
-        if (this.props.periods.length > 0) {
-            this.props.setSelectedPeriods(this.props.periods);
-        }
-    }
-
-    componentWillUpdate(nextProps) {
-        // based on periods array length fire on periods select event
-        if (nextProps.selectedPeriods.periods.length !== this.props.selectedPeriods.periods.length) {
-            this.props.onPeriodsSelect(nextProps.selectedPeriods.periods);
-        }
+        this.props.setSelectedPeriods(this.props.selectedItems);
     }
 
     onPeriodTypeClick = (periodType) => {
@@ -48,90 +56,117 @@ class Periods extends Component {
     };
 
     onSelectPeriods = () => {
-        const selectedOfferedPeriods = this.props
+        const itemsToAdd = this.props
             .offeredPeriods
             .periods
             .filter(period => period.selected === true);
 
-        this.props.addSelectedPeriods(selectedOfferedPeriods);
-        this.props.removeOfferedPeriods(selectedOfferedPeriods);
+        this.props.onSelect(itemsToAdd);
+        this.props.addSelectedPeriods(itemsToAdd);
+        this.props.removeOfferedPeriods(itemsToAdd);
     };
 
-    onUnselectPeriods = () => {
-        const periods = this.props
+    onDeselectPeriods = () => {
+        const removedPeriods = this.props
             .selectedPeriods
             .periods
             .filter(period => period.selected === true);
 
-        this.props.removeSelectedPeriods(periods);
-        this.props.addOfferedPeriods(periods);
+        this.props.onDeselect(removedPeriods);
+        this.props.removeSelectedPeriods(removedPeriods);
+        this.props.addOfferedPeriods(removedPeriods);
     };
 
-    renderPeriodTypeButtons = () => (<Fragment>
-        <PeriodTypeButton
-            periodType={PeriodTypes.RELATIVE}
-            activePeriodType={this.props.periodType}
-            text={'Relative periods'}
-            onClick={this.onPeriodTypeClick}
-        />
-        <PeriodTypeButton
-            periodType={PeriodTypes.FIXED}
-            activePeriodType={this.props.periodType}
-            text={'Fixed periods'}
-            onClick={this.onPeriodTypeClick}
-        />
-    </Fragment>);
+    onDoubleClick = (selectedPeriod) => {
+        const itemToAdd = [selectedPeriod];
 
-    renderSelectButtons = () => (<Fragment>
-        <Button
-            className="select-button"
-            onClick={this.onSelectPeriods}
-        >
-            <ArrowForwardIcon />
-        </Button>
-        <Button
-            className="select-button"
-            onClick={this.onUnselectPeriods}
-        >
-            <ArrowBackIcon />
-        </Button>
-    </Fragment>);
+        this.props.onSelect(itemToAdd);
+        this.props.addSelectedPeriods(itemToAdd);
+        this.props.removeOfferedPeriods(itemToAdd);
+    }
 
-    render() {
-        return (<div className="periods-component">
-            {this.renderPeriodTypeButtons()}
+    onRemovePeriod = (removedPeriod) => {
+        const itemToRemove = [removedPeriod];
+
+        this.props.onDeselect(itemToRemove);
+        this.props.removeSelectedPeriods(itemToRemove);
+        this.props.addOfferedPeriods(itemToRemove);
+    };
+
+    onClearAll = (removedPeriods) => {
+        this.props.onDeselect(removedPeriods);
+        this.props.addOfferedPeriods(removedPeriods);
+        this.props.setSelectedPeriods([]);
+    };
+
+    renderPeriodTypeButtons = () => (
+        <Fragment>
+            <PeriodTypeButton
+                periodType={PeriodTypes.RELATIVE}
+                activePeriodType={this.props.periodType}
+                text={'Relative periods'}
+                onClick={this.onPeriodTypeClick}
+            />
+            <PeriodTypeButton
+                periodType={PeriodTypes.FIXED}
+                activePeriodType={this.props.periodType}
+                text={'Fixed periods'}
+                onClick={this.onPeriodTypeClick}
+            />
+        </Fragment>
+    );
+
+    renderSelectButtons = () => (
+        <Fragment>
+            <SelectButton action={this.onSelectPeriods} />
+            <DeselectButton action={this.onDeselectPeriods} />
+        </Fragment>
+    );
+
+    render = () => {
+        const PeriodTypeButtons = this.renderPeriodTypeButtons();
+        const SelectButtons = this.renderSelectButtons();
+
+        return (
             <div>
-                <div className="block options">
-                    <OfferedPeriods
-                        periodType={this.props.periodType}
-                        periods={this.props.offeredPeriods.periods}
-                        setOfferedPeriods={this.props.setOfferedPeriods}
-                        onPeriodClick={this.props.toggleOfferedPeriod}
-                    />
-                </div><div className="block buttons">
-                    {this.renderSelectButtons()}
-                </div><div className="block selected-periods">
-                    <SelectedPeriods
-                        periods={this.props.selectedPeriods.periods}
-                        onPeriodClick={this.props.toggleSelectedPeriod}
-                        setSelectedPeriods={this.props.setSelectedPeriods}
-                        addOfferedPeriods={this.props.addOfferedPeriods}
-                    />
+                {PeriodTypeButtons}
+                <div className="periods-container">
+                    <div className="block options">
+                        <OfferedPeriods
+                            periodType={this.props.periodType}
+                            items={this.props.offeredPeriods.periods}
+                            onDoubleClick={this.onDoubleClick}
+                            onPeriodClick={this.props.toggleOfferedPeriod}
+                            setOfferedPeriods={this.props.setOfferedPeriods}
+                        />
+                    </div>
+                    <div className="block buttons">
+                        {SelectButtons}
+                    </div>
+                    <div className="block selected-periods">
+                        <SelectedPeriods
+                            items={this.props.selectedPeriods.periods}
+                            onClearAll={this.onClearAll}
+                            onPeriodClick={this.props.toggleSelectedPeriod}
+                            onRemovePeriodClick={this.onRemovePeriod}
+                        />
+                    </div>
                 </div>
             </div>
-        </div>);
-    }
+        );
+    };
 }
 
 Periods.propTypes = {
-    periods: PropTypes.array.isRequired,
+    onSelect: PropTypes.func.isRequired,
+    onDeselect: PropTypes.func.isRequired,
+    selectedItems: PropTypes.array.isRequired,
     periodType: PropTypes.string.isRequired,
     offeredPeriods: PropTypes.object.isRequired,
     selectedPeriods: PropTypes.object.isRequired,
     setPeriodType: PropTypes.func.isRequired,
     setOfferedPeriods: PropTypes.func.isRequired,
     setSelectedPeriods: PropTypes.func.isRequired,
-    onPeriodsSelect: PropTypes.func.isRequired,
     addSelectedPeriods: PropTypes.func.isRequired,
     addOfferedPeriods: PropTypes.func.isRequired,
     removeOfferedPeriods: PropTypes.func.isRequired,

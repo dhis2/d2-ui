@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -8,7 +8,7 @@ import RelativePeriodsGenerator from './utils/RelativePeriodsGenerator';
 import PeriodsList from './PeriodsList';
 
 export const defaultState = {
-    periodType: '',
+    periodType: 'Weeks',
 };
 
 class RelativePeriods extends Component {
@@ -20,6 +20,10 @@ class RelativePeriods extends Component {
         this.periodsGenerator = new RelativePeriodsGenerator();
     }
 
+    componentDidMount = () => {
+        this.props.setOfferedPeriods(this.generatePeriods(this.state.periodType));
+    };
+
     onPeriodTypeChange = (event) => {
         this.setState({
             periodType: event.target.value,
@@ -30,39 +34,52 @@ class RelativePeriods extends Component {
 
     generatePeriods = (periodType) => {
         const generator = this.periodsGenerator.get(periodType);
-
         return generator.generatePeriods();
     };
 
-    renderOptions = () => (<Fragment>
-        <FormControl className="form-control period-type">
-            <InputLabel htmlFor="period-type">
-                {this.i18n.getTranslation('Period type')}
-            </InputLabel>
-            <Select
-                onChange={this.onPeriodTypeChange}
-                value={this.state.periodType}
-                inputProps={{ name: 'periodType', id: 'period-type' }}
-            >
-                {this.periodsGenerator.getOptions().map(option =>
-                    (<MenuItem value={option} key={option}>{option}</MenuItem>))
-                }
-            </Select>
-        </FormControl>
-    </Fragment>);
+    renderOptions = () => (
+        <div className="options-area">
+            <FormControl className="form-control period-type">
+                <InputLabel className="input-label" htmlFor="period-type">
+                    {this.i18n.getTranslation('Period type')}
+                </InputLabel>
+                <Select
+                    onChange={this.onPeriodTypeChange}
+                    value={this.state.periodType}
+                    inputProps={{ name: 'periodType', id: 'period-type' }}
+                    disableUnderline
+                    variant="filled"
+                >
+                    {this.periodsGenerator.getOptions().map(option =>
+                        (<MenuItem value={option} key={option}>{option}</MenuItem>))
+                    }
+                </Select>
+            </FormControl>
+        </div>
+    );
 
-    render() {
-        return (<div className="selector-area">
-            {this.renderOptions()}
-            <PeriodsList periods={this.props.periods} onPeriodClick={this.props.onPeriodClick} />
-        </div>);
-    }
+    render = () => {
+        const Options = this.renderOptions();
+
+        return (
+            <div className="selector-area">
+                {Options}
+                <PeriodsList
+                    items={this.props.items}
+                    onPeriodClick={this.props.onPeriodClick}
+                    onDoubleClick={this.props.onDoubleClick}
+                    listClassName={'periods-list-offered'}
+                />
+            </div>
+        );
+    };
 }
 
 RelativePeriods.propTypes = {
-    periods: PropTypes.array.isRequired,
-    onPeriodClick: PropTypes.func.isRequired,
+    items: PropTypes.array.isRequired,
     setOfferedPeriods: PropTypes.func.isRequired,
+    onDoubleClick: PropTypes.func.isRequired,
+    onPeriodClick: PropTypes.func.isRequired,
 };
 
 RelativePeriods.contextTypes = {

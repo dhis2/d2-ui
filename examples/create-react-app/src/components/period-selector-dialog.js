@@ -9,7 +9,7 @@ import PeriodSelectorDialog from '@dhis2/d2-ui-period-selector-dialog';
 class PeriodSelectorDialogExample extends Component {
     state = {
         // example of initially selected periods
-        periods: [
+        selectedPeriods: [
             { id: 'TODAY', name: 'Today' },
             { id: 'YESTERDAY', name: 'Yesterday' },
             { id: 'LAST_3_DAYS', name: 'Last 3 days' },
@@ -21,17 +21,6 @@ class PeriodSelectorDialogExample extends Component {
         },
     };
 
-    onPeriodSelect = (periods) => {
-        this.setState({
-            periods,
-            dialogOpened: !this.state.dialogOpened,
-            snackbar: {
-                open: true,
-                message: `Selected periods: ${periods.map(period => period.id).join(', ')}`,
-            },
-        });
-    };
-
     onSnackbarClose = () => {
         this.setState({
             snackbar: {
@@ -41,8 +30,25 @@ class PeriodSelectorDialogExample extends Component {
         });
     };
 
-    onClose = (periods) => {
-        this.onPeriodSelect(periods);
+    onUpdate = (selectedPeriods) => {
+        this.setState({
+            selectedPeriods,
+            dialogOpened: false,
+            snackbar: {
+                open: true,
+                message: `Selected periods: ${selectedPeriods.map(period => period.name).join(', ')}`,
+            },
+        });
+    };
+
+    onClose = () => {
+        this.setState({
+            dialogOpened: false,
+            snackbar: {
+                open: true,
+                message: `Selected periods: ${this.state.selectedPeriods.map(period => period.name).join(', ')}`,
+            },
+        });
     };
 
     toggleDialog = () => {
@@ -61,12 +67,11 @@ class PeriodSelectorDialogExample extends Component {
                     />
                 </div>
                 <PeriodSelectorDialog
+                    d2={this.props.d2}
                     open={this.state.dialogOpened}
                     onClose={this.onClose}
-                    onUpdate={this.onPeriodSelect}
-                    periods={this.state.periods}
-                    d2={this.props.d2}
-                    listHeight={300}
+                    onUpdate={this.onUpdate}
+                    selectedItems={this.state.selectedPeriods}
                 />
                 <Snackbar
                     open={this.state.snackbar.open}

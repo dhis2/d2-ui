@@ -1,47 +1,32 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import RelativePeriods from './RelativePeriods';
 import FixedPeriods from './FixedPeriods';
 import PeriodTypes from './PeriodTypes';
 
-class OfferedPeriods extends Component {
-    render() {
-        let PeriodOptions;
 
-        const { periods, setOfferedPeriods, onPeriodClick } = this.props;
+export const OfferedPeriods = (props) => {
+    const { periodType, ...remaindingProps } = props;
 
-        const relativePeriods = (<RelativePeriods
-            periods={periods}
-            setOfferedPeriods={setOfferedPeriods}
-            onPeriodClick={onPeriodClick}
-        />);
+    const relativePeriods = <RelativePeriods {...remaindingProps} />;
+    const fixedPeriods = <FixedPeriods {...remaindingProps} />;
 
-        const fixedPeriods = (<FixedPeriods
-            periods={periods}
-            setOfferedPeriods={setOfferedPeriods}
-            onPeriodClick={onPeriodClick}
-        />);
-
-        switch (this.props.periodType) {
-        case PeriodTypes.FIXED:
-            PeriodOptions = fixedPeriods;
-            break;
-        case PeriodTypes.RELATIVE:
-            PeriodOptions = relativePeriods;
-            break;
-        default:
-            PeriodOptions = relativePeriods;
-        }
-
-        return PeriodOptions;
+    switch (periodType) {
+    case PeriodTypes.FIXED:
+        return fixedPeriods;
+    case PeriodTypes.RELATIVE:
+        return relativePeriods;
+    default:
+        return relativePeriods;
     }
-}
+};
 
 OfferedPeriods.propTypes = {
     periodType: PropTypes.string.isRequired,
-    periods: PropTypes.array.isRequired,
-    setOfferedPeriods: PropTypes.func.isRequired,
+    items: PropTypes.array.isRequired,
+    onDoubleClick: PropTypes.func.isRequired,
     onPeriodClick: PropTypes.func.isRequired,
+    setOfferedPeriods: PropTypes.func.isRequired,
 };
 
 export default OfferedPeriods;

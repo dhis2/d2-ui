@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { compose, mapProps, getContext, withProps } from 'recompose';
+import compose from 'recompose/compose';
+import mapProps from 'recompose/mapProps';
+import getContext from 'recompose/getContext';
+import withProps from 'recompose/withProps';
 import IconButton from '@material-ui/core/IconButton';
 import { SvgIcon } from '@dhis2/d2-ui-core';
 import ClearIcon from '@material-ui/icons/Clear';

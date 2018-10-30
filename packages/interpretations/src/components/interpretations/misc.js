@@ -1,21 +1,6 @@
 import React from 'react';
-import { Avatar } from 'material-ui';
+import Avatar from '@material-ui/core/Avatar';
 import styles from './InterpretationsStyles.js';
-
-export const EditButton = props => {
-    const { model, tooltip, icon, onClick } = props;
-    const iconStyle = {width: 14, height: 14, padding: 0, marginLeft: 2};
-
-    if (model && model.access && model.access.update) {
-        return (
-            <IconButton tooltip={tooltip} onClick={onClick} style={iconStyle} iconStyle={iconStyle}>
-                <SvgIcon icon={icon} color={grey600} />
-            </IconButton>
-        );
-    } else {
-        return null;
-    }
-};
 
 export const getUserLink = (d2, user) => {
     // Currently there is no public page for users (DHIS2-691), just use a <span> for now
@@ -45,17 +30,16 @@ export const ActionSeparator = ({labelText = "·"}) => (
 
 const UserAvatar = ({user}) => {
     const initials = user.displayName.split(" ").map(part => part[0]).slice(0, 2).join("");
-    const style = {fontSize: 15, fontWeight: 'bold'};
-    return <Avatar color="black" size={32} style={style}>{initials}</Avatar>;
+    return <Avatar color="black" style={styles.avatar}>{initials}</Avatar>;
 };
 
 export const WithAvatar = ({ user, children }) => (
-    <div style={{display: "flex", marginTop: 10, marginBottom: 10, ...styles.greyBackground}}>
-        <div style={{width: 40, marginLeft: 5}}>
+    <div style={styles.avatarWrapper}>
+        <div style={styles.avatarBox}>
             <UserAvatar user={user} />
         </div>
 
-        <div style={{width: '90%'}}>
+        <div style={styles.avatarBoxContent}>
             {children}
         </div>
     </div>

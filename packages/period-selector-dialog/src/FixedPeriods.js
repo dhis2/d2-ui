@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -8,7 +8,7 @@ import FixedPeriodsGenerator from './utils/FixedPeriodsGenerator';
 import PeriodsList from './PeriodsList';
 
 export const defaultState = {
-    periodType: '',
+    periodType: 'Weekly',
     year: (new Date()).getFullYear(),
 };
 
@@ -60,47 +60,65 @@ class FixedPeriods extends Component {
         });
     };
 
-    renderOptions = () => (<Fragment>
-        <FormControl className="form-control period-type">
-            <InputLabel htmlFor="period-type">
-                {this.i18n.getTranslation('Period type')}
-            </InputLabel>
-            <Select
-                onChange={this.onPeriodTypeChange}
-                value={this.state.periodType}
-                inputProps={{ name: 'periodType', id: 'period-type' }}
-            >
-                {this.periodsGenerator.getOptions().map(option =>
-                    <MenuItem value={option} key={option}>{option}</MenuItem>,
-                )}
-            </Select>
-        </FormControl>
-        <FormControl className="form-control year">
-            <InputLabel htmlFor="year">
-                {this.i18n.getTranslation('Year')}
-            </InputLabel>
-            <Select
-                onChange={this.onYearChange}
-                value={this.state.year}
-                inputProps={{ name: 'year', id: 'year' }}
-            >
-                {this.years.sort().map(year => <MenuItem value={year} key={year}>{year}</MenuItem>)}
-            </Select>
-        </FormControl>
-    </Fragment>);
+    componentDidMount = () => {
+        this.props.setOfferedPeriods(this.generatePeriods(this.state.periodType, this.state.year));
+    };
 
-    render() {
-        return (<div className="selector-area">
-            {this.renderOptions()}
-            <PeriodsList periods={this.props.periods} onPeriodClick={this.props.onPeriodClick} />
-        </div>);
-    }
+    renderOptions = () => (
+        <div className="options-area">
+            <FormControl className="form-control period-type">
+                <InputLabel className="input-label" htmlFor="period-type">
+                    {this.i18n.getTranslation('Period type')}
+                </InputLabel>
+                <Select
+                    onChange={this.onPeriodTypeChange}
+                    value={this.state.periodType}
+                    inputProps={{ name: 'periodType', id: 'period-type' }}
+                    disableUnderline
+                >
+                    {this.periodsGenerator.getOptions().map(option =>
+                        <MenuItem value={option} key={option}>{option}</MenuItem>,
+                    )}
+                </Select>
+            </FormControl>
+            <FormControl className="form-control year">
+                <InputLabel className="input-label" htmlFor="year">
+                    {this.i18n.getTranslation('Year')}
+                </InputLabel>
+                <Select
+                    onChange={this.onYearChange}
+                    value={this.state.year}
+                    inputProps={{ name: 'year', id: 'year' }}
+                    disableUnderline
+                >
+                    {this.years.sort().map(year => <MenuItem value={year} key={year}>{year}</MenuItem>)}
+                </Select>
+            </FormControl>
+        </div>
+    );
+
+    render = () => {
+        const Options = this.renderOptions();
+
+        return (
+            <div className="selector-area">
+                {Options}
+                <PeriodsList
+                    items={this.props.items}
+                    onDoubleClick={this.props.onDoubleClick}
+                    onPeriodClick={this.props.onPeriodClick}
+                    listClassName={'periods-list-offered'}
+                />
+            </div>
+        );
+    };
 }
 
 FixedPeriods.propTypes = {
-    setOfferedPeriods: PropTypes.func.isRequired,
-    periods: PropTypes.array.isRequired,
+    items: PropTypes.array.isRequired,
+    onDoubleClick: PropTypes.func.isRequired,
     onPeriodClick: PropTypes.func.isRequired,
+    setOfferedPeriods: PropTypes.func.isRequired,
 };
 
 FixedPeriods.contextTypes = {
