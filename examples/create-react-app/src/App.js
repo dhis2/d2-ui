@@ -38,7 +38,7 @@ import IconPicker from './components/icon-picker';
 
 import ListSelectExamples from './components/list-select.js';
 
-import D2UIApp from '@dhis2/d2-ui-app';
+import {App as D2UIApp} from '@dhis2/d2-ui-core';
 
 /** these examples need to be rewritten */
 import OrgUnitSelect from './components/org-unit-select';

@@ -4,9 +4,6 @@
   "description": "Period selector dialog component for DHIS2",
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",
-  "files": [
-    "build"
-  ],
   "license": "BSD-3-Clause",
   "author": "Ilya Nee <ilya@dhis2.org>",
   "contributors": [

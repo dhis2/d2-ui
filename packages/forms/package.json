@@ -4,9 +4,6 @@
   "description": "Forms for D2-ui",
   "main": "./build/cjs/index.js",
   "module": "./build/es/index.js",
-  "files": [
-    "build"
-  ],
   "license": "BSD-3-Clause",
   "author": "",
   "scripts": {
