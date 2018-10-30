@@ -1,10 +1,11 @@
 import React, { Component, Fragment } from 'react';
 import { OrgUnitTree } from '@dhis2/d2-ui-org-unit-tree';
 import Grid from '@material-ui/core/Grid/Grid';
-import InputLabel from '@material-ui/core/InputLabel/InputLabel';
+import InputLabel from '@material-ui/core/InputLabel';
 import i18n from '@dhis2/d2-i18n';
-import Input from '@material-ui/core/Input/Input';
-import MenuItem from '@material-ui/core/MenuItem/MenuItem';
+import Input from '@material-ui/core/Input';
+import FormControl from '@material-ui/core/FormControl';
+import MenuItem from '@material-ui/core/MenuItem';
 import PropTypes from 'prop-types';
 import Select from '@material-ui/core/Select/Select';
 import styles from './styles/OrgUnitDialog.style';
@@ -104,44 +105,41 @@ class OrgUnitSelector extends Component {
             container
         >
             <Grid item xs={4}>
-                <InputLabel htmlFor="level">{i18n.t('Level')}</InputLabel>
-                <Select
-                    value={this.props.level}
-                    onChange={this.props.onLevelChange}
-                    input={<Input name="level" id="level" />}
-                    renderValue={this.renderLevelOptions}
-                    disabled={this.props.userOrgUnits.length > 0}
-                    multiple
-                    displayEmpty
-                    fullWidth
-                >
-                    <MenuItem value="">
-                        <em>{i18n.t('Select a level')}</em>
-                    </MenuItem>
-                    {this.props.levelOptions.map(option => (
-                        <MenuItem key={option.id} value={option.id}>{option.displayName}</MenuItem>
-                    ))}
-                </Select>
+                <FormControl style={{ width: '100%' }}>
+                    <InputLabel htmlFor="level-select">{i18n.t('Level')}</InputLabel>
+                    <Select
+                        value={this.props.level}
+                        onChange={this.props.onLevelChange}
+                        input={<Input id="level-select" />}
+                        renderValue={this.renderLevelOptions}
+                        disabled={this.props.userOrgUnits.length > 0}
+                        multiple
+                        fullWidth
+                    >
+                        {this.props.levelOptions.map(option => (
+                            <MenuItem key={option.id} value={option.id}>{option.displayName}</MenuItem>
+                        ))}
+                    </Select>
+                </FormControl>
             </Grid>
             <Grid item xs={4}>
-                <InputLabel htmlFor="group">{i18n.t('Group')}</InputLabel>
-                <Select
-                    value={this.props.group}
-                    onChange={this.props.onGroupChange}
-                    input={<Input name="group" id="group" />}
-                    renderValue={this.renderGroupOptions}
-                    disabled={this.props.userOrgUnits.length > 0}
-                    multiple
-                    displayEmpty
-                    fullWidth
-                >
-                    <MenuItem value="">
-                        <em>{i18n.t('Select a group')}</em>
-                    </MenuItem>
-                    {this.props.groupOptions.map(option => (
-                        <MenuItem key={option.id} value={option.id}>{option.displayName}</MenuItem>
-                    ))}
-                </Select>
+                <FormControl style={{ width: '100%' }}>
+                    <InputLabel htmlFor="group">{i18n.t('Group')}</InputLabel>
+                    <Select
+                        value={this.props.group}
+                        onChange={this.props.onGroupChange}
+                        input={<Input name="group" id="group" />}
+                        renderValue={this.renderGroupOptions}
+                        disabled={this.props.userOrgUnits.length > 0}
+                        multiple
+                        displayEmpty
+                        fullWidth
+                    >
+                        {this.props.groupOptions.map(option => (
+                            <MenuItem key={option.id} value={option.id}>{option.displayName}</MenuItem>
+                        ))}
+                    </Select>
+                </FormControl>
             </Grid>
         </Grid>
     );
