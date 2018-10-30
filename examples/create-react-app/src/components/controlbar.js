@@ -5,17 +5,6 @@ import Toggle from 'material-ui/Toggle';
 import { Button } from '@dhis2/d2-ui-core';
 import { ControlBar } from '@dhis2/d2-ui-core';
 
-const headerStyles = {
-    position: 'fixed',
-    top: 0,
-    height: 48,
-    left: 0,
-    right: 0,
-    background: 'rgb(39, 102, 150)',
-    color: 'white',
-    zIndex: 1400,
-};
-
 const controlBarStyles = {
     height: '100%',
     fontSize: 20,
