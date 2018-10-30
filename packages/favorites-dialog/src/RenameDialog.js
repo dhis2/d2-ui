@@ -33,7 +33,7 @@ class RenameDialog extends React.Component {
     handleSubmit = event => {
         event.preventDefault();
 
-        this.props.renameFavorite(this.state, this.props.onRequestRename);
+        this.props.renameFavorite(this.state);
     };
 
     handleChange = field => event => {
@@ -45,7 +45,7 @@ class RenameDialog extends React.Component {
     };
 
     render() {
-        const { open, toggleRenameDialog } = this.props;
+        const { open, toggleRenameDialog, renameFavorite } = this.props;
 
         return (
             <Dialog open={open} onClose={toggleRenameDialog} maxWidth="md">

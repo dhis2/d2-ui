@@ -31,25 +31,14 @@ class FavoritesDialog extends Component {
     }
 
     render() {
-        const {
-            open,
-            refreshData,
-            type,
-            onFavoriteSelect,
-            onFavoriteRename,
-            onFavoriteDelete,
-            onRequestClose,
-        } = this.props;
+        const { open, type, onFavoriteSelect, onRequestClose } = this.props;
 
         return (
             <Provider store={store}>
                 <Favorites
                     open={open}
-                    refreshData={refreshData}
                     type={type}
                     onFavoriteSelect={onFavoriteSelect}
-                    onFavoriteRename={onFavoriteRename}
-                    onFavoriteDelete={onFavoriteDelete}
                     onRequestClose={onRequestClose}
                 />
             </Provider>

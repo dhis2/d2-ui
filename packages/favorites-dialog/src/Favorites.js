@@ -20,13 +20,7 @@ class Favorites extends Component {
     }
 
     render() {
-        const {
-            open,
-            onRequestClose,
-            onFavoriteSelect,
-            onFavoriteRename,
-            onFavoriteDelete,
-        } = this.props;
+        const { open, onRequestClose, onFavoriteSelect } = this.props;
 
         const handleOnFavoriteSelect = id => {
             onFavoriteSelect(id);
@@ -38,11 +32,7 @@ class Favorites extends Component {
             <Dialog open={open} onClose={onRequestClose} disableEnforceFocus={true} maxWidth="md">
                 <DialogContent>
                     <EnhancedToolbar />
-                    <EnhancedTable
-                        onFavoriteSelect={handleOnFavoriteSelect}
-                        onFavoriteRename={onFavoriteRename}
-                        onFavoriteDelete={onFavoriteDelete}
-                    />
+                    <EnhancedTable onFavoriteSelect={handleOnFavoriteSelect} />
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={onRequestClose}>Close</Button>

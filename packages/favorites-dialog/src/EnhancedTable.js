@@ -83,8 +83,6 @@ const EnhancedTable = props => {
         selectFavorite,
 
         onFavoriteSelect,
-        onFavoriteRename,
-        onFavoriteDelete,
     } = props;
 
     const actionsMenuHandler = model => event => {
@@ -151,7 +149,7 @@ const EnhancedTable = props => {
                     </TableRow>
                 </TableFooter>
             </Table>
-            <ActionsMenu onFavoriteRename={onFavoriteRename} onFavoriteDelete={onFavoriteDelete} />
+            <ActionsMenu />
         </div>
     );
 };
