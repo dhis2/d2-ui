@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import PropTypes from 'prop-types';
-import OrgUnitDialog from '@dhis2/d2-ui-org-unit-dialog';
+import { OrgUnitDialog } from '@dhis2/d2-ui-dialogs';
 
 export const defaultState = {
     orgUnitDialog: {

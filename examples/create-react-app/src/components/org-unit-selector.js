@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Card from '@material-ui/core/Card';
-import { OrgUnitSelector } from '@dhis2/d2-ui-org-unit-dialog';
+import { OrgUnitSelector } from '@dhis2/d2-ui-dialogs';
 
 export const defaultState = {
     orgUnitDialog: {

@@ -3,7 +3,7 @@ import { InputField } from '@dhis2/d2-ui-core';
 import {
     Parser as RichTextParser,
     Editor as RichTextEditor
-} from '@dhis2/d2-ui-rich-text';
+} from '@dhis2/d2-ui-editors';
 
 export default class RichText extends Component {
     state = {

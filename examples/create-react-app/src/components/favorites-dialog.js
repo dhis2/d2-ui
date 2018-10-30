@@ -2,7 +2,7 @@ import React from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import Snackbar from 'material-ui/Snackbar';
 
-import FavoritesDialog from '@dhis2/d2-ui-favorites-dialog';
+import { FavoritesDialog } from '@dhis2/d2-ui-dialogs';
 
 export default class FavoritesDialogExample extends React.Component {
     state = {
