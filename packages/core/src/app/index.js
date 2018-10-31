@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import {theme} from '@dhis2/d2-ui-core';
+
+import theme from '../theme/theme';
 
 class D2UIApp extends Component {
     render() {

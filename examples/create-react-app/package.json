@@ -3,7 +3,6 @@
   "version": "0.3.0",
   "private": true,
   "dependencies": {
-    "@dhis2/d2-ui-app": "^2.0.0",
     "@dhis2/d2-ui-core": "^1.4.0",
     "@dhis2/d2-ui-expression-manager": "^2.0.0",
     "@dhis2/d2-ui-favorites-dialog": "^4.0.0",
