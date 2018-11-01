@@ -1,6 +1,6 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import MUICircularProgress from '@material-ui/core/CircularProgress';
+import React from 'react';
+import { default as MUICircularProgress } from 'material-ui/CircularProgress/CircularProgress';
 
 function getSizes(large, small) {
     const defaultMaterialUISize = 59.5; // Represents the pre 0.16 values size value 1
@@ -31,7 +31,7 @@ export default function CircularProgress({ large, small, style }) {
 
     return (
         <MUICircularProgress
-            variant="indeterminate"
+            mode="indeterminate"
             size={sizes.size}
             style={Object.assign({ margin: sizes.margin }, style)}
         />
