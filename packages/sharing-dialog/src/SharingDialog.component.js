@@ -14,14 +14,14 @@ const defaultState = {
     errorMessage: '',
 };
 
-const loadingStatusMask = {
+const loadingMaskStyle = {
     position: 'relative',
     left: '45%',
     top: '45%',
 };
 
 const LoadingMask = () => (
-    <div style={loadingStatusMask} >
+    <div style={loadingMaskStyle} >
         <CircularProgress />
     </div>
 );
