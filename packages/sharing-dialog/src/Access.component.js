@@ -5,10 +5,32 @@ import mapProps from 'recompose/mapProps';
 import getContext from 'recompose/getContext';
 import withProps from 'recompose/withProps';
 import IconButton from '@material-ui/core/IconButton';
-import { SvgIcon } from '@dhis2/d2-ui-core';
 import ClearIcon from '@material-ui/icons/Clear';
+import PersonIcon from '@material-ui/icons/Person';
+import GroupIcon from '@material-ui/icons/Group';
+import PublicIcon from '@material-ui/icons/Public';
+import BusinessIcon from '@material-ui/icons/Business';
 import PermissionPicker from './PermissionPicker.component';
 import { accessStringToObject, accessObjectToString } from './utils';
+
+const icons = {
+    user: PersonIcon,
+    userGroup: GroupIcon,
+    external: PublicIcon,
+    public: BusinessIcon,
+};
+
+const SvgIcon = ({ userType }) => {
+    const Icon = icons[userType] || PersonIcon;
+
+    return (
+        <Icon color="action" />
+    );
+};
+
+SvgIcon.propTypes = {
+    userType: PropTypes.string.isRequired,
+};
 
 const styles = {
     accessView: {
@@ -31,21 +53,6 @@ const d2Context = {
     d2: PropTypes.object.isRequired,
 };
 
-const getAccessIcon = (userType) => {
-    switch (userType) {
-    case 'user':
-        return 'Person';
-    case 'userGroup':
-        return 'Group';
-    case 'external':
-        return 'Public';
-    case 'public':
-        return 'Business';
-    default:
-        return 'Person';
-    }
-};
-
 const useAccessObjectFormat = props => ({
     ...props,
     access: accessStringToObject(props.access),
@@ -63,7 +70,7 @@ export const Access = ({
     disabled,
 }) => (
     <div style={styles.accessView}>
-        <SvgIcon icon={getAccessIcon(accessType)} />
+        <SvgIcon userType={accessType} />
         <div style={styles.accessDescription}>
             <div>{primaryText}</div>
             <div style={{ color: '#818181', paddingTop: 4 }}>
