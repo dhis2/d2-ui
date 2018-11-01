@@ -3,7 +3,6 @@ import log from 'loglevel';
 import { shallow } from 'enzyme';
 import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
-import { LoadingMask } from '@dhis2/d2-ui-core';
 import SharingDialog from '../SharingDialog.component';
 import Sharing from '../Sharing.component';
 
@@ -121,13 +120,6 @@ describe('Sharing: SharingDialog component', () => {
     describe('when no sharedObject is defined and dialog is open', () => {
         beforeEach(() => {
             jest.fn(log, 'warn');
-        });
-
-        it.skip('renders a LoadingMask', () => {
-            //Disable this test until jest mock can be improved
-            //getApi needs to be mocked with different return values
-            //depending on the argument
-            expect(sharingDialogComponent.find(LoadingMask)).toHaveLength(1);
         });
     });
 });

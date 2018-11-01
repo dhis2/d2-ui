@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import Typography from '@material-ui/core/Typography';
 import { getStubContext } from '../../../../config/inject-theme';
 import Sharing from '../Sharing.component';
-import { Heading } from '@dhis2/d2-ui-core';
+import Heading from '@dhis2/d2-ui-core/build/es/headings/Heading.component';
 import CreatedBy from '../CreatedBy.component';
 import UserSearch from '../UserSearch.component';
 import { GroupAccess } from '../Access.component';
