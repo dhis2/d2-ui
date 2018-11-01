@@ -1,20 +1,19 @@
 {
   "name": "d2-ui",
+  "version": "5.0.0",
   "license": "BSD-3-Clause",
   "private": true,
   "scripts": {
-    "bootstrap": "lerna bootstrap",
-    "build": "lerna exec -- yarn build",
-    "release": "npm run bootstrap && npm run build && npm run test",
-    "watch": "lerna exec --parallel -- yarn watch",
-    "test": "lerna run test-ci",
-    "test-ci": "lerna exec --concurrency 1 -- yarn test-ci"
+    "build": "packages build",
+    "watch": "packages exec yarn watch",
+    "test": "packages exec npm run test-ci"
   },
   "workspaces": [
     "packages/*",
     "examples/*"
   ],
   "devDependencies": {
+    "@dhis2/packages": "^1.0.0",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.0.1",
