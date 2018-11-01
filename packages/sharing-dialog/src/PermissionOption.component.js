@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { SvgIcon } from '@dhis2/d2-ui-core';
+import DoneIcon from '@material-ui/icons/Done';
 import MenuItem from '@material-ui/core/MenuItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -18,7 +18,7 @@ const PermissionOption = props => {
         >
             {props.isSelected &&
             <ListItemIcon>
-                <SvgIcon icon="Done" />
+                <DoneIcon />
             </ListItemIcon>
             }
             <ListItemText inset primary={props.primaryText}/>
