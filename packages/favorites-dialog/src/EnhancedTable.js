@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import IconButton from '@material-ui/core/IconButton';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -10,19 +9,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
-import Tooltip from '@material-ui/core/Tooltip';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 
-import ActionsMenu from './ActionsMenu';
-
-import {
-    changePage,
-    setRowsPerPage,
-    sortData,
-    toggleActionsMenu,
-    setActionsMenuAnchorEl,
-    selectFavorite,
-} from './actions';
+import { changePage, setRowsPerPage, sortData, selectFavorite } from './actions';
 
 const Time = ({ date }) => {
     const d = new Date(date);
@@ -62,7 +50,6 @@ const EnhancedTableHead = props => {
                         </TableCell>
                     );
                 })}
-                <TableCell />
             </TableRow>
         </TableHead>
     );
@@ -78,18 +65,10 @@ const EnhancedTable = props => {
         order,
         column,
         sortData,
-        toggleActionsMenu,
-        setActionsMenuAnchorEl,
         selectFavorite,
 
         onFavoriteSelect,
     } = props;
-
-    const actionsMenuHandler = model => event => {
-        selectFavorite(model);
-        setActionsMenuAnchorEl(event.currentTarget);
-        toggleActionsMenu();
-    };
 
     const clickHandler = id => event => {
         onFavoriteSelect(id);
@@ -116,21 +95,6 @@ const EnhancedTable = props => {
                                 <TableCell padding="dense">
                                     <Time date={favorite.lastUpdated} />
                                 </TableCell>
-                                <TableCell padding="dense">
-                                    {favorite.access.update &&
-                                    favorite.access.manage &&
-                                    favorite.access.delete ? (
-                                        <Tooltip title="Actions" placement="bottom">
-                                            <IconButton onClick={actionsMenuHandler(favorite)}>
-                                                <MoreVertIcon />
-                                            </IconButton>
-                                        </Tooltip>
-                                    ) : (
-                                        <IconButton disabled>
-                                            <MoreVertIcon color="disabled" />
-                                        </IconButton>
-                                    )}
-                                </TableCell>
                             </TableRow>
                         );
                     })}
@@ -149,7 +113,6 @@ const EnhancedTable = props => {
                     </TableRow>
                 </TableFooter>
             </Table>
-            <ActionsMenu />
         </div>
     );
 };
@@ -167,8 +130,6 @@ const mapDispatchToProps = {
     setRowsPerPage,
     changePage,
     sortData,
-    toggleActionsMenu,
-    setActionsMenuAnchorEl,
     selectFavorite,
 };
 

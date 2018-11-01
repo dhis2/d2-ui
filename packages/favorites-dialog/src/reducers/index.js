@@ -3,7 +3,6 @@ import { combineReducers } from 'redux';
 export const actionTypes = {
     SET_D2: 'SET_D2',
     SET_FAVORITE_TYPE: 'SET_FAVORITE_TYPE',
-    SET_ACTIONS_MENU_ANCHOR_EL: 'SET_ACTIONS_MENU_ANCHOR_EL',
     SET_SORT_ORDER: 'SET_SORT_ORDER',
     SET_SORT_COLUMN: 'SET_SORT_COLUMN',
     SET_DATA: 'SET_DATA',
@@ -15,27 +14,12 @@ export const actionTypes = {
     SET_TOTAL_RECORDS: 'SET_TOTAL_RECORDS',
     SET_SELECTED_FAVORITE: 'SET_SELECTED_FAVORITE',
     TOGGLE_LOADING: 'TOGGLE_LOADING',
-    TOGGLE_DELETE_DIALOG: 'TOGGLE_DELETE_DIALOG',
-    TOGGLE_RENAME_DIALOG: 'TOGGLE_RENAME_DIALOG',
-    TOGGLE_SHARE_DIALOG: 'TOGGLE_SHARE_DIALOG',
-    TOGGLE_ACTIONS_MENU: 'TOGGLE_ACTIONS_MENU',
 };
 
 const initialState = {
     d2: null,
     isLoading: false,
     actions: {
-        menuIsOpen: false,
-        menuAnchorEl: null,
-        remove: {
-            dialogIsOpen: false,
-        },
-        rename: {
-            dialogIsOpen: false,
-        },
-        share: {
-            dialogIsOpen: false,
-        },
         select: {
             favoriteModel: null,
         },
@@ -69,7 +53,7 @@ const loading = (isLoading = initialState.isLoading, action) => {
 };
 
 const d2 = (state = initialState.d2, action) => {
-    switch(action.type) {
+    switch (action.type) {
         case actionTypes.SET_D2:
             return action.payload;
         default:
@@ -79,34 +63,6 @@ const d2 = (state = initialState.d2, action) => {
 
 const actions = (state = initialState.actions, action) => {
     switch (action.type) {
-        case actionTypes.TOGGLE_ACTIONS_MENU:
-            return { ...state, menuIsOpen: !state.menuIsOpen };
-        case actionTypes.SET_ACTIONS_MENU_ANCHOR_EL:
-            return { ...state, menuAnchorEl: action.payload };
-        case actionTypes.TOGGLE_SHARE_DIALOG:
-            return {
-                ...state,
-                share: {
-                    ...state.share,
-                    dialogIsOpen: !state.share.dialogIsOpen,
-                },
-            };
-        case actionTypes.TOGGLE_DELETE_DIALOG:
-            return {
-                ...state,
-                remove: {
-                    ...state.remove,
-                    dialogIsOpen: !state.remove.dialogIsOpen,
-                },
-            };
-        case actionTypes.TOGGLE_RENAME_DIALOG:
-            return {
-                ...state,
-                rename: {
-                    ...state.rename,
-                    dialogIsOpen: !state.rename.dialogIsOpen,
-                },
-            };
         case actionTypes.SET_SELECTED_FAVORITE:
             return { ...state, select: { favoriteModel: action.payload } };
         default:
