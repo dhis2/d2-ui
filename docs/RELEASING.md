@@ -3,19 +3,22 @@
 The root-level `package.json` contains the `version` key which will be
 used to publish all packages.
 
-The release process has been simplified as to be executed by Travis
-only using [deploy-build](https://github.com/dhis2/deploy-build).
+The release process is executed by Travis using [deploy
+build](https://github.com/dhis2/deploy-build)
 
 # Deployment
 
-All commits across all branches is built automatically and published to
+All commits across all branches are built automatically and published to
 [d2-ci/d2-ui-<package>](https://github.com/d2-ci?utf8=%E2%9C%93&q=d2-ui-&type=&language=)
 on a successful build using the `deploy-build.sh` script.
 
 # Publish to NPM
 
-To publish to Github the developer needs only to create a version tag
-locally using `yarn` or `npm` and push that tag to the git repo.
+To publish to NPM, create a version tag locally using `yarn` or `npm`
+and push that tag to the git repo.
+
+Rememeber to also push the master branch as the `version` command adds a
+commit there as well.
 
 ```
 yarn version 
