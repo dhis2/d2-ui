@@ -4,7 +4,8 @@ node_js:
 before_script:
 - npm install --global @dhis2/deploy-build
 script:
-- npm run release
+- npm run build
+- npm run test
 deploy:
 - provider: script
   script: deploy-build

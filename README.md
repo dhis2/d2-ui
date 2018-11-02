@@ -3,7 +3,6 @@
 [![Build Status](https://travis-ci.org/dhis2/d2-ui.svg)](https://travis-ci.org/dhis2/d2-ui)
 [![Test Coverage](https://codeclimate.com/github/dhis2/d2-ui/badges/coverage.svg)](https://codeclimate.com/github/dhis2/d2-ui/coverage)
 [![Code Climate](https://codeclimate.com/github/dhis2/d2-ui/badges/gpa.svg)](https://codeclimate.com/github/dhis2/d2-ui)
-[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdhis2%2Fd2-ui.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdhis2%2Fd2-ui?ref=badge_shield)
 
 ## Introduction
@@ -15,9 +14,8 @@ DHIS2 web applications.
 
 ## Structure
 
-This is a [monorepo](docs/monorepo.md) comprised of many packages which
-are individually published to [NPM](https://npmjs.com) using
-[Lerna](https://github.com/lerna/lerna).
+This is a monorepo comprised of many packages which are individually
+published to [NPM](https://npmjs.com) using Yarn Workspaces.
 
 See [packages](https://github.com/dhis2/d2-ui/blob/master/packages) to
 see what components are available.
@@ -35,7 +33,6 @@ In the d2-ui root directory:
 
 ```
 yarn install
-yarn bootstrap
 yarn watch
 ```
 
@@ -51,10 +48,6 @@ Now you are able to change any component in
 [packages/](https://github.com/dhis2/d2-ui/blob/master/packages) and the
 changes will be reflected live in the example application.
 
-To do more complex lerna operations you need to learn
-[Lerna](https://github.com/lerna/lerna). See e.g. the `--scope`
-parameter.
-
 ## Contributing
 
 See [how to
@@ -63,8 +56,6 @@ contribute](https://github.com/dhis2/d2-ui/blob/master/docs/CONTRIBUTING.md).
 ## Release process
 
 Documented in [RELEASING](https://github.com/dhis2/d2-ui/blob/master/docs/RELEASING.md).
-
-
 
 ## License
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdhis2%2Fd2-ui.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdhis2%2Fd2-ui?ref=badge_large)

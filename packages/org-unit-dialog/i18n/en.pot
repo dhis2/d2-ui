@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2018-10-17T15:15:12.003Z\n"
-"PO-Revision-Date: 2018-10-17T15:15:12.003Z\n"
+"POT-Creation-Date: 2018-11-01T18:27:02.377Z\n"
+"PO-Revision-Date: 2018-11-01T18:27:02.377Z\n"
 
 msgid "Organisation units"
 msgstr ""
@@ -20,13 +20,7 @@ msgstr ""
 msgid "Level"
 msgstr ""
 
-msgid "Select a level"
-msgstr ""
-
 msgid "Group"
-msgstr ""
-
-msgid "Select a group"
 msgstr ""
 
 msgid "User organisation unit"
