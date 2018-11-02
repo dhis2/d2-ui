@@ -15,7 +15,9 @@ DHIS2 web applications.
 ## Structure
 
 This is a monorepo comprised of many packages which are individually
-published to [NPM](https://npmjs.com) using Yarn Workspaces.
+published to [NPM](https://npmjs.com) using [Yarn Workspaces](https://yarnpkg.com/lang/en/docs/workspaces/). Yarn Workspaces
+handles linking the packages in this repository together, and ensures that
+everything is using the latest code.
 
 See [packages](https://github.com/dhis2/d2-ui/blob/master/packages) to
 see what components are available.
