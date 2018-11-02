@@ -26,10 +26,6 @@
         "react": "^16.4.0",
         "react-dom": "^16.4.0"
     },
-    "pre-commit": [
-        "validate",
-        "test"
-    ],
     "publishConfig": {
         "access": "public"
     }

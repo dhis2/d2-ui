@@ -18,7 +18,6 @@
     "build:css": "cp -R ./css ./build/",
     "watch": "npm run build --  --watch",
     "test-ci": "jest --config=../../jest.config.js packages/period-selector-dialog",
-    "test": "jest",
     "test:watch": "npm test -- --watch"
   },
   "dependencies": {

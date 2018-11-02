@@ -7,12 +7,11 @@
   "author": "",
   "scripts": {
     "coverage": "jest --coverage",
-    "test-ci": "jest --config=../../jest.config.js packages/forms",
     "lint": "eslint src/",
     "prebuild": "rimraf ./build/*",
-    "build": "npm run build:es",
-    "build:es": "cross-env BABEL_ENV=es babel src --out-dir build --ignore spec.js",
-    "watch": "npm run build:es --  --watch"
+    "build": "cross-env BABEL_ENV=es babel src --out-dir build --ignore spec.js",
+    "watch": "npm run build --  --watch",
+    "test-ci": "jest --config=../../jest.config.js packages/forms"
   },
   "repository": {
     "type": "git",

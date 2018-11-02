@@ -13,9 +13,9 @@
   "contributors": [],
   "scripts": {
     "prebuild": "rm -rf ./build",
-    "build": "cross-env BABEL_ENV=es babel src --copy-files --out-dir build/es --ignore spec.js",
+    "build": "cross-env BABEL_ENV=es babel src --copy-files --out-dir build --ignore spec.js",
     "prestart": "yarn localize",
-    "watch": "yarn localize && npm run build:es -- --watch",
+    "watch": "yarn localize && npm run build -- --watch",
     "extract-pot": "d2-i18n-extract -p src/ -o i18n/",
     "localize": "yarn extract-pot && d2-i18n-generate -n d2-ui-interpretations -p ./i18n/ -o ./src/locales/",
     "test-ci": "jest --config=../../jest.config.js packages/interpretations"
@@ -42,9 +42,7 @@
     "rxjs": "^5.5.7"
   },
   "devDependencies": {
-    "css-loader": "^0.28.7",
-    "sinon": "^6.0.0",
-    "style-loader": "^0.18.2"
+    "sinon": "^6.0.0"
   },
   "jest": {
     "transformIgnorePatterns": [
