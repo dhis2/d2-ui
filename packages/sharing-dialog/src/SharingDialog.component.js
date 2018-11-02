@@ -5,20 +5,26 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import PropTypes from 'prop-types';
 import Sharing from './Sharing.component';
-import { LoadingMask } from '@dhis2/d2-ui-core';
-
-const styles = {
-    loadingMask: {
-        position: 'relative',
-    },
-};
 
 const defaultState = {
     sharedObject: null,
     errorMessage: '',
 };
+
+const loadingMaskStyle = {
+    position: 'relative',
+    left: '45%',
+    top: '45%',
+};
+
+const LoadingMask = () => (
+    <div style={loadingMaskStyle} >
+        <CircularProgress />
+    </div>
+);
 
 /**
  * A pop-up dialog for changing sharing preferences for a sharable object.
@@ -223,7 +229,7 @@ class SharingDialog extends React.Component {
                 >
                     <DialogTitle>{this.props.d2.i18n.getTranslation('share')}</DialogTitle>
                     <DialogContent>
-                        { isLoading && <LoadingMask style={styles.loadingMask} size={1} /> }
+                        { isLoading && <LoadingMask /> }
                         { this.state.sharedObject &&
                             <Sharing
                                 sharedObject={this.state.sharedObject}
