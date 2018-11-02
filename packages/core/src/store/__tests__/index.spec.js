@@ -1,6 +1,6 @@
 import { Observable, TestScheduler } from 'rxjs';
 import isEqual from 'lodash/isEqual';
-import Store from '../Store';
+import Store from '..';
 
 function eventually(callback) {
     return new Promise((resolve, reject) => {

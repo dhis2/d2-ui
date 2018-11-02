@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import TreeView from '../TreeView.component';
+import TreeView from '..';
 
 describe('TreeView component', () => {
     let wrapper;

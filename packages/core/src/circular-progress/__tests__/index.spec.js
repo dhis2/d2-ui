@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { default as MUICircularProgress } from 'material-ui/CircularProgress/CircularProgress';
-import CircularProgress from '../CircularProgress';
+import CircularProgress from '../index';
 
 describe('CircularProgress', () => {
     const renderProgress = props => shallow(<CircularProgress {...props} />);

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import { getStubContext } from '../../../../../config/inject-theme';
 
-import ControlBar, { END_FLAP_HEIGHT } from '../ControlBar';
+import ControlBar, { END_FLAP_HEIGHT } from '../index';
 
 ControlBar.contextTypes = {
     muiTheme: PropTypes.any,

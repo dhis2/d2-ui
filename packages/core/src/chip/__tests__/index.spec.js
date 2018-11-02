@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import MuiChip from 'material-ui/Chip';
 import Avatar from 'material-ui/Avatar';
 import { getStubContext } from '../../../../../config/inject-theme';
-import Chip, { disabledStyle, clickableStyle, colors, avatarProps, avatarIcons } from '../Chip';
+import Chip, { disabledStyle, clickableStyle, colors, avatarProps, avatarIcons } from '../index';
 
 describe('Chip', () => {
     const renderWithProps = props => shallow(<Chip {...props} />, {

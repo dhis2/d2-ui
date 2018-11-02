@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import FeedbackSnackbarBody from '../feedback-snackbar-body/FeedbackSnackbarBody.component';
-import { ERROR, LOADING, SUCCESS, WARNING } from '../FeedbackSnackbarTypes';
+import FeedbackSnackbarBody from '../FeedbackSnackbarBody';
+import { ERROR, LOADING, SUCCESS, WARNING } from '../feedbackSnackbarTypes';
 import { CircularProgress, FontIcon } from 'material-ui';
 
 const loadingProps = {

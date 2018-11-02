@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { Tabs as MuiTabs, Tab as MuiTab } from 'material-ui/Tabs';
 import { getStubContext } from '../../../../../config/inject-theme';
-import Tabs, { Tab } from '../Tabs';
+import Tabs, { Tab } from '..';
 
 describe('Tabs', () => {
     const renderWithProps = (props) => shallow(<Tabs {...props} />, {

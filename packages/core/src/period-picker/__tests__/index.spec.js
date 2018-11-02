@@ -1,4 +1,4 @@
-import '../PeriodPicker.component';
+import '..';
 
 xdescribe('PeriodPicker component', () => {
     it('has no tests');

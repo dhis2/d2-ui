@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 import logLevel from 'loglevel';
-import Action from '../Action';
+import Action from '../index';
 
 describe('Action', () => {
     beforeEach(() => {

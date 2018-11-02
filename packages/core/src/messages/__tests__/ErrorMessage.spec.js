@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import ErrorMessage from '../ErrorMessage.component';
-import Message from '../Message.component';
+import ErrorMessage from '../ErrorMessage';
+import Message from '../Message';
 
 describe('ErrorMessage', () => {
     function renderComponent(props) {

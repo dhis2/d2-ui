@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import SvgIcon from '../SvgIcon';
+import SvgIcon from '..';
 import { grey600, grey200 } from 'material-ui/styles/colors';
 
 describe('SvgIcon', () => {

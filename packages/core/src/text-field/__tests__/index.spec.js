@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import MuiTextField from 'material-ui/TextField';
 import { getStubContext } from '../../../../../config/inject-theme';
-import TextField from '../TextField';
+import TextField from '..';
 
 describe('TextField', () => {
     const renderWithProps = (props) => {

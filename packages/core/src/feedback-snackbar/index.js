@@ -2,8 +2,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Snackbar } from 'material-ui';
 
-import { ACTION_MESSAGE, ERROR, LOADING, SUCCESS, WARNING } from './FeedbackSnackbarTypes';
-import FeedbackSnackbarBody from './feedback-snackbar-body/FeedbackSnackbarBody.component';
+import { ACTION_MESSAGE, ERROR, LOADING, SUCCESS, WARNING } from './feedbackSnackbarTypes';
+import FeedbackSnackbarBody from './FeedbackSnackbarBody';
 
 const styles = {
     success: {

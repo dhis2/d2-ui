@@ -1,6 +1,6 @@
 import { shallow } from 'enzyme';
 import React from 'react';
-import Heading from '../Heading.component';
+import Heading from '../index';
 
 describe('Heading component', () => {
     let renderedHeading;

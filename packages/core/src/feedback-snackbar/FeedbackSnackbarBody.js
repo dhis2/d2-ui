@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { CircularProgress } from 'material-ui';
 import FontIcon from 'material-ui/FontIcon';
 
-import { ERROR, LOADING, SUCCESS } from '../FeedbackSnackbarTypes';
+import { ERROR, LOADING, SUCCESS } from '../feedbackSnackbarTypes';
 
 const styles = {
     content: {

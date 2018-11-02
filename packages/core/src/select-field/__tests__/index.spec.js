@@ -4,7 +4,7 @@ import MuiSelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import CircularProgress from 'material-ui/CircularProgress';
 import { getStubContext } from '../../../../../config/inject-theme';
-import SelectField from '../SelectField';
+import SelectField from '..';
 
 const items = [{
     id: 'cat',

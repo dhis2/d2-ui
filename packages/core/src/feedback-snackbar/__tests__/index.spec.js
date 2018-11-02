@@ -2,10 +2,10 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { Snackbar } from 'material-ui';
 
-import FeedbackSnackbar from '../FeedbackSnackbar.component';
-import { ACTION_MESSAGE, ERROR, LOADING, SUCCESS, WARNING } from '../FeedbackSnackbarTypes';
+import FeedbackSnackbar from '..';
+import { ACTION_MESSAGE, ERROR, LOADING, SUCCESS, WARNING } from '../feedbackSnackbarTypes';
 
-import FeedbackSnackbarBody from '../feedback-snackbar-body/FeedbackSnackbarBody.component';
+import FeedbackSnackbarBody from '../FeedbackSnackbarBody.component';
 
 const loadingProps = {
     show: true,

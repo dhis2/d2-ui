@@ -4,7 +4,7 @@ import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import { getStubContext } from '../../../../../config/inject-theme';
-import Button from '../Button';
+import Button from '../index';
 
 describe('Button', () => {
     const renderWithProps = props => {
