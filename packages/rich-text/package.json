@@ -2,6 +2,7 @@
     "name": "@dhis2/d2-ui-rich-text",
     "version": "1.0.0",
     "description": "Rich text components for DHIS2 in d2-ui",
+    "main": "./build/index.js",
     "module": "./build/index.js",
     "license": "BSD-3-Clause",
     "author": "Edoardo Sabadelli <edoardo@dhis2.org>",

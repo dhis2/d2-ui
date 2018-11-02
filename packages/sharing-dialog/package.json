@@ -2,6 +2,7 @@
   "name": "@dhis2/d2-ui-sharing-dialog",
   "version": "3.0.0",
   "description": "DHIS2 component for sharing dialog",
+  "main": "./build/index.js",
   "module": "./build/index.js",
   "license": "BSD-3-Clause",
   "peerDependencies": {

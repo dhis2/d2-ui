@@ -2,6 +2,7 @@
   "name": "@dhis2/d2-ui-interpretations",
   "version": "2.0.0",
   "description": "DHIS2 component for interpretations",
+  "main": "./build/index.js",
   "module": "./build/index.js",
   "license": "BSD-3-Clause",
   "peerDependencies": {

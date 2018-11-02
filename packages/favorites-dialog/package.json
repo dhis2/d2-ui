@@ -2,6 +2,7 @@
   "name": "@dhis2/d2-ui-favorites-dialog",
   "version": "4.0.0",
   "description": "Favorite Dialog component for DHIS2",
+  "main": "./build/index.js",
   "module": "./build/index.js",
   "license": "BSD-3-Clause",
   "author": "Edoardo Sabadelli <edoardo@dhis2.org>",
