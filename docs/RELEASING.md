@@ -9,7 +9,7 @@ build](https://github.com/dhis2/deploy-build)
 # Deployment
 
 All commits across all branches are built automatically and published to
-[d2-ci/d2-ui-<package>](https://github.com/d2-ci?utf8=%E2%9C%93&q=d2-ui-&type=&language=)
+[d2-ci/d2-ui-packageName](https://github.com/d2-ci?utf8=%E2%9C%93&q=d2-ui-&type=&language=)
 on a successful build using the `deploy-build.sh` script.
 
 # Publish to NPM
