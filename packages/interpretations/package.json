@@ -2,8 +2,8 @@
   "name": "@dhis2/d2-ui-interpretations",
   "version": "2.0.1",
   "description": "DHIS2 component for interpretations",
-  "main": "./build/cjs/index.js",
-  "module": "./build/es/index.js",
+  "main": "./build/index.js",
+  "module": "./build/index.js",
   "license": "BSD-3-Clause",
   "peerDependencies": {
     "d2": "^31.1.1",
@@ -14,11 +14,8 @@
   "contributors": [],
   "scripts": {
     "prebuild": "rm -rf ./build",
-    "build": "yarn localize && npm run build:commonjs && npm run build:es",
-    "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --copy-files --out-dir build/cjs --ignore spec.js",
-    "build:es": "cross-env BABEL_ENV=es babel src --copy-files --out-dir build/es --ignore spec.js",
-    "prestart": "yarn localize",
-    "watch": "yarn localize && npm run build:es -- --watch",
+    "build": "yarn localize && cross-env BABEL_ENV=es babel src --copy-files --out-dir build --ignore spec.js",
+    "watch": "npm run build -- --watch",
     "extract-pot": "d2-i18n-extract -p src/ -o i18n/",
     "localize": "yarn extract-pot && d2-i18n-generate -n d2-ui-interpretations -p ./i18n/ -o ./src/locales/",
     "test-ci": "jest --config=../../jest.config.js packages/interpretations"
@@ -45,9 +42,7 @@
     "rxjs": "^5.5.7"
   },
   "devDependencies": {
-    "css-loader": "^0.28.7",
-    "sinon": "^6.0.0",
-    "style-loader": "^0.18.2"
+    "sinon": "^6.0.0"
   },
   "jest": {
     "transformIgnorePatterns": [

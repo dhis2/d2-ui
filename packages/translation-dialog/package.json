@@ -2,8 +2,8 @@
   "name": "@dhis2/d2-ui-translation-dialog",
   "version": "3.0.0",
   "description": "Translation Dialog for DHIS2",
-  "main": "./build/cjs/index.js",
-  "module": "./build/es/index.js",
+  "main": "./build/index.js",
+  "module": "./build/index.js",
   "license": "BSD-3-Clause",
   "peerDependencies": {
     "d2": "^31.1.1",
@@ -19,10 +19,8 @@
   ],
   "scripts": {
     "prebuild": "rimraf ./build/*",
-    "build": "npm run build:commonjs && npm run build:es",
-    "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir build/cjs --ignore spec.js",
-    "build:es": "cross-env BABEL_ENV=es babel src --out-dir build/es --ignore spec.js",
-    "watch": "npm run build:es --  --watch",
+    "build": "cross-env BABEL_ENV=es babel src --out-dir build --ignore spec.js",
+    "watch": "npm run build --  --watch",
     "test-ci": "jest --config=../../jest.config.js packages/translation-dialog"
   },
   "dependencies": {
