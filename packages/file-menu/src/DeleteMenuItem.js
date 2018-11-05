@@ -21,20 +21,18 @@ class DeleteMenuItem extends Component {
     onClose = () => {
         this.toggleDeleteDialog();
 
-        if (this.props.onClose) {
-            this.props.onClose();
-        }
+        this.props.onClose();
     };
 
-    onDialogReturn = success => args => {
+    onDialogReturn = success => (...args) => {
         const { onDelete, onDeleteError } = this.props;
 
         this.toggleDeleteDialog();
 
-        if (success && onDelete) {
-            onDelete(args);
-        } else if (onDeleteError) {
-            onDeleteError(args);
+        if (success) {
+            onDelete(...args);
+        } else {
+            onDeleteError(...args);
         }
     };
 
@@ -72,9 +70,9 @@ DeleteMenuItem.defaultProps = {
     enabled: false,
     fileType: null,
     fileModel: null,
-    onDelete: null,
-    onDeleteError: null,
-    onClose: null,
+    onDelete: Function.prototype,
+    onDeleteError: Function.prototype,
+    onClose: Function.prototype,
 };
 
 DeleteMenuItem.propTypes = {

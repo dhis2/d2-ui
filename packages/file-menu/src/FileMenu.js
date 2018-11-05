@@ -26,6 +26,7 @@ export class FileMenu extends Component {
             menuIsOpen: false,
             anchorEl: null,
             fileModel: null,
+            refreshDialogData: false,
         };
     }
 
@@ -70,11 +71,21 @@ export class FileMenu extends Component {
 
     onOpen = id => {
         this.setFileModel(id);
+        this.setState({ refreshDialogData: false });
 
         this.closeMenu();
 
-        if (this.props.onOpen) {
-            this.props.onOpen(id);
+        this.props.onOpen(id);
+    };
+
+    onRename = (form, id) => {
+        if (this.state.fileModel.id === id) {
+            this.setFileModel(this.state.fileModel.id);
+            this.setState({ refreshDialogData: true });
+
+            this.closeMenu();
+
+            this.props.onRename(form, id);
         }
     };
 
@@ -83,23 +94,26 @@ export class FileMenu extends Component {
 
         this.closeMenu();
 
-        if (this.props.onNew) {
-            this.props.onNew();
+        this.props.onNew();
+    };
+
+    onDelete = id => {
+        if (this.state.fileModel.id === id) {
+            this.clearFileModel();
+            this.setState({ refreshDialogData: true });
+
+            this.closeMenu();
+
+            this.props.onDelete(id);
         }
     };
 
-    onDelete = () => {
-        this.clearFileModel();
-
+    onAction = (callback, refreshDialogData) => args => {
         this.closeMenu();
 
-        if (this.props.onDelete) {
-            this.props.onDelete();
+        if (refreshDialogData) {
+            this.setState({ refreshDialogData: true });
         }
-    };
-
-    onAction = callback => args => {
-        this.closeMenu();
 
         if (callback) {
             callback(args);
@@ -107,16 +121,7 @@ export class FileMenu extends Component {
     };
 
     render() {
-        const {
-            classes,
-            fileType,
-            onSave,
-            onSaveAs,
-            onRename,
-            onTranslate,
-            onShare,
-            onError,
-        } = this.props;
+        const { classes, fileType, onSave, onSaveAs, onTranslate, onShare, onError } = this.props;
 
         return (
             <Fragment>
@@ -137,8 +142,11 @@ export class FileMenu extends Component {
                     <OpenMenuItem
                         enabled
                         fileType={fileType}
+                        refreshDialogData={this.state.refreshDialogData}
                         onOpen={this.onOpen}
                         onClose={this.onAction()}
+                        onRename={this.onRename}
+                        onDelete={this.onDelete}
                     />
 
                     <Divider />
@@ -149,15 +157,15 @@ export class FileMenu extends Component {
                         )}
                         fileType={fileType}
                         fileModel={this.state.fileModel}
-                        onSave={this.onAction(onSave)}
-                        onSaveAs={this.onAction(onSaveAs)}
+                        onSave={this.onAction(onSave, true)}
+                        onSaveAs={this.onAction(onSaveAs, true)}
                         onClose={this.onAction()}
                     />
                     <SaveAsMenuItem
                         enabled={Boolean(this.state.fileModel)}
                         fileType={fileType}
                         fileModel={this.state.fileModel}
-                        onSaveAs={this.onAction(onSaveAs)}
+                        onSaveAs={this.onAction(onSaveAs, true)}
                         onClose={this.onAction()}
                     />
                     <Divider />
@@ -167,7 +175,7 @@ export class FileMenu extends Component {
                         )}
                         fileType={fileType}
                         fileModel={this.state.fileModel}
-                        onRename={this.onAction(onRename)}
+                        onRename={this.onRename}
                         onRenameError={this.onAction(onError)}
                         onClose={this.onAction()}
                     />
@@ -221,15 +229,15 @@ FileMenu.defaultProps = {
     d2: null,
     fileType: 'chart',
     fileId: null,
-    onNew: null,
-    onOpen: null,
-    onSave: null,
-    onSaveAs: null,
-    onRename: null,
-    onTranslate: null,
-    onShare: null,
-    onDelete: null,
-    onError: null,
+    onNew: Function.prototype,
+    onOpen: Function.prototype,
+    onSave: Function.prototype,
+    onSaveAs: Function.prototype,
+    onRename: Function.prototype,
+    onTranslate: Function.prototype,
+    onShare: Function.prototype,
+    onDelete: Function.prototype,
+    onError: Function.prototype,
 };
 
 FileMenu.propTypes = {

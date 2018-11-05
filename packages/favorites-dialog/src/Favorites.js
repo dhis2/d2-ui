@@ -14,7 +14,7 @@ import { fetchData } from './actions';
 class Favorites extends Component {
     componentWillReceiveProps(nextProps) {
         // fetch data only the first time the dialog is open
-        if (nextProps.open && !nextProps.dataIsLoaded) {
+        if (nextProps.open && (!nextProps.dataIsLoaded || nextProps.refreshData)) {
             this.props.fetchData();
         }
     }
@@ -50,4 +50,7 @@ const mapDispatchToProps = {
     fetchData,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Favorites);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Favorites);
