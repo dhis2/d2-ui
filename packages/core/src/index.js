@@ -37,6 +37,6 @@ export { default as SvgIcon } from './svg-icon'
 export { Tabs, Tab } from './tabs'
 export { default as InputField } from './text-field' // conflict with form fields textfield
 export { default as TreeView } from './tree-view'
-export { default as theme } from './theme'
+export { default as theme } from './theme/theme'
 
 export { default as PeriodPicker } from './period-picker'

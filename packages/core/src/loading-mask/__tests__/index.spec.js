@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import LoadingMask from '../LoadingMask.component';
-import CircularProgress from '../../circular-progress/CircularProgress';
+import CircularProgress from '../../circular-progress';
 
 describe('LoadingMask', () => {
     const renderLoadingMask = (props = {}) => shallow(<LoadingMask {...props} />);

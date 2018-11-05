@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import log from 'loglevel';
 import getDisplayName from 'recompose/getDisplayName';
-import CircularProgress from '../circular-progress/CircularProgress';
+import CircularProgress from '../circular-progress';
 
 export default function withPropsFromObservable(observable, BaseComponent) {
     class WithPropsFromComponent extends Component {
