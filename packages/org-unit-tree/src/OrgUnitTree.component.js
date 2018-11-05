@@ -8,7 +8,7 @@ import StopIcon from '@material-ui/icons/Stop';
 import ModelBase from 'd2/model/Model';
 import ModelCollection from 'd2/model/ModelCollection';
 
-import TreeView from '@dhis2/d2-ui-core/build/tree-view/TreeView.component';
+import TreeView from '@dhis2/d2-ui-core/tree-view/TreeView.component';
 
 
 const styles = {
