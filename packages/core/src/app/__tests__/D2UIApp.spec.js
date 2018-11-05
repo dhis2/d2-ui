@@ -1,14 +1,11 @@
 import React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import CircularProgress from 'material-ui/CircularProgress';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { shallow } from 'enzyme';
 import D2UIApp from '../index';
 import {theme} from '@dhis2/d2-ui-core';
 
-const identity = v => v;
 const isNotEqualTo = first => second => first !== second;
-const MyApp = () => (<div>My App</div>);
 const d2 = {};
 
 describe('D2UIApp component', () => {

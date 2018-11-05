@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
-import Heading from '@dhis2/d2-ui-core/build/headings/Heading.component';
+import Heading from '@dhis2/d2-ui-core/headings/Heading.component';
 import UserSearch from './UserSearch.component';
 import CreatedBy from './CreatedBy.component';
 import {

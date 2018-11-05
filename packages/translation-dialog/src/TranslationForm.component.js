@@ -6,7 +6,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import camelCaseToUnderscores from 'd2-utilizr/lib/camelCaseToUnderscores';
 import { Observable } from 'rxjs/Observable';
-import Store from '@dhis2/d2-ui-core/build/store/Store';
+import Store from '@dhis2/d2-ui-core/store/Store';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import LocaleSelector from './LocaleSelector.component';
 import { getLocales, getTranslationsForModel, saveTranslations } from './translationForm.actions';
