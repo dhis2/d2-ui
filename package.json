@@ -10,7 +10,8 @@
     "test": "jest"
   },
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "examples/*"
   ],
   "devDependencies": {
     "@dhis2/packages": "^1.1.0",
