@@ -76,14 +76,12 @@ export const palette = {
         dark: colors.accentPrimaryDark,
         light: colors.accentPrimaryLight,
         lightest: colors.accentPrimaryLightest, // Custom extension, not used by default
-        // contrastText: 'white',
     },
     secondary: {
         main: colors.accentSecondary,
         dark: colors.accentSecondaryDark,
         light: colors.accentSecondaryLight,
         lightest: colors.accentSecondaryLightest, // Custom extension, not used by default
-        // contrastText: 'white',
     },
     error: {
         main: colors.negative, // This is automatically expanded to main/light/dark/contrastText
@@ -102,7 +100,7 @@ export const palette = {
         hover: colors.greyLight,
     },
     divider: colors.greyLight,
-    
+
     // Custom color, not used by default in MUI
     shadow: colors.grey,
 };
