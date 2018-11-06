@@ -38,6 +38,6 @@ export { Tabs, Tab } from './tabs/Tabs'
 export { default as InputField } from './text-field/TextField' // conflict with form fields textfield
 export { default as TreeView } from './tree-view/TreeView.component'
 export { default as theme } from './theme/theme'
-export { default as mui3theme } from './theme/dhis2.mui3.theme'
+export { default as mui3theme } from './theme/mui3.theme'
 
 export { default as PeriodPicker } from './period-picker/PeriodPicker.component'
