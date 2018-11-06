@@ -4,6 +4,7 @@
   "license": "BSD-3-Clause",
   "private": true,
   "scripts": {
+    "postinstall": "packages link",
     "build": "packages build",
     "watch": "packages exec yarn watch",
     "test": "jest"
@@ -13,7 +14,7 @@
     "examples/*"
   ],
   "devDependencies": {
-    "@dhis2/packages": "^1.0.0",
+    "@dhis2/packages": "^1.1.0",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.0.1",
