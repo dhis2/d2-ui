@@ -1,5 +1,5 @@
 {
-  "name": "d2-ui",
+  "name": "@dhis2/d2-ui",
   "version": "5.0.0",
   "license": "BSD-3-Clause",
   "private": true,
