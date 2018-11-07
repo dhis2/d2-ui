@@ -169,6 +169,7 @@ class OrgUnitSelector extends Component {
                             treeStyle={styles.orgUnitTree.treeStyle}
                             labelStyle={styles.orgUnitTree.labelStyle}
                             selectedLabelStyle={styles.orgUnitTree.selectedLabelStyle}
+                            checkboxColor={this.props.checkboxColor}
                             showFolderIcon
                             disableSpacer
                         />
@@ -238,6 +239,11 @@ OrgUnitSelector.propTypes = {
      * Root organisation unit
      */
     root: PropTypes.object.isRequired,
+
+    /**
+     * Checkbox color in org unit tree
+     */
+    checkboxColor: PropTypes.string,
 };
 
 OrgUnitSelector.defaultProps = {
@@ -247,6 +253,7 @@ OrgUnitSelector.defaultProps = {
     group: [],
     levelOptions: [],
     groupOptions: [],
+    checkboxColor: 'primary',
 };
 
 export default OrgUnitSelector;
