@@ -1,6 +1,5 @@
 {
   "name": "@dhis2/d2-ui-org-unit-select",
-  "version": "2.0.0",
   "description": "Org Unit Selection component for D2-UI",
   "main": "./build/index.js",
   "module": "./build/index.js",

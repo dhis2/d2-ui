@@ -1,6 +1,5 @@
 {
   "name": "@dhis2/d2-ui-legend",
-  "version": "2.0.0",
   "description": "Legend component for DHIS2",
   "main": "./build/index.js",
   "module": "./build/index.js",
