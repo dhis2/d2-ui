@@ -24,9 +24,9 @@
     "test-ci": "jest --config=../../jest.config.js packages/legend"
   },
   "dependencies": {
-    "@dhis2/d2-ui-core": "^1.4.0",
-    "@dhis2/d2-ui-forms": "^2.0.0",
-    "@dhis2/d2-ui-table": "^2.0.0",
+    "@dhis2/d2-ui-core": "latest",
+    "@dhis2/d2-ui-forms": "latest",
+    "@dhis2/d2-ui-table": "latest",
     "babel-runtime": "^6.26.0",
     "d2-utilizr": "^0.2.15",
     "material-ui": "^0.20.0",

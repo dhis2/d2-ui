@@ -1,41 +1,41 @@
 {
-    "name": "@dhis2/d2-ui-icon-picker",
-    "version": "2.0.0",
-    "description": "DHIS2 component for selecting icon",
-    "main": "./build/index.js",
-    "module": "./build/index.js",
-    "license": "BSD-3-Clause",
-    "peerDependencies": {
-        "d2": "^31.1.1",
-        "react": "^16.0.0",
-        "react-dom": "^16.0.0"
-    },
-    "author": "Mark Polak",
-    "contributors": [
-        "Nicolay Ramm",
-        "Kjetil Svalestuen <kjetil@dhis2.org>",
-        "Viktor Varland <viktor@dhis2.org>",
-        "Edoardo Sabadelli <edoardo@dhis2.org>"
-    ],
-    "scripts": {
-        "prebuild": "rimraf ./build/*",
-        "build": "cross-env BABEL_ENV=es babel src --out-dir build --ignore spec.js",
-        "watch": "npm run build --  --watch",
-        "test-ci": "jest --config=../../jest.config.js packages/icon-picker"
-    },
-    "dependencies": {
-        "@dhis2/d2-ui-core": "^1.4.0",
-        "babel-runtime": "^6.26.0",
-        "lodash": "^4.17.10",
-        "material-ui": "^0.20.0",
-        "prop-types": "^15.5.10"
-    },
-    "jest": {
-        "transformIgnorePatterns": [
-            "node_modules/(?!react-native|react-navigation)/"
-        ]
-    },
-    "publishConfig": {
-        "access": "public"
-    }
+  "name": "@dhis2/d2-ui-icon-picker",
+  "version": "2.0.0",
+  "description": "DHIS2 component for selecting icon",
+  "main": "./build/index.js",
+  "module": "./build/index.js",
+  "license": "BSD-3-Clause",
+  "peerDependencies": {
+    "d2": "^31.1.1",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
+  },
+  "author": "Mark Polak",
+  "contributors": [
+    "Nicolay Ramm",
+    "Kjetil Svalestuen <kjetil@dhis2.org>",
+    "Viktor Varland <viktor@dhis2.org>",
+    "Edoardo Sabadelli <edoardo@dhis2.org>"
+  ],
+  "scripts": {
+    "prebuild": "rimraf ./build/*",
+    "build": "cross-env BABEL_ENV=es babel src --out-dir build --ignore spec.js",
+    "watch": "npm run build --  --watch",
+    "test-ci": "jest --config=../../jest.config.js packages/icon-picker"
+  },
+  "dependencies": {
+    "@dhis2/d2-ui-core": "latest",
+    "babel-runtime": "^6.26.0",
+    "lodash": "^4.17.10",
+    "material-ui": "^0.20.0",
+    "prop-types": "^15.5.10"
+  },
+  "jest": {
+    "transformIgnorePatterns": [
+      "node_modules/(?!react-native|react-navigation)/"
+    ]
+  },
+  "publishConfig": {
+    "access": "public"
+  }
 }

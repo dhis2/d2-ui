@@ -24,8 +24,8 @@
     "test-ci": "jest --config=../../jest.config.js packages/table"
   },
   "dependencies": {
-    "@dhis2/d2-ui-core": "^1.4.0",
-    "@dhis2/d2-ui-translation-dialog": "^3.0.0",
+    "@dhis2/d2-ui-core": "latest",
+    "@dhis2/d2-ui-translation-dialog": "latest",
     "babel-runtime": "^6.26.0",
     "d2-utilizr": "^0.2.15",
     "lodash": "^4.17.10",

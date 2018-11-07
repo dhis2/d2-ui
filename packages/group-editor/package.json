@@ -24,7 +24,7 @@
     "test-ci": "jest --config=../../jest.config.js packages/group-editor"
   },
   "dependencies": {
-    "@dhis2/d2-ui-core": "^1.4.0",
+    "@dhis2/d2-ui-core": "latest",
     "babel-runtime": "^6.26.0",
     "material-ui": "^0.20.0",
     "prop-types": "^15.5.10",
