@@ -14,7 +14,7 @@ interfaces in dhis2 applications.
 Importing components
 
 ```js
-import Button from "@dhis2/d2-ui-core/Button";
+import Button from "@dhis2/d2-ui-core/button/Button";
 ```
 
 This import syntax is necessary to enable tree shaking, otherwise the entirety of `@dhis2/d2-ui-core` (640+kb) will be included in your bundle!
