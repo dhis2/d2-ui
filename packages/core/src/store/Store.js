@@ -1,5 +1,4 @@
-import { ReplaySubject } from 'rxjs/ReplaySubject';
-import { Observable } from 'rxjs/Observable';
+import { Observable, ReplaySubject } from 'rxjs';
 
 const publishState = Symbol('publishState');
 const publishError = Symbol('publishError');
