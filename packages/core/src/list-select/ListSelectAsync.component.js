@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import log from 'loglevel';
 import ListSelect from './ListSelect.component';
 
