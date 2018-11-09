@@ -36,9 +36,9 @@ class OrgUnitDialog extends React.PureComponent {
                     handleUserOrgUnitClick={this.props.handleUserOrgUnitClick}
                 />
             </DialogContent>
-            <DialogActions style={{ padding: '24px' }}>
-                <Button onClick={this.props.onClose}>{i18n.t('Hide')}</Button>
-                <Button color="primary" onClick={this.onUpdateClick}>
+            <DialogActions>
+                <Button color="primary" onClick={this.props.onClose}>{i18n.t('Hide')}</Button>
+                <Button variant="contained" color="primary" onClick={this.onUpdateClick}>
                     {i18n.t('Update')}
                 </Button>
             </DialogActions>

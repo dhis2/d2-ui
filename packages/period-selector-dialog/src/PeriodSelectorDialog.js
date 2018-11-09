@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
+import { withStyles } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -9,15 +11,7 @@ import PeriodSelector from './PeriodSelector';
 
 const styles = {
     dialogContent: {
-        paddingBottom: 0,
-        paddingTop: 0,
-        overflow: 'hidden',
-    },
-    dialogActions: {
-        padding: '24px',
-        marginTop: 0,
-        borderTop: '1px solid #E0E0E0',
-
+        overflow: 'hidden', // TODO: Reflow DOM or enforce minimum dialog sizing rather than hiding important UI elements on small screens
     },
 };
 
@@ -49,7 +43,7 @@ class PeriodSelectorDialog extends React.Component {
     };
 
     render = () => {
-        const { open, maxWidth, fullWidth, ...remaindingProps } = this.props;
+        const { classes, open, maxWidth, fullWidth, ...remaindingProps } = this.props;
 
         return (
             <Dialog
@@ -59,14 +53,14 @@ class PeriodSelectorDialog extends React.Component {
                 maxWidth={maxWidth}
             >
                 <DialogTitle>{this.i18n.getTranslation('Period')}</DialogTitle>
-                <DialogContent style={styles.dialogContent}>
+                <DialogContent className={classes.dialogContent}>
                     <PeriodSelector {...remaindingProps} />
                 </DialogContent>
-                <DialogActions style={styles.dialogActions}>
-                    <Button onClick={this.onCloseClick}>
+                <DialogActions>
+                    <Button color="primary" onClick={this.onCloseClick}>
                         {this.i18n.getTranslation('Hide')}
                     </Button>
-                    <Button style={{ backgroundColor: '#004BA0', color: 'white' }} onClick={this.onUpdateClick}>
+                    <Button variant="contained" color="primary" onClick={this.onUpdateClick}>
                         {this.i18n.getTranslation('Update')}
                     </Button>
                 </DialogActions>
@@ -84,6 +78,7 @@ PeriodSelectorDialog.defaultProps = {
 };
 
 PeriodSelectorDialog.propTypes = {
+    classes: PropTypes.object.isRequired,
     d2: PropTypes.object.isRequired,
     open: PropTypes.bool.isRequired,
     fullWidth: PropTypes.bool,
@@ -95,4 +90,4 @@ PeriodSelectorDialog.propTypes = {
     selectedItems: PropTypes.array,
 };
 
-export default PeriodSelectorDialog;
+export default withStyles(styles)(PeriodSelectorDialog);

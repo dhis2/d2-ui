@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+
 import './App.css';
 
 import Buttons from './components/button';
@@ -38,7 +40,7 @@ import IconPicker from './components/icon-picker';
 
 import ListSelectExamples from './components/list-select.js';
 
-import {App as D2UIApp} from '@dhis2/d2-ui-core';
+import { App as D2UIApp, mui3theme as dhis2theme } from '@dhis2/d2-ui-core';
 
 /** these examples need to be rewritten */
 import OrgUnitSelect from './components/org-unit-select';
@@ -66,120 +68,121 @@ class App extends Component {
 
         return (
             <D2UIApp>
-                <header className="header">
-                    <h1 className="App-title">Welcome to the DHIS2 UI library</h1>
-                </header>
+                <MuiThemeProvider theme={createMuiTheme(dhis2theme)}>
+                    <header className="header">
+                        <h1 className="App-title">Welcome to the DHIS2 UI library</h1>
+                    </header>
 
-                <h2>HeaderBar</h2>
-                <HeaderBarExample d2={this.state.d2} />
-                <p>Look at the top of the screen...</p>
+                    <h2>HeaderBar</h2>
+                    <HeaderBarExample d2={this.state.d2} />
+                    <p>Look at the top of the screen...</p>
 
-                <h2>Rich Text</h2>
-                <RichTextExample />
+                    <h2>Rich Text</h2>
+                    <RichTextExample />
 
-                <h2>Buttons</h2>
-                <Buttons />
+                    <h2>Buttons</h2>
+                    <Buttons />
 
-                <h2>Chips</h2>
-                <Chips />
+                    <h2>Chips</h2>
+                    <Chips />
 
-                <h2>Controlbars</h2>
-                <Controlbars />
+                    <h2>Controlbars</h2>
+                    <Controlbars />
 
-                <h2>Tables</h2>
-                <Tables d2={this.state.d2} />
+                    <h2>Tables</h2>
+                    <Tables d2={this.state.d2} />
 
-                <h2>Expression Manager</h2>
-                <ExpressionManager d2={this.state.d2} />
+                    <h2>Expression Manager</h2>
+                    <ExpressionManager d2={this.state.d2} />
 
-                <h2>File Menu</h2>
-                <FileMenu d2={this.state.d2} />
+                    <h2>File Menu</h2>
+                    <FileMenu d2={this.state.d2} />
 
-                <h2>Favorites Dialog</h2>
-                <FavoritesDialog d2={this.state.d2} />
+                    <h2>Favorites Dialog</h2>
+                    <FavoritesDialog d2={this.state.d2} />
 
-                <h2>Sharing Dialog</h2>
-                <SharingDialog d2={this.state.d2} />
+                    <h2>Sharing Dialog</h2>
+                    <SharingDialog d2={this.state.d2} />
 
-                <h2>Feedback Snackbar</h2>
-                <FeedbackSnackbar />
+                    <h2>Feedback Snackbar</h2>
+                    <FeedbackSnackbar />
 
-                <h2>FormBuilder</h2>
-                <FormBuilder />
+                    <h2>FormBuilder</h2>
+                    <FormBuilder />
 
-                <h2>GroupEditor</h2>
-                <GroupEditor d2={this.state.d2} />
+                    <h2>GroupEditor</h2>
+                    <GroupEditor d2={this.state.d2} />
 
-                <h2>Layout</h2>
-                <Layout />
+                    <h2>Layout</h2>
+                    <Layout />
 
-                <h2>Legend</h2>
-                <Legend d2={this.state.d2} />
+                    <h2>Legend</h2>
+                    <Legend d2={this.state.d2} />
 
-                <h2>List Select</h2>
-                <ListSelectExamples />
+                    <h2>List Select</h2>
+                    <ListSelectExamples />
 
-                <h2>PeriodPicker</h2>
-                <PeriodPicker d2={this.state.d2} />
+                    <h2>PeriodPicker</h2>
+                    <PeriodPicker d2={this.state.d2} />
 
-                <h2>SelectField</h2>
-                <SelectField />
+                    <h2>SelectField</h2>
+                    <SelectField />
 
-                <h2>Sidebar</h2>
-                <Sidebar />
+                    <h2>Sidebar</h2>
+                    <Sidebar />
 
-                <h2>SvgIcon</h2>
-                <SvgIcon />
+                    <h2>SvgIcon</h2>
+                    <SvgIcon />
 
-                <h2>TextField</h2>
-                <TextField />
+                    <h2>TextField</h2>
+                    <TextField />
 
-                <h2>Tabs</h2>
-                <Tabs />
+                    <h2>Tabs</h2>
+                    <Tabs />
 
-                <h2>Translation</h2>
-                <Translation d2={this.state.d2} />
+                    <h2>Translation</h2>
+                    <Translation d2={this.state.d2} />
 
-                <h2>IconPicker</h2>
-                <IconPicker d2={this.state.d2} />
+                    <h2>IconPicker</h2>
+                    <IconPicker d2={this.state.d2} />
 
-                <h2>FormEditor</h2>
-                <FormEditor />
+                    <h2>FormEditor</h2>
+                    <FormEditor />
 
-                <h2>Period selector dialog</h2>
-                <PeriodSelectorDialog d2={this.state.d2} />
+                    <h2>Period selector dialog</h2>
+                    <PeriodSelectorDialog d2={this.state.d2} />
 
-                <h2>Period selector</h2>
-                <PeriodSelector d2={this.state.d2} />
+                    <h2>Period selector</h2>
+                    <PeriodSelector d2={this.state.d2} />
 
-                <h2>OrgUnitSelect</h2>
-                <OrgUnitSelect d2={this.state.d2} />
+                    <h2>OrgUnitSelect</h2>
+                    <OrgUnitSelect d2={this.state.d2} />
 
-                <h2>OrgUnitTree</h2>
-                <OrgUnitTree d2={this.state.d2} />
+                    <h2>OrgUnitTree</h2>
+                    <OrgUnitTree d2={this.state.d2} />
 
-                <h2>Org unit dialog</h2>
-                <OrgUnitDialog d2={this.state.d2} />
+                    <h2>Org unit dialog</h2>
+                    <OrgUnitDialog d2={this.state.d2} />
 
-                <h2>Org unit selector</h2>
-                <OrgUnitSelector d2={this.state.d2} />
+                    <h2>Org unit selector</h2>
+                    <OrgUnitSelector d2={this.state.d2} />
 
-                <div style={{ clear: 'both' }}>
-                    <h2>TreeViews</h2>
-                    <TreeViews />
-                </div>
+                    <div style={{ clear: 'both' }}>
+                        <h2>TreeViews</h2>
+                        <TreeViews />
+                    </div>
 
-                <div style={{ clear: 'both' }}></div>
+                    <div style={{ clear: 'both' }}></div>
 
-                <h2>Intepretations</h2>
-                <InterpretationsExample d2={this.state.d2} />
+                    <h2>Intepretations</h2>
+                    <InterpretationsExample d2={this.state.d2} />
 
-                <h2>Mentions wrapper</h2>
-                <MentionsWrapperExample d2={this.state.d2} />
+                    <h2>Mentions wrapper</h2>
+                    <MentionsWrapperExample d2={this.state.d2} />
 
-                <h2>Circular Progress</h2>
-                <CircularProgresses />
-
+                    <h2>Circular Progress</h2>
+                    <CircularProgresses />
+                </MuiThemeProvider>
             </D2UIApp>
         );
     }
