@@ -7,6 +7,7 @@ button.nav-button {
     padding: 5px 13px 3px;
     border: 1px solid #ECEFF1;
     border-radius: 2px 0 0 2px;
+    text-transform: none;
 }
 
 .nav-button.active, .nav-button.active:hover {
@@ -60,7 +61,7 @@ button.nav-button {
     overflow: auto;
     list-style: none;
     height: 365px;
-    padding: 7px 9px;
+    padding: 0;
     margin: 0px;
 }
 
@@ -75,7 +76,6 @@ button.nav-button {
     border-radius: 4px;
     background-color: rgb(187, 222, 251);
     padding: 2px;
-
 }
 
 .periods-list-offered {
@@ -83,7 +83,7 @@ button.nav-button {
     overflow: auto;
     height: 406px;
     margin: 0px;
-    padding: 7px 9px;
+    padding: 0;
 }
 
 .period-offered-label {
