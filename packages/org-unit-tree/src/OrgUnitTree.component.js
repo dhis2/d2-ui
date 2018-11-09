@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import LinearProgress from '@material-ui/core/LinearProgress';
+import Checkbox from '@material-ui/core/Checkbox';
+import CheckBoxIcon from '@material-ui/icons/CheckBox';
+import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import FolderIcon from '@material-ui/icons/Folder';
 import FolderOpenIcon from '@material-ui/icons/FolderOpen';
 import StopIcon from '@material-ui/icons/Stop';
@@ -9,7 +12,6 @@ import ModelBase from 'd2/model/Model';
 import ModelCollection from 'd2/model/ModelCollection';
 
 import TreeView from '@dhis2/d2-ui-core/tree-view/TreeView.component';
-
 
 const styles = {
     progress: {
@@ -49,6 +51,15 @@ const styles = {
     memberCount: {
         fontSize: '0.75rem',
         marginLeft: 4,
+    },
+    checkbox: {
+        position: 'relative',
+        bottom: 2,
+        padding: 0,
+    },
+    uncheckedCheckbox: {
+        fontSize: 15,
+        color: '#E0E0E0',
     },
 };
 
@@ -188,6 +199,7 @@ class OrgUnitTree extends React.Component {
                     forceReloadChildren={this.props.forceReloadChildren}
                     showFolderIcon={this.props.showFolderIcon}
                     disableSpacer={this.props.disableSpacer}
+                    checkboxColor={this.props.checkboxColor}
                 />
             );
         }
@@ -266,13 +278,14 @@ class OrgUnitTree extends React.Component {
                 tabIndex={0}
             >
                 {isSelectable && !this.props.hideCheckboxes && (
-                    <input
-                        type="checkbox"
-                        readOnly
-                        disabled={!isSelectable}
+                    <Checkbox
+                        style={styles.checkbox}
                         checked={isSelected}
+                        disabled={!isSelectable}
                         onClick={this.handleSelectClick}
-                        style={this.props.labelStyle.checkbox}
+                        color={this.props.checkboxColor}
+                        icon={<CheckBoxOutlineBlankIcon style={styles.uncheckedCheckbox} />}
+                        checkedIcon={<CheckBoxIcon style={{ fontSize: 15 }} />}
                     />
                 )}
                 {this.props.showFolderIcon && hasChildren && (isInitiallyExpanded
@@ -460,6 +473,11 @@ OrgUnitTree.propTypes = {
      * Prop indicating if spacer should be enabled
      */
     disableSpacer: PropTypes.bool,
+
+    /**
+     * Prop indicating checkbox color
+     */
+    checkboxColor: PropTypes.string,
 };
 
 OrgUnitTree.defaultProps = {
@@ -484,6 +502,7 @@ OrgUnitTree.defaultProps = {
     highlightSearchResults: false,
     showFolderIcon: false,
     disableSpacer: false,
+    checkboxColor: 'primary',
 };
 
 export default OrgUnitTree;

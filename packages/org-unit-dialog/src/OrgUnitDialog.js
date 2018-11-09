@@ -34,6 +34,7 @@ class OrgUnitDialog extends React.PureComponent {
                     groupOptions={this.props.groupOptions}
                     handleOrgUnitClick={this.props.handleOrgUnitClick}
                     handleUserOrgUnitClick={this.props.handleUserOrgUnitClick}
+                    checkboxColor={this.props.checkboxColor}
                 />
             </DialogContent>
             <DialogActions>
@@ -53,6 +54,7 @@ OrgUnitDialog.defaultProps = {
     group: [],
     levelOptions: [],
     groupOptions: [],
+    checkboxColor: 'primary',
 
     // dialog related props
     open: false,
@@ -118,6 +120,11 @@ OrgUnitDialog.propTypes = {
     * Root organisation unit
     */
     root: PropTypes.object.isRequired,
+
+    /**
+     * Checkbox color in org unit tree
+     */
+    checkboxColor: PropTypes.string,
 
     // Dialog related props
     onClose: PropTypes.func.isRequired,

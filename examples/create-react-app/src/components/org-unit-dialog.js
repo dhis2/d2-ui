@@ -175,6 +175,7 @@ export default class OrgUnitDialogExample extends Component {
                     handleOrgUnitClick={this.handleOrgUnitClick}
                     onClose={this.toggleDialog}
                     onUpdate={this.onOrgUnitSelect}
+                    checkboxColor="primary"
                 />
             }
             <Snackbar
