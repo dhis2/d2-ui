@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
+import { withStyles } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -41,7 +43,7 @@ class PeriodSelectorDialog extends React.Component {
     };
 
     render = () => {
-        const { open, maxWidth, fullWidth, ...remaindingProps } = this.props;
+        const { classes, open, maxWidth, fullWidth, ...remaindingProps } = this.props;
 
         return (
             <Dialog
@@ -51,7 +53,7 @@ class PeriodSelectorDialog extends React.Component {
                 maxWidth={maxWidth}
             >
                 <DialogTitle>{this.i18n.getTranslation('Period')}</DialogTitle>
-                <DialogContent style={styles.dialogContent}>
+                <DialogContent className={classes.dialogContent}>
                     <PeriodSelector {...remaindingProps} />
                 </DialogContent>
                 <DialogActions>
@@ -76,6 +78,7 @@ PeriodSelectorDialog.defaultProps = {
 };
 
 PeriodSelectorDialog.propTypes = {
+    classes: PropTypes.object.isRequired,
     d2: PropTypes.object.isRequired,
     open: PropTypes.bool.isRequired,
     fullWidth: PropTypes.bool,
@@ -87,4 +90,4 @@ PeriodSelectorDialog.propTypes = {
     selectedItems: PropTypes.array,
 };
 
-export default PeriodSelectorDialog;
+export default withStyles(styles)(PeriodSelectorDialog);
