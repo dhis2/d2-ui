@@ -9,9 +9,7 @@ import PeriodSelector from './PeriodSelector';
 
 const styles = {
     dialogContent: {
-        paddingBottom: 0,
-        paddingTop: 0,
-        overflow: 'hidden',
+        overflow: 'hidden', // TODO: Reflow DOM or enforce minimum dialog sizing rather than hiding important UI elements on small screens
     },
 };
 
@@ -56,7 +54,7 @@ class PeriodSelectorDialog extends React.Component {
                 <DialogContent style={styles.dialogContent}>
                     <PeriodSelector {...remaindingProps} />
                 </DialogContent>
-                <DialogActions style={styles.dialogActions}>
+                <DialogActions>
                     <Button color="primary" onClick={this.onCloseClick}>
                         {this.i18n.getTranslation('Hide')}
                     </Button>
