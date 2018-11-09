@@ -66,12 +66,12 @@ export default {
 
     interpretationCommentArea: {
         fontSize: 12,
-        margin: '2px 5px 5px 0px',
+        margin: '2px 0 5px 0px',
     },
 
     interpretationDescSection: {
         fontSize: 12,
-        padding: '5px 5px 5px 12px',
+        padding: '12px 12px 10px 12px',
     },
 
     interpretationLink: {
@@ -176,7 +176,6 @@ export default {
     avatarWrapper: {
         display: 'flex',
         marginTop: 10,
-        marginBottom: 10,
         backgroundColor: '#efefef',
         marginTop: 2,
         paddingBottom: 4,

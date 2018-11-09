@@ -33,7 +33,7 @@ const styles = theme => ({
     },
     content: {
         padding: 0,
-        paddingBottom: '4px !important',
+        paddingBottom: '0 !important',
         borderTop: '1px solid lightgrey',
     },
     collapse: {
