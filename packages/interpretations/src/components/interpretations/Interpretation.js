@@ -26,6 +26,8 @@ class Interpretation extends React.Component {
         this.closeInterpretationDialog = this.closeInterpretationDialog.bind(this);
         this.deleteInterpretation = this.deleteInterpretation.bind(this);
         this.openInterpretationDialog = this.openInterpretationDialog.bind(this);
+        this.view = this.view.bind(this);
+        this.exitView = this.exitView.bind(this);
         this.like = this.like.bind(this);
         this.reply = this.reply.bind(this);
         this.unlike = this.unlike.bind(this);
@@ -41,6 +43,14 @@ class Interpretation extends React.Component {
 
     saveInterpretationLike(interpretation, value) {
         interpretation.like(value).then(() => this.notifyChange(interpretation));
+    }
+
+    view() {
+        this.props.onSelect(this.props.interpretation.id);
+    }
+
+    exitView() {
+        this.props.onSelect(null);
     }
 
     like() {
@@ -152,8 +162,12 @@ class Interpretation extends React.Component {
                     </div>
 
                     <div>
-                        {showActions && (
+                        {showActions ? (
                             <div className="actions" style={styles.actions}>
+                                <Link label={i18n.t('Exit view')} onClick={this.exitView} />
+
+                                <ActionSeparator />
+
                                 {currentUserLikesInterpretation ? (
                                     <Link label={i18n.t('Unlike')} onClick={this.unlike} />
                                 ) : (
@@ -183,6 +197,10 @@ class Interpretation extends React.Component {
                                         />
                                     </span>
                                 )}
+                            </div>
+                        ) : (
+                            <div className="actions" style={styles.actions}>
+                                <Link label={i18n.t('View')} onClick={this.view} />
                             </div>
                         )}
 
@@ -223,6 +241,7 @@ class Interpretation extends React.Component {
 Interpretation.propTypes = {
     interpretation: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
+    onSelect: PropTypes.func,
     extended: PropTypes.bool.isRequired,
 };
 

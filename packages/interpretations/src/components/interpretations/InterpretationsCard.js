@@ -36,6 +36,7 @@ const getInterpretationsList = props => {
                         interpretation={interpretation}
                         onChange={onChange}
                         extended={false}
+                        onSelect={setCurrentInterpretation}
                     />
                 </div>
             ))}
@@ -44,7 +45,7 @@ const getInterpretationsList = props => {
 };
 
 const getInterpretationDetails = props => {
-    const { d2, model, interpretation, onChange } = props;
+    const { d2, model, setCurrentInterpretation, interpretation, onChange } = props;
     const comments = orderBy(['created'], ['desc'], interpretation.comments);
 
     return (
@@ -54,6 +55,7 @@ const getInterpretationDetails = props => {
             interpretation={interpretation}
             onChange={onChange}
             extended={true}
+            onSelect={setCurrentInterpretation}
         />
     );
 };
@@ -185,6 +187,7 @@ class InterpretationsCard extends React.Component {
                           d2: d2,
                           model: model,
                           interpretation: currentInterpretation,
+                          setCurrentInterpretation: this.setCurrentInterpretation,
                           onChange: this.notifyChange,
                       })
                     : getInterpretationsList({
