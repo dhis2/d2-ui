@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import isEqual from 'lodash/fp/isEqual'
-import pick from 'lodash/fp/pick'
+import isEqual from 'lodash/fp/isEqual';
+import pick from 'lodash/fp/pick';
 
 import { getFavoriteWithInterpretations } from '../models/helpers';
 import DetailsCard from './details/DetailsCard';
@@ -32,7 +32,7 @@ class Interpretations extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        const fields = ["type", "id", "lastUpdated"];
+        const fields = ['type', 'id', 'lastUpdated'];
         const modelFieldsChanged = !isEqual(pick(fields, this.props), pick(fields, nextProps));
         if (modelFieldsChanged) {
             this.loadModel(nextProps);
@@ -40,19 +40,20 @@ class Interpretations extends React.Component {
     }
 
     getLocale(d2) {
-        return d2.currentUser.userSettings.settings.keyUiLocale || "en";
+        return d2.currentUser.userSettings.settings.keyUiLocale || 'en';
     }
 
     loadModel(props) {
         return getFavoriteWithInterpretations(props.d2, props.type, props.id).then(model => {
-            this.setState({model});
+            this.setState({ model });
             return model;
         });
     }
 
     onChange() {
-        return this.loadModel(this.props)
-            .then(newModel => this.props.onChange && this.props.onChange(newModel));
+        return this.loadModel(this.props).then(
+            newModel => this.props.onChange && this.props.onChange(newModel)
+        );
     }
 
     render() {
@@ -60,15 +61,11 @@ class Interpretations extends React.Component {
         const { model } = this.state;
         const locale = this.getLocale(d2);
 
-        if (!model)
-            return <CircularProgress />
+        if (!model) return <CircularProgress />;
 
         return (
             <div>
-                <DetailsCard
-                    model={model}
-                    onChange={this.onChange}
-                />
+                <DetailsCard model={model} onChange={this.onChange} />
 
                 <InterpretationsCard
                     model={model}
