@@ -4,6 +4,7 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
+import i18n from '@dhis2/d2-i18n';
 import RelativePeriodsGenerator from './utils/RelativePeriodsGenerator';
 import PeriodsList from './PeriodsList';
 
@@ -12,11 +13,10 @@ export const defaultState = {
 };
 
 class RelativePeriods extends Component {
-    constructor(props, context) {
+    constructor(props) {
         super(props);
 
         this.state = defaultState;
-        this.i18n = context.d2.i18n;
         this.periodsGenerator = new RelativePeriodsGenerator();
     }
 
@@ -41,7 +41,7 @@ class RelativePeriods extends Component {
         <div className="options-area">
             <FormControl className="form-control period-type">
                 <InputLabel className="input-label" htmlFor="period-type">
-                    {this.i18n.getTranslation('Period type')}
+                    {i18n.t('Period type')}
                 </InputLabel>
                 <Select
                     onChange={this.onPeriodTypeChange}
@@ -80,10 +80,6 @@ RelativePeriods.propTypes = {
     setOfferedPeriods: PropTypes.func.isRequired,
     onDoubleClick: PropTypes.func.isRequired,
     onPeriodClick: PropTypes.func.isRequired,
-};
-
-RelativePeriods.contextTypes = {
-    d2: PropTypes.object,
 };
 
 export default RelativePeriods;

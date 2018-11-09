@@ -41,10 +41,9 @@ const DeselectButton = ({ action }) => (
 );
 
 class Periods extends Component {
-    constructor(props, context) {
+    constructor(props) {
         super(props);
 
-        this.i18n = context.d2.i18n;
         this.props.setSelectedPeriods(this.props.selectedItems);
     }
 
@@ -173,10 +172,6 @@ Periods.propTypes = {
     removeSelectedPeriods: PropTypes.func.isRequired,
     toggleOfferedPeriod: PropTypes.func.isRequired,
     toggleSelectedPeriod: PropTypes.func.isRequired,
-};
-
-Periods.contextTypes = {
-    d2: PropTypes.object,
 };
 
 const mapStateToProps = state => ({

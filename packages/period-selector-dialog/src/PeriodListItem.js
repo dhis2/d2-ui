@@ -10,10 +10,10 @@ const SelectedIcon = () => <div className="selected-icon" />;
 const RemoveItemButton = ({ action }) => (
     <button className="remove-item-button" onClick={action} tabIndex={0}>
         <Close style={{
-            fill: '#1976D2',
             outline: 'none',
             height: 13,
-            width: 10 }}
+            width: 10,
+        }}
         />
     </button>
 );
