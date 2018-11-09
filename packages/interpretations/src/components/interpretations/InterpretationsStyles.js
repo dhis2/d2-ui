@@ -27,6 +27,7 @@ export default {
     commentText: {
         marginBottom: 2,
         whiteSpace: 'pre-line',
+        lineHeight: '1.5em',
     },
 
     container: {
@@ -84,6 +85,7 @@ export default {
 
     interpretationText: {
         whiteSpace: 'pre-line',
+        lineHeight: '1.5em',
     },
 
     interpretationTextWrapper: {
@@ -129,6 +131,8 @@ export default {
         padding: '4px 4px 4px 5px',
         paddingBottom: 4,
         paddingTop: 4,
+        display: 'flex',
+        alignItems: 'center',
     },
 
     icon: {
