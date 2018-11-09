@@ -122,7 +122,7 @@ class DetailsCard extends React.Component {
 
 DetailsCard.contextTypes = {
     d2: PropTypes.object,
-    locale: PropTypes.object,
+    locale: PropTypes.string,
 };
 
 DetailsCard.propTypes = {

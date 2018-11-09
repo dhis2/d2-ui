@@ -253,7 +253,7 @@ Interpretation.defaultProps = {
 
 Interpretation.contextTypes = {
     d2: PropTypes.object.isRequired,
-    locale: PropTypes.object,
+    locale: PropTypes.string,
 };
 
 export default Interpretation;

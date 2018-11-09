@@ -88,7 +88,7 @@ Interpretations.propTypes = {
 
 Interpretations.childContextTypes = {
     d2: PropTypes.object,
-    locale: PropTypes.object,
+    locale: PropTypes.string,
 };
 
 export default Interpretations;
