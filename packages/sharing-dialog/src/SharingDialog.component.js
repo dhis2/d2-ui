@@ -198,7 +198,7 @@ class SharingDialog extends React.Component {
         const errorOccurred = this.state.errorMessage !== '';
         const isLoading = !this.state.sharedObject && this.props.open && !errorOccurred;
         const sharingDialogActions = [
-            <Button key="closeonly" variant="contained" onClick={this.closeDialog}>{this.translate('close')}</Button>,
+            <Button key="closeonly" color="primary" onClick={this.closeDialog}>{this.translate('close')}</Button>,
         ];
 
         if (this.props.doNotPost) {
