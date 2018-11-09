@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
-import i18n from '@dhis2/d2-i18n'
+import i18n from '@dhis2/d2-i18n';
 import SharingDialog from '@dhis2/d2-ui-sharing-dialog';
 import some from 'lodash/fp/some';
 import InterpretationComments from './InterpretationComments';
@@ -52,7 +52,10 @@ class Interpretation extends React.Component {
     }
 
     reply() {
-        const newComment = CommentModel.getReplyForInterpretation(this.context.d2, this.props.interpretation);
+        const newComment = CommentModel.getReplyForInterpretation(
+            this.context.d2,
+            this.props.interpretation
+        );
         this.setState({ newComment });
     }
 
@@ -65,11 +68,11 @@ class Interpretation extends React.Component {
     }
 
     openInterpretationDialog() {
-        this.setState({interpretationToEdit: this.props.interpretation});
+        this.setState({ interpretationToEdit: this.props.interpretation });
     }
 
     closeInterpretationDialog() {
-        this.setState({interpretationToEdit: null});
+        this.setState({ interpretationToEdit: null });
     }
 
     saveInterpretation(interpretation) {
@@ -89,9 +92,13 @@ class Interpretation extends React.Component {
         this.closeInterpretationDialog();
     }
 
-    openSharingDialog = () => { this.setState({ sharingDialogIsOpen: true }); }
+    openSharingDialog = () => {
+        this.setState({ sharingDialogIsOpen: true });
+    };
 
-    closeSharingDialog = () => { this.setState({ sharingDialogIsOpen: false }); }
+    closeSharingDialog = () => {
+        this.setState({ sharingDialogIsOpen: false });
+    };
 
     render() {
         const { interpretation, extended } = this.props;
@@ -100,71 +107,94 @@ class Interpretation extends React.Component {
         const showActions = extended;
         const showComments = extended;
         const likedBy = interpretation.likedBy || [];
-        const likedByTooltip = likedBy.map(user => user.displayName).sort().join("\n");
+        const likedByTooltip = likedBy
+            .map(user => user.displayName)
+            .sort()
+            .join('\n');
         const currentUserLikesInterpretation = some(user => user.id === d2.currentUser.id, likedBy);
 
         return (
             <div>
-                {interpretationToEdit &&
+                {interpretationToEdit && (
                     <InterpretationDialog
                         interpretation={interpretationToEdit}
                         onSave={this.saveInterpretationAndClose}
                         onClose={this.closeInterpretationDialog}
                     />
-                }
-                {sharingDialogIsOpen &&
+                )}
+                {sharingDialogIsOpen && (
                     <SharingDialog
                         open={true}
                         onRequestClose={this.closeSharingDialog}
                         d2={d2}
                         id={interpretation.id}
-                        type={"interpretation"}
+                        type={'interpretation'}
                     />
-                }
+                )}
 
                 <div style={styles.interpretationDescSection}>
                     <div style={styles.interpretationName}>
                         {getUserLink(d2, interpretation.user)}
 
-                        <span style={styles.date}>
-                            {formatDate(interpretation.created)}
-                        </span>
+                        <span style={styles.date}>{formatDate(interpretation.created)}</span>
                     </div>
 
                     <div style={styles.interpretationTextWrapper}>
-                        <div style={extended ? styles.interpretationText : styles.interpretationTextLimited}>
-                          {interpretation.text}
+                        <div
+                            style={
+                                extended
+                                    ? styles.interpretationText
+                                    : styles.interpretationTextLimited
+                            }
+                        >
+                            {interpretation.text}
                         </div>
                     </div>
 
                     <div>
-                        {showActions &&
+                        {showActions && (
                             <div className="actions" style={styles.actions}>
-                                {currentUserLikesInterpretation
-                                    ? <Link label={i18n.t('Unlike')} onClick={this.unlike} />
-                                    : <Link label={i18n.t('Like')} onClick={this.like} />}
-                                    
+                                {currentUserLikesInterpretation ? (
+                                    <Link label={i18n.t('Unlike')} onClick={this.unlike} />
+                                ) : (
+                                    <Link label={i18n.t('Like')} onClick={this.like} />
+                                )}
+
                                 <ActionSeparator />
 
                                 <Link label={i18n.t('Reply')} onClick={this.reply} />
 
-                                {userCanManage(d2, interpretation) &&
+                                {userCanManage(d2, interpretation) && (
                                     <span className="owner-actions">
                                         <ActionSeparator />
-                                        <Link label={i18n.t('Edit')} onClick={this.openInterpretationDialog} />
+                                        <Link
+                                            label={i18n.t('Edit')}
+                                            onClick={this.openInterpretationDialog}
+                                        />
                                         <ActionSeparator />
-                                        <Link label={i18n.t('Share')} onClick={this.openSharingDialog} />
+                                        <Link
+                                            label={i18n.t('Share')}
+                                            onClick={this.openSharingDialog}
+                                        />
                                         <ActionSeparator />
-                                        <Link label={i18n.t('Delete')} onClick={this.deleteInterpretation} />
-                                    </span>}
+                                        <Link
+                                            label={i18n.t('Delete')}
+                                            onClick={this.deleteInterpretation}
+                                        />
+                                    </span>
+                                )}
                             </div>
-                        }
+                        )}
 
                         <div style={styles.interpretationCommentArea}>
                             <div style={styles.likeArea}>
                                 <ThumbUpIcon style={styles.likeIcon} />
 
-                                <span style={{color: "#22A"}} className="liked-by" title={likedByTooltip}>
+                                <span
+                                    style={{ color: '#22A' }}
+                                    className="liked-by"
+                                    title={likedByTooltip}
+                                >
                                     {interpretation.likes} {i18n.t('people like this')}
                                 </span>
 
@@ -173,14 +203,15 @@ class Interpretation extends React.Component {
                                 {`${interpretation.comments.length} ${i18n.t('people commented')}`}
                             </div>
 
-                            {showComments &&
+                            {showComments && (
                                 <InterpretationComments
                                     d2={d2}
                                     interpretation={interpretation}
                                     onSave={this.saveComment}
                                     onDelete={this.deleteComment}
                                     newComment={newComment}
-                                />}
+                                />
+                            )}
                         </div>
                     </div>
                 </div>
