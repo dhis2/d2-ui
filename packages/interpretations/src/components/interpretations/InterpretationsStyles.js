@@ -1,8 +1,8 @@
 export default {
     action: {
-        height: 32,
+        height: 24,
         padding: 5,
-        width: 32,
+        width: 24,
     },
 
     body: {
