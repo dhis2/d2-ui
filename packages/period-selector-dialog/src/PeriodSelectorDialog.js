@@ -13,12 +13,6 @@ const styles = {
         paddingTop: 0,
         overflow: 'hidden',
     },
-    dialogActions: {
-        padding: '24px',
-        marginTop: 0,
-        borderTop: '1px solid #E0E0E0',
-
-    },
 };
 
 class PeriodSelectorDialog extends React.Component {
@@ -63,10 +57,10 @@ class PeriodSelectorDialog extends React.Component {
                     <PeriodSelector {...remaindingProps} />
                 </DialogContent>
                 <DialogActions style={styles.dialogActions}>
-                    <Button onClick={this.onCloseClick}>
+                    <Button color="primary" onClick={this.onCloseClick}>
                         {this.i18n.getTranslation('Hide')}
                     </Button>
-                    <Button style={{ backgroundColor: '#004BA0', color: 'white' }} onClick={this.onUpdateClick}>
+                    <Button variant="contained" color="primary" onClick={this.onUpdateClick}>
                         {this.i18n.getTranslation('Update')}
                     </Button>
                 </DialogActions>

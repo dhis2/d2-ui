@@ -136,7 +136,7 @@ class TranslationForm extends Component {
         return (
             <DialogActions>
                 <Button
-                    variant="contained"
+                    color="primary"
                     onClick={this.props.onCancel}
                 >{this.getTranslation('cancel')}</Button>
                 <Button

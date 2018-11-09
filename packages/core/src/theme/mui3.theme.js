@@ -97,6 +97,12 @@ export const theme = {
                 fontSize: 16,
                 fontWeight: 'bold',
                 padding: `${spacingUnit * 2.5}px ${spacingUnit * 3}px ${spacingUnit * 0.5}px`,
+
+                '&>h6': { // When not specifying 'disableTypography', an h6 element is created by default beneath DialogTitle
+                    fontSize: '1em',
+                    lineHeight: 'inherit',
+                    fontWeight: 'inherit',
+                },
             },
         },
         MuiDialogContent: {

@@ -35,7 +35,7 @@ class Favorites extends Component {
                     <EnhancedTable onFavoriteSelect={handleOnFavoriteSelect} />
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={onRequestClose}>Close</Button>
+                    <Button color="primary" onClick={onRequestClose}>Close</Button>
                 </DialogActions>
             </Dialog>
         );
