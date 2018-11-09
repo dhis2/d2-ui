@@ -8,27 +8,27 @@ export default {
     },
 
     detailsCard: {
-        clear: "both",
+        clear: 'both',
         zIndex: 1010,
-        margin: "8px 4px 8px 4px",
-        color: "red",
+        margin: '8px 4px 8px 4px',
+        color: 'red',
         paddingBottom: 7,
     },
 
     detailsCardHeader: {
-        height: "32px",
-        paddingLeft: "14px",
-        paddingRight: "8px",
-        marginRight: "-8px",
-        fontSize: "10px",
+        height: '32px',
+        paddingLeft: '14px',
+        paddingRight: '8px',
+        marginRight: '-8px',
+        fontSize: '10px',
     },
 
     detailsCardItem: {
-        padding: "4px 0px",
+        padding: '4px 0px',
     },
 
     detailsCardList: {
-        marginLeft: "11px",
+        marginLeft: '11px',
         fontSize: 14,
     },
 
@@ -41,7 +41,7 @@ export default {
     },
 
     subscriberIcon: {
-        float: "right",
+        float: 'right',
         top: 0,
         right: 10,
     },
