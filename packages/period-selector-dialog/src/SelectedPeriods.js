@@ -2,13 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import PeriodsList from './PeriodsList';
+import i18n from '@dhis2/d2-i18n';
 
 class SelectedPeriods extends React.Component {
-    constructor(props, context) {
-        super(props);
-        this.i18n = context.d2.i18n;
-    }
-
     clearPeriods = () => {
         this.props.onClearAll(this.props.items);
     };
@@ -16,7 +12,7 @@ class SelectedPeriods extends React.Component {
     render = () => (
         <div className="selector-area">
             <div className="subtitle-container">
-                <span className="subtitle"> {this.i18n.getTranslation('Selected periods')} </span>
+                <span className="subtitle"> {i18n.t('Selected periods')} </span>
             </div>
             <PeriodsList
                 items={this.props.items}
@@ -26,7 +22,7 @@ class SelectedPeriods extends React.Component {
             />
             <div style={{ textAlign: 'center' }}>
                 <Button onClick={this.clearPeriods} >
-                    {this.i18n.getTranslation('Clear all')}
+                    {i18n.t('Clear all')}
                 </Button>
             </div>
         </div>
@@ -38,10 +34,6 @@ SelectedPeriods.propTypes = {
     onClearAll: PropTypes.func.isRequired,
     onPeriodClick: PropTypes.func.isRequired,
     onRemovePeriodClick: PropTypes.func.isRequired,
-};
-
-SelectedPeriods.contextTypes = {
-    d2: PropTypes.object,
 };
 
 export default SelectedPeriods;

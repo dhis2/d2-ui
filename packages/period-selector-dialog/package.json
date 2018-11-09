@@ -21,6 +21,7 @@
     "test:watch": "npm test -- --watch"
   },
   "dependencies": {
+    "@dhis2/d2-i18n": "^1.0.4",
     "@material-ui/core": "^3.3.1",
     "@material-ui/icons": "^3.0.1",
     "babel-runtime": "^6.26.0",
@@ -30,6 +31,11 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run extract-pot && git add ./i18n"
+    }
   },
   "devDependencies": {
     "babel-jest": "^23.0.1",

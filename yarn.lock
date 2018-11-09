@@ -153,7 +153,7 @@
     moment "^2.22.1"
     rimraf "^2.6.2"
 
-"@dhis2/d2-i18n@^1.0.3":
+"@dhis2/d2-i18n@^1.0.3", "@dhis2/d2-i18n@^1.0.4":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@dhis2/d2-i18n/-/d2-i18n-1.0.4.tgz#8fbd113f56699b9832a401e1cb8f54d75bc36b9a"
   integrity sha512-xI2j69q3bwlb374JOAs3wpo47V4BqDAz4h1PfGLVhdORPLAuz0CkKuwesfpW2eunDSHiKpMbOg7goTip/5ROew==

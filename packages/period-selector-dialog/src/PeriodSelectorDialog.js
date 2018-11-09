@@ -5,6 +5,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
+import i18n from '@dhis2/d2-i18n';
 import PeriodSelector from './PeriodSelector';
 
 const styles = {
@@ -22,12 +23,6 @@ const styles = {
 };
 
 class PeriodSelectorDialog extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.i18n = this.props.d2.i18n;
-    }
-
     onCloseClick = () => {
         this.props.onClose();
     };
@@ -58,16 +53,16 @@ class PeriodSelectorDialog extends React.Component {
                 fullWidth={fullWidth}
                 maxWidth={maxWidth}
             >
-                <DialogTitle>{this.i18n.getTranslation('Period')}</DialogTitle>
+                <DialogTitle>{i18n.t('Period')}</DialogTitle>
                 <DialogContent style={styles.dialogContent}>
                     <PeriodSelector {...remaindingProps} />
                 </DialogContent>
                 <DialogActions style={styles.dialogActions}>
                     <Button onClick={this.onCloseClick}>
-                        {this.i18n.getTranslation('Hide')}
+                        {i18n.t('Hide')}
                     </Button>
                     <Button style={{ backgroundColor: '#004BA0', color: 'white' }} onClick={this.onUpdateClick}>
-                        {this.i18n.getTranslation('Update')}
+                        {i18n.t('Update')}
                     </Button>
                 </DialogActions>
             </Dialog>
@@ -84,7 +79,6 @@ PeriodSelectorDialog.defaultProps = {
 };
 
 PeriodSelectorDialog.propTypes = {
-    d2: PropTypes.object.isRequired,
     open: PropTypes.bool.isRequired,
     fullWidth: PropTypes.bool,
     maxWidth: PropTypes.string,

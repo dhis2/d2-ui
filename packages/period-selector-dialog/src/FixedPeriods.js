@@ -6,6 +6,7 @@ import FormControl from '@material-ui/core/FormControl';
 import PropTypes from 'prop-types';
 import FixedPeriodsGenerator from './utils/FixedPeriodsGenerator';
 import PeriodsList from './PeriodsList';
+import i18n from '@dhis2/d2-i18n';
 
 export const defaultState = {
     periodType: 'Weekly',
@@ -68,7 +69,7 @@ class FixedPeriods extends Component {
         <div className="options-area">
             <FormControl className="form-control period-type">
                 <InputLabel className="input-label" htmlFor="period-type">
-                    {this.i18n.getTranslation('Period type')}
+                    {i18n.t('Period type')}
                 </InputLabel>
                 <Select
                     onChange={this.onPeriodTypeChange}
@@ -83,7 +84,7 @@ class FixedPeriods extends Component {
             </FormControl>
             <FormControl className="form-control year">
                 <InputLabel className="input-label" htmlFor="year">
-                    {this.i18n.getTranslation('Year')}
+                    {i18n.t('Year')}
                 </InputLabel>
                 <Select
                     onChange={this.onYearChange}
