@@ -74,7 +74,7 @@ const commonExpectations = () => {
     });
 
     it('should show the creation date', () => {
-        expect(interpretationComponent.text()).toMatch('4/14/2018');
+        expect(interpretationComponent.text()).toMatch('Apr 14, 2018');
     });
 
     it('should show how many people like it', () => {

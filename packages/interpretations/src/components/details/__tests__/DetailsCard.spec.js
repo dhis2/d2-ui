@@ -97,11 +97,11 @@ describe('Interpretations: Details -> DetailsCard component', () => {
     });
 
     it('should render created', () => {
-        expect(getListItem(detailsCard, 'Created').props().text).toEqual('05/17/2018');
+        expect(getListItem(detailsCard, 'Created').props().text).toEqual('May 17, 2018');
     });
 
     it('should render last updated', () => {
-        expect(getListItem(detailsCard, 'Last updated').props().text).toEqual('05/21/2018');
+        expect(getListItem(detailsCard, 'Last updated').props().text).toEqual('May 21, 2018');
     });
 
     it('should render favorite views', () => {
