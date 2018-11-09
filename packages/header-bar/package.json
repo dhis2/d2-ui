@@ -9,11 +9,11 @@
     "react-dom": "^16.2.0"
   },
   "dependencies": {
-    "@dhis2/d2-ui-core": "latest",
+    "@dhis2/d2-ui-core": "0.0.0-PLACEHOLDER",
     "@material-ui/core": "^3.3.1",
     "@material-ui/icons": "^3.0.1",
     "babel-runtime": "^6.26.0",
-    "d2": "^31.1.1",
+    "d2": "~31.1",
     "d2-utilizr": "^0.2.15",
     "lodash": "^4.17.10",
     "rxjs": "^5.5.7"

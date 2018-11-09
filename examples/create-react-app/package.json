@@ -19,7 +19,7 @@
     "@dhis2/d2-ui-sharing-dialog": "v0.0.0-PLACEHOLDER",
     "@dhis2/d2-ui-table": "v0.0.0-PLACEHOLDER",
     "@dhis2/d2-ui-translation-dialog": "v0.0.0-PLACEHOLDER",
-    "d2": "^31.1.1",
+    "d2": "~31.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-scripts": "1.1.1"

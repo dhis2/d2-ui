@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "babel-runtime": "^6.26.0",
-    "d2": "31.1.1",
+    "d2": "~31.1",
     "lodash": "^4.17.10",
     "material-ui": "^0.20.0"
   },
