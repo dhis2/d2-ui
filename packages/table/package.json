@@ -23,8 +23,8 @@
     "test-ci": "jest --config=../../jest.config.js packages/table"
   },
   "dependencies": {
-    "@dhis2/d2-ui-core": "latest",
-    "@dhis2/d2-ui-translation-dialog": "latest",
+    "@dhis2/d2-ui-core": "0.0.0-PLACEHOLDER",
+    "@dhis2/d2-ui-translation-dialog": "0.0.0-PLACEHOLDER",
     "babel-runtime": "^6.26.0",
     "d2-utilizr": "^0.2.15",
     "lodash": "^4.17.10",
@@ -40,5 +40,6 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "version": "0.0.0-PLACEHOLDER"
 }
