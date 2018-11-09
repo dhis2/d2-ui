@@ -105,8 +105,12 @@ describe('Interpretations: Interpretations -> Interpretation component', () => {
 
         commonExpectations();
 
-        it('should not show actions', () => {
-            expect(interpretationComponent.find('.actions')).not.toExist();
+        it('should show actions', () => {
+            expect(interpretationComponent.find('.actions')).toExist();
+        });
+
+        it('sould show View action', () => {
+            expect(interpretationComponent.find('Link').find({ label: 'View' })).toExist();
         });
 
         it('should not show comments', () => {
@@ -123,6 +127,10 @@ describe('Interpretations: Interpretations -> Interpretation component', () => {
 
         it('should show actions', () => {
             expect(interpretationComponent.find('.actions')).toExist();
+        });
+
+        it('should show Exit view action', () => {
+            expect(interpretationComponent.find('Link').find({ label: 'Exit view' })).toExist();
         });
 
         it('should show comments', () => {
