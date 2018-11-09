@@ -4,7 +4,7 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import AddIcon from '@material-ui/icons/Add';
-import i18n from '@dhis2/d2-i18n'
+import i18n from '@dhis2/d2-i18n';
 import orderBy from 'lodash/fp/orderBy';
 
 import CollapsibleCard from '../CollapsibleCard';
@@ -19,7 +19,7 @@ const getInterpretationsList = props => {
 
     return (
         <div>
-            <div style={{fontStyle: "italic", marginLeft: 15}}>
+            <div style={{ fontStyle: 'italic', marginLeft: 15 }}>
                 {interpretations.length === 0 && <span>{i18n.t('No interpretations')}</span>}
             </div>
 
@@ -36,6 +36,7 @@ const getInterpretationsList = props => {
                         interpretation={interpretation}
                         onChange={onChange}
                         extended={false}
+                        onSelect={setCurrentInterpretation}
                     />
                 </div>
             ))}
@@ -44,8 +45,8 @@ const getInterpretationsList = props => {
 };
 
 const getInterpretationDetails = props => {
-    const { d2, model, interpretation, onChange } = props;
-    const comments = orderBy(["created"], ["desc"], interpretation.comments);
+    const { d2, model, setCurrentInterpretation, interpretation, onChange } = props;
+    const comments = orderBy(['created'], ['desc'], interpretation.comments);
 
     return (
         <Interpretation
@@ -54,30 +55,36 @@ const getInterpretationDetails = props => {
             interpretation={interpretation}
             onChange={onChange}
             extended={true}
+            onSelect={setCurrentInterpretation}
         />
     );
 };
 
 const getInterpretationButtons = props => {
-    const { d2, model, currentInterpretation, setCurrentInterpretation, openNewInterpretationDialog } = props;
+    const {
+        d2,
+        model,
+        currentInterpretation,
+        setCurrentInterpretation,
+        openNewInterpretationDialog,
+    } = props;
 
-    return (
-        currentInterpretation ?
-            <IconButton
-                style={styles.action}
-                onClick={() => setCurrentInterpretation(null)}
-                title={i18n.t('Clear interpretation')}
-            >
-               <ChevronLeftIcon />
-            </IconButton>
-        :
-            <IconButton
-                style={styles.action}
-                onClick={openNewInterpretationDialog}
-                title={i18n.t('Write new interpretation')}
-            >
-                <AddIcon />
-            </IconButton>
+    return currentInterpretation ? (
+        <IconButton
+            style={styles.action}
+            onClick={() => setCurrentInterpretation(null)}
+            title={i18n.t('Clear interpretation')}
+        >
+            <ChevronLeftIcon />
+        </IconButton>
+    ) : (
+        <IconButton
+            style={styles.action}
+            onClick={openNewInterpretationDialog}
+            title={i18n.t('Write new interpretation')}
+        >
+            <AddIcon />
+        </IconButton>
     );
 };
 
@@ -107,7 +114,7 @@ class InterpretationsCard extends React.Component {
         if (currentInterpretation && this.props.onCurrentInterpretationChange) {
             this.props.onCurrentInterpretationChange(currentInterpretation);
         }
-        if (this.props.currentInterpretationId == "new") {
+        if (this.props.currentInterpretationId == 'new') {
             this.openNewInterpretationDialog();
         }
     }
@@ -130,7 +137,9 @@ class InterpretationsCard extends React.Component {
 
         if (this.isControlledComponent) {
             const currentInterpretation = interpretationId
-                ? model.interpretations.find(interpretation => interpretation.id === interpretationId)
+                ? model.interpretations.find(
+                      interpretation => interpretation.id === interpretationId
+                  )
                 : null;
             onCurrentInterpretationChange(currentInterpretation);
         } else {
@@ -142,7 +151,9 @@ class InterpretationsCard extends React.Component {
         const { model } = this.props;
         const { currentInterpretationId } = this.state;
         return model && model.interpretations && currentInterpretationId
-            ? model.interpretations.find(interpretation => interpretation.id === currentInterpretationId)
+            ? model.interpretations.find(
+                  interpretation => interpretation.id === currentInterpretationId
+              )
             : null;
     }
 
@@ -150,7 +161,7 @@ class InterpretationsCard extends React.Component {
         const { model } = this.props;
         const { interpretationToEdit } = this.state;
         const { d2 } = this.context;
-        const sortedInterpretations = orderBy(["created"], ["desc"], model.interpretations);
+        const sortedInterpretations = orderBy(['created'], ['desc'], model.interpretations);
         const currentInterpretation = this.getCurrentInterpretation();
         const actions = getInterpretationButtons({
             d2: d2,
@@ -161,36 +172,31 @@ class InterpretationsCard extends React.Component {
         });
 
         return (
-            <CollapsibleCard
-                title={i18n.t('Interpretations')}
-                actions={actions}
-            >
-                {interpretationToEdit &&
+            <CollapsibleCard title={i18n.t('Interpretations')} actions={actions}>
+                {interpretationToEdit && (
                     <InterpretationDialog
                         model={model}
                         interpretation={interpretationToEdit}
                         onSave={this.notifyChange}
                         onClose={this.closeInterpretationDialog}
                     />
-                }
+                )}
 
                 {currentInterpretation
-                    ?
-                        getInterpretationDetails({
-                            d2: d2,
-                            model: model,
-                            interpretation: currentInterpretation,
-                            onChange: this.notifyChange,
-                        })
-                    :
-                        getInterpretationsList({
-                            d2: d2,
-                            model: model,
-                            interpretations: sortedInterpretations,
-                            setCurrentInterpretation: this.setCurrentInterpretation,
-                            onChange: this.notifyChange,
-                        })
-                }
+                    ? getInterpretationDetails({
+                          d2: d2,
+                          model: model,
+                          interpretation: currentInterpretation,
+                          setCurrentInterpretation: this.setCurrentInterpretation,
+                          onChange: this.notifyChange,
+                      })
+                    : getInterpretationsList({
+                          d2: d2,
+                          model: model,
+                          interpretations: sortedInterpretations,
+                          setCurrentInterpretation: this.setCurrentInterpretation,
+                          onChange: this.notifyChange,
+                      })}
             </CollapsibleCard>
         );
     }
