@@ -3,7 +3,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { shallow } from 'enzyme';
 import D2UIApp from '../index';
-import {theme} from '@dhis2/d2-ui-core';
+
+import theme from '../../theme/theme';
 
 const isNotEqualTo = first => second => first !== second;
 const d2 = {};

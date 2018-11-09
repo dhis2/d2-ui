@@ -24,7 +24,7 @@
     "test-ci": "jest --config=../../jest.config.js packages/org-unit-tree"
   },
   "dependencies": {
-    "@dhis2/d2-ui-core": "latest",
+    "@dhis2/d2-ui-core": "0.0.0-PLACEHOLDER",
     "@material-ui/core": "^3.3.1",
     "babel-runtime": "^6.26.0",
     "prop-types": "^15.5.10",
@@ -38,5 +38,6 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "version": "0.0.0-PLACEHOLDER"
 }

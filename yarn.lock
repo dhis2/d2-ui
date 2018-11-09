@@ -160,10 +160,10 @@
   dependencies:
     i18next "^10.3"
 
-"@dhis2/packages@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@dhis2/packages/-/packages-1.1.0.tgz#a32b0def8ca7a9b3a0bba3cde5e929ec7ab04f1a"
-  integrity sha512-38vIB180dzFY4BwfIQbq6dW0yDHjoRfemIUFXcBgYDgg22zhOD68yXLfrc+qCc0dpdS5t8djDer/RaRyEdwoEg==
+"@dhis2/packages@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@dhis2/packages/-/packages-1.1.1.tgz#23c0f97af2ae586e56568d5db13c4db2c8ad4014"
+  integrity sha512-Eb/0xCNEHTxBuD0kRtsXMxn4WYFPl+yj9TrbuJ8W9cz4vdKknpVKAyFtTF4alPG1R5h3pk0dLE3IQWMlV7Vaqg==
   dependencies:
     "@vardevs/io" "^1.5.0"
     "@vardevs/log" "^1.0.0"
@@ -3428,20 +3428,10 @@ d2-utilizr@^0.2.15:
     lodash.isset "^4.3.0"
     lodash.isstring "^4.0.1"
 
-d2@31.1.1:
+d2@~31.1:
   version "31.1.1"
   resolved "https://registry.yarnpkg.com/d2/-/d2-31.1.1.tgz#8c551077c27031de8ad2d8df0b575242a3080917"
   integrity sha512-Qk1Y0nr6DNCyyJ/jhJQuf5oECB1V0uCaDWLG9akjfy2HzSIueqaO3nuX++lPMTJez9Bb6j1FOjB6Cxxu5/wZ/g==
-  dependencies:
-    babel-jest "^22.4.3"
-    docdash "^0.4.0"
-    jsdoc "^3.5.5"
-    whatwg-fetch "^2.0.3"
-
-d2@^31.1.1:
-  version "31.2.1"
-  resolved "https://registry.yarnpkg.com/d2/-/d2-31.2.1.tgz#0ca21a30118d0486f3807f165a2420ecaad0a1e1"
-  integrity sha512-0AuYkAHR3+hnxKjpi8okaiNXoBDfr1ZFlzELyuN+BMo42fu4IIANEy4/MoVZvN8ezfbFM5Y8aJu1MmG1zLCNtA==
   dependencies:
     babel-jest "^22.4.3"
     docdash "^0.4.0"

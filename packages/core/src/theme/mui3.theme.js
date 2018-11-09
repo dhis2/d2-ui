@@ -1,35 +1,3 @@
-/*
-For use with Material UI version 3+
-
------
-
-USAGE:
-
-import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles'
-import { mui3theme as dhis2theme } from '@dhis2/core'
-// OR: import { theme as dhis2theme } from '@dhis2/core/theme/dhis2.mui3.theme'
-
-const MyApp = (
-    <MuiThemeProvider theme={createMuiTheme(dhis2theme)}>
-        ...<MyAppComponents />...
-    </MuiThemeProvider
-)
-
------
-
-To override (for development purposes only):
-
-import { theme as dhis2theme } from '@dhis2/d2-ui-core/theme/dhis2.mui3.theme'
-const customTheme = {
-  ...dhis2theme,
-  overrides: {
-    ...dhis2theme.overrides,
-    MuiToolbar: { ... },
-  },
-  ...etc
-}
-*/
-
 // Color palette from https://projects.invisionapp.com/share/A7LT4TJYETS#/screens/302550228_Color
 export const colors = {
     accentPrimary: '#1976d2',
@@ -111,8 +79,8 @@ export const theme = {
     colors,
     palette,
     typography: {
-        fontSize: 16,
         fontFamily: 'Roboto, Helvetica, Arial, sans-serif',
+        fontSize: 14,
         useNextVariants: true,
     },
     spacing: {
@@ -126,15 +94,16 @@ export const theme = {
         },
         MuiDialogTitle: {
             root: {
-                padding: `${spacingUnit * 2.5}px ${spacingUnit * 3}px ${spacingUnit * 0.5}px`,
-                fontSize: '1em',
+                fontSize: 16,
                 fontWeight: 'bold',
+                padding: `${spacingUnit * 2.5}px ${spacingUnit * 3}px ${spacingUnit * 0.5}px`,
             },
         },
         MuiDialogContent: {
             root: {
                 margin: spacingUnit * 3,
                 padding: 0,
+
                 '&:first-child': {
                     paddingTop: 0,
                 },
@@ -142,12 +111,13 @@ export const theme = {
         },
         MuiDialogActions: {
             root: {
-                padding: `${spacingUnit * 1.5}px ${spacingUnit * 3}px`,
+                borderTop: `1px solid ${palette.divider}`,
                 margin: 0,
+                padding: `${spacingUnit * 1.5}px ${spacingUnit * 3}px`,
+
                 '&> *:last-child': {
                     marginRight: 0,
                 },
-                borderTop: `1px solid ${palette.divider}`,
             },
         },
     },
