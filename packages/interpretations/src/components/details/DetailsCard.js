@@ -104,8 +104,14 @@ class DetailsCard extends React.Component {
                 <List>
                     <ListItem text={getDescription(model)} />
                     <ListItem label={i18n.t('Owner')} text={owner} />
-                    <ListItem label={i18n.t('Created')} text={formatDate(model.created)} />
-                    <ListItem label={i18n.t('Last updated')} text={formatDate(model.lastUpdated)} />
+                    <ListItem
+                        label={i18n.t('Created')}
+                        text={formatDate(model.created, this.context.locale)}
+                    />
+                    <ListItem
+                        label={i18n.t('Last updated')}
+                        text={formatDate(model.lastUpdated, this.context.locale)}
+                    />
                     <ListItem label={i18n.t('Views')} text={model.favoriteViews} />
                     <ListItem label={i18n.t('Sharing')} text={getSharingText(model)} />
                 </List>
@@ -113,6 +119,11 @@ class DetailsCard extends React.Component {
         );
     }
 }
+
+DetailsCard.contextTypes = {
+    d2: PropTypes.object,
+    locale: PropTypes.object,
+};
 
 DetailsCard.propTypes = {
     model: PropTypes.object.isRequired,

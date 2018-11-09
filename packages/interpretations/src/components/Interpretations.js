@@ -23,7 +23,10 @@ class Interpretations extends React.Component {
     }
 
     getChildContext() {
-        return { d2: this.props.d2 };
+        return {
+            d2: this.props.d2,
+            locale: this.props.d2.currentUser.userSettings.settings.keyUiLocale || 'en',
+        };
     }
 
     componentDidMount() {
@@ -37,10 +40,6 @@ class Interpretations extends React.Component {
         if (modelFieldsChanged) {
             this.loadModel(nextProps);
         }
-    }
-
-    getLocale(d2) {
-        return d2.currentUser.userSettings.settings.keyUiLocale || 'en';
     }
 
     loadModel(props) {
@@ -59,7 +58,6 @@ class Interpretations extends React.Component {
     render() {
         const { d2, currentInterpretationId, onCurrentInterpretationChange } = this.props;
         const { model } = this.state;
-        const locale = this.getLocale(d2);
 
         if (!model) return <CircularProgress />;
 
@@ -90,6 +88,7 @@ Interpretations.propTypes = {
 
 Interpretations.childContextTypes = {
     d2: PropTypes.object,
+    locale: PropTypes.object,
 };
 
 export default Interpretations;

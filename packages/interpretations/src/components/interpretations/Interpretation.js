@@ -146,7 +146,9 @@ class Interpretation extends React.Component {
                     <div style={styles.interpretationName}>
                         {getUserLink(d2, interpretation.user)}
 
-                        <span style={styles.date}>{formatDate(interpretation.created)}</span>
+                        <span style={styles.date}>
+                            {formatDate(interpretation.created, this.context.locale)}
+                        </span>
                     </div>
 
                     <div style={styles.interpretationTextWrapper}>
@@ -251,6 +253,7 @@ Interpretation.defaultProps = {
 
 Interpretation.contextTypes = {
     d2: PropTypes.object.isRequired,
+    locale: PropTypes.object,
 };
 
 export default Interpretation;

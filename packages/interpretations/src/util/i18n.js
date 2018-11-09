@@ -1,15 +1,20 @@
 import moment from 'moment';
 import i18n from '@dhis2/d2-i18n';
 
-export function formatDate(dateString) {
-    const isoformat = dateString.split('.')[0];
-    const localizedFormat = moment.localeData().longDateFormat('L');
-    return moment(dateString, moment.ISO_8601).format(localizedFormat);
+export function formatDate(value = '', uiLocale = 'en') {
+    if (typeof global.Intl !== 'undefined' && Intl.DateTimeFormat) {
+        return new Intl.DateTimeFormat(uiLocale, {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
+        }).format(new Date(value));
+    }
+
+    return value.substr(0, 19).replace('T', ' ');
 }
 
-export function formatRelative(dateString) {
-    const isoformat = dateString.split('.')[0];
-    return moment(dateString, moment.ISO_8601).fromNow();
+export function formatRelative(value) {
+    return moment(value, moment.ISO_8601).fromNow();
 }
 
 export function translateModelName(modelName) {
