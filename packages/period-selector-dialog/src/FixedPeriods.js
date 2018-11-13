@@ -9,7 +9,7 @@ import PeriodsList from './PeriodsList';
 import i18n from '@dhis2/d2-i18n';
 
 export const defaultState = {
-    periodType: 'Weekly',
+    periodType: 'Monthly',
     year: (new Date()).getFullYear(),
 };
 
@@ -22,6 +22,10 @@ class FixedPeriods extends Component {
         this.years = this.getYears();
         this.state = defaultState;
     }
+
+    componentDidMount = () => {
+        this.props.setOfferedPeriods(this.generatePeriods(this.state.periodType, this.state.year));
+    };
 
     onPeriodTypeChange = (event) => {
         this.setState({
@@ -59,10 +63,6 @@ class FixedPeriods extends Component {
             filterFuturePeriods: false,
             reversePeriods: false,
         });
-    };
-
-    componentDidMount = () => {
-        this.props.setOfferedPeriods(this.generatePeriods(this.state.periodType, this.state.year));
     };
 
     renderOptions = () => (

@@ -9,7 +9,7 @@ import RelativePeriodsGenerator from './utils/RelativePeriodsGenerator';
 import PeriodsList from './PeriodsList';
 
 export const defaultState = {
-    periodType: 'Weeks',
+    periodType: 'Months',
 };
 
 class RelativePeriods extends Component {

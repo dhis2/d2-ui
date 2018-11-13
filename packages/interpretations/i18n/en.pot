@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2018-07-04T08:51:47.874Z\n"
-"PO-Revision-Date: 2018-07-04T08:51:47.874Z\n"
+"POT-Creation-Date: 2018-11-13T14:18:15.522Z\n"
+"PO-Revision-Date: 2018-11-13T14:18:15.522Z\n"
 
 msgid "No description"
 msgstr ""
@@ -65,6 +65,9 @@ msgstr ""
 msgid "Are you sure you want to remove this interpretation?"
 msgstr ""
 
+msgid "Exit view"
+msgstr ""
+
 msgid "Unlike"
 msgstr ""
 
@@ -81,6 +84,9 @@ msgid "Share"
 msgstr ""
 
 msgid "Delete"
+msgstr ""
+
+msgid "View"
 msgstr ""
 
 msgid "people like this"

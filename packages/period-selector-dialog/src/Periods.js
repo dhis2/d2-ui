@@ -31,6 +31,10 @@ const SelectButton = ({ action }) => (
     </Button>
 );
 
+SelectButton.propTypes = {
+    action: PropTypes.func.isRequired,
+};
+
 const DeselectButton = ({ action }) => (
     <Button
         className="select-button"
@@ -39,6 +43,10 @@ const DeselectButton = ({ action }) => (
         <ArrowBackIcon />
     </Button>
 );
+
+DeselectButton.propTypes = {
+    action: PropTypes.func.isRequired,
+};
 
 class Periods extends Component {
     constructor(props) {
@@ -82,7 +90,7 @@ class Periods extends Component {
         this.props.onSelect(itemToAdd);
         this.props.addSelectedPeriods(itemToAdd);
         this.props.removeOfferedPeriods(itemToAdd);
-    }
+    };
 
     onRemovePeriod = (removedPeriod) => {
         const itemToRemove = [removedPeriod];
