@@ -22,7 +22,7 @@ class SelectedPeriods extends React.Component {
             />
             <div style={{ textAlign: 'center' }}>
                 <Button onClick={this.clearPeriods} >
-                    {i18n.t('Clear all')}
+                    {i18n.t('Unselect all')}
                 </Button>
             </div>
         </div>

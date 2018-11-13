@@ -60,7 +60,7 @@ button.nav-button {
 .periods-list-selected {
     overflow: auto;
     list-style: none;
-    height: 365px;
+    height: calc(100% - 82px); /* sum of header and clear button with padding = 82px */
     padding: 0;
     margin: 0px;
 }
@@ -81,7 +81,7 @@ button.nav-button {
 .periods-list-offered {
     list-style: none;
     overflow: auto;
-    height: 406px;
+    height: calc(100% - 94px);
     margin: 0px;
     padding: 0;
 }

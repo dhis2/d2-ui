@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import FixedPeriodsGenerator from './utils/FixedPeriodsGenerator';
 import PeriodsList from './PeriodsList';
 import i18n from '@dhis2/d2-i18n';
+import Button from '@material-ui/core/Button/Button';
 
 export const defaultState = {
     periodType: 'Monthly',
@@ -65,6 +66,11 @@ class FixedPeriods extends Component {
         });
     };
 
+    selectAll = () => {
+        this.props.addSelectedPeriods(this.props.items);
+        this.props.setOfferedPeriods([]);
+    };
+
     renderOptions = () => (
         <div className="options-area">
             <FormControl className="form-control period-type">
@@ -110,6 +116,11 @@ class FixedPeriods extends Component {
                     onPeriodClick={this.props.onPeriodClick}
                     listClassName={'periods-list-offered'}
                 />
+                <div style={{ textAlign: 'center' }}>
+                    <Button onClick={this.selectAll}>
+                        {i18n.t('Select all')}
+                    </Button>
+                </div>
             </div>
         );
     };
@@ -120,6 +131,7 @@ FixedPeriods.propTypes = {
     onDoubleClick: PropTypes.func.isRequired,
     onPeriodClick: PropTypes.func.isRequired,
     setOfferedPeriods: PropTypes.func.isRequired,
+    addSelectedPeriods: PropTypes.func.isRequired,
 };
 
 FixedPeriods.contextTypes = {

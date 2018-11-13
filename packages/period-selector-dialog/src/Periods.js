@@ -145,6 +145,7 @@ class Periods extends Component {
                             onDoubleClick={this.onDoubleClick}
                             onPeriodClick={this.props.toggleOfferedPeriod}
                             setOfferedPeriods={this.props.setOfferedPeriods}
+                            addSelectedPeriods={this.props.addSelectedPeriods}
                         />
                     </div>
                     <div className="block buttons">

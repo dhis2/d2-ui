@@ -7,6 +7,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import i18n from '@dhis2/d2-i18n';
 import RelativePeriodsGenerator from './utils/RelativePeriodsGenerator';
 import PeriodsList from './PeriodsList';
+import Button from '@material-ui/core/Button/Button';
 
 export const defaultState = {
     periodType: 'Months',
@@ -35,6 +36,11 @@ class RelativePeriods extends Component {
     generatePeriods = (periodType) => {
         const generator = this.periodsGenerator.get(periodType);
         return generator.generatePeriods();
+    };
+
+    selectAll = () => {
+        this.props.addSelectedPeriods(this.props.items);
+        this.props.setOfferedPeriods([]);
     };
 
     renderOptions = () => (
@@ -70,6 +76,11 @@ class RelativePeriods extends Component {
                     onDoubleClick={this.props.onDoubleClick}
                     listClassName={'periods-list-offered'}
                 />
+                <div style={{ textAlign: 'center' }}>
+                    <Button onClick={this.selectAll}>
+                        {i18n.t('Select all')}
+                    </Button>
+                </div>
             </div>
         );
     };
@@ -78,6 +89,7 @@ class RelativePeriods extends Component {
 RelativePeriods.propTypes = {
     items: PropTypes.array.isRequired,
     setOfferedPeriods: PropTypes.func.isRequired,
+    addSelectedPeriods: PropTypes.func.isRequired,
     onDoubleClick: PropTypes.func.isRequired,
     onPeriodClick: PropTypes.func.isRequired,
 };
