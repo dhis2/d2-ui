@@ -182,3 +182,12 @@ button.nav-button {
 }
 
 .period-selected-label { padding: 3px }
+
+#year-select {
+    cursor: pointer;
+    color: #000000;
+}
+
+#year-select-menu {
+    width: 130px;
+}
