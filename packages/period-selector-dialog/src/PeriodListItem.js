@@ -1,35 +1,33 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import IconButton from '@material-ui/core/IconButton';
 import Close from '@material-ui/icons/Close';
+import styles from './styles/PeriodListItem.style';
 
 const OFFERED_LIST = 'periods-list-offered';
 
 const UnselectedIcon = () => <div className="unselected-icon" />;
+const HighlightedIcon = () => <div className="highlighted-icon" />;
 const SelectedIcon = () => <div className="selected-icon" />;
 
-const RemoveItemButton = ({ action }) => (
-    <button className="remove-item-button" onClick={action} tabIndex={0}>
-        <Close style={{
-            outline: 'none',
-            height: 13,
-            width: 10,
-        }}
-        />
-    </button>
+const RemoveItemButton = ({ action, isHighlighted }) => (
+    <IconButton
+        style={styles.iconButton}
+        onClick={action}
+        tabIndex={0}
+    >
+        <Close style={isHighlighted ? styles.highlightedClose : styles.closeIcon} />
+    </IconButton>
 );
+
+RemoveItemButton.propTypes = {
+    action: PropTypes.func.isRequired,
+    isHighlighted: PropTypes.bool.isRequired,
+};
 
 class PeriodListItem extends Component {
     state = { isHovering: false };
 
-    highlightItem = () => {
-        this.setState({ isHovering: true });
-    };
-
-    removeHighlight = () => {
-        this.setState({ isHovering: false });
-    };
-
-    isOfferedList = () => this.props.listClassName === OFFERED_LIST;
 
     onPeriodClick = (event) => {
         this.props.onPeriodClick(this.props.period, this.props.index, event.shiftKey, event.metaKey);
@@ -44,30 +42,34 @@ class PeriodListItem extends Component {
         this.props.onRemovePeriodClick(this.props.period);
     };
 
-    renderIcon = () => (
-        this.isOfferedList()
+
+    isOfferedList = () => this.props.listClassName === OFFERED_LIST;
+
+    highlightItem = () => {
+        this.setState({ isHovering: true });
+    };
+
+    removeHighlight = () => {
+        this.setState({ isHovering: false });
+    };
+    renderIcon = () => {
+        if (this.props.period.selected) {
+            return <HighlightedIcon />;
+        }
+
+        return this.isOfferedList()
             ? <UnselectedIcon />
-            : <SelectedIcon />
-    );
+            : <SelectedIcon />;
+    }
 
     renderRemoveButton = () => (
         this.isOfferedList()
             ? null
-            : <RemoveItemButton action={this.onRemovePeriodClick} />
+            : <RemoveItemButton isHighlighted={this.props.period.selected} action={this.onRemovePeriodClick} />
     );
-
-    renderLabelStyle = () => {
-        if (this.state.isHovering && !this.props.period.selected) {
-            return { backgroundColor: '#92C9F7' };
-        } else if (this.props.period.selected) {
-            return { backgroundColor: '#7EBFF5' };
-        }
-        return {};
-    };
 
     render = () => {
         const className = this.isOfferedList() ? 'period-offered-label' : 'period-selected-label';
-        const labelStyle = this.renderLabelStyle();
         const Icon = this.renderIcon();
         const RemoveButton = this.renderRemoveButton();
 
@@ -79,7 +81,7 @@ class PeriodListItem extends Component {
                 <div
                     role="button"
                     tabIndex={0}
-                    style={labelStyle}
+                    style={this.props.period.selected ? styles.highlightedContainer : {}}
                     onMouseEnter={this.highlightItem}
                     onMouseLeave={this.removeHighlight}
                     onClick={this.onPeriodClick}
@@ -87,7 +89,7 @@ class PeriodListItem extends Component {
                     className={className}
                 >
                     {Icon}
-                    <span className="list-text">{this.props.period.name}</span>
+                    <span style={this.props.period.selected ? styles.higlightedText : {}} className="list-text">{this.props.period.name}</span>
                     {RemoveButton}
                 </div>
             </li>

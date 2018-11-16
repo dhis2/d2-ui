@@ -5,9 +5,9 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import i18n from '@dhis2/d2-i18n';
+import Button from '@material-ui/core/Button';
 import RelativePeriodsGenerator from './utils/RelativePeriodsGenerator';
 import PeriodsList from './PeriodsList';
-import Button from '@material-ui/core/Button/Button';
 
 export const defaultState = {
     periodType: 'Months',

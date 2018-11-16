@@ -8,7 +8,7 @@ import PeriodTypeButton from './PeriodTypeButton';
 import SelectedPeriods from './SelectedPeriods';
 import { OfferedPeriods } from './OfferedPeriods';
 import PeriodTypes from './PeriodTypes';
-import './PeriodSelector.css';
+import '../css/PeriodSelector.css';
 
 import {
     setPeriodType,
