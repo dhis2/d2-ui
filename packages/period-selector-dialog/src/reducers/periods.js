@@ -51,21 +51,7 @@ export default (periodType = 'offered') => (state = defaultState, action) => {
 
     case actionTypes[`TOGGLE_${periodType.toUpperCase()}_PERIOD`]: {
         const { index, isShiftPressed, isCtrlPressed } = action;
-
-        if (action.period.selected) {
-            const periods = state.periods.map(period => (
-                period.id === action.period.id
-                    ? { ...period, selected: false }
-                    : period
-            ));
-
-            return {
-                ...state,
-                lastClickedIndex: null,
-                periods,
-            };
-        }
-
+        
         // If control was not pressed, then only select
         // current period and unselect all others
         if (isCtrlPressed === false && isShiftPressed === false) {
