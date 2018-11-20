@@ -136,20 +136,29 @@ class OrgUnitTree extends React.Component {
     }
 
     loadChildren() {
-        if ((this.state.children === undefined && !this.state.loading) ||
-            this.props.idsThatShouldBeReloaded.indexOf(this.props.root.id) >= 0) {
-            this.setState({ loading: true });
+        return new Promise((resolve) => {
+            if (
+                (this.state.children === undefined && !this.state.loading) ||
+                this.props.idsThatShouldBeReloaded.indexOf(this.props.root.id) >= 0
+            ) {
+                this.setState({ loading: true });
 
-            const root = this.props.root;
-            // d2.ModelCollectionProperty.load takes a second parameter `forceReload` and will just return
-            // the current valueMap unless either `this.hasUnloadedData` or `forceReload` are true
-            root.children.load(
-                { fields: 'id,displayName,children::isNotEmpty,path,parent' },
-                this.props.forceReloadChildren,
-            ).then((children) => {
-                this.setChildState(children);
-            });
-        }
+                const root = this.props.root;
+                // d2.ModelCollectionProperty.load takes a second parameter `forceReload` and will just return
+                // the current valueMap unless either `this.hasUnloadedData` or `forceReload` are true
+                root.children.load(
+                    { fields: 'id,displayName,children::isNotEmpty,path,parent' },
+                    this.props.forceReloadChildren,
+                ).then((children) => {
+                    resolve(children);
+                    this.setChildState(children);
+                });
+            }
+
+            if (this.state.children !== undefined) {
+                resolve(this.state.children);
+            }
+        });
     }
 
     handleSelectClick(e) {
@@ -179,6 +188,7 @@ class OrgUnitTree extends React.Component {
                     selected={this.props.selected}
                     initiallyExpanded={expandedProp}
                     onSelectClick={this.props.onSelectClick}
+                    onContextMenuClick={this.props.onContextMenuClick}
                     currentRoot={this.props.currentRoot}
                     onChangeCurrentRoot={this.props.onChangeCurrentRoot}
                     labelStyle={{
@@ -270,10 +280,20 @@ class OrgUnitTree extends React.Component {
             this.props.onChangeCurrentRoot(currentOu);
         };
 
+        const onContextMenuClick = (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+
+            if (this.props.onContextMenuClick !== undefined) {
+                this.props.onContextMenuClick(e, currentOu, hasChildren, this.loadChildren);
+            }
+        };
+
         const label = (
             <div
                 style={labelStyle}
                 onClick={canBecomeCurrentRoot ? setCurrentRoot : (isSelectable ? this.handleSelectClick : undefined)}
+                onContextMenu={onContextMenuClick}
                 role="button"
                 tabIndex={0}
             >
@@ -295,7 +315,7 @@ class OrgUnitTree extends React.Component {
                 {this.props.showFolderIcon && !hasChildren && (
                     <StopIcon style={{ ...styles.stopIcon, ...this.props.labelStyle.stopIcon }} />
                 )}
-                {currentOu.displayName}
+                <span style={this.props.labelStyle.text}>{currentOu.displayName}</span>
                 {hasChildren && !this.props.hideMemberCount && !!memberCount && (
                     <span style={styles.memberCount}>({memberCount})</span>
                 )}
@@ -478,12 +498,18 @@ OrgUnitTree.propTypes = {
      * Prop indicating checkbox color
      */
     checkboxColor: PropTypes.string,
+
+    /**
+     * Prop function invoked when user opens context menu against org unit
+     */
+    onContextMenuClick: PropTypes.func,
 };
 
 OrgUnitTree.defaultProps = {
     selected: [],
     initiallyExpanded: [],
     onSelectClick: undefined,
+    onContextMenuClick: undefined,
     onExpand: undefined,
     onCollapse: undefined,
     onChangeCurrentRoot: undefined,

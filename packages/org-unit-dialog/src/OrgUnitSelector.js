@@ -1,13 +1,16 @@
 import React, { Component, Fragment } from 'react';
 import { OrgUnitTree } from '@dhis2/d2-ui-org-unit-tree';
-import Grid from '@material-ui/core/Grid/Grid';
-import InputLabel from '@material-ui/core/InputLabel';
 import i18n from '@dhis2/d2-i18n';
-import Input from '@material-ui/core/Input';
-import FormControl from '@material-ui/core/FormControl';
-import MenuItem from '@material-ui/core/MenuItem';
 import PropTypes from 'prop-types';
+
+import FormControl from '@material-ui/core/FormControl';
+import Grid from '@material-ui/core/Grid/Grid';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select/Select';
+
 import styles from './styles/OrgUnitDialog.style';
 import UserOrgUnitsPanel from './UserOrgUnitsPanel';
 import removeLastPathSegment from './util';
@@ -17,6 +20,9 @@ class OrgUnitSelector extends Component {
         super(props);
 
         this.state = {
+            menuAnchorElement: null,
+            children: null,
+            loadingChildren: false,
             initiallyExpanded: this.props.selected.map(ou => removeLastPathSegment(ou.path)),
         };
     }
@@ -70,7 +76,35 @@ class OrgUnitSelector extends Component {
         });
     };
 
+    onContextMenuClick = (event, orgUnit, hasChildren, loadChildren) => {
+        if (!hasChildren) {
+            return;
+        }
+
+        this.setState({
+            menuAnchorElement: event.currentTarget,
+            loadingChildren: true,
+        });
+
+        loadChildren().then((children) => {
+            this.setState({
+                children: Array.isArray(children) ? children : children.toArray(),
+                loadingChildren: false,
+            });
+        });
+    };
+
     normalizeOptions = (result, item) => ({ ...result, [item.id]: item });
+
+    selectChildren = () => {
+        this.closeContextMenu();
+
+        this.props.handleMultipleOrgUnitsSelect(this.state.children);
+    };
+
+    closeContextMenu = () => {
+        this.setState({ menuAnchorElement: null });
+    };
 
     renderGroupOptions = (selected) => {
         if (this.props.groupOptions.length > 0) {
@@ -113,8 +147,8 @@ class OrgUnitSelector extends Component {
                         input={<Input id="level-select" />}
                         renderValue={this.renderLevelOptions}
                         disabled={this.props.userOrgUnits.length > 0}
-                        multiple
                         fullWidth
+                        multiple
                     >
                         {this.props.levelOptions.map(option => (
                             <MenuItem key={option.id} value={option.id}>{option.displayName}</MenuItem>
@@ -166,6 +200,7 @@ class OrgUnitSelector extends Component {
                             onSelectClick={this.props.handleOrgUnitClick}
                             onExpand={this.onExpand}
                             onCollapse={this.onCollapse}
+                            onContextMenuClick={this.onContextMenuClick}
                             treeStyle={styles.orgUnitTree.treeStyle}
                             labelStyle={styles.orgUnitTree.labelStyle}
                             selectedLabelStyle={styles.orgUnitTree.selectedLabelStyle}
@@ -173,6 +208,19 @@ class OrgUnitSelector extends Component {
                             showFolderIcon
                             disableSpacer
                         />
+                        <Menu
+                            anchorEl={this.state.menuAnchorElement}
+                            open={Boolean(this.state.menuAnchorElement)}
+                            onClose={this.closeContextMenu}
+                        >
+                            <MenuItem
+                                onClick={this.selectChildren}
+                                disabled={this.state.loadingChildren}
+                                dense
+                            >
+                                Select children
+                            </MenuItem>
+                        </Menu>
                     </div>
                 </div>
             </div>
@@ -222,6 +270,11 @@ OrgUnitSelector.propTypes = {
      * Setter for group multiselect value
      */
     onGroupChange: PropTypes.func.isRequired,
+
+    /**
+     * Function for handling multiple org units select
+     */
+    handleMultipleOrgUnitsSelect: PropTypes.func.isRequired,
 
     /**
      * Callback handler for selecting orgunit
