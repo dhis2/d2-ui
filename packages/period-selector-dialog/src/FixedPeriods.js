@@ -11,6 +11,7 @@ import ArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import ArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import FixedPeriodsGenerator from './utils/FixedPeriodsGenerator';
 import PeriodsList from './PeriodsList';
+import styles from './styles/PeriodListItem.style';
 
 export const defaultState = {
     periodType: 'Monthly',
@@ -112,7 +113,7 @@ class FixedPeriods extends Component {
         return (
             <div className="options-area">
                 <FormControl className="form-control period-type">
-                    <InputLabel className="input-label" htmlFor="period-type">
+                    <InputLabel style={styles.inputLabel} className="input-label" htmlFor="period-type">
                         {i18n.t('Period type')}
                     </InputLabel>
                     <Select
@@ -128,7 +129,7 @@ class FixedPeriods extends Component {
                     </Select>
                 </FormControl>
                 <FormControl className="form-control year">
-                    <InputLabel className="input-label" htmlFor="year">
+                    <InputLabel style={styles.inputLabel} className="input-label" htmlFor="year">
                         {i18n.t('Year')}
                     </InputLabel>
                     <Select

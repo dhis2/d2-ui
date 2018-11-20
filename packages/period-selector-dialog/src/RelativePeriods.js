@@ -8,6 +8,7 @@ import i18n from '@dhis2/d2-i18n';
 import Button from '@material-ui/core/Button';
 import RelativePeriodsGenerator from './utils/RelativePeriodsGenerator';
 import PeriodsList from './PeriodsList';
+import styles from './styles/PeriodListItem.style';
 
 export const defaultState = {
     periodType: 'Months',
@@ -46,7 +47,7 @@ class RelativePeriods extends Component {
     renderOptions = () => (
         <div className="options-area">
             <FormControl className="form-control period-type">
-                <InputLabel className="input-label" htmlFor="period-type">
+                <InputLabel style={styles.inputLabel} className="input-label" htmlFor="period-type">
                     {i18n.t('Period type')}
                 </InputLabel>
                 <Select
