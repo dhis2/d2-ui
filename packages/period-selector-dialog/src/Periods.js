@@ -1,13 +1,14 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import PeriodTypeButton from './PeriodTypeButton';
 import SelectedPeriods from './SelectedPeriods';
 import { OfferedPeriods } from './OfferedPeriods';
 import PeriodTypes from './PeriodTypes';
+import styles from './styles/PeriodListItem.style';
 import '../css/PeriodSelector.css';
 
 import {
@@ -23,12 +24,13 @@ import {
 } from './actions';
 
 const SelectButton = ({ action }) => (
-    <Button
+    <IconButton
+        style={styles.arrowButton}
         className="select-button"
         onClick={action}
     >
-        <ArrowForwardIcon />
-    </Button>
+        <ArrowForwardIcon style={styles.arrowIcon} />
+    </IconButton>
 );
 
 SelectButton.propTypes = {
@@ -36,12 +38,13 @@ SelectButton.propTypes = {
 };
 
 const DeselectButton = ({ action }) => (
-    <Button
+    <IconButton
+        style={styles.arrowButton}
         className="select-button"
         onClick={action}
     >
-        <ArrowBackIcon />
-    </Button>
+        <ArrowBackIcon style={styles.arrowIcon} />
+    </IconButton>
 );
 
 DeselectButton.propTypes = {
@@ -58,7 +61,6 @@ class Periods extends Component {
     onPeriodTypeClick = (periodType) => {
         if (this.props.periodType !== periodType) {
             this.props.setPeriodType(periodType);
-            this.props.setOfferedPeriods([]);
         }
     };
 
@@ -106,6 +108,11 @@ class Periods extends Component {
         this.props.setSelectedPeriods([]);
     };
 
+    getOfferedPeriods = () => {
+        const selectedIds = this.props.selectedItems.map(item => item.id);
+        return this.props.offeredPeriods.periods.filter(item => !selectedIds.includes(item.id));
+    };
+
     renderPeriodTypeButtons = () => (
         <Fragment>
             <PeriodTypeButton
@@ -133,6 +140,7 @@ class Periods extends Component {
     render = () => {
         const PeriodTypeButtons = this.renderPeriodTypeButtons();
         const SelectButtons = this.renderSelectButtons();
+        const unselectedItems = this.getOfferedPeriods();
 
         return (
             <div>
@@ -141,7 +149,7 @@ class Periods extends Component {
                     <div className="block options">
                         <OfferedPeriods
                             periodType={this.props.periodType}
-                            items={this.props.offeredPeriods.periods}
+                            items={unselectedItems}
                             onDoubleClick={this.onDoubleClick}
                             onPeriodClick={this.props.toggleOfferedPeriod}
                             setOfferedPeriods={this.props.setOfferedPeriods}

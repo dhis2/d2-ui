@@ -12,9 +12,8 @@ const SelectedIcon = () => <div className="selected-icon" />;
 
 const RemoveItemButton = ({ action, isHighlighted }) => (
     <IconButton
-        style={styles.iconButton}
+        style={styles.removeItemButton}
         onClick={action}
-        tabIndex={0}
     >
         <Close style={isHighlighted ? styles.highlightedClose : styles.closeIcon} />
     </IconButton>
@@ -52,6 +51,7 @@ class PeriodListItem extends Component {
     removeHighlight = () => {
         this.setState({ isHovering: false });
     };
+
     renderIcon = () => {
         if (this.props.period.selected) {
             return <HighlightedIcon />;
