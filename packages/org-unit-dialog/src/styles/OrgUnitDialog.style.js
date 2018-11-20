@@ -10,6 +10,11 @@ export default {
         overlayContainer: {
             position: 'relative',
             paddingLeft: 20,
+            WebkitUserSelect: 'none',
+            KhtmlUserSelect: 'none',
+            MozUserSelect: 'none',
+            MsUserSelect: 'none',
+            UserSelect: 'none',
         },
         overlay: {
             position: 'absolute',
@@ -52,6 +57,9 @@ export default {
                 margin: '2px 3px 2px 2px',
                 position: 'relative',
                 top: 2,
+            },
+            text: {
+                cursor: 'pointer',
             },
         },
         treeStyle: {
