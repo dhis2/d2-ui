@@ -12,7 +12,7 @@ export default {
         borderRadius: '4px',
         minWidth: '40px',
         minHeight: '36px',
-        backgorundColor: 'white',
+        backgroundColor: 'white',
     },
     arrowIcon: {
         height: '20px',

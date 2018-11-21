@@ -13,7 +13,7 @@ const PeriodSelector = props => (
 PeriodSelector.propTypes = {
     onSelect: PropTypes.func,
     onDeselect: PropTypes.func,
-    selectedItems: PropTypes.array,
+    selectedItems: PropTypes.arrayOf(PropTypes.object),
 };
 
 PeriodSelector.defaultProps = {
