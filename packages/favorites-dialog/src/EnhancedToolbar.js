@@ -24,7 +24,7 @@ const toolbarStyles = () => ({
 
 class EnhancedToolbar extends Component {
     state = {
-        filterTooltipOpen: false,
+        filterTooltipOpen: false
     };
 
     showFilterTooltip = () => {
@@ -65,7 +65,7 @@ class EnhancedToolbar extends Component {
                         onMouseEnter={this.showFilterTooltip}
                         onMouseLeave={this.hideFilterTooltip}
                         MenuProps={{
-                            onEnter: this.hideFilterTooltip,
+                            onEnter: this.hideFilterTooltip
                         }}
                     >
                         <MenuItem value="all">Show all</MenuItem>
@@ -80,15 +80,15 @@ class EnhancedToolbar extends Component {
 
 const mapStateToProps = state => ({
     createdByValue: state.filtering.createdByValue,
-    searchValue: state.filtering.searchValue,
+    searchValue: state.filtering.searchValue
 });
 
 const mapDispatchToProps = {
     searchData,
-    filterData,
+    filterData
 };
 
 export default connect(
     mapStateToProps,
-    mapDispatchToProps,
+    mapDispatchToProps
 )(withStyles(toolbarStyles)(EnhancedToolbar));
