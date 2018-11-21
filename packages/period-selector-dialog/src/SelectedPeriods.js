@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
-import PeriodsList from './PeriodsList';
 import i18n from '@dhis2/d2-i18n';
+import PeriodsList from './PeriodsList';
 
 class SelectedPeriods extends React.Component {
     clearPeriods = () => {
@@ -22,7 +22,7 @@ class SelectedPeriods extends React.Component {
             />
             <div style={{ textAlign: 'center' }}>
                 <Button onClick={this.clearPeriods} >
-                    {i18n.t('Clear all')}
+                    {i18n.t('Deselect all')}
                 </Button>
             </div>
         </div>

@@ -5,11 +5,13 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import i18n from '@dhis2/d2-i18n';
+import Button from '@material-ui/core/Button';
 import RelativePeriodsGenerator from './utils/RelativePeriodsGenerator';
 import PeriodsList from './PeriodsList';
+import styles from './styles/PeriodListItem.style';
 
 export const defaultState = {
-    periodType: 'Weeks',
+    periodType: 'Months',
 };
 
 class RelativePeriods extends Component {
@@ -37,10 +39,15 @@ class RelativePeriods extends Component {
         return generator.generatePeriods();
     };
 
+    selectAll = () => {
+        this.props.addSelectedPeriods(this.props.items);
+        this.props.setOfferedPeriods([]);
+    };
+
     renderOptions = () => (
         <div className="options-area">
             <FormControl className="form-control period-type">
-                <InputLabel className="input-label" htmlFor="period-type">
+                <InputLabel style={styles.inputLabel} className="input-label" htmlFor="period-type">
                     {i18n.t('Period type')}
                 </InputLabel>
                 <Select
@@ -70,6 +77,11 @@ class RelativePeriods extends Component {
                     onDoubleClick={this.props.onDoubleClick}
                     listClassName={'periods-list-offered'}
                 />
+                <div style={{ textAlign: 'center' }}>
+                    <Button onClick={this.selectAll}>
+                        {i18n.t('Select all')}
+                    </Button>
+                </div>
             </div>
         );
     };
@@ -78,6 +90,7 @@ class RelativePeriods extends Component {
 RelativePeriods.propTypes = {
     items: PropTypes.array.isRequired,
     setOfferedPeriods: PropTypes.func.isRequired,
+    addSelectedPeriods: PropTypes.func.isRequired,
     onDoubleClick: PropTypes.func.isRequired,
     onPeriodClick: PropTypes.func.isRequired,
 };
