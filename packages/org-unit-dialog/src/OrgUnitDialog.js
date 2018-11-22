@@ -28,6 +28,7 @@ class OrgUnitDialog extends React.PureComponent {
                     userOrgUnits={this.props.userOrgUnits}
                     onLevelChange={this.props.onLevelChange}
                     onGroupChange={this.props.onGroupChange}
+                    onDeselectAllClick={this.props.onDeselectAllClick}
                     level={this.props.level}
                     group={this.props.group}
                     levelOptions={this.props.levelOptions}
@@ -103,6 +104,11 @@ OrgUnitDialog.propTypes = {
     * Setter for group multiselect value
     */
     onGroupChange: PropTypes.func.isRequired,
+
+    /**
+     * On deselect all click handler
+     */
+    onDeselectAllClick: PropTypes.func.isRequired,
 
     /**
     * Callback handler for selecting orgunit

@@ -25,6 +25,7 @@ class OrgUnitSelector extends Component {
         // if props.selected.length changed by more than 1, then another analytic object was selected
         if (Math.abs(prevProps.selected.length - this.props.selected.length) > 1) {
             // In this case refresh expanded org units
+            // eslint-disable-next-line
             this.setState({
                 initiallyExpanded: this.props.selected.map(ou => removeLastPathSegment(ou.path)),
             });
@@ -43,6 +44,7 @@ class OrgUnitSelector extends Component {
                     counter += 1;
 
                     if (counter > 1) {
+                        // eslint-disable-next-line
                         this.setState({
                             initiallyExpanded: this.props.selected.map(ou => removeLastPathSegment(ou.path)),
                         });
@@ -99,49 +101,70 @@ class OrgUnitSelector extends Component {
     };
 
     renderOptionsPanel = () => (
-        <Grid
-            spacing={8}
-            style={styles.footer.index}
-            container
-        >
-            <Grid item xs={4}>
-                <FormControl style={{ width: '100%' }}>
-                    <InputLabel htmlFor="level-select">{i18n.t('Level')}</InputLabel>
-                    <Select
-                        value={this.props.level}
-                        onChange={this.props.onLevelChange}
-                        input={<Input id="level-select" />}
-                        renderValue={this.renderLevelOptions}
-                        disabled={this.props.userOrgUnits.length > 0}
-                        multiple
-                        fullWidth
-                    >
-                        {this.props.levelOptions.map(option => (
-                            <MenuItem key={option.id} value={option.id}>{option.displayName}</MenuItem>
-                        ))}
-                    </Select>
-                </FormControl>
+        <div style={styles.footer.index}>
+            <div style={styles.footer.tooltipContainer}>
+                {this.props.selected.length > 0 && (
+                    <div style={styles.footer.tooltip}>
+                        {this.props.selected.length} selected.
+                        <a
+                            onClick={this.props.onDeselectAllClick}
+                            style={styles.footer.tooltip.link}
+                            // eslint-disable-next-line
+                            href="javascript:void(0)"
+                        >
+                            Deselect all
+                        </a>
+                    </div>
+                )}
+            </div>
+            <Grid style={styles.footer.gridContainer} container>
+                <Grid
+                    item
+                    xs={4}
+                    style={styles.footer.gridContainer.gridItem}
+                >
+                    <FormControl style={{ width: '100%' }}>
+                        <InputLabel htmlFor="level-select">{i18n.t('Level')}</InputLabel>
+                        <Select
+                            value={this.props.level}
+                            onChange={this.props.onLevelChange}
+                            input={<Input id="level-select" />}
+                            renderValue={this.renderLevelOptions}
+                            disabled={this.props.userOrgUnits.length > 0}
+                            fullWidth
+                            multiple
+                        >
+                            {this.props.levelOptions.map(option => (
+                                <MenuItem key={option.id} value={option.id}>{option.displayName}</MenuItem>
+                            ))}
+                        </Select>
+                    </FormControl>
+                </Grid>
+                <Grid
+                    item
+                    xs={4}
+                    style={styles.footer.gridContainer.gridItem}
+                >
+                    <FormControl style={{ width: '100%' }}>
+                        <InputLabel htmlFor="group">{i18n.t('Group')}</InputLabel>
+                        <Select
+                            value={this.props.group}
+                            onChange={this.props.onGroupChange}
+                            input={<Input name="group" id="group" />}
+                            renderValue={this.renderGroupOptions}
+                            disabled={this.props.userOrgUnits.length > 0}
+                            multiple
+                            displayEmpty
+                            fullWidth
+                        >
+                            {this.props.groupOptions.map(option => (
+                                <MenuItem key={option.id} value={option.id}>{option.displayName}</MenuItem>
+                            ))}
+                        </Select>
+                    </FormControl>
+                </Grid>
             </Grid>
-            <Grid item xs={4}>
-                <FormControl style={{ width: '100%' }}>
-                    <InputLabel htmlFor="group">{i18n.t('Group')}</InputLabel>
-                    <Select
-                        value={this.props.group}
-                        onChange={this.props.onGroupChange}
-                        input={<Input name="group" id="group" />}
-                        renderValue={this.renderGroupOptions}
-                        disabled={this.props.userOrgUnits.length > 0}
-                        multiple
-                        displayEmpty
-                        fullWidth
-                    >
-                        {this.props.groupOptions.map(option => (
-                            <MenuItem key={option.id} value={option.id}>{option.displayName}</MenuItem>
-                        ))}
-                    </Select>
-                </FormControl>
-            </Grid>
-        </Grid>
+        </div>
     );
 
     render = () => (
@@ -222,6 +245,11 @@ OrgUnitSelector.propTypes = {
      * Setter for group multiselect value
      */
     onGroupChange: PropTypes.func.isRequired,
+
+    /**
+     * On deselect all click handler
+     */
+    onDeselectAllClick: PropTypes.func.isRequired,
 
     /**
      * Callback handler for selecting orgunit

@@ -1,6 +1,7 @@
 export default {
     orgUnitsContainer: {
         border: '1px solid #dedede',
+        position: 'relative',
     },
     scrollableContainer: {
         index: {
@@ -86,6 +87,34 @@ export default {
     footer: {
         index: {
             marginTop: 10,
+            width: '100%',
+            position: 'relative',
+        },
+
+        tooltipContainer: {
+            textAlign: 'center',
+            position: 'absolute',
+            top: -55,
+            width: '100%',
+        },
+
+        tooltip: {
+            display: 'inline-block',
+            borderRadius: 3,
+            background: '#535353',
+            padding: 10,
+            color: '#fff',
+
+            link: {
+                marginLeft: 5,
+                color: '#fff',
+            },
+        },
+
+        gridContainer: {
+            gridItem: {
+                marginRight: 15,
+            },
         },
     },
 };
