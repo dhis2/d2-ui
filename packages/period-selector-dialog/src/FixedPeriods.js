@@ -32,7 +32,10 @@ class FixedPeriods extends Component {
     }
 
     componentDidMount = () => {
-        this.props.setOfferedPeriods(this.generatePeriods(this.state.periodType, this.state.year));
+        const periods = this.generatePeriods(this.state.periodType, this.state.year);
+        const selectedIds = this.props.selectedItems.map(period => period.id);
+
+        this.props.setOfferedPeriods(periods.filter(period => !selectedIds.includes(period.id)));
     };
 
     onPeriodTypeChange = (event) => {
@@ -205,6 +208,7 @@ class FixedPeriods extends Component {
 
 FixedPeriods.propTypes = {
     items: PropTypes.array.isRequired,
+    selectedItems: PropTypes.array.isRequired,
     onDoubleClick: PropTypes.func.isRequired,
     onPeriodClick: PropTypes.func.isRequired,
     setOfferedPeriods: PropTypes.func.isRequired,

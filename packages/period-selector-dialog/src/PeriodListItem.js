@@ -27,7 +27,6 @@ RemoveItemButton.propTypes = {
 class PeriodListItem extends Component {
     state = { isHovering: false };
 
-
     onPeriodClick = (event) => {
         this.props.onPeriodClick(this.props.period, this.props.index, event.shiftKey, event.metaKey);
     };
@@ -40,7 +39,6 @@ class PeriodListItem extends Component {
         event.stopPropagation();
         this.props.onRemovePeriodClick(this.props.period);
     };
-
 
     isOfferedList = () => this.props.listClassName === OFFERED_LIST;
 
@@ -89,7 +87,12 @@ class PeriodListItem extends Component {
                     className={className}
                 >
                     {Icon}
-                    <span style={this.props.period.selected ? styles.higlightedText : {}} className="list-text">{this.props.period.name}</span>
+                    <span
+                        style={this.props.period.selected ? styles.higlightedText : {}}
+                        className="list-text"
+                    >
+                        {this.props.period.name}
+                    </span>
                     {RemoveButton}
                 </div>
             </li>

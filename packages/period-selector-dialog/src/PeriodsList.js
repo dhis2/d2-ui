@@ -5,16 +5,16 @@ import PeriodListItem from './PeriodListItem';
 const PeriodsList = (props) => {
     const { items, ...remaindingProps } = props;
 
-    const ListItems = props.items.map((period, index) =>
-        (<PeriodListItem
+    const ListItems = items.map((period, index) => (
+        <PeriodListItem
             period={period}
             index={index}
             key={period.id}
             {...remaindingProps}
-        />),
-    );
+        />
+    ));
 
-    return <ul className={remaindingProps.listClassName}> {ListItems} </ul>;
+    return <ul className={remaindingProps.listClassName}>{ListItems}</ul>;
 };
 
 PeriodsList.propTypes = {
