@@ -9,7 +9,7 @@ export const colors = {
     accentSecondaryDark: '#004C40',
     accentSecondaryLight: '#48A999',
     accentSecondaryLightest: '#B2DFDB',
-    accentSecondaryTransparent: '#D9ECEB',
+    accentSecondaryBackground: '#D9ECEB',
 
     black: '#000000',
     greyBlack: '#494949',
@@ -23,12 +23,6 @@ export const colors = {
     warning: '#F19C02',
     positive: '#3D9305',
     info: '#EAF4FF',
-
-    // TODO remove these?
-    paleGrey: '#FAFAFA',
-    lightGrey: '#F5F5F5',
-    charcoalGrey: '#CCCCCC',
-    blue: '#004BA0',
 };
 
 export const palette = {
@@ -153,10 +147,10 @@ export const theme = {
                 paddingBottom: spacingUnit,
                 fontSize: '15px',
                 '&$selected': {
-                    backgroundColor: colors.accentSecondaryTransparent,
+                    backgroundColor: colors.accentSecondaryBackground,
                 },
                 '&:hover': {
-                    backgroundColor: colors.lightGrey,
+                    backgroundColor: '#FAFAFA', // TODO: Make a theme color
                 },
                 [childSelectorMuiTypography]: {
                     fontSize: 'inherit',
