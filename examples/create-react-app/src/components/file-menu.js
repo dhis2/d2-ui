@@ -53,6 +53,7 @@ export default class FileMenuExample extends React.Component {
                 onWriteInterpretation={this.onFileMenuAction('Write interpretation')}
                 onDelete={this.onFileMenuAction('Delete')}
                 onError={this.onFileMenuError}
+                dialogMaxWidth="lg"
             />
             <Snackbar
                 open={this.state.snackbar.open}

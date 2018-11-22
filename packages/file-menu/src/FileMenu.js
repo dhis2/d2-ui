@@ -40,13 +40,13 @@ export class FileMenu extends Component {
         }
     };
 
-    componentDidUpdate = prevProps => {
+    componentDidUpdate = (prevProps) => {
         if (this.props.fileId && prevProps.fileId !== this.props.fileId) {
             this.setFileModel(this.props.fileId);
         }
     };
 
-    setFileModel = async id => {
+    setFileModel = async (id) => {
         const model = await this.props.d2.models[this.props.fileType].get(id);
         this.setState({ fileModel: model });
     };
@@ -55,7 +55,7 @@ export class FileMenu extends Component {
         this.setState({ fileModel: null });
     };
 
-    toggleMenu = event => {
+    toggleMenu = (event) => {
         this.setState({
             menuIsOpen: !this.state.menuIsOpen,
             anchorEl: this.state.menuIsOpen ? null : event.currentTarget,
@@ -69,7 +69,7 @@ export class FileMenu extends Component {
         });
     };
 
-    onOpen = id => {
+    onOpen = (id) => {
         this.setFileModel(id);
         this.setState({ refreshDialogData: false });
 
@@ -97,7 +97,7 @@ export class FileMenu extends Component {
         this.props.onNew();
     };
 
-    onDelete = id => {
+    onDelete = (id) => {
         if (this.state.fileModel.id === id) {
             this.clearFileModel();
             this.setState({ refreshDialogData: true });
@@ -108,7 +108,7 @@ export class FileMenu extends Component {
         }
     };
 
-    onAction = (callback, refreshDialogData) => args => {
+    onAction = (callback, refreshDialogData) => (args) => {
         this.closeMenu();
 
         if (refreshDialogData) {
@@ -121,7 +121,7 @@ export class FileMenu extends Component {
     };
 
     render() {
-        const { classes, fileType, onSave, onSaveAs, onTranslate, onShare, onError } = this.props;
+        const { classes, fileType, onSave, onSaveAs, onTranslate, onShare, onError, dialogMaxWidth } = this.props;
 
         return (
             <Fragment>
@@ -136,7 +136,7 @@ export class FileMenu extends Component {
                     anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
                     getContentAnchorEl={null}
                 >
-                    <NewMenuItem enabled={true} onNew={this.onNew} />
+                    <NewMenuItem enabled onNew={this.onNew} />
                     <Divider light />
 
                     <OpenMenuItem
@@ -147,13 +147,14 @@ export class FileMenu extends Component {
                         onClose={this.onAction()}
                         onRename={this.onRename}
                         onDelete={this.onDelete}
+                        dialogMaxWidth={dialogMaxWidth}
                     />
 
                     <Divider />
                     <SaveMenuItem
                         enabled={Boolean(
                             !this.state.fileModel ||
-                                (this.state.fileModel && this.state.fileModel.access.update)
+                                (this.state.fileModel && this.state.fileModel.access.update),
                         )}
                         fileType={fileType}
                         fileModel={this.state.fileModel}
@@ -171,7 +172,7 @@ export class FileMenu extends Component {
                     <Divider />
                     <RenameMenuItem
                         enabled={Boolean(
-                            this.state.fileModel && this.state.fileModel.access.update
+                            this.state.fileModel && this.state.fileModel.access.update,
                         )}
                         fileType={fileType}
                         fileModel={this.state.fileModel}
@@ -181,7 +182,7 @@ export class FileMenu extends Component {
                     />
                     <TranslateMenuItem
                         enabled={Boolean(
-                            this.state.fileModel && this.state.fileModel.access.update
+                            this.state.fileModel && this.state.fileModel.access.update,
                         )}
                         fileModel={this.state.fileModel}
                         onTranslate={this.onAction(onTranslate)}
@@ -191,7 +192,7 @@ export class FileMenu extends Component {
                     <Divider />
                     <ShareMenuItem
                         enabled={Boolean(
-                            this.state.fileModel && this.state.fileModel.access.manage
+                            this.state.fileModel && this.state.fileModel.access.manage,
                         )}
                         fileType={fileType}
                         fileModel={this.state.fileModel}
@@ -207,7 +208,7 @@ export class FileMenu extends Component {
                     <Divider />
                     <DeleteMenuItem
                         enabled={Boolean(
-                            this.state.fileModel && this.state.fileModel.access.delete
+                            this.state.fileModel && this.state.fileModel.access.delete,
                         )}
                         fileType={fileType}
                         fileModel={this.state.fileModel}
@@ -226,6 +227,7 @@ FileMenu.childContextTypes = {
 };
 
 FileMenu.defaultProps = {
+    dialogMaxWidth: 'md',
     d2: null,
     fileType: 'chart',
     fileId: null,
@@ -241,6 +243,7 @@ FileMenu.defaultProps = {
 };
 
 FileMenu.propTypes = {
+    dialogMaxWidth: PropTypes.oneOf(['sm', 'md', 'lg']),
     d2: PropTypes.object,
     fileType: PropTypes.oneOf(['chart', 'eventChart', 'reportTable', 'eventReport', 'map']),
     fileId: PropTypes.string,
