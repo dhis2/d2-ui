@@ -165,7 +165,7 @@ export const theme = {
         },
         MuiListItem: {
             button: {
-                transition: 'none',
+                transitionDuration: '0s',
             },
         },
     },
