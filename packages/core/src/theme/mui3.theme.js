@@ -9,6 +9,7 @@ export const colors = {
     accentSecondaryDark: '#004C40',
     accentSecondaryLight: '#48A999',
     accentSecondaryLightest: '#B2DFDB',
+    accentSecondaryTransparent: '#D9ECEB',
 
     black: '#000000',
     greyBlack: '#494949',
@@ -22,6 +23,12 @@ export const colors = {
     warning: '#F19C02',
     positive: '#3D9305',
     info: '#EAF4FF',
+
+    // TODO remove these?
+    paleGrey: '#FAFAFA',
+    lightGrey: '#F5F5F5',
+    charcoalGrey: '#CCCCCC',
+    blue: '#004BA0',
 };
 
 export const palette = {
@@ -74,7 +81,8 @@ export const palette = {
 };
 
 const spacingUnit = 8;
-
+const childSelectorMuiTypography =
+    '& span[class^="MuiTypography"], & span[class*=" MuiTypography"]';
 export const theme = {
     colors,
     palette,
@@ -124,6 +132,40 @@ export const theme = {
                 '&> *:last-child': {
                     marginRight: 0,
                 },
+            },
+        },
+        MuiInput: {
+            underline: {
+                '&:after': {
+                    borderBottom: '1px solid #aaa',
+                },
+                '&:before': {
+                    borderBottom: `1px solid ${colors.greyLight}`,
+                },
+                '&:hover:not($disabled):not($focused):not($error):before': {
+                    borderBottom: `1px solid ${colors.greyLight}`,
+                },
+            },
+        },
+        MuiMenuItem: {
+            root: {
+                paddingTop: spacingUnit,
+                paddingBottom: spacingUnit,
+                fontSize: '15px',
+                '&$selected': {
+                    backgroundColor: colors.accentSecondaryTransparent,
+                },
+                '&:hover': {
+                    backgroundColor: colors.lightGrey,
+                },
+                [childSelectorMuiTypography]: {
+                    fontSize: 'inherit',
+                },
+            },
+        },
+        MuiListItem: {
+            button: {
+                transition: 'none',
             },
         },
     },
