@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Link, ActionSeparator } from './misc';
 import i18n from '@dhis2/d2-i18n';
@@ -51,7 +51,7 @@ class CommentTextarea extends React.Component {
         const postText = onCancel ? i18n.t('OK') : i18n.t('Post comment');
 
         return (
-            <div>
+            <Fragment>
                 <MentionsWrapper d2={d2} onUserSelect={this.onChange}>
                     <textarea
                         ref={this.setTextareaRef}
@@ -71,7 +71,7 @@ class CommentTextarea extends React.Component {
                         <Link label={i18n.t('Cancel')} onClick={onCancel} />
                     </span>
                 )}
-            </div>
+            </Fragment>
         );
     }
 }

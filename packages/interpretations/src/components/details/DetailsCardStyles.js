@@ -43,6 +43,8 @@ export default {
     subscriberIcon: {
         float: 'right',
         top: 0,
-        right: 10,
+        right: 0,
+        padding: 8,
+        margin: 4,
     },
 };

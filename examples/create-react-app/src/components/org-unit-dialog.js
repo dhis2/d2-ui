@@ -153,7 +153,7 @@ export default class OrgUnitDialogExample extends Component {
             <div style={{ padding: 16 }}>
                 <Button
                     onClick={this.toggleDialog}
-                    variant="raised"
+                    variant="contained"
                 >
                     Select org units
                 </Button>
