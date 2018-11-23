@@ -20,13 +20,13 @@ const PeriodsList = (props) => {
 PeriodsList.propTypes = {
     items: PropTypes.array.isRequired,
     onPeriodClick: PropTypes.func.isRequired,
-    onDoubleClick: PropTypes.func,
+    onPeriodDoubleClick: PropTypes.func,
     onRemovePeriodClick: PropTypes.func,
     listClassName: PropTypes.string.isRequired,
 };
 
 PeriodsList.defaultProps = {
-    onDoubleClick: () => null,
+    onPeriodDoubleClick: () => null,
     onRemovePeriodClick: () => null,
 };
 

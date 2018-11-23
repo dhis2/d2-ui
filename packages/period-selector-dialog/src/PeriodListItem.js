@@ -31,8 +31,8 @@ class PeriodListItem extends Component {
         this.props.onPeriodClick(this.props.period, this.props.index, event.shiftKey, event.metaKey);
     };
 
-    onDoubleClick = () => {
-        this.props.onDoubleClick(this.props.period);
+    onPeriodDoubleClick = () => {
+        this.props.onPeriodDoubleClick(this.props.period);
     };
 
     onRemovePeriodClick = (event) => {
@@ -83,7 +83,7 @@ class PeriodListItem extends Component {
                     onMouseEnter={this.highlightItem}
                     onMouseLeave={this.removeHighlight}
                     onClick={this.onPeriodClick}
-                    onDoubleClick={this.onDoubleClick}
+                    onDoubleClick={this.onPeriodDoubleClick}
                     className={className}
                 >
                     {Icon}
@@ -104,7 +104,7 @@ PeriodListItem.propTypes = {
     period: PropTypes.object.isRequired,
     index: PropTypes.number.isRequired,
     onPeriodClick: PropTypes.func.isRequired,
-    onDoubleClick: PropTypes.func.isRequired,
+    onPeriodDoubleClick: PropTypes.func.isRequired,
     onRemovePeriodClick: PropTypes.func.isRequired,
     listClassName: PropTypes.string.isRequired,
 };
