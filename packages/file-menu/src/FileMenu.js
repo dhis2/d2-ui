@@ -258,7 +258,7 @@ FileMenu.propTypes = {
 const styles = theme => ({
     menuButton: {
         textTransform: 'none',
-        fontSize: '16px',
+        fontSize: 15,
         fontWeight: 400,
     },
 });
