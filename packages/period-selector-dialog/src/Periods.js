@@ -87,12 +87,20 @@ class Periods extends Component {
         this.props.addOfferedPeriods(removedPeriods);
     };
 
-    onDoubleClick = (selectedPeriod) => {
-        const itemToAdd = [selectedPeriod];
+    onOfferedPeriodDoubleClick = (period) => {
+        const itemToAdd = [period];
 
         this.props.onSelect(itemToAdd);
         this.props.addSelectedPeriods(itemToAdd);
         this.props.removeOfferedPeriods(itemToAdd);
+    };
+
+    onSelectedPeriodDoubleClick = (period) => {
+        const itemToAdd = [period];
+
+        this.props.onDeselect(itemToAdd);
+        this.props.removeSelectedPeriods(itemToAdd);
+        this.props.addOfferedPeriods(itemToAdd);
     };
 
     onRemovePeriod = (removedPeriod) => {
@@ -107,11 +115,6 @@ class Periods extends Component {
         this.props.onDeselect(removedPeriods);
         this.props.addOfferedPeriods(removedPeriods);
         this.props.setSelectedPeriods([]);
-    };
-
-    getOfferedPeriods = () => {
-        const selectedIds = this.props.selectedItems.map(item => item.id);
-        return this.props.offeredPeriods.periods.filter(item => !selectedIds.includes(item.id));
     };
 
     renderPeriodTypeButtons = () => (
@@ -141,7 +144,6 @@ class Periods extends Component {
     render = () => {
         const PeriodTypeButtons = this.renderPeriodTypeButtons();
         const SelectButtons = this.renderSelectButtons();
-        const unselectedItems = this.getOfferedPeriods();
 
         return (
             <div>
@@ -150,8 +152,8 @@ class Periods extends Component {
                     <div className="block options">
                         <OfferedPeriods
                             periodType={this.props.periodType}
-                            items={unselectedItems}
-                            onDoubleClick={this.onDoubleClick}
+                            items={this.props.offeredPeriods.periods}
+                            onPeriodDoubleClick={this.onOfferedPeriodDoubleClick}
                             onPeriodClick={this.props.toggleOfferedPeriod}
                             setOfferedPeriods={this.props.setOfferedPeriods}
                             addSelectedPeriods={this.props.addSelectedPeriods}
@@ -165,6 +167,7 @@ class Periods extends Component {
                         <SelectedPeriods
                             items={this.props.selectedPeriods.periods}
                             onClearAll={this.onClearAll}
+                            onPeriodDoubleClick={this.onSelectedPeriodDoubleClick}
                             onPeriodClick={this.props.toggleSelectedPeriod}
                             onRemovePeriodClick={this.onRemovePeriod}
                         />

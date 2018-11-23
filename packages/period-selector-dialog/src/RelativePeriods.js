@@ -39,7 +39,9 @@ class RelativePeriods extends Component {
 
     generatePeriods = (periodType) => {
         const generator = this.periodsGenerator.get(periodType);
-        return generator.generatePeriods();
+        const selectedIds = this.props.selectedItems.map(item => item.id);
+
+        return generator.generatePeriods().filter(item => !selectedIds.includes(item.id));
     };
 
     selectAll = () => {
@@ -77,7 +79,7 @@ class RelativePeriods extends Component {
                 <PeriodsList
                     items={this.props.items}
                     onPeriodClick={this.props.onPeriodClick}
-                    onDoubleClick={this.props.onDoubleClick}
+                    onPeriodDoubleClick={this.props.onPeriodDoubleClick}
                     listClassName={'periods-list-offered'}
                 />
                 <div style={{ textAlign: 'center' }}>
@@ -95,7 +97,7 @@ RelativePeriods.propTypes = {
     selectedItems: PropTypes.array.isRequired,
     setOfferedPeriods: PropTypes.func.isRequired,
     addSelectedPeriods: PropTypes.func.isRequired,
-    onDoubleClick: PropTypes.func.isRequired,
+    onPeriodDoubleClick: PropTypes.func.isRequired,
     onPeriodClick: PropTypes.func.isRequired,
 };
 

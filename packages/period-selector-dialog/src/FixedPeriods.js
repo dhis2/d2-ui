@@ -83,12 +83,15 @@ class FixedPeriods extends Component {
 
     generatePeriods = (periodType, year) => {
         const generator = this.periodsGenerator.get(periodType);
+        const selectedIds = this.props.selectedItems.map(item => item.id);
 
-        return generator.generatePeriods({
-            offset: year - (new Date()).getFullYear(),
-            filterFuturePeriods: false,
-            reversePeriods: false,
-        });
+        return generator
+            .generatePeriods({
+                offset: year - (new Date()).getFullYear(),
+                filterFuturePeriods: false,
+                reversePeriods: false,
+            })
+            .filter(period => !selectedIds.includes(period.id));
     };
 
     selectAll = () => {
@@ -192,7 +195,7 @@ class FixedPeriods extends Component {
                 {Options}
                 <PeriodsList
                     items={this.props.items}
-                    onDoubleClick={this.props.onDoubleClick}
+                    onPeriodDoubleClick={this.props.onPeriodDoubleClick}
                     onPeriodClick={this.props.onPeriodClick}
                     listClassName={'periods-list-offered'}
                 />
@@ -209,7 +212,7 @@ class FixedPeriods extends Component {
 FixedPeriods.propTypes = {
     items: PropTypes.array.isRequired,
     selectedItems: PropTypes.array.isRequired,
-    onDoubleClick: PropTypes.func.isRequired,
+    onPeriodDoubleClick: PropTypes.func.isRequired,
     onPeriodClick: PropTypes.func.isRequired,
     setOfferedPeriods: PropTypes.func.isRequired,
     addSelectedPeriods: PropTypes.func.isRequired,
