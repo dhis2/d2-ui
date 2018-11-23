@@ -31,7 +31,7 @@ class FavoritesDialog extends Component {
     }
 
     render() {
-        const { open, type, onFavoriteSelect, onRequestClose, refreshData, dialogMaxWidth } = this.props;
+        const { open, type, onFavoriteSelect, onRequestClose, refreshData } = this.props;
 
         return (
             <Provider store={store}>
@@ -41,7 +41,6 @@ class FavoritesDialog extends Component {
                     refreshData={refreshData}
                     onFavoriteSelect={onFavoriteSelect}
                     onRequestClose={onRequestClose}
-                    dialogMaxWidth={dialogMaxWidth}
                 />
             </Provider>
         );
@@ -49,7 +48,6 @@ class FavoritesDialog extends Component {
 }
 
 FavoritesDialog.defaultProps = {
-    dialogMaxWidth: 'md',
     refreshData: false,
 };
 
@@ -60,7 +58,6 @@ FavoritesDialog.propTypes = {
     d2: PropTypes.object.isRequired,
     onRequestClose: PropTypes.func.isRequired,
     onFavoriteSelect: PropTypes.func.isRequired,
-    dialogMaxWidth: PropTypes.string,
 };
 
 FavoritesDialog.childContextTypes = {

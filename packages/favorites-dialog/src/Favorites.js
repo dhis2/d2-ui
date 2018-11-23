@@ -21,7 +21,7 @@ class Favorites extends Component {
     }
 
     render() {
-        const { open, onRequestClose, onFavoriteSelect, dialogMaxWidth } = this.props;
+        const { open, onRequestClose, onFavoriteSelect } = this.props;
 
         const handleOnFavoriteSelect = (id) => {
             onFavoriteSelect(id);
@@ -30,7 +30,7 @@ class Favorites extends Component {
         };
 
         return (
-            <Dialog open={open} onClose={onRequestClose} disableEnforceFocus maxWidth={dialogMaxWidth}>
+            <Dialog open={open} onClose={onRequestClose} disableEnforceFocus maxWidth="lg">
                 <DialogContent>
                     <EnhancedToolbar />
                     <EnhancedTable onFavoriteSelect={handleOnFavoriteSelect} />
@@ -47,11 +47,9 @@ Favorites.propTypes = {
     open: PropTypes.bool.isRequired,
     onRequestClose: PropTypes.func.isRequired,
     onFavoriteSelect: PropTypes.func.isRequired,
-    dialogMaxWidth: PropTypes.string.isRequired,
     dataIsLoaded: PropTypes.bool.isRequired,
     refreshData: PropTypes.bool.isRequired,
     fetchData: PropTypes.func.isRequired,
-
 };
 
 const mapStateToProps = state => ({

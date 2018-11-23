@@ -40,7 +40,7 @@ class SaveAsDialog extends Component {
         this.props.onRequestClose();
     };
 
-    handleChange = field => event => {
+    handleChange = field => (event) => {
         event.preventDefault();
 
         this.setState({
@@ -48,7 +48,7 @@ class SaveAsDialog extends Component {
         });
     };
 
-    handleSubmit = event => {
+    handleSubmit = (event) => {
         event.preventDefault();
 
         if (this.props.onRequestSaveAs) {

@@ -35,7 +35,7 @@ class OpenMenuItem extends Component {
     };
 
     render() {
-        const { refreshDialogData, fileType, onRename, onDelete, dialogMaxWidth } = this.props;
+        const { refreshDialogData, fileType, onRename, onDelete } = this.props;
 
         return (
             <Fragment>
@@ -54,7 +54,6 @@ class OpenMenuItem extends Component {
                     onFavoriteSelect={this.onOpen}
                     onFavoriteRename={onRename}
                     onFavoriteDelete={onDelete}
-                    dialogMaxWidth={dialogMaxWidth}
                 />
             </Fragment>
         );
@@ -72,7 +71,6 @@ OpenMenuItem.defaultProps = {
     onClose: Function.prototype,
     onRename: Function.prototype,
     onDelete: Function.prototype,
-    dialogMaxWidth: 'md',
 };
 
 OpenMenuItem.propTypes = {
@@ -82,7 +80,6 @@ OpenMenuItem.propTypes = {
     onClose: PropTypes.func,
     onRename: PropTypes.func,
     onDelete: PropTypes.func,
-    dialogMaxWidth: PropTypes.oneOf(['sm', 'md', 'lg']),
 };
 
 export default OpenMenuItem;

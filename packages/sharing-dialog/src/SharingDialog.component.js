@@ -223,7 +223,7 @@ class SharingDialog extends React.Component {
                     autoHideDuration={3000}
                 />
                 <Dialog
-                    PaperProps={{ style: { width: '75%', maxWidth: '768px' } }}
+                    maxWidth="lg"
                     onClose={this.closeDialog}
                     {...this.muiDialogProps()}
                 >

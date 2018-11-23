@@ -46,29 +46,6 @@ export class FileMenu extends Component {
         }
     };
 
-    setFileModel = async (id) => {
-        const model = await this.props.d2.models[this.props.fileType].get(id);
-        this.setState({ fileModel: model });
-    };
-
-    clearFileModel = () => {
-        this.setState({ fileModel: null });
-    };
-
-    toggleMenu = (event) => {
-        this.setState({
-            menuIsOpen: !this.state.menuIsOpen,
-            anchorEl: this.state.menuIsOpen ? null : event.currentTarget,
-        });
-    };
-
-    closeMenu = () => {
-        this.setState({
-            menuIsOpen: false,
-            anchorEl: null,
-        });
-    };
-
     onOpen = (id) => {
         this.setFileModel(id);
         this.setState({ refreshDialogData: false });
@@ -120,8 +97,31 @@ export class FileMenu extends Component {
         }
     };
 
+    setFileModel = async (id) => {
+        const model = await this.props.d2.models[this.props.fileType].get(id);
+        this.setState({ fileModel: model });
+    };
+
+    clearFileModel = () => {
+        this.setState({ fileModel: null });
+    };
+
+    toggleMenu = (event) => {
+        this.setState({
+            menuIsOpen: !this.state.menuIsOpen,
+            anchorEl: this.state.menuIsOpen ? null : event.currentTarget,
+        });
+    };
+
+    closeMenu = () => {
+        this.setState({
+            menuIsOpen: false,
+            anchorEl: null,
+        });
+    };
+
     render() {
-        const { classes, fileType, onSave, onSaveAs, onTranslate, onShare, onError, dialogMaxWidth } = this.props;
+        const { classes, fileType, onSave, onSaveAs, onTranslate, onShare, onError } = this.props;
 
         return (
             <Fragment>
@@ -147,7 +147,6 @@ export class FileMenu extends Component {
                         onClose={this.onAction()}
                         onRename={this.onRename}
                         onDelete={this.onDelete}
-                        dialogMaxWidth={dialogMaxWidth}
                     />
 
                     <Divider />
@@ -227,7 +226,6 @@ FileMenu.childContextTypes = {
 };
 
 FileMenu.defaultProps = {
-    dialogMaxWidth: 'md',
     d2: null,
     fileType: 'chart',
     fileId: null,
@@ -243,7 +241,6 @@ FileMenu.defaultProps = {
 };
 
 FileMenu.propTypes = {
-    dialogMaxWidth: PropTypes.oneOf(['sm', 'md', 'lg']),
     d2: PropTypes.object,
     fileType: PropTypes.oneOf(['chart', 'eventChart', 'reportTable', 'eventReport', 'map']),
     fileId: PropTypes.string,

@@ -26,7 +26,7 @@ class TranslateMenuItem extends Component {
         }
     };
 
-    onDialogReturn = success => args => {
+    onDialogReturn = success => (args) => {
         const { onTranslate, onTranslateError } = this.props;
 
         this.toggleTranslationDialog();
