@@ -136,7 +136,6 @@ export default class OrgUnitSelectExample extends React.Component {
 
         const state = this.state;
         if (!state.levels || !state.selected) {
-            console.info('What is state?', state);
             return null;
         }
 
