@@ -9,9 +9,9 @@
     "coverage": "jest --coverage",
     "lint": "eslint src/",
     "prebuild": "rimraf ./build/*",
-    "build": "npm run build:es && npm run build:sass",
+    "build": "npm run build:sass && npm run build:es",
     "build:es": "cross-env BABEL_ENV=es babel src --out-dir build --ignore spec.js",
-    "build:sass": "node-sass ./scss --output ./build/css",
+    "build:sass": "cross-env mkdirp ./build && node-sass ./scss --output ./build/css",
     "watch": "npm run build --  --watch",
     "test-ci": "jest --config=../../jest.config.js packages/core"
   },
@@ -32,5 +32,8 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "0.0.0-PLACEHOLDER"
+  "version": "0.0.0-PLACEHOLDER",
+  "devDependencies": {
+    "mkdirp": "^0.5.1"
+  }
 }
