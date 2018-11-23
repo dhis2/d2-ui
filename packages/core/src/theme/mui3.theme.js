@@ -94,6 +94,23 @@ export const theme = {
                 backgroundColor: palette.divider, // No light dividers for now
             },
         },
+        MuiDialog: {
+            paperWidthSm: {
+                minWidth: 400,
+                width: 400,
+                maxWidth: 400,
+            },
+            paperWidthMd: {
+                minWidth: 600,
+                width: 600,
+                maxWidth: 600,
+            },
+            paperWidthLg: {
+                minWidth: 800,
+                width: 800,
+                maxWidth: 800,
+            },
+        },
         MuiDialogTitle: {
             root: {
                 fontSize: 16,
@@ -125,6 +142,13 @@ export const theme = {
 
                 '&> *:last-child': {
                     marginRight: 0,
+                },
+            },
+        },
+        MuiSelect: {
+            select: {
+                '&:focus': {
+                    background: '$labelcolor',
                 },
             },
         },

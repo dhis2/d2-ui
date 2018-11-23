@@ -45,7 +45,11 @@ class TranslationDialog extends Component {
 
     render() {
         return (
-            <Dialog onClose={this.closeDialog} PaperProps={{ style: { width: '75%', maxWidth: '768px' } }} {...this.muiDialogProps()}>
+            <Dialog
+                onClose={this.closeDialog}
+                maxWidth="lg"
+                {...this.muiDialogProps()}
+            >
                 <DialogTitle id="form-dialog-title">{this.i18n.getTranslation('translation_dialog_title')}</DialogTitle>
                 <TranslationFormWithData
                     model={this.props.objectToTranslate}
@@ -58,6 +62,10 @@ class TranslationDialog extends Component {
         );
     }
 }
+
+TranslationDialog.defaultProps = {
+    fieldsToTranslate: [],
+};
 
 TranslationDialog.propTypes = {
     objectToTranslate: PropTypes.shape({

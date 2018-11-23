@@ -1,2 +1,3 @@
-import FavoritesDialog from './FavoritesDialog'
-export default FavoritesDialog
+import FavoritesDialog from './FavoritesDialog';
+
+export default FavoritesDialog;

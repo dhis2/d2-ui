@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import Dialog from '@material-ui/core/Dialog';
@@ -47,7 +47,7 @@ const GetLinkDialog = (props, context) => {
     const { open, fileType, fileModel, onRequestClose } = props;
 
     return (
-        <Dialog open={open} onClose={onRequestClose}>
+        <Dialog open={open} onClose={onRequestClose} maxWidth="md">
             <DialogContent>
                 <DialogContentText>
                     {i18n.t('Open in this app')}

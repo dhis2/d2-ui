@@ -40,7 +40,7 @@ class RenameDialog extends Component {
         this.props.onRequestClose();
     };
 
-    handleChange = field => event => {
+    handleChange = field => (event) => {
         event.preventDefault();
 
         this.setState({
@@ -48,7 +48,7 @@ class RenameDialog extends Component {
         });
     };
 
-    handleSubmit = async event => {
+    handleSubmit = async (event) => {
         event.preventDefault();
 
         const { fileModel, onRequestRename, onRequestRenameError } = this.props;
@@ -68,7 +68,7 @@ class RenameDialog extends Component {
                 if (payload.name) {
                     const response = await this.context.d2.Api.getApi().patch(
                         fileModel.href,
-                        payload
+                        payload,
                     );
 
                     if (response.status === 'ERROR') {
