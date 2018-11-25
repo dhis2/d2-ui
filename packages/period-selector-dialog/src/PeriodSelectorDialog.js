@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { withStyles } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -9,12 +8,6 @@ import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
 import i18n from '@dhis2/d2-i18n';
 import PeriodSelector from './PeriodSelector';
-
-const styles = {
-    dialogContent: {
-        overflow: 'hidden', // TODO: Reflow DOM or enforce minimum dialog sizing rather than hiding important UI elements on small screens
-    },
-};
 
 class PeriodSelectorDialog extends React.Component {
     onCloseClick = () => {
@@ -48,7 +41,7 @@ class PeriodSelectorDialog extends React.Component {
                 maxWidth={maxWidth}
             >
                 <DialogTitle>{i18n.t('Period')}</DialogTitle>
-                <DialogContent className={classes.dialogContent}>
+                <DialogContent>
                     <PeriodSelector {...remaindingProps} />
                 </DialogContent>
                 <DialogActions>
@@ -84,4 +77,4 @@ PeriodSelectorDialog.propTypes = {
     selectedItems: PropTypes.array,
 };
 
-export default withStyles(styles)(PeriodSelectorDialog);
+export default PeriodSelectorDialog;

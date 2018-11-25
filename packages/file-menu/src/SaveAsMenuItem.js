@@ -26,7 +26,7 @@ class SaveAsMenuItem extends Component {
         }
     };
 
-    onSaveAs = form => {
+    onSaveAs = (form) => {
         this.toggleSaveAsDialog();
 
         if (this.props.onSaveAs) {

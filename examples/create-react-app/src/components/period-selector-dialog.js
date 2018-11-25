@@ -57,31 +57,35 @@ class PeriodSelectorDialogExample extends Component {
         });
     };
 
-    render = () => (
-        <MuiThemeProvider muiTheme={getMuiTheme()}>
-            <div>
-                <div style={{ padding: 16 }}>
-                    <RaisedButton
-                        onClick={this.toggleDialog}
-                        label="Select periods"
+    render() {
+        return (
+            <MuiThemeProvider muiTheme={getMuiTheme()}>
+                <div>
+                    <div style={{ padding: 16 }}>
+                        <RaisedButton
+                            onClick={this.toggleDialog}
+                            label="Select periods"
+                        />
+                    </div>
+                    <PeriodSelectorDialog
+                        d2={this.props.d2}
+                        open={this.state.dialogOpened}
+                        onClose={this.onClose}
+                        onUpdate={this.onUpdate}
+                        selectedItems={this.state.selectedPeriods}
+                        maxWidth="lg"
+                    />
+                    <Snackbar
+                        open={this.state.snackbar.open}
+                        message={this.state.snackbar.message}
+                        autoHideDuration={4000}
+                        onClose={this.onSnackbarClose}
                     />
                 </div>
-                <PeriodSelectorDialog
-                    d2={this.props.d2}
-                    open={this.state.dialogOpened}
-                    onClose={this.onClose}
-                    onUpdate={this.onUpdate}
-                    selectedItems={this.state.selectedPeriods}
-                />
-                <Snackbar
-                    open={this.state.snackbar.open}
-                    message={this.state.snackbar.message}
-                    autoHideDuration={4000}
-                    onClose={this.onSnackbarClose}
-                />
-            </div>
-        </MuiThemeProvider>
-    );
+            </MuiThemeProvider>
+
+        );
+    }
 }
 
 PeriodSelectorDialogExample.propTypes = {
