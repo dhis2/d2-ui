@@ -2,7 +2,7 @@
     user-select: none;
     display: flex;
     flex-flow: row nowrap;
-    height: 498px;
+    height: 449px;
     padding-top: 18px;
 }
 
@@ -59,10 +59,8 @@ button.nav-button {
     border-bottom: 1px solid #e8e8e8;
 }
 
-.periods-list-offered .periods-list-selected {
-    overflow: auto;
-    padding: 0px;
-    margin: 0px;
+.periods-list-offered, .periods-list-selected {
+    overflow-y: scroll;
 
 }
 .periods-list-offered {
@@ -70,7 +68,7 @@ button.nav-button {
 }
 
 .periods-list-selected {
-    height: calc(100% - 79px); /* sum of header and clear button with padding = 79px */
+    height: calc(100% - 71px);
 }
 
 .period-dimension-item {
@@ -102,15 +100,14 @@ button.nav-button {
 
 .subtitle-container {
     border-bottom: 1px solid #E0E0E0;
-    height: 42px;
+    height: 34px;
     display: flex;
 }
 
 .subtitle {
-    color: black;
     font-size: 15px;
     font-weight: 500;
-    padding: 10px 0px 0px 8px;
+    padding: 10px 0px 0px 10px;
 }
 
 .move-all-items-button {
@@ -122,7 +119,7 @@ button.nav-button {
     font-size: 14px;
  }
 
-.unselected-icon {
+.unselected-icon, .selected-icon,  .highlighted-icon{
     background-color: grey;
     min-height: 6px;
     min-width: 6px;
@@ -131,16 +128,10 @@ button.nav-button {
 
 .selected-icon {
     background-color: #00796B;
-    min-height: 6px;
-    min-width: 6px;
-    margin: 0px 5px;    
 }
 
 .highlighted-icon {
     background-color: white;
-    min-height: 6px;
-    min-width: 6px;
-    margin: 0px 5px;
 }
 
 .form-control-period-type { 
@@ -149,7 +140,7 @@ button.nav-button {
 }
 
 .form-control-year { 
-    width: 32%; 
+    width: 35%; 
 }
 
 .input-label {

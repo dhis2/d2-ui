@@ -29,6 +29,7 @@ const SelectButton = ({ onClick }) => (
     <IconButton
         variant="contained"
         onClick={onClick}
+        disableRipple
     >
         <ArrowForwardIcon style={styles.arrowIcon} />
     </IconButton>
@@ -42,6 +43,7 @@ const DeselectButton = ({ onClick }) => (
     <IconButton
         variant="contained"
         onClick={onClick}
+        disableRipple
     >
         <ArrowBackIcon style={styles.arrowIcon} />
     </IconButton>
