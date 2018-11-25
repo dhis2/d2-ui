@@ -11,7 +11,6 @@ import ArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import ArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import FixedPeriodsGenerator from './utils/FixedPeriodsGenerator';
 import PeriodsList from './PeriodsList';
-import styles from './styles/PeriodListItem.style';
 
 export const defaultState = {
     periodType: 'Monthly',
@@ -31,12 +30,12 @@ class FixedPeriods extends Component {
         this.state = defaultState;
     }
 
-    componentDidMount = () => {
+    componentDidMount() {
         const periods = this.generatePeriods(this.state.periodType, this.state.year);
         const selectedIds = this.props.selectedItems.map(period => period.id);
 
         this.props.setOfferedPeriods(periods.filter(period => !selectedIds.includes(period.id)));
-    };
+    }
 
     onPeriodTypeChange = (event) => {
         this.setState({
@@ -118,8 +117,8 @@ class FixedPeriods extends Component {
 
         return (
             <div className="options-area">
-                <FormControl className="form-control period-type">
-                    <InputLabel style={styles.inputLabel} className="input-label" htmlFor="period-type">
+                <FormControl className="form-control-period-type">
+                    <InputLabel className="input-label" htmlFor="period-type">
                         {i18n.t('Period type')}
                     </InputLabel>
                     <Select
@@ -134,8 +133,8 @@ class FixedPeriods extends Component {
                             )}
                     </Select>
                 </FormControl>
-                <FormControl className="form-control year">
-                    <InputLabel style={styles.inputLabel} className="input-label" htmlFor="year">
+                <FormControl className="form-control-year">
+                    <InputLabel className="input-label" htmlFor="year">
                         {i18n.t('Year')}
                     </InputLabel>
                     <Select
@@ -187,26 +186,26 @@ class FixedPeriods extends Component {
         );
     };
 
-    render = () => {
+    render() {
         const Options = this.renderOptions();
 
         return (
-            <div className="selector-area">
+            <div className="block-offered-periods">
                 {Options}
                 <PeriodsList
+                    className="periods-list-offered"
                     items={this.props.items}
                     onPeriodDoubleClick={this.props.onPeriodDoubleClick}
                     onPeriodClick={this.props.onPeriodClick}
-                    listClassName={'periods-list-offered'}
                 />
-                <div style={{ textAlign: 'center' }}>
+                <div className="move-all-items-button">
                     <Button onClick={this.selectAll}>
                         {i18n.t('Select all')}
                     </Button>
                 </div>
             </div>
         );
-    };
+    }
 }
 
 FixedPeriods.propTypes = {

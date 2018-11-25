@@ -1,18 +1,8 @@
 export default {
     removeItemButton: {
-        border: 'none',
-        outline: 'none',
-        background: 'none',
         padding: '0px',
         height: '18px',
         width: '18px',
-    },
-    arrowButton: {
-        padding: '0px',
-        borderRadius: '4px',
-        minWidth: '40px',
-        minHeight: '36px',
-        backgroundColor: 'white',
     },
     arrowIcon: {
         height: '20px',

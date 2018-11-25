@@ -8,7 +8,6 @@ import i18n from '@dhis2/d2-i18n';
 import Button from '@material-ui/core/Button';
 import RelativePeriodsGenerator from './utils/RelativePeriodsGenerator';
 import PeriodsList from './PeriodsList';
-import styles from './styles/PeriodListItem.style';
 
 export const defaultState = {
     periodType: 'Months',
@@ -22,12 +21,12 @@ class RelativePeriods extends Component {
         this.periodsGenerator = new RelativePeriodsGenerator();
     }
 
-    componentDidMount = () => {
+    componentDidMount() {
         const periods = this.generatePeriods(this.state.periodType);
         const selectedIds = this.props.selectedItems.map(period => period.id);
 
         this.props.setOfferedPeriods(periods.filter(period => !selectedIds.includes(period.id)));
-    };
+    }
 
     onPeriodTypeChange = (event) => {
         this.setState({
@@ -51,8 +50,8 @@ class RelativePeriods extends Component {
 
     renderOptions = () => (
         <div className="options-area">
-            <FormControl className="form-control period-type">
-                <InputLabel style={styles.inputLabel} className="input-label" htmlFor="period-type">
+            <FormControl className="form-control-period-type">
+                <InputLabel className="input-label" htmlFor="period-type">
                     {i18n.t('Period type')}
                 </InputLabel>
                 <Select
@@ -70,26 +69,26 @@ class RelativePeriods extends Component {
         </div>
     );
 
-    render = () => {
+    render() {
         const Options = this.renderOptions();
 
         return (
-            <div className="selector-area">
+            <div className="block-offered-periods">
                 {Options}
                 <PeriodsList
+                    className="periods-list-offered"
                     items={this.props.items}
                     onPeriodClick={this.props.onPeriodClick}
                     onPeriodDoubleClick={this.props.onPeriodDoubleClick}
-                    listClassName={'periods-list-offered'}
                 />
-                <div style={{ textAlign: 'center' }}>
+                <div className="move-all-items-button">
                     <Button onClick={this.selectAll}>
                         {i18n.t('Select all')}
                     </Button>
                 </div>
             </div>
         );
-    };
+    }
 }
 
 RelativePeriods.propTypes = {

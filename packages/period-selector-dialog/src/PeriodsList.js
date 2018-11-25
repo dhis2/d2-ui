@@ -7,6 +7,7 @@ const PeriodsList = (props) => {
 
     const ListItems = items.map((period, index) => (
         <PeriodListItem
+            className={remaindingProps.className}
             period={period}
             index={index}
             key={period.id}
@@ -14,7 +15,7 @@ const PeriodsList = (props) => {
         />
     ));
 
-    return <ul className={remaindingProps.listClassName}>{ListItems}</ul>;
+    return <ul className={remaindingProps.className}>{ListItems}</ul>;
 };
 
 PeriodsList.propTypes = {
@@ -22,7 +23,6 @@ PeriodsList.propTypes = {
     onPeriodClick: PropTypes.func.isRequired,
     onPeriodDoubleClick: PropTypes.func,
     onRemovePeriodClick: PropTypes.func,
-    listClassName: PropTypes.string.isRequired,
 };
 
 PeriodsList.defaultProps = {

@@ -37,7 +37,7 @@ class PeriodSelectorDialog extends React.Component {
         this.props.onDeselect(selectedPeriods);
     };
 
-    render = () => {
+    render() {
         const { classes, open, maxWidth, fullWidth, ...remaindingProps } = this.props;
 
         return (
@@ -65,7 +65,7 @@ class PeriodSelectorDialog extends React.Component {
 }
 
 PeriodSelectorDialog.defaultProps = {
-    maxWidth: 'md',
+    maxWidth: 'lg',
     fullWidth: true,
     onSelect: () => null,
     onDeselect: () => null,

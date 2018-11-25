@@ -4,31 +4,29 @@ import Button from '@material-ui/core/Button';
 import i18n from '@dhis2/d2-i18n';
 import PeriodsList from './PeriodsList';
 
-class SelectedPeriods extends React.Component {
-    clearPeriods = () => {
-        this.props.onClearAll(this.props.items);
-    };
+const Subtitle = () => (
+    <div className="subtitle-container">
+        <span className="subtitle"> {i18n.t('Selected periods')} </span>
+    </div>
+);
 
-    render = () => (
-        <div className="selector-area">
-            <div className="subtitle-container">
-                <span className="subtitle"> {i18n.t('Selected periods')} </span>
-            </div>
-            <PeriodsList
-                items={this.props.items}
-                onPeriodClick={this.props.onPeriodClick}
-                onPeriodDoubleClick={this.props.onPeriodDoubleClick}
-                onRemovePeriodClick={this.props.onRemovePeriodClick}
-                listClassName={'periods-list-selected'}
-            />
-            <div style={{ textAlign: 'center' }}>
-                <Button onClick={this.clearPeriods} >
-                    {i18n.t('Deselect all')}
-                </Button>
-            </div>
+export const SelectedPeriods = ({ onClearAll, ...remaindingProps }) => (
+    <div className="block-selected-periods">
+        <Subtitle />
+        <PeriodsList
+            className="periods-list-selected"
+            {...remaindingProps}
+        />
+        <div className="move-all-items-button">
+            <Button
+                // eslint-disable-next-line react/jsx-no-bind
+                onClick={() => onClearAll(remaindingProps.items)}
+            >
+                {i18n.t('Deselect all')}
+            </Button>
         </div>
-    )
-}
+    </div>
+);
 
 SelectedPeriods.propTypes = {
     items: PropTypes.array.isRequired,

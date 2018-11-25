@@ -40,7 +40,7 @@ class PeriodListItem extends Component {
         this.props.onRemovePeriodClick(this.props.period);
     };
 
-    isOfferedList = () => this.props.listClassName === OFFERED_LIST;
+    isOfferedList = () => this.props.className === OFFERED_LIST;
 
     highlightItem = () => {
         this.setState({ isHovering: true });
@@ -66,7 +66,7 @@ class PeriodListItem extends Component {
             : <RemoveItemButton isHighlighted={this.props.period.selected} action={this.onRemovePeriodClick} />
     );
 
-    render = () => {
+    render() {
         const className = this.isOfferedList() ? 'period-offered-label' : 'period-selected-label';
         const Icon = this.renderIcon();
         const RemoveButton = this.renderRemoveButton();
@@ -97,7 +97,7 @@ class PeriodListItem extends Component {
                 </div>
             </li>
         );
-    };
+    }
 }
 
 PeriodListItem.propTypes = {
@@ -106,7 +106,7 @@ PeriodListItem.propTypes = {
     onPeriodClick: PropTypes.func.isRequired,
     onPeriodDoubleClick: PropTypes.func.isRequired,
     onRemovePeriodClick: PropTypes.func.isRequired,
-    listClassName: PropTypes.string.isRequired,
+    className: PropTypes.string.isRequired,
 };
 
 export default PeriodListItem;

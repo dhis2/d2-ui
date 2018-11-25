@@ -1,22 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
-import i18n from '@dhis2/d2-i18n';
 
-class PeriodTypeButton extends Component {
-    handleClick = () => {
-        this.props.onClick(this.props.periodType);
-    };
 
-    render = () => (
-        <Button
-            className={`nav-button ${this.props.periodType === this.props.activePeriodType ? 'active' : ''}`}
-            onClick={this.handleClick}
-        >
-            {i18n.t(this.props.text)}
-        </Button>
-    )
-}
+export const PeriodTypeButton = ({ periodType, activePeriodType, text, onClick }) => (
+    <Button
+        className={`nav-button ${periodType === activePeriodType ? 'active' : ''}`}
+        // eslint-disable-next-line react/jsx-no-bind
+        onClick={() => onClick(periodType)}
+    >
+        {text}
+    </Button>
+);
 
 PeriodTypeButton.propTypes = {
     periodType: PropTypes.string.isRequired,

@@ -4,8 +4,9 @@ import PropTypes from 'prop-types';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import PeriodTypeButton from './PeriodTypeButton';
-import SelectedPeriods from './SelectedPeriods';
+import i18n from '@dhis2/d2-i18n';
+import { PeriodTypeButton } from './PeriodTypeButton';
+import { SelectedPeriods } from './SelectedPeriods';
 import { OfferedPeriods } from './OfferedPeriods';
 import PeriodTypes from './PeriodTypes';
 import styles from './styles/PeriodListItem.style';
@@ -24,32 +25,30 @@ import {
     toggleSelectedPeriod,
 } from './actions';
 
-const SelectButton = ({ action }) => (
+const SelectButton = ({ onClick }) => (
     <IconButton
-        style={styles.arrowButton}
-        className="select-button"
-        onClick={action}
+        variant="contained"
+        onClick={onClick}
     >
         <ArrowForwardIcon style={styles.arrowIcon} />
     </IconButton>
 );
 
 SelectButton.propTypes = {
-    action: PropTypes.func.isRequired,
+    onClick: PropTypes.func.isRequired,
 };
 
-const DeselectButton = ({ action }) => (
+const DeselectButton = ({ onClick }) => (
     <IconButton
-        style={styles.arrowButton}
-        className="select-button"
-        onClick={action}
+        variant="contained"
+        onClick={onClick}
     >
         <ArrowBackIcon style={styles.arrowIcon} />
     </IconButton>
 );
 
 DeselectButton.propTypes = {
-    action: PropTypes.func.isRequired,
+    onClick: PropTypes.func.isRequired,
 };
 
 class Periods extends Component {
@@ -122,60 +121,54 @@ class Periods extends Component {
             <PeriodTypeButton
                 periodType={PeriodTypes.RELATIVE}
                 activePeriodType={this.props.periodType}
-                text={'Relative periods'}
+                text={i18n.t('Relative periods')}
                 onClick={this.onPeriodTypeClick}
             />
             <PeriodTypeButton
                 periodType={PeriodTypes.FIXED}
                 activePeriodType={this.props.periodType}
-                text={'Fixed periods'}
+                text={i18n.t('Fixed periods')}
                 onClick={this.onPeriodTypeClick}
             />
         </Fragment>
     );
 
     renderSelectButtons = () => (
-        <Fragment>
-            <SelectButton action={this.onSelectPeriods} />
-            <DeselectButton action={this.onDeselectPeriods} />
-        </Fragment>
+        <div className="block-buttons">
+            <SelectButton onClick={this.onSelectPeriods} />
+            <DeselectButton onClick={this.onDeselectPeriods} />
+        </div>
     );
 
-    render = () => {
+    render() {
         const PeriodTypeButtons = this.renderPeriodTypeButtons();
         const SelectButtons = this.renderSelectButtons();
 
         return (
-            <div>
+            <Fragment>
                 {PeriodTypeButtons}
                 <div className="periods-container">
-                    <div className="block options">
-                        <OfferedPeriods
-                            periodType={this.props.periodType}
-                            items={this.props.offeredPeriods.periods}
-                            onPeriodDoubleClick={this.onOfferedPeriodDoubleClick}
-                            onPeriodClick={this.props.toggleOfferedPeriod}
-                            setOfferedPeriods={this.props.setOfferedPeriods}
-                            addSelectedPeriods={this.props.addSelectedPeriods}
-                            selectedItems={this.props.selectedItems}
-                        />
-                    </div>
-                    <div className="block buttons">
-                        {SelectButtons}
-                    </div>
-                    <div className="block selected-periods">
-                        <SelectedPeriods
-                            items={this.props.selectedPeriods.periods}
-                            onClearAll={this.onClearAll}
-                            onPeriodDoubleClick={this.onSelectedPeriodDoubleClick}
-                            onPeriodClick={this.props.toggleSelectedPeriod}
-                            onRemovePeriodClick={this.onRemovePeriod}
-                        />
-                    </div>
+                    <OfferedPeriods
+                        periodType={this.props.periodType}
+                        items={this.props.offeredPeriods.periods}
+                        onPeriodDoubleClick={this.onOfferedPeriodDoubleClick}
+                        onPeriodClick={this.props.toggleOfferedPeriod}
+                        setOfferedPeriods={this.props.setOfferedPeriods}
+                        addSelectedPeriods={this.props.addSelectedPeriods}
+                        selectedItems={this.props.selectedItems}
+                    />
+                    {SelectButtons}
+                    <SelectedPeriods
+                        items={this.props.selectedPeriods.periods}
+                        onClearAll={this.onClearAll}
+                        onPeriodDoubleClick={this.onSelectedPeriodDoubleClick}
+                        onPeriodClick={this.props.toggleSelectedPeriod}
+                        onRemovePeriodClick={this.onRemovePeriod}
+                    />
                 </div>
-            </div>
+            </Fragment>
         );
-    };
+    }
 }
 
 Periods.propTypes = {
