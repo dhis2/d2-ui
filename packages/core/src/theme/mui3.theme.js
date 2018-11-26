@@ -96,19 +96,18 @@ export const theme = {
         },
         MuiDialog: {
             paperWidthSm: {
-                flexBasis: 400,
-                maxWidth: 400,
-                maxHeight: 'calc(100vh - 15%)',
+                flex: '0 1 400px',
+                width: '400px',
+                maxWidth: '400px',
             },
             paperWidthMd: {
-                flexBasis: 600,
-                maxWidth: 600,
-                maxHeight: 'calc(100vh - 15%)',
+                flex: '0 1 600px',
+                width: '600px',
+                maxWidth: '600px',
             },
             paperWidthLg: {
-                flexBasis: 800,
-                maxWidth: 800,
-                maxHeight: 'calc(100vh - 20%)',
+                flex: '0 1 800px',
+                maxWidth: '800px',
             },
         },
         MuiDialogTitle: {
