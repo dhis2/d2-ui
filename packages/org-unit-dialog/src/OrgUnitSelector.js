@@ -102,21 +102,6 @@ class OrgUnitSelector extends Component {
 
     renderOptionsPanel = () => (
         <div style={styles.footer.index}>
-            <div style={styles.footer.tooltipContainer}>
-                {this.props.selected.length > 0 && (
-                    <div style={styles.footer.tooltip}>
-                        {this.props.selected.length} selected.
-                        <a
-                            onClick={this.props.onDeselectAllClick}
-                            style={styles.footer.tooltip.link}
-                            // eslint-disable-next-line
-                            href="javascript:void(0)"
-                        >
-                            Deselect all
-                        </a>
-                    </div>
-                )}
-            </div>
             <Grid style={styles.footer.gridContainer} container>
                 <Grid
                     item
@@ -197,6 +182,19 @@ class OrgUnitSelector extends Component {
                             disableSpacer
                         />
                     </div>
+                </div>
+                <div style={styles.orgUnitsContainer.tooltipContainer}>
+                    {this.props.selected.length > 0 && (
+                        <div style={styles.orgUnitsContainer.tooltip}>
+                            {this.props.selected.length} {i18n.t('selected')}.
+                            <button
+                                onClick={this.props.onDeselectAllClick}
+                                style={styles.orgUnitsContainer.tooltip.link}
+                            >
+                                {i18n.t('Deselect all')}
+                            </button>
+                        </div>
+                    )}
                 </div>
             </div>
             <div>{this.renderOptionsPanel()}</div>
