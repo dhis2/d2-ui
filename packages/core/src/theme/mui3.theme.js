@@ -98,17 +98,17 @@ export const theme = {
             paperWidthSm: {
                 flexBasis: 400,
                 maxWidth: 400,
-                maxHeight: 'calc(100vh - 19%)',
+                maxHeight: 'calc(100vh - 15%)',
             },
             paperWidthMd: {
                 flexBasis: 600,
                 maxWidth: 600,
-                maxHeight: 'calc(100vh - 19%)',
+                maxHeight: 'calc(100vh - 15%)',
             },
             paperWidthLg: {
                 flexBasis: 800,
                 maxWidth: 800,
-                maxHeight: 'calc(100vh - 19%)',
+                maxHeight: 'calc(100vh - 20%)',
             },
         },
         MuiDialogTitle: {
