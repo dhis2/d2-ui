@@ -96,19 +96,19 @@ export const theme = {
         },
         MuiDialog: {
             paperWidthSm: {
-                minWidth: 400,
-                width: 400,
+                flexBasis: 400,
                 maxWidth: 400,
+                maxHeight: 'calc(100vh - 19%)',
             },
             paperWidthMd: {
-                minWidth: 600,
-                width: 600,
+                flexBasis: 600,
                 maxWidth: 600,
+                maxHeight: 'calc(100vh - 19%)',
             },
             paperWidthLg: {
-                minWidth: 800,
-                width: 800,
+                flexBasis: 800,
                 maxWidth: 800,
+                maxHeight: 'calc(100vh - 19%)',
             },
         },
         MuiDialogTitle: {
