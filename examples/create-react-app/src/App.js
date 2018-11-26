@@ -148,8 +148,6 @@ class App extends Component {
                     <h2>FormEditor</h2>
                     <FormEditor />
 
-                    <h2>Period selector dialog</h2>
-
                     <h2>Period selector</h2>
                     <PeriodSelector d2={this.state.d2} />
 
