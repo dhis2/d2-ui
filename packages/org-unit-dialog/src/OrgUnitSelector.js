@@ -84,12 +84,12 @@ class OrgUnitSelector extends Component {
         this.setState({
             menuAnchorElement: event.currentTarget,
             loadingChildren: true,
-        });
-
-        loadChildren().then((children) => {
-            this.setState({
-                children: Array.isArray(children) ? children : children.toArray(),
-                loadingChildren: false,
+        }, () => {
+            loadChildren().then((children) => {
+                this.setState({
+                    children: Array.isArray(children) ? children : children.toArray(),
+                    loadingChildren: false,
+                });
             });
         });
     };
@@ -182,13 +182,12 @@ class OrgUnitSelector extends Component {
         <Fragment>
             <div style={styles.orgUnitsContainer}>
                 <div style={styles.scrollableContainer.index}>
-                    <div style={styles.userOrgUnits.index}>
-                        <UserOrgUnitsPanel
-                            styles={styles.userOrgUnits}
-                            userOrgUnits={this.props.userOrgUnits}
-                            handleUserOrgUnitClick={this.props.handleUserOrgUnitClick}
-                        />
-                    </div>
+                    <UserOrgUnitsPanel
+                        selected={this.props.selected}
+                        styles={styles.userOrgUnits}
+                        userOrgUnits={this.props.userOrgUnits}
+                        handleUserOrgUnitClick={this.props.handleUserOrgUnitClick}
+                    />
                     <div style={styles.scrollableContainer.overlayContainer}>
                         {this.props.userOrgUnits.length > 0 && (
                             <div style={styles.scrollableContainer.overlay} />
@@ -218,7 +217,7 @@ class OrgUnitSelector extends Component {
                                 disabled={this.state.loadingChildren}
                                 dense
                             >
-                                Select children
+                                {i18n.t('Select children')}
                             </MenuItem>
                         </Menu>
                     </div>
