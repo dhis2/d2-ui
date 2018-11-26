@@ -117,11 +117,5 @@ export default {
             width: '100%',
             position: 'relative',
         },
-
-        gridContainer: {
-            gridItem: {
-                marginRight: 15,
-            },
-        },
     },
 };

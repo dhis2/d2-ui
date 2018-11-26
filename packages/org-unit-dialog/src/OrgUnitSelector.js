@@ -1,16 +1,12 @@
 import React, { Component, Fragment } from 'react';
 import { OrgUnitTree } from '@dhis2/d2-ui-org-unit-tree';
 import Grid from '@material-ui/core/Grid/Grid';
-import InputLabel from '@material-ui/core/InputLabel';
 import i18n from '@dhis2/d2-i18n';
-import Input from '@material-ui/core/Input';
-import FormControl from '@material-ui/core/FormControl';
-import MenuItem from '@material-ui/core/MenuItem';
 import PropTypes from 'prop-types';
-import Select from '@material-ui/core/Select/Select';
-import styles from './styles/OrgUnitDialog.style';
+import styles from './styles/OrgUnitSelector.style';
 import UserOrgUnitsPanel from './UserOrgUnitsPanel';
 import removeLastPathSegment from './util';
+import GridControl from './GridControl';
 
 class OrgUnitSelector extends Component {
     constructor(props) {
@@ -102,52 +98,30 @@ class OrgUnitSelector extends Component {
 
     renderOptionsPanel = () => (
         <div style={styles.footer.index}>
-            <Grid style={styles.footer.gridContainer} container>
-                <Grid
-                    item
-                    xs={4}
-                    style={styles.footer.gridContainer.gridItem}
-                >
-                    <FormControl style={{ width: '100%' }}>
-                        <InputLabel htmlFor="level-select">{i18n.t('Level')}</InputLabel>
-                        <Select
-                            value={this.props.level}
-                            onChange={this.props.onLevelChange}
-                            input={<Input id="level-select" />}
-                            renderValue={this.renderLevelOptions}
-                            disabled={this.props.userOrgUnits.length > 0}
-                            fullWidth
-                            multiple
-                        >
-                            {this.props.levelOptions.map(option => (
-                                <MenuItem key={option.id} value={option.id}>{option.displayName}</MenuItem>
-                            ))}
-                        </Select>
-                    </FormControl>
-                </Grid>
-                <Grid
-                    item
-                    xs={4}
-                    style={styles.footer.gridContainer.gridItem}
-                >
-                    <FormControl style={{ width: '100%' }}>
-                        <InputLabel htmlFor="group">{i18n.t('Group')}</InputLabel>
-                        <Select
-                            value={this.props.group}
-                            onChange={this.props.onGroupChange}
-                            input={<Input name="group" id="group" />}
-                            renderValue={this.renderGroupOptions}
-                            disabled={this.props.userOrgUnits.length > 0}
-                            multiple
-                            displayEmpty
-                            fullWidth
-                        >
-                            {this.props.groupOptions.map(option => (
-                                <MenuItem key={option.id} value={option.id}>{option.displayName}</MenuItem>
-                            ))}
-                        </Select>
-                    </FormControl>
-                </Grid>
+            <Grid
+                style={styles.footer.gridContainer}
+                container
+            >
+                <GridControl
+                    id="level-select"
+                    title={i18n.t('Level')}
+                    value={this.props.level}
+                    onChange={this.props.onLevelChange}
+                    options={this.props.levelOptions}
+                    disabled={this.props.userOrgUnits.length > 0}
+                    renderValue={this.renderLevelOptions}
+                    multiple
+                />
+                <GridControl
+                    id="group-select"
+                    title={i18n.t('Group')}
+                    value={this.props.group}
+                    onChange={this.props.onGroupChange}
+                    options={this.props.groupOptions}
+                    disabled={this.props.userOrgUnits.length > 0}
+                    renderValue={this.renderGroupOptions}
+                    multiple
+                />
             </Grid>
         </div>
     );
