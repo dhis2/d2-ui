@@ -7,13 +7,13 @@ export default {
             textAlign: 'center',
             position: 'absolute',
             bottom: 10,
-            width: '100%',
+            left: 'calc(50% - 85px)',
         },
 
         tooltip: {
             display: 'inline-block',
             borderRadius: 3,
-            background: '#535353',
+            background: 'rgba(83, 83, 83, 0.9)',
             padding: 10,
             color: '#fff',
 
@@ -32,8 +32,9 @@ export default {
     },
     scrollableContainer: {
         index: {
-            height: '400px',
+            height: 400,
             overflowY: 'auto',
+            paddingBottom: 40,
         },
         overlayContainer: {
             position: 'relative',
@@ -61,6 +62,7 @@ export default {
             color: 'inherit',
             position: 'relative',
             bottom: 2,
+            cursor: 'pointer',
         },
         labelStyle: {
             fontSize: 14,
