@@ -59,6 +59,23 @@ class Periods extends Component {
         this.props.setSelectedPeriods(this.props.selectedItems);
     }
 
+    componentDidUpdate(prevProps) {
+        const prevItems = prevProps.selectedItems.map(period => period.id);
+        const currentItems = this.props.selectedItems.map(period => period.id);
+
+        if (prevItems.length !== currentItems.length) {
+            this.props.setSelectedPeriods(this.props.selectedItems);
+        } else {
+            for (let i = 0; i < prevItems.length; ++i) {
+                if (prevItems[i] !== currentItems[i]) {
+                    this.props.setSelectedPeriods(this.props.selectedItems);
+
+                    break;
+                }
+            }
+        }
+    }
+
     onPeriodTypeClick = (periodType) => {
         if (this.props.periodType !== periodType) {
             this.props.setPeriodType(periodType);
