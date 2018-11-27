@@ -14,7 +14,7 @@
   },
   "scripts": {
     "prebuild": "rimraf ./build/*",
-    "build": "cross-env BABEL_ENV=es babel src --out-dir build --ignore spec.js && npm run build:css",
+    "build": "npm run build:css; cross-env BABEL_ENV=es babel src --out-dir build --ignore spec.js",
     "build:css": "cp -R ./css/* ./build/",
     "watch": "npm run build -- --watch",
     "test-ci": "jest --config=../../jest.config.js packages/period-selector-dialog",
