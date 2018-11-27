@@ -1,22 +1,25 @@
 import React, { Component, Fragment } from 'react';
 import { OrgUnitTree } from '@dhis2/d2-ui-org-unit-tree';
-import Grid from '@material-ui/core/Grid/Grid';
-import InputLabel from '@material-ui/core/InputLabel';
 import i18n from '@dhis2/d2-i18n';
-import Input from '@material-ui/core/Input';
-import FormControl from '@material-ui/core/FormControl';
-import MenuItem from '@material-ui/core/MenuItem';
 import PropTypes from 'prop-types';
-import Select from '@material-ui/core/Select/Select';
-import styles from './styles/OrgUnitDialog.style';
+
+import Grid from '@material-ui/core/Grid/Grid';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+
+import styles from './styles/OrgUnitSelector.style';
 import UserOrgUnitsPanel from './UserOrgUnitsPanel';
 import removeLastPathSegment from './util';
+import GridControl from './GridControl';
 
 class OrgUnitSelector extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
+            menuAnchorElement: null,
+            children: null,
+            loadingChildren: false,
             initiallyExpanded: this.props.selected.map(ou => removeLastPathSegment(ou.path)),
         };
     }
@@ -25,6 +28,7 @@ class OrgUnitSelector extends Component {
         // if props.selected.length changed by more than 1, then another analytic object was selected
         if (Math.abs(prevProps.selected.length - this.props.selected.length) > 1) {
             // In this case refresh expanded org units
+            // eslint-disable-next-line
             this.setState({
                 initiallyExpanded: this.props.selected.map(ou => removeLastPathSegment(ou.path)),
             });
@@ -43,6 +47,7 @@ class OrgUnitSelector extends Component {
                     counter += 1;
 
                     if (counter > 1) {
+                        // eslint-disable-next-line
                         this.setState({
                             initiallyExpanded: this.props.selected.map(ou => removeLastPathSegment(ou.path)),
                         });
@@ -70,7 +75,35 @@ class OrgUnitSelector extends Component {
         });
     };
 
+    onContextMenuClick = (event, orgUnit, hasChildren, loadChildren) => {
+        if (!hasChildren) {
+            return;
+        }
+
+        this.setState({
+            menuAnchorElement: event.currentTarget,
+            loadingChildren: true,
+        }, () => {
+            loadChildren().then((children) => {
+                this.setState({
+                    children: Array.isArray(children) ? children : children.toArray(),
+                    loadingChildren: false,
+                });
+            });
+        });
+    };
+
     normalizeOptions = (result, item) => ({ ...result, [item.id]: item });
+
+    selectChildren = () => {
+        this.closeContextMenu();
+
+        this.props.handleMultipleOrgUnitsSelect(this.state.children);
+    };
+
+    closeContextMenu = () => {
+        this.setState({ menuAnchorElement: null });
+    };
 
     renderGroupOptions = (selected) => {
         if (this.props.groupOptions.length > 0) {
@@ -99,62 +132,45 @@ class OrgUnitSelector extends Component {
     };
 
     renderOptionsPanel = () => (
-        <Grid
-            spacing={8}
-            style={styles.footer.index}
-            container
-        >
-            <Grid item xs={4}>
-                <FormControl style={{ width: '100%' }}>
-                    <InputLabel htmlFor="level-select">{i18n.t('Level')}</InputLabel>
-                    <Select
-                        value={this.props.level}
-                        onChange={this.props.onLevelChange}
-                        input={<Input id="level-select" />}
-                        renderValue={this.renderLevelOptions}
-                        disabled={this.props.userOrgUnits.length > 0}
-                        multiple
-                        fullWidth
-                    >
-                        {this.props.levelOptions.map(option => (
-                            <MenuItem key={option.id} value={option.id}>{option.displayName}</MenuItem>
-                        ))}
-                    </Select>
-                </FormControl>
+        <div style={styles.footer.index}>
+            <Grid
+                style={styles.footer.gridContainer}
+                container
+            >
+                <GridControl
+                    id="level-select"
+                    title={i18n.t('Level')}
+                    value={this.props.level}
+                    onChange={this.props.onLevelChange}
+                    options={this.props.levelOptions}
+                    disabled={this.props.userOrgUnits.length > 0}
+                    renderValue={this.renderLevelOptions}
+                    multiple
+                />
+                <GridControl
+                    id="group-select"
+                    title={i18n.t('Group')}
+                    value={this.props.group}
+                    onChange={this.props.onGroupChange}
+                    options={this.props.groupOptions}
+                    disabled={this.props.userOrgUnits.length > 0}
+                    renderValue={this.renderGroupOptions}
+                    multiple
+                />
             </Grid>
-            <Grid item xs={4}>
-                <FormControl style={{ width: '100%' }}>
-                    <InputLabel htmlFor="group">{i18n.t('Group')}</InputLabel>
-                    <Select
-                        value={this.props.group}
-                        onChange={this.props.onGroupChange}
-                        input={<Input name="group" id="group" />}
-                        renderValue={this.renderGroupOptions}
-                        disabled={this.props.userOrgUnits.length > 0}
-                        multiple
-                        displayEmpty
-                        fullWidth
-                    >
-                        {this.props.groupOptions.map(option => (
-                            <MenuItem key={option.id} value={option.id}>{option.displayName}</MenuItem>
-                        ))}
-                    </Select>
-                </FormControl>
-            </Grid>
-        </Grid>
+        </div>
     );
 
     render = () => (
         <Fragment>
             <div style={styles.orgUnitsContainer}>
                 <div style={styles.scrollableContainer.index}>
-                    <div style={styles.userOrgUnits.index}>
-                        <UserOrgUnitsPanel
-                            styles={styles.userOrgUnits}
-                            userOrgUnits={this.props.userOrgUnits}
-                            handleUserOrgUnitClick={this.props.handleUserOrgUnitClick}
-                        />
-                    </div>
+                    <UserOrgUnitsPanel
+                        selected={this.props.selected}
+                        styles={styles.userOrgUnits}
+                        userOrgUnits={this.props.userOrgUnits}
+                        handleUserOrgUnitClick={this.props.handleUserOrgUnitClick}
+                    />
                     <div style={styles.scrollableContainer.overlayContainer}>
                         {this.props.userOrgUnits.length > 0 && (
                             <div style={styles.scrollableContainer.overlay} />
@@ -166,6 +182,7 @@ class OrgUnitSelector extends Component {
                             onSelectClick={this.props.handleOrgUnitClick}
                             onExpand={this.onExpand}
                             onCollapse={this.onCollapse}
+                            onContextMenuClick={this.onContextMenuClick}
                             treeStyle={styles.orgUnitTree.treeStyle}
                             labelStyle={styles.orgUnitTree.labelStyle}
                             selectedLabelStyle={styles.orgUnitTree.selectedLabelStyle}
@@ -173,7 +190,33 @@ class OrgUnitSelector extends Component {
                             showFolderIcon
                             disableSpacer
                         />
+                        <Menu
+                            anchorEl={this.state.menuAnchorElement}
+                            open={Boolean(this.state.menuAnchorElement)}
+                            onClose={this.closeContextMenu}
+                        >
+                            <MenuItem
+                                onClick={this.selectChildren}
+                                disabled={this.state.loadingChildren}
+                                dense
+                            >
+                                {i18n.t('Select children')}
+                            </MenuItem>
+                        </Menu>
                     </div>
+                </div>
+                <div style={styles.orgUnitsContainer.tooltipContainer}>
+                    {this.props.selected.length > 0 && (
+                        <div style={styles.orgUnitsContainer.tooltip}>
+                            {this.props.selected.length} {i18n.t('selected')}.
+                            <button
+                                onClick={this.props.onDeselectAllClick}
+                                style={styles.orgUnitsContainer.tooltip.link}
+                            >
+                                {i18n.t('Deselect all')}
+                            </button>
+                        </div>
+                    )}
                 </div>
             </div>
             <div>{this.renderOptionsPanel()}</div>
@@ -222,6 +265,16 @@ OrgUnitSelector.propTypes = {
      * Setter for group multiselect value
      */
     onGroupChange: PropTypes.func.isRequired,
+
+    /**
+     * On deselect all click handler
+     */
+    onDeselectAllClick: PropTypes.func.isRequired,
+
+    /**
+     * Function for handling multiple org units select
+     */
+    handleMultipleOrgUnitsSelect: PropTypes.func.isRequired,
 
     /**
      * Callback handler for selecting orgunit

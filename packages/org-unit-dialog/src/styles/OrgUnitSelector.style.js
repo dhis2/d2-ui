@@ -1,15 +1,49 @@
 export default {
     orgUnitsContainer: {
         border: '1px solid #dedede',
+        position: 'relative',
+
+        tooltipContainer: {
+            textAlign: 'center',
+            position: 'absolute',
+            bottom: 10,
+            left: 'calc(50% - 85px)',
+        },
+
+        tooltip: {
+            display: 'inline-block',
+            borderRadius: 3,
+            background: 'rgba(83, 83, 83, 0.9)',
+            padding: 10,
+            color: '#fff',
+
+            link: {
+                outline: 'none',
+                marginLeft: 5,
+                background: 'none',
+                color: 'inherit',
+                border: 'none',
+                padding: 0,
+                font: 'inherit',
+                textDecoration: 'underline',
+                cursor: 'pointer',
+            },
+        },
     },
     scrollableContainer: {
         index: {
-            height: '400px',
+            height: 400,
             overflowY: 'auto',
+            paddingBottom: 40,
         },
         overlayContainer: {
             position: 'relative',
             paddingLeft: 20,
+            WebkitUserSelect: 'none',
+            KhtmlUserSelect: 'none',
+            MozUserSelect: 'none',
+            MsUserSelect: 'none',
+            UserSelect: 'none',
         },
         overlay: {
             position: 'absolute',
@@ -28,12 +62,14 @@ export default {
             color: 'inherit',
             position: 'relative',
             bottom: 2,
+            cursor: 'pointer',
         },
         labelStyle: {
             fontSize: 14,
             fontWeight: 400,
             position: 'relative',
             bottom: 2,
+            cursor: 'pointer',
 
             checkbox: {
                 position: 'relative',
@@ -52,6 +88,7 @@ export default {
                 margin: '2px 3px 2px 2px',
                 position: 'relative',
                 top: 2,
+                cursor: 'pointer',
             },
         },
         treeStyle: {
@@ -62,30 +99,11 @@ export default {
             },
         },
     },
-    userOrgUnits: {
-        index: {
-            background: '#F4F5F8',
-            margin: '0 0px 10px',
-        },
-        checkbox: {
-            fontSize: 16,
-        },
-        stopIcon: {
-            position: 'relative',
-            top: '4px',
-            color: '#9e9e9e',
-            fontSize: '15px',
-            margin: '0 3px 0 -10px',
-        },
-        text: {
-            color: '#000',
-            position: 'relative',
-            top: '3px',
-        },
-    },
     footer: {
         index: {
             marginTop: 10,
+            width: '100%',
+            position: 'relative',
         },
     },
 };

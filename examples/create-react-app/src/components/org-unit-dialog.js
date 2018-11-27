@@ -93,6 +93,10 @@ export default class OrgUnitDialogExample extends Component {
         });
     };
 
+    onDeselectAllClick = () => {
+        this.setState({ selected: [] });
+    };
+
     toggleDialog = () => {
         this.setState({
             orgUnitDialog: {
@@ -148,6 +152,19 @@ export default class OrgUnitDialogExample extends Component {
         }
     };
 
+    handleMultipleOrgUnitsSelect = (children) => {
+        const selected = [
+            ...this.state.selected,
+            ...children.map(orgUnit => ({
+                id: orgUnit.id,
+                displayName: orgUnit.displayName,
+                path: orgUnit.path,
+            })),
+        ];
+
+        this.setState({ selected });
+    };
+
     render = () => (
         <div>
             <div style={{ padding: 16 }}>
@@ -171,8 +188,10 @@ export default class OrgUnitDialogExample extends Component {
                     groupOptions={this.state.groupOptions}
                     onLevelChange={this.onLevelChange}
                     onGroupChange={this.onGroupChange}
+                    onDeselectAllClick={this.onDeselectAllClick}
                     handleUserOrgUnitClick={this.handleUserOrgUnitClick}
                     handleOrgUnitClick={this.handleOrgUnitClick}
+                    handleMultipleOrgUnitsSelect={this.handleMultipleOrgUnitsSelect}
                     onClose={this.toggleDialog}
                     onUpdate={this.onOrgUnitSelect}
                     checkboxColor="primary"
