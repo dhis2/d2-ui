@@ -20,7 +20,6 @@ import GroupEditor from './components/group-editor';
 import Layout from './components/layout';
 import Legend from './components/legend';
 import PeriodPicker from './components/period-picker';
-import PeriodSelectorDialog from './components/period-selector-dialog';
 import PeriodSelector from './components/period-selector';
 import OrgUnitDialog from './components/org-unit-dialog';
 import OrgUnitSelector from './components/org-unit-selector';
@@ -148,9 +147,6 @@ class App extends Component {
 
                     <h2>FormEditor</h2>
                     <FormEditor />
-
-                    <h2>Period selector dialog</h2>
-                    <PeriodSelectorDialog d2={this.state.d2} />
 
                     <h2>Period selector</h2>
                     <PeriodSelector d2={this.state.d2} />

@@ -411,14 +411,26 @@ function PeriodType() {
     periodTypes.Daily = new DailyPeriodType(formatYyyyMmDd, filterFuturePeriods);
     periodTypes.Weekly = new WeeklyPeriodType(formatYyyyMmDd, filterFuturePeriods);
     periodTypes.Monthly = new MonthlyPeriodType(formatYyyyMmDd, monthNames, filterFuturePeriods);
-    periodTypes.BiMonthly = new BiMonthlyPeriodType(formatYyyyMmDd, monthNames, filterFuturePeriods);
+    periodTypes['Bi-monthly'] = new BiMonthlyPeriodType(formatYyyyMmDd, monthNames, filterFuturePeriods);
     periodTypes.Quarterly = new QuarterlyPeriodType(formatYyyyMmDd, monthNames, filterFuturePeriods);
-    periodTypes.SixMonthly = new SixMonthlyPeriodType(monthNames, filterFuturePeriods);
-    periodTypes.SixMonthlyApril = new SixMonthlyAprilPeriodType(monthNames, filterFuturePeriods);
+    periodTypes['Six-monthly'] = new SixMonthlyPeriodType(monthNames, filterFuturePeriods);
+    periodTypes['Six-monthly April'] = new SixMonthlyAprilPeriodType(monthNames, filterFuturePeriods);
     periodTypes.Yearly = new YearlyPeriodType(formatYyyyMmDd, filterFuturePeriods);
-    periodTypes.FinancialOct = new FinancialOctoberPeriodType(formatYyyyMmDd, monthNames, filterFuturePeriods);
-    periodTypes.FinancialJuly = new FinancialJulyPeriodType(formatYyyyMmDd, monthNames, filterFuturePeriods);
-    periodTypes.FinancialApril = new FinancialAprilPeriodType(formatYyyyMmDd, monthNames, filterFuturePeriods);
+    periodTypes['Financial year (Start October)'] = new FinancialOctoberPeriodType(
+        formatYyyyMmDd,
+        monthNames,
+        filterFuturePeriods,
+    );
+    periodTypes['Financial year (Start July)'] = new FinancialJulyPeriodType(
+        formatYyyyMmDd,
+        monthNames,
+        filterFuturePeriods,
+    );
+    periodTypes['Financial year (Start April)'] = new FinancialAprilPeriodType(
+        formatYyyyMmDd,
+        monthNames,
+        filterFuturePeriods,
+    );
 
     this.get = key => periodTypes[key];
     this.getOptions = () => Object.keys(periodTypes);

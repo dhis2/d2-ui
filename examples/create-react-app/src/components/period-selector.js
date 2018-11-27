@@ -28,13 +28,19 @@ class PeriodSelectorExample extends Component {
     };
 
     selectPeriods = (selectedPeriods) => {
-        this.setState({ selectedPeriods });
+        this.setState({
+            selectedPeriods: [
+                ...this.state.selectedPeriods,
+                ...selectedPeriods,
+            ],
+        });
     };
 
     deselectPeriods = (removedPeriods) => {
-        const selectedPeriods = this.state.selectedPeriods.filter(period =>
-            !removedPeriods.includes(period) && period,
-        );
+        const removedPeriodsIds = removedPeriods.map(period => period.id);
+        const selectedPeriods = this.state
+            .selectedPeriods
+            .filter(period => !removedPeriodsIds.includes(period.id));
 
         this.setState({ selectedPeriods });
     };

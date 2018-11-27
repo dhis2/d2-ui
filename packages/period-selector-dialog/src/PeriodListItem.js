@@ -27,20 +27,18 @@ RemoveItemButton.propTypes = {
 class PeriodListItem extends Component {
     state = { isHovering: false };
 
-
     onPeriodClick = (event) => {
         this.props.onPeriodClick(this.props.period, this.props.index, event.shiftKey, event.metaKey);
     };
 
-    onDoubleClick = () => {
-        this.props.onDoubleClick(this.props.period);
+    onPeriodDoubleClick = () => {
+        this.props.onPeriodDoubleClick(this.props.period);
     };
 
     onRemovePeriodClick = (event) => {
         event.stopPropagation();
         this.props.onRemovePeriodClick(this.props.period);
     };
-
 
     isOfferedList = () => this.props.listClassName === OFFERED_LIST;
 
@@ -85,11 +83,16 @@ class PeriodListItem extends Component {
                     onMouseEnter={this.highlightItem}
                     onMouseLeave={this.removeHighlight}
                     onClick={this.onPeriodClick}
-                    onDoubleClick={this.onDoubleClick}
+                    onDoubleClick={this.onPeriodDoubleClick}
                     className={className}
                 >
                     {Icon}
-                    <span style={this.props.period.selected ? styles.higlightedText : {}} className="list-text">{this.props.period.name}</span>
+                    <span
+                        style={this.props.period.selected ? styles.higlightedText : {}}
+                        className="list-text"
+                    >
+                        {this.props.period.name}
+                    </span>
                     {RemoveButton}
                 </div>
             </li>
@@ -101,7 +104,7 @@ PeriodListItem.propTypes = {
     period: PropTypes.object.isRequired,
     index: PropTypes.number.isRequired,
     onPeriodClick: PropTypes.func.isRequired,
-    onDoubleClick: PropTypes.func.isRequired,
+    onPeriodDoubleClick: PropTypes.func.isRequired,
     onRemovePeriodClick: PropTypes.func.isRequired,
     listClassName: PropTypes.string.isRequired,
 };

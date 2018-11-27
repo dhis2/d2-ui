@@ -28,6 +28,7 @@ class OrgUnitDialog extends React.PureComponent {
                     userOrgUnits={this.props.userOrgUnits}
                     onLevelChange={this.props.onLevelChange}
                     onGroupChange={this.props.onGroupChange}
+                    onDeselectAllClick={this.props.onDeselectAllClick}
                     level={this.props.level}
                     group={this.props.group}
                     levelOptions={this.props.levelOptions}
@@ -35,6 +36,7 @@ class OrgUnitDialog extends React.PureComponent {
                     handleOrgUnitClick={this.props.handleOrgUnitClick}
                     handleUserOrgUnitClick={this.props.handleUserOrgUnitClick}
                     checkboxColor={this.props.checkboxColor}
+                    handleMultipleOrgUnitsSelect={this.props.handleMultipleOrgUnitsSelect}
                 />
             </DialogContent>
             <DialogActions>
@@ -105,6 +107,11 @@ OrgUnitDialog.propTypes = {
     onGroupChange: PropTypes.func.isRequired,
 
     /**
+     * On deselect all click handler
+     */
+    onDeselectAllClick: PropTypes.func.isRequired,
+
+    /**
     * Callback handler for selecting orgunit
     * Arguments supplied in callback: event, orgunit
     */
@@ -115,6 +122,12 @@ OrgUnitDialog.propTypes = {
     * Arguments supplied in callback: event, checked
     */
     handleUserOrgUnitClick: PropTypes.func.isRequired,
+
+    /**
+     * Callback handler for selecting user orgunit
+     * Arguments supplied in callback: event, checked
+     */
+    handleMultipleOrgUnitsSelect: PropTypes.func.isRequired,
 
     /**
     * Root organisation unit

@@ -40,36 +40,13 @@ export class FileMenu extends Component {
         }
     };
 
-    componentDidUpdate = prevProps => {
+    componentDidUpdate = (prevProps) => {
         if (this.props.fileId && prevProps.fileId !== this.props.fileId) {
             this.setFileModel(this.props.fileId);
         }
     };
 
-    setFileModel = async id => {
-        const model = await this.props.d2.models[this.props.fileType].get(id);
-        this.setState({ fileModel: model });
-    };
-
-    clearFileModel = () => {
-        this.setState({ fileModel: null });
-    };
-
-    toggleMenu = event => {
-        this.setState({
-            menuIsOpen: !this.state.menuIsOpen,
-            anchorEl: this.state.menuIsOpen ? null : event.currentTarget,
-        });
-    };
-
-    closeMenu = () => {
-        this.setState({
-            menuIsOpen: false,
-            anchorEl: null,
-        });
-    };
-
-    onOpen = id => {
+    onOpen = (id) => {
         this.setFileModel(id);
         this.setState({ refreshDialogData: false });
 
@@ -97,7 +74,7 @@ export class FileMenu extends Component {
         this.props.onNew();
     };
 
-    onDelete = id => {
+    onDelete = (id) => {
         if (this.state.fileModel.id === id) {
             this.clearFileModel();
             this.setState({ refreshDialogData: true });
@@ -108,7 +85,7 @@ export class FileMenu extends Component {
         }
     };
 
-    onAction = (callback, refreshDialogData) => args => {
+    onAction = (callback, refreshDialogData) => (args) => {
         this.closeMenu();
 
         if (refreshDialogData) {
@@ -118,6 +95,29 @@ export class FileMenu extends Component {
         if (callback) {
             callback(args);
         }
+    };
+
+    setFileModel = async (id) => {
+        const model = await this.props.d2.models[this.props.fileType].get(id);
+        this.setState({ fileModel: model });
+    };
+
+    clearFileModel = () => {
+        this.setState({ fileModel: null });
+    };
+
+    toggleMenu = (event) => {
+        this.setState({
+            menuIsOpen: !this.state.menuIsOpen,
+            anchorEl: this.state.menuIsOpen ? null : event.currentTarget,
+        });
+    };
+
+    closeMenu = () => {
+        this.setState({
+            menuIsOpen: false,
+            anchorEl: null,
+        });
     };
 
     render() {
@@ -136,7 +136,7 @@ export class FileMenu extends Component {
                     anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
                     getContentAnchorEl={null}
                 >
-                    <NewMenuItem enabled={true} onNew={this.onNew} />
+                    <NewMenuItem enabled onNew={this.onNew} />
                     <Divider light />
 
                     <OpenMenuItem
@@ -153,7 +153,7 @@ export class FileMenu extends Component {
                     <SaveMenuItem
                         enabled={Boolean(
                             !this.state.fileModel ||
-                                (this.state.fileModel && this.state.fileModel.access.update)
+                                (this.state.fileModel && this.state.fileModel.access.update),
                         )}
                         fileType={fileType}
                         fileModel={this.state.fileModel}
@@ -171,7 +171,7 @@ export class FileMenu extends Component {
                     <Divider />
                     <RenameMenuItem
                         enabled={Boolean(
-                            this.state.fileModel && this.state.fileModel.access.update
+                            this.state.fileModel && this.state.fileModel.access.update,
                         )}
                         fileType={fileType}
                         fileModel={this.state.fileModel}
@@ -181,7 +181,7 @@ export class FileMenu extends Component {
                     />
                     <TranslateMenuItem
                         enabled={Boolean(
-                            this.state.fileModel && this.state.fileModel.access.update
+                            this.state.fileModel && this.state.fileModel.access.update,
                         )}
                         fileModel={this.state.fileModel}
                         onTranslate={this.onAction(onTranslate)}
@@ -191,7 +191,7 @@ export class FileMenu extends Component {
                     <Divider />
                     <ShareMenuItem
                         enabled={Boolean(
-                            this.state.fileModel && this.state.fileModel.access.manage
+                            this.state.fileModel && this.state.fileModel.access.manage,
                         )}
                         fileType={fileType}
                         fileModel={this.state.fileModel}
@@ -207,7 +207,7 @@ export class FileMenu extends Component {
                     <Divider />
                     <DeleteMenuItem
                         enabled={Boolean(
-                            this.state.fileModel && this.state.fileModel.access.delete
+                            this.state.fileModel && this.state.fileModel.access.delete,
                         )}
                         fileType={fileType}
                         fileModel={this.state.fileModel}
@@ -258,7 +258,7 @@ FileMenu.propTypes = {
 const styles = theme => ({
     menuButton: {
         textTransform: 'none',
-        fontSize: '16px',
+        fontSize: 15,
         fontWeight: 400,
     },
 });
