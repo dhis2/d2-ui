@@ -72,30 +72,25 @@ class PeriodListItem extends Component {
         const RemoveButton = this.renderRemoveButton();
 
         return (
-            <li
-                key={this.props.period.id}
-                className="period-dimension-item"
+            <div
+                role="button"
+                tabIndex={0}
+                style={this.props.period.selected ? styles.highlightedContainer : {}}
+                onMouseEnter={this.highlightItem}
+                onMouseLeave={this.removeHighlight}
+                onClick={this.onPeriodClick}
+                onDoubleClick={this.onPeriodDoubleClick}
+                className={className}
             >
-                <div
-                    role="button"
-                    tabIndex={0}
-                    style={this.props.period.selected ? styles.highlightedContainer : {}}
-                    onMouseEnter={this.highlightItem}
-                    onMouseLeave={this.removeHighlight}
-                    onClick={this.onPeriodClick}
-                    onDoubleClick={this.onPeriodDoubleClick}
-                    className={className}
+                {Icon}
+                <span
+                    style={this.props.period.selected ? styles.higlightedText : {}}
+                    className="list-text"
                 >
-                    {Icon}
-                    <span
-                        style={this.props.period.selected ? styles.higlightedText : {}}
-                        className="list-text"
-                    >
-                        {this.props.period.name}
-                    </span>
-                    {RemoveButton}
-                </div>
-            </li>
+                    {this.props.period.name}
+                </span>
+                {RemoveButton}
+            </div>
         );
     };
 }

@@ -5,6 +5,10 @@ import i18n from '@dhis2/d2-i18n';
 import PeriodsList from './PeriodsList';
 
 class SelectedPeriods extends React.Component {
+    onReorder = (periods) => {
+        this.props.onReorder(periods);
+    }
+
     clearPeriods = () => {
         this.props.onClearAll(this.props.items);
     };
@@ -19,7 +23,9 @@ class SelectedPeriods extends React.Component {
                 onPeriodClick={this.props.onPeriodClick}
                 onPeriodDoubleClick={this.props.onPeriodDoubleClick}
                 onRemovePeriodClick={this.props.onRemovePeriodClick}
+                onReorder={this.onReorder}
                 listClassName={'periods-list-selected'}
+                sortable
             />
             <div style={{ textAlign: 'center' }}>
                 <Button onClick={this.clearPeriods} >
@@ -36,6 +42,7 @@ SelectedPeriods.propTypes = {
     onPeriodDoubleClick: PropTypes.func.isRequired,
     onPeriodClick: PropTypes.func.isRequired,
     onRemovePeriodClick: PropTypes.func.isRequired,
+    onReorder: PropTypes.func.isRequired,
 };
 
 export default SelectedPeriods;

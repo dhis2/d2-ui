@@ -27,6 +27,7 @@
     "babel-runtime": "^6.26.0",
     "prop-types": "^15.6.0",
     "react-redux": "^5.0.7",
+    "react-sortable-hoc": "^0.8.4",
     "redux": "^4.0.1"
   },
   "publishConfig": {
