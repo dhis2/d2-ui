@@ -7,12 +7,12 @@ import {
 } from 'react-sortable-hoc';
 import PeriodListItem from './PeriodListItem';
 
-const SortableItem = SortableElement(({ period, index, listClassName, ...handlerProps }) => {
+const SortableItem = SortableElement(({ period, idx, listClassName, ...handlerProps }) => {
     return (
         <li key={period.id} className="period-dimension-item">
             <PeriodListItem
                 period={period}
-                index={index}
+                index={idx}
                 listClassName={listClassName}
                 {...handlerProps}
             />
@@ -29,6 +29,7 @@ const SortableList = SortableContainer(
                         key={period.id}
                         period={period}
                         index={index}
+                        idx={index}
                         listClassName={listClassName}
                         {...handlerProps}
                     />

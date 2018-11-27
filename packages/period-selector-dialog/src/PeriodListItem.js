@@ -71,6 +71,11 @@ class PeriodListItem extends Component {
         const Icon = this.renderIcon();
         const RemoveButton = this.renderRemoveButton();
 
+        if (typeof this.props.index == 'undefined') {
+            console.log('PLI index', this.props.index, this.props.period.name, this.props.listClassName);
+        }
+
+
         return (
             <div
                 role="button"
