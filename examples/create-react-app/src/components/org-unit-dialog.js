@@ -152,12 +152,25 @@ export default class OrgUnitDialogExample extends Component {
         }
     };
 
+    handleMultipleOrgUnitsSelect = (children) => {
+        const selected = [
+            ...this.state.selected,
+            ...children.map(orgUnit => ({
+                id: orgUnit.id,
+                displayName: orgUnit.displayName,
+                path: orgUnit.path,
+            })),
+        ];
+
+        this.setState({ selected });
+    };
+
     render = () => (
         <div>
             <div style={{ padding: 16 }}>
                 <Button
                     onClick={this.toggleDialog}
-                    variant="raised"
+                    variant="contained"
                 >
                     Select org units
                 </Button>
@@ -178,6 +191,7 @@ export default class OrgUnitDialogExample extends Component {
                     onDeselectAllClick={this.onDeselectAllClick}
                     handleUserOrgUnitClick={this.handleUserOrgUnitClick}
                     handleOrgUnitClick={this.handleOrgUnitClick}
+                    handleMultipleOrgUnitsSelect={this.handleMultipleOrgUnitsSelect}
                     onClose={this.toggleDialog}
                     onUpdate={this.onOrgUnitSelect}
                     checkboxColor="primary"

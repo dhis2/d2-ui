@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import classnames from 'classnames';
@@ -18,14 +18,14 @@ const styles = theme => ({
         position: 'relative',
     },
     actions: {
-        position: 'absolute',
-        top: 0,
-        right: 48,
-        padding: 0,
-        display: 'block',
+        marginTop: 0,
+        marginRight: -4,
+        '& button': {
+            padding: theme.spacing.unit * 0.5,
+        },
     },
     header: {
-        padding: '0 24px 0 12px',
+        padding: '4px 12px 4px 12px',
     },
     title: {
         fontSize: 15,
@@ -44,10 +44,6 @@ const styles = theme => ({
         transition: theme.transitions.create('transform', {
             duration: theme.transitions.duration.shortest,
         }),
-        marginLeft: 'auto',
-        [theme.breakpoints.up('sm')]: {
-            marginRight: -8,
-        },
     },
     expandOpen: {
         transform: 'rotate(180deg)',
@@ -66,27 +62,26 @@ class CollapsibleCard extends React.Component {
         const { expanded } = this.state;
 
         return (
-            <Card className={classes.card} raised={true}>
+            <Card className={classes.card}>
                 <CardHeader
                     title={title}
-                    classes={{ root: classes.header, title: classes.title }}
+                    classes={{ root: classes.header, title: classes.title, action: classes.actions }}
                     action={
-                        <IconButton
-                            className={classnames(classes.expand, {
-                                [classes.expandOpen]: expanded,
-                            })}
-                            onClick={this.handleExpandClick}
-                            aria-expanded={expanded}
-                            disableRipple
-                        >
-                            <ExpandMoreIcon />
-                        </IconButton>
+                        <Fragment>
+                            {expanded ? actions : null}
+                            <IconButton
+                                className={classnames(classes.expand, {
+                                    [classes.expandOpen]: expanded,
+                                })}
+                                onClick={this.handleExpandClick}
+                                aria-expanded={expanded}
+                                disableRipple
+                            >
+                                <ExpandMoreIcon />
+                            </IconButton>
+                        </Fragment>
                     }
                 />
-
-                <CardActions className={classes.actions} disableActionSpacing={true}>
-                    {expanded ? actions : null}
-                </CardActions>
 
                 <Collapse in={expanded} timeout="auto" unmountOnExit className={classes.collapse}>
                     <CardContent classes={{ root: classes.content }}>{children}</CardContent>

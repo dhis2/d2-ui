@@ -36,6 +36,7 @@ class OrgUnitDialog extends React.PureComponent {
                     handleOrgUnitClick={this.props.handleOrgUnitClick}
                     handleUserOrgUnitClick={this.props.handleUserOrgUnitClick}
                     checkboxColor={this.props.checkboxColor}
+                    handleMultipleOrgUnitsSelect={this.props.handleMultipleOrgUnitsSelect}
                 />
             </DialogContent>
             <DialogActions>
@@ -121,6 +122,12 @@ OrgUnitDialog.propTypes = {
     * Arguments supplied in callback: event, checked
     */
     handleUserOrgUnitClick: PropTypes.func.isRequired,
+
+    /**
+     * Callback handler for selecting user orgunit
+     * Arguments supplied in callback: event, checked
+     */
+    handleMultipleOrgUnitsSelect: PropTypes.func.isRequired,
 
     /**
     * Root organisation unit

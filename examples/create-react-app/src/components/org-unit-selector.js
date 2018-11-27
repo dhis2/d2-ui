@@ -115,6 +115,19 @@ export default class OrgUnitSelectorExample extends Component {
         }
     };
 
+    handleMultipleOrgUnitsSelect = (children) => {
+        const selected = [
+            ...this.state.selected,
+            ...children.map(orgUnit => ({
+                id: orgUnit.id,
+                displayName: orgUnit.displayName,
+                path: orgUnit.path,
+            })),
+        ];
+
+        this.setState({ selected });
+    };
+
     render = () => {
         if (this.state.root) {
             return (<Card>
@@ -131,6 +144,7 @@ export default class OrgUnitSelectorExample extends Component {
                     onDeselectAllClick={this.onDeselectAllClick}
                     handleUserOrgUnitClick={this.handleUserOrgUnitClick}
                     handleOrgUnitClick={this.handleOrgUnitClick}
+                    handleMultipleOrgUnitsSelect={this.handleMultipleOrgUnitsSelect}
                 />
             </Card>);
         }

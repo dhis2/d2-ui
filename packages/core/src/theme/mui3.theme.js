@@ -9,6 +9,7 @@ export const colors = {
     accentSecondaryDark: '#004C40',
     accentSecondaryLight: '#48A999',
     accentSecondaryLightest: '#B2DFDB',
+    accentSecondaryBackground: '#D9ECEB',
 
     black: '#000000',
     greyBlack: '#494949',
@@ -74,7 +75,8 @@ export const palette = {
 };
 
 const spacingUnit = 8;
-
+const childSelectorMuiTypography =
+    '& span[class^="MuiTypography"], & span[class*=" MuiTypography"]';
 export const theme = {
     colors,
     palette,
@@ -90,6 +92,23 @@ export const theme = {
         MuiDivider: {
             light: {
                 backgroundColor: palette.divider, // No light dividers for now
+            },
+        },
+        MuiDialog: {
+            paperWidthSm: {
+                minWidth: 400,
+                width: 400,
+                maxWidth: 400,
+            },
+            paperWidthMd: {
+                minWidth: 600,
+                width: 600,
+                maxWidth: 600,
+            },
+            paperWidthLg: {
+                minWidth: 800,
+                width: 800,
+                maxWidth: 800,
             },
         },
         MuiDialogTitle: {
@@ -124,6 +143,47 @@ export const theme = {
                 '&> *:last-child': {
                     marginRight: 0,
                 },
+            },
+        },
+        MuiSelect: {
+            select: {
+                '&:focus': {
+                    background: '$labelcolor',
+                },
+            },
+        },
+        MuiInput: {
+            underline: {
+                '&:after': {
+                    borderBottom: '1px solid #aaa',
+                },
+                '&:before': {
+                    borderBottom: `1px solid ${colors.greyLight}`,
+                },
+                '&:hover:not($disabled):not($focused):not($error):before': {
+                    borderBottom: `1px solid ${colors.greyLight}`,
+                },
+            },
+        },
+        MuiMenuItem: {
+            root: {
+                paddingTop: spacingUnit,
+                paddingBottom: spacingUnit,
+                fontSize: '15px',
+                '&$selected': {
+                    backgroundColor: colors.accentSecondaryBackground,
+                },
+                '&:hover': {
+                    backgroundColor: '#FAFAFA', // TODO: Make a theme color
+                },
+                [childSelectorMuiTypography]: {
+                    fontSize: 'inherit',
+                },
+            },
+        },
+        MuiListItem: {
+            button: {
+                transitionDuration: '0s',
             },
         },
     },

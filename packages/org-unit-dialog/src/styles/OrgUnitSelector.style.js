@@ -38,6 +38,11 @@ export default {
         overlayContainer: {
             position: 'relative',
             paddingLeft: 20,
+            WebkitUserSelect: 'none',
+            KhtmlUserSelect: 'none',
+            MozUserSelect: 'none',
+            MsUserSelect: 'none',
+            UserSelect: 'none',
         },
         overlay: {
             position: 'absolute',
@@ -62,6 +67,7 @@ export default {
             fontWeight: 400,
             position: 'relative',
             bottom: 2,
+            cursor: 'pointer',
 
             checkbox: {
                 position: 'relative',
@@ -80,6 +86,7 @@ export default {
                 margin: '2px 3px 2px 2px',
                 position: 'relative',
                 top: 2,
+                cursor: 'pointer',
             },
         },
         treeStyle: {
@@ -88,27 +95,6 @@ export default {
                 color: '#a7a7a7',
                 fontSize: 15,
             },
-        },
-    },
-    userOrgUnits: {
-        index: {
-            background: '#F4F5F8',
-            margin: '0 0px 10px',
-        },
-        checkbox: {
-            fontSize: 16,
-        },
-        stopIcon: {
-            position: 'relative',
-            top: '4px',
-            color: '#9e9e9e',
-            fontSize: '15px',
-            margin: '0 3px 0 -10px',
-        },
-        text: {
-            color: '#000',
-            position: 'relative',
-            top: '3px',
         },
     },
     footer: {

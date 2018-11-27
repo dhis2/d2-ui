@@ -1,8 +1,12 @@
 import React, { Component, Fragment } from 'react';
 import { OrgUnitTree } from '@dhis2/d2-ui-org-unit-tree';
-import Grid from '@material-ui/core/Grid/Grid';
 import i18n from '@dhis2/d2-i18n';
 import PropTypes from 'prop-types';
+
+import Grid from '@material-ui/core/Grid/Grid';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+
 import styles from './styles/OrgUnitSelector.style';
 import UserOrgUnitsPanel from './UserOrgUnitsPanel';
 import removeLastPathSegment from './util';
@@ -13,6 +17,9 @@ class OrgUnitSelector extends Component {
         super(props);
 
         this.state = {
+            menuAnchorElement: null,
+            children: null,
+            loadingChildren: false,
             initiallyExpanded: this.props.selected.map(ou => removeLastPathSegment(ou.path)),
         };
     }
@@ -68,7 +75,35 @@ class OrgUnitSelector extends Component {
         });
     };
 
+    onContextMenuClick = (event, orgUnit, hasChildren, loadChildren) => {
+        if (!hasChildren) {
+            return;
+        }
+
+        this.setState({
+            menuAnchorElement: event.currentTarget,
+            loadingChildren: true,
+        }, () => {
+            loadChildren().then((children) => {
+                this.setState({
+                    children: Array.isArray(children) ? children : children.toArray(),
+                    loadingChildren: false,
+                });
+            });
+        });
+    };
+
     normalizeOptions = (result, item) => ({ ...result, [item.id]: item });
+
+    selectChildren = () => {
+        this.closeContextMenu();
+
+        this.props.handleMultipleOrgUnitsSelect(this.state.children);
+    };
+
+    closeContextMenu = () => {
+        this.setState({ menuAnchorElement: null });
+    };
 
     renderGroupOptions = (selected) => {
         if (this.props.groupOptions.length > 0) {
@@ -130,13 +165,12 @@ class OrgUnitSelector extends Component {
         <Fragment>
             <div style={styles.orgUnitsContainer}>
                 <div style={styles.scrollableContainer.index}>
-                    <div style={styles.userOrgUnits.index}>
-                        <UserOrgUnitsPanel
-                            styles={styles.userOrgUnits}
-                            userOrgUnits={this.props.userOrgUnits}
-                            handleUserOrgUnitClick={this.props.handleUserOrgUnitClick}
-                        />
-                    </div>
+                    <UserOrgUnitsPanel
+                        selected={this.props.selected}
+                        styles={styles.userOrgUnits}
+                        userOrgUnits={this.props.userOrgUnits}
+                        handleUserOrgUnitClick={this.props.handleUserOrgUnitClick}
+                    />
                     <div style={styles.scrollableContainer.overlayContainer}>
                         {this.props.userOrgUnits.length > 0 && (
                             <div style={styles.scrollableContainer.overlay} />
@@ -148,6 +182,7 @@ class OrgUnitSelector extends Component {
                             onSelectClick={this.props.handleOrgUnitClick}
                             onExpand={this.onExpand}
                             onCollapse={this.onCollapse}
+                            onContextMenuClick={this.onContextMenuClick}
                             treeStyle={styles.orgUnitTree.treeStyle}
                             labelStyle={styles.orgUnitTree.labelStyle}
                             selectedLabelStyle={styles.orgUnitTree.selectedLabelStyle}
@@ -155,6 +190,19 @@ class OrgUnitSelector extends Component {
                             showFolderIcon
                             disableSpacer
                         />
+                        <Menu
+                            anchorEl={this.state.menuAnchorElement}
+                            open={Boolean(this.state.menuAnchorElement)}
+                            onClose={this.closeContextMenu}
+                        >
+                            <MenuItem
+                                onClick={this.selectChildren}
+                                disabled={this.state.loadingChildren}
+                                dense
+                            >
+                                {i18n.t('Select children')}
+                            </MenuItem>
+                        </Menu>
                     </div>
                 </div>
                 <div style={styles.orgUnitsContainer.tooltipContainer}>
@@ -222,6 +270,11 @@ OrgUnitSelector.propTypes = {
      * On deselect all click handler
      */
     onDeselectAllClick: PropTypes.func.isRequired,
+
+    /**
+     * Function for handling multiple org units select
+     */
+    handleMultipleOrgUnitsSelect: PropTypes.func.isRequired,
 
     /**
      * Callback handler for selecting orgunit
