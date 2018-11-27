@@ -13,7 +13,7 @@
     "react-dom": "^15.0.0 || ^16.0.0"
   },
   "scripts": {
-    "prebuild": "rimraf ./build/* && cross-env mkdirp ./build",
+    "prebuild": "rimraf ./build/* && mkdirp ./build",
     "build": "npm run build:css && cross-env BABEL_ENV=es babel src --out-dir build --ignore spec.js",
     "build:css": "cp -R ./css/* ./build/",
     "watch": "npm run build --  --watch",
