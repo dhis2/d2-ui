@@ -64,6 +64,10 @@ export default class OrgUnitSelectorExample extends Component {
         });
     };
 
+    onDeselectAllClick = () => {
+        this.setState({ selected: [] });
+    };
+
     loadOrgUnitGroups = () => {
         this.props
             .d2
@@ -137,6 +141,7 @@ export default class OrgUnitSelectorExample extends Component {
                     groupOptions={this.state.groupOptions}
                     onLevelChange={this.onLevelChange}
                     onGroupChange={this.onGroupChange}
+                    onDeselectAllClick={this.onDeselectAllClick}
                     handleUserOrgUnitClick={this.handleUserOrgUnitClick}
                     handleOrgUnitClick={this.handleOrgUnitClick}
                     handleMultipleOrgUnitsSelect={this.handleMultipleOrgUnitsSelect}

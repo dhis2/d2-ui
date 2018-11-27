@@ -93,6 +93,10 @@ export default class OrgUnitDialogExample extends Component {
         });
     };
 
+    onDeselectAllClick = () => {
+        this.setState({ selected: [] });
+    };
+
     toggleDialog = () => {
         this.setState({
             orgUnitDialog: {
@@ -184,6 +188,7 @@ export default class OrgUnitDialogExample extends Component {
                     groupOptions={this.state.groupOptions}
                     onLevelChange={this.onLevelChange}
                     onGroupChange={this.onGroupChange}
+                    onDeselectAllClick={this.onDeselectAllClick}
                     handleUserOrgUnitClick={this.handleUserOrgUnitClick}
                     handleOrgUnitClick={this.handleOrgUnitClick}
                     handleMultipleOrgUnitsSelect={this.handleMultipleOrgUnitsSelect}
