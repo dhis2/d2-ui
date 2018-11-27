@@ -23,7 +23,10 @@ class RelativePeriods extends Component {
     }
 
     componentDidMount = () => {
-        this.props.setOfferedPeriods(this.generatePeriods(this.state.periodType));
+        const periods = this.generatePeriods(this.state.periodType);
+        const selectedIds = this.props.selectedItems.map(period => period.id);
+
+        this.props.setOfferedPeriods(periods.filter(period => !selectedIds.includes(period.id)));
     };
 
     onPeriodTypeChange = (event) => {
@@ -36,7 +39,9 @@ class RelativePeriods extends Component {
 
     generatePeriods = (periodType) => {
         const generator = this.periodsGenerator.get(periodType);
-        return generator.generatePeriods();
+        const selectedIds = this.props.selectedItems.map(item => item.id);
+
+        return generator.generatePeriods().filter(item => !selectedIds.includes(item.id));
     };
 
     selectAll = () => {
@@ -74,7 +79,7 @@ class RelativePeriods extends Component {
                 <PeriodsList
                     items={this.props.items}
                     onPeriodClick={this.props.onPeriodClick}
-                    onDoubleClick={this.props.onDoubleClick}
+                    onPeriodDoubleClick={this.props.onPeriodDoubleClick}
                     listClassName={'periods-list-offered'}
                 />
                 <div style={{ textAlign: 'center' }}>
@@ -89,9 +94,10 @@ class RelativePeriods extends Component {
 
 RelativePeriods.propTypes = {
     items: PropTypes.array.isRequired,
+    selectedItems: PropTypes.array.isRequired,
     setOfferedPeriods: PropTypes.func.isRequired,
     addSelectedPeriods: PropTypes.func.isRequired,
-    onDoubleClick: PropTypes.func.isRequired,
+    onPeriodDoubleClick: PropTypes.func.isRequired,
     onPeriodClick: PropTypes.func.isRequired,
 };
 

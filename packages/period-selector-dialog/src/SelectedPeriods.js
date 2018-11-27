@@ -17,6 +17,7 @@ class SelectedPeriods extends React.Component {
             <PeriodsList
                 items={this.props.items}
                 onPeriodClick={this.props.onPeriodClick}
+                onPeriodDoubleClick={this.props.onPeriodDoubleClick}
                 onRemovePeriodClick={this.props.onRemovePeriodClick}
                 listClassName={'periods-list-selected'}
             />
@@ -32,6 +33,7 @@ class SelectedPeriods extends React.Component {
 SelectedPeriods.propTypes = {
     items: PropTypes.array.isRequired,
     onClearAll: PropTypes.func.isRequired,
+    onPeriodDoubleClick: PropTypes.func.isRequired,
     onPeriodClick: PropTypes.func.isRequired,
     onRemovePeriodClick: PropTypes.func.isRequired,
 };
