@@ -8,10 +8,10 @@
   "scripts": {
     "coverage": "jest --coverage",
     "lint": "eslint src/",
-    "prebuild": "rimraf ./build/*",
+    "prebuild": "rimraf ./build/* && mkdirp ./build",
     "build": "npm run build:sass && npm run build:es",
     "build:es": "cross-env BABEL_ENV=es babel src --out-dir build --ignore spec.js",
-    "build:sass": "mkdirp ./build && node-sass ./scss --output ./build/css",
+    "build:sass": "node-sass ./scss --output ./build/css",
     "watch": "npm run build -- --watch",
     "test-ci": "jest --config=../../jest.config.js packages/core"
   },
