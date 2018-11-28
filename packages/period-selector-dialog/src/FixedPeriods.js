@@ -33,9 +33,8 @@ class FixedPeriods extends Component {
 
     componentDidMount = () => {
         const periods = this.generatePeriods(this.state.periodType, this.state.year);
-        const selectedIds = this.props.selectedItems.map(period => period.id);
 
-        this.props.setOfferedPeriods(periods.filter(period => !selectedIds.includes(period.id)));
+        this.setOfferedPeriods(periods);
     };
 
     onPeriodTypeChange = (event) => {
@@ -44,7 +43,7 @@ class FixedPeriods extends Component {
         });
 
         if (this.state.year) {
-            this.props.setOfferedPeriods(this.generatePeriods(event.target.value, this.state.year));
+            this.setOfferedPeriods(this.generatePeriods(event.target.value, this.state.year));
         }
     };
 
@@ -55,7 +54,7 @@ class FixedPeriods extends Component {
         });
 
         if (this.state.periodType) {
-            this.props.setOfferedPeriods(this.generatePeriods(this.state.periodType, event.target.value));
+            this.setOfferedPeriods(this.generatePeriods(this.state.periodType, event.target.value));
         }
     };
 
@@ -81,22 +80,26 @@ class FixedPeriods extends Component {
         return years;
     };
 
+    setOfferedPeriods = (periods) => {
+        const selectedIds = this.props.selectedItems.map(period => period.id);
+
+        this.props.setOfferedPeriodIds(periods);
+        this.props.setOfferedPeriods(periods.filter(period => !selectedIds.includes(period.id)));
+    };
+
     generatePeriods = (periodType, year) => {
         const generator = this.periodsGenerator.get(periodType);
-        const selectedIds = this.props.selectedItems.map(item => item.id);
 
-        return generator
-            .generatePeriods({
-                offset: year - (new Date()).getFullYear(),
-                filterFuturePeriods: false,
-                reversePeriods: false,
-            })
-            .filter(period => !selectedIds.includes(period.id));
+        return generator.generatePeriods({
+            offset: year - (new Date()).getFullYear(),
+            filterFuturePeriods: false,
+            reversePeriods: false,
+        });
     };
 
     selectAll = () => {
         this.props.addSelectedPeriods(this.props.items);
-        this.props.setOfferedPeriods([]);
+        this.setOfferedPeriods([]);
     };
 
     closeYearSelect = () => {
@@ -215,6 +218,7 @@ FixedPeriods.propTypes = {
     onPeriodDoubleClick: PropTypes.func.isRequired,
     onPeriodClick: PropTypes.func.isRequired,
     setOfferedPeriods: PropTypes.func.isRequired,
+    setOfferedPeriodIds: PropTypes.func.isRequired,
     addSelectedPeriods: PropTypes.func.isRequired,
 };
 

@@ -57,6 +57,10 @@ class Periods extends Component {
         super(props);
 
         this.props.setSelectedPeriods(this.props.selectedItems);
+
+        this.state = {
+            offeredPeriodIds: [],
+        };
     }
 
     componentDidUpdate(prevProps) {
@@ -101,7 +105,7 @@ class Periods extends Component {
 
         this.props.onDeselect(removedPeriods);
         this.props.removeSelectedPeriods(removedPeriods);
-        this.props.addOfferedPeriods(removedPeriods);
+        this.addOfferedPeriods(removedPeriods);
     };
 
     onOfferedPeriodDoubleClick = (period) => {
@@ -117,21 +121,31 @@ class Periods extends Component {
 
         this.props.onDeselect(itemToAdd);
         this.props.removeSelectedPeriods(itemToAdd);
-        this.props.addOfferedPeriods(itemToAdd);
+        this.addOfferedPeriods(itemToAdd);
     };
 
-    onRemovePeriod = (removedPeriod) => {
+    onSelectedPeriodRemove= (removedPeriod) => {
         const itemToRemove = [removedPeriod];
 
         this.props.onDeselect(itemToRemove);
         this.props.removeSelectedPeriods(itemToRemove);
-        this.props.addOfferedPeriods(itemToRemove);
+        this.addOfferedPeriods(itemToRemove);
     };
 
     onClearAll = (removedPeriods) => {
         this.props.onDeselect(removedPeriods);
-        this.props.addOfferedPeriods(removedPeriods);
+        this.addOfferedPeriods(removedPeriods);
         this.props.setSelectedPeriods([]);
+    };
+
+    setOfferedPeriodIds = (periods) => {
+        this.setState({
+            offeredPeriodIds: periods.map(period => period.id),
+        });
+    };
+
+    addOfferedPeriods = (periods) => {
+        this.props.addOfferedPeriods(periods.filter(period => this.state.offeredPeriodIds.includes(period.id)));
     };
 
     renderPeriodTypeButtons = () => (
@@ -173,6 +187,7 @@ class Periods extends Component {
                             onPeriodDoubleClick={this.onOfferedPeriodDoubleClick}
                             onPeriodClick={this.props.toggleOfferedPeriod}
                             setOfferedPeriods={this.props.setOfferedPeriods}
+                            setOfferedPeriodIds={this.setOfferedPeriodIds}
                             addSelectedPeriods={this.props.addSelectedPeriods}
                             selectedItems={this.props.selectedItems}
                         />
@@ -186,8 +201,8 @@ class Periods extends Component {
                             onClearAll={this.onClearAll}
                             onPeriodDoubleClick={this.onSelectedPeriodDoubleClick}
                             onPeriodClick={this.props.toggleSelectedPeriod}
-                            onRemovePeriodClick={this.onRemovePeriod}
                             onReorder={this.props.setSelectedPeriods}
+                            onRemovePeriodClick={this.onSelectedPeriodRemove}
                         />
                     </div>
                 </div>
