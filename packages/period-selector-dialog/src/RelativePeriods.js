@@ -50,8 +50,8 @@ class RelativePeriods extends Component {
     };
 
     selectAll = () => {
-        this.props.addSelectedPeriods(this.props.items);
-        this.setOfferedPeriods([]);
+        this.props.onSelect(this.props.items);
+        this.props.setOfferedPeriods([]);
     };
 
     renderOptions = () => (
@@ -102,7 +102,7 @@ RelativePeriods.propTypes = {
     selectedItems: PropTypes.array.isRequired,
     setOfferedPeriods: PropTypes.func.isRequired,
     setOfferedPeriodIds: PropTypes.func.isRequired,
-    addSelectedPeriods: PropTypes.func.isRequired,
+    onSelect: PropTypes.func.isRequired,
     onPeriodDoubleClick: PropTypes.func.isRequired,
     onPeriodClick: PropTypes.func.isRequired,
 };

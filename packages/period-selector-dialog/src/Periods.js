@@ -124,7 +124,7 @@ class Periods extends Component {
         this.addOfferedPeriods(itemToAdd);
     };
 
-    onSelectedPeriodRemove= (removedPeriod) => {
+    onSelectedPeriodRemove = (removedPeriod) => {
         const itemToRemove = [removedPeriod];
 
         this.props.onDeselect(itemToRemove);
@@ -190,6 +190,7 @@ class Periods extends Component {
                             setOfferedPeriodIds={this.setOfferedPeriodIds}
                             addSelectedPeriods={this.props.addSelectedPeriods}
                             selectedItems={this.props.selectedItems}
+                            onSelect={this.props.onSelect}
                         />
                     </div>
                     <div className="block buttons">

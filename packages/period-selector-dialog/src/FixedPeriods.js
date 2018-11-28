@@ -98,8 +98,8 @@ class FixedPeriods extends Component {
     };
 
     selectAll = () => {
-        this.props.addSelectedPeriods(this.props.items);
-        this.setOfferedPeriods([]);
+        this.props.onSelect(this.props.items);
+        this.props.setOfferedPeriods([]);
     };
 
     closeYearSelect = () => {
@@ -219,7 +219,7 @@ FixedPeriods.propTypes = {
     onPeriodClick: PropTypes.func.isRequired,
     setOfferedPeriods: PropTypes.func.isRequired,
     setOfferedPeriodIds: PropTypes.func.isRequired,
-    addSelectedPeriods: PropTypes.func.isRequired,
+    onSelect: PropTypes.func.isRequired,
 };
 
 FixedPeriods.contextTypes = {
