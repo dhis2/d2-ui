@@ -66,38 +66,27 @@ class PeriodListItem extends Component {
             : <RemoveItemButton isHighlighted={this.props.period.selected} action={this.onRemovePeriodClick} />
     );
 
-    render = () => {
-        const className = this.isOfferedList() ? 'period-offered-label' : 'period-selected-label';
-        const Icon = this.renderIcon();
-        const RemoveButton = this.renderRemoveButton();
-
-        if (typeof this.props.index == 'undefined') {
-            console.log('PLI index', this.props.index, this.props.period.name, this.props.listClassName);
-        }
-
-
-        return (
-            <div
-                role="button"
-                tabIndex={0}
-                style={this.props.period.selected ? styles.highlightedContainer : {}}
-                onMouseEnter={this.highlightItem}
-                onMouseLeave={this.removeHighlight}
-                onClick={this.onPeriodClick}
-                onDoubleClick={this.onPeriodDoubleClick}
-                className={className}
+    render = () => (
+        <div
+            role="button"
+            tabIndex={0}
+            style={this.props.period.selected ? styles.highlightedContainer : {}}
+            onMouseEnter={this.highlightItem}
+            onMouseLeave={this.removeHighlight}
+            onClick={this.onPeriodClick}
+            onDoubleClick={this.onPeriodDoubleClick}
+            className={this.isOfferedList() ? 'period-offered-label' : 'period-selected-label'}
+        >
+            {this.renderIcon()}
+            <span
+                style={this.props.period.selected ? styles.higlightedText : {}}
+                className="list-text"
             >
-                {Icon}
-                <span
-                    style={this.props.period.selected ? styles.higlightedText : {}}
-                    className="list-text"
-                >
-                    {this.props.period.name}
-                </span>
-                {RemoveButton}
-            </div>
-        );
-    };
+                {this.props.period.name}
+            </span>
+            {this.renderRemoveButton()}
+        </div>
+    );
 }
 
 PeriodListItem.propTypes = {

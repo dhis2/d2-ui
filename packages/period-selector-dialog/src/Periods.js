@@ -134,10 +134,6 @@ class Periods extends Component {
         this.props.setSelectedPeriods([]);
     };
 
-    onReorder = (periods) => {
-        this.props.setSelectedPeriods(periods);
-    }
-
     renderPeriodTypeButtons = () => (
         <Fragment>
             <PeriodTypeButton
@@ -191,7 +187,7 @@ class Periods extends Component {
                             onPeriodDoubleClick={this.onSelectedPeriodDoubleClick}
                             onPeriodClick={this.props.toggleSelectedPeriod}
                             onRemovePeriodClick={this.onRemovePeriod}
-                            onReorder={this.onReorder}
+                            onReorder={this.props.setSelectedPeriods}
                         />
                     </div>
                 </div>
