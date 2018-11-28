@@ -135,7 +135,7 @@ class Periods extends Component {
     };
 
     renderPeriodTypeButtons = () => (
-        <Fragment>
+        <div>
             <PeriodTypeButton
                 periodType={PeriodTypes.RELATIVE}
                 activePeriodType={this.props.periodType}
@@ -148,7 +148,7 @@ class Periods extends Component {
                 text={'Fixed periods'}
                 onClick={this.onPeriodTypeClick}
             />
-        </Fragment>
+        </div>
     );
 
     renderSelectButtons = () => (
