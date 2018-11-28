@@ -10,7 +10,7 @@ const UnselectedIcon = () => <div className="unselected-icon" />;
 const HighlightedIcon = () => <div className="highlighted-icon" />;
 const SelectedIcon = () => <div className="selected-icon" />;
 
-const RemoveItemButton = ({ action, isHighlighted }) => (
+export const RemoveItemButton = ({ action, isHighlighted }) => (
     <IconButton
         style={styles.removeItemButton}
         onClick={action}
@@ -66,38 +66,29 @@ class PeriodListItem extends Component {
             : <RemoveItemButton isHighlighted={this.props.period.selected} action={this.onRemovePeriodClick} />
     );
 
-    render = () => {
-        const className = this.isOfferedList() ? 'period-offered-label' : 'period-selected-label';
-        const Icon = this.renderIcon();
-        const RemoveButton = this.renderRemoveButton();
-
-        return (
-            <li
-                key={this.props.period.id}
-                className="period-dimension-item"
+    render = () => (
+        <li className="period-dimension-item">
+            <div
+                role="button"
+                tabIndex={0}
+                style={this.props.period.selected ? styles.highlightedContainer : {}}
+                onMouseEnter={this.highlightItem}
+                onMouseLeave={this.removeHighlight}
+                onClick={this.onPeriodClick}
+                onDoubleClick={this.onPeriodDoubleClick}
+                className={this.isOfferedList() ? 'period-offered-label' : 'period-selected-label'}
             >
-                <div
-                    role="button"
-                    tabIndex={0}
-                    style={this.props.period.selected ? styles.highlightedContainer : {}}
-                    onMouseEnter={this.highlightItem}
-                    onMouseLeave={this.removeHighlight}
-                    onClick={this.onPeriodClick}
-                    onDoubleClick={this.onPeriodDoubleClick}
-                    className={className}
+                {this.renderIcon()}
+                <span
+                    style={this.props.period.selected ? styles.higlightedText : {}}
+                    className="list-text"
                 >
-                    {Icon}
-                    <span
-                        style={this.props.period.selected ? styles.higlightedText : {}}
-                        className="list-text"
-                    >
-                        {this.props.period.name}
-                    </span>
-                    {RemoveButton}
-                </div>
-            </li>
-        );
-    };
+                    {this.props.period.name}
+                </span>
+                {this.renderRemoveButton()}
+            </div>
+        </li>
+    );
 }
 
 PeriodListItem.propTypes = {

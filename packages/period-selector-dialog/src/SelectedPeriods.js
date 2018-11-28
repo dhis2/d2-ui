@@ -19,7 +19,9 @@ class SelectedPeriods extends React.Component {
                 onPeriodClick={this.props.onPeriodClick}
                 onPeriodDoubleClick={this.props.onPeriodDoubleClick}
                 onRemovePeriodClick={this.props.onRemovePeriodClick}
+                onReorder={this.props.onReorder}
                 listClassName={'periods-list-selected'}
+                sortable
             />
             <div style={{ textAlign: 'center' }}>
                 <Button onClick={this.clearPeriods} >
@@ -36,6 +38,7 @@ SelectedPeriods.propTypes = {
     onPeriodDoubleClick: PropTypes.func.isRequired,
     onPeriodClick: PropTypes.func.isRequired,
     onRemovePeriodClick: PropTypes.func.isRequired,
+    onReorder: PropTypes.func.isRequired,
 };
 
 export default SelectedPeriods;

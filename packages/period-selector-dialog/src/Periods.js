@@ -187,6 +187,7 @@ class Periods extends Component {
                             onPeriodDoubleClick={this.onSelectedPeriodDoubleClick}
                             onPeriodClick={this.props.toggleSelectedPeriod}
                             onRemovePeriodClick={this.onRemovePeriod}
+                            onReorder={this.props.setSelectedPeriods}
                         />
                     </div>
                 </div>
