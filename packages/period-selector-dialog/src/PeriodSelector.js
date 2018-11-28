@@ -13,12 +13,14 @@ const PeriodSelector = props => (
 PeriodSelector.propTypes = {
     onSelect: PropTypes.func,
     onDeselect: PropTypes.func,
+    onReorder: PropTypes.func,
     selectedItems: PropTypes.arrayOf(PropTypes.object),
 };
 
 PeriodSelector.defaultProps = {
     onSelect: () => null,
     onDeselect: () => null,
+    onReorder: () => null,
     selectedItems: [],
 };
 

@@ -36,7 +36,7 @@ const SortableList = SortableContainer(
 class PeriodsList extends Component {
     onSortEnd = ({ oldIndex, newIndex }) => {
         this.props.onReorder(arrayMove(this.props.items, oldIndex, newIndex));
-    }
+    };
 
     render() {
         const {
@@ -48,6 +48,7 @@ class PeriodsList extends Component {
 
         if (sortable) {
             return (<SortableList
+                helperClass="sortableHelper"
                 distance={3}
                 transitionDuration={200}
                 onSortEnd={this.onSortEnd}

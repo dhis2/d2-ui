@@ -24,9 +24,8 @@ class RelativePeriods extends Component {
 
     componentDidMount = () => {
         const periods = this.generatePeriods(this.state.periodType);
-        const selectedIds = this.props.selectedItems.map(period => period.id);
 
-        this.props.setOfferedPeriods(periods.filter(period => !selectedIds.includes(period.id)));
+        this.setOfferedPeriods(periods);
     };
 
     onPeriodTypeChange = (event) => {
@@ -34,18 +33,24 @@ class RelativePeriods extends Component {
             periodType: event.target.value,
         });
 
-        this.props.setOfferedPeriods(this.generatePeriods(event.target.value));
+        this.setOfferedPeriods(this.generatePeriods(event.target.value));
+    };
+
+    setOfferedPeriods = (periods) => {
+        const selectedIds = this.props.selectedItems.map(period => period.id);
+
+        this.props.setOfferedPeriodIds(periods);
+        this.props.setOfferedPeriods(periods.filter(period => !selectedIds.includes(period.id)));
     };
 
     generatePeriods = (periodType) => {
         const generator = this.periodsGenerator.get(periodType);
-        const selectedIds = this.props.selectedItems.map(item => item.id);
 
-        return generator.generatePeriods().filter(item => !selectedIds.includes(item.id));
+        return generator.generatePeriods();
     };
 
     selectAll = () => {
-        this.props.addSelectedPeriods(this.props.items);
+        this.props.onSelect(this.props.items);
         this.props.setOfferedPeriods([]);
     };
 
@@ -96,7 +101,8 @@ RelativePeriods.propTypes = {
     items: PropTypes.array.isRequired,
     selectedItems: PropTypes.array.isRequired,
     setOfferedPeriods: PropTypes.func.isRequired,
-    addSelectedPeriods: PropTypes.func.isRequired,
+    setOfferedPeriodIds: PropTypes.func.isRequired,
+    onSelect: PropTypes.func.isRequired,
     onPeriodDoubleClick: PropTypes.func.isRequired,
     onPeriodClick: PropTypes.func.isRequired,
 };
