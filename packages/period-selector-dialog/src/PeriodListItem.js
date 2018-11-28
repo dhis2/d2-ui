@@ -67,25 +67,27 @@ class PeriodListItem extends Component {
     );
 
     render = () => (
-        <div
-            role="button"
-            tabIndex={0}
-            style={this.props.period.selected ? styles.highlightedContainer : {}}
-            onMouseEnter={this.highlightItem}
-            onMouseLeave={this.removeHighlight}
-            onClick={this.onPeriodClick}
-            onDoubleClick={this.onPeriodDoubleClick}
-            className={this.isOfferedList() ? 'period-offered-label' : 'period-selected-label'}
-        >
-            {this.renderIcon()}
-            <span
-                style={this.props.period.selected ? styles.higlightedText : {}}
-                className="list-text"
+        <li className="period-dimension-item">
+            <div
+                role="button"
+                tabIndex={0}
+                style={this.props.period.selected ? styles.highlightedContainer : {}}
+                onMouseEnter={this.highlightItem}
+                onMouseLeave={this.removeHighlight}
+                onClick={this.onPeriodClick}
+                onDoubleClick={this.onPeriodDoubleClick}
+                className={this.isOfferedList() ? 'period-offered-label' : 'period-selected-label'}
             >
-                {this.props.period.name}
-            </span>
-            {this.renderRemoveButton()}
-        </div>
+                {this.renderIcon()}
+                <span
+                    style={this.props.period.selected ? styles.higlightedText : {}}
+                    className="list-text"
+                >
+                    {this.props.period.name}
+                </span>
+                {this.renderRemoveButton()}
+            </div>
+        </li>
     );
 }
 

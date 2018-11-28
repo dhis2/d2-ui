@@ -7,37 +7,31 @@ import {
 } from 'react-sortable-hoc';
 import PeriodListItem from './PeriodListItem';
 
-const SortableItem = SortableElement(({ period, idx, listClassName, ...handlerProps }) => {
-    return (
-        <li key={period.id} className="period-dimension-item">
-            <PeriodListItem
-                period={period}
-                index={idx}
-                listClassName={listClassName}
-                {...handlerProps}
-            />
-        </li>
-    );
-});
+const SortableItem = SortableElement(({ period, idx, listClassName, ...handlerProps }) => (
+    <PeriodListItem
+        key={period.id}
+        period={period}
+        index={idx}
+        listClassName={listClassName}
+        {...handlerProps}
+    />
+));
 
 const SortableList = SortableContainer(
-    ({ items, listClassName, ...handlerProps }) => {
-        return (
-            <ul className={listClassName}>
-                {items.map((period, index) => (
-                    <SortableItem
-                        key={period.id}
-                        period={period}
-                        index={index}
-                        idx={index}
-                        listClassName={listClassName}
-                        {...handlerProps}
-                    />
-                ))}
-            </ul>
-        );
-    },
-);
+    ({ items, listClassName, ...handlerProps }) => (
+        <ul className={listClassName}>
+            {items.map((period, index) => (
+                <SortableItem
+                    key={period.id}
+                    period={period}
+                    index={index}
+                    idx={index}
+                    listClassName={listClassName}
+                    {...handlerProps}
+                />
+            ))}
+        </ul>
+    ));
 
 class PeriodsList extends Component {
     onSortEnd = ({ oldIndex, newIndex }) => {
@@ -64,18 +58,13 @@ class PeriodsList extends Component {
         }
 
         const ListItems = items.map((period, index) => (
-            <li
+            <PeriodListItem
                 key={period.id}
-                className="period-dimension-item"
-            >
-                <PeriodListItem
-                    period={period}
-                    index={index}
-                    key={period.id}
-                    listClassName={listClassName}
-                    {...handlerProps}
-                />
-            </li>
+                period={period}
+                index={index}
+                listClassName={listClassName}
+                {...handlerProps}
+            />
         ));
 
         return <ul className={listClassName}>{ListItems}</ul>;
@@ -95,6 +84,7 @@ PeriodsList.propTypes = {
 PeriodsList.defaultProps = {
     onPeriodDoubleClick: () => null,
     onRemovePeriodClick: () => null,
+    onReorder: () => null,
 };
 
 export default PeriodsList;
