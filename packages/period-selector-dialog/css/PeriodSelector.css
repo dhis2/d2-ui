@@ -72,6 +72,10 @@ button.nav-button:last-child {
     margin: 0px;
 }
 
+.sortableHelper {
+    z-index: 10000;
+}
+
 .periods-list-offered {
     list-style: none;
     overflow: auto;

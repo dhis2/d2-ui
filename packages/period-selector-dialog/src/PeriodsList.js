@@ -48,6 +48,7 @@ class PeriodsList extends Component {
 
         if (sortable) {
             return (<SortableList
+                helperClass="sortableHelper"
                 distance={3}
                 transitionDuration={200}
                 onSortEnd={this.onSortEnd}
