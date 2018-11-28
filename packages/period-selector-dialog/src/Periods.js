@@ -202,7 +202,7 @@ class Periods extends Component {
                             onClearAll={this.onClearAll}
                             onPeriodDoubleClick={this.onSelectedPeriodDoubleClick}
                             onPeriodClick={this.props.toggleSelectedPeriod}
-                            onReorder={this.props.setSelectedPeriods}
+                            onReorder={this.props.onReorder}
                             onRemovePeriodClick={this.onSelectedPeriodRemove}
                         />
                     </div>
@@ -215,6 +215,7 @@ class Periods extends Component {
 Periods.propTypes = {
     onSelect: PropTypes.func.isRequired,
     onDeselect: PropTypes.func.isRequired,
+    onReorder: PropTypes.func.isRequired,
     selectedItems: PropTypes.array.isRequired,
     periodType: PropTypes.string.isRequired,
     offeredPeriods: PropTypes.object.isRequired,

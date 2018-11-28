@@ -36,7 +36,7 @@ const SortableList = SortableContainer(
 class PeriodsList extends Component {
     onSortEnd = ({ oldIndex, newIndex }) => {
         this.props.onReorder(arrayMove(this.props.items, oldIndex, newIndex));
-    }
+    };
 
     render() {
         const {
