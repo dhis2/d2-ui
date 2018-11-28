@@ -10,7 +10,7 @@ const UnselectedIcon = () => <div className="unselected-icon" />;
 const HighlightedIcon = () => <div className="highlighted-icon" />;
 const SelectedIcon = () => <div className="selected-icon" />;
 
-const RemoveItemButton = ({ action, isHighlighted }) => (
+export const RemoveItemButton = ({ action, isHighlighted }) => (
     <IconButton
         style={styles.removeItemButton}
         onClick={action}

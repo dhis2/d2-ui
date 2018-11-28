@@ -40,6 +40,7 @@
   },
   "devDependencies": {
     "babel-jest": "^23.0.1",
+    "enzyme": "^3.7.0",
     "jest": "^23.1.0",
     "mkdirp": "^0.5.1"
   },

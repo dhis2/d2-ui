@@ -82,9 +82,9 @@ PeriodsList.propTypes = {
 };
 
 PeriodsList.defaultProps = {
-    onPeriodDoubleClick: () => null,
-    onRemovePeriodClick: () => null,
-    onReorder: () => null,
+    onPeriodDoubleClick: Function.prototype,
+    onRemovePeriodClick: Function.prototype,
+    onReorder: Function.prototype,
 };
 
 export default PeriodsList;
