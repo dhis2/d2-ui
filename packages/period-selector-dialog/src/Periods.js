@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import isEqual from 'lodash/isEqual';
 import PeriodTypeButton from './PeriodTypeButton';
 import SelectedPeriods from './SelectedPeriods';
 import { OfferedPeriods } from './OfferedPeriods';
@@ -23,7 +24,6 @@ import {
     removeSelectedPeriods,
     toggleSelectedPeriod,
 } from './actions';
-import { arrayEquals } from './utils';
 
 const SelectButton = ({ action }) => (
     <IconButton
@@ -68,7 +68,7 @@ class Periods extends Component {
         const prevItems = prevProps.selectedItems.map(period => period.id);
         const currentItems = this.props.selectedItems.map(period => period.id);
 
-        if (!arrayEquals(prevItems, currentItems)) {
+        if (!isEqual(prevItems, currentItems)) {
             this.props.setSelectedPeriods(this.props.selectedItems);
         }
     }

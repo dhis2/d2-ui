@@ -12,7 +12,7 @@ import ArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import FixedPeriodsGenerator from './utils/FixedPeriodsGenerator';
 import PeriodsList from './PeriodsList';
 import styles from './styles/PeriodListItem.style';
-import { arrayEquals } from './utils';
+import isEqual from 'lodash/isEqual';
 
 export const defaultState = {
     periodType: 'Monthly',
@@ -42,7 +42,7 @@ class FixedPeriods extends Component {
         const prevItems = prevProps.selectedItems.map(period => period.id);
         const currentItems = this.props.selectedItems.map(period => period.id);
 
-        if (!arrayEquals(prevItems, currentItems)) {
+        if (!isEqual(prevItems, currentItems)) {
             this.setOfferedPeriods(this.generatePeriods(this.state.periodType, this.state.year));
         }
     }
