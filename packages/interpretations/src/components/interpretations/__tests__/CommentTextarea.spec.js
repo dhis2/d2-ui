@@ -40,7 +40,7 @@ describe('Interpretations: Interpretations -> CommentTextarea component', () => 
         });
 
         it('should render a post link', () => {
-            expect(commentTextarea.find('Link')).toHaveProp('label', 'Post comment');
+            expect(commentTextarea.find('Link')).toHaveProp('label', 'Post reply');
         });
 
         it('should not render a cancel link', () => {
@@ -56,7 +56,7 @@ describe('Interpretations: Interpretations -> CommentTextarea component', () => 
                     .props()
                     .onChange({ target: { value: 'new text' } });
                 const links = commentTextarea.find('Link');
-                const postLink = links.findWhere(link => link.props().label === 'Post comment');
+                const postLink = links.findWhere(link => link.props().label === 'Post reply');
                 postLink.simulate('click');
             });
 
