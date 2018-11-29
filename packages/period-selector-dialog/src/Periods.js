@@ -23,6 +23,7 @@ import {
     removeSelectedPeriods,
     toggleSelectedPeriod,
 } from './actions';
+import { arrayEquals } from './utils';
 
 const SelectButton = ({ action }) => (
     <IconButton
@@ -67,16 +68,8 @@ class Periods extends Component {
         const prevItems = prevProps.selectedItems.map(period => period.id);
         const currentItems = this.props.selectedItems.map(period => period.id);
 
-        if (prevItems.length !== currentItems.length) {
+        if (!arrayEquals(prevItems, currentItems)) {
             this.props.setSelectedPeriods(this.props.selectedItems);
-        } else {
-            for (let i = 0; i < prevItems.length; ++i) {
-                if (prevItems[i] !== currentItems[i]) {
-                    this.props.setSelectedPeriods(this.props.selectedItems);
-
-                    break;
-                }
-            }
         }
     }
 

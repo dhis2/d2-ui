@@ -12,6 +12,7 @@ import ArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import FixedPeriodsGenerator from './utils/FixedPeriodsGenerator';
 import PeriodsList from './PeriodsList';
 import styles from './styles/PeriodListItem.style';
+import { arrayEquals } from './utils';
 
 export const defaultState = {
     periodType: 'Monthly',
@@ -36,6 +37,15 @@ class FixedPeriods extends Component {
 
         this.setOfferedPeriods(periods);
     };
+
+    componentDidUpdate(prevProps) {
+        const prevItems = prevProps.selectedItems.map(period => period.id);
+        const currentItems = this.props.selectedItems.map(period => period.id);
+
+        if (!arrayEquals(prevItems, currentItems)) {
+            this.setOfferedPeriods(this.generatePeriods(this.state.periodType, this.state.year));
+        }
+    }
 
     onPeriodTypeChange = (event) => {
         this.setState({
