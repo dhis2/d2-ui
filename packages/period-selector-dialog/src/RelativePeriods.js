@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button';
 import RelativePeriodsGenerator from './utils/RelativePeriodsGenerator';
 import PeriodsList from './PeriodsList';
 import styles from './styles/PeriodListItem.style';
+import isEqual from 'lodash/isEqual';
 
 export const defaultState = {
     periodType: 'Months',
@@ -27,6 +28,15 @@ class RelativePeriods extends Component {
 
         this.setOfferedPeriods(periods);
     };
+
+    componentDidUpdate(prevProps) {
+        const prevItems = prevProps.selectedItems.map(period => period.id);
+        const currentItems = this.props.selectedItems.map(period => period.id);
+
+        if (!isEqual(prevItems, currentItems)) {
+            this.setOfferedPeriods(this.generatePeriods(this.state.periodType, this.state.year));
+        }
+    }
 
     onPeriodTypeChange = (event) => {
         this.setState({
