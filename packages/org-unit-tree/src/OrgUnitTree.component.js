@@ -147,7 +147,15 @@ class OrgUnitTree extends React.Component {
                 // d2.ModelCollectionProperty.load takes a second parameter `forceReload` and will just return
                 // the current valueMap unless either `this.hasUnloadedData` or `forceReload` are true
                 root.children.load(
-                    { fields: 'id,displayName,children::isNotEmpty,path,parent' },
+                    {
+                        fields: [
+                            'id',
+                            `${this.props.displayNameProperty}~rename(displayName)`,
+                            'children::isNotEmpty',
+                            'path',
+                            'parent',
+                        ].join(','),
+                    },
                     this.props.forceReloadChildren,
                 ).then((children) => {
                     resolve(children);
@@ -210,6 +218,7 @@ class OrgUnitTree extends React.Component {
                     showFolderIcon={this.props.showFolderIcon}
                     disableSpacer={this.props.disableSpacer}
                     checkboxColor={this.props.checkboxColor}
+                    displayNameProperty={this.props.displayNameProperty}
                 />
             );
         }
@@ -373,6 +382,11 @@ OrgUnitTree.propTypes = {
     root: PropTypes.instanceOf(ModelBase).isRequired,
 
     /**
+     * Display name property
+     */
+    displayNameProperty: PropTypes.string,
+
+    /**
      * An array of paths of selected OUs
      *
      * The path of an OU is the UIDs of the OU and all its parent OUs separated by slashes (/)
@@ -506,6 +520,7 @@ OrgUnitTree.propTypes = {
 };
 
 OrgUnitTree.defaultProps = {
+    displayNameProperty: 'displayName',
     selected: [],
     initiallyExpanded: [],
     onSelectClick: undefined,

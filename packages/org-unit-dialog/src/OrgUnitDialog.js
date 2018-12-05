@@ -39,6 +39,7 @@ class OrgUnitDialog extends React.PureComponent {
                     handleMultipleOrgUnitsSelect={this.props.handleMultipleOrgUnitsSelect}
                     deselectAllTooltipFontColor={this.props.deselectAllTooltipFontColor}
                     deselectAllTooltipBackgroundColor={this.props.deselectAllTooltipBackgroundColor}
+                    displayNameProperty={this.props.displayNameProperty}
                 />
             </DialogContent>
             <DialogActions>
@@ -52,6 +53,7 @@ class OrgUnitDialog extends React.PureComponent {
 }
 
 OrgUnitDialog.defaultProps = {
+    displayNameProperty: 'displayName',
     selected: [],
     userOrgUnits: [],
     level: [],
@@ -69,6 +71,11 @@ OrgUnitDialog.defaultProps = {
 };
 
 OrgUnitDialog.propTypes = {
+    /**
+     * Display name property taken from user settings
+     */
+    displayNameProperty: PropTypes.string,
+
     /**
     * Array of objects with required param id
     */
