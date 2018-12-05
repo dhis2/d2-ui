@@ -178,7 +178,7 @@ class OrgUnitSelector extends Component {
                         />
                         <div style={styles.scrollableContainer.overlayContainer}>
                             {this.props.userOrgUnits.length > 0 && (
-                                <div style={styles.scrollableContainer.overlay}/>
+                                <div style={styles.scrollableContainer.overlay} />
                             )}
                             <OrgUnitTree
                                 root={this.props.root}
@@ -192,6 +192,7 @@ class OrgUnitSelector extends Component {
                                 labelStyle={styles.orgUnitTree.labelStyle}
                                 selectedLabelStyle={styles.orgUnitTree.selectedLabelStyle}
                                 checkboxColor={this.props.checkboxColor}
+                                displayNameProperty={this.props.displayNameProperty}
                                 showFolderIcon
                                 disableSpacer
                             />
@@ -231,6 +232,11 @@ class OrgUnitSelector extends Component {
 }
 
 OrgUnitSelector.propTypes = {
+    /**
+     * Display name property taken from user settings
+     */
+    displayNameProperty: PropTypes.string,
+
     /**
      * Array of objects with required param id
      */
@@ -316,6 +322,7 @@ OrgUnitSelector.propTypes = {
 };
 
 OrgUnitSelector.defaultProps = {
+    displayNameProperty: 'displayName',
     selected: [],
     userOrgUnits: [],
     level: [],
