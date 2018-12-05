@@ -90,8 +90,6 @@ class MdParser {
     }
 
     render(text) {
-        // console.log('');
-
         return md.renderInline(text);
     }
 }
