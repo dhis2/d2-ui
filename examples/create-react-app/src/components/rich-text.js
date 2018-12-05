@@ -2,10 +2,19 @@ import React, { Component } from 'react';
 import { InputField } from '@dhis2/d2-ui-core';
 import {
     Parser as RichTextParser,
-    Editor as RichTextEditor
+    Editor as RichTextEditor,
+    ClassMdParser,
+    convertCtrlKey,
 } from '@dhis2/d2-ui-rich-text';
 
+
 export default class RichText extends Component {
+    constructor(props) {
+        super(props);
+        this.nativeInputRef = React.createRef();
+        this.nativePara = React.createRef();
+        this.NativeMdParser = new ClassMdParser();
+    }
     state = {
         newText: '',
         paraVal: '',
@@ -19,18 +28,43 @@ export default class RichText extends Component {
         this.setState({ newText });
     };
 
+    setNativeInputVal = val => {
+        const node = this.nativeInputRef.current;
+        node.value = val;
+    }
+
+    nativeKeyDown = e => {
+        convertCtrlKey(e, this.setNativeInputVal);
+    }
+
+    nativeSetParsedVal = () => {
+        const inputNode = this.nativeInputRef.current;
+        const renderedVal = this.NativeMdParser.render(inputNode.value);
+        this.nativePara.current.innerHTML = renderedVal;
+    }
+
     render() {
         return (
             <div>
-                <span>Input text to be converted:</span>
-                <RichTextEditor onEdit={this.updateNewText}>
-                    <InputField
-                        value={this.state.newText}
-                        onChange={this.updateNewText}
-                    />
-                </RichTextEditor>
-                <button type="button" onClick={this.setParagraphVal}>Parse</button>
-                <span>Result:</span><RichTextParser>{this.state.paraVal}</RichTextParser>
+                <div>
+                    <p>Using RichText react component wrapper:</p>
+                    <RichTextEditor onEdit={this.updateNewText}>
+                        <InputField
+                            value={this.state.newText}
+                            onChange={this.updateNewText}
+                        />
+                    </RichTextEditor>
+                    <button type="button" onClick={this.setParagraphVal}>Parse</button>
+                    <span>Result:</span>
+                    <RichTextParser>{this.state.paraVal}</RichTextParser>
+                </div>
+                <div>
+                    <p>Using RichText function and class</p>
+                    <input ref={this.nativeInputRef} type="text" onKeyDown={this.nativeKeyDown} />
+                    <button type="button" onClick={this.nativeSetParsedVal}>Parse native</button>
+                    <span>Result:</span>
+                    <p ref={this.nativePara} />
+                </div>
             </div>
         );
     }
