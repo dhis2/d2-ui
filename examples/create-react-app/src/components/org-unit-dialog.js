@@ -192,9 +192,12 @@ export default class OrgUnitDialogExample extends Component {
                     handleUserOrgUnitClick={this.handleUserOrgUnitClick}
                     handleOrgUnitClick={this.handleOrgUnitClick}
                     handleMultipleOrgUnitsSelect={this.handleMultipleOrgUnitsSelect}
+                    deselectAllTooltipBackgroundColor="#E0E0E0"
+                    deselectAllTooltipFontColor="#000000"
                     onClose={this.toggleDialog}
                     onUpdate={this.onOrgUnitSelect}
-                    checkboxColor="primary"
+                    checkboxColor="secondary"
+                    maxWidth="lg"
                 />
             }
             <Snackbar

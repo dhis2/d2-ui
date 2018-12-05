@@ -132,14 +132,11 @@ class OrgUnitSelector extends Component {
     };
 
     renderOptionsPanel = () => (
-        <div style={styles.footer.index}>
-            <Grid
-                style={styles.footer.gridContainer}
-                container
-            >
+        <div style={styles.footer}>
+            <Grid container>
                 <GridControl
-                    id="level-select"
-                    title={i18n.t('Level')}
+                    label={i18n.t('Level')}
+                    placeholder={i18n.t('Select a level')}
                     value={this.props.level}
                     onChange={this.props.onLevelChange}
                     options={this.props.levelOptions}
@@ -148,8 +145,8 @@ class OrgUnitSelector extends Component {
                     multiple
                 />
                 <GridControl
-                    id="group-select"
-                    title={i18n.t('Group')}
+                    label={i18n.t('Group')}
+                    placeholder={i18n.t('Select a group')}
                     value={this.props.group}
                     onChange={this.props.onGroupChange}
                     options={this.props.groupOptions}
@@ -161,67 +158,76 @@ class OrgUnitSelector extends Component {
         </div>
     );
 
-    render = () => (
-        <Fragment>
-            <div style={styles.orgUnitsContainer}>
-                <div style={styles.scrollableContainer.index}>
-                    <UserOrgUnitsPanel
-                        selected={this.props.selected}
-                        styles={styles.userOrgUnits}
-                        userOrgUnits={this.props.userOrgUnits}
-                        handleUserOrgUnitClick={this.props.handleUserOrgUnitClick}
-                    />
-                    <div style={styles.scrollableContainer.overlayContainer}>
-                        {this.props.userOrgUnits.length > 0 && (
-                            <div style={styles.scrollableContainer.overlay} />
-                        )}
-                        <OrgUnitTree
-                            root={this.props.root}
-                            selected={this.props.selected.map(orgUnit => orgUnit.path)}
-                            initiallyExpanded={this.state.initiallyExpanded}
-                            onSelectClick={this.props.handleOrgUnitClick}
-                            onExpand={this.onExpand}
-                            onCollapse={this.onCollapse}
-                            onContextMenuClick={this.onContextMenuClick}
-                            treeStyle={styles.orgUnitTree.treeStyle}
-                            labelStyle={styles.orgUnitTree.labelStyle}
-                            selectedLabelStyle={styles.orgUnitTree.selectedLabelStyle}
+    render = () => {
+        const tooltipStyles = {
+            ...styles.orgUnitsContainer.tooltip,
+            backgroundColor: this.props.deselectAllTooltipBackgroundColor,
+            color: this.props.deselectAllTooltipFontColor,
+        };
+
+        return (
+            <Fragment>
+                <div style={styles.orgUnitsContainer}>
+                    <div style={styles.scrollableContainer.index}>
+                        <UserOrgUnitsPanel
+                            selected={this.props.selected}
+                            styles={styles.userOrgUnits}
+                            userOrgUnits={this.props.userOrgUnits}
+                            handleUserOrgUnitClick={this.props.handleUserOrgUnitClick}
                             checkboxColor={this.props.checkboxColor}
-                            showFolderIcon
-                            disableSpacer
                         />
-                        <Menu
-                            anchorEl={this.state.menuAnchorElement}
-                            open={Boolean(this.state.menuAnchorElement)}
-                            onClose={this.closeContextMenu}
-                        >
-                            <MenuItem
-                                onClick={this.selectChildren}
-                                disabled={this.state.loadingChildren}
-                                dense
+                        <div style={styles.scrollableContainer.overlayContainer}>
+                            {this.props.userOrgUnits.length > 0 && (
+                                <div style={styles.scrollableContainer.overlay}/>
+                            )}
+                            <OrgUnitTree
+                                root={this.props.root}
+                                selected={this.props.selected.map(orgUnit => orgUnit.path)}
+                                initiallyExpanded={this.state.initiallyExpanded}
+                                onSelectClick={this.props.handleOrgUnitClick}
+                                onExpand={this.onExpand}
+                                onCollapse={this.onCollapse}
+                                onContextMenuClick={this.onContextMenuClick}
+                                treeStyle={styles.orgUnitTree.treeStyle}
+                                labelStyle={styles.orgUnitTree.labelStyle}
+                                selectedLabelStyle={styles.orgUnitTree.selectedLabelStyle}
+                                checkboxColor={this.props.checkboxColor}
+                                showFolderIcon
+                                disableSpacer
+                            />
+                            <Menu
+                                anchorEl={this.state.menuAnchorElement}
+                                open={Boolean(this.state.menuAnchorElement)}
+                                onClose={this.closeContextMenu}
                             >
-                                {i18n.t('Select children')}
-                            </MenuItem>
-                        </Menu>
+                                <MenuItem
+                                    onClick={this.selectChildren}
+                                    disabled={this.state.loadingChildren}
+                                    dense
+                                >
+                                    {i18n.t('Select children')}
+                                </MenuItem>
+                            </Menu>
+                        </div>
+                    </div>
+                    <div style={styles.orgUnitsContainer.tooltipContainer}>
+                        {this.props.selected.length > 0 && (
+                            <div style={tooltipStyles}>
+                                {this.props.selected.length} {i18n.t('selected')} -
+                                <button
+                                    onClick={this.props.onDeselectAllClick}
+                                    style={styles.orgUnitsContainer.tooltip.link}
+                                >
+                                    {i18n.t('Deselect all')}
+                                </button>
+                            </div>
+                        )}
                     </div>
                 </div>
-                <div style={styles.orgUnitsContainer.tooltipContainer}>
-                    {this.props.selected.length > 0 && (
-                        <div style={styles.orgUnitsContainer.tooltip}>
-                            {this.props.selected.length} {i18n.t('selected')}.
-                            <button
-                                onClick={this.props.onDeselectAllClick}
-                                style={styles.orgUnitsContainer.tooltip.link}
-                            >
-                                {i18n.t('Deselect all')}
-                            </button>
-                        </div>
-                    )}
-                </div>
-            </div>
-            <div>{this.renderOptionsPanel()}</div>
-        </Fragment>
-    )
+                <div>{this.renderOptionsPanel()}</div>
+            </Fragment>
+        );
+    };
 }
 
 OrgUnitSelector.propTypes = {
@@ -294,6 +300,16 @@ OrgUnitSelector.propTypes = {
     root: PropTypes.object.isRequired,
 
     /**
+     * Font color for text in deselect all tooltip
+     */
+    deselectAllTooltipFontColor: PropTypes.string,
+
+    /**
+     * Font color for background in deselect all tooltip
+     */
+    deselectAllTooltipBackgroundColor: PropTypes.string,
+
+    /**
      * Checkbox color in org unit tree
      */
     checkboxColor: PropTypes.string,
@@ -307,6 +323,8 @@ OrgUnitSelector.defaultProps = {
     levelOptions: [],
     groupOptions: [],
     checkboxColor: 'primary',
+    deselectAllTooltipFontColor: 'white',
+    deselectAllTooltipBackgroundColor: 'gray',
 };
 
 export default OrgUnitSelector;
