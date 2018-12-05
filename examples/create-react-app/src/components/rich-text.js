@@ -12,7 +12,7 @@ export default class RichText extends Component {
     constructor(props) {
         super(props);
         this.nativeInputRef = React.createRef();
-        this.nativePara = React.createRef();
+        this.nativeOutputRef = React.createRef();
         this.NativeMdParser = new ClassMdParser();
     }
     state = {
@@ -37,10 +37,10 @@ export default class RichText extends Component {
         convertCtrlKey(e, this.setNativeInputVal);
     }
 
-    nativeSetParsedVal = () => {
+    setNativeParsedVal = () => {
         const inputNode = this.nativeInputRef.current;
         const renderedVal = this.NativeMdParser.render(inputNode.value);
-        this.nativePara.current.innerHTML = renderedVal;
+        this.nativeOutputRef.current.innerHTML = renderedVal;
     }
 
     render() {
@@ -61,9 +61,9 @@ export default class RichText extends Component {
                 <div>
                     <p>Using RichText function and class</p>
                     <input ref={this.nativeInputRef} type="text" onKeyDown={this.nativeKeyDown} />
-                    <button type="button" onClick={this.nativeSetParsedVal}>Parse native</button>
+                    <button type="button" onClick={this.setNativeParsedVal}>Parse native</button>
                     <span>Result:</span>
-                    <p ref={this.nativePara} />
+                    <p ref={this.nativeOutputRef} />
                 </div>
             </div>
         );
