@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import AddIcon from "@material-ui/icons/Add";
@@ -21,8 +20,6 @@ const getInterpretationsList = props => {
         setCurrentInterpretation,
         onChange
     } = props;
-    const getUserUrl = user =>
-        `${baseurl}/dhis-web-messaging/profile.action?id=${user.id}`;
 
     return interpretations.length === 0 ? (
         <div style={{ fontStyle: "italic" }}>
@@ -64,7 +61,6 @@ const getInterpretationDetails = props => {
         interpretation,
         onChange
     } = props;
-    const comments = orderBy(["created"], ["desc"], interpretation.comments);
 
     return (
         <Interpretation
@@ -80,8 +76,6 @@ const getInterpretationDetails = props => {
 
 const getInterpretationButtons = props => {
     const {
-        d2,
-        model,
         currentInterpretation,
         setCurrentInterpretation,
         openNewInterpretationDialog
@@ -143,7 +137,7 @@ class InterpretationsCard extends React.Component {
         }
     }
 
-    notifyChange(interpretation) {
+    notifyChange() {
         this.props.onChange();
     }
 

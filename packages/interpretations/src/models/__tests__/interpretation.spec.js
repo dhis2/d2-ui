@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import sinon from 'sinon';
 import Interpretation from '../interpretation';
 import * as api from '../../util/api';

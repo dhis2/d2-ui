@@ -1,5 +1,5 @@
 import { apiFetch } from '../util/api';
-import { keyBy, filter, map, flatMap, flow, groupBy, without } from 'lodash/fp';
+import { keyBy, map, flatMap, flow, groupBy, without } from 'lodash/fp';
 import { orderBy, concat, toPairs, at, differenceBy, compact } from 'lodash/fp';
 
 export async function getMentions(d2) {

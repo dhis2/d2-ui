@@ -1,7 +1,6 @@
 import Interpretation from './interpretation';
-import pick from 'lodash/fp/pick';
 import { apiFetch } from '../util/api';
-  
+
 const interpretationsFields = [
     'id',
     'user[id,displayName,userCredentials[username]]',
@@ -54,8 +53,8 @@ export const setSubscription = (model, newSubscriptionValue) => {
     if (!model || !model.href) {
         return Promise.reject(new Error(`Attribute href not found in model`));
     } else {
-        var path = model.href + "/" + "subscriber";
-        var method = newSubscriptionValue ? "POST" : "DELETE";
+        const path = `${model.href}/subscriber`;
+        const method = newSubscriptionValue ? "POST" : "DELETE";
         return apiFetch(path, method);
     }
 };
