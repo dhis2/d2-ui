@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import log from 'loglevel';
 import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
 import styles from './header-bar-styles';
 import getBaseUrlFromD2ApiUrl from './utils/getBaseUrlFromD2ApiUrl';
 
@@ -59,7 +58,7 @@ class InnerHeader extends Component {
 
     componentWillReceiveProps(props) {
         if (this.props.lastUpdate && (this.props.lastUpdate.getTime() - props.lastUpdate.getTime()) !== 0) {
-            dhis2.menu.ui.bootstrapMenu();
+            dhis2.menu.ui.bootstrapMenu();  //eslint-disable-line
         }
     }
 

@@ -19,6 +19,7 @@ const ProfileMenu = addD2Context((props, { d2 }) => {
     }
 
     const initials = `${currentUser.firstName.charAt(0)}${currentUser.surname.charAt(0)}`;
+    /* eslint-disable */
     const rightSide = (
         <div style={styles.profileRightSide}>
             <div style={styles.profileFlexWrap}>
@@ -33,6 +34,7 @@ const ProfileMenu = addD2Context((props, { d2 }) => {
             </Button>
         </div>
     );
+    /* eslint-enable */
 
     return (
         <HeaderMenu
