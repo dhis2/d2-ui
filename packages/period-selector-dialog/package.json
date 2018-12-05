@@ -16,6 +16,7 @@
     "prebuild": "rimraf ./build/* && mkdirp ./build",
     "build": "npm run build:css && cross-env BABEL_ENV=es babel src --out-dir build --ignore spec.js",
     "build:css": "cp -R ./css/* ./build/",
+    "lint": "eslint src/",
     "watch": "npm run build -- --watch",
     "test-ci": "jest --config=../../jest.config.js packages/period-selector-dialog",
     "test:watch": "npm test -- --watch"
