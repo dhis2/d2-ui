@@ -1,4 +1,4 @@
-import TranslationForm from '../TranslationForm.component';
+// import TranslationForm from '../TranslationForm.component';
 
 xdescribe('TranslationForm component', () => {
     it('has no tests');
