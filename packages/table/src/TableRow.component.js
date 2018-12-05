@@ -1,8 +1,6 @@
-import React, { Component, isValidElement } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classes from 'classnames';
-import { isObject } from 'lodash/fp';
-import { isString } from 'lodash/fp';
 import IconButton from 'material-ui/IconButton';
 import FontIcon from 'material-ui/FontIcon';
 import MoreVert from 'material-ui/svg-icons/navigation/more-vert';

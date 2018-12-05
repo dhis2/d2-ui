@@ -1,5 +1,4 @@
 import React from 'react';
-import { isString } from 'lodash/fp';
 import { isFunction } from 'lodash/fp';
 import log from 'loglevel';
 import { addD2Context } from '@dhis2/d2-ui-core';

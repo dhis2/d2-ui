@@ -1,10 +1,8 @@
 import React from 'react';
-import { describeWithDOM, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import Table from '../Table.component';
 import TableHeader from '../TableHeader.component';
 import TableContextMenu from '../TableContextMenu.component';
-
-import Popover from 'material-ui/Popover/Popover';
 
 describe('Table component', () => {
     let tableComponent;
@@ -170,22 +168,22 @@ describe('Table component', () => {
 
         // TODO: The Popover requires a dom element as a targetEl prop. Figure out how to test this without a DOM.
         xit('should hide the contextmenu when left clicking outside the contextmenu', () => {
-            const fakeRowSource = { name: 'My item' };
+            // const fakeRowSource = { name: 'My item' };
 
-            tableComponent.instance()
-                .handleRowClick(
-                    { currentTarget: TableComponent },
-                    fakeRowSource,
-                );
-            tableComponent.update();
+            // tableComponent.instance()
+            //     .handleRowClick(
+            //         { currentTarget: TableComponent },
+            //         fakeRowSource,
+            //     );
+            // tableComponent.update();
 
-            expect(tableComponent.find('.d2-ui-table__context-menu')).toHaveLength(1);
+            // expect(tableComponent.find('.d2-ui-table__context-menu')).toHaveLength(1);
 
-            // onRequestClose is called when clicking outside the menu
-            tableComponent.find(Popover).props().onRequestClose();
-            tableComponent.update();
+            // // onRequestClose is called when clicking outside the menu
+            // tableComponent.find(Popover).props().onRequestClose();
+            // tableComponent.update();
 
-            expect(tableComponent.find('.d2-ui-table__context-menu')).toHaveLength(0);
+            // expect(tableComponent.find('.d2-ui-table__context-menu')).toHaveLength(0);
         });
     });
 
