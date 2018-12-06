@@ -1,3 +1,5 @@
+/* global dhis2 */
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import log from 'loglevel';
@@ -58,7 +60,9 @@ class InnerHeader extends Component {
 
     componentWillReceiveProps(props) {
         if (this.props.lastUpdate && (this.props.lastUpdate.getTime() - props.lastUpdate.getTime()) !== 0) {
-            dhis2.menu.ui.bootstrapMenu();  //eslint-disable-line
+            if (dhis2 && dhis2.menu && dhis2.menu.ui && dhis2.menu.ui.bootstrapMenu) {
+                dhis2.menu.ui.bootstrapMenu();
+            }
         }
     }
 
