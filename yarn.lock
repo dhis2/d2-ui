@@ -147,10 +147,10 @@
   dependencies:
     i18next "^10.3"
 
-"@dhis2/packages@^1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@dhis2/packages/-/packages-1.1.1.tgz#23c0f97af2ae586e56568d5db13c4db2c8ad4014"
-  integrity sha512-Eb/0xCNEHTxBuD0kRtsXMxn4WYFPl+yj9TrbuJ8W9cz4vdKknpVKAyFtTF4alPG1R5h3pk0dLE3IQWMlV7Vaqg==
+"@dhis2/packages@1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@dhis2/packages/-/packages-1.1.2.tgz#0bbdaa564b7a7f3dfe9bbcc9e4f0b02678af203b"
+  integrity sha512-PIEb0fs/GEF3VA15wE4k/2hy2ZciJ6Pe7J45s7JM2bAtng2Cy7HXPNgFNCwBbCHHU9tyO77dXOCmVUoDikeZdw==
   dependencies:
     "@vardevs/io" "^1.5.0"
     "@vardevs/log" "^1.0.0"
