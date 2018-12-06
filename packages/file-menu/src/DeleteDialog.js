@@ -22,7 +22,6 @@ const DeleteDialog = (props) => {
 
     const deleteFavorite = () => {
         if (fileModel) {
-            log.reply();
             fileModel
                 .delete()
                 .then(() => onRequestDelete(fileModel.id))

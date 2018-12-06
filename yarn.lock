@@ -147,7 +147,7 @@
   dependencies:
     i18next "^10.3"
 
-"@dhis2/packages@1.1.2":
+"@dhis2/packages@^1.1.2":
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@dhis2/packages/-/packages-1.1.2.tgz#0bbdaa564b7a7f3dfe9bbcc9e4f0b02678af203b"
   integrity sha512-PIEb0fs/GEF3VA15wE4k/2hy2ZciJ6Pe7J45s7JM2bAtng2Cy7HXPNgFNCwBbCHHU9tyO77dXOCmVUoDikeZdw==
