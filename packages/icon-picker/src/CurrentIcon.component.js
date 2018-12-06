@@ -1,6 +1,5 @@
 import React from 'react';
 import FlatButton from 'material-ui/FlatButton/FlatButton';
-import { isString } from 'lodash/fp';
 import { isFunction } from 'lodash/fp';
 import { addD2Context } from '@dhis2/d2-ui-core';
 import log from 'loglevel';
