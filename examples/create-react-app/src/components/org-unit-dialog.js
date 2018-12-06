@@ -4,6 +4,8 @@ import Snackbar from '@material-ui/core/Snackbar';
 import PropTypes from 'prop-types';
 import OrgUnitDialog from '@dhis2/d2-ui-org-unit-dialog';
 
+const DISPLAY_NAME_PROPERTY = 'displayShortName';
+
 export const defaultState = {
     orgUnitDialog: {
         open: false,
@@ -40,7 +42,7 @@ export default class OrgUnitDialogExample extends Component {
             .list({
                 paging: false,
                 level: 1,
-                fields: 'id,path,displayName,children::isNotEmpty',
+                fields: `id,path,${DISPLAY_NAME_PROPERTY}~rename(displayName),children::isNotEmpty`,
             })
             .then(rootLevel => rootLevel.toArray()[0])
             .then((loadRootUnit) => {
@@ -110,7 +112,10 @@ export default class OrgUnitDialogExample extends Component {
             .d2
             .models
             .organisationUnitGroups
-            .list({ paging: false })
+            .list({
+                fields: `id,${DISPLAY_NAME_PROPERTY}~rename(displayName)`,
+                paging: false,
+            })
             .then(collection => collection.toArray())
             .then(groupOptions => this.setState({ groupOptions }));
     };
@@ -192,9 +197,13 @@ export default class OrgUnitDialogExample extends Component {
                     handleUserOrgUnitClick={this.handleUserOrgUnitClick}
                     handleOrgUnitClick={this.handleOrgUnitClick}
                     handleMultipleOrgUnitsSelect={this.handleMultipleOrgUnitsSelect}
+                    deselectAllTooltipBackgroundColor="#E0E0E0"
+                    deselectAllTooltipFontColor="#000000"
+                    displayNameProperty={DISPLAY_NAME_PROPERTY}
                     onClose={this.toggleDialog}
                     onUpdate={this.onOrgUnitSelect}
-                    checkboxColor="primary"
+                    checkboxColor="secondary"
+                    maxWidth="lg"
                 />
             }
             <Snackbar

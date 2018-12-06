@@ -19,6 +19,7 @@ const UserOrgUnitsPanel = props => (
             {userOrgUnits.map(orgUnitType => (
                 <Grid
                     key={orgUnitType.id}
+                    style={styles.gridItem}
                     item
                 >
                     <Checkbox
@@ -28,9 +29,9 @@ const UserOrgUnitsPanel = props => (
                             id: orgUnitType.id,
                             name: orgUnitType.id,
                         }}
-                        checkedIcon={<CheckBoxIcon style={styles.checkbox} />}
                         icon={<CheckBoxOutlineBlankIcon style={styles.checkbox} />}
-                        color="primary"
+                        checkedIcon={<CheckBoxIcon style={styles.checkboxChecked} />}
+                        color={props.checkboxColor}
                     />
                     <InputLabel htmlFor={orgUnitType.id}>
                         <StopIcon style={styles.stopIcon} />
@@ -43,6 +44,7 @@ const UserOrgUnitsPanel = props => (
 );
 
 UserOrgUnitsPanel.propTypes = {
+    checkboxColor: PropTypes.string.isRequired,
     selected: PropTypes.array.isRequired,
     userOrgUnits: PropTypes.array.isRequired,
     handleUserOrgUnitClick: PropTypes.func.isRequired,
