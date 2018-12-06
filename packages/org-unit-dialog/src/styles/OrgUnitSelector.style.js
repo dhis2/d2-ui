@@ -13,9 +13,8 @@ export default {
         tooltip: {
             display: 'inline-block',
             borderRadius: 3,
-            background: 'rgba(83, 83, 83, 0.9)',
-            padding: 10,
-            color: '#fff',
+            padding: 7,
+            fontSize: 14,
 
             link: {
                 outline: 'none',
@@ -100,10 +99,8 @@ export default {
         },
     },
     footer: {
-        index: {
-            marginTop: 10,
-            width: '100%',
-            position: 'relative',
-        },
+        marginTop: 14,
+        width: '100%',
+        position: 'relative',
     },
 };

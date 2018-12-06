@@ -20,7 +20,13 @@ msgstr ""
 msgid "Level"
 msgstr ""
 
+msgid "Select a level"
+msgstr ""
+
 msgid "Group"
+msgstr ""
+
+msgid "Select a group"
 msgstr ""
 
 msgid "Select children"

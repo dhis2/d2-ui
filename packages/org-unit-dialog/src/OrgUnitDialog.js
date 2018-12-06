@@ -37,6 +37,9 @@ class OrgUnitDialog extends React.PureComponent {
                     handleUserOrgUnitClick={this.props.handleUserOrgUnitClick}
                     checkboxColor={this.props.checkboxColor}
                     handleMultipleOrgUnitsSelect={this.props.handleMultipleOrgUnitsSelect}
+                    deselectAllTooltipFontColor={this.props.deselectAllTooltipFontColor}
+                    deselectAllTooltipBackgroundColor={this.props.deselectAllTooltipBackgroundColor}
+                    displayNameProperty={this.props.displayNameProperty}
                 />
             </DialogContent>
             <DialogActions>
@@ -50,6 +53,7 @@ class OrgUnitDialog extends React.PureComponent {
 }
 
 OrgUnitDialog.defaultProps = {
+    displayNameProperty: 'displayName',
     selected: [],
     userOrgUnits: [],
     level: [],
@@ -57,6 +61,8 @@ OrgUnitDialog.defaultProps = {
     levelOptions: [],
     groupOptions: [],
     checkboxColor: 'primary',
+    deselectAllTooltipFontColorgi: 'white',
+    deselectAllTooltipBackgroundColor: 'gray',
 
     // dialog related props
     open: false,
@@ -65,6 +71,11 @@ OrgUnitDialog.defaultProps = {
 };
 
 OrgUnitDialog.propTypes = {
+    /**
+     * Display name property taken from user settings
+     */
+    displayNameProperty: PropTypes.string,
+
     /**
     * Array of objects with required param id
     */
@@ -138,6 +149,16 @@ OrgUnitDialog.propTypes = {
      * Checkbox color in org unit tree
      */
     checkboxColor: PropTypes.string,
+
+    /**
+     * Font color for text in deselect all tooltip
+     */
+    deselectAllTooltipFontColor: PropTypes.string,
+
+    /**
+     * Font color for background in deselect all tooltip
+     */
+    deselectAllTooltipBackgroundColor: PropTypes.string,
 
     // Dialog related props
     onClose: PropTypes.func.isRequired,
