@@ -12,7 +12,7 @@
   "author": "Arnau Sanchez <arnau@eyeseetea.com>",
   "contributors": [],
   "scripts": {
-    "prebuild": "rm -rf ./build",
+    "prebuild": "npm run lint && rm -rf ./build",
     "build": "yarn localize && cross-env BABEL_ENV=es babel src --copy-files --out-dir build --ignore spec.js",
     "lint": "eslint src/",
     "watch": "npm run build -- --watch",

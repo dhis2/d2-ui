@@ -14,7 +14,7 @@
     "react-dom": "^15.0.0 || ^16.0.0"
   },
   "scripts": {
-    "prebuild": "rimraf ./build/*",
+    "prebuild": "npm run lint && rimraf ./build/*",
     "build": "cross-env BABEL_ENV=es babel src --out-dir build --ignore spec.js",
     "lint": "eslint src/",
     "watch": "npm run build --  --watch",
