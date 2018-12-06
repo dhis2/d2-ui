@@ -1,4 +1,4 @@
-/* global dhis2 */
+/* global dhis2:false */
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
