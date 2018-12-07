@@ -6,17 +6,13 @@ import TableContextMenu from '../TableContextMenu.component';
 
 describe('Table component', () => {
     let tableComponent;
-    const cma = {
-        edit(...args) {
-            console.log('Edit', ...args);
-        },
-        remove(...args) {
-            console.log('Remove', ...args);
-        },
+    const contextMenuActions = {
+        edit: Function.prototype,
+        remove: Function.prototype,
     };
 
     function renderComponent(props = {}) {
-        return shallow(<Table {...Object.assign({ contextMenuActions: cma }, props)} />);
+        return shallow(<Table {...Object.assign({ contextMenuActions }, props)} />);
     }
 
     beforeEach(() => {
@@ -109,19 +105,14 @@ describe('Table component', () => {
 
     describe('interaction', () => {
         beforeEach(() => {
-            const tableSource = [
-                { uid: 'b1', name: 'BDC', lastUpdated: 'Tomorrow' },
-                { uid: 'f1', name: 'BFG', lastUpdated: 'Last year' },
-                { uid: 'c1', name: 'BFG', lastUpdated: 'Today' },
-            ];
-
-            tableComponent = renderComponent({ source: tableSource });
+            tableComponent = renderComponent();
         });
 
         it('should show the context menu when the activeRow state is set', () => {
             const fakeRowSource = { name: 'My item' };
 
-            expect(tableComponent.find('.d2-ui-table__context-menu')).toHaveLength(0);
+            expect(tableComponent.find(TableContextMenu).props().activeItem)
+                .toBeUndefined();
 
             tableComponent.instance()
                 .handleRowClick(
@@ -130,60 +121,40 @@ describe('Table component', () => {
                 );
             tableComponent.update();
 
-            const contextMenuComponent = tableComponent.find(TableContextMenu);
+            const contextMenuProps = tableComponent.find(TableContextMenu).props();
 
-            expect(contextMenuComponent).toHaveLength(1);
-            expect(contextMenuComponent.props().target).toEqual(tableComponent);
+            expect(contextMenuProps.target).toEqual(tableComponent);
+            expect(contextMenuProps.activeItem).toEqual(fakeRowSource);
         });
 
         it('should hide the context menu when handleRowClick is called twice with the same source', () => {
             const fakeRowSource = { name: 'My item' };
 
-            tableComponent.instance().handleRowClick({ clientY: 100, clientX: 100 }, fakeRowSource);
-            tableComponent.update();
+            expect(tableComponent.find(TableContextMenu).props().activeItem)
+            .toBeUndefined();
+
             tableComponent.instance().handleRowClick({ clientY: 100, clientX: 100 }, fakeRowSource);
             tableComponent.update();
 
-            const contextMenuComponent = tableComponent.find('.d2-ui-table__context-menu');
+            expect(tableComponent.find(TableContextMenu).props().activeItem).toEqual(fakeRowSource);
 
-            expect(contextMenuComponent).toHaveLength(0);
+            tableComponent.instance().handleRowClick({ clientY: 100, clientX: 100 }, fakeRowSource);
+            tableComponent.update();
+
+            expect(tableComponent.find(TableContextMenu).props().activeItem)
+                .toBeUndefined();
         });
 
         it('should not render the context menu when the activeRow is undefined', () => {
             const fakeRowSource = { name: 'My item' };
             tableComponent.setState({ contextMenuTarget: {}, activeRow: fakeRowSource });
 
+            expect(tableComponent.find(TableContextMenu).props().activeItem).toEqual(fakeRowSource);
+
             tableComponent.instance().hideContextMenu();
             tableComponent.update();
 
-            const contextMenuComponent = tableComponent.find('.d2-ui-table__context-menu');
-
-            expect(contextMenuComponent).toHaveLength(0);
             expect(tableComponent.state('activeRow')).toBe(undefined);
-        });
-
-        it('should initially not show the contextmenu', () => {
-            expect(tableComponent.find('.d2-ui-table__context-menu')).toHaveLength(0);
-        });
-
-        // TODO: The Popover requires a dom element as a targetEl prop. Figure out how to test this without a DOM.
-        xit('should hide the contextmenu when left clicking outside the contextmenu', () => {
-            // const fakeRowSource = { name: 'My item' };
-
-            // tableComponent.instance()
-            //     .handleRowClick(
-            //         { currentTarget: TableComponent },
-            //         fakeRowSource,
-            //     );
-            // tableComponent.update();
-
-            // expect(tableComponent.find('.d2-ui-table__context-menu')).toHaveLength(1);
-
-            // // onRequestClose is called when clicking outside the menu
-            // tableComponent.find(Popover).props().onRequestClose();
-            // tableComponent.update();
-
-            // expect(tableComponent.find('.d2-ui-table__context-menu')).toHaveLength(0);
         });
     });
 
