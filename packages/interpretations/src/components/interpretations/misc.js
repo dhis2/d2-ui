@@ -7,7 +7,9 @@ import Reply from '@material-ui/icons/Reply';
 import Create from '@material-ui/icons/Create';
 import Share from '@material-ui/icons/Share';
 import Delete from '@material-ui/icons/Delete';
-import styles from './InterpretationsStyles.js';
+
+import { styles } from './styles/misc.style';
+//import styles from './InterpretationsStyles';
 
 export const getUserLink = (d2, user) => {
     // Currently there is no public page for users (DHIS2-691), just use a <span> for now
@@ -52,13 +54,15 @@ export const WithAvatar = ({ user, children }) => (
     </div>
 );
 
+
 export const Icons = {
-	visibility: <Visibility style={styles.viewIcon}/>,
-	visibilityOff: <VisibilityOff style={styles.viewIcon} />,
-    like: <ThumbUpIcon style={{...styles.likedThumbUp, ...styles.interpretationCommentIcon}}/>,
-    unlike: <ThumbUpIcon style={{...styles.defaulThumbUp, ...styles.interpretationCommentIcon}} />,
-	reply: <Reply style={styles.interpretationCommentIcon}/>,
-	edit: <Create style={styles.interpretationCommentIcon} />,
-	share: <Share style={styles.interpretationCommentIcon}/>,
+	visibility: <Visibility style={styles.interpretationCommentIcon}/>,
+	visibilityOff: <VisibilityOff style={styles.interpretationCommentIcon} />,
+    like: <ThumbUpIcon style={styles.interpretationCommentIcon} />,
+    unlike: <ThumbUpIcon style={styles.interpretationCommentIcon} />,
+	reply: <Reply style={styles.interpretationCommentIcon} />,
+	edit: <Create  style={styles.interpretationCommentIcon} />,
+	share: <Share style={styles.interpretationCommentIcon} />,
 	delete: <Delete style={styles.interpretationCommentIcon} />,
 }
+
