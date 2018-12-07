@@ -121,7 +121,7 @@ class Interpretation extends React.Component {
         const currentUserLikesInterpretation = some(user => user.id === d2.currentUser.id, likedBy);
 
         return (
-            <div>
+            <Fragment>
                 {interpretationToEdit && (
                     <InterpretationDialog
                         interpretation={interpretationToEdit}
@@ -164,14 +164,8 @@ class Interpretation extends React.Component {
                         <span className={classes.intepretationLikes}>{interpretation.likes} {i18n.t('likes')}</span>
                         <span>{`${interpretation.comments.length} ${i18n.t('replies')}`}</span>
                     </div>
-                    <div>
                         {showActions ? (
                             <div className={classes.actions}>
-                                <InterpretationIcon 
-                                        iconType={'visibilityOff'} 
-                                        tooltip={i18n.t('Exit View')} 
-                                        onClick={this.exitView}
-                                />
                                 {currentUserLikesInterpretation ? (
                                     <InterpretationIcon 
                                         iconType={'like'} 
@@ -185,33 +179,33 @@ class Interpretation extends React.Component {
                                         onClick={this.like}
                                     />
                                 )}
-
                                 <InterpretationIcon 
                                     iconType={'reply'} 
                                     tooltip={i18n.t('Reply')} 
                                     onClick={this.reply}
                                 />
-
+                                <InterpretationIcon 
+                                        iconType={'visibilityOff'} 
+                                        tooltip={i18n.t('Exit View')} 
+                                        onClick={this.exitView}
+                                />
                                 {userCanManage(d2, interpretation) && (
                                 <Fragment>
-
-                                    <InterpretationIcon 
-                                        iconType={'edit'} 
-                                        tooltip={i18n.t('Edit')} 
-                                        onClick={this.openInterpretationDialog}
-                                        />      
-
                                     <InterpretationIcon 
                                         iconType={'share'} 
                                         tooltip={i18n.t('Share')} 
                                         onClick={this.openSharingDialog}
-                                        />
-
+                                    />
+                                    <InterpretationIcon 
+                                        iconType={'edit'} 
+                                        tooltip={i18n.t('Edit')} 
+                                        onClick={this.openInterpretationDialog}
+                                    />      
                                     <InterpretationIcon 
                                         iconType={'delete'} 
                                         tooltip={i18n.t('Delete')} 
                                         onClick={this.deleteInterpretation}
-                                        />
+                                    />
                                 </Fragment>
                             )}
                             </div>
@@ -224,6 +218,7 @@ class Interpretation extends React.Component {
                                 />
                             </div>
                         )}
+                </div>
                         {showComments && (
                             <InterpretationComments
                                 d2={d2}
@@ -233,9 +228,7 @@ class Interpretation extends React.Component {
                                 newComment={newComment}
                             />
                         )}
-                    </div>
-                </div>
-            </div>
+            </Fragment>
         );
     }
 }

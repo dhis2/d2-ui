@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
@@ -112,8 +112,8 @@ export class InterpretationComments extends React.Component {
         const hiddenCommentsCount = showOnlyFirstComments ? sortedComments.length - comments.length : 0;
 
         return (
-            <div>
-                <div>
+            <div className={classes.commentContainer}>
+                <Fragment>
                     {comments.map(comment =>
                         <WithAvatar key={comment.id} user={comment.user}>
                             <div className={classes.commentAuthor}>
@@ -148,7 +148,7 @@ export class InterpretationComments extends React.Component {
                             </Button>
                         </div>
                     }
-                </div>
+                </Fragment>
 
                 {newComment &&
                     <WithAvatar user={d2.currentUser}>

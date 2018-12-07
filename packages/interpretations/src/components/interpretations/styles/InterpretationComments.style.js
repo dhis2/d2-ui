@@ -1,12 +1,17 @@
 export const styles = {
+    commentContainer: {
+        marginLeft: '15px',
+    },
     commentText: {
-        width: "100%",
-        whiteSpace: "pre-line",
-        lineHeight: "1.5em"
+        width: '100%',
+        whiteSpace: 'pre-line',
+        lineHeight: '1.5em',
+        fontSize: '12px',
     },
     tipText: {
-        color: "#9e9999",
-        fontWeight: "normal"
+        color: '#9e9999',
+        fontWeight: 'normal',
+        fontSize: '12px',
     },
     commentActions: {
         display: 'flex',
@@ -24,10 +29,10 @@ export const styles = {
         display: 'inline-block',
     },
     showMoreComments: {
-        fontSize: "11px",
-        textTransform: "uppercase",
-        paddingLeft: "16px",
-        paddingRight: "16px",
-        fontWeight: "500"
+        fontSize: '11px',
+        textTransform: 'uppercase',
+        paddingLeft: '16px',
+        paddingRight: '16px',
+        fontWeight: '500'
     },
 };

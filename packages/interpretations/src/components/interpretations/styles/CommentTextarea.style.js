@@ -9,5 +9,6 @@ export const styles = theme => ({
         padding: "4px 0px 0px 6px",
         resize: "none",
         width: "100%",
+        outline: 'none',
     },
 });

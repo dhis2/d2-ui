@@ -1,30 +1,32 @@
 export const styles = {
     userLink: {
-        color: "#3d4245",
-        fontWeight: "bold",
-        textDecoration: "none"
+        color: '#3d4245',
+        fontWeight: 'bold',
+        textDecoration: 'none',
+        fontSize: '13px',
     },
     interpretationLink: {
-        color: "#3162C5",
-        cursor: "pointer"
+        color: '#3162C5',
+        cursor: 'pointer',
     },
     linkArea: {
         paddingLeft: '5px',
         paddingRight: '5px',
     },
     avatar: {
-        color: "black",
+        color: 'black',
         fontSize: '15px',
-        fontWeight: "bold",
+        fontWeight: 'bold',
         width: '32px',
         height: '32px',
     },
     avatarWrapper: {
-        display: "flex",
+        display: 'flex',
         marginTop: '10px',
-        backgroundColor: "#efefef",
-        margin: "4px 0",
-        padding: '8px'
+        backgroundColor: '#efefef',
+        margin: '4px 0',
+        padding: '8px',
+        borderRadius: '4px',
     },
     avatarBox: {
         width: '32px',
