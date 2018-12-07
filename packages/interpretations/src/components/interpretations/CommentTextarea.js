@@ -1,10 +1,10 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { Link, ActionSeparator } from './misc';
-import i18n from '@dhis2/d2-i18n';
-import styles from './InterpretationsStyles.js';
-
+import { withStyles } from '@material-ui/core/styles';
 import MentionsWrapper from '@dhis2/d2-ui-mentions-wrapper';
+import i18n from '@dhis2/d2-i18n';
+import { Link, ActionSeparator } from './misc';
+import { styles } from './styles/CommentTextarea.style';
 
 class CommentTextarea extends React.Component {
     state = {
@@ -45,7 +45,7 @@ class CommentTextarea extends React.Component {
     };
 
     render() {
-        const { onCancel } = this.props;
+        const { classes, onCancel } = this.props;
         const { d2 } = this.context;
         const { text } = this.state;
         const postText = onCancel ? i18n.t('OK') : i18n.t('Post reply');
@@ -55,7 +55,7 @@ class CommentTextarea extends React.Component {
                 <MentionsWrapper d2={d2} onUserSelect={this.onChange}>
                     <textarea
                         ref={this.setTextareaRef}
-                        style={styles.commentArea}
+                        className={classes.commentArea}
                         value={text}
                         rows={4}
                         autoFocus={true}
@@ -81,9 +81,10 @@ CommentTextarea.contextTypes = {
 };
 
 CommentTextarea.propTypes = {
+    classes: PropTypes.object.isRequired,
     comment: PropTypes.object.isRequired,
     onPost: PropTypes.func.isRequired,
     onCancel: PropTypes.func,
 };
 
-export default CommentTextarea;
+export default withStyles(styles)(CommentTextarea);

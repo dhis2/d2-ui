@@ -79,6 +79,7 @@ class Interpretations extends React.Component {
 }
 
 Interpretations.propTypes = {
+    classes: PropTypes.object.isRequired,
     d2: PropTypes.object.isRequired,
     type: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,

@@ -53,6 +53,9 @@ class CollapsibleCard extends React.Component {
 
 CollapsibleCard.propTypes = {
     classes: PropTypes.object.isRequired,
+    title: PropTypes.string.isRequired,
+    actions: PropTypes.object,
+    children: PropTypes.array.isRequired,
 };
 
 export default withStyles(styles)(CollapsibleCard);
