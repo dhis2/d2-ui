@@ -161,8 +161,8 @@ class Interpretation extends React.Component {
                     </div>
 
                     <div className={classes.interpretationCommentArea}>
-                        <span className={classes.intepretationLikes}>{interpretation.likes} {i18n.t('likes')}</span>
-                        <span>{`${interpretation.comments.length} ${i18n.t('replies')}`}</span>
+                        {!!interpretation.likes && <span className={classes.intepretationLikes}>{interpretation.likes} {i18n.t('likes')}</span>}
+                        {!!interpretation.comments.length && <span>{`${interpretation.comments.length} ${i18n.t('replies')}`}</span>}
                     </div>
                         {showActions ? (
                             <div className={classes.actions}>

@@ -25,7 +25,7 @@ export const styles = {
         marginTop: '10px',
         backgroundColor: '#efefef',
         margin: '4px 0',
-        padding: '8px',
+        padding: '6px',
         borderRadius: '4px',
     },
     avatarBox: {
@@ -35,7 +35,11 @@ export const styles = {
     avatarBoxContent: {
         flex: '1',
     },
+    likedInterpretationIcon: {
+        fill: 'black',
+    },
     interpretationCommentIcon: {
+        fill: '#494949',
         height: '16px',
         width: '16px',
     },

@@ -1,7 +1,7 @@
 export const styles = theme => ({
     interpretationDescSection: {
         fontSize: '12px',
-        backgroundColor: theme.colors.greyLight,
+        backgroundColor: 'rgb(239, 239, 239)',
         borderRadius: '4px',
         padding: '5px',
     },
@@ -43,6 +43,7 @@ export const styles = theme => ({
     actions: {
         display: 'flex',
         justifyContent: 'space-between',
+        marginLeft: '16px',
         marginRight: '50%',
     },
 });

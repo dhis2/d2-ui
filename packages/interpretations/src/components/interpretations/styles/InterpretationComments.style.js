@@ -7,6 +7,8 @@ export const styles = {
         whiteSpace: 'pre-line',
         lineHeight: '1.5em',
         fontSize: '12px',
+        margin: '5px 0px 5px 0px',
+        wordBreak: 'break-all',
     },
     tipText: {
         color: '#9e9999',
@@ -16,12 +18,11 @@ export const styles = {
     commentActions: {
         display: 'flex',
         justifyContent: 'space-between',
-        marginRight: '75%',
+        marginRight: '77%',
     },
     commentAuthor: {
         display: 'flex',
         justifyContent: 'space-between',
-        marginBottom: '2px',
     },
     showMoreCommentSection: {
         width: '100%', 

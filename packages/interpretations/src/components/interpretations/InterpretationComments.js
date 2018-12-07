@@ -12,7 +12,7 @@ import { formatRelative } from '../../util/i18n';
 import { styles } from './styles/InterpretationComments.style';
 
 const Comment = withStyles(styles)(({ classes, comment, showManageActions, onEdit, onDelete, onReply }) => (
-    <div>
+    <Fragment>
         <div className={classes.commentText}>
             {comment.text}
         </div>
@@ -26,7 +26,7 @@ const Comment = withStyles(styles)(({ classes, comment, showManageActions, onEdi
             :
             <InterpretationIcon iconType={'reply'} tooltip={i18n.t('Reply')} onClick={() => onReply(comment)} />
         }
-    </div>
+    </Fragment>
 ));
 
 export class InterpretationComments extends React.Component {
@@ -115,7 +115,7 @@ export class InterpretationComments extends React.Component {
                             <div className={classes.commentAuthor}>
                                 {getUserLink(d2, comment.user)}
                                 <span className={classes.tipText}>
-                                    {formatRelative(comment.created)}
+                                    {formatRelative(comment.created, this.context.locale)}
                                 </span>
                             </div>
 

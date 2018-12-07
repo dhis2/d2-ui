@@ -31,11 +31,7 @@ const getInterpretationsList = props => {
         interpretations.map((interpretation, i) => (
             <div
                 key={interpretation.id}
-                className={
-                    i === interpretations.length - 1
-                        ? classes.firstIntepretation
-                        : classes.interpretation
-                }
+                className={classes.interpretation}
                 onClick={() => setCurrentInterpretation(interpretation.id)}
             >
                 <Interpretation

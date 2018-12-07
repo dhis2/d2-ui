@@ -58,7 +58,7 @@ export const WithAvatar = ({ user, children }) => (
 export const Icons = {
 	visibility: <Visibility style={styles.interpretationCommentIcon}/>,
 	visibilityOff: <VisibilityOff style={styles.interpretationCommentIcon} />,
-    like: <ThumbUpIcon style={styles.interpretationCommentIcon} />,
+    like: <ThumbUpIcon style={{...styles.interpretationCommentIcon, ...styles.likedInterpretationIcon}} />,
     unlike: <ThumbUpIcon style={styles.interpretationCommentIcon} />,
 	reply: <Reply style={styles.interpretationCommentIcon} />,
 	edit: <Create  style={styles.interpretationCommentIcon} />,
