@@ -11,7 +11,6 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const styles = theme => ({
     card: {
-        maxWidth: 400,
         margin: 4,
         marginBottom: 6,
         position: 'relative',

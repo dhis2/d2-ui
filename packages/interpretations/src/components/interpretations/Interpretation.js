@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import i18n from '@dhis2/d2-i18n';
 import SharingDialog from '@dhis2/d2-ui-sharing-dialog';
 import some from 'lodash/fp/some';
 import InterpretationComments from './InterpretationComments';
 import InterpretationDialog from './InterpretationDialog';
-import { Link, ActionSeparator, getUserLink } from './misc';
+import InterpretationIcon from './InterpretationIcon';
+import { getUserLink } from './misc';
 import { userCanManage } from '../../util/auth';
-import styles from './InterpretationsStyles.js';
 import CommentModel from '../../models/comment';
 import { formatDate } from '../../util/i18n';
+import styles from './InterpretationsStyles';
 
 class Interpretation extends React.Component {
     state = {
@@ -117,10 +117,7 @@ class Interpretation extends React.Component {
         const showActions = extended;
         const showComments = extended;
         const likedBy = interpretation.likedBy || [];
-        const likedByTooltip = likedBy
-            .map(user => user.displayName)
-            .sort()
-            .join('\n');
+
         const currentUserLikesInterpretation = some(user => user.id === d2.currentUser.id, likedBy);
 
         return (
@@ -163,66 +160,70 @@ class Interpretation extends React.Component {
                         </div>
                     </div>
 
+                    <div style={styles.interpretationCommentArea}>
+                        <span style={styles.intepretationLikes}>{interpretation.likes} {i18n.t('likes')}</span>
+                        <span>{`${interpretation.comments.length} ${i18n.t('replies')}`}</span>
+                    </div>
                     <div>
                         {showActions ? (
                             <div className="actions" style={styles.actions}>
-                                <Link label={i18n.t('Exit view')} onClick={this.exitView} />
-
-                                <ActionSeparator />
-
+                                <InterpretationIcon 
+                                        iconType={'visibilityOff'} 
+                                        tooltip={i18n.t('Exit View')} 
+                                        onClick={this.exitView}
+                                />
                                 {currentUserLikesInterpretation ? (
-                                    <Link label={i18n.t('Unlike')} onClick={this.unlike} />
+                                    <InterpretationIcon 
+                                        iconType={'like'} 
+                                        tooltip={i18n.t('Unlike')} 
+                                        onClick={this.unlike}
+                                    />
                                 ) : (
-                                    <Link label={i18n.t('Like')} onClick={this.like} />
+                                    <InterpretationIcon 
+                                        iconType={'unlike'} 
+                                        tooltip={i18n.t('Like')} 
+                                        onClick={this.like}
+                                    />
                                 )}
 
-                                <ActionSeparator />
-
-                                <Link label={i18n.t('Reply')} onClick={this.reply} />
+                                <InterpretationIcon 
+                                    iconType={'reply'} 
+                                    tooltip={i18n.t('Reply')} 
+                                    onClick={this.reply}
+                                />
 
                                 {userCanManage(d2, interpretation) && (
-                                    <span className="owner-actions">
-                                        <ActionSeparator />
-                                        <Link
-                                            label={i18n.t('Edit')}
-                                            onClick={this.openInterpretationDialog}
-                                        />
-                                        <ActionSeparator />
-                                        <Link
-                                            label={i18n.t('Share')}
+                                    <div style={styles.userActions} className="owner-actions">
+                                        
+                                        <InterpretationIcon 
+                                            iconType={'edit'} 
+                                            tooltip={i18n.t('Edit')} 
+                                            onClick={this.openInterpretationDialog} //TODO
+                                        />      
+
+                                        <InterpretationIcon 
+                                            iconType={'share'} 
+                                            tooltip={i18n.t('Share')} 
                                             onClick={this.openSharingDialog}
                                         />
-                                        <ActionSeparator />
-                                        <Link
-                                            label={i18n.t('Delete')}
+
+                                        <InterpretationIcon 
+                                            iconType={'delete'} 
+                                            tooltip={i18n.t('Delete')} 
                                             onClick={this.deleteInterpretation}
                                         />
-                                    </span>
+                                    </div>
                                 )}
                             </div>
                         ) : (
                             <div className="actions" style={styles.actions}>
-                                <Link label={i18n.t('View')} onClick={this.view} />
+                                <InterpretationIcon 
+                                    iconType={'visibility'} 
+                                    tooltip={i18n.t('View')}  
+                                    onClick={this.view}
+                                />
                             </div>
                         )}
-
-                        <div style={styles.interpretationCommentArea}>
-                            <div style={styles.likeArea}>
-                                <ThumbUpIcon style={styles.likeIcon} />
-
-                                <span
-                                    style={{ color: '#22A' }}
-                                    className="liked-by"
-                                    title={likedByTooltip}
-                                >
-                                    {interpretation.likes} {i18n.t('people like this')}
-                                </span>
-
-                                <ActionSeparator />
-
-                                {`${interpretation.comments.length} ${i18n.t('people commented')}`}
-                            </div>
-
                             {showComments && (
                                 <InterpretationComments
                                     d2={d2}
@@ -235,7 +236,6 @@ class Interpretation extends React.Component {
                         </div>
                     </div>
                 </div>
-            </div>
         );
     }
 }

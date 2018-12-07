@@ -8,6 +8,7 @@ import { getFavoriteWithInterpretations } from '../models/helpers';
 import DetailsCard from './details/DetailsCard';
 import InterpretationsCard from './interpretations/InterpretationsCard';
 import i18n from '../locales';
+import styles from './interpretations/InterpretationsStyles';
 
 function configI18n(d2) {
     const locale = d2.currentUser.userSettings.settings.keyUiLocale;
@@ -62,7 +63,7 @@ class Interpretations extends React.Component {
         if (!model) return <CircularProgress />;
 
         return (
-            <div>
+            <div style={styles.interpretationsContainer}>
                 <DetailsCard model={model} onChange={this.onChange} />
 
                 <InterpretationsCard

@@ -2,6 +2,12 @@ export default {
     body: {
         padding: 0
     },
+    
+    interpretationsContainer: {
+        display: 'flex',
+        flexFlow: 'column nowrap',
+        flex: '1 1 100%',
+    },
 
     commentArea: {
         border: "1px solid #ccc",
@@ -36,6 +42,7 @@ export default {
     },
 
     actions: {
+        display: 'flex',
         marginBottom: 5
     },
 
@@ -62,7 +69,12 @@ export default {
 
     interpretationCommentArea: {
         fontSize: 12,
-        margin: "2px 0 5px 0px"
+        margin: "2px 0 5px 0px",
+        color: 'grey',
+    },
+
+    intepretationLikes: {
+        paddingRight: '5px',
     },
 
     interpretationDescSection: {
@@ -75,7 +87,8 @@ export default {
     },
 
     interpretationName: {
-        display: "inline-block"
+        display: "flex",
+        justifyContent: 'space-between',
     },
 
     interpretationText: {
@@ -191,5 +204,46 @@ export default {
         fontWeight: "bold",
         width: 32,
         height: 32
-    }
+    },
+
+    userActions: {
+        display: 'flex',
+    },
+    
+    defaulThumbUp: {
+        fill: '#E0E0E0',
+    },
+
+    likedThumbUp: {
+        fill: '#000000',
+    },
+
+    iconContainer: {
+        cursor: 'pointer',
+    },
+
+    viewIcon: {
+        height: '16px',
+        width: '16px',
+        marginRight: '10px',
+    },
+
+    interpretationCommentIcon: {
+        height: '16px',
+        width: '16px',
+        margin: '0 10px',
+    },
+
+    tooltip: {
+        fontFamily: 'roboto',
+        fontSize: '12px',
+        whiteSpace:'noWrap',
+        padding: '7px 9px',
+        color: 'white',
+        backgroundColor: '#4a4a4a',
+        boxShadow: 'none',
+        borderRadius: '3px',
+        position: 'relative',
+        bottom: '2px',
+    },
 };

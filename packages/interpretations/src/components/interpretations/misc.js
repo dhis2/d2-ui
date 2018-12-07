@@ -1,5 +1,12 @@
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import ThumbUpIcon from '@material-ui/icons/ThumbUp';
+import Reply from '@material-ui/icons/Reply';
+import Create from '@material-ui/icons/Create';
+import Share from '@material-ui/icons/Share';
+import Delete from '@material-ui/icons/Delete';
 import styles from './InterpretationsStyles.js';
 
 export const getUserLink = (d2, user) => {
@@ -44,3 +51,14 @@ export const WithAvatar = ({ user, children }) => (
         </div>
     </div>
 );
+
+export const Icons = {
+	visibility: <Visibility style={styles.viewIcon}/>,
+	visibilityOff: <VisibilityOff style={styles.viewIcon} />,
+    like: <ThumbUpIcon style={{...styles.likedThumbUp, ...styles.interpretationCommentIcon}}/>,
+    unlike: <ThumbUpIcon style={{...styles.defaulThumbUp, ...styles.interpretationCommentIcon}} />,
+	reply: <Reply style={styles.interpretationCommentIcon}/>,
+	edit: <Create style={styles.interpretationCommentIcon} />,
+	share: <Share style={styles.interpretationCommentIcon}/>,
+	delete: <Delete style={styles.interpretationCommentIcon} />,
+}
