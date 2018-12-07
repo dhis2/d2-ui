@@ -8,45 +8,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-
-const styles = theme => ({
-    card: {
-        margin: 4,
-        marginBottom: 6,
-        position: 'relative',
-    },
-    actions: {
-        marginTop: 0,
-        marginRight: -4,
-        '& button': {
-            padding: theme.spacing.unit * 0.5,
-        },
-    },
-    header: {
-        padding: '4px 12px 4px 12px',
-    },
-    title: {
-        fontSize: 15,
-        fontWeight: 500,
-    },
-    content: {
-        padding: 0,
-        paddingBottom: '0 !important',
-        borderTop: '1px solid lightgrey',
-    },
-    collapse: {
-        clear: 'both',
-    },
-    expand: {
-        transform: 'rotate(0deg)',
-        transition: theme.transitions.create('transform', {
-            duration: theme.transitions.duration.shortest,
-        }),
-    },
-    expandOpen: {
-        transform: 'rotate(180deg)',
-    },
-});
+import { styles } from './styles/CollapsibelCard.style';
 
 class CollapsibleCard extends React.Component {
     state = { expanded: true };

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { withStyles } from '@material-ui/core/styles';
 import isEqual from 'lodash/fp/isEqual';
 import pick from 'lodash/fp/pick';
 
@@ -8,7 +9,7 @@ import { getFavoriteWithInterpretations } from '../models/helpers';
 import DetailsCard from './details/DetailsCard';
 import InterpretationsCard from './interpretations/InterpretationsCard';
 import i18n from '../locales';
-import styles from './interpretations/InterpretationsStyles';
+import { styles } from './styles/Interpretations.style';
 
 function configI18n(d2) {
     const locale = d2.currentUser.userSettings.settings.keyUiLocale;
@@ -57,13 +58,13 @@ class Interpretations extends React.Component {
     }
 
     render() {
-        const { currentInterpretationId, onCurrentInterpretationChange } = this.props;
+        const { classes, currentInterpretationId, onCurrentInterpretationChange } = this.props;
         const { model } = this.state;
 
         if (!model) return <CircularProgress />;
 
         return (
-            <div style={styles.interpretationsContainer}>
+            <div className={classes.interpretationsContainer}>
                 <DetailsCard model={model} onChange={this.onChange} />
 
                 <InterpretationsCard
@@ -92,4 +93,4 @@ Interpretations.childContextTypes = {
     locale: PropTypes.string,
 };
 
-export default Interpretations;
+export default withStyles(styles)(Interpretations);
