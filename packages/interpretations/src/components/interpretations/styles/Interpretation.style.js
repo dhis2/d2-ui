@@ -12,7 +12,6 @@ export const styles = theme => ({
     date: {
         color: '#9e9999',
         fontWeight: 'normal',
-        marginLeft: '4px',
     },
     interpretationTextWrapper: {
         marginBottom: '5px',

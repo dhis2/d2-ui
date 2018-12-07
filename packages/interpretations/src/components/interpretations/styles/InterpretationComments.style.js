@@ -16,9 +16,11 @@ export const styles = {
     commentActions: {
         display: 'flex',
         justifyContent: 'space-between',
-        marginRight: '70%',
+        marginRight: '75%',
     },
     commentAuthor: {
+        display: 'flex',
+        justifyContent: 'space-between',
         marginBottom: '2px',
     },
     showMoreCommentSection: {

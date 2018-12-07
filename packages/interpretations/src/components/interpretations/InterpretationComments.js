@@ -17,10 +17,6 @@ const Comment = withStyles(styles)(({ classes, comment, showManageActions, onEdi
             {comment.text}
         </div>
 
-        <span className={classes.tipText}>
-            {formatRelative(comment.created)}
-        </span>
-
         {showManageActions ?
             <div className={classes.commentActions}>
                 <InterpretationIcon iconType={'edit'} tooltip={i18n.t('Edit')} onClick={() => onEdit(comment)} />
@@ -118,6 +114,9 @@ export class InterpretationComments extends React.Component {
                         <WithAvatar key={comment.id} user={comment.user}>
                             <div className={classes.commentAuthor}>
                                 {getUserLink(d2, comment.user)}
+                                <span className={classes.tipText}>
+                                    {formatRelative(comment.created)}
+                                </span>
                             </div>
 
                             {commentToEdit && commentToEdit.id === comment.id
