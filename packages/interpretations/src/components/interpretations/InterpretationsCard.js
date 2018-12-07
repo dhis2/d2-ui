@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import IconButton from "@material-ui/core/IconButton";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import AddIcon from "@material-ui/icons/Add";
+import { withStyles } from '@material-ui/core/styles';
 import i18n from "@dhis2/d2-i18n";
 import orderBy from "lodash/fp/orderBy";
 
@@ -10,10 +11,11 @@ import CollapsibleCard from "../CollapsibleCard";
 import InterpretationDialog from "./InterpretationDialog";
 import Interpretation from "./Interpretation";
 import InterpretationModel from "../../models/interpretation";
-import styles from "./InterpretationsStyles.js";
+import { styles } from './styles/InterpretationsCard.style';
 
 const getInterpretationsList = props => {
     const {
+        classes,
         d2,
         model,
         interpretations,
@@ -22,22 +24,18 @@ const getInterpretationsList = props => {
     } = props;
 
     return interpretations.length === 0 ? (
-        <div style={{ fontStyle: "italic" }}>
+        <div className={classes.emptyList}>
             <span>{i18n.t("No interpretations")}</span>
         </div>
     ) : (
         interpretations.map((interpretation, i) => (
             <div
                 key={interpretation.id}
-                style={
+                className={
                     i === interpretations.length - 1
-                        ? {
-                              ...styles.interpretation,
-                              paddingBottom: 0
-                          }
-                        : styles.interpretation
+                        ? classes.firstIntepretation
+                        : classes.interpretation
                 }
-                className="interpretation-box"
                 onClick={() => setCurrentInterpretation(interpretation.id)}
             >
                 <Interpretation
@@ -177,7 +175,7 @@ class InterpretationsCard extends React.Component {
     }
 
     render() {
-        const { model } = this.props;
+        const { classes, model } = this.props;
         const { interpretationToEdit } = this.state;
         const { d2 } = this.context;
         const sortedInterpretations = orderBy(
@@ -208,23 +206,24 @@ class InterpretationsCard extends React.Component {
                     />
                 )}
 
-                <div style={{ margin: 12 }}>
+                <div className={classes.cardContainer}>
                     {currentInterpretation
                         ? getInterpretationDetails({
-                              d2: d2,
-                              model: model,
-                              interpretation: currentInterpretation,
-                              setCurrentInterpretation: this
-                                  .setCurrentInterpretation,
-                              onChange: this.notifyChange
+                            d2: d2,
+                            model: model,
+                            interpretation: currentInterpretation,
+                            setCurrentInterpretation: this
+                                .setCurrentInterpretation,
+                            onChange: this.notifyChange
                           })
                         : getInterpretationsList({
-                              d2: d2,
-                              model: model,
-                              interpretations: sortedInterpretations,
-                              setCurrentInterpretation: this
-                                  .setCurrentInterpretation,
-                              onChange: this.notifyChange
+                            classes: classes,
+                            d2: d2,
+                            model: model,
+                            interpretations: sortedInterpretations,
+                            setCurrentInterpretation: this
+                                .setCurrentInterpretation,
+                            onChange: this.notifyChange
                           })}
                 </div>
             </CollapsibleCard>
@@ -233,6 +232,7 @@ class InterpretationsCard extends React.Component {
 }
 
 InterpretationsCard.propTypes = {
+    classes: PropTypes.object.isRequired,
     model: PropTypes.object.isRequired,
     currentInterpretationId: PropTypes.string,
     onChange: PropTypes.func.isRequired,
@@ -243,4 +243,4 @@ InterpretationsCard.contextTypes = {
     d2: PropTypes.object.isRequired
 };
 
-export default InterpretationsCard;
+export default withStyles(styles)(InterpretationsCard);
