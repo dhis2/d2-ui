@@ -21,7 +21,8 @@ export const styles = theme => ({
     interpretationText: {
         whiteSpace: 'pre-line',
         lineHeight: '1.5em',
-        wordBreak: 'break-all',
+        wordBreak: 'break-word',
+        fontSize: '13px',
     },
     interpretationTextLimited: {
         display: 'block',
@@ -30,7 +31,9 @@ export const styles = theme => ({
         overflow: 'hidden',
         maxHeight: '3.0em',
         lineHeight: '1.5em',
-        whiteSpace: 'pre-line'
+        whiteSpace: 'pre-line',
+        wordBreak: 'break-word',
+        fontSize: '13px',
     },
     interpretationCommentArea: {
         fontSize: '12px',

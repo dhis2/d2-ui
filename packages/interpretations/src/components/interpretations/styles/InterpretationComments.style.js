@@ -6,9 +6,9 @@ export const styles = {
         width: '100%',
         whiteSpace: 'pre-line',
         lineHeight: '1.5em',
-        fontSize: '12px',
+        fontSize: '13px',
         margin: '5px 0px 5px 0px',
-        wordBreak: 'break-all',
+        wordBreak: 'break-word',
     },
     tipText: {
         color: '#9e9999',

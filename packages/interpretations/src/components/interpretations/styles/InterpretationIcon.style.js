@@ -7,6 +7,8 @@ export const styles = theme => ({
     },
     iconContainer: {
         cursor: 'pointer',
+        height: '16px',
+        width: '16px',
     },
     viewIcon: {
         height: '16px',
