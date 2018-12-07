@@ -65,8 +65,6 @@ const EnhancedTable = props => {
         order,
         column,
         sortData,
-        selectFavorite,
-
         onFavoriteSelect,
     } = props;
 

@@ -8,7 +8,7 @@
   "scripts": {
     "coverage": "jest --coverage",
     "lint": "eslint src/",
-    "prebuild": "rimraf ./build/*",
+    "prebuild": "npm run lint && rimraf ./build/*",
     "build": "cross-env BABEL_ENV=es babel src --out-dir build --ignore spec.js",
     "watch": "npm run build --  --watch",
     "test-ci": "jest --config=../../jest.config.js packages/expression-manager"

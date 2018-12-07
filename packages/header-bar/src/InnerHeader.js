@@ -1,8 +1,9 @@
+/* global dhis2:false */
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import log from 'loglevel';
 import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
 import styles from './header-bar-styles';
 import getBaseUrlFromD2ApiUrl from './utils/getBaseUrlFromD2ApiUrl';
 
@@ -59,7 +60,9 @@ class InnerHeader extends Component {
 
     componentWillReceiveProps(props) {
         if (this.props.lastUpdate && (this.props.lastUpdate.getTime() - props.lastUpdate.getTime()) !== 0) {
-            dhis2.menu.ui.bootstrapMenu();
+            if (dhis2 && dhis2.menu && dhis2.menu.ui && dhis2.menu.ui.bootstrapMenu) {
+                dhis2.menu.ui.bootstrapMenu();
+            }
         }
     }
 

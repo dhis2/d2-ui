@@ -1,20 +1,3 @@
-export default class Generator {
-    options = {
-        Days: DaysPeriodType,
-        Weeks: WeeksPeriodType,
-        Months: MonthsPeriodType,
-        'Bi-months': BiMonthsPeriodType,
-        Quarters: QuartersPeriodType,
-        'Six-months': SixMonthsPeriodType,
-        'Financial Years': FinancialYearsPeriodType,
-        Years: YearsPeriodType,
-    };
-
-    get = key => this.options[key];
-
-    getOptions = () => Object.keys(this.options)
-}
-
 const DaysPeriodType = {
     generatePeriods() {
         return [
@@ -104,3 +87,20 @@ const YearsPeriodType = {
         ];
     },
 };
+
+export default class Generator {
+    options = {
+        Days: DaysPeriodType,
+        Weeks: WeeksPeriodType,
+        Months: MonthsPeriodType,
+        'Bi-months': BiMonthsPeriodType,
+        Quarters: QuartersPeriodType,
+        'Six-months': SixMonthsPeriodType,
+        'Financial Years': FinancialYearsPeriodType,
+        Years: YearsPeriodType,
+    };
+
+    get = key => this.options[key];
+
+    getOptions = () => Object.keys(this.options)
+}

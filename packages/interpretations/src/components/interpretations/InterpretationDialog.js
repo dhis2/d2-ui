@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { compact } from 'lodash/fp';
-import defer from 'lodash/fp/defer';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -28,7 +26,7 @@ class InterpretationDialog extends Component {
     };
 
     _saveInterpretation() {
-        const { interpretation, onSave } = this.props;
+        const { interpretation } = this.props;
         const { value } = this.state;
         interpretation.text = value;
         return interpretation.save();

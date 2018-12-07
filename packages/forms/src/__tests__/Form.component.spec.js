@@ -2,7 +2,6 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import Form from '../Form.component';
 import FormField from '../FormField.component';
-import { FormFieldStatuses } from '../FormValidator';
 import { getStubContext } from '../../../../config/inject-theme';
 
 function TextField(props) {

@@ -1,12 +1,5 @@
-import _ from 'lodash';
 import Comment from '../comment';
 import * as api from '../../util/api';
-
-const favorite = {
-    id: "zDP78aJU8nX",
-    name: "ANC: 1st visit coverage (%) by district last year",
-    modelDefinition: {name: "map"},
-};
 
 const interpretation = {
     id: "jkffgj34GGE",

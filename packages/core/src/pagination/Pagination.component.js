@@ -5,10 +5,6 @@ import classes from 'classnames';
 const noop = () => {};
 
 class Pagination extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         const { hasPreviousPage, hasNextPage, onPreviousPageClick, onNextPageClick, currentlyShown, total } = this.props;
         const pagerButtonClasses = ['material-icons', 'waves-effect'];

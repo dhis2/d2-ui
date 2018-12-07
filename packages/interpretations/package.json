@@ -12,8 +12,9 @@
   "author": "Arnau Sanchez <arnau@eyeseetea.com>",
   "contributors": [],
   "scripts": {
-    "prebuild": "rm -rf ./build",
+    "prebuild": "npm run lint && rm -rf ./build",
     "build": "yarn localize && cross-env BABEL_ENV=es babel src --copy-files --out-dir build --ignore spec.js",
+    "lint": "eslint src/",
     "watch": "npm run build -- --watch",
     "extract-pot": "d2-i18n-extract -p src/ -o i18n/",
     "localize": "yarn extract-pot && d2-i18n-generate -n d2-ui-interpretations -p ./i18n/ -o ./src/locales/",

@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import _ from 'lodash';
 import Interpretations from '../Interpretations';
 import { getStubContext } from '../../../config/test-context';
 import * as helpers from '../../models/helpers';
@@ -56,11 +55,6 @@ const map = {
     favoriteViews: 5,
 };
 
-const chart = _.merge(map, {
-    id: "hR4gkeEfe12",
-    modelDefinition: {name: "chart"}
-});
-
 const favorite = map;
 
 const renderComponent = (partialProps = {}) => {
@@ -79,7 +73,6 @@ const renderComponent = (partialProps = {}) => {
 };
 
 let interpretationsComponent;
-let getApiGetMock;
 
 describe('Interpretations: Interpretations component', () => {
     beforeEach(() => {

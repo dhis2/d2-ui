@@ -11,8 +11,9 @@
   },
   "author": "Ilya Nee <ilya@dhis2.org>",
   "scripts": {
-    "prebuild": "rimraf ./build/*",
+    "prebuild": "npm run lint && rimraf ./build/*",
     "build": "npm run localize && cross-env BABEL_ENV=es babel src --out-dir build --ignore spec.js",
+    "lint": "eslint src/",
     "watch": "npm run build --  --watch",
     "test-ci": "jest --config=../../jest.config.js packages/org-unit-dialog",
     "extract-pot": "d2-i18n-extract -p src/ -o i18n/",

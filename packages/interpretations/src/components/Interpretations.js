@@ -56,7 +56,7 @@ class Interpretations extends React.Component {
     }
 
     render() {
-        const { d2, currentInterpretationId, onCurrentInterpretationChange } = this.props;
+        const { currentInterpretationId, onCurrentInterpretationChange } = this.props;
         const { model } = this.state;
 
         if (!model) return <CircularProgress />;
