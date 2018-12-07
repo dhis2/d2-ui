@@ -118,10 +118,6 @@ class Interpretation extends React.Component {
         const showActions = extended;
         const showComments = extended;
         const likedBy = interpretation.likedBy || [];
-        const likedByTooltip = likedBy
-            .map(user => user.displayName)
-            .sort()
-            .join('\n');
         const currentUserLikesInterpretation = some(user => user.id === d2.currentUser.id, likedBy);
 
         return (

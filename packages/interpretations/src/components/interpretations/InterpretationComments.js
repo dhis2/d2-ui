@@ -1,21 +1,22 @@
 import React from 'react';
-import { Link, ActionSeparator, WithAvatar, getUserLink } from './misc';
-import CommentTextarea from './CommentTextarea';
-import { userCanManage } from '../../util/auth';
-import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
+import Button from '@material-ui/core/Button';
+import { withStyles } from '@material-ui/core/styles';
 import i18n from '@dhis2/d2-i18n'
 import orderBy from 'lodash/fp/orderBy';
-import styles from './InterpretationsStyles.js';
+import CommentTextarea from './CommentTextarea';
+import { Link, ActionSeparator, WithAvatar, getUserLink } from './misc';
+import { userCanManage } from '../../util/auth';
 import { formatRelative } from '../../util/i18n';
+import { styles } from './styles/InterpretationComments.style';
 
-const Comment = ({ comment, showManageActions, onEdit, onDelete, onReply }) => (
+const Comment = withStyles(styles)(({ classes, comment, showManageActions, onEdit, onDelete, onReply }) => (
     <div>
-        <div style={styles.commentText}>
+        <div className={classes.commentText}>
             {comment.text}
         </div>
 
-        <span style={styles.tipText}>
+        <span className={classes.tipText}>
             {formatRelative(comment.created)}
         </span>
 
@@ -33,14 +34,15 @@ const Comment = ({ comment, showManageActions, onEdit, onDelete, onReply }) => (
             <Link label={i18n.t('Reply')} value={comment} onClick={onReply} />
         }
     </div>
-);
+));
 
-export default class InterpretationComments extends React.Component {
+export class InterpretationComments extends React.Component {
     static contextTypes = {
         d2: PropTypes.object.isRequired,
     };
 
     static propTypes = {
+        classes: PropTypes.object.isRequired,
         interpretation: PropTypes.object.isRequired,
         onSave: PropTypes.func.isRequired,
         onDelete: PropTypes.func.isRequired,
@@ -105,7 +107,7 @@ export default class InterpretationComments extends React.Component {
 
     render() {
         const { d2 } = this.context;
-        const { interpretation } = this.props;
+        const { classes, interpretation } = this.props;
         const { commentToEdit, newComment, showOnlyFirstComments } = this.state;
         const sortedComments = orderBy(["created"], ["asc"], interpretation.comments);
         const commentsToShowOnInit = 3;
@@ -114,10 +116,10 @@ export default class InterpretationComments extends React.Component {
 
         return (
             <div>
-                <div className="interpretation-comments">
+                <div>
                     {comments.map(comment =>
                         <WithAvatar key={comment.id} user={comment.user}>
-                            <div style={styles.commentAuthor}>
+                            <div className={classes.commentAuthor}>
                                 {getUserLink(d2, comment.user)}
                             </div>
 
@@ -141,9 +143,9 @@ export default class InterpretationComments extends React.Component {
                     )}
 
                     {showOnlyFirstComments && hiddenCommentsCount > 0 &&
-                        <div style={{width: "100%", textAlign: "center"}}>
-                            <Button onClick={this.onShowMoreComments} style={{display: "inline-block"}}>
-                                <span style={styles.showMoreComments}>
+                        <div className={classes.showMoreCommentSection}>
+                            <Button onClick={this.onShowMoreComments} className={classes.showMoreCommentButton}>
+                                <span className={classes.showMoreComments}>
                                     {hiddenCommentsCount} {i18n.t("more comments")}
                                 </span>
                             </Button>
@@ -163,3 +165,5 @@ export default class InterpretationComments extends React.Component {
         );
     }
 };
+
+export default withStyles(styles)(InterpretationComments);
