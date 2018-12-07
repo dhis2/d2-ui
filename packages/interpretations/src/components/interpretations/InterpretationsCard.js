@@ -130,7 +130,7 @@ class InterpretationsCard extends React.Component {
         if (currentInterpretation && this.props.onCurrentInterpretationChange) {
             this.props.onCurrentInterpretationChange(currentInterpretation);
         }
-        if (this.props.currentInterpretationId == "new") {
+        if (this.props.currentInterpretationId === "new") {
             this.openNewInterpretationDialog();
         }
     }
