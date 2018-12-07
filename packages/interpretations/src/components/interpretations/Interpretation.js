@@ -193,12 +193,12 @@ class Interpretation extends React.Component {
                                 />
 
                                 {userCanManage(d2, interpretation) && (
-                                    <div className={classes.userActions} /*className="owner-actions"*/>
+                                    <div className={classes.userActions}>
                                         
                                         <InterpretationIcon 
                                             iconType={'edit'} 
                                             tooltip={i18n.t('Edit')} 
-                                            onClick={this.openInterpretationDialog} //TODO
+                                            onClick={this.openInterpretationDialog}
                                         />      
 
                                         <InterpretationIcon 

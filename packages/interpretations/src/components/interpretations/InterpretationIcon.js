@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Popper from '@material-ui/core/Popper';
 import Paper from '@material-ui/core/Paper';
+import { withStyles } from '@material-ui/core/styles';
 
 import { Icons } from './misc';
-import styles from './InterpretationsStyles';
+import { styles } from './styles/InterpretationIcon.style';
 
 export class InterpretationIcon extends Component {
     state = { anchorEl: null }
@@ -18,7 +20,7 @@ export class InterpretationIcon extends Component {
 			open={Boolean(this.state.anchorEl)}
 			placement="top"
 		>
-			<Paper style={styles.tooltip}>
+			<Paper className={this.props.classes.tooltip}>
 				{this.props.tooltip}
 			</Paper>
 		</Popper>
@@ -30,7 +32,7 @@ export class InterpretationIcon extends Component {
 
         return (
 			<div 
-				style={styles.iconContainer}
+				className={this.props.classes.iconContainer}
 				onMouseEnter={this.showTooltip} 
 				onMouseLeave={this.hideTooltip} 
 				onClick={this.props.onClick} 
@@ -44,4 +46,11 @@ export class InterpretationIcon extends Component {
     }; 
 };
 
-export default InterpretationIcon;
+InterpretationIcon.propTypes = {
+	classes: PropTypes.object.isRequired,
+	iconType: PropTypes.string.isRequired,
+	tooltip: PropTypes.string.isRequired,
+	onClick: PropTypes.func.isRequired,
+};
+
+export default withStyles(styles)(InterpretationIcon);
