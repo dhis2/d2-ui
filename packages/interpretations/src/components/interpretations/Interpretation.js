@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import i18n from '@dhis2/d2-i18n';
 import SharingDialog from '@dhis2/d2-ui-sharing-dialog';
+import { withStyles } from '@material-ui/core/styles';
 import some from 'lodash/fp/some';
 import InterpretationComments from './InterpretationComments';
 import InterpretationDialog from './InterpretationDialog';
@@ -10,8 +11,8 @@ import { getUserLink } from './misc';
 import { userCanManage } from '../../util/auth';
 import CommentModel from '../../models/comment';
 import { formatDate } from '../../util/i18n';
-import styles from './InterpretationsStyles';
 
+import { styles } from './styles/Interpretation.style';
 class Interpretation extends React.Component {
     state = {
         newComment: null,
@@ -111,13 +112,16 @@ class Interpretation extends React.Component {
     };
 
     render() {
-        const { interpretation, extended } = this.props;
+        const { classes, interpretation, extended } = this.props;
         const { interpretationToEdit, newComment, sharingDialogIsOpen } = this.state;
         const { d2 } = this.context;
         const showActions = extended;
         const showComments = extended;
         const likedBy = interpretation.likedBy || [];
-
+        const likedByTooltip = likedBy
+            .map(user => user.displayName)
+            .sort()
+            .join('\n');
         const currentUserLikesInterpretation = some(user => user.id === d2.currentUser.id, likedBy);
 
         return (
@@ -139,34 +143,34 @@ class Interpretation extends React.Component {
                     />
                 )}
 
-                <div style={styles.interpretationDescSection}>
-                    <div style={styles.interpretationName}>
+                <div className={classes.interpretationDescSection}>
+                    <div className={classes.interpretationName}>
                         {getUserLink(d2, interpretation.user)}
 
-                        <span style={styles.date}>
+                        <span className={classes.date}>
                             {formatDate(interpretation.created, this.context.locale)}
                         </span>
                     </div>
 
-                    <div style={styles.interpretationTextWrapper}>
+                    <div className={classes.interpretationTextWrapper}>
                         <div
-                            style={
+                            className={
                                 extended
-                                    ? styles.interpretationText
-                                    : styles.interpretationTextLimited
+                                    ? classes.interpretationText
+                                    : classes.interpretationTextLimited
                             }
                         >
                             {interpretation.text}
                         </div>
                     </div>
 
-                    <div style={styles.interpretationCommentArea}>
-                        <span style={styles.intepretationLikes}>{interpretation.likes} {i18n.t('likes')}</span>
+                    <div className={classes.interpretationCommentArea}>
+                        <span className={classes.intepretationLikes}>{interpretation.likes} {i18n.t('likes')}</span>
                         <span>{`${interpretation.comments.length} ${i18n.t('replies')}`}</span>
                     </div>
                     <div>
                         {showActions ? (
-                            <div className="actions" style={styles.actions}>
+                            <div className={classes.actions}>
                                 <InterpretationIcon 
                                         iconType={'visibilityOff'} 
                                         tooltip={i18n.t('Exit View')} 
@@ -193,7 +197,7 @@ class Interpretation extends React.Component {
                                 />
 
                                 {userCanManage(d2, interpretation) && (
-                                    <div style={styles.userActions} className="owner-actions">
+                                    <div className={classes.userActions} /*className="owner-actions"*/>
                                         
                                         <InterpretationIcon 
                                             iconType={'edit'} 
@@ -216,7 +220,7 @@ class Interpretation extends React.Component {
                                 )}
                             </div>
                         ) : (
-                            <div className="actions" style={styles.actions}>
+                            <div className={classes.actions}>
                                 <InterpretationIcon 
                                     iconType={'visibility'} 
                                     tooltip={i18n.t('View')}  
@@ -224,23 +228,24 @@ class Interpretation extends React.Component {
                                 />
                             </div>
                         )}
-                            {showComments && (
-                                <InterpretationComments
-                                    d2={d2}
-                                    interpretation={interpretation}
-                                    onSave={this.saveComment}
-                                    onDelete={this.deleteComment}
-                                    newComment={newComment}
-                                />
-                            )}
-                        </div>
+                        {showComments && (
+                            <InterpretationComments
+                                d2={d2}
+                                interpretation={interpretation}
+                                onSave={this.saveComment}
+                                onDelete={this.deleteComment}
+                                newComment={newComment}
+                            />
+                        )}
                     </div>
                 </div>
+            </div>
         );
     }
 }
 
 Interpretation.propTypes = {
+    classes: PropTypes.object.isRequired,
     interpretation: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     onSelect: PropTypes.func,
@@ -256,4 +261,4 @@ Interpretation.contextTypes = {
     locale: PropTypes.string,
 };
 
-export default Interpretation;
+export default withStyles(styles)(Interpretation);
