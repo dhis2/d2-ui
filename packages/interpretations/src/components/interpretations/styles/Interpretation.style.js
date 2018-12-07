@@ -46,8 +46,6 @@ export const styles = theme => ({
     },
     actions: {
         display: 'flex',
-        justifyContent: 'space-between',
         marginLeft: '8px',
-        marginRight: '50%',
     },
 });

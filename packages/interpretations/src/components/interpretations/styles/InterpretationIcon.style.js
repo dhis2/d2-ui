@@ -9,11 +9,7 @@ export const styles = theme => ({
         cursor: 'pointer',
         height: '16px',
         width: '16px',
-    },
-    viewIcon: {
-        height: '16px',
-        width: '16px',
-        marginRight: '10px',
+        marginRight: '24px',
     },
     interpretationCommentIcon: {
         height: '16px',
