@@ -3,7 +3,7 @@ export const styles = theme => ({
         fontSize: '12px',
         backgroundColor: 'rgb(239, 239, 239)',
         borderRadius: '4px',
-        padding: '5px',
+        padding: '8px',
     },
     interpretationName: {
         display: 'flex',
@@ -36,6 +36,7 @@ export const styles = theme => ({
         fontSize: '12px',
         margin: '2px 0 5px 0px',
         color: 'grey',
+        height: '14px',
     },
     intepretationLikes: {
         paddingRight: '5px',
@@ -43,7 +44,7 @@ export const styles = theme => ({
     actions: {
         display: 'flex',
         justifyContent: 'space-between',
-        marginLeft: '16px',
+        marginLeft: '8px',
         marginRight: '50%',
     },
 });

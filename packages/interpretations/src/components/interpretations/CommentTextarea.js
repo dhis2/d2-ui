@@ -45,10 +45,10 @@ class CommentTextarea extends React.Component {
     };
 
     render() {
-        const { classes, onCancel } = this.props;
+        const { classes, onCancel, isNewComment } = this.props;
         const { d2 } = this.context;
         const { text } = this.state;
-        const postText = onCancel ? i18n.t('OK') : i18n.t('Post reply');
+        const postText = isNewComment ? i18n.t('Post reply') :i18n.t('OK');
 
         return (
             <Fragment>
@@ -76,6 +76,10 @@ class CommentTextarea extends React.Component {
     }
 }
 
+CommentTextarea.defaultProps = {
+    isNewComment: false,
+};
+
 CommentTextarea.contextTypes = {
     d2: PropTypes.object,
 };
@@ -85,6 +89,7 @@ CommentTextarea.propTypes = {
     comment: PropTypes.object.isRequired,
     onPost: PropTypes.func.isRequired,
     onCancel: PropTypes.func,
+    isNewComment: PropTypes.bool,
 };
 
 export default withStyles(styles)(CommentTextarea);

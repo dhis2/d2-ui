@@ -8,6 +8,7 @@ export const styles = {
     interpretationLink: {
         color: '#3162C5',
         cursor: 'pointer',
+        fontSize: '13px',
     },
     linkArea: {
         paddingLeft: '5px',

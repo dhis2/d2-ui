@@ -1,5 +1,5 @@
 export const styles = {
-    commentContainer: {
+    commentSection: {
         marginLeft: '15px',
     },
     commentText: {

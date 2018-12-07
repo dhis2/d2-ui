@@ -51,6 +51,7 @@ export class InterpretationComments extends React.Component {
         this.onReply = this.onReply.bind(this);
         this.onShowMoreComments = this.onShowMoreComments.bind(this);
         this.onCancelEdit = this.onCancelEdit.bind(this);
+        this.onCancelNewComment = this.onCancelNewComment.bind(this);
 
         this.state = {
             commentToEdit: null,
@@ -73,9 +74,13 @@ export class InterpretationComments extends React.Component {
         this.setState({ commentToEdit: comment });
     }
 
-    onCancelEdit(comment) {
+    onCancelEdit() {
         this.setState({ commentToEdit: null });
     }
+
+    onCancelNewComment() {
+        this.setState({ newComment: null });
+    };
 
     onDelete(comment) {
         if (window.confirm(i18n.t('Are you sure you want to remove this comment?'))) {
@@ -108,7 +113,7 @@ export class InterpretationComments extends React.Component {
         const hiddenCommentsCount = showOnlyFirstComments ? sortedComments.length - comments.length : 0;
 
         return (
-            <div className={classes.commentContainer}>
+            <div className={classes.commentSection}>
                 <Fragment>
                     {comments.map(comment =>
                         <WithAvatar key={comment.id} user={comment.user}>
@@ -154,6 +159,8 @@ export class InterpretationComments extends React.Component {
                         <CommentTextarea
                             comment={newComment}
                             onPost={this.onSave}
+                            onCancel={this.onCancelNewComment}
+                            isNewComment={true}
                         />
                     </WithAvatar>
                 }
