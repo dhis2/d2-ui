@@ -1,10 +1,18 @@
-export const styles = theme => ({
+export const styles = {
     commentText: {
         width: "100%",
         whiteSpace: "pre-line",
         lineHeight: "1.5em"
     },
-    
+    tipText: {
+        color: "#9e9999",
+        fontWeight: "normal"
+    },
+    commentActions: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        marginRight: '70%',
+    },
     commentAuthor: {
         marginBottom: '2px',
     },
@@ -22,4 +30,4 @@ export const styles = theme => ({
         paddingRight: "16px",
         fontWeight: "500"
     },
-});
+};

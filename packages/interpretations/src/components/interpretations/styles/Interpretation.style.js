@@ -41,6 +41,7 @@ export const styles = theme => ({
         display: 'flex',
         marginBottom: '5px',
         justifyContent: 'space-between',
+        marginRight: '50%',
 
     },
 });

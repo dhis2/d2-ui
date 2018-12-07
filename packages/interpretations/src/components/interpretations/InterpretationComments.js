@@ -5,7 +5,8 @@ import { withStyles } from '@material-ui/core/styles';
 import i18n from '@dhis2/d2-i18n'
 import orderBy from 'lodash/fp/orderBy';
 import CommentTextarea from './CommentTextarea';
-import { Link, ActionSeparator, WithAvatar, getUserLink } from './misc';
+import InterpretationIcon from './InterpretationIcon';
+import { WithAvatar, getUserLink } from './misc';
 import { userCanManage } from '../../util/auth';
 import { formatRelative } from '../../util/i18n';
 import { styles } from './styles/InterpretationComments.style';
@@ -20,18 +21,14 @@ const Comment = withStyles(styles)(({ classes, comment, showManageActions, onEdi
             {formatRelative(comment.created)}
         </span>
 
-        <ActionSeparator labelText="" />
-
         {showManageActions ?
-            <span>
-                <Link label={i18n.t('Edit')} value={comment} onClick={onEdit} />
-                <ActionSeparator />
-                <Link label={i18n.t('Reply')} value={comment} onClick={onReply} />
-                <ActionSeparator />
-                <Link label={i18n.t('Delete')} value={comment} onClick={onDelete} />
-            </span>
+            <div className={classes.commentActions}>
+                <InterpretationIcon iconType={'edit'} tooltip={i18n.t('Edit')} onClick={() => onEdit(comment)} />
+                <InterpretationIcon iconType={'reply'} tooltip={i18n.t('Reply')} onClick={() => onReply(comment)} />
+                <InterpretationIcon iconType={'delete'} tooltip={i18n.t('Delete')} onClick={() => onDelete(comment)} />
+            </div>
             :
-            <Link label={i18n.t('Reply')} value={comment} onClick={onReply} />
+            <InterpretationIcon iconType={'reply'} tooltip={i18n.t('Reply')} onClick={() => onReply(comment)} />
         }
     </div>
 ));
