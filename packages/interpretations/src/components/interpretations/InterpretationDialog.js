@@ -6,17 +6,10 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
-import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import i18n from '@dhis2/d2-i18n';
 import SharingDialog from '@dhis2/d2-ui-sharing-dialog';
 import MentionsWrapper from '@dhis2/d2-ui-mentions-wrapper';
-
-const styles = {
-    dialog: {
-        width: 550,
-    },
-};
 
 class InterpretationDialog extends Component {
     state = {
@@ -80,7 +73,6 @@ class InterpretationDialog extends Component {
                     open={true}
                     onClose={this.cancel}
                     maxWidth="md"
-                    classes={{paper: classes.dialog}}
                 >
                     <DialogTitle>{title}</DialogTitle>
 
@@ -130,4 +122,4 @@ InterpretationDialog.contextTypes = {
     d2: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(InterpretationDialog);
+export default InterpretationDialog;
