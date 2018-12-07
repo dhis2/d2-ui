@@ -49,7 +49,7 @@ class InterpretationDialog extends Component {
 
     render() {
         const { d2 } = this.context;
-        const { interpretation, classes } = this.props;
+        const { interpretation } = this.props;
         const { value, sharingDialogIsOpen, savedInterpretation } = this.state;
         const isActionEdit = !!interpretation.id;
         const title = isActionEdit

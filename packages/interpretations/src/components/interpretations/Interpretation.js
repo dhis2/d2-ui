@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import i18n from '@dhis2/d2-i18n';
 import SharingDialog from '@dhis2/d2-ui-sharing-dialog';
@@ -193,27 +193,27 @@ class Interpretation extends React.Component {
                                 />
 
                                 {userCanManage(d2, interpretation) && (
-                                    <div className={classes.userActions}>
-                                        
-                                        <InterpretationIcon 
-                                            iconType={'edit'} 
-                                            tooltip={i18n.t('Edit')} 
-                                            onClick={this.openInterpretationDialog}
+                                <Fragment>
+
+                                    <InterpretationIcon 
+                                        iconType={'edit'} 
+                                        tooltip={i18n.t('Edit')} 
+                                        onClick={this.openInterpretationDialog}
                                         />      
 
-                                        <InterpretationIcon 
-                                            iconType={'share'} 
-                                            tooltip={i18n.t('Share')} 
-                                            onClick={this.openSharingDialog}
+                                    <InterpretationIcon 
+                                        iconType={'share'} 
+                                        tooltip={i18n.t('Share')} 
+                                        onClick={this.openSharingDialog}
                                         />
 
-                                        <InterpretationIcon 
-                                            iconType={'delete'} 
-                                            tooltip={i18n.t('Delete')} 
-                                            onClick={this.deleteInterpretation}
+                                    <InterpretationIcon 
+                                        iconType={'delete'} 
+                                        tooltip={i18n.t('Delete')} 
+                                        onClick={this.deleteInterpretation}
                                         />
-                                    </div>
-                                )}
+                                </Fragment>
+                            )}
                             </div>
                         ) : (
                             <div className={classes.actions}>

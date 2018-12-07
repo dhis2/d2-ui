@@ -40,8 +40,7 @@ export const styles = theme => ({
     actions: {
         display: 'flex',
         marginBottom: '5px',
-    },
-    userActions: {
-        display: 'flex',
+        justifyContent: 'space-between',
+
     },
 });
