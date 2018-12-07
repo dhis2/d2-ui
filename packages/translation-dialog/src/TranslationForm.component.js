@@ -208,7 +208,7 @@ class WithObservableState extends Component {
         this.disposable = this.props.stateSource$
             .subscribe(
                 state => this.setState(state),
-                error => console.log.error(error),
+                error => console.error(error),
             );
     }
 

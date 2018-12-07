@@ -35,7 +35,6 @@ const ProfileMenu = addD2Context((props, { d2 }) => {
         </div>
     );
 
-
     return (
         <HeaderMenu
             name={<Avatar size={32} style={styles.avatar}>{initials}</Avatar>}
