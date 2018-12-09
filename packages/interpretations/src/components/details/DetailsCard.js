@@ -6,53 +6,14 @@ import SubscriberIconDisabled from '@material-ui/icons/AddAlert';
 import i18n from '@dhis2/d2-i18n';
 
 import CollapsibleCard from '../CollapsibleCard';
+import Description from './Description';
+import List from './List';
+import ListItem from './ListItem';
+import { getSharingText } from './SharingText';
+
 import styles from './DetailsCardStyles.js';
 import { setSubscription } from '../../models/helpers';
 import { formatDate, translateModelName } from '../../util/i18n';
-
-const List = ({ children }) => <div style={styles.detailsCardList}>{children}</div>;
-
-const ListItem = ({ label, text, button }) => (
-    <div style={styles.detailsCardItem}>
-        {label && <label style={{ fontWeight: 'bold', marginRight: 5 }}>{label}:</label>}
-        {text}
-        {button}
-    </div>
-);
-
-const descriptionMaxLength = 250;
-
-const getDescription = model => {
-    const { displayDescription: description } = model;
-
-    if (!description) {
-        return <i>{i18n.t('No description')}</i>;
-    } else if (description.length < descriptionMaxLength) {
-        return description;
-    } else {
-        return description.substring(0, descriptionMaxLength) + ' ...';
-    }
-};
-
-const accessMapping = {
-    '--------': i18n.t('None'),
-    'r-------': i18n.t('Read'),
-    'rw------': i18n.t('Read/Write'),
-};
-
-const getSharingText = model => {
-    const publicAccessValue = accessMapping[model.publicAccess] || i18n.t('Unknown');
-    const publicAccess = i18n.t('Public') + ': ' + publicAccessValue;
-
-    const userGroupsCount = (model.userGroupAccesses || []).length;
-    const userGroupsInfo =
-        userGroupsCount > 2
-            ? `${userGroupsCount} ${i18n.t('user groups')}`
-            : (model.userGroupAccesses || []).map(userGroup => userGroup.displayName).join(', ');
-
-    return publicAccess + (userGroupsInfo ? ` + ${userGroupsInfo}` : '');
-};
-
 class DetailsCard extends React.Component {
     state = {
         isExpanded: true,
@@ -62,11 +23,12 @@ class DetailsCard extends React.Component {
         this.setState({ isExpanded: !this.state.isExpanded });
     };
 
-    toggleSubscription = () => {
+    toggleSubscription = async () => {
         const { model, onChange } = this.props;
         return setSubscription(model, !model.subscribed).then(onChange);
     };
 
+    // TOOD: adjust color
     renderSubscriptionButton(model) {
         const tOpts = { object: translateModelName(model.modelName) };
         const [SubscriberIcon, subscriptionTooltip] = model.subscribed
@@ -102,7 +64,7 @@ class DetailsCard extends React.Component {
                 {this.renderSubscriptionButton(model)}
 
                 <List>
-                    <ListItem text={getDescription(model)} />
+                    <ListItem text={<Description model={model} />} />
                     <ListItem label={i18n.t('Owner')} text={owner} />
                     <ListItem
                         label={i18n.t('Created')}

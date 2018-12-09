@@ -9,6 +9,7 @@ import NewInterpretation from './NewInterpretation';
 import InterpretationModel from "../../models/interpretation";
 import InterpretationDetails from './InterpretationDetails';
 import InterpretationsList from './InterpretationsList';
+import InterpretationButtons from './InterpretationButtons';
 import styles from './styles/InterpretationsCard.style';
 
 class InterpretationsCard extends React.Component {
@@ -96,46 +97,47 @@ class InterpretationsCard extends React.Component {
             model.interpretations
         );
         const currentInterpretation = this.getCurrentInterpretation();
-        const actions = {
-            d2: d2,
-            model: model,
-            currentInterpretation: currentInterpretation,
-            setCurrentInterpretation: this.setCurrentInterpretation,
-            openNewInterpretation: this.openNewInterpretation,
-        };
-
+        
         return (
             <CollapsibleCard
                 title={i18n.t("Interpretations")}
-                actions={actions}
+                actions={
+                    <InterpretationButtons 
+                    d2={d2}
+                    model={model}
+                    currentInterpretation={currentInterpretation}
+                    setCurrentInterpretation={this.setCurrentInterpretation}
+                    openNewInterpretation={this.openNewInterpretation}
+                    />
+                }
             >
-                {interpretationToEdit && (
+            <div className={classes.cardContainer}>
+                {currentInterpretation ? (
+                    <InterpretationDetails
+                        d2={d2}
+                        model={model}
+                        interpretation={currentInterpretation}
+                        setCurrentInterpretation={this.setCurrentInterpretation} 
+                        onChange={this.notifyChange}
+                    />
+                ) : ( 
+                    <InterpretationsList
+                        d2={d2}
+                        model={model}
+                        interpretations={sortedInterpretations}
+                        setCurrentInterpretation={this.setCurrentInterpretation}
+                        onChange={this.notifyChange}
+                    />
+                )}
+            </div>
+            {interpretationToEdit && (
                     <NewInterpretation
                         model={model}
                         newInterpretation={interpretationToEdit}
                         onSave={this.notifyChange}
                         onClose={this.closeNewInterpretation}
                     />
-                )}
-                <div className={classes.cardContainer}>
-                    {currentInterpretation ? (
-                        <InterpretationDetails
-                            d2={d2}
-                            model={model}
-                            interpretation={currentInterpretation}
-                            setCurrentInterpretation={this.setCurrentInterpretation} 
-                            onChange={this.notifyChange}
-                        />
-                    ) : ( 
-                       <InterpretationsList
-                            d2={d2}
-                            model={model}
-                            interpretations={sortedInterpretations}
-                            setCurrentInterpretation={this.setCurrentInterpretation}
-                            onChange={this.notifyChange}
-                        />
-                    )}
-                </div>
+            )}
             </CollapsibleCard>
         );
     }

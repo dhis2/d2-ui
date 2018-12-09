@@ -8,7 +8,6 @@ import CardContent from '@material-ui/core/CardContent';
 import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import InterpretationButtons from './interpretations/InterpretationButtons';
 import { styles } from './styles/CollapsibelCard.style';
 
 class CollapsibleCard extends React.Component {
@@ -29,7 +28,7 @@ class CollapsibleCard extends React.Component {
                     classes={{ root: classes.header, title: classes.title, action: classes.actions }}
                     action={
                         <Fragment>
-                            {expanded ? <InterpretationButtons {...actions} /> : null}
+                            {expanded ? actions : null}
                             <IconButton
                                 className={classnames(classes.expand, {
                                     [classes.expandOpen]: expanded,

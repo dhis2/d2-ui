@@ -12,30 +12,39 @@ export const InterpretationsList = ({
     interpretations,
     setCurrentInterpretation,
     onChange
-}) => (
-    interpretations.length ? (
-        interpretations.map(interpretation => (
-            <div
-                key={interpretation.id}
-                className={classes.interpretation}
-                onClick={() => setCurrentInterpretation(interpretation.id)}
-            >
-                <Interpretation
-                    d2={d2}
-                    model={model}
-                    interpretation={interpretation}
-                    onChange={onChange}
-                    extended={false}
-                    onSelect={setCurrentInterpretation}
-                />
-            </div>
-        ))
-    ) : (
+}) =>  {
+    if (!interpretations.length) {
+        return (
         <div className={classes.emptyList}>
             <span>{i18n.t("No interpretations")}</span>
         </div>
-    )
-);
+        );
+    }
+    //TODO  length > 5 && showPreviousComments
+    // "Show previous comments  ( x  of < interpretations.length - rendered comments> )"
+    return (
+        interpretations.length ? (
+            interpretations.map(interpretation => (
+                <div
+                    key={interpretation.id}
+                    className={classes.interpretation}
+                    onClick={() => setCurrentInterpretation(interpretation.id)}
+                >
+                    <Interpretation
+                        d2={d2}
+                        model={model}
+                        interpretation={interpretation}
+                        onChange={onChange}
+                        extended={false}
+                        onSelect={setCurrentInterpretation}
+                    />
+                </div>
+            ))
+        ) : (
+          null
+        )
+    );
+};
 
 InterpretationsList.contextTypes = {
     d2: PropTypes.object.isRequired,

@@ -1,20 +1,17 @@
 export default {
     body: {
-        padding: 0,
+        padding: '0px',
     },
-
     container: {
-        paddingBottom: 0,
+        paddingBottom: '0px',
     },
-
     detailsCard: {
         clear: 'both',
         zIndex: 1010,
         margin: '8px 4px 8px 4px',
         color: 'red',
-        paddingBottom: 7,
+        paddingBottom: '7px',
     },
-
     detailsCardHeader: {
         height: '32px',
         paddingLeft: '14px',
@@ -22,29 +19,29 @@ export default {
         marginRight: '-8px',
         fontSize: '10px',
     },
-
     detailsCardItem: {
         padding: '4px 0px',
     },
-
     detailsCardList: {
         padding: '12px',
-        fontSize: 14,
+        fontSize: '14px',
     },
-
     headerText: {
         position: 'relative',
-        width: 210,
+        width: '210px',
         top: '50%',
         transform: 'translateY(-50%)',
-        paddingRight: 0,
+        paddingRight: '0px',
     },
-
     subscriberIcon: {
         float: 'right',
-        top: 0,
-        right: 0,
-        padding: 8,
-        margin: 4,
+        top: '0px',
+        right: '0px',
+        padding: '8px',
+        margin: '4px',
     },
+    listItemLabel: {
+        fontWeight: 'bold',
+        marginRight: '5px', 
+    }
 };
