@@ -1,4 +1,4 @@
-export const styles = theme => ({
+export default {
     defaulThumbUp: {
         fill: '#E0E0E0',
     },
@@ -28,4 +28,4 @@ export const styles = theme => ({
         position: 'relative',
         bottom: '2px',
     },
-});
+};

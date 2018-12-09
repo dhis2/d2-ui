@@ -1,4 +1,4 @@
-export const styles = {
+export default {
     userLink: {
         color: '#3d4245',
         fontWeight: 'bold',

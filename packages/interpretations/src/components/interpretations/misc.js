@@ -7,31 +7,24 @@ import Reply from '@material-ui/icons/Reply';
 import Create from '@material-ui/icons/Create';
 import Share from '@material-ui/icons/Share';
 import Delete from '@material-ui/icons/Delete';
+import styles from './styles/misc.style';
 
-import { styles } from './styles/misc.style';
-//import styles from './InterpretationsStyles';
-
-export const getUserLink = (d2, user) => {
+export const getUserLink = (d2, user) => (
     // Currently there is no public page for users (DHIS2-691), just use a <span> for now
-    return (
-        <span style={styles.userLink} className="author">
-            {user.displayName}
-        </span>
-    );
-};
+    <span style={styles.userLink} className="author">
+        {user.displayName}
+    </span>
+);
 
-export const Link = (props) => {
-    const { label, value, onClick, ...otherProps } = props;
-    return (
-        <a
-            style={styles.interpretationLink}
-            onClick={ev => onClick(value)}
-            {...otherProps}
-        >
-            {label}
-        </a>
-    );
-};
+export const Link = ({ label, value, onClick, ...otherProps }) => (
+    <a
+        style={styles.interpretationLink}
+        onClick={() => onClick(value)}
+        {...otherProps}
+    >
+        {label}
+    </a>
+);
 
 export const ActionSeparator = ({labelText = "·"}) => (
     <label style={styles.linkArea}>{labelText}</label>
@@ -42,8 +35,8 @@ const UserAvatar = ({user}) => {
     return <Avatar color="black" style={styles.avatar}>{initials}</Avatar>;
 };
 
-export const WithAvatar = ({ user, children }) => (
-    <div style={styles.avatarWrapper}>
+export const WithAvatar = ({ style, user, children }) => (
+    <div style={style || styles.avatarWrapper}>
         <div style={styles.avatarBox}>
             <UserAvatar user={user} />
         </div>

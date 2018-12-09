@@ -11,7 +11,6 @@ import { getUserLink } from './misc';
 import { userCanManage } from '../../util/auth';
 import CommentModel from '../../models/comment';
 import { formatDate } from '../../util/i18n';
-
 import { styles } from './styles/Interpretation.style';
 class Interpretation extends React.Component {
     state = {
@@ -71,10 +70,8 @@ class Interpretation extends React.Component {
     }
 
     deleteInterpretation() {
-        const { interpretation } = this.props;
-
         if (window.confirm(i18n.t('Are you sure you want to remove this interpretation?'))) {
-            interpretation.delete().then(() => this.notifyChange(null));
+            this.props.interpretation.delete().then(() => this.notifyChange(null));
         }
     }
 
@@ -219,15 +216,15 @@ class Interpretation extends React.Component {
                             </div>
                         )}
                 </div>
-                        {showComments && (
-                            <InterpretationComments
-                                d2={d2}
-                                interpretation={interpretation}
-                                onSave={this.saveComment}
-                                onDelete={this.deleteComment}
-                                newComment={newComment}
-                            />
-                        )}
+                    {showComments && (
+                        <InterpretationComments
+                            d2={d2}
+                            interpretation={interpretation}
+                            onSave={this.saveComment}
+                            onDelete={this.deleteComment}
+                            newComment={newComment}
+                        />
+                    )}
             </Fragment>
         );
     }

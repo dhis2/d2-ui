@@ -5,30 +5,11 @@ import { withStyles } from '@material-ui/core/styles';
 import i18n from '@dhis2/d2-i18n'
 import orderBy from 'lodash/fp/orderBy';
 import CommentTextarea from './CommentTextarea';
-import InterpretationIcon from './InterpretationIcon';
+import InterpretationComment from './InterpretationComment';
 import { WithAvatar, getUserLink } from './misc';
 import { userCanManage } from '../../util/auth';
 import { formatRelative } from '../../util/i18n';
-import { styles } from './styles/InterpretationComments.style';
-
-const Comment = withStyles(styles)(({ classes, comment, showManageActions, onEdit, onDelete, onReply }) => (
-    <Fragment>
-        <div className={classes.commentText}>
-            {comment.text}
-        </div>
-
-        {showManageActions ?
-            <div className={classes.commentActions}>
-                <InterpretationIcon iconType={'edit'} tooltip={i18n.t('Edit')} onClick={() => onEdit(comment)} />
-                <InterpretationIcon iconType={'reply'} tooltip={i18n.t('Reply')} onClick={() => onReply(comment)} />
-                <InterpretationIcon iconType={'delete'} tooltip={i18n.t('Delete')} onClick={() => onDelete(comment)} />
-            </div>
-            :
-            <InterpretationIcon iconType={'reply'} tooltip={i18n.t('Reply')} onClick={() => onReply(comment)} />
-        }
-    </Fragment>
-));
-
+import styles from './styles/InterpretationComments.style';
 export class InterpretationComments extends React.Component {
     static contextTypes = {
         d2: PropTypes.object.isRequired,
@@ -132,7 +113,7 @@ export class InterpretationComments extends React.Component {
                                         onCancel={this.onCancelEdit}
                                     />
                                 :
-                                    <Comment
+                                    <InterpretationComment
                                         comment={comment}
                                         showManageActions={userCanManage(d2, comment)}
                                         onEdit={this.onEdit}

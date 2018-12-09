@@ -5,7 +5,7 @@ import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
 
 import { Icons } from './misc';
-import { styles } from './styles/InterpretationIcon.style';
+import styles from './styles/InterpretationIcon.style';
 
 export class InterpretationIcon extends Component {
     state = { anchorEl: null }
