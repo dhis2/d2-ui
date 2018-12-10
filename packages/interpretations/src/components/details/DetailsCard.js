@@ -11,9 +11,9 @@ import List from './List';
 import ListItem from './ListItem';
 import { getSharingText } from './SharingText';
 
-import styles from './DetailsCardStyles.js';
 import { setSubscription } from '../../models/helpers';
 import { formatDate, translateModelName } from '../../util/i18n';
+import styles from './styles/DetailsCard.style';
 class DetailsCard extends React.Component {
     state = {
         isExpanded: true,
