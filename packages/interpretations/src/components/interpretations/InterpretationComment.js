@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import i18n from '@dhis2/d2-i18n'
-import InterpretationIcon from './InterpretationIcon';
+import InterpretationIcon from './InterpretationActionButton';
 import styles from './styles/Comment.style';
 
 export const InterpretationComment = ({ 

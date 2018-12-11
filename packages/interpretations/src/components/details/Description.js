@@ -8,9 +8,9 @@ export const Description = model => {
     if (!description) {
         return <i>{i18n.t('No description')}</i>;
     } else if (description.length < descriptionMaxLength) {
-        return description;
+        return <span>{description}</span>;
     } else {
-        return description.substring(0, descriptionMaxLength) + ' ...';
+        return <span>{description.substring(0, descriptionMaxLength) + ' ...'}</span>
     }
 };
 

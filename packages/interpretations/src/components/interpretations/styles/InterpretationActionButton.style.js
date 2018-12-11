@@ -2,20 +2,24 @@ export default {
     defaulThumbUp: {
         fill: '#E0E0E0',
     },
+
     likedThumbUp: {
         fill: '#000000',
     },
+
     iconContainer: {
         cursor: 'pointer',
         height: '16px',
         width: '16px',
         marginRight: '24px',
     },
+
     interpretationCommentIcon: {
         height: '16px',
         width: '16px',
         margin: '0 10px',
     },
+    
     tooltip: {
         fontFamily: 'roboto',
         fontSize: '12px',

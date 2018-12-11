@@ -17,18 +17,18 @@ export class NewInterpretation extends Component {
     onInputChange = event => this.setState({ text: event.target.value });
 
     onPost = () => 
-        this._saveInterpretation().then(savedInterpretation => {
+        this.postInterpretation().then(savedInterpretation => {
             this.props.onSave(savedInterpretation);
             this.props.onClose();
         });
 
-    _saveInterpretation() {
+    async postInterpretation() {
         this.props.newInterpretation.text = this.state.text;
         return this.props.newInterpretation.save();
     }
 
     onPostAndShare = () =>
-        this._saveInterpretation().then(savedInterpretation => {
+        this.postInterpretation().then(savedInterpretation => {
             this.props.onSave(savedInterpretation);
             this.setState({ savedInterpretation, sharingDialogIsOpen: true });
         });

@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import MentionsWrapper from '@dhis2/d2-ui-mentions-wrapper';
 import i18n from '@dhis2/d2-i18n';
 import { Link, ActionSeparator } from './misc';
-import { styles } from './styles/CommentTextarea.style';
+import styles from './styles/CommentTextarea.style';
 
 class CommentTextarea extends React.Component {
     state = {

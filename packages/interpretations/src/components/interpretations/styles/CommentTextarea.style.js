@@ -1,4 +1,4 @@
-export const styles = theme => ({
+export default {
     commentArea: {
         border: "1px solid #ccc",
         boxSizing: "border-box",
@@ -10,4 +10,4 @@ export const styles = theme => ({
         width: "100%",
         outline: 'none',
     },
-});
+};

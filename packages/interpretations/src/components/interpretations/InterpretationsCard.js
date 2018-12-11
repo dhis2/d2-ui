@@ -4,10 +4,10 @@ import { withStyles } from '@material-ui/core/styles';
 import i18n from "@dhis2/d2-i18n";
 import orderBy from "lodash/fp/orderBy";
 
-import CollapsibleCard from "../CollapsibleCard";
+import CollapsibleCard from "../details/CollapsibleCard";
 import NewInterpretation from './NewInterpretation';
 import InterpretationModel from "../../models/interpretation";
-import InterpretationDetails from './InterpretationDetails';
+import Interpretation from './Interpretation';
 import InterpretationsList from './InterpretationsList';
 import InterpretationButtons from './InterpretationButtons';
 import styles from './styles/InterpretationsCard.style';
@@ -113,12 +113,13 @@ class InterpretationsCard extends React.Component {
             >
             <div className={classes.cardContainer}>
                 {currentInterpretation ? (
-                    <InterpretationDetails
+                    <Interpretation
                         d2={d2}
                         model={model}
                         interpretation={currentInterpretation}
-                        setCurrentInterpretation={this.setCurrentInterpretation} 
                         onChange={this.notifyChange}
+                        onSelect={this.setCurrentInterpretation}
+                        extended={true}
                     />
                 ) : ( 
                     <InterpretationsList

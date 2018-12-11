@@ -5,15 +5,18 @@ export default {
         textDecoration: 'none',
         fontSize: '13px',
     },
+
     interpretationLink: {
         color: '#3162C5',
         cursor: 'pointer',
         fontSize: '13px',
     },
+
     linkArea: {
         paddingLeft: '5px',
         paddingRight: '5px',
     },
+
     avatar: {
         color: 'black',
         fontSize: '15px',
@@ -21,6 +24,7 @@ export default {
         width: '32px',
         height: '32px',
     },
+
     avatarWrapper: {
         display: 'flex',
         marginTop: '10px',
@@ -29,16 +33,20 @@ export default {
         padding: '6px',
         borderRadius: '4px',
     },
+
     avatarBox: {
         width: '32px',
         marginRight: '8px'
     },
+
     avatarBoxContent: {
         flex: '1',
     },
+
     likedInterpretationIcon: {
         fill: 'black',
     },
+    
     interpretationCommentIcon: {
         fill: '#494949',
         height: '16px',

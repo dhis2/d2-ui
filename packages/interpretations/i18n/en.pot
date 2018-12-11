@@ -5,28 +5,10 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2018-11-29T09:01:34.572Z\n"
-"PO-Revision-Date: 2018-11-29T09:01:34.572Z\n"
+"POT-Creation-Date: 2018-12-11T08:50:35.111Z\n"
+"PO-Revision-Date: 2018-12-11T08:50:35.111Z\n"
 
 msgid "No description"
-msgstr ""
-
-msgid "None"
-msgstr ""
-
-msgid "Read"
-msgstr ""
-
-msgid "Read/Write"
-msgstr ""
-
-msgid "Unknown"
-msgstr ""
-
-msgid "Public"
-msgstr ""
-
-msgid "user groups"
 msgstr ""
 
 msgid "Unsubscribe from this {{object}} and stop receiving notifications"
@@ -53,10 +35,28 @@ msgstr ""
 msgid "Sharing"
 msgstr ""
 
-msgid "OK"
+msgid "None"
+msgstr ""
+
+msgid "Read"
+msgstr ""
+
+msgid "Read/Write"
+msgstr ""
+
+msgid "Unknown"
+msgstr ""
+
+msgid "Public"
+msgstr ""
+
+msgid "user groups"
 msgstr ""
 
 msgid "Post reply"
+msgstr ""
+
+msgid "OK"
 msgstr ""
 
 msgid "Cancel"
@@ -65,7 +65,16 @@ msgstr ""
 msgid "Are you sure you want to remove this interpretation?"
 msgstr ""
 
-msgid "Exit view"
+msgid "likes"
+msgstr ""
+
+msgid "like"
+msgstr ""
+
+msgid "replies"
+msgstr ""
+
+msgid "reply"
 msgstr ""
 
 msgid "Unlike"
@@ -77,10 +86,13 @@ msgstr ""
 msgid "Reply"
 msgstr ""
 
-msgid "Edit"
+msgid "Exit View"
 msgstr ""
 
 msgid "Share"
+msgstr ""
+
+msgid "Edit"
 msgstr ""
 
 msgid "Delete"
@@ -89,10 +101,10 @@ msgstr ""
 msgid "View"
 msgstr ""
 
-msgid "people like this"
+msgid "Clear interpretation"
 msgstr ""
 
-msgid "people commented"
+msgid "Write new interpretation"
 msgstr ""
 
 msgid "Are you sure you want to remove this comment?"
@@ -113,16 +125,16 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
+msgid "Interpretations"
+msgstr ""
+
 msgid "No interpretations"
 msgstr ""
 
-msgid "Clear interpretation"
+msgid "Post"
 msgstr ""
 
-msgid "Write new interpretation"
-msgstr ""
-
-msgid "Interpretations"
+msgid "Post & Share"
 msgstr ""
 
 msgid "chart"

@@ -9,7 +9,7 @@ import { getFavoriteWithInterpretations } from '../models/helpers';
 import DetailsCard from './details/DetailsCard';
 import InterpretationsCard from './interpretations/InterpretationsCard';
 import i18n from '../locales';
-import { styles } from './styles/Interpretations.style';
+import styles from './styles/Interpretations.style';
 
 function configI18n(d2) {
     const locale = d2.currentUser.userSettings.settings.keyUiLocale;

@@ -5,11 +5,11 @@ import SubscriberIconEnabled from '@material-ui/icons/Notifications';
 import SubscriberIconDisabled from '@material-ui/icons/AddAlert';
 import i18n from '@dhis2/d2-i18n';
 
-import CollapsibleCard from '../CollapsibleCard';
+import CollapsibleCard from './CollapsibleCard';
 import Description from './Description';
 import List from './List';
 import ListItem from './ListItem';
-import { getSharingText } from './SharingText';
+import { getSharingText } from './sharingText';
 
 import { setSubscription } from '../../models/helpers';
 import { formatDate, translateModelName } from '../../util/i18n';

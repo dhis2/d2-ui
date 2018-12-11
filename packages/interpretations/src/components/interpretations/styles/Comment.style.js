@@ -7,10 +7,10 @@ export default {
         margin: '5px 0px 5px 0px',
         wordBreak: 'break-word',
     },
+
     commentActions: {
         display: 'flex',
         justifyContent: 'space-between',
         marginRight: '77%',
     },
-    
 }

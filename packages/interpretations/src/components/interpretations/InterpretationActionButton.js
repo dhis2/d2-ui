@@ -5,9 +5,9 @@ import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
 
 import { Icons } from './misc';
-import styles from './styles/InterpretationIcon.style';
+import styles from './styles/InterpretationActionButton.style';
 
-export class InterpretationIcon extends Component {
+export class InterpretationActionButton extends Component {
     state = { anchorEl: null }
 
     showTooltip = event => this.setState({ anchorEl: event.currentTarget });
@@ -46,11 +46,11 @@ export class InterpretationIcon extends Component {
     }; 
 };
 
-InterpretationIcon.propTypes = {
+InterpretationActionButton.propTypes = {
 	classes: PropTypes.object.isRequired,
 	iconType: PropTypes.string.isRequired,
 	tooltip: PropTypes.string.isRequired,
 	onClick: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(InterpretationIcon);
+export default withStyles(styles)(InterpretationActionButton);

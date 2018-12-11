@@ -6,12 +6,12 @@ import { withStyles } from '@material-ui/core/styles';
 import some from 'lodash/fp/some';
 import InterpretationComments from './InterpretationComments';
 import InterpretationDialog from './InterpretationDialog';
-import InterpretationIcon from './InterpretationIcon';
+import InterpretationActionButton from './InterpretationActionButton';
 import { getUserLink } from './misc';
 import { userCanManage } from '../../util/auth';
 import CommentModel from '../../models/comment';
 import { formatDate } from '../../util/i18n';
-import { styles } from './styles/Interpretation.style';
+import styles from './styles/Interpretation.style';
 class Interpretation extends React.Component {
     state = {
         newComment: null,
@@ -164,41 +164,41 @@ class Interpretation extends React.Component {
                         {showActions ? (
                             <div className={classes.actions}>
                                 {currentUserLikesInterpretation ? (
-                                    <InterpretationIcon 
+                                    <InterpretationActionButton 
                                         iconType={'like'} 
                                         tooltip={i18n.t('Unlike')} 
                                         onClick={this.unlike}
                                     />
                                 ) : (
-                                    <InterpretationIcon 
+                                    <InterpretationActionButton 
                                         iconType={'unlike'} 
                                         tooltip={i18n.t('Like')} 
                                         onClick={this.like}
                                     />
                                 )}
-                                <InterpretationIcon 
+                                <InterpretationActionButton 
                                     iconType={'reply'} 
                                     tooltip={i18n.t('Reply')} 
                                     onClick={this.reply}
                                 />
-                                <InterpretationIcon 
+                                <InterpretationActionButton 
                                         iconType={'visibilityOff'} 
                                         tooltip={i18n.t('Exit View')} 
                                         onClick={this.exitView}
                                 />
                                 {userCanManage(d2, interpretation) && (
                                 <Fragment>
-                                    <InterpretationIcon 
+                                    <InterpretationActionButton 
                                         iconType={'share'} 
                                         tooltip={i18n.t('Share')} 
                                         onClick={this.openSharingDialog}
                                     />
-                                    <InterpretationIcon 
+                                    <InterpretationActionButton 
                                         iconType={'edit'} 
                                         tooltip={i18n.t('Edit')} 
                                         onClick={this.openInterpretationDialog}
                                     />      
-                                    <InterpretationIcon 
+                                    <InterpretationActionButton 
                                         iconType={'delete'} 
                                         tooltip={i18n.t('Delete')} 
                                         onClick={this.deleteInterpretation}
@@ -208,7 +208,7 @@ class Interpretation extends React.Component {
                             </div>
                         ) : (
                             <div className={classes.actions}>
-                                <InterpretationIcon 
+                                <InterpretationActionButton 
                                     iconType={'visibility'} 
                                     tooltip={i18n.t('View')}  
                                     onClick={this.view}

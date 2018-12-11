@@ -20,7 +20,7 @@ export default class Interpretation {
         this.comments = (attributes.comments || []).map(commentAttrs => new Comment(this, commentAttrs));
     }
 
-    save() {
+    async save() {
         const modelId = this._parent.id;
         const modelName = this._parent.modelDefinition.name;
         const isNewInterpretation = !this.id;
