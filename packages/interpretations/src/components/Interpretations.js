@@ -16,7 +16,7 @@ function configI18n(d2) {
     i18n.changeLanguage(locale);
 }
 
-class Interpretations extends React.Component {
+export class Interpretations extends React.Component {
     state = { model: null };
 
     constructor(props) {

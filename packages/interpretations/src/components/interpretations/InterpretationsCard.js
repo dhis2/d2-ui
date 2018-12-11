@@ -12,7 +12,7 @@ import InterpretationsList from './InterpretationsList';
 import InterpretationButtons from './InterpretationButtons';
 import styles from './styles/InterpretationsCard.style';
 
-class InterpretationsCard extends React.Component {
+export class InterpretationsCard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {

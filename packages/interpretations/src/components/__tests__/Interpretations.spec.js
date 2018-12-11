@@ -1,6 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Interpretations from '../Interpretations';
+import { Interpretations } from '../Interpretations';
+import InterpretationsCard from '../interpretations/InterpretationsCard';
+import { DetailsCard } from '../details/DetailsCard';
 import { getStubContext } from '../../../config/test-context';
 import * as helpers from '../../models/helpers';
 
@@ -65,6 +67,7 @@ const renderComponent = (partialProps = {}) => {
         currentInterpretationId: null,
         onChange: jest.fn(),
         onCurrentInterpretationChange: jest.fn(),
+        classes: {},
     };
     helpers.getFavoriteWithInterpretations = jest.fn(() => Promise.resolve(map));
 
@@ -99,19 +102,19 @@ describe('Interpretations: Interpretations component', () => {
     describe("interpretations card", () => {
         it("should show the interpretations card", () => {
             interpretationsComponent.update();
-            expect(interpretationsComponent.find("InterpretationsCard")).toExist();
+            expect(interpretationsComponent.find(InterpretationsCard)).toExist();
         });
 
         it("should have favorite as model", () => {
             interpretationsComponent.update();
-            const detailsCard = interpretationsComponent.find("InterpretationsCard");
+            const detailsCard = interpretationsComponent.find(InterpretationsCard);
             expect(detailsCard).toHaveProp("model", favorite);
         });
 
         describe("on a request to change current interpretation", () => {
             beforeEach(() => {
                 interpretationsComponent.update();
-                interpretationsComponent.find("InterpretationsCard").props().onCurrentInterpretationChange("new-interpretation");
+                interpretationsComponent.find(InterpretationsCard).props().onCurrentInterpretationChange("new-interpretation");
             });
 
             it("should forward request to parent", () => {
@@ -123,7 +126,7 @@ describe('Interpretations: Interpretations component', () => {
         describe("on change event", () => {
             beforeEach(() => {
                 interpretationsComponent.update();
-                return interpretationsComponent.find("InterpretationsCard").props().onChange();
+                return interpretationsComponent.find(InterpretationsCard).props().onChange();
             });
 
             it("should forward request to parent", () => {
