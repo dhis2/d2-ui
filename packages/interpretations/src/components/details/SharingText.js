@@ -17,4 +17,4 @@ export const getSharingText = model => {
             : (model.userGroupAccesses || []).map(userGroup => userGroup.displayName).join(', ');
 
     return publicAccess + (userGroupsInfo ? ` + ${userGroupsInfo}` : '');
-};  
+};

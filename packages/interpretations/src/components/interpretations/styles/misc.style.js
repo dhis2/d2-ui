@@ -46,7 +46,7 @@ export default {
     likedInterpretationIcon: {
         fill: 'black',
     },
-    
+
     interpretationCommentIcon: {
         fill: '#494949',
         height: '16px',

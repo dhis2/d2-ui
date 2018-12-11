@@ -14,4 +14,4 @@ export const Description = model => {
     }
 };
 
-export default Description;
+export default Description; 

@@ -13,4 +13,4 @@ export default {
         justifyContent: 'space-between',
         marginRight: '77%',
     },
-}
+};

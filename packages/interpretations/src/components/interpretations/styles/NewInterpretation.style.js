@@ -6,7 +6,7 @@ export default {
         padding: '6px',
         borderRadius: '4px',
     },
-    
+
     textArea: {
         border: "1px solid #ccc",
         boxSizing: "border-box",
