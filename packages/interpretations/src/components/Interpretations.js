@@ -44,14 +44,14 @@ class Interpretations extends React.Component {
         }
     }
 
-    loadModel(props) {
+    async loadModel(props) {
         return getFavoriteWithInterpretations(props.d2, props.type, props.id).then(model => {
             this.setState({ model });
             return model;
         });
     }
 
-    onChange() {
+    async onChange() {
         return this.loadModel(this.props).then(
             newModel => this.props.onChange && this.props.onChange(newModel)
         );

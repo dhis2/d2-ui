@@ -103,11 +103,11 @@ class InterpretationsCard extends React.Component {
                 title={i18n.t("Interpretations")}
                 actions={
                     <InterpretationButtons 
-                    d2={d2}
-                    model={model}
-                    currentInterpretation={currentInterpretation}
-                    setCurrentInterpretation={this.setCurrentInterpretation}
-                    openNewInterpretation={this.openNewInterpretation}
+                        d2={d2}
+                        model={model}
+                        currentInterpretation={currentInterpretation}
+                        setCurrentInterpretation={this.setCurrentInterpretation}
+                        openNewInterpretation={this.openNewInterpretation}
                     />
                 }
             >
