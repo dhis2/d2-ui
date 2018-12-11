@@ -3,8 +3,9 @@ import { shallow } from 'enzyme';
 import _ from 'lodash';
 
 import { Interpretation } from '../Interpretation';
-import InterpretationDialog from '../InterpretationDialog';
+import NewInterpretation from '../NewInterpretation';
 import InterpretationComments from '../InterpretationComments';
+import InterpretationActionButton from '../InterpretationActionButton';
 import { getStubContext } from '../../../../config/test-context';
 
 const interpretation = {
@@ -56,7 +57,9 @@ const renderComponent = (partialProps = {}, partialContext = {}) => {
         interpretation: interpretation,
         onChange: jest.fn(),
         extended: false,
-        classes: {},
+        classes: {
+            actions: 'actions'
+        },
     };
 
     const props = { ...baseProps, ...partialProps };
@@ -78,20 +81,21 @@ const commonExpectations = () => {
         expect(interpretationComponent.text()).toMatch('Apr 14, 2018');
     });
 
-    /*it('should show how many people like it', () => {
+    it('should show how many people like it', () => {
         const count = interpretation.likedBy.length;
-        expect(interpretationComponent.text()).toMatch(`${count} people like this`);
-    });*/
+        expect(interpretationComponent.text()).toMatch(`${count} likes`);
+    });
 
+    //TODO: render names onHover
     /*it('should show who likes it', () => {
         const names = interpretation.likedBy.map(user => user.displayName).join('\n');
         expect(interpretationComponent.find('.liked-by')).toHaveProp('title', names);
     });*/
 
-    /*it('should show how many comments it has', () => {
+    it('should show how many comments it has', () => {
         const count = interpretation.comments.length;
-        expect(interpretationComponent.text()).toMatch(`${count} people commented`);
-    });*/
+        expect(interpretationComponent.text()).toMatch(`${count} replies`);
+    });
 };
 
 describe('Interpretations: Interpretations -> Interpretation component', () => {
@@ -106,12 +110,12 @@ describe('Interpretations: Interpretations -> Interpretation component', () => {
 
         commonExpectations();
 
-        it.only('should show actions', () => {
-            expect(interpretationComponent.find('.actions')).toExist();
+        it('should show actions', () => {
+            expect(interpretationComponent.find('div').first().childAt(3).children().length).toEqual(1);
         });
 
         it('sould show View action', () => {
-            expect(interpretationComponent.find('Link').find({ label: 'View' })).toExist();
+            expect(interpretationComponent.find(InterpretationActionButton).find({ tooltip: 'View' })).toExist();
         });
 
         it('should not show comments', () => {
@@ -126,13 +130,12 @@ describe('Interpretations: Interpretations -> Interpretation component', () => {
 
         commonExpectations();
 
-        it.only('should show actions', () => {
-            console.log(interpretationComponent.childAt(3).props)
-            expect(interpretationComponent.find('.actions')).toExist();
+        it('should show actions', () => {
+            expect(interpretationComponent.find('div').first().childAt(3).children().length).toEqual(6);
         });
 
         it('should show Exit view action', () => {
-            expect(interpretationComponent.find('Link').find({ label: 'Exit view' })).toExist();
+            expect(interpretationComponent.find(InterpretationActionButton).find({ tooltip: 'Exit View' })).toExist();
         });
 
         it('should show comments', () => {
@@ -149,14 +152,14 @@ describe('Interpretations: Interpretations -> Interpretation component', () => {
             });
 
             it('should show like action', () => {
-                expect(interpretationComponent.find('Link').find({ label: 'Like' })).toExist();
+                expect(interpretationComponent.find(InterpretationActionButton).find({ tooltip: 'Like' })).toExist();
             });
 
             describe('when like is clicked', () => {
                 beforeEach(() => {
                     interpretationComponent
-                        .find('Link')
-                        .find({ label: 'Like' })
+                        .find(InterpretationActionButton)
+                        .find({ tooltip: 'Like' })
                         .simulate('click');
                 });
 
@@ -181,14 +184,14 @@ describe('Interpretations: Interpretations -> Interpretation component', () => {
             });
 
             it('should show unlike action', () => {
-                expect(interpretationComponent.find('Link').find({ label: 'Unlike' })).toExist();
+                expect(interpretationComponent.find(InterpretationActionButton).find({ tooltip: 'Unlike' })).toExist();
             });
 
             describe('when unlike is clicked', () => {
                 beforeEach(() => {
                     interpretationComponent
-                        .find('Link')
-                        .find({ label: 'Unlike' })
+                        .find(InterpretationActionButton)
+                        .find({ tooltip: 'Unlike' })
                         .simulate('click');
                 });
 
@@ -214,26 +217,26 @@ describe('Interpretations: Interpretations -> Interpretation component', () => {
                 });
 
                 it('should show an edit action', () => {
-                    expect(interpretationComponent.find('Link').find({ label: 'Edit' })).toExist();
+                    expect(interpretationComponent.find(InterpretationActionButton).find({ tooltip: 'Edit' })).toExist();
                 });
 
                 it('should show a delete action', () => {
                     expect(
-                        interpretationComponent.find('Link').find({ label: 'Delete' })
+                        interpretationComponent.find(InterpretationActionButton).find({ tooltip: 'Delete' })
                     ).toExist();
                 });
 
                 describe('when edit action clicked', () => {
                     beforeEach(() => {
                         interpretationComponent
-                            .find('Link')
-                            .find({ label: 'Edit' })
+                            .find(InterpretationActionButton)
+                            .find({ tooltip: 'Edit' })
                             .simulate('click');
                         interpretationComponent.update();
                     });
 
-                    it('should open a InterpretationDialog', () => {
-                        expect(interpretationComponent.find(InterpretationDialog)).toExist();
+                    it('should open a NewInterpretation component', () => {
+                        expect(interpretationComponent.find(NewInterpretation)).toExist();
                     });
                 });
 
@@ -241,8 +244,8 @@ describe('Interpretations: Interpretations -> Interpretation component', () => {
                     beforeEach(() => {
                         window.confirm = jest.fn(() => true);
                         interpretationComponent
-                            .find('Link')
-                            .find({ label: 'Delete' })
+                            .find(InterpretationActionButton)
+                            .find({ tooltip: 'Delete' })
                             .simulate('click');
                         interpretationComponent.update();
                     });
@@ -273,13 +276,13 @@ describe('Interpretations: Interpretations -> Interpretation component', () => {
 
                 it('should not show an edit action', () => {
                     expect(
-                        interpretationComponent.find('Link').find({ label: 'Edit' })
+                        interpretationComponent.find(InterpretationActionButton).find({ tooltip: 'Edit' })
                     ).not.toExist();
                 });
 
                 it('should not show a delete action', () => {
                     expect(
-                        interpretationComponent.find('Link').find({ label: 'Delete' })
+                        interpretationComponent.find(InterpretationActionButton).find({ tooltip: 'Delete' })
                     ).not.toExist();
                 });
             });
