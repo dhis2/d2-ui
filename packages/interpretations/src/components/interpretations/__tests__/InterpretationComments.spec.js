@@ -1,7 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import _ from 'lodash';
-import InterpretationComments from '../InterpretationComments';
+import { InterpretationComments } from '../InterpretationComments';
+import InterpretationComment from '../InterpretationComment';
+import CommentTextarea from '../CommentTextarea';
 import InterpretationModel from '../../../models/interpretation';
 import { getStubContext } from '../../../../config/test-context';
 
@@ -39,6 +41,7 @@ const renderComponent = (partialProps = {}, partialContext = {}) => {
         interpretation: new InterpretationModel({}, interpretation),
         onSave: jest.fn(),
         onDelete: jest.fn(),
+        classes: {},
     };
 
     const props = {...baseProps, ...partialProps};
@@ -50,7 +53,6 @@ let interpretationComments;
 let commentComponents;
 let currentUser;
 let commentComponent;
-let commentsBox;
 let commentToEdit;
 let commentToDelete;
 
@@ -61,7 +63,7 @@ describe('Interpretations: Interpretations -> InterpretationComments component',
             displayName: "John Traore",
         };
         interpretationComments = renderComponent({}, {d2: {currentUser}});
-        commentComponents = interpretationComments.find("Comment");
+        commentComponents = interpretationComments.find(InterpretationComment);
     });
 
     describe('list of comments', () => {
@@ -92,20 +94,18 @@ describe('Interpretations: Interpretations -> InterpretationComments component',
             commentToEdit = commentComponent.props().comment;
             commentComponent.props().onEdit(commentToEdit);
             interpretationComments.update();
-            commentsBox = interpretationComments.find(".interpretation-comments");
         });
 
         it("should replace the read-only comment with a comment textarea", () => {
-            expect(commentsBox.find("CommentTextarea")).toHaveLength(1);
-            expect(commentsBox.find("Comment")).toHaveLength(interpretation.comments.length - 1);
+            expect(interpretationComments.find(CommentTextarea)).toHaveLength(1);
+            expect(interpretationComments.find(InterpretationComment)).toHaveLength(interpretation.comments.length - 1);
         });
 
         describe("click on OK link", () => {
             beforeEach(() => {
                 const newComment = _.assign({}, commentToEdit, {text: "New text"});
-                commentsBox.find("CommentTextarea").props().onPost(newComment);
+                interpretationComments.find(CommentTextarea).props().onPost(newComment);
                 interpretationComments.update();
-                commentsBox = interpretationComments.find(".interpretation-comments");
             });
 
             it("should call prop onSave", () => {
@@ -119,16 +119,15 @@ describe('Interpretations: Interpretations -> InterpretationComments component',
             });
 
             it("should switch to read-only comment", () => {
-                expect(commentsBox.find("CommentTextarea")).toHaveLength(0);
-                expect(commentsBox.find("Comment")).toHaveLength(interpretation.comments.length);
+                expect(interpretationComments.find(CommentTextarea)).toHaveLength(0);
+                expect(interpretationComments.find(InterpretationComment)).toHaveLength(interpretation.comments.length);
             });
         });
 
         describe("click on Cancel link", () => {
             beforeEach(() => {
-                commentsBox.find("CommentTextarea").props().onCancel();
+                interpretationComments.find(CommentTextarea).props().onCancel();
                 interpretationComments.update();
-                commentsBox = interpretationComments.find(".interpretation-comments");
             });
 
             it("should not call prop onSave", () => {
@@ -137,8 +136,8 @@ describe('Interpretations: Interpretations -> InterpretationComments component',
             });
 
             it("should switch to read-only comment", () => {
-                expect(commentsBox.find("CommentTextarea")).toHaveLength(0);
-                expect(commentsBox.find("Comment")).toHaveLength(interpretation.comments.length);
+                expect(interpretationComments.find(CommentTextarea)).toHaveLength(0);
+                expect(interpretationComments.find(InterpretationComment)).toHaveLength(interpretation.comments.length);
             });
         });
     });
@@ -150,7 +149,7 @@ describe('Interpretations: Interpretations -> InterpretationComments component',
             commentToDelete = commentComponent.props().comment;
             commentComponent.props().onDelete(commentToDelete);
             interpretationComments.update();
-            commentsBox = interpretationComments.find(".interpretation-comments");
+            //commentsBox = interpretationComments.find(".interpretation-comments");
         });
 
         it("should ask confirmation", () => {
@@ -175,11 +174,11 @@ describe('Interpretations: Interpretations -> InterpretationComments component',
             interpretationComments.update();
         });
 
-        it('should render a non-cancellable comment text area component', () => {
-            const commentTextarea = interpretationComments.find("CommentTextarea");
+        it('should render a cancellable comment text area component', () => {
+            const commentTextarea = interpretationComments.find(CommentTextarea);
             expect(commentTextarea).toHaveLength(1);
             expect(commentTextarea.props().comment.text).toEqual("");
-            expect(commentTextarea).not.toHaveProp("onCancel");
+            expect(commentTextarea).toHaveProp("onCancel");
         });
     });
 });

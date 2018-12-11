@@ -12,7 +12,8 @@ import { userCanManage } from '../../util/auth';
 import CommentModel from '../../models/comment';
 import { formatRelative } from '../../util/i18n';
 import styles from './styles/Interpretation.style';
-class Interpretation extends React.Component {
+
+export class Interpretation extends React.Component {
     state = {
         newComment: null,
         interpretationToEdit: null,
@@ -115,6 +116,10 @@ class Interpretation extends React.Component {
         const showActions = extended;
         const showComments = extended;
         const likedBy = interpretation.likedBy || [];
+        const likedByTooltip = likedBy
+        .map(user => user.displayName)
+        .sort()
+        .join('\n');
         const currentUserLikesInterpretation = some(user => user.id === d2.currentUser.id, likedBy);
 
         return (
@@ -160,11 +165,19 @@ class Interpretation extends React.Component {
                         </div>
 
                         <div className={classes.interpretationCommentArea}>
-                            {!!interpretation.likes && <span className={classes.intepretationLikes}>{interpretation.likes} {interpretation.likes > 1 ? i18n.t('likes') : i18n.t('like')}</span>}
-                            {!!interpretation.comments.length && <span>{`${interpretation.comments.length} ${interpretation.comments.length > 1 ? i18n.t('replies') : i18n.t('reply')}`}</span>}
+                            {!!interpretation.likes && (
+                                <span className={classes.intepretationLikes}>
+                                    {interpretation.likes} {interpretation.likes > 1 ? i18n.t('likes') : i18n.t('like')}
+                                </span>
+                            )}
+                            {!!interpretation.comments.length && (
+                                <span>
+                                    {`${interpretation.comments.length} ${interpretation.comments.length > 1 ? i18n.t('replies') : i18n.t('reply')}`}
+                                </span>
+                            )}
                         </div>
                             {showActions ? (
-                                <div className={classes.actions}>
+                                <div className={classnames(classes.actions, 'actions')}>
                                     {currentUserLikesInterpretation ? (
                                         <InterpretationActionButton 
                                             iconType={'like'} 
