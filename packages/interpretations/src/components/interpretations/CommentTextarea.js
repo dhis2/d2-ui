@@ -6,7 +6,7 @@ import i18n from '@dhis2/d2-i18n';
 import { Link, ActionSeparator } from './misc';
 import styles from './styles/CommentTextarea.style';
 
-class CommentTextarea extends React.Component {
+export class CommentTextarea extends React.Component {
     state = {
         text: this.props.comment.text || '',
     };
@@ -48,8 +48,8 @@ class CommentTextarea extends React.Component {
         const { classes, onCancel, isNewComment } = this.props;
         const { d2 } = this.context;
         const { text } = this.state;
-        const postText = isNewComment ? i18n.t('Post reply') :i18n.t('OK');
-
+        const postText = isNewComment ? i18n.t('Post reply') : i18n.t('OK');
+        
         return (
             <Fragment>
                 <MentionsWrapper d2={d2} onUserSelect={this.onChange}>
