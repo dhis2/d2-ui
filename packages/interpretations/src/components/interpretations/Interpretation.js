@@ -142,6 +142,7 @@ export class Interpretation extends React.Component {
                         isNew={false}
                     />
                 ) : (
+                    //TODO: Replace with card header component.
                     <div className={classes.interpretationDescSection}>
                         <div className={classes.interpretationName}>
                             {getUserLink(d2, interpretation.user)}
@@ -150,7 +151,7 @@ export class Interpretation extends React.Component {
                                 {formatRelative(interpretation.created, this.context.locale)}
                             </span>
                         </div>
-
+                    {/*TODO: Replace with interpretation text component */}
                         <div className={classes.interpretationTextWrapper}>
                             <div
                                 className={
@@ -163,6 +164,7 @@ export class Interpretation extends React.Component {
                             </div>
                         </div>
 
+                    {/* TODO: Replace with InterpretationFeedback component */}
                         <div className={classes.interpretationCommentArea}>
                             {!!interpretation.likes && (
                                 <span className={classes.intepretationLikes}>
@@ -175,6 +177,7 @@ export class Interpretation extends React.Component {
                                 </span>
                             )}
                         </div>
+                        {/* TODO: create new component and render action buttons with .map() */}
                             {showActions ? (
                                 <div className={classes.actions}>
                                     {currentUserLikesInterpretation ? (
@@ -263,3 +266,22 @@ Interpretation.contextTypes = {
 };
 
 export default withStyles(styles)(Interpretation);
+
+/*
+
+<Fragment>
+                        <InterpretationCardHeader 
+                            d2={d2}
+                            interpretation={interpretation}
+    
+                        />
+                        <InterpretationText 
+                            text={interpretation.text}
+                        />
+                        <InterpretationFeedback 
+                            likes={interpretation.likes}
+                            replies={interpretation.comments}
+                        />
+                    </Fragment>
+
+                    */

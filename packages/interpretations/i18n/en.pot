@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2018-12-11T08:50:35.111Z\n"
-"PO-Revision-Date: 2018-12-11T08:50:35.111Z\n"
+"POT-Creation-Date: 2018-12-11T19:54:11.365Z\n"
+"PO-Revision-Date: 2018-12-11T19:54:11.365Z\n"
 
 msgid "No description"
 msgstr ""
@@ -129,6 +129,18 @@ msgid "Interpretations"
 msgstr ""
 
 msgid "No interpretations"
+msgstr ""
+
+msgid "Show all interpretations"
+msgstr ""
+
+msgid "Hide old interpretations"
+msgstr ""
+
+msgid "Showing"
+msgstr ""
+
+msgid "of"
 msgstr ""
 
 msgid "Post"
