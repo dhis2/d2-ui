@@ -21,7 +21,6 @@ export function formatRelative(value, uiLocale) {
 
 export function dateIsOver24Hours(relativeDate) {
     let shouldFormatToDate = false;
-
     ['day', 'year', 'month'].forEach(item => { 
         if(relativeDate.includes(item)) {
             shouldFormatToDate = true;

@@ -5,12 +5,12 @@ import SharingDialog from '@dhis2/d2-ui-sharing-dialog';
 import { withStyles } from '@material-ui/core/styles';
 import some from 'lodash/fp/some';
 import InterpretationComments from './InterpretationComments';
-import InterpretationDialog from './InterpretationDialog';
+import NewInterpretation from './NewInterpretation';
 import InterpretationActionButton from './InterpretationActionButton';
 import { getUserLink } from './misc';
 import { userCanManage } from '../../util/auth';
 import CommentModel from '../../models/comment';
-import { formatDate } from '../../util/i18n';
+import { formatRelative } from '../../util/i18n';
 import styles from './styles/Interpretation.style';
 class Interpretation extends React.Component {
     state = {
@@ -23,9 +23,9 @@ class Interpretation extends React.Component {
         super(props);
         this.notifyChange = this.notifyChange.bind(this);
         this.saveInterpretationAndClose = this.saveInterpretationAndClose.bind(this);
-        this.closeInterpretationDialog = this.closeInterpretationDialog.bind(this);
+        this.closeInterpretation = this.closeInterpretation.bind(this);
         this.deleteInterpretation = this.deleteInterpretation.bind(this);
-        this.openInterpretationDialog = this.openInterpretationDialog.bind(this);
+        this.openInterpretation = this.openInterpretation.bind(this);
         this.view = this.view.bind(this);
         this.exitView = this.exitView.bind(this);
         this.like = this.like.bind(this);
@@ -33,33 +33,33 @@ class Interpretation extends React.Component {
         this.unlike = this.unlike.bind(this);
         this.saveComment = this.saveComment.bind(this);
         this.deleteComment = this.deleteComment.bind(this);
-    }
+    };
 
     notifyChange(interpretation) {
         if (this.props.onChange) {
             this.props.onChange(interpretation);
         }
-    }
+    };
 
     saveInterpretationLike(interpretation, value) {
         interpretation.like(value).then(() => this.notifyChange(interpretation));
-    }
+    };
 
     view() {
         this.props.onSelect(this.props.interpretation.id);
-    }
+    };
 
     exitView() {
         this.props.onSelect(null);
-    }
+    };
 
     like() {
         this.saveInterpretationLike(this.props.interpretation, true);
-    }
+    };
 
     unlike() {
         this.saveInterpretationLike(this.props.interpretation, false);
-    }
+    };
 
     reply() {
         const newComment = CommentModel.getReplyForInterpretation(
@@ -67,38 +67,38 @@ class Interpretation extends React.Component {
             this.props.interpretation
         );
         this.setState({ newComment });
-    }
+    };
 
     deleteInterpretation() {
         if (window.confirm(i18n.t('Are you sure you want to remove this interpretation?'))) {
             this.props.interpretation.delete().then(() => this.notifyChange(null));
         }
-    }
+    };
 
-    openInterpretationDialog() {
+    openInterpretation() {
         this.setState({ interpretationToEdit: this.props.interpretation });
-    }
+    };
 
-    closeInterpretationDialog() {
+    closeInterpretation() {
         this.setState({ interpretationToEdit: null });
-    }
+    };
 
     saveInterpretation(interpretation) {
         interpretation.save().then(() => this.notifyChange(this.props.interpretation));
-    }
+    };
 
     saveComment(comment) {
         comment.save().then(() => this.notifyChange(this.props.interpretation));
-    }
+    };
 
     deleteComment(comment) {
         comment.delete().then(() => this.notifyChange(this.props.interpretation));
-    }
+    };
 
     saveInterpretationAndClose() {
         this.saveInterpretation(this.props.interpretation);
-        this.closeInterpretationDialog();
-    }
+        this.closeInterpretation();
+    };
 
     openSharingDialog = () => {
         this.setState({ sharingDialogIsOpen: true });
@@ -109,7 +109,7 @@ class Interpretation extends React.Component {
     };
 
     render() {
-        const { classes, interpretation, extended } = this.props;
+        const { classes, interpretation, extended, model } = this.props;
         const { interpretationToEdit, newComment, sharingDialogIsOpen } = this.state;
         const { d2 } = this.context;
         const showActions = extended;
@@ -119,13 +119,6 @@ class Interpretation extends React.Component {
 
         return (
             <Fragment>
-                {interpretationToEdit && (
-                    <InterpretationDialog
-                        interpretation={interpretationToEdit}
-                        onSave={this.saveInterpretationAndClose}
-                        onClose={this.closeInterpretationDialog}
-                    />
-                )}
                 {sharingDialogIsOpen && (
                     <SharingDialog
                         open={true}
@@ -135,96 +128,106 @@ class Interpretation extends React.Component {
                         type={'interpretation'}
                     />
                 )}
+                
+                {interpretationToEdit ? (
+                    <NewInterpretation
+                        model={model}
+                        newInterpretation={interpretationToEdit}
+                        onSave={this.props.onSave}
+                        onClose={this.closeInterpretation}
+                        isNew={false}
+                    />
+                ) : (
+                    <div className={classes.interpretationDescSection}>
+                        <div className={classes.interpretationName}>
+                            {getUserLink(d2, interpretation.user)}
 
-                <div className={classes.interpretationDescSection}>
-                    <div className={classes.interpretationName}>
-                        {getUserLink(d2, interpretation.user)}
-
-                        <span className={classes.date}>
-                            {formatDate(interpretation.created, this.context.locale)}
-                        </span>
-                    </div>
-
-                    <div className={classes.interpretationTextWrapper}>
-                        <div
-                            className={
-                                extended
-                                    ? classes.interpretationText
-                                    : classes.interpretationTextLimited
-                            }
-                        >
-                            {interpretation.text}
+                            <span className={classes.date}>
+                                {formatRelative(interpretation.created, this.context.locale)}
+                            </span>
                         </div>
-                    </div>
 
-                    <div className={classes.interpretationCommentArea}>
-                        {!!interpretation.likes && <span className={classes.intepretationLikes}>{interpretation.likes} {interpretation.likes > 1 ? i18n.t('likes') : i18n.t('like')}</span>}
-                        {!!interpretation.comments.length && <span>{`${interpretation.comments.length} ${interpretation.comments.length > 1 ? i18n.t('replies') : i18n.t('reply')}`}</span>}
-                    </div>
-                        {showActions ? (
-                            <div className={classes.actions}>
-                                {currentUserLikesInterpretation ? (
+                        <div className={classes.interpretationTextWrapper}>
+                            <div
+                                className={
+                                    extended
+                                        ? classes.interpretationText
+                                        : classes.interpretationTextLimited
+                                }
+                            >
+                                {interpretation.text}
+                            </div>
+                        </div>
+
+                        <div className={classes.interpretationCommentArea}>
+                            {!!interpretation.likes && <span className={classes.intepretationLikes}>{interpretation.likes} {interpretation.likes > 1 ? i18n.t('likes') : i18n.t('like')}</span>}
+                            {!!interpretation.comments.length && <span>{`${interpretation.comments.length} ${interpretation.comments.length > 1 ? i18n.t('replies') : i18n.t('reply')}`}</span>}
+                        </div>
+                            {showActions ? (
+                                <div className={classes.actions}>
+                                    {currentUserLikesInterpretation ? (
+                                        <InterpretationActionButton 
+                                            iconType={'like'} 
+                                            tooltip={i18n.t('Unlike')} 
+                                            onClick={this.unlike}
+                                        />
+                                    ) : (
+                                        <InterpretationActionButton 
+                                            iconType={'unlike'} 
+                                            tooltip={i18n.t('Like')} 
+                                            onClick={this.like}
+                                        />
+                                    )}
                                     <InterpretationActionButton 
-                                        iconType={'like'} 
-                                        tooltip={i18n.t('Unlike')} 
-                                        onClick={this.unlike}
+                                        iconType={'reply'} 
+                                        tooltip={i18n.t('Reply')} 
+                                        onClick={this.reply}
                                     />
-                                ) : (
                                     <InterpretationActionButton 
-                                        iconType={'unlike'} 
-                                        tooltip={i18n.t('Like')} 
-                                        onClick={this.like}
+                                            iconType={'visibilityOff'} 
+                                            tooltip={i18n.t('Exit View')} 
+                                            onClick={this.exitView}
                                     />
+                                    {userCanManage(d2, interpretation) && (
+                                    <Fragment>
+                                        <InterpretationActionButton 
+                                            iconType={'share'} 
+                                            tooltip={i18n.t('Share')} 
+                                            onClick={this.openSharingDialog}
+                                        />
+                                        <InterpretationActionButton 
+                                            iconType={'edit'} 
+                                            tooltip={i18n.t('Edit')} 
+                                            onClick={this.openInterpretation}
+                                        />      
+                                        <InterpretationActionButton 
+                                            iconType={'delete'} 
+                                            tooltip={i18n.t('Delete')} 
+                                            onClick={this.deleteInterpretation}
+                                        />
+                                    </Fragment>
                                 )}
-                                <InterpretationActionButton 
-                                    iconType={'reply'} 
-                                    tooltip={i18n.t('Reply')} 
-                                    onClick={this.reply}
-                                />
-                                <InterpretationActionButton 
-                                        iconType={'visibilityOff'} 
-                                        tooltip={i18n.t('Exit View')} 
-                                        onClick={this.exitView}
-                                />
-                                {userCanManage(d2, interpretation) && (
-                                <Fragment>
+                                </div>
+                            ) : (
+                                <div className={classes.actions}>
                                     <InterpretationActionButton 
-                                        iconType={'share'} 
-                                        tooltip={i18n.t('Share')} 
-                                        onClick={this.openSharingDialog}
+                                        iconType={'visibility'} 
+                                        tooltip={i18n.t('View')}  
+                                        onClick={this.view}
                                     />
-                                    <InterpretationActionButton 
-                                        iconType={'edit'} 
-                                        tooltip={i18n.t('Edit')} 
-                                        onClick={this.openInterpretationDialog}
-                                    />      
-                                    <InterpretationActionButton 
-                                        iconType={'delete'} 
-                                        tooltip={i18n.t('Delete')} 
-                                        onClick={this.deleteInterpretation}
-                                    />
-                                </Fragment>
+                                </div>
                             )}
-                            </div>
-                        ) : (
-                            <div className={classes.actions}>
-                                <InterpretationActionButton 
-                                    iconType={'visibility'} 
-                                    tooltip={i18n.t('View')}  
-                                    onClick={this.view}
-                                />
-                            </div>
-                        )}
-                </div>
-                    {showComments && (
-                        <InterpretationComments
-                            d2={d2}
-                            interpretation={interpretation}
-                            onSave={this.saveComment}
-                            onDelete={this.deleteComment}
-                            newComment={newComment}
-                        />
-                    )}
+                    </div> 
+                )}
+                {showComments && (
+                    <InterpretationComments
+                        d2={d2}
+                        interpretation={interpretation}
+                        onSave={this.saveComment}
+                        onDelete={this.deleteComment}
+                        newComment={newComment}
+                    />
+                )}
             </Fragment>
         );
     }

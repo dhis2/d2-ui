@@ -53,26 +53,30 @@ export class NewInterpretation extends Component {
                     <MentionsWrapper 
                         d2={this.context.d2} 
                         onUserSelect={this.onInputChange}
-                        >
+                    >
                         <textarea
                             className={this.props.classes.textArea}
                             value={this.state.text}
                             rows={4}
                             autoFocus={true}
                             onChange={this.onInputChange}
-                            />
+                        />
                     </MentionsWrapper>
                     <Link 
                         disabled={!this.state.text} 
                         label={i18n.t('Post')} 
                         onClick={this.onPost} 
                     />
-                    <ActionSeparator />
-                    <Link 
-                        disabled={!this.state.text} 
-                        label={i18n.t('Post & Share')} 
-                        onClick={this.onPostAndShare} 
-                    />
+                    {this.props.isNew && (
+                        <Fragment>
+                            <ActionSeparator />
+                            <Link 
+                                disabled={!this.state.text} 
+                                label={i18n.t('Post & Share')} 
+                                onClick={this.onPostAndShare} 
+                            />
+                        </Fragment>
+                    )}
                     <ActionSeparator />
                     <Link 
                         label={i18n.t('Cancel')} 
@@ -91,8 +95,9 @@ NewInterpretation.contextTypes = {
 NewInterpretation.propTypes = {
     classes: PropTypes.object.isRequired,
     model: PropTypes.object.isRequired,
-    onClose: PropTypes.func.isRequired,
     onSave: PropTypes.func.isRequired,
+    onClose: PropTypes.func.isRequired,
+    isNew: PropTypes.bool.isRequired,
 };
 
 export default withStyles(styles)(NewInterpretation);

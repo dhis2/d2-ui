@@ -17,16 +17,20 @@ class InterpretationsCard extends React.Component {
         super(props);
         this.state = {
             interpretationToEdit: null,
-            currentInterpretationId: props.currentInterpretationId
+            currentInterpretationId: props.currentInterpretationId,
+            sharingDialogIsOpen: false,
+            listIsExpanded: !props.model.interpretations.length > 5,
         };
 
         this.notifyChange = this.notifyChange.bind(this);
         this.openNewInterpretation = this.openNewInterpretation.bind(this);
+        this.openSharingDialog = this.openSharingDialog.bind(this);
         this.closeNewInterpretation = this.closeNewInterpretation.bind(this);
         this.setCurrentInterpretation = this.setCurrentInterpretation.bind(
             this
         );
         this.isControlledComponent = !!props.onCurrentInterpretationChange;
+        this.toggleShowAllInterpretations = this.toggleShowAllInterpretations.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -43,7 +47,6 @@ class InterpretationsCard extends React.Component {
             this.props.onCurrentInterpretationChange(currentInterpretation);
         }
         if (this.props.currentInterpretationId === "new") {
-            this.openNewInterpretationDialog();
             this.openNewInterpretation();
         }
     }
@@ -59,6 +62,18 @@ class InterpretationsCard extends React.Component {
 
     closeNewInterpretation() {
         this.setState({ interpretationToEdit: null });
+    }
+
+    openSharingDialog() {
+        this.setState({ sharingDialogIsOpen: true });
+    }
+
+    closeSharingDialog() {
+        this.setState({ sharingDialogIsOpen: false });
+    }
+
+    toggleShowAllInterpretations() {
+        this.setState({ listIsExpanded: !this.state.listIsExpanded });
     }
 
     setCurrentInterpretation(interpretationId) {
@@ -119,6 +134,8 @@ class InterpretationsCard extends React.Component {
                         interpretation={currentInterpretation}
                         onChange={this.notifyChange}
                         onSelect={this.setCurrentInterpretation}
+                        onSave={this.notifyChange}
+                        onClose={this.closeNewInterpretation}
                         extended={true}
                     />
                 ) : ( 
@@ -128,16 +145,19 @@ class InterpretationsCard extends React.Component {
                         interpretations={sortedInterpretations}
                         setCurrentInterpretation={this.setCurrentInterpretation}
                         onChange={this.notifyChange}
+                        isExpanded={this.state.listIsExpanded}
+                        toggleShowAllInterpretations={this.toggleShowAllInterpretations}
                     />
                 )}
             </div>
             {interpretationToEdit && (
-                    <NewInterpretation
-                        model={model}
-                        newInterpretation={interpretationToEdit}
-                        onSave={this.notifyChange}
-                        onClose={this.closeNewInterpretation}
-                    />
+                <NewInterpretation
+                    model={model}
+                    newInterpretation={interpretationToEdit}
+                    onSave={this.notifyChange}
+                    onClose={this.closeNewInterpretation}
+                    isNew={true}
+                />
             )}
             </CollapsibleCard>
         );
