@@ -6,6 +6,8 @@ import SubscriberIconDisabled from '@material-ui/icons/AddAlert';
 
 import * as helpers from '../../../models/helpers';
 import DetailsCard from '../DetailsCard';
+import ListItem from '../ListItem';
+import Description from '../Description';
 import { getStubContext } from '../../../../config/test-context';
 
 const favorite = {
@@ -87,9 +89,12 @@ describe('Interpretations: Details -> DetailsCard component', () => {
     });
 
     it('should render description as first item', () => {
-        expect(detailsCard.find('ListItem').get(0).props.text).toEqual(
-            'Some translated Description'
-        );
+        expect(
+            detailsCard.find(ListItem)
+            .first()
+            .find(Description)
+            .props().model.displayDescription
+            ).toEqual('Some translated Description');
     });
 
     it('should render owner', () => {
