@@ -4,7 +4,10 @@ import _ from 'lodash';
 import PropTypes from 'prop-types';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 
-import InterpretationsCard from '../InterpretationsCard';
+import { InterpretationsCard } from '../InterpretationsCard';
+import CollapsibleCard from '../../details/CollapsibleCard';
+import NewInterpretation from '../NewInterpretation';
+import { Interpretation } from '../Interpretation';
 import { getStubContext, getMuiTheme } from '../../../../config/test-context';
 
 const favorite = {
@@ -76,6 +79,7 @@ const renderComponent = (partialProps = {}, partialContext = {}) => {
         currentInterpretationId: null,
         onChange: jest.fn(),
         onCurrentInterpretationChange: jest.fn(),
+        classes: {},
     };
 
     const props = {...baseProps, ...partialProps};
@@ -102,18 +106,18 @@ describe('Interpretations: Interpretations -> InterpretationsCard component', ()
 
     describe("initial component", () => {
         it("should show a card", () => {
-            expect(interpretationsCard.find("CollapsibleCard")).toExist();
+            expect(interpretationsCard.find(CollapsibleCard)).toExist();
         });
 
-        it("should not show an interpretations dialog", () => {
-            expect(interpretationsCard.find("InterpretationDialog")).not.toExist();
+        it("should not show a NewInterpretaions component", () => {
+            expect(interpretationsCard.find(NewInterpretation)).not.toExist();
         });
     });
 
     describe("controlled component", () => {
         describe("without current interpretation", () => {
             it("should show list of compact interpretations", () => {
-                expect(interpretationsCard.find("Interpretation").find({extended: false}))
+                expect(interpretationsCard.find(Interpretation).find({extended: false}))
                     .toHaveLength(favorite.interpretations.length);
             });
 
@@ -122,18 +126,18 @@ describe('Interpretations: Interpretations -> InterpretationsCard component', ()
                     interpretationsCard.find("button").find({title: "Write new interpretation"}).simulate("click");
                 });
 
-                it("should show an interpretations dialog", () => {
-                    expect(interpretationsCard.find("InterpretationDialog")).toExist();
+                it("should show an NewInterpretation component", () => {
+                    expect(interpretationsCard.find(NewInterpretation)).toExist();
                 });
 
                 describe("when click on close", () => {
                     beforeEach(() => {
-                        interpretationsCard.find("InterpretationDialog").props().onClose();
+                        interpretationsCard.find(NewInterpretation).props().onClose();
                         interpretationsCard.update()
                     });
 
-                    it("closes the dialog", () => {
-                        expect(interpretationsCard.find("InterpretationDialog")).not.toExist();
+                    it("closes the NewInterpretation component", () => {
+                        expect(interpretationsCard.find(NewInterpretation)).not.toExist();
                     });
                 });
 
@@ -143,11 +147,11 @@ describe('Interpretations: Interpretations -> InterpretationsCard component', ()
                             text: "New text",
                             save: jest.fn(() => Promise.resolve()),
                         };
-                        return interpretationsCard.find("InterpretationDialog").props().onSave(newInterpretation);
+                        return interpretationsCard.find(NewInterpretation).props().onSave(newInterpretation);
                     });
 
                     it("should notify change", () => {
-                        const { onChange } = interpretationsCard.find("InterpretationsCard").instance().props;
+                        const { onChange } = interpretationsCard.find(InterpretationsCard).instance().props;
                         expect(onChange).toHaveBeenCalledWith();
                     });
                 });
@@ -155,7 +159,7 @@ describe('Interpretations: Interpretations -> InterpretationsCard component', ()
 
             describe("when existing interpretation clicked", () => {
                 beforeEach(() => {
-                    interpretationsCard.find(".interpretation-box").at(0).simulate("click");
+                    interpretationsCard.find(Interpretation).at(0).simulate("click");
                     interpretationsCard.update();
                 });
 
@@ -173,8 +177,8 @@ describe('Interpretations: Interpretations -> InterpretationsCard component', ()
                 interpretationsCard = renderComponent({currentInterpretationId}, {d2: {currentUser}});
             });
             
-            it("should show a new interpretations dialog", () => {
-                expect(interpretationsCard.find("InterpretationDialog")).toExist();
+            it("should show a NewInterpretation component", () => {
+                expect(interpretationsCard.find(NewInterpretation)).toExist();
             });
         });
 
@@ -185,12 +189,12 @@ describe('Interpretations: Interpretations -> InterpretationsCard component', ()
             });
 
             it("should show only current interpretation", () => {
-                expect(interpretationsCard.find("Interpretation").find({extended: true})).toHaveLength(1);
+                expect(interpretationsCard.find(Interpretation).find({extended: true})).toHaveLength(1);
             });
 
             it("should call the current interpretation prop", () => {
-                const interpretation = interpretationsCard.find("Interpretation").at(0).prop("interpretation");
-                const { onCurrentInterpretationChange } = interpretationsCard.find("InterpretationsCard").instance().props;
+                const interpretation = interpretationsCard.find(Interpretation).at(0).prop("interpretation");
+                const { onCurrentInterpretationChange } = interpretationsCard.find(InterpretationsCard).instance().props;
                 expect(onCurrentInterpretationChange).toBeCalledWith(interpretation);
             });
 
@@ -200,7 +204,7 @@ describe('Interpretations: Interpretations -> InterpretationsCard component', ()
                 });
 
                 it("should call current interpretation prop with no interpretation", () => {
-                    const { onCurrentInterpretationChange } = interpretationsCard.find("InterpretationsCard").instance().props;
+                    const { onCurrentInterpretationChange } = interpretationsCard.find(InterpretationsCard).instance().props;
                     expect(onCurrentInterpretationChange).toBeCalledWith(null);
                 });
             });
@@ -215,13 +219,13 @@ describe('Interpretations: Interpretations -> InterpretationsCard component', ()
 
             describe("when existing interpretation clicked", () => {
                 beforeEach(() => {
-                    interpretationsCard.find(".interpretation-box").at(0).simulate("click");
+                    interpretationsCard.find(Interpretation).at(0).simulate("click");
                     interpretationsCard.update();
                 });
 
                 it("should show the interpretation", () => {
-                    const interpretation = interpretationsCard.find("Interpretation").at(0).prop("interpretation");
-                    expect(interpretationsCard.find("Interpretation").find({interpretation, extended: true})).toExist();
+                    const interpretation = interpretationsCard.find(Interpretation).at(0).prop("interpretation");
+                    expect(interpretationsCard.find(Interpretation).find({interpretation, extended: true})).toExist();
                 });
             });
         });
@@ -240,7 +244,7 @@ describe('Interpretations: Interpretations -> InterpretationsCard component', ()
                 });
 
                 it("should show the interpretation list", () => {
-                    expect(interpretationsCard.find("Interpretation").find({extended: false}))
+                    expect(interpretationsCard.find(Interpretation).find({extended: false}))
                         .toHaveLength(favorite.interpretations.length);
                 });
             });

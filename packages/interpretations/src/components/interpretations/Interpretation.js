@@ -12,7 +12,6 @@ import { userCanManage } from '../../util/auth';
 import CommentModel from '../../models/comment';
 import { formatRelative } from '../../util/i18n';
 import styles from './styles/Interpretation.style';
-
 export class Interpretation extends React.Component {
     state = {
         newComment: null,
@@ -177,7 +176,7 @@ export class Interpretation extends React.Component {
                             )}
                         </div>
                             {showActions ? (
-                                <div className={classnames(classes.actions, 'actions')}>
+                                <div className={classes.actions}>
                                     {currentUserLikesInterpretation ? (
                                         <InterpretationActionButton 
                                             iconType={'like'} 
