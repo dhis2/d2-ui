@@ -4,13 +4,6 @@ import IconButton from '@material-ui/core/IconButton';
 import SubscriberIconEnabled from '@material-ui/icons/Notifications';
 import SubscriberIconDisabled from '@material-ui/icons/AddAlert';
 import i18n from '@dhis2/d2-i18n';
-import {
-    Parser as RichTextParser,
-    Editor as RichTextEditor,
-    ClassMdParser,
-    convertCtrlKey,
-} from '@dhis2/d2-ui-rich-text'; //TODO
-
 
 import CollapsibleCard from './CollapsibleCard';
 import Description from './Description';
@@ -19,7 +12,8 @@ import ListItem from './ListItem';
 import { getSharingText } from './sharingText';
 
 import { setSubscription } from '../../api/helpers';
-import { formatDate, translateModelName } from '../../util/i18n';
+import { formatDate } from '../../dateformats/dateformatter';
+import { translateModelName } from '../../translations/modelNametranslator';
 import styles from './styles/DetailsCard.style';
 
 class DetailsCard extends React.Component {

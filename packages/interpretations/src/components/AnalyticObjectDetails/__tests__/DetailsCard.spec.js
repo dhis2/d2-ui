@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import SubscriberIconEnabled from '@material-ui/icons/Notifications';
 import SubscriberIconDisabled from '@material-ui/icons/AddAlert';
 
-import * as helpers from '../../../models/helpers';
+import * as helpers from '../../../api/helpers';
 import DetailsCard from '../DetailsCard';
 import ListItem from '../ListItem';
 import Description from '../Description';

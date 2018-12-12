@@ -39,5 +39,6 @@ export function getStubContext() {
                 authorities: new Set(),
             },
         },
+        locale: 'en',
     };
 }

@@ -1,4 +1,4 @@
-import { apiFetch } from '../util/api';
+import { apiFetch } from './api';
 import { keyBy, map, flatMap, flow, groupBy, without } from 'lodash/fp';
 import { orderBy, concat, toPairs, at, differenceBy, compact } from 'lodash/fp';
 
