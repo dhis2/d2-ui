@@ -1,6 +1,5 @@
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
-
 import styles from './styles/WithAvatar.style';
 
 const UserAvatar = ({user}) => {

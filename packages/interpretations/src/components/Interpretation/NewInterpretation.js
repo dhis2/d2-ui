@@ -3,12 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import MentionsWrapper from '@dhis2/d2-ui-mentions-wrapper';
 import SharingDialog from '@dhis2/d2-ui-sharing-dialog';
-import {
-    Parser as RichTextParser,
-    Editor as RichTextEditor,
-    ClassMdParser,
-    convertCtrlKey,
-} from '@dhis2/d2-ui-rich-text'; // TODO
+import { Editor as RichTextEditor } from '@dhis2/d2-ui-rich-text';
 import i18n from '@dhis2/d2-i18n';
 import WithAvatar from '../Avatar/WithAvatar';
 import Link from '../Link/Link';
@@ -56,13 +51,15 @@ export class NewInterpretation extends Component {
             <Fragment>
                 <WithAvatar style={styles.newInterpretationSection} user={this.context.d2.currentUser}>
                     <MentionsWrapper d2={this.context.d2} onUserSelect={this.onInputChange}>
-                        <textarea
-                            className={this.props.classes.textArea}
-                            value={this.state.text}
-                            rows={4}
-                            autoFocus={true}
-                            onChange={this.onInputChange}
-                        />
+                        <RichTextEditor onEdit={this.onInputChange}>
+                            <textarea
+                                className={this.props.classes.textArea}
+                                value={this.state.text}
+                                rows={4}
+                                autoFocus={true}
+                                onChange={this.onInputChange}
+                            />
+                        </RichTextEditor>
                     </MentionsWrapper>
                     <Link disabled={!this.state.text} label={i18n.t('Post')} onClick={this.onPost} />
                     {this.props.isNew && (

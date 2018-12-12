@@ -91,8 +91,8 @@ class DetailsCard extends React.Component {
 }
 
 DetailsCard.contextTypes = {
-    d2: PropTypes.object,
-    locale: PropTypes.string,
+    d2: PropTypes.object.isRequired,
+    locale: PropTypes.string.isRequired,
 };
 
 DetailsCard.propTypes = {

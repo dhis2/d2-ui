@@ -105,7 +105,6 @@ export class InterpretationsCard extends React.Component {
     render() {
         const { classes, model } = this.props;
         const { interpretationToEdit } = this.state;
-        const { d2 } = this.context;
         const sortedInterpretations = orderBy(
             ["created"],
             ["asc"],

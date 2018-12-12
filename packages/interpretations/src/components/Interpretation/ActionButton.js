@@ -10,7 +10,6 @@ import Create from '@material-ui/icons/Create';
 import Share from '@material-ui/icons/Share';
 import Delete from '@material-ui/icons/Delete';
 import { withStyles } from '@material-ui/core/styles';
-import i18n from '@dhis2/d2-i18n';
 
 import styles from './styles/ActionButton.style';
 

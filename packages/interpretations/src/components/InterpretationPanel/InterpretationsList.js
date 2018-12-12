@@ -8,7 +8,6 @@ import styles from './styles/InterpretationsList.style';
 
 export const InterpretationsList = ({         
     classes,
-    d2,
     model,
     interpretations,
     setCurrentInterpretation,
@@ -58,12 +57,6 @@ export const InterpretationsList = ({
         </Fragment>
     );
 };
-
-
-
-InterpretationsList.contextTypes = {
-    d2: PropTypes.object.isRequired,
-}
 
 InterpretationsList.propTypes = {
     classes: PropTypes.object.isRequired,

@@ -1,9 +1,4 @@
 export default {
-    interpretationTextWrapper: {
-        marginBottom: '5px',
-        marginTop: '5px',
-    },
-
     interpretationText: {
         whiteSpace: 'pre-line',
         lineHeight: '1.5em',
