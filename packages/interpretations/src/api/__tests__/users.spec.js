@@ -1,6 +1,8 @@
 import sinon from 'sinon';
-import * as api from '../../util/api';
+import * as api from '../api';
 import { getMentions } from '../users';
+import { getInstance } from 'd2';
+
 
 const users = [{
         id: "oXD88WWSQpR",
@@ -90,24 +92,29 @@ const d2 = {
         id: "oXD88WWSQpR",
         username: "traore",
     },
+    Api: {
+        getApi: () => ({ 
+            get: jest.fn(Promise.resolve({})) 
+        }),
+    },
 };
 
 const mockApiFetch = () => {
     const apiFetchStub = sinon.stub();
 
-    apiFetchStub.withArgs("/users", "GET", {
+    apiFetchStub.withArgs(d2, "/users", "GET", {
         fields: "id,displayName,userCredentials[username]",
         order: "displayName:asc",
         paging: false,
     }).returns(Promise.resolve({users}));
 
-    apiFetchStub.withArgs("/interpretations", "GET", {
+    apiFetchStub.withArgs(d2, "/interpretations", "GET", {
         fields: "id,mentions",
         filter: [`user.id:eq:${d2.currentUser.id}`, "mentions:!null"],
         paging: false,
     }).returns(Promise.resolve({interpretations}));
 
-    apiFetchStub.withArgs("/interpretations", "GET", {
+    apiFetchStub.withArgs(d2, "/interpretations", "GET", {
         fields: "id,comments[mentions]",
         filter: [`comments.user.id:eq:${d2.currentUser.id}`, "comments.mentions.username:!null"],
         paging: false,
