@@ -1,10 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { InterpretationComponent } from '../InterpretationComponent';
-import InterpretationsCard from '../interpretations/InterpretationsCard';
-import { DetailsCard } from '../details/DetailsCard';
-import { getStubContext } from '../../../config/test-context';
-import * as helpers from '../../models/helpers';
+import InterpretationsCard from '../../InterpretationPanel/InterpretationsCard';
+import { getStubContext } from '../../../../config/test-context';
+import * as helpers from '../../../api/helpers';
 
 const context = getStubContext();
 

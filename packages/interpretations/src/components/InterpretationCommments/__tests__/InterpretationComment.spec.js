@@ -1,9 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import _ from 'lodash';
-import { InterpretationComments } from '../InterpretationComments';
+import { CommentList } from '../CommentList';
 import InterpretationComment from '../InterpretationComment';
-import CommentTextarea from '../CommentTextarea';
+import CommentText from '../CommentText';
 import InterpretationModel from '../../../models/interpretation';
 import { getStubContext } from '../../../../config/test-context';
 
@@ -46,10 +46,10 @@ const renderComponent = (partialProps = {}, partialContext = {}) => {
 
     const props = {...baseProps, ...partialProps};
     const fullContext = _.merge(context, partialContext);
-    return shallow(<InterpretationComments {...props} />, { context: fullContext });
+    return shallow(<CommentList {...props} />, { context: fullContext });
 };
 
-let interpretationComments;
+let commentList;
 let commentComponents;
 let currentUser;
 let commentComponent;
@@ -62,8 +62,8 @@ describe('Interpretations: Interpretations -> InterpretationComments component',
             id: "xE7jOejl9FI",
             displayName: "John Traore",
         };
-        interpretationComments = renderComponent({}, {d2: {currentUser}});
-        commentComponents = interpretationComments.find(InterpretationComment);
+        commentList = renderComponent({}, {d2: {currentUser}});
+        commentComponents = commentList.find(InterpretationComment);
     });
 
     describe('list of comments', () => {
@@ -93,23 +93,23 @@ describe('Interpretations: Interpretations -> InterpretationComments component',
             commentComponent = commentComponents.at(1);
             commentToEdit = commentComponent.props().comment;
             commentComponent.props().onEdit(commentToEdit);
-            interpretationComments.update();
+            commentList.update();
         });
 
         it("should replace the read-only comment with a comment textarea", () => {
-            expect(interpretationComments.find(CommentTextarea)).toHaveLength(1);
-            expect(interpretationComments.find(InterpretationComment)).toHaveLength(interpretation.comments.length - 1);
+            expect(commentList.find(CommentText)).toHaveLength(1);
+            expect(commentList.find(InterpretationComment)).toHaveLength(interpretation.comments.length - 1);
         });
 
         describe("click on OK link", () => {
             beforeEach(() => {
                 const newComment = _.assign({}, commentToEdit, {text: "New text"});
-                interpretationComments.find(CommentTextarea).props().onPost(newComment);
-                interpretationComments.update();
+                commentList.find(CommentText).props().onPost(newComment);
+                commentList.update();
             });
 
             it("should call prop onSave", () => {
-                const { onSave } = interpretationComments.instance().props;
+                const { onSave } = commentList.instance().props;
                 expect(onSave).toHaveBeenCalledTimes(1);
                 const onSaveCall = onSave.mock.calls[0];
                 expect(onSaveCall[0]).toEqual(expect.objectContaining({
@@ -119,25 +119,25 @@ describe('Interpretations: Interpretations -> InterpretationComments component',
             });
 
             it("should switch to read-only comment", () => {
-                expect(interpretationComments.find(CommentTextarea)).toHaveLength(0);
-                expect(interpretationComments.find(InterpretationComment)).toHaveLength(interpretation.comments.length);
+                expect(commentList.find(CommentText)).toHaveLength(0);
+                expect(commentList.find(InterpretationComment)).toHaveLength(interpretation.comments.length);
             });
         });
 
         describe("click on Cancel link", () => {
             beforeEach(() => {
-                interpretationComments.find(CommentTextarea).props().onCancel();
-                interpretationComments.update();
+                commentList.find(CommentText).props().onCancel();
+                commentList.update();
             });
 
             it("should not call prop onSave", () => {
-                const { onSave } = interpretationComments.instance().props;
+                const { onSave } = commentList.instance().props;
                 expect(onSave).toHaveBeenCalledTimes(0);
             });
 
             it("should switch to read-only comment", () => {
-                expect(interpretationComments.find(CommentTextarea)).toHaveLength(0);
-                expect(interpretationComments.find(InterpretationComment)).toHaveLength(interpretation.comments.length);
+                expect(commentList.find(CommentText)).toHaveLength(0);
+                expect(commentList.find(InterpretationComment)).toHaveLength(interpretation.comments.length);
             });
         });
     });
@@ -148,8 +148,7 @@ describe('Interpretations: Interpretations -> InterpretationComments component',
             commentComponent = commentComponents.at(1);
             commentToDelete = commentComponent.props().comment;
             commentComponent.props().onDelete(commentToDelete);
-            interpretationComments.update();
-            //commentsBox = interpretationComments.find(".interpretation-comments");
+            commentList.update();
         });
 
         it("should ask confirmation", () => {
@@ -157,7 +156,7 @@ describe('Interpretations: Interpretations -> InterpretationComments component',
         });
 
         it("should call prop onDelete", () => {
-            const { onDelete } = interpretationComments.instance().props;
+            const { onDelete } = commentList.instance().props;
             expect(onDelete).toHaveBeenCalledTimes(1);
             const onDeleteCall = onDelete.mock.calls[0];
             expect(onDeleteCall[0]).toEqual(expect.objectContaining({
@@ -171,11 +170,11 @@ describe('Interpretations: Interpretations -> InterpretationComments component',
             commentComponent = commentComponents.at(1);
             const commentToReplyTo = commentComponent.props().comment;
             commentComponent.props().onReply(commentToReplyTo);
-            interpretationComments.update();
+            commentList.update();
         });
 
         it('should render a cancellable comment text area component', () => {
-            const commentTextarea = interpretationComments.find(CommentTextarea);
+            const commentTextarea = commentList.find(CommentText);
             expect(commentTextarea).toHaveLength(1);
             expect(commentTextarea.props().comment.text).toEqual("");
             expect(commentTextarea).toHaveProp("onCancel");
