@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import { getFavoriteWithInterpretations } from '../helpers';
-import Interpretation from '../interpretation';
+import Interpretation from '../../models/interpretation';
 import { getStubContext } from '../../../config/test-context';
 import * as users from '../users';
 
