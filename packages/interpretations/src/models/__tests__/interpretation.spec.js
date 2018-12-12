@@ -1,6 +1,6 @@
 import sinon from 'sinon';
 import Interpretation from '../interpretation';
-import * as api from '../../util/api';
+import * as api from '../../api/api';
 
 const favorite = {
     id: "zDP78aJU8nX",
@@ -36,6 +36,14 @@ const interpretationAttributes = {
     ],
 };
 
+const d2 = {
+    Api: {
+        getApi: () => ({ 
+            get: jest.fn(Promise.resolve({})) 
+        }),
+    }
+}
+
 let interpretation;
 
 describe("Models > Interpretation", () => {
@@ -47,44 +55,44 @@ describe("Models > Interpretation", () => {
         describe("save", () => {
             beforeEach(() => {
                 api.apiFetch = jest.fn(() => Promise.resolve({}));
-                return interpretation.save();
+                return interpretation.save(d2);
             });
 
             it("should PUT text to API", () => {
-                expect(api.apiFetch).toBeCalledWith("/interpretations/gwebGGddaxD", "PUT", interpretationAttributes.text);
+                expect(api.apiFetch).toBeCalledWith(d2, "/interpretations/gwebGGddaxD", "PUT", interpretationAttributes.text);
             });
         });
 
         describe("delete", () => {
             beforeEach(() => {
                 api.apiFetch = jest.fn(() => Promise.resolve({}));
-                return interpretation.delete();
+                return interpretation.delete(d2);
             });
 
             it("should PUT text to API", () => {
-                expect(api.apiFetch).toBeCalledWith("/interpretations/gwebGGddaxD", "DELETE");
+                expect(api.apiFetch).toBeCalledWith(d2, "/interpretations/gwebGGddaxD", "DELETE");
             });
         });
 
         describe("like", () => {
             beforeEach(() => {
                 api.apiFetch = jest.fn(() => Promise.resolve({}));
-                return interpretation.like(true);
+                return interpretation.like(d2, true);
             });
 
             it("should PUT text to API", () => {
-                expect(api.apiFetch).toBeCalledWith("/interpretations/gwebGGddaxD/like", "POST");
+                expect(api.apiFetch).toBeCalledWith(d2, "/interpretations/gwebGGddaxD/like", "POST");
             });
         });
 
         describe("unlike", () => {
             beforeEach(() => {
                 api.apiFetch = jest.fn(() => Promise.resolve({}));
-                return interpretation.like(false);
+                return interpretation.like(d2, false);
             });
 
             it("should PUT text to API", () => {
-                expect(api.apiFetch).toBeCalledWith("/interpretations/gwebGGddaxD/like", "DELETE");
+                expect(api.apiFetch).toBeCalledWith(d2, "/interpretations/gwebGGddaxD/like", "DELETE");
             });
         });
     });
@@ -100,6 +108,7 @@ describe("Models > Interpretation", () => {
 
                 const apiFetchWithResponseStub = sinon.stub();
                 apiFetchWithResponseStub.withArgs(
+                    d2,
                     "/interpretations/map/zDP78aJU8nX",
                     "POST",
                     interpretationAttributes.text,
@@ -107,7 +116,7 @@ describe("Models > Interpretation", () => {
                 apiFetchWithResponseStub.throws();
                 api.apiFetchWithResponse = apiFetchWithResponseStub;
 
-                return interpretation.save();
+                return interpretation.save(d2);
             });
 
             it("should save sharing of interpretation from object", () => {
@@ -130,7 +139,7 @@ describe("Models > Interpretation", () => {
                     },
                 };
                 expect(api.apiFetch)
-                    .toBeCalledWith("/sharing?type=interpretation&id=1234", "PUT", expectedSharing);
+                    .toBeCalledWith(d2, "/sharing?type=interpretation&id=1234", "PUT", expectedSharing);
             });
         });
     });
