@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2018-12-11T19:54:11.365Z\n"
-"PO-Revision-Date: 2018-12-11T19:54:11.365Z\n"
+"POT-Creation-Date: 2018-12-12T10:42:09.513Z\n"
+"PO-Revision-Date: 2018-12-12T10:42:09.513Z\n"
 
 msgid "No description"
 msgstr ""
@@ -53,28 +53,7 @@ msgstr ""
 msgid "user groups"
 msgstr ""
 
-msgid "Post reply"
-msgstr ""
-
-msgid "OK"
-msgstr ""
-
-msgid "Cancel"
-msgstr ""
-
 msgid "Are you sure you want to remove this interpretation?"
-msgstr ""
-
-msgid "likes"
-msgstr ""
-
-msgid "like"
-msgstr ""
-
-msgid "replies"
-msgstr ""
-
-msgid "reply"
 msgstr ""
 
 msgid "Unlike"
@@ -101,16 +80,37 @@ msgstr ""
 msgid "View"
 msgstr ""
 
-msgid "Clear interpretation"
+msgid "likes"
 msgstr ""
 
-msgid "Write new interpretation"
+msgid "like"
+msgstr ""
+
+msgid "replies"
+msgstr ""
+
+msgid "reply"
+msgstr ""
+
+msgid "Post"
+msgstr ""
+
+msgid "Post & Share"
+msgstr ""
+
+msgid "Cancel"
 msgstr ""
 
 msgid "Are you sure you want to remove this comment?"
 msgstr ""
 
 msgid "more comments"
+msgstr ""
+
+msgid "Post reply"
+msgstr ""
+
+msgid "OK"
 msgstr ""
 
 msgid "Edit interpretation"
@@ -143,10 +143,10 @@ msgstr ""
 msgid "of"
 msgstr ""
 
-msgid "Post"
+msgid "Clear interpretation"
 msgstr ""
 
-msgid "Post & Share"
+msgid "Write new interpretation"
 msgstr ""
 
 msgid "chart"

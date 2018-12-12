@@ -1,4 +1,4 @@
-import { apiFetch } from '../util/api';
+import { apiFetch } from '../api/api';
 
 export default class Comment {
     constructor(interpretation, attributes) {
@@ -6,18 +6,18 @@ export default class Comment {
         Object.assign(this, attributes);
     }
 
-    save() {
+    save(d2) {
         const interpretation = this._interpretation;
         const [method, url] = this.id
             ? ['PUT',    `/interpretations/${interpretation.id}/comments/${this.id}`]
             : ['POST', `/interpretations/${interpretation.id}/comments`];
-        return apiFetch(url, method, this.text);
+        return apiFetch(d2, url, method, this.text);
     }
 
-    delete() {
+    delete(d2) {
         const interpretation = this._interpretation;
         const url = `/interpretations/${interpretation.id}/comments/${this.id}`;
-        return apiFetch(url, "DELETE");
+        return apiFetch(d2, url, "DELETE");
     }
 
     static getReplyText(d2, user) {

@@ -1,5 +1,5 @@
 import { pick, last } from 'lodash/fp';
-import { apiFetch, apiFetchWithResponse } from '../util/api';
+import { apiFetch, apiFetchWithResponse } from '../api/api';
 import Comment from './comment';
 
 function getInterpretationIdFromResponse(response)  {
@@ -20,7 +20,7 @@ export default class Interpretation {
         this.comments = (attributes.comments || []).map(commentAttrs => new Comment(this, commentAttrs));
     }
 
-    async save() {
+    async save(d2) {
         const modelId = this._parent.id;
         const modelName = this._parent.modelDefinition.name;
         const isNewInterpretation = !this.id;
@@ -29,23 +29,23 @@ export default class Interpretation {
             // Set initial sharing of interpretation from the parent object
             const sharingPayload = { object: pick(Interpretation.sharingFields, this._parent) };
 
-            return apiFetchWithResponse(`/interpretations/${modelName}/${modelId}`, "POST", this.text)
+            return apiFetchWithResponse(d2, `/interpretations/${modelName}/${modelId}`, "POST", this.text)
                 .then(getInterpretationIdFromResponse)
                 .then(interpretationId => {
                     this.id = interpretationId;
                     const sharingUrl = `/sharing?type=interpretation&id=${interpretationId}`;
-                    return apiFetch(sharingUrl, "PUT", sharingPayload).then(() => this);
+                    return apiFetch(d2, sharingUrl, "PUT", sharingPayload).then(() => this);
                 });
         } else {
-            return apiFetch(`/interpretations/${this.id}`, "PUT", this.text).then(() => this);
+            return apiFetch(d2, `/interpretations/${this.id}`, "PUT", this.text).then(() => this);
         }
     }
 
-    delete() {
-        return apiFetch(`/interpretations/${this.id}`, "DELETE");
+    delete(d2) {
+        return apiFetch(d2, `/interpretations/${this.id}`, "DELETE");
     }
 
-    like(value) {
-        return apiFetch(`/interpretations/${this.id}/like`, value ? "POST" : "DELETE");
+    like(d2, value) {
+        return apiFetch(d2, `/interpretations/${this.id}/like`, value ? "POST" : "DELETE");
     }
 }
