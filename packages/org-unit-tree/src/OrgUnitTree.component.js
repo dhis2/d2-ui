@@ -1,67 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import LinearProgress from '@material-ui/core/LinearProgress';
-import Checkbox from '@material-ui/core/Checkbox';
-import CheckBoxIcon from '@material-ui/icons/CheckBox';
-import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
-import FolderIcon from '@material-ui/icons/Folder';
-import FolderOpenIcon from '@material-ui/icons/FolderOpen';
 import StopIcon from '@material-ui/icons/Stop';
 
 import ModelBase from 'd2/model/Model';
 import ModelCollection from 'd2/model/ModelCollection';
 
 import TreeView from '@dhis2/d2-ui-core/tree-view/TreeView.component';
-
-const styles = {
-    progress: {
-        position: 'absolute',
-        display: 'inline-block',
-        width: '100%',
-        left: -8,
-    },
-    progressBar: {
-        height: 2,
-        backgroundColor: 'transparent',
-    },
-    spacer: {
-        position: 'relative',
-        display: 'inline-block',
-        width: '1.2rem',
-        height: '1rem',
-    },
-    label: {
-        display: 'inline-block',
-        outline: 'none',
-    },
-    ouContainer: {
-        borderColor: 'transparent',
-        borderStyle: 'solid',
-        borderWidth: '1px',
-        borderRightWidth: 0,
-        borderRadius: '3px 0 0 3px',
-        background: 'transparent',
-        paddingLeft: 2,
-        outline: 'none',
-    },
-    currentOuContainer: {
-        background: 'rgba(0,0,0,0.05)',
-        borderColor: 'rgba(0,0,0,0.1)',
-    },
-    memberCount: {
-        fontSize: '0.75rem',
-        marginLeft: 4,
-    },
-    checkbox: {
-        position: 'relative',
-        bottom: 2,
-        padding: 0,
-    },
-    uncheckedCheckbox: {
-        fontSize: 15,
-        color: '#E0E0E0',
-    },
-};
+import styles from './styles/OrgUnitTree.component.styles';
+import OUFolderIconComponent from './OUFolderIcon.component';
+import OUCheckboxComponent from './OUCheckbox.component';
+import { loadChildren } from './utils';
 
 class OrgUnitTree extends React.Component {
     constructor(props) {
@@ -82,9 +31,6 @@ class OrgUnitTree extends React.Component {
                 // Sort here since the API returns nested children in random order
                 .sort((a, b) => a.displayName.localeCompare(b.displayName));
         }
-
-        this.loadChildren = this.loadChildren.bind(this);
-        this.handleSelectClick = this.handleSelectClick.bind(this);
     }
 
     componentDidMount() {
@@ -94,8 +40,10 @@ class OrgUnitTree extends React.Component {
     }
 
     componentWillReceiveProps(newProps) {
-        if (newProps.initiallyExpanded.some(ou => ou.includes(`/${newProps.root.id}`)) ||
-            newProps.idsThatShouldBeReloaded.includes(newProps.root.id)) {
+        if (
+            newProps.initiallyExpanded.some(ou => ou.includes(`/${newProps.root.id}`)) ||
+            newProps.idsThatShouldBeReloaded.includes(newProps.root.id)
+        ) {
             this.loadChildren();
         }
     }
@@ -114,7 +62,16 @@ class OrgUnitTree extends React.Component {
         }
     };
 
-    setChildState(children) {
+    onContextMenuClick = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        if (this.props.onContextMenuClick !== undefined) {
+            this.props.onContextMenuClick(e, this.props.root, this.hasChildren(), this.loadChildren);
+        }
+    };
+
+    setChildState = (children) => {
         let data = children;
 
         if (this.props.onChildrenLoaded) {
@@ -129,100 +86,99 @@ class OrgUnitTree extends React.Component {
             children: data.sort((a, b) => a.displayName.localeCompare(b.displayName)),
             loading: false,
         });
-    }
+    };
 
-    hideChildren() {
+    hideChildren = () => {
         this.setChildState([]);
-    }
+    };
 
-    loadChildren() {
-        return new Promise((resolve) => {
-            if (
-                (this.state.children === undefined && !this.state.loading) ||
-                this.props.idsThatShouldBeReloaded.indexOf(this.props.root.id) >= 0
-            ) {
-                this.setState({ loading: true });
+    loadChildren = async () => {
+        if (this.state.children !== undefined) {
+            return this.state.children;
+        }
 
-                const root = this.props.root;
-                // d2.ModelCollectionProperty.load takes a second parameter `forceReload` and will just return
-                // the current valueMap unless either `this.hasUnloadedData` or `forceReload` are true
-                root.children.load(
-                    {
-                        fields: [
-                            'id',
-                            `${this.props.displayNameProperty}~rename(displayName)`,
-                            'children::isNotEmpty',
-                            'path',
-                            'parent',
-                        ].join(','),
-                    },
-                    this.props.forceReloadChildren,
-                ).then((children) => {
-                    resolve(children);
-                    this.setChildState(children);
-                });
-            }
+        if (
+            (this.state.children === undefined && !this.state.loading) ||
+            this.props.idsThatShouldBeReloaded.indexOf(this.props.root.id) >= 0
+        ) {
+            this.setState({ loading: true });
 
-            if (this.state.children !== undefined) {
-                resolve(this.state.children);
-            }
-        });
-    }
+            const children = await loadChildren(
+                this.props.root,
+                this.props.displayNameProperty,
+                this.props.forceReloadChildren
+            );
 
-    handleSelectClick(e) {
+            this.setChildState(children);
+
+            return children;
+        }
+    };
+
+    handleSelectClick = (e) => {
         if (this.props.onSelectClick) {
             this.props.onSelectClick(e, this.props.root);
         }
         e.stopPropagation();
-    }
+    };
 
-    shouldIncludeOrgUnit(orgUnit) {
+    hasChildren = () => this.state.children === undefined ||
+        (Array.isArray(this.state.children) && this.state.children.length > 0);
+
+    shouldIncludeOrgUnit = (orgUnit) => {
         if (!this.props.orgUnitsPathsToInclude || this.props.orgUnitsPathsToInclude.length === 0) {
             return true;
         }
         return !!(this.props.orgUnitsPathsToInclude.some(ou => ou.includes(`/${orgUnit.id}`)));
-    }
+    };
+
+    setCurrentRoot = (e) => {
+        e.stopPropagation();
+
+        this.props.onChangeCurrentRoot(this.props.root);
+    };
 
     renderChild(orgUnit, expandedProp) {
-        if (this.shouldIncludeOrgUnit(orgUnit)) {
-            const highlighted = this.props.searchResults.includes(orgUnit.path) && this.props.highlightSearchResults;
-
-            return (
-                <OrgUnitTree
-                    key={orgUnit.id}
-                    root={orgUnit}
-                    onExpand={this.onExpand}
-                    onCollapse={this.onCollapse}
-                    selected={this.props.selected}
-                    initiallyExpanded={expandedProp}
-                    onSelectClick={this.props.onSelectClick}
-                    onContextMenuClick={this.props.onContextMenuClick}
-                    currentRoot={this.props.currentRoot}
-                    onChangeCurrentRoot={this.props.onChangeCurrentRoot}
-                    labelStyle={{
-                        ...this.props.labelStyle,
-                        fontWeight: highlighted ? 500 : this.props.labelStyle.fontWeight,
-                        color: highlighted ? 'orange' : 'inherit',
-                    }}
-                    selectedLabelStyle={this.props.selectedLabelStyle}
-                    arrowSymbol={this.props.arrowSymbol}
-                    idsThatShouldBeReloaded={this.props.idsThatShouldBeReloaded}
-                    hideCheckboxes={this.props.hideCheckboxes}
-                    onChildrenLoaded={this.props.onChildrenLoaded}
-                    hideMemberCount={this.props.hideMemberCount}
-                    orgUnitsPathsToInclude={this.props.orgUnitsPathsToInclude}
-                    treeStyle={this.props.treeStyle}
-                    searchResults={this.props.searchResults}
-                    highlightSearchResults={this.props.highlightSearchResults}
-                    forceReloadChildren={this.props.forceReloadChildren}
-                    showFolderIcon={this.props.showFolderIcon}
-                    disableSpacer={this.props.disableSpacer}
-                    checkboxColor={this.props.checkboxColor}
-                    displayNameProperty={this.props.displayNameProperty}
-                />
-            );
+        if (!this.shouldIncludeOrgUnit(orgUnit)) {
+            return null;
         }
-        return null;
+
+        const highlighted = this.props.searchResults.includes(orgUnit.path) && this.props.highlightSearchResults;
+
+        return (
+            <OrgUnitTree
+                key={orgUnit.id}
+                root={orgUnit}
+                onExpand={this.onExpand}
+                onCollapse={this.onCollapse}
+                selected={this.props.selected}
+                initiallyExpanded={expandedProp}
+                onSelectClick={this.props.onSelectClick}
+                onContextMenuClick={this.props.onContextMenuClick}
+                currentRoot={this.props.currentRoot}
+                onChangeCurrentRoot={this.props.onChangeCurrentRoot}
+                labelStyle={{
+                    ...this.props.labelStyle,
+                    fontWeight: highlighted ? 500 : this.props.labelStyle.fontWeight,
+                    color: highlighted ? 'orange' : 'inherit',
+                }}
+                selectedLabelStyle={this.props.selectedLabelStyle}
+                arrowSymbol={this.props.arrowSymbol}
+                idsThatShouldBeReloaded={this.props.idsThatShouldBeReloaded}
+                hideCheckboxes={this.props.hideCheckboxes}
+                onChildrenLoaded={this.props.onChildrenLoaded}
+                hideMemberCount={this.props.hideMemberCount}
+                orgUnitsPathsToInclude={this.props.orgUnitsPathsToInclude}
+                treeStyle={this.props.treeStyle}
+                searchResults={this.props.searchResults}
+                highlightSearchResults={this.props.highlightSearchResults}
+                forceReloadChildren={this.props.forceReloadChildren}
+                showFolderIcon={this.props.showFolderIcon}
+                disableSpacer={this.props.disableSpacer}
+                checkboxColor={this.props.checkboxColor}
+                displayNameProperty={this.props.displayNameProperty}
+            />
+        );
     }
 
     renderChildren() {
@@ -243,83 +199,45 @@ class OrgUnitTree extends React.Component {
         return null;
     }
 
-    render() {
-        const currentOu = this.props.root;
-
-        // True if this OU has children = is not a leaf node
-        const hasChildren = this.state.children === undefined ||
-            (Array.isArray(this.state.children) && this.state.children.length > 0);
-        // True if a click handler exists
-        const isSelectable = !!this.props.onSelectClick;
-        const pathRegEx = new RegExp(`/${currentOu.id}$`);
-        const memberRegEx = new RegExp(`/${currentOu.id}`);
-        const isSelected = this.props.selected && this.props.selected.some(ou => pathRegEx.test(ou));
-        // True if this OU is the current root
-        const isCurrentRoot = this.props.currentRoot && this.props.currentRoot.id === currentOu.id;
-        // True if this OU should be expanded by default
-        const isInitiallyExpanded = this.props.initiallyExpanded.some(ou => ou.includes(`/${currentOu.id}`));
-        // True if this OU can BECOME the current root, which means that:
-        // 1) there is a change root handler
-        // 2) this OU is not already the current root
-        // 3) this OU has children (is not a leaf node)
-        const canBecomeCurrentRoot = this.props.onChangeCurrentRoot && !isCurrentRoot && hasChildren;
-
-        const memberCount = this.props.selected !== undefined
-            ? this.props.selected.filter(ou => memberRegEx.test(ou)).length
-            : currentOu.memberCount;
-
-        // Hard coded styles for OU name labels - can be overridden with the selectedLabelStyle and labelStyle props
-        const labelStyle = Object.assign({}, styles.label, {
+    renderLabel(
+        isSelected,
+        isSelectable,
+        isInitiallyExpanded,
+        canBecomeCurrentRoot,
+        currentOu,
+        hasChildren,
+        memberCount
+    ) {
+        const labelStyle = {
+            ...styles.label,
             fontWeight: isSelected ? 500 : 300,
             color: isSelected ? 'orange' : 'inherit',
             cursor: canBecomeCurrentRoot ? 'pointer' : 'default',
-        }, isSelected ? this.props.selectedLabelStyle : this.props.labelStyle);
-
-        // Styles for this OU and OUs contained within it
-        const ouContainerStyle = Object.assign(
-            {},
-            styles.ouContainer,
-            isCurrentRoot ? styles.currentOuContainer : {},
-            this.props.treeStyle,
-        );
-
-        // Wrap the change root click handler in order to stop event propagation
-        const setCurrentRoot = (e) => {
-            e.stopPropagation();
-            this.props.onChangeCurrentRoot(currentOu);
+            ...(isSelected ? this.props.selectedLabelStyle : this.props.labelStyle),
         };
 
-        const onContextMenuClick = (e) => {
-            e.preventDefault();
-            e.stopPropagation();
 
-            if (this.props.onContextMenuClick !== undefined) {
-                this.props.onContextMenuClick(e, currentOu, hasChildren, this.loadChildren);
-            }
-        };
-
-        const label = (
+        return (
             <div
                 style={labelStyle}
-                onClick={canBecomeCurrentRoot ? setCurrentRoot : (isSelectable ? this.handleSelectClick : undefined)}
-                onContextMenu={onContextMenuClick}
+                onClick={canBecomeCurrentRoot ? this.setCurrentRoot : (isSelectable ? this.handleSelectClick : undefined)}
+                onContextMenu={this.onContextMenuClick}
                 role="button"
                 tabIndex={0}
             >
                 {isSelectable && !this.props.hideCheckboxes && (
-                    <Checkbox
-                        style={styles.checkbox}
+                    <OUCheckboxComponent
                         checked={isSelected}
                         disabled={!isSelectable}
                         onClick={this.handleSelectClick}
                         color={this.props.checkboxColor}
-                        icon={<CheckBoxOutlineBlankIcon style={styles.uncheckedCheckbox} />}
-                        checkedIcon={<CheckBoxIcon style={{ fontSize: 15 }} />}
                     />
                 )}
-                {this.props.showFolderIcon && hasChildren && (isInitiallyExpanded
-                    ? <FolderOpenIcon style={{ ...styles.folderIcon, ...this.props.labelStyle.folderIcon }} />
-                    : <FolderIcon style={{ ...styles.folderIcon, ...this.props.labelStyle.folderIcon }} />
+                {this.props.showFolderIcon && hasChildren && (
+                    <OUFolderIconComponent
+                        isExpanded={isInitiallyExpanded}
+                        styles={this.props.labelStyle.folderIcon}
+                    />
                 )}
                 {this.props.showFolderIcon && !hasChildren && (
                     <StopIcon style={{ ...styles.stopIcon, ...this.props.labelStyle.stopIcon }} />
@@ -329,6 +247,38 @@ class OrgUnitTree extends React.Component {
                     <span style={styles.memberCount}>({memberCount})</span>
                 )}
             </div>
+        );
+    };
+
+    render() {
+        const currentOu = this.props.root;
+        const hasChildren = this.hasChildren();
+        const isSelectable = !!this.props.onSelectClick;
+        const pathRegEx = new RegExp(`/${currentOu.id}$`);
+        const memberRegEx = new RegExp(`/${currentOu.id}`);
+        const isSelected = this.props.selected && this.props.selected.some(ou => pathRegEx.test(ou));
+        const isCurrentRoot = this.props.currentRoot && this.props.currentRoot.id === currentOu.id;
+        const isInitiallyExpanded = this.props.initiallyExpanded.some(ou => ou.includes(`/${currentOu.id}`));
+        const canBecomeCurrentRoot = this.props.onChangeCurrentRoot && !isCurrentRoot && hasChildren;
+
+        const memberCount = this.props.selected !== undefined
+            ? this.props.selected.filter(ou => memberRegEx.test(ou)).length
+            : currentOu.memberCount;
+
+        const ouContainerStyle = {
+            ...styles.ouContainer,
+            ...isCurrentRoot ? styles.currentOuContainer : {},
+            ...this.props.treeStyle,
+        };
+
+        const label = this.renderLabel(
+            isSelected,
+            isSelectable,
+            isInitiallyExpanded,
+            canBecomeCurrentRoot,
+            currentOu,
+            hasChildren,
+            memberCount
         );
 
         if (hasChildren) {
