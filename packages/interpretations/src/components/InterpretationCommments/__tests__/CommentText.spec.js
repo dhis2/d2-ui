@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { CommentTextarea } from '../CommentTextarea';
+import { CommentText } from '../CommentText';
 import PropTypes from 'prop-types';
 import { getStubContext } from '../../../../config/test-context';
 
@@ -26,7 +26,7 @@ const baseProps = {
 
 const renderComponent = (partialProps = {}) => {
     const props = { ...baseProps, ...partialProps };
-    return shallow(<CommentTextarea {...props} />, { context, childContextTypes });
+    return shallow(<CommentText {...props} />, { context, childContextTypes });
 };
 
 describe('Interpretations: Interpretations -> CommentTextarea component', () => {

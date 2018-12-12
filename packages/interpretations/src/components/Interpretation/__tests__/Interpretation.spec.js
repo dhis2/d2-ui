@@ -2,10 +2,11 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import _ from 'lodash';
 
-import { Interpretation } from '../../InterpretationCard/Interpretation';
+import { Interpretation } from '../Interpretation';
+import CardHeader from '../CardHeader';
 import NewInterpretation from '../NewInterpretation';
 import InterpretationComments from '../../InterpretationCommments/CommentList';
-import InterpretationActionButton from '../../InterpretationCard/CardButton';
+import ActionButton from '../ActionButton';
 import { getStubContext } from '../../../../config/test-context';
 
 const interpretation = {
@@ -71,32 +72,7 @@ const renderComponent = (partialProps = {}, partialContext = {}) => {
 let interpretationComponent;
 let currentUser;
 
-const commonExpectations = () => {
-    it('should show the author with a link', () => {
-        const link = interpretationComponent.find('.author');
-        expect(link.text()).toMatch(interpretation.user.displayName);
-    });
 
-    it('should show the creation date', () => {
-        expect(interpretationComponent.text()).toMatch('Apr 14, 2018');
-    });
-
-    it('should show how many people like it', () => {
-        const count = interpretation.likedBy.length;
-        expect(interpretationComponent.text()).toMatch(`${count} likes`);
-    });
-
-    //TODO: render names onHover
-    /*it('should show who likes it', () => {
-        const names = interpretation.likedBy.map(user => user.displayName).join('\n');
-        expect(interpretationComponent.find('.liked-by')).toHaveProp('title', names);
-    });*/
-
-    it('should show how many comments it has', () => {
-        const count = interpretation.comments.length;
-        expect(interpretationComponent.text()).toMatch(`${count} replies`);
-    });
-};
 
 describe('Interpretations: Interpretations -> Interpretation component', () => {
     beforeEach(() => {
@@ -108,14 +84,12 @@ describe('Interpretations: Interpretations -> Interpretation component', () => {
             interpretationComponent = renderComponent({ extended: false }, { d2: { currentUser } });
         });
 
-        commonExpectations();
-
         it('should show actions', () => {
-            expect(interpretationComponent.find('div').first().childAt(3).children().length).toEqual(1);
+            expect(interpretationComponent.find('div').first().find('div').first().children().length).toEqual(1);
         });
 
         it('sould show View action', () => {
-            expect(interpretationComponent.find(InterpretationActionButton).find({ tooltip: 'View' })).toExist();
+            expect(interpretationComponent.find(ActionButton).find({ tooltip: 'View' })).toExist();
         });
 
         it('should not show comments', () => {
@@ -128,14 +102,12 @@ describe('Interpretations: Interpretations -> Interpretation component', () => {
             interpretationComponent = renderComponent({ extended: true }, { d2: { currentUser } });
         });
 
-        commonExpectations();
-
-        it('should show actions', () => {
-            expect(interpretationComponent.find('div').first().childAt(3).children().length).toEqual(6);
+        it.only('should show actions', () => {
+            expect(interpretationComponent.find('div').first().find('div').first().children().length).toEqual(6);
         });
 
         it('should show Exit view action', () => {
-            expect(interpretationComponent.find(InterpretationActionButton).find({ tooltip: 'Exit View' })).toExist();
+            expect(interpretationComponent.find(ActionButton).find({ tooltip: 'Exit View' })).toExist();
         });
 
         it('should show comments', () => {
@@ -152,13 +124,13 @@ describe('Interpretations: Interpretations -> Interpretation component', () => {
             });
 
             it('should show like action', () => {
-                expect(interpretationComponent.find(InterpretationActionButton).find({ tooltip: 'Like' })).toExist();
+                expect(interpretationComponent.find(ActionButton).find({ tooltip: 'Like' })).toExist();
             });
 
             describe('when like is clicked', () => {
                 beforeEach(() => {
                     interpretationComponent
-                        .find(InterpretationActionButton)
+                        .find(ActionButton)
                         .find({ tooltip: 'Like' })
                         .simulate('click');
                 });
@@ -184,13 +156,13 @@ describe('Interpretations: Interpretations -> Interpretation component', () => {
             });
 
             it('should show unlike action', () => {
-                expect(interpretationComponent.find(InterpretationActionButton).find({ tooltip: 'Unlike' })).toExist();
+                expect(interpretationComponent.find(ActionButton).find({ tooltip: 'Unlike' })).toExist();
             });
 
             describe('when unlike is clicked', () => {
                 beforeEach(() => {
                     interpretationComponent
-                        .find(InterpretationActionButton)
+                        .find(ActionButton)
                         .find({ tooltip: 'Unlike' })
                         .simulate('click');
                 });
@@ -217,19 +189,19 @@ describe('Interpretations: Interpretations -> Interpretation component', () => {
                 });
 
                 it('should show an edit action', () => {
-                    expect(interpretationComponent.find(InterpretationActionButton).find({ tooltip: 'Edit' })).toExist();
+                    expect(interpretationComponent.find(ActionButton).find({ tooltip: 'Edit' })).toExist();
                 });
 
                 it('should show a delete action', () => {
                     expect(
-                        interpretationComponent.find(InterpretationActionButton).find({ tooltip: 'Delete' })
+                        interpretationComponent.find(ActionButton).find({ tooltip: 'Delete' })
                     ).toExist();
                 });
 
                 describe('when edit action clicked', () => {
                     beforeEach(() => {
                         interpretationComponent
-                            .find(InterpretationActionButton)
+                            .find(ActionButton)
                             .find({ tooltip: 'Edit' })
                             .simulate('click');
                         interpretationComponent.update();
@@ -244,7 +216,7 @@ describe('Interpretations: Interpretations -> Interpretation component', () => {
                     beforeEach(() => {
                         window.confirm = jest.fn(() => true);
                         interpretationComponent
-                            .find(InterpretationActionButton)
+                            .find(ActionButton)
                             .find({ tooltip: 'Delete' })
                             .simulate('click');
                         interpretationComponent.update();
@@ -276,13 +248,13 @@ describe('Interpretations: Interpretations -> Interpretation component', () => {
 
                 it('should not show an edit action', () => {
                     expect(
-                        interpretationComponent.find(InterpretationActionButton).find({ tooltip: 'Edit' })
+                        interpretationComponent.find(ActionButton).find({ tooltip: 'Edit' })
                     ).not.toExist();
                 });
 
                 it('should not show a delete action', () => {
                     expect(
-                        interpretationComponent.find(InterpretationActionButton).find({ tooltip: 'Delete' })
+                        interpretationComponent.find(ActionButton).find({ tooltip: 'Delete' })
                     ).not.toExist();
                 });
             });
