@@ -38,7 +38,23 @@ export class NewInterpretation extends Component {
 
     onCancel = () => this.props.onClose();
 
+    renderActionButtons = () => (
+        <Fragment>
+            <Link disabled={!this.state.text} label={i18n.t('Post')} onClick={this.onPost} />
+            {this.props.isNew && (
+                <Fragment>
+                    <ActionSeparator />
+                    <Link  disabled={!this.state.text} label={i18n.t('Post & Share')} onClick={this.onPostAndShare} />
+                </Fragment>
+            )}
+            <ActionSeparator />
+            <Link label={i18n.t('Cancel')} onClick={this.onCancel} />
+        </Fragment>
+    );
+
     render() {
+        const ActionButtons = this.renderActionButtons();
+
         return this.state.sharingDialogIsOpen ? (
             <SharingDialog
                 open={this.state.sharingDialogIsOpen}
@@ -61,15 +77,9 @@ export class NewInterpretation extends Component {
                             />
                         </RichTextEditor>
                     </MentionsWrapper>
-                    <Link disabled={!this.state.text} label={i18n.t('Post')} onClick={this.onPost} />
-                    {this.props.isNew && (
-                        <Fragment>
-                            <ActionSeparator />
-                            <Link  disabled={!this.state.text} label={i18n.t('Post & Share')} onClick={this.onPostAndShare} />
-                        </Fragment>
-                    )}
-                    <ActionSeparator />
-                    <Link label={i18n.t('Cancel')} onClick={this.onCancel} />
+
+                    {ActionButtons}
+                    
                 </WithAvatar>
             </Fragment>
         );

@@ -2,12 +2,14 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import _ from 'lodash';
 
-import { Interpretation } from '../Interpretation';
-import CardHeader from '../CardHeader';
+import { Interpretation } from '../OldInterpretation';
 import NewInterpretation from '../NewInterpretation';
 import InterpretationComments from '../../InterpretationCommments/CommentList';
+import ActionButtonContainer from '../ActionButtonContainer';
 import ActionButton from '../ActionButton';
 import { getStubContext } from '../../../../config/test-context';
+
+//TODO: adjust/create similar tests with the re-factored components
 
 const interpretation = {
     name: 'LOECMJN3DRF',
@@ -85,11 +87,7 @@ describe('Interpretations: Interpretations -> Interpretation component', () => {
         });
 
         it('should show actions', () => {
-            expect(interpretationComponent.find('div').first().find('div').first().children().length).toEqual(1);
-        });
-
-        it('sould show View action', () => {
-            expect(interpretationComponent.find(ActionButton).find({ tooltip: 'View' })).toExist();
+            expect(interpretationComponent.find(ActionButtonContainer)).toExist();
         });
 
         it('should not show comments', () => {
@@ -102,162 +100,51 @@ describe('Interpretations: Interpretations -> Interpretation component', () => {
             interpretationComponent = renderComponent({ extended: true }, { d2: { currentUser } });
         });
 
-        it.only('should show actions', () => {
-            expect(interpretationComponent.find('div').first().find('div').first().children().length).toEqual(6);
-        });
-
-        it('should show Exit view action', () => {
-            expect(interpretationComponent.find(ActionButton).find({ tooltip: 'Exit View' })).toExist();
+        it('should show actions', () => {
+            expect(interpretationComponent.find(ActionButtonContainer)).toExist();
         });
 
         it('should show comments', () => {
             expect(interpretationComponent.find(InterpretationComments)).toExist();
         });
 
-        describe('not liked by current user', () => {
+        describe('when edit action clicked', () => {
             beforeEach(() => {
-                currentUser = { id: 'kf34GLJED33', displayName: 'Nelson Mandela' };
-                interpretationComponent = renderComponent(
-                    { extended: true },
-                    { d2: { currentUser } }
-                );
+                interpretationComponent
+                    .find(ActionButtonContainer)
+                    .find(ActionButton)
+                    .find({ tooltip: 'Edit' })
+                    .simulate('click');
+                interpretationComponent.update();
             });
 
-            it('should show like action', () => {
-                expect(interpretationComponent.find(ActionButton).find({ tooltip: 'Like' })).toExist();
-            });
-
-            describe('when like is clicked', () => {
-                beforeEach(() => {
-                    interpretationComponent
-                        .find(ActionButton)
-                        .find({ tooltip: 'Like' })
-                        .simulate('click');
-                });
-
-                it('should like interpretation', () => {
-                    expect(interpretation.like).toHaveBeenCalledWith(true);
-                });
-
-                it('should notify change', () => {
-                    const { onChange } = interpretationComponent.instance().props;
-                    expect(onChange).toHaveBeenCalledWith(interpretation);
-                });
+            it('should open a NewInterpretation component', () => {
+                expect(interpretationComponent.find(NewInterpretation)).toExist();
             });
         });
 
-        describe('liked by current user', () => {
+        describe('when delete action clicked', () => {
             beforeEach(() => {
-                currentUser = { id: 'gdfdRRxx112', displayName: 'Kevin Boateng' };
-                interpretationComponent = renderComponent(
-                    { extended: true },
-                    { d2: { currentUser } }
-                );
+                window.confirm = jest.fn(() => true);
+                interpretationComponent
+                    .find(ActionButton)
+                    .find({ tooltip: 'Delete' })
+                    .simulate('click');
+                interpretationComponent.update();
             });
 
-            it('should show unlike action', () => {
-                expect(interpretationComponent.find(ActionButton).find({ tooltip: 'Unlike' })).toExist();
+            it('should ask confirmation', () => {
+                expect(window.confirm).toHaveBeenCalled();
             });
 
-            describe('when unlike is clicked', () => {
-                beforeEach(() => {
-                    interpretationComponent
-                        .find(ActionButton)
-                        .find({ tooltip: 'Unlike' })
-                        .simulate('click');
-                });
+            it('should delete interpretation', () => {
+                expect(interpretation.delete).toHaveBeenCalledWith();
+            });
 
-                it('should unlike interpretation', () => {
-                    expect(interpretation.like).toHaveBeenCalledWith(false);
-                });
-
-                it('should notify change', () => {
-                    const { onChange } = interpretationComponent.instance().props;
-                    expect(onChange).toHaveBeenCalledWith(interpretation);
-                });
+            it('should notify change with a null object', () => {
+                const { onChange } = interpretationComponent.instance().props;
+                expect(onChange).toHaveBeenCalledWith(null);
             });
         });
-
-        describe('owner actions', () => {
-            describe('interpretation owned by current user', () => {
-                beforeEach(() => {
-                    currentUser = { id: 'xE7jOejl9FI', displayName: 'John Traore' };
-                    interpretationComponent = renderComponent(
-                        { extended: true },
-                        { d2: { currentUser } }
-                    );
-                });
-
-                it('should show an edit action', () => {
-                    expect(interpretationComponent.find(ActionButton).find({ tooltip: 'Edit' })).toExist();
-                });
-
-                it('should show a delete action', () => {
-                    expect(
-                        interpretationComponent.find(ActionButton).find({ tooltip: 'Delete' })
-                    ).toExist();
-                });
-
-                describe('when edit action clicked', () => {
-                    beforeEach(() => {
-                        interpretationComponent
-                            .find(ActionButton)
-                            .find({ tooltip: 'Edit' })
-                            .simulate('click');
-                        interpretationComponent.update();
-                    });
-
-                    it('should open a NewInterpretation component', () => {
-                        expect(interpretationComponent.find(NewInterpretation)).toExist();
-                    });
-                });
-
-                describe('when delete action clicked', () => {
-                    beforeEach(() => {
-                        window.confirm = jest.fn(() => true);
-                        interpretationComponent
-                            .find(ActionButton)
-                            .find({ tooltip: 'Delete' })
-                            .simulate('click');
-                        interpretationComponent.update();
-                    });
-
-                    it('should ask confirmation', () => {
-                        expect(window.confirm).toHaveBeenCalled();
-                    });
-
-                    it('should delete interpretation', () => {
-                        expect(interpretation.delete).toHaveBeenCalledWith();
-                    });
-
-                    it('should notify change with a null object', () => {
-                        const { onChange } = interpretationComponent.instance().props;
-                        expect(onChange).toHaveBeenCalledWith(null);
-                    });
-                });
-            });
-
-            describe('interpretation not owned by current user', () => {
-                beforeEach(() => {
-                    currentUser = { id: 'gdfdRRxx112', displayName: 'Kevin Boateng' };
-                    interpretationComponent = renderComponent(
-                        { extended: true },
-                        { d2: { currentUser } }
-                    );
-                });
-
-                it('should not show an edit action', () => {
-                    expect(
-                        interpretationComponent.find(ActionButton).find({ tooltip: 'Edit' })
-                    ).not.toExist();
-                });
-
-                it('should not show a delete action', () => {
-                    expect(
-                        interpretationComponent.find(ActionButton).find({ tooltip: 'Delete' })
-                    ).not.toExist();
-                });
-            });
-        });
-    });
+    });   
 });

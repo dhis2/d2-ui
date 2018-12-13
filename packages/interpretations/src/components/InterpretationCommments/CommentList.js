@@ -1,16 +1,18 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
+import ShowMoreButton from './ShowMoreButton';
 import { withStyles } from '@material-ui/core/styles';
 import i18n from '@dhis2/d2-i18n'
 import orderBy from 'lodash/fp/orderBy';
-import CommentText from './CommentText';
-import InterpretationComment from './InterpretationComment';
+import NewComment from './NewComment';
+import OldComment from './OldComment';
 import CardHeader from '../Interpretation/CardHeader';
 import WithAvatar from '../Avatar/WithAvatar';
 
 import { userCanManage } from '../../authorization/auth';
 import styles from './styles/CommentList.style';
+
+const commentsToShowOnInit = 3;
 
 export class CommentList extends React.Component {
     static contextTypes = {
@@ -78,7 +80,7 @@ export class CommentList extends React.Component {
 
     onSave(comment) {
         this.props.onSave(comment);
-        this.setState({ showOnlyFirstComments: false });
+        this.setState({ showOnlyFirstComments: false, newComment: null });
     }
 
     onReply(comment) {
@@ -86,61 +88,63 @@ export class CommentList extends React.Component {
         this.setState({ commentToEdit: null, newComment });
     }
 
+    renderComments = () => 
+        this.props.interpretation.comments.map(comment =>
+            <WithAvatar key={comment.id} user={comment.user}>
+                <CardHeader 
+                    userName={comment.user.displayName} 
+                    createdDate={comment.created} 
+                />
+                {this.state.commentToEdit && this.state.commentToEdit.id === comment.id ? (
+                    <NewComment
+                        comment={comment}
+                        onPost={this.onUpdate}
+                        onCancel={this.onCancelEdit}
+                        isNew={false}
+                    />
+                ) : (
+                    <OldComment
+                        comment={comment}
+                        showManageActions={userCanManage(this.context.d2, comment)}
+                        onEdit={this.onEdit}
+                        onDelete={this.onDelete}
+                        onReply={this.onReply}
+                    />
+                )}
+            </WithAvatar>
+        )
+
     render() {
-        const { d2 } = this.context;
         const { classes, interpretation } = this.props;
-        const { commentToEdit, newComment, showOnlyFirstComments } = this.state;
+        const { newComment, showOnlyFirstComments } = this.state;
+
         const sortedComments = orderBy(["created"], ["asc"], interpretation.comments);
-        const commentsToShowOnInit = 3;
+        
         const comments = showOnlyFirstComments ? sortedComments.slice(0, commentsToShowOnInit): sortedComments;
         const hiddenCommentsCount = showOnlyFirstComments ? sortedComments.length - comments.length : 0;
 
+        const Comments = this.renderComments();
+
         return (
             <div className={classes.commentSection}>
-                <Fragment>
-                    {comments.map(comment =>
-                        <WithAvatar key={comment.id} user={comment.user}>
-                            <CardHeader cardInfo={comment} />
-                            {commentToEdit && commentToEdit.id === comment.id
-                                ?
-                                    <CommentText
-                                        comment={comment}
-                                        onPost={this.onUpdate}
-                                        onCancel={this.onCancelEdit}
-                                    />
-                                :
-                                    <InterpretationComment
-                                        comment={comment}
-                                        showManageActions={userCanManage(d2, comment)}
-                                        onEdit={this.onEdit}
-                                        onDelete={this.onDelete}
-                                        onReply={this.onReply}
-                                    />
-                            }
+
+                    {Comments}
+                    
+                    <ShowMoreButton 
+                        showButton={(showOnlyFirstComments && hiddenCommentsCount > 0)}
+                        hiddenCommentsCount={hiddenCommentsCount}
+                        onClick={this.onShowMoreComments}
+                    />
+                    {newComment && (
+                        <WithAvatar user={this.context.d2.currentUser}>
+                            <NewComment
+                                comment={newComment}
+                                onPost={this.onSave}
+                                onCancel={this.onCancelNewComment}
+                                isNew={true}
+                            />
                         </WithAvatar>
                     )}
-
-                    {showOnlyFirstComments && hiddenCommentsCount > 0 &&
-                        <div className={classes.showMoreCommentSection}>
-                            <Button onClick={this.onShowMoreComments} className={classes.showMoreCommentButton}>
-                                <span className={classes.showMoreComments}>
-                                    {hiddenCommentsCount} {i18n.t("more comments")}
-                                </span>
-                            </Button>
-                        </div>
-                    }
-                </Fragment>
-
-                {newComment &&
-                    <WithAvatar user={d2.currentUser}>
-                        <CommentText
-                            comment={newComment}
-                            onPost={this.onSave}
-                            onCancel={this.onCancelNewComment}
-                            isNewComment={true}
-                        />
-                    </WithAvatar>
-                }
             </div>
         );
     }

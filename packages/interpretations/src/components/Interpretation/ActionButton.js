@@ -13,19 +13,6 @@ import { withStyles } from '@material-ui/core/styles';
 
 import styles from './styles/ActionButton.style';
 
-/*
-export const Icons = [
-    { iconType: <ThumbUpIcon style={{...styles.interpretationCommentIcon, ...styles.likedInterpretationIcon}} />, tooltip: i18n.t('Like') },
-    { iconType: <ThumbUpIcon style={styles.interpretationCommentIcon} />, tooltip: i18n.t('Unlike') },
-	{ iconType: <Reply style={styles.interpretationCommentIcon} />, tooltip: i18n.t('Reply') },
-    { iconType: <VisibilityOff style={styles.interpretationCommentIcon} />, tooltip: i18n.t('Exit View') },
-    { iconType: <Share style={styles.interpretationCommentIcon} />, tooltip: i18n.t('Share') },
-	{ iconType: <Create  style={styles.interpretationCommentIcon} />, tooltip: i18n.t('Edit') },
-	{ iconType: <Delete style={styles.interpretationCommentIcon} />, tooltip: i18n.t('Delete') },
-	{ iconType: <Visibility style={styles.interpretationCommentIcon}/>, tooltip: i18n.t('View') },
-];
-
-*/
 const Icons = {
 	visibility: <Visibility style={styles.interpretationCommentIcon}/>,
 	visibilityOff: <VisibilityOff style={styles.interpretationCommentIcon} />,
@@ -70,9 +57,7 @@ export class ActionButton extends Component {
                 {Icon}
                 {Tooltip}
             </div>
-        
         );
-        
     }; 
 };
 

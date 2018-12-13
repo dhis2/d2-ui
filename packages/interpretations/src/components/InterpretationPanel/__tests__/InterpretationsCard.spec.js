@@ -1,13 +1,13 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 
-import { InterpretationsCard } from '../InterpretationsCard';
-import CollapsibleCard from '../../details/CollapsibleCard';
-import NewInterpretation from '../NewInterpretation';
-import { Interpretation } from '../Interpretation';
+import InterpretationsCard from '../InterpretationsCard';
+import CollapsibleCard from '../../AnalyticObjectDetails/CollapsibleCard';
+import NewInterpretation from '../../Interpretation/NewInterpretation';
+import Interpretation from '../../Interpretation/OldInterpretation';
 import { getStubContext, getMuiTheme } from '../../../../config/test-context';
 
 const favorite = {
@@ -48,6 +48,7 @@ const favorite = {
                 id: "xE7jOejl9FI",
                 displayName: "John Traore"
             },
+        text: 'test text',
     }, {
         id: "LqumKmXxc1k",
         created: "2018-11-03T11:02:30.780",
@@ -56,6 +57,7 @@ const favorite = {
             id: "xE7jOejl9FI",
             displayName: "John Traore"
         },
+        text: 'test text',
     }],
     userGroupAccesses: [
         {
@@ -71,7 +73,7 @@ const favorite = {
     favoriteViews: 5,
 };
 
-const childContextTypes = {d2: PropTypes.object};
+const childContextTypes = {d2: PropTypes.object, locale: () => null };
 
 const renderComponent = (partialProps = {}, partialContext = {}) => {
     const baseProps = {
@@ -117,7 +119,7 @@ describe('Interpretations: Interpretations -> InterpretationsCard component', ()
     describe("controlled component", () => {
         describe("without current interpretation", () => {
             it("should show list of compact interpretations", () => {
-                expect(interpretationsCard.find(Interpretation).find({extended: false}))
+                expect(interpretationsCard.find(Interpretation))
                     .toHaveLength(favorite.interpretations.length);
             });
 
@@ -126,7 +128,7 @@ describe('Interpretations: Interpretations -> InterpretationsCard component', ()
                     interpretationsCard.find("button").find({title: "Write new interpretation"}).simulate("click");
                 });
 
-                it("should show an NewInterpretation component", () => {
+                it("should show a NewInterpretation component", () => {
                     expect(interpretationsCard.find(NewInterpretation)).toExist();
                 });
 
@@ -189,7 +191,7 @@ describe('Interpretations: Interpretations -> InterpretationsCard component', ()
             });
 
             it("should show only current interpretation", () => {
-                expect(interpretationsCard.find(Interpretation).find({extended: true})).toHaveLength(1);
+                expect(interpretationsCard.find(Interpretation)).toHaveLength(1);
             });
 
             it("should call the current interpretation prop", () => {
@@ -244,7 +246,7 @@ describe('Interpretations: Interpretations -> InterpretationsCard component', ()
                 });
 
                 it("should show the interpretation list", () => {
-                    expect(interpretationsCard.find(Interpretation).find({extended: false}))
+                    expect(interpretationsCard.find(Interpretation))
                         .toHaveLength(favorite.interpretations.length);
                 });
             });

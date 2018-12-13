@@ -2,8 +2,10 @@ export default {
     interpretationCommentArea: {
         fontSize: '12px',
         margin: '2px 0 5px 0px',
-        color: 'grey',
+        color: 'dimgrey',
         height: '14px',
+        float: 'right',
+        cursor: 'default',
     },
 
     intepretationLikes: {

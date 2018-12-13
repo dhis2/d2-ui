@@ -1,16 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import styles from './styles/Link.style'
 
-const styles = {
-    interpretationLink: {
-        color: '#3162C5',
-        cursor: 'pointer',
-        fontSize: '13px',
-    },
-}
-
-export const Link = ({ label, value, onClick, ...otherProps }) => (
+export const Link = ({ classes, label, value, onClick, ...otherProps }) => (
     <a
-        style={styles.interpretationLink}
+        className={classes.interpretationLink}
         onClick={() => onClick(value)}
         {...otherProps}
     >
@@ -18,4 +13,13 @@ export const Link = ({ label, value, onClick, ...otherProps }) => (
     </a>
 );
 
-export default Link;
+Link.propTypes = {
+    classes: PropTypes.object.isRequired,
+    label: PropTypes.string.isRequired,
+    value: PropTypes.string,
+    onClick: PropTypes.func.isRequired,
+    otherProps: PropTypes.object,
+};
+
+export default withStyles(styles)(Link);
+

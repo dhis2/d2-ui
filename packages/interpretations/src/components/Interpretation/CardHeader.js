@@ -4,31 +4,26 @@ import { withStyles } from '@material-ui/core/styles';
 import { formatRelative } from '../../dateformats/dateformatter';
 import styles from './styles/CardHeader.style';
 
-const getUserLink = (d2, user) => (
-    // Currently there is no public page for users (DHIS2-691), just use a <span> for now
-    <span style={styles.userLink} className="author">
-        {user.displayName}
-    </span>
-);
 
-export const CardHeader = ({ classes, d2, locale, cardInfo }) => (
+export const CardHeader = ({ classes, locale, userName, createdDate }) => (
     <div className={classes.interpretationName}>
-        {getUserLink(d2, cardInfo.user)}
-
+        <span style={styles.userLink}>
+            {userName}
+        </span>
         <span className={classes.date}>
-            {formatRelative(cardInfo.created, locale)}
+            {formatRelative(createdDate, locale)}
         </span>
     </div>
 );
 
 CardHeader.contextTypes = {
-    d2: PropTypes.object.isRequired,
     locale: PropTypes.string.isRequired,
 };
 
 CardHeader.propTypes = {
     classes: PropTypes.object.isRequired,
-    cardInfo: PropTypes.object.isRequired,
+    userName: PropTypes.string.isRequired,
+    createdDate: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(CardHeader);

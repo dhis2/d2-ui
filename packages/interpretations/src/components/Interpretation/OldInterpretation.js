@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import i18n from '@dhis2/d2-i18n';
 import SharingDialog from '@dhis2/d2-ui-sharing-dialog';
@@ -9,13 +9,13 @@ import NewInterpretation from './NewInterpretation';
 import CardHeader from './CardHeader';
 import CardText from './CardText';
 import LikesAndReplies from './LikesAndReplies';
-import ActionButton from './ActionButton';
+import ActionButtonContainer from './ActionButtonContainer';
 import CommentList from '../InterpretationCommments/CommentList';
 import { userCanManage } from '../../authorization/auth';
 import CommentModel from '../../models/comment';
 import styles from './styles/Interpretation.style';
 
-export class Interpretation extends React.Component {
+export class OldInterpretation extends React.Component {
     state = {
         newComment: null,
         interpretationToEdit: null,
@@ -110,25 +110,59 @@ export class Interpretation extends React.Component {
     closeSharingDialog = () => {
         this.setState({ sharingDialogIsOpen: false });
     };
+    
+    getOnClickHandlers = () => [
+        this.unlike, this.like, this.reply,
+        this.exitView, this.openSharingDialog,
+        this.openInterpretation, this.deleteInterpretation,
+        this.view
+    ];
+
+    getLikedByNames = () => {
+        const likedBy = this.props.interpretation.likedBy || [];
+        return likedBy.map(user => user.displayName).sort();
+    }
+
+    getRepliedByNames = () => {
+        const repliedBy = this.props.interpretation.comments || [];
+        return repliedBy.map(comment => comment.user.displayName).sort();
+    }
+
+    renderInterpretation = () => {
+        const { classes, extended, interpretation } = this.props;
+
+        const currentUserLikesInterpretation = some(user => 
+            user.id === this.context.d2.currentUser.id, this.props.interpretation.likedBy);
+
+        return (
+            <div className={classes.cardBody}>
+                <CardHeader 
+                    userName={interpretation.user.displayName} 
+                    createdDate={this.props.interpretation.created} 
+                />                        
+                <CardText 
+                    extended={this.props.extended} 
+                    text={this.props.interpretation.text} 
+                />
+                <LikesAndReplies
+                    likedBy={this.getLikedByNames()}
+                    repliedBy={this.getRepliedByNames()}
+                />
+                <ActionButtonContainer
+                    showActions={extended}
+                    currentUserLikesInterpretation={currentUserLikesInterpretation}
+                    userCanManage={userCanManage(this.context.d2, interpretation)}
+                    onClickHandlers={this.getOnClickHandlers()}
+                />
+            </div>
+        );
+    }
 
     render() {
         const { classes, interpretation, extended, model } = this.props;
         const { interpretationToEdit, newComment, sharingDialogIsOpen } = this.state;
 
-        const showActions = extended;
-        const showComments = extended;
-
-        const likedBy = interpretation.likedBy || [];
-        const likedByTooltip = likedBy
-            .map(user => user.displayName)
-            .sort();
-
-        const repliedBy = interpretation.comments || [];
-        const repliedByTooltip = repliedBy
-            .map(comment => comment.user.displayName)
-            .sort();
-        
-        const currentUserLikesInterpretation = some(user => user.id === this.context.d2.currentUser.id, likedBy);
+        const OldInterpretation = this.renderInterpretation();
 
         return (
             <div className={classes.listItem}>
@@ -149,74 +183,12 @@ export class Interpretation extends React.Component {
                         onClose={this.closeInterpretation}
                         isNew={false}
                     />
-                ) : (
-                    <div className={classes.cardBody}>
-                        <CardHeader cardInfo={interpretation} />                        
-                        <CardText 
-                            extended={extended} 
-                            text={interpretation.text} 
-                        />
-                        <LikesAndReplies
-                            likedBy={likedByTooltip}
-                            repliedBy={repliedByTooltip}
-                        />
-                        <div className={classes.actions}>
-                            {showActions ? (
-                                currentUserLikesInterpretation ? (
-                                    <ActionButton 
-                                        iconType={'like'} 
-                                        tooltip={i18n.t('Unlike')} 
-                                        onClick={this.unlike}
-                                    />
-                                ) : (
-                                    <ActionButton 
-                                        iconType={'unlike'} 
-                                        tooltip={i18n.t('Like')} 
-                                        onClick={this.like}
-                                    />
-                                ),
-                                <Fragment>
-                                    <ActionButton 
-                                        iconType={'reply'} 
-                                        tooltip={i18n.t('Reply')} 
-                                        onClick={this.reply}
-                                    />
-                                    <ActionButton 
-                                        iconType={'visibilityOff'} 
-                                        tooltip={i18n.t('Exit View')} 
-                                        onClick={this.exitView}
-                                    />
-                                    {userCanManage(this.context.d2, interpretation) && (
-                                        <Fragment>
-                                            <ActionButton 
-                                                iconType={'share'} 
-                                                tooltip={i18n.t('Share')} 
-                                                onClick={this.openSharingDialog}
-                                            />
-                                            <ActionButton 
-                                                iconType={'edit'} 
-                                                tooltip={i18n.t('Edit')} 
-                                                onClick={this.openInterpretation}
-                                            />      
-                                            <ActionButton 
-                                                iconType={'delete'} 
-                                                tooltip={i18n.t('Delete')} 
-                                                onClick={this.deleteInterpretation}
-                                            />
-                                        </Fragment>
-                                    )}
-                                </Fragment>
-                            ) : (
-                                <ActionButton 
-                                    iconType={'visibility'} 
-                                    tooltip={i18n.t('View')}  
-                                    onClick={this.view}
-                                />
-                            )}
-                        </div>
-                    </div>
+                    ) : (
+                    
+                    OldInterpretation
+                
                 )}
-                {showComments && (
+                {extended && (
                     <CommentList
                         interpretation={interpretation}
                         onSave={this.saveComment}
@@ -229,7 +201,7 @@ export class Interpretation extends React.Component {
     }
 }
 
-Interpretation.propTypes = {
+OldInterpretation.propTypes = {
     classes: PropTypes.object.isRequired,
     interpretation: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
@@ -237,13 +209,13 @@ Interpretation.propTypes = {
     extended: PropTypes.bool.isRequired,
 };
 
-Interpretation.defaultProps = {
+OldInterpretation.defaultProps = {
     extended: false,
 };
 
-Interpretation.contextTypes = {
+OldInterpretation.contextTypes = {
     d2: PropTypes.object.isRequired,
     locale: PropTypes.string,
 };
 
-export default withStyles(styles)(Interpretation);
+    export default withStyles(styles)(OldInterpretation);

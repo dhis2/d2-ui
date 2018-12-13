@@ -19,9 +19,4 @@ export default {
         padding: '8px',
         backgroundColor: 'rgb(239, 239, 239)',
     },
-
-    actions: {
-        display: 'flex',
-        marginLeft: '8px',
-    },
 };

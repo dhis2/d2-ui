@@ -6,7 +6,7 @@ import orderBy from "lodash/fp/orderBy";
 
 import CollapsibleCard from '../AnalyticObjectDetails/CollapsibleCard';
 import PanelButtons from './PanelButtons';
-import Interpretation from '../Interpretation/Interpretation';
+import OldInterpretation from '../Interpretation/OldInterpretation';
 import InterpretationsList from './InterpretationsList';
 import NewInterpretation from '../Interpretation/NewInterpretation';
 import InterpretationModel from '../../models/interpretation';
@@ -78,7 +78,6 @@ export class InterpretationsCard extends React.Component {
 
     setCurrentInterpretation(interpretationId) {
         const { model, onCurrentInterpretationChange } = this.props;
-
         if (this.isControlledComponent) {
             const currentInterpretation = interpretationId
                 ? model.interpretations.find(
@@ -126,7 +125,7 @@ export class InterpretationsCard extends React.Component {
             >
             <div className={classes.cardContainer}>
                 {currentInterpretation ? (
-                    <Interpretation
+                    <OldInterpretation
                         model={model}
                         interpretation={currentInterpretation}
                         onChange={this.notifyChange}
@@ -169,7 +168,7 @@ InterpretationsCard.propTypes = {
 };
 
 InterpretationsCard.contextTypes = {
-    d2: PropTypes.object.isRequired
+    d2: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(InterpretationsCard);

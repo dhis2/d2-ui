@@ -10,7 +10,7 @@ import IconButton from '@material-ui/core/IconButton';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { styles } from './styles/CollapsibleCard.style';
 
-class CollapsibleCard extends React.Component {
+export class CollapsibleCard extends React.Component {
     state = { expanded: true };
 
     handleExpandClick = () => {

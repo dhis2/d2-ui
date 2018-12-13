@@ -5,7 +5,7 @@ import i18n from '@dhis2/d2-i18n'
 import ActionButton from '../Interpretation/ActionButton';
 import styles from './styles/InterpretationComment.style';
 
-export const InterpretationComment = ({ 
+export const OldComment = ({ 
     classes, 
     comment, 
     showManageActions, 
@@ -45,7 +45,7 @@ export const InterpretationComment = ({
     </Fragment>
 );
 
-InterpretationComment.propTypes = {
+OldComment.propTypes = {
     classes: PropTypes.object.isRequired,
     comment: PropTypes.object.isRequired,
     showManageActions: PropTypes.bool.isRequired,
@@ -54,4 +54,4 @@ InterpretationComment.propTypes = {
     onReply: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(InterpretationComment);
+export default withStyles(styles)(OldComment);

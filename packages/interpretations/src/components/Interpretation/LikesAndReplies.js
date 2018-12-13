@@ -1,4 +1,4 @@
-import React, { Fragment, Component } from 'react';
+import React, { Component } from 'react';
 import i18n from '@dhis2/d2-i18n';
 import PropTypes from 'prop-types';
 import Popper from '@material-ui/core/Popper';
@@ -18,10 +18,10 @@ export class LikesAndReplies extends Component {
 
     hideRepliedByTooltip = () => this.setState({ mouseOverReplies: null });
 
-    filterDuplicateUserNames = label => {
+    filterDuplicateUserNames = () => {
         let listItems = [];
 
-        this.props[label].forEach(userName => {
+        this.props.repliedBy.forEach(userName => {
             if (!listItems.includes(userName)) {
                 listItems = [...listItems, userName];
             }
@@ -31,7 +31,7 @@ export class LikesAndReplies extends Component {
 
     renderTooltip = label => {
         const anchorOrigin = label === 'likedBy' ? this.state.mouseOverLikes : this.state.mouseOverReplies
-        const tooltipNames = label === 'repliedBy' ? this.filterDuplicateUserNames(label) : this.props[label];
+        const tooltipNames = label === 'repliedBy' ? this.filterDuplicateUserNames() : this.props[label];
        
         return (
             <Popper
@@ -58,27 +58,23 @@ export class LikesAndReplies extends Component {
         return (
             <div className={classes.interpretationCommentArea}>
                 {!!likedBy.length && (
-                    <Fragment>
-                        <span
-                            className={classes.intepretationLikes} 
-                            onMouseEnter={this.showLikedByTooltip} 
-                            onMouseLeave={this.hideLikedByTooltip}
-                        >
-                            {LikedByTooltip}
-                            {likedBy.length} {likedBy.length > 1 ? i18n.t('likes') : i18n.t('like')}
-                        </span>
-                    </Fragment>
+                    <span
+                        className={classes.intepretationLikes} 
+                        onMouseEnter={this.showLikedByTooltip} 
+                        onMouseLeave={this.hideLikedByTooltip}
+                    >
+                        {LikedByTooltip}
+                        {likedBy.length} {likedBy.length > 1 ? i18n.t('likes') : i18n.t('like')}
+                    </span>
                 )}
                 {!!repliedBy.length && (
-                    <Fragment>
-                        <span
-                            onMouseEnter={this.showRepliedByTooltip} 
-                            onMouseLeave={this.hideRepliedByTooltip}
-                        >
-                            {RepliedByTooltip}
-                            {`${repliedBy.length} ${repliedBy.length > 1 ? i18n.t('replies') : i18n.t('reply')}`}
-                        </span>
-                    </Fragment>
+                    <span
+                        onMouseEnter={this.showRepliedByTooltip} 
+                        onMouseLeave={this.hideRepliedByTooltip}
+                    >
+                        {RepliedByTooltip}
+                        {`${repliedBy.length} ${repliedBy.length > 1 ? i18n.t('replies') : i18n.t('reply')}`}
+                    </span>
                 )}
             </div>
         );
