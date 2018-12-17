@@ -141,7 +141,7 @@ describe('Interpretations: Details -> DetailsCard component', () => {
                 });
 
                 it('should call the toggle function to be subscribed', () => {
-                    expect(helpers.setSubscription).toBeCalledWith(favorite, true);
+                    expect(helpers.setSubscription).toBeCalledWith(context.d2, favorite, true);
                 });
 
                 it('should call prop onChange', () => {
@@ -174,7 +174,7 @@ describe('Interpretations: Details -> DetailsCard component', () => {
                 });
 
                 it('should call the toggle function to be unsubscribed', () => {
-                    expect(helpers.setSubscription).toBeCalledWith(favorite, false);
+                    expect(helpers.setSubscription).toBeCalledWith(context.d2, favorite, false);
                 });
 
                 it('should call prop onChange', () => {
