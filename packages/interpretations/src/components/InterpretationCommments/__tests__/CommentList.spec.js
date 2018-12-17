@@ -2,8 +2,8 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import _ from 'lodash';
 import { CommentList } from '../CommentList';
-import InterpretationComment from '../InterpretationComment';
-import CommentText from '../CommentText';
+import OldComment from '../OldComment';
+import NewComment from '../NewComment';
 import InterpretationModel from '../../../models/interpretation';
 import { getStubContext } from '../../../../config/test-context';
 
@@ -63,7 +63,7 @@ describe('Interpretations: Interpretations -> InterpretationComments component',
             displayName: "John Traore",
         };
         commentList = renderComponent({}, {d2: {currentUser}});
-        commentComponents = commentList.find(InterpretationComment);
+        commentComponents = commentList.find(OldComment);
     });
 
     describe('list of comments', () => {
@@ -97,14 +97,14 @@ describe('Interpretations: Interpretations -> InterpretationComments component',
         });
 
         it("should replace the read-only comment with a comment textarea", () => {
-            expect(commentList.find(CommentText)).toHaveLength(1);
-            expect(commentList.find(InterpretationComment)).toHaveLength(interpretation.comments.length - 1);
+            expect(commentList.find(NewComment)).toHaveLength(1);
+            expect(commentList.find(OldComment)).toHaveLength(interpretation.comments.length - 1);
         });
 
         describe("click on OK link", () => {
             beforeEach(() => {
                 const newComment = _.assign({}, commentToEdit, {text: "New text"});
-                commentList.find(CommentText).props().onPost(newComment);
+                commentList.find(NewComment).props().onPost(newComment);
                 commentList.update();
             });
 
@@ -119,14 +119,14 @@ describe('Interpretations: Interpretations -> InterpretationComments component',
             });
 
             it("should switch to read-only comment", () => {
-                expect(commentList.find(CommentText)).toHaveLength(0);
-                expect(commentList.find(InterpretationComment)).toHaveLength(interpretation.comments.length);
+                expect(commentList.find(NewComment)).toHaveLength(0);
+                expect(commentList.find(OldComment)).toHaveLength(interpretation.comments.length);
             });
         });
 
         describe("click on Cancel link", () => {
             beforeEach(() => {
-                commentList.find(CommentText).props().onCancel();
+                commentList.find(NewComment).props().onCancel();
                 commentList.update();
             });
 
@@ -136,8 +136,8 @@ describe('Interpretations: Interpretations -> InterpretationComments component',
             });
 
             it("should switch to read-only comment", () => {
-                expect(commentList.find(CommentText)).toHaveLength(0);
-                expect(commentList.find(InterpretationComment)).toHaveLength(interpretation.comments.length);
+                expect(commentList.find(NewComment)).toHaveLength(0);
+                expect(commentList.find(OldComment)).toHaveLength(interpretation.comments.length);
             });
         });
     });
@@ -174,7 +174,7 @@ describe('Interpretations: Interpretations -> InterpretationComments component',
         });
 
         it('should render a cancellable comment text area component', () => {
-            const commentTextarea = commentList.find(CommentText);
+            const commentTextarea = commentList.find(NewComment);
             expect(commentTextarea).toHaveLength(1);
             expect(commentTextarea.props().comment.text).toEqual("");
             expect(commentTextarea).toHaveProp("onCancel");

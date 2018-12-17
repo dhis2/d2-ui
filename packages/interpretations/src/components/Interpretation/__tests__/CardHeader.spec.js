@@ -1,31 +1,46 @@
-//TODO: adjust/create similar tests with the re-factored components
+import React from 'react';
+import { shallow } from 'enzyme';
+import { getStubContext } from '../../../../config/test-context';
+import { CardHeader } from '../CardHeader';
 
-/*const commonExpectations = () => {
-    it('should show the authors name', () => {
-        const cardHeader = interpretationComponent.find(CardHeader);
-        expect(cardHeader.props().cardInfo.user.displayName).toMatch(interpretation.user.displayName);
-    });
 
-    it('should show the creation date', () => {
-        const cardHeader = interpretationComponent.find(CardHeader);
-        console.log(cardHeader.childAt(1).props());
-        //expect(cardHeader.props().cardInfo.created).toMatch('Apr 14, 2018');
-    });
-
-    it.only('should show how many people like it', () => {
-        const count = interpretation.likedBy.length;
-        expect(interpretationComponent.text()).toMatch(`${count} likes`);
-    });
-
-    //TODO: render names onHover
-    it('should show who likes it', () => {
-        const names = interpretation.likedBy.map(user => user.displayName).join('\n');
-        expect(interpretationComponent.find('.liked-by')).toHaveProp('title', names);
-    });
-
-    it('should show how many comments it has', () => {
-        const count = interpretation.comments.length;
-        expect(interpretationComponent.text()).toMatch(`${count} replies`);
-    });
+const interpretationModel = {
+    name: 'LOECMJN3DRF',
+    id: 'LOECMJN3DRF',
+    created: '2018-04-14T12:00:47.096',
+    user: {
+        id: 'xE7jOejl9FI',
+        displayName: 'John Traore',
+    },
 };
-*/
+
+const props = {
+        classes: {},
+        userName: interpretationModel.user.displayName,
+        createdDate: interpretationModel.created,
+    };
+
+
+const renderComponent = () => {
+    const context = getStubContext();
+    return shallow(<CardHeader {...props} />, {...context});
+};
+
+let cardHeaderComponent;
+
+describe('components: Interpretation -> CardHeader component', () => {
+    
+    beforeEach(() => { 
+        cardHeaderComponent = renderComponent();
+    });
+
+    it('should show the authors name', () => {
+        const cardHeaderText = cardHeaderComponent.text();
+        expect(cardHeaderText).toContain(interpretationModel.user.displayName);
+    });
+
+    it('should show the formatted relative creation date', () => {
+        const createdDate = cardHeaderComponent.text();
+        expect(createdDate).toMatch('Apr 14, 2018');
+    });
+});

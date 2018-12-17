@@ -4,8 +4,8 @@ import { withStyles } from '@material-ui/core/styles';
 import i18n from "@dhis2/d2-i18n";
 import orderBy from "lodash/fp/orderBy";
 
-import CollapsibleCard from '../AnalyticObjectDetails/CollapsibleCard';
-import PanelButtons from './PanelButtons';
+import CollapsibleCard from '../DetailsPanel/CollapsibleCard';
+import PanelButtons from '../ActionButton/PanelButtons';
 import OldInterpretation from '../Interpretation/OldInterpretation';
 import InterpretationsList from './InterpretationsList';
 import NewInterpretation from '../Interpretation/NewInterpretation';

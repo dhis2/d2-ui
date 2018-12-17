@@ -9,7 +9,7 @@ import NewInterpretation from './NewInterpretation';
 import CardHeader from './CardHeader';
 import CardText from './CardText';
 import LikesAndReplies from './LikesAndReplies';
-import ActionButtonContainer from './ActionButtonContainer';
+import ActionButtonContainer from '../ActionButton/ActionButtonContainer';
 import CommentList from '../InterpretationCommments/CommentList';
 import { userCanManage } from '../../authorization/auth';
 import CommentModel from '../../models/comment';
@@ -162,7 +162,7 @@ export class OldInterpretation extends React.Component {
         const { classes, interpretation, extended, model } = this.props;
         const { interpretationToEdit, newComment, sharingDialogIsOpen } = this.state;
 
-        const OldInterpretation = this.renderInterpretation();
+        const Interpretation = this.renderInterpretation();
 
         return (
             <div className={classes.listItem}>
@@ -185,7 +185,7 @@ export class OldInterpretation extends React.Component {
                     />
                     ) : (
                     
-                    OldInterpretation
+                    Interpretation
                 
                 )}
                 {extended && (

@@ -1,3 +1,4 @@
-import InterpretationComponent from './components/InterpretationComponent/InterpretationComponent';
-export default InterpretationComponent;
+import InterpretationsComponent from './components/InterpretationsComponent/InterpretationsComponent';
+
+export default InterpretationsComponent;
     

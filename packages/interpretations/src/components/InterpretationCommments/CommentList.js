@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ShowMoreButton from './ShowMoreButton';
+import ShowMoreButton from '../ActionButton/ShowMoreButton';
 import { withStyles } from '@material-ui/core/styles';
 import i18n from '@dhis2/d2-i18n'
 import orderBy from 'lodash/fp/orderBy';
@@ -100,7 +100,7 @@ export class CommentList extends React.Component {
                         comment={comment}
                         onPost={this.onUpdate}
                         onCancel={this.onCancelEdit}
-                        isNew={false}
+                        isEditing={true}
                     />
                 ) : (
                     <OldComment
@@ -129,7 +129,7 @@ export class CommentList extends React.Component {
             <div className={classes.commentSection}>
 
                     {Comments}
-                    
+
                     <ShowMoreButton 
                         showButton={(showOnlyFirstComments && hiddenCommentsCount > 0)}
                         hiddenCommentsCount={hiddenCommentsCount}
@@ -141,7 +141,6 @@ export class CommentList extends React.Component {
                                 comment={newComment}
                                 onPost={this.onSave}
                                 onCancel={this.onCancelNewComment}
-                                isNew={true}
                             />
                         </WithAvatar>
                     )}

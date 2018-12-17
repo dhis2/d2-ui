@@ -50,7 +50,7 @@ export class NewComment extends React.Component {
         <Fragment>
             <Link 
                 disabled={!this.state.text} 
-                label={this.props.isNew ? i18n.t('Post reply') : i18n.t('OK')} 
+                label={this.props.isEditing ? i18n.t('OK') : i18n.t('Post reply')} 
                 onClick={this.onPost} 
             />
             <ActionSeparator />
@@ -77,10 +77,14 @@ export class NewComment extends React.Component {
                 </MentionsWrapper>
 
                 {ActionButtons}
-                
+
             </Fragment>
         );
     }
+}
+
+NewComment.defaultProps = {
+    isEditing: false,
 }
 
 NewComment.contextTypes = {
@@ -92,7 +96,7 @@ NewComment.propTypes = {
     comment: PropTypes.object,
     onPost: PropTypes.func.isRequired,
     onCancel: PropTypes.func.isRequired,
-    isNew: PropTypes.bool.isRequired,
+    isEditing: PropTypes.bool,
 };
 
 export default withStyles(styles)(NewComment);

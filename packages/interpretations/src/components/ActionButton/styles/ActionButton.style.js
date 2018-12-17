@@ -1,12 +1,4 @@
 export default {
-    defaulThumbUp: {
-        fill: '#E0E0E0',
-    },
-
-    likedThumbUp: {
-        fill: '#000000',
-    },
-
     iconContainer: {
         cursor: 'pointer',
         height: '16px',
@@ -27,13 +19,4 @@ export default {
         bottom: '2px',
     },
 
-    likedInterpretationIcon: {
-        fill: 'black',
-    },
-
-    interpretationCommentIcon: {
-        fill: '#494949',
-        height: '16px',
-        width: '16px',
-    },
 };

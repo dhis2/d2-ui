@@ -2,11 +2,11 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import _ from 'lodash';
 
-import { Interpretation } from '../OldInterpretation';
+import { OldInterpretation } from '../OldInterpretation';
 import NewInterpretation from '../NewInterpretation';
-import InterpretationComments from '../../InterpretationCommments/CommentList';
-import ActionButtonContainer from '../ActionButtonContainer';
-import ActionButton from '../ActionButton';
+import CommentList from '../../InterpretationCommments/CommentList';
+import ActionButtonContainer from '../../ActionButton/ActionButtonContainer';
+import ActionButton from '../../ActionButton/ActionButton';
 import { getStubContext } from '../../../../config/test-context';
 
 //TODO: adjust/create similar tests with the re-factored components
@@ -68,82 +68,53 @@ const renderComponent = (partialProps = {}, partialContext = {}) => {
     const props = { ...baseProps, ...partialProps };
     const context = getStubContext();
     const fullContext = _.merge(context, partialContext);
-    return shallow(<Interpretation {...props} />, { context: fullContext });
+    return shallow(<OldInterpretation {...props} />, { context: fullContext });
 };
 
-let interpretationComponent;
+let oldInterpretation;
 let currentUser;
 
 
 
-describe('Interpretations: Interpretations -> Interpretation component', () => {
+describe('Interpretations: Interpretation -> OldInterpretation component', () => {
     beforeEach(() => {
         currentUser = { id: 'xE7jOejl9FI', displayName: 'John Traore' };
     });
 
     describe('compact view', () => {
         beforeEach(() => {
-            interpretationComponent = renderComponent({ extended: false }, { d2: { currentUser } });
+            oldInterpretation = renderComponent({ extended: false }, { d2: { currentUser } });
         });
 
         it('should show actions', () => {
-            expect(interpretationComponent.find(ActionButtonContainer)).toExist();
+            expect(oldInterpretation.find(ActionButtonContainer)).toExist();
         });
 
         it('should not show comments', () => {
-            expect(interpretationComponent.find(InterpretationComments)).not.toExist();
+            expect(oldInterpretation.find(CommentList)).not.toExist();
         });
     });
 
     describe('extended view', () => {
         beforeEach(() => {
-            interpretationComponent = renderComponent({ extended: true }, { d2: { currentUser } });
+            oldInterpretation = renderComponent({ extended: true }, { d2: { currentUser } });
         });
 
         it('should show actions', () => {
-            expect(interpretationComponent.find(ActionButtonContainer)).toExist();
+            expect(oldInterpretation.find(ActionButtonContainer)).toExist();
         });
 
         it('should show comments', () => {
-            expect(interpretationComponent.find(InterpretationComments)).toExist();
+            expect(oldInterpretation.find(CommentList)).toExist();
         });
 
-        describe('when edit action clicked', () => {
+        describe('when state interpretationToEdit is true', () => {
             beforeEach(() => {
-                interpretationComponent
-                    .find(ActionButtonContainer)
-                    .find(ActionButton)
-                    .find({ tooltip: 'Edit' })
-                    .simulate('click');
-                interpretationComponent.update();
+                oldInterpretation = renderComponent({}).setState({ interpretationToEdit: true });
             });
 
-            it('should open a NewInterpretation component', () => {
-                expect(interpretationComponent.find(NewInterpretation)).toExist();
-            });
-        });
-
-        describe('when delete action clicked', () => {
-            beforeEach(() => {
-                window.confirm = jest.fn(() => true);
-                interpretationComponent
-                    .find(ActionButton)
-                    .find({ tooltip: 'Delete' })
-                    .simulate('click');
-                interpretationComponent.update();
-            });
-
-            it('should ask confirmation', () => {
-                expect(window.confirm).toHaveBeenCalled();
-            });
-
-            it('should delete interpretation', () => {
-                expect(interpretation.delete).toHaveBeenCalledWith();
-            });
-
-            it('should notify change with a null object', () => {
-                const { onChange } = interpretationComponent.instance().props;
-                expect(onChange).toHaveBeenCalledWith(null);
+            it('should render a NewInterpretation component', () => {
+                expect(oldInterpretation.find(NewInterpretation)).toExist();
             });
         });
     });   

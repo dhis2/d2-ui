@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import i18n from '@dhis2/d2-i18n';
-import Interpretation from '../Interpretation/Interpretation';
+import OldInterpretation from '../Interpretation/OldInterpretation';
 import Link from '../Link/Link';
 import styles from './styles/InterpretationsList.style';
 
@@ -45,7 +45,7 @@ export const InterpretationsList = ({
                 </div>
             )}
             {listItems.map(item => 
-                <Interpretation
+                <OldInterpretation
                     key={item.id}
                     model={model}
                     interpretation={item}

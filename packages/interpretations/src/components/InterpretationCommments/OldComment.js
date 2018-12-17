@@ -1,8 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import i18n from '@dhis2/d2-i18n'
-import ActionButton from '../Interpretation/ActionButton';
+import ActionButton from '../ActionButton/ActionButton';
 import styles from './styles/InterpretationComment.style';
 
 export const OldComment = ({ 
@@ -21,24 +20,20 @@ export const OldComment = ({
             <div className={classes.commentActions}>
                 <ActionButton
                     iconType={'edit'} 
-                    tooltip={i18n.t('Edit')} 
                     onClick={() => onEdit(comment)} 
                 />
                 <ActionButton
                     iconType={'reply'} 
-                    tooltip={i18n.t('Reply')} 
                     onClick={() => onReply(comment)} 
                 />
                 <ActionButton
                     iconType={'delete'} 
-                    tooltip={i18n.t('Delete')} 
                     onClick={() => onDelete(comment)} 
                 />
             </div>
             :
             <ActionButton
-                iconType={'reply'} 
-                tooltip={i18n.t('Reply')} 
+                iconType={'reply'}  
                 onClick={() => onReply(comment)} 
             />
         }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { InterpretationComponent } from '../InterpretationComponent';
+import { InterpretationsComponent } from '../InterpretationsComponent';
 import InterpretationsCard from '../../InterpretationPanel/InterpretationsCard';
 import { getStubContext } from '../../../../config/test-context';
 import * as helpers from '../../../api/helpers';
@@ -71,7 +71,7 @@ const renderComponent = (partialProps = {}) => {
     helpers.getFavoriteWithInterpretations = jest.fn(() => Promise.resolve(map));
 
     const props = {...baseProps, ...partialProps};
-    return shallow(<InterpretationComponent {...props} />);
+    return shallow(<InterpretationsComponent {...props} />);
 };
 
 let interpretationsComponent;

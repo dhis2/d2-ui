@@ -6,17 +6,17 @@ import isEqual from 'lodash/fp/isEqual';
 import pick from 'lodash/fp/pick';
 
 import { getFavoriteWithInterpretations } from '../../api/helpers';
-import DetailsCard from '../AnalyticObjectDetails/DetailsCard';
+import DetailsCard from '../DetailsPanel/DetailsCard';
 import InterpretationsCard from '../InterpretationPanel/InterpretationsCard';
 import i18n from '../../locales';
-import styles from './styles/InterpretationComponent.style';
+import styles from './styles/InterpretationsComponent.style';
 
 function configI18n(d2) {
     const locale = d2.currentUser.userSettings.settings.keyUiLocale;
     i18n.changeLanguage(locale);
 }
 
-export class InterpretationComponent extends React.Component {
+export class InterpretationsComponent extends React.Component {
     state = { model: null };
 
     constructor(props) {
@@ -77,7 +77,7 @@ export class InterpretationComponent extends React.Component {
     }
 }
 
-InterpretationComponent.propTypes = {
+InterpretationsComponent.propTypes = {
     classes: PropTypes.object.isRequired,
     d2: PropTypes.object.isRequired,
     type: PropTypes.string.isRequired,
@@ -88,9 +88,9 @@ InterpretationComponent.propTypes = {
     onCurrentInterpretationChange: PropTypes.func,
 };
 
-InterpretationComponent.childContextTypes = {
+InterpretationsComponent.childContextTypes = {
     d2: PropTypes.object,
     locale: PropTypes.string,
 };
 
-export default withStyles(styles)(InterpretationComponent);
+export default withStyles(styles)(InterpretationsComponent);
