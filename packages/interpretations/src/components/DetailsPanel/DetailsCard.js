@@ -27,7 +27,7 @@ class DetailsCard extends React.Component {
 
     toggleSubscription = async () => {
         const { model, onChange } = this.props;
-        return setSubscription(model, !model.subscribed).then(onChange);
+        return setSubscription(this.context.d2, model, !model.subscribed).then(onChange);
     };
 
     // TOOD: adjust color
