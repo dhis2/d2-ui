@@ -70,7 +70,7 @@ export class NewComment extends React.Component {
         
         return (
             <Fragment>
-                <MentionsWrapper d2={this.contextd2} onUserSelect={this.onChange}>
+                <MentionsWrapper d2={this.context.d2} onUserSelect={this.onChange}>
                     <RichTextEditor onEdit={this.onInputChange}>
                         <textarea
                             ref={this.setTextareaRef}
