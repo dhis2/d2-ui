@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import MentionsWrapper from '@dhis2/d2-ui-mentions-wrapper';
-import { Editor as RichTextEditor } from '@dhis2/d2-ui-rich-text';
+import { Editor as RichTextEditor, Parser as RichTextParser } from '@dhis2/d2-ui-rich-text';
 import i18n from '@dhis2/d2-i18n';
 import Link from '../Link/Link';
 import ActionSeparator from '../ActionSeparator/ActionSeparator';
@@ -58,8 +58,15 @@ export class NewComment extends React.Component {
         </Fragment>
     );
 
+    renderRichTextHints = () => (
+        <RichTextParser style={styles.richTextHint}>
+            {i18n.t('**bold**  __italics__  http://<link>')}
+        </RichTextParser>
+    );
+
     render() {
         const ActionButtons = this.renderActionButtons();
+        const EditorHints = this.renderRichTextHints();
         
         return (
             <Fragment>
@@ -77,7 +84,7 @@ export class NewComment extends React.Component {
                 </MentionsWrapper>
 
                 {ActionButtons}
-
+                {EditorHints}
             </Fragment>
         );
     }

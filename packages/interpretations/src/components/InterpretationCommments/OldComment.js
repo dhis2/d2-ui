@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import ActionButton from '../ActionButton/ActionButton';
+import CardText from '../Interpretation/CardText';
 import styles from './styles/InterpretationComment.style';
 
 export const OldComment = ({ 
@@ -13,9 +14,10 @@ export const OldComment = ({
     onReply 
 }) => (
     <Fragment>
-        <div className={classes.commentText}>
-            {comment.text}
-        </div>
+        <CardText 
+            extended={true}
+            text={comment.text}
+        />
         {showManageActions ? 
             <div className={classes.commentActions}>
                 <ActionButton

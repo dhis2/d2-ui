@@ -18,4 +18,11 @@ export default {
         width: "100%",
         outline: 'none',
     },
+
+    richTextHint: {
+        margin: '3px 0px 0px',
+        fontSize: '12px',
+        float: 'right', 
+        color: 'dimgrey',
+    },
 };

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import MentionsWrapper from '@dhis2/d2-ui-mentions-wrapper';
 import SharingDialog from '@dhis2/d2-ui-sharing-dialog';
-import { Editor as RichTextEditor } from '@dhis2/d2-ui-rich-text';
+import { Editor as RichTextEditor, Parser as RichTextParser } from '@dhis2/d2-ui-rich-text';
 import i18n from '@dhis2/d2-i18n';
 import WithAvatar from '../Avatar/WithAvatar';
 import Link from '../Link/Link';
@@ -52,8 +52,15 @@ export class NewInterpretation extends Component {
         </Fragment>
     );
 
+    renderRichTextHints = () => (
+        <RichTextParser style={styles.richTextHint}>
+            {i18n.t('**bold**  __italics__  http://<link>')}
+        </RichTextParser>
+    );
+
     render() {
         const ActionButtons = this.renderActionButtons();
+        const EditorHints = this.renderRichTextHints();
 
         return this.state.sharingDialogIsOpen ? (
             <SharingDialog
@@ -79,7 +86,7 @@ export class NewInterpretation extends Component {
                     </MentionsWrapper>
 
                     {ActionButtons}
-                    
+                    {EditorHints}
                 </WithAvatar>
             </Fragment>
         );
