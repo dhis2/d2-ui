@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 
 import InterpretationsCard from '../InterpretationsCard';
-import CollapsibleCard from '../../DetailsPanel/CollapsibleCard';
+import CollapsibleCard from '../../Cards/CollapsibleCard';
 import NewInterpretation from '../../Interpretation/NewInterpretation';
 import OldInterpretation from '../../Interpretation/OldInterpretation';
 import { getStubContext, getMuiTheme } from '../../../../config/test-context';

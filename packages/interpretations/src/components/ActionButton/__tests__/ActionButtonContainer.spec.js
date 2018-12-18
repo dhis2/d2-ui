@@ -78,9 +78,6 @@ describe('components: ActionButton -> ActionButtonContainer component', () => {
             });
         });
 
-
-
-
         describe('with prop userCanManage as true', () => {
             beforeEach(() => { 
                 actionButtonContainerComponent = renderComponent({ showActions: true, userCanManage: true });

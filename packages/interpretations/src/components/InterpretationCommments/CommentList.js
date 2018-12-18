@@ -6,7 +6,7 @@ import i18n from '@dhis2/d2-i18n'
 import orderBy from 'lodash/fp/orderBy';
 import NewComment from './NewComment';
 import OldComment from './OldComment';
-import CardHeader from '../Interpretation/CardHeader';
+import CardHeader from '../Cards/CardHeader';
 import WithAvatar from '../Avatar/WithAvatar';
 
 import { userCanManage } from '../../authorization/auth';

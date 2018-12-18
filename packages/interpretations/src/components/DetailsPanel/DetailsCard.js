@@ -5,7 +5,7 @@ import SubscriberIconEnabled from '@material-ui/icons/Notifications';
 import SubscriberIconDisabled from '@material-ui/icons/AddAlert';
 import i18n from '@dhis2/d2-i18n';
 
-import CollapsibleCard from './CollapsibleCard';
+import CollapsibleCard from '../Cards/CollapsibleCard';
 import Description from './Description';
 import List from './List';
 import ListItem from './ListItem';

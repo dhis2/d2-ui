@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import ActionButton from '../ActionButton/ActionButton';
-import CardText from '../Interpretation/CardText';
+import CardText from '../Cards/CardText';
 import styles from './styles/InterpretationComment.style';
 
 export const OldComment = ({ 

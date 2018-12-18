@@ -6,8 +6,8 @@ import { withStyles } from '@material-ui/core/styles';
 import some from 'lodash/fp/some';
 
 import NewInterpretation from './NewInterpretation';
-import CardHeader from './CardHeader';
-import CardText from './CardText';
+import CardHeader from '../Cards/CardHeader';
+import CardText from '../Cards/CardText';
 import LikesAndReplies from './LikesAndReplies';
 import ActionButtonContainer from '../ActionButton/ActionButtonContainer';
 import CommentList from '../InterpretationCommments/CommentList';
