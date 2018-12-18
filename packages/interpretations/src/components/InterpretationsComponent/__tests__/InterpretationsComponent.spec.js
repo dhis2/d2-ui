@@ -88,13 +88,13 @@ describe('Interpretations: Interpretations component', () => {
     describe("details card", () => {
         it("should be shown", () => {
             interpretationsComponent.update();
-            expect(interpretationsComponent.find("DetailsCard")).toExist();
+            expect(interpretationsComponent.find("Details")).toExist();
         });
 
         it("should have favorite as model", () => {
             interpretationsComponent.update();
-            const detailsCard = interpretationsComponent.find("DetailsCard");
-            expect(detailsCard).toHaveProp("model", favorite);
+            const details = interpretationsComponent.find("Details");
+            expect(details).toHaveProp("model", favorite);
         });
     });
 
@@ -106,8 +106,8 @@ describe('Interpretations: Interpretations component', () => {
 
         it("should have favorite as model", () => {
             interpretationsComponent.update();
-            const detailsCard = interpretationsComponent.find(InterpretationsCard);
-            expect(detailsCard).toHaveProp("model", favorite);
+            const details= interpretationsComponent.find(InterpretationsCard);
+            expect(details).toHaveProp("model", favorite);
         });
 
         describe("on a request to change current interpretation", () => {

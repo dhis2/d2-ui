@@ -16,7 +16,7 @@ import { formatDate } from '../../dateformats/dateformatter';
 import { translateModelName } from '../../translations/modelNametranslator';
 import styles from './styles/Details.style';
 
-class DetailsCard extends React.Component {
+class Details extends React.Component {
     state = {
         isExpanded: true,
     };
@@ -84,14 +84,14 @@ class DetailsCard extends React.Component {
     }
 }
 
-DetailsCard.contextTypes = {
+Details.contextTypes = {
     d2: PropTypes.object.isRequired,
     locale: PropTypes.string.isRequired,
 };
 
-DetailsCard.propTypes = {
+Details.propTypes = {
     model: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
 };
 
-export default DetailsCard;
+export default Details;

@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './styles/DetailsCard.style';
+import styles from './styles/Details.style';
 
 export const List = ({ children }) => (
     <div style={styles.detailsCardList}>

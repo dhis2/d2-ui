@@ -6,7 +6,7 @@ import isEqual from 'lodash/fp/isEqual';
 import pick from 'lodash/fp/pick';
 
 import { getFavoriteWithInterpretations } from '../../api/helpers';
-import DetailsCard from '../DetailsPanel/DetailsCard';
+import Details from '../DetailsPanel/Details';
 import InterpretationsCard from '../InterpretationPanel/InterpretationsCard';
 import i18n from '../../locales';
 import styles from './styles/InterpretationsComponent.style';
@@ -65,7 +65,7 @@ export class InterpretationsComponent extends React.Component {
 
         return (
             <div className={classes.interpretationsContainer}>
-                <DetailsCard model={model} onChange={this.onChange} />
+                <Details model={model} onChange={this.onChange} />
                 <InterpretationsCard
                     model={model}
                     onChange={this.onChange}

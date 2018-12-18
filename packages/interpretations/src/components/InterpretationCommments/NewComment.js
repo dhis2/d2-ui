@@ -60,7 +60,7 @@ export class NewComment extends React.Component {
 
     renderRichTextHints = () => (
         <RichTextParser style={styles.richTextHint}>
-            {i18n.t('**bold**  __italics__  http://<link>')}
+            {i18n.t('**bold**    __italics__    http://<link>')}
         </RichTextParser>
     );
 

@@ -5,7 +5,7 @@ import SubscriberIconEnabled from '@material-ui/icons/Notifications';
 import SubscriberIconDisabled from '@material-ui/icons/AddAlert';
 
 import * as helpers from '../../../api/helpers';
-import DetailsCard from '../../DetailsPanel/DetailsCard';
+import Details from '../../DetailsPanel/Details';
 import ListItem from '../ListItem';
 import Description from '../Description';
 import { getStubContext } from '../../../../config/test-context';
@@ -74,7 +74,7 @@ const baseProps = {
 
 const renderComponent = (partialProps = {}) => {
     const props = { ...baseProps, ...partialProps };
-    return mount(<DetailsCard {...props} />, { context, childContextTypes });
+    return mount(<Details {...props} />, { context, childContextTypes });
 };
 
 const getListItem = (detailsCard, label) => {
