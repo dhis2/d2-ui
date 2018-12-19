@@ -8,7 +8,6 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
 
 import i18n from '@dhis2/d2-i18n';
-import { isEqual } from 'lodash-es';
 
 import { getFileTypeLabel } from './util';
 
@@ -21,13 +20,6 @@ const DeleteDialog = (props) => {
         onRequestDelete,
         onRequestDeleteError,
     } = props;
-
-    shouldComponentUpdate(nextProps, nextState) {
-        const propsChanged = !isEqual(nextProps, this.props);
-        const stateChanged = !isEqual(nextState, this.state);
- 
-        return propsChanged || stateChanged;
-    }
 
     const deleteFavorite = () => {
         if (fileModel) {
