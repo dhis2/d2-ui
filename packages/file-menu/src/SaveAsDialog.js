@@ -10,6 +10,8 @@ import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 
 import i18n from '@dhis2/d2-i18n';
+import { isEqual } from 'lodash-es';
+
 import { getFileTypeLabel } from './util';
 
 class SaveAsDialog extends Component {
@@ -20,6 +22,20 @@ class SaveAsDialog extends Component {
             name: '',
             description: '',
         };
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        
+        //check state first, then props. If state has changed we don't need to deepcompare props too as it 
+        //would be a performance hit doing both if we already know that state was changed.
+
+        let shouldUpdate = !isEqual(nextState, this.state);
+        if ( !shouldUpdate ) {
+            //if state wasnt changed, check if props changed
+            shouldUpdate = !isEqual(nextProps, this.props);
+        } 
+        
+        return shouldUpdate;
     }
 
     componentWillReceiveProps(nextProps) {

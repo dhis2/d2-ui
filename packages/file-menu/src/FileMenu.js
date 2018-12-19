@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 
 import i18n from '@dhis2/d2-i18n';
+import { isEqual } from 'lodash-es';
 
 import NewMenuItem from './NewMenuItem';
 import OpenMenuItem from './OpenMenuItem';
@@ -45,6 +46,20 @@ export class FileMenu extends Component {
             this.setFileModel(this.props.fileId);
         }
     };
+
+    shouldComponentUpdate(nextProps, nextState) {
+        
+        //check state first, then props. If state has changed we don't need to deepcompare props too as it 
+        //would be a performance hit doing both if we already know that state was changed.
+
+        let shouldUpdate = !isEqual(nextState, this.state);
+        if ( !shouldUpdate ) {
+            //if state wasnt changed, check if props changed
+            shouldUpdate = !isEqual(nextProps, this.props);
+        } 
+        
+        return shouldUpdate;
+    }
 
     onOpen = (id) => {
         this.setFileModel(id);

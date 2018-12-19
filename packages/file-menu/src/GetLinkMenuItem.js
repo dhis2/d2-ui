@@ -7,6 +7,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Link from '@material-ui/icons/Link';
 
 import i18n from '@dhis2/d2-i18n';
+import { isEqual } from 'lodash-es';
+
 import GetLinkDialog from './GetLinkDialog';
 
 class GetLinkMenuItem extends Component {
@@ -16,6 +18,20 @@ class GetLinkMenuItem extends Component {
         this.state = {
             dialogIsOpen: false,
         };
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        
+        //check state first, then props. If state has changed we don't need to deepcompare props too as it 
+        //would be a performance hit doing both if we already know that state was changed.
+
+        let shouldUpdate = !isEqual(nextState, this.state);
+        if ( !shouldUpdate ) {
+            //if state wasnt changed, check if props changed
+            shouldUpdate = !isEqual(nextProps, this.props);
+        } 
+        
+        return shouldUpdate;
     }
 
     onClose = () => {

@@ -8,6 +8,7 @@ import Translate from '@material-ui/icons/Translate';
 
 import i18n from '@dhis2/d2-i18n';
 import TranslationDialog from '@dhis2/d2-ui-translation-dialog';
+import { isEqual } from 'lodash-es';
 
 class TranslateMenuItem extends Component {
     constructor(props) {
@@ -16,6 +17,20 @@ class TranslateMenuItem extends Component {
         this.state = {
             dialogIsOpen: false,
         };
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        
+        //check state first, then props. If state has changed we don't need to deepcompare props too as it 
+        //would be a performance hit doing both if we already know that state was changed.
+
+        let shouldUpdate = !isEqual(nextState, this.state);
+        if ( !shouldUpdate ) {
+            //if state wasnt changed, check if props changed
+            shouldUpdate = !isEqual(nextProps, this.props);
+        } 
+        
+        return shouldUpdate;
     }
 
     onClose = () => {
