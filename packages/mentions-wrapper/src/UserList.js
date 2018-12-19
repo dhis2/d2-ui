@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItem from '@material-ui/core/ListItem';
 import List from '@material-ui/core/List';
-import sortBy from 'lodash-es/sortBy';
+import sortBy from 'lodash/sortBy';
 
 import Popover from '@material-ui/core/Popover';
 import Typography from '@material-ui/core/Typography';
@@ -48,7 +48,7 @@ export const UserList = ({
 
         onSelect(user);
     };
-
+    
     const sortedUsers = sortBy(users, [userName => userName.displayName]);
 
     return (

@@ -13,7 +13,7 @@ const defaultState = {
     selectedUserIndex: 0,
 };
 
-class MentionsWrapper extends Component {
+export class MentionsWrapper extends Component {
     constructor(props) {
         super(props);
 

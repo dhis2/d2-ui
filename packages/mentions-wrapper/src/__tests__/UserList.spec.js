@@ -4,6 +4,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItem from '@material-ui/core/ListItem';
 import List from '@material-ui/core/List';
 import Popover from '@material-ui/core/Popover';
+import sortBy from 'lodash/sortBy';
 
 
 import { UserList } from '../UserList';
@@ -56,15 +57,25 @@ describe('Mentions: MentionsWrapper > UserList component', () => {
                 .find(ListItemText)
                 .first()
                 .props().primary
-        ).toEqual('Johnny Cash (sue)');
+        ).toEqual('Eric Clapton (slowhand)');
+    });
+
+    it('should sort the mentions in alphabetical order by firstname', () => {
+        const sortedUsers = sortBy(props.users, [userName => userName.displayName]);
+        
+        userList.find(ListItemText).forEach((node, i) => 
+            expect(
+                node.props().primary).toContain(sortedUsers[i].displayName
+                )
+            );
     });
 
     it('should trigger the onSelect callback when an item in the list is clicked', () => {
         const listItem = userList.find(ListItem).first();
-
+        const sortedUsers = sortBy(props.users, [userName => userName.displayName]);
         listItem.simulate('click');
 
         expect(onSelect).toHaveBeenCalledTimes(1);
-        expect(onSelect).toHaveBeenCalledWith(props.users[0]);
+        expect(onSelect).toHaveBeenCalledWith(sortedUsers[0]);
     });
 });
