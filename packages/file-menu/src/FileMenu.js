@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 
 import i18n from '@dhis2/d2-i18n';
-import { isEqual } from 'lodash-es';
+import isEqual from 'lodash/fp/isEqual';
 
 import NewMenuItem from './NewMenuItem';
 import OpenMenuItem from './OpenMenuItem';

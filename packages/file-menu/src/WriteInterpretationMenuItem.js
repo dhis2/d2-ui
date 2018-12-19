@@ -7,7 +7,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Edit from '@material-ui/icons/Edit';
 
 import i18n from '@dhis2/d2-i18n';
-import { isEqual } from 'lodash-es';
+import isEqual from 'lodash/fp/isEqual';
 
 import WriteInterpretationDialog from './WriteInterpretationDialog';
 
@@ -25,7 +25,7 @@ class WriteInterpretationMenuItem extends Component {
         //check state first, then props. If state has changed we don't need to deepcompare props too as it 
         //would be a performance hit doing both if we already know that state was changed.
 
-        let shouldUpdate = !isEqual(nextState, this.state);
+        let shouldUpdate = this.state.dialogIsOpen !== nextState.dialogIsOpen;
         if ( !shouldUpdate ) {
             //if state wasnt changed, check if props changed
             shouldUpdate = !isEqual(nextProps, this.props);
