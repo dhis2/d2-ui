@@ -31,19 +31,19 @@ class Details extends React.Component {
     };
 
     // TOOD: adjust color
-    renderSubscriptionButton(model) {
-        const tOpts = { object: translateModelName(model.modelName) };
-        const [SubscriberIcon, subscriptionTooltip] = model.subscribed
+    renderSubscriptionButton() {
+        const tOpts = { object: translateModelName(this.props.model.modelName) };
+        const [ SubscriberIcon, subscriptionTooltip ] = this.props.model.subscribed
             ? [
-                  SubscriberIconEnabled,
-                  i18n.t(
-                      'Unsubscribe from this {{object}} and stop receiving notifications',
-                      tOpts
-                  ),
+                SubscriberIconEnabled,
+                i18n.t(
+                    'Unsubscribe from this {{object}} and stop receiving notifications',
+                    tOpts
+                ),
               ]
             : [
-                  SubscriberIconDisabled,
-                  i18n.t('Subscribe to this {{object}} and start receiving notifications', tOpts),
+                SubscriberIconDisabled,
+                i18n.t('Subscribe to this {{object}} and start receiving notifications', tOpts),
               ];
 
         return (
@@ -60,14 +60,17 @@ class Details extends React.Component {
     render() {
         const { model } = this.props;
         const owner = model.user ? model.user.displayName : '-';
+        const SubscriptionButton = this.renderSubscriptionButton();
 
         return (
             <CollapsibleCard title={i18n.t('Details')}>
-                {this.renderSubscriptionButton(model)}
-
+                {SubscriptionButton}
                 <List>
                     <ListItem text={<Description model={model} />} />
-                    <ListItem label={i18n.t('Owner')} text={owner} />
+                    <ListItem 
+                        label={i18n.t('Owner')} 
+                        text={owner} 
+                    />
                     <ListItem
                         label={i18n.t('Created')}
                         text={formatDate(model.created, this.context.locale)}
@@ -76,8 +79,14 @@ class Details extends React.Component {
                         label={i18n.t('Last updated')}
                         text={formatDate(model.lastUpdated, this.context.locale)}
                     />
-                    <ListItem label={i18n.t('Views')} text={model.favoriteViews} />
-                    <ListItem label={i18n.t('Sharing')} text={getSharingText(model)} />
+                    <ListItem 
+                        label={i18n.t('Views')} 
+                        text={model.favoriteViews} 
+                    />
+                    <ListItem
+                        label={i18n.t('Sharing')} 
+                        text={getSharingText(model)} 
+                    />
                 </List>
             </CollapsibleCard>
         );

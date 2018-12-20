@@ -14,7 +14,7 @@ import styles from './styles/InterpretationsComponent.style';
 function configI18n(d2) {
     const locale = d2.currentUser.userSettings.settings.keyUiLocale;
     i18n.changeLanguage(locale);
-}
+};
 
 export class InterpretationsComponent extends React.Component {
     state = { model: null };
@@ -22,46 +22,49 @@ export class InterpretationsComponent extends React.Component {
     constructor(props) {
         super(props);
         this.onChange = this.onChange.bind(this);
-    }
+    };
 
     getChildContext() {
         return {
             d2: this.props.d2,
             locale: this.props.d2.currentUser.userSettings.settings.keyUiLocale || 'en',
         };
-    }
+    };
 
     componentDidMount() {
         configI18n(this.props.d2);
         this.loadModel(this.props);
-    }
+    };
 
     componentWillReceiveProps(nextProps) {
         const fields = ['type', 'id', 'lastUpdated'];
         const modelFieldsChanged = !isEqual(pick(fields, this.props), pick(fields, nextProps));
+
         if (modelFieldsChanged) {
             this.loadModel(nextProps);
         }
-    }
+    };
 
     async loadModel(props) {
         return getFavoriteWithInterpretations(props.d2, props.type, props.id).then(model => {
             this.setState({ model });
             return model;
         });
-    }
+    };
 
     async onChange() {
         return this.loadModel(this.props).then(
             newModel => this.props.onChange && this.props.onChange(newModel)
         );
-    }
+    };
 
     render() {
         const { classes, currentInterpretationId, onCurrentInterpretationChange } = this.props;
         const { model } = this.state;
 
-        if (!model) return <CircularProgress />;
+        if (!model) {
+            return <CircularProgress />;
+        }
 
         return (
             <div className={classes.interpretationsContainer}>
@@ -74,8 +77,8 @@ export class InterpretationsComponent extends React.Component {
                 />
             </div>
         );
-    }
-}
+    };
+};
 
 InterpretationsComponent.propTypes = {
     classes: PropTypes.object.isRequired,

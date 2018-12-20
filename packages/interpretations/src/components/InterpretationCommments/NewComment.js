@@ -32,15 +32,17 @@ export class NewComment extends React.Component {
         this.focus();
     };
 
-    onChange = text => {
-        this.setState({ text });
+    onChange = event => {
+        this.setState({ text: event.target.value });
     };
 
     onPost = () => {
         const newText = this.state.text;
+        
         if (newText && newText.trim()) {
             const newComment = this.props.comment;
-            newComment.text = newText;  
+            newComment.text = newText;
+
             this.props.onPost(newComment);
             this.setState({ text: '' });
         }
@@ -60,7 +62,7 @@ export class NewComment extends React.Component {
 
     renderRichTextHints = () => (
         <RichTextParser style={styles.richTextHint}>
-            {i18n.t('**bold**    __italics__    http://<link>')}
+            {`**${i18n.t('bold')}** __${i18n.t('italics')}__ http://<link>`}
         </RichTextParser>
     );
 
@@ -78,11 +80,10 @@ export class NewComment extends React.Component {
                             value={this.state.text}
                             rows={4}
                             autoFocus={true}
-                            onChange={event => this.onChange(event.target.value)}
+                            onChange={this.onChange}
                         />
                     </RichTextEditor>
                 </MentionsWrapper>
-
                 {ActionButtons}
                 {EditorHints}
             </Fragment>

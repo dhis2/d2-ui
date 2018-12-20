@@ -9,7 +9,7 @@ import NewInterpretation from './NewInterpretation';
 import CardHeader from '../Cards/CardHeader';
 import CardText from '../Cards/CardText';
 import LikesAndReplies from './LikesAndReplies';
-import ActionButtonContainer from '../ActionButton/ActionButtonContainer';
+import ActionButtonContainer from '../Buttons/ActionButtonContainer';
 import CommentList from '../InterpretationCommments/CommentList';
 import { userCanManage } from '../../authorization/auth';
 import CommentModel from '../../models/comment';
@@ -149,9 +149,9 @@ export class OldInterpretation extends React.Component {
                     repliedBy={this.getRepliedByNames()}
                 />
                 <ActionButtonContainer
-                    showActions={extended}
+                    isFocused={extended}
                     currentUserLikesInterpretation={currentUserLikesInterpretation}
-                    userCanManage={userCanManage(this.context.d2, interpretation)}
+                    isOwner={userCanManage(this.context.d2, interpretation)}
                     onClickHandlers={this.getOnClickHandlers()}
                 />
             </div>
@@ -162,7 +162,7 @@ export class OldInterpretation extends React.Component {
         const { classes, interpretation, extended, model } = this.props;
         const { interpretationToEdit, newComment, sharingDialogIsOpen } = this.state;
 
-        const Interpretation = this.renderInterpretation();
+        const OldInterpretation = this.renderInterpretation();
 
         return (
             <div className={classes.listItem}>
@@ -183,11 +183,8 @@ export class OldInterpretation extends React.Component {
                         onClose={this.closeInterpretation}
                         isNew={false}
                     />
-                    ) : (
-                    
-                    Interpretation
-                
-                )}
+                    ) : OldInterpretation
+                }
                 {extended && (
                     <CommentList
                         interpretation={interpretation}

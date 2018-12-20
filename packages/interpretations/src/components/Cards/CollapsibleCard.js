@@ -30,6 +30,7 @@ export class CollapsibleCard extends React.Component {
                         <Fragment>
                             {expanded ? actions : null}
                             <IconButton
+                                style={styles.iconButton}
                                 className={classnames(classes.expand, {
                                     [classes.expandOpen]: expanded,
                                 })}
@@ -42,7 +43,6 @@ export class CollapsibleCard extends React.Component {
                         </Fragment>
                     }
                 />
-
                 <Collapse in={expanded} timeout="auto" unmountOnExit className={classes.collapse}>
                     <CardContent classes={{ root: classes.content }}>{children}</CardContent>
                 </Collapse>

@@ -1,14 +1,14 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import ActionButton from '../ActionButton/ActionButton';
+import ActionButton from '../Buttons/ActionButton';
 import CardText from '../Cards/CardText';
 import styles from './styles/InterpretationComment.style';
 
 export const OldComment = ({ 
     classes, 
     comment, 
-    showManageActions, 
+    isOwner, 
     onEdit, 
     onDelete, 
     onReply 
@@ -18,7 +18,7 @@ export const OldComment = ({
             extended={true}
             text={comment.text}
         />
-        {showManageActions ? 
+        {isOwner ? 
             <div className={classes.commentActions}>
                 <ActionButton
                     iconType={'edit'} 
@@ -45,7 +45,7 @@ export const OldComment = ({
 OldComment.propTypes = {
     classes: PropTypes.object.isRequired,
     comment: PropTypes.object.isRequired,
-    showManageActions: PropTypes.bool.isRequired,
+    isOwner: PropTypes.bool.isRequired,
     onEdit: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
     onReply: PropTypes.func.isRequired,

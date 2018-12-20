@@ -1,7 +1,6 @@
 export const styles = theme => ({
     card: {
         margin: '4px',
-        marginBottom: '6px',
         position: 'relative',
     },
 
@@ -9,12 +8,12 @@ export const styles = theme => ({
         marginTop: '0px',
         marginRight: '-4px',
         '& button': {
-            padding: `${theme.spacing.unit * '0.5px'}`
+            padding: '8px',
         },
     },
 
     header: {
-        padding: '4px 12px 4px 12px',
+        padding: '0px 12px 0px 12px',
     },
 
     title: {
@@ -33,6 +32,7 @@ export const styles = theme => ({
     },
 
     expand: {
+        background: 'none',
         transform: 'rotate(0deg)',
         transition: theme.transitions.create('transform', {
             duration: theme.transitions.duration.shortest,

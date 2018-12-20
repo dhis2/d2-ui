@@ -40,11 +40,19 @@ export class NewInterpretation extends Component {
 
     renderActionButtons = () => (
         <Fragment>
-            <Link disabled={!this.state.text} label={i18n.t('Post')} onClick={this.onPost} />
+            <Link 
+                disabled={!this.state.text} 
+                label={this.props.isNew ? i18n.t('Post') : i18n.t('OK')} 
+                onClick={this.onPost}
+            />
             {this.props.isNew && (
                 <Fragment>
                     <ActionSeparator />
-                    <Link  disabled={!this.state.text} label={i18n.t('Post & Share')} onClick={this.onPostAndShare} />
+                    <Link  
+                        disabled={!this.state.text} 
+                        label={i18n.t('Post & Share')} 
+                        onClick={this.onPostAndShare} 
+                    />
                 </Fragment>
             )}
             <ActionSeparator />
@@ -53,9 +61,11 @@ export class NewInterpretation extends Component {
     );
 
     renderRichTextHints = () => (
+        this.state.text && (
         <RichTextParser style={styles.richTextHint}>
-            {i18n.t('**bold**  __italics__  http://<link>')}
+            {`**${i18n.t('bold')}** __${i18n.t('italics')}__ http://<link>`}
         </RichTextParser>
+        )
     );
 
     render() {
@@ -84,7 +94,6 @@ export class NewInterpretation extends Component {
                             />
                         </RichTextEditor>
                     </MentionsWrapper>
-
                     {ActionButtons}
                     {EditorHints}
                 </WithAvatar>

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ShowMoreButton from '../ActionButton/ShowMoreButton';
+import ShowMoreButton from '../Buttons/ShowMoreButton';
 import { withStyles } from '@material-ui/core/styles';
 import i18n from '@dhis2/d2-i18n'
 import orderBy from 'lodash/fp/orderBy';
@@ -41,27 +41,27 @@ export class CommentList extends React.Component {
         this.state = {
             commentToEdit: null,
             newComment: props.newComment,
-            showOnlyFirstComments: true,
+            showOnlyFirstComments: this.props.interpretation.comments.length > commentsToShowOnInit,
         };
-    }
+    };
 
     componentWillReceiveProps(newProps) {
         if (this.props.newComment !== newProps.newComment) {
             this.setState({ newComment: newProps.newComment });
         }
-    }
+    };
 
     onShowMoreComments() {
         this.setState({ showOnlyFirstComments: false });
-    }
+    };
 
     onEdit(comment) {
         this.setState({ commentToEdit: comment });
-    }
+    };
 
     onCancelEdit() {
         this.setState({ commentToEdit: null });
-    }
+    };
 
     onCancelNewComment() {
         this.setState({ newComment: null });
@@ -71,25 +71,41 @@ export class CommentList extends React.Component {
         if (window.confirm(i18n.t('Are you sure you want to remove this comment?'))) {
             this.props.onDelete(comment);
         }
-    }
+    };
 
     onUpdate(comment) {
         this.props.onSave(comment);
         this.setState({ commentToEdit: null });
-    }
+    };
 
     onSave(comment) {
         this.props.onSave(comment);
         this.setState({ showOnlyFirstComments: false, newComment: null });
-    }
+    };
 
     onReply(comment) {
         const newComment = comment.getReply(this.context.d2);
         this.setState({ commentToEdit: null, newComment });
+    };
+
+    getHiddenCommentsCount = () => {
+    const comments = this.props.interpretation.comments;
+
+    return this.state.showOnlyFirstComments
+            ? comments.length - comments.slice(0, commentsToShowOnInit).length 
+            : 0;
     }
 
-    renderComments = () => 
-        this.props.interpretation.comments.map(comment =>
+    getComments = () => {
+        const sortedComments = orderBy(["created"], ["asc"], this.props.interpretation.comments);
+        
+        return this.state.showOnlyFirstComments 
+            ? sortedComments.slice(0, commentsToShowOnInit)
+            : sortedComments;
+    };
+
+    renderComments = () =>  
+        this.getComments().map(comment =>
             <WithAvatar key={comment.id} user={comment.user}>
                 <CardHeader 
                     userName={comment.user.displayName} 
@@ -105,45 +121,36 @@ export class CommentList extends React.Component {
                 ) : (
                     <OldComment
                         comment={comment}
-                        showManageActions={userCanManage(this.context.d2, comment)}
+                        isOwner={userCanManage(this.context.d2, comment)}
                         onEdit={this.onEdit}
                         onDelete={this.onDelete}
                         onReply={this.onReply}
                     />
                 )}
             </WithAvatar>
-        )
+        );
 
     render() {
-        const { classes, interpretation } = this.props;
         const { newComment, showOnlyFirstComments } = this.state;
-
-        const sortedComments = orderBy(["created"], ["asc"], interpretation.comments);
-        
-        const comments = showOnlyFirstComments ? sortedComments.slice(0, commentsToShowOnInit): sortedComments;
-        const hiddenCommentsCount = showOnlyFirstComments ? sortedComments.length - comments.length : 0;
-
         const Comments = this.renderComments();
 
         return (
-            <div className={classes.commentSection}>
-
-                    {Comments}
-
-                    <ShowMoreButton 
-                        showButton={(showOnlyFirstComments && hiddenCommentsCount > 0)}
-                        hiddenCommentsCount={hiddenCommentsCount}
-                        onClick={this.onShowMoreComments}
-                    />
-                    {newComment && (
-                        <WithAvatar user={this.context.d2.currentUser}>
-                            <NewComment
-                                comment={newComment}
-                                onPost={this.onSave}
-                                onCancel={this.onCancelNewComment}
-                            />
-                        </WithAvatar>
-                    )}
+            <div className={this.props.classes.commentSection}>
+                {Comments}
+                <ShowMoreButton 
+                    showButton={showOnlyFirstComments}
+                    hiddenCommentsCount={this.getHiddenCommentsCount()}
+                    onClick={this.onShowMoreComments}
+                />
+                {newComment && (
+                    <WithAvatar user={this.context.d2.currentUser}>
+                        <NewComment
+                            comment={newComment}
+                            onPost={this.onSave}
+                            onCancel={this.onCancelNewComment}
+                        />
+                    </WithAvatar>
+                )}
             </div>
         );
     }

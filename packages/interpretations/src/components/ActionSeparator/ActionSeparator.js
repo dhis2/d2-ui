@@ -1,14 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import styles from './styles/ActionSeparator.style';
 
-const styles = {
-    linkArea: {
-        paddingLeft: '5px',
-        paddingRight: '5px',
-    },
-};
-
-export const ActionSeparator = ({labelText = "·"}) => (
-    <label style={styles.linkArea}>{labelText}</label>
+export const ActionSeparator = ({ classes, labelText = "·" }) => (
+    <label className={classes.linkArea}>{labelText}</label>
 );
 
-export default ActionSeparator;
+ActionSeparator.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(ActionSeparator);

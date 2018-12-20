@@ -16,23 +16,11 @@ const VIEW_INDEX = 7;
 export const ActionButtonContainer = ({ 
     classes, 
     currentUserLikesInterpretation,
-    showActions,
-    userCanManage,
+    isFocused,
+    isOwner,
     onClickHandlers,
 }) => {
-    const renderLikeButton = currentUserLikesInterpretation ? (
-        <ActionButton 
-            iconType={'unlike'} 
-            onClick={onClickHandlers[UNLIKE_INDEX]}
-        />
-    ) : (
-        <ActionButton 
-            iconType={'like'} 
-            onClick={onClickHandlers[LIKE_INDEX]}
-        />
-    );
-
-    const renderOwnerActions = userCanManage && (
+    const renderOwnerActions = (isOwner && isFocused) && (
         <Fragment>
             <ActionButton 
                 iconType={'share'} 
@@ -48,28 +36,23 @@ export const ActionButtonContainer = ({
             />
         </Fragment>
     );
-
+    
     return (
         <div className={classes.actions}>
-            {showActions ? (
-                <Fragment>
-                    {renderLikeButton}
-                    <ActionButton 
-                        iconType={'reply'} 
-                        onClick={onClickHandlers[REPLY_INDEX]}
-                    />
-                    <ActionButton 
-                        iconType={'visibilityOff'} 
-                        onClick={onClickHandlers[EXIT_VIEW_INDEX]}
-                    />
-                    {renderOwnerActions}
-                </Fragment>
-            ) : (
-                <ActionButton 
-                    iconType={'visibility'} 
-                    onClick={onClickHandlers[VIEW_INDEX]}
-                />
-            )}
+            <ActionButton 
+                iconType={currentUserLikesInterpretation ? 'unlike' : 'like'} 
+                onClick={onClickHandlers[currentUserLikesInterpretation ? UNLIKE_INDEX : LIKE_INDEX]}
+            />
+            <ActionButton 
+                iconType={'reply'} 
+                onClick={onClickHandlers[REPLY_INDEX]}
+            />
+            <ActionButton 
+                iconType={isFocused ? 'visibilityOff' : 'visibility'} 
+                onClick={onClickHandlers[isFocused ? EXIT_VIEW_INDEX : VIEW_INDEX]}
+            />
+            
+            {renderOwnerActions}
         </div>
     );
 };
@@ -77,8 +60,8 @@ export const ActionButtonContainer = ({
 ActionButtonContainer.propTypes = {
     classes: PropTypes.object.isRequired,
     currentUserLikesInterpretation: PropTypes.bool.isRequired,
-    showActions: PropTypes.bool.isRequired,
-    userCanManage: PropTypes.bool.isRequired,
+    isFocused: PropTypes.bool.isRequired,
+    isOwner: PropTypes.bool.isRequired,
     onClickHandlers: PropTypes.array.isRequired,
 };
 

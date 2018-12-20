@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Popper from '@material-ui/core/Popper';
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
-import { Icons } from './Icons';
+import { Icons } from './ButtonIcons';
 import styles from './styles/ActionButton.style';
 
 export class ActionButton extends Component {

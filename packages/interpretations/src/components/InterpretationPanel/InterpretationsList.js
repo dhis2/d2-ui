@@ -6,6 +6,8 @@ import OldInterpretation from '../Interpretation/OldInterpretation';
 import Link from '../Link/Link';
 import styles from './styles/InterpretationsList.style';
 
+export const interpretationsToShowOnInit = 5;
+
 export const InterpretationsList = ({         
     classes,
     model,
@@ -17,25 +19,21 @@ export const InterpretationsList = ({
 }) =>  {
     if (!interpretations.length) {
         return (
-            <div className={classes.emptyList}>
-                <span>{i18n.t("No interpretations")}</span>
-            </div>
+            <div className={classes.emptyList}>{i18n.t("No interpretations")}</div>
         );
     }
 
-    const listItems = isExpanded  ? interpretations.slice(0, 4) : interpretations
+    const listItems = isExpanded
+        ? interpretations.slice(-interpretationsToShowOnInit) 
+        : interpretations;
 
     return (
         <Fragment>
-            {interpretations.length > 5 && (
+            {interpretations.length > interpretationsToShowOnInit && (
                 <div className={classes.showAllInterpretationsContainer}>
                     <Link 
-                        label={
-                            isExpanded 
-                                ? i18n.t('Show all interpretations') 
-                                : i18n.t('Hide old interpretations')
-                        }
-                        onClick={() => toggleShowAllInterpretations()} 
+                        label={`${isExpanded ? i18n.t('Show') : i18n.t('Hide')}${' old interpretations'}`}
+                        onClick={toggleShowAllInterpretations} 
                     />
                     {isExpanded && (
                         <span className={classes.interpretationsCountLabel}>

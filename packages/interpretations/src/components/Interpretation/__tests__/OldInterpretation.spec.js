@@ -5,11 +5,8 @@ import _ from 'lodash';
 import { OldInterpretation } from '../OldInterpretation';
 import NewInterpretation from '../NewInterpretation';
 import CommentList from '../../InterpretationCommments/CommentList';
-import ActionButtonContainer from '../../ActionButton/ActionButtonContainer';
-import ActionButton from '../../ActionButton/ActionButton';
+import ActionButtonContainer from '../../Buttons/ActionButtonContainer';
 import { getStubContext } from '../../../../config/test-context';
-
-//TODO: adjust/create similar tests with the re-factored components
 
 const interpretation = {
     name: 'LOECMJN3DRF',

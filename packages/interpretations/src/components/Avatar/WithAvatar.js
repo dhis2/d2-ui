@@ -1,22 +1,25 @@
 import React from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import styles from './styles/WithAvatar.style';
+import PropTypes from 'prop-types';
+import UserAvatar from './UserAvatar';
+import { withStyles } from '@material-ui/core/styles';
+import styles from './styles/Avatar.style';
 
-const UserAvatar = ({user}) => {
-    const initials = user.displayName.split(" ").map(part => part[0]).slice(0, 2).join("");
-    return <Avatar color="black" style={styles.avatar}>{initials}</Avatar>;
-};
-
-export const WithAvatar = ({ style, user, children }) => (
+export const WithAvatar = ({ style, classes, user, children }) => (
     <div style={style || styles.avatarWrapper}>
-        <div style={styles.avatarBox}>
+        <div className={classes.avatarBox}>
             <UserAvatar user={user} />
         </div>
-
-        <div style={styles.avatarBoxContent}>
+        <div className={classes.avatarBoxContent}>
             {children}
         </div>
     </div>
 );
 
-export default WithAvatar;
+WithAvatar.propTypes = {
+    style: PropTypes.object,
+    classes: PropTypes.object.isRequired,
+    user: PropTypes.object.isRequired,
+    children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]).isRequired,
+};
+
+export default withStyles(styles)(WithAvatar);

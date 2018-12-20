@@ -29,7 +29,7 @@ export default class Interpretation {
             // Set initial sharing of interpretation from the parent object
             const sharingPayload = { object: pick(Interpretation.sharingFields, this._parent) };
 
-            return apiFetchWithResponse(d2, `/interpretations/${modelName}/${modelId}`, "POST", this.text)
+            return await apiFetchWithResponse(d2, `/interpretations/${modelName}/${modelId}`, "POST", this.text)
                 .then(getInterpretationIdFromResponse)
                 .then(interpretationId => {
                     this.id = interpretationId;
@@ -37,15 +37,15 @@ export default class Interpretation {
                     return apiFetch(d2, sharingUrl, "PUT", sharingPayload).then(() => this);
                 });
         } else {
-            return apiFetch(d2, `/interpretations/${this.id}`, "PUT", this.text).then(() => this);
+            return await apiFetch(d2, `/interpretations/${this.id}`, "PUT", this.text).then(() => this);
         }
     }
 
-    delete(d2) {
-        return apiFetch(d2, `/interpretations/${this.id}`, "DELETE");
+    async delete(d2) {
+        return await apiFetch(d2, `/interpretations/${this.id}`, "DELETE");
     }
 
-    like(d2, value) {
-        return apiFetch(d2, `/interpretations/${this.id}/like`, value ? "POST" : "DELETE");
+    async like(d2, value) {
+        return await apiFetch(d2, `/interpretations/${this.id}/like`, value ? "POST" : "DELETE");
     }
 }

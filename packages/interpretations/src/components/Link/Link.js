@@ -22,4 +22,3 @@ Link.propTypes = {
 };
 
 export default withStyles(styles)(Link);
-

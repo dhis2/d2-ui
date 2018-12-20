@@ -49,12 +49,12 @@ export const getFavoriteWithInterpretations = (d2, type, id) => {
         });
 };
 
-export const setSubscription = (d2, model, newSubscriptionValue) => {
+export const setSubscription = async (d2, model, newSubscriptionValue) => {
     if (!model || !model.href) {
         return Promise.reject(new Error(`Attribute href not found in model`));
     } else {
         const path = `${model.href}/subscriber`;
         const method = newSubscriptionValue ? "POST" : "DELETE";
-        return apiFetch(d2, path, method);
+        return await apiFetch(d2, path, method);
     }
 };

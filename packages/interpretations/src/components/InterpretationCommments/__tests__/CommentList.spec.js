@@ -78,11 +78,11 @@ describe('Interpretations: Interpretations -> InterpretationComments component',
 
         it('should render actions for a comment if current user is its author', () => {
             commentComponents.forEach(commentComponent => {
-                const showManageActions = commentComponent.props().showManageActions;
+                const isOwner = commentComponent.props().isOwner;
                 if (commentComponent.props().comment.user.id == currentUser.id) {
-                    expect(showManageActions).toBe(true);
+                    expect(isOwner).toBe(true);
                 } else {
-                    expect(showManageActions).toBe(false);
+                    expect(isOwner).toBe(false);
                 }
             });
         });
