@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { InterpretationsComponent } from '../InterpretationsComponent';
-import InterpretationsCard from '../../InterpretationPanel/InterpretationsCard';
+import InterpretationsCard from '../../Cards/InterpretationsCard';
 import { getStubContext } from '../../../../config/test-context';
 import * as helpers from '../../../api/helpers';
 

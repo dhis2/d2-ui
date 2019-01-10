@@ -1,7 +1,8 @@
 export default {
     interpretationLink: {
-        color: '#3162C5',
+        color: 'black',
         cursor: 'pointer',
         fontSize: '13px',
+        textDecoration: 'underline',
     },
-}
+};

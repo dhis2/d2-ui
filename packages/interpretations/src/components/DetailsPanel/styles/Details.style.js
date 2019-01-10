@@ -28,7 +28,7 @@ export default {
     },
 
     detailsCardList: {
-        padding: '12px',
+        padding: '4px',
         fontSize: '14px',
     },
 

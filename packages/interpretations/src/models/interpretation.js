@@ -24,7 +24,7 @@ export default class Interpretation {
         const modelId = this._parent.id;
         const modelName = this._parent.modelDefinition.name;
         const isNewInterpretation = !this.id;
-
+        
         if (isNewInterpretation) {
             // Set initial sharing of interpretation from the parent object
             const sharingPayload = { object: pick(Interpretation.sharingFields, this._parent) };

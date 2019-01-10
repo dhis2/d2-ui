@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import IconButton from '@material-ui/core/IconButton';
 import SubscriberIconEnabled from '@material-ui/icons/Notifications';
 import SubscriberIconDisabled from '@material-ui/icons/AddAlert';
+import { withStyles } from '@material-ui/core/styles';
 import i18n from '@dhis2/d2-i18n';
 
 import CollapsibleCard from '../Cards/CollapsibleCard';
 import Description from './Description';
-import List from './List';
 import ListItem from './ListItem';
 import { getSharingText } from './sharingText';
 
@@ -58,14 +58,14 @@ class Details extends React.Component {
     }
 
     render() {
-        const { model } = this.props;
+        const { model, classes } = this.props;
         const owner = model.user ? model.user.displayName : '-';
         const SubscriptionButton = this.renderSubscriptionButton();
 
         return (
-            <CollapsibleCard title={i18n.t('Details')}>
+            <CollapsibleCard title={i18n.t('Favorite details')}>
                 {SubscriptionButton}
-                <List>
+                <div className={classes.detailsCardList}>
                     <ListItem text={<Description model={model} />} />
                     <ListItem 
                         label={i18n.t('Owner')} 
@@ -87,7 +87,7 @@ class Details extends React.Component {
                         label={i18n.t('Sharing')} 
                         text={getSharingText(model)} 
                     />
-                </List>
+                </div>
             </CollapsibleCard>
         );
     }
@@ -103,4 +103,4 @@ Details.propTypes = {
     onChange: PropTypes.func.isRequired,
 };
 
-export default Details;
+export default withStyles(styles)(Details);

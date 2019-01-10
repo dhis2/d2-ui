@@ -28,3 +28,7 @@ export function dateIsOver24Hours(relativeDate) {
 
     return shouldFormatToDate;
 };
+
+export const isEdited = (createdDate, lastUpdatedDate, locale) =>
+    createdDate.substring(0, 19) !== lastUpdatedDate.substring(0, 19);
+    

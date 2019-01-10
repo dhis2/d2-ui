@@ -3,24 +3,44 @@ import PropTypes from 'prop-types';
 import Popper from '@material-ui/core/Popper';
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
-import { Icons } from './ButtonIcons';
+import Icons from './Icons';
 import styles from './styles/ActionButton.style';
 
+const TOOLTIP_ENTER_DELAY = 200;
 export class ActionButton extends Component {
-    state = { anchorEl: null }
 
-    showTooltip = event => this.setState({ anchorEl: event.currentTarget });
+    state = { tooltipIsOpen: false }
 
-    hideTooltip = () => this.setState({ anchorEl: null });
+	id = Math.random().toString(36);
+
+	timeout = null;
+
+    showTooltip = () => { 
+		if(this.timeout === null) {
+			this.timeout = setTimeout(
+				() => this.setState({ tooltipIsOpen: true }),
+				TOOLTIP_ENTER_DELAY
+			);
+		}
+
+	};
+
+    hideTooltip = () => {
+		if (typeof this.timeout === 'number') {
+			clearTimeout(this.timeout);
+			this.timeout = null;
+			this.setState({ tooltipIsOpen: false });
+		}
+	};
 
     renderTooltip = () => (
 		<Popper
-			anchorEl={this.state.anchorEl}
-			open={Boolean(this.state.anchorEl)}
+			anchorEl={document.getElementById(this.id)}
+			open={this.state.tooltipIsOpen}
 			placement="top"
 		>
 			<Paper className={this.props.classes.tooltip}>
-				{Icons[this.props.iconType].tooltip}
+				{this.props.tooltip || Icons[this.props.iconType].tooltip}
 			</Paper>
 		</Popper>
 	);
@@ -31,10 +51,11 @@ export class ActionButton extends Component {
 
         return (
 			<div 
+				id={this.id}
 				className={this.props.classes.iconContainer}
 				onMouseEnter={this.showTooltip} 
 				onMouseLeave={this.hideTooltip} 
-				onClick={this.props.onClick} 
+				onClick={this.props.onClick}
 			>
                 {Icon}
                 {Tooltip}

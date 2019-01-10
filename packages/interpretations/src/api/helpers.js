@@ -5,10 +5,15 @@ const interpretationsFields = [
     'id',
     'user[id,displayName,userCredentials[username]]',
     'created',
+    'lastUpdated',
     'likes',
     'likedBy[id,displayName]',
     'text',
-    'comments[id,text,created,user[id,displayName,userCredentials[username]]]',
+    'publicAccess',
+    'externalAccess',
+    'userAccesses',
+    'userGroupAccesses',
+    'comments[id,text,created,lastUpdated,user[id,displayName,userCredentials[username]]]',
 ];
 
 const favoriteFields = [

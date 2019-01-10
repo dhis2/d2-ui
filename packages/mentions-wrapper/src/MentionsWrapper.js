@@ -22,6 +22,10 @@ class MentionsWrapper extends Component {
         this.lookupUser = debounce(this.lookupUser, 250);
     }
 
+    componentDidMount() {
+        document.addEventListener('mention', e => this.onKeyDown(e));
+    };
+
     lookupUser = query => {
         this.props.d2.Api.getApi()
             .get('users.json', {
@@ -43,7 +47,7 @@ class MentionsWrapper extends Component {
         const { selectionStart, selectionEnd } = element;
 
         // '@' triggers the user lookup/suggestion
-        if (!this.state.captureText && key === '@') {
+        if ((!this.state.captureText && key === '@') || event.type === 'mention') {
             this.setState({
                 element,
                 captureText: true,
@@ -116,6 +120,7 @@ class MentionsWrapper extends Component {
     };
 
     onUserSelect = user => {
+        console.log(user)
         const originalValue = this.state.element.value;
         const newValue = `${originalValue.slice(
             0,

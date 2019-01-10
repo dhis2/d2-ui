@@ -11,9 +11,4 @@ export default {
         fontSize: '12px',
         justifyContent: 'space-between',
     },
-
-    date: {
-        color: '#9e9999',
-        fontWeight: 'normal',
-    },
 };

@@ -1,14 +1,17 @@
 export default {
     interpretationCommentArea: {
-        fontSize: '12px',
-        margin: '2px 0 5px 0px',
+        fontSize: '11px',
+        margin: '0px 0px 8px 0px',
         color: 'dimgrey',
         height: '14px',
-        float: 'right',
-        cursor: 'default',
     },
 
-    intepretationLikes: {
+    date: {
+        color: '#9e9999',
+        fontWeight: 'normal',
+    },
+
+    intepretationInfo: {
         paddingRight: '10px',
     },
     
@@ -29,5 +32,9 @@ export default {
         borderRadius: '3px',
         position: 'relative',
         bottom: '2px',
+    },
+    
+    editLabel: {
+        float: 'right',
     },
 }

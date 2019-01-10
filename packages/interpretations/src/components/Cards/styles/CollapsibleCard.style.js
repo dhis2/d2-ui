@@ -18,11 +18,11 @@ export const styles = theme => ({
 
     title: {
         fontSize: '15px',
-        fontWeight: 500,
+        fontWeight: 600,
     },
 
     content: {
-        padding: '0px',
+        padding: '8px',
         paddingBottom: '0 !important',
         borderTop: '1px solid lightgrey',
     },
