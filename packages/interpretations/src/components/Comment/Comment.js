@@ -1,0 +1,78 @@
+import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import i18n from '@dhis2/d2-i18n'
+import ActionButton from '../Buttons/ActionButton';
+import WithAvatar from '../Avatar/WithAvatar';
+import CardHeader from '../Cards/CardHeader';
+import CardText from '../Cards/CardText';
+import DeleteDialog from '../DeleteDialog/DeleteDialog';
+import { formatRelative, isEdited } from '../../dateformats/dateformatter';
+import styles from './styles/Comment.style';
+
+export const Comment = ({ 
+    classes,
+    comment, 
+    isOwner,
+    locale, 
+    onEdit, 
+    onReply,
+    onDelete,
+    dialogIsOpen,
+    onDeleteConfirm,
+    onDeleteCancel, 
+}) => (
+    <Fragment>
+        <WithAvatar className={classes.comment} key={comment.id} user={comment.user}>
+            <CardHeader userName={comment.user.displayName}/>
+            <CardText 
+                extended={true}
+                text={comment.text}
+                isEdited={isEdited(comment.created, comment.lastUpdated)}
+            />
+            {isOwner ?
+                <Fragment>
+                    <div className={classes.commentDate}>{formatRelative(comment.created, locale)}</div>
+                    <div className={classes.commentActions}>
+                        <ActionButton
+                            iconType={'edit'} 
+                            onClick={() => onEdit(comment)} 
+                            />
+                        <ActionButton
+                            iconType={'reply'} 
+                            onClick={() => onReply(comment)} 
+                            />
+                        <ActionButton
+                            iconType={'delete'} 
+                            onClick={onDelete} 
+                            />
+                    </div>
+                </Fragment>
+                :
+                <ActionButton
+                    iconType={'reply'}  
+                    onClick={() => onReply(comment)} 
+                />
+            }
+        </WithAvatar>
+        {dialogIsOpen &&     
+            <DeleteDialog
+                title={i18n.t('Delete comment')}
+                text={i18n.t('Are you sure you want to delete this comment?')}
+                onDelete={() => onDeleteConfirm(comment)}
+                onCancel={onDeleteCancel}
+            />
+        }
+    </Fragment>
+);
+
+Comment.propTypes = {
+    classes: PropTypes.object.isRequired,
+    comment: PropTypes.object.isRequired,
+    isOwner: PropTypes.bool.isRequired,
+    onEdit: PropTypes.func.isRequired,
+    onDelete: PropTypes.func.isRequired,
+    onReply: PropTypes.func.isRequired,
+};
+
+export default withStyles(styles)(Comment);

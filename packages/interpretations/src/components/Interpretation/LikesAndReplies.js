@@ -9,16 +9,58 @@ import TextSeparator from '../TextSeparator/TextSeparator';
 import { formatRelative } from '../../dateformats/dateformatter';
 import styles from './styles/LikesAndReplies.style';
 
+const TOOLTIP_ENTER_DELAY = 200;
 export class LikesAndReplies extends Component {
-    state = { mouseOverLikes: null, mouseOverReplies: null  };
+    constructor(props) {
+        super(props);
+        this.likesId = Math.random().toString(36);
+        this.repliesId = Math.random().toString(36);
+        this.likesTimeout = null;
+        this.repliesTimeout = null;
+        this.state = {
+            mouseOverLikes: null, 
+            mouseOverReplies: null 
+        };
+    };
 
-    showLikedByTooltip = event => this.setState({ mouseOverLikes: event.currentTarget, });
+    componentWillUnmount() {
+        clearTimeout(this.likesTimeout);
+        clearTimeout(this.repliesTimeout);
+    }
 
-    hideLikedByTooltip = () => this.setState({ mouseOverLikes: null });
+    showLikedByTooltip = () => {
+        if(this.likesTimeout === null) {
+			this.likesTimeout = setTimeout(
+				() => this.setState({ mouseOverLikes: true }),
+				TOOLTIP_ENTER_DELAY
+			);
+		}
+    };
 
-    showRepliedByTooltip = event => this.setState({ mouseOverReplies: event.currentTarget });
+    hideLikedByTooltip = () => {
+        if (typeof this.likesTimeout === 'number') {
+			clearTimeout(this.likesTimeout);
+			this.likesTimeout = null;
+			this.setState({ mouseOverLikes: false });
+		}
+    };
 
-    hideRepliedByTooltip = () => this.setState({ mouseOverReplies: null });
+    showRepliedByTooltip = () => {
+        if(this.repliesTimeout === null) {
+			this.repliesTimeout = setTimeout(
+				() => this.setState({ mouseOverReplies: true }),
+				TOOLTIP_ENTER_DELAY
+			);
+		}
+    };
+
+    hideRepliedByTooltip = () => {
+        if (typeof this.repliesTimeout === 'number') {
+			clearTimeout(this.repliesTimeout);
+			this.repliesTimeout = null;
+			this.setState({ mouseOverReplies: false });
+		}
+    }
 
     filterDuplicateUserNames = () => {
         let listItems = [];
@@ -32,13 +74,14 @@ export class LikesAndReplies extends Component {
     }; 
 
     renderTooltip = label => {
+        const anchorEl = label === 'likedBy' ? document.getElementById(this.likesId) : document.getElementById(this.repliesId);
         const anchorOrigin = label === 'likedBy' ? this.state.mouseOverLikes : this.state.mouseOverReplies
         const tooltipNames = label === 'repliedBy' ? this.filterDuplicateUserNames() : this.props.likedBy;
-       
+
         return (
             <Popper
-                anchorEl={anchorOrigin}
-                open={Boolean(anchorOrigin)}
+                anchorEl={anchorEl}
+                open={anchorOrigin}
                 placement="top"
             >
                 <Paper className={this.props.classes.tooltip}>
@@ -64,6 +107,7 @@ export class LikesAndReplies extends Component {
             <Fragment>
                 <TextSeparator />
                 <span
+                    id={this.likesId}
                     onMouseEnter={this.showLikedByTooltip} 
                     onMouseLeave={this.hideLikedByTooltip}
                 >
@@ -82,6 +126,7 @@ export class LikesAndReplies extends Component {
             <Fragment>
                 <TextSeparator />
                 <span
+                    id={this.repliesId}
                     onMouseEnter={this.showRepliedByTooltip} 
                     onMouseLeave={this.hideRepliedByTooltip}
                 >

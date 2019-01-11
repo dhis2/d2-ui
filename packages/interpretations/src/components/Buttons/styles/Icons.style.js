@@ -1,4 +1,8 @@
 export default {
+    unlikedThumbUp: {
+        fill: 'grey',
+    },
+
     likedThumbUp: {
         fill: 'black',
     },
@@ -9,7 +13,6 @@ export default {
         width: '16px',
         marginRight: '24px',
     },
-
 
     interpretationCommentIcon: {
         fill: '#494949',

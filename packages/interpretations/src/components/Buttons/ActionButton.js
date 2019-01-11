@@ -9,11 +9,18 @@ import styles from './styles/ActionButton.style';
 const TOOLTIP_ENTER_DELAY = 200;
 export class ActionButton extends Component {
 
-    state = { tooltipIsOpen: false }
+	constructor(props) {
+		super(props);
+		this.id = Math.random().toString(36);
+		this.timeout = null;
+		this.state = {
+			tooltipIsOpen: false,
+		};
+	}
 
-	id = Math.random().toString(36);
-
-	timeout = null;
+	componentWillUnmount() {
+		clearTimeout(this.timeout);
+	}
 
     showTooltip = () => { 
 		if(this.timeout === null) {
@@ -22,7 +29,6 @@ export class ActionButton extends Component {
 				TOOLTIP_ENTER_DELAY
 			);
 		}
-
 	};
 
     hideTooltip = () => {
