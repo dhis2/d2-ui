@@ -120,7 +120,6 @@ class MentionsWrapper extends Component {
     };
 
     onUserSelect = user => {
-        console.log(user)
         const originalValue = this.state.element.value;
         const newValue = `${originalValue.slice(
             0,

@@ -6,7 +6,7 @@ import SubscriberIconDisabled from '@material-ui/icons/AddAlert';
 
 import * as helpers from '../../../api/helpers';
 import Details from '../../DetailsPanel/Details';
-import ListItem from '../ListItem';
+import Item from '../Item';
 import Description from '../Description';
 import { getStubContext } from '../../../../config/test-context';
 
@@ -65,7 +65,7 @@ const favorite = {
 
 const context = getStubContext();
 
-const childContextTypes = { d2: PropTypes.object };
+const childContextTypes = { d2: PropTypes.object, locale: () => null };
 
 const baseProps = {
     model: favorite,
@@ -77,8 +77,8 @@ const renderComponent = (partialProps = {}) => {
     return mount(<Details {...props} />, { context, childContextTypes });
 };
 
-const getListItem = (detailsCard, label) => {
-    return detailsCard.find('ListItem').findWhere(item => item.props().label === label);
+const getItem = (detailsCard, label) => {
+    return detailsCard.find('Item').findWhere(item => item.props().label === label);
 };
 
 describe('Interpretations: Details -> DetailsCard component', () => {
@@ -90,31 +90,31 @@ describe('Interpretations: Details -> DetailsCard component', () => {
 
     it('should render description as first item', () => {
         expect(
-            detailsCard.find(ListItem)
+            detailsCard.find(Item)
             .first()
             .find(Description)
-            .props().model.displayDescription
+            .props().description
             ).toEqual('Some translated Description');
     });
 
     it('should render owner', () => {
-        expect(getListItem(detailsCard, 'Owner').props().text).toEqual('John Traore');
+        expect(getItem(detailsCard, 'Owner').props().text).toEqual('John Traore');
     });
 
     it('should render created', () => {
-        expect(getListItem(detailsCard, 'Created').props().text).toEqual('May 17, 2018');
+        expect(getItem(detailsCard, 'Created').props().text).toEqual('May 17, 2018');
     });
 
     it('should render last updated', () => {
-        expect(getListItem(detailsCard, 'Last updated').props().text).toEqual('May 21, 2018');
+        expect(getItem(detailsCard, 'Last updated').props().text).toEqual('May 21, 2018');
     });
 
     it('should render favorite views', () => {
-        expect(getListItem(detailsCard, 'Views').props().text).toEqual(5);
+        expect(getItem(detailsCard, 'Views').props().text).toEqual(5);
     });
 
     it('should render sharing info', () => {
-        expect(getListItem(detailsCard, 'Sharing').props().text).toEqual(
+        expect(getItem(detailsCard, 'Sharing').props().text).toEqual(
             'Public: Read + Administrators'
         );
     });

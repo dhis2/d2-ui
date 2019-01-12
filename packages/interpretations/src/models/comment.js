@@ -23,7 +23,7 @@ export default class Comment {
     static getReplyText(d2, user) {
         const currentUsername = d2.currentUser.username;
         return user && user.userCredentials && user.userCredentials.username !== currentUsername ?
-            ("@" + user.userCredentials.username + "\xA0") : "";
+            ("@" + user.userCredentials.username + " ") : "";
     }
 
     getReply(d2) {

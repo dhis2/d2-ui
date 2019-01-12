@@ -17,25 +17,26 @@ export class SharingInfo extends Component {
         this.props.interpretation.externalAccess ? i18n.t('external access') : '';
 
     checkPublicAccess = () =>
-        this.props.interpretation.publicAccess === 'rw------';
+        this.props.interpretation.publicAccess === 'rw------' ||
+        this.props.interpretation.publicAccess === 'r-------';
 
     render() {
         const Info = this.getUsers().concat(this.getGroups()).join(', ')
         const externalAccess = this.checkExternalAccess();
         const publicAccess = this.checkPublicAccess();
 
-        return (
+        return (publicAccess || Info.length || externalAccess.length) ? (
             <div className={this.props.classes.sharingContainer}>
                 <Share className={this.props.classes.sharingIcon}/>
                 <span className={this.props.classes.label}>
                     {i18n.t('Shared with: ')} 
                     {Info}
                     {externalAccess}
-                    {(Info.length || externalAccess.length) ? i18n.t(' and public access.') : i18n.t('public access.')}
+                    {publicAccess && ((Info.length || externalAccess.length) ? i18n.t(' and public access.') : i18n.t('public access.'))}
                 </span>
             </div>
-        );
-    }
+        ) : null;
+    };
 };
 
 export default withStyles(styles)(SharingInfo);
@@ -51,4 +52,4 @@ SharingInfo.defaultProps = {
 
 SharingInfo.propTypes = {
     interpretation: PropTypes.object,
-}
+};

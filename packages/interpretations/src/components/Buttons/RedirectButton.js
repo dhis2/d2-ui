@@ -1,21 +1,23 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import i18n from '@dhis2/d2-i18n';
+import { withStyles } from '@material-ui/core/styles';
 import ActionButton from './ActionButton';
 import { getLink, itemTypeMap } from '../../api/redirect';
+import styles from './styles/ActionButton.style'
 
 
 export class RedirectButton extends Component {
-
     render() {
         return this.context.appName === 'dashboard' ? (
             <a
                 href={getLink(this.context.item, this.context.d2)}
-                style={{ height: 16, width: 16, marginRight: 24 }}
-                title={`View in ${itemTypeMap[this.context.item.type].appName} app`}
+                className={this.props.classes.iconContainer}
+                title={i18n.t(`View in ${itemTypeMap[this.context.item.type].appName} app`)}
             >
                 <ActionButton
                     iconType={'openApp'}
-                    tooltip={`View in ${itemTypeMap[this.context.item.type].appName} app`}
+                    tooltip={i18n.t(`View in ${itemTypeMap[this.context.item.type].appName} app`)}
                     onClick={() => null}
                 />
             </a>
@@ -29,4 +31,4 @@ RedirectButton.contextTypes = {
     appName: PropTypes.string,
 };
 
-export default RedirectButton;
+export default withStyles(styles)(RedirectButton);

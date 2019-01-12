@@ -8,13 +8,15 @@ import NewInterpretationField from './NewInterpretationField';
 import WithAvatar from '../Avatar/WithAvatar';
 import CardHeader from '../Cards/CardHeader';
 import CardText from '../Cards/CardText';
-import LikesAndReplies from './LikesAndReplies';
+import CardInfo from '../Cards/CardInfo';
 import ActionButtonContainer from '../Buttons/ActionButtonContainer';
 import CommentsList from '../Lists/CommentsList';
 import DeleteDialog from '../DeleteDialog/DeleteDialog';
 import InterpretationModel from '../../models/interpretation';
+import CommentModel from '../../models/comment';
 import { userCanManage } from '../../authorization/auth';
-import { isEdited } from '../../dateformats/dateformatter';
+import { formatRelative } from '../../dateformats/dateformatter';
+import { shouldUpdateSharing } from '../../sharing/sharing';
 import styles from './styles/Interpretation.style';
 
 export class Interpretation extends React.Component {
@@ -25,13 +27,15 @@ export class Interpretation extends React.Component {
         this.onDeleteInterpretation = this.onDeleteInterpretation.bind(this);
         this.onEditInterpretation = this.onEditInterpretation.bind(this);
         this.onCancelEditInterpretation = this.onCancelEditInterpretation.bind(this);
-        this.view = this.view.bind(this);
-        this.exitView = this.exitView.bind(this);
-        this.like = this.like.bind(this);
-        this.unlike = this.unlike.bind(this);
+        this.onView = this.onView.bind(this);
+        this.onExitView = this.onExitView.bind(this);
+        this.onLike = this.onLike.bind(this);
+        this.onUnlike = this.onUnlike.bind(this);
+        this.onReply = this.onReply.bind(this);
 
         this.state = {
             interpretationToEdit: null,
+            newComment: null,
             sharingDialogIsOpen: false,
             deleteDialogIsOpen: false,
         };
@@ -47,24 +51,32 @@ export class Interpretation extends React.Component {
         interpretation.like(this.context.d2, value).then(() => this.notifyChange(interpretation));
     };
 
-    view(event) {
+    onView(event) {
         event.stopPropagation();
         this.props.onSelect(this.props.interpretation.id);
     };
 
-    exitView(event) {
+    onExitView(event) {
         event.stopPropagation();
         this.props.onSelect(null);
     };
 
-    like(event) {
+    onLike(event) {
         event.stopPropagation();
         this.saveInterpretationLike(this.props.interpretation, true);
     };
 
-    unlike(event) {
+    onUnlike(event) {
         event.stopPropagation();
         this.saveInterpretationLike(this.props.interpretation, false);
+    };
+    
+    onReply() {
+        const newComment = CommentModel.getReplyForInterpretation(
+            this.context.d2,
+            this.props.interpretation
+        );
+        this.setState({ newComment });
     };
 
     onSaveInterpretation(interpretation) {
@@ -73,7 +85,10 @@ export class Interpretation extends React.Component {
     };
 
     onDeleteInterpretation() {
-        this.props.interpretation.delete(this.context.d2).then(() => this.notifyChange(null));
+        this.props.interpretation.delete(this.context.d2).then(() => { 
+            this.props.onSelect(null); 
+            this.notifyChange(null);
+        });
     };
 
     onEditInterpretation(event) {
@@ -85,35 +100,32 @@ export class Interpretation extends React.Component {
         this.setState({ interpretationToEdit: null });
     };
 
-
     onOpenSharingDialog = event => {
         event.stopPropagation();
         this.setState({ sharingDialogIsOpen: true });
     };
 
     onCloseSharingDialog = newSharingInfo => {
-        this.props.interpretation.publicAccess = newSharingInfo.publicAccess;
-        this.props.interpretation.externalAccess = newSharingInfo.externalAccess;
-        this.props.interpretation.userAccesses = newSharingInfo.userAccesses;
-        this.props.interpretation.userGroupAccesses = newSharingInfo.userGroupAccesses;
-        
-        const updatedInterpretation = new InterpretationModel(this.props.model, this.props.interpretation);
-        this.onSaveInterpretation(updatedInterpretation);        
+        if (shouldUpdateSharing(newSharingInfo, this.props.interpretation)) {
+            const sharingProperties = Object.assign({}, this.props.interpretation, newSharingInfo);
+            const updatedInterpretation = new InterpretationModel(this.props.model, sharingProperties);
+            this.onSaveInterpretation(updatedInterpretation);        
+        }
         this.setState({ sharingDialogIsOpen: false });
-    }
+    };
 
     onOpenDeleteDialog = event => {
         event.stopPropagation();
         this.setState({ deleteDialogIsOpen: true });
-    }
+    };
 
     onCloseDeleteDialog = () =>
         this.setState({ deleteDialogIsOpen: false });
     
     getOnClickHandlers = () => [
-        this.unlike, this.like, this.view,
-        this.exitView, this.onOpenSharingDialog, this.onEditInterpretation, 
-        this.onOpenDeleteDialog,
+        this.onUnlike, this.onLike, this.onView,
+        this.onExitView, this.onOpenSharingDialog, this.onEditInterpretation, 
+        this.onOpenDeleteDialog, this.onReply,
     ];
 
     getLikedByNames = () => {
@@ -146,18 +158,14 @@ export class Interpretation extends React.Component {
                 <WithAvatar 
                     className={extended ? classes.expanded : classes.compact} 
                     user={interpretation.user} 
-                    onClick={!extended ? this.view : null}
+                    onClick={!extended ? this.onView : null}
                 >
                     <CardHeader userName={interpretation.user.displayName} />                        
-                    <CardText
-                        extended={extended} 
-                        text={interpretation.text}
-                    />
-                    <LikesAndReplies
-                        createdDate={this.props.interpretation.created}
+                    <CardText extended={extended} text={interpretation.text} />
+                    <CardInfo 
                         likedBy={this.getLikedByNames()}
                         repliedBy={this.getRepliedByNames()}
-                        isEdited={isEdited(interpretation.created, interpretation.lastUpdated)}
+                        createdDate={formatRelative(interpretation.created, this.context.locale)}
                     />
                     <ActionButtonContainer
                         isFocused={extended}
@@ -168,12 +176,13 @@ export class Interpretation extends React.Component {
                 </WithAvatar>
             );
         }
-    }
+    };
 
     renderComments = () => 
         this.props.extended && (
             <CommentsList
                 interpretation={this.props.interpretation}
+                newComment={this.state.newComment}
                 onChange={this.notifyChange}
             />
         );
@@ -213,7 +222,7 @@ export class Interpretation extends React.Component {
                 {DeleteInterpretationDialog}
             </Fragment>
         );
-    }
+    };
 }
 
 Interpretation.propTypes = {

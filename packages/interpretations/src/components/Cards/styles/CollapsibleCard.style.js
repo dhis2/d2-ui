@@ -1,6 +1,6 @@
 export const styles = theme => ({
     card: {
-        margin: '4px',
+        margin: '2px',
         position: 'relative',
     },
 

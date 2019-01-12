@@ -8,19 +8,16 @@ import styles from './styles/ActionButton.style';
 
 const TOOLTIP_ENTER_DELAY = 200;
 export class ActionButton extends Component {
-
 	constructor(props) {
 		super(props);
 		this.id = Math.random().toString(36);
 		this.timeout = null;
-		this.state = {
-			tooltipIsOpen: false,
-		};
+		this.state = { tooltipIsOpen: false };
 	}
 
 	componentWillUnmount() {
 		clearTimeout(this.timeout);
-	}
+	};
 
     showTooltip = () => { 
 		if(this.timeout === null) {

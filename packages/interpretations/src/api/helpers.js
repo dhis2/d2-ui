@@ -1,5 +1,6 @@
 import Interpretation from '../models/interpretation';
 import { apiFetch } from './api';
+import { itemTypeMap } from './redirect';
 
 const interpretationsFields = [
     'id',
@@ -36,7 +37,8 @@ const favoriteFields = [
 ];
 
 export const getFavoriteWithInterpretations = (d2, type, id) => {
-    const modelClass = d2.models[type];
+    const propName = itemTypeMap[type.toUpperCase()].propName;
+    const modelClass = d2.models[propName];
     const api = d2.Api.getApi();
     const model$ = modelClass.get(id, {fields: favoriteFields.join(',')});
     const views$ = api.get(`dataStatistics/favorites/${id}`).then(json => json.views);

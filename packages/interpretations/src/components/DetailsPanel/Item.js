@@ -3,16 +3,17 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles/Details.style';
 
-export const ListItem = ({ classes, label, text }) => (
+export const Item = ({ classes, label, text }) => (
     <div className={classes.detailsCardItem}>
-        {label && <label style={styles.listItemLabel}>{label}:</label>}
+        {label && <label className={classes.item}>{label}:</label>}
         {text}
     </div>
 );
 
-ListItem.propTypes = {
+Item.propTypes = {
     classes: PropTypes.object.isRequired,
     label: PropTypes.string,
+    text: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
 };
 
-export default withStyles(styles)(ListItem);
+export default withStyles(styles)(Item);

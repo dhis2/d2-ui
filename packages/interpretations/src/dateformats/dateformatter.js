@@ -8,12 +8,12 @@ export function formatDate(value = '', uiLocale = 'en') {
             day: 'numeric',
         }).format(new Date(value));
     }
-
+    
     return value.substr(0, 19).replace('T', ' ');
 }
 
 export function formatRelative(value, uiLocale) {
-    const createdRelativeDate = moment(value, moment.ISO_8601).fromNow();
+    const createdRelativeDate = moment(value, moment.ISO_8601).add(1, 'hour').fromNow();
 
     return dateIsOver24Hours(createdRelativeDate) ? formatDate(value, uiLocale) : createdRelativeDate;
 };
@@ -28,7 +28,3 @@ export function dateIsOver24Hours(relativeDate) {
 
     return shouldFormatToDate;
 };
-
-export const isEdited = (createdDate, lastUpdatedDate, locale) =>
-    createdDate.substring(0, 19) !== lastUpdatedDate.substring(0, 19);
-    

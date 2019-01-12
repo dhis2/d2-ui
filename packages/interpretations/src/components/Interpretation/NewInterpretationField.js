@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 import MentionsWrapper from '@dhis2/d2-ui-mentions-wrapper';
-import SharingDialog from '@dhis2/d2-ui-sharing-dialog';
 import { Editor as RichTextEditor, convertCtrlKey } from '@dhis2/d2-ui-rich-text';
 import i18n from '@dhis2/d2-i18n';
 import WithAvatar from '../Avatar/WithAvatar';
@@ -13,27 +12,22 @@ import InterpretationModel from '../../models/interpretation';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import styles from './styles/NewInterpretationField.style';
 
-
-const isMention = '@';
-
 export class NewInterpretationField extends Component {
-
     constructor(props) {
         super(props);
         this.textarea = React.createRef();
         this.id = Math.random().toString(36);
         this.state = { 
             text: this.props.interpretation ? this.props.interpretation.text : '',
-            sharingDialogIsOpen: false,
             showToolbar: false,
         };    
-    }
+    };
     
     onInputChange = event => {
         if (event.target) {
             this.setState({ text: event.target.value });
         }
-    }
+    };
 
     setNativeInputVal = val => {
         const node = this.textarea.current;
@@ -43,10 +37,10 @@ export class NewInterpretationField extends Component {
     onKeyDown = event => {
         convertCtrlKey(event, this.setNativeInputVal)
         this.setState({ text: this.textarea.current.value });
-    }
+    };
 
     onClearInput = () => 
-        this.setState({ text: '' });
+        this.setState({ text: '' }, () => this.textarea.current.focus());
         
     onFocus = () => 
         this.setState({ showToolbar: true });
@@ -56,26 +50,6 @@ export class NewInterpretationField extends Component {
         
     onToolbarClick = (text, highlightStart, highlightEnd) => 
         this.setState({ text }, () => this.focus(highlightStart, highlightEnd));
-        
-    onOpenSharingDialog = () => 
-        this.setState({ sharingDialogIsOpen: true });
-
-    onCloseSharingDialog = () =>
-        this.setState({ sharingDialogIsOpen: false });
-
-    focus = (highlightStart, highlightEnd) => {
-
-        this.textarea.current.focus();
-        this.textarea.current.setSelectionRange(highlightStart, highlightEnd)
-
-            
-          /*  const toolbarInput = this.state.text.substring(this.state.text.length - 1, this.state.text.length)
-            if (toolbarInput === isMention) {
-                const keyEvent = new CustomEvent('mention', { bubbles: true, value: this.state.text });
-                textarea.dispatchEvent(keyEvent);
-            }
-            */
-    };
 
     async postInterpretation() {
         const newInterpretation = new InterpretationModel(this.props.model, {});
@@ -87,7 +61,7 @@ export class NewInterpretationField extends Component {
     onPost = () => 
         this.postInterpretation().then(savedInterpretation => {
             this.props.onSave(savedInterpretation);
-            this.onClearInput();
+            this.setState({ text: '' }, this.onBlur);
         });
 
     onUpdate = () => {
@@ -95,9 +69,14 @@ export class NewInterpretationField extends Component {
         this.props.onUpdate(this.props.interpretation);
     };
 
+    focus = (highlightStart, highlightEnd) => {
+        this.textarea.current.focus();
+        this.textarea.current.setSelectionRange(highlightStart, highlightEnd)
+
+    };
 
     renderActionButtons = () => {
-        if (!!this.state.text.length) {
+        if (this.state.text.length) {
             return (
                 <Fragment>
                     <Button 
@@ -111,7 +90,7 @@ export class NewInterpretationField extends Component {
                     <Button
                         className={this.props.classes.cancelButton}  
                         variant="outlined" 
-                        onClick={this.props.interpretation ? this.props.onClose : this.onClearInput}
+                        onClick={this.props.onClose || this.onClearInput}
                     >
                         {i18n.t('Cancel')}
                     </Button>
@@ -130,32 +109,20 @@ export class NewInterpretationField extends Component {
         }
     };
 
-    renderSharingDialog = () =>
-        this.state.sharingDialogIsOpen && (
-            <SharingDialog
-                open={this.state.sharingDialogIsOpen}
-                onRequestClose={this.onCloseSharingDialog}
-                d2={this.context.d2}
-                id={this.props.interpretation.id}
-                type={'interpretation'}
-            /> 
-        )
-
     renderToolbar = () => 
         (this.state.text.length || this.state.showToolbar) && (
-            <Toolbar text={this.state.text} onClick={this.onToolbarClick} element={document.getElementById(this.id)} id={this.id} refer={this.textarea}/>
+            <Toolbar text={this.state.text} onClick={this.onToolbarClick} element={document.getElementById(this.id)} />
         );
 
     renderSharingInfo = () =>
-        !!this.state.text.length && (
-            <SharingInfo interpretation={this.props.interpretation} onClick={this.onOpenSharingDialog}/>
+        !!this.state.text && (
+            <SharingInfo interpretation={this.props.interpretation} />
         );
     
     render() {
         const ActionButtons = this.renderActionButtons();
         const Toolbar = this.renderToolbar();
         const Sharing = this.renderSharingInfo();
-        const SharingDialog = this.renderSharingDialog();
 
         return (
             <WithAvatar className={this.props.classes.newInterpretation} user={this.context.d2.currentUser}>
@@ -180,7 +147,6 @@ export class NewInterpretationField extends Component {
                 </MentionsWrapper>
                 {Sharing}
                 {ActionButtons}
-                {SharingDialog}
             </WithAvatar>
         );
     };

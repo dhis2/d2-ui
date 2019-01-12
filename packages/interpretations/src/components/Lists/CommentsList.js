@@ -21,6 +21,7 @@ export class CommentsList extends React.Component {
     static propTypes = {
         classes: PropTypes.object.isRequired,
         interpretation: PropTypes.object.isRequired,
+        newComment: PropTypes.object,
         onChange: PropTypes.func,
     };
 
@@ -34,22 +35,27 @@ export class CommentsList extends React.Component {
         this.state = {
             listIsExpanded: !(this.props.interpretation.comments.length > commentsToShowOnInit),
             commentToEdit: null,
-            newComment: null,
+            newComment: props.newComment,
             deleteDialogIsOpen: false,
         };
     };
 
-    componentWillReceiveProps() {
-        this.getNewComment();
-    };
+   componentDidMount() {
+       const newComment = CommentModel.getReplyForInterpretation(
+           this.context.d2,
+           this.props.interpretation
+       );
+       this.setState({ newComment, showToolbar: true });
+   };
 
-    componentDidMount() {
-        this.getNewComment();
+    componentDidUpdate(prevProps) {
+        if (this.props.newComment !== prevProps.newComment) {
+            this.setState({ newComment: this.props.newComment});
+        }
     };
 
     onSave(comment) {
         comment.save(this.context.d2).then(() => this.props.onChange(this.props.interpretation));
-        this.getNewComment();
     };
 
     onDeleteComment(comment) {
@@ -90,15 +96,6 @@ export class CommentsList extends React.Component {
         this.setState({ commentToEdit: null, newComment });
     };
 
-    getNewComment() {
-        const newComment = CommentModel.getReplyForInterpretation(
-            this.context.d2,
-            this.props.interpretation
-        );
-
-        this.setState({ newComment });
-    };
-
     getComments = () => {
         const sortedComments = orderBy(["created"], ["asc"], this.props.interpretation.comments);
         
@@ -111,7 +108,7 @@ export class CommentsList extends React.Component {
         this.props.interpretation.comments.length > commentsToShowOnInit && (
             <Link
                 label={this.state.listIsExpanded ? i18n.t('Hide old replies') : i18n.t('View more replies')} 
-                onClick={this.state.listIsExpanded ? this.onHideOldComments: this.onShowMoreComments}
+                onClick={this.state.listIsExpanded ? this.onHideOldComments : this.onShowMoreComments}
             />
         );
 

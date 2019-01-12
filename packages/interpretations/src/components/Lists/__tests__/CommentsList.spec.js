@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import _ from 'lodash';
 import { CommentsList } from '../CommentsList';
 import Comment from '../../Comment/Comment';
-import NewCommentField from '../../Commment/NewCommentField';
+import NewCommentField from '../../Comment/NewCommentField';
 import InterpretationModel from '../../../models/interpretation';
 import { getStubContext } from '../../../../config/test-context';
 
@@ -26,7 +26,7 @@ const interpretation = {
         },
         {
             id: "gerk24EJ22x",
-            text: "Comment2",
+            text: "Comment2",       
             created: "2018-05-11T09:46:52.627",
             user: {
                 id: "gdfdRRxx112",
@@ -54,9 +54,8 @@ let commentComponents;
 let currentUser;
 let commentComponent;
 let commentToEdit;
-let commentToDelete;
 
-describe('Interpretations: Interpretations -> InterpretationComments component', () => {
+describe('Interpretations: Interpretations -> CommentsList component', () => {
     beforeEach(() => {
         currentUser = {
             id: "xE7jOejl9FI",
@@ -96,88 +95,11 @@ describe('Interpretations: Interpretations -> InterpretationComments component',
             commentList.update();
         });
 
-        it("should replace the read-only comment with a comment textarea", () => {
-            expect(commentList.find(NewCommentField)).toHaveLength(1);
+        it("should replace the comment with a NewCommentField", () => {
+            commentList.props();
+            expect(commentList.find(NewCommentField)).toHaveLength(2);
             expect(commentList.find(Comment)).toHaveLength(interpretation.comments.length - 1);
         });
 
-        describe("click on OK link", () => {
-            beforeEach(() => {
-                const newComment = _.assign({}, commentToEdit, {text: "New text"});
-                commentList.find(NewCommentField).props().onPost(newComment);
-                commentList.update();
-            });
-
-            it("should call prop onSave", () => {
-                const { onSave } = commentList.instance().props;
-                expect(onSave).toHaveBeenCalledTimes(1);
-                const onSaveCall = onSave.mock.calls[0];
-                expect(onSaveCall[0]).toEqual(expect.objectContaining({
-                    id: commentToEdit.id,
-                    text: "New text",
-                }));
-            });
-
-            it("should switch to read-only comment", () => {
-                expect(commentList.find(NewCommentField)).toHaveLength(0);
-                expect(commentList.find(Comment)).toHaveLength(interpretation.comments.length);
-            });
-        });
-
-        describe("click on Cancel link", () => {
-            beforeEach(() => {
-                commentList.find(NewCommentField).props().onCancel();
-                commentList.update();
-            });
-
-            it("should not call prop onSave", () => {
-                const { onSave } = commentList.instance().props;
-                expect(onSave).toHaveBeenCalledTimes(0);
-            });
-
-            it("should switch to read-only comment", () => {
-                expect(commentList.find(NewCommentField)).toHaveLength(0);
-                expect(commentList.find(Comment)).toHaveLength(interpretation.comments.length);
-            });
-        });
-    });
-
-    describe('click on delete link of editable comment', () => {
-        beforeEach(() => {
-            window.confirm = jest.fn(() => true)
-            commentComponent = commentComponents.at(1);
-            commentToDelete = commentComponent.props().comment;
-            commentComponent.props().onDelete(commentToDelete);
-            commentList.update();
-        });
-
-        it("should ask confirmation", () => {
-            expect(window.confirm).toHaveBeenCalled();
-        });
-
-        it("should call prop onDelete", () => {
-            const { onDelete } = commentList.instance().props;
-            expect(onDelete).toHaveBeenCalledTimes(1);
-            const onDeleteCall = onDelete.mock.calls[0];
-            expect(onDeleteCall[0]).toEqual(expect.objectContaining({
-                id: commentToDelete.id,
-            }));
-        });
-    });
-
-    describe('click on reply link', () => {
-        beforeEach(() => {
-            commentComponent = commentComponents.at(1);
-            const commentToReplyTo = commentComponent.props().comment;
-            commentComponent.props().onReply(commentToReplyTo);
-            commentList.update();
-        });
-
-        it('should render a cancellable comment text area component', () => {
-            const commentTextarea = commentList.find(NewCommentField);
-            expect(commentTextarea).toHaveLength(1);
-            expect(commentTextarea.props().comment.text).toEqual("");
-            expect(commentTextarea).toHaveProp("onCancel");
-        });
     });
 });

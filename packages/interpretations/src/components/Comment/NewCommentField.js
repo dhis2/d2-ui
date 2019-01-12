@@ -3,21 +3,24 @@ import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import { withStyles } from '@material-ui/core/styles';
+import { Editor as RichTextEditor, convertCtrlKey } from '@dhis2/d2-ui-rich-text';
 import MentionsWrapper from '@dhis2/d2-ui-mentions-wrapper';
 import i18n from '@dhis2/d2-i18n';
 import WithAvatar from '../Avatar/WithAvatar';
+import Toolbar from '../Toolbar/Toolbar';
 import styles from './styles/NewCommentField.style';
 
 export class NewCommentField extends React.Component {
     constructor(props) {
         super(props);
         this.textarea = React.createRef();
+        this.id = Math.random().toString(36);
         this.state = { 
             text: this.props.comment ? this.props.comment.text : '',
             sharingDialogIsOpen: false,
-            isExpanded: false,
+            showToolbar: false,
         };    
-    }
+    };
     
     componentWillReceiveProps(newProps) {
         if (this.props.comment !== newProps.comment) {
@@ -25,17 +28,34 @@ export class NewCommentField extends React.Component {
         }
     };
 
-    onInputChange = event =>
-        this.setState({ text: event.target.value });
+    onInputChange = event => {
+        if (event.target) {
+            this.setState({ text: event.target.value }, this.onFocus);
+        }
+    };
+
+    setNativeInputVal = val => {
+        const node = this.textarea.current;
+        node.value = val;
+    };
+
+    onKeyDown = event => {
+        convertCtrlKey(event, this.setNativeInputVal)
+        this.setState({ text: this.textarea.current.value });
+    };
 
     onClearInput = () => 
-        this.setState({ text: '' });
+        this.setState({ text: '' }, this.onBlur);
         
-    onFocus = () => 
-        this.setState({ isExpanded: true });
+    onFocus = () =>
+        this.setState({ showToolbar: true });
     
-    onBlur = () => 
-        !this.state.text.length  && this.setState({ isExpanded: false })
+    onBlur = () =>
+        !this.state.text.length  && this.setState({ showToolbar: false });
+
+
+    onToolbarClick = (text, highlightStart, highlightEnd) => 
+        this.setState({ text }, () => this.focus(highlightStart, highlightEnd));
 
     onPost = () => {
         const newText = this.state.text;
@@ -45,12 +65,17 @@ export class NewCommentField extends React.Component {
             newComment.text = newText;
 
             this.props.onPost(newComment);
-            this.setState({ text: '' });
+            this.setState({ text: '' }, this.onBlur);
         }
     };
 
+    focus = (highlightStart, highlightEnd) => {
+        this.textarea.current.focus();
+        this.textarea.current.setSelectionRange(highlightStart, highlightEnd)
+    };
+
     renderActionButtons = () => {
-        if (!!this.state.text) {
+        if (this.state.text.length) {
             return (
                 <Fragment>
                     <Button 
@@ -81,34 +106,44 @@ export class NewCommentField extends React.Component {
                 </Button>
             )
         }
-    }
+    };
+
+    renderToolbar = () =>
+        (this.state.text.length || this.state.showToolbar) && (
+            <Toolbar text={this.state.text} onClick={this.onToolbarClick} element={document.getElementById(this.id)} />
+        );
 
     render() {
         const ActionButtons = this.renderActionButtons();
-        console.log('render');
-
+        const Toolbar = this.renderToolbar();
+        
         return (
             <WithAvatar className={this.props.classes.newReply} user={this.context.d2.currentUser}>
                 <MentionsWrapper d2={this.context.d2} onUserSelect={this.onInputChange}>
+                    <RichTextEditor onEdit={this.onInputChange}>
                         <ClickAwayListener mouseEvent="onClick" onClickAway={this.onBlur}>
-                            <div className={this.props.classes.inputField} onFocus={this.onFocus}>
+                            <div onClick={this.onFocus} className={this.props.classes.inputField} onFocus={this.onFocus}>
+                                {Toolbar}
                                 <textarea
-                                    ref={this.textarea}
                                     className={this.props.classes.commentArea}
+                                    id={this.id}
+                                    ref={this.textarea}
                                     placeholder={i18n.t('Write a reply')}
                                     value={this.state.text}
-                                    rows={this.state.isExpanded ? 4 : 2}
+                                    rows={this.state.showToolbar ? 4 : 2}
                                     autoFocus={true}
                                     onChange={this.onInputChange}
+                                    onKeyDown={this.onKeyDown}
                                 /> 
                             </div>
                         </ClickAwayListener>
+                    </RichTextEditor>
                 </MentionsWrapper>
                 {ActionButtons}
             </WithAvatar>
         );
-    }
-}
+    };
+};
 
 NewCommentField.contextTypes = {
     d2: PropTypes.object,

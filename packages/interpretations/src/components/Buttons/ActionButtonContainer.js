@@ -7,18 +7,17 @@ import styles from './styles/ActionButtonContainer.style';
 
 const UNLIKE_INDEX = 0;
 const LIKE_INDEX = 1;
-const REPLY_INDEX = 2;
 const VIEW_INDEX = 2;
 const EXIT_VIEW_INDEX = 3;
 const SHARE_INDEX = 4;
 const EDIT_INDEX = 5;
 const DELETE_INDEX = 6;
+const REPLY_INDEX = 7;
 
 export const ActionButtonContainer = ({ 
     classes, 
-
-    currentUserLikesInterpretation,
     isFocused,
+    currentUserLikesInterpretation,
     isOwner,
     onClickHandlers,
 }) => {

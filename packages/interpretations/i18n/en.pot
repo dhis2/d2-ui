@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2019-01-10T13:32:12.698Z\n"
-"PO-Revision-Date: 2019-01-10T13:32:12.698Z\n"
+"POT-Creation-Date: 2019-01-12T12:23:44.098Z\n"
+"PO-Revision-Date: 2019-01-12T12:23:44.098Z\n"
 
 msgid "Pivot Tables"
 msgstr ""
@@ -47,22 +47,16 @@ msgstr ""
 msgid "Delete"
 msgstr ""
 
-msgid "Clear interpretation"
-msgstr ""
-
-msgid "Write new interpretation"
-msgstr ""
-
-msgid "more comments"
-msgstr ""
-
-msgid "(edited)"
-msgstr ""
-
 msgid "Back to all interpretations"
 msgstr ""
 
 msgid "Interpretations"
+msgstr ""
+
+msgid "Delete comment"
+msgstr ""
+
+msgid "Are you sure you want to delete this comment?"
 msgstr ""
 
 msgid "Save reply"
@@ -107,24 +101,6 @@ msgstr ""
 msgid "Sharing"
 msgstr ""
 
-msgid "None"
-msgstr ""
-
-msgid "Read"
-msgstr ""
-
-msgid "Read/Write"
-msgstr ""
-
-msgid "Unknown"
-msgstr ""
-
-msgid "Public"
-msgstr ""
-
-msgid "user groups"
-msgstr ""
-
 msgid "Delete interpretation"
 msgstr ""
 
@@ -137,28 +113,22 @@ msgstr ""
 msgid "like"
 msgstr ""
 
-msgid "replies"
-msgstr ""
-
-msgid "reply"
-msgstr ""
-
 msgid "Save interpretation"
 msgstr ""
 
 msgid "Write an interpretation"
 msgstr ""
 
+msgid "replies"
+msgstr ""
+
+msgid "reply"
+msgstr ""
+
 msgid "Hide old replies"
 msgstr ""
 
 msgid "View more replies"
-msgstr ""
-
-msgid "Delete comment"
-msgstr ""
-
-msgid "Are you sure you want to delete this comment?"
 msgstr ""
 
 msgid "No interpretations"
@@ -176,13 +146,31 @@ msgstr ""
 msgid "of"
 msgstr ""
 
-msgid ", external access and "
+msgid "external access"
 msgstr ""
 
-msgid " and "
+msgid " and public access."
 msgstr ""
 
 msgid "public access."
+msgstr ""
+
+msgid "None"
+msgstr ""
+
+msgid "Read"
+msgstr ""
+
+msgid "Read/Write"
+msgstr ""
+
+msgid "Unknown"
+msgstr ""
+
+msgid "Public"
+msgstr ""
+
+msgid "user groups"
 msgstr ""
 
 msgid "chart"

@@ -14,6 +14,7 @@ export default {
 
     label: { 
         fontSize: '12px', 
-        padding: '0px 5px'
+        padding: '0px 5px',
+        lineHeight: '1.5em',
     },
 }

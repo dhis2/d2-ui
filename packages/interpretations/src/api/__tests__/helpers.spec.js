@@ -16,7 +16,9 @@ const initD2 = () => {
 
     d2 = _.merge(context.d2, {
         models: {
-            map: {get: jest.fn(() => map)},
+            maps: {
+                get: jest.fn(() => map),
+            },
         },
         Api: {
             getApi: () => ({
@@ -40,9 +42,9 @@ describe("getFavoriteWithInterpretations", () => {
         it("should call the model D2 get with the required fields", () => {
             const expectedFields = "id,name,href,subscribed,user[id,displayName],displayName,description,displayDescription," +
                 "created,lastUpdated,access,publicAccess,externalAccess,userAccesses,userGroupAccesses," +
-                "interpretations[id,user[id,displayName,userCredentials[username]],created,likes,likedBy[id,displayName]," +
-                "text,comments[id,text,created,user[id,displayName,userCredentials[username]]]]";
-            expect(d2.models.map.get).toBeCalledWith("1", {fields: expectedFields});
+                "interpretations[id,user[id,displayName,userCredentials[username]],created,lastUpdated,likes,likedBy[id,displayName]," +
+                "text,publicAccess,externalAccess,userAccesses,userGroupAccesses,comments[id,text,created,lastUpdated,user[id,displayName,userCredentials[username]]]]";
+            expect(d2.models.maps.get).toBeCalledWith("1", {fields: expectedFields});
         });
 
         it("should call the views statistics API", () => {

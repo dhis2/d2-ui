@@ -1,12 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { NewComment } from '../NewComment';
-import Link from '../../Link/Link';
-import PropTypes from 'prop-types';
+import Button from '@material-ui/core/Button';
+import { NewCommentField } from '../NewCommentField';
 import { getStubContext } from '../../../../config/test-context';
 
 const context = getStubContext();
-const childContextTypes = { d2: PropTypes.object };
 
 const comment = {
     id: 'tEvCRL8r9KW',
@@ -18,19 +16,17 @@ const comment = {
 };
 
 const baseProps = {
+    classes: {},
     comment: comment,
     onPost: jest.fn(),
-    isNew: false,
-    onCancel: jest.fn(),
-    classes: {},
 };
 
 const renderComponent = (partialProps = {}) => {
     const props = { ...baseProps, ...partialProps };
-    return shallow(<NewComment {...props} />, { context, childContextTypes });
+    return shallow(<NewCommentField {...props} />, { context });
 };
 
-describe('Interpretations: Interpretations -> NewComment component', () => {
+describe('Interpretations: Comment -> NewCommentField component', () => {
     let newComment;
 
     beforeEach(() => {
@@ -41,45 +37,27 @@ describe('Interpretations: Interpretations -> NewComment component', () => {
         expect(newComment.find('textarea')).toHaveProp('value', comment.text);
     });
 
-    it('should render a cancel link', () => {
-        const links = newComment.find(Link);
-        const cancelLinks = links.findWhere(link => link.props().label === 'Cancel');
-        expect(cancelLinks).toExist();
+    it('should render a save reply button when text is present', () => {
+        const buttons = newComment.find(Button);
+        const saveReplyButton = buttons.findWhere(button => button.props().children === 'Save reply');
+        expect(saveReplyButton).toExist();
     });
 
-    describe('with isEditing prop as false', () => {
-        beforeEach(() => {
-            newComment = renderComponent({ onPost: jest.fn(), isEditing: false });
-        });
-
-        it('should render a Post reply link', () => {
-            const links = newComment.find(Link);
-            const postReplyLinks = links.findWhere(link => link.props().label === 'Post reply');
-            expect(postReplyLinks.length).toEqual(1);
-        });
+    it('should render a cancel button when text is present', () => {
+        const buttons = newComment.find(Button);
+        const cancelButton = buttons.findWhere(button => button.props().children === 'Cancel');
+        expect(cancelButton).toExist();
     });
 
-    describe('with isEditing prop as true', () => {
-        beforeEach(() => {
-            newComment = renderComponent({ onPost: jest.fn(), isEditing: true });
-        });
-
-        it('should render a OK link', () => {
-            const links = newComment.find(Link);
-            const okLinks = links.findWhere(link => link.props().label === 'OK');
-            expect(okLinks.length).toEqual(1);
-        });
-    });
-
-    describe('when post is clicked with new text on textarea', () => {
+    describe('when Save reply is clicked with new text on textarea', () => {
         beforeEach(() => {
             newComment
                 .find('textarea')
                 .props()
                 .onChange({ target: { value: 'new text' } });
-            const links = newComment.find(Link);
-            const postLink = links.findWhere(link => link.props().label === 'Post reply');
-            postLink.simulate('click');
+            const buttons = newComment.find(Button);
+            const saveReplyButton = buttons.findWhere(button => button.props().children === 'Save reply');
+            saveReplyButton.simulate('click');
         });
 
         it('should call onPost with the updated comment', () => {
@@ -96,12 +74,14 @@ describe('Interpretations: Interpretations -> NewComment component', () => {
         });
     });
 
-    describe('when cancel link is clicked', () => {
+    describe('when Cancel button is clicked', () => {
         beforeEach(() => {
+            newComment = renderComponent({ onCancel: jest.fn() });
+
             newComment
-                .find(Link)
-                .findWhere(link => link.props().label === 'Cancel')
-                .simulate('click');
+            .find(Button)
+            .findWhere(button => button.props().children === 'Cancel')
+            .simulate('click');
         });
 
         it('should call onCancel', () => {
@@ -110,7 +90,7 @@ describe('Interpretations: Interpretations -> NewComment component', () => {
         });
     });
 
-    describe('when Post reply link is clicked with new text on textarea', () => {
+    describe('when Save reply button is clicked with new text on textarea', () => {
         beforeEach(() => {
             newComment
             .find('textarea')
@@ -118,8 +98,8 @@ describe('Interpretations: Interpretations -> NewComment component', () => {
             .onChange({ target: { value: 'new text' } });
 
             newComment
-                .find(Link)
-                .findWhere(link => link.props().label === 'Post reply')
+                .find(Button)
+                .findWhere(button => button.props().children === 'Save reply')
                 .simulate('click');
         });
 

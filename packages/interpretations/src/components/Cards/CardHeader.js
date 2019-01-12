@@ -6,15 +6,11 @@ import styles from './styles/CardHeader.style';
 
 export const CardHeader = ({ classes, userName }) => (
     <div className={classes.interpretationName}>
-        <span style={styles.userLink}>
+        <span className={classes.userLink}>
             {userName}
         </span>
     </div>
 );
-
-CardHeader.contextTypes = {
-    locale: PropTypes.string.isRequired,
-};
 
 CardHeader.propTypes = {
     classes: PropTypes.object.isRequired,

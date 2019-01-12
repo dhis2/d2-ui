@@ -38,9 +38,4 @@ describe('components: Interpretation -> CardHeader component', () => {
         const cardHeaderText = cardHeaderComponent.text();
         expect(cardHeaderText).toContain(interpretationModel.user.displayName);
     });
-
-    it('should show the formatted relative creation date', () => {
-        const createdDate = cardHeaderComponent.text();
-        expect(createdDate).toMatch('Apr 14, 2018');
-    });
 });

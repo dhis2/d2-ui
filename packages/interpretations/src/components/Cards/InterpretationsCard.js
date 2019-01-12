@@ -14,16 +14,23 @@ import styles from './styles/InterpretationsCard.style';
 export class InterpretationsCard extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            currentInterpretationId: props.currentInterpretationId,
-            listIsExpanded: props.model.interpretations.length > interpretationsToShowOnInit,
-        };
-
         this.notifyChange = this.notifyChange.bind(this);
         this.isControlledComponent = !!props.onCurrentInterpretationChange;
         this.toggleShowAllInterpretations = this.toggleShowAllInterpretations.bind(this);
         this.setCurrentInterpretation = this.setCurrentInterpretation.bind(this);
-    }
+        
+        this.state = {
+            currentInterpretationId: props.currentInterpretationId,
+            listIsExpanded: props.model.interpretations.length > interpretationsToShowOnInit,
+        };
+    };
+
+    componentDidMount() {
+        const currentInterpretation = this.getCurrentInterpretation();
+        if (currentInterpretation && this.props.onCurrentInterpretationChange) {
+            this.props.onCurrentInterpretationChange(currentInterpretation);
+        }
+    };
 
     componentWillReceiveProps(nextProps) {
         if (this.isControlledComponent) {
@@ -31,22 +38,15 @@ export class InterpretationsCard extends React.Component {
                 currentInterpretationId: nextProps.currentInterpretationId
             });
         }
-    }
-
-    componentDidMount() {
-        const currentInterpretation = this.getCurrentInterpretation();
-        if (currentInterpretation && this.props.onCurrentInterpretationChange) {
-            this.props.onCurrentInterpretationChange(currentInterpretation);
-        }
-    }
+    };
 
     notifyChange() {
         this.props.onChange();
-    }
+    };
 
     toggleShowAllInterpretations() {
         this.setState({ listIsExpanded: !this.state.listIsExpanded });
-    }
+    };
 
     setCurrentInterpretation(interpretationId) {
         const { model, onCurrentInterpretationChange } = this.props;
@@ -61,7 +61,7 @@ export class InterpretationsCard extends React.Component {
         } else {
             this.setState({ currentInterpretationId: interpretationId });
         }
-    }
+    };
 
     getCurrentInterpretation() {
         const { model } = this.props;
@@ -73,7 +73,7 @@ export class InterpretationsCard extends React.Component {
                       interpretation.id === currentInterpretationId
               )
             : null;
-    }
+    };
 
     renderBackButton = () => 
         this.state.currentInterpretationId && (
@@ -136,7 +136,7 @@ export class InterpretationsCard extends React.Component {
                 {InputField}
             </CollapsibleCard>
         );
-    }
+    };
 }
 
 InterpretationsCard.propTypes = {

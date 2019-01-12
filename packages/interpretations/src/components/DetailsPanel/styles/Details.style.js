@@ -48,7 +48,7 @@ export default {
         margin: '4px',
     },
     
-    listItemLabel: {
+    item: {
         fontWeight: 'bold',
         marginRight: '5px', 
     }

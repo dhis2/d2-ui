@@ -69,7 +69,7 @@ export class InterpretationsComponent extends React.Component {
         if (!model) {
             return <CircularProgress />;
         }
-        
+
         return (
             <MuiThemeProvider muiTheme={getMuiTheme()}>
                 <div className={classes.interpretationsContainer}>

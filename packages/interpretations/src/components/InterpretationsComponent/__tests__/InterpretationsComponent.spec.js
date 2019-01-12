@@ -2,6 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { InterpretationsComponent } from '../InterpretationsComponent';
 import InterpretationsCard from '../../Cards/InterpretationsCard';
+import Details from '../../DetailsPanel/Details';
 import { getStubContext } from '../../../../config/test-context';
 import * as helpers from '../../../api/helpers';
 
@@ -88,12 +89,12 @@ describe('Interpretations: Interpretations component', () => {
     describe("details card", () => {
         it("should be shown", () => {
             interpretationsComponent.update();
-            expect(interpretationsComponent.find("Details")).toExist();
+            expect(interpretationsComponent.find(Details)).toExist();
         });
 
         it("should have favorite as model", () => {
             interpretationsComponent.update();
-            const details = interpretationsComponent.find("Details");
+            const details = interpretationsComponent.find(Details);
             expect(details).toHaveProp("model", favorite);
         });
     });

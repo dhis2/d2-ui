@@ -2,12 +2,13 @@ import React from 'react';
 import { mount } from 'enzyme';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
+import Button from '@material-ui/core/Button';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 
 import InterpretationsCard from '../InterpretationsCard';
 import CollapsibleCard from '../CollapsibleCard';
-import NewInterpretation from '../../Interpretation/NewInterpretationField';
-import OldInterpretation from '../../Interpretation/Interpretation';
+import NewInterpretationField from '../../Interpretation/NewInterpretationField';
+import Interpretation from '../../Interpretation/Interpretation';
 import { getStubContext, getMuiTheme } from '../../../../config/test-context';
 
 const favorite = {
@@ -43,6 +44,7 @@ const favorite = {
     interpretations: [{
         id: "LOECMJN3DRF",
         created: "2018-11-03T11:02:30.780",
+        lastUpdated: "2018-11-03T11:03:30.780",
         comments: [],
         user: {
                 id: "xE7jOejl9FI",
@@ -52,6 +54,7 @@ const favorite = {
     }, {
         id: "LqumKmXxc1k",
         created: "2018-11-03T11:02:30.780",
+        lastUpdated: "2018-11-03T11:05:30.780",
         comments: [],
         user: {
             id: "xE7jOejl9FI",
@@ -99,7 +102,6 @@ const renderComponent = (partialProps = {}, partialContext = {}) => {
 const currentUser = {id: "xE7jOejl9FI", displayName: "John Traore"};
 
 let interpretationsCard;
-let newInterpretation;
 
 describe('Interpretations: Interpretations -> InterpretationsCard component', () => {
     beforeEach(() => {
@@ -111,63 +113,16 @@ describe('Interpretations: Interpretations -> InterpretationsCard component', ()
             expect(interpretationsCard.find(CollapsibleCard)).toExist();
         });
 
-        it("should not show a NewInterpretaions component", () => {
-            expect(interpretationsCard.find(NewInterpretation)).not.toExist();
+        it("should show a NewInterpretationField component", () => {
+            expect(interpretationsCard.find(NewInterpretationField)).toExist();
         });
     });
 
     describe("controlled component", () => {
         describe("without current interpretation", () => {
             it("should show list of compact interpretations", () => {
-                expect(interpretationsCard.find(OldInterpretation))
+                expect(interpretationsCard.find(Interpretation))
                     .toHaveLength(favorite.interpretations.length);
-            });
-
-            describe("when click new interpretation action", () => {
-                beforeEach(() => {
-                    interpretationsCard.find("button").find({title: "Write new interpretation"}).simulate("click");
-                });
-
-                it("should show a NewInterpretation component", () => {
-                    expect(interpretationsCard.find(NewInterpretation)).toExist();
-                });
-
-                describe("when click on close", () => {
-                    beforeEach(() => {
-                        interpretationsCard.find(NewInterpretation).props().onClose();
-                        interpretationsCard.update()
-                    });
-
-                    it("closes the NewInterpretation component", () => {
-                        expect(interpretationsCard.find(NewInterpretation)).not.toExist();
-                    });
-                });
-
-                describe("when click on save", () => {
-                    beforeEach(() => {
-                        newInterpretation = {
-                            text: "New text",
-                            save: jest.fn(() => Promise.resolve()),
-                        };
-                        return interpretationsCard.find(NewInterpretation).props().onSave(newInterpretation);
-                    });
-
-                    it("should notify change", () => {
-                        const { onChange } = interpretationsCard.find(InterpretationsCard).instance().props;
-                        expect(onChange).toHaveBeenCalledWith();
-                    });
-                });
-            });
-        });
-
-        describe("with special string 'new' as current interpretation", () => {
-            beforeEach(() => {
-                const currentInterpretationId = "new";
-                interpretationsCard = renderComponent({currentInterpretationId}, {d2: {currentUser}});
-            });
-            
-            it("should show a NewInterpretation component", () => {
-                expect(interpretationsCard.find(NewInterpretation)).toExist();
             });
         });
 
@@ -178,18 +133,18 @@ describe('Interpretations: Interpretations -> InterpretationsCard component', ()
             });
 
             it("should show only current interpretation", () => {
-                expect(interpretationsCard.find(OldInterpretation)).toHaveLength(1);
+                expect(interpretationsCard.find(Interpretation)).toHaveLength(1);
             });
 
             it("should call the current interpretation prop", () => {
-                const interpretation = interpretationsCard.find(OldInterpretation).at(0).prop("interpretation");
+                const interpretation = interpretationsCard.find(Interpretation).at(0).prop("interpretation");
                 const { onCurrentInterpretationChange } = interpretationsCard.find(InterpretationsCard).instance().props;
                 expect(onCurrentInterpretationChange).toBeCalledWith(interpretation);
             });
 
             describe("when click on back action", () => {
                 beforeEach(() => {
-                    interpretationsCard.find("button").find({title: "Clear interpretation"}).simulate("click");
+                    interpretationsCard.find(Button).simulate("click");
                 });
 
                 it("should call current interpretation prop with no interpretation", () => {
@@ -211,12 +166,12 @@ describe('Interpretations: Interpretations -> InterpretationsCard component', ()
 
             describe("when back button clicked", () => {
                 beforeEach(() => {
-                    interpretationsCard.find("button").find({title: "Clear interpretation"}).simulate("click");
+                    interpretationsCard.find(Button).simulate("click");
                     interpretationsCard.update();
                 });
 
                 it("should show the interpretation list", () => {
-                    expect(interpretationsCard.find(OldInterpretation))
+                    expect(interpretationsCard.find(Interpretation))
                         .toHaveLength(favorite.interpretations.length);
                 });
             });

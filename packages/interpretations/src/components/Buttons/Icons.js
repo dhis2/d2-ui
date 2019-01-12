@@ -8,7 +8,6 @@ import Share from '@material-ui/icons/Share';
 import Delete from '@material-ui/icons/Delete';
 import Launch from '@material-ui/icons/Launch';
 import i18n from '@dhis2/d2-i18n';
-
 import styles from './styles/Icons.style';
 
 export default {

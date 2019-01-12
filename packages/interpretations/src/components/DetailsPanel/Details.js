@@ -8,18 +8,16 @@ import i18n from '@dhis2/d2-i18n';
 
 import CollapsibleCard from '../Cards/CollapsibleCard';
 import Description from './Description';
-import ListItem from './ListItem';
-import { getSharingText } from './sharingText';
+import Item from './Item';
+import { getSharingText } from '../../sharing/sharingText';
 
 import { setSubscription } from '../../api/helpers';
 import { formatDate } from '../../dateformats/dateformatter';
 import { translateModelName } from '../../translations/modelNametranslator';
 import styles from './styles/Details.style';
 
-class Details extends React.Component {
-    state = {
-        isExpanded: true,
-    };
+export class Details extends React.Component {
+    state = { isExpanded: true };
 
     toggleDetailsExpand = () => {
         this.setState({ isExpanded: !this.state.isExpanded });
@@ -30,7 +28,6 @@ class Details extends React.Component {
         return setSubscription(this.context.d2, model, !model.subscribed).then(onChange);
     };
 
-    // TOOD: adjust color
     renderSubscriptionButton() {
         const tOpts = { object: translateModelName(this.props.model.modelName) };
         const [ SubscriberIcon, subscriptionTooltip ] = this.props.model.subscribed
@@ -55,7 +52,7 @@ class Details extends React.Component {
                 <SubscriberIcon />
             </IconButton>
         );
-    }
+    };
 
     render() {
         const { model, classes } = this.props;
@@ -66,32 +63,23 @@ class Details extends React.Component {
             <CollapsibleCard title={i18n.t('Favorite details')}>
                 {SubscriptionButton}
                 <div className={classes.detailsCardList}>
-                    <ListItem text={<Description model={model} />} />
-                    <ListItem 
-                        label={i18n.t('Owner')} 
-                        text={owner} 
-                    />
-                    <ListItem
+                    <Item text={<Description description={model.displayDescription} />} />
+                    <Item label={i18n.t('Owner')} text={owner} />
+                    <Item
                         label={i18n.t('Created')}
                         text={formatDate(model.created, this.context.locale)}
                     />
-                    <ListItem
+                    <Item
                         label={i18n.t('Last updated')}
                         text={formatDate(model.lastUpdated, this.context.locale)}
                     />
-                    <ListItem 
-                        label={i18n.t('Views')} 
-                        text={model.favoriteViews} 
-                    />
-                    <ListItem
-                        label={i18n.t('Sharing')} 
-                        text={getSharingText(model)} 
-                    />
+                    <Item label={i18n.t('Views')} text={model.favoriteViews} />
+                    <Item label={i18n.t('Sharing')} text={getSharingText(model)} />
                 </div>
             </CollapsibleCard>
         );
-    }
-}
+    };
+};
 
 Details.contextTypes = {
     d2: PropTypes.object.isRequired,

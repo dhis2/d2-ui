@@ -23,6 +23,5 @@ export default {
 
     commentActions: {
         display: 'flex',
-        marginTop: '8px',
     },
 };
