@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2019-01-12T12:23:44.098Z\n"
-"PO-Revision-Date: 2019-01-12T12:23:44.098Z\n"
+"POT-Creation-Date: 2019-01-13T17:19:56.927Z\n"
+"PO-Revision-Date: 2019-01-13T17:19:56.927Z\n"
 
 msgid "Pivot Tables"
 msgstr ""
@@ -134,6 +134,15 @@ msgstr ""
 msgid "No interpretations"
 msgstr ""
 
+msgid "external access"
+msgstr ""
+
+msgid " and public access."
+msgstr ""
+
+msgid "public access."
+msgstr ""
+
 msgid "Show"
 msgstr ""
 
@@ -144,15 +153,6 @@ msgid "Showing"
 msgstr ""
 
 msgid "of"
-msgstr ""
-
-msgid "external access"
-msgstr ""
-
-msgid " and public access."
-msgstr ""
-
-msgid "public access."
 msgstr ""
 
 msgid "None"

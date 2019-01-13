@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { InterpretationsList } from '../InterpretationsList';
 import Interpretation from '../../Interpretation/Interpretation';
-import Link from '../../Link/Link';
+import ToggleList from '../../ToggleList/ToggleList';
 
 const fourInterpretations = [
     { id: 'one' },
@@ -58,11 +58,7 @@ describe('components: Lists -> InterpretationsList component ', () => {
             interpretationsList({ interpretations: fourInterpretations })
         });
 
-        it('should not show a clickable Link', () => {
-            expect(interpretationsList().find(Link)).not.toExist();
-        });
-
-        it('should render the Interpretations', () => {
+        it('should render all Interpretations', () => {
             expect(interpretationsList().find(Interpretation).length).toEqual(4);
         });
     });
@@ -71,17 +67,6 @@ describe('components: Lists -> InterpretationsList component ', () => {
         beforeEach(() => {
             interpretationsList({ interpretations: eightInterpretations })
         });
-            
-        it('should show a clickable Link', () => {
-            expect(interpretationsList().find(Link)).toExist();
-        });
-
-        describe('when Link is clicked', () => {
-            it('should call prop toggleShowAllInterpretations', () => {
-                interpretationsList().find(Link).simulate('click');
-                expect(baseProps.toggleShowAllInterpretations).toHaveBeenCalled();
-            });
-        });
 
         describe('with prop isExpanded as false', () => {
             it('should not show more than 5 interpretations', () => {
@@ -89,13 +74,14 @@ describe('components: Lists -> InterpretationsList component ', () => {
             });
 
         });
+        
     });
-    
-    describe('with props isExpanded as true,', () => {
+
+    describe('with interpretations over 5 items with props isExpanded as true,', () => {
         beforeEach(() => {
             interpretationsList({ interpretations: eightInterpretations, isExpanded: true })
         });
-
+        
         it('should show all interpretations', () => {
             expect(interpretationsList().find(Interpretation).length).toEqual(8);
         });

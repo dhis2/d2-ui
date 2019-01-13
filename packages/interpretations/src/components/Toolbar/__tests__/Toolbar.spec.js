@@ -27,4 +27,5 @@ describe('components: Toolbar -> Toolbar component ', () => {
     it('should render 4 buttons', () => {
         expect(toolbar().find(IconButton).length).toEqual(4);
     });
+
 });

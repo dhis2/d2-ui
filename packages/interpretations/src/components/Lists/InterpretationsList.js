@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import i18n from '@dhis2/d2-i18n';
 import Interpretation from '../Interpretation/Interpretation';
-import Link from '../Link/Link';
+import ToggleList from '../ToggleList/ToggleList';
 import styles from './styles/InterpretationsList.style';
 
 export const interpretationsToShowOnInit = 5;
@@ -29,19 +29,12 @@ export const InterpretationsList = ({
 
     return (
         <Fragment>
-            {interpretations.length > interpretationsToShowOnInit && (
-                <div className={classes.showAllLink}>
-                    <Link 
-                        label={`${isExpanded ? i18n.t('Show') : i18n.t('Hide')}${' previous interpretations'}`}
-                        onClick={toggleShowAllInterpretations} 
-                    />
-                    {!isExpanded && (
-                        <span className={classes.interpretationsCountLabel}>
-                            {`${i18n.t('Showing')} ${listItems.length} ${i18n.t('of')} ${interpretations.length}`}
-                        </span>
-                    )}
-                </div>
-            )}
+            <ToggleList
+                totalItemsLength={interpretations.length}
+                listItemsLength={listItems.length}
+                isExpanded={isExpanded}
+                toggleList={toggleShowAllInterpretations}
+            />
             {listItems.map(item => 
                 <Interpretation
                     model={model}
