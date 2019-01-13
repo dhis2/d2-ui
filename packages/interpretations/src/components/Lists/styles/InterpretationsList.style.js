@@ -13,6 +13,5 @@ export default {
     interpretationsCountLabel: {
         cursor: 'pointer',
         color: 'grey',
-        paddingTop: '6px',
     },
 };

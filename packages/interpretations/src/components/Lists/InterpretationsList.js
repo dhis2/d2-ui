@@ -24,8 +24,8 @@ export const InterpretationsList = ({
     }
 
     const listItems = isExpanded
-        ? interpretations.slice(-interpretationsToShowOnInit) 
-        : interpretations;
+        ? interpretations
+        : interpretations.slice(-interpretationsToShowOnInit);
 
     return (
         <Fragment>
@@ -35,7 +35,7 @@ export const InterpretationsList = ({
                         label={`${isExpanded ? i18n.t('Show') : i18n.t('Hide')}${' previous interpretations'}`}
                         onClick={toggleShowAllInterpretations} 
                     />
-                    {isExpanded && (
+                    {!isExpanded && (
                         <span className={classes.interpretationsCountLabel}>
                             {`${i18n.t('Showing')} ${listItems.length} ${i18n.t('of')} ${interpretations.length}`}
                         </span>

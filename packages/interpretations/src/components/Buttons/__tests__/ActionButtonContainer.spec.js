@@ -25,7 +25,7 @@ const renderComponent = (partialProps = {}) => {
 
 let actionButtonContainerComponent;
 
-describe('components: ActionButton -> ActionButtonContainer component', () => {
+describe('components: Button -> ActionButtonContainer component', () => {
     beforeEach(() => { 
         actionButtonContainerComponent = renderComponent();
     });
@@ -57,7 +57,7 @@ describe('components: ActionButton -> ActionButtonContainer component', () => {
     });
 
     describe('with prop isFocused as false', () => {
-        it('should only render an ActionButton with iconType visibility', () => {
+        it('should render an ActionButton with iconType visibility', () => {
             const actionButtons = actionButtonContainerComponent.find(ActionButton);
             const viewButton = actionButtons.findWhere(button => button.props().iconType === 'visibility');
 
@@ -70,7 +70,7 @@ describe('components: ActionButton -> ActionButtonContainer component', () => {
             actionButtonContainerComponent = renderComponent({ isFocused: true });
         });
 
-        it('should only render an ActionButton with iconType visibilityOff', () => {
+        it('should render an ActionButton with iconType visibilityOff', () => {
             const actionButtons = actionButtonContainerComponent.find(ActionButton);
             const exitViewButton = actionButtons.findWhere(button => button.props().iconType === 'visibilityOff');
 
@@ -96,7 +96,7 @@ describe('components: ActionButton -> ActionButtonContainer component', () => {
                 actionButtonContainerComponent = renderComponent({ isFocused: true, isOwner: true });
             });
 
-            it('should render ActionButtons with iconType share, edit and delete', () => {
+            it('should render additional ActionButtons with iconType share, edit and delete', () => {
                 const actionButtons = actionButtonContainerComponent.find(ActionButton);
                 const ownerActions = actionButtons.findWhere(button => 
                     button.props().iconType === 'share' || 

@@ -8,7 +8,7 @@ import styles from './styles/CardInfo.style';
 export const CardInfo = ({ classes, likedBy, repliedBy, createdDate }) => (
     <div className={classes.cardInfo}>
         <span> {createdDate} </span>
-        <Likes likedBy={likedBy} createdDate={createdDate}/>
+        <Likes likedBy={likedBy} />
         <Replies repliedBy={repliedBy} />
     </div>
 );

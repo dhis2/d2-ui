@@ -42,7 +42,7 @@ export const ActionButtonContainer = ({
 
     return (
         <div className={classes.actions}>
-            <ActionButton 
+            <ActionButton
                 iconType={currentUserLikesInterpretation ? 'unlike' : 'like'} 
                 onClick={onClickHandlers[currentUserLikesInterpretation ? UNLIKE_INDEX : LIKE_INDEX]}
             />

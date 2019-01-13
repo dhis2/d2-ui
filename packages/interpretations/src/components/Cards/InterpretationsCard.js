@@ -21,7 +21,7 @@ export class InterpretationsCard extends React.Component {
         
         this.state = {
             currentInterpretationId: props.currentInterpretationId,
-            listIsExpanded: props.model.interpretations.length > interpretationsToShowOnInit,
+            listIsExpanded: !(props.model.interpretations.length > interpretationsToShowOnInit),
         };
     };
 

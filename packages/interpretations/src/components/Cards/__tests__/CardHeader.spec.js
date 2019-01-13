@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { getStubContext } from '../../../../config/test-context';
 import { CardHeader } from '../CardHeader';
+import { getStubContext } from '../../../../config/test-context';
 
 
 const interpretationModel = {
@@ -20,15 +20,15 @@ const props = {
         createdDate: interpretationModel.created,
     };
 
+const context = getStubContext();
 
 const renderComponent = () => {
-    const context = getStubContext();
     return shallow(<CardHeader {...props} />, {...context});
 };
 
 let cardHeaderComponent;
 
-describe('components: Interpretation -> CardHeader component', () => {
+describe('components: Cards -> CardHeader component', () => {
     
     beforeEach(() => { 
         cardHeaderComponent = renderComponent();

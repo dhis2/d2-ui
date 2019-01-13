@@ -50,8 +50,8 @@ export class ActionButton extends Component {
 
     render() {
 		const Icon = Icons[this.props.iconType].icon;
-        const Tooltip =  this.renderTooltip();
-
+		const Tooltip =  this.renderTooltip();
+		
         return (
 			<div 
 				id={this.id}
@@ -65,6 +65,10 @@ export class ActionButton extends Component {
             </div>
         );
     }; 
+};
+
+ActionButton.defaultProps = {
+	onClick: () => null,
 };
 
 ActionButton.propTypes = {

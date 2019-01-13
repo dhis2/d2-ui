@@ -18,7 +18,6 @@ export class RedirectButton extends Component {
                 <ActionButton
                     iconType={'openApp'}
                     tooltip={i18n.t(`View in ${itemTypeMap[this.context.item.type].appName} app`)}
-                    onClick={() => null}
                 />
             </a>
         ) : null;

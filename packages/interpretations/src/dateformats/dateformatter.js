@@ -13,7 +13,7 @@ export function formatDate(value = '', uiLocale = 'en') {
 }
 
 export function formatRelative(value, uiLocale) {
-    const createdRelativeDate = moment(value, moment.ISO_8601).add(1, 'hour').fromNow();
+    const createdRelativeDate = moment(value, moment.ISO_8601).fromNow();
 
     return dateIsOver24Hours(createdRelativeDate) ? formatDate(value, uiLocale) : createdRelativeDate;
 };

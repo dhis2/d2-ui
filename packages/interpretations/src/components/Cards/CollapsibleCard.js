@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import classnames from 'classnames';
@@ -18,7 +18,7 @@ export class CollapsibleCard extends React.Component {
     };
 
     render() {
-        const { classes, title, actions, children } = this.props;
+        const { classes, title, children } = this.props;
         const { expanded } = this.state;
 
         return (
@@ -27,8 +27,6 @@ export class CollapsibleCard extends React.Component {
                     title={title}
                     classes={{ root: classes.header, title: classes.title, action: classes.actions }}
                     action={
-                        <Fragment>
-                            {expanded ? actions : null}
                             <IconButton
                                 style={styles.iconButton}
                                 className={classnames(classes.expand, {
@@ -40,7 +38,6 @@ export class CollapsibleCard extends React.Component {
                             >
                                 <ExpandMoreIcon />
                             </IconButton>
-                        </Fragment>
                     }
                 />
                 <Collapse in={expanded} timeout="auto" unmountOnExit className={classes.collapse}>
@@ -54,7 +51,6 @@ export class CollapsibleCard extends React.Component {
 CollapsibleCard.propTypes = {
     classes: PropTypes.object.isRequired,
     title: PropTypes.string.isRequired,
-    actions: PropTypes.object,
     children: PropTypes.array.isRequired,
 };
 

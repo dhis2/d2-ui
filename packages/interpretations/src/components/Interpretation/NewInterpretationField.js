@@ -22,7 +22,7 @@ export class NewInterpretationField extends Component {
             showToolbar: false,
         };    
     };
-    
+
     onInputChange = event => {
         if (event.target) {
             this.setState({ text: event.target.value });
@@ -54,7 +54,6 @@ export class NewInterpretationField extends Component {
     async postInterpretation() {
         const newInterpretation = new InterpretationModel(this.props.model, {});
         newInterpretation.text = this.state.text;
-
         return newInterpretation.save(this.context.d2);
     };
 
@@ -137,7 +136,7 @@ export class NewInterpretationField extends Component {
                                         ref={this.textarea}
                                         value={this.state.text}
                                         placeholder={i18n.t('Write an interpretation')}
-                                        rows={this.state.showToolbar ? 4 : 2}
+                                        rows={this.state.showToolbar || this.state.text.length ? 4 : 2}
                                         onChange={this.onInputChange}
                                         onKeyDown={this.onKeyDown}
                                     />
