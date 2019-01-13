@@ -13,7 +13,7 @@ export const ToggleList = ({
     isExpanded, 
     toggleList 
 }) => (
-    totalItemsLength > interpretationsToShowOnInit && (
+    totalItemsLength > interpretationsToShowOnInit ? (
         <div className={classes.showAllLink}>
             <Link 
                 label={`${isExpanded ? i18n.t('Show') : i18n.t('Hide')}${' previous interpretations'}`}
@@ -25,7 +25,7 @@ export const ToggleList = ({
                 </span>
             )}
         </div>
-    )
+    ) : null
 );
 
 export default withStyles(styles)(ToggleList);

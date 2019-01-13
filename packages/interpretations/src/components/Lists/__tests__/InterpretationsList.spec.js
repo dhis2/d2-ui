@@ -2,29 +2,33 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { InterpretationsList } from '../InterpretationsList';
 import Interpretation from '../../Interpretation/Interpretation';
-import ToggleList from '../../ToggleList/ToggleList';
 
 const fourInterpretations = [
-    { id: 'one' },
-    { id: 'two' },
-    { id: 'three' },
-    { id: 'four' }
+    { id: 'one', user: { id: 'testId' }},
+    { id: 'two', user: { id: 'testId' }},
+    { id: 'three', user: { id: 'testId' }},
+    { id: 'four' , user: { id: 'testId' }}
 ]
 
 const eightInterpretations = [
-    { id: 'one' },
-    { id: 'two' },
-    { id: 'three' },
-    { id: 'four' },
-    { id: 'five' },
-    { id: 'six' },
-    { id: 'seven' },
-    { id: 'eight' },
+    { id: 'one', user: { id: 'testId' }},
+    { id: 'two', user: { id: 'testId' }},
+    { id: 'three', user: { id: 'testId' }},
+    { id: 'four', user: { id: 'testId' }},
+    { id: 'five', user: { id: 'testId' }},
+    { id: 'six', user: { id: 'testId' }},
+    { id: 'seven', user: { id: 'testId' }},
+    { id: 'eight', user: { id: 'testId' }},
 ];
 
 const baseProps = {
     classes: {},
     model: {},
+    d2: {
+        currentUser: {
+            id: 'testId',
+        }
+    },
     interpretations: [],
     onSelect: jest.fn(),
     onChange: jest.fn(),

@@ -107,6 +107,7 @@ export class InterpretationsCard extends React.Component {
         ) : ( 
             <InterpretationsList
                 model={this.props.model}
+                d2={this.context.d2}
                 interpretations={sortedInterpretations}
                 onChange={this.notifyChange}
                 onSelect={this.setCurrentInterpretation}

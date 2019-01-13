@@ -4,12 +4,14 @@ import { withStyles } from '@material-ui/core/styles';
 import i18n from '@dhis2/d2-i18n';
 import Interpretation from '../Interpretation/Interpretation';
 import ToggleList from '../ToggleList/ToggleList';
+import { haveReadAccess } from '../../authorization/auth';
 import styles from './styles/InterpretationsList.style';
 
 export const interpretationsToShowOnInit = 5;
 
 export const InterpretationsList = ({         
     classes,
+    d2,
     model,
     interpretations,
     onSelect,
@@ -35,7 +37,7 @@ export const InterpretationsList = ({
                 isExpanded={isExpanded}
                 toggleList={toggleShowAllInterpretations}
             />
-            {listItems.map(item => 
+            {listItems.map(item => haveReadAccess(d2, item) && (
                 <Interpretation
                     model={model}
                     key={item.id}
@@ -44,13 +46,14 @@ export const InterpretationsList = ({
                     onSelect={onSelect}
                     extended={false}
                 />
-            )}
+            ))}
         </Fragment>
     );
 };
 
 InterpretationsList.propTypes = {
     classes: PropTypes.object.isRequired,
+    d2: PropTypes.object.isRequired,
     model: PropTypes.object.isRequired,
     interpretations: PropTypes.array.isRequired,
     onSelect: PropTypes.func.isRequired,
