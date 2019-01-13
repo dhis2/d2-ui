@@ -10,7 +10,7 @@ import { withStyles } from '@material-ui/core/styles';
 import styles from './styles/DeleteDialog.style'
 
 export const DeleteDialog = ({ classes, title, text, onDelete, onCancel }) => (
-    <Dialog open={true} maxWidth="sm">
+    <Dialog open={true} maxWidth="md">
         <DialogTitle className={classes.title}>{title}</DialogTitle>
         <DialogContent className={classes.content}>
             {text}
