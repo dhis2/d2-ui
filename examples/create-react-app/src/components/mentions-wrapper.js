@@ -12,13 +12,15 @@ class MentionsWrapperExample extends Component {
     };
 
     render() {
-        return (<MentionsWrapper d2={this.props.d2} onUserSelect={this.updateNewText}>
-            <InputField
-                value={this.state.newText}
-                placeholder="Type some text. @ triggers the mentions suggestions"
-                onChange={this.updateNewText}
-            />
-        </MentionsWrapper>);
+        return (
+            <MentionsWrapper d2={this.props.d2} onUserSelect={this.updateNewText}>
+                <InputField
+                    value={this.state.newText}
+                    placeholder="Type some text. @ triggers the mentions suggestions"
+                    onChange={this.updateNewText}
+                />
+            </MentionsWrapper>
+        );
     }
 }
 
