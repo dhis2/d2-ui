@@ -49,8 +49,6 @@ export const UserList = ({
         onSelect(user);
     };
     
-    const sortedUsers = sortBy(users, [userName => userName.displayName]);
-
     return (
         <Popover
             open={open}
@@ -72,7 +70,7 @@ export const UserList = ({
                         </em>
                     </Typography>
                     <List dense disablePadding className={classes.list}>
-                        {sortedUsers.map(u => (
+                        {sortBy(users, [userName => userName.displayName.toLowerCase()]).map(u => (
                             <ListItem
                                 button
                                 key={u.id}

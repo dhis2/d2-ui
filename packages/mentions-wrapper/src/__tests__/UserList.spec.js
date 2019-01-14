@@ -14,27 +14,26 @@ describe('Mentions: MentionsWrapper > UserList component', () => {
     let onSelect;
     let onClose;
     let props;
+    let users;
 
     beforeEach(() => {
         onSelect = jest.fn();
         onClose = jest.fn();
 
+        users =  [
+            { id: 'jc', displayName: 'Johnny Cash', userCredentials: { username: 'sue' } },
+            {
+                id: 'ec',
+                displayName: 'Eric Clapton',
+                userCredentials: { username: 'slowhand' },
+            },
+            { id: 'jj', displayName: 'Justin Johnson', userCredentials: { username: 'slide' } },
+        ];
+
         props = {
             classes: { selected: { backgroundColor: 'lightgrey' } },
-            users: [
-                { id: 'jc', displayName: 'Johnny Cash', userCredentials: { username: 'sue' } },
-                {
-                    id: 'ec',
-                    displayName: 'Eric Clapton',
-                    userCredentials: { username: 'slowhand' },
-                },
-                { id: 'jj', displayName: 'Justin Johnson', userCredentials: { username: 'slide' } },
-            ],
-            selectedUser: {
-                id: 'jj',
-                displayName: 'Justin Johnson',
-                userCredentials: { username: 'slide' },
-            },
+            users,
+            selectedUser: users[2],
             onSelect,
             onClose,
         };
@@ -61,21 +60,29 @@ describe('Mentions: MentionsWrapper > UserList component', () => {
     });
 
     it('should sort the mentions in alphabetical order by firstname', () => {
-        const sortedUsers = sortBy(props.users, [userName => userName.displayName]);
-        
+        const sortedList = [
+            { displayName: 'Eric Clapton' },
+            { displayName: 'Johnny Cash' },
+            { displayName: 'Justin Johnson' }
+        ];
+
         userList.find(ListItemText).forEach((node, i) => 
             expect(
-                node.props().primary).toContain(sortedUsers[i].displayName
-                )
+                node.props().primary).toContain(sortedList[i].displayName)
             );
     });
 
     it('should trigger the onSelect callback when an item in the list is clicked', () => {
         const listItem = userList.find(ListItem).first();
-        const sortedUsers = sortBy(props.users, [userName => userName.displayName]);
         listItem.simulate('click');
 
+        const expectedResult = {
+            id: 'ec',
+            displayName: 'Eric Clapton',
+            userCredentials: { username: 'slowhand' },
+        };
+
         expect(onSelect).toHaveBeenCalledTimes(1);
-        expect(onSelect).toHaveBeenCalledWith(sortedUsers[0]);
+        expect(onSelect).toHaveBeenCalledWith(expectedResult);
     });
 });
