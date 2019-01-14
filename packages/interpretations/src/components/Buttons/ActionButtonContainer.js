@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import ActionButton from './ActionButton';
 import RedirectButton from './RedirectButton';
 import styles from './styles/ActionButtonContainer.style';
+import { haveWriteAccess } from '../../authorization/auth';
 
 const UNLIKE_INDEX = 0;
 const LIKE_INDEX = 1;
@@ -17,6 +18,8 @@ const REPLY_INDEX = 7;
 export const ActionButtonContainer = ({ 
     classes, 
     isFocused,
+    d2,
+    interpretation,
     currentUserLikesInterpretation,
     isOwner,
     onClickHandlers,
@@ -46,10 +49,12 @@ export const ActionButtonContainer = ({
                 iconType={currentUserLikesInterpretation ? 'unlike' : 'like'} 
                 onClick={onClickHandlers[currentUserLikesInterpretation ? UNLIKE_INDEX : LIKE_INDEX]}
             />
-            <ActionButton 
-                iconType={'reply'} 
-                onClick={onClickHandlers[REPLY_INDEX]}
-            />
+            {haveWriteAccess(d2, interpretation) && (
+                <ActionButton 
+                    iconType={'reply'} 
+                    onClick={onClickHandlers[REPLY_INDEX]}
+                />
+            )}
             <ActionButton 
                 iconType={isFocused ? 'visibilityOff' : 'visibility'} 
                 onClick={onClickHandlers[isFocused ? EXIT_VIEW_INDEX : VIEW_INDEX]}

@@ -169,6 +169,8 @@ export class Interpretation extends React.Component {
                     />
                     <ActionButtonContainer
                         isFocused={extended}
+                        d2={this.context.d2}
+                        interpretation={interpretation}
                         currentUserLikesInterpretation={currentUserLikesInterpretation}
                         isOwner={userCanManage(this.context.d2, interpretation)}
                         onClickHandlers={this.getOnClickHandlers()}

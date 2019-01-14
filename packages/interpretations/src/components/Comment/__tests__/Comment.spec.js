@@ -16,6 +16,7 @@ const baseProps = {
         created: '2018-05-11T09:46:52.627',
     },
     isOwner: false,
+    canReply: true,
     locale: 'en',
     onEdit: jest.fn(),
     onReply: jest.fn(),

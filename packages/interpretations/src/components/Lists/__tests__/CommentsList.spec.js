@@ -14,6 +14,7 @@ const interpretation = {
     id: "LOECMJN3DRF",
     likes: 1,
     text: "Some interpretation",
+    publicAccess: 'rw------',
     comments: [
         {
             id: "tEvCRL8r9KW",
@@ -55,7 +56,7 @@ let currentUser;
 let commentComponent;
 let commentToEdit;
 
-describe('Interpretations: Interpretations -> CommentsList component', () => {
+describe('Interpretations: Lists -> CommentsList component', () => {
     beforeEach(() => {
         currentUser = {
             id: "xE7jOejl9FI",
@@ -78,7 +79,7 @@ describe('Interpretations: Interpretations -> CommentsList component', () => {
         it('should render actions for a comment if current user is its author', () => {
             commentComponents.forEach(commentComponent => {
                 const isOwner = commentComponent.props().isOwner;
-                if (commentComponent.props().comment.user.id == currentUser.id) {
+                if (commentComponent.props().comment.user.id === currentUser.id) {
                     expect(isOwner).toBe(true);
                 } else {
                     expect(isOwner).toBe(false);
@@ -97,7 +98,7 @@ describe('Interpretations: Interpretations -> CommentsList component', () => {
 
         it("should replace the comment with a NewCommentField", () => {
             commentList.props();
-            expect(commentList.find(NewCommentField)).toHaveLength(2);
+            expect(commentList.find(NewCommentField)).toHaveLength(1);
             expect(commentList.find(Comment)).toHaveLength(interpretation.comments.length - 1);
         });
 

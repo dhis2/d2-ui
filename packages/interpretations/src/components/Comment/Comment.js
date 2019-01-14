@@ -10,11 +10,13 @@ import CardInfo from '../Cards/CardInfo';
 import DeleteDialog from '../DeleteDialog/DeleteDialog';
 import { formatRelative } from '../../dateformats/dateformatter';
 import styles from './styles/Comment.style';
+import { haveWriteAccess } from '../../authorization/auth';
 
 export const Comment = ({ 
     classes,
     comment, 
     isOwner,
+    canReply,
     locale, 
     onEdit, 
     onReply,
@@ -44,10 +46,12 @@ export const Comment = ({
                     />
                 </div>
              ) : (
-                <ActionButton
-                    iconType={'reply'}  
-                    onClick={() => onReply(comment)} 
-                />
+                canReply && (                        
+                    <ActionButton
+                        iconType={'reply'}  
+                        onClick={() => onReply(comment)} 
+                    />
+                )
              )}
         </WithAvatar>
         {dialogIsOpen && (

@@ -7,7 +7,7 @@ import NewCommentField from '../Comment/NewCommentField';
 import Comment from '../Comment/Comment';
 import Link from '../Link/Link';
 import CommentModel from '../../models/comment';
-import { userCanManage } from '../../authorization/auth';
+import { userCanManage, haveWriteAccess } from '../../authorization/auth';
 import styles from './styles/CommentsList.style';
 
 const commentsToShowOnInit = 5;
@@ -125,6 +125,7 @@ export class CommentsList extends React.Component {
                 <Comment
                     key={comment.id}
                     comment={comment}
+                    canReply={haveWriteAccess(this.context.d2, this.props.interpretation)}
                     isOwner={userCanManage(this.context.d2, comment)}
                     locale={this.context.locale}
                     onEdit={this.onEdit}
@@ -137,18 +138,26 @@ export class CommentsList extends React.Component {
             )
         );
 
+    renderInputField = () => 
+        (haveWriteAccess(this.context.d2, this.props.interpretation) || 
+        haveWriteAccess(this.context.d2, this.props.comment)) && (
+            <NewCommentField
+                comment={this.state.newComment}
+                onPost={this.onSave}
+            />
+        );
+
+
     render() {
         const ViewMoreReplies = this.renderViewMoreLink();
         const Comments = this.renderComments();
+        const InputField = this.renderInputField();
 
         return (
             <div className={this.props.classes.commentSection}>
                 {ViewMoreReplies}
                 {Comments}
-                <NewCommentField
-                    comment={this.state.newComment}
-                    onPost={this.onSave}
-                />
+                {InputField}
             </div>
         );
     }

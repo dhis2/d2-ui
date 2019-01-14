@@ -7,8 +7,10 @@ import ActionButton from '../ActionButton';
 
 let baseProps = {
     classes: {},
-    currentUserLikesInterpretation: false,
     isFocused: false,
+    d2: { currentUser: { id: 'testId'}},
+    interpretation: { user: { id: 'testId' }},
+    currentUserLikesInterpretation: false,
     isOwner: false,
     onClickHandlers: [
         jest.fn(), jest.fn(), jest.fn(), 

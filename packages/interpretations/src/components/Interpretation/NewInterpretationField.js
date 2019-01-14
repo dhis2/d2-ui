@@ -115,7 +115,7 @@ export class NewInterpretationField extends Component {
 
     renderSharingInfo = () =>
         !!this.state.text && (
-            <SharingInfo interpretation={this.props.interpretation} />
+            <SharingInfo interpretation={this.props.interpretation || this.props.model} />
         );
     
     render() {

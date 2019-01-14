@@ -2,8 +2,8 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import i18n from '@dhis2/d2-i18n';
+import Link from '../Link/Link';
 import Interpretation from '../Interpretation/Interpretation';
-import ToggleList from '../ToggleList/ToggleList';
 import { haveReadAccess } from '../../authorization/auth';
 import styles from './styles/InterpretationsList.style';
 
@@ -31,11 +31,9 @@ export const InterpretationsList = ({
 
     return (
         <Fragment>
-            <ToggleList
-                totalItemsLength={interpretations.length}
-                listItemsLength={listItems.length}
-                isExpanded={isExpanded}
-                toggleList={toggleShowAllInterpretations}
+            <Link 
+                label={`${isExpanded ? i18n.t('Hide') : i18n.t('Show')}${' previous interpretations'}`}
+                onClick={toggleShowAllInterpretations} 
             />
             {listItems.map(item => haveReadAccess(d2, item) && (
                 <Interpretation
