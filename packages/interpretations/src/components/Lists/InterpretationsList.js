@@ -24,10 +24,12 @@ export const InterpretationsList = ({
             <div className={classes.emptyList}>{i18n.t("No interpretations")}</div>
         );
     }
+    const filteredItems = interpretations.filter(item => haveReadAccess(d2, item) && item);
 
     const listItems = isExpanded
-        ? interpretations
-        : interpretations.slice(-interpretationsToShowOnInit);
+        ? filteredItems
+        : filteredItems.slice(-interpretationsToShowOnInit);
+
 
     return (
         <Fragment>
@@ -35,7 +37,7 @@ export const InterpretationsList = ({
                 label={`${isExpanded ? i18n.t('Hide') : i18n.t('Show')}${' previous interpretations'}`}
                 onClick={toggleShowAllInterpretations} 
             />
-            {listItems.map(item => haveReadAccess(d2, item) && (
+            {listItems.map(item =>
                 <Interpretation
                     model={model}
                     key={item.id}
@@ -44,7 +46,7 @@ export const InterpretationsList = ({
                     onSelect={onSelect}
                     extended={false}
                 />
-            ))}
+            )}
         </Fragment>
     );
 };
