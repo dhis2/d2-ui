@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Share from '@material-ui/icons/Share';
 import { withStyles } from '@material-ui/core/styles';
 import i18n from '@dhis2/d2-i18n';
+import Link from '../Link/Link';
 import styles from './styles/SharingInfo.style';
 
 export class SharingInfo extends Component {
@@ -32,7 +33,11 @@ export class SharingInfo extends Component {
                     {i18n.t('Shared with: ')} 
                     {Info}
                     {externalAccess}
-                    {publicAccess && ((Info.length || externalAccess.length) ? i18n.t(' and public access.') : i18n.t('public access.'))}
+                    {publicAccess && ((Info.length || externalAccess.length) ? i18n.t(' and public access. ') : i18n.t('public access. '))}
+                    <Link 
+                        onClick={this.props.onClick}
+                        label={i18n.t('Manage sharing')}
+                    />
                 </span>
             </div>
         ) : null;

@@ -27,12 +27,15 @@ export default class Interpretation {
         
         if (isNewInterpretation) {
             // Set initial sharing of interpretation from the parent object
-            const sharingPayload = { object: pick(Interpretation.sharingFields, this._parent) };
-
+            
             return await apiFetchWithResponse(d2, `/interpretations/${modelName}/${modelId}`, "POST", this.text)
                 .then(getInterpretationIdFromResponse)
                 .then(interpretationId => {
                     this.id = interpretationId;
+                    const sharingPayload = this.sharing 
+                        ? { object: {...this.sharing, id: this.id} } 
+                        : { object: pick(Interpretation.sharingFields, this._parent) };
+
                     const sharingUrl = `/sharing?type=interpretation&id=${interpretationId}`;
                     return apiFetch(d2, sharingUrl, "PUT", sharingPayload).then(() => this);
                 });

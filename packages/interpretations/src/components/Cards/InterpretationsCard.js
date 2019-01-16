@@ -124,6 +124,7 @@ export class InterpretationsCard extends React.Component {
             <NewInterpretationField
                 model={this.props.model}
                 onSave={this.notifyChange}
+                type={this.props.type}
             />
     );
 
