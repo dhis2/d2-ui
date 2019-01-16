@@ -9,10 +9,10 @@ import styles from './styles/SharingInfo.style';
 export class SharingInfo extends Component {
 
     getUsers = () =>
-        this.props.interpretation.userAccesses.map(item => item.displayName)
+        (this.props.interpretation.userAccesses || []).map(item => item.displayName)
 
     getGroups = () => 
-        this.props.interpretation.userGroupAccesses.map(item => item.displayName)
+        (this.props.interpretation.userGroupAccesses || []).map(item => item.displayName)
 
     checkExternalAccess = () => 
         this.props.interpretation.externalAccess ? i18n.t('external access') : '';
@@ -26,7 +26,7 @@ export class SharingInfo extends Component {
         const externalAccess = this.checkExternalAccess();
         const publicAccess = this.checkPublicAccess();
 
-        return (publicAccess || Info.length || externalAccess.length) ? (
+        return (
             <div className={this.props.classes.sharingContainer}>
                 <Share className={this.props.classes.sharingIcon}/>
                 <span className={this.props.classes.label}>
@@ -34,13 +34,14 @@ export class SharingInfo extends Component {
                     {Info}
                     {externalAccess}
                     {publicAccess && ((Info.length || externalAccess.length) ? i18n.t(' and public access. ') : i18n.t('public access. '))}
+                    {(!publicAccess && !((Info.length || externalAccess.length))) && i18n.t('None. ')}
                     <Link 
                         onClick={this.props.onClick}
                         label={i18n.t('Manage sharing')}
                     />
                 </span>
             </div>
-        ) : null;
+        );
     };
 };
 
