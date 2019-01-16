@@ -36,11 +36,22 @@ export default class Interpretation {
                         ? { object: {...this.sharing, id: this.id} } 
                         : { object: pick(Interpretation.sharingFields, this._parent) };
 
+                    this.sharing = null;
                     const sharingUrl = `/sharing?type=interpretation&id=${interpretationId}`;
-                    return apiFetch(d2, sharingUrl, "PUT", sharingPayload).then(() => this);
+                    return apiFetch(d2, sharingUrl, "PUT", sharingPayload).then(() =>  this);
                 });
         } else {
-            return await apiFetch(d2, `/interpretations/${this.id}`, "PUT", this.text).then(() => this);
+            return await apiFetch(d2, `/interpretations/${this.id}`, "PUT", this.text)
+                .then(() => {
+                    if (this.sharing) {
+                        const sharingPayload =  { object: {...this.sharing, id: this.id}};
+                        this.sharing = null;
+
+                    const sharingUrl = `/sharing?type=interpretation&id=${this.id}`;
+                    return apiFetch(d2, sharingUrl, "PUT", sharingPayload).then(() =>  this);
+                }
+            })
+            .then(() => this);
         }
     }
 

@@ -145,6 +145,7 @@ export class Interpretation extends React.Component {
             return (
                 <NewInterpretationField
                     model={model}
+                    type={'interpretation'}
                     interpretation={this.state.interpretationToEdit}
                     onUpdate={this.onSaveInterpretation}
                     onClose={this.onCancelEditInterpretation}

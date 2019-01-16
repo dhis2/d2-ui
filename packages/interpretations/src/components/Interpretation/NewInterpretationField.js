@@ -69,6 +69,9 @@ export class NewInterpretationField extends Component {
 
     onUpdate = () => {
         this.props.interpretation.text = this.state.text;
+        if (this.state.sharingProps) {
+            this.props.interpretation.sharing = this.state.sharingProps;
+        }
         this.props.onUpdate(this.props.interpretation);
     };
 
@@ -136,7 +139,7 @@ export class NewInterpretationField extends Component {
                 open={this.state.sharingDialogisOpen}
                 type={this.props.type}
                 d2={this.context.d2}
-                id={this.props.model.id}
+                id={this.props.interpretation ? this.props.interpretation.id : this.props.model.id}
                 doNotPost={true}
                 onConfirm={this.onCloseSharingDialog}
                 onRequestClose={this.onCloseSharingDialog}
