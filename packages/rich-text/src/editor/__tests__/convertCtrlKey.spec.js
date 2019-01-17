@@ -45,4 +45,22 @@ describe('convertCtrlKey', () => {
         expect(cb).toHaveBeenCalled();
         expect(cb).toHaveBeenCalledWith('*abc*');
     });
+
+    it('triggers callback with opening and closing marker when text is selected', () => {
+        const cb = jest.fn();
+        const e = {
+            key: 'b',
+            metaKey: true,
+            target: {
+                selectionStart: 8,
+                selectionEnd: 12,
+                value: 'rainbow dash is purple',
+            },
+        };
+
+        convertCtrlKey(e, cb);
+
+        expect(cb).toHaveBeenCalled();
+        expect(cb).toHaveBeenCalledWith('rainbow *dash* is purple');
+    })
 });
