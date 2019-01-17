@@ -6,7 +6,7 @@
   "license": "BSD-3-Clause",
   "author": "Edoardo Sabadelli <edoardo@dhis2.org>",
   "scripts": {
-    "coverage": "jest --coverage",
+    "coverage": "jest --coverage --config=../../jest.config.js packages/rich-text",
     "test-ci": "jest --config=../../jest.config.js packages/rich-text",
     "lint": "eslint src/",
     "prebuild": "npm run lint && rimraf ./build/*",

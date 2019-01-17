@@ -36,7 +36,7 @@ const insertMarkers = (mode, cb) => {
             value.slice(selectionEnd),
         ].join(marker);
 
-        this.toggleMode(mode);
+        toggleMode(mode);
     }
 
     cb(newValue);
