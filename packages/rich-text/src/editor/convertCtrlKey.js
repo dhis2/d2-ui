@@ -28,7 +28,9 @@ const insertMarkers = (mode, cb) => {
     let newValue;
 
     if (selectionStart >= 0 && selectionStart === selectionEnd) {
-        newValue = `${value}${marker}`;
+        const valueArr = value.split('');
+        valueArr.splice(selectionStart, 0, marker);
+        newValue = valueArr.join('');
     } else if (selectionStart >= 0) {
         newValue = [
             value.slice(0, selectionStart),

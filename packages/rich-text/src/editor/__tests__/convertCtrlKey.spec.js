@@ -46,6 +46,25 @@ describe('convertCtrlKey', () => {
         expect(cb).toHaveBeenCalledWith('*abc*');
     });
 
+    it('triggers callback with marker not at end of value', () => {
+        const cb = jest.fn();
+        const e = {
+            key: 'b',
+            metaKey: true,
+            target: {
+                selectionStart: 4,
+                selectionEnd: 4,
+                value: 'the quick brown fox',
+            },
+        };
+
+        convertCtrlKey(e, cb);
+
+        expect(cb).toHaveBeenCalled();
+        expect(cb).toHaveBeenCalledWith('the *quick brown fox');
+    });
+
+
     it('triggers callback with opening and closing marker when text is selected', () => {
         const cb = jest.fn();
         const e = {
