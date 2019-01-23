@@ -16,32 +16,70 @@ const toggleMode = (mode) => {
 };
 
 const insertMarkers = (mode, cb) => {
-    toggleMode(mode);
-
+    const { selectionStart: start, selectionEnd: end, value } = state.element;
     const marker = markerMap[mode] || null;
-    if (!marker || !cb) {
+    if (!marker || !cb || start < 0) {
         return;
     }
 
-    const element = state.element;
-    const { selectionStart, selectionEnd, value } = element;
+    toggleMode(mode);
+
     let newValue;
+    let caretPos = end + 1;
 
-    if (selectionStart >= 0 && selectionStart === selectionEnd) {
+    if (start === end) {
+        const markersWithPadding = () => {
+            let insertChars = `${marker}${marker}`;
+    
+            // add padding if needed
+            if (value.length && value[start - 1] !== ' ') {
+                insertChars = ` ${insertChars}`;
+                ++caretPos;
+            }
+    
+            if (value.length && end !== value.length && value[start] !== ' ') {
+                insertChars = `${insertChars} `
+            }
+    
+            return insertChars;
+        }
+    
         const valueArr = value.split('');
-        valueArr.splice(selectionStart, 0, marker);
+        valueArr.splice(start, 0, markersWithPadding());
         newValue = valueArr.join('');
-    } else if (selectionStart >= 0) {
-        newValue = [
-            value.slice(0, selectionStart),
-            value.slice(selectionStart, selectionEnd),
-            value.slice(selectionEnd),
-        ].join(marker);
+    } else {
+        const valueWithMarkers = val => {
+            ++caretPos;
 
+            let leading;
+            let trailing;
+
+            if (start === 0 || value[start - 1] === ' ') {
+                leading = marker;
+            } else {
+                leading = ` ${marker}`;
+                ++caretPos;
+            }
+
+            if (end === value.length || value[end] === ' ') {
+                trailing = marker;
+            } else {
+                trailing = `${marker} `;
+            }
+
+            return `${leading}${val}${trailing}`;
+        }
+
+        newValue = [
+            value.slice(0, start),
+            valueWithMarkers(value.slice(start, end)),
+            value.slice(end),
+        ].join('');
+ 
         toggleMode(mode);
     }
 
-    cb(newValue);
+    cb(newValue, caretPos);
 };
 
 const convertCtrlKey = (event, cb) => {
