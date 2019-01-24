@@ -19,14 +19,14 @@ describe('convertCtrlKey', () => {
                 target: {
                     selectionStart: 0,
                     selectionEnd: 0,
-                    value: '',
+                    value: 'rainbow dash',
                 },
             };
-    
+
             convertCtrlKey(e, cb);
-    
+
             expect(cb).toHaveBeenCalled();
-            expect(cb).toHaveBeenCalledWith('**', 1);
+            expect(cb).toHaveBeenCalledWith('** rainbow dash', 1);
         });
 
         it('triggers callback with open/close markers and caret pos in between (end of text)', () => {
@@ -40,13 +40,13 @@ describe('convertCtrlKey', () => {
                     value: 'rainbow dash is purple',
                 },
             };
-    
+
             convertCtrlKey(e, cb);
-    
+
             expect(cb).toHaveBeenCalled();
             expect(cb).toHaveBeenCalledWith('rainbow dash is purple **', 24);
         });
-    
+
         it('triggers callback with open/close markers mid-text with surrounding spaces (1)', () => {
             const cb = jest.fn();
             const e = {
@@ -58,9 +58,9 @@ describe('convertCtrlKey', () => {
                     value: 'the quick brown fox',
                 },
             };
-    
+
             convertCtrlKey(e, cb);
-    
+
             expect(cb).toHaveBeenCalled();
             expect(cb).toHaveBeenCalledWith('the ** quick brown fox', 5);
         });
@@ -76,9 +76,9 @@ describe('convertCtrlKey', () => {
                     value: 'the quick brown fox',
                 },
             };
-    
+
             convertCtrlKey(e, cb);
-    
+
             expect(cb).toHaveBeenCalled();
             expect(cb).toHaveBeenCalledWith('the ** quick brown fox', 5);
         });
@@ -95,13 +95,13 @@ describe('convertCtrlKey', () => {
                         value: 'rainbow dash is purple',
                     },
                 };
-        
+
                 convertCtrlKey(e, cb);
-        
+
                 expect(cb).toHaveBeenCalled();
                 expect(cb).toHaveBeenCalledWith('rainb *ow da* sh is purple', 13);
             });
-    
+
             it('triggers callback with open/close markers around text when starting at beginning of line', () => {
                 const cb = jest.fn();
                 const e = {
@@ -113,13 +113,13 @@ describe('convertCtrlKey', () => {
                         value: 'rainbow dash is purple',
                     },
                 };
-        
+
                 convertCtrlKey(e, cb);
-        
+
                 expect(cb).toHaveBeenCalled();
                 expect(cb).toHaveBeenCalledWith('*rainbow* dash is purple', 9);
             });
-    
+
             it('triggers callback with open/close markers around text when ending at end of line', () => {
                 const cb = jest.fn();
                 const e = {
@@ -131,13 +131,13 @@ describe('convertCtrlKey', () => {
                         value: 'rainbow dash is purple',
                     },
                 };
-        
+
                 convertCtrlKey(e, cb);
-        
+
                 expect(cb).toHaveBeenCalled();
                 expect(cb).toHaveBeenCalledWith('rainbow dash is *purple*', 24);
             });
-    
+
             it('triggers callback with open/close markers around word', () => {
                 const cb = jest.fn();
                 const e = {
@@ -149,15 +149,33 @@ describe('convertCtrlKey', () => {
                         value: 'rainbow dash is purple',
                     },
                 };
-        
+
                 convertCtrlKey(e, cb);
-        
+
+                expect(cb).toHaveBeenCalled();
+                expect(cb).toHaveBeenCalledWith('rainbow *dash* is purple', 14);
+            });
+
+            it('triggers callback with leading/trailing spaces trimmed from selection', () => {
+                const cb = jest.fn();
+                const e = {
+                    key: 'b',
+                    metaKey: true,
+                    target: {
+                        selectionStart: 8, // " dash " is selected (note leading and trailing space)
+                        selectionEnd: 13,
+                        value: 'rainbow dash is purple',
+                    },
+                };
+
+                convertCtrlKey(e, cb);
+
                 expect(cb).toHaveBeenCalled();
                 expect(cb).toHaveBeenCalledWith('rainbow *dash* is purple', 14);
             });
         });
-    
-    
+
+
     });
 
     describe('when ctrl key + "i" pressed', () => {
@@ -172,9 +190,9 @@ describe('convertCtrlKey', () => {
                     value: '',
                 },
             };
-    
+
             convertCtrlKey(e, cb);
-    
+
             expect(cb).toHaveBeenCalled();
             expect(cb).toHaveBeenCalledWith('__', 1);
         });

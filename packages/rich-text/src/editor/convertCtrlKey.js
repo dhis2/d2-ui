@@ -9,6 +9,13 @@ const markerMap = {
     bold: '*',
 };
 
+const trim = str => {
+    const leftSpaces = /^\s+/;
+    const rightSpaces = /\s+$/;
+
+    return str.replace(leftSpaces, '').replace(rightSpaces, '');
+}
+
 const toggleMode = (mode) => {
     const prop = `${mode}Mode`;
 
@@ -27,55 +34,37 @@ const insertMarkers = (mode, cb) => {
     let newValue;
     let caretPos = end + 1;
 
-    if (start === end) {
-        const markersWithPadding = () => {
-            let insertChars = `${marker}${marker}`;
-    
-            // add padding if needed
-            if (value.length && value[start - 1] !== ' ') {
-                insertChars = ` ${insertChars}`;
-                ++caretPos;
-            }
-    
-            if (value.length && end !== value.length && value[start] !== ' ') {
-                insertChars = `${insertChars} `
-            }
-    
-            return insertChars;
+    const padMarkers = text => {
+        if (value.length && start > 0 && value[start - 1] !== ' ') {
+            text = ` ${text}`;
+            ++caretPos;
         }
-    
+
+        if (value.length && end !== value.length && value[end] !== ' ') {
+            text = `${text} `
+        }
+
+        return text;
+    }
+
+    if (start === end) { //no text
         const valueArr = value.split('');
-        valueArr.splice(start, 0, markersWithPadding());
+
+        valueArr.splice(start, 0, padMarkers(`${marker}${marker}`));
         newValue = valueArr.join('');
     } else {
-        const valueWithMarkers = val => {
-            ++caretPos;
+        const text = value.slice(start, end);
+        const trimmedText = trim(text);
 
-            let leading;
-            let trailing;
-
-            if (start === 0 || value[start - 1] === ' ') {
-                leading = marker;
-            } else {
-                leading = ` ${marker}`;
-                ++caretPos;
-            }
-
-            if (end === value.length || value[end] === ' ') {
-                trailing = marker;
-            } else {
-                trailing = `${marker} `;
-            }
-
-            return `${leading}${val}${trailing}`;
-        }
+        // adjust caretPos based on trimmed text selection
+        caretPos = caretPos - (text.length - trimmedText.length) + 1;
 
         newValue = [
             value.slice(0, start),
-            valueWithMarkers(value.slice(start, end)),
+            padMarkers(`${marker}${trimmedText}${marker}`),
             value.slice(end),
         ].join('');
- 
+
         toggleMode(mode);
     }
 
