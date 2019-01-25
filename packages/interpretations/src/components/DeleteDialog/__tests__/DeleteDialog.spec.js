@@ -27,7 +27,7 @@ describe('components: DeleteDialog -> DeleteDialog component ', () => {
 
     it('should call prop onDelete when Yes button is clicked', () => {
         deleteDialog().find(Button)
-            .findWhere(button => button.props().children === 'Yes, delete')
+            .findWhere(button => button.props().children === 'Confirm')
             .simulate('click');
         
         expect(props.onDelete).toHaveBeenCalled();
@@ -36,7 +36,7 @@ describe('components: DeleteDialog -> DeleteDialog component ', () => {
     
     it('should call prop onCancel when No button is clicked', () => {
         deleteDialog().find(Button)
-            .findWhere(button => button.props().children === 'No, cancel')
+            .findWhere(button => button.props().children === 'Cancel')
             .simulate('click');
         
         expect(props.onDelete).toHaveBeenCalled();
