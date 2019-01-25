@@ -4,6 +4,7 @@ import Comment from './comment';
 
 function getInterpretationIdFromResponse(response)  {
     const location = response.headers.get('location');
+
     if (location) {
         return last(location.split('/'));
     } else {
@@ -24,28 +25,40 @@ export default class Interpretation {
         const modelId = this._parent.id;
         const modelName = this._parent.modelDefinition.name;
         const isNewInterpretation = !this.id;
-        
+
         if (isNewInterpretation) {
             // Set initial sharing of interpretation from the parent object
-            const sharingPayload = { object: pick(Interpretation.sharingFields, this._parent) };
+            const response = await apiFetchWithResponse(d2, `/interpretations/${modelName}/${modelId}`, "POST", this.text);
+            const interpretationId = getInterpretationIdFromResponse(response);
+            const sharingUrl = `/sharing?type=interpretation&id=${interpretationId}`;
 
-            return await apiFetchWithResponse(d2, `/interpretations/${modelName}/${modelId}`, "POST", this.text)
-                .then(getInterpretationIdFromResponse)
-                .then(interpretationId => {
-                    this.id = interpretationId;
-                    const sharingUrl = `/sharing?type=interpretation&id=${interpretationId}`;
-                    return apiFetch(d2, sharingUrl, "PUT", sharingPayload).then(() => this);
-                });
+            const sharingPayload = this.sharing
+                ? { object: { ...this.sharing, id: interpretationId } }
+                : { object: pick(Interpretation.sharingFields, this._parent) };
+
+            this.sharing = null;
+            this.id = interpretationId;
+
+            return apiFetch(d2, sharingUrl, "PUT", sharingPayload)
         } else {
-            return await apiFetch(d2, `/interpretations/${this.id}`, "PUT", this.text).then(() => this);
+            // interpretation already exists in DB
+            await apiFetch(d2, `/interpretations/${this.id}`, "PUT", this.text);
+
+            if (this.sharing) {
+                const sharingPayload =  { object: {...this.sharing, id: this.id}};
+                const sharingUrl = `/sharing?type=interpretation&id=${this.id}`;
+                this.sharing = null;
+
+                return apiFetch(d2, sharingUrl, "PUT", sharingPayload);
+            }
         }
     }
 
-    async delete(d2) {
-        return await apiFetch(d2, `/interpretations/${this.id}`, "DELETE");
+    delete(d2) {
+        return apiFetch(d2, `/interpretations/${this.id}`, "DELETE");
     }
 
-    async like(d2, value) {
-        return await apiFetch(d2, `/interpretations/${this.id}/like`, value ? "POST" : "DELETE");
+    like(d2, value) {
+        return apiFetch(d2, `/interpretations/${this.id}/like`, value ? "POST" : "DELETE");
     }
 }

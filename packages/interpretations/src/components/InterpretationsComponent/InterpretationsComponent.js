@@ -79,7 +79,8 @@ export class InterpretationsComponent extends React.Component {
                         onChange={this.onChange}
                         currentInterpretationId={currentInterpretationId}
                         onCurrentInterpretationChange={onCurrentInterpretationChange}
-                        />
+                        type={this.props.type}
+                    />
                 </div>
             </MuiThemeProvider>
         );

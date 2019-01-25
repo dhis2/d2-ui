@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 import MentionsWrapper from '@dhis2/d2-ui-mentions-wrapper';
+import SharingDialog from '@dhis2/d2-ui-sharing-dialog';
 import { Editor as RichTextEditor, convertCtrlKey } from '@dhis2/d2-ui-rich-text';
 import i18n from '@dhis2/d2-i18n';
 import WithAvatar from '../Avatar/WithAvatar';
@@ -20,6 +21,8 @@ export class NewInterpretationField extends Component {
         this.state = { 
             text: this.props.interpretation ? this.props.interpretation.text : '',
             showToolbar: false,
+            sharingDialogisOpen: false,
+            sharingProps: null,
         };    
     };
 
@@ -54,6 +57,7 @@ export class NewInterpretationField extends Component {
     async postInterpretation() {
         const newInterpretation = new InterpretationModel(this.props.model, {});
         newInterpretation.text = this.state.text;
+        newInterpretation.sharing = this.state.sharingProps;
         return newInterpretation.save(this.context.d2);
     };
 
@@ -65,8 +69,19 @@ export class NewInterpretationField extends Component {
 
     onUpdate = () => {
         this.props.interpretation.text = this.state.text;
+        if (this.state.sharingProps) {
+            this.props.interpretation.sharing = this.state.sharingProps;
+        }
         this.props.onUpdate(this.props.interpretation);
     };
+
+    onOpenSharingDialog = () => 
+        this.setState({ sharingDialogisOpen: true });
+
+    onCloseSharingDialog = sharingProps =>
+        sharingProps 
+            ? this.setState({ sharingDialogisOpen: false, sharingProps })
+            : this.setState({ sharingDialosIsOpen: false });
 
     focus = (highlightStart, highlightEnd) => {
         this.textarea.current.focus();
@@ -115,13 +130,27 @@ export class NewInterpretationField extends Component {
 
     renderSharingInfo = () =>
         !!this.state.text && (
-            <SharingInfo interpretation={this.props.interpretation || this.props.model} />
+            <SharingInfo interpretation={this.state.sharingProps || this.props.interpretation || this.props.model} onClick={this.onOpenSharingDialog} />
+        );
+
+    renderSharingDialog = () => 
+        this.state.sharingDialogisOpen && (
+            <SharingDialog
+                open={this.state.sharingDialogisOpen}
+                type={this.props.type}
+                d2={this.context.d2}
+                id={this.props.interpretation ? this.props.interpretation.id : this.props.model.id}
+                doNotPost={true}
+                onConfirm={this.onCloseSharingDialog}
+                onRequestClose={this.onCloseSharingDialog}
+            />
         );
     
     render() {
         const ActionButtons = this.renderActionButtons();
         const Toolbar = this.renderToolbar();
         const Sharing = this.renderSharingInfo();
+        const SharingDialog = this.renderSharingDialog();
 
         return (
             <WithAvatar className={this.props.classes.newInterpretation} user={this.context.d2.currentUser}>
@@ -146,6 +175,7 @@ export class NewInterpretationField extends Component {
                 </MentionsWrapper>
                 {Sharing}
                 {ActionButtons}
+                {SharingDialog}
             </WithAvatar>
         );
     };
