@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItem from '@material-ui/core/ListItem';
 import List from '@material-ui/core/List';
+import sortBy from 'lodash/sortBy';
 
 import Popover from '@material-ui/core/Popover';
 import Typography from '@material-ui/core/Typography';
@@ -47,7 +48,7 @@ export const UserList = ({
 
         onSelect(user);
     };
-
+    
     return (
         <Popover
             open={open}
@@ -63,13 +64,13 @@ export const UserList = ({
         >
             {users.length ? (
                 <Fragment>
-                    <Typography variant="subheading">
+                    <Typography variant="subtitle1">
                         <em className={classes.filter}>
                             {i18n.t('Searching for "{{filter}}"', { filter })}
                         </em>
                     </Typography>
                     <List dense disablePadding className={classes.list}>
-                        {users.map(u => (
+                        {sortBy(users, [userName => userName.displayName.toLowerCase()]).map(u => (
                             <ListItem
                                 button
                                 key={u.id}
