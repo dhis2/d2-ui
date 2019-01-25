@@ -3,7 +3,7 @@ import convertCtrlKey from '../convertCtrlKey';
 describe('convertCtrlKey', () => {
     it('does not trigger callback if no ctrl key', () => {
         const cb = jest.fn();
-        const e = { key: 'j' };
+        const e = { key: 'j', preventDefault: () => {} };
 
         convertCtrlKey(e, cb);
 
@@ -21,6 +21,7 @@ describe('convertCtrlKey', () => {
                     selectionEnd: 0,
                     value: 'rainbow dash',
                 },
+                preventDefault: () => {}
             };
 
             convertCtrlKey(e, cb);
@@ -39,6 +40,7 @@ describe('convertCtrlKey', () => {
                     selectionEnd: 22,
                     value: 'rainbow dash is purple',
                 },
+                preventDefault: () => {}
             };
 
             convertCtrlKey(e, cb);
@@ -57,6 +59,7 @@ describe('convertCtrlKey', () => {
                     selectionEnd: 4,
                     value: 'the quick brown fox',
                 },
+                preventDefault: () => {}
             };
 
             convertCtrlKey(e, cb);
@@ -75,6 +78,7 @@ describe('convertCtrlKey', () => {
                     selectionEnd: 3,
                     value: 'the quick brown fox',
                 },
+                preventDefault: () => {}
             };
 
             convertCtrlKey(e, cb);
@@ -93,6 +97,7 @@ describe('convertCtrlKey', () => {
                     selectionEnd: 9,
                     value: 'rainbow __',
                 },
+                preventDefault: () => {}
             };
 
             convertCtrlKey(e, cb);
@@ -112,6 +117,7 @@ describe('convertCtrlKey', () => {
                         selectionEnd: 10,
                         value: 'rainbow dash is purple',
                     },
+                    preventDefault: () => {}
                 };
 
                 convertCtrlKey(e, cb);
@@ -130,6 +136,7 @@ describe('convertCtrlKey', () => {
                         selectionEnd: 7,
                         value: 'rainbow dash is purple',
                     },
+                    preventDefault: () => {}
                 };
 
                 convertCtrlKey(e, cb);
@@ -148,6 +155,7 @@ describe('convertCtrlKey', () => {
                         selectionEnd: 22,
                         value: 'rainbow dash is purple',
                     },
+                    preventDefault: () => {}
                 };
 
                 convertCtrlKey(e, cb);
@@ -166,6 +174,7 @@ describe('convertCtrlKey', () => {
                         selectionEnd: 12,
                         value: 'rainbow dash is purple',
                     },
+                    preventDefault: () => {}
                 };
 
                 convertCtrlKey(e, cb);
@@ -184,6 +193,7 @@ describe('convertCtrlKey', () => {
                         selectionEnd: 13,
                         value: 'rainbow dash is purple',
                     },
+                    preventDefault: () => {}
                 };
 
                 convertCtrlKey(e, cb);
@@ -207,6 +217,7 @@ describe('convertCtrlKey', () => {
                     selectionEnd: 0,
                     value: '',
                 },
+                preventDefault: () => {}
             };
 
             convertCtrlKey(e, cb);
