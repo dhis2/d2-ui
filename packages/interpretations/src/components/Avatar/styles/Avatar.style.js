@@ -1,6 +1,7 @@
 export default {
     avatar: {
-        color: 'black',
+        color: '#4A5768',
+        backgroundColor: '#D5DDE5',
         fontSize: '15px',
         fontWeight: 'bold',
         width: '32px',

@@ -78,7 +78,7 @@ export const itemTypeMap = {
     [EVENT_CHART]: {
         id: EVENT_CHART,
         appUrl: id => `dhis-web-event-visualizer/?id=${id}`,
-        appName: i18n.t('Event Visualizer'),
         propName:  'eventChart',
+        appName: i18n.t('Event Visualizer'),
     },
 };

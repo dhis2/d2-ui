@@ -33,10 +33,12 @@ export const InterpretationsList = ({
 
     return (
         <Fragment>
-            <Link 
-                label={`${isExpanded ? i18n.t('Hide') : i18n.t('Show')}${' previous interpretations'}`}
-                onClick={toggleShowAllInterpretations} 
-            />
+            {filteredItems.length > interpretationsToShowOnInit && (
+                <Link 
+                    label={`${isExpanded ? i18n.t('Hide') : i18n.t('Show')}${' previous interpretations'}`}
+                    onClick={toggleShowAllInterpretations} 
+                />
+            )}
             {listItems.map(item =>
                 <Interpretation
                     model={model}

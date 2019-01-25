@@ -1,13 +1,11 @@
 export default {
-    title: {
-        textAlign: 'center',
-    },
     content: {
-        textAlign: 'center',
+        lineHeight: '1.5em',
     },
     actions: {
-        justifyContent: 'space-around',
         borderTop: 'none',
-        marginTop: '8px',
     },
+    button: {
+        textTransform: 'capitalize',
+    }
 }

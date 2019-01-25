@@ -5,9 +5,10 @@ import { withStyles } from '@material-ui/core/styles';
 import styles from './styles/Avatar.style';
 
 const UserAvatar = ({ classes, user }) => {
-    const initials = user.displayName
-        .split(" ")
-        .map(part => part[0]).slice(0, 2).join("");
+    const nameToArr = user.displayName.split(" ") 
+    const initials = nameToArr[0]
+        .slice(0, 1)
+        .concat(nameToArr[nameToArr.length - 1].slice(0, 1))
     
     return <Avatar color="black" className={classes.avatar}>{initials}</Avatar>;
 };

@@ -12,7 +12,7 @@ export default {
         padding: '8px',
         margin: '8px 0px',
         borderRadius: '4px',
-        backgroundColor: 'rgb(239, 239, 239)',
+        backgroundColor: '#F3F5F7',
     },
 
     expanded: {
@@ -20,7 +20,7 @@ export default {
         padding: '8px',
         margin: '8px 0px',
         borderRadius: '4px',
-        backgroundColor: 'rgb(239, 239, 239)',
+        backgroundColor: '#F3F5F7',
     },
 
     intepretationLikes: {

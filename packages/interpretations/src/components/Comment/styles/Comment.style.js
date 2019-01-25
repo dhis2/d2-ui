@@ -4,7 +4,7 @@ export default {
         margin: '8px 0px',
         padding: '8px',
         borderRadius: '4px',
-        backgroundColor: 'rgb(239, 239, 239)',
+        backgroundColor: '#F3F5F7',
     },
 
     commentText: {

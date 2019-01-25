@@ -10,16 +10,25 @@ import { withStyles } from '@material-ui/core/styles';
 import styles from './styles/DeleteDialog.style'
 
 export const DeleteDialog = ({ classes, title, text, onDelete, onCancel }) => (
-    <Dialog open={true} maxWidth="md">
-        <DialogTitle className={classes.title}>{title}</DialogTitle>
+    <Dialog open={true} maxWidth="sm">
+        <DialogTitle>{title}</DialogTitle>
         <DialogContent className={classes.content}>
             {text}
             <DialogActions className={classes.actions}>
-                <Button onClick={onDelete} color="primary" variant="contained">
-                    {i18n.t('Yes, delete')}
+                <Button
+                    className={classes.button}
+                    onClick={onCancel}
+                    variant="outlined"
+                >
+                    {i18n.t('Cancel')}
                 </Button>
-                <Button onClick={onCancel} variant="outlined">
-                    {i18n.t('No, cancel')}
+                <Button
+                    className={classes.button}
+                    onClick={onDelete}
+                    color="primary"
+                    variant="contained"
+                >
+                    {i18n.t('Confirm')}
                 </Button>
             </DialogActions>
         </DialogContent>
@@ -29,6 +38,7 @@ export const DeleteDialog = ({ classes, title, text, onDelete, onCancel }) => (
 export default withStyles(styles)(DeleteDialog);
 
 DeleteDialog.propTypes = {
+    classes: PropTypes.object.isRequired,
     title: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
     onDelete: PropTypes.func.isRequired,
