@@ -83,6 +83,24 @@ describe('convertCtrlKey', () => {
             expect(cb).toHaveBeenCalledWith('the ** quick brown fox', 5);
         });
 
+        it('triggers callback with correct double markers and padding', () => {
+            const cb = jest.fn();
+            const e = {
+                key: 'b',
+                metaKey: true,
+                target: {
+                    selectionStart: 9, // between the underscores
+                    selectionEnd: 9,
+                    value: 'rainbow __',
+                },
+            };
+
+            convertCtrlKey(e, cb);
+
+            expect(cb).toHaveBeenCalled();
+            expect(cb).toHaveBeenCalledWith('rainbow _**_', 10);
+        })
+
         describe('selected text', () => {
             it('triggers callback with open/close markers around text and caret pos after closing marker', () => {
                 const cb = jest.fn();

@@ -74,7 +74,7 @@ export default class RichText extends Component {
 
     render() {
         return (
-            <div style={{marginLeft: 400}}>
+            <div>
                 <div>
                     <p>Using RichText react component wrapper:</p>
                     <RichTextEditor onEdit={this.updateNewText}>

@@ -35,6 +35,14 @@ const insertMarkers = (mode, cb) => {
     let caretPos = end + 1;
 
     const padMarkers = text => {
+        // is caret between two markers (i.e., "**" or "__")? Then do not add padding
+        if (start === end && value.length && start > 0) {
+            if ((value[start-1] === markerMap.bold && value[start] === markerMap.bold) ||
+                (value[start-1] === markerMap.italic && value[start] === markerMap.italic)) {
+                return text;
+            }
+        }
+
         if (value.length && start > 0 && value[start - 1] !== ' ') {
             text = ` ${text}`;
             ++caretPos;
