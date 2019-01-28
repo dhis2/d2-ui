@@ -14,7 +14,7 @@ import CommentsList from '../Lists/CommentsList';
 import DeleteDialog from '../DeleteDialog/DeleteDialog';
 import InterpretationModel from '../../models/interpretation';
 import CommentModel from '../../models/comment';
-import { userCanManage } from '../../authorization/auth';
+import { userCanManage, haveWriteAccess } from '../../authorization/auth';
 import { formatRelative } from '../../dateformats/dateformatter';
 import { shouldUpdateSharing } from '../../sharing/sharing';
 import styles from './styles/Interpretation.style';
@@ -170,10 +170,10 @@ export class Interpretation extends React.Component {
                     />
                     <ActionButtonContainer
                         isFocused={extended}
-                        d2={this.context.d2}
                         interpretation={interpretation}
                         currentUserLikesInterpretation={currentUserLikesInterpretation}
-                        isOwner={userCanManage(this.context.d2, interpretation)}
+                        canReply={haveWriteAccess(this.context.d2, interpretation)}
+                        canManage={userCanManage(this.context.d2, interpretation)}
                         onClickHandlers={this.getOnClickHandlers()}
                     />
                 </WithAvatar>

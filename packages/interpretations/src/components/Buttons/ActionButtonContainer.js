@@ -4,7 +4,6 @@ import { withStyles } from '@material-ui/core/styles';
 import ActionButton from './ActionButton';
 import RedirectButton from './RedirectButton';
 import styles from './styles/ActionButtonContainer.style';
-import { haveWriteAccess } from '../../authorization/auth';
 
 const UNLIKE_INDEX = 0;
 const LIKE_INDEX = 1;
@@ -18,58 +17,52 @@ const REPLY_INDEX = 7;
 export const ActionButtonContainer = ({ 
     classes, 
     isFocused,
-    d2,
-    interpretation,
     currentUserLikesInterpretation,
-    isOwner,
+    canReply,
+    canManage,
     onClickHandlers,
-}) => {
-    const renderOwnerActions = isOwner && (
-        <Fragment>
+}) => (
+    <div className={classes.actions}>
+        <ActionButton
+            iconType={currentUserLikesInterpretation ? 'unlike' : 'like'} 
+            onClick={onClickHandlers[currentUserLikesInterpretation ? UNLIKE_INDEX : LIKE_INDEX]}
+        />
+        {canReply && (
             <ActionButton 
-                iconType={'share'} 
-                onClick={onClickHandlers[SHARE_INDEX]}
+                iconType={'reply'} 
+                onClick={onClickHandlers[REPLY_INDEX]}
             />
-            <ActionButton 
-                iconType={'edit'} 
-                onClick={onClickHandlers[EDIT_INDEX]}
-            />      
-            <ActionButton 
-                iconType={'delete'} 
-                onClick={onClickHandlers[DELETE_INDEX]}
-            />
-        </Fragment>
-    );
-
-    const renderDashboardButton =  <RedirectButton />;
-
-    return (
-        <div className={classes.actions}>
-            <ActionButton
-                iconType={currentUserLikesInterpretation ? 'unlike' : 'like'} 
-                onClick={onClickHandlers[currentUserLikesInterpretation ? UNLIKE_INDEX : LIKE_INDEX]}
-            />
-            {haveWriteAccess(d2, interpretation) && (
+        )}
+        <ActionButton 
+            iconType={isFocused ? 'visibilityOff' : 'visibility'} 
+            onClick={onClickHandlers[isFocused ? EXIT_VIEW_INDEX : VIEW_INDEX]}
+        />
+        <RedirectButton />
+        {canManage && (
+            <Fragment>
                 <ActionButton 
-                    iconType={'reply'} 
-                    onClick={onClickHandlers[REPLY_INDEX]}
+                    iconType={'share'} 
+                    onClick={onClickHandlers[SHARE_INDEX]}
                 />
-            )}
-            <ActionButton 
-                iconType={isFocused ? 'visibilityOff' : 'visibility'} 
-                onClick={onClickHandlers[isFocused ? EXIT_VIEW_INDEX : VIEW_INDEX]}
-            />
-            {renderDashboardButton}
-            {renderOwnerActions}
-        </div>
-    );
-};
+                <ActionButton 
+                    iconType={'edit'} 
+                    onClick={onClickHandlers[EDIT_INDEX]}
+                />      
+                <ActionButton 
+                    iconType={'delete'} 
+                    onClick={onClickHandlers[DELETE_INDEX]}
+                />
+            </Fragment>
+        )}
+    </div>
+);
 
 ActionButtonContainer.propTypes = {
     classes: PropTypes.object.isRequired,
-    currentUserLikesInterpretation: PropTypes.bool.isRequired,
     isFocused: PropTypes.bool.isRequired,
-    isOwner: PropTypes.bool.isRequired,
+    currentUserLikesInterpretation: PropTypes.bool.isRequired,
+    canReply: PropTypes.bool.isRequired,
+    canManage: PropTypes.bool.isRequired,
     onClickHandlers: PropTypes.array.isRequired,
 };
 

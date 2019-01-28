@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2019-01-16T01:46:07.271Z\n"
-"PO-Revision-Date: 2019-01-16T01:46:07.271Z\n"
+"POT-Creation-Date: 2019-01-25T17:15:09.737Z\n"
+"PO-Revision-Date: 2019-01-25T17:15:09.737Z\n"
 
 msgid "Pivot Tables"
 msgstr ""
@@ -68,10 +68,7 @@ msgstr ""
 msgid "Write a reply"
 msgstr ""
 
-msgid "Yes, delete"
-msgstr ""
-
-msgid "No, cancel"
+msgid "Confirm"
 msgstr ""
 
 msgid "No description"

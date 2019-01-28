@@ -7,7 +7,6 @@ export default {
     },
     
     tooltip: {
-        fontFamily: 'roboto',
         fontSize: '12px',
         whiteSpace:'noWrap',
         padding: '7px 9px',
