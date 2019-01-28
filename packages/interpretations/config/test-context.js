@@ -37,6 +37,15 @@ export function getStubContext() {
                     },
                 },
                 authorities: new Set(),
+                userGroupAccesses: [
+                    {
+                        access: "rw------",
+                        userGroupUid: "wl5cDMuUhmF",
+                        displayName: "Administrators",
+                        id: "wl5cDMuUhmF"
+                    }
+                ],
+                userAccesses: [],
             },
         },
         locale: 'en',

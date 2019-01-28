@@ -6,7 +6,6 @@ import { Interpretation } from '../Interpretation';
 import CommentsList from '../../Lists/CommentsList';
 import ActionButtonContainer from '../../Buttons/ActionButtonContainer';
 import { getStubContext } from '../../../../config/test-context';
-import NewCommentField from '../../Comment/NewCommentField';
 import NewInterpretationField from '../NewInterpretationField';
 
 const interpretation = {
@@ -14,6 +13,7 @@ const interpretation = {
     id: 'LOECMJN3DRF',
     likes: 2,
     text: 'Some interpretation',
+    publicAccess: "r-------",
     created: '2018-04-14T12:00:47.096',
     lastUpdated: '2018-04-14T12:05:47.096',
     user: {
@@ -77,7 +77,7 @@ let currentUser;
 
 
 
-describe('Interpretations: Interpretation -> OldInterpretation component', () => {
+describe('Interpretations: Interpretation -> Interpretation component', () => {
     beforeEach(() => {
         currentUser = { id: 'xE7jOejl9FI', displayName: 'John Traore' };
     });
@@ -109,7 +109,7 @@ describe('Interpretations: Interpretation -> OldInterpretation component', () =>
             expect(interpretationComponent.find(CommentsList)).toExist();
         });
 
-        describe('when state interpretationToEdit is true', () => {
+        describe('when state interpretationToEdit is not null', () => {
             beforeEach(() => {
                 interpretationComponent = renderComponent({}).setState({ interpretationToEdit: true });
             });

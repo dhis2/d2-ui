@@ -8,10 +8,9 @@ import ActionButton from '../ActionButton';
 let baseProps = {
     classes: {},
     isFocused: false,
-    d2: { currentUser: { id: 'testId'}},
-    interpretation: { user: { id: 'testId' }},
     currentUserLikesInterpretation: false,
-    isOwner: false,
+    canReply: true,
+    canManage: false,
     onClickHandlers: [
         jest.fn(), jest.fn(), jest.fn(), 
         jest.fn(), jest.fn(), jest.fn(), 
@@ -79,7 +78,7 @@ describe('components: Button -> ActionButtonContainer component', () => {
             expect(exitViewButton.length).toEqual(1);
         });
 
-        describe('and prop isOwner as false', () => {
+        describe('and prop canManage as false', () => {
                 
             it('should not render any additional buttons', () => {
                 const actionButtons = actionButtonContainerComponent.find(ActionButton);
@@ -93,9 +92,9 @@ describe('components: Button -> ActionButtonContainer component', () => {
             });
         });
 
-        describe('and prop isOwner as true', () => {
+        describe('and prop canManage as true', () => {
             beforeEach(() => { 
-                actionButtonContainerComponent = renderComponent({ isFocused: true, isOwner: true });
+                actionButtonContainerComponent = renderComponent({ isFocused: true, canManage: true });
             });
 
             it('should render additional ActionButtons with iconType share, edit and delete', () => {

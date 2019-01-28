@@ -170,7 +170,6 @@ export class Interpretation extends React.Component {
                     />
                     <ActionButtonContainer
                         isFocused={extended}
-                        interpretation={interpretation}
                         currentUserLikesInterpretation={currentUserLikesInterpretation}
                         canReply={haveWriteAccess(this.context.d2, interpretation)}
                         canManage={userCanManage(this.context.d2, interpretation)}
