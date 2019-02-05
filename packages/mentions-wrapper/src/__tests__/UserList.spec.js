@@ -4,8 +4,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItem from '@material-ui/core/ListItem';
 import List from '@material-ui/core/List';
 import Popover from '@material-ui/core/Popover';
-import sortBy from 'lodash/sortBy';
-
 
 import { UserList } from '../UserList';
 
@@ -20,13 +18,13 @@ describe('Mentions: MentionsWrapper > UserList component', () => {
         onSelect = jest.fn();
         onClose = jest.fn();
 
-        users =  [
-            { id: 'jc', displayName: 'Johnny Cash', userCredentials: { username: 'sue' } },
+        users = [
             {
                 id: 'ec',
                 displayName: 'Eric Clapton',
                 userCredentials: { username: 'slowhand' },
             },
+            { id: 'jc', displayName: 'Johnny Cash', userCredentials: { username: 'sue' } },
             { id: 'jj', displayName: 'Justin Johnson', userCredentials: { username: 'slide' } },
         ];
 
@@ -59,16 +57,17 @@ describe('Mentions: MentionsWrapper > UserList component', () => {
         ).toEqual('Eric Clapton (slowhand)');
     });
 
-    it('should sort the mentions in alphabetical order by firstname', () => {
+    it('should show the user list sorted in alphabetical order by firstname', () => {
         const sortedList = [
-            { displayName: 'Eric Clapton' },
+            { displayName: 'Eric Clapton' },
             { displayName: 'Johnny Cash' },
-            { displayName: 'Justin Johnson' }
+            { displayName: 'Justin Johnson' },
         ];
 
-        userList.find(ListItemText).forEach((node, i) => 
-            expect(
-                node.props().primary).toContain(sortedList[i].displayName)
+        userList
+            .find(ListItemText)
+            .forEach((node, i) =>
+                expect(node.props().primary).toContain(sortedList[i].displayName)
             );
     });
 

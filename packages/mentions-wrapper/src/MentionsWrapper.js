@@ -27,6 +27,7 @@ class MentionsWrapper extends Component {
             .get('users.json', {
                 query,
                 fields: 'id,displayName,userCredentials[username]',
+                order: 'displayName:iasc',
             })
             .then(response => {
                 this.setState({
@@ -81,6 +82,7 @@ class MentionsWrapper extends Component {
                         }
 
                         break;
+                    default:
                 }
             }
         }

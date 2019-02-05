@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItem from '@material-ui/core/ListItem';
 import List from '@material-ui/core/List';
-import sortBy from 'lodash/sortBy';
 
 import Popover from '@material-ui/core/Popover';
 import Typography from '@material-ui/core/Typography';
@@ -48,7 +47,7 @@ export const UserList = ({
 
         onSelect(user);
     };
-    
+
     return (
         <Popover
             open={open}
@@ -70,7 +69,7 @@ export const UserList = ({
                         </em>
                     </Typography>
                     <List dense disablePadding className={classes.list}>
-                        {sortBy(users, [userName => userName.displayName.toLowerCase()]).map(u => (
+                        {users.map(u => (
                             <ListItem
                                 button
                                 key={u.id}
