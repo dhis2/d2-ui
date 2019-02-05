@@ -36,6 +36,10 @@ class InterpretationDialog extends Component {
         this.props.onClose();
     };
 
+    onUserSelect = newValue => {
+        this.setState({ value: newValue });
+    };
+
     onChange = event => {
         this.setState({ value: event.target.value });
     };
@@ -80,12 +84,12 @@ class InterpretationDialog extends Component {
                     open={true}
                     onClose={this.cancel}
                     maxWidth="md"
-                    classes={{paper: classes.dialog}}
+                    classes={{ paper: classes.dialog }}
                 >
                     <DialogTitle>{title}</DialogTitle>
 
                     <DialogContent>
-                        <MentionsWrapper d2={d2} onUserSelect={this.onChange}>
+                        <MentionsWrapper d2={d2} onUserSelect={this.onUserSelect}>
                             <FormControl fullWidth>
                                 <TextField
                                     name="interpretation"
