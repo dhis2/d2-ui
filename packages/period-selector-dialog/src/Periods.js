@@ -8,7 +8,7 @@ import isEqual from 'lodash/isEqual';
 import PeriodTypeButton from './PeriodTypeButton';
 import SelectedPeriods from './SelectedPeriods';
 import { OfferedPeriods } from './OfferedPeriods';
-import PeriodTypes from './PeriodTypes';
+import { FIXED, RELATIVE } from './utils/periodTypes';
 import styles from './styles/PeriodListItem.style';
 // eslint-disable-next-line import/no-unresolved
 import './PeriodSelector.css';
@@ -144,13 +144,13 @@ class Periods extends Component {
     renderPeriodTypeButtons = () => (
         <div>
             <PeriodTypeButton
-                periodType={PeriodTypes.RELATIVE}
+                periodType={RELATIVE}
                 activePeriodType={this.props.periodType}
                 text={'Relative periods'}
                 onClick={this.onPeriodTypeClick}
             />
             <PeriodTypeButton
-                periodType={PeriodTypes.FIXED}
+                periodType={FIXED}
                 activePeriodType={this.props.periodType}
                 text={'Fixed periods'}
                 onClick={this.onPeriodTypeClick}

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import RelativePeriods from './RelativePeriods';
 import FixedPeriods from './FixedPeriods';
-import PeriodTypes from './PeriodTypes';
+import { FIXED, RELATIVE } from './utils/periodTypes';
 
 
 export const OfferedPeriods = (props) => {
@@ -12,9 +12,9 @@ export const OfferedPeriods = (props) => {
     const fixedPeriods = <FixedPeriods {...remaindingProps} />;
 
     switch (periodType) {
-    case PeriodTypes.FIXED:
+    case FIXED:
         return fixedPeriods;
-    case PeriodTypes.RELATIVE:
+    case RELATIVE:
         return relativePeriods;
     default:
         return relativePeriods;
