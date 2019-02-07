@@ -1,15 +1,13 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import IconButton from '@material-ui/core/IconButton';
-import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import isEqual from 'lodash/isEqual';
+import { ItemSelector } from 'analytics-shared-components';
+
 import PeriodTypeButton from './PeriodTypeButton';
-import SelectedPeriods from './SelectedPeriods';
-import { OfferedPeriods } from './OfferedPeriods';
+import FixedPeriodFIlter from './FixedPeriodFilter';
+import RelativePeriodFilter from './RelativePeriodFilter';
 import { FIXED, RELATIVE } from './utils/periodTypes';
-import styles from './styles/PeriodListItem.style';
 // eslint-disable-next-line import/no-unresolved
 import './PeriodSelector.css';
 
@@ -24,34 +22,6 @@ import {
     removeSelectedPeriods,
     toggleSelectedPeriod,
 } from './actions';
-
-const SelectButton = ({ action }) => (
-    <IconButton
-        style={styles.arrowButton}
-        className="select-button"
-        onClick={action}
-    >
-        <ArrowForwardIcon style={styles.arrowIcon} />
-    </IconButton>
-);
-
-SelectButton.propTypes = {
-    action: PropTypes.func.isRequired,
-};
-
-const DeselectButton = ({ action }) => (
-    <IconButton
-        style={styles.arrowButton}
-        className="select-button"
-        onClick={action}
-    >
-        <ArrowBackIcon style={styles.arrowIcon} />
-    </IconButton>
-);
-
-DeselectButton.propTypes = {
-    action: PropTypes.func.isRequired,
-};
 
 class Periods extends Component {
     constructor(props) {
@@ -134,7 +104,7 @@ class Periods extends Component {
     setOfferedPeriodIds = (periods) => {
         this.setState({
             offeredPeriodIds: periods.map(period => period.id),
-        });
+        }, args => console.log('has been set', args));
     };
 
     addOfferedPeriods = (periods) => {
@@ -158,49 +128,46 @@ class Periods extends Component {
         </div>
     );
 
-    renderSelectButtons = () => (
-        <Fragment>
-            <SelectButton action={this.onSelectPeriods} />
-            <DeselectButton action={this.onDeselectPeriods} />
-        </Fragment>
-    );
-
     render = () => {
         const PeriodTypeButtons = this.renderPeriodTypeButtons();
-        const SelectButtons = this.renderSelectButtons();
 
+        // const sopi = args => console.log('sopi', args);
+        // const sop = args => console.log('sop', args);
+
+
+        const filterZone = () => {
+            if (this.props.periodType === FIXED) {
+                return (<FixedPeriodFIlter setOfferedPeriodIds={this.setOfferedPeriodIds} />);
+            }
+
+            return (<RelativePeriodFilter  setOfferedPeriodIds={this.setOfferedPeriodIds} />);
+        }
+
+
+        const unselected = {
+            items: this.props.offeredPeriods.periods,
+            onSelect: args => console.log('select the unselected', args),
+            filterText: ''
+        };
+
+        const selected = {
+            items: this.props.selectedPeriods.periods,
+            onDeselect: args => console.log('unselect these', args),
+            onReorder: this.props.onReorder,
+        };
         return (
-            <div>
+            <Fragment>
                 {PeriodTypeButtons}
-                <div className="periods-container">
-                    <div className="block options">
-                        <OfferedPeriods
-                            periodType={this.props.periodType}
-                            items={this.props.offeredPeriods.periods}
-                            onPeriodDoubleClick={this.onOfferedPeriodDoubleClick}
-                            onPeriodClick={this.props.toggleOfferedPeriod}
-                            setOfferedPeriods={this.props.setOfferedPeriods}
-                            setOfferedPeriodIds={this.setOfferedPeriodIds}
-                            addSelectedPeriods={this.props.addSelectedPeriods}
-                            selectedItems={this.props.selectedItems}
-                            onSelect={this.props.onSelect}
-                        />
-                    </div>
-                    <div className="block buttons">
-                        {SelectButtons}
-                    </div>
-                    <div className="block selected-periods">
-                        <SelectedPeriods
-                            items={this.props.selectedPeriods.periods}
-                            onClearAll={this.onClearAll}
-                            onPeriodDoubleClick={this.onSelectedPeriodDoubleClick}
-                            onPeriodClick={this.props.toggleSelectedPeriod}
-                            onReorder={this.props.onReorder}
-                            onRemovePeriodClick={this.onSelectedPeriodRemove}
-                        />
-                    </div>
+                <div style={{display: 'flex', marginTop: '18px'}}>
+                    <ItemSelector
+                            itemClassName="data-dimension"
+                            unselected={unselected}
+                            selected={selected}
+                        >
+                            {filterZone()}
+                    </ItemSelector>
                 </div>
-            </div>
+            </Fragment>
         );
     };
 }
