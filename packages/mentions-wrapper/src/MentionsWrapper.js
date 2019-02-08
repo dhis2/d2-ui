@@ -4,7 +4,7 @@ import debounce from 'lodash/debounce';
 
 import UserListContainer from './UserList';
 
-const defaultState = {
+export const defaultState = {
     element: null,
     listIsOpen: false,
     captureText: false,
@@ -22,7 +22,17 @@ class MentionsWrapper extends Component {
         this.lookupUser = debounce(this.lookupUser, 250);
     }
 
-    lookupUser = query => {
+    reset = () => {
+        this.state.element.removeEventListener('input', this.onInput);
+
+        this.setState(defaultState);
+    };
+
+    onInput = event => {
+        this.computeFilter(event.target);
+    };
+
+    lookupUser = (query = '') => {
         this.props.d2.Api.getApi()
             .get('users.json', {
                 query,
@@ -37,25 +47,50 @@ class MentionsWrapper extends Component {
             });
     };
 
+    computeFilter = element => {
+        const { selectionEnd, value } = element;
+
+        if (this.state.captureText) {
+            const spacePosition = value.indexOf(' ', this.state.captureStartPosition - 1);
+
+            const filterValue = value.substring(
+                this.state.captureStartPosition,
+                spacePosition > 0 ? spacePosition : selectionEnd + 1
+            );
+
+            if (!filterValue || filterValue !== this.state.capturedText) {
+                this.lookupUser(filterValue);
+
+                this.setState({ capturedText: filterValue });
+            } else if (filterValue.length === 0) {
+                this.setState({ capturedText: null, users: [] });
+            }
+        }
+    };
+
     // event bubbles up from the wrapped input/textarea
     onKeyDown = event => {
         const { key } = event;
         const element = event.target;
-        const { selectionStart, selectionEnd } = element;
+        const { selectionStart } = element;
 
         // '@' triggers the user lookup/suggestion
         if (!this.state.captureText && key === '@') {
+            element.addEventListener('input', this.onInput);
+
             this.setState({
                 element,
                 captureText: true,
                 captureStartPosition: selectionStart + 1,
             });
+
+            this.lookupUser();
         } else if (this.state.captureText) {
             if (
                 key === ' ' ||
                 (key === 'Backspace' && selectionStart <= this.state.captureStartPosition)
             ) {
-                this.setState(defaultState);
+                this.reset();
             } else if (this.state.users.length) {
                 const selectedUserIndex = this.state.selectedUserIndex;
 
@@ -83,38 +118,11 @@ class MentionsWrapper extends Component {
 
                         break;
                     default:
+                    // other key strokes, typically the text typed
+                    // the onInput event handler set on the input element is triggering the user lookup
                 }
             }
         }
-
-        // this is to make sure the state has been updated
-        // otherwise the last character is not included in the captured text
-        // also debounce
-        setTimeout(() => {
-            if (this.state.captureText) {
-                const spacePosition = element.value.indexOf(
-                    ' ',
-                    this.state.captureStartPosition - 1
-                );
-
-                const filterValue = element.value.substring(
-                    this.state.captureStartPosition,
-                    spacePosition > 0 ? spacePosition : selectionEnd + 1
-                );
-
-                if (!filterValue || filterValue !== this.state.capturedText) {
-                    this.lookupUser(filterValue);
-
-                    this.setState({ capturedText: filterValue });
-                } else if (filterValue.length === 0) {
-                    this.setState({ capturedText: null, users: [] });
-                }
-            }
-        }, 0);
-    };
-
-    onUserListClose = () => {
-        this.setState(defaultState);
     };
 
     onUserSelect = user => {
@@ -126,7 +134,7 @@ class MentionsWrapper extends Component {
             .slice(this.state.captureStartPosition - 1)
             .replace(/^@\w*/, `@${user.userCredentials.username} `)}`;
 
-        this.setState(defaultState);
+        this.reset();
 
         // typically for connected components we want the state to be updated too
         // but the logic belongs to the wrapped component, so we just invoke the supplied callback
@@ -156,7 +164,7 @@ class MentionsWrapper extends Component {
                     users={users}
                     selectedUser={users[selectedUserIndex]}
                     filter={capturedText}
-                    onClose={this.onUserListClose}
+                    onClose={this.reset}
                     onSelect={this.onUserSelect}
                 />
             </div>
