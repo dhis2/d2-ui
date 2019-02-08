@@ -7,8 +7,8 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 
 import i18n from '@dhis2/d2-i18n';
-import RelativePeriodsGenerator from './utils/RelativePeriodsGenerator';
-import styles from './styles/PeriodListItem.style';
+import RelativePeriodsGenerator from './modules/RelativePeriodsGenerator';
+import styles from './styles/PeriodFilter.style';
 
 export const defaultState = {
     periodType: 'Months',

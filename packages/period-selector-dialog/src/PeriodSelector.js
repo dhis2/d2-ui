@@ -8,7 +8,7 @@ import Store from './reducers';
 import PeriodTypeButton from './PeriodTypeButton';
 import FixedPeriodFIlter from './FixedPeriodFilter';
 import RelativePeriodFilter from './RelativePeriodFilter';
-import { FIXED, RELATIVE } from './utils/periodTypes';
+import { FIXED, RELATIVE } from './modules/periodTypes';
 // eslint-disable-next-line import/no-unresolved
 import './PeriodSelector.css';
 

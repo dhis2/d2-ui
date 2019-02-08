@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import RelativePeriods from './RelativePeriods';
 import FixedPeriods from './FixedPeriods';
-import { FIXED, RELATIVE } from './utils/periodTypes';
+import { FIXED, RELATIVE } from './modules/periodTypes';
 
 
 export const OfferedPeriods = (props) => {

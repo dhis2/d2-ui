@@ -10,8 +10,8 @@ import ArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import ArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 
 import i18n from '@dhis2/d2-i18n';
-import FixedPeriodsGenerator from './utils/FixedPeriodsGenerator';
-import styles from './styles/PeriodListItem.style';
+import FixedPeriodsGenerator from './modules/FixedPeriodsGenerator';
+import styles from './styles/PeriodFilter.style';
 
 export const defaultState = {
     periodType: 'Monthly',
