@@ -1,90 +1,79 @@
 import React, { Component, Fragment } from 'react';
-import { Provider } from 'react-redux';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+
 import { ItemSelector } from 'analytics-shared-components';
 
-import Store from './reducers';
 import PeriodTypeButton from './PeriodTypeButton';
 import FixedPeriodFIlter from './FixedPeriodFilter';
 import RelativePeriodFilter from './RelativePeriodFilter';
 import { FIXED, RELATIVE } from './modules/periodTypes';
+
 // eslint-disable-next-line import/no-unresolved
 import './PeriodSelector.css';
 
-import {
-    setPeriodType,
-    setOfferedPeriods,
-    addSelectedPeriods,
-    setSelectedPeriods,
-} from './actions';
+class PeriodSelector extends Component {
+    state = {
+        offeredPeriods: [],
+        offeredPeriodsInOrder: [],
+        selectedPeriods: [],
+        periodType: RELATIVE
+    };
 
-class Periods extends Component {
     constructor(props) {
         super(props);
 
-        this.props.setSelectedPeriods(this.props.selectedItems);
-        this.state = { offeredPeriodsInOrder: [] };
+        this.state.selectedPeriods = this.props.selectedItems;
     }
 
     onPeriodTypeClick = (periodType) => {
-        if (this.props.periodType !== periodType) {
-            this.props.setPeriodType(periodType);
+        if (this.state.periodType !== periodType) {
+            this.setState({ periodType });
         }
     };
 
     onSelectPeriods = (periodIds) => {
-        const offeredPeriods = this.props.offeredPeriods.filter(period => !periodIds.includes(period.id));
-        const periodsToAdd = this.props.offeredPeriods.filter(period => periodIds.includes(period.id));
+        const offeredPeriods = this.state.offeredPeriods.filter(period => !periodIds.includes(period.id));
+        const newPeriods = this.state.offeredPeriods.filter(period => periodIds.includes(period.id));
+        const selectedPeriods = this.state.selectedPeriods.concat(newPeriods);
 
-        this.props.setOfferedPeriods(offeredPeriods);
-        this.props.onSelect(periodsToAdd);
-        this.props.addSelectedPeriods(periodsToAdd);
+        this.setState({ selectedPeriods, offeredPeriods });
+        this.props.onSelect(selectedPeriods);
     };
 
     setSelectedPeriodOrder = (periodIds) => {
-        const selectedPeriods = periodIds.map(id => this.props.selectedPeriods.find(period => period.id === id));
+        const selectedPeriods = periodIds.map(id => this.state.selectedPeriods.find(period => period.id === id));
 
+        this.setState({ selectedPeriods });
         this.props.onReorder(selectedPeriods);
-        this.props.setSelectedPeriods(selectedPeriods);
     }
 
     onDeselectPeriods = periodIds => {
-        const selectedPeriods = this.props.selectedPeriods.filter(period => !periodIds.includes(period.id));
-        const removedPeriods =  this.props.selectedPeriods.filter(period => periodIds.includes(period.id));
+        const selectedPeriods = this.state.selectedPeriods.filter(period => !periodIds.includes(period.id));
+        const removedPeriods =  this.state.selectedPeriods.filter(period => periodIds.includes(period.id));
         const offeredPeriods = this.state.offeredPeriodsInOrder.filter(period => !selectedPeriods.map(p => p.id).includes(period.id));
 
+        this.setState({ selectedPeriods, offeredPeriods });
         this.props.onDeselect(removedPeriods);
-        this.props.setSelectedPeriods(selectedPeriods);
-        this.props.setOfferedPeriods(offeredPeriods);
     };
 
     initializeOfferedPeriods = (periods, initial = false) => {
-        const selectedPeriods = initial ? this.props.selectedItems : this.props.selectedPeriods;
+        const selectedPeriods = initial ? this.props.selectedItems : this.state.selectedPeriods;
         const offeredPeriods = periods.filter(period => !selectedPeriods.map(p => p.id).includes(period.id));
 
-        this.setState({ offeredPeriodsInOrder: periods });
-        this.props.setOfferedPeriods(offeredPeriods);
+        this.setState({ offeredPeriodsInOrder: periods, offeredPeriods });
     }
-
-    setOfferedPeriods = periods => {
-        const selectedIds = this.props.selectedItems.map(item => item.id);
-        const offeredPeriods = periods.filter(period => !selectedIds.includes(period.id));
-
-        this.props.setOfferedPeriods(offeredPeriods);
-    };
 
     renderPeriodTypeButtons = () => (
         <div>
             <PeriodTypeButton
                 periodType={RELATIVE}
-                activePeriodType={this.props.periodType}
+                activePeriodType={this.state.periodType}
                 text={'Relative periods'}
                 onClick={this.onPeriodTypeClick}
             />
             <PeriodTypeButton
                 periodType={FIXED}
-                activePeriodType={this.props.periodType}
+                activePeriodType={this.state.periodType}
                 text={'Fixed periods'}
                 onClick={this.onPeriodTypeClick}
             />
@@ -93,7 +82,7 @@ class Periods extends Component {
 
     render = () => {
         const filterZone = () => {
-            if (this.props.periodType === FIXED) {
+            if (this.state.periodType === FIXED) {
                 return (<FixedPeriodFIlter setOfferedPeriods={this.initializeOfferedPeriods} />);
             }
 
@@ -101,16 +90,17 @@ class Periods extends Component {
         }
 
         const unselected = {
-            items: this.props.offeredPeriods,
+            items: this.state.offeredPeriods,
             onSelect: this.onSelectPeriods,
             filterText: ''
         };
 
         const selected = {
-            items: this.props.selectedPeriods,
+            items: this.state.selectedPeriods,
             onDeselect: this.onDeselectPeriods,
             onReorder: this.setSelectedPeriodOrder,
         };
+
         return (
             <Fragment>
                 {this.renderPeriodTypeButtons()}
@@ -127,38 +117,6 @@ class Periods extends Component {
         );
     };
 }
-
-Periods.propTypes = {
-    selectedItems: PropTypes.array.isRequired,
-    periodType: PropTypes.string.isRequired,
-    offeredPeriods: PropTypes.array.isRequired,
-    selectedPeriods: PropTypes.array.isRequired,
-    setPeriodType: PropTypes.func.isRequired,
-    setOfferedPeriods: PropTypes.func.isRequired,
-    addSelectedPeriods: PropTypes.func.isRequired,
-    setSelectedPeriods: PropTypes.func.isRequired,
-};
-
-const mapStateToProps = state => ({
-    periodType: state.periodType,
-    offeredPeriods: state.offeredPeriods.periods,
-    selectedPeriods: state.selectedPeriods.periods,
-});
-
-const mapDispatchToProps = {
-    setPeriodType,
-    setOfferedPeriods,
-    addSelectedPeriods,
-    setSelectedPeriods,
-};
-
-const ConnectedPeriodSelector = connect(mapStateToProps, mapDispatchToProps)(Periods);
-
-const PeriodSelector = props => (
-    <Provider store={Store}>
-        <ConnectedPeriodSelector {...props} />
-    </Provider>
-);
 
 PeriodSelector.propTypes = {
     onSelect: PropTypes.func.isRequired,
