@@ -158,7 +158,8 @@ export class Interpretation extends React.Component {
             return (
                 <WithAvatar 
                     className={extended ? classes.expanded : classes.compact} 
-                    user={interpretation.user} 
+                    firstName={interpretation.user.firstName}
+                    surname={interpretation.user.surname} 
                     onClick={!extended ? this.onView : null}
                 >
                     <CardHeader userName={interpretation.user.displayName} />                        

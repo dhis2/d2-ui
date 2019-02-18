@@ -23,21 +23,46 @@ export class NewInterpretationField extends Component {
             text: this.props.interpretation ? this.props.interpretation.text : '',
             showToolbar: false,
             sharingDialogisOpen: false,
-            sharingProps: {
-                object: {
-                    user: { id: this.props.model.user.id, name: this.props.model.user.displayName },
-                    displayName: this.props.model.displayName,
-                    userAccesses: this.props.model.userAccesses,
-                    userGroupAccesses: this.props.model.userGroupAccesses,
-                    publicAccess: this.props.model.publicAccess,
-                    externalAccess: this.props.model.externalAccess,
-                },
-                meta: {
-                    allowPublicAccess: true,
-                    allowExternalAccess: true,
-                },
-            }
+            sharingProps: {},
         };    
+    };
+
+    componentDidMount() {
+        if (this.props.interpretation) {
+            this.setState({
+                sharingProps: {
+                    object: {
+                        user: { id: this.props.interpretation.user.id, name: this.props.interpretation.user.displayName },
+                        displayName: this.props.model.displayName,
+                        userAccesses: this.props.interpretation.userAccesses,
+                        userGroupAccesses: this.props.interpretation.userGroupAccesses,
+                        publicAccess: this.props.interpretation.publicAccess,
+                        externalAccess: this.props.interpretation.externalAccess,
+                    },
+                    meta: {
+                        allowPublicAccess: this.props.model.publicAccess.includes('r'),
+                        allowExternalAccess: this.props.model.externalAccess,
+                    },
+                }
+            });
+        } else {
+            this.setState({
+                sharingProps: {
+                    object: {
+                        user: { id: this.props.model.user.id, name: this.props.model.user.displayName },
+                        displayName: this.props.model.displayName,
+                        userAccesses: this.props.model.userAccesses,
+                        userGroupAccesses: this.props.model.userGroupAccesses,
+                        publicAccess: this.props.model.publicAccess,
+                        externalAccess: this.props.model.externalAccess,
+                    },
+                    meta: {
+                        allowPublicAccess: this.props.model.publicAccess.includes('r'),
+                        allowExternalAccess: this.props.model.externalAccess,
+                    },
+                }
+            });
+        }
     };
 
     onInputChange = event => {
@@ -72,6 +97,7 @@ export class NewInterpretationField extends Component {
         const newInterpretation = new InterpretationModel(this.props.model, {});
         newInterpretation.text = this.state.text;
         newInterpretation.sharing = this.state.sharingProps.object;
+        
         return newInterpretation.save(this.context.d2);
     };
 
@@ -83,9 +109,8 @@ export class NewInterpretationField extends Component {
 
     onUpdate = () => {
         this.props.interpretation.text = this.state.text;
-        if (!isEqual(this.state.sharingProps.object, this.props.interpretation.sharing)) {
-            this.props.interpretation.sharing = this.state.sharingProps.object;
-        }
+        this.props.interpretation.sharing = this.state.sharingProps.object;
+
         this.props.onUpdate(this.props.interpretation);
     };
 
@@ -94,7 +119,7 @@ export class NewInterpretationField extends Component {
 
     onCloseSharingDialog = sharingProps => {
         const newSharingProps = Object.assign({}, this.state.sharingProps, { object: sharingProps });
-        console.log(newSharingProps);
+
         sharingProps 
             ? this.setState({ sharingDialogisOpen: false, sharingProps: newSharingProps })
             : this.setState({ sharingDialosIsOpen: false });
@@ -147,7 +172,7 @@ export class NewInterpretationField extends Component {
 
     renderSharingInfo = () =>
         !!this.state.text && (
-            <SharingInfo interpretation={this.props.interpretation || this.state.sharingProps.object} onClick={this.onOpenSharingDialog} />
+            <SharingInfo interpretation={this.state.sharingProps.object} onClick={this.onOpenSharingDialog} />
         );
 
     renderSharingDialog = () => 
@@ -169,9 +194,10 @@ export class NewInterpretationField extends Component {
         const Toolbar = this.renderToolbar();
         const Sharing = this.renderSharingInfo();
         const SharingDialog = this.renderSharingDialog();
+        console.log(this.context.d2.currentUser);
 
         return (
-            <WithAvatar className={this.props.classes.newInterpretation} user={this.context.d2.currentUser}>
+            <WithAvatar className={this.props.classes.newInterpretation} firstName={this.context.d2.currentUser.firstName} surname={this.context.d2.currentUser.surname}>
                 <MentionsWrapper d2={this.context.d2} onUserSelect={this.onInputChange}>
                     <RichTextEditor onEdit={this.onInputChange}>
                         <ClickAwayListener mouseEvent="onClick" onClickAway={this.onBlur}>

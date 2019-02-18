@@ -4,10 +4,10 @@ import UserAvatar from './UserAvatar';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles/Avatar.style';
 
-export const WithAvatar = ({ classes, className, onClick, user, children }) => (
+export const WithAvatar = ({ classes, className, onClick, firstName, surname, children }) => (
     <div className={className} onClick={onClick}>
         <div className={classes.avatarBox}>
-            <UserAvatar user={user} />
+            <UserAvatar firstName={firstName} surname={surname} />
         </div>
         <div className={classes.avatarBoxContent}>
             {children}
@@ -22,7 +22,8 @@ WithAvatar.defaultProps = {
 WithAvatar.propTypes = {
     classes: PropTypes.object.isRequired,
     className: PropTypes.string,
-    user: PropTypes.object.isRequired,
+    firstName: PropTypes.string.isRequired,
+    surname: PropTypes.string.isRequired,
     children: PropTypes.oneOfType(
         [PropTypes.array, PropTypes.object]
     ).isRequired,

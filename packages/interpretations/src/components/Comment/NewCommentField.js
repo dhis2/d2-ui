@@ -118,7 +118,7 @@ export class NewCommentField extends React.Component {
         const Toolbar = this.renderToolbar();
         
         return (
-            <WithAvatar className={this.props.classes.newReply} user={this.context.d2.currentUser}>
+            <WithAvatar className={this.props.classes.newReply} firstName={this.context.d2.currentUser.firstName} surname={this.context.d2.currentUser.surname}>
                 <MentionsWrapper d2={this.context.d2} onUserSelect={this.onInputChange}>
                     <RichTextEditor onEdit={this.onInputChange}>
                         <ClickAwayListener mouseEvent="onClick" onClickAway={this.onBlur}>

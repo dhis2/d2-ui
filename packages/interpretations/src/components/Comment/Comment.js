@@ -10,7 +10,6 @@ import CardInfo from '../Cards/CardInfo';
 import DeleteDialog from '../DeleteDialog/DeleteDialog';
 import { formatRelative } from '../../dateformats/dateformatter';
 import styles from './styles/Comment.style';
-import { haveWriteAccess } from '../../authorization/auth';
 
 export const Comment = ({ 
     classes,
@@ -26,7 +25,7 @@ export const Comment = ({
     onDeleteCancel, 
 }) => (
     <Fragment>
-        <WithAvatar className={classes.comment} key={comment.id} user={comment.user}>
+        <WithAvatar className={classes.comment} key={comment.id} firstName={comment.user.firstName} surname={comment.user.surname}>
             <CardHeader userName={comment.user.displayName} />
             <CardText text={comment.text}/>
             <CardInfo createdDate={formatRelative(comment.created, locale)} />

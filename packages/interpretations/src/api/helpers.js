@@ -4,7 +4,7 @@ import { itemTypeMap } from './redirect';
 
 const interpretationsFields = [
     'id',
-    'user[id,displayName,userCredentials[username]]',
+    'user[id,displayName,firstName,surname,userCredentials[username]]',
     'created',
     'lastUpdated',
     'likes',
@@ -14,7 +14,7 @@ const interpretationsFields = [
     'externalAccess',
     'userAccesses',
     'userGroupAccesses',
-    'comments[id,text,created,lastUpdated,user[id,displayName,userCredentials[username]]]',
+    'comments[id,text,created,lastUpdated,user[id,firstName,surname,displayName,userCredentials[username]]]',
 ];
 
 const favoriteFields = [
@@ -22,7 +22,7 @@ const favoriteFields = [
     'name',
     'href',
     'subscribed',
-    'user[id,displayName]',
+    'user[id,firstName,surname,displayName]',
     'displayName',
     'description',
     'displayDescription',
