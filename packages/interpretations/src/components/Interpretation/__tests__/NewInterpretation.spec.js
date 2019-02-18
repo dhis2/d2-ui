@@ -11,7 +11,7 @@ const baseProps = {
         displayName: 'ANC: 1st and 3rd trends Monthly',
         userAccesses: [],
         userGroupAccesses: [],
-        publicAccess: true,
+        publicAccess: 'rw------',
         externalAccess: false,
     },
     onSave: jest.fn(),
@@ -72,7 +72,7 @@ describe('components: Interpretation -> NewInterpretation component ', () => {
     describe('with prop interpretation', () => {
         beforeEach(() => {
             newInterpretation({ 
-                interpretation: { text: 'some saved text' }, 
+                interpretation: { text: 'some saved text', user: { id: 'testId', displayName: 'Tom Waikiki' }, }, 
                 onUpdate: onUpdate, 
                 onClose: onClose
             });

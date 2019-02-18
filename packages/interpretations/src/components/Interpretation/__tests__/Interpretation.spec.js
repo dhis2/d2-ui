@@ -19,15 +19,21 @@ const interpretation = {
     user: {
         id: 'xE7jOejl9FI',
         displayName: 'John Traore',
+        firstName: 'John',
+        surname: 'Traore',
     },
     likedBy: [
         {
             id: 'gdfdRRxx112',
             displayName: 'Kevin Boateng',
+            firstName: 'Kevin',
+            surname: 'Boateng'
         },
         {
             id: 'vDFwDfe16Gr',
             displayName: 'Manuel Perez',
+            firstName: 'Manunel',
+            surname: 'Perez'
         },
     ],
     comments: [
@@ -39,6 +45,8 @@ const interpretation = {
             user: {
                 id: 'xE7jOejl9FI',
                 displayName: 'John Traore',
+                firstName: 'John',
+                surname: 'Traore'
             },
         },
         {
@@ -49,6 +57,8 @@ const interpretation = {
             user: {
                 id: 'gdfdRRxx112',
                 displayName: 'Kevin Boateng',
+                firstName: 'Kevin',
+                surname: 'Boateng'
             },
         },
     ],

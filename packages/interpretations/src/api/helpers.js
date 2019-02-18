@@ -4,7 +4,7 @@ import { itemTypeMap } from './redirect';
 
 const interpretationsFields = [
     'id',
-    'user[id,displayName,firstName,surname,userCredentials[username]]',
+    'user[id,firstName,surname,displayName,userCredentials[username]]',
     'created',
     'lastUpdated',
     'likes',

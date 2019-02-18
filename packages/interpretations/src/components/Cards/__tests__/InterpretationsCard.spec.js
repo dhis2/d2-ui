@@ -36,7 +36,9 @@ const favorite = {
     },
     user: {
         id: "xE7jOejl9FI",
-        displayName: "John Traore"
+        displayName: "John Traore",
+        firstName: 'John',
+        surname: 'Traore'
     },
     favorites: [],
     translations: [],
@@ -48,7 +50,9 @@ const favorite = {
         comments: [],
         user: {
                 id: "xE7jOejl9FI",
-                displayName: "John Traore"
+                displayName: "John Traore",
+                firstName: 'John',
+                surname: 'Traore'
             },
         text: 'test text',
     }, {
@@ -58,7 +62,9 @@ const favorite = {
         comments: [],
         user: {
             id: "xE7jOejl9FI",
-            displayName: "John Traore"
+            displayName: "John Traore",
+            firstName: 'John',
+            surname: 'Traore',
         },
         text: 'test text',
     }],

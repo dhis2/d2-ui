@@ -60,7 +60,7 @@ export class Details extends React.Component {
         const SubscriptionButton = this.renderSubscriptionButton();
 
         return (
-            <CollapsibleCard title={i18n.t('Favorite details')}>
+            <CollapsibleCard title={i18n.t('Chart details')}>
                 {SubscriptionButton}
                 <div className={classes.detailsCardList}>
                     <Item text={<Description description={model.displayDescription} />} />
