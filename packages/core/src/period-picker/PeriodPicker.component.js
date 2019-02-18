@@ -55,6 +55,12 @@ class PeriodPicker extends React.Component {
         this.getTranslation = i18n.getTranslation.bind(i18n);
     }
 
+    componentDidUpdate(prevProps) {
+        if(this.props.periodType !== prevProps.periodType) {
+           this.handleChange();
+        }
+    }
+
     getPeriod() {
         const week = this.props.periodType === 'BiWeekly' && this.state.biWeek 
             ? biWeekToWeek(this.state.biWeek)
