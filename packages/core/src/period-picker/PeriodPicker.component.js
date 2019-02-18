@@ -11,6 +11,7 @@ const styles = {
     year: { width: 95, marginRight: 16 },
     month: { width: 125 },
     week: { width: 105 },
+    biWeek: { width: 200 },
     biMonth: { width: 200 },
     quarter: { width: 200 },
     sixMonth: { width: 200 },
@@ -41,6 +42,9 @@ const isWeekValid = (date, week) =>
     !is53WeekISOYear(date) && Number(week) !== 53
 ;
 
+const biWeekToWeek = (biWeekStr) => 
+    (parseInt(biWeekStr) * 2) - 1;
+
 class PeriodPicker extends React.Component {
     constructor(props, context) {
         super(props, context);
@@ -52,7 +56,11 @@ class PeriodPicker extends React.Component {
     }
 
     getPeriod() {
-        const date = this.state.year && this.state.week && getFirstDateOfWeek(this.state.year, this.state.week);
+        const week = this.props.periodType === 'BiWeekly' && this.state.biWeek 
+            ? biWeekToWeek(this.state.biWeek)
+            : this.state.week;
+        const date = this.state.year && week && getFirstDateOfWeek(this.state.year, week);
+        
         switch (this.props.periodType) {
         case 'Daily':
             return this.state.date && formattedDate(this.state.date);
@@ -81,6 +89,11 @@ class PeriodPicker extends React.Component {
                 this.setState({ invalidWeek: !isWeekValid(date, this.state.week) });
             }
             return date && isWeekValid(date, this.state.week) && `${getWeekYear(date)}SunW${this.state.week}`;
+        case 'BiWeekly':
+            if (date) {
+                this.setState({ invalidBiWeek: !isWeekValid(date, biWeekToWeek(this.state.biWeek)) });
+            }
+            return this.state.year && this.state.biWeek && `${this.state.year}BiW${this.state.biWeek}`;
         case 'Monthly':
             return this.state.year && this.state.month && `${this.state.year}${this.state.month}`;
         case 'BiMonthly':
@@ -114,7 +127,8 @@ class PeriodPicker extends React.Component {
 
     renderOptionPicker(name, options) {
         const changeState = (e, i, value) => this.setState({ [name]: value }, this.handleChange);
-        const isInvalid = name === 'week' && this.state.invalidWeek;
+        const isInvalid = (name === 'week' && this.state.invalidWeek)
+            || (name === 'biWeek' && this.state.invalidBiWeek);
 
         return (
             <SelectField
@@ -130,7 +144,7 @@ class PeriodPicker extends React.Component {
                         key={value}
                         value={value}
                         primaryText={
-                            /[^0-9]/.test(options[value])
+                            /[^0-9]/.test(options[value]) && name !== 'biWeek'
                                 ? this.getTranslation(options[value])
                                 : options[value]
                         }
@@ -178,6 +192,17 @@ class PeriodPicker extends React.Component {
         return this.renderOptionPicker('week', weeks);
     }
 
+    renderBiWeekPicker() {
+        const biWeeks = {};
+        const biWeekLimit = 27;
+        const prefix = this.getTranslation('bi_week')
+        for (let biWeek = 1; biWeek <= biWeekLimit; biWeek++) {
+            biWeeks[`0${biWeek}`.substr(-2)] = `${prefix} ${biWeek}`;
+        }
+
+        return this.renderOptionPicker('biWeek', biWeeks);
+    }
+
     renderBiMonthPicker() {
         const biMonths = { 1: 'jan-feb', 2: 'mar-apr', 3: 'may-jun', 4: 'jul-aug', 5: 'sep-oct', 6: 'nov-dec' };
         return this.renderOptionPicker('biMonth', biMonths);
@@ -212,6 +237,8 @@ class PeriodPicker extends React.Component {
         case 'WeeklySaturday':
         case 'WeeklySunday':
             return <div style={styles.line}>{this.renderYearPicker()}{this.renderWeekPicker()}</div>;
+        case 'BiWeekly':
+            return <div style={styles.line}>{this.renderYearPicker()}{this.renderBiWeekPicker()}</div>;
         case 'Monthly':
             return <div style={styles.line}>{this.renderYearPicker()}{this.renderMonthPicker()}</div>;
         case 'BiMonthly':
@@ -250,6 +277,7 @@ PeriodPicker.propTypes = {
         'WeeklyThursday',
         'WeeklySaturday',
         'WeeklySunday',
+        'BiWeekly',
         'Monthly',
         'BiMonthly',
         'Quarterly',
