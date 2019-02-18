@@ -8,7 +8,7 @@ import CardHeader from '../Cards/CardHeader';
 import CardText from '../Cards/CardText';
 import CardInfo from '../Cards/CardInfo';
 import DeleteDialog from '../DeleteDialog/DeleteDialog';
-import { formatRelative } from '../../dateformats/dateformatter';
+import { formatDate } from '../../dateformats/dateformatter';
 import styles from './styles/Comment.style';
 
 export const Comment = ({ 
@@ -28,7 +28,7 @@ export const Comment = ({
         <WithAvatar className={classes.comment} key={comment.id} firstName={comment.user.firstName} surname={comment.user.surname}>
             <CardHeader userName={comment.user.displayName} />
             <CardText text={comment.text}/>
-            <CardInfo createdDate={formatRelative(comment.created, locale)} />
+            <CardInfo createdDate={formatDate(comment.created, locale)} />
             {isOwner ? (
                 <div className={classes.commentActions}>
                     <ActionButton

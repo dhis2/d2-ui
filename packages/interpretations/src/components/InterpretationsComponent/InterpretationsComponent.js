@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { withStyles } from '@material-ui/core/styles';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import isEqual from 'lodash/fp/isEqual';
 import pick from 'lodash/fp/pick';
 
@@ -43,7 +41,7 @@ export class InterpretationsComponent extends React.Component {
     componentWillReceiveProps(nextProps) {
         const fields = ['type', 'id', 'lastUpdated'];
         const modelFieldsChanged = !isEqual(pick(fields, this.props), pick(fields, nextProps));
-
+        
         if (modelFieldsChanged) {
             this.loadModel(nextProps);
         }
@@ -69,20 +67,18 @@ export class InterpretationsComponent extends React.Component {
         if (!model) {
             return <CircularProgress />;
         }
-
+    
         return (
-            <MuiThemeProvider muiTheme={getMuiTheme()}>
-                <div className={classes.interpretationsContainer}>
-                    <Details model={model} onChange={this.onChange} />
-                    <InterpretationsCard
-                        model={model}
-                        onChange={this.onChange}
-                        currentInterpretationId={currentInterpretationId}
-                        onCurrentInterpretationChange={onCurrentInterpretationChange}
-                        type={this.props.type}
-                    />
-                </div>
-            </MuiThemeProvider>
+            <div className={classes.interpretationsContainer}>
+                <Details model={model} onChange={this.onChange} />
+                <InterpretationsCard
+                    model={model}
+                    onChange={this.onChange}
+                    currentInterpretationId={currentInterpretationId}
+                    onCurrentInterpretationChange={onCurrentInterpretationChange}
+                    type={this.props.type}
+                />
+            </div>
         );
     };
 };
