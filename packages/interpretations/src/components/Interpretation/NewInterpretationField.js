@@ -6,7 +6,6 @@ import MentionsWrapper from '@dhis2/d2-ui-mentions-wrapper';
 import SharingDialog from '@dhis2/d2-ui-sharing-dialog';
 import { Editor as RichTextEditor, convertCtrlKey } from '@dhis2/d2-ui-rich-text';
 import i18n from '@dhis2/d2-i18n';
-import isEqual from 'lodash/isEqual';
 import WithAvatar from '../Avatar/WithAvatar';
 import Toolbar from '../Toolbar/Toolbar';
 import SharingInfo from '../SharingInfo/SharingInfo';
@@ -194,7 +193,6 @@ export class NewInterpretationField extends Component {
         const Toolbar = this.renderToolbar();
         const Sharing = this.renderSharingInfo();
         const SharingDialog = this.renderSharingDialog();
-        console.log(this.context.d2.currentUser);
 
         return (
             <WithAvatar className={this.props.classes.newInterpretation} firstName={this.context.d2.currentUser.firstName} surname={this.context.d2.currentUser.surname}>

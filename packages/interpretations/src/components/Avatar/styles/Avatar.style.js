@@ -20,4 +20,4 @@ export default {
     avatarBoxContent: {
         flex: '1',
     },
-}
+};

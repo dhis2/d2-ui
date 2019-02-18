@@ -35,4 +35,4 @@ export default class Comment {
         const text = Comment.getReplyText(d2, interpretation.user);
         return new Comment(interpretation, { text });
     }
-}
+};

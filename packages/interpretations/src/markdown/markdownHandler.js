@@ -53,4 +53,3 @@ export const insertMarkdown = (TYPE, currentInput, cursorStart, emoticon = null)
     };
 
 };
-

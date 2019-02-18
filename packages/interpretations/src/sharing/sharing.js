@@ -7,4 +7,4 @@ export const shouldUpdateSharing = (sharingInfo, interpretation) => {
     const userGroupAccesses = !isEqual(sharingInfo.userGroupAccesses || [], interpretation.userGroupAccesses);
 
     return externalAccess || publicAccess || userAccesses || userGroupAccesses;
-}
+};

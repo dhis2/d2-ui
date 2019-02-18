@@ -16,4 +16,4 @@ export default {
     emoticon: {
         margin: '0px 5px',
     }
-} 
+};

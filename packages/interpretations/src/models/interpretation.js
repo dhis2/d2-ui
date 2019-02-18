@@ -61,4 +61,4 @@ export default class Interpretation {
     like(d2, value) {
         return apiFetch(d2, `/interpretations/${this.id}/like`, value ? "POST" : "DELETE");
     }
-}
+};

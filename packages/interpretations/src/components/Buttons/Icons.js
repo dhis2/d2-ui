@@ -45,4 +45,4 @@ export default {
 	openApp: {
 		icon: <Launch style={styles.interpretationCommentIcon}/>,
 	},
-}
+};

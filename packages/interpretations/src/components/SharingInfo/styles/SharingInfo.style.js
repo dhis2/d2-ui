@@ -17,4 +17,4 @@ export default {
         padding: '0px 5px',
         lineHeight: '1.5em',
     },
-}
+};

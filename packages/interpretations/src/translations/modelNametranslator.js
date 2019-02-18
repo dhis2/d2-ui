@@ -15,4 +15,4 @@ export function translateModelName(modelName) {
         default:
             return i18n.t('object');
     }
-}
+};

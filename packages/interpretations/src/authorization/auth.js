@@ -72,4 +72,3 @@ const sharedUserGroups = (userGroups, objectGroups, accessBit) => {
     })
     return isMember;
 };
-

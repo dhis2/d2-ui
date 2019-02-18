@@ -57,4 +57,4 @@ export async function getMentions(d2) {
         .filter(user => d2.currentUser.id !== user.id);
 
     return {allUsers: allUsersFiltered, mostMentionedUsers};
-}
+};

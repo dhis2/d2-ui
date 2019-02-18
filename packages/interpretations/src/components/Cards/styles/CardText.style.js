@@ -31,4 +31,4 @@ export default {
         color: 'grey',
         marginLeft: '5px',
     },
-}
+};

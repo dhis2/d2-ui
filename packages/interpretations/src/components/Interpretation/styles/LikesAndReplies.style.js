@@ -16,4 +16,4 @@ export default {
         position: 'relative',
         bottom: '2px',
     },
-}
+};
