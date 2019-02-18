@@ -6,7 +6,14 @@ import { getStubContext } from '../../../../config/test-context';
 
 const baseProps = {
     classes: {},
-    model: {},
+    model: {
+        user: { id: 'testId', name: 'Tom Waikiki' },
+        displayName: 'ANC: 1st and 3rd trends Monthly',
+        userAccesses: [],
+        userGroupAccesses: [],
+        publicAccess: true,
+        externalAccess: false,
+    },
     onSave: jest.fn(),
     onPost: jest.fn(),
 };

@@ -21,10 +21,31 @@ export class SharingInfo extends Component {
         this.props.interpretation.publicAccess === 'rw------' ||
         this.props.interpretation.publicAccess === 'r-------';
 
+    concatSharingInfo = () => {
+        let displayNames = this.getUsers().concat(this.getGroups()).join(', ')
+
+        if (this.props.interpretation.externalAccess) {
+            displayNames = displayNames.concat(i18n.t('external access'));
+        };
+        
+        if (this.checkPublicAccess()) {
+            displayNames = displayNames.concat(displayNames.length
+                ? i18n.t(', public access') 
+                : i18n.t('public access')
+            );
+        };
+
+        if (displayNames.length) {
+            displayNames = displayNames.replace(/, ([^,]*)$/, ' and $1').concat('. ');
+        } else {
+            displayNames = i18n.t('None. ');
+        }
+
+        return displayNames;
+    };
+
     render() {
-        const Info = this.getUsers().concat(this.getGroups()).join(', ')
-        const externalAccess = this.checkExternalAccess();
-        const publicAccess = this.checkPublicAccess();
+        const Info = this.concatSharingInfo();
 
         return (
             <div className={this.props.classes.sharingContainer}>
@@ -32,9 +53,6 @@ export class SharingInfo extends Component {
                 <span className={this.props.classes.label}>
                     {i18n.t('Shared with: ')} 
                     {Info}
-                    {externalAccess}
-                    {publicAccess && ((Info.length || externalAccess.length) ? i18n.t(' and public access. ') : i18n.t('public access. '))}
-                    {(!publicAccess && !((Info.length || externalAccess.length))) && i18n.t('None. ')}
                     <Link 
                         onClick={this.props.onClick}
                         label={i18n.t('Manage sharing')}

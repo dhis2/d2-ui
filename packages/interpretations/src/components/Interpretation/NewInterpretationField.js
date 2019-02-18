@@ -6,6 +6,7 @@ import MentionsWrapper from '@dhis2/d2-ui-mentions-wrapper';
 import SharingDialog from '@dhis2/d2-ui-sharing-dialog';
 import { Editor as RichTextEditor, convertCtrlKey } from '@dhis2/d2-ui-rich-text';
 import i18n from '@dhis2/d2-i18n';
+import isEqual from 'lodash/isEqual';
 import WithAvatar from '../Avatar/WithAvatar';
 import Toolbar from '../Toolbar/Toolbar';
 import SharingInfo from '../SharingInfo/SharingInfo';
@@ -22,7 +23,20 @@ export class NewInterpretationField extends Component {
             text: this.props.interpretation ? this.props.interpretation.text : '',
             showToolbar: false,
             sharingDialogisOpen: false,
-            sharingProps: null,
+            sharingProps: {
+                object: {
+                    user: { id: this.props.model.user.id, name: this.props.model.user.displayName },
+                    displayName: this.props.model.displayName,
+                    userAccesses: this.props.model.userAccesses,
+                    userGroupAccesses: this.props.model.userGroupAccesses,
+                    publicAccess: this.props.model.publicAccess,
+                    externalAccess: this.props.model.externalAccess,
+                },
+                meta: {
+                    allowPublicAccess: true,
+                    allowExternalAccess: true,
+                },
+            }
         };    
     };
 
@@ -57,7 +71,7 @@ export class NewInterpretationField extends Component {
     async postInterpretation() {
         const newInterpretation = new InterpretationModel(this.props.model, {});
         newInterpretation.text = this.state.text;
-        newInterpretation.sharing = this.state.sharingProps;
+        newInterpretation.sharing = this.state.sharingProps.object;
         return newInterpretation.save(this.context.d2);
     };
 
@@ -69,8 +83,8 @@ export class NewInterpretationField extends Component {
 
     onUpdate = () => {
         this.props.interpretation.text = this.state.text;
-        if (this.state.sharingProps) {
-            this.props.interpretation.sharing = this.state.sharingProps;
+        if (!isEqual(this.state.sharingProps.object, this.props.interpretation.sharing)) {
+            this.props.interpretation.sharing = this.state.sharingProps.object;
         }
         this.props.onUpdate(this.props.interpretation);
     };
@@ -78,10 +92,13 @@ export class NewInterpretationField extends Component {
     onOpenSharingDialog = () => 
         this.setState({ sharingDialogisOpen: true });
 
-    onCloseSharingDialog = sharingProps =>
+    onCloseSharingDialog = sharingProps => {
+        const newSharingProps = Object.assign({}, this.state.sharingProps, { object: sharingProps });
+        console.log(newSharingProps);
         sharingProps 
-            ? this.setState({ sharingDialogisOpen: false, sharingProps })
+            ? this.setState({ sharingDialogisOpen: false, sharingProps: newSharingProps })
             : this.setState({ sharingDialosIsOpen: false });
+    }
 
     focus = (highlightStart, highlightEnd) => {
         this.textarea.current.focus();
@@ -130,7 +147,7 @@ export class NewInterpretationField extends Component {
 
     renderSharingInfo = () =>
         !!this.state.text && (
-            <SharingInfo interpretation={this.state.sharingProps || this.props.interpretation || this.props.model} onClick={this.onOpenSharingDialog} />
+            <SharingInfo interpretation={this.props.interpretation || this.state.sharingProps.object} onClick={this.onOpenSharingDialog} />
         );
 
     renderSharingDialog = () => 
@@ -140,7 +157,8 @@ export class NewInterpretationField extends Component {
                 type={this.props.type}
                 d2={this.context.d2}
                 id={this.props.interpretation ? this.props.interpretation.id : this.props.model.id}
-                doNotPost={true}
+                doNotPost={!this.props.interpretation ? true : false}
+                sharedObject={!this.props.interpretation ? this.state.sharingProps : null}
                 onConfirm={this.onCloseSharingDialog}
                 onRequestClose={this.onCloseSharingDialog}
             />
