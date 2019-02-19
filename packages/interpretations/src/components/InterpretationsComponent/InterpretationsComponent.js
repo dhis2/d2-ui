@@ -28,7 +28,7 @@ export class InterpretationsComponent extends React.Component {
         return {
             d2: this.props.d2,
             locale: this.props.d2.currentUser.userSettings.settings.keyUiLocale || 'en',
-            appName: this.props.appName || '',
+            appName: this.props.appName || 'CHART',
             item: this.props.item || {},
         };
     };

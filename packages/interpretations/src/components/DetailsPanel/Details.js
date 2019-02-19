@@ -15,6 +15,7 @@ import { setSubscription } from '../../api/helpers';
 import { formatDate } from '../../dateformats/dateformatter';
 import { translateModelName } from '../../translations/modelNametranslator';
 import styles from './styles/Details.style';
+import { itemTypeMap } from '../../../build/api/redirect';
 
 export class Details extends React.Component {
     state = { isExpanded: true };
@@ -60,7 +61,7 @@ export class Details extends React.Component {
         const SubscriptionButton = this.renderSubscriptionButton();
 
         return (
-            <CollapsibleCard title={i18n.t('Chart details')}>
+            <CollapsibleCard title={itemTypeMap[this.context.appName].detailsTitle}>
                 {SubscriptionButton}
                 <div className={classes.detailsCardList}>
                     <Item text={<Description description={model.displayDescription} />} />
@@ -84,6 +85,7 @@ export class Details extends React.Component {
 Details.contextTypes = {
     d2: PropTypes.object.isRequired,
     locale: PropTypes.string.isRequired,
+    appName: PropTypes.string.isRequired,
 };
 
 Details.propTypes = {
