@@ -9,7 +9,6 @@ import CollapsibleCard from './CollapsibleCard';
 import Interpretation from '../Interpretation/Interpretation';
 import InterpretationsList, { interpretationsToShowOnInit } from '../Lists/InterpretationsList';
 import NewInterpretationField from '../Interpretation/NewInterpretationField';
-import { haveWriteAccess } from "../../authorization/auth";
 import styles from './styles/InterpretationsCard.style';
 
 export class InterpretationsCard extends React.Component {
@@ -119,13 +118,13 @@ export class InterpretationsCard extends React.Component {
     };
 
     renderInputField = () => 
-        (!this.state.currentInterpretationId && 
-            haveWriteAccess(this.context.d2, this.props.model)) && (
+        (!this.state.currentInterpretationId && (
             <NewInterpretationField
                 model={this.props.model}
                 onSave={this.notifyChange}
                 type={this.props.type}
             />
+        )
     );
 
     render() {
