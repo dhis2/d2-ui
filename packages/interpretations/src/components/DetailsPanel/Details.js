@@ -15,7 +15,7 @@ import { setSubscription } from '../../api/helpers';
 import { formatDate } from '../../dateformats/dateformatter';
 import { translateModelName } from '../../translations/modelNametranslator';
 import styles from './styles/Details.style';
-import { itemTypeMap } from '../../../build/api/redirect';
+import { itemTypeMap } from '../../api/redirect';
 
 export class Details extends React.Component {
     state = { isExpanded: true };
