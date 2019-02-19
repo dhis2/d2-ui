@@ -49,5 +49,6 @@ export function getStubContext() {
             },
         },
         locale: 'en',
+        appName: 'CHART'
     };
 }

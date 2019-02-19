@@ -82,7 +82,7 @@ const favorite = {
     favoriteViews: 5,
 };
 
-const childContextTypes = {d2: PropTypes.object, locale: () => null };
+const childContextTypes = {d2: PropTypes.object, locale: () => null, appName: () => null };
 
 const renderComponent = (partialProps = {}, partialContext = {}) => {
     const baseProps = {

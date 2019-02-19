@@ -65,7 +65,7 @@ const favorite = {
 
 const context = getStubContext();
 
-const childContextTypes = { d2: PropTypes.object, locale: () => null };
+const childContextTypes = { d2: PropTypes.object, locale: () => null,  appName: () => null };
 
 const baseProps = {
     model: favorite,
@@ -81,7 +81,7 @@ const getItem = (detailsCard, label) => {
     return detailsCard.find('Item').findWhere(item => item.props().label === label);
 };
 
-describe('Interpretations: Details -> DetailsCard component', () => {
+describe('Interpretations: Details -> Details component', () => {
     let detailsCard;
 
     beforeEach(() => {
