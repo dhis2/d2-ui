@@ -26,7 +26,17 @@ export class NewInterpretationField extends Component {
         };    
     };
 
+    componentDidUpdate() {
+        if (this.state.sharingProps.object && this.props.model.id !== this.state.sharingProps.object.modelId) {
+            this.updateSharingProps();
+        }
+    }
+
     componentDidMount() {
+        this.updateSharingProps();
+    };
+
+    updateSharingProps = () => {
         if (this.props.interpretation) {
             this.setState({
                 sharingProps: {
@@ -37,6 +47,7 @@ export class NewInterpretationField extends Component {
                         userGroupAccesses: this.props.interpretation.userGroupAccesses,
                         publicAccess: this.props.interpretation.publicAccess,
                         externalAccess: this.props.interpretation.externalAccess,
+                        modelId: this.props.model.id,
                     },
                     meta: {
                         allowPublicAccess: this.props.model.publicAccess.includes('r'),
@@ -54,6 +65,7 @@ export class NewInterpretationField extends Component {
                         userGroupAccesses: this.props.model.userGroupAccesses,
                         publicAccess: this.props.model.publicAccess,
                         externalAccess: this.props.model.externalAccess,
+                        modelId: this.props.model.id,
                     },
                     meta: {
                         allowPublicAccess: this.props.model.publicAccess.includes('r'),
