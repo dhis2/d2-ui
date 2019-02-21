@@ -32,9 +32,7 @@ export default class Interpretation {
             const interpretationId = getInterpretationIdFromResponse(response);
             const sharingUrl = `/sharing?type=interpretation&id=${interpretationId}`;
 
-            const sharingPayload = this.sharing
-                ? { object: { ...this.sharing, id: interpretationId } }
-                : { object: pick(Interpretation.sharingFields, this._parent) };
+            const sharingPayload = { object: this.sharing }
 
             this.sharing = null;
             this.id = interpretationId;
