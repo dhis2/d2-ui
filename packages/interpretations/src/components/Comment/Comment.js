@@ -29,7 +29,7 @@ export const Comment = ({
             <CardHeader userName={comment.user.displayName} />
             <CardText text={comment.text}/>
             <CardInfo createdDate={formatDate(comment.created, locale)} />
-            {isOwner ? (
+            {isOwner && canReply ? (
                 <div className={classes.commentActions}>
                     <ActionButton
                         iconType={'edit'} 

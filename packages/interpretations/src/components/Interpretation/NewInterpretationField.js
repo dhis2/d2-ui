@@ -61,9 +61,9 @@ export class NewInterpretationField extends Component {
                     object: {
                         user: { id: this.props.model.user.id, name: this.props.model.user.displayName },
                         displayName: this.props.model.displayName,
-                        userAccesses: this.props.model.userAccesses,
-                        userGroupAccesses: this.props.model.userGroupAccesses,
-                        publicAccess: this.props.model.publicAccess,
+                        userAccesses: this.props.model.userAccesses.map(obj => Object.assign({}, obj, { access: 'rw------'})),
+                        userGroupAccesses: this.props.model.userGroupAccesses.map(obj => Object.assign({}, obj, { access: 'rw------'})),
+                        publicAccess: this.props.model.publicAccess.includes('r') ? 'rw------' : this.props.model.publicAccess,
                         externalAccess: this.props.model.externalAccess,
                         modelId: this.props.model.id,
                     },
