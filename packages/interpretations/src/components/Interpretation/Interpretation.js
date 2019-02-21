@@ -15,7 +15,7 @@ import DeleteDialog from '../DeleteDialog/DeleteDialog';
 import InterpretationModel from '../../models/interpretation';
 import CommentModel from '../../models/comment';
 import { userCanManage, haveWriteAccess } from '../../authorization/auth';
-import { formatRelative } from '../../dateformats/dateformatter';
+import { formatDate } from '../../dateformats/dateformatter';
 import { shouldUpdateSharing } from '../../sharing/sharing';
 import styles from './styles/Interpretation.style';
 
@@ -167,7 +167,7 @@ export class Interpretation extends React.Component {
                     <CardInfo 
                         likedBy={this.getLikedByNames()}
                         repliedBy={this.getRepliedByNames()}
-                        createdDate={formatRelative(interpretation.created, this.context.locale)}
+                        createdDate={formatDate(interpretation.created, this.context.locale)}
                     />
                     <ActionButtonContainer
                         isFocused={extended}
