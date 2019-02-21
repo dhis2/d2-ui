@@ -70,6 +70,7 @@ const childContextTypes = { d2: PropTypes.object, locale: () => null,  appName: 
 const baseProps = {
     model: favorite,
     onChange: jest.fn(),
+    type: 'chart',
 };
 
 const renderComponent = (partialProps = {}) => {

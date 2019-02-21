@@ -15,7 +15,7 @@ import DeleteDialog from '../DeleteDialog/DeleteDialog';
 import InterpretationModel from '../../models/interpretation';
 import CommentModel from '../../models/comment';
 import { userCanManage, haveWriteAccess } from '../../authorization/auth';
-import { formatDate } from '../../dateformats/dateformatter';
+import { formatRelative } from '../../dateformats/dateformatter';
 import { shouldUpdateSharing } from '../../sharing/sharing';
 import styles from './styles/Interpretation.style';
 
@@ -139,7 +139,7 @@ export class Interpretation extends React.Component {
     };
 
     renderInterpretation = () => {
-        const { classes, model, extended, interpretation } = this.props;
+        const { classes, model, userGroups, extended, interpretation } = this.props;
 
         if (this.state.interpretationToEdit) {
             return (
@@ -153,8 +153,8 @@ export class Interpretation extends React.Component {
             )
         } else {
             const currentUserLikesInterpretation = some(user => 
-                user.id === this.context.d2.currentUser.id, this.props.interpretation.likedBy);
-            
+                user.id === this.context.d2.currentUser.id, interpretation.likedBy);
+
             return (
                 <WithAvatar 
                     className={extended ? classes.expanded : classes.compact} 
@@ -167,12 +167,12 @@ export class Interpretation extends React.Component {
                     <CardInfo 
                         likedBy={this.getLikedByNames()}
                         repliedBy={this.getRepliedByNames()}
-                        createdDate={formatDate(interpretation.created, this.context.locale)}
+                        createdDate={formatRelative(interpretation.created, this.context.locale)}
                     />
                     <ActionButtonContainer
                         isFocused={extended}
                         currentUserLikesInterpretation={currentUserLikesInterpretation}
-                        canReply={haveWriteAccess(this.context.d2, interpretation)}
+                        canReply={haveWriteAccess(this.context.d2, userGroups, interpretation)}
                         canManage={userCanManage(this.context.d2, interpretation)}
                         onClickHandlers={this.getOnClickHandlers()}
                     />
@@ -185,6 +185,7 @@ export class Interpretation extends React.Component {
         this.props.extended && (
             <CommentsList
                 interpretation={this.props.interpretation}
+                canReply={haveWriteAccess(this.context.d2, this.props.userGroups, this.props.interpretation)}
                 newComment={this.state.newComment}
                 onChange={this.notifyChange}
             />

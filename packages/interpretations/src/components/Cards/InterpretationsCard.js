@@ -10,6 +10,7 @@ import Interpretation from '../Interpretation/Interpretation';
 import InterpretationsList, { interpretationsToShowOnInit } from '../Lists/InterpretationsList';
 import NewInterpretationField from '../Interpretation/NewInterpretationField';
 import styles from './styles/InterpretationsCard.style';
+import { haveReadAccess } from '../../authorization/auth';
 
 export class InterpretationsCard extends React.Component {
     constructor(props) {
@@ -99,6 +100,7 @@ export class InterpretationsCard extends React.Component {
         return currentInterpretation ? (
             <Interpretation
                 model={this.props.model}
+                userGroups={this.props.userGroups}
                 interpretation={currentInterpretation}
                 onChange={this.notifyChange}
                 onSelect={this.setCurrentInterpretation}
@@ -107,6 +109,7 @@ export class InterpretationsCard extends React.Component {
         ) : ( 
             <InterpretationsList
                 model={this.props.model}
+                userGroups={this.props.userGroups}
                 d2={this.context.d2}
                 interpretations={sortedInterpretations}
                 onChange={this.notifyChange}
@@ -118,14 +121,14 @@ export class InterpretationsCard extends React.Component {
     };
 
     renderInputField = () => 
-        (!this.state.currentInterpretationId && (
-            <NewInterpretationField
-                model={this.props.model}
-                onSave={this.notifyChange}
-                type={this.props.type}
-            />
-        )
-    );
+        (!this.state.currentInterpretationId && 
+            haveReadAccess(this.context.d2, this.props.userGroups, this.props.model)) && (
+                <NewInterpretationField
+                    model={this.props.model}
+                    onSave={this.notifyChange}
+                    type={this.props.type}
+                />
+        );
 
     render() {
         const BackButton = this.renderBackButton();

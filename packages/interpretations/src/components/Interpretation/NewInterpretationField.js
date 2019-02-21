@@ -27,7 +27,7 @@ export class NewInterpretationField extends Component {
     };
 
     componentDidUpdate() {
-        if (this.state.sharingProps.object && this.props.model.id !== this.state.sharingProps.object.modelId) {
+        if (!this.props.interpretation && this.state.sharingProps.object && this.props.model.id !== this.state.sharingProps.object.modelId) {
             this.updateSharingProps();
         }
     }

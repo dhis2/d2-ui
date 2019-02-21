@@ -61,7 +61,7 @@ export class Details extends React.Component {
         const SubscriptionButton = this.renderSubscriptionButton();
 
         return (
-            <CollapsibleCard title={itemTypeMap[this.context.appName].detailsTitle}>
+            <CollapsibleCard title={itemTypeMap[this.props.type.toUpperCase()].detailsTitle}>
                 {SubscriptionButton}
                 <div className={classes.detailsCardList}>
                     <Item text={<Description description={model.displayDescription} />} />

@@ -46,6 +46,7 @@ export function getStubContext() {
                     }
                 ],
                 userAccesses: [],
+                getUserGroups: jest.fn().mockReturnValue(Promise.resolve({valuesContainerMap: []})),
             },
         },
         locale: 'en',

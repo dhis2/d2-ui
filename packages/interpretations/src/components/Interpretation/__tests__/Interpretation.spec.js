@@ -74,6 +74,7 @@ const renderComponent = (partialProps = {}, partialContext = {}) => {
         classes: {
             actions: 'actions'
         },
+        userGroups: [],
     };
 
     const props = { ...baseProps, ...partialProps };

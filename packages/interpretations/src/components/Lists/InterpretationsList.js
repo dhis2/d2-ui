@@ -13,6 +13,7 @@ export const InterpretationsList = ({
     classes,
     d2,
     model,
+    userGroups,
     interpretations,
     onSelect,
     onChange,
@@ -24,7 +25,7 @@ export const InterpretationsList = ({
             <div className={classes.emptyList}>{i18n.t("No interpretations")}</div>
         );
     }
-    const filteredItems = interpretations.filter(item => haveReadAccess(d2, item) && item);
+    const filteredItems = interpretations.filter(item => haveReadAccess(d2, userGroups, item) && item);
 
     const listItems = isExpanded
         ? filteredItems
@@ -42,6 +43,7 @@ export const InterpretationsList = ({
             {listItems.map(item =>
                 <Interpretation
                     model={model}
+                    userGroups={userGroups}
                     key={item.id}
                     interpretation={item}
                     onChange={onChange}

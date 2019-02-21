@@ -17,7 +17,7 @@ function configI18n(d2) {
 };
 
 export class InterpretationsComponent extends React.Component {
-    state = { model: null };
+    state = { model: null, userGroups: []};
 
     constructor(props) {
         super(props);
@@ -28,7 +28,7 @@ export class InterpretationsComponent extends React.Component {
         return {
             d2: this.props.d2,
             locale: this.props.d2.currentUser.userSettings.settings.keyUiLocale || 'en',
-            appName: this.props.appName || 'CHART',
+            appName: this.props.appName || '',
             item: this.props.item || {},
         };
     };
@@ -48,8 +48,10 @@ export class InterpretationsComponent extends React.Component {
     };
 
     async loadModel(props) {
+        const users = await props.d2.currentUser.getUserGroups();
+
         return getFavoriteWithInterpretations(props.d2, props.type, props.id).then(model => {
-            this.setState({ model });
+            this.setState({ model, userGroups: Array.from(users.valuesContainerMap) });
             return model;
         });
     };
@@ -62,17 +64,18 @@ export class InterpretationsComponent extends React.Component {
 
     render() {
         const { classes, currentInterpretationId, onCurrentInterpretationChange } = this.props;
-        const { model } = this.state;
+        const { model, userGroups } = this.state;
 
         if (!model) {
             return <CircularProgress />;
         }
-    
+
         return (
             <div className={classes.interpretationsContainer}>
-                <Details model={model} onChange={this.onChange} />
+                <Details model={model} onChange={this.onChange} type={this.props.type} />
                 <InterpretationsCard
                     model={model}
+                    userGroups={userGroups}
                     onChange={this.onChange}
                     currentInterpretationId={currentInterpretationId}
                     onCurrentInterpretationChange={onCurrentInterpretationChange}

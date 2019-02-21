@@ -14,7 +14,7 @@ export const userCanManage = (d2, object) => {
     }
 };
 
-export const haveReadAccess = (d2, object) => {
+export const haveReadAccess = (d2, userGroups, object) => {
     const { currentUser } = d2 || {};
 
     if (!object || !object.user || !currentUser) {
@@ -27,15 +27,14 @@ export const haveReadAccess = (d2, object) => {
         return true;
     } else if (sharedUserAccess(currentUser.id, object.userAccesses, 'r')) {
         return true;
-    } else if (sharedUserGroups(currentUser.userGroupAccesses, object.userGroupAccesses, 'r')) {
+    } else if (sharedUserGroups(userGroups, object.userGroupAccesses, 'r')) {
         return true;
-
     } else {
         return false;
     }
 };
 
-export const haveWriteAccess = (d2, object) => {
+export const haveWriteAccess = (d2, userGroups, object) => {
     const { currentUser } = d2 || {};
 
     if (!object || !object.user || !currentUser) {
@@ -48,7 +47,7 @@ export const haveWriteAccess = (d2, object) => {
         return true;
     } else if (sharedUserAccess(currentUser.id, object.userAccesses, 'w')) {
         return true;
-    } else if (sharedUserGroups(currentUser.userGroupAccesses, object.userGroupAccesses, 'w')) {
+    } else if (sharedUserGroups(userGroups, object.userGroupAccesses, 'w')) {
         return true;
     } else {
         return false;
@@ -62,13 +61,15 @@ const sharedUserAccess = (userId, users, accessBit) =>
 const sharedUserGroups = (userGroups, objectGroups, accessBit) => {
     let isMember = false;
 
-    userGroups.forEach(userGroup => {
+    userGroups.forEach(([id, Model]) => {
         if(some(objectGroup => 
-            objectGroup.id === userGroup.id && 
-            objectGroup.access.includes(accessBit), objectGroups
-        )) {
-            isMember = true;
-        }
+                objectGroup.id === id && 
+                objectGroup.access.includes(accessBit), objectGroups
+            )) {
+                isMember = true;
+            }
     })
+
     return isMember;
 };
+
