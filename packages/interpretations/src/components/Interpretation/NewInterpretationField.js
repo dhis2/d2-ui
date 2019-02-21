@@ -59,7 +59,7 @@ export class NewInterpretationField extends Component {
             this.setState({
                 sharingProps: {
                     object: {
-                        user: { id: this.props.model.user.id, name: this.props.model.user.displayName },
+                        user: { id: this.context.d2.currentUser.id, name: this.context.d2.currentUser.displayName },
                         displayName: this.props.model.displayName,
                         userAccesses: this.props.model.userAccesses.map(obj => Object.assign({}, obj, { access: 'rw------'})),
                         userGroupAccesses: this.props.model.userGroupAccesses.map(obj => Object.assign({}, obj, { access: 'rw------'})),
