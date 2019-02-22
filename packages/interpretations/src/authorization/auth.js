@@ -57,7 +57,7 @@ const sharedUserAccess = (userId, users, accessBit) =>
 const sharedUserGroups = (userGroups, objectGroups, accessBit) => {
     let isMember = false;
 
-    userGroups.forEach(([id, Model]) => {
+    userGroups.forEach(id => {
         if(some(objectGroup => 
                 objectGroup.id === id && 
                 objectGroup.access.includes(accessBit), objectGroups
