@@ -11,6 +11,7 @@ import Toolbar from '../Toolbar/Toolbar';
 import SharingInfo from '../SharingInfo/SharingInfo';
 import InterpretationModel from '../../models/interpretation';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import { getSharing, setInitialSharing } from '../../sharing/sharing';
 import styles from './styles/NewInterpretationField.style';
 
 export class NewInterpretationField extends Component {
@@ -27,7 +28,8 @@ export class NewInterpretationField extends Component {
     };
 
     componentDidUpdate() {
-        if (!this.props.interpretation && this.state.sharingProps.object && this.props.model.id !== this.state.sharingProps.object.modelId) {
+        if (!this.props.interpretation && this.state.sharingProps.object 
+            && this.props.model.id !== this.state.sharingProps.object.modelId) {
             this.updateSharingProps();
         }
     }
@@ -37,43 +39,9 @@ export class NewInterpretationField extends Component {
     };
 
     updateSharingProps = () => {
-        if (this.props.interpretation) {
-            this.setState({
-                sharingProps: {
-                    object: {
-                        user: { id: this.props.interpretation.user.id, name: this.props.interpretation.user.displayName },
-                        displayName: this.props.model.displayName,
-                        userAccesses: this.props.interpretation.userAccesses,
-                        userGroupAccesses: this.props.interpretation.userGroupAccesses,
-                        publicAccess: this.props.interpretation.publicAccess,
-                        externalAccess: this.props.interpretation.externalAccess,
-                        modelId: this.props.model.id,
-                    },
-                    meta: {
-                        allowPublicAccess: this.props.model.publicAccess.includes('r'),
-                        allowExternalAccess: this.props.model.externalAccess,
-                    },
-                }
-            });
-        } else {
-            this.setState({
-                sharingProps: {
-                    object: {
-                        user: { id: this.context.d2.currentUser.id, name: this.context.d2.currentUser.displayName },
-                        displayName: this.props.model.displayName,
-                        userAccesses: this.props.model.userAccesses.map(obj => Object.assign({}, obj, { access: 'rw------'})),
-                        userGroupAccesses: this.props.model.userGroupAccesses.map(obj => Object.assign({}, obj, { access: 'rw------'})),
-                        publicAccess: this.props.model.publicAccess.includes('r') ? 'rw------' : this.props.model.publicAccess,
-                        externalAccess: this.props.model.externalAccess,
-                        modelId: this.props.model.id,
-                    },
-                    meta: {
-                        allowPublicAccess: this.props.model.publicAccess.includes('r'),
-                        allowExternalAccess: this.props.model.externalAccess,
-                    },
-                }
-            });
-        }
+        this.props.interpretation 
+            ? this.setState({ sharingProps: getSharing(this.props.interpretation.user, this.props.interpretation, this.props.model)})
+            : this.setState({ sharingProps: setInitialSharing(this.context.d2.currentUser, this.props.model )});
     };
 
     onInputChange = event => {
