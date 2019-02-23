@@ -30,6 +30,9 @@ export default {
     detailsCardList: {
         padding: '4px',
         fontSize: '14px',
+        whiteSpace: 'pre-line',
+        wordBreak: 'break-word',
+        wordWrap: 'break-word',
     },
 
     headerText: {
