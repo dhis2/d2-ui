@@ -18,11 +18,14 @@ import styles from './styles/Details.style';
 import { itemTypeMap } from '../../api/redirect';
 
 export class Details extends React.Component {
-    state = { isExpanded: true };
+    state = { isExpanded: true, showCompleteDescription: false };
 
     toggleDetailsExpand = () => {
         this.setState({ isExpanded: !this.state.isExpanded });
     };
+
+    toggleDescription = () =>
+        this.setState({ showCompleteDescription: !this.state.showCompleteDescription });
 
     toggleSubscription = async () => {
         const { model, onChange } = this.props;
@@ -64,7 +67,14 @@ export class Details extends React.Component {
             <CollapsibleCard title={itemTypeMap[this.props.type.toUpperCase()].detailsTitle}>
                 {SubscriptionButton}
                 <div className={classes.detailsCardList}>
-                    <Item text={<Description description={model.displayDescription} />} />
+                    <Item text={
+                        <Description
+                            displayDescription={model.displayDescription}
+                            isToggled={this.state.showCompleteDescription}
+                            onToggleDescription={this.toggleDescription}
+                        />
+                        } 
+                    />
                     <Item label={i18n.t('Owner')} text={owner} />
                     <Item
                         label={i18n.t('Created')}
