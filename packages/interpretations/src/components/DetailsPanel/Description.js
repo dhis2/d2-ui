@@ -6,7 +6,6 @@ import Link from '../Link/Link';
 
 const descriptionMaxLength = 250;
 
-
 export const Description = ({ displayDescription, isToggled, onToggleDescription }) => {
     let description;
     
@@ -35,4 +34,6 @@ export default Description;
 
 Description.propTypes = {
     description: PropTypes.string,
+    isToggled: PropTypes.bool.isRequired,
+    onToggleDescription: PropTypes.func.isRequired,
 };
