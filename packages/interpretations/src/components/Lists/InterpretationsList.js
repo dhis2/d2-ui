@@ -20,11 +20,6 @@ export const InterpretationsList = ({
     isExpanded,
     toggleShowAllInterpretations,
 }) =>  {
-    if (!interpretations.length) {
-        return (
-            <div className={classes.emptyList}>{i18n.t("No interpretations")}</div>
-        );
-    }
     const filteredItems = interpretations.filter(item => haveReadAccess(d2, userGroups, item) && item);
 
     const listItems = isExpanded
@@ -32,7 +27,7 @@ export const InterpretationsList = ({
         : filteredItems.slice(-interpretationsToShowOnInit);
 
 
-    return (
+    return listItems.length ? (
         <Fragment>
             {listItems.length > interpretationsToShowOnInit && (
                 <Link 
@@ -44,6 +39,7 @@ export const InterpretationsList = ({
                 <Interpretation
                     model={model}
                     userGroups={userGroups}
+                    haveReadAccess={haveReadAccess(d2, userGroups, item)}
                     key={item.id}
                     interpretation={item}
                     onChange={onChange}
@@ -52,7 +48,7 @@ export const InterpretationsList = ({
                 />
             )}
         </Fragment>
-    );
+    ) : <div className={classes.emptyList}>{i18n.t("No interpretations")}</div>;
 };
 
 InterpretationsList.propTypes = {
