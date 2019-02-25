@@ -77,7 +77,7 @@ export class InterpretationsCard extends React.Component {
     };
 
     renderBackButton = () => 
-        this.state.currentInterpretationId && (
+        this.state.currentInterpretationId &&  (
             <Button
                 className={this.props.classes.backButton}
                 variant="outlined" 
@@ -103,6 +103,7 @@ export class InterpretationsCard extends React.Component {
                 userGroups={this.props.userGroups}
                 interpretation={currentInterpretation}
                 onChange={this.notifyChange}
+                haveReadAccess={haveReadAccess(this.context.d2, this.props.userGroups, currentInterpretation)}
                 onSelect={this.setCurrentInterpretation}
                 extended={true}
             />

@@ -75,6 +75,7 @@ const renderComponent = (partialProps = {}, partialContext = {}) => {
             actions: 'actions'
         },
         userGroups: [],
+        haveReadAccess: true,
     };
 
     const props = { ...baseProps, ...partialProps };

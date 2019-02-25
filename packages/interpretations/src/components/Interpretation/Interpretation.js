@@ -218,14 +218,14 @@ export class Interpretation extends React.Component {
         const SharingDialog = this.renderSharingDialog();
         const DeleteInterpretationDialog = this.renderDeleteInterpretationDialog();
 
-        return (
+        return this.props.haveReadAccess ? (
             <Fragment>
                 {Interpretation}
                 {Comments}
                 {SharingDialog}
                 {DeleteInterpretationDialog}
             </Fragment>
-        );
+        ) : <div className={this.props.classes.restricted}>{i18n.t('Access restricted')}</div>;
     };
 }
 

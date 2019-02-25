@@ -17,7 +17,9 @@ export const userCanManage = (d2, object) => {
 export const haveReadAccess = (d2, userGroups, object) => {
     const { currentUser } = d2 || {};
 
-     if (object.user && currentUser.id === object.user.id) {
+    if (!object || !currentUser) {
+        return false;
+    } else if (object.user && currentUser.id === object.user.id) {
         return true;
     } else if (currentUser.authorities.has('ALL')) {
         return true;
@@ -34,8 +36,10 @@ export const haveReadAccess = (d2, userGroups, object) => {
 
 export const haveWriteAccess = (d2, userGroups, object) => {
     const { currentUser } = d2 || {};
-
-    if (object.user && currentUser.id === object.user.id) {
+    
+    if (!object || !currentUser) {
+        return false;
+    } else if (object.user && currentUser.id === object.user.id) {
         return true;
     } else if (currentUser.authorities.has('ALL')) {
         return true;
