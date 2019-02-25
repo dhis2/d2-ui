@@ -18,7 +18,7 @@ export default {
     expanded: {
         display: 'flex',
         padding: '8px',
-        margin: '8px 0px',
+        margin: '0px',
         borderRadius: '4px',
         backgroundColor: '#F3F5F7',
     },
