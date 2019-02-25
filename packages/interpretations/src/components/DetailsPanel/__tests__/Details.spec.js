@@ -94,7 +94,7 @@ describe('Interpretations: Details -> Details component', () => {
             detailsCard.find(Item)
             .first()
             .find(Description)
-            .props().description
+            .props().displayDescription
             ).toEqual('Some translated Description');
     });
 

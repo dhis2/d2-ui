@@ -32,8 +32,12 @@ export const Description = ({ displayDescription, isToggled, onToggleDescription
 
 export default Description; 
 
+Description.defaultProps = {
+    displayDescription: '',
+}
+
 Description.propTypes = {
-    description: PropTypes.string,
+    displayDescription: PropTypes.string,
     isToggled: PropTypes.bool.isRequired,
     onToggleDescription: PropTypes.func.isRequired,
 };

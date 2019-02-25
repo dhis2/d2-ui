@@ -4,8 +4,14 @@ import { Description } from '../Description';
 
 let shallowDescription;
 
-const description = (props = {}) => {
+let baseProps = {
+    isToggled: false,
+    onToggleDescription: jest.fn(),
+};
+
+const description = (partialProps = {}) => {
     if (!shallowDescription) {
+        const props = {...baseProps, ...partialProps};
         shallowDescription = mount(<Description {...props} />);
     }
     return shallowDescription;
@@ -25,7 +31,7 @@ describe('components: DetailsPanel -> Description component ', () => {
    describe('with description passed from prop', () => {
         it('should show a description with rich text', () => {
             expect(
-                description({ description: 'Some *rich text* _description_' }).text())
+                description({ displayDescription: 'Some *rich text* _description_' }).text())
                 .toEqual('Some rich text description');
         });
     });
