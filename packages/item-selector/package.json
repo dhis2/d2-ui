@@ -1,0 +1,43 @@
+{
+  "name": "@dhis2/d2-ui-item-selector",
+  "description": "Item selector component",
+  "main": "./build/index.js",
+  "module": "./build/index.js",
+  "license": "BSD-3-Clause",
+  "author": "Jennifer Jones Arnesen <jennifer@dhis2.org>",
+  "peerDependencies": {
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0"
+  },
+  "scripts": {
+    "prebuild": "npm run lint && rimraf ./build/* && mkdirp ./build",
+    "build": "npm run build:css && cross-env BABEL_ENV=es babel src --out-dir build --ignore spec.js",
+    "build:css": "cp -R ./css/* ./build/",
+    "lint": "eslint src/",
+    "watch": "npm run build -- --watch",
+    "test-ci": "jest --config=../../jest.config.js packages/item-selector",
+    "test:watch": "npm test -- --watch"
+  },
+  "dependencies": {
+    "@dhis2/d2-i18n": "^1.0.4",
+    "@dhis2/ui": "^1.0.0-beta.12",
+    "lodash-es": "^4.17.11",
+    "prop-types": "15.7.2",
+    "react-beautiful-dnd": "^10.0.4"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run extract-pot && git add ./i18n"
+    }
+  },
+  "devDependencies": {
+    "babel-jest": "^23.0.1",
+    "enzyme": "^3.7.0",
+    "jest": "^23.1.0",
+    "mkdirp": "^0.5.1"
+  },
+  "version": "0.0.0-PLACEHOLDER"
+}
