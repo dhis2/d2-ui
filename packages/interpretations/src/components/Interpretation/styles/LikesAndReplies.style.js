@@ -16,4 +16,8 @@ export default {
         position: 'relative',
         bottom: '2px',
     },
+
+    popper: {
+        zIndex: 1200
+    },
 };

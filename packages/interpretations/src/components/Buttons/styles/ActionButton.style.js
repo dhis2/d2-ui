@@ -18,4 +18,8 @@ export default {
         bottom: '2px',
     },
 
+    popper: {
+        zIndex: 1200
+    },
+
 };
