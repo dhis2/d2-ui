@@ -3455,6 +3455,13 @@ d2-utilizr@^0.2.15:
     lodash.isset "^4.3.0"
     lodash.isstring "^4.0.1"
 
+d2@^31.4, d2@~31.4:
+  version "31.4.0"
+  resolved "https://registry.yarnpkg.com/d2/-/d2-31.4.0.tgz#761e297d0f6a5b4b1d6043de176d887ee5faa09b"
+  integrity sha512-8Bw4W4XVc6jDlZ/+g2TJW6iuxcLAi8ii8Iv0tRBe1M+WjH+x6UWfQuMKxXL/hZtOaa0TNiRouyp50pVBuXawIw==
+  dependencies:
+    whatwg-fetch "^2.0.3"
+
 d2@~31.1:
   version "31.1.1"
   resolved "https://registry.yarnpkg.com/d2/-/d2-31.1.1.tgz#8c551077c27031de8ad2d8df0b575242a3080917"
