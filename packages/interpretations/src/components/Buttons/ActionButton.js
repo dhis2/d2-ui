@@ -41,6 +41,7 @@ export class ActionButton extends Component {
 			anchorEl={document.getElementById(this.id)}
 			open={this.state.tooltipIsOpen}
 			placement="top"
+			style={styles.popper}
 		>
 			<Paper className={this.props.classes.tooltip}>
 				{this.props.tooltip || Icons[this.props.iconType].tooltip}

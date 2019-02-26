@@ -43,6 +43,7 @@ export class Likes extends Component {
             anchorEl={document.getElementById(this.id)}
             open={this.state.tooltipIsOpen}
             placement="top"
+            style={styles.popper}
         >
             <Paper className={this.props.classes.tooltip}>
                 <ul className={this.props.classes.tooltipList}>

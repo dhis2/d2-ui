@@ -54,6 +54,7 @@ export class Replies extends Component {
             placement="top"
             open={this.state.tooltipIsOpen}
             anchorEl={document.getElementById(this.id)}
+            style={styles.popper}
         >
             <Paper className={this.props.classes.tooltip}>
                 <ul className={this.props.classes.tooltipList}>
