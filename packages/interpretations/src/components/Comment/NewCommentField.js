@@ -34,6 +34,10 @@ export class NewCommentField extends React.Component {
         }
     };
 
+    onUserSelect = newValue => {
+        this.setState({ text: newValue });
+    };
+
     setNativeInputVal = val => {
         const node = this.textarea.current;
         node.value = val;
@@ -119,7 +123,7 @@ export class NewCommentField extends React.Component {
         
         return (
             <WithAvatar className={this.props.classes.newReply} firstName={this.context.d2.currentUser.firstName} surname={this.context.d2.currentUser.surname}>
-                <MentionsWrapper d2={this.context.d2} onUserSelect={this.onInputChange}>
+                <MentionsWrapper d2={this.context.d2} onUserSelect={this.onUserSelect}>
                     <RichTextEditor onEdit={this.onInputChange}>
                         <ClickAwayListener mouseEvent="onClick" onClickAway={this.onBlur}>
                             <div onClick={this.onFocus} className={this.props.classes.inputField} onFocus={this.onFocus}>
