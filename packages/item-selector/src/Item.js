@@ -26,24 +26,29 @@ export const Item = ({
     isGhost,
 }) => {
     const selectedState = selected ? 'selected' : 'unselected';
-    const divClassName = [`${selectedState}-list-item`]
-        .concat(isGhost ? 'ghost' : '')
-        .join(' ');
+    // const divClassName = [`${selectedState}-list-item`]
+    //     .concat(isGhost ? 'ghost' : '')
+    //     .join(' ');
+
+    //
+    const highlightedStyle = highlighted ? styles.highlightedItem : {};
+    const itemStyle = selected ? Object.assign({}, styles.selectedItem, styles.item) : styles.item;
+    const ghostStyle = isGhost ? styles.ghost : {};
+    const divStyle = Object.assign({}, itemStyle, ghostStyle, highlightedStyle);
+
+    const highlightedSpanStyle = highlighted ? styles.highlightedText : {};
+    const labelStyle = selected ? styles.selectedItemLabel : styles.unselectedItemLabel;
+    const spanStyle = Object.assign({}, labelStyle, highlightedSpanStyle);
+
 
     return (
         <div
             data-test={`dimension-item-${id}`}
-            style={highlighted ? styles.highlightedItem : {}}
-            className={divClassName}
+            style={divStyle}
             onClick={onClickWrapper(id, index, onClick)}
         >
             <Icon selected={selected} highlighted={highlighted} />
-            <span
-                style={highlighted ? styles.highlightedText : {}}
-                className={`${selectedState}-item-label`}
-            >
-                {name}
-            </span>
+            <span style={spanStyle}>{name}</span>
             {selected && (
                 <RemoveDimensionButton
                     highlighted={highlighted}

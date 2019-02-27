@@ -22,6 +22,8 @@ export class UnselectedItems extends Component {
     };
 
     onSelectAllClick = () => {
+        console.log('onSelectAllClick');
+
         this.props.onSelect(this.props.items.map(i => i.id));
         this.setState({ highlighted: [] });
     };
@@ -62,7 +64,7 @@ export class UnselectedItems extends Component {
 
     renderListItem = (dataDim, index) => (
         <li
-            className="item-selector-item"
+            style={styles.listItem}
             key={dataDim.id}
             onDoubleClick={() => this.onDoubleClickItem(dataDim.id)}
         >
@@ -102,7 +104,7 @@ export class UnselectedItems extends Component {
                     onScroll={this.requestMoreItems}
                     style={styles.unselectedItems}
                 >
-                    <ul className="item-selector-list">{listItems}</ul>
+                    <ul style={styles.unselectedItemsList}>{listItems}</ul>
                 </div>
                 <SelectAllButton
                     style={styles.selectButton}
@@ -133,6 +135,7 @@ UnselectedItems.propTypes = {
 
 UnselectedItems.defaultProps = {
     requestMoreItems: () => null,
+    filterText: '',
 };
 
 export default UnselectedItems;

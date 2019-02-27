@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import UnselectedItems from './UnselectedItems';
 import SelectedItems from './SelectedItems';
 
-import './ItemSelector.css';
+// import './ItemSelector.css';
 
 const style = {
     container: {
@@ -40,12 +40,6 @@ class ItemSelector extends Component {
         );
     }
 }
-
-ItemSelector.defaultProps = {
-    unselected: {
-        filterText: '',
-    },
-};
 
 ItemSelector.propTypes = {
     unselected: PropTypes.shape({

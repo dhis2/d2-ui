@@ -9,6 +9,7 @@ import Buttons from './components/button';
 import Chips from './components/chip';
 import CircularProgresses from './components/circular-progress';
 import Controlbars from './components/controlbar';
+import ItemSelector from './components/item-selector';
 import Tables from './components/table';
 import ExpressionManager from './components/expression-manager';
 import FileMenu from './components/file-menu';
@@ -77,6 +78,10 @@ class App extends Component {
 
                     <h2>Rich Text</h2>
                     <RichTextExample />
+
+                    <h2>Item Selector</h2>
+                    <ItemSelector />
+
 
                     <h2>Buttons</h2>
                     <Buttons />

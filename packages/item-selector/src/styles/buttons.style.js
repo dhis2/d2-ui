@@ -7,7 +7,9 @@ export const styles = {
         width: '40px',
         minHeight: '36px',
         height: '36px',
+        borderRadius: '4px',
         backgroundColor: colors.white,
+        boxShadow: '0px 2px 5px #b1b1b1',
     },
     arrowIcon: {
         height: '20px',

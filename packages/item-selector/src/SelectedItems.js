@@ -167,7 +167,7 @@ export class SelectedItems extends Component {
 
                 return (
                     <li
-                        className="item-selector-item"
+                        style={styles.listItem}
                         id={id}
                         onDoubleClick={() => this.onDeselectOne(id)}
                         {...provided.draggableProps}
@@ -196,7 +196,7 @@ export class SelectedItems extends Component {
             <Draggable draggableId={cloneId} index={index} key={cloneId}>
                 {provided => (
                     <li
-                        className="item-selector-item"
+                    style={styles.listItem}
                         id={cloneId}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}

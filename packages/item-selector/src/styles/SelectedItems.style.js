@@ -32,4 +32,8 @@ export const styles = {
         margin: '0 auto',
         display: 'block',
     },
+    listItem: {
+        display: 'flex',
+        margin: '2px',
+    },
 };

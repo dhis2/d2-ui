@@ -4,4 +4,15 @@ export const styles = {
         display: 'block',
     },
     unselectedItems: { flex: '1', overflowY: 'auto' },
+    unselectedItemsList: {
+        userSelect: 'none',
+        listStyle: 'none',
+        borderBottom: '0px',
+        paddingLeft: '0px',
+        margin: '0px',
+    },
+    listItem: {
+        display: 'flex',
+        margin: '2px',
+    },
 };
