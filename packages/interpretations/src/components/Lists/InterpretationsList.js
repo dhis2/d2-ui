@@ -29,7 +29,7 @@ export const InterpretationsList = ({
 
     return listItems.length ? (
         <Fragment>
-            {listItems.length > interpretationsToShowOnInit && (
+            {filteredItems.length > interpretationsToShowOnInit && (
                 <Link 
                     label={`${isExpanded ? i18n.t('Hide') : i18n.t('Show')}${' previous interpretations'}`}
                     onClick={toggleShowAllInterpretations} 
