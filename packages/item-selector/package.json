@@ -23,7 +23,8 @@
     "@material-ui/icons": "^3.0.2",
     "lodash-es": "^4.17.11",
     "prop-types": "15.7.2",
-    "react-beautiful-dnd": "^10.0.4"
+    "react-beautiful-dnd": "^10.0.4",
+    "styled-jsx": "^3.2.1"
   },
   "publishConfig": {
     "access": "public"

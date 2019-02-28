@@ -7,7 +7,7 @@ import throttle from 'lodash-es/throttle';
 import Item from './Item';
 import { ArrowButton as AssignButton } from './buttons/ArrowButton';
 import { toggler } from './modules/toggler';
-import { styles } from './styles/UnselectedItems.style';
+import styles from './styles/UnselectedItems.style';
 
 export class UnselectedItems extends Component {
     constructor(props) {
@@ -65,7 +65,7 @@ export class UnselectedItems extends Component {
 
     renderListItem = (dataDim, index) => (
         <li
-            style={styles.listItem}
+            className="unselected-list-item"
             key={dataDim.id}
             onDoubleClick={() => this.onDoubleClickItem(dataDim.id)}
         >
@@ -76,6 +76,7 @@ export class UnselectedItems extends Component {
                 highlighted={!!this.state.highlighted.includes(dataDim.id)}
                 onClick={this.toggleHighlight}
             />
+            <style jsx>{styles}</style>
         </li>
     );
 
@@ -103,9 +104,9 @@ export class UnselectedItems extends Component {
                 <div
                     ref={this.scrolElRef}
                     onScroll={this.requestMoreItems}
-                    style={styles.unselectedItems}
+                    className="unselected-list-container"
                 >
-                    <ul style={styles.unselectedItemsList}>{listItems}</ul>
+                    <ul className="unselected-list">{listItems}</ul>
                 </div>
                 <Button
                     kind="secondary"
@@ -113,11 +114,13 @@ export class UnselectedItems extends Component {
                     onClick={this.onSelectAllClick}
                     label={i18n.t('Select All')}
                 />
-                <AssignButton
-                    style={styles.assignButton}
-                    onClick={this.onSelectClick}
-                    iconType={'arrowForward'}
-                />
+                <div className="assign-button">
+                    <AssignButton
+                        onClick={this.onSelectClick}
+                        iconType={'arrowForward'}
+                    />
+                </div>
+                <style jsx>{styles}</style>
             </Fragment>
         );
     };
