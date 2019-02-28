@@ -15,4 +15,9 @@ export const styles = {
         display: 'flex',
         margin: '2px',
     },
+    assignButton: {
+        position: 'absolute',
+        left: '429px',
+        top: '230px',
+    }
 };

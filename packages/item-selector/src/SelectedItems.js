@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import i18n from '@dhis2/d2-i18n';
+import Button from '@dhis2/ui/core/Button';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import sortBy from 'lodash-es/sortBy';
 
 import Item from './Item';
 import { ArrowButton as UnAssignButton } from './buttons/ArrowButton';
-import { SelectButton as DeselectAllButton } from './buttons/SelectButton';
-
 import { toggler } from './modules/toggler';
-
 import { styles } from './styles/SelectedItems.style';
 
 const Subtitle = () => (
@@ -241,6 +239,9 @@ export class SelectedItems extends Component {
                 : this.renderListItem(item, i)
         );
 
+        console.log('styles.unassignButton', styles.unassignButton);
+
+
         return (
             <div style={styles.container}>
                 <Subtitle />
@@ -262,15 +263,18 @@ export class SelectedItems extends Component {
                     </Droppable>
                 </DragDropContext>
                 <UnAssignButton
-                    className="item-selector-arrow-back-button"
+                    style={styles.unassignButton}
                     onClick={this.onDeselectHighlighted}
                     iconType={'arrowBack'}
                 />
-                <DeselectAllButton
-                    style={styles.deselectButton}
-                    onClick={this.onDeselectAll}
-                    label={i18n.t('Deselect All')}
-                />
+                <div style={styles.deselectButton}>
+                    <Button
+                        kind="secondary"
+                        size="small"
+                        onClick={this.onDeselectAll}
+                        label={i18n.t('Deselect All')}
+                    />
+                </div>
             </div>
         );
     };

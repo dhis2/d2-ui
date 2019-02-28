@@ -3,9 +3,9 @@
     margin: 2px;
 } */
 
-.item-selector-item.selected {
+/* .item-selector-item.selected {
     z-index: 10000;
-}
+} */
 
 /* .item-selector-list {
     user-select: none;
@@ -15,19 +15,19 @@
     margin: 0px;
 } */
 
-.item-selector-arrow-forward-button,
+/* .item-selector-arrow-forward-button,
 .item-selector-arrow-back-button {
     position: absolute;
     left: 452px;
-}
+} */
 
-.item-selector-arrow-forward-button {
+/* .item-selector-arrow-forward-button {
     top: 277px;
 }
 
 .item-selector-arrow-back-button {
     top: 347px;
-}
+} */
 
 /* .unselected-item-label {
     font-size: 14px;

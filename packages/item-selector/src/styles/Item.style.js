@@ -28,5 +28,5 @@ export const styles = {
     unselectedItemLabel: {
         fontSize: '14px',
         padding: '2px 5px 2px 2px',
-    }
+    },
 };

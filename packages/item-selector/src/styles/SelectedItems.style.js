@@ -5,6 +5,7 @@ export const styles = {
         border: `1px solid ${colors.greyLight}`,
         height: '534px',
         width: '278px',
+        position: 'relative',
     },
     subTitleContainer: {
         borderBottom: `1px solid ${colors.greyLight}`,
@@ -36,4 +37,9 @@ export const styles = {
         display: 'flex',
         margin: '2px',
     },
+    unassignButton: {
+        position: 'absolute',
+        left: '-48px',
+        top: '291px'
+    }
 };

@@ -25,12 +25,6 @@ export const Item = ({
     name,
     isGhost,
 }) => {
-    const selectedState = selected ? 'selected' : 'unselected';
-    // const divClassName = [`${selectedState}-list-item`]
-    //     .concat(isGhost ? 'ghost' : '')
-    //     .join(' ');
-
-    //
     const highlightedStyle = highlighted ? styles.highlightedItem : {};
     const itemStyle = selected ? Object.assign({}, styles.selectedItem, styles.item) : styles.item;
     const ghostStyle = isGhost ? styles.ghost : {};

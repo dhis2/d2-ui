@@ -1,10 +1,11 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import i18n from '@dhis2/d2-i18n';
+import Button from '@dhis2/ui/core/Button';
 import throttle from 'lodash-es/throttle';
+
 import Item from './Item';
 import { ArrowButton as AssignButton } from './buttons/ArrowButton';
-import { SelectButton as SelectAllButton } from './buttons/SelectButton';
 import { toggler } from './modules/toggler';
 import { styles } from './styles/UnselectedItems.style';
 
@@ -106,13 +107,14 @@ export class UnselectedItems extends Component {
                 >
                     <ul style={styles.unselectedItemsList}>{listItems}</ul>
                 </div>
-                <SelectAllButton
-                    style={styles.selectButton}
+                <Button
+                    kind="secondary"
+                    size="small"
                     onClick={this.onSelectAllClick}
                     label={i18n.t('Select All')}
                 />
                 <AssignButton
-                    className="item-selector-arrow-forward-button"
+                    style={styles.assignButton}
                     onClick={this.onSelectClick}
                     iconType={'arrowForward'}
                 />

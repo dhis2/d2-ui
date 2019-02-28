@@ -1,9 +1,7 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import UnselectedItems from './UnselectedItems';
 import SelectedItems from './SelectedItems';
-
-// import './ItemSelector.css';
 
 const style = {
     container: {
@@ -13,6 +11,7 @@ const style = {
         width: 420,
         height: 534,
         border: '1px solid #e0e0e0',
+        position: 'relative',
     },
 };
 
@@ -26,7 +25,7 @@ class ItemSelector extends Component {
         } = this.props;
 
         return (
-            <Fragment>
+            <div style={{display: 'flex'}}>
                 <div style={style.container}>
                     {filterZone}
                     <UnselectedItems
@@ -36,7 +35,7 @@ class ItemSelector extends Component {
                     />
                 </div>
                 <SelectedItems className={itemClassName} {...selected} />
-            </Fragment>
+            </div>
         );
     }
 }

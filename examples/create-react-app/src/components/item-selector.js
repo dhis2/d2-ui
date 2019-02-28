@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 
 import Selector from '@dhis2/d2-ui-item-selector';
 
-const style = {};
+const style = {
+    fontFamily: 'Roboto',
+};
 
 const items = [
     {
