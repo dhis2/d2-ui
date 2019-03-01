@@ -1,17 +1,17 @@
 import css from 'styled-jsx/css'
 
 export default css`
-    .unselected-list {
-        user-select: none;
-        list-style: none;
-        border-bottom: 0px;
-        padding-left: 0px;
-        margin: 0px;
-    }
-
     .unselected-list-container {
         flex: 1;
         overflow-y: auto;
+    }
+
+    .unselected-list {
+        border-bottom: 0px;
+        list-style: none;
+        margin: 0px;
+        padding-left: 0px;
+        user-select: none;
     }
 
     .unselected-list-item {
@@ -19,13 +19,15 @@ export default css`
         margin: 2px;
     }
 
-    .unselected-list-item:hover {
-        background-color: #e0e0e0;
+    .select-all-button {
+        display: block;
+        margin: 0 auto;
+        padding: 5px;
     }
 
-    .assign-button {
-        position: absolute;
+    .select-highlighted-button {
         left: 429px;
+        position: absolute;
         top: 230px;
     }
-`
+`;

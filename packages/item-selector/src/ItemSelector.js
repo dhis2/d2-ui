@@ -1,40 +1,30 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import cx from 'classnames';
 import UnselectedItems from './UnselectedItems';
 import SelectedItems from './SelectedItems';
-
-const style = {
-    container: {
-        marginRight: 55,
-        display: 'flex',
-        flexDirection: 'column',
-        width: 420,
-        height: 534,
-        border: '1px solid #e0e0e0',
-        position: 'relative',
-    },
-};
+import styles from './styles/ItemSelector.style';
 
 class ItemSelector extends Component {
     render() {
         const {
             unselected,
             selected,
-            itemClassName,
             children: filterZone,
         } = this.props;
 
         return (
-            <div style={{display: 'flex'}}>
-                <div style={style.container}>
+            <div className="item-selector-container">
+                <div className={cx('section', 'unselected')}>
                     {filterZone}
                     <UnselectedItems
-                        style={style.unselectedItems}
-                        className={itemClassName}
                         {...unselected}
                     />
                 </div>
-                <SelectedItems className={itemClassName} {...selected} />
+                <div className={cx('section', 'selected')}>
+                    <SelectedItems {...selected} />
+                </div>
+                <style jsx>{styles}</style>
             </div>
         );
     }
@@ -63,7 +53,6 @@ ItemSelector.propTypes = {
         onDeselect: PropTypes.func.isRequired,
         onReorder: PropTypes.func.isRequired,
     }),
-    itemClassName: PropTypes.string,
 };
 
 export default ItemSelector;

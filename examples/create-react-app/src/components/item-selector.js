@@ -6,43 +6,42 @@ const style = {
     fontFamily: 'Roboto',
 };
 
-const items = [
-    {
+const items = {
+    rarity: {
         id: 'rarity',
         name: 'Rarity',
     },
-    {
+    rainbow: {
         id: 'rainbow',
         name: 'Rainbow Dash',
     },
-    {
+    fluttershy: {
         id: 'fluttershy',
-        name: 'Fluttershy',
+        name: 'Fluttershy is a little yellow horse with pink mane and tail',
     },
-    {
+    pinkie: {
         id: 'pinkie',
         name: 'Pinkie Pie',
     },
-    {
+    applejack: {
         id: 'applejack',
         name: 'Applejack',
     },
-    {
+    spike: {
         id: 'spike',
         name: 'Spike',
     },
-];
+};
 
 class ItemSelector extends Component {
     state = {
-        unselectedItems: items.map(i => i.id),
+        unselectedItems: Object.keys(items),
         selectedItems: []
     }
 
     onSelect = newItems => {
         const selectedItems = [...(new Set(newItems.concat(this.state.selectedItems)))];
-        const unselectedItems = items
-            .map(item => item.id)
+        const unselectedItems = Object.keys(items)
             .filter(id => !selectedItems.includes(id));
 
         this.setState({selectedItems, unselectedItems})
@@ -50,24 +49,28 @@ class ItemSelector extends Component {
 
     onDeselect = newItems => {
         const unselectedItems = [...(new Set(newItems.concat(this.state.unselectedItems)))];
-        const selectedItems = items
-            .map(item => item.id)
+        const selectedItems = Object.keys(items)
             .filter(id => !unselectedItems.includes(id));
 
             this.setState({selectedItems, unselectedItems})
     }
 
+    onReorder = selectedItems => {
+        this.setState({selectedItems});
+    }
+
     render() {
         const unselected = {
-            items: items.filter(i => this.state.unselectedItems.includes(i.id)),
+            items: this.state.unselectedItems.map(id => items[id]),
             onSelect: this.onSelect
         };
 
         const selected = {
-            items: items.filter(i => this.state.selectedItems.includes(i.id)),
+            items: this.state.selectedItems.map(id => items[id]),
             onDeselect: this.onDeselect,
-            onReorder: this.onSelect,
+            onReorder: this.onReorder,
         }
+
         return (
             <div style={style}>
                 <Selector unselected={unselected} selected={selected}/>

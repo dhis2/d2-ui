@@ -1,24 +1,26 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import i18n from '@dhis2/d2-i18n';
 import Button from '@dhis2/ui/core/Button';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import sortBy from 'lodash-es/sortBy';
 
-import Item from './Item';
-import { ArrowButton as UnAssignButton } from './buttons/ArrowButton';
+import Item from './widgets/SelectedItem';
+import { ArrowButton as UnAssignButton } from './widgets/ArrowButton';
 import { toggler } from './modules/toggler';
-import { styles } from './styles/SelectedItems.style';
+import styles from './styles/SelectedItems.style';
 
 const Subtitle = () => (
-    <div style={styles.subTitleContainer}>
-        <span style={styles.subTitleText}>{i18n.t('Selected Data')}</span>
+    <div className="subtitle-container">
+        <span className="subtitle-text">{i18n.t('Selected Data')}</span>
+        <style jsx>{styles}</style>
     </div>
 );
 
-const ItemsList = ({ styles, innerRef, children }) => (
-    <ul style={styles.list} ref={innerRef}>
+const ItemsList = ({ innerRef, children }) => (
+    <ul className="selected-list" ref={innerRef}>
         {children}
+        <style jsx>{styles}</style>
     </ul>
 );
 
@@ -55,6 +57,7 @@ export class SelectedItems extends Component {
             this.state.lastClickedIndex,
             this.state.highlighted,
             this.props.items.map(item => item.id)
+
         );
 
         this.setState({
@@ -154,7 +157,7 @@ export class SelectedItems extends Component {
                     this.state.highlighted.length > 1 &&
                     this.state.highlighted.includes(this.state.draggingId);
 
-                const isGhost =
+                const ghost =
                     this.state.highlighted.includes(id) &&
                     Boolean(this.state.draggingId) &&
                     this.state.draggingId !== id;
@@ -165,7 +168,7 @@ export class SelectedItems extends Component {
 
                 return (
                     <li
-                        style={styles.listItem}
+                        className="selected-list-item"
                         id={id}
                         onDoubleClick={() => this.onDeselectOne(id)}
                         {...provided.draggableProps}
@@ -179,9 +182,9 @@ export class SelectedItems extends Component {
                             highlighted={!!this.state.highlighted.includes(id)}
                             onRemoveItem={this.onDeselectOne}
                             onClick={this.toggleHighlight}
-                            selected
-                            isGhost={isGhost}
+                            ghost={ghost}
                         />
+                        <style jsx>{styles}</style>
                     </li>
                 );
             }}
@@ -194,7 +197,7 @@ export class SelectedItems extends Component {
             <Draggable draggableId={cloneId} index={index} key={cloneId}>
                 {provided => (
                     <li
-                    style={styles.listItem}
+                        className="selected-list-item"
                         id={cloneId}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
@@ -206,8 +209,9 @@ export class SelectedItems extends Component {
                             name={name}
                             highlighted={!!this.state.highlighted.includes(id)}
                             selected
-                            isGhost
+                            ghost
                         />
+                        <style jsx>{styles}</style>
                     </li>
                 )}
             </Draggable>
@@ -233,17 +237,14 @@ export class SelectedItems extends Component {
     };
 
     render = () => {
-        const dimensions = this.getItemListWithClone().map((item, i) =>
+        const itemList = this.getItemListWithClone().map((item, i) =>
             item.clone
                 ? this.renderCloneItem(item, i)
                 : this.renderListItem(item, i)
         );
 
-        console.log('styles.unassignButton', styles.unassignButton);
-
-
         return (
-            <div style={styles.container}>
+            <Fragment>
                 <Subtitle />
                 <DragDropContext
                     onDragStart={this.onDragStart}
@@ -252,22 +253,16 @@ export class SelectedItems extends Component {
                     <Droppable droppableId="selected-items-droppable">
                         {provided => (
                             <ItemsList
-                                styles={styles}
                                 innerRef={provided.innerRef}
                                 {...provided.droppableProps}
                             >
-                                {dimensions}
+                                {itemList}
                                 {provided.placeholder}
                             </ItemsList>
                         )}
                     </Droppable>
                 </DragDropContext>
-                <UnAssignButton
-                    style={styles.unassignButton}
-                    onClick={this.onDeselectHighlighted}
-                    iconType={'arrowBack'}
-                />
-                <div style={styles.deselectButton}>
+                <div className="deselect-all-button">
                     <Button
                         kind="secondary"
                         size="small"
@@ -275,7 +270,14 @@ export class SelectedItems extends Component {
                         label={i18n.t('Deselect All')}
                     />
                 </div>
-            </div>
+                <div className="deselect-highlighted-button">
+                    <UnAssignButton
+                        onClick={this.onDeselectHighlighted}
+                        iconType={'arrowBack'}
+                    />
+                </div>
+                <style jsx>{styles}</style>
+            </Fragment>
         );
     };
 }

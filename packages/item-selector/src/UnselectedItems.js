@@ -4,8 +4,8 @@ import i18n from '@dhis2/d2-i18n';
 import Button from '@dhis2/ui/core/Button';
 import throttle from 'lodash-es/throttle';
 
-import Item from './Item';
-import { ArrowButton as AssignButton } from './buttons/ArrowButton';
+import Item from './widgets/UnselectedItem';
+import { ArrowButton as AssignButton } from './widgets/ArrowButton';
 import { toggler } from './modules/toggler';
 import styles from './styles/UnselectedItems.style';
 
@@ -23,8 +23,6 @@ export class UnselectedItems extends Component {
     };
 
     onSelectAllClick = () => {
-        console.log('onSelectAllClick');
-
         this.props.onSelect(this.props.items.map(i => i.id));
         this.setState({ highlighted: [] });
     };
@@ -108,13 +106,15 @@ export class UnselectedItems extends Component {
                 >
                     <ul className="unselected-list">{listItems}</ul>
                 </div>
-                <Button
-                    kind="secondary"
-                    size="small"
-                    onClick={this.onSelectAllClick}
-                    label={i18n.t('Select All')}
-                />
-                <div className="assign-button">
+                <div className="select-all-button">
+                    <Button
+                        kind="secondary"
+                        size="small"
+                        onClick={this.onSelectAllClick}
+                        label={i18n.t('Select All')}
+                    />
+                </div>
+                <div className="select-highlighted-button">
                     <AssignButton
                         onClick={this.onSelectClick}
                         iconType={'arrowForward'}

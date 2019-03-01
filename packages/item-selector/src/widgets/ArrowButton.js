@@ -1,18 +1,17 @@
 import React from 'react';
 import ArrowForward from '@material-ui/icons/ArrowForward';
 import ArrowBack from '@material-ui/icons/ArrowBack';
-import { styles } from '../styles/buttons.style';
+import styles from './styles/ArrowButton.style';
 
 export const ArrowButton = ({ onClick, iconType }) => (
     <button
-        style={styles.arrowButton}
+        className="arrow-button"
         onClick={onClick}
     >
-        {iconType === 'arrowForward' ? (
-            <ArrowForward style={styles.arrowIcon} />
-        ) : (
-            <ArrowBack style={styles.arrowIcon} />
-        )}
+        <span className="arrow-icon">
+            { iconType === 'arrowForward' ? <ArrowForward /> : <ArrowBack /> }
+        </span>
+        <style jsx>{styles}</style>
     </button>
 );
 
