@@ -13,7 +13,7 @@
   "contributors": [],
   "scripts": {
     "prebuild": "npm run lint && rm -rf ./build",
-    "build": "npm run localize && babel src --out-dir build --ignore spec.js",
+    "build": "npm run localize && babel src --copy-files --out-dir build --ignore spec.js",
     "lint": "eslint src/",
     "watch": "npm run build -- --watch",
     "extract-pot": "d2-i18n-extract -p src/ -o i18n/",
