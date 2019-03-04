@@ -1,11 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Item from '../SelectedItem';
-import DeselectIconButton from '../DeselectIconButton';
-import ItemIcon from '../ItemIcon';
-import { colors } from '../../styles/colors';
+// import DeselectIconButton from '../DeselectIconButton';
 
-describe('The Item component ', () => {
+describe('Selected item component', () => {
     let props;
     let shallowItem;
 
@@ -18,8 +16,8 @@ describe('The Item component ', () => {
 
     beforeEach(() => {
         props = {
-            id: 'testID',
-            name: 'The selected item',
+            id: 'selected-item-test-id',
+            name: 'I am a selected item',
             index: 0,
             highlighted: false,
             ghost: false,
@@ -29,64 +27,25 @@ describe('The Item component ', () => {
         shallowItem = undefined;
     });
 
-    it('Should match the snapshot', () => {
+    it('renders an unhighlighted item', () => {
         const wrapper = item();
 
         expect(wrapper).toMatchSnapshot();
     });
 
-    // it('renders a div containing everything else', () => {
-    //     const wrappingDiv = item()
-    //         .find('div')
-    //         .first();
+    it('renders a highlighted item', () => {
+        props.highlighted = true;
+        const wrapper = item();
 
-    //     expect(
-    //         item()
-    //             .find('div')
-    //             .first()
-    //     ).toHaveLength(1);
-    //     expect(wrappingDiv.children()).toEqual(item().children());
-    // });
+        expect(wrapper).toMatchSnapshot();
+    });
 
-    // it('renders <UnselectedIcon /> when prop "selected" is true ', () => {
-    //     const icon = item()
-    //         .find('Icon')
-    //         .dive()
-    //         .find(ItemIcon);
+    it('renders a ghost item', () => {
+        props.ghost = true;
+        const wrapper = item();
 
-    //     expect(icon.prop('backgroundColor')).toEqual(colors.grey);
-    // });
-
-    // it('renders a <HighlightedIcon /> when props highlighted and selected are true', () => {
-    //     props.highlighted = true;
-    //     props.selected = true;
-
-    //     const icon = item()
-    //         .find('Icon')
-    //         .dive()
-    //         .find(ItemIcon);
-
-    //     expect(icon.prop('backgroundColor')).toEqual(colors.white);
-    // });
-
-    // it('renders <SelectedIcon /> when className is equal to "selected" ', () => {
-    //     props.selected = true;
-
-    //     const icon = item()
-    //         .find('Icon')
-    //         .dive()
-    //         .find(ItemIcon);
-
-    //     expect(icon.prop('backgroundColor')).toEqual(colors.accentSecondary);
-    // });
-
-    // it('renders <DeselectIconButton /> for selected item ', () => {
-    //     props.selected = true;
-
-    //     const removeButton = item().find(DeselectIconButton);
-
-    //     expect(removeButton.length).toEqual(1);
-    // });
+        expect(wrapper).toMatchSnapshot();
+    });
 
     describe('onClick', () => {
         it('fires onClick property', () => {
@@ -108,7 +67,7 @@ describe('The Item component ', () => {
                 });
 
             expect(props.onClick).toBeCalledTimes(1);
-            expect(props.onClick).toBeCalledWith(true, false, 0, 'testID');
+            expect(props.onClick).toBeCalledWith(true, false, 0, props.id);
         });
 
         it('fires onClick with correct arguments when ctrlKey pressed', () => {
@@ -122,7 +81,7 @@ describe('The Item component ', () => {
                 });
 
             expect(props.onClick).toBeCalledTimes(1);
-            expect(props.onClick).toBeCalledWith(true, false, 0, 'testID');
+            expect(props.onClick).toBeCalledWith(true, false, 0, props.id);
         });
 
         it('fires onClick with correct arguments when shiftKey pressed', () => {
@@ -136,7 +95,7 @@ describe('The Item component ', () => {
                 });
 
             expect(props.onClick).toBeCalledTimes(1);
-            expect(props.onClick).toBeCalledWith(false, true, 0, 'testID');
+            expect(props.onClick).toBeCalledWith(false, true, 0, props.id);
         });
     });
 });

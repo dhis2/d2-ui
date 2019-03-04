@@ -1,10 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Item from '../UnselectedItem';
-import ItemIcon from '../ItemIcon';
-import { colors } from '../../styles/colors';
 
-describe('The Item component ', () => {
+describe('Unselected item component', () => {
     let props;
     let shallowItem;
 
@@ -17,8 +15,8 @@ describe('The Item component ', () => {
 
     beforeEach(() => {
         props = {
-            id: 'testID',
-            name: 'displayTestName',
+            id: 'unselected-item-test-id',
+            name: 'I am an unselected item',
             index: 0,
             highlighted: false,
             onClick: jest.fn(),
@@ -26,38 +24,17 @@ describe('The Item component ', () => {
         shallowItem = undefined;
     });
 
-    it('renders a div containing everything else', () => {
-        const wrappingDiv = item()
-            .find('div')
-            .first();
+    it('renders an unhighlighted item', () => {
+        const wrapper = item();
 
-        expect(
-            item()
-                .find('div')
-                .first()
-        ).toHaveLength(1);
-        expect(wrappingDiv.children()).toEqual(item().children());
+        expect(wrapper).toMatchSnapshot();
     });
 
-    it('renders <UnselectedIcon /> when prop "selected" is true ', () => {
-        const icon = item()
-            .find('Icon')
-            .dive()
-            .find(ItemIcon);
-
-        expect(icon.prop('backgroundColor')).toEqual(colors.grey);
-    });
-
-    it('renders a <HighlightedIcon /> when props highlighted and selected are true', () => {
+    it('renders a highlighted item', () => {
         props.highlighted = true;
-        props.selected = true;
+        const wrapper = item();
 
-        const icon = item()
-            .find('Icon')
-            .dive()
-            .find(ItemIcon);
-
-        expect(icon.prop('backgroundColor')).toEqual(colors.white);
+        expect(wrapper).toMatchSnapshot();
     });
 
     describe('onClick', () => {
@@ -80,7 +57,7 @@ describe('The Item component ', () => {
                 });
 
             expect(props.onClick).toBeCalledTimes(1);
-            expect(props.onClick).toBeCalledWith(true, false, 0, 'testID');
+            expect(props.onClick).toBeCalledWith(true, false, 0, props.id);
         });
 
         it('fires onClick with correct arguments when ctrlKey pressed', () => {
@@ -94,7 +71,7 @@ describe('The Item component ', () => {
                 });
 
             expect(props.onClick).toBeCalledTimes(1);
-            expect(props.onClick).toBeCalledWith(true, false, 0, 'testID');
+            expect(props.onClick).toBeCalledWith(true, false, 0, props.id);
         });
 
         it('fires onClick with correct arguments when shiftKey pressed', () => {
@@ -108,7 +85,7 @@ describe('The Item component ', () => {
                 });
 
             expect(props.onClick).toBeCalledTimes(1);
-            expect(props.onClick).toBeCalledWith(false, true, 0, 'testID');
+            expect(props.onClick).toBeCalledWith(false, true, 0, props.id);
         });
     });
 });

@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unselected item component renders a highlighted item 1`] = `
+<div
+  className="item highlighted-item"
+  data-test="dimension-item-unselected-item-test-id"
+  onClick={[Function]}
+>
+  <ItemIcon
+    backgroundColor="#9E9E9E"
+  />
+  <span
+    className="item-label highlighted-text"
+  >
+    I am an unselected item
+  </span>
+  <style />
+</div>
+`;
+
+exports[`Unselected item component renders an unhighlighted item 1`] = `
+<div
+  className="item unselected-item"
+  data-test="dimension-item-unselected-item-test-id"
+  onClick={[Function]}
+>
+  <ItemIcon
+    backgroundColor="#9E9E9E"
+  />
+  <span
+    className="item-label"
+  >
+    I am an unselected item
+  </span>
+  <style />
+</div>
+`;
