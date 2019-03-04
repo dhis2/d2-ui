@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "postinstall": "packages link",
-    "build": "packages build",
+    "build": "cross-env BABEL_ENV=commonjs packages build",
     "watch": "packages exec yarn watch",
     "lint": "packages exec yarn lint",
     "test": "jest"

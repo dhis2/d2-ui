@@ -14,9 +14,7 @@
   },
   "scripts": {
     "prebuild": "npm run lint && rimraf ./build/* && mkdirp ./build",
-    "build": "npm run build:css && npm run build:es && npm run build:cjs",
-    "build:es": "cross-env BABEL_ENV=es babel src --out-dir build --ignore spec.js",
-    "build:cjs": "cross-env BABEL_ENV=commonjs babel src --out-dir build --ignore spec.js",
+    "build": "npm run build:css && babel src --out-dir build --ignore spec.js",
     "build:css": "cp -R ./css/* ./build/",
     "lint": "eslint src/",
     "watch": "npm run build -- --watch",
