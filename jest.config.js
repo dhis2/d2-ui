@@ -17,5 +17,8 @@ module.exports = {
     ],
     "moduleDirectories": [
         "node_modules"
-    ]
+    ],
+    "moduleNameMapper": {
+        "^.+\\.css$": "<rootDir>/config/css-stub.js",
+    },
 };
