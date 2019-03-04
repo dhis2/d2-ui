@@ -43,10 +43,12 @@ exports[`UnselectedItems component list with items matches the snapshot when lis
     className="select-all-button"
   >
     <Button
+      disabled={false}
       kind="secondary"
       label="Select All"
       onClick={[Function]}
       size="small"
+      type="button"
     />
   </div>
   <div
@@ -75,10 +77,12 @@ exports[`UnselectedItems component matches the snapshot when list is empty 1`] =
     className="select-all-button"
   >
     <Button
+      disabled={false}
       kind="secondary"
       label="Select All"
       onClick={[Function]}
       size="small"
+      type="button"
     />
   </div>
   <div

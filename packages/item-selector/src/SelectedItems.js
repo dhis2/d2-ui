@@ -10,8 +10,6 @@ import { ArrowButton as UnAssignButton } from './widgets/ArrowButton';
 import { toggler } from './modules/toggler';
 import styles from './styles/SelectedItems.style';
 
-// const Button = () => <div />;
-
 const Subtitle = () => (
     <div className="subtitle-container">
         <span className="subtitle-text">{i18n.t('Selected Data')}</span>

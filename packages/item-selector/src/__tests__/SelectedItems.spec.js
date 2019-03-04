@@ -52,7 +52,7 @@ describe('The SelectedItems component', () => {
 
         it('triggers onDeselect when Deselect All button clicked', () => {
             selectedItems()
-                .find('SelectButton')
+                .find('Button')
                 .first()
                 .simulate('click');
 

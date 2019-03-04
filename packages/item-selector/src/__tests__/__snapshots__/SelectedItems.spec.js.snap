@@ -523,12 +523,23 @@ exports[`The SelectedItems component list with items matches the snapshot with l
     className="deselect-all-button"
   >
     <Button
+      disabled={false}
       kind="secondary"
       label="Deselect All"
       onClick={[Function]}
       size="small"
+      type="button"
     >
-      <div />
+      <button
+        className="jsx-3933576805 base kind-secondary size-small"
+        disabled={false}
+        onClick={[Function]}
+      >
+        Deselect All
+        <JSXStyle
+          id="3933576805"
+        />
+      </button>
     </Button>
   </div>
   <div
@@ -665,12 +676,23 @@ exports[`The SelectedItems component matches the snapshot when list is empty 1`]
     className="deselect-all-button"
   >
     <Button
+      disabled={false}
       kind="secondary"
       label="Deselect All"
       onClick={[Function]}
       size="small"
+      type="button"
     >
-      <div />
+      <button
+        className="jsx-3933576805 base kind-secondary size-small"
+        disabled={false}
+        onClick={[Function]}
+      >
+        Deselect All
+        <JSXStyle
+          id="3933576805"
+        />
+      </button>
     </Button>
   </div>
   <div
