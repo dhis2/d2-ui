@@ -11,7 +11,7 @@
   },
   "scripts": {
     "prebuild": "npm run lint && rimraf ./build/* && mkdirp ./build",
-    "build": "cross-env BABEL_ENV=es babel src --out-dir build --ignore spec.js",
+    "build": "babel src --out-dir build --ignore spec.js",
     "lint": "eslint src/",
     "watch": "npm run build -- --watch",
     "test-ci": "jest --config=../../jest.config.js packages/item-selector",
@@ -22,6 +22,7 @@
     "@dhis2/ui": "^1.0.0-beta.12",
     "@material-ui/icons": "^3.0.2",
     "classnames": "^2.2.6",
+    "lodash": "^4.17.11",
     "lodash-es": "^4.17.11",
     "prop-types": "15.7.2",
     "react-beautiful-dnd": "^10.0.4",

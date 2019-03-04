@@ -1,9 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Item from '../Item';
-import RemoveDimensionButton from '../buttons/RemoveDimensionButton';
+import Item from '../UnselectedItem';
 import ItemIcon from '../ItemIcon';
-import { colors } from '../colors';
+import { colors } from '../../styles/colors';
 
 describe('The Item component ', () => {
     let props;
@@ -19,8 +18,8 @@ describe('The Item component ', () => {
     beforeEach(() => {
         props = {
             id: 'testID',
-            index: 0,
             name: 'displayTestName',
+            index: 0,
             highlighted: false,
             onClick: jest.fn(),
         };
@@ -59,31 +58,6 @@ describe('The Item component ', () => {
             .find(ItemIcon);
 
         expect(icon.prop('backgroundColor')).toEqual(colors.white);
-    });
-
-    it('renders <SelectedIcon /> when className is equal to "selected" ', () => {
-        props.selected = true;
-
-        const icon = item()
-            .find('Icon')
-            .dive()
-            .find(ItemIcon);
-
-        expect(icon.prop('backgroundColor')).toEqual(colors.accentSecondary);
-    });
-
-    it('should not render a <RemoveDimensionButton /> for unselected item ', () => {
-        const removeButton = item().find(RemoveDimensionButton);
-
-        expect(removeButton.length).toEqual(0);
-    });
-
-    it('renders <RemoveDimensionButton /> for selected item ', () => {
-        props.selected = true;
-
-        const removeButton = item().find(RemoveDimensionButton);
-
-        expect(removeButton.length).toEqual(1);
     });
 
     describe('onClick', () => {

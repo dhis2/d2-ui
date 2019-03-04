@@ -1,14 +1,16 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import i18n from '@dhis2/d2-i18n';
-import Button from '@dhis2/ui/core/Button';
+// import Button from '@dhis2/ui/core/Button';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import sortBy from 'lodash-es/sortBy';
+import { sortBy } from 'lodash/fp';
 
 import Item from './widgets/SelectedItem';
 import { ArrowButton as UnAssignButton } from './widgets/ArrowButton';
 import { toggler } from './modules/toggler';
 import styles from './styles/SelectedItems.style';
+
+const Button = () => <div />;
 
 const Subtitle = () => (
     <div className="subtitle-container">
