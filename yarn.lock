@@ -173,14 +173,14 @@
     semver "^5.5.1"
     tape "^4.9.1"
 
-"@dhis2/ui@^1.0.0-beta.12":
-  version "1.0.0-beta.12"
-  resolved "https://registry.yarnpkg.com/@dhis2/ui/-/ui-1.0.0-beta.12.tgz#bd78835a1e165d1879e12be93790948016819c90"
-  integrity sha512-bpeDxVXqj4R6YqguH5Jt9i3pLtg5VpAWiwNmb/Cf7YqFDJHJ4RNTW01qYB+oV5SHwbAYNKmPpvYfpPOtiOFuuQ==
+"@dhis2/ui@1.0.0-beta.13":
+  version "1.0.0-beta.13"
+  resolved "https://registry.yarnpkg.com/@dhis2/ui/-/ui-1.0.0-beta.13.tgz#e074961a3e331fe1898390aeae825bae0a31c678"
+  integrity sha512-Ii0/DDE+fj0cUOfdte/sdVyNJIjUWIZ95IuwbrfgrKeVRz1N3xaGTWXcgXME/wdOV9ZdkvLrZGRxwj6TXzOJUg==
   dependencies:
     classnames "^2.2.6"
     material-design-icons-iconfont "^4.0.2"
-    typeface-roboto "^0.0.54"
+    styled-jsx "^3.2.1"
 
 "@emotion/babel-utils@^0.6.4":
   version "0.6.10"

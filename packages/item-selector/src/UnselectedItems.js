@@ -1,17 +1,15 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import i18n from '@dhis2/d2-i18n';
-// import Button from '@dhis2/ui/core/Button';
-// import throttle from 'lodash-es/throttle';
+import Button from '@dhis2/ui/core/Button';
 import throttle from 'lodash/fp/throttle';
-
 
 import Item from './widgets/UnselectedItem';
 import { ArrowButton as AssignButton } from './widgets/ArrowButton';
 import { toggler } from './modules/toggler';
 import styles from './styles/UnselectedItems.style';
 
-const Button = () => <div />;
+// const Button = () => <div />;
 
 export class UnselectedItems extends Component {
     constructor(props) {

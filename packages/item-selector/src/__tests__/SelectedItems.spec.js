@@ -60,7 +60,7 @@ describe('The SelectedItems component', () => {
             expect(props.onDeselect).toHaveBeenCalledWith(['rb', 'rr']);
         });
 
-        it('triggers onDeselect when "unassign" button clicked', () => {
+        it('triggers onDeselect when "Deselect highlighted" button clicked', () => {
             const list = selectedItems();
 
             list.find('Item')

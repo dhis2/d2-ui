@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@dhis2/d2-i18n": "^1.0.4",
-    "@dhis2/ui": "^1.0.0-beta.12",
+    "@dhis2/ui": "1.0.0-beta.13",
     "@material-ui/icons": "^3.0.2",
     "classnames": "^2.2.6",
     "lodash": "^4.17.11",
