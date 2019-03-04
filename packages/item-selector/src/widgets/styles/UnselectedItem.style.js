@@ -2,10 +2,6 @@ import { colors } from '../../styles/colors';
 import css from 'styled-jsx/css';
 
 export default css`
-    .highlighted-item {
-        background-color: ${colors.accentSecondaryDark};
-    }
-
     .highlighted-text {
         color: ${colors.white};
     }
@@ -20,6 +16,10 @@ export default css`
 
     .unselected-item:hover {
         background-color: #e0e0e0;
+    }
+
+    .highlighted-item {
+        background-color: ${colors.accentSecondaryDark};
     }
 
     .item-label {

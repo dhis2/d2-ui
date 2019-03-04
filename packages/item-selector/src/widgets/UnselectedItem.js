@@ -2,14 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
-import { colors } from '../styles/colors';
 import ItemIcon from './ItemIcon';
+import { colors } from '../styles/colors';
 import styles from './styles/UnselectedItem.style';
 
 const onClickWrapper = ({id, index, onClick}) => event =>
-{
-    return onClick(event.metaKey || event.ctrlKey, event.shiftKey, index, id);
-}
+    onClick(event.metaKey || event.ctrlKey, event.shiftKey, index, id);
 
 export const Item = ({name, highlighted, ...rest }) => {
     return (

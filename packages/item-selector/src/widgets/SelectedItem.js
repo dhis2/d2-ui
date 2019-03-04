@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
-import DeselectIconButton from './DeselectIconButton';
 import ItemIcon from './ItemIcon';
+import DeselectIconButton from './DeselectIconButton';
 import { colors } from '../styles/colors';
 import styles from './styles/SelectedItem.style';
 
