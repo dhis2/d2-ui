@@ -12,7 +12,7 @@
   },
   "scripts": {
     "prebuild": "npm run lint && rimraf ./build/*",
-    "build": "npm run localize && cross-env BABEL_ENV=es babel src --out-dir build --ignore spec.js",
+    "build": "npm run localize && babel src --out-dir build --ignore spec.js",
     "lint": "eslint src/",
     "watch": "npm run build -- --watch",
     "test-ci": "jest --config=../../jest.config.js packages/file-menu",
