@@ -19,5 +19,6 @@ export default {
 
     avatarBoxContent: {
         flex: '1',
+        overflow: 'hidden',
     },
 };
