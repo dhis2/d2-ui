@@ -1,5 +1,12 @@
-
 # D2-UI Changelog
+
+## 29.0.30
+
+###### _March 4th 2019_
+
+##### Fixes
+
+- Fixed colorpicker not being visible due to absolute positioning
 
 
 ## 28.0.0
