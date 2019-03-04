@@ -1,6 +1,6 @@
 # d2-ui
 
-[![Build Status](https://travis-ci.com/dhis2/d2-ui.svg)](https://travis-ci.com/dhis2/d2-ui)
+[![Build Status](https://travis-ci.com/dhis2/d2-ui.svg?branch=master)](https://travis-ci.com/dhis2/d2-ui)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdhis2%2Fd2-ui.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdhis2%2Fd2-ui?ref=badge_shield)
 
 ## Introduction
