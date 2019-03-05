@@ -55,22 +55,40 @@ class ColorPicker extends Component {
                 left: 0,
             },
             picker: {
-                position: 'absolute',
-                top: -207,
-                left: 120,
+                position: 'fixed',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                zIndex: 1000,
             },
         };
 
         return (
             <div style={styles.wrapper}>
-                <div style={styles.color} onClick={this.handleOpen}>{color}</div>
-
-                {this.state.open ? <div is="popover">
-                    <div style={styles.cover} onClick={this.handleClose} />
-                    <div style={styles.picker}>
-                        <ChromePicker color={this.state.color} onChange={this.handleChange} />
+                <div
+                    style={styles.color}
+                    role="button"
+                    onClick={this.handleOpen}
+                    tabIndex={0}
+                >
+                    {color}
+                </div>
+                {this.state.open &&
+                    <div>
+                        <div
+                            style={styles.cover}
+                            role="button"
+                            onClick={this.handleClose}
+                            tabIndex={0}
+                        />
+                        <div style={styles.picker}>
+                            <ChromePicker
+                                color={this.state.color}
+                                onChange={this.handleChange}
+                            />
+                        </div>
                     </div>
-                </div> : null}
+                }
             </div>
         );
     }
