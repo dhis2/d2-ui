@@ -53,7 +53,7 @@ export const getLink = (item, d2, interpretationId) => {
 export const itemTypeMap = {
     [REPORT_TABLE]: {
         id: REPORT_TABLE,
-        appUrl: (modelId, interpretationId) => `dhis-web-pivot/?id=${modelId}&interpretationid=${interpretationId}`,
+        appUrl: (modelId, interpretationId) => `dhis-web-pivot/index.html?id=${modelId}&interpretationid=${interpretationId}`,
         propName: 'reportTable',
         appName: i18n.t('Pivot Tables'),
         detailsTitle: i18n.t('Table details'),
@@ -74,14 +74,14 @@ export const itemTypeMap = {
     },
     [EVENT_REPORT]: {
         id: EVENT_REPORT,
-        appUrl: (modelId, interpretationId) => `dhis-web-event-reports/?id=${modelId}&interpretationid=${interpretationId}`,
+        appUrl: (modelId, interpretationId) => `dhis-web-event-reports/index.html?id=${modelId}&interpretationid=${interpretationId}`,
         propName: 'eventReport',
         appName: i18n.t('Event Reports'),
         detailsTitle: i18n.t('Table details'),
     },
     [EVENT_CHART]: {
         id: EVENT_CHART,
-        appUrl: (modelId, interpretationId) => `dhis-web-event-visualizer/?id=${modelId}&interpretationid=${interpretationId}`,
+        appUrl: (modelId, interpretationId) => `dhis-web-event-visualizer/index.html?id=${modelId}&interpretationid=${interpretationId}`,
         propName:  'eventChart',
         appName: i18n.t('Event Visualizer'),
         detailsTitle: i18n.t('Chart details'),
