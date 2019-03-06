@@ -43,9 +43,9 @@ export const getBaseUrl = d2 => {
     return idx > -1 ? api.baseUrl.slice(0, idx) : api.baseUrl;
 };
 
-export const getLink = (item, d2) => {
+export const getLink = (item, d2, interpretationId) => {
     const baseUrl = getBaseUrl(d2);
-    const appUrl = itemTypeMap[item.type].appUrl(getId(item));
+    const appUrl = itemTypeMap[item.type].appUrl(getId(item), interpretationId);
 
     return `${baseUrl}/${appUrl}`;
 };
@@ -53,37 +53,37 @@ export const getLink = (item, d2) => {
 export const itemTypeMap = {
     [REPORT_TABLE]: {
         id: REPORT_TABLE,
-        appUrl: id => `dhis-web-pivot/?id=${id}`,
+        appUrl: (modelId, interpretationId) => `dhis-web-pivot/?id=${modelId}&interpretationid=${interpretationId}`,
         propName: 'reportTable',
         appName: i18n.t('Pivot Tables'),
         detailsTitle: i18n.t('Table details'),
     },
     [CHART]: {
         id: CHART,
-        appUrl: id => `dhis-web-data-visualizer/#/${id}`,
+        appUrl: (modelId, interpretationId) => `dhis-web-data-visualizer/#/${modelId}/interpretation/${interpretationId}`,
         propName: 'chart',
         appName: i18n.t('Visualizer'),
         detailsTitle: i18n.t('Chart details'),
     },
     [MAP]: {
         id: MAP,
-        appUrl: id => `dhis-web-maps/?id=${id}`,
+        appUrl: (modelId, interpretationId) => `dhis-web-maps/?id=${modelId}&interpretationid=${interpretationId}`,
         propName: 'maps',
         appName: i18n.t('Maps'),
         detailsTitle: i18n.t('Map details'),
     },
     [EVENT_REPORT]: {
         id: EVENT_REPORT,
-        appUrl: id => `dhis-web-event-reports/?id=${id}`,
+        appUrl: (modelId, interpretationId) => `dhis-web-event-reports/?id=${modelId}&interpretationid=${interpretationId}`,
         propName: 'eventReport',
         appName: i18n.t('Event Reports'),
         detailsTitle: i18n.t('Table details'),
     },
     [EVENT_CHART]: {
         id: EVENT_CHART,
-        appUrl: id => `dhis-web-event-visualizer/?id=${id}`,
+        appUrl: (modelId, interpretationId) => `dhis-web-event-visualizer/?id=${modelId}&interpretationid=${interpretationId}`,
         propName:  'eventChart',
         appName: i18n.t('Event Visualizer'),
-        detailsTitle: i18n.t('Table details'),
+        detailsTitle: i18n.t('Chart details'),
     },
 };

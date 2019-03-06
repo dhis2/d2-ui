@@ -9,6 +9,7 @@ let shallowRedirect;
 
 const props = {
     classes: {},
+    interpretationId: 'someIdString',
 };
 
 const dashboardItem = {

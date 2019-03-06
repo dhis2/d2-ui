@@ -71,16 +71,22 @@ export class InterpretationsComponent extends React.Component {
         }
 
         return (
-            <div className={classes.interpretationsContainer}>
-                <Details model={model} onChange={this.onChange} type={this.props.type} />
-                <InterpretationsCard
-                    model={model}
-                    userGroups={userGroups}
-                    onChange={this.onChange}
-                    currentInterpretationId={currentInterpretationId}
-                    onCurrentInterpretationChange={onCurrentInterpretationChange}
-                    type={this.props.type}
-                />
+            <div>
+                <div className={classes.interpretationsContainer}>
+                    <Details 
+                        model={model} 
+                        onChange={this.onChange} 
+                        type={this.props.type} 
+                    />
+                    <InterpretationsCard
+                        model={model}
+                        userGroups={userGroups}
+                        onChange={this.onChange}
+                        currentInterpretationId={currentInterpretationId}
+                        onCurrentInterpretationChange={onCurrentInterpretationChange}
+                        type={this.props.type}
+                    />
+                </div>
             </div>
         );
     };

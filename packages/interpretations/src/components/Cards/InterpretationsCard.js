@@ -93,7 +93,7 @@ export class InterpretationsCard extends React.Component {
         const currentInterpretation = this.getCurrentInterpretation();
         const sortedInterpretations = orderBy(
             ["created"],
-            ["asc"],
+            ["desc"],
             this.props.model.interpretations
         );
 

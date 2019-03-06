@@ -17,6 +17,7 @@ const REPLY_INDEX = 7;
 export const ActionButtonContainer = ({ 
     classes, 
     isFocused,
+    interpretationId,
     currentUserLikesInterpretation,
     canReply,
     canManage,
@@ -37,7 +38,7 @@ export const ActionButtonContainer = ({
             iconType={isFocused ? 'visibilityOff' : 'visibility'} 
             onClick={onClickHandlers[isFocused ? EXIT_VIEW_INDEX : VIEW_INDEX]}
         />
-        <RedirectButton />
+        <RedirectButton interpretationId={interpretationId} />
         {canManage && (
             <Fragment>
                 <ActionButton 
@@ -60,6 +61,7 @@ export const ActionButtonContainer = ({
 ActionButtonContainer.propTypes = {
     classes: PropTypes.object.isRequired,
     isFocused: PropTypes.bool.isRequired,
+    interpretationId: PropTypes.string.isRequired,
     currentUserLikesInterpretation: PropTypes.bool.isRequired,
     canReply: PropTypes.bool.isRequired,
     canManage: PropTypes.bool.isRequired,
