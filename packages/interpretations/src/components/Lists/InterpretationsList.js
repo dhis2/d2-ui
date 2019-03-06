@@ -24,7 +24,7 @@ export const InterpretationsList = ({
 
     const listItems = isExpanded
         ? filteredItems
-        : filteredItems.slice(-interpretationsToShowOnInit);
+        : filteredItems.slice(0 ,interpretationsToShowOnInit);
 
 
     return listItems.length ? (
