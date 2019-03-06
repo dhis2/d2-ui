@@ -73,7 +73,11 @@ export class InterpretationsComponent extends React.Component {
         return (
             <div>
                 <div className={classes.interpretationsContainer}>
-                    <Details model={model} onChange={this.onChange} type={this.props.type} />
+                    <Details 
+                        model={model} 
+                        onChange={this.onChange} 
+                        type={this.props.type} 
+                    />
                     <InterpretationsCard
                         model={model}
                         userGroups={userGroups}
