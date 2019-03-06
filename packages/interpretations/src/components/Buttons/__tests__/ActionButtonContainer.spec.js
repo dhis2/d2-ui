@@ -9,6 +9,7 @@ let baseProps = {
     classes: {},
     isFocused: false,
     currentUserLikesInterpretation: false,
+    interpretationId: 'someIdString',
     canReply: true,
     canManage: false,
     onClickHandlers: [
