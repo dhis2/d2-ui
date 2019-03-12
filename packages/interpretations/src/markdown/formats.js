@@ -1,6 +1,6 @@
 export const whitespace = ' ';
 const link = 'http://';
-const linkPlaceholder = '<link-title>';
+const linkPlaceholder = '<link-url>';
 const bold = '*';
 const boldPlaceholder = 'bold text';
 const italic = '_';
@@ -14,7 +14,7 @@ const ITALIC_LENGTH = 1;
 const ITALIC_PLACEHOLDER_LENGTH = 11;
 const EMOTICON_LENGTH = 3;
 const LINK_LENGTH = 7;
-const LINK_PLACEHOLDER_LENGTH = 19;
+const LINK_PLACEHOLDER_LENGTH = 17;
 
 export const insertLinkWithSpace = (currentInput, cursorStart) => ({
     text: currentInput.substring(TEXT_START_INDEX, cursorStart).concat(whitespace + link.concat(linkPlaceholder)),
