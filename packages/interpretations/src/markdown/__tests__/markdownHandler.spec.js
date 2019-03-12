@@ -21,9 +21,9 @@ describe('markdown: helper fn ', () => {
             const actualResult = getMarkdown('LINK', cases.noInput, cases.noInput, cursorStart, cursorEnd);
             
             const expectedResult = {
-                text: 'http://<link-title>',
+                text: 'http://<link-url>',
                 highlightStart: 7,
-                highlightEnd: 19,
+                highlightEnd: 17,
             };
         
             expect(actualResult).toEqual(expectedResult);
