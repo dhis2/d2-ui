@@ -1,6 +1,6 @@
 {
-  "name": "@dhis2/d2-ui-item-selector",
-  "description": "Item selector component",
+  "name": "@dhis2/ui-widgets",
+  "description": "DHIS2 widgets library",
   "main": "./build/index.js",
   "module": "./build/index.js",
   "license": "BSD-3-Clause",
@@ -14,7 +14,7 @@
     "build": "babel src --out-dir build --ignore spec.js",
     "lint": "eslint src/",
     "watch": "npm run build -- --watch",
-    "test-ci": "jest --config=../../jest.config.js packages/item-selector",
+    "test-ci": "jest --config=../../jest.config.js packages/ui-widgets",
     "test:watch": "npm test -- --watch"
   },
   "dependencies": {
