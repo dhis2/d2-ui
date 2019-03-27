@@ -77,14 +77,22 @@ class Legend extends Component {
         this.props.onItemsChange(newItems);
     };
 
-    updateItem = (newItems) => {
-        const modelToUpdate = legendItemStore.getState() && legendItemStore.getState().model;
-        const isNewLegendItem = newItems.every(model => model !== modelToUpdate);
+    updateItem = (existingItems) => {
+        let updatedItems = [];
 
-        return this.props.onItemsChange([].concat(
-            newItems,
-            isNewLegendItem ? modelToUpdate : [],
-        ));
+        const currentItem = legendItemStore.getState() && legendItemStore.getState().model;
+        const isNewItem = existingItems.every(item => item.id !== currentItem.id);
+
+        if (isNewItem) {
+            updatedItems = [...existingItems, currentItem];
+        } else {
+            updatedItems = existingItems.map((item) => {
+                const shouldBeUpdated = item.id === currentItem.id;
+                return shouldBeUpdated ? currentItem : item;
+            });
+        }
+
+        return this.props.onItemsChange(updatedItems);
     };
 
     // Check if end value is bigger than start value
