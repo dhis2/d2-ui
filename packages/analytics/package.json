@@ -1,0 +1,49 @@
+{
+    "name": "@dhis2/d2-ui-analytics",
+    "description": "UI components for DHIS2 analytics apps",
+    "main": "./build/index.js",
+    "module": "./build/index.js",
+    "license": "BSD-3-Clause",
+    "peerDependencies": {
+        "react": "^16.4.0",
+        "react-dom": "^16.4.0"
+    },
+    "scripts": {
+        "clean": "rimraf ./build/*",
+        "prebuild": "npm run lint && rimraf ./build/* && mkdirp ./build",
+        "build": "npm run clean && NODE_ENV=production npm run build:es && NODE_ENV=production npm run build:css",
+        "build:es": "babel src --out-dir build --ignore spec.js",
+        "build:css": "cp ./src/components/ItemSelector/ItemSelector.css ./build/components/ItemSelector/",
+        "lint": "eslint src/",
+        "watch": "npm run build -- --watch",
+        "test-ci": "jest --config=../../jest.config.js packages/analytics",
+        "test:watch": "npm test -- --watch"
+    },
+    "dependencies": {
+        "@dhis2/d2-i18n": "^1.0.4",
+        "@dhis2/d2-ui-org-unit-dialog": "^5.2.11",
+        "@dhis2/d2-ui-period-selector-dialog": "^5.2.10",
+        "@material-ui/core": "^3.3.1",
+        "@material-ui/icons": "^3.0.1",
+        "classnames": "^2.2.6",
+        "lodash-es": "^4.17.11",
+        "prop-types": "^15.6.0",
+        "react-beautiful-dnd": "^10.1.0",
+        "styled-jsx": "^3.2.1"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "npm run extract-pot && git add ./i18n"
+        }
+    },
+    "devDependencies": {
+        "babel-jest": "^23.0.1",
+        "enzyme": "^3.7.0",
+        "jest": "^23.1.0",
+        "mkdirp": "^0.5.1"
+    },
+    "version": "0.0.0-PLACEHOLDER"
+}
