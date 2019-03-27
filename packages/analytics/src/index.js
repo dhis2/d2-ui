@@ -1,0 +1,17 @@
+export {
+    default as PeriodDimension,
+} from './components/PeriodDimension/PeriodDimension';
+export {
+    default as DataDimension,
+} from './components/DataDimension/DataDimension';
+export {
+    default as DynamicDimension,
+} from './components/DynamicDimension/DynamicDimension';
+export {
+    default as OrgUnitDimension,
+} from './components/OrgUnitDimension/OrgUnitDimension';
+export {
+    default as DimensionsPanel,
+} from './components/DimensionsPanel/DimensionsPanel';
+export { FIXED_DIMENSIONS } from './modules/fixedDimensions';
+export { apiFetchDimensions } from './api/dimensions';
