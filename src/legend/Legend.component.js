@@ -78,18 +78,21 @@ class Legend extends Component {
     };
 
     updateItem = (existingItems) => {
-        let updatedItems = [];
-
+        let updatedItems = existingItems;
         const currentItem = legendItemStore.getState() && legendItemStore.getState().model;
-        const isNewItem = existingItems.every(item => item.id !== currentItem.id);
 
-        if (isNewItem) {
-            updatedItems = [...existingItems, currentItem];
-        } else {
-            updatedItems = existingItems.map((item) => {
-                const shouldBeUpdated = item.id === currentItem.id;
-                return shouldBeUpdated ? currentItem : item;
-            });
+        // Only update if we got a valid model from getState
+        if (currentItem) {
+            updatedItems = [...existingItems];
+            const idx = updatedItems.findIndex(item => item.id === currentItem.id);
+
+            if (idx === -1) {
+                // Add item if it's a new item
+                updatedItems.push(currentItem);
+            } else {
+                // Replace old item with changed item
+                updatedItems[idx] = currentItem;
+            }
         }
 
         return this.props.onItemsChange(updatedItems);
