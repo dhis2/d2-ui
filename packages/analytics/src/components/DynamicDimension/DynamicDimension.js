@@ -127,7 +127,7 @@ export class DynamicDimension extends Component {
 DynamicDimension.propTypes = {
     d2: PropTypes.object.isRequired,
     dialogId: PropTypes.string.isRequired,
-    dialogTitle: PropTypes.stringi.isRequired,
+    dialogTitle: PropTypes.string.isRequired,
     selectedItems: PropTypes.array.isRequired,
     onSelect: PropTypes.func.isRequired,
     onDeselect: PropTypes.func.isRequired,
