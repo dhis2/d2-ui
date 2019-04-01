@@ -13,5 +13,8 @@ export {
 export {
     default as DimensionsPanel,
 } from './components/DimensionsPanel/DimensionsPanel';
+export {
+    default as ItemSelector,
+} from './components/ItemSelector/ItemSelector';
 export { FIXED_DIMENSIONS } from './modules/fixedDimensions';
 export { apiFetchDimensions } from './api/dimensions';

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import 'typeface-roboto/index.css'
+
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 import './App.css';
@@ -9,6 +11,7 @@ import Buttons from './components/button';
 import Chips from './components/chip';
 import CircularProgresses from './components/circular-progress';
 import Controlbars from './components/controlbar';
+import ItemSelector from './components/item-selector';
 import Tables from './components/table';
 import ExpressionManager from './components/expression-manager';
 import FileMenu from './components/file-menu';
@@ -75,105 +78,110 @@ class App extends Component {
                     <HeaderBarExample d2={this.state.d2} />
                     <p>Look at the top of the screen...</p>
 
-                    <h2>Rich Text</h2>
-                    <RichTextExample />
+                    <div style={{margin: '0 auto', width: '900px'}}>
+                        <h2>Rich Text</h2>
+                        <RichTextExample />
 
-                    <h2>Buttons</h2>
-                    <Buttons />
+                        <h2>Item Selector</h2>
+                        <ItemSelector />
 
-                    <h2>Chips</h2>
-                    <Chips />
+                        <h2>Buttons</h2>
+                        <Buttons />
 
-                    <h2>Controlbars</h2>
-                    <Controlbars />
+                        <h2>Chips</h2>
+                        <Chips />
 
-                    <h2>Tables</h2>
-                    <Tables d2={this.state.d2} />
+                        <h2>Controlbars</h2>
+                        <Controlbars />
 
-                    <h2>Expression Manager</h2>
-                    <ExpressionManager d2={this.state.d2} />
+                        <h2>Tables</h2>
+                        <Tables d2={this.state.d2} />
 
-                    <h2>File Menu</h2>
-                    <FileMenu d2={this.state.d2} />
+                        <h2>Expression Manager</h2>
+                        <ExpressionManager d2={this.state.d2} />
 
-                    <h2>Favorites Dialog</h2>
-                    <FavoritesDialog d2={this.state.d2} />
+                        <h2>File Menu</h2>
+                        <FileMenu d2={this.state.d2} />
 
-                    <h2>Sharing Dialog</h2>
-                    <SharingDialog d2={this.state.d2} />
+                        <h2>Favorites Dialog</h2>
+                        <FavoritesDialog d2={this.state.d2} />
 
-                    <h2>Feedback Snackbar</h2>
-                    <FeedbackSnackbar />
+                        <h2>Sharing Dialog</h2>
+                        <SharingDialog d2={this.state.d2} />
 
-                    <h2>FormBuilder</h2>
-                    <FormBuilder />
+                        <h2>Feedback Snackbar</h2>
+                        <FeedbackSnackbar />
 
-                    <h2>GroupEditor</h2>
-                    <GroupEditor d2={this.state.d2} />
+                        <h2>FormBuilder</h2>
+                        <FormBuilder />
 
-                    <h2>Layout</h2>
-                    <Layout />
+                        <h2>GroupEditor</h2>
+                        <GroupEditor d2={this.state.d2} />
 
-                    <h2>Legend</h2>
-                    <Legend d2={this.state.d2} />
+                        <h2>Layout</h2>
+                        <Layout />
 
-                    <h2>List Select</h2>
-                    <ListSelectExamples />
+                        <h2>Legend</h2>
+                        <Legend d2={this.state.d2} />
 
-                    <h2>PeriodPicker</h2>
-                    <PeriodPicker d2={this.state.d2} />
+                        <h2>List Select</h2>
+                        <ListSelectExamples />
 
-                    <h2>SelectField</h2>
-                    <SelectField />
+                        <h2>PeriodPicker</h2>
+                        <PeriodPicker d2={this.state.d2} />
 
-                    <h2>Sidebar</h2>
-                    <Sidebar />
+                        <h2>SelectField</h2>
+                        <SelectField />
 
-                    <h2>SvgIcon</h2>
-                    <SvgIcon />
+                        <h2>Sidebar</h2>
+                        <Sidebar />
 
-                    <h2>TextField</h2>
-                    <TextField />
+                        <h2>SvgIcon</h2>
+                        <SvgIcon />
 
-                    <h2>Tabs</h2>
-                    <Tabs />
+                        <h2>TextField</h2>
+                        <TextField />
 
-                    <h2>Translation</h2>
-                    <Translation d2={this.state.d2} />
+                        <h2>Tabs</h2>
+                        <Tabs />
 
-                    <h2>IconPicker</h2>
-                    <IconPicker d2={this.state.d2} />
+                        <h2>Translation</h2>
+                        <Translation d2={this.state.d2} />
 
-                    <h2>FormEditor</h2>
-                    <FormEditor />
+                        <h2>IconPicker</h2>
+                        <IconPicker d2={this.state.d2} />
 
-                    <h2>Period selector</h2>
-                    <PeriodSelector d2={this.state.d2} />
+                        <h2>FormEditor</h2>
+                        <FormEditor />
 
-                    <h2>OrgUnitSelect</h2>
-                    <OrgUnitSelect d2={this.state.d2} />
+                        <h2>Period selector</h2>
+                        <PeriodSelector d2={this.state.d2} />
 
-                    <h2>OrgUnitTree</h2>
-                    <OrgUnitTree d2={this.state.d2} />
+                        <h2>OrgUnitSelect</h2>
+                        <OrgUnitSelect d2={this.state.d2} />
 
-                    <h2>Org unit dialog</h2>
-                    <OrgUnitDialog d2={this.state.d2} />
+                        <h2>OrgUnitTree</h2>
+                        <OrgUnitTree d2={this.state.d2} />
 
-                    <div style={{ clear: 'both' }}>
-                        <h2>TreeViews</h2>
-                        <TreeViews />
+                        <h2>Org unit dialog</h2>
+                        <OrgUnitDialog d2={this.state.d2} />
+
+                        <div style={{ clear: 'both' }}>
+                            <h2>TreeViews</h2>
+                            <TreeViews />
+                        </div>
+
+                        <div style={{ clear: 'both' }}></div>
+
+                        <h2>Intepretations</h2>
+                        <InterpretationsExample d2={this.state.d2} />
+
+                        <h2>Mentions wrapper</h2>
+                        <MentionsWrapperExample d2={this.state.d2} />
+
+                        <h2>Circular Progress</h2>
+                        <CircularProgresses />
                     </div>
-
-                    <div style={{ clear: 'both' }}></div>
-
-                    <h2>Intepretations</h2>
-                    <InterpretationsExample d2={this.state.d2} />
-
-                    <h2>Mentions wrapper</h2>
-                    <MentionsWrapperExample d2={this.state.d2} />
-
-                    <h2>Circular Progress</h2>
-                    <CircularProgresses />
                 </MuiThemeProvider>
             </D2UIApp>
         );

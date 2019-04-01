@@ -1,51 +1,34 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import cx from 'classnames';
 import UnselectedItems from './UnselectedItems';
 import SelectedItems from './SelectedItems';
-
-import './ItemSelector.css';
-
-const style = {
-    container: {
-        marginRight: 55,
-        display: 'flex',
-        flexDirection: 'column',
-        width: 420,
-        height: 534,
-        border: '1px solid #e0e0e0',
-    },
-};
+import styles from './styles/ItemSelector.style';
 
 class ItemSelector extends Component {
     render() {
         const {
             unselected,
             selected,
-            itemClassName,
             children: filterZone,
         } = this.props;
 
         return (
-            <Fragment>
-                <div style={style.container}>
+            <div className="item-selector-container">
+                <div className={cx('section', 'unselected')}>
                     {filterZone}
                     <UnselectedItems
-                        style={style.unselectedItems}
-                        className={itemClassName}
                         {...unselected}
                     />
                 </div>
-                <SelectedItems className={itemClassName} {...selected} />
-            </Fragment>
+                <div className={cx('section', 'selected')}>
+                    <SelectedItems {...selected} />
+                </div>
+                <style jsx>{styles}</style>
+            </div>
         );
     }
 }
-
-ItemSelector.defaultProps = {
-    unselected: {
-        filterText: '',
-    },
-};
 
 ItemSelector.propTypes = {
     unselected: PropTypes.shape({
@@ -70,7 +53,6 @@ ItemSelector.propTypes = {
         onDeselect: PropTypes.func.isRequired,
         onReorder: PropTypes.func.isRequired,
     }),
-    itemClassName: PropTypes.string,
 };
 
 export default ItemSelector;

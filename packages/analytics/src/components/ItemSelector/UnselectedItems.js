@@ -1,12 +1,13 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import i18n from '@dhis2/d2-i18n';
-import throttle from 'lodash/throttle';
-import Item from './Item';
-import { ArrowButton as AssignButton } from './buttons/ArrowButton';
-import { SelectButton as SelectAllButton } from './buttons/SelectButton';
+import Button from '@dhis2/ui/core/Button';
+import throttle from 'lodash/fp/throttle';
+
+import Item from './widgets/UnselectedItem';
+import { ArrowButton as AssignButton } from './widgets/ArrowButton';
 import { toggler } from './modules/toggler';
-import { styles } from './styles/UnselectedItems.style';
+import styles from './styles/UnselectedItems.style';
 
 export class UnselectedItems extends Component {
     constructor(props) {
@@ -62,7 +63,7 @@ export class UnselectedItems extends Component {
 
     renderListItem = (dataDim, index) => (
         <li
-            className="item-selector-item"
+            className="unselected-list-item"
             key={dataDim.id}
             onDoubleClick={() => this.onDoubleClickItem(dataDim.id)}
         >
@@ -73,10 +74,11 @@ export class UnselectedItems extends Component {
                 highlighted={!!this.state.highlighted.includes(dataDim.id)}
                 onClick={this.toggleHighlight}
             />
+            <style jsx>{styles}</style>
         </li>
     );
 
-    requestMoreItems = throttle(() => {
+    requestMoreItems = throttle(1000, () => {
         const node = this.scrolElRef.current;
 
         if (node) {
@@ -86,7 +88,7 @@ export class UnselectedItems extends Component {
                 this.props.requestMoreItems();
             }
         }
-    }, 1000);
+    });
 
     render = () => {
         const listItems = this.props.items.map((item, index) =>
@@ -100,20 +102,25 @@ export class UnselectedItems extends Component {
                 <div
                     ref={this.scrolElRef}
                     onScroll={this.requestMoreItems}
-                    style={styles.unselectedItems}
+                    className="unselected-list-container"
                 >
-                    <ul className="item-selector-list">{listItems}</ul>
+                    <ul className="unselected-list">{listItems}</ul>
                 </div>
-                <SelectAllButton
-                    style={styles.selectButton}
-                    onClick={this.onSelectAllClick}
-                    label={i18n.t('Select All')}
-                />
-                <AssignButton
-                    className="item-selector-arrow-forward-button"
-                    onClick={this.onSelectClick}
-                    iconType={'arrowForward'}
-                />
+                <div className="select-all-button">
+                    <Button
+                        kind="secondary"
+                        size="small"
+                        onClick={this.onSelectAllClick}
+                        label={i18n.t('Select All')}
+                    />
+                </div>
+                <div className="select-highlighted-button">
+                    <AssignButton
+                        onClick={this.onSelectClick}
+                        iconType={'arrowForward'}
+                    />
+                </div>
+                <style jsx>{styles}</style>
             </Fragment>
         );
     };
@@ -133,6 +140,7 @@ UnselectedItems.propTypes = {
 
 UnselectedItems.defaultProps = {
     requestMoreItems: () => null,
+    filterText: '',
 };
 
 export default UnselectedItems;

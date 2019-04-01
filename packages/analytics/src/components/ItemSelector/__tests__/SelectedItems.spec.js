@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import { SelectedItems } from '../SelectedItems';
 
 describe('The SelectedItems component', () => {
@@ -52,7 +52,7 @@ describe('The SelectedItems component', () => {
 
         it('triggers onDeselect when Deselect All button clicked', () => {
             selectedItems()
-                .find('SelectButton')
+                .find('Button')
                 .first()
                 .simulate('click');
 
@@ -60,7 +60,7 @@ describe('The SelectedItems component', () => {
             expect(props.onDeselect).toHaveBeenCalledWith(['rb', 'rr']);
         });
 
-        it('triggers onDeselect when "unassign" button clicked', () => {
+        it('triggers onDeselect when "Deselect highlighted" button clicked', () => {
             const list = selectedItems();
 
             list.find('Item')

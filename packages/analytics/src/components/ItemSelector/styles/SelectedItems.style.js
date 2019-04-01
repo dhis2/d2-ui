@@ -1,35 +1,51 @@
-import { colors } from '../../../modules/colors';
+import { colors } from './colors';
+import css from 'styled-jsx/css'
 
-export const styles = {
-    container: {
-        border: `1px solid ${colors.greyLight}`,
-        height: '534px',
-        width: '278px',
-    },
-    subTitleContainer: {
-        borderBottom: `1px solid ${colors.greyLight}`,
-        height: '42px',
-    },
-    subTitleText: {
-        position: 'relative',
-        fontFamily: 'Roboto',
-        color: colors.black,
-        fontSize: '15px',
-        fontWeight: '500',
-        height: '20px',
-        top: '12px',
-        left: '8px',
-    },
-    list: {
-        userSelect: 'none',
-        listStyle: 'none',
-        overflowY: 'scroll',
-        height: '455px',
-        paddingLeft: '0px',
-        margin: '0px',
-    },
-    deselectButton: {
-        margin: '0 auto',
-        display: 'block',
-    },
-};
+export default css`
+    .selected-list {
+        flex: 1;
+        height: 455px;
+        list-style: none;
+        margin: 0px;
+        overflow-y: scroll;
+        padding-left: 0px;
+        user-select: none;
+    }
+
+    .selected-list-item {
+        display: flex;
+        margin: 2px;
+    }
+
+    .selected-list-item:focus {
+        outline: none;
+    }
+
+    .subtitle-container {
+        border-bottom: 1px solid ${colors.greyLight};
+        height: 42px;
+    }
+
+    .subtitle-text {
+        color: ${colors.black};
+        height: 20px;
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 500;
+        left: 8px;
+        position: relative;
+        top: 12px;
+    }
+
+    .deselect-all-button {
+        display: block;
+        margin: 0 auto;
+        padding: 5px;
+    }
+
+    .deselect-highlighted-button {
+        left: -48px;
+        position: absolute;
+        top: 291px;
+    }
+`

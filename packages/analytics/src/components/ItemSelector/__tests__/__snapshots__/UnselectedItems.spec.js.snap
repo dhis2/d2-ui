@@ -3,19 +3,14 @@
 exports[`UnselectedItems component list with items matches the snapshot when list has items 1`] = `
 <Fragment>
   <div
+    className="unselected-list-container"
     onScroll={[Function]}
-    style={
-      Object {
-        "flex": "1",
-        "overflowY": "auto",
-      }
-    }
   >
     <ul
-      className="item-selector-list"
+      className="unselected-list"
     >
       <li
-        className="item-selector-item"
+        className="unselected-list-item"
         key="rb"
         onDoubleClick={[Function]}
       >
@@ -26,9 +21,10 @@ exports[`UnselectedItems component list with items matches the snapshot when lis
           name="rainbow"
           onClick={[Function]}
         />
+        <style />
       </li>
       <li
-        className="item-selector-item"
+        className="unselected-list-item"
         key="rr"
         onDoubleClick={[Function]}
       >
@@ -39,56 +35,64 @@ exports[`UnselectedItems component list with items matches the snapshot when lis
           name="rarity"
           onClick={[Function]}
         />
+        <style />
       </li>
     </ul>
   </div>
-  <SelectButton
-    label="Select All"
-    onClick={[Function]}
-    style={
-      Object {
-        "display": "block",
-        "margin": "0 auto",
-      }
-    }
-  />
-  <ArrowButton
-    className="item-selector-arrow-forward-button"
-    iconType="arrowForward"
-    onClick={[Function]}
-  />
+  <div
+    className="select-all-button"
+  >
+    <Button
+      disabled={false}
+      kind="secondary"
+      label="Select All"
+      onClick={[Function]}
+      size="small"
+      type="button"
+    />
+  </div>
+  <div
+    className="select-highlighted-button"
+  >
+    <ArrowButton
+      iconType="arrowForward"
+      onClick={[Function]}
+    />
+  </div>
+  <style />
 </Fragment>
 `;
 
 exports[`UnselectedItems component matches the snapshot when list is empty 1`] = `
 <Fragment>
   <div
+    className="unselected-list-container"
     onScroll={[Function]}
-    style={
-      Object {
-        "flex": "1",
-        "overflowY": "auto",
-      }
-    }
   >
     <ul
-      className="item-selector-list"
+      className="unselected-list"
     />
   </div>
-  <SelectButton
-    label="Select All"
-    onClick={[Function]}
-    style={
-      Object {
-        "display": "block",
-        "margin": "0 auto",
-      }
-    }
-  />
-  <ArrowButton
-    className="item-selector-arrow-forward-button"
-    iconType="arrowForward"
-    onClick={[Function]}
-  />
+  <div
+    className="select-all-button"
+  >
+    <Button
+      disabled={false}
+      kind="secondary"
+      label="Select All"
+      onClick={[Function]}
+      size="small"
+      type="button"
+    />
+  </div>
+  <div
+    className="select-highlighted-button"
+  >
+    <ArrowButton
+      iconType="arrowForward"
+      onClick={[Function]}
+    />
+  </div>
+  <style />
 </Fragment>
 `;

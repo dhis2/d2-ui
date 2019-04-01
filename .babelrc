@@ -17,7 +17,8 @@
             ],
             "plugins": [
                 "transform-class-properties",
-                "transform-runtime"
+                "transform-runtime",
+                "styled-jsx/babel"
             ]
         },
         "es": {
@@ -32,14 +33,16 @@
                 "stage-2"
             ],
             "plugins": [
-                "transform-runtime"
+                "transform-runtime",
+                "styled-jsx/babel"
             ]
         },
         "test": {
             "presets": ["env", "react", "stage-2"],
             "plugins": [
                 "transform-es2015-modules-commonjs",
-                "transform-runtime"
+                "transform-runtime",
+                "styled-jsx/babel-test"
             ]
         }
     },
