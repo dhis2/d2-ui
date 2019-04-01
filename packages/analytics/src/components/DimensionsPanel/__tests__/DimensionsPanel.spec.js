@@ -1,19 +1,23 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { Dimensions } from '../DimensionsPanel';
+import DimensionsPanel from '../DimensionsPanel';
 import DimensionList from '../List/DimensionList';
 
 describe('The Dimensions component ', () => {
     let shallowDimensions;
+    let props;
     const dimensionsComponent = () => {
         if (!shallowDimensions) {
-            shallowDimensions = shallow(<Dimensions />);
+            shallowDimensions = shallow(<DimensionsPanel {...props} />);
         }
         return shallowDimensions;
     };
 
     beforeEach(() => {
         shallowDimensions = undefined;
+        props = {
+            dimensions: {}
+        }
     });
 
     it('renders a div', () => {
