@@ -72,10 +72,10 @@ const formFieldsConfigs = [{
     }), ColorPicker),
 }];
 
-
 // Called when a field is changed
 export function onFieldChange(fieldName, value) {
-    const model = legendItemStore.getState().model;
+    // Shallow clone model, so the assignment below doesn't mutate the original
+    const model = { ...legendItemStore.getState().model };
 
     model[fieldName] = value;
 
