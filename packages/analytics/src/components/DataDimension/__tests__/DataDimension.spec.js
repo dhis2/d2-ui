@@ -2,9 +2,9 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import DialogContent from '@material-ui/core/DialogContent';
 import { DataDimension } from '../DataDimension';
-import * as api from '../../../../../api/dimensions';
+import * as api from '../../../api/dimensions';
 
-describe('DataDimension component ', () => {
+describe.only('DataDimension component ', () => {
     let props;
     let shallowDataDim;
     const dataDim = () => {
@@ -17,7 +17,7 @@ describe('DataDimension component ', () => {
     beforeEach(() => {
         props = {
             d2: {},
-            selectedItems: [],
+            selectedDimensions: [],
             displayNameProp: 'string',
             onSelect: jest.fn(),
             onDeselect: jest.fn(),
@@ -26,7 +26,7 @@ describe('DataDimension component ', () => {
         shallowDataDim = undefined;
 
         api.apiFetchAlternatives = jest.fn().mockResolvedValue({
-            dimensionItems: [{ id: 'dimId1' }, { id: 'dimId2' }],
+            dimensionItems: [{ id: 'dimId1', name: 'dim Id1' }, { id: 'dimId2', name: 'dim Id2' }],
             nextPage: null,
         });
     });
@@ -55,7 +55,7 @@ describe('DataDimension component ', () => {
         beforeEach(() => {
             api.apiFetchGroups = jest
                 .fn()
-                .mockResolvedValue([{ id: 'rarity' }, { id: 'rainbow' }]);
+                .mockResolvedValue([{ id: 'rarity', name: 'Rarity' }, { id: 'rainbow', name: 'Rainbow Dash' }]);
         });
 
         it('renders a Fragment ', done => {

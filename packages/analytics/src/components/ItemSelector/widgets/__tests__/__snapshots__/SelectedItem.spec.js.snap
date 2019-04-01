@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Selected item component renders a ghost item 1`] = `
+<div
+  className="item ghost selected-item"
+  data-test="dimension-item-selected-item-test-id"
+  onClick={[Function]}
+>
+  <ItemIcon
+    backgroundColor="#00796B"
+  />
+  <span
+    className="item-label"
+  >
+    I am a selected item
+  </span>
+  <DeselectIconButton
+    fill="#00796B"
+    onClick={[Function]}
+  />
+  <style />
+</div>
+`;
+
+exports[`Selected item component renders a highlighted item 1`] = `
+<div
+  className="item highlighted-item"
+  data-test="dimension-item-selected-item-test-id"
+  onClick={[Function]}
+>
+  <ItemIcon
+    backgroundColor="#FFFFFF"
+  />
+  <span
+    className="item-label highlighted-text"
+  >
+    I am a selected item
+  </span>
+  <DeselectIconButton
+    fill="#FFFFFF"
+    onClick={[Function]}
+  />
+  <style />
+</div>
+`;
+
+exports[`Selected item component renders an unhighlighted item 1`] = `
+<div
+  className="item selected-item"
+  data-test="dimension-item-selected-item-test-id"
+  onClick={[Function]}
+>
+  <ItemIcon
+    backgroundColor="#00796B"
+  />
+  <span
+    className="item-label"
+  >
+    I am a selected item
+  </span>
+  <DeselectIconButton
+    fill="#00796B"
+    onClick={[Function]}
+  />
+  <style />
+</div>
+`;

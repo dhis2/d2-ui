@@ -33,148 +33,169 @@ exports[`The SelectedItems component list with items matches the snapshot with l
     onDragEnd={[Function]}
     onDragStart={[Function]}
   >
-    <Connect(Droppable)
-      direction="vertical"
-      droppableId="selected-items-droppable"
-      ignoreContainerClipping={false}
-      isCombineEnabled={false}
-      isDropDisabled={false}
-      type="DEFAULT"
+    <ErrorBoundary
+      onError={[Function]}
     >
-      <Droppable
+      <Connect(Droppable)
         direction="vertical"
-        dispatch={[Function]}
-        draggingOverWith={null}
         droppableId="selected-items-droppable"
         ignoreContainerClipping={false}
         isCombineEnabled={false}
-        isDraggingOver={false}
         isDropDisabled={false}
-        placeholder={null}
         type="DEFAULT"
       >
-        <DroppableDimensionPublisher
+        <Droppable
           direction="vertical"
           droppableId="selected-items-droppable"
-          getDroppableRef={[Function]}
-          getPlaceholderRef={[Function]}
           ignoreContainerClipping={false}
           isCombineEnabled={false}
           isDropDisabled={false}
+          placeholder={null}
+          shouldAnimatePlaceholder={true}
+          snapshot={
+            Object {
+              "draggingFromThisWith": null,
+              "draggingOverWith": null,
+              "isDraggingOver": false,
+            }
+          }
           type="DEFAULT"
+          updateViewportMaxScroll={[Function]}
         >
-          <ItemsList
-            data-react-beautiful-dnd-droppable="1"
-            innerRef={[Function]}
+          <DroppableDimensionPublisher
+            direction="vertical"
+            droppableId="selected-items-droppable"
+            getDroppableRef={[Function]}
+            getPlaceholderRef={[Function]}
+            ignoreContainerClipping={false}
+            isCombineEnabled={false}
+            isDropDisabled={false}
+            type="DEFAULT"
           >
-            <ul
-              className="selected-list"
+            <ItemsList
+              data-react-beautiful-dnd-droppable="1"
+              innerRef={[Function]}
             >
-              <Connect(Draggable)
-                disableInteractiveElementBlocking={false}
-                draggableId="rb"
-                index={0}
-                isDragDisabled={false}
-                key="rb"
+              <ul
+                className="selected-list"
               >
-                <Draggable
+                <Connect(Draggable)
                   disableInteractiveElementBlocking={false}
                   draggableId="rb"
-                  dragging={null}
-                  drop={[Function]}
-                  dropAnimationFinished={[Function]}
                   index={0}
                   isDragDisabled={false}
-                  lift={[Function]}
-                  move={[Function]}
-                  moveByWindowScroll={[Function]}
-                  moveDown={[Function]}
-                  moveLeft={[Function]}
-                  moveRight={[Function]}
-                  moveUp={[Function]}
-                  secondary={
-                    Object {
-                      "combineTargetFor": null,
-                      "offset": Object {
-                        "x": 0,
-                        "y": 0,
-                      },
-                      "shouldAnimateDisplacement": true,
-                    }
-                  }
+                  key="rb"
+                  shouldRespectForceTouch={true}
                 >
-                  <DraggableDimensionPublisher
+                  <Draggable
+                    disableInteractiveElementBlocking={false}
                     draggableId="rb"
-                    droppableId="selected-items-droppable"
-                    getDraggableRef={[Function]}
+                    drop={[Function]}
+                    dropAnimationFinished={[Function]}
                     index={0}
-                    key="rb"
-                    type="DEFAULT"
-                  >
-                    <DragHandle
-                      callbacks={
-                        Object {
-                          "onCancel": [Function],
-                          "onDrop": [Function],
-                          "onLift": [Function],
-                          "onMove": [Function],
-                          "onMoveDown": [Function],
-                          "onMoveLeft": [Function],
-                          "onMoveRight": [Function],
-                          "onMoveUp": [Function],
-                          "onWindowScroll": [Function],
-                        }
+                    isDragDisabled={false}
+                    lift={[Function]}
+                    mapped={
+                      Object {
+                        "combineTargetFor": null,
+                        "offset": Object {
+                          "x": 0,
+                          "y": 0,
+                        },
+                        "shouldAnimateDisplacement": true,
+                        "snapshot": Object {
+                          "combineTargetFor": null,
+                          "combineWith": null,
+                          "draggingOver": null,
+                          "dropAnimation": null,
+                          "isDragging": false,
+                          "isDropAnimating": false,
+                          "mode": null,
+                        },
+                        "type": "SECONDARY",
                       }
-                      canDragInteractiveElements={false}
+                    }
+                    move={[Function]}
+                    moveByWindowScroll={[Function]}
+                    moveDown={[Function]}
+                    moveLeft={[Function]}
+                    moveRight={[Function]}
+                    moveUp={[Function]}
+                    shouldRespectForceTouch={true}
+                  >
+                    <DraggableDimensionPublisher
                       draggableId="rb"
+                      droppableId="selected-items-droppable"
                       getDraggableRef={[Function]}
-                      isDragging={false}
-                      isDropAnimating={false}
-                      isEnabled={true}
+                      index={0}
+                      key="rb"
+                      type="DEFAULT"
                     >
-                      <li
-                        aria-roledescription="Draggable item. Press space bar to lift"
-                        className="selected-list-item"
-                        data-react-beautiful-dnd-drag-handle="1"
-                        data-react-beautiful-dnd-draggable="1"
-                        draggable={false}
-                        id="rb"
-                        onBlur={[Function]}
-                        onDoubleClick={[Function]}
-                        onDragStart={[Function]}
-                        onFocus={[Function]}
-                        onKeyDown={[Function]}
-                        onMouseDown={[Function]}
-                        onTouchStart={[Function]}
-                        onTransitionEnd={null}
-                        style={
+                      <DragHandle
+                        callbacks={
                           Object {
-                            "transform": null,
-                            "transition": null,
+                            "onCancel": [Function],
+                            "onDrop": [Function],
+                            "onLift": [Function],
+                            "onMove": [Function],
+                            "onMoveDown": [Function],
+                            "onMoveLeft": [Function],
+                            "onMoveRight": [Function],
+                            "onMoveUp": [Function],
+                            "onWindowScroll": [Function],
                           }
                         }
-                        tabIndex={0}
+                        canDragInteractiveElements={false}
+                        draggableId="rb"
+                        getDraggableRef={[Function]}
+                        getShouldRespectForceTouch={[Function]}
+                        isDragging={false}
+                        isDropAnimating={false}
+                        isEnabled={true}
                       >
-                        <Item
-                          ghost={false}
-                          highlighted={false}
+                        <li
+                          aria-roledescription="Draggable item. Press space bar to lift"
+                          className="selected-list-item"
+                          data-react-beautiful-dnd-drag-handle="1"
+                          data-react-beautiful-dnd-draggable="1"
+                          draggable={false}
                           id="rb"
-                          index={0}
-                          name="rainbow"
-                          onClick={[Function]}
-                          onRemoveItem={[Function]}
+                          onBlur={[Function]}
+                          onDoubleClick={[Function]}
+                          onDragStart={[Function]}
+                          onFocus={[Function]}
+                          onKeyDown={[Function]}
+                          onMouseDown={[Function]}
+                          onTouchStart={[Function]}
+                          onTransitionEnd={null}
+                          style={
+                            Object {
+                              "transform": null,
+                              "transition": null,
+                            }
+                          }
+                          tabIndex={0}
                         >
-                          <div
-                            className="item selected-item"
-                            data-test="dimension-item-rb"
+                          <Item
+                            ghost={false}
+                            highlighted={false}
+                            id="rb"
+                            index={0}
+                            name="rainbow"
                             onClick={[Function]}
+                            onRemoveItem={[Function]}
                           >
-                            <ItemIcon
-                              backgroundColor="#00796B"
+                            <div
+                              className="item selected-item"
+                              data-test="dimension-item-rb"
+                              onClick={[Function]}
                             >
-                              <div>
-                                <style>
-                                  
+                              <ItemIcon
+                                backgroundColor="#00796B"
+                              >
+                                <div>
+                                  <style>
+                                    
                 div {
                     background-color: #00796B;
                     min-height: 6px;
@@ -182,33 +203,24 @@ exports[`The SelectedItems component list with items matches the snapshot with l
                     margin: 0px 5px;
                 }
             
-                                </style>
-                              </div>
-                            </ItemIcon>
-                            <span
-                              className="item-label"
-                            >
-                              rainbow
-                            </span>
-                            <DeselectIconButton
-                              fill="#00796B"
-                              onClick={[Function]}
-                            >
-                              <button
-                                className="deselect-icon-button"
+                                  </style>
+                                </div>
+                              </ItemIcon>
+                              <span
+                                className="item-label"
+                              >
+                                rainbow
+                              </span>
+                              <DeselectIconButton
+                                fill="#00796B"
                                 onClick={[Function]}
                               >
-                                <span>
-                                  <pure(CloseIcon)
-                                    style={
-                                      Object {
-                                        "fill": "#00796B",
-                                        "height": "13px",
-                                        "width": "10px",
-                                      }
-                                    }
-                                  >
-                                    <CloseIcon
+                                <button
+                                  className="deselect-icon-button"
+                                  onClick={[Function]}
+                                >
+                                  <span>
+                                    <pure(CloseIcon)
                                       style={
                                         Object {
                                           "fill": "#00796B",
@@ -217,7 +229,7 @@ exports[`The SelectedItems component list with items matches the snapshot with l
                                         }
                                       }
                                     >
-                                      <WithStyles(SvgIcon)
+                                      <CloseIcon
                                         style={
                                           Object {
                                             "fill": "#00796B",
@@ -226,23 +238,7 @@ exports[`The SelectedItems component list with items matches the snapshot with l
                                           }
                                         }
                                       >
-                                        <SvgIcon
-                                          classes={
-                                            Object {
-                                              "colorAction": "MuiSvgIcon-colorAction-4",
-                                              "colorDisabled": "MuiSvgIcon-colorDisabled-6",
-                                              "colorError": "MuiSvgIcon-colorError-5",
-                                              "colorPrimary": "MuiSvgIcon-colorPrimary-2",
-                                              "colorSecondary": "MuiSvgIcon-colorSecondary-3",
-                                              "fontSizeInherit": "MuiSvgIcon-fontSizeInherit-7",
-                                              "fontSizeLarge": "MuiSvgIcon-fontSizeLarge-9",
-                                              "fontSizeSmall": "MuiSvgIcon-fontSizeSmall-8",
-                                              "root": "MuiSvgIcon-root-1",
-                                            }
-                                          }
-                                          color="inherit"
-                                          component="svg"
-                                          fontSize="default"
+                                        <WithStyles(SvgIcon)
                                           style={
                                             Object {
                                               "fill": "#00796B",
@@ -250,13 +246,24 @@ exports[`The SelectedItems component list with items matches the snapshot with l
                                               "width": "10px",
                                             }
                                           }
-                                          viewBox="0 0 24 24"
                                         >
-                                          <svg
-                                            aria-hidden="true"
-                                            className="MuiSvgIcon-root-1"
-                                            focusable="false"
-                                            role="presentation"
+                                          <SvgIcon
+                                            classes={
+                                              Object {
+                                                "colorAction": "MuiSvgIcon-colorAction-4",
+                                                "colorDisabled": "MuiSvgIcon-colorDisabled-6",
+                                                "colorError": "MuiSvgIcon-colorError-5",
+                                                "colorPrimary": "MuiSvgIcon-colorPrimary-2",
+                                                "colorSecondary": "MuiSvgIcon-colorSecondary-3",
+                                                "fontSizeInherit": "MuiSvgIcon-fontSizeInherit-7",
+                                                "fontSizeLarge": "MuiSvgIcon-fontSizeLarge-9",
+                                                "fontSizeSmall": "MuiSvgIcon-fontSizeSmall-8",
+                                                "root": "MuiSvgIcon-root-1",
+                                              }
+                                            }
+                                            color="inherit"
+                                            component="svg"
+                                            fontSize="default"
                                             style={
                                               Object {
                                                 "fill": "#00796B",
@@ -266,136 +273,162 @@ exports[`The SelectedItems component list with items matches the snapshot with l
                                             }
                                             viewBox="0 0 24 24"
                                           >
-                                            <path
-                                              d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
-                                            />
-                                            <path
-                                              d="M0 0h24v24H0z"
-                                              fill="none"
-                                            />
-                                          </svg>
-                                        </SvgIcon>
-                                      </WithStyles(SvgIcon)>
-                                    </CloseIcon>
-                                  </pure(CloseIcon)>
-                                </span>
-                                <style />
-                              </button>
-                            </DeselectIconButton>
-                            <style />
-                          </div>
-                        </Item>
-                        <style />
-                      </li>
-                    </DragHandle>
-                  </DraggableDimensionPublisher>
-                </Draggable>
-              </Connect(Draggable)>
-              <Connect(Draggable)
-                disableInteractiveElementBlocking={false}
-                draggableId="rr"
-                index={1}
-                isDragDisabled={false}
-                key="rr"
-              >
-                <Draggable
+                                            <svg
+                                              aria-hidden="true"
+                                              className="MuiSvgIcon-root-1"
+                                              focusable="false"
+                                              role="presentation"
+                                              style={
+                                                Object {
+                                                  "fill": "#00796B",
+                                                  "height": "13px",
+                                                  "width": "10px",
+                                                }
+                                              }
+                                              viewBox="0 0 24 24"
+                                            >
+                                              <path
+                                                d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                                              />
+                                              <path
+                                                d="M0 0h24v24H0z"
+                                                fill="none"
+                                              />
+                                            </svg>
+                                          </SvgIcon>
+                                        </WithStyles(SvgIcon)>
+                                      </CloseIcon>
+                                    </pure(CloseIcon)>
+                                  </span>
+                                  <style />
+                                </button>
+                              </DeselectIconButton>
+                              <style />
+                            </div>
+                          </Item>
+                          <style />
+                        </li>
+                      </DragHandle>
+                    </DraggableDimensionPublisher>
+                  </Draggable>
+                </Connect(Draggable)>
+                <Connect(Draggable)
                   disableInteractiveElementBlocking={false}
                   draggableId="rr"
-                  dragging={null}
-                  drop={[Function]}
-                  dropAnimationFinished={[Function]}
                   index={1}
                   isDragDisabled={false}
-                  lift={[Function]}
-                  move={[Function]}
-                  moveByWindowScroll={[Function]}
-                  moveDown={[Function]}
-                  moveLeft={[Function]}
-                  moveRight={[Function]}
-                  moveUp={[Function]}
-                  secondary={
-                    Object {
-                      "combineTargetFor": null,
-                      "offset": Object {
-                        "x": 0,
-                        "y": 0,
-                      },
-                      "shouldAnimateDisplacement": true,
-                    }
-                  }
+                  key="rr"
+                  shouldRespectForceTouch={true}
                 >
-                  <DraggableDimensionPublisher
+                  <Draggable
+                    disableInteractiveElementBlocking={false}
                     draggableId="rr"
-                    droppableId="selected-items-droppable"
-                    getDraggableRef={[Function]}
+                    drop={[Function]}
+                    dropAnimationFinished={[Function]}
                     index={1}
-                    key="rr"
-                    type="DEFAULT"
-                  >
-                    <DragHandle
-                      callbacks={
-                        Object {
-                          "onCancel": [Function],
-                          "onDrop": [Function],
-                          "onLift": [Function],
-                          "onMove": [Function],
-                          "onMoveDown": [Function],
-                          "onMoveLeft": [Function],
-                          "onMoveRight": [Function],
-                          "onMoveUp": [Function],
-                          "onWindowScroll": [Function],
-                        }
+                    isDragDisabled={false}
+                    lift={[Function]}
+                    mapped={
+                      Object {
+                        "combineTargetFor": null,
+                        "offset": Object {
+                          "x": 0,
+                          "y": 0,
+                        },
+                        "shouldAnimateDisplacement": true,
+                        "snapshot": Object {
+                          "combineTargetFor": null,
+                          "combineWith": null,
+                          "draggingOver": null,
+                          "dropAnimation": null,
+                          "isDragging": false,
+                          "isDropAnimating": false,
+                          "mode": null,
+                        },
+                        "type": "SECONDARY",
                       }
-                      canDragInteractiveElements={false}
+                    }
+                    move={[Function]}
+                    moveByWindowScroll={[Function]}
+                    moveDown={[Function]}
+                    moveLeft={[Function]}
+                    moveRight={[Function]}
+                    moveUp={[Function]}
+                    shouldRespectForceTouch={true}
+                  >
+                    <DraggableDimensionPublisher
                       draggableId="rr"
+                      droppableId="selected-items-droppable"
                       getDraggableRef={[Function]}
-                      isDragging={false}
-                      isDropAnimating={false}
-                      isEnabled={true}
+                      index={1}
+                      key="rr"
+                      type="DEFAULT"
                     >
-                      <li
-                        aria-roledescription="Draggable item. Press space bar to lift"
-                        className="selected-list-item"
-                        data-react-beautiful-dnd-drag-handle="1"
-                        data-react-beautiful-dnd-draggable="1"
-                        draggable={false}
-                        id="rr"
-                        onBlur={[Function]}
-                        onDoubleClick={[Function]}
-                        onDragStart={[Function]}
-                        onFocus={[Function]}
-                        onKeyDown={[Function]}
-                        onMouseDown={[Function]}
-                        onTouchStart={[Function]}
-                        onTransitionEnd={null}
-                        style={
+                      <DragHandle
+                        callbacks={
                           Object {
-                            "transform": null,
-                            "transition": null,
+                            "onCancel": [Function],
+                            "onDrop": [Function],
+                            "onLift": [Function],
+                            "onMove": [Function],
+                            "onMoveDown": [Function],
+                            "onMoveLeft": [Function],
+                            "onMoveRight": [Function],
+                            "onMoveUp": [Function],
+                            "onWindowScroll": [Function],
                           }
                         }
-                        tabIndex={0}
+                        canDragInteractiveElements={false}
+                        draggableId="rr"
+                        getDraggableRef={[Function]}
+                        getShouldRespectForceTouch={[Function]}
+                        isDragging={false}
+                        isDropAnimating={false}
+                        isEnabled={true}
                       >
-                        <Item
-                          ghost={false}
-                          highlighted={false}
+                        <li
+                          aria-roledescription="Draggable item. Press space bar to lift"
+                          className="selected-list-item"
+                          data-react-beautiful-dnd-drag-handle="1"
+                          data-react-beautiful-dnd-draggable="1"
+                          draggable={false}
                           id="rr"
-                          index={1}
-                          name="rarity"
-                          onClick={[Function]}
-                          onRemoveItem={[Function]}
+                          onBlur={[Function]}
+                          onDoubleClick={[Function]}
+                          onDragStart={[Function]}
+                          onFocus={[Function]}
+                          onKeyDown={[Function]}
+                          onMouseDown={[Function]}
+                          onTouchStart={[Function]}
+                          onTransitionEnd={null}
+                          style={
+                            Object {
+                              "transform": null,
+                              "transition": null,
+                            }
+                          }
+                          tabIndex={0}
                         >
-                          <div
-                            className="item selected-item"
-                            data-test="dimension-item-rr"
+                          <Item
+                            ghost={false}
+                            highlighted={false}
+                            id="rr"
+                            index={1}
+                            name="rarity"
                             onClick={[Function]}
+                            onRemoveItem={[Function]}
                           >
-                            <ItemIcon
-                              backgroundColor="#00796B"
+                            <div
+                              className="item selected-item"
+                              data-test="dimension-item-rr"
+                              onClick={[Function]}
                             >
-                              <div>
-                                <style>
-                                  
+                              <ItemIcon
+                                backgroundColor="#00796B"
+                              >
+                                <div>
+                                  <style>
+                                    
                 div {
                     background-color: #00796B;
                     min-height: 6px;
@@ -403,33 +436,24 @@ exports[`The SelectedItems component list with items matches the snapshot with l
                     margin: 0px 5px;
                 }
             
-                                </style>
-                              </div>
-                            </ItemIcon>
-                            <span
-                              className="item-label"
-                            >
-                              rarity
-                            </span>
-                            <DeselectIconButton
-                              fill="#00796B"
-                              onClick={[Function]}
-                            >
-                              <button
-                                className="deselect-icon-button"
+                                  </style>
+                                </div>
+                              </ItemIcon>
+                              <span
+                                className="item-label"
+                              >
+                                rarity
+                              </span>
+                              <DeselectIconButton
+                                fill="#00796B"
                                 onClick={[Function]}
                               >
-                                <span>
-                                  <pure(CloseIcon)
-                                    style={
-                                      Object {
-                                        "fill": "#00796B",
-                                        "height": "13px",
-                                        "width": "10px",
-                                      }
-                                    }
-                                  >
-                                    <CloseIcon
+                                <button
+                                  className="deselect-icon-button"
+                                  onClick={[Function]}
+                                >
+                                  <span>
+                                    <pure(CloseIcon)
                                       style={
                                         Object {
                                           "fill": "#00796B",
@@ -438,7 +462,7 @@ exports[`The SelectedItems component list with items matches the snapshot with l
                                         }
                                       }
                                     >
-                                      <WithStyles(SvgIcon)
+                                      <CloseIcon
                                         style={
                                           Object {
                                             "fill": "#00796B",
@@ -447,23 +471,7 @@ exports[`The SelectedItems component list with items matches the snapshot with l
                                           }
                                         }
                                       >
-                                        <SvgIcon
-                                          classes={
-                                            Object {
-                                              "colorAction": "MuiSvgIcon-colorAction-4",
-                                              "colorDisabled": "MuiSvgIcon-colorDisabled-6",
-                                              "colorError": "MuiSvgIcon-colorError-5",
-                                              "colorPrimary": "MuiSvgIcon-colorPrimary-2",
-                                              "colorSecondary": "MuiSvgIcon-colorSecondary-3",
-                                              "fontSizeInherit": "MuiSvgIcon-fontSizeInherit-7",
-                                              "fontSizeLarge": "MuiSvgIcon-fontSizeLarge-9",
-                                              "fontSizeSmall": "MuiSvgIcon-fontSizeSmall-8",
-                                              "root": "MuiSvgIcon-root-1",
-                                            }
-                                          }
-                                          color="inherit"
-                                          component="svg"
-                                          fontSize="default"
+                                        <WithStyles(SvgIcon)
                                           style={
                                             Object {
                                               "fill": "#00796B",
@@ -471,13 +479,24 @@ exports[`The SelectedItems component list with items matches the snapshot with l
                                               "width": "10px",
                                             }
                                           }
-                                          viewBox="0 0 24 24"
                                         >
-                                          <svg
-                                            aria-hidden="true"
-                                            className="MuiSvgIcon-root-1"
-                                            focusable="false"
-                                            role="presentation"
+                                          <SvgIcon
+                                            classes={
+                                              Object {
+                                                "colorAction": "MuiSvgIcon-colorAction-4",
+                                                "colorDisabled": "MuiSvgIcon-colorDisabled-6",
+                                                "colorError": "MuiSvgIcon-colorError-5",
+                                                "colorPrimary": "MuiSvgIcon-colorPrimary-2",
+                                                "colorSecondary": "MuiSvgIcon-colorSecondary-3",
+                                                "fontSizeInherit": "MuiSvgIcon-fontSizeInherit-7",
+                                                "fontSizeLarge": "MuiSvgIcon-fontSizeLarge-9",
+                                                "fontSizeSmall": "MuiSvgIcon-fontSizeSmall-8",
+                                                "root": "MuiSvgIcon-root-1",
+                                              }
+                                            }
+                                            color="inherit"
+                                            component="svg"
+                                            fontSize="default"
                                             style={
                                               Object {
                                                 "fill": "#00796B",
@@ -487,37 +506,56 @@ exports[`The SelectedItems component list with items matches the snapshot with l
                                             }
                                             viewBox="0 0 24 24"
                                           >
-                                            <path
-                                              d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
-                                            />
-                                            <path
-                                              d="M0 0h24v24H0z"
-                                              fill="none"
-                                            />
-                                          </svg>
-                                        </SvgIcon>
-                                      </WithStyles(SvgIcon)>
-                                    </CloseIcon>
-                                  </pure(CloseIcon)>
-                                </span>
-                                <style />
-                              </button>
-                            </DeselectIconButton>
-                            <style />
-                          </div>
-                        </Item>
-                        <style />
-                      </li>
-                    </DragHandle>
-                  </DraggableDimensionPublisher>
-                </Draggable>
-              </Connect(Draggable)>
-              <style />
-            </ul>
-          </ItemsList>
-        </DroppableDimensionPublisher>
-      </Droppable>
-    </Connect(Droppable)>
+                                            <svg
+                                              aria-hidden="true"
+                                              className="MuiSvgIcon-root-1"
+                                              focusable="false"
+                                              role="presentation"
+                                              style={
+                                                Object {
+                                                  "fill": "#00796B",
+                                                  "height": "13px",
+                                                  "width": "10px",
+                                                }
+                                              }
+                                              viewBox="0 0 24 24"
+                                            >
+                                              <path
+                                                d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                                              />
+                                              <path
+                                                d="M0 0h24v24H0z"
+                                                fill="none"
+                                              />
+                                            </svg>
+                                          </SvgIcon>
+                                        </WithStyles(SvgIcon)>
+                                      </CloseIcon>
+                                    </pure(CloseIcon)>
+                                  </span>
+                                  <style />
+                                </button>
+                              </DeselectIconButton>
+                              <style />
+                            </div>
+                          </Item>
+                          <style />
+                        </li>
+                      </DragHandle>
+                    </DraggableDimensionPublisher>
+                  </Draggable>
+                </Connect(Draggable)>
+                <AnimateInOut
+                  on={null}
+                  shouldAnimate={true}
+                />
+                <style />
+              </ul>
+            </ItemsList>
+          </DroppableDimensionPublisher>
+        </Droppable>
+      </Connect(Droppable)>
+    </ErrorBoundary>
   </DragDropContext>
   <div
     className="deselect-all-button"
@@ -531,13 +569,16 @@ exports[`The SelectedItems component list with items matches the snapshot with l
       type="button"
     >
       <button
-        className="jsx-3933576805 base kind-secondary size-small"
+        className="jsx-1540056771 jsx-2161946701 base kind-secondary size-small"
         disabled={false}
         onClick={[Function]}
       >
         Deselect All
         <JSXStyle
-          id="3933576805"
+          id="1540056771"
+        />
+        <JSXStyle
+          id="2161946701"
         />
       </button>
     </Button>
@@ -628,49 +669,63 @@ exports[`The SelectedItems component matches the snapshot when list is empty 1`]
     onDragEnd={[Function]}
     onDragStart={[Function]}
   >
-    <Connect(Droppable)
-      direction="vertical"
-      droppableId="selected-items-droppable"
-      ignoreContainerClipping={false}
-      isCombineEnabled={false}
-      isDropDisabled={false}
-      type="DEFAULT"
+    <ErrorBoundary
+      onError={[Function]}
     >
-      <Droppable
+      <Connect(Droppable)
         direction="vertical"
-        dispatch={[Function]}
-        draggingOverWith={null}
         droppableId="selected-items-droppable"
         ignoreContainerClipping={false}
         isCombineEnabled={false}
-        isDraggingOver={false}
         isDropDisabled={false}
-        placeholder={null}
         type="DEFAULT"
       >
-        <DroppableDimensionPublisher
+        <Droppable
           direction="vertical"
           droppableId="selected-items-droppable"
-          getDroppableRef={[Function]}
-          getPlaceholderRef={[Function]}
           ignoreContainerClipping={false}
           isCombineEnabled={false}
           isDropDisabled={false}
+          placeholder={null}
+          shouldAnimatePlaceholder={true}
+          snapshot={
+            Object {
+              "draggingFromThisWith": null,
+              "draggingOverWith": null,
+              "isDraggingOver": false,
+            }
+          }
           type="DEFAULT"
+          updateViewportMaxScroll={[Function]}
         >
-          <ItemsList
-            data-react-beautiful-dnd-droppable="0"
-            innerRef={[Function]}
+          <DroppableDimensionPublisher
+            direction="vertical"
+            droppableId="selected-items-droppable"
+            getDroppableRef={[Function]}
+            getPlaceholderRef={[Function]}
+            ignoreContainerClipping={false}
+            isCombineEnabled={false}
+            isDropDisabled={false}
+            type="DEFAULT"
           >
-            <ul
-              className="selected-list"
+            <ItemsList
+              data-react-beautiful-dnd-droppable="0"
+              innerRef={[Function]}
             >
-              <style />
-            </ul>
-          </ItemsList>
-        </DroppableDimensionPublisher>
-      </Droppable>
-    </Connect(Droppable)>
+              <ul
+                className="selected-list"
+              >
+                <AnimateInOut
+                  on={null}
+                  shouldAnimate={true}
+                />
+                <style />
+              </ul>
+            </ItemsList>
+          </DroppableDimensionPublisher>
+        </Droppable>
+      </Connect(Droppable)>
+    </ErrorBoundary>
   </DragDropContext>
   <div
     className="deselect-all-button"
@@ -684,13 +739,16 @@ exports[`The SelectedItems component matches the snapshot when list is empty 1`]
       type="button"
     >
       <button
-        className="jsx-3933576805 base kind-secondary size-small"
+        className="jsx-1540056771 jsx-2161946701 base kind-secondary size-small"
         disabled={false}
         onClick={[Function]}
       >
         Deselect All
         <JSXStyle
-          id="3933576805"
+          id="1540056771"
+        />
+        <JSXStyle
+          id="2161946701"
         />
       </button>
     </Button>
