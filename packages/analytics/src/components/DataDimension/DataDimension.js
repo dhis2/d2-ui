@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import i18n from '@dhis2/d2-i18n';
-import debounce from 'lodash-es/debounce';
-import keyBy from 'lodash-es/keyBy';
-import isEqual from 'lodash-es/isEqual';
+import debounce from 'lodash/debounce';
+import keyBy from 'lodash/keyBy';
+import isEqual from 'lodash/isEqual';
 
 import ItemSelector from '../ItemSelector/ItemSelector';
 import DataTypes from './DataTypesSelector';

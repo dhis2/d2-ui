@@ -1,4 +1,4 @@
-import sortBy from 'lodash-es/sortBy';
+import sortBy from 'lodash/sortBy';
 
 import { onError } from './index';
 import { DATA_SETS_CONSTANTS } from '../modules/dataSets';

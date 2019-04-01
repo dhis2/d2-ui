@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import i18n from '@dhis2/d2-i18n';
-import throttle from 'lodash-es/throttle';
+import throttle from 'lodash/throttle';
 import Item from './Item';
 import { ArrowButton as AssignButton } from './buttons/ArrowButton';
 import { SelectButton as SelectAllButton } from './buttons/SelectButton';
