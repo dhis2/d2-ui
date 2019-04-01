@@ -1,5 +1,13 @@
 # D2-UI Changelog
 
+## 29.0.31
+
+###### _April 1st 2019_
+
+##### Fixes
+
+- Fixed cancel button not cancelling input in Legend edit dialog
+
 ## 29.0.30
 
 ###### _March 4th 2019_
