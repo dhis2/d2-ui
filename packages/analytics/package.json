@@ -1,5 +1,5 @@
 {
-  "name": "@dhis2/ui-widgets",
+  "name": "@dhis2/d2-ui-analytics",
   "description": "DHIS2 widgets library",
   "main": "./build/index.js",
   "module": "./build/index.js",
@@ -14,7 +14,7 @@
     "build": "babel src --out-dir build --ignore spec.js",
     "lint": "eslint src/",
     "watch": "npm run build -- --watch",
-    "test-ci": "jest --config=../../jest.config.js packages/ui-widgets",
+    "test-ci": "jest --config=../../jest.config.js packages/analytics",
     "test:watch": "npm test -- --watch"
   },
   "dependencies": {

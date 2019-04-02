@@ -32,7 +32,7 @@ import TextField from './components/text-field';
 import Tabs from './components/tabs';
 import Translation from './components/translation';
 import HeaderBarExample from './components/header-bar';
-import InterpretationsExample from './components/interpretations';
+// import InterpretationsExample from './components/interpretations';
 import MentionsWrapperExample from './components/mentions-wrapper';
 import RichTextExample from './components/rich-text.js';
 
@@ -173,8 +173,8 @@ class App extends Component {
 
                         <div style={{ clear: 'both' }}></div>
 
-                        <h2>Intepretations</h2>
-                        <InterpretationsExample d2={this.state.d2} />
+                        {/* <h2>Intepretations</h2>
+                        <InterpretationsExample d2={this.state.d2} /> */}
 
                         <h2>Mentions wrapper</h2>
                         <MentionsWrapperExample d2={this.state.d2} />

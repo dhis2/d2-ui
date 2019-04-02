@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import {ItemSelector} from '@dhis2/ui-widgets';
+import {ItemSelector} from '@dhis2/d2-ui-analytics';
 
 const style = {
     fontFamily: 'Roboto',
