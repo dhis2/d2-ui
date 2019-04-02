@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import i18n from '@dhis2/d2-i18n';
 import Button from '@dhis2/ui/core/Button';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import { sortBy } from 'lodash/fp';
+import { sortBy } from 'lodash';
 
 import Item from './widgets/SelectedItem';
 import { ArrowButton as UnAssignButton } from './widgets/ArrowButton';

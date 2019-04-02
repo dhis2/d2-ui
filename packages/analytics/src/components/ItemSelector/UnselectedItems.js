@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import i18n from '@dhis2/d2-i18n';
 import Button from '@dhis2/ui/core/Button';
-import throttle from 'lodash/fp/throttle';
+import throttle from 'lodash/throttle';
 
 import Item from './widgets/UnselectedItem';
 import { ArrowButton as AssignButton } from './widgets/ArrowButton';
@@ -78,7 +78,7 @@ export class UnselectedItems extends Component {
         </li>
     );
 
-    requestMoreItems = throttle(1000, () => {
+    requestMoreItems = throttle(() => {
         const node = this.scrolElRef.current;
 
         if (node) {
@@ -88,7 +88,7 @@ export class UnselectedItems extends Component {
                 this.props.requestMoreItems();
             }
         }
-    });
+    }, 1000);
 
     render = () => {
         const listItems = this.props.items.map((item, index) =>
