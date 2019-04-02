@@ -8,9 +8,6 @@ export {
     default as DynamicDimension,
 } from './components/DynamicDimension/DynamicDimension';
 export {
-    default as OrgUnitDimension,
-} from './components/OrgUnitDimension/OrgUnitDimension';
-export {
     default as DimensionsPanel,
 } from './components/DimensionsPanel/DimensionsPanel';
 export {
