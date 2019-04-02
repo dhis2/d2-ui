@@ -78,7 +78,7 @@ export class UnselectedItems extends Component {
         </li>
     );
 
-    requestMoreItems = throttle(1000, () => {
+    requestMoreItems = throttle(() => {
         const node = this.scrolElRef.current;
 
         if (node) {
@@ -88,7 +88,7 @@ export class UnselectedItems extends Component {
                 this.props.requestMoreItems();
             }
         }
-    });
+    }, 1000);
 
     render = () => {
         const listItems = this.props.items.map((item, index) =>
