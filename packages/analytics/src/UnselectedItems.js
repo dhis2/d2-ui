@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import i18n from '@dhis2/d2-i18n';
 import Button from '@dhis2/ui/core/Button';
-import throttle from 'lodash/fp/throttle';
+import throttle from 'lodash/throttle';
 
 import Item from './widgets/UnselectedItem';
 import { ArrowButton as AssignButton } from './widgets/ArrowButton';

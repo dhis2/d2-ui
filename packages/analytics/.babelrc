@@ -1,0 +1,51 @@
+{
+    "presets": [["env", { "modules": false }], "react", "stage-2"],
+    "plugins": [
+        "transform-runtime",
+        "styled-jsx/babel"
+    ],
+    "env": {
+        "commonjs": {
+            "presets": [
+                [
+                    "env",
+                    {
+                        "modules": "commonjs"
+                    }
+                ],
+                "react",
+                "stage-2"
+            ],
+            "plugins": [
+                "transform-class-properties",
+                "transform-runtime",
+                "styled-jsx/babel"
+            ]
+        },
+        "es": {
+            "presets": [
+                [
+                    "env",
+                    {
+                        "modules": false
+                    }
+                ],
+                "react",
+                "stage-2"
+            ],
+            "plugins": [
+                "transform-runtime",
+                "styled-jsx/babel"
+            ]
+        },
+        "test": {
+            "presets": ["env", "react", "stage-2"],
+            "plugins": [
+                "transform-es2015-modules-commonjs",
+                "transform-runtime",
+                "styled-jsx/babel-test"
+            ]
+        }
+    },
+}
+
