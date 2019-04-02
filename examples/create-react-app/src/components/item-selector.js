@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Selector from '@dhis2/d2-ui-item-selector';
+import {ItemSelector} from '@dhis2/ui-widgets';
 
 const style = {
     fontFamily: 'Roboto',
@@ -33,7 +33,7 @@ const items = {
     },
 };
 
-class ItemSelector extends Component {
+class ItemSelectorExample extends Component {
     state = {
         unselectedItems: Object.keys(items),
         selectedItems: []
@@ -73,10 +73,10 @@ class ItemSelector extends Component {
 
         return (
             <div style={style}>
-                <Selector unselected={unselected} selected={selected}/>
+                <ItemSelector unselected={unselected} selected={selected}/>
             </div>
         );
     }
 }
 
-export default ItemSelector;
+export default ItemSelectorExample;
