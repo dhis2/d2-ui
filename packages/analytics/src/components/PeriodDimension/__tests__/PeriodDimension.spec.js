@@ -1,9 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { PeriodDimension } from '../PeriodDimension';
-import { FIXED_DIMENSIONS } from '../../../modules/fixedDimensions';
-
-const peId = FIXED_DIMENSIONS.pe.id;
 
 jest.mock('@dhis2/d2-ui-period-selector-dialog', () => ({
     PeriodSelector: 'mockPeriodSelector',

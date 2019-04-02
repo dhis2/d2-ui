@@ -214,12 +214,13 @@
     semver "^5.5.1"
     tape "^4.9.1"
 
-"@dhis2/ui@^1.0.0-beta.15":
-  version "1.0.0-beta.15"
-  resolved "https://registry.yarnpkg.com/@dhis2/ui/-/ui-1.0.0-beta.15.tgz#3dc7484174f1db686dd6f10cbad8271d84f3a0b9"
-  integrity sha512-VT+XbhFiVpVjLlX1/MkLsb0fWAdVOu0GcHCKa+s6olh5TnhZKdU8zwIZXiPaYng0oqFfufYIqBsJi9139l1zyQ==
+"@dhis2/ui@1.0.0-beta.13":
+  version "1.0.0-beta.13"
+  resolved "https://registry.yarnpkg.com/@dhis2/ui/-/ui-1.0.0-beta.13.tgz#e074961a3e331fe1898390aeae825bae0a31c678"
+  integrity sha512-Ii0/DDE+fj0cUOfdte/sdVyNJIjUWIZ95IuwbrfgrKeVRz1N3xaGTWXcgXME/wdOV9ZdkvLrZGRxwj6TXzOJUg==
   dependencies:
     classnames "^2.2.6"
+    material-design-icons-iconfont "^4.0.2"
     styled-jsx "^3.2.1"
 
 "@emotion/babel-utils@^0.6.4":
@@ -8150,6 +8151,11 @@ material-colors@^1.2.1:
   version "1.2.6"
   resolved "https://registry.yarnpkg.com/material-colors/-/material-colors-1.2.6.tgz#6d1958871126992ceecc72f4bcc4d8f010865f46"
   integrity sha512-6qE4B9deFBIa9YSpOc9O0Sgc43zTeVYbgDT5veRKSlB2+ZuHNoVVxA1L/ckMUayV9Ay9y7Z/SZCLcGteW9i7bg==
+
+material-design-icons-iconfont@^4.0.2:
+  version "4.0.5"
+  resolved "https://registry.yarnpkg.com/material-design-icons-iconfont/-/material-design-icons-iconfont-4.0.5.tgz#4107ba3b8a9d688a3d9325fc7363af51b17d3aee"
+  integrity sha512-ByJJ1yz8+RfCx2uNiC5WjVCR7K3UWRb8ytWV3RMaoFRzQLNr/J5x7+Wg1+3OlIZahNXrId9Hu+BfXfQIo01v7g==
 
 material-ui@^0.20.0:
   version "0.20.2"
