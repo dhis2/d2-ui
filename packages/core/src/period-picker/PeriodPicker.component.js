@@ -264,6 +264,13 @@ class PeriodPicker extends React.Component {
                     {this.renderOptionPicker('sixMonth', { 1: 'apr-sep', 2: 'oct-mar' })}
                 </div>
             );
+        case 'SixMonthlyNov':
+            return (
+                <div style={styles.line}>
+                    {this.renderYearPicker()}
+                    {this.renderOptionPicker('sixMonth', { 1: 'nov-apr', 2: 'may-oct' })}
+                </div>
+            );
         case 'Yearly':
         case 'FinancialApril':
         case 'FinancialJuly':
@@ -288,6 +295,7 @@ PeriodPicker.propTypes = {
         'Quarterly',
         'SixMonthly',
         'SixMonthlyApril',
+        'SixMonthlyNov',
         'Yearly',
         'FinancialApril',
         'FinancialJuly',
