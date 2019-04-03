@@ -45,7 +45,7 @@ class LegendItems extends Component {
             },
         };
 
-        const orderedItems = props.items.sort((left, right) => Number(left.startValue) > Number(right.startValue));
+        const orderedItems = props.items.sort((left, right) => Number(left.startValue) - Number(right.startValue));
 
         return (
             <div style={styles.component}>
