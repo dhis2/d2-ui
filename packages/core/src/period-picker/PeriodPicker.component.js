@@ -18,7 +18,7 @@ const styles = {
     line: { marginTop: 0 },
 };
 
-const getYear = date => (new Date(date)).getFullYear();
+const getYear = date => (new Date(date)).getFullYear().toString();
 const getTwoDigitMonth = (date) => {
     const month = (new Date(date)).getMonth() + 1; // Month is 0 indexed
 
