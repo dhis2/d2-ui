@@ -110,6 +110,8 @@ class PeriodPicker extends React.Component {
             return this.state.year && this.state.sixMonth && `${this.state.year}S${this.state.sixMonth}`;
         case 'SixMonthlyApril':
             return this.state.year && this.state.sixMonth && `${this.state.year}AprilS${this.state.sixMonth}`;
+        case 'SixMonthlyNov':
+            return this.state.year && this.state.sixMonth && `${this.state.year}NovS${this.state.sixMonth}`;
         case 'Yearly':
             return this.state.year;
         case 'FinancialApril':
