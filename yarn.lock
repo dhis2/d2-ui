@@ -3455,12 +3455,12 @@ d2-utilizr@^0.2.15:
     lodash.isset "^4.3.0"
     lodash.isstring "^4.0.1"
 
-d2@^31.4, d2@~31.4:
-  version "31.4.0"
-  resolved "https://registry.yarnpkg.com/d2/-/d2-31.4.0.tgz#761e297d0f6a5b4b1d6043de176d887ee5faa09b"
-  integrity sha512-8Bw4W4XVc6jDlZ/+g2TJW6iuxcLAi8ii8Iv0tRBe1M+WjH+x6UWfQuMKxXL/hZtOaa0TNiRouyp50pVBuXawIw==
+d2@^31.7:
+  version "31.7.0"
+  resolved "https://registry.yarnpkg.com/d2/-/d2-31.7.0.tgz#3a843240fecaafdf213da78b55aed9b8611ee22e"
+  integrity sha512-+ubKyPWKxUz90g5RHCYIt4KxKPzcCOBvDS7X0076XSycecfx4qvtkGBcKyFmXdz27iwTLUpNtruL9pUK9aTi/A==
   dependencies:
-    whatwg-fetch "^2.0.3"
+    isomorphic-fetch "^2.2.1"
 
 d2@~31.1:
   version "31.1.1"
@@ -3470,6 +3470,13 @@ d2@~31.1:
     babel-jest "^22.4.3"
     docdash "^0.4.0"
     jsdoc "^3.5.5"
+    whatwg-fetch "^2.0.3"
+
+d2@~31.4:
+  version "31.4.0"
+  resolved "https://registry.yarnpkg.com/d2/-/d2-31.4.0.tgz#761e297d0f6a5b4b1d6043de176d887ee5faa09b"
+  integrity sha512-8Bw4W4XVc6jDlZ/+g2TJW6iuxcLAi8ii8Iv0tRBe1M+WjH+x6UWfQuMKxXL/hZtOaa0TNiRouyp50pVBuXawIw==
+  dependencies:
     whatwg-fetch "^2.0.3"
 
 d3-array@^1.2.0:
@@ -6559,7 +6566,7 @@ isobject@^3.0.0, isobject@^3.0.1:
   resolved "https://registry.yarnpkg.com/isobject/-/isobject-3.0.1.tgz#4e431e92b11a9731636aa1f9c8d1ccbcfdab78df"
   integrity sha1-TkMekrEalzFjaqH5yNHMvP2reN8=
 
-isomorphic-fetch@^2.1.1:
+isomorphic-fetch@^2.1.1, isomorphic-fetch@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/isomorphic-fetch/-/isomorphic-fetch-2.2.1.tgz#611ae1acf14f5e81f729507472819fe9733558a9"
   integrity sha1-YRrhrPFPXoH3KVB0coGf6XM1WKk=
