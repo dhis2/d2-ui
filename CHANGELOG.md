@@ -1,5 +1,13 @@
 # D2-UI Changelog
 
+## 29.0.32
+
+###### _April 4th 2019_
+
+##### Fixes
+
+- Fixed legends not sorting properly
+
 ## 29.0.31
 
 ###### _April 1st 2019_
