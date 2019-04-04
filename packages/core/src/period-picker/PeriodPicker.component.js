@@ -18,7 +18,7 @@ const styles = {
     line: { marginTop: 0 },
 };
 
-const getYear = date => (new Date(date)).getFullYear();
+const getYear = date => (new Date(date)).getFullYear().toString();
 const getTwoDigitMonth = (date) => {
     const month = (new Date(date)).getMonth() + 1; // Month is 0 indexed
 
@@ -110,6 +110,8 @@ class PeriodPicker extends React.Component {
             return this.state.year && this.state.sixMonth && `${this.state.year}S${this.state.sixMonth}`;
         case 'SixMonthlyApril':
             return this.state.year && this.state.sixMonth && `${this.state.year}AprilS${this.state.sixMonth}`;
+        case 'SixMonthlyNov':
+            return this.state.year && this.state.sixMonth && `${this.state.year}NovS${this.state.sixMonth}`;
         case 'Yearly':
             return this.state.year;
         case 'FinancialApril':
@@ -264,6 +266,13 @@ class PeriodPicker extends React.Component {
                     {this.renderOptionPicker('sixMonth', { 1: 'apr-sep', 2: 'oct-mar' })}
                 </div>
             );
+        case 'SixMonthlyNov':
+            return (
+                <div style={styles.line}>
+                    {this.renderYearPicker()}
+                    {this.renderOptionPicker('sixMonth', { 1: 'nov-apr', 2: 'may-oct' })}
+                </div>
+            );
         case 'Yearly':
         case 'FinancialApril':
         case 'FinancialJuly':
@@ -288,6 +297,7 @@ PeriodPicker.propTypes = {
         'Quarterly',
         'SixMonthly',
         'SixMonthlyApril',
+        'SixMonthlyNov',
         'Yearly',
         'FinancialApril',
         'FinancialJuly',
