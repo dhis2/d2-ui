@@ -3455,7 +3455,7 @@ d2-utilizr@^0.2.15:
     lodash.isset "^4.3.0"
     lodash.isstring "^4.0.1"
 
-d2@^31.7:
+d2@^31.7, d2@~31.7:
   version "31.7.0"
   resolved "https://registry.yarnpkg.com/d2/-/d2-31.7.0.tgz#3a843240fecaafdf213da78b55aed9b8611ee22e"
   integrity sha512-+ubKyPWKxUz90g5RHCYIt4KxKPzcCOBvDS7X0076XSycecfx4qvtkGBcKyFmXdz27iwTLUpNtruL9pUK9aTi/A==
@@ -3470,13 +3470,6 @@ d2@~31.1:
     babel-jest "^22.4.3"
     docdash "^0.4.0"
     jsdoc "^3.5.5"
-    whatwg-fetch "^2.0.3"
-
-d2@~31.4:
-  version "31.4.0"
-  resolved "https://registry.yarnpkg.com/d2/-/d2-31.4.0.tgz#761e297d0f6a5b4b1d6043de176d887ee5faa09b"
-  integrity sha512-8Bw4W4XVc6jDlZ/+g2TJW6iuxcLAi8ii8Iv0tRBe1M+WjH+x6UWfQuMKxXL/hZtOaa0TNiRouyp50pVBuXawIw==
-  dependencies:
     whatwg-fetch "^2.0.3"
 
 d3-array@^1.2.0:
