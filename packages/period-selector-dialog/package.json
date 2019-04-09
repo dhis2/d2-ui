@@ -28,8 +28,7 @@
     "@material-ui/icons": "^3.0.1",
     "babel-runtime": "^6.26.0",
     "lodash": "^4.17.11",
-    "prop-types": "^15.6.0",
-    "react-sortable-hoc": "^0.8.4"
+    "prop-types": "^15.6.0"
   },
   "publishConfig": {
     "access": "public"
