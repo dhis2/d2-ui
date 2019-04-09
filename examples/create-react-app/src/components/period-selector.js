@@ -45,6 +45,10 @@ class PeriodSelectorExample extends Component {
         this.setState({ selectedPeriods });
     };
 
+    setPeriods = (selectedPeriods) => {
+        this.setState({ selectedPeriods })
+    }
+
     render() {
         return (
             <MuiThemeProvider muiTheme={getMuiTheme()}>
@@ -53,6 +57,7 @@ class PeriodSelectorExample extends Component {
                         d2={this.props.d2}
                         onSelect={this.selectPeriods}
                         onDeselect={this.deselectPeriods}
+                        onReorder={this.setPeriods}
                         selectedItems={this.state.selectedPeriods}
                     />
                     <Snackbar
