@@ -1,8 +1,6 @@
 # d2-ui
 
-[![Build Status](https://travis-ci.org/dhis2/d2-ui.svg)](https://travis-ci.org/dhis2/d2-ui)
-[![Test Coverage](https://codeclimate.com/github/dhis2/d2-ui/badges/coverage.svg)](https://codeclimate.com/github/dhis2/d2-ui/coverage)
-[![Code Climate](https://codeclimate.com/github/dhis2/d2-ui/badges/gpa.svg)](https://codeclimate.com/github/dhis2/d2-ui)
+[![Build Status](https://travis-ci.com/dhis2/d2-ui.svg?branch=master)](https://travis-ci.com/dhis2/d2-ui)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdhis2%2Fd2-ui.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdhis2%2Fd2-ui?ref=badge_shield)
 
 ## Introduction
@@ -49,6 +47,30 @@ yarn start
 Now you are able to change any component in
 [packages/](https://github.com/dhis2/d2-ui/blob/master/packages) and the
 changes will be reflected live in the example application.
+
+## Linking individual components
+
+When working on a component that's consumed by a different app, you can preview the changes without publishing by using `yarn link`. Let's say you're working on the `legend` component. First you'll need to build the components. Run this from the d2-ui root directory:
+
+```
+yarn install
+yarn run build
+```
+
+After that link the components you're working on (we'll use legend for this example):
+
+```
+cd d2-ui/packages/legend/build
+yarn link
+```
+
+After that, change directory to the app that consumes the component you're working on (let's say the maintenance-app). From the root of that project run:
+
+```
+yarn link @dhis2/d2-ui-legend`
+```
+
+This will link your local version of the component and your local changes will be reflected in the app.
 
 ## Contributing
 

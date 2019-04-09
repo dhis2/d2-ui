@@ -5,37 +5,97 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2018-11-29T09:01:34.572Z\n"
-"PO-Revision-Date: 2018-11-29T09:01:34.572Z\n"
+"POT-Creation-Date: 2019-02-27T09:42:27.795Z\n"
+"PO-Revision-Date: 2019-02-27T09:42:27.795Z\n"
 
-msgid "No description"
+msgid "Pivot Tables"
 msgstr ""
 
-msgid "None"
+msgid "Table details"
 msgstr ""
 
-msgid "Read"
+msgid "Visualizer"
 msgstr ""
 
-msgid "Read/Write"
+msgid "Chart details"
 msgstr ""
 
-msgid "Unknown"
+msgid "Maps"
 msgstr ""
 
-msgid "Public"
+msgid "Map details"
 msgstr ""
 
-msgid "user groups"
+msgid "Event Reports"
+msgstr ""
+
+msgid "Event Visualizer"
+msgstr ""
+
+msgid "View"
+msgstr ""
+
+msgid "Exit View"
+msgstr ""
+
+msgid "Like"
+msgstr ""
+
+msgid "Unlike"
+msgstr ""
+
+msgid "Reply"
+msgstr ""
+
+msgid "Edit"
+msgstr ""
+
+msgid "Manage sharing"
+msgstr ""
+
+msgid "Delete"
+msgstr ""
+
+msgid "Back to all interpretations"
+msgstr ""
+
+msgid "Interpretations"
+msgstr ""
+
+msgid "Delete comment"
+msgstr ""
+
+msgid "Are you sure you want to delete this comment?"
+msgstr ""
+
+msgid "Save reply"
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid "Write a reply"
+msgstr ""
+
+msgid "Confirm"
+msgstr ""
+
+msgid "_No description_"
+msgstr ""
+
+msgid "Show "
+msgstr ""
+
+msgid "less"
+msgstr ""
+
+msgid "more"
 msgstr ""
 
 msgid "Unsubscribe from this {{object}} and stop receiving notifications"
 msgstr ""
 
 msgid "Subscribe to this {{object}} and start receiving notifications"
-msgstr ""
-
-msgid "Details"
 msgstr ""
 
 msgid "Owner"
@@ -53,76 +113,79 @@ msgstr ""
 msgid "Sharing"
 msgstr ""
 
-msgid "OK"
+msgid "Delete interpretation"
 msgstr ""
 
-msgid "Post reply"
+msgid "Are you sure you want to delete this interpretation?"
 msgstr ""
 
-msgid "Cancel"
+msgid "Access restricted"
 msgstr ""
 
-msgid "Are you sure you want to remove this interpretation?"
+msgid "likes"
 msgstr ""
 
-msgid "Exit view"
+msgid "like"
 msgstr ""
 
-msgid "Unlike"
+msgid "Save interpretation"
 msgstr ""
 
-msgid "Like"
+msgid "Write an interpretation"
 msgstr ""
 
-msgid "Reply"
+msgid "replies"
 msgstr ""
 
-msgid "Edit"
+msgid "reply"
 msgstr ""
 
-msgid "Share"
+msgid "Hide old replies"
 msgstr ""
 
-msgid "Delete"
+msgid "View more replies"
 msgstr ""
 
-msgid "View"
+msgid "Hide"
 msgstr ""
 
-msgid "people like this"
-msgstr ""
-
-msgid "people commented"
-msgstr ""
-
-msgid "Are you sure you want to remove this comment?"
-msgstr ""
-
-msgid "more comments"
-msgstr ""
-
-msgid "Edit interpretation"
-msgstr ""
-
-msgid "Create interpretation"
-msgstr ""
-
-msgid "Save & share"
-msgstr ""
-
-msgid "Save"
+msgid "Show"
 msgstr ""
 
 msgid "No interpretations"
 msgstr ""
 
-msgid "Clear interpretation"
+msgid "external access"
 msgstr ""
 
-msgid "Write new interpretation"
+msgid ", public access"
 msgstr ""
 
-msgid "Interpretations"
+msgid "public access"
+msgstr ""
+
+msgid "None. "
+msgstr ""
+
+msgid "None"
+msgstr ""
+
+msgid "Read"
+msgstr ""
+
+msgid "Read/Write"
+msgstr ""
+
+msgid "Unknown"
+msgstr ""
+
+msgid "Public"
+msgstr ""
+
+msgid "Users"
+msgstr ""
+
+msgid "user groups"
 msgstr ""
 
 msgid "chart"

@@ -13,7 +13,7 @@
   "contributors": [],
   "scripts": {
     "prebuild": "npm run lint && rm -rf ./build",
-    "build": "yarn localize && cross-env BABEL_ENV=es babel src --copy-files --out-dir build --ignore spec.js",
+    "build": "npm run localize && babel src --copy-files --out-dir build --ignore spec.js",
     "lint": "eslint src/",
     "watch": "npm run build -- --watch",
     "extract-pot": "d2-i18n-extract -p src/ -o i18n/",
@@ -31,6 +31,7 @@
     "@dhis2/d2-i18n-generate": "^1.0.18",
     "@dhis2/d2-ui-mentions-wrapper": "0.0.0-PLACEHOLDER",
     "@dhis2/d2-ui-sharing-dialog": "0.0.0-PLACEHOLDER",
+    "@dhis2/d2-ui-rich-text": "0.0.0-PLACEHOLDER",
     "@material-ui/core": "^3.3.1",
     "@material-ui/icons": "^3.0.1",
     "babel-runtime": "^6.26.0",
@@ -48,7 +49,8 @@
   "jest": {
     "transformIgnorePatterns": [
       "node_modules/(?!react-native|react-navigation)/"
-    ]
+    ],
+    "testEnvironments": "jsdom"
   },
   "publishConfig": {
     "access": "public"

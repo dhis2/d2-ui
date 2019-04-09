@@ -3,9 +3,6 @@ import PropTypes from 'prop-types';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import StopIcon from '@material-ui/icons/Stop';
 
-import ModelBase from 'd2/model/Model';
-import ModelCollection from 'd2/model/ModelCollection';
-
 import TreeView from '@dhis2/d2-ui-core/tree-view/TreeView.component';
 import styles from './styles/OrgUnitTree.component.styles';
 import OUFolderIconComponent from './OUFolderIcon.component';
@@ -25,7 +22,7 @@ class OrgUnitTree extends React.Component {
                 : undefined,
             loading: false,
         };
-        if (props.root.children instanceof ModelCollection && !props.root.children.hasUnloadedData) {
+        if (props.root.children && typeof props.root.children.toArray === 'function' && !props.root.children.hasUnloadedData) {
             this.state.children = props.root.children
                 .toArray()
                 // Sort here since the API returns nested children in random order
@@ -323,13 +320,13 @@ function orgUnitPathPropValidator(propValue, key, compName, location, propFullNa
 
 OrgUnitTree.propTypes = {
     /**
-     * The root OrganisationUnit of the tree
+     * The root OrganisationUnit of the tree, ModelBase
      *
      * If the root OU is known to have no children, the `children` property of the root OU should be either
      * `false` or an empty array. If the children property is undefined, the children will be fetched from
      * the server when the tree is expanded.
      */
-    root: PropTypes.instanceOf(ModelBase).isRequired,
+    root: PropTypes.object.isRequired,
 
     /**
      * Display name property

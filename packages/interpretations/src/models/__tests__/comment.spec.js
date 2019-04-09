@@ -1,5 +1,5 @@
 import Comment from '../comment';
-import * as api from '../../util/api';
+import * as api from '../../api/api';
 
 const interpretation = {
     id: "jkffgj34GGE",
@@ -20,6 +20,14 @@ const commentAttributes = {
     text: "Comment 1",
 };
 
+const d2 = {
+    Api: {
+        getApi: () => ({ 
+            get: jest.fn(Promise.resolve({})) 
+        }),
+    }
+}
+
 let comment;
 
 describe("Models > Comment", () => {
@@ -31,22 +39,22 @@ describe("Models > Comment", () => {
         describe("save", () => {
             beforeEach(() => {
                 api.apiFetch = jest.fn(() => Promise.resolve({}));
-                return comment.save();
+                return comment.save(d2);
             });
 
             it("should PUT text to API", () => {
-                expect(api.apiFetch).toBeCalledWith("/interpretations/jkffgj34GGE/comments/gwebGGddaxD", "PUT", commentAttributes.text);
+                expect(api.apiFetch).toBeCalledWith(d2, "/interpretations/jkffgj34GGE/comments/gwebGGddaxD", "PUT", commentAttributes.text);
             });
         });
 
         describe("delete", () => {
             beforeEach(() => {
                 api.apiFetch = jest.fn(() => Promise.resolve({}));
-                return comment.delete();
+                return comment.delete(d2);
             });
 
             it("should PUT text to API", () => {
-                expect(api.apiFetch).toBeCalledWith("/interpretations/jkffgj34GGE/comments/gwebGGddaxD", "DELETE");
+                expect(api.apiFetch).toBeCalledWith(d2, "/interpretations/jkffgj34GGE/comments/gwebGGddaxD", "DELETE");
             });
         });
     });
@@ -59,12 +67,12 @@ describe("Models > Comment", () => {
         describe("save", () => {
             beforeEach(() => {
                 api.apiFetch = jest.fn(() => Promise.resolve({}));
-                return comment.save();
+                return comment.save(d2);
             });
 
             it("should PUT text to API", () => {
                 expect(api.apiFetch)
-                    .toBeCalledWith("/interpretations/jkffgj34GGE/comments", "POST", commentAttributes.text);
+                    .toBeCalledWith(d2, "/interpretations/jkffgj34GGE/comments", "POST", commentAttributes.text);
             });
         });
     });

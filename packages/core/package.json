@@ -9,8 +9,7 @@
     "coverage": "jest --coverage",
     "lint": "eslint src/",
     "prebuild": "npm run lint && rimraf ./build/* && mkdirp ./build",
-    "build": "npm run build:sass && npm run build:es",
-    "build:es": "cross-env BABEL_ENV=es babel src --out-dir build --ignore spec.js",
+    "build": "npm run build:sass && babel src --out-dir build --ignore spec.js",
     "build:sass": "node-sass ./scss --output ./build/css",
     "watch": "npm run build -- --watch",
     "test-ci": "jest --config=../../jest.config.js packages/core"
@@ -21,7 +20,7 @@
   },
   "dependencies": {
     "babel-runtime": "^6.26.0",
-    "d2": "~31.1",
+    "d2": "~31.7",
     "lodash": "^4.17.10",
     "material-ui": "^0.20.0"
   },

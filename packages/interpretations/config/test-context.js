@@ -37,7 +37,19 @@ export function getStubContext() {
                     },
                 },
                 authorities: new Set(),
+                userGroupAccesses: [
+                    {
+                        access: "rw------",
+                        userGroupUid: "wl5cDMuUhmF",
+                        displayName: "Administrators",
+                        id: "wl5cDMuUhmF"
+                    }
+                ],
+                userAccesses: [],
+                getUserGroups: jest.fn().mockReturnValue(Promise.resolve({valuesContainerMap: [], keys: () => jest.fn()})),
             },
         },
+        locale: 'en',
+        appName: 'CHART'
     };
 }

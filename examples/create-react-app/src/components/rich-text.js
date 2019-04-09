@@ -63,6 +63,7 @@ export default class RichText extends Component {
     }
 
     nativeKeyDown = e => {
+
         convertCtrlKey(e, this.setNativeInputVal);
     }
 
