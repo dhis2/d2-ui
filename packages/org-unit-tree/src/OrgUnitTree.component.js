@@ -22,7 +22,6 @@ class OrgUnitTree extends React.Component {
                 : undefined,
             loading: false,
         };
-        console.log('is it a function?', typeof props.root.children.toArray === 'function');
         if (props.root.children && typeof props.root.children.toArray === 'function' && !props.root.children.hasUnloadedData) {
             this.state.children = props.root.children
                 .toArray()
@@ -120,11 +119,8 @@ class OrgUnitTree extends React.Component {
         e.stopPropagation();
     };
 
-    hasChildren = () => {
-        console.log('hasChildren fn', this.state.children);
-        
-        return this.state.children === undefined ||
-        (Array.isArray(this.state.children) && this.state.children.length > 0)};
+    hasChildren = () => this.state.children === undefined ||
+        (Array.isArray(this.state.children) && this.state.children.length > 0);
 
     shouldIncludeOrgUnit = (orgUnit) => {
         if (!this.props.orgUnitsPathsToInclude || this.props.orgUnitsPathsToInclude.length === 0) {
@@ -282,8 +278,6 @@ class OrgUnitTree extends React.Component {
             memberCount
         );
 
-        console.log('hasChildren?', hasChildren);
-        
         if (hasChildren) {
             return (
                 <TreeView
