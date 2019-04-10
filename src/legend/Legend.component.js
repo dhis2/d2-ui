@@ -141,7 +141,11 @@ class Legend extends Component {
         this.setState({ warningDialogOpen: true });
     };
 
-    handleClose = () => {
+    handleCreateLegendsCancel = () => {
+        this.setState({ warningDialogOpen: false });
+    };
+
+    handleCreateLegendsConfirm = () => {
         this.setState(
             { warningDialogOpen: false },
             () => this.createLegendItems(), // Callback for after state update
@@ -153,12 +157,12 @@ class Legend extends Component {
             <FlatButton
                 label={this.i18n.getTranslation('cancel')}
                 secondary
-                onClick={this.handleClose}
+                onClick={this.handleCreateLegendsCancel}
             />,
             <FlatButton
                 label={this.i18n.getTranslation('proceed')}
                 primary
-                onClick={this.handleClose}
+                onClick={this.handleCreateLegendsConfirm}
             />,
         ];
 
@@ -227,7 +231,7 @@ class Legend extends Component {
                     actions={actions}
                     modal={false}
                     open={this.state.warningDialogOpen}
-                    onRequestClose={this.handleClose}
+                    onRequestClose={this.handleCreateLegendsCancel}
                     autoScrollBodyContent
                 >
                     {this.i18n.getTranslation('this_will_replace_the_current_legend_items')}
