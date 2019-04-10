@@ -1,5 +1,13 @@
 # D2-UI Changelog
 
+## 29.0.33
+
+###### _April 10th 2019_
+
+##### Fixes
+
+- Fixed create legends confirmation dialog bug, where the cancel button still generated new legends.
+
 ## 29.0.32
 
 ###### _April 4th 2019_
