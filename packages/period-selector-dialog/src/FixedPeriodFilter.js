@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import FormControl from '@material-ui/core/FormControl';
-import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button/Button';
-import i18n from '@dhis2/d2-i18n';
 import ArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import ArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
-import FixedPeriodsGenerator from './utils/FixedPeriodsGenerator';
-import PeriodsList from './PeriodsList';
-import styles from './styles/PeriodListItem.style';
-import isEqual from 'lodash/isEqual';
+
+import i18n from '@dhis2/d2-i18n';
+import FixedPeriodsGenerator from './modules/FixedPeriodsGenerator';
+import styles from './styles/PeriodFilter.style';
 
 export const defaultState = {
     periodType: 'Monthly',
@@ -23,7 +22,7 @@ export const defaultState = {
 
 export const YEARS_RANGE = 8;
 
-class FixedPeriods extends Component {
+class FixedPeriodFilter extends Component {
     constructor(props, context) {
         super(props);
 
@@ -35,17 +34,8 @@ class FixedPeriods extends Component {
     componentDidMount = () => {
         const periods = this.generatePeriods(this.state.periodType, this.state.year);
 
-        this.setOfferedPeriods(periods);
+        this.props.setOfferedPeriods(periods, true);
     };
-
-    componentDidUpdate(prevProps) {
-        const prevItems = prevProps.selectedItems.map(period => period.id);
-        const currentItems = this.props.selectedItems.map(period => period.id);
-
-        if (!isEqual(prevItems, currentItems)) {
-            this.setOfferedPeriods(this.generatePeriods(this.state.periodType, this.state.year));
-        }
-    }
 
     onPeriodTypeChange = (event) => {
         this.setState({
@@ -53,7 +43,7 @@ class FixedPeriods extends Component {
         });
 
         if (this.state.year) {
-            this.setOfferedPeriods(this.generatePeriods(event.target.value, this.state.year));
+            this.props.setOfferedPeriods(this.generatePeriods(event.target.value, this.state.year));
         }
     };
 
@@ -64,7 +54,7 @@ class FixedPeriods extends Component {
         });
 
         if (this.state.periodType) {
-            this.setOfferedPeriods(this.generatePeriods(this.state.periodType, event.target.value));
+            this.props.setOfferedPeriods(this.generatePeriods(this.state.periodType, event.target.value));
         }
     };
 
@@ -90,13 +80,6 @@ class FixedPeriods extends Component {
         return years;
     };
 
-    setOfferedPeriods = (periods) => {
-        const selectedIds = this.props.selectedItems.map(period => period.id);
-
-        this.props.setOfferedPeriodIds(periods);
-        this.props.setOfferedPeriods(periods.filter(period => !selectedIds.includes(period.id)));
-    };
-
     generatePeriods = (periodType, year) => {
         const generator = this.periodsGenerator.get(periodType);
 
@@ -104,12 +87,8 @@ class FixedPeriods extends Component {
             offset: year - (new Date()).getFullYear(),
             filterFuturePeriods: false,
             reversePeriods: false,
-        });
-    };
+        }).map((period, idx) => ({ ...period, idx }));;
 
-    selectAll = () => {
-        this.props.onSelect(this.props.items);
-        this.props.setOfferedPeriods([]);
     };
 
     closeYearSelect = () => {
@@ -126,7 +105,7 @@ class FixedPeriods extends Component {
 
     renderYearSelectValue = () => this.state.year;
 
-    renderOptions = () => {
+    render() {
         const years = this.getYears();
 
         return (
@@ -199,41 +178,14 @@ class FixedPeriods extends Component {
             </div>
         );
     };
-
-    render = () => {
-        const Options = this.renderOptions();
-
-        return (
-            <div className="selector-area">
-                {Options}
-                <PeriodsList
-                    items={this.props.items}
-                    onPeriodDoubleClick={this.props.onPeriodDoubleClick}
-                    onPeriodClick={this.props.onPeriodClick}
-                    listClassName={'periods-list-offered'}
-                />
-                <div style={{ textAlign: 'center' }}>
-                    <Button onClick={this.selectAll}>
-                        {i18n.t('Select all')}
-                    </Button>
-                </div>
-            </div>
-        );
-    };
 }
 
-FixedPeriods.propTypes = {
-    items: PropTypes.array.isRequired,
-    selectedItems: PropTypes.array.isRequired,
-    onPeriodDoubleClick: PropTypes.func.isRequired,
-    onPeriodClick: PropTypes.func.isRequired,
+FixedPeriodFilter.propTypes = {
     setOfferedPeriods: PropTypes.func.isRequired,
-    setOfferedPeriodIds: PropTypes.func.isRequired,
-    onSelect: PropTypes.func.isRequired,
 };
 
-FixedPeriods.contextTypes = {
+FixedPeriodFilter.contextTypes = {
     d2: PropTypes.object,
 };
 
-export default FixedPeriods;
+export default FixedPeriodFilter;

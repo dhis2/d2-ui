@@ -38,7 +38,7 @@ class PeriodSelectorDialog extends React.Component {
     };
 
     render = () => {
-        const { classes, open, maxWidth, fullWidth, ...remaindingProps } = this.props;
+        const { classes, open, maxWidth, fullWidth, ...rest } = this.props;
 
         return (
             <Dialog
@@ -49,7 +49,7 @@ class PeriodSelectorDialog extends React.Component {
             >
                 <DialogTitle>{i18n.t('Period')}</DialogTitle>
                 <DialogContent className={classes.dialogContent}>
-                    <PeriodSelector {...remaindingProps} />
+                    <PeriodSelector {...rest} />
                 </DialogContent>
                 <DialogActions>
                     <Button color="primary" onClick={this.onCloseClick}>
