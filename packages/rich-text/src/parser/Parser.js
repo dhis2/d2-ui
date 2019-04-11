@@ -12,14 +12,14 @@ class Parser extends Component {
     render() {
         const { children, style } = this.props;
 
-        return (
+        return children ? (
             <p
                 style={style}
                 dangerouslySetInnerHTML={{
                     __html: this.MdParser.render(children),
                 }}
             />
-        );
+        ) : null;
     }
 }
 

@@ -37,4 +37,10 @@ describe('RichText: Parser component', () => {
 
         expect(richTextParser.html()).toEqual('<p>converted text</p>');
     });
+
+    it('should return null if no children is passed', () => {
+        richTextParser = renderComponent({}, undefined);
+        expect(richTextParser.html()).toBe(null)
+
+    });
 });
