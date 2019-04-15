@@ -169,11 +169,9 @@ class SharingDialog extends React.Component {
     addId = object => ({ ...object, id: this.props.id });
 
     closeDialog = () => {
-        this.props.onRequestClose(this.addId(this.state.sharedObject.object, this.props.id));
-    }
-
-    confirmAndCloseDialog = () => {
-        this.props.onConfirm(this.addId(this.state.sharedObject.object, this.props.id));
+        this.props.doNotPost
+            ? this.props.onConfirm(this.addId(this.state.sharedObject.object, this.props.id))
+            : this.props.onRequestClose(this.addId(this.state.sharedObject.object, this.props.id));
     }
 
     translate = s => this.props.d2.i18n.getTranslation(s);
@@ -197,23 +195,6 @@ class SharingDialog extends React.Component {
         const dataShareable = this.state.dataShareableTypes.indexOf(this.props.type) !== -1;
         const errorOccurred = this.state.errorMessage !== '';
         const isLoading = !this.state.sharedObject && this.props.open && !errorOccurred;
-        const sharingDialogActions = [
-            <Button key="closeonly" color="primary" onClick={this.closeDialog}>{this.translate('close')}</Button>,
-        ];
-
-        if (this.props.doNotPost) {
-            sharingDialogActions.push(
-                <Button
-                    key="confirmandclose"
-                    variant="contained"
-                    color="primary"
-                    style={{ marginLeft: '8px' }}
-                    onClick={this.confirmAndCloseDialog}
-                >
-                    {this.translate('apply')}
-                </Button>,
-            );
-        }
 
         return (
             <div>
@@ -240,7 +221,7 @@ class SharingDialog extends React.Component {
                         }
                     </DialogContent>
                     <DialogActions>
-                        {sharingDialogActions}
+                        <Button key="closeonly" color="primary" onClick={this.closeDialog}>{this.translate('close')}</Button>,
                     </DialogActions>
                 </Dialog>
             </div>
