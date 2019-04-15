@@ -162,10 +162,10 @@
   dependencies:
     i18next "^10.3"
 
-"@dhis2/d2-ui-analytics@^0.0.7":
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/@dhis2/d2-ui-analytics/-/d2-ui-analytics-0.0.7.tgz#6765286eb657d54c4775e56d7e8aff95af3426e8"
-  integrity sha512-DzxAkpIHNLDOmT47xjjAY6pohvGhIN66b4WdHampE+XS65z7nkelYlkEMEmGAFUSIsztLncpXvLVwzZvpk0jRQ==
+"@dhis2/d2-ui-analytics@^0.0.13":
+  version "0.0.13"
+  resolved "https://registry.yarnpkg.com/@dhis2/d2-ui-analytics/-/d2-ui-analytics-0.0.13.tgz#7d3aedd6aa6d2ffd5734b1c821c218abb9c2f9a1"
+  integrity sha512-ORCMSam3AhBs0Tw53oV0xjBu2nlVcSeu8oJOh2Tetrd+7g6MXE+Djeet5EtNsjbl6pDoH6puN85PtR+Q/kN4YA==
   dependencies:
     "@dhis2/d2-i18n" "^1.0.4"
     "@dhis2/d2-ui-org-unit-dialog" "5.3.1"
