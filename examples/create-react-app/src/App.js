@@ -19,6 +19,7 @@ import GroupEditor from './components/group-editor';
 import Layout from './components/layout';
 import Legend from './components/legend';
 import PeriodPicker from './components/period-picker';
+import PeriodPickerv2 from './components/period-picker-package'
 import PeriodSelector from './components/period-selector';
 import OrgUnitDialog from './components/org-unit-dialog';
 import SelectField from './components/select-field';
@@ -118,6 +119,9 @@ class App extends Component {
 
                     <h2>PeriodPicker</h2>
                     <PeriodPicker d2={this.state.d2} />
+
+                    <h2>PeriodPicker v2</h2>
+                    <PeriodPickerv2 />
 
                     <h2>SelectField</h2>
                     <SelectField />
