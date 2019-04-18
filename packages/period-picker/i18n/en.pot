@@ -1,0 +1,108 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"POT-Creation-Date: 2019-04-18T19:44:55.460Z\n"
+"PO-Revision-Date: 2019-04-18T19:44:55.460Z\n"
+
+msgid "There was a problem fetching the period types"
+msgstr ""
+
+msgid "Invalid period detected"
+msgstr ""
+
+msgid "Period type"
+msgstr ""
+
+msgid "Daily"
+msgstr ""
+
+msgid "Weekly"
+msgstr ""
+
+msgid "Weekly Wednesday"
+msgstr ""
+
+msgid "Weekly Thursday"
+msgstr ""
+
+msgid "Weekly Saturday"
+msgstr ""
+
+msgid "Weekly Sunday"
+msgstr ""
+
+msgid "Bi weekly"
+msgstr ""
+
+msgid "Monthly"
+msgstr ""
+
+msgid "Bi-monthly"
+msgstr ""
+
+msgid "Quarterly"
+msgstr ""
+
+msgid "Six monthly"
+msgstr ""
+
+msgid "Six monthly starting in April"
+msgstr ""
+
+msgid "Six monthly starting in November"
+msgstr ""
+
+msgid "Yearly"
+msgstr ""
+
+msgid "Financial year starting in April"
+msgstr ""
+
+msgid "Financial year starting in July"
+msgstr ""
+
+msgid "Financial year starting in October"
+msgstr ""
+
+msgid "Day"
+msgstr ""
+
+msgid "Week"
+msgstr ""
+
+msgid "Bi week"
+msgstr ""
+
+msgid "Month"
+msgstr ""
+
+msgid "Bi Month"
+msgstr ""
+
+msgid "Quarter"
+msgstr ""
+
+msgid "Six month period"
+msgstr ""
+
+msgid "Six month period - April"
+msgstr ""
+
+msgid "Six month period - November"
+msgstr ""
+
+msgid "Year"
+msgstr ""
+
+msgid "Day number too high for current month"
+msgstr ""
+
+msgid "Week number too high for current year"
+msgstr ""
+
+msgid "Bi-week number too high for current year"
+msgstr ""
