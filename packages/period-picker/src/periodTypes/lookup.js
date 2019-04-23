@@ -1,30 +1,48 @@
 import i18n from '@dhis2/d2-i18n';
-import { is53WeekISOYear } from 'd2/period/helpers';
-
-export const DAY = 'day';
-export const WEEK = 'week';
-export const BI_WEEK = 'biWeek';
-export const MONTH = 'month';
-export const BI_MONTH = 'biMonth';
-export const QUARTER = 'quarter';
-export const SIX_MONTH = 'sixMonth';
-export const YEAR = 'year';
-
-const days = getDays();
-const weeks = getWeeks();
-const biWeeks = getBiWeeks();
-const months = getMonths();
-const biMonths = getBiMonths();
-const quarters = getQuarters();
-const years = getYears();
-const sixMonths = getSixMonthly();
-const sixMonthsApril = getSixMonthlyApril();
-const sixMonthsNov = getSixMonthlyNov();
+import {
+    DAY,
+    WEEK,
+    BI_WEEK,
+    MONTH,
+    BI_MONTH,
+    QUARTER,
+    SIX_MONTH,
+    YEAR,
+} from './distinctTypes';
+import {
+    days,
+    weeks,
+    biWeeks,
+    months,
+    biMonths,
+    quarters,
+    years,
+    sixMonths,
+    sixMonthsApril,
+    sixMonthsNov,
+} from './options';
+import {
+    neverAnError,
+    zeroPad,
+    getMonthFromId,
+    getYearFromId,
+    createDayBasedPeriodFieldUpdater,
+    createWeekBasedPeriodFieldUpdater,
+    createSixMonthsBasedPeriodFieldUpdater,
+    createYearBasedPeriodFieldUpdater,
+    hasValues,
+    hasWeekBasedValues,
+    hasSixMonthBasedValues,
+    hasYearBasedValues,
+    getInvalidDayNumberError,
+    getInvalidWeekNumberError,
+    getInvalidBiWeekNumberError,
+} from './helpers';
 
 const weeklyOptionList = { weeks, years };
 const yearlyOptionList = { years };
 
-export const periodTypeMap = new Map([
+const periodTypeLookup = new Map([
     [
         'Daily',
         {
@@ -234,226 +252,10 @@ export const periodTypeMap = new Map([
     ],
 ]);
 
-const neverAnError = () => null;
-periodTypeMap.forEach(periodType => {
+periodTypeLookup.forEach(periodType => {
     if (!periodType.getError) {
         periodType.getError = neverAnError;
     }
 });
 
-function getDays() {
-    return {
-        name: DAY,
-        label: i18n.t('Day'),
-        options: createSequence(31).reduce(
-            (acc, val) => setProperty(acc, val, val),
-            {}
-        ),
-    };
-}
-
-function getWeeks() {
-    return {
-        name: WEEK,
-        label: i18n.t('Week'),
-        options: createSequence(53).reduce(
-            (acc, val) => setProperty(acc, val, val),
-            {}
-        ),
-    };
-}
-
-function getBiWeeks() {
-    const prefix = i18n.t('Bi week');
-    return {
-        name: BI_WEEK,
-        label: i18n.t('Bi week'),
-        options: createSequence(27).reduce(
-            (acc, val) => setProperty(acc, val, `${prefix} ${val}`),
-            {}
-        ),
-    };
-}
-
-function getMonths() {
-    return {
-        name: MONTH,
-        label: i18n.t('Month'),
-        options: {
-            1: 'jan',
-            2: 'feb',
-            3: 'mar',
-            4: 'apr',
-            5: 'may',
-            6: 'jun',
-            7: 'jul',
-            8: 'aug',
-            9: 'sep',
-            10: 'oct',
-            11: 'nov',
-            12: 'dec',
-        },
-    };
-}
-
-function getBiMonths() {
-    return {
-        name: BI_MONTH,
-        label: i18n.t('Bi Month'),
-        options: {
-            1: 'jan-feb',
-            2: 'mar-apr',
-            3: 'may-jun',
-            4: 'jul-aug',
-            5: 'sep-oct',
-            6: 'nov-dec',
-        },
-    };
-}
-
-function getQuarters() {
-    return {
-        name: QUARTER,
-        label: i18n.t('Quarter'),
-        options: { 1: 'Q1', 2: 'Q2', 3: 'Q3', 4: 'Q4' },
-    };
-}
-
-function getSixMonthly() {
-    return {
-        name: SIX_MONTH,
-        label: i18n.t('Six month period'),
-        options: { 1: 'jan-jun', 2: 'jul-dec' },
-    };
-}
-
-function getSixMonthlyApril() {
-    return {
-        name: SIX_MONTH,
-        label: i18n.t('Six month period - April'),
-        options: { 1: 'apr-sep', 2: 'oct-mar' },
-    };
-}
-
-function getSixMonthlyNov() {
-    return {
-        name: SIX_MONTH,
-        label: i18n.t('Six month period - November'),
-        options: { 1: 'nov-apr', 2: 'may-oct' },
-    };
-}
-
-function getYears() {
-    const currentYear = new Date().getFullYear();
-    const startYear = 2014; // why?
-    const length = currentYear + 5 - startYear; // why again?
-
-    return {
-        name: YEAR,
-        label: i18n.t('Year'),
-        options: createSequence(length, startYear).reduce(
-            (acc, val) => setProperty(acc, val, val),
-            {}
-        ),
-    };
-}
-
-function createSequence(length, start = 1) {
-    return Array.from({ length }, (v, i) => (start + i).toString());
-}
-
-function setProperty(obj, key, value) {
-    obj[key] = value;
-    return obj;
-}
-
-function zeroPad(str) {
-    return `0${str}`.substr(-2);
-}
-
-function getMonthFromId(periodId) {
-    return periodId.substr(4, 2);
-}
-
-function getYearFromId(periodId) {
-    return periodId.substr(0, 4);
-}
-
-function createDayBasedPeriodFieldUpdater(_periodId, startDate) {
-    const date = new Date(startDate);
-    return {
-        [DAY]: date.getDay().toString(),
-        [MONTH]: (date.getMonth() + 1).toString(),
-        [YEAR]: date.getFullYear().toString(),
-    };
-}
-
-function createWeekBasedPeriodFieldUpdater(periodId) {
-    return {
-        [WEEK]: periodId.split('W')[1],
-        [YEAR]: getYearFromId(periodId),
-    };
-}
-
-function createSixMonthsBasedPeriodFieldUpdater(periodId) {
-    return {
-        [SIX_MONTH]: periodId.split('S')[1],
-        [YEAR]: getYearFromId(periodId),
-    };
-}
-
-function createYearBasedPeriodFieldUpdater(periodId) {
-    return {
-        [YEAR]: getYearFromId(periodId),
-    };
-}
-
-function hasValues(state, propKeys) {
-    return propKeys.every(key => !!state[key]);
-}
-
-function hasWeekBasedValues(state) {
-    return hasValues(state, [WEEK, YEAR]);
-}
-
-function hasSixMonthBasedValues(state) {
-    return hasValues(state, [SIX_MONTH, YEAR]);
-}
-
-function hasYearBasedValues(state) {
-    return !!state[YEAR];
-}
-
-function asInts(state, propKeys) {
-    return propKeys.map(key => parseInt(state[key]));
-}
-
-function getInvalidDayNumberError(state) {
-    const [year, month, day] = asInts(state, [YEAR, MONTH, DAY]);
-    const daysInMonth = new Date(year, month, 0).getDate();
-
-    if (day <= daysInMonth) {
-        return null;
-    }
-    return i18n.t('Day number too high for current month');
-}
-
-function isWeekNumberTooHigh(week, year) {
-    return !is53WeekISOYear(year) && week === 53;
-}
-
-function getInvalidWeekNumberError(state) {
-    const [year, week] = asInts(state, [YEAR, WEEK]);
-    if (isWeekNumberTooHigh(week, year)) {
-        return i18n.t('Week number too high for current year');
-    }
-    return null;
-}
-
-function getInvalidBiWeekNumberError(state) {
-    const [year, biWeek] = asInts(state, [YEAR, BI_WEEK]);
-    const week = biWeek * 2 - 1;
-    if (isWeekNumberTooHigh(week, year)) {
-        return i18n.t('Bi-week number too high for current year');
-    }
-}
+export default periodTypeLookup;

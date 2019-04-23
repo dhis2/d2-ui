@@ -1,4 +1,4 @@
-import { periodTypeMap } from './periodTypeMap';
+import periodTypeLookup from './lookup';
 
 export default function checkForUnsupportedPeriodTypes(periodTypes) {
     if (process.env.NODE_ENV !== 'development') {
@@ -6,7 +6,7 @@ export default function checkForUnsupportedPeriodTypes(periodTypes) {
     }
 
     const unsupportedPeriodTypes = periodTypes
-        .filter(({ name }) => !periodTypeMap.get(name))
+        .filter(({ name }) => !periodTypeLookup.get(name))
         .map(({ name }) => name)
         .join(', ');
 
