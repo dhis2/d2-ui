@@ -250,6 +250,17 @@ const periodTypeLookup = new Map([
             createPeriodFieldUpdater: createYearBasedPeriodFieldUpdater,
         },
     ],
+    [
+        'FinancialNov',
+        {
+            label: i18n.t('Financial year starting in November'),
+            // YYYY"Oct"
+            getPeriodId: state => state[YEAR] + 'Nov',
+            hasRequiredValues: hasYearBasedValues,
+            getPeriodFields: () => yearlyOptionList,
+            createPeriodFieldUpdater: createYearBasedPeriodFieldUpdater,
+        },
+    ],
 ]);
 
 periodTypeLookup.forEach(periodType => {
