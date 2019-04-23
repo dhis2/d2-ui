@@ -1,20 +1,20 @@
-import React, { PureComponent, Fragment } from 'react';
-import PropTypes from 'prop-types';
 import i18n from '@dhis2/d2-i18n';
-import parsePeriod from 'd2/period/parser';
 import { withStyles } from '@material-ui/core/styles';
-import periodTypeLookup from '../periodTypes/lookup';
+import parsePeriod from 'd2/period/parser';
+import PropTypes from 'prop-types';
+import React, { Fragment, PureComponent } from 'react';
+import checkForUnsupportedPeriodTypes from '../periodTypes/checkForUnsupportedPeriodTypes';
 import {
-    DAY,
-    WEEK,
-    BI_WEEK,
-    MONTH,
     BI_MONTH,
+    BI_WEEK,
+    DAY,
+    MONTH,
     QUARTER,
     SIX_MONTH,
+    WEEK,
     YEAR,
 } from '../periodTypes/distinctTypes';
-import checkForUnsupportedPeriodTypes from '../periodTypes/checkForUnsupportedPeriodTypes';
+import periodTypeLookup from '../periodTypes/lookup';
 import Form from './Form';
 import Loader from './Loader';
 

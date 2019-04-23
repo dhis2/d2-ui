@@ -1,10 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
-import MUISelect from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
+import MUISelect from '@material-ui/core/Select';
 import { withStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 const styles = theme => ({
     formControl: {

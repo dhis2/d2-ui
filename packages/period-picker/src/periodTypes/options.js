@@ -1,12 +1,12 @@
 import i18n from '@dhis2/d2-i18n';
 import {
-    DAY,
-    WEEK,
-    BI_WEEK,
-    MONTH,
     BI_MONTH,
+    BI_WEEK,
+    DAY,
+    MONTH,
     QUARTER,
     SIX_MONTH,
+    WEEK,
     YEAR,
 } from './distinctTypes';
 

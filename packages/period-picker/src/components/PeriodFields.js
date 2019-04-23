@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Select from './Select';
+import PropTypes from 'prop-types';
+import React from 'react';
 import periodTypeLookup from '../periodTypes/lookup';
+import Select from './Select';
 
 const styles = theme => ({
     flexContainer: {
