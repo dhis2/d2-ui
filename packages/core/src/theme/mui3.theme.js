@@ -165,6 +165,9 @@ export const theme = {
                 },
             },
         },
+        MuiMenu: {
+            disableAutoFocusItem: true,
+        },
         MuiMenuItem: {
             root: {
                 paddingTop: spacingUnit,
