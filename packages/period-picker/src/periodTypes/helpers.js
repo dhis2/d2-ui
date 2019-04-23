@@ -2,7 +2,7 @@ import i18n from '@dhis2/d2-i18n';
 import { is53WeekISOYear } from 'd2/period/helpers';
 import { DAY, WEEK, BI_WEEK, MONTH, SIX_MONTH, YEAR } from './distinctTypes';
 
-export const neverAnError = () => null;
+export const neverAnError = () => '';
 
 export const zeroPad = str => `0${str}`.substr(-2);
 
@@ -47,26 +47,24 @@ export const getInvalidDayNumberError = state => {
     const [year, month, day] = asInts(state, [YEAR, MONTH, DAY]);
     const daysInMonth = new Date(year, month, 0).getDate();
 
-    if (day <= daysInMonth) {
-        return null;
-    }
-    return i18n.t('Day number too high for current month');
+    return day > daysInMonth
+        ? i18n.t('Day number too high for current month')
+        : '';
 };
 
 export const getInvalidWeekNumberError = state => {
     const [year, week] = asInts(state, [YEAR, WEEK]);
-    if (isWeekNumberTooHigh(week, year)) {
-        return i18n.t('Week number too high for current year');
-    }
-    return null;
+    return isWeekNumberTooHigh(week, year)
+        ? i18n.t('Week number too high for current year')
+        : '';
 };
 
 export const getInvalidBiWeekNumberError = state => {
     const [year, biWeek] = asInts(state, [YEAR, BI_WEEK]);
     const week = biWeek * 2 - 1;
-    if (isWeekNumberTooHigh(week, year)) {
-        return i18n.t('Bi-week number too high for current year');
-    }
+    return isWeekNumberTooHigh(week, year)
+        ? i18n.t('Bi-week number too high for current year')
+        : '';
 };
 
 const asInts = (state, propKeys) => propKeys.map(key => parseInt(state[key]));
