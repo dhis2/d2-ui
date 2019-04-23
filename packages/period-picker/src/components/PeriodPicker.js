@@ -2,7 +2,6 @@ import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import i18n from '@dhis2/d2-i18n';
 import parsePeriod from 'd2/period/parser';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import { withStyles } from '@material-ui/core/styles';
 import periodTypeLookup from '../periodTypes/lookup';
 import {
@@ -16,16 +15,18 @@ import {
     YEAR,
 } from '../periodTypes/distinctTypes';
 import checkForUnsupportedPeriodTypes from '../periodTypes/checkForUnsupportedPeriodTypes';
-import Select from './Select';
-import PeriodFields from './PeriodFields';
+import Form from './Form';
+import Loader from './Loader';
 
 const styles = theme => {
     return {
-        error: {
-            color: theme.colors.negative,
-        },
-        helper: {
-            margin: 8,
+        label: {
+            fontSize: '1.2rem',
+            fontWeight: '300',
+            color: 'rgba(0, 0, 0, 0.87)',
+            padding: '16px 8px 0px',
+            margin: '0px',
+            flex: '1 0 120px',
         },
     };
 };
@@ -36,7 +37,7 @@ let periodTypes;
 
 class PeriodPicker extends PureComponent {
     state = {
-        ready: false,
+        isLoading: true,
         periodType: '',
         errorText: '',
         [DAY]: '',
@@ -89,9 +90,17 @@ class PeriodPicker extends PureComponent {
 
     async componentDidMount() {
         if (!periodTypes) {
-            await this.fetchPeriodTypes();
+            try {
+                await this.fetchPeriodTypes();
+                this.updateStateFromPeriodId();
+            } catch (error) {
+                console.error(error);
+                const errorText = i18n.t(
+                    'There was a problem fetching the period types'
+                );
+                this.setState({ errorText, isLoading: false });
+            }
         }
-        this.updateStateFromPeriodId();
     }
 
     componentDidUpdate(prevProps) {
@@ -101,83 +110,68 @@ class PeriodPicker extends PureComponent {
     }
 
     async fetchPeriodTypes() {
-        try {
-            const response = await this.api.get('periodTypes');
-            periodTypes = response.periodTypes.reduce((acc, { name }) => {
-                const supportedPeriod = periodTypeLookup.get(name);
-                if (supportedPeriod) {
-                    acc[name] = supportedPeriod.label;
-                }
-                return acc;
-            }, {});
-            checkForUnsupportedPeriodTypes(response.periodTypes);
-        } catch (error) {
-            console.error(error);
-            this.setState({
-                errorText: i18n.t(
-                    'There was a problem fetching the period types'
-                ),
-            });
-        }
+        const response = await this.api.get('periodTypes');
+        periodTypes = response.periodTypes.reduce((acc, { name }) => {
+            const supportedPeriod = periodTypeLookup.get(name);
+            if (supportedPeriod) {
+                acc[name] = supportedPeriod.label;
+            }
+            return acc;
+        }, {});
+        checkForUnsupportedPeriodTypes(response.periodTypes);
     }
 
     updateStateFromPeriodId() {
         const periodId = this.props.value;
         let periodType = '';
         let errorText = '';
-        let updateObject = {};
+        let periodFieldsUpdateObject = {};
         if (periodId) {
             try {
                 const period = parsePeriod(periodId);
                 periodType = period.type;
-                updateObject = periodTypeLookup
+                periodFieldsUpdateObject = periodTypeLookup
                     .get(periodType)
                     .createPeriodFieldUpdater(period.id, period.startDate);
             } catch (error) {
                 // This should only be triggered when an invalid value is set via props
                 console.error(error);
-                errorText = i18n.t('Invalid period detected');
+                errorText = error.message;
             }
         }
-        this.setState({ periodType, errorText, ready: true, ...updateObject });
+        this.setState({
+            periodType,
+            errorText,
+            isLoading: false,
+            ...periodFieldsUpdateObject,
+        });
+    }
+
+    renderFormFields() {
+        return;
     }
 
     render() {
-        if (!periodTypes) {
-            return <h1>Loading...</h1>;
-        }
-
         return (
             <Fragment>
-                <Select
-                    name="periodType"
-                    label={i18n.t('Period type')}
-                    value={this.state.periodType}
-                    onChange={this.onPeriodTypeChange}
-                    options={periodTypes}
-                />
-                {this.state.periodType && (
-                    <PeriodFields
+                {this.props.label && (
+                    <h4 className={this.props.classes.label}>
+                        {this.props.label}
+                    </h4>
+                )}
+                {this.state.isLoading ? (
+                    <Loader />
+                ) : (
+                    <Form
+                        periodTypes={periodTypes}
                         periodType={this.state.periodType}
-                        onChange={this.onPeriodFieldChange}
-                        getValue={this.getValueForPeriodFieldType}
+                        onPeriodTypeChange={this.onPeriodTypeChange}
+                        onPeriodFieldChange={this.onPeriodFieldChange}
+                        getFieldValue={this.getValueForPeriodFieldType}
+                        errorText={this.state.errorText}
+                        value={this.props.value}
                     />
                 )}
-                {this.state.errorText && (
-                    <FormHelperText
-                        className={`${this.props.classes.error}  ${
-                            this.props.classes.helper
-                        }`}
-                    >
-                        {this.state.errorText}
-                    </FormHelperText>
-                )}
-                {this.props.value &&
-                    !this.state.errorText && (
-                        <FormHelperText className={this.props.classes.helper}>
-                            {parsePeriod(this.props.value).name}
-                        </FormHelperText>
-                    )}
             </Fragment>
         );
     }
@@ -185,9 +179,15 @@ class PeriodPicker extends PureComponent {
 
 PeriodPicker.propTypes = {
     d2: PropTypes.object.isRequired,
+    label: PropTypes.string,
     value: PropTypes.string,
     onChange: PropTypes.func.isRequired,
     classes: PropTypes.object.isRequired,
+};
+
+PeriodPicker.defaultProps = {
+    label: '',
+    value: '',
 };
 
 export default withStyles(styles)(PeriodPicker);
