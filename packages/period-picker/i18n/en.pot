@@ -5,16 +5,22 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2019-04-18T19:44:55.460Z\n"
-"PO-Revision-Date: 2019-04-18T19:44:55.460Z\n"
-
-msgid "There was a problem fetching the period types"
-msgstr ""
-
-msgid "Invalid period detected"
-msgstr ""
+"POT-Creation-Date: 2019-04-23T14:42:30.292Z\n"
+"PO-Revision-Date: 2019-04-23T14:42:30.292Z\n"
 
 msgid "Period type"
+msgstr ""
+
+msgid "Could not load period types"
+msgstr ""
+
+msgid "Day number too high for current month"
+msgstr ""
+
+msgid "Week number too high for current year"
+msgstr ""
+
+msgid "Bi-week number too high for current year"
 msgstr ""
 
 msgid "Daily"
@@ -68,6 +74,9 @@ msgstr ""
 msgid "Financial year starting in October"
 msgstr ""
 
+msgid "Financial year starting in November"
+msgstr ""
+
 msgid "Day"
 msgstr ""
 
@@ -96,13 +105,4 @@ msgid "Six month period - November"
 msgstr ""
 
 msgid "Year"
-msgstr ""
-
-msgid "Day number too high for current month"
-msgstr ""
-
-msgid "Week number too high for current year"
-msgstr ""
-
-msgid "Bi-week number too high for current year"
 msgstr ""
