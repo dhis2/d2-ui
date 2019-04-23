@@ -95,9 +95,7 @@ class PeriodPicker extends PureComponent {
                 this.updateStateFromPeriodId();
             } catch (error) {
                 console.error(error);
-                const errorText = i18n.t(
-                    'There was a problem fetching the period types'
-                );
+                const errorText = i18n.t('Could not load period types');
                 this.setState({ errorText, isLoading: false });
             }
         }
@@ -123,9 +121,10 @@ class PeriodPicker extends PureComponent {
 
     updateStateFromPeriodId() {
         const periodId = this.props.value;
-        let periodType = '';
-        let errorText = '';
+        let periodType = this.state.periodType;
+        let errorText = this.state.errorText;
         let periodFieldsUpdateObject = {};
+
         if (periodId) {
             try {
                 const period = parsePeriod(periodId);
