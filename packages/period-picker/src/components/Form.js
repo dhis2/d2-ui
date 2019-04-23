@@ -1,9 +1,9 @@
-import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
 import i18n from '@dhis2/d2-i18n';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import { withStyles } from '@material-ui/core/styles';
 import parsePeriod from 'd2/period/parser';
+import PropTypes from 'prop-types';
+import React, { Fragment } from 'react';
 import PeriodFields from './PeriodFields';
 import Select from './Select';
 

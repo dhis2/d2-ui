@@ -1,6 +1,6 @@
 import i18n from '@dhis2/d2-i18n';
 import { is53WeekISOYear } from 'd2/period/helpers';
-import { DAY, WEEK, BI_WEEK, MONTH, SIX_MONTH, YEAR } from './distinctTypes';
+import { BI_WEEK, DAY, MONTH, SIX_MONTH, WEEK, YEAR } from './distinctTypes';
 
 export const neverAnError = () => '';
 
