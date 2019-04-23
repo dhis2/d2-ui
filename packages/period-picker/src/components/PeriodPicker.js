@@ -51,11 +51,7 @@ class PeriodPicker extends PureComponent {
     };
     api = this.props.d2.Api.getApi();
 
-    onPeriodTypeChange = ({ target }) => {
-        this.setState({ periodType: target.value, errorText: '' });
-    };
-
-    onPeriodFieldChange = ({ target }) => {
+    onChange = ({ target }) => {
         this.setState({ [target.name]: target.value });
         let errorText = this.state.errorText;
         const futureState = {
@@ -72,6 +68,7 @@ class PeriodPicker extends PureComponent {
 
                 try {
                     const period = parsePeriod(periodId);
+                    // All is well: proceed
                     errorText = '';
                     this.props.onChange(period.id);
                 } catch (error) {
@@ -164,8 +161,7 @@ class PeriodPicker extends PureComponent {
                     <Form
                         periodTypes={periodTypes}
                         periodType={this.state.periodType}
-                        onPeriodTypeChange={this.onPeriodTypeChange}
-                        onPeriodFieldChange={this.onPeriodFieldChange}
+                        onChange={this.onChange}
                         getFieldValue={this.getValueForPeriodFieldType}
                         errorText={this.state.errorText}
                         value={this.props.value}

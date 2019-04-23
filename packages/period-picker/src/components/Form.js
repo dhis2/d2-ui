@@ -21,8 +21,7 @@ const styles = theme => {
 const Form = ({
     periodTypes,
     periodType,
-    onPeriodTypeChange,
-    onPeriodFieldChange,
+    onChange,
     getFieldValue,
     errorText,
     value,
@@ -34,14 +33,14 @@ const Form = ({
                 name="periodType"
                 label={i18n.t('Period type')}
                 value={periodType}
-                onChange={onPeriodTypeChange}
+                onChange={onChange}
                 options={periodTypes}
             />
         )}
         {periodType && (
             <PeriodFields
                 periodType={periodType}
-                onChange={onPeriodFieldChange}
+                onChange={onChange}
                 getValue={getFieldValue}
             />
         )}
@@ -62,8 +61,7 @@ const Form = ({
 Form.propTypes = {
     periodTypes: PropTypes.object.isRequired,
     periodType: PropTypes.string.isRequired,
-    onPeriodTypeChange: PropTypes.func.isRequired,
-    onPeriodFieldChange: PropTypes.func.isRequired,
+    onChange: PropTypes.func.isRequired,
     getFieldValue: PropTypes.func.isRequired,
     errorText: PropTypes.string.isRequired,
     value: PropTypes.string.isRequired,
