@@ -56,7 +56,7 @@ class PeriodPicker extends PureComponent {
 
     onPeriodFieldChange = ({ target }) => {
         this.setState({ [target.name]: target.value });
-
+        let errorText = this.state.errorText;
         const futureState = {
             ...this.state,
             [target.name]: target.value,
@@ -64,22 +64,25 @@ class PeriodPicker extends PureComponent {
         const periodType = periodTypeLookup.get(futureState.periodType);
 
         if (periodType.hasRequiredValues(futureState)) {
-            const errorText = periodType.getError(futureState);
+            errorText = periodType.getError(futureState);
 
-            if (errorText) {
-                this.setState({ errorText });
-            } else {
+            if (!errorText) {
                 const periodId = periodType.getPeriodId(futureState);
 
                 try {
                     const period = parsePeriod(periodId);
-                    this.setState({ errorText: '' });
+                    errorText = '';
                     this.props.onChange(period.id);
                 } catch (error) {
-                    this.setState({ errorText: error.message });
+                    errorText = error.message;
                 }
             }
         }
+
+        this.setState({
+            [target.name]: target.value,
+            errorText,
+        });
     };
 
     getValueForPeriodFieldType = type => this.state[type];
