@@ -13,7 +13,7 @@ export const getYearFromId = periodId => periodId.substr(0, 4);
 export const createDayBasedPeriodFieldUpdater = (_periodId, startDate) => {
     const date = new Date(startDate);
     return {
-        [DAY]: date.getDay().toString(),
+        [DAY]: date.getDate().toString(),
         [MONTH]: (date.getMonth() + 1).toString(),
         [YEAR]: date.getFullYear().toString(),
     };
