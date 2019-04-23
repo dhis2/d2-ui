@@ -6,7 +6,8 @@ export const neverAnError = () => '';
 
 export const zeroPad = str => `0${str}`.substr(-2);
 
-export const getMonthFromId = periodId => periodId.substr(4, 2);
+export const getMonthFromId = periodId =>
+    parseInt(periodId.substr(4, 2)).toString();
 
 export const getYearFromId = periodId => periodId.substr(0, 4);
 
@@ -20,7 +21,7 @@ export const createDayBasedPeriodFieldUpdater = (_periodId, startDate) => {
 };
 
 export const createWeekBasedPeriodFieldUpdater = periodId => ({
-    [WEEK]: periodId.split('W')[1],
+    [WEEK]: periodId.substring(periodId.lastIndexOf('W') + 1),
     [YEAR]: getYearFromId(periodId),
 });
 
