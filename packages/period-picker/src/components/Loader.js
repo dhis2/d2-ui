@@ -12,7 +12,7 @@ const styles = () => {
     };
 };
 
-const Loader = ({ classes }) => {
+export const Loader = ({ classes }) => {
     return (
         <div className={classes.loader}>
             <CircularProgress size={29.5} thickness={2.5} />

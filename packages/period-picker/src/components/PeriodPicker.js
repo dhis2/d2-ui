@@ -18,6 +18,8 @@ import periodTypeLookup from '../periodTypes/lookup';
 import Form from './Form';
 import Loader from './Loader';
 
+export const PERIOD_TYPES_ENDPOINT = 'periodTypes';
+
 const styles = theme => {
     return {
         label: {
@@ -33,9 +35,9 @@ const styles = theme => {
 
 // Period types can be cached for the entire app lifecycle
 // because they won't change
-let periodTypes;
+export let periodTypes;
 
-class PeriodPicker extends PureComponent {
+export class PeriodPicker extends PureComponent {
     state = {
         isLoading: true,
         periodType: '',
@@ -95,6 +97,8 @@ class PeriodPicker extends PureComponent {
                 const errorText = i18n.t('Could not load period types');
                 this.setState({ errorText, isLoading: false });
             }
+        } else {
+            this.updateStateFromPeriodId();
         }
     }
 
@@ -105,7 +109,7 @@ class PeriodPicker extends PureComponent {
     }
 
     async fetchPeriodTypes() {
-        const response = await this.api.get('periodTypes');
+        const response = await this.api.get(PERIOD_TYPES_ENDPOINT);
         periodTypes = response.periodTypes.reduce((acc, { name }) => {
             const supportedPeriod = periodTypeLookup.get(name);
             if (supportedPeriod) {

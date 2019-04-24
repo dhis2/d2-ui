@@ -1,0 +1,133 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Select/> Matches the snapshot 1`] = `
+<WithStyles(FormControl)
+  className="formControl"
+>
+  <WithStyles(InputLabel)
+    htmlFor="test"
+  >
+    This is a test
+  </WithStyles(InputLabel)>
+  <WithStyles(Select)
+    autoWidth={true}
+    inputProps={
+      Object {
+        "id": "test",
+        "name": "test",
+      }
+    }
+    onChange={[MockFunction]}
+    value="Daily"
+  >
+    <WithStyles(MenuItem)
+      key="Daily"
+      value="Daily"
+    >
+      Daily
+    </WithStyles(MenuItem)>
+    <WithStyles(MenuItem)
+      key="Weekly"
+      value="Weekly"
+    >
+      Weekly
+    </WithStyles(MenuItem)>
+    <WithStyles(MenuItem)
+      key="WeeklyWednesday"
+      value="WeeklyWednesday"
+    >
+      Weekly Wednesday
+    </WithStyles(MenuItem)>
+    <WithStyles(MenuItem)
+      key="WeeklyThursday"
+      value="WeeklyThursday"
+    >
+      Weekly Thursday
+    </WithStyles(MenuItem)>
+    <WithStyles(MenuItem)
+      key="WeeklySaturday"
+      value="WeeklySaturday"
+    >
+      Weekly Saturday
+    </WithStyles(MenuItem)>
+    <WithStyles(MenuItem)
+      key="WeeklySunday"
+      value="WeeklySunday"
+    >
+      Weekly Sunday
+    </WithStyles(MenuItem)>
+    <WithStyles(MenuItem)
+      key="BiWeekly"
+      value="BiWeekly"
+    >
+      Bi weekly
+    </WithStyles(MenuItem)>
+    <WithStyles(MenuItem)
+      key="Monthly"
+      value="Monthly"
+    >
+      Monthly
+    </WithStyles(MenuItem)>
+    <WithStyles(MenuItem)
+      key="BiMonthly"
+      value="BiMonthly"
+    >
+      Bi-monthly
+    </WithStyles(MenuItem)>
+    <WithStyles(MenuItem)
+      key="Quarterly"
+      value="Quarterly"
+    >
+      Quarterly
+    </WithStyles(MenuItem)>
+    <WithStyles(MenuItem)
+      key="SixMonthly"
+      value="SixMonthly"
+    >
+      Six monthly
+    </WithStyles(MenuItem)>
+    <WithStyles(MenuItem)
+      key="SixMonthlyApril"
+      value="SixMonthlyApril"
+    >
+      Six monthly starting in April
+    </WithStyles(MenuItem)>
+    <WithStyles(MenuItem)
+      key="SixMonthlyNov"
+      value="SixMonthlyNov"
+    >
+      Six monthly starting in November
+    </WithStyles(MenuItem)>
+    <WithStyles(MenuItem)
+      key="Yearly"
+      value="Yearly"
+    >
+      Yearly
+    </WithStyles(MenuItem)>
+    <WithStyles(MenuItem)
+      key="FinancialApril"
+      value="FinancialApril"
+    >
+      Financial year starting in April
+    </WithStyles(MenuItem)>
+    <WithStyles(MenuItem)
+      key="FinancialJuly"
+      value="FinancialJuly"
+    >
+      Financial year starting in July
+    </WithStyles(MenuItem)>
+    <WithStyles(MenuItem)
+      key="FinancialOct"
+      value="FinancialOct"
+    >
+      Financial year starting in October
+    </WithStyles(MenuItem)>
+    <WithStyles(MenuItem)
+      key="FinancialNov"
+      value="FinancialNov"
+    >
+      Financial year starting in November
+    </WithStyles(MenuItem)>
+  </WithStyles(Select)>
+</WithStyles(FormControl)>
+`;
