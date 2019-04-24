@@ -10,10 +10,10 @@
     "build": "npm run localize && babel src --copy-files --out-dir build --ignore spec.js",
     "lint": "eslint src/",
     "watch": "npm run build -- --watch",
-    "test-ci": "jest --config=../../jest.config.js packages/file-menu",
+    "test-ci": "jest --config=../../jest.config.js packages/period-picker",
     "extract-pot": "d2-i18n-extract -p src/ -o i18n/",
     "prettify": "prettier \"src/**/*.{js,jsx,json,css}\" --write",
-    "localize": "npm run extract-pot && d2-i18n-generate -n d2-ui-file-menu -p ./i18n/ -o ./src/locales/"
+    "localize": "npm run extract-pot && d2-i18n-generate -n d2-ui-period-picker -p ./i18n/ -o ./src/locales/"
   },
   "repository": {
     "type": "git",

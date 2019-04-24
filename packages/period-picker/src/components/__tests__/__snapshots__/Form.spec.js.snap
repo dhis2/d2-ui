@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Form/> Renders a parsed period below the <Select/> and <PeriodFields/> if there is a valid value 1`] = `
+<Fragment>
+  <WithStyles(Select)
+    label="Period type"
+    name="periodType"
+    onChange={[MockFunction]}
+    options={
+      Object {
+        "BiMonthly": "Bi-monthly",
+        "BiWeekly": "Bi weekly",
+        "Daily": "Daily",
+        "FinancialApril": "Financial year starting in April",
+        "FinancialJuly": "Financial year starting in July",
+        "FinancialNov": "Financial year starting in November",
+        "FinancialOct": "Financial year starting in October",
+        "Monthly": "Monthly",
+        "Quarterly": "Quarterly",
+        "SixMonthly": "Six monthly",
+        "SixMonthlyApril": "Six monthly starting in April",
+        "SixMonthlyNov": "Six monthly starting in November",
+        "Weekly": "Weekly",
+        "WeeklySaturday": "Weekly Saturday",
+        "WeeklySunday": "Weekly Sunday",
+        "WeeklyThursday": "Weekly Thursday",
+        "WeeklyWednesday": "Weekly Wednesday",
+        "Yearly": "Yearly",
+      }
+    }
+    value="WeeklyWednesday"
+  />
+  <WithStyles(PeriodFields)
+    getValue={[MockFunction]}
+    onChange={[MockFunction]}
+    periodType="WeeklyWednesday"
+  />
+  <WithStyles(FormHelperText)
+    className="helper"
+  >
+    2020 W12 March 18 - 24
+  </WithStyles(FormHelperText)>
+</Fragment>
+`;

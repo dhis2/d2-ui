@@ -18,7 +18,7 @@ const styles = theme => {
     };
 };
 
-const Form = ({
+export const Form = ({
     periodTypes,
     periodType,
     onChange,
@@ -59,7 +59,7 @@ const Form = ({
 );
 
 Form.propTypes = {
-    periodTypes: PropTypes.object.isRequired,
+    periodTypes: PropTypes.object,
     periodType: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
     getFieldValue: PropTypes.func.isRequired,

@@ -11,7 +11,7 @@ const styles = theme => ({
     },
 });
 
-const PeriodFields = ({ periodType, onChange, getValue, classes }) => {
+export const PeriodFields = ({ periodType, onChange, getValue, classes }) => {
     const periodFields = periodTypeLookup.get(periodType).getPeriodFields();
 
     return (

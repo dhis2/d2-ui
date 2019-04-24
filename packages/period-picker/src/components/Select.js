@@ -13,7 +13,7 @@ const styles = theme => ({
     },
 });
 
-const Select = ({ name, label, value, onChange, options, classes }) => (
+export const Select = ({ name, label, value, onChange, options, classes }) => (
     <FormControl className={classes.formControl}>
         <InputLabel htmlFor={name}>{label}</InputLabel>
         <MUISelect
