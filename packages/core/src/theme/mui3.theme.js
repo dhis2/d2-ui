@@ -88,6 +88,11 @@ export const theme = {
     spacing: {
         unit: spacingUnit,
     },
+    props: {
+        MuiMenu: {
+            disableAutoFocusItem: true,
+        },
+    },
     overrides: {
         MuiDivider: {
             light: {
