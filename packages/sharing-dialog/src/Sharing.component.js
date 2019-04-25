@@ -114,7 +114,7 @@ class Sharing extends React.Component {
                 <Heading text={displayName} level={2} />
                 <CreatedBy author={user} />
                 <div style={styles.titleBodySpace} />
-                <Typography variant="subheading">{this.context.d2.i18n.getTranslation('who_has_access')}</Typography>
+                <Typography variant="subtitle1">{this.context.d2.i18n.getTranslation('who_has_access')}</Typography>
                 <Divider />
                 <div style={styles.rules} ref={this.setAccessListRef}>
                     <PublicAccess

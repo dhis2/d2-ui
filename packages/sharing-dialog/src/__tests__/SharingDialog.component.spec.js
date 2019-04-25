@@ -110,10 +110,25 @@ describe('Sharing: SharingDialog component', () => {
             sharingDialogComponent.instance().closeDialog();
             expect(onRequestClose).toHaveBeenCalledTimes(1);
         });
+    });
 
-        it('triggers onConfirm from the props when the confirmAndCloseDialog is called', () => {
-            sharingDialogComponent.instance().confirmAndCloseDialog();
+    describe('when prop doNotPost is true', () => {
+        beforeEach(() => {
+            onRequestClose = jest.fn();
+            onConfirm = jest.fn();
+            sharingDialogComponent = renderComponent({
+                ...sharingDialogProps,
+                d2: context.d2,
+                onRequestClose,
+                onConfirm,
+                doNotPost: true,
+            });
+        });
+
+        it('triggers onConfirm from the props when the closeDialog is called', () => {
+            sharingDialogComponent.instance().closeDialog();
             expect(onConfirm).toHaveBeenCalledTimes(1);
+            expect(onRequestClose).toHaveBeenCalledTimes(0);
         });
     });
 
