@@ -38,9 +38,10 @@ export class NewCommentField extends React.Component {
         this.setState({ text: newValue });
     };
 
-    setNativeInputVal = val => {
+    setNativeInputVal = (val, caretPos) => {
         const node = this.textarea.current;
         node.value = val;
+        node.setSelectionRange(caretPos, caretPos)
     };
 
     onKeyDown = event => {
