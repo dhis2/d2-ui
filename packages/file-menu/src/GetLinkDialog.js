@@ -13,10 +13,12 @@ const getAppUrl = (fileType, fileId, context) => {
     const baseUrl = context.d2.Api.getApi().baseUrl.split('/api', 1)[0];
 
     let appName;
+    let appUrl;
 
     switch (fileType) {
         case 'chart':
             appName = 'dhis-web-data-visualizer';
+            appUrl = `dhis-web-data-visualizer/#/${fileId}`;
             break;
         case 'reportTable':
             appName = 'dhis-web-pivot';
@@ -36,7 +38,9 @@ const getAppUrl = (fileType, fileId, context) => {
 
     // DHIS2-4253: force URL to be absolute
     const url = new URL(
-        `${baseUrl}/${appName}/index.html?id=${fileId}`,
+        appUrl
+            ? `${baseUrl}/${appUrl}`
+            : `${baseUrl}/${appName}/index.html?id=${fileId}`,
         `${window.location.origin}${window.location.pathname}`
     );
 
@@ -61,7 +65,7 @@ const GetLinkDialog = (props, context) => {
                         {i18n.t('Open in web API')}
                         <br />
                         <a href={`${fileModel.href}/data.html+css`}>
-                            {fileModel.href}/data.html+css
+                            {`${fileModel.href}/data.html+css`}
                         </a>
                     </DialogContentText>
                 )}
@@ -88,7 +92,13 @@ GetLinkDialog.defaultProps = {
 
 GetLinkDialog.propTypes = {
     open: PropTypes.bool,
-    fileType: PropTypes.oneOf(['chart', 'eventChart', 'reportTable', 'eventReport', 'map']),
+    fileType: PropTypes.oneOf([
+        'chart',
+        'eventChart',
+        'reportTable',
+        'eventReport',
+        'map',
+    ]),
     fileModel: PropTypes.object,
     onRequestClose: PropTypes.func,
 };
