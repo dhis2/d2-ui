@@ -66,6 +66,7 @@ export const loadChildren = (root, displayNameProperty, forceReloadChildren) => 
     const fields = [
         'id',
         `${displayNameProperty}~rename(displayName)`,
+        'code',
         'children::isNotEmpty',
         'path',
         'parent',
