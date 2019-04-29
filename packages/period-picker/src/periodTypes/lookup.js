@@ -14,16 +14,17 @@ import {
     createSixMonthsBasedPeriodFieldUpdater,
     createWeekBasedPeriodFieldUpdater,
     createYearBasedPeriodFieldUpdater,
+    createBiWeeklyPeriodFieldUpdater,
+    createMonthlyPeriodFieldUpdater,
+    createBiMonthlyPeriodFieldUpdater,
+    createQuarterlyPeriodFieldUpdater,
     getInvalidBiWeekNumberError,
     getInvalidDayNumberError,
     getInvalidWeekNumberError,
-    getMonthFromId,
-    getYearFromId,
-    hasSixMonthBasedValues,
-    hasValues,
-    hasWeekBasedValues,
-    hasYearBasedValues,
     neverAnError,
+    createHasRequiredValues,
+    createGetPeriodFields,
+    createGetPeriodId,
 } from './helpers';
 import {
     biMonths,
@@ -45,9 +46,9 @@ const periodTypeLookup = new Map([
         {
             label: i18n.t('Daily'),
             // YYYYMMDD
-            getPeriodId: state => state[YEAR] + state[MONTH] + state[DAY],
-            hasRequiredValues: state => hasValues(state, [DAY, MONTH, YEAR]),
-            getPeriodFields: () => ({ days, months, years }),
+            getPeriodId: createGetPeriodId(`${YEAR}${MONTH}${DAY}`),
+            hasRequiredValues: createHasRequiredValues([DAY, MONTH, YEAR]),
+            getPeriodFields: createGetPeriodFields({ days, months, years }),
             createPeriodFieldUpdater: createDayBasedPeriodFieldUpdater,
             getError: getInvalidDayNumberError,
         },
@@ -57,9 +58,9 @@ const periodTypeLookup = new Map([
         {
             label: i18n.t('Weekly'),
             // YYYY"W"[1-53]
-            getPeriodId: state => state[YEAR] + 'W' + state[WEEK],
-            hasRequiredValues: hasWeekBasedValues,
-            getPeriodFields: () => weeklyOptionList,
+            getPeriodId: createGetPeriodId(`${YEAR}W${WEEK}`),
+            hasRequiredValues: createHasRequiredValues([WEEK, YEAR]),
+            getPeriodFields: createGetPeriodFields(weeklyOptionList),
             createPeriodFieldUpdater: createWeekBasedPeriodFieldUpdater,
             getError: getInvalidWeekNumberError,
         },
@@ -69,9 +70,9 @@ const periodTypeLookup = new Map([
         {
             label: i18n.t('Weekly Wednesday'),
             // YYYY"WedW"[1-53]
-            getPeriodId: state => state[YEAR] + 'WedW' + state[WEEK],
-            hasRequiredValues: hasWeekBasedValues,
-            getPeriodFields: () => weeklyOptionList,
+            getPeriodId: createGetPeriodId(`${YEAR}WedW${WEEK}`),
+            hasRequiredValues: createHasRequiredValues([WEEK, YEAR]),
+            getPeriodFields: createGetPeriodFields(weeklyOptionList),
             createPeriodFieldUpdater: createWeekBasedPeriodFieldUpdater,
             getError: getInvalidWeekNumberError,
         },
@@ -81,9 +82,9 @@ const periodTypeLookup = new Map([
         {
             label: i18n.t('Weekly Thursday'),
             // YYYY"ThuW"[1-53]
-            getPeriodId: state => state[YEAR] + 'ThuW"' + state[WEEK],
-            hasRequiredValues: hasWeekBasedValues,
-            getPeriodFields: () => weeklyOptionList,
+            getPeriodId: createGetPeriodId(`${YEAR}ThuW${WEEK}`),
+            hasRequiredValues: createHasRequiredValues([WEEK, YEAR]),
+            getPeriodFields: createGetPeriodFields(weeklyOptionList),
             createPeriodFieldUpdater: createWeekBasedPeriodFieldUpdater,
             getError: getInvalidWeekNumberError,
         },
@@ -93,9 +94,9 @@ const periodTypeLookup = new Map([
         {
             label: i18n.t('Weekly Saturday'),
             // YYYY"SatW"[1-53]
-            getPeriodId: state => state[YEAR] + 'SatW' + state[WEEK],
-            hasRequiredValues: hasWeekBasedValues,
-            getPeriodFields: () => weeklyOptionList,
+            getPeriodId: createGetPeriodId(`${YEAR}SatW${WEEK}`),
+            hasRequiredValues: createHasRequiredValues([WEEK, YEAR]),
+            getPeriodFields: createGetPeriodFields(weeklyOptionList),
             createPeriodFieldUpdater: createWeekBasedPeriodFieldUpdater,
             getError: getInvalidWeekNumberError,
         },
@@ -105,9 +106,9 @@ const periodTypeLookup = new Map([
         {
             label: i18n.t('Weekly Sunday'),
             // YYYY"SunW"[1-53]
-            getPeriodId: state => state[YEAR] + 'SunW' + state[WEEK],
-            hasRequiredValues: hasWeekBasedValues,
-            getPeriodFields: () => weeklyOptionList,
+            getPeriodId: createGetPeriodId(`${YEAR}SunW${WEEK}`),
+            hasRequiredValues: createHasRequiredValues([WEEK, YEAR]),
+            getPeriodFields: createGetPeriodFields(weeklyOptionList),
             createPeriodFieldUpdater: createWeekBasedPeriodFieldUpdater,
             getError: getInvalidWeekNumberError,
         },
@@ -117,13 +118,10 @@ const periodTypeLookup = new Map([
         {
             label: i18n.t('Bi weekly'),
             // YYYY"BiW"[1-27]
-            getPeriodId: state => state[YEAR] + 'BiW' + state[BI_WEEK],
-            hasRequiredValues: state => hasValues(state, [BI_WEEK, YEAR]),
-            getPeriodFields: () => ({ biWeeks, years }),
-            createPeriodFieldUpdater: periodId => ({
-                [BI_WEEK]: periodId.split('BiW')[1],
-                [YEAR]: getYearFromId(periodId),
-            }),
+            getPeriodId: createGetPeriodId(`${YEAR}BiW${BI_WEEK}`),
+            hasRequiredValues: createHasRequiredValues([BI_WEEK, YEAR]),
+            getPeriodFields: createGetPeriodFields({ biWeeks, years }),
+            createPeriodFieldUpdater: createBiWeeklyPeriodFieldUpdater,
             getError: getInvalidBiWeekNumberError,
         },
     ],
@@ -132,13 +130,11 @@ const periodTypeLookup = new Map([
         {
             label: i18n.t('Monthly'),
             // YYYYMM
-            getPeriodId: state => state[YEAR] + state[MONTH],
-            hasRequiredValues: state => hasValues(state, [MONTH, YEAR]),
-            getPeriodFields: () => ({ months, years }),
-            createPeriodFieldUpdater: periodId => ({
-                [MONTH]: getMonthFromId(periodId),
-                [YEAR]: getYearFromId(periodId),
-            }),
+            getPeriodId: createGetPeriodId(`${YEAR}${MONTH}`),
+            hasRequiredValues: createHasRequiredValues([MONTH, YEAR]),
+            getPeriodFields: createGetPeriodFields({ months, years }),
+            createPeriodFieldUpdater: createMonthlyPeriodFieldUpdater,
+            getError: neverAnError,
         },
     ],
     [
@@ -146,13 +142,11 @@ const periodTypeLookup = new Map([
         {
             label: i18n.t('Bi-monthly'),
             // YYYY0[1-6]"B"
-            getPeriodId: state => state[YEAR] + state[BI_MONTH] + 'B',
-            hasRequiredValues: state => hasValues(state, [BI_MONTH, YEAR]),
-            getPeriodFields: () => ({ biMonths, years }),
-            createPeriodFieldUpdater: periodId => ({
-                [BI_MONTH]: parseInt(periodId.substr(4, 2)).toString(),
-                [YEAR]: getYearFromId(periodId),
-            }),
+            getPeriodId: createGetPeriodId(`${YEAR}${BI_MONTH}B`),
+            hasRequiredValues: createHasRequiredValues([BI_MONTH, YEAR]),
+            getPeriodFields: createGetPeriodFields({ biMonths, years }),
+            createPeriodFieldUpdater: createBiMonthlyPeriodFieldUpdater,
+            getError: neverAnError,
         },
     ],
     [
@@ -160,13 +154,11 @@ const periodTypeLookup = new Map([
         {
             label: i18n.t('Quarterly'),
             // YYYY"Q"[1-4]
-            getPeriodId: state => state[YEAR] + 'Q' + state[QUARTER],
-            hasRequiredValues: state => hasValues(state, [QUARTER, YEAR]),
-            getPeriodFields: () => ({ quarters, years }),
-            createPeriodFieldUpdater: periodId => ({
-                [QUARTER]: periodId.split('Q')[1],
-                [YEAR]: getYearFromId(periodId),
-            }),
+            getPeriodId: createGetPeriodId(`${YEAR}Q${QUARTER}`),
+            hasRequiredValues: createHasRequiredValues([QUARTER, YEAR]),
+            getPeriodFields: createGetPeriodFields({ quarters, years }),
+            createPeriodFieldUpdater: createQuarterlyPeriodFieldUpdater,
+            getError: neverAnError,
         },
     ],
     [
@@ -174,10 +166,11 @@ const periodTypeLookup = new Map([
         {
             label: i18n.t('Six monthly'),
             // YYYY"S"[1/2]
-            getPeriodId: state => state[YEAR] + 'S' + state[SIX_MONTH],
-            hasRequiredValues: hasSixMonthBasedValues,
-            getPeriodFields: () => ({ sixMonths, years }),
+            getPeriodId: createGetPeriodId(`${YEAR}S${SIX_MONTH}`),
+            hasRequiredValues: createHasRequiredValues([SIX_MONTH, YEAR]),
+            getPeriodFields: createGetPeriodFields({ sixMonths, years }),
             createPeriodFieldUpdater: createSixMonthsBasedPeriodFieldUpdater,
+            getError: neverAnError,
         },
     ],
     [
@@ -185,10 +178,11 @@ const periodTypeLookup = new Map([
         {
             label: i18n.t('Six monthly starting in April'),
             // YYYY"AprilS"[1/2]
-            getPeriodId: state => state[YEAR] + 'AprilS' + state[SIX_MONTH],
-            hasRequiredValues: hasSixMonthBasedValues,
-            getPeriodFields: () => ({ sixMonthsApril, years }),
+            getPeriodId: createGetPeriodId(`${YEAR}AprilS${SIX_MONTH}`),
+            hasRequiredValues: createHasRequiredValues([SIX_MONTH, YEAR]),
+            getPeriodFields: createGetPeriodFields({ sixMonthsApril, years }),
             createPeriodFieldUpdater: createSixMonthsBasedPeriodFieldUpdater,
+            getError: neverAnError,
         },
     ],
     [
@@ -196,10 +190,11 @@ const periodTypeLookup = new Map([
         {
             label: i18n.t('Six monthly starting in November'),
             // YYYY"NovS"[1/2]
-            getPeriodId: state => state[YEAR] + 'NovS' + state[SIX_MONTH],
-            hasRequiredValues: hasSixMonthBasedValues,
-            getPeriodFields: () => ({ sixMonthsNov, years }),
+            getPeriodId: createGetPeriodId(`${YEAR}NovS${SIX_MONTH}`),
+            hasRequiredValues: createHasRequiredValues([SIX_MONTH, YEAR]),
+            getPeriodFields: createGetPeriodFields({ sixMonthsNov, years }),
             createPeriodFieldUpdater: createSixMonthsBasedPeriodFieldUpdater,
+            getError: neverAnError,
         },
     ],
     [
@@ -207,10 +202,11 @@ const periodTypeLookup = new Map([
         {
             label: i18n.t('Yearly'),
             // YYYY
-            getPeriodId: state => state[YEAR],
-            hasRequiredValues: hasYearBasedValues,
-            getPeriodFields: () => yearlyOptionList,
+            getPeriodId: createGetPeriodId(YEAR),
+            hasRequiredValues: createHasRequiredValues([YEAR]),
+            getPeriodFields: createGetPeriodFields(yearlyOptionList),
             createPeriodFieldUpdater: createYearBasedPeriodFieldUpdater,
+            getError: neverAnError,
         },
     ],
     [
@@ -218,10 +214,11 @@ const periodTypeLookup = new Map([
         {
             label: i18n.t('Financial year starting in April'),
             // YYYY"April"
-            getPeriodId: state => state[YEAR] + 'April',
-            hasRequiredValues: hasYearBasedValues,
-            getPeriodFields: () => yearlyOptionList,
+            getPeriodId: createGetPeriodId(`${YEAR}April`),
+            hasRequiredValues: createHasRequiredValues([YEAR]),
+            getPeriodFields: createGetPeriodFields(yearlyOptionList),
             createPeriodFieldUpdater: createYearBasedPeriodFieldUpdater,
+            getError: neverAnError,
         },
     ],
     [
@@ -229,10 +226,11 @@ const periodTypeLookup = new Map([
         {
             label: i18n.t('Financial year starting in July'),
             // YYYY"July"
-            getPeriodId: state => state[YEAR] + 'July',
-            hasRequiredValues: hasYearBasedValues,
-            getPeriodFields: () => yearlyOptionList,
+            getPeriodId: createGetPeriodId(`${YEAR}July`),
+            hasRequiredValues: createHasRequiredValues([YEAR]),
+            getPeriodFields: createGetPeriodFields(yearlyOptionList),
             createPeriodFieldUpdater: createYearBasedPeriodFieldUpdater,
+            getError: neverAnError,
         },
     ],
     [
@@ -240,10 +238,11 @@ const periodTypeLookup = new Map([
         {
             label: i18n.t('Financial year starting in October'),
             // YYYY"Oct"
-            getPeriodId: state => state[YEAR] + 'Oct',
-            hasRequiredValues: hasYearBasedValues,
-            getPeriodFields: () => yearlyOptionList,
+            getPeriodId: createGetPeriodId(`${YEAR}Oct`),
+            hasRequiredValues: createHasRequiredValues([YEAR]),
+            getPeriodFields: createGetPeriodFields(yearlyOptionList),
             createPeriodFieldUpdater: createYearBasedPeriodFieldUpdater,
+            getError: neverAnError,
         },
     ],
     [
@@ -251,18 +250,13 @@ const periodTypeLookup = new Map([
         {
             label: i18n.t('Financial year starting in November'),
             // YYYY"Oct"
-            getPeriodId: state => state[YEAR] + 'Nov',
-            hasRequiredValues: hasYearBasedValues,
-            getPeriodFields: () => yearlyOptionList,
+            getPeriodId: createGetPeriodId(`${YEAR}Nov`),
+            hasRequiredValues: createHasRequiredValues([YEAR]),
+            getPeriodFields: createGetPeriodFields(yearlyOptionList),
             createPeriodFieldUpdater: createYearBasedPeriodFieldUpdater,
+            getError: neverAnError,
         },
     ],
 ]);
-
-periodTypeLookup.forEach(periodType => {
-    if (!periodType.getError) {
-        periodType.getError = neverAnError;
-    }
-});
 
 export default periodTypeLookup;

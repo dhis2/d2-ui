@@ -1,19 +1,27 @@
 import i18n from '@dhis2/d2-i18n';
 import { is53WeekISOYear } from 'd2/period/helpers';
-import { BI_WEEK, DAY, MONTH, SIX_MONTH, WEEK, YEAR } from './distinctTypes';
+import {
+    BI_MONTH,
+    BI_WEEK,
+    DAY,
+    MONTH,
+    QUARTER,
+    SIX_MONTH,
+    WEEK,
+    YEAR,
+} from './distinctTypes';
 
 export const neverAnError = () => '';
 
-export const getMonthFromId = periodId =>
-    parseInt(periodId.substr(4, 2)).toString();
+export const getMonthFromId = periodId => periodId.substr(4, 2);
 
 export const getYearFromId = periodId => periodId.substr(0, 4);
 
 export const createDayBasedPeriodFieldUpdater = (_periodId, startDate) => {
     const date = new Date(startDate);
     return {
-        [DAY]: date.getDate().toString(),
-        [MONTH]: (date.getMonth() + 1).toString(),
+        [DAY]: zeroPad(date.getDate()),
+        [MONTH]: zeroPad(date.getMonth() + 1),
         [YEAR]: date.getFullYear().toString(),
     };
 };
@@ -32,15 +40,41 @@ export const createYearBasedPeriodFieldUpdater = periodId => ({
     [YEAR]: getYearFromId(periodId),
 });
 
-export const hasValues = (state, propKeys) =>
-    propKeys.every(key => !!state[key]);
+export const createBiWeeklyPeriodFieldUpdater = periodId => ({
+    [BI_WEEK]: periodId.split('BiW')[1],
+    [YEAR]: getYearFromId(periodId),
+});
 
-export const hasWeekBasedValues = state => hasValues(state, [WEEK, YEAR]);
+export const createMonthlyPeriodFieldUpdater = periodId => ({
+    [MONTH]: getMonthFromId(periodId),
+    [YEAR]: getYearFromId(periodId),
+});
 
-export const hasSixMonthBasedValues = state =>
-    hasValues(state, [SIX_MONTH, YEAR]);
+export const createBiMonthlyPeriodFieldUpdater = periodId => ({
+    [BI_MONTH]: periodId.substr(4, 2),
+    [YEAR]: getYearFromId(periodId),
+});
 
-export const hasYearBasedValues = state => !!state[YEAR];
+export const createQuarterlyPeriodFieldUpdater = periodId => ({
+    [QUARTER]: periodId.split('Q')[1],
+    [YEAR]: getYearFromId(periodId),
+});
+
+export const createHasRequiredValues = keys => state =>
+    keys.every(key => !!state[key]);
+
+export const createGetPeriodFields = fieldConfig => () => fieldConfig;
+
+export const createGetPeriodId = templ => state =>
+    templ
+        .replace(BI_MONTH, state[BI_MONTH])
+        .replace(BI_WEEK, state[BI_WEEK])
+        .replace(DAY, state[DAY])
+        .replace(MONTH, state[MONTH])
+        .replace(QUARTER, state[QUARTER])
+        .replace(SIX_MONTH, state[SIX_MONTH])
+        .replace(WEEK, state[WEEK])
+        .replace(YEAR, state[YEAR]);
 
 export const getInvalidDayNumberError = state => {
     const [year, month, day] = asInts(state, [YEAR, MONTH, DAY]);
@@ -65,6 +99,8 @@ export const getInvalidBiWeekNumberError = state => {
         ? i18n.t('Bi-week number too high for current year')
         : '';
 };
+
+export const zeroPad = str => `0${str}`.substr(-2);
 
 const asInts = (state, propKeys) => propKeys.map(key => parseInt(state[key]));
 

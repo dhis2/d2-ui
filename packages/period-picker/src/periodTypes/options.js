@@ -9,6 +9,7 @@ import {
     WEEK,
     YEAR,
 } from './distinctTypes';
+import { zeroPad } from './helpers';
 
 // always double digit
 export const days = {
@@ -131,8 +132,4 @@ function createOptionMapper(config = {}) {
         label: config.prefix ? `${config.prefix} ${value}` : value,
         value: config.zeroPad ? zeroPad(value) : value,
     });
-}
-
-function zeroPad(str) {
-    return `0${str}`.substr(-2);
 }
