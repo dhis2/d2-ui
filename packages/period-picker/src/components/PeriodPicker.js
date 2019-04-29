@@ -113,10 +113,10 @@ export class PeriodPicker extends PureComponent {
         periodTypes = response.periodTypes.reduce((acc, { name }) => {
             const supportedPeriod = periodTypeLookup.get(name);
             if (supportedPeriod) {
-                acc[name] = supportedPeriod.label;
+                acc.push({ label: supportedPeriod.label, value: name });
             }
             return acc;
-        }, {});
+        }, []);
         checkForUnsupportedPeriodTypes(response.periodTypes);
     }
 

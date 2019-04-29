@@ -1,23 +1,77 @@
-export const periodTypes = {
-    Daily: 'Daily',
-    Weekly: 'Weekly',
-    WeeklyWednesday: 'Weekly Wednesday',
-    WeeklyThursday: 'Weekly Thursday',
-    WeeklySaturday: 'Weekly Saturday',
-    WeeklySunday: 'Weekly Sunday',
-    BiWeekly: 'Bi weekly',
-    Monthly: 'Monthly',
-    BiMonthly: 'Bi-monthly',
-    Quarterly: 'Quarterly',
-    SixMonthly: 'Six monthly',
-    SixMonthlyApril: 'Six monthly starting in April',
-    SixMonthlyNov: 'Six monthly starting in November',
-    Yearly: 'Yearly',
-    FinancialApril: 'Financial year starting in April',
-    FinancialJuly: 'Financial year starting in July',
-    FinancialOct: 'Financial year starting in October',
-    FinancialNov: 'Financial year starting in November',
-};
+export const periodTypes = [
+    {
+        label: 'Daily',
+        value: 'Daily',
+    },
+    {
+        label: 'Weekly',
+        value: 'Weekly',
+    },
+    {
+        label: 'Weekly Wednesday',
+        value: 'WeeklyWednesday',
+    },
+    {
+        label: 'Weekly Thursday',
+        value: 'WeeklyThursday',
+    },
+    {
+        label: 'Weekly Saturday',
+        value: 'WeeklySaturday',
+    },
+    {
+        label: 'Weekly Sunday',
+        value: 'WeeklySunday',
+    },
+    {
+        label: 'Bi weekly',
+        value: 'BiWeekly',
+    },
+    {
+        label: 'Monthly',
+        value: 'Monthly',
+    },
+    {
+        label: 'Bi-monthly',
+        value: 'BiMonthly',
+    },
+    {
+        label: 'Quarterly',
+        value: 'Quarterly',
+    },
+    {
+        label: 'Six monthly',
+        value: 'SixMonthly',
+    },
+    {
+        label: 'Six monthly starting in April',
+        value: 'SixMonthlyApril',
+    },
+    {
+        label: 'Six monthly starting in November',
+        value: 'SixMonthlyNov',
+    },
+    {
+        label: 'Yearly',
+        value: 'Yearly',
+    },
+    {
+        label: 'Financial year starting in April',
+        value: 'FinancialApril',
+    },
+    {
+        label: 'Financial year starting in July',
+        value: 'FinancialJuly',
+    },
+    {
+        label: 'Financial year starting in October',
+        value: 'FinancialOct',
+    },
+    {
+        label: 'Financial year starting in November',
+        value: 'FinancialNov',
+    },
+];
 
 export const getPeriodTypesResponse = {
     periodTypes: [
