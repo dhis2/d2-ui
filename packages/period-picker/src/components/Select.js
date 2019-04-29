@@ -25,9 +25,9 @@ export const Select = ({ name, label, value, onChange, options, classes }) => (
                 id: name,
             }}
         >
-            {Object.keys(options).map(key => (
-                <MenuItem key={key} value={key}>
-                    {options[key]}
+            {options.map(({ value, label }) => (
+                <MenuItem key={value} value={value}>
+                    {label}
                 </MenuItem>
             ))}
         </MUISelect>
@@ -39,7 +39,7 @@ Select.propTypes = {
     label: PropTypes.string.isRequired,
     value: PropTypes.string,
     onChange: PropTypes.func.isRequired,
-    options: PropTypes.object.isRequired,
+    options: PropTypes.array.isRequired,
     classes: PropTypes.object.isRequired,
 };
 

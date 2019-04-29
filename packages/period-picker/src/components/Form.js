@@ -59,7 +59,7 @@ export const Form = ({
 );
 
 Form.propTypes = {
-    periodTypes: PropTypes.object,
+    periodTypes: PropTypes.array,
     periodType: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
     getFieldValue: PropTypes.func.isRequired,

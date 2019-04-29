@@ -7,26 +7,80 @@ exports[`<Form/> Renders a parsed period below the <Select/> and <PeriodFields/>
     name="periodType"
     onChange={[MockFunction]}
     options={
-      Object {
-        "BiMonthly": "Bi-monthly",
-        "BiWeekly": "Bi weekly",
-        "Daily": "Daily",
-        "FinancialApril": "Financial year starting in April",
-        "FinancialJuly": "Financial year starting in July",
-        "FinancialNov": "Financial year starting in November",
-        "FinancialOct": "Financial year starting in October",
-        "Monthly": "Monthly",
-        "Quarterly": "Quarterly",
-        "SixMonthly": "Six monthly",
-        "SixMonthlyApril": "Six monthly starting in April",
-        "SixMonthlyNov": "Six monthly starting in November",
-        "Weekly": "Weekly",
-        "WeeklySaturday": "Weekly Saturday",
-        "WeeklySunday": "Weekly Sunday",
-        "WeeklyThursday": "Weekly Thursday",
-        "WeeklyWednesday": "Weekly Wednesday",
-        "Yearly": "Yearly",
-      }
+      Array [
+        Object {
+          "label": "Daily",
+          "value": "Daily",
+        },
+        Object {
+          "label": "Weekly",
+          "value": "Weekly",
+        },
+        Object {
+          "label": "Weekly Wednesday",
+          "value": "WeeklyWednesday",
+        },
+        Object {
+          "label": "Weekly Thursday",
+          "value": "WeeklyThursday",
+        },
+        Object {
+          "label": "Weekly Saturday",
+          "value": "WeeklySaturday",
+        },
+        Object {
+          "label": "Weekly Sunday",
+          "value": "WeeklySunday",
+        },
+        Object {
+          "label": "Bi weekly",
+          "value": "BiWeekly",
+        },
+        Object {
+          "label": "Monthly",
+          "value": "Monthly",
+        },
+        Object {
+          "label": "Bi-monthly",
+          "value": "BiMonthly",
+        },
+        Object {
+          "label": "Quarterly",
+          "value": "Quarterly",
+        },
+        Object {
+          "label": "Six monthly",
+          "value": "SixMonthly",
+        },
+        Object {
+          "label": "Six monthly starting in April",
+          "value": "SixMonthlyApril",
+        },
+        Object {
+          "label": "Six monthly starting in November",
+          "value": "SixMonthlyNov",
+        },
+        Object {
+          "label": "Yearly",
+          "value": "Yearly",
+        },
+        Object {
+          "label": "Financial year starting in April",
+          "value": "FinancialApril",
+        },
+        Object {
+          "label": "Financial year starting in July",
+          "value": "FinancialJuly",
+        },
+        Object {
+          "label": "Financial year starting in October",
+          "value": "FinancialOct",
+        },
+        Object {
+          "label": "Financial year starting in November",
+          "value": "FinancialNov",
+        },
+      ]
     }
     value="WeeklyWednesday"
   />

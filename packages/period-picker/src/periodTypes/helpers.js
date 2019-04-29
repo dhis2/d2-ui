@@ -4,8 +4,6 @@ import { BI_WEEK, DAY, MONTH, SIX_MONTH, WEEK, YEAR } from './distinctTypes';
 
 export const neverAnError = () => '';
 
-export const zeroPad = str => `0${str}`.substr(-2);
-
 export const getMonthFromId = periodId =>
     parseInt(periodId.substr(4, 2)).toString();
 
