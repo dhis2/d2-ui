@@ -147,10 +147,6 @@ export class PeriodPicker extends PureComponent {
         });
     }
 
-    renderFormFields() {
-        return;
-    }
-
     render() {
         return (
             <Fragment>
