@@ -10,21 +10,21 @@ import {
     YEAR,
 } from './distinctTypes';
 import {
+    createBiMonthlyPeriodFieldUpdater,
+    createBiWeeklyPeriodFieldUpdater,
     createDayBasedPeriodFieldUpdater,
+    createGetPeriodFields,
+    createGetPeriodId,
+    createHasRequiredValues,
+    createMonthlyPeriodFieldUpdater,
+    createQuarterlyPeriodFieldUpdater,
     createSixMonthsBasedPeriodFieldUpdater,
     createWeekBasedPeriodFieldUpdater,
     createYearBasedPeriodFieldUpdater,
-    createBiWeeklyPeriodFieldUpdater,
-    createMonthlyPeriodFieldUpdater,
-    createBiMonthlyPeriodFieldUpdater,
-    createQuarterlyPeriodFieldUpdater,
     getInvalidBiWeekNumberError,
     getInvalidDayNumberError,
     getInvalidWeekNumberError,
     neverAnError,
-    createHasRequiredValues,
-    createGetPeriodFields,
-    createGetPeriodId,
 } from './helpers';
 import {
     biMonths,
@@ -35,9 +35,9 @@ import {
     sixMonths,
     sixMonthsApril,
     sixMonthsNov,
-    years,
     weeklyOptionList,
     yearlyOptionList,
+    years,
 } from './options';
 
 const periodTypeLookup = new Map([
