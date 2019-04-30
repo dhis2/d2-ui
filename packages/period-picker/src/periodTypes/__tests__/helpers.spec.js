@@ -10,6 +10,7 @@ import {
     createHasRequiredValues,
     createGetPeriodFields,
     createGetPeriodId,
+    errorMessages,
     getInvalidDayNumberError,
     getInvalidWeekNumberError,
     getInvalidBiWeekNumberError,
@@ -200,14 +201,16 @@ describe('periodTypes helpers', () => {
     describe('error helpers', () => {
         it('getInvalidDayNumberError works correctly', () => {
             const invalidState = { ...baseState, [DAY]: '31', [MONTH]: '02' };
-            expect(getInvalidDayNumberError(invalidState)).toBeTruthy();
+            const msg = errorMessages.dayTooHigh;
+            expect(getInvalidDayNumberError(invalidState)).toEqual(msg);
             expect(getInvalidDayNumberError(baseState)).toEqual('');
         });
         it('getInvalidWeekNumberError works correctly', () => {
             const invalidState = { ...baseState, [YEAR]: '2016', [WEEK]: '53' };
             // 2015 is a 53 week ISO year
             const validState = { ...baseState, [YEAR]: '2015', [WEEK]: '53' };
-            expect(getInvalidWeekNumberError(invalidState)).toBeTruthy();
+            const msg = errorMessages.weekTooHigh;
+            expect(getInvalidWeekNumberError(invalidState)).toEqual(msg);
             expect(getInvalidWeekNumberError(validState)).toEqual('');
             expect(getInvalidWeekNumberError(baseState)).toEqual('');
         });
@@ -223,7 +226,8 @@ describe('periodTypes helpers', () => {
                 [YEAR]: '2015',
                 [BI_WEEK]: '27',
             };
-            expect(getInvalidBiWeekNumberError(invalidState)).toBeTruthy();
+            const msg = errorMessages.biWeekTooHigh;
+            expect(getInvalidBiWeekNumberError(invalidState)).toEqual(msg);
             expect(getInvalidBiWeekNumberError(validState)).toEqual('');
             expect(getInvalidBiWeekNumberError(baseState)).toEqual('');
         });
