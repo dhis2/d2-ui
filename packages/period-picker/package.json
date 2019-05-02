@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "@dhis2/d2-i18n": "^1.0.3",
-    "d2": "^31.7.0",
+    "d2": "^31.8.0",
     "@material-ui/core": "^3.3.1"
   },
   "devDependencies": {
