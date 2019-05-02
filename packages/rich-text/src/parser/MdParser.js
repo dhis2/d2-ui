@@ -36,10 +36,22 @@ const codes = {
     },
 };
 
+let md;
+let linksDb;
+
+const markerIsInLinkText = pos =>
+    linksDb.some(link => (pos >= link.index && pos <= link.lastIndex));
+
 const parse = code => (state, silent) => {
     if (silent) return false;
 
     const start = state.pos;
+
+    // skip parsing emphasis if marker is within a link
+    if (markerIsInLinkText(start)) {
+        return false;
+    }
+
     const marker = state.src.charCodeAt(start);
 
     // marker character: "_", "*", ":"
@@ -68,7 +80,6 @@ const parse = code => (state, silent) => {
     return false;
 };
 
-let md;
 
 class MdParser {
     constructor() {
@@ -90,6 +101,11 @@ class MdParser {
     }
 
     render(text) {
+        // find links in text for skipping parsing of URLs
+        // URLs may contain _ characters, they should not be parsed as italic markers
+        // See DHIS2-6821.
+        linksDb = md.linkify.match(text) || [];
+
         return md.renderInline(text);
     }
 }
