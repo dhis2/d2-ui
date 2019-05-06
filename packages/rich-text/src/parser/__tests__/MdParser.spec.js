@@ -41,6 +41,14 @@ describe('MdParser class', () => {
             // links
             ['example.com/path', '<a href="http://example.com/path">example.com/path</a>'],
 
+            // not recognized links with italic marker inside not converted
+            ['example_with_underscore.com/path', 'example_with_underscore.com/path'],
+            ['example_with_underscore.com/path_with_underscore', 'example_with_underscore.com/path_with_underscore'],
+
+            // markers around non-recognized links
+            ['link example_with_underscore.com/path should _not_ be converted', 'link example_with_underscore.com/path should <em>not</em> be converted'],
+            ['link example_with_underscore.com/path should *not* be converted', 'link example_with_underscore.com/path should <strong>not</strong> be converted'],
+
             // italic marker inside links not converted
             ['example.com/path_with_underscore', '<a href="http://example.com/path_with_underscore">example.com/path_with_underscore</a>'],
             ['_italic_ and *bold* with a example.com/link_with_underscore', '<em>italic</em> and <strong>bold</strong> with a <a href="http://example.com/link_with_underscore">example.com/link_with_underscore</a>'],
