@@ -37,6 +37,23 @@ describe('MdParser class', () => {
             [':((parenthesis:))', '<span>\u{1F641}</span>(parenthesis<span>\u{1F642}</span>)'],
             [':+1+1', '<span>\u{1F44D}</span>+1'],
             ['-1:-1', '-1<span>\u{1F44E}</span>'],
+
+            // links
+            ['example.com/path', '<a href="http://example.com/path">example.com/path</a>'],
+
+            // not recognized links with italic marker inside not converted
+            ['example_with_underscore.com/path', 'example_with_underscore.com/path'],
+            ['example_with_underscore.com/path_with_underscore', 'example_with_underscore.com/path_with_underscore'],
+
+            // markers around non-recognized links
+            ['link example_with_underscore.com/path should _not_ be converted', 'link example_with_underscore.com/path should <em>not</em> be converted'],
+            ['link example_with_underscore.com/path should *not* be converted', 'link example_with_underscore.com/path should <strong>not</strong> be converted'],
+
+            // italic marker inside links not converted
+            ['example.com/path_with_underscore', '<a href="http://example.com/path_with_underscore">example.com/path_with_underscore</a>'],
+            ['_italic_ and *bold* with a example.com/link_with_underscore', '<em>italic</em> and <strong>bold</strong> with a <a href="http://example.com/link_with_underscore">example.com/link_with_underscore</a>'],
+            ['example.com/path with *bold* after :)', '<a href="http://example.com/path">example.com/path</a> with <strong>bold</strong> after <span>\u{1F642}</span>'],
+            ['_before_ example.com/path_with_underscore *after* :)', '<em>before</em> <a href="http://example.com/path_with_underscore">example.com/path_with_underscore</a> <strong>after</strong> <span>\u{1F642}</span>'],
         ];
 
         tests.forEach((test) => {

@@ -15,7 +15,7 @@ const codes = {
         char: "*",
         domEl: "strong",
         encodedChar: 0x2a,
-        regexString: "^\\*((?!\\s)[^*]+(?:[^\\s]))\\*",
+        regexString: "(?<!\\S)\\*((?!\\s)[^*]+(?:[^\\s]))\\*(?!\\S)",
         contentFn: val => val,
     },
     italic: {
@@ -23,7 +23,7 @@ const codes = {
         char: "_",
         domEl: "em",
         encodedChar: 0x5f,
-        regexString: "^_((?!\\s)[^_]+(?:[^\\s]))_",
+        regexString: "(?<!\\S)_((?!\\s)[^_]+(?:[^\\s]))_(?!\\S)",
         contentFn: val => val,
     },
     emoji: {
@@ -36,10 +36,22 @@ const codes = {
     },
 };
 
+let md;
+let linksInText;
+
+const markerIsInLinkText = pos =>
+    linksInText.some(link => (pos >= link.index && pos <= link.lastIndex));
+
 const parse = code => (state, silent) => {
     if (silent) return false;
 
     const start = state.pos;
+
+    // skip parsing emphasis if marker is within a link
+    if (markerIsInLinkText(start)) {
+        return false;
+    }
+
     const marker = state.src.charCodeAt(start);
 
     // marker character: "_", "*", ":"
@@ -52,6 +64,12 @@ const parse = code => (state, silent) => {
 
     if (MARKER_REGEX.test(token)) {
         const markerMatch = token.match(MARKER_REGEX);
+
+        // skip parsing sections where the marker is not at the start of the token
+        if (markerMatch.index !== 0) {
+            return false;
+        }
+
         const text = markerMatch[1];
 
         state.push(`${codes[code].domEl}_open`, codes[code].domEl, 1);
@@ -68,7 +86,6 @@ const parse = code => (state, silent) => {
     return false;
 };
 
-let md;
 
 class MdParser {
     constructor() {
@@ -90,6 +107,8 @@ class MdParser {
     }
 
     render(text) {
+        linksInText = md.linkify.match(text) || [];
+
         return md.renderInline(text);
     }
 }
