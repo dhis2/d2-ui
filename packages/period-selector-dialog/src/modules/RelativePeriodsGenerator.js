@@ -39,7 +39,7 @@ const MonthsPeriodType = {
 const BiMonthsPeriodType = {
     generatePeriods() {
         return [
-            { id: 'THIS_BIMOTNH', name: 'This bi-month' },
+            { id: 'THIS_BIMONTH', name: 'This bi-month' },
             { id: 'LAST_BIMONTH', name: 'Last bi-month' },
             { id: 'LAST_6_BIMONTHS', name: 'Last 6 bi-months' },
             { id: 'BIMONTHS_THIS_YEAR', name: 'Bi-months this year' },
