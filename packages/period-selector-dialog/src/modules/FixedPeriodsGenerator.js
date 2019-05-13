@@ -67,6 +67,48 @@ function WeeklyPeriodType(formatYyyyMmDd, fnFilter) {
     };
 }
 
+function BiWeeklyPeriodType(formatYyyyMmDd, fnFilter) {
+    this.generatePeriods = (config) => {
+        let periods = [];
+        const offset = parseInt(config.offset, 10);
+        const isFilter = config.filterFuturePeriods;
+        const isReverse = config.reversePeriods;
+        const year = new Date().getFullYear() + offset;
+        const date = new Date(`01 Jan ${year}`);
+        const day = date.getDay();
+        let biWeek = 1;
+
+        if (day <= 4) {
+            date.setDate(date.getDate() - (day - 1));
+        } else {
+            date.setDate(date.getDate() + (8 - day));
+        }
+
+        while (date.getFullYear() <= year) {
+            const period = {};
+
+            period.iso = `${year}BiW${biWeek}`;
+            period.id = period.iso;
+            period.name = `Bi-Week ${biWeek} - ${period.startDate} - ${period.endDate}`;
+            period.startDate = formatYyyyMmDd(date);
+            date.setDate(date.getDate() + 13);
+            period.endDate = formatYyyyMmDd(date);
+            periods.push(period);
+
+            date.setDate(date.getDate() + 1);
+
+            biWeek += 1;
+        }
+
+        periods = isFilter ? fnFilter(periods) : periods;
+        periods = isReverse ? periods.reverse() : periods;
+
+        // Bi-weekly are collected backwards. If isReverse is true, then do nothing. Else reverse to correct order and return.
+
+        return periods;
+    };
+}
+
 function MonthlyPeriodType(formatYyyyMmDd, monthNames, fnFilter) {
     const formatIso = (date) => {
         const y = date.getFullYear();
@@ -410,6 +452,7 @@ function PeriodType() {
 
     periodTypes.Daily = new DailyPeriodType(formatYyyyMmDd, filterFuturePeriods);
     periodTypes.Weekly = new WeeklyPeriodType(formatYyyyMmDd, filterFuturePeriods);
+    periodTypes['Bi-weekly'] = new BiWeeklyPeriodType(formatYyyyMmDd, filterFuturePeriods);
     periodTypes.Monthly = new MonthlyPeriodType(formatYyyyMmDd, monthNames, filterFuturePeriods);
     periodTypes['Bi-monthly'] = new BiMonthlyPeriodType(formatYyyyMmDd, monthNames, filterFuturePeriods);
     periodTypes.Quarterly = new QuarterlyPeriodType(formatYyyyMmDd, monthNames, filterFuturePeriods);
