@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { createClassName } from '../component-helpers/utils';
-import SvgIcon from '../svg-icon/SvgIcon';
+import { createClassName } from "../component-helpers/utils";
+import DragHandle from "./DragHandle";
 
 const styles = {
     root: {
@@ -126,7 +126,10 @@ class ControlBar extends React.Component {
                     style={dragFlapStyle}
                     {...props}
                 >
-                    <SvgIcon className="d2-ui-control-bar-dragflap-icon" icon={'DragHandle'} style={{ marginTop: -7, fill: 'rgba(0,0,0,0.3)' }} />
+                    <DragHandle
+                        className="d2-ui-control-bar-dragflap-icon"
+                        style={{ marginTop: -7, fill: "rgba(0,0,0,0.3)" }}
+                    />
                 </div>
             </div>
         );
