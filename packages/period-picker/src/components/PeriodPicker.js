@@ -3,7 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import parsePeriod from 'd2/period/parser';
 import PropTypes from 'prop-types';
 import React, { Fragment, PureComponent } from 'react';
-import checkForUnsupportedPeriodTypes from '../periodTypes/checkForUnsupportedPeriodTypes';
+import { checkForUnsupportedPeriodTypes } from '../models/helpers';
 import {
     BI_MONTH,
     BI_WEEK,
@@ -13,12 +13,12 @@ import {
     SIX_MONTH,
     WEEK,
     YEAR,
-} from '../periodTypes/distinctTypes';
-import periodTypeLookup from '../periodTypes/lookup';
-import Form from './Form';
-import Loader from './Loader';
+} from '../models/distinctTypes';
+import PeriodTypes from '../models/PeriodTypes';
+import Select from './Select';
 
-export const PERIOD_TYPES_ENDPOINT = 'periodTypes';
+export const SHIFT_YEARS_BACK = 'SHIFT_YEARS_BACK';
+export const SHIFT_YEARS_FORTH = 'SHIFT_YEARS_FORTH';
 
 const styles = theme => {
     return {
@@ -30,76 +30,77 @@ const styles = theme => {
             margin: '0px',
             flex: '1 0 120px',
         },
+        flexContainer: {
+            display: 'flex',
+            marginRight: -16,
+        },
     };
 };
 
-// Period types can be cached for the entire app lifecycle
-// because they won't change
-export let periodTypes;
-
 export class PeriodPicker extends PureComponent {
-    state = {
-        isLoading: true,
-        periodType: '',
-        errorText: '',
-        [DAY]: '',
-        [WEEK]: '',
-        [BI_WEEK]: '',
-        [MONTH]: '',
-        [BI_MONTH]: '',
-        [QUARTER]: '',
-        [SIX_MONTH]: '',
-        [YEAR]: '',
-    };
-    api = this.props.d2.Api.getApi();
+    constructor(props) {
+        super(props);
 
-    onChange = ({ target }) => {
-        this.setState({ [target.name]: target.value });
-        let errorText = this.state.errorText;
-        const futureState = {
+        const locale = props.d2.currentUser.userSettings.get('keyUiLocale');
+        const pt = new PeriodTypes(locale);
+
+        this.periodTypeOptions = pt.getPeriodTypes();
+        this.getPeriodType = pt.getPeriodType.bind(pt);
+        this.getFields = pt.getFields.bind(pt);
+        this.getFieldUpdateObject = pt.getFieldUpdateObject.bind(pt);
+        this.findActivePeriodId = pt.findActivePeriodId.bind(pt);
+
+        this.state = {
+            periodType: '',
+            errorText: '',
+            yearFieldOpen: false,
+            yearOffset: 0,
+            [DAY]: '',
+            [WEEK]: '',
+            [BI_WEEK]: '',
+            [MONTH]: '',
+            [BI_MONTH]: '',
+            [QUARTER]: '',
+            [SIX_MONTH]: '',
+            [YEAR]: '',
+        };
+    }
+
+    onChange = ({ target }, component) => {
+        if (
+            target.value === SHIFT_YEARS_BACK ||
+            target.value === SHIFT_YEARS_FORTH
+        ) {
+            this.shiftYears(target.value);
+            return;
+        }
+
+        const state = {
             ...this.state,
             [target.name]: target.value,
         };
-        const periodType = periodTypeLookup.get(futureState.periodType);
+        const periodId =
+            component.props['period-id'] ||
+            this.findActivePeriodId(state, target.name);
 
-        if (periodType.hasRequiredValues(futureState)) {
-            errorText = periodType.getError(futureState);
-
-            if (!errorText) {
-                const periodId = periodType.getPeriodId(futureState);
-
-                try {
-                    const period = parsePeriod(periodId);
-                    // All is well: proceed
-                    errorText = '';
-                    this.props.onChange(period.id);
-                } catch (error) {
-                    errorText = error.message;
-                }
-            }
+        if (periodId) {
+            this.props.onChange(periodId);
+        } else {
+            this.setState({
+                [target.name]: target.value,
+                yearFieldOpen: false,
+            });
         }
-
-        this.setState({
-            [target.name]: target.value,
-            errorText,
-        });
     };
 
-    getValueForPeriodFieldType = type => this.state[type];
+    openYearField = () => {
+        this.setState({ yearFieldOpen: true });
+    };
 
-    async componentDidMount() {
-        if (!periodTypes) {
-            try {
-                await this.fetchPeriodTypes();
-                this.updateStateFromPeriodId();
-            } catch (error) {
-                console.error(error);
-                const errorText = i18n.t('Could not load period types');
-                this.setState({ errorText, isLoading: false });
-            }
-        } else {
-            this.updateStateFromPeriodId();
-        }
+    componentDidMount() {
+        // This only does something in development
+        checkForUnsupportedPeriodTypes(this.props.d2, this.getPeriodType);
+        this.updateStateFromPeriodId();
     }
 
     componentDidUpdate(prevProps) {
@@ -108,16 +109,9 @@ export class PeriodPicker extends PureComponent {
         }
     }
 
-    async fetchPeriodTypes() {
-        const response = await this.api.get(PERIOD_TYPES_ENDPOINT);
-        periodTypes = response.periodTypes.reduce((acc, { name }) => {
-            const supportedPeriod = periodTypeLookup.get(name);
-            if (supportedPeriod) {
-                acc.push({ label: supportedPeriod.label, value: name });
-            }
-            return acc;
-        }, []);
-        checkForUnsupportedPeriodTypes(response.periodTypes);
+    shiftYears(value) {
+        const relativeOffset = value === SHIFT_YEARS_BACK ? -1 : 1;
+        this.setState({ yearOffset: this.state.yearOffset + relativeOffset });
     }
 
     updateStateFromPeriodId() {
@@ -130,9 +124,8 @@ export class PeriodPicker extends PureComponent {
             try {
                 const period = parsePeriod(periodId);
                 periodType = period.type;
-                periodFieldsUpdateObject = periodTypeLookup
-                    .get(periodType)
-                    .createPeriodFieldUpdater(period.id, period.startDate);
+                errorText = '';
+                periodFieldsUpdateObject = this.getFieldUpdateObject(period);
             } catch (error) {
                 // This should only be triggered when an invalid value is set via props
                 console.error(error);
@@ -142,12 +135,14 @@ export class PeriodPicker extends PureComponent {
         this.setState({
             periodType,
             errorText,
-            isLoading: false,
+            yearFieldOpen: false,
             ...periodFieldsUpdateObject,
         });
     }
 
     render() {
+        const fields = this.getFields(this.state);
+
         return (
             <Fragment>
                 {this.props.label && (
@@ -155,17 +150,30 @@ export class PeriodPicker extends PureComponent {
                         {this.props.label}
                     </h4>
                 )}
-                {this.state.isLoading ? (
-                    <Loader />
-                ) : (
-                    <Form
-                        periodTypes={periodTypes}
-                        periodType={this.state.periodType}
-                        onChange={this.onChange}
-                        getFieldValue={this.getValueForPeriodFieldType}
-                        errorText={this.state.errorText}
-                        value={this.props.value}
-                    />
+
+                <Select
+                    name="periodType"
+                    label={i18n.t('Period type')}
+                    value={this.state.periodType}
+                    onChange={this.onChange}
+                    options={this.periodTypeOptions}
+                />
+
+                {this.state.periodType && (
+                    <div className={this.props.classes.flexContainer}>
+                        {Object.keys(fields).map(key => (
+                            <Select
+                                key={fields[key].name}
+                                name={fields[key].name}
+                                label={fields[key].label}
+                                value={this.state[fields[key].name]}
+                                onChange={this.onChange}
+                                options={fields[key].options}
+                                yearFieldOpen={this.state.yearFieldOpen}
+                                onYearOpen={this.openYearField}
+                            />
+                        ))}
+                    </div>
                 )}
             </Fragment>
         );

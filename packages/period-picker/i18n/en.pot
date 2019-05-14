@@ -5,25 +5,25 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2019-04-23T14:42:30.292Z\n"
-"PO-Revision-Date: 2019-04-23T14:42:30.292Z\n"
+"POT-Creation-Date: 2019-05-09T14:57:43.671Z\n"
+"PO-Revision-Date: 2019-05-09T14:57:43.671Z\n"
 
 msgid "Period type"
 msgstr ""
 
-msgid "Could not load period types"
+msgid "Week"
 msgstr ""
 
-msgid "Day number too high for current month"
+msgid "Six month period"
 msgstr ""
 
-msgid "Week number too high for current year"
-msgstr ""
-
-msgid "Bi-week number too high for current year"
+msgid "Year"
 msgstr ""
 
 msgid "Daily"
+msgstr ""
+
+msgid "Day"
 msgstr ""
 
 msgid "Weekly"
@@ -44,13 +44,25 @@ msgstr ""
 msgid "Bi weekly"
 msgstr ""
 
+msgid "Bi Week"
+msgstr ""
+
 msgid "Monthly"
+msgstr ""
+
+msgid "Month"
 msgstr ""
 
 msgid "Bi-monthly"
 msgstr ""
 
+msgid "Bi-month"
+msgstr ""
+
 msgid "Quarterly"
+msgstr ""
+
+msgid "Quarter"
 msgstr ""
 
 msgid "Six monthly"
@@ -75,34 +87,4 @@ msgid "Financial year starting in October"
 msgstr ""
 
 msgid "Financial year starting in November"
-msgstr ""
-
-msgid "Day"
-msgstr ""
-
-msgid "Week"
-msgstr ""
-
-msgid "Bi week"
-msgstr ""
-
-msgid "Month"
-msgstr ""
-
-msgid "Bi Month"
-msgstr ""
-
-msgid "Quarter"
-msgstr ""
-
-msgid "Six month period"
-msgstr ""
-
-msgid "Six month period - April"
-msgstr ""
-
-msgid "Six month period - November"
-msgstr ""
-
-msgid "Year"
 msgstr ""
