@@ -67,10 +67,7 @@ export class PeriodPicker extends PureComponent {
     }
 
     onChange = ({ target }, component) => {
-        if (
-            target.value === SHIFT_YEARS_BACK ||
-            target.value === SHIFT_YEARS_FORTH
-        ) {
+        if (this.isYearShiftElement(target)) {
             this.shiftYears(target.value);
             return;
         }
@@ -93,9 +90,32 @@ export class PeriodPicker extends PureComponent {
         }
     };
 
-    openYearField = () => {
+    onYearFieldOpen = () => {
         this.setState({ yearFieldOpen: true });
     };
+
+    onYearFieldClose = ({ target }) => {
+        const yearFieldOpen = this.isYearShiftElement(target);
+        const hasEmptyYearValue = !this.state[YEAR];
+        const isBackdropClick = target.getAttribute('role') !== 'option';
+
+        this.setState({ yearFieldOpen });
+
+        if (isBackdropClick && hasEmptyYearValue) {
+            // initially the clicked element is the activeElement
+            // but on the next tick, the Select itself will have focus
+            // which looks weird when no value is selected because
+            // of the floating label. So in that case we blur it.
+            setTimeout(() => {
+                document.activeElement.blur();
+            }, 0);
+        }
+    };
+
+    isYearShiftElement(target) {
+        const value = target.value || target.getAttribute('data-value');
+        return value === SHIFT_YEARS_BACK || value === SHIFT_YEARS_FORTH;
+    }
 
     componentDidMount() {
         // This only does something in development
@@ -111,7 +131,8 @@ export class PeriodPicker extends PureComponent {
 
     shiftYears(value) {
         const relativeOffset = value === SHIFT_YEARS_BACK ? -1 : 1;
-        this.setState({ yearOffset: this.state.yearOffset + relativeOffset });
+        const yearOffset = this.state.yearOffset + relativeOffset;
+        this.setState({ yearOffset, year: '' });
     }
 
     updateStateFromPeriodId() {
@@ -170,7 +191,8 @@ export class PeriodPicker extends PureComponent {
                                 onChange={this.onChange}
                                 options={fields[key].options}
                                 yearFieldOpen={this.state.yearFieldOpen}
-                                onYearOpen={this.openYearField}
+                                onYearOpen={this.onYearFieldOpen}
+                                onYearClose={this.onYearFieldClose}
                             />
                         ))}
                     </div>

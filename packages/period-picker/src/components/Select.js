@@ -15,6 +15,9 @@ const styles = theme => ({
         margin: theme.spacing.unit,
         width: '100%',
     },
+    eventLess: {
+        pointerEvents: 'none',
+    },
 });
 
 export const Select = ({
@@ -26,13 +29,14 @@ export const Select = ({
     classes,
     yearFieldOpen,
     onYearOpen,
+    onYearClose,
 }) => {
     const isYearField = name === YEAR;
     const yearFieldProps = isYearField
         ? {
               open: yearFieldOpen,
               onOpen: onYearOpen,
-              onClose: onYearOpen, // just keep it open
+              onClose: onYearClose, // just keep it open
           }
         : {};
 
@@ -52,7 +56,7 @@ export const Select = ({
             >
                 {isYearField && (
                     <MenuItem key={SHIFT_YEARS_BACK} value={SHIFT_YEARS_BACK}>
-                        <ArrowUpIcon />
+                        <ArrowUpIcon className={classes.eventLess} />
                     </MenuItem>
                 )}
                 {options.map(({ value, label, id }) => (
@@ -62,7 +66,7 @@ export const Select = ({
                 ))}
                 {isYearField && (
                     <MenuItem key={SHIFT_YEARS_FORTH} value={SHIFT_YEARS_FORTH}>
-                        <ArrowDownIcon />
+                        <ArrowDownIcon className={classes.eventLess} />
                     </MenuItem>
                 )}
             </MUISelect>
@@ -78,6 +82,7 @@ Select.propTypes = {
     options: PropTypes.array.isRequired,
     yearFieldOpen: PropTypes.bool,
     onYearOpen: PropTypes.func,
+    onYearClose: PropTypes.func,
     classes: PropTypes.object.isRequired,
 };
 
