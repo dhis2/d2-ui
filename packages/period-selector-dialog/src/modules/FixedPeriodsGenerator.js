@@ -48,7 +48,6 @@ function WeeklyPeriodType(formatYyyyMmDd, fnFilter) {
         while (date.getFullYear() <= year) {
             const period = {};
             period.startDate = formatYyyyMmDd(date);
-            // period['id'] = 'Weekly_' + period['startDate'];
             period.iso = `${year}W${week}`;
             period.id = period.iso;
             date.setDate(date.getDate() + 6);
@@ -89,10 +88,10 @@ function BiWeeklyPeriodType(formatYyyyMmDd, fnFilter) {
 
             period.iso = `${year}BiW${biWeek}`;
             period.id = period.iso;
-            period.name = `Bi-Week ${biWeek} - ${period.startDate} - ${period.endDate}`;
             period.startDate = formatYyyyMmDd(date);
             date.setDate(date.getDate() + 13);
             period.endDate = formatYyyyMmDd(date);
+            period.name = `Bi-Week ${biWeek} - ${period.startDate} - ${period.endDate}`;
             periods.push(period);
 
             date.setDate(date.getDate() + 1);
@@ -102,8 +101,6 @@ function BiWeeklyPeriodType(formatYyyyMmDd, fnFilter) {
 
         periods = isFilter ? fnFilter(periods) : periods;
         periods = isReverse ? periods.reverse() : periods;
-
-        // Bi-weekly are collected backwards. If isReverse is true, then do nothing. Else reverse to correct order and return.
 
         return periods;
     };
@@ -135,7 +132,6 @@ function MonthlyPeriodType(formatYyyyMmDd, monthNames, fnFilter) {
             date.setDate(1);
             period.startDate = formatYyyyMmDd(date);
             period.name = `${monthNames[date.getMonth()]} ${date.getFullYear()}`;
-            // period['id'] = 'Monthly_' + period['startDate'];
             period.iso = formatIso(date);
             period.id = period.iso;
             periods.push(period);
@@ -176,7 +172,6 @@ function BiMonthlyPeriodType(formatYyyyMmDd, monthNames, fnFilter) {
             date.setDate(1);
             period.startDate = formatYyyyMmDd(date);
             period.name = `${monthNames[date.getMonth()]} - ${monthNames[date.getMonth() + 1]} ${date.getFullYear()}`;
-            // period['id'] = 'BiMonthly_' + period['startDate'];
             period.iso = formatIso(date);
             period.id = period.iso;
             periods.push(period);
@@ -209,7 +204,6 @@ function QuarterlyPeriodType(formatYyyyMmDd, monthNames, fnFilter) {
             date.setDate(1);
             period.startDate = formatYyyyMmDd(date);
             period.name = `${monthNames[date.getMonth()]} - ${monthNames[date.getMonth() + 2]} ${date.getFullYear()}`;
-            // period['id'] = 'Quarterly_' + period['startDate'];
             period.iso = `${year}Q${quarter}`;
             period.id = period.iso;
             periods.push(period);
@@ -237,7 +231,6 @@ function SixMonthlyPeriodType(monthNames, fnFilter) {
         period.startDate = `${year}-01-01`;
         period.endDate = `${year}-06-30`;
         period.name = `${monthNames[0]} - ${monthNames[5]} ${year}`;
-        // period['id'] = 'SixMonthly_' + period['startDate'];
         period.iso = `${year}S1`;
         period.id = period.iso;
         periods.push(period);
@@ -246,7 +239,6 @@ function SixMonthlyPeriodType(monthNames, fnFilter) {
         period.startDate = `${year}-07-01`;
         period.endDate = `${year}-12-31`;
         period.name = `${monthNames[6]} - ${monthNames[11]} ${year}`;
-        // period['id'] = 'SixMonthly_' + period['startDate'];
         period.iso = `${year}S2`;
         period.id = period.iso;
         periods.push(period);
@@ -270,7 +262,6 @@ function SixMonthlyAprilPeriodType(monthNames, fnFilter) {
         period.startDate = `${year}-04-01`;
         period.endDate = `${year}-09-30`;
         period.name = `${monthNames[3]} - ${monthNames[8]} ${year}`;
-        // period['id'] = 'SixMonthlyApril_' + period['startDate'];
         period.iso = `${year}AprilS1`;
         period.id = period.iso;
         periods.push(period);
@@ -279,7 +270,6 @@ function SixMonthlyAprilPeriodType(monthNames, fnFilter) {
         period.startDate = `${year}-10-01`;
         period.endDate = `${year + 1}-03-31`;
         period.name = `${monthNames[9]} ${year} - ${monthNames[2]} ${year + 1}`;
-        // period['id'] = 'SixMonthlyApril_' + period['startDate'];
         period.iso = `${year}AprilS2`;
         period.id = period.iso;
         periods.push(period);
@@ -306,7 +296,6 @@ function YearlyPeriodType(formatYyyyMmDd, fnFilter) {
             date.setMonth(0, 1);
             period.startDate = formatYyyyMmDd(date);
             period.name = date.getFullYear().toString();
-            // period['id'] = 'Yearly_' + period['startDate'];
             period.iso = date.getFullYear().toString();
             period.id = period.iso.toString();
             periods.push(period);
