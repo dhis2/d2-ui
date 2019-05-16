@@ -6,7 +6,7 @@ function DailyPeriodType(formatYyyyMmDd, fnFilter) {
         const offset = parseInt(config.offset, 10);
         const isFilter = config.filterFuturePeriods;
         const isReverse = config.reversePeriods;
-        const year = new Date().getFullYear() + offset;
+        const year = new Date(Date.now()).getFullYear() + offset;
         const date = new Date(`01 Jan ${year}`);
 
         while (date.getFullYear() === year) {
@@ -34,7 +34,7 @@ function WeeklyPeriodType(formatYyyyMmDd, fnFilter) {
         const offset = parseInt(config.offset, 10);
         const isFilter = config.filterFuturePeriods;
         const isReverse = config.reversePeriods;
-        const year = new Date().getFullYear() + offset;
+        const year = new Date(Date.now()).getFullYear() + offset;
         const date = new Date(`01 Jan ${year}`);
         const day = date.getDay();
         let week = 1;
@@ -72,7 +72,7 @@ function BiWeeklyPeriodType(formatYyyyMmDd, fnFilter) {
         const offset = parseInt(config.offset, 10);
         const isFilter = config.filterFuturePeriods;
         const isReverse = config.reversePeriods;
-        const year = new Date().getFullYear() + offset;
+        const year = new Date(Date.now()).getFullYear() + offset;
         const date = new Date(`01 Jan ${year}`);
         const day = date.getDay();
         let biWeek = 1;
@@ -122,7 +122,7 @@ function MonthlyPeriodType(formatYyyyMmDd, monthNames, fnFilter) {
         const offset = parseInt(config.offset, 10);
         const isFilter = config.filterFuturePeriods;
         const isReverse = config.reversePeriods;
-        const year = new Date().getFullYear() + offset;
+        const year = new Date(Date.now()).getFullYear() + offset;
         const date = new Date(`31 Dec ${year}`);
 
         while (date.getFullYear() === year) {
@@ -161,7 +161,7 @@ function BiMonthlyPeriodType(formatYyyyMmDd, monthNames, fnFilter) {
         const offset = parseInt(config.offset, 10);
         const isFilter = config.filterFuturePeriods;
         const isReverse = config.reversePeriods;
-        const year = new Date().getFullYear() + offset;
+        const year = new Date(Date.now()).getFullYear() + offset;
         const date = new Date(`31 Dec ${year}`);
 
         while (date.getFullYear() === year) {
@@ -192,7 +192,7 @@ function QuarterlyPeriodType(formatYyyyMmDd, monthNames, fnFilter) {
         const offset = parseInt(config.offset, 10);
         const isFilter = config.filterFuturePeriods;
         const isReverse = config.reversePeriods;
-        const year = new Date().getFullYear() + offset;
+        const year = new Date(Date.now()).getFullYear() + offset;
         const date = new Date(`31 Dec ${year}`);
         let quarter = 4;
 
@@ -225,7 +225,7 @@ function SixMonthlyPeriodType(monthNames, fnFilter) {
         const offset = parseInt(config.offset, 10);
         const isFilter = config.filterFuturePeriods;
         const isReverse = config.reversePeriods;
-        const year = new Date().getFullYear() + offset;
+        const year = new Date(Date.now()).getFullYear() + offset;
 
         let period = {};
         period.startDate = `${year}-01-01`;
@@ -256,7 +256,7 @@ function SixMonthlyAprilPeriodType(monthNames, fnFilter) {
         const offset = parseInt(config.offset, 10);
         const isFilter = config.filterFuturePeriods;
         const isReverse = config.reversePeriods;
-        const year = new Date().getFullYear() + offset;
+        const year = new Date(Date.now()).getFullYear() + offset;
 
         let period = {};
         period.startDate = `${year}-04-01`;
@@ -287,7 +287,7 @@ function YearlyPeriodType(formatYyyyMmDd, fnFilter) {
         const offset = parseInt(config.offset, 10);
         const isFilter = config.filterFuturePeriods;
         const isReverse = config.reversePeriods;
-        const year = new Date().getFullYear() + offset;
+        const year = new Date(Date.now()).getFullYear() + offset;
         const date = new Date(`31 Dec ${year}`);
 
         while ((year - date.getFullYear()) < 10) {
@@ -316,7 +316,7 @@ function FinancialOctoberPeriodType(formatYyyyMmDd, monthNames, fnFilter) {
         const offset = parseInt(config.offset, 10);
         const isFilter = config.filterFuturePeriods;
         const isReverse = config.reversePeriods;
-        const year = new Date().getFullYear() + offset;
+        const year = new Date(Date.now()).getFullYear() + offset;
         const date = new Date(`30 Sep ${year + 1}`);
 
         for (let i = 0; i < 10; i++) {
@@ -345,7 +345,7 @@ function FinancialJulyPeriodType(formatYyyyMmDd, monthNames, fnFilter) {
         const offset = parseInt(config.offset, 10);
         const isFilter = config.filterFuturePeriods;
         const isReverse = config.reversePeriods;
-        const year = new Date().getFullYear() + offset;
+        const year = new Date(Date.now()).getFullYear() + offset;
         const date = new Date(`30 Jun ${year + 1}`);
 
         for (let i = 0; i < 10; i++) {
@@ -374,7 +374,7 @@ function FinancialAprilPeriodType(formatYyyyMmDd, monthNames, fnFilter) {
         const offset = parseInt(config.offset, 10);
         const isFilter = config.filterFuturePeriods;
         const isReverse = config.reversePeriods;
-        const year = new Date().getFullYear() + offset;
+        const year = new Date(Date.now()).getFullYear() + offset;
         const date = new Date(`31 Mar ${year + 1}`);
 
         for (let i = 0; i < 10; i++) {
@@ -426,7 +426,7 @@ function PeriodType() {
 
     const filterFuturePeriods = (periods) => {
         const array = [];
-        const now = new Date();
+        const now = new Date(Date.now());
 
         for (let i = 0; i < periods.length; i++) {
             if (new Date(periods[i].startDate) <= now) {
