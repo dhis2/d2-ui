@@ -8,7 +8,6 @@ import './App.css';
 import Buttons from './components/button';
 import Chips from './components/chip';
 import CircularProgresses from './components/circular-progress';
-import Controlbars from './components/controlbar';
 import Tables from './components/table';
 import ExpressionManager from './components/expression-manager';
 import FileMenu from './components/file-menu';
@@ -83,9 +82,6 @@ class App extends Component {
 
                     <h2>Chips</h2>
                     <Chips />
-
-                    <h2>Controlbars</h2>
-                    <Controlbars />
 
                     <h2>Tables</h2>
                     <Tables d2={this.state.d2} />
