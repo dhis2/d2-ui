@@ -1,11 +1,6 @@
 import parsePeriod from 'd2/period/parser';
 import { is53WeekISOYear } from 'd2/period/helpers';
-import {
-    BI_MONTH,
-    DAY,
-    MONTH,
-    YEAR,
-} from '@dhis2/d2-ui-period-picker/src/models/distinctTypes';
+import { BI_MONTH, DAY, MONTH, YEAR } from './distinctTypes';
 import {
     getYears,
     getMonths,
@@ -14,11 +9,11 @@ import {
     asInts,
     getYearFromId,
     getMonthFromId,
-} from '@dhis2/d2-ui-period-picker/src/models/helpers';
+} from './helpers';
 
-class PeriodType {
+export class PeriodType {
     constructor({
-        locale,
+        locale = 'en',
         type,
         typeLabel,
         fieldLabel,
@@ -189,7 +184,7 @@ export class QuarterlyPeriodType extends PeriodType {
 
 export class SixMonthlyPeriodType extends PeriodType {
     getPeriodTypeFields(state, fields) {
-        fields.quarters.options = createSequence(2).map(sixMonthNr => {
+        fields.sixMonths.options = createSequence(2).map(sixMonthNr => {
             const periodId = state[YEAR] + this.infix + sixMonthNr;
             return this.createPeriodOption(periodId, sixMonthNr);
         });

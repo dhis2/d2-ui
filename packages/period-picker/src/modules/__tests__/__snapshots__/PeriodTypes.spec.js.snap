@@ -1,0 +1,343 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PeriodTypes instance getFieldUpdateObject returns the correct object 1`] = `
+Object {
+  "day": "12",
+  "month": "04",
+  "year": "2011",
+}
+`;
+
+exports[`PeriodTypes instance getFields returns the correct fields 1`] = `
+Object {
+  "days": Object {
+    "label": "Day",
+    "name": "day",
+    "options": Array [
+      Object {
+        "id": "20110201",
+        "label": "February 1, 2011",
+        "value": "01",
+      },
+      Object {
+        "id": "20110202",
+        "label": "February 2, 2011",
+        "value": "02",
+      },
+      Object {
+        "id": "20110203",
+        "label": "February 3, 2011",
+        "value": "03",
+      },
+      Object {
+        "id": "20110204",
+        "label": "February 4, 2011",
+        "value": "04",
+      },
+      Object {
+        "id": "20110205",
+        "label": "February 5, 2011",
+        "value": "05",
+      },
+      Object {
+        "id": "20110206",
+        "label": "February 6, 2011",
+        "value": "06",
+      },
+      Object {
+        "id": "20110207",
+        "label": "February 7, 2011",
+        "value": "07",
+      },
+      Object {
+        "id": "20110208",
+        "label": "February 8, 2011",
+        "value": "08",
+      },
+      Object {
+        "id": "20110209",
+        "label": "February 9, 2011",
+        "value": "09",
+      },
+      Object {
+        "id": "20110210",
+        "label": "February 10, 2011",
+        "value": "10",
+      },
+      Object {
+        "id": "20110211",
+        "label": "February 11, 2011",
+        "value": "11",
+      },
+      Object {
+        "id": "20110212",
+        "label": "February 12, 2011",
+        "value": "12",
+      },
+      Object {
+        "id": "20110213",
+        "label": "February 13, 2011",
+        "value": "13",
+      },
+      Object {
+        "id": "20110214",
+        "label": "February 14, 2011",
+        "value": "14",
+      },
+      Object {
+        "id": "20110215",
+        "label": "February 15, 2011",
+        "value": "15",
+      },
+      Object {
+        "id": "20110216",
+        "label": "February 16, 2011",
+        "value": "16",
+      },
+      Object {
+        "id": "20110217",
+        "label": "February 17, 2011",
+        "value": "17",
+      },
+      Object {
+        "id": "20110218",
+        "label": "February 18, 2011",
+        "value": "18",
+      },
+      Object {
+        "id": "20110219",
+        "label": "February 19, 2011",
+        "value": "19",
+      },
+      Object {
+        "id": "20110220",
+        "label": "February 20, 2011",
+        "value": "20",
+      },
+      Object {
+        "id": "20110221",
+        "label": "February 21, 2011",
+        "value": "21",
+      },
+      Object {
+        "id": "20110222",
+        "label": "February 22, 2011",
+        "value": "22",
+      },
+      Object {
+        "id": "20110223",
+        "label": "February 23, 2011",
+        "value": "23",
+      },
+      Object {
+        "id": "20110224",
+        "label": "February 24, 2011",
+        "value": "24",
+      },
+      Object {
+        "id": "20110225",
+        "label": "February 25, 2011",
+        "value": "25",
+      },
+      Object {
+        "id": "20110226",
+        "label": "February 26, 2011",
+        "value": "26",
+      },
+      Object {
+        "id": "20110227",
+        "label": "February 27, 2011",
+        "value": "27",
+      },
+      Object {
+        "id": "20110228",
+        "label": "February 28, 2011",
+        "value": "28",
+      },
+    ],
+  },
+  "months": Object {
+    "label": "Month",
+    "name": "month",
+    "options": Array [
+      Object {
+        "label": "January",
+        "value": "01",
+      },
+      Object {
+        "label": "February",
+        "value": "02",
+      },
+      Object {
+        "label": "March",
+        "value": "03",
+      },
+      Object {
+        "label": "April",
+        "value": "04",
+      },
+      Object {
+        "label": "May",
+        "value": "05",
+      },
+      Object {
+        "label": "June",
+        "value": "06",
+      },
+      Object {
+        "label": "July",
+        "value": "07",
+      },
+      Object {
+        "label": "August",
+        "value": "08",
+      },
+      Object {
+        "label": "September",
+        "value": "09",
+      },
+      Object {
+        "label": "October",
+        "value": "10",
+      },
+      Object {
+        "label": "November",
+        "value": "11",
+      },
+      Object {
+        "label": "December",
+        "value": "12",
+      },
+    ],
+  },
+  "years": Object {
+    "label": "Year",
+    "name": "year",
+    "options": Array [
+      Object {
+        "label": "2015",
+        "value": "2015",
+      },
+      Object {
+        "label": "2016",
+        "value": "2016",
+      },
+      Object {
+        "label": "2017",
+        "value": "2017",
+      },
+      Object {
+        "label": "2018",
+        "value": "2018",
+      },
+      Object {
+        "label": "2019",
+        "value": "2019",
+      },
+      Object {
+        "label": "2020",
+        "value": "2020",
+      },
+      Object {
+        "label": "2021",
+        "value": "2021",
+      },
+      Object {
+        "label": "2022",
+        "value": "2022",
+      },
+    ],
+  },
+}
+`;
+
+exports[`PeriodTypes instance getPeriodType returns the correct period type 1`] = `
+MonthlyPeriodType {
+  "fieldLabel": "Month",
+  "infix": "",
+  "locale": "en",
+  "requiredSiblingFields": Array [
+    "year",
+  ],
+  "suffix": "",
+  "type": "month",
+  "typeLabel": "Monthly",
+}
+`;
+
+exports[`PeriodTypes instance getPeriodTypes returns the correct array 1`] = `
+Array [
+  Object {
+    "label": "Daily",
+    "value": "Daily",
+  },
+  Object {
+    "label": "Weekly",
+    "value": "Weekly",
+  },
+  Object {
+    "label": "Weekly Wednesday",
+    "value": "WeeklyWednesday",
+  },
+  Object {
+    "label": "Weekly Thursday",
+    "value": "WeeklyThursday",
+  },
+  Object {
+    "label": "Weekly Saturday",
+    "value": "WeeklySaturday",
+  },
+  Object {
+    "label": "Weekly Sunday",
+    "value": "WeeklySunday",
+  },
+  Object {
+    "label": "Bi weekly",
+    "value": "BiWeekly",
+  },
+  Object {
+    "label": "Monthly",
+    "value": "Monthly",
+  },
+  Object {
+    "label": "Bi-monthly",
+    "value": "BiMonthly",
+  },
+  Object {
+    "label": "Quarterly",
+    "value": "Quarterly",
+  },
+  Object {
+    "label": "Six monthly",
+    "value": "SixMonthly",
+  },
+  Object {
+    "label": "Six monthly starting in April",
+    "value": "SixMonthlyApril",
+  },
+  Object {
+    "label": "Six monthly starting in November",
+    "value": "SixMonthlyNov",
+  },
+  Object {
+    "label": "Yearly",
+    "value": "Yearly",
+  },
+  Object {
+    "label": "Financial year starting in April",
+    "value": "FinancialApril",
+  },
+  Object {
+    "label": "Financial year starting in July",
+    "value": "FinancialJuly",
+  },
+  Object {
+    "label": "Financial year starting in October",
+    "value": "FinancialOct",
+  },
+  Object {
+    "label": "Financial year starting in November",
+    "value": "FinancialNov",
+  },
+]
+`;

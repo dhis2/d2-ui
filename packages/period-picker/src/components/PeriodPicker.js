@@ -3,7 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import parsePeriod from 'd2/period/parser';
 import PropTypes from 'prop-types';
 import React, { Fragment, PureComponent } from 'react';
-import { checkForUnsupportedPeriodTypes } from '../models/helpers';
+import { checkForUnsupportedPeriodTypes } from '../modules/helpers';
 import {
     BI_MONTH,
     BI_WEEK,
@@ -13,29 +13,32 @@ import {
     SIX_MONTH,
     WEEK,
     YEAR,
-} from '../models/distinctTypes';
-import PeriodTypes from '../models/PeriodTypes';
+} from '../modules/distinctTypes';
+import PeriodTypes from '../modules/PeriodTypes';
 import Select from './Select';
+import { FormHelperText } from '@material-ui/core';
 
 export const SHIFT_YEARS_BACK = 'SHIFT_YEARS_BACK';
 export const SHIFT_YEARS_FORTH = 'SHIFT_YEARS_FORTH';
 
-const styles = theme => {
-    return {
-        label: {
-            fontSize: '1.2rem',
-            fontWeight: '300',
-            color: 'rgba(0, 0, 0, 0.87)',
-            padding: '16px 8px 0px',
-            margin: '0px',
-            flex: '1 0 120px',
-        },
-        flexContainer: {
-            display: 'flex',
-            marginRight: -16,
-        },
-    };
-};
+const styles = theme => ({
+    label: {
+        fontSize: '1.2rem',
+        fontWeight: '300',
+        color: 'rgba(0, 0, 0, 0.87)',
+        padding: '16px 8px 0px',
+        margin: '0px',
+        flex: '1 0 120px',
+    },
+    flexContainer: {
+        display: 'flex',
+        marginRight: -16,
+    },
+    error: {
+        color: theme.colors.negative,
+        margin: 8,
+    },
+});
 
 export class PeriodPicker extends PureComponent {
     constructor(props) {
@@ -196,6 +199,12 @@ export class PeriodPicker extends PureComponent {
                             />
                         ))}
                     </div>
+                )}
+
+                {this.state.errorText && (
+                    <FormHelperText className={`${this.props.classes.error}`}>
+                        {this.state.errorText}
+                    </FormHelperText>
                 )}
             </Fragment>
         );

@@ -5,7 +5,7 @@ import MUISelect from '@material-ui/core/Select';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { YEAR } from '../models/distinctTypes';
+import { YEAR } from '../modules/distinctTypes';
 import { SHIFT_YEARS_BACK, SHIFT_YEARS_FORTH } from './PeriodPicker';
 import ArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import ArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';

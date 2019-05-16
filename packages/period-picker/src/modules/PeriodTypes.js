@@ -8,7 +8,7 @@ import {
     SIX_MONTH,
     WEEK,
     YEAR,
-} from '@dhis2/d2-ui-period-picker/src/models/distinctTypes';
+} from './distinctTypes';
 import {
     DailyPeriodType,
     WeeklyPeriodType,
@@ -18,7 +18,7 @@ import {
     QuarterlyPeriodType,
     SixMonthlyPeriodType,
     YearlyPeriodType,
-} from '@dhis2/d2-ui-period-picker/src/models/PeriodType';
+} from './PeriodType';
 
 const fieldLabels = {
     [WEEK]: i18n.t('Week'),

@@ -1,9 +1,6 @@
 import i18n from '@dhis2/d2-i18n';
 import { getMonthNamesForLocale } from 'd2/period/helpers';
-import {
-    MONTH,
-    YEAR,
-} from '@dhis2/d2-ui-period-picker/src/models/distinctTypes';
+import { MONTH, YEAR } from './distinctTypes';
 
 export const getYears = ({ yearOffset = 0 }) => {
     const len = 8;
@@ -18,7 +15,7 @@ export const getYears = ({ yearOffset = 0 }) => {
     };
 };
 
-export const getMonths = locale => {
+export const getMonths = (locale = 'en') => {
     const monthNames = getMonthNamesForLocale(locale);
     return {
         name: MONTH,

@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`periodTypes helpers getMonths Produces the correct output 1`] = `
+Object {
+  "label": "Month",
+  "name": "month",
+  "options": Array [
+    Object {
+      "label": "January",
+      "value": "01",
+    },
+    Object {
+      "label": "February",
+      "value": "02",
+    },
+    Object {
+      "label": "March",
+      "value": "03",
+    },
+    Object {
+      "label": "April",
+      "value": "04",
+    },
+    Object {
+      "label": "May",
+      "value": "05",
+    },
+    Object {
+      "label": "June",
+      "value": "06",
+    },
+    Object {
+      "label": "July",
+      "value": "07",
+    },
+    Object {
+      "label": "August",
+      "value": "08",
+    },
+    Object {
+      "label": "September",
+      "value": "09",
+    },
+    Object {
+      "label": "October",
+      "value": "10",
+    },
+    Object {
+      "label": "November",
+      "value": "11",
+    },
+    Object {
+      "label": "December",
+      "value": "12",
+    },
+  ],
+}
+`;

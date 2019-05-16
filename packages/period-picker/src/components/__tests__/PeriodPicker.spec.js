@@ -1,25 +1,17 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import {
     PeriodPicker,
-    periodTypes,
-    PERIOD_TYPES_ENDPOINT,
+    SHIFT_YEARS_BACK,
+    SHIFT_YEARS_FORTH,
 } from '../PeriodPicker';
-import {
-    getPeriodTypesResponse,
-    periodTypes as mockedPeriodTypes,
-} from '../../__fixtures__';
-import { DAY, WEEK, MONTH, YEAR } from '../../periodTypes/distinctTypes';
+import { DAY, WEEK, MONTH, YEAR } from '../../modules/distinctTypes';
 
 describe('<PeriodPicker/>', () => {
-    const createFakeEvent = (name, value) => ({ target: { name, value } });
     const mockedOnChange = jest.fn();
-    const mockedGet = jest.fn(() => Promise.resolve(getPeriodTypesResponse));
     const mockedD2 = {
-        Api: {
-            getApi: () => ({
-                get: mockedGet,
-            }),
+        currentUser: {
+            userSettings: { get: jest.fn(() => 'en') },
         },
     };
     const defaultProps = {
@@ -29,33 +21,34 @@ describe('<PeriodPicker/>', () => {
         onChange: mockedOnChange,
         classes: {
             label: 'label',
+            flexContainer: 'flexContainer',
         },
     };
 
-    describe('Loading periodTypes', () => {
-        it('Should show a <Loader/> when periodTypes are not available yet', () => {
-            const wrapper = shallow(<PeriodPicker {...defaultProps} />);
-            expect(wrapper.find('WithStyles(Loader)').length).toEqual(1);
-        });
+    const openSelect = (wrapper, selectName) => {
+        return wrapper
+            .find(`WithStyles(Select)[name="${selectName}"]`)
+            .find('[role="button"]')
+            .simulate('click');
+    };
 
-        it('Should fetch periodTypes on componentDidMount and transform them correctly', () => {
-            const wrapper = shallow(<PeriodPicker {...defaultProps} />);
-            wrapper.update();
-            expect(mockedGet).toHaveBeenCalledTimes(1);
-            expect(mockedGet).toHaveBeenCalledWith(PERIOD_TYPES_ENDPOINT);
-            expect(periodTypes).toEqual(mockedPeriodTypes);
-        });
+    const chooseSelectOption = (wrapper, selectName, selectValue) => {
+        // This opens the Select
+        openSelect(wrapper, selectName);
 
-        it('Should skip fetching periodTypes on componentDidMount if they are already available', () => {
-            mockedGet.mockClear();
-            const wrapper = shallow(<PeriodPicker {...defaultProps} />);
-            wrapper.update();
-            expect(mockedGet).toHaveBeenCalledTimes(0);
-        });
+        // This selects an option (and returns it)
+        return wrapper
+            .find(`li[role="option"][data-value="${selectValue}"]`)
+            .simulate('click');
+    };
 
-        afterAll(() => {
-            jest.clearAllMocks();
-        });
+    beforeAll(() => {
+        // surpress warnings from MUI so the output doesn't get cluttered
+        console.error = jest.fn();
+    });
+
+    afterAll(() => {
+        jest.restoreAllMocks();
     });
 
     describe('Deriving state from a periodId value', () => {
@@ -76,6 +69,12 @@ describe('<PeriodPicker/>', () => {
                 [WEEK]: '4',
             });
         });
+        it('Will get an errorText if an invalid periodId is provided', () => {
+            const props = { ...defaultProps, value: 'NotAValidPeriodId' };
+            const wrapper = shallow(<PeriodPicker {...props} />);
+
+            expect(wrapper).toHaveState('errorText', 'Invalid period format');
+        });
     });
 
     describe('Behavior on change', () => {
@@ -84,43 +83,64 @@ describe('<PeriodPicker/>', () => {
         });
 
         it('Will call props.onChange with a valid periodId once all fields have a value', () => {
-            const wrapper = shallow(<PeriodPicker {...defaultProps} />);
-            wrapper
-                .find('WithStyles(Form)')
-                .simulate('change', createFakeEvent('periodType', 'Daily'))
-                .simulate('change', createFakeEvent(DAY, '21'))
-                .simulate('change', createFakeEvent(MONTH, '04'))
-                .simulate('change', createFakeEvent(YEAR, '2015'));
+            const wrapper = mount(<PeriodPicker {...defaultProps} />);
+
+            chooseSelectOption(wrapper, 'periodType', 'Weekly');
+            chooseSelectOption(wrapper, 'year', '2018');
+            chooseSelectOption(wrapper, 'week', '10');
 
             expect(mockedOnChange).toHaveBeenCalledTimes(1);
-            expect(mockedOnChange).toHaveBeenCalledWith('20150421');
+            expect(mockedOnChange).toHaveBeenCalledWith('2018W10');
         });
 
         it('Will NOT call props.onChange if a required field is missing', () => {
-            const wrapper = shallow(<PeriodPicker {...defaultProps} />);
-            wrapper
-                .find('WithStyles(Form)')
-                .simulate('change', createFakeEvent('periodType', 'Daily'))
-                .simulate('change', createFakeEvent(DAY, '21'))
-                .simulate('change', createFakeEvent(YEAR, '2015'));
+            const wrapper = mount(<PeriodPicker {...defaultProps} />);
+
+            chooseSelectOption(wrapper, 'periodType', 'Weekly');
+            chooseSelectOption(wrapper, 'year', '2018');
 
             expect(mockedOnChange).toHaveBeenCalledTimes(0);
         });
 
-        it('Will get an errorText if an invalid combination of period fields is found', () => {
-            const wrapper = shallow(<PeriodPicker {...defaultProps} />);
-            wrapper
-                .find('WithStyles(Form)')
-                .simulate('change', createFakeEvent('periodType', 'Daily'))
-                .simulate('change', createFakeEvent(DAY, '31'))
-                .simulate('change', createFakeEvent(MONTH, '02'))
-                .simulate('change', createFakeEvent(YEAR, '2015'));
+        it('Will shift years back', () => {
+            const wrapper = mount(<PeriodPicker {...defaultProps} />);
 
-            expect(mockedOnChange).toHaveBeenCalledTimes(0);
-            expect(wrapper).toHaveState(
-                'errorText',
-                'Day number too high for current month'
-            );
+            chooseSelectOption(wrapper, 'periodType', 'Weekly');
+            chooseSelectOption(wrapper, 'year', SHIFT_YEARS_BACK);
+
+            expect(wrapper).toHaveState('yearOffset', -1);
+        });
+
+        it('Will shift years forth', () => {
+            const wrapper = mount(<PeriodPicker {...defaultProps} />);
+
+            chooseSelectOption(wrapper, 'periodType', 'Weekly');
+            chooseSelectOption(wrapper, 'year', SHIFT_YEARS_FORTH);
+
+            expect(wrapper).toHaveState('yearOffset', 1);
+        });
+
+        it('Will blur the year field after a backdrop click when year is empty', () => {
+            // The onYearFieldClose method has a time-out of 0 ms
+            // to wait for the stack to clear
+            jest.useFakeTimers();
+
+            const wrapper = mount(<PeriodPicker {...defaultProps} />);
+
+            // Select a periodType so the year Select becomes visible
+            chooseSelectOption(wrapper, 'periodType', 'Weekly');
+            // Open the year select but don't click
+            openSelect(wrapper, 'year');
+            // Instead, find and click on the backdrop
+            wrapper
+                .find('div#menu-year')
+                .childAt(0)
+                .simulate('click');
+
+            jest.runAllTimers();
+
+            // After the Select looses focus, the activeElement shifts to the body
+            expect(document.activeElement).toBeInstanceOf(HTMLBodyElement);
         });
     });
 });
