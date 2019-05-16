@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { ItemSelector } from '@dhis2/d2-ui-analytics';
 
 import PeriodTypeButton from './PeriodTypeButton';
-import FixedPeriodFIlter from './FixedPeriodFilter';
+import FixedPeriodFilter from './FixedPeriodFilter';
 import RelativePeriodFilter from './RelativePeriodFilter';
 import { FIXED, RELATIVE } from './modules/periodTypes';
 
@@ -83,7 +83,7 @@ class PeriodSelector extends Component {
     render = () => {
         const filterZone = () => {
             if (this.state.periodType === FIXED) {
-                return (<FixedPeriodFIlter setOfferedPeriods={this.initializeOfferedPeriods} />);
+                return (<FixedPeriodFilter setOfferedPeriods={this.initializeOfferedPeriods} />);
             }
 
             return (<RelativePeriodFilter  setOfferedPeriods={this.initializeOfferedPeriods} />);
