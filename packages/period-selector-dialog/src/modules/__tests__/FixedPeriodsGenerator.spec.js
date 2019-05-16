@@ -13,7 +13,7 @@ describe('FixedPeriodsGenerator class', () => {
             const periods = periodsGenerator.getOptions();
 
             expect(periods).toEqual([
-                'Daily', 'Weekly', 'Bi-weekly', 'Monthly', 'Bi-monthly', 'Quarterly', 'Six-monthly', 'Six-monthly April', 'Yearly', 'Financial year (Start October)', 'Financial year (Start July)', 'Financial year (Start April)'
+                'Daily', 'Weekly', 'Bi-weekly', 'Monthly', 'Bi-monthly', 'Quarterly', 'Six-monthly', 'Six-monthly April', 'Yearly', 'Financial year (Start November)', 'Financial year (Start October)', 'Financial year (Start July)', 'Financial year (Start April)'
             ]);
         });
 
@@ -22,9 +22,7 @@ describe('FixedPeriodsGenerator class', () => {
     describe('Daily period generator', () => {
         let periods;
 
-
         beforeAll(() => {
-
             const generator = periodsGenerator.get('Daily');
 
             periods = generator.generatePeriods({
@@ -359,6 +357,42 @@ describe('FixedPeriodsGenerator class', () => {
                 name: '2029',
                 iso: '2029',
                 id: '2029',
+            });
+        });
+    });
+
+    describe('Financial November period generator', () => {
+        let periods;
+
+        beforeAll(() => {
+            const generator = periodsGenerator.get('Financial year (Start November)');
+
+            periods = generator.generatePeriods({
+                offset: 9,
+                filterFuturePeriods: false,
+                reversePeriods: false,
+            });
+        });
+
+        it('should return the correct number of financial November periods', () => {
+                expect(periods.length).toEqual(10);
+        });
+
+        it('should return the correct object for financial November period 1', () => {
+            expect(periods[0]).toEqual({
+                startDate: '2019-11-01',
+                endDate: '2020-10-31',
+                name: 'November 2019 - October 2020',
+                id: '2019Nov',
+            });
+        });
+
+        it('should return the correct object for financial November period 10', () => {
+            expect(periods[9]).toEqual({
+                startDate: '2028-11-01',
+                endDate: '2029-10-31',
+                name: 'November 2028 - October 2029',
+                id: '2028Nov',
             });
         });
     });
