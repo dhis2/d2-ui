@@ -31,7 +31,6 @@
     "d2-utilizr": "^0.2.15",
     "prop-types": "^15.5.10",
     "react-select": "^2.0.0",
-    "recompose": "^0.26.0",
     "rxjs": "^5.5.7"
   },
   "jest": {

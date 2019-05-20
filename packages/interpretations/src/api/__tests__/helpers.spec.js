@@ -1,4 +1,5 @@
-import _ from 'lodash';
+import merge from 'lodash/merge';
+import every from 'lodash/every';
 import { getFavoriteWithInterpretations } from '../helpers';
 import Interpretation from '../../models/interpretation';
 import { getStubContext } from '../../../config/test-context';
@@ -14,7 +15,7 @@ const initD2 = () => {
     getApiGetMock = jest.fn(() => Promise.resolve({views: mockedViews}));
     users.getMentions = jest.fn(() => Promise.resolve({allUsers: [], mostMentionedUsers: []}));
 
-    d2 = _.merge(context.d2, {
+    d2 = merge(context.d2, {
         models: {
             maps: {
                 get: jest.fn(() => map),
@@ -69,8 +70,7 @@ describe("getFavoriteWithInterpretations", () => {
 
         it("should have wrapped interpretations", () => {
             expect(favorite.interpretations).toHaveLength(favorite.interpretations.length);
-            _(favorite.interpretations)
-                .every(interpretation => expect(interpretation).toBeInstanceOf(Interpretation));
+            every(favorite.interpretations, interpretation => expect(interpretation).toBeInstanceOf(Interpretation));
         });
     });
 });

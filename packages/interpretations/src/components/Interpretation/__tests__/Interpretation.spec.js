@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import _ from 'lodash';
+import merge from 'lodash/merge';
 
 import { Interpretation } from '../Interpretation';
 import CommentsList from '../../Lists/CommentsList';
@@ -80,7 +80,7 @@ const renderComponent = (partialProps = {}, partialContext = {}) => {
 
     const props = { ...baseProps, ...partialProps };
     const context = getStubContext();
-    const fullContext = _.merge(context, partialContext);
+    const fullContext = merge(context, partialContext);
     return shallow(<Interpretation {...props} />, { context: fullContext });
 };
 
