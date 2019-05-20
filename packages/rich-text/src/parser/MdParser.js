@@ -15,6 +15,7 @@ const codes = {
         char: "*",
         domEl: "strong",
         encodedChar: 0x2a,
+        // see https://regex101.com/r/evswdV/1 for explanation of regexp
         regexString: "(?:(?!\\S).|^)\\*((?!\\s)[^*]+(?:[^\\s]))\\*(?!\\S)",
         contentFn: val => val,
     },
@@ -23,6 +24,7 @@ const codes = {
         char: "_",
         domEl: "em",
         encodedChar: 0x5f,
+        // see https://regex101.com/r/evswdV/1 for explanation of regexp
         regexString: "(?:(?!\\S).|^)_((?!\\s)[^_]+(?:[^\\s]))_(?!\\S)",
         contentFn: val => val,
     },
