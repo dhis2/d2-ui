@@ -15,7 +15,7 @@ const codes = {
         char: "*",
         domEl: "strong",
         encodedChar: 0x2a,
-        regexString: "(?<!\\S)\\*((?!\\s)[^*]+(?:[^\\s]))\\*(?!\\S)",
+        regexString: "(?:(?!\\S).|^)\\*((?!\\s)[^*]+(?:[^\\s]))\\*(?!\\S)",
         contentFn: val => val,
     },
     italic: {
@@ -23,7 +23,7 @@ const codes = {
         char: "_",
         domEl: "em",
         encodedChar: 0x5f,
-        regexString: "(?<!\\S)_((?!\\s)[^_]+(?:[^\\s]))_(?!\\S)",
+        regexString: "(?:(?!\\S).|^)_((?!\\s)[^_]+(?:[^\\s]))_(?!\\S)",
         contentFn: val => val,
     },
     emoji: {
