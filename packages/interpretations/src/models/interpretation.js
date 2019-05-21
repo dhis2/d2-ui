@@ -1,4 +1,5 @@
-import { pick, last } from 'lodash/fp';
+import pick from 'lodash/fp/pick';
+import last from 'lodash/fp/last';
 import { apiFetch, apiFetchWithResponse } from '../api/api';
 import Comment from './comment';
 

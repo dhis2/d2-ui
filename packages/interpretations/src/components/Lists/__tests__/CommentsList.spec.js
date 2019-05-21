@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import _ from 'lodash';
+import merge from 'lodash/merge';
 import { CommentsList } from '../CommentsList';
 import Comment from '../../Comment/Comment';
 import NewCommentField from '../../Comment/NewCommentField';
@@ -46,7 +46,7 @@ const renderComponent = (partialProps = {}, partialContext = {}) => {
     };
 
     const props = {...baseProps, ...partialProps};
-    const fullContext = _.merge(context, partialContext);
+    const fullContext = merge(context, partialContext);
     return shallow(<CommentsList {...props} />, { context: fullContext });
 };
 

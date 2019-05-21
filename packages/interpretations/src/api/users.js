@@ -1,6 +1,16 @@
 import { apiFetch } from './api';
-import { keyBy, map, flatMap, flow, groupBy, without } from 'lodash/fp';
-import { orderBy, concat, toPairs, at, differenceBy, compact } from 'lodash/fp';
+import keyBy from 'lodash/fp/keyBy';
+import map from 'lodash/fp/map';
+import flatMap from 'lodash/fp/flatMap';
+import flow from 'lodash/fp/flow';
+import groupBy from 'lodash/fp/groupBy';
+import without from 'lodash/fp/without';
+import concat from 'lodash/fp/concat';
+import orderBy from 'lodash/fp/orderBy';
+import toPairs from 'lodash/fp/toPairs';
+import at from 'lodash/fp/at';
+import differenceBy from 'lodash/fp/differenceBy';
+import compact from 'lodash/fp/compact';
 
 export async function getMentions(d2) {
     const allUsersResponse = await apiFetch(d2, "/users", "GET", {

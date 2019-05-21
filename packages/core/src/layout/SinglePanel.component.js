@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { isArray } from 'lodash/fp';
+import isArray from 'lodash/fp/isArray';
 import log from 'loglevel';
 
 function SinglePanel(props) {

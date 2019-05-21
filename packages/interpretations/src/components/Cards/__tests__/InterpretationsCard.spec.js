@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import _ from 'lodash';
+import merge from 'lodash/merge';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import { MuiThemeProvider } from '@material-ui/core/styles';
@@ -96,7 +96,7 @@ const renderComponent = (partialProps = {}, partialContext = {}) => {
     const props = {...baseProps, ...partialProps};
     const context = getStubContext();
     const muiTheme = getMuiTheme();
-    const fullContext = _.merge(context, partialContext);
+    const fullContext = merge(context, partialContext);
     return mount(
         <MuiThemeProvider theme={muiTheme}>
             <InterpretationsCard {...props} />
