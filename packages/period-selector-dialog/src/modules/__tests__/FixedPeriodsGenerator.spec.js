@@ -160,7 +160,7 @@ describe('FixedPeriodsGenerator class', () => {
             });
         });
 
-        it('should return the correct object for bi-week 26', () => {
+        it('should return the correct object for month 12', () => {
             expect(periods[11]).toEqual({
                 startDate: '2019-12-01',
                 endDate: '2019-12-31',
