@@ -147,13 +147,10 @@ function MonthlyPeriodType(formatYyyyMmDd, monthNames, fnFilter) {
 }
 
 function BiMonthlyPeriodType(formatYyyyMmDd, monthNames, fnFilter) {
-    const formatIso = (date) => {
+    const formatIso = (date, index) => {
         const y = date.getFullYear();
-        let m = String(date.getMonth() + 1);
 
-        m = m.length < 2 ? `0${m}` : m;
-
-        return `${y + m}B`;
+        return `${y}0${index}B`;
     };
 
     this.generatePeriods = (config) => {
@@ -163,6 +160,7 @@ function BiMonthlyPeriodType(formatYyyyMmDd, monthNames, fnFilter) {
         const isReverse = config.reversePeriods;
         const year = new Date(Date.now()).getFullYear() + offset;
         const date = new Date(`31 Dec ${year}`);
+        let index = 6;
 
         while (date.getFullYear() === year) {
             const period = {};
@@ -172,10 +170,12 @@ function BiMonthlyPeriodType(formatYyyyMmDd, monthNames, fnFilter) {
             date.setDate(1);
             period.startDate = formatYyyyMmDd(date);
             period.name = `${monthNames[date.getMonth()]} - ${monthNames[date.getMonth() + 1]} ${date.getFullYear()}`;
-            period.iso = formatIso(date);
+            period.iso = formatIso(date, index);
             period.id = period.iso;
             periods.push(period);
             date.setDate(0);
+
+            index--;
         }
 
         periods = isFilter ? fnFilter(periods) : periods;

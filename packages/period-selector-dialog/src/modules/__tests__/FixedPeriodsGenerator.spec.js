@@ -198,13 +198,23 @@ describe('FixedPeriodsGenerator class', () => {
             });
         });
 
+        it('should return the correct object for bi-month 3', () => {
+            expect(periods[2]).toEqual({
+                startDate: '2019-05-01',
+                endDate: '2019-06-30',
+                name: 'May - June 2019',
+                iso: '201903B',
+                id: '201903B',
+            });
+        });
+
         it('should return the correct object for bi-month 6', () => {
             expect(periods[5]).toEqual({
                 startDate: '2019-11-01',
                 endDate: '2019-12-31',
                 name: 'November - December 2019',
-                iso: '201911B',
-                id: '201911B',
+                iso: '201906B',
+                id: '201906B',
             });
         });
     });
