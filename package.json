@@ -1,21 +1,13 @@
 {
   "name": "@dhis2/d2-ui",
-  "version": "6.0.1",
+  "version": "1.0.0",
   "license": "BSD-3-Clause",
-  "private": true,
+  "private": false,
   "scripts": {
-    "postinstall": "packages link",
-    "build": "cross-env BABEL_ENV=commonjs packages build",
-    "watch": "packages exec yarn watch",
-    "lint": "packages exec yarn lint",
     "test": "jest"
   },
-  "workspaces": [
-    "packages/*",
-    "examples/*"
-  ],
   "devDependencies": {
-    "@dhis2/packages": "^1.1.2",
+    "@dhis2/cli-style": "^3.2.2",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "10.0.1",
