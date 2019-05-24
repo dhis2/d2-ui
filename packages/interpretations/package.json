@@ -20,11 +20,6 @@
     "localize": "yarn extract-pot && d2-i18n-generate -n d2-ui-interpretations -p ./i18n/ -o ./src/locales/",
     "test-ci": "jest --config=../../jest.config.js packages/interpretations"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn extract-pot && CI=true yarn test-ci"
-    }
-  },
   "dependencies": {
     "@dhis2/d2-i18n": "^1.0.3",
     "@dhis2/d2-i18n-extract": "^1.0.7",
@@ -36,7 +31,6 @@
     "@material-ui/icons": "^3.0.1",
     "babel-runtime": "^6.26.0",
     "classnames": "^2.2.6",
-    "husky": "^1.0.0-rc.8",
     "postcss-rtl": "^1.3.0",
     "prop-types": "^15.5.10",
     "react-portal": "^4.1.5"

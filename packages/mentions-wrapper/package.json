@@ -34,15 +34,9 @@
   "publishConfig": {
     "access": "public"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn extract-pot && git add ./i18n/"
-    }
-  },
   "devDependencies": {
     "@dhis2/d2-i18n-extract": "^1.0.6",
     "@dhis2/d2-i18n-generate": "^1.0.18",
-    "husky": "^1.0.0-rc.4",
     "prettier": "^1.12.1"
   },
   "version": "0.0.0-PLACEHOLDER"

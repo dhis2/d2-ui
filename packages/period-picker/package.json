@@ -27,13 +27,7 @@
   "devDependencies": {
     "@dhis2/d2-i18n-extract": "^1.0.6",
     "@dhis2/d2-i18n-generate": "^1.0.18",
-    "husky": "^1.0.0-rc.4",
     "prettier": "^1.12.1"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run extract-pot && npm run prettify && git add ./i18n"
-    }
   },
   "peerDependencies": {
     "react": "^16.4.0",
