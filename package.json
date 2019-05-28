@@ -65,5 +65,9 @@
     "webpack-cli": "3",
     "webpack-dev-server": "^3.1.0",
     "webpack-visualizer-plugin": "^0.1.5"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.0.0",
+    "@material-ui/icons": "^4.0.0"
   }
 }
