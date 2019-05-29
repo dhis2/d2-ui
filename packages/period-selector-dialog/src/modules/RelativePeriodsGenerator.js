@@ -23,6 +23,16 @@ const WeeksPeriodType = {
     },
 };
 
+const BiWeeksPeriodType = {
+    generatePeriods() {
+        return [
+            { id: 'THIS_BIWEEK', name: 'This bi-week' },
+            { id: 'LAST_BIWEEK', name: 'Last bi-week' },
+            { id: 'LAST_4_BIWEEKS', name: 'Last 4 bi-weeks' },
+        ];
+    },
+};
+
 const MonthsPeriodType = {
     generatePeriods() {
         return [
@@ -39,7 +49,7 @@ const MonthsPeriodType = {
 const BiMonthsPeriodType = {
     generatePeriods() {
         return [
-            { id: 'THIS_BIMOTNH', name: 'This bi-month' },
+            { id: 'THIS_BIMONTH', name: 'This bi-month' },
             { id: 'LAST_BIMONTH', name: 'Last bi-month' },
             { id: 'LAST_6_BIMONTHS', name: 'Last 6 bi-months' },
             { id: 'BIMONTHS_THIS_YEAR', name: 'Bi-months this year' },
@@ -92,6 +102,7 @@ export default class Generator {
     options = {
         Days: DaysPeriodType,
         Weeks: WeeksPeriodType,
+        'Bi-weeks': BiWeeksPeriodType,
         Months: MonthsPeriodType,
         'Bi-months': BiMonthsPeriodType,
         Quarters: QuartersPeriodType,
