@@ -53,7 +53,14 @@ function WeeklyPeriodType(formatYyyyMmDd, fnFilter) {
             date.setDate(date.getDate() + 6);
             period.endDate = formatYyyyMmDd(date);
             period.name = `W${week} - ${period.startDate} - ${period.endDate}`;
+
+            // if end date is Jan 4th or later, week belongs to next year
+            if (date.getFullYear() > year && date.getDate() >= 4) {
+                break;
+            }
+
             periods.push(period);
+
             date.setDate(date.getDate() + 1);
 
             week += 1;
@@ -90,10 +97,17 @@ function BiWeeklyPeriodType(formatYyyyMmDd, fnFilter) {
             period.id = period.iso;
             period.startDate = formatYyyyMmDd(date);
             date.setDate(date.getDate() + 13);
+
             period.endDate = formatYyyyMmDd(date);
             period.name = `Bi-Week ${biWeek} - ${period.startDate} - ${
                 period.endDate
             }`;
+
+            // if end date is Jan 4th or later, biweek belongs to next year
+            if (date.getFullYear() > year && date.getDate() >= 4) {
+                break;
+            }
+
             periods.push(period);
 
             date.setDate(date.getDate() + 1);

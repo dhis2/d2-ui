@@ -75,33 +75,33 @@ describe('FixedPeriodsGenerator class', () => {
             const generator = periodsGenerator.get('Weekly');
 
             periods = generator.generatePeriods({
-                offset: 2019 - new Date().getFullYear(),
+                offset: 2009 - new Date().getFullYear(),
                 filterFuturePeriods: false,
                 reversePeriods: false,
             });
         });
 
-        it('should return the correct number of weeks in 2019', () => {
+        it('should return the correct number of weeks in 2009', () => {
             expect(periods.length).toEqual(53);
         });
 
         it('should return the correct object for week 1', () => {
             expect(periods[0]).toEqual({
-                startDate: '2018-12-31',
-                endDate: '2019-01-06',
-                name: 'W1 - 2018-12-31 - 2019-01-06',
-                iso: '2019W1',
-                id: '2019W1',
+                startDate: '2008-12-29',
+                endDate: '2009-01-04',
+                name: 'W1 - 2008-12-29 - 2009-01-04',
+                iso: '2009W1',
+                id: '2009W1',
             });
         });
 
         it('should return the correct object for week 53', () => {
             expect(periods[52]).toEqual({
-                startDate: '2019-12-30',
-                endDate: '2020-01-05',
-                name: 'W53 - 2019-12-30 - 2020-01-05',
-                iso: '2019W53',
-                id: '2019W53',
+                startDate: '2009-12-28',
+                endDate: '2010-01-03',
+                name: 'W53 - 2009-12-28 - 2010-01-03',
+                iso: '2009W53',
+                id: '2009W53',
             });
         });
     });
@@ -120,7 +120,7 @@ describe('FixedPeriodsGenerator class', () => {
         });
 
         it('should return the correct number of bi-weeks in 2019', () => {
-            expect(periods.length).toEqual(27);
+            expect(periods.length).toEqual(26);
         });
 
         it('should return the correct object for bi-week 1', () => {
@@ -133,13 +133,13 @@ describe('FixedPeriodsGenerator class', () => {
             });
         });
 
-        it('should return the correct object for bi-week 27', () => {
-            expect(periods[26]).toEqual({
-                startDate: '2019-12-30',
-                endDate: '2020-01-12',
-                name: 'Bi-Week 27 - 2019-12-30 - 2020-01-12',
-                iso: '2019BiW27',
-                id: '2019BiW27',
+        it('should return the correct object for bi-week 26', () => {
+            expect(periods[25]).toEqual({
+                startDate: '2019-12-16',
+                endDate: '2019-12-29',
+                name: 'Bi-Week 26 - 2019-12-16 - 2019-12-29',
+                iso: '2019BiW26',
+                id: '2019BiW26',
             });
         });
     });
