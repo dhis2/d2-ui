@@ -3,7 +3,7 @@ import FixedPeriodsGenerator from '../FixedPeriodsGenerator';
 describe('FixedPeriodsGenerator class', () => {
     const periodsGenerator = new FixedPeriodsGenerator();
 
-    beforeAll(() => 
+    beforeAll(() =>
         // 2019-06-17
         jest.spyOn(Date, 'now').mockImplementation(() => 1560765600000)
     );
@@ -13,10 +13,21 @@ describe('FixedPeriodsGenerator class', () => {
             const periods = periodsGenerator.getOptions();
 
             expect(periods).toEqual([
-                'Daily', 'Weekly', 'Bi-weekly', 'Monthly', 'Bi-monthly', 'Quarterly', 'Six-monthly', 'Six-monthly April', 'Yearly', 'Financial year (Start November)', 'Financial year (Start October)', 'Financial year (Start July)', 'Financial year (Start April)'
+                'Daily',
+                'Weekly',
+                'Bi-weekly',
+                'Monthly',
+                'Bi-monthly',
+                'Quarterly',
+                'Six-monthly',
+                'Six-monthly April',
+                'Yearly',
+                'Financial year (Start November)',
+                'Financial year (Start October)',
+                'Financial year (Start July)',
+                'Financial year (Start April)',
             ]);
         });
-
     });
 
     describe('Daily period generator', () => {
@@ -26,14 +37,14 @@ describe('FixedPeriodsGenerator class', () => {
             const generator = periodsGenerator.get('Daily');
 
             periods = generator.generatePeriods({
-                offset: 2019 - (new Date()).getFullYear(),
+                offset: 2019 - new Date().getFullYear(),
                 filterFuturePeriods: false,
                 reversePeriods: false,
             });
         });
 
         it('should return the correct number of days in 2019', () => {
-                expect(periods.length).toEqual(365);
+            expect(periods.length).toEqual(365);
         });
 
         it('should return the correct object for 1 jan 2019 day', () => {
@@ -64,14 +75,14 @@ describe('FixedPeriodsGenerator class', () => {
             const generator = periodsGenerator.get('Weekly');
 
             periods = generator.generatePeriods({
-                offset: 2019 - (new Date()).getFullYear(),
+                offset: 2019 - new Date().getFullYear(),
                 filterFuturePeriods: false,
                 reversePeriods: false,
             });
         });
 
         it('should return the correct number of weeks in 2019', () => {
-                expect(periods.length).toEqual(53);
+            expect(periods.length).toEqual(53);
         });
 
         it('should return the correct object for week 1', () => {
@@ -102,14 +113,14 @@ describe('FixedPeriodsGenerator class', () => {
             const generator = periodsGenerator.get('Bi-weekly');
 
             periods = generator.generatePeriods({
-                offset: 2019 - (new Date()).getFullYear(),
+                offset: 2019 - new Date().getFullYear(),
                 filterFuturePeriods: false,
                 reversePeriods: false,
             });
         });
 
         it('should return the correct number of bi-weeks in 2019', () => {
-                expect(periods.length).toEqual(27);
+            expect(periods.length).toEqual(27);
         });
 
         it('should return the correct object for bi-week 1', () => {
@@ -140,14 +151,14 @@ describe('FixedPeriodsGenerator class', () => {
             const generator = periodsGenerator.get('Monthly');
 
             periods = generator.generatePeriods({
-                offset: 2019 - (new Date()).getFullYear(),
+                offset: 2019 - new Date().getFullYear(),
                 filterFuturePeriods: false,
                 reversePeriods: false,
             });
         });
 
         it('should return the correct number of months in 2019', () => {
-                expect(periods.length).toEqual(12);
+            expect(periods.length).toEqual(12);
         });
 
         it('should return the correct object for month 1', () => {
@@ -178,14 +189,14 @@ describe('FixedPeriodsGenerator class', () => {
             const generator = periodsGenerator.get('Bi-monthly');
 
             periods = generator.generatePeriods({
-                offset: 2019 - (new Date()).getFullYear(),
+                offset: 2019 - new Date().getFullYear(),
                 filterFuturePeriods: false,
                 reversePeriods: false,
             });
         });
 
         it('should return the correct number of bi-months in 2019', () => {
-                expect(periods.length).toEqual(6);
+            expect(periods.length).toEqual(6);
         });
 
         it('should return the correct object for bi-month 1', () => {
@@ -226,14 +237,14 @@ describe('FixedPeriodsGenerator class', () => {
             const generator = periodsGenerator.get('Quarterly');
 
             periods = generator.generatePeriods({
-                offset: 2019 - (new Date()).getFullYear(),
+                offset: 2019 - new Date().getFullYear(),
                 filterFuturePeriods: false,
                 reversePeriods: false,
             });
         });
 
         it('should return the correct number of quarters in 2019', () => {
-                expect(periods.length).toEqual(4);
+            expect(periods.length).toEqual(4);
         });
 
         it('should return the correct object for quarter 1', () => {
@@ -264,14 +275,14 @@ describe('FixedPeriodsGenerator class', () => {
             const generator = periodsGenerator.get('Six-monthly');
 
             periods = generator.generatePeriods({
-                offset: 2019 - (new Date()).getFullYear(),
+                offset: 2019 - new Date().getFullYear(),
                 filterFuturePeriods: false,
                 reversePeriods: false,
             });
         });
 
         it('should return the correct number of six-month periods in 2019', () => {
-                expect(periods.length).toEqual(2);
+            expect(periods.length).toEqual(2);
         });
 
         it('should return the correct object for six-monthly 1', () => {
@@ -302,14 +313,14 @@ describe('FixedPeriodsGenerator class', () => {
             const generator = periodsGenerator.get('Six-monthly April');
 
             periods = generator.generatePeriods({
-                offset: 2019 - (new Date()).getFullYear(),
+                offset: 2019 - new Date().getFullYear(),
                 filterFuturePeriods: false,
                 reversePeriods: false,
             });
         });
 
         it('should return the correct number of six-monthly April periods in 2019', () => {
-                expect(periods.length).toEqual(2);
+            expect(periods.length).toEqual(2);
         });
 
         it('should return the correct object for six-monthly April 1', () => {
@@ -347,7 +358,7 @@ describe('FixedPeriodsGenerator class', () => {
         });
 
         it('should return the correct number of yearly periods', () => {
-                expect(periods.length).toEqual(10);
+            expect(periods.length).toEqual(10);
         });
 
         it('should return the correct object for yearly period 1', () => {
@@ -375,7 +386,9 @@ describe('FixedPeriodsGenerator class', () => {
         let periods;
 
         beforeAll(() => {
-            const generator = periodsGenerator.get('Financial year (Start November)');
+            const generator = periodsGenerator.get(
+                'Financial year (Start November)'
+            );
 
             periods = generator.generatePeriods({
                 offset: 9,
@@ -385,7 +398,7 @@ describe('FixedPeriodsGenerator class', () => {
         });
 
         it('should return the correct number of financial November periods', () => {
-                expect(periods.length).toEqual(10);
+            expect(periods.length).toEqual(10);
         });
 
         it('should return the correct object for financial November period 1', () => {
@@ -411,7 +424,9 @@ describe('FixedPeriodsGenerator class', () => {
         let periods;
 
         beforeAll(() => {
-            const generator = periodsGenerator.get('Financial year (Start October)');
+            const generator = periodsGenerator.get(
+                'Financial year (Start October)'
+            );
 
             periods = generator.generatePeriods({
                 offset: 9,
@@ -421,7 +436,7 @@ describe('FixedPeriodsGenerator class', () => {
         });
 
         it('should return the correct number of financial October periods', () => {
-                expect(periods.length).toEqual(10);
+            expect(periods.length).toEqual(10);
         });
 
         it('should return the correct object for financial October period 1', () => {
@@ -447,7 +462,9 @@ describe('FixedPeriodsGenerator class', () => {
         let periods;
 
         beforeAll(() => {
-            const generator = periodsGenerator.get('Financial year (Start July)');
+            const generator = periodsGenerator.get(
+                'Financial year (Start July)'
+            );
 
             periods = generator.generatePeriods({
                 offset: 9,
@@ -457,7 +474,7 @@ describe('FixedPeriodsGenerator class', () => {
         });
 
         it('should return the correct number of financial July periods', () => {
-                expect(periods.length).toEqual(10);
+            expect(periods.length).toEqual(10);
         });
 
         it('should return the correct object for financial July 1', () => {
@@ -483,7 +500,9 @@ describe('FixedPeriodsGenerator class', () => {
         let periods;
 
         beforeAll(() => {
-            const generator = periodsGenerator.get('Financial year (Start April)');
+            const generator = periodsGenerator.get(
+                'Financial year (Start April)'
+            );
 
             periods = generator.generatePeriods({
                 offset: 9,
@@ -493,7 +512,7 @@ describe('FixedPeriodsGenerator class', () => {
         });
 
         it('should return the correct number of financial April periods', () => {
-                expect(periods.length).toEqual(10);
+            expect(periods.length).toEqual(10);
         });
 
         it('should return the correct object for financial April 1', () => {
