@@ -13,7 +13,23 @@ describe('FixedPeriodsGenerator class', () => {
             const periods = periodsGenerator.getOptions();
 
             expect(periods).toEqual([
-                'Daily', 'Weekly', 'Bi-weekly', 'Monthly', 'Bi-monthly', 'Quarterly', 'Six-monthly', 'Six-monthly April', 'Yearly', 'Financial year (Start November)', 'Financial year (Start October)', 'Financial year (Start July)', 'Financial year (Start April)'
+                'Daily',
+                'Weekly',
+                'Bi-weekly',
+                'Weekly (Start Wednesday)',
+                'Weekly (Start Thursday)',
+                'Weekly (Start Saturday)',
+                'Weekly (Start Sunday)',
+                'Monthly',
+                'Bi-monthly',
+                'Quarterly',
+                'Six-monthly',
+                'Six-monthly April',
+                'Yearly',
+                'Financial year (Start November)',
+                'Financial year (Start October)',
+                'Financial year (Start July)',
+                'Financial year (Start April)'
             ]);
         });
 
@@ -129,6 +145,62 @@ describe('FixedPeriodsGenerator class', () => {
                 name: 'Bi-Week 27 - 2019-12-30 - 2020-01-12',
                 iso: '2019BiW27',
                 id: '2019BiW27',
+            });
+        });
+    });
+
+    describe('EpiWeekly period generator', () => {
+        let periods;
+
+        describe('-> Weekly Wednesday', () => {
+            beforeAll(() => {
+                const generator = periodsGenerator.get('Weekly (Start Wednesday)');
+    
+                periods = generator.generatePeriods({
+                    offset: 2019 - (new Date()).getFullYear(),
+                    filterFuturePeriods: false,
+                    reversePeriods: false,
+                });
+            });
+
+            it('should return the correct number of weekly wednesday in 2019', () => {
+                expect(periods.length).toEqual(52);
+            });
+
+            it('should return the correct object for weekly wednesday 27', () => {
+                expect(periods[26]).toEqual({
+                    startDate: '2019-07-03',
+                    endDate: '2019-07-09',
+                    name: 'Week 27 - 2019-07-03 - 2019-07-09',
+                    iso: '2019WedW27',
+                    id: '2019WedW27',
+                });
+            });
+        });
+
+        describe('-> Weekly Saturday', () => {
+            beforeAll(() => {
+                const generator = periodsGenerator.get('Weekly (Start Saturday)');
+    
+                periods = generator.generatePeriods({
+                    offset: 2019 - (new Date()).getFullYear(),
+                    filterFuturePeriods: false,
+                    reversePeriods: false,
+                });
+            });
+
+            it('should return the correct number of weekly saturdays in 2019', () => {
+                expect(periods.length).toEqual(53);
+            });
+
+            it('should return the correct object for weekly saturday 10', () => {
+                expect(periods[9]).toEqual({
+                    startDate: '2019-03-02',
+                    endDate: '2019-03-08',
+                    name: 'Week 10 - 2019-03-02 - 2019-03-08',
+                    iso: '2019SatW10',
+                    id: '2019SatW10',
+                });
             });
         });
     });
