@@ -73,14 +73,14 @@ function WeeklyPeriodType(formatYyyyMmDd, weekObj, fnFilter) {
             date.setDate(date.getDate() + 1);
 
             week += 1;
-        };
+        }
 
         periods = isFilter ? fnFilter(periods) : periods;
         periods = isReverse ? periods.reverse() : periods;
 
         return periods;
     };
-};
+}
 
 function BiWeeklyPeriodType(formatYyyyMmDd, fnFilter) {
     this.generatePeriods = config => {
