@@ -28,59 +28,11 @@ function DailyPeriodType(formatYyyyMmDd, fnFilter) {
     };
 }
 
-/*
-function WeeklyPeriodType(formatYyyyMmDd, fnFilter) {
-    this.generatePeriods = config => {
-        let periods = [];
-        const offset = parseInt(config.offset, 10);
-        const isFilter = config.filterFuturePeriods;
-        const isReverse = config.reversePeriods;
-        const year = new Date(Date.now()).getFullYear() + offset;
-        const date = new Date(`01 Jan ${year}`);
-        const day = date.getDay();
-        let week = 1;
-
-        if (day <= 4) {
-            date.setDate(date.getDate() - (day - 1));
-        } else {
-            date.setDate(date.getDate() + (8 - day));
-        }
-
-        while (date.getFullYear() <= year) {
-            const period = {};
-            period.startDate = formatYyyyMmDd(date);
-            period.iso = `${year}W${week}`;
-            period.id = period.iso;
-            date.setDate(date.getDate() + 6);
-            period.endDate = formatYyyyMmDd(date);
-            period.name = `W${week} - ${period.startDate} - ${period.endDate}`;
-
-            // if end date is Jan 4th or later, week belongs to next year
-            if (date.getFullYear() > year && date.getDate() >= 4) {
-                break;
-            }
-
-            periods.push(period);
-
-            date.setDate(date.getDate() + 1);
-
-            week += 1;
-        }
-
-        periods = isFilter ? fnFilter(periods) : periods;
-        periods = isReverse ? periods.reverse() : periods;
-
-        return periods;
-    };
-}*/
-
-
 function WeeklyPeriodType(formatYyyyMmDd, weekObj, fnFilter) {
     // Calculate the first date of an EPI year base on ISO standard  ( first week always contains 4th Jan )
     const getEpiWeekStartDay = (year, startDayOfWeek) => {
         const jan4 = new Date(year, 0, 4);
         const jan4DayOfWeek = jan4.getDay();
-    
         const startDate = jan4;
         const dayDiff = jan4DayOfWeek - startDayOfWeek;
     
@@ -106,12 +58,13 @@ function WeeklyPeriodType(formatYyyyMmDd, weekObj, fnFilter) {
         while (date.getFullYear() <= year) {
             const period = {};
             period.startDate = formatYyyyMmDd(date);
+            period.iso = `${year}${weekObj.shortName}W${week}`;
+            period.id = period.iso;
             date.setDate(date.getDate() + 6);
             period.endDate = formatYyyyMmDd(date);
             period.name = `Week ${week} - ${period.startDate} - ${period.endDate}`;
-            period.iso = `${year}${weekObj.shortName}W${week}`;
-            period.id = period.iso;
 
+            // if end date is Jan 4th or later, week belongs to next year
             if (date.getFullYear() > year && date.getDate() >= 4) {
                 break;
             }
@@ -119,7 +72,7 @@ function WeeklyPeriodType(formatYyyyMmDd, weekObj, fnFilter) {
             periods.push(period);
             date.setDate(date.getDate() + 1);
 
-            week++;
+            week += 1;
         };
 
         periods = isFilter ? fnFilter(periods) : periods;
