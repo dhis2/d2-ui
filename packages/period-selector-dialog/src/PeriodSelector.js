@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
-import { ItemSelector } from '@dhis2/d2-ui-analytics';
+import { ItemSelector } from '@dhis2/analytics';
 
 import PeriodTypeButton from './PeriodTypeButton';
 import FixedPeriodFilter from './FixedPeriodFilter';
