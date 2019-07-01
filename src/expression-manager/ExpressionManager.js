@@ -192,7 +192,7 @@ class ExpressionManager extends Component {
         this.requestExpressionStatusAction(this.state.formula);
     }
 
-    validateExpression = () => {
+    validateExpression = action => {
         const formula = action.data;
         const url = 'expressions/description';
 
