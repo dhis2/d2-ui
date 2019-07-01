@@ -129,12 +129,7 @@ class ExpressionManager extends Component {
 
         this.expressionStatusDisposable = this.requestExpressionStatusAction
             .debounceTime(500)
-            .map((action) => {
-                const formula = action.data;
-                const url = 'expressions/description';
-
-                return Observable.fromPromise(this.context.d2.Api.getApi().get(url, { expression: formula }));
-            })
+            .map(this.props.validateExpression || this.validateExpression)
             .concatAll()
             .subscribe(
                 response => this.props.expressionStatusStore.setState(response),
@@ -195,6 +190,15 @@ class ExpressionManager extends Component {
 
     requestExpressionStatus = () => {
         this.requestExpressionStatusAction(this.state.formula);
+    }
+
+    validateExpression = action => {
+        const formula = action.data;
+        const url = 'expressions/description';
+
+        return Observable.fromPromise(
+            this.context.d2.Api.getApi().get(url, {expression: formula}),
+        );
     }
 
     render() {
@@ -276,6 +280,7 @@ ExpressionManager.propTypes = {
     descriptionValue: PropTypes.string,
     formulaValue: PropTypes.string,
     titleText: PropTypes.string,
+    validateExpression: PropTypes.func,
 };
 
 ExpressionManager.defaultProps = {
