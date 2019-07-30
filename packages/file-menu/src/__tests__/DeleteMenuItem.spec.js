@@ -33,7 +33,9 @@ describe('File: FileMenu > DeleteMenuItem component', () => {
 
     it('should render the Delete button', () => {
         expect(deleteMenuItem.find(ListItemIcon)).toHaveLength(1);
-        expect(deleteMenuItem.find(ListItemText).props().primary).toEqual('Delete');
+        expect(deleteMenuItem.find(ListItemText).props().primary).toEqual(
+            'Delete'
+        );
     });
 
     it('should open the Delete dialog on button click', () => {
@@ -58,8 +60,12 @@ describe('File: FileMenu > DeleteMenuItem component', () => {
     });
 
     it('should trigger the onDeleteError callback upon unsuccessful delete', () => {
-        deleteMenuItem.find(DeleteDialog).simulate('requestDeleteError');
+        const mockError = { httpStatusCode: 409, status: 'ERROR' };
+        deleteMenuItem
+            .find(DeleteDialog)
+            .simulate('requestDeleteError', mockError);
 
         expect(onError).toHaveBeenCalledTimes(1);
+        expect(onError).toHaveBeenCalledWith(mockError);
     });
 });
