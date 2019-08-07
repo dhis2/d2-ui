@@ -3736,13 +3736,6 @@ d2-utilizr@^0.2.15, d2-utilizr@^0.2.16:
     lodash.isset "^4.3.0"
     lodash.isstring "^4.0.1"
 
-d2@^31.1.1:
-  version "31.8.1"
-  resolved "https://registry.yarnpkg.com/d2/-/d2-31.8.1.tgz#017372001f9c8d3379a74c71c0382c98e9d2fc26"
-  integrity sha512-UpS2gv3DS4Bg7MrQTMNkYv5cXJ0k9jsujgw/p4Ex+el3gzslTf7fTH2n4gIZt42+l1tKmrs/R7yiJPov5Cax3w==
-  dependencies:
-    isomorphic-fetch "^2.2.1"
-
 d2@^31.7, d2@~31.7:
   version "31.7.0"
   resolved "https://registry.yarnpkg.com/d2/-/d2-31.7.0.tgz#3a843240fecaafdf213da78b55aed9b8611ee22e"
@@ -10252,7 +10245,7 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-beautiful-dnd@^10.1.0, react-beautiful-dnd@^10.1.1:
+react-beautiful-dnd@^10.1.1:
   version "10.1.1"
   resolved "https://registry.yarnpkg.com/react-beautiful-dnd/-/react-beautiful-dnd-10.1.1.tgz#d753088d77d7632e77cf8a8935fafcffa38f574b"
   integrity sha512-TdE06Shfp56wm28EzjgC56EEMgGI5PDHejJ2bxuAZvZr8CVsbksklsJC06Hxf0MSL7FHbflL/RpkJck9isuxHg==
