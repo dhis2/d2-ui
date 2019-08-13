@@ -1,0 +1,31 @@
+[main]
+host = https://www.transifex.com
+
+[app-d2-ui.fm-en-pot--v30]
+file_filter = packages/file-menu/i18n/<lang>.po
+minimum_perc = 0
+source_file = packages/file-menu/i18n/en.pot
+source_lang = en
+type = PO
+
+[app-d2-ui.oud-en-pot--v30]
+file_filter = packages/org-unit-dialog/i18n/<lang>.po
+minimum_perc = 0
+source_file = packages/org-unit-dialog/i18n/en.pot
+source_lang = en
+type = PO
+
+[app-d2-ui.i-en-pot--v30]
+file_filter = packages/interpretations/i18n/<lang>.po
+minimum_perc = 0
+source_file = packages/interpretations/i18n/en.pot
+source_lang = en
+type = PO
+
+[app-d2-ui.mw-en-pot--v30]
+file_filter = packages/mentions-wrapper/i18n/<lang>.po
+minimum_perc = 0
+source_file = packages/mentions-wrapper/i18n/en.pot
+source_lang = en
+type = PO
+
