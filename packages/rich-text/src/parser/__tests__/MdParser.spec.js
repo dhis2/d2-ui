@@ -21,6 +21,14 @@ describe('MdParser class', () => {
             ],
             ['_italic with * inside_', '<em>italic with * inside</em>'],
             ['*bold with _ inside*', '<strong>bold with _ inside</strong>'],
+
+            // italic marker followed by : should work
+            ['_italic_:', '<em>italic</em>:'],
+            ['_italic_: some text, *bold*: some other text', '<em>italic</em>: some text, <strong>bold</strong>: some other text'],
+            // bold marker followed by : should work
+            ['*bold*:', '<strong>bold</strong>:'],
+            ['*bold*: some text, _italic_: some other text', '<strong>bold</strong>: some text, <em>italic</em>: some other text'],
+
             // italic marker inside an italic string not allowed
             ['_italic with _ inside_', '_italic with _ inside_'],
             // bold marker inside a bold string not allowed
