@@ -20,17 +20,23 @@ class OrgUnitSelector extends Component {
             menuAnchorElement: null,
             children: null,
             loadingChildren: false,
-            initiallyExpanded: this.props.selected.map(ou => removeLastPathSegment(ou.path)),
+            initiallyExpanded: this.props.selected.map(ou =>
+                removeLastPathSegment(ou.path)
+            ),
         };
     }
 
     componentDidUpdate(prevProps) {
         // if props.selected.length changed by more than 1, then another analytic object was selected
-        if (Math.abs(prevProps.selected.length - this.props.selected.length) > 1) {
+        if (
+            Math.abs(prevProps.selected.length - this.props.selected.length) > 1
+        ) {
             // In this case refresh expanded org units
             // eslint-disable-next-line
             this.setState({
-                initiallyExpanded: this.props.selected.map(ou => removeLastPathSegment(ou.path)),
+                initiallyExpanded: this.props.selected.map(ou =>
+                    removeLastPathSegment(ou.path)
+                ),
             });
         } else {
             // If props.selected.length changed by 1 or didnt change
@@ -38,9 +44,10 @@ class OrgUnitSelector extends Component {
             // if more than 1 ids are different, then and we should refresh expanded org units
             let counter = 0;
 
-            const orgUnits = prevProps.selected.length < this.props.selected.length
-                ? prevProps.selected
-                : this.props.selected;
+            const orgUnits =
+                prevProps.selected.length < this.props.selected.length
+                    ? prevProps.selected
+                    : this.props.selected;
 
             for (let i = 0; i < orgUnits.length; ++i) {
                 if (prevProps.selected[i].id !== this.props.selected[i].id) {
@@ -49,7 +56,9 @@ class OrgUnitSelector extends Component {
                     if (counter > 1) {
                         // eslint-disable-next-line
                         this.setState({
-                            initiallyExpanded: this.props.selected.map(ou => removeLastPathSegment(ou.path)),
+                            initiallyExpanded: this.props.selected.map(ou =>
+                                removeLastPathSegment(ou.path)
+                            ),
                         });
 
                         break;
@@ -59,19 +68,18 @@ class OrgUnitSelector extends Component {
         }
     }
 
-    onExpand = (orgUnit) => {
+    onExpand = orgUnit => {
         this.setState({
-            initiallyExpanded: [
-                ...this.state.initiallyExpanded,
-                orgUnit.path,
-            ],
+            initiallyExpanded: [...this.state.initiallyExpanded, orgUnit.path],
         });
     };
 
-    onCollapse = (orgUnit) => {
+    onCollapse = orgUnit => {
         this.setState({
             // Clear all org units which are children of collapsed org unit
-            initiallyExpanded: this.state.initiallyExpanded.filter(path => !path.includes(orgUnit.id)),
+            initiallyExpanded: this.state.initiallyExpanded.filter(
+                path => !path.includes(orgUnit.id)
+            ),
         });
     };
 
@@ -80,17 +88,22 @@ class OrgUnitSelector extends Component {
             return;
         }
 
-        this.setState({
-            menuAnchorElement: event.currentTarget,
-            loadingChildren: true,
-        }, () => {
-            loadChildren().then((children) => {
-                this.setState({
-                    children: Array.isArray(children) ? children : children.toArray(),
-                    loadingChildren: false,
+        this.setState(
+            {
+                menuAnchorElement: event.currentTarget,
+                loadingChildren: true,
+            },
+            () => {
+                loadChildren().then(children => {
+                    this.setState({
+                        children: Array.isArray(children)
+                            ? children
+                            : children.toArray(),
+                        loadingChildren: false,
+                    });
                 });
-            });
-        });
+            }
+        );
     };
 
     normalizeOptions = (result, item) => ({ ...result, [item.id]: item });
@@ -105,9 +118,12 @@ class OrgUnitSelector extends Component {
         this.setState({ menuAnchorElement: null });
     };
 
-    renderGroupOptions = (selected) => {
+    renderGroupOptions = selected => {
         if (this.props.groupOptions.length > 0) {
-            const options = this.props.groupOptions.reduce(this.normalizeOptions, {});
+            const options = this.props.groupOptions.reduce(
+                this.normalizeOptions,
+                {}
+            );
 
             return selected
                 .filter(id => options[id])
@@ -118,9 +134,12 @@ class OrgUnitSelector extends Component {
         return '';
     };
 
-    renderLevelOptions = (selected) => {
+    renderLevelOptions = selected => {
         if (this.props.levelOptions.length > 0) {
-            const options = this.props.levelOptions.reduce(this.normalizeOptions, {});
+            const options = this.props.levelOptions.reduce(
+                this.normalizeOptions,
+                {}
+            );
 
             return selected
                 .filter(id => options[id])
@@ -173,16 +192,24 @@ class OrgUnitSelector extends Component {
                             selected={this.props.selected}
                             styles={styles.userOrgUnits}
                             userOrgUnits={this.props.userOrgUnits}
-                            handleUserOrgUnitClick={this.props.handleUserOrgUnitClick}
+                            handleUserOrgUnitClick={
+                                this.props.handleUserOrgUnitClick
+                            }
                             checkboxColor={this.props.checkboxColor}
                         />
-                        <div style={styles.scrollableContainer.overlayContainer}>
+                        <div
+                            style={styles.scrollableContainer.overlayContainer}
+                        >
                             {this.props.userOrgUnits.length > 0 && (
-                                <div style={styles.scrollableContainer.overlay} />
+                                <div
+                                    style={styles.scrollableContainer.overlay}
+                                />
                             )}
                             <OrgUnitTree
                                 root={this.props.root}
-                                selected={this.props.selected.map(orgUnit => orgUnit.path)}
+                                selected={this.props.selected.map(
+                                    orgUnit => orgUnit.path
+                                )}
                                 initiallyExpanded={this.state.initiallyExpanded}
                                 onSelectClick={this.props.handleOrgUnitClick}
                                 onExpand={this.onExpand}
@@ -190,9 +217,13 @@ class OrgUnitSelector extends Component {
                                 onContextMenuClick={this.onContextMenuClick}
                                 treeStyle={styles.orgUnitTree.treeStyle}
                                 labelStyle={styles.orgUnitTree.labelStyle}
-                                selectedLabelStyle={styles.orgUnitTree.selectedLabelStyle}
+                                selectedLabelStyle={
+                                    styles.orgUnitTree.selectedLabelStyle
+                                }
                                 checkboxColor={this.props.checkboxColor}
-                                displayNameProperty={this.props.displayNameProperty}
+                                displayNameProperty={
+                                    this.props.displayNameProperty
+                                }
                                 showFolderIcon
                                 disableSpacer
                             />
@@ -214,10 +245,13 @@ class OrgUnitSelector extends Component {
                     <div style={styles.orgUnitsContainer.tooltipContainer}>
                         {this.props.selected.length > 0 && (
                             <div style={tooltipStyles}>
-                                {this.props.selected.length} {i18n.t('selected')} -
+                                {this.props.selected.length}{' '}
+                                {i18n.t('selected')} -
                                 <button
                                     onClick={this.props.onDeselectAllClick}
-                                    style={styles.orgUnitsContainer.tooltip.link}
+                                    style={
+                                        styles.orgUnitsContainer.tooltip.link
+                                    }
                                 >
                                     {i18n.t('Deselect all')}
                                 </button>
