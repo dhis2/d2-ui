@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { OrgUnitTree } from '@dhis2/d2-ui-org-unit-tree';
+import { OrgUnitTreeMultipleRoots } from '@dhis2/d2-ui-org-unit-tree';
 import i18n from '@dhis2/d2-i18n';
 import PropTypes from 'prop-types';
 
@@ -205,7 +205,8 @@ class OrgUnitSelector extends Component {
                                     style={styles.scrollableContainer.overlay}
                                 />
                             )}
-                            <OrgUnitTree
+                            <OrgUnitTreeMultipleRoots
+                                roots={this.props.roots}
                                 root={this.props.root}
                                 selected={this.props.selected.map(
                                     orgUnit => orgUnit.path
@@ -333,6 +334,11 @@ OrgUnitSelector.propTypes = {
      * Arguments supplied in callback: event, checked
      */
     handleUserOrgUnitClick: PropTypes.func.isRequired,
+
+    /**
+     * Root organisation units whenever multiple roots are available
+     */
+    roots: PropTypes.array,
 
     /**
      * Root organisation unit
