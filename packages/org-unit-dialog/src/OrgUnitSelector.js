@@ -227,6 +227,9 @@ class OrgUnitSelector extends Component {
                                 }
                                 showFolderIcon
                                 disableSpacer
+                                useUserDataViewFallback={
+                                    this.props.useUserDataViewFallback
+                                }
                             />
                             <Menu
                                 anchorEl={this.state.menuAnchorElement}
@@ -359,6 +362,8 @@ OrgUnitSelector.propTypes = {
      * Checkbox color in org unit tree
      */
     checkboxColor: PropTypes.string,
+
+    useUserDataViewFallback: PropTypes.bool,
 };
 
 OrgUnitSelector.defaultProps = {
@@ -372,6 +377,7 @@ OrgUnitSelector.defaultProps = {
     checkboxColor: 'primary',
     deselectAllTooltipFontColor: 'white',
     deselectAllTooltipBackgroundColor: 'gray',
+    useUserDataViewFallback: false,
 };
 
 export default OrgUnitSelector;
