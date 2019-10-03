@@ -202,6 +202,7 @@ class OrgUnitTree extends React.Component {
                 disableSpacer={this.props.disableSpacer}
                 checkboxColor={this.props.checkboxColor}
                 displayNameProperty={this.props.displayNameProperty}
+                isUserDataViewFallback={this.props.isUserDataViewFallback}
             />
         );
     }
