@@ -6,7 +6,10 @@
  */
 export const forEachOnPath = (root, path, op) => {
     op(root);
-    if (path.length > 0 && (Array.isArray(root.children) || root.children.size > 0)) {
+    if (
+        path.length > 0 &&
+        (Array.isArray(root.children) || root.children.size > 0)
+    ) {
         if (root.children.has(path[0])) {
             forEachOnPath(root.children.get(path[0]), path.slice(1), op);
         } else {
@@ -22,7 +25,14 @@ export const forEachOnPath = (root, path, op) => {
  * @param orgUnit
  */
 export const decrementMemberCount = (root, orgUnit) => {
-    forEachOnPath(root, orgUnit.path.substr(1).split('/').slice(1), ou => ou.memberCount--);
+    forEachOnPath(
+        root,
+        orgUnit.path
+            .substr(1)
+            .split('/')
+            .slice(1),
+        ou => ou.memberCount--
+    );
 };
 
 /**
@@ -32,7 +42,14 @@ export const decrementMemberCount = (root, orgUnit) => {
  * @param orgUnit
  */
 export const incrementMemberCount = (root, orgUnit) => {
-    forEachOnPath(root, orgUnit.path.substr(1).split('/').slice(1), ou => ou.memberCount++);
+    forEachOnPath(
+        root,
+        orgUnit.path
+            .substr(1)
+            .split('/')
+            .slice(1),
+        ou => ou.memberCount++
+    );
 };
 
 /**
@@ -50,7 +67,10 @@ export const mergeChildren = (root, children) => {
         return root;
     }
 
-    const childPath = children.toArray()[0].path.substr(1).split('/');
+    const childPath = children
+        .toArray()[0]
+        .path.substr(1)
+        .split('/');
     childPath.splice(-1, 1);
     return assignChildren(root, childPath.slice(1), children);
 };
@@ -62,7 +82,12 @@ export const mergeChildren = (root, children) => {
  * @param forceReloadChildren
  * @returns {*}
  */
-export const loadChildren = (root, displayNameProperty, forceReloadChildren) => {
+export const loadChildren = (
+    root,
+    displayNameProperty,
+    forceReloadChildren,
+    isUserDataViewFallback
+) => {
     const fields = [
         'id',
         `${displayNameProperty}~rename(displayName)`,
@@ -72,8 +97,15 @@ export const loadChildren = (root, displayNameProperty, forceReloadChildren) => 
         'parent',
     ];
 
+    const options = {
+        fields: fields.join(','),
+    };
+
+    if (isUserDataViewFallback) {
+        options.userDataViewFallback = true;
+    }
+
     // d2.ModelCollectionProperty.load takes a second parameter `forceReload` and will just return
     // the current valueMap unless either `this.hasUnloadedData` or `forceReload` are true
-    return root.children.load({ fields: fields.join(',') }, forceReloadChildren);
+    return root.children.load(options, forceReloadChildren);
 };
-
