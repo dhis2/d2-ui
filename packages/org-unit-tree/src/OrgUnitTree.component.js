@@ -121,7 +121,7 @@ class OrgUnitTree extends React.Component {
                 this.props.root,
                 this.props.displayNameProperty,
                 this.props.forceReloadChildren,
-                this.props.useUserDataViewFallback
+                this.props.isUserDataViewFallback
             );
 
             this.setChildState(children);
@@ -546,7 +546,7 @@ OrgUnitTree.propTypes = {
     /**
      * Indicates the userDataViewFallback parameter must be used in the requests made when expanding the tree
      */
-    useUserDataViewFallback: PropTypes.bool,
+    isUserDataViewFallback: PropTypes.bool,
 };
 
 OrgUnitTree.defaultProps = {
@@ -574,7 +574,7 @@ OrgUnitTree.defaultProps = {
     showFolderIcon: false,
     disableSpacer: false,
     checkboxColor: 'primary',
-    useUserDataViewFallback: false,
+    isUserDataViewFallback: false,
 };
 
 export default OrgUnitTree;

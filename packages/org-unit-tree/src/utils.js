@@ -86,7 +86,7 @@ export const loadChildren = (
     root,
     displayNameProperty,
     forceReloadChildren,
-    useUserDataViewFallback
+    isUserDataViewFallback
 ) => {
     const fields = [
         'id',
@@ -101,7 +101,7 @@ export const loadChildren = (
         fields: fields.join(','),
     };
 
-    if (useUserDataViewFallback) {
+    if (isUserDataViewFallback) {
         options.userDataViewFallback = true;
     }
 
