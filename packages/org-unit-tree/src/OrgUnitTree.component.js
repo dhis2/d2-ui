@@ -14,15 +14,19 @@ class OrgUnitTree extends React.Component {
         super(props);
 
         this.state = {
-            children: (
+            children:
                 props.root.children === false ||
-                (Array.isArray(props.root.children) && props.root.children.length === 0)
-            )
-                ? []
-                : undefined,
+                (Array.isArray(props.root.children) &&
+                    props.root.children.length === 0)
+                    ? []
+                    : undefined,
             loading: false,
         };
-        if (props.root.children && typeof props.root.children.toArray === 'function' && !props.root.children.hasUnloadedData) {
+        if (
+            props.root.children &&
+            typeof props.root.children.toArray === 'function' &&
+            !props.root.children.hasUnloadedData
+        ) {
             this.state.children = props.root.children
                 .toArray()
                 // Sort here since the API returns nested children in random order
@@ -31,27 +35,33 @@ class OrgUnitTree extends React.Component {
     }
 
     componentDidMount() {
-        if (this.props.initiallyExpanded.some(ou => ou.includes(`/${this.props.root.id}`))) {
+        if (
+            this.props.initiallyExpanded.some(ou =>
+                ou.includes(`/${this.props.root.id}`)
+            )
+        ) {
             this.loadChildren();
         }
     }
 
     componentWillReceiveProps(newProps) {
         if (
-            newProps.initiallyExpanded.some(ou => ou.includes(`/${newProps.root.id}`)) ||
+            newProps.initiallyExpanded.some(ou =>
+                ou.includes(`/${newProps.root.id}`)
+            ) ||
             newProps.idsThatShouldBeReloaded.includes(newProps.root.id)
         ) {
             this.loadChildren();
         }
     }
 
-    onCollapse = (orgUnit) => {
+    onCollapse = orgUnit => {
         if (typeof this.props.onCollapse === 'function') {
             this.props.onCollapse(orgUnit);
         }
     };
 
-    onExpand = (orgUnit) => {
+    onExpand = orgUnit => {
         this.loadChildren();
 
         if (typeof this.props.onExpand === 'function') {
@@ -59,16 +69,21 @@ class OrgUnitTree extends React.Component {
         }
     };
 
-    onContextMenuClick = (e) => {
+    onContextMenuClick = e => {
         e.preventDefault();
         e.stopPropagation();
 
         if (this.props.onContextMenuClick !== undefined) {
-            this.props.onContextMenuClick(e, this.props.root, this.hasChildren(), this.loadChildren);
+            this.props.onContextMenuClick(
+                e,
+                this.props.root,
+                this.hasChildren(),
+                this.loadChildren
+            );
         }
     };
 
-    setChildState = (children) => {
+    setChildState = children => {
         let data = children;
 
         if (this.props.onChildrenLoaded) {
@@ -80,7 +95,9 @@ class OrgUnitTree extends React.Component {
         }
 
         this.setState({
-            children: data.sort((a, b) => a.displayName.localeCompare(b.displayName)),
+            children: data.sort((a, b) =>
+                a.displayName.localeCompare(b.displayName)
+            ),
             loading: false,
         });
     };
@@ -112,24 +129,30 @@ class OrgUnitTree extends React.Component {
         }
     };
 
-    handleSelectClick = (e) => {
+    handleSelectClick = e => {
         if (this.props.onSelectClick) {
             this.props.onSelectClick(e, this.props.root);
         }
         e.stopPropagation();
     };
 
-    hasChildren = () => this.state.children === undefined ||
+    hasChildren = () =>
+        this.state.children === undefined ||
         (Array.isArray(this.state.children) && this.state.children.length > 0);
 
-    shouldIncludeOrgUnit = (orgUnit) => {
-        if (!this.props.orgUnitsPathsToInclude || this.props.orgUnitsPathsToInclude.length === 0) {
+    shouldIncludeOrgUnit = orgUnit => {
+        if (
+            !this.props.orgUnitsPathsToInclude ||
+            this.props.orgUnitsPathsToInclude.length === 0
+        ) {
             return true;
         }
-        return !!(this.props.orgUnitsPathsToInclude.some(ou => ou.includes(`/${orgUnit.id}`)));
+        return !!this.props.orgUnitsPathsToInclude.some(ou =>
+            ou.includes(`/${orgUnit.id}`)
+        );
     };
 
-    setCurrentRoot = (e) => {
+    setCurrentRoot = e => {
         e.stopPropagation();
 
         this.props.onChangeCurrentRoot(this.props.root);
@@ -140,7 +163,9 @@ class OrgUnitTree extends React.Component {
             return null;
         }
 
-        const highlighted = this.props.searchResults.includes(orgUnit.path) && this.props.highlightSearchResults;
+        const highlighted =
+            this.props.searchResults.includes(orgUnit.path) &&
+            this.props.highlightSearchResults;
 
         return (
             <OrgUnitTree
@@ -156,7 +181,9 @@ class OrgUnitTree extends React.Component {
                 onChangeCurrentRoot={this.props.onChangeCurrentRoot}
                 labelStyle={{
                     ...this.props.labelStyle,
-                    fontWeight: highlighted ? 500 : this.props.labelStyle.fontWeight,
+                    fontWeight: highlighted
+                        ? 500
+                        : this.props.labelStyle.fontWeight,
                     color: highlighted ? 'orange' : 'inherit',
                 }}
                 selectedLabelStyle={this.props.selectedLabelStyle}
@@ -182,15 +209,28 @@ class OrgUnitTree extends React.Component {
         // If initiallyExpanded is an array, remove the current root id and pass the rest on
         // If it's a string, pass it on unless it's the current root id
         const expandedProp = Array.isArray(this.props.initiallyExpanded)
-            ? this.props.initiallyExpanded.filter(id => id !== this.props.root.id)
-            : (this.props.initiallyExpanded !== this.props.root.id && this.props.initiallyExpanded) || [];
+            ? this.props.initiallyExpanded.filter(
+                  id => id !== this.props.root.id
+              )
+            : (this.props.initiallyExpanded !== this.props.root.id &&
+                  this.props.initiallyExpanded) ||
+              [];
 
-        if (Array.isArray(this.state.children) && this.state.children.length > 0) {
-            return this.state.children.map(orgUnit => this.renderChild(orgUnit, expandedProp));
+        if (
+            Array.isArray(this.state.children) &&
+            this.state.children.length > 0
+        ) {
+            return this.state.children.map(orgUnit =>
+                this.renderChild(orgUnit, expandedProp)
+            );
         }
 
         if (this.state.loading) {
-            return <div style={styles.progress}><LinearProgress style={styles.progressBar} /></div>;
+            return (
+                <div style={styles.progress}>
+                    <LinearProgress style={styles.progressBar} />
+                </div>
+            );
         }
 
         return null;
@@ -210,42 +250,61 @@ class OrgUnitTree extends React.Component {
             fontWeight: isSelected ? 500 : 300,
             color: isSelected ? 'orange' : 'inherit',
             cursor: canBecomeCurrentRoot ? 'pointer' : 'default',
-            ...(isSelected ? this.props.selectedLabelStyle : this.props.labelStyle),
+            ...(isSelected
+                ? this.props.selectedLabelStyle
+                : this.props.labelStyle),
         };
-
 
         return (
             <div
                 style={labelStyle}
-                onClick={canBecomeCurrentRoot ? this.setCurrentRoot : (isSelectable ? this.handleSelectClick : undefined)}
+                onClick={
+                    canBecomeCurrentRoot
+                        ? this.setCurrentRoot
+                        : isSelectable
+                            ? this.handleSelectClick
+                            : undefined
+                }
                 onContextMenu={this.onContextMenuClick}
                 role="button"
                 tabIndex={0}
             >
-                {isSelectable && !this.props.hideCheckboxes && (
-                    <OUCheckboxComponent
-                        checked={isSelected}
-                        disabled={!isSelectable}
-                        onClick={this.handleSelectClick}
-                        color={this.props.checkboxColor}
-                    />
-                )}
-                {this.props.showFolderIcon && hasChildren && (
-                    <OUFolderIconComponent
-                        isExpanded={isInitiallyExpanded}
-                        styles={this.props.labelStyle.folderIcon}
-                    />
-                )}
-                {this.props.showFolderIcon && !hasChildren && (
-                    <StopIcon style={{ ...styles.stopIcon, ...this.props.labelStyle.stopIcon }} />
-                )}
-                <span style={this.props.labelStyle.text}>{currentOu.displayName}</span>
-                {hasChildren && !this.props.hideMemberCount && !!memberCount && (
-                    <span style={styles.memberCount}>({memberCount})</span>
-                )}
+                {isSelectable &&
+                    !this.props.hideCheckboxes && (
+                        <OUCheckboxComponent
+                            checked={isSelected}
+                            disabled={!isSelectable}
+                            onClick={this.handleSelectClick}
+                            color={this.props.checkboxColor}
+                        />
+                    )}
+                {this.props.showFolderIcon &&
+                    hasChildren && (
+                        <OUFolderIconComponent
+                            isExpanded={isInitiallyExpanded}
+                            styles={this.props.labelStyle.folderIcon}
+                        />
+                    )}
+                {this.props.showFolderIcon &&
+                    !hasChildren && (
+                        <StopIcon
+                            style={{
+                                ...styles.stopIcon,
+                                ...this.props.labelStyle.stopIcon,
+                            }}
+                        />
+                    )}
+                <span style={this.props.labelStyle.text}>
+                    {currentOu.displayName}
+                </span>
+                {hasChildren &&
+                    !this.props.hideMemberCount &&
+                    !!memberCount && (
+                        <span style={styles.memberCount}>({memberCount})</span>
+                    )}
             </div>
         );
-    };
+    }
 
     render() {
         const currentOu = this.props.root;
@@ -253,18 +312,26 @@ class OrgUnitTree extends React.Component {
         const isSelectable = !!this.props.onSelectClick;
         const pathRegEx = new RegExp(`/${currentOu.id}$`);
         const memberRegEx = new RegExp(`/${currentOu.id}`);
-        const isSelected = this.props.selected && this.props.selected.some(ou => pathRegEx.test(ou));
-        const isCurrentRoot = this.props.currentRoot && this.props.currentRoot.id === currentOu.id;
-        const isInitiallyExpanded = this.props.initiallyExpanded.some(ou => ou.includes(`/${currentOu.id}`));
-        const canBecomeCurrentRoot = this.props.onChangeCurrentRoot && !isCurrentRoot && hasChildren;
+        const isSelected =
+            this.props.selected &&
+            this.props.selected.some(ou => pathRegEx.test(ou));
+        const isCurrentRoot =
+            this.props.currentRoot &&
+            this.props.currentRoot.id === currentOu.id;
+        const isInitiallyExpanded = this.props.initiallyExpanded.some(ou =>
+            ou.includes(`/${currentOu.id}`)
+        );
+        const canBecomeCurrentRoot =
+            this.props.onChangeCurrentRoot && !isCurrentRoot && hasChildren;
 
-        const memberCount = this.props.selected !== undefined
-            ? this.props.selected.filter(ou => memberRegEx.test(ou)).length
-            : currentOu.memberCount;
+        const memberCount =
+            this.props.selected !== undefined
+                ? this.props.selected.filter(ou => memberRegEx.test(ou)).length
+                : currentOu.memberCount;
 
         const ouContainerStyle = {
             ...styles.ouContainer,
-            ...isCurrentRoot ? styles.currentOuContainer : {},
+            ...(isCurrentRoot ? styles.currentOuContainer : {}),
             ...this.props.treeStyle,
         };
 
@@ -311,9 +378,19 @@ class OrgUnitTree extends React.Component {
     }
 }
 
-function orgUnitPathPropValidator(propValue, key, compName, location, propFullName) {
+function orgUnitPathPropValidator(
+    propValue,
+    key,
+    compName,
+    location,
+    propFullName
+) {
     if (!/(\/[a-zA-Z][a-zA-Z0-9]{10})+/.test(propValue[key])) {
-        return new Error(`Invalid org unit path \`${propValue[key]}\` supplied to \`${compName}.${propFullName}\``);
+        return new Error(
+            `Invalid org unit path \`${
+                propValue[key]
+            }\` supplied to \`${compName}.${propFullName}\``
+        );
     }
     return undefined;
 }
