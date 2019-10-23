@@ -1,0 +1,82 @@
+# Translators:
+# Viktor Varland <viktor@dhis2.org>, 2019
+# Bram Piot <bram.piot@gmail.com>, 2019
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"POT-Creation-Date: 2018-06-07T12:57:17.631Z\n"
+"PO-Revision-Date: 2019-08-12 21:18+0000\n"
+"Last-Translator: Bram Piot <bram.piot@gmail.com>, 2019\n"
+"Language-Team: French (https://www.transifex.com/hisp-uio/teams/100509/fr/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "Delete {{what}}"
+msgstr ""
+
+msgid "This {{what}} will be deleted. Continue?"
+msgstr ""
+
+msgid "Delete"
+msgstr "Supprimer"
+
+msgid "File"
+msgstr "Fichier"
+
+msgid "Open in this app"
+msgstr ""
+
+msgid "Open in web API"
+msgstr ""
+
+msgid "Close"
+msgstr "Fermer"
+
+msgid "Get link"
+msgstr "Obtenir lien URL"
+
+msgid "New"
+msgstr "Nouveau"
+
+msgid "Open"
+msgstr "Ouvrir"
+
+msgid "Rename {{what}}"
+msgstr ""
+
+msgid "Name"
+msgstr "Nom"
+
+msgid "Description"
+msgstr "Description"
+
+msgid "Cancel"
+msgstr "Annuler"
+
+msgid "Rename"
+msgstr "Renommer"
+
+msgid "Save {{what}} as"
+msgstr ""
+
+msgid "Save"
+msgstr "Enregistrer"
+
+msgid "Save as..."
+msgstr ""
+
+msgid "Share"
+msgstr "Partager"
+
+msgid "Translate"
+msgstr "Traduire"
+
+msgid "Write interpretation"
+msgstr "Ecrire une interprétation"
+
+msgid "Post"
+msgstr ""
