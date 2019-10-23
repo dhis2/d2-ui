@@ -1,0 +1,54 @@
+# Translators:
+# Viktor Varland <viktor@dhis2.org>, 2019
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"POT-Creation-Date: 2018-12-06T08:26:55.944Z\n"
+"PO-Revision-Date: 2019-08-13 09:54+0000\n"
+"Last-Translator: Viktor Varland <viktor@dhis2.org>, 2019\n"
+"Language-Team: Burmese (https://www.transifex.com/hisp-uio/teams/100509/my/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: my\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Organisation units"
+msgstr "အဖွဲ့အစည်းယူနစ်"
+
+msgid "Hide"
+msgstr ""
+
+msgid "Update"
+msgstr "ပြင်ဆင်မွမ်းမံပါ။"
+
+msgid "Level"
+msgstr "Level"
+
+msgid "Select a level"
+msgstr ""
+
+msgid "Group"
+msgstr "အုပ်စု"
+
+msgid "Select a group"
+msgstr ""
+
+msgid "Select children"
+msgstr "တစ်ဆင့်နိမ့်အစီရင်ခံဌာနများကိုရွေးချယ်သည်"
+
+msgid "selected"
+msgstr ""
+
+msgid "Deselect all"
+msgstr ""
+
+msgid "User organisation unit"
+msgstr ""
+
+msgid "User sub-units"
+msgstr ""
+
+msgid "User sub-x2-units"
+msgstr ""
