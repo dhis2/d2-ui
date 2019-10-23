@@ -1,0 +1,145 @@
+# Translators:
+# phil_dhis2, 2019
+# Viktor Varland <viktor@dhis2.org>, 2019
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"POT-Creation-Date: 2018-07-04T08:51:47.874Z\n"
+"PO-Revision-Date: 2019-08-13 20:28+0000\n"
+"Last-Translator: Viktor Varland <viktor@dhis2.org>, 2019\n"
+"Language-Team: Swedish (https://www.transifex.com/hisp-uio/teams/100509/sv/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: sv\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "No description"
+msgstr "Ingen beskrivning"
+
+msgid "None"
+msgstr "Ingen"
+
+msgid "Read"
+msgstr ""
+
+msgid "Read/Write"
+msgstr ""
+
+msgid "Unknown"
+msgstr "Okänd"
+
+msgid "Public"
+msgstr ""
+
+msgid "user groups"
+msgstr ""
+
+msgid "Unsubscribe from this {{object}} and stop receiving notifications"
+msgstr ""
+
+msgid "Subscribe to this {{object}} and start receiving notifications"
+msgstr ""
+
+msgid "Details"
+msgstr "detaljer"
+
+msgid "Owner"
+msgstr ""
+
+msgid "Created"
+msgstr "Skapad"
+
+msgid "Last updated"
+msgstr ""
+
+msgid "Views"
+msgstr ""
+
+msgid "Sharing"
+msgstr ""
+
+msgid "OK"
+msgstr "ok"
+
+msgid "Post comment"
+msgstr ""
+
+msgid "Cancel"
+msgstr "Annullera"
+
+msgid "Are you sure you want to remove this interpretation?"
+msgstr ""
+
+msgid "Unlike"
+msgstr ""
+
+msgid "Like"
+msgstr ""
+
+msgid "Reply"
+msgstr "Svar"
+
+msgid "Edit"
+msgstr "Redigera"
+
+msgid "Share"
+msgstr "Dela med sig"
+
+msgid "Delete"
+msgstr "Radera"
+
+msgid "people like this"
+msgstr ""
+
+msgid "people commented"
+msgstr ""
+
+msgid "Are you sure you want to remove this comment?"
+msgstr ""
+
+msgid "more comments"
+msgstr ""
+
+msgid "Edit interpretation"
+msgstr ""
+
+msgid "Create interpretation"
+msgstr ""
+
+msgid "Save & share"
+msgstr ""
+
+msgid "Save"
+msgstr "Spara"
+
+msgid "No interpretations"
+msgstr ""
+
+msgid "Clear interpretation"
+msgstr ""
+
+msgid "Write new interpretation"
+msgstr ""
+
+msgid "Interpretations"
+msgstr "tolkningar"
+
+msgid "chart"
+msgstr ""
+
+msgid "pivot table"
+msgstr ""
+
+msgid "map"
+msgstr ""
+
+msgid "event chart"
+msgstr ""
+
+msgid "event report"
+msgstr ""
+
+msgid "object"
+msgstr ""
