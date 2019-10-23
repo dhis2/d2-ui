@@ -1,0 +1,82 @@
+# Translators:
+# phil_dhis2, 2019
+# Viktor Varland <viktor@dhis2.org>, 2019
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"POT-Creation-Date: 2018-06-07T12:57:17.631Z\n"
+"PO-Revision-Date: 2019-08-12 21:18+0000\n"
+"Last-Translator: Viktor Varland <viktor@dhis2.org>, 2019\n"
+"Language-Team: Lao (https://www.transifex.com/hisp-uio/teams/100509/lo/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: lo\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Delete {{what}}"
+msgstr ""
+
+msgid "This {{what}} will be deleted. Continue?"
+msgstr ""
+
+msgid "Delete"
+msgstr "Delete"
+
+msgid "File"
+msgstr "ເອກະສານ"
+
+msgid "Open in this app"
+msgstr ""
+
+msgid "Open in web API"
+msgstr ""
+
+msgid "Close"
+msgstr "ປິດ"
+
+msgid "Get link"
+msgstr "ເອົາລິ້ງ"
+
+msgid "New"
+msgstr "ສ້າງໃຫມ່"
+
+msgid "Open"
+msgstr "ເປີດ"
+
+msgid "Rename {{what}}"
+msgstr ""
+
+msgid "Name"
+msgstr "ຊື່"
+
+msgid "Description"
+msgstr "ລາຍລະອຽດ"
+
+msgid "Cancel"
+msgstr "Cancel"
+
+msgid "Rename"
+msgstr "ປ່ຽນຊື່"
+
+msgid "Save {{what}} as"
+msgstr ""
+
+msgid "Save"
+msgstr "Save"
+
+msgid "Save as..."
+msgstr ""
+
+msgid "Share"
+msgstr "ແຈກ"
+
+msgid "Translate"
+msgstr "Translate"
+
+msgid "Write interpretation"
+msgstr "ຂຽນຄວາມໝາຍ"
+
+msgid "Post"
+msgstr ""
