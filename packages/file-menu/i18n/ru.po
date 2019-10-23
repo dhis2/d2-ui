@@ -1,0 +1,82 @@
+# Translators:
+# phil_dhis2, 2019
+# Viktor Varland <viktor@dhis2.org>, 2019
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"POT-Creation-Date: 2018-06-07T12:57:17.631Z\n"
+"PO-Revision-Date: 2019-08-12 21:18+0000\n"
+"Last-Translator: Viktor Varland <viktor@dhis2.org>, 2019\n"
+"Language-Team: Russian (https://www.transifex.com/hisp-uio/teams/100509/ru/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ru\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+msgid "Delete {{what}}"
+msgstr ""
+
+msgid "This {{what}} will be deleted. Continue?"
+msgstr ""
+
+msgid "Delete"
+msgstr "Удалить"
+
+msgid "File"
+msgstr "Файл"
+
+msgid "Open in this app"
+msgstr ""
+
+msgid "Open in web API"
+msgstr ""
+
+msgid "Close"
+msgstr "Закрыть"
+
+msgid "Get link"
+msgstr "Получить ссылку"
+
+msgid "New"
+msgstr "Новый"
+
+msgid "Open"
+msgstr "Open"
+
+msgid "Rename {{what}}"
+msgstr ""
+
+msgid "Name"
+msgstr "Name"
+
+msgid "Description"
+msgstr "Описание"
+
+msgid "Cancel"
+msgstr "Отменить"
+
+msgid "Rename"
+msgstr "Переименовать"
+
+msgid "Save {{what}} as"
+msgstr ""
+
+msgid "Save"
+msgstr "Сохранить"
+
+msgid "Save as..."
+msgstr ""
+
+msgid "Share"
+msgstr "Поделиться"
+
+msgid "Translate"
+msgstr "Перевести"
+
+msgid "Write interpretation"
+msgstr "Написать интерпретацию"
+
+msgid "Post"
+msgstr ""
