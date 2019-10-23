@@ -1,0 +1,81 @@
+# Translators:
+# Viktor Varland <viktor@dhis2.org>, 2019
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"POT-Creation-Date: 2018-06-07T12:57:17.631Z\n"
+"PO-Revision-Date: 2019-08-12 21:18+0000\n"
+"Last-Translator: Viktor Varland <viktor@dhis2.org>, 2019\n"
+"Language-Team: Portuguese (https://www.transifex.com/hisp-uio/teams/100509/pt/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: pt\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Delete {{what}}"
+msgstr ""
+
+msgid "This {{what}} will be deleted. Continue?"
+msgstr ""
+
+msgid "Delete"
+msgstr "Apagar"
+
+msgid "File"
+msgstr "Arquivo"
+
+msgid "Open in this app"
+msgstr ""
+
+msgid "Open in web API"
+msgstr ""
+
+msgid "Close"
+msgstr "fFechar"
+
+msgid "Get link"
+msgstr "Obter link"
+
+msgid "New"
+msgstr "Novo"
+
+msgid "Open"
+msgstr "Abrir"
+
+msgid "Rename {{what}}"
+msgstr ""
+
+msgid "Name"
+msgstr "Nome"
+
+msgid "Description"
+msgstr "Descrição"
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "Rename"
+msgstr "Renomear"
+
+msgid "Save {{what}} as"
+msgstr ""
+
+msgid "Save"
+msgstr "Gravar"
+
+msgid "Save as..."
+msgstr ""
+
+msgid "Share"
+msgstr "Partilha"
+
+msgid "Translate"
+msgstr "Traduzir"
+
+msgid "Write interpretation"
+msgstr "Escrever interpretação"
+
+msgid "Post"
+msgstr ""
