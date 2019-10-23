@@ -1,0 +1,82 @@
+# Translators:
+# phil_dhis2, 2019
+# Viktor Varland <viktor@dhis2.org>, 2019
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"POT-Creation-Date: 2018-06-07T12:57:17.631Z\n"
+"PO-Revision-Date: 2019-08-12 21:18+0000\n"
+"Last-Translator: Viktor Varland <viktor@dhis2.org>, 2019\n"
+"Language-Team: Tetum (Tetun) (https://www.transifex.com/hisp-uio/teams/100509/tet/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: tet\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Delete {{what}}"
+msgstr ""
+
+msgid "This {{what}} will be deleted. Continue?"
+msgstr ""
+
+msgid "Delete"
+msgstr "Soe"
+
+msgid "File"
+msgstr ""
+
+msgid "Open in this app"
+msgstr ""
+
+msgid "Open in web API"
+msgstr ""
+
+msgid "Close"
+msgstr "Taka"
+
+msgid "Get link"
+msgstr ""
+
+msgid "New"
+msgstr "Foun"
+
+msgid "Open"
+msgstr ""
+
+msgid "Rename {{what}}"
+msgstr ""
+
+msgid "Name"
+msgstr "Naran"
+
+msgid "Description"
+msgstr "Deskrisaun"
+
+msgid "Cancel"
+msgstr "Kansela"
+
+msgid "Rename"
+msgstr "Tau naran foun"
+
+msgid "Save {{what}} as"
+msgstr ""
+
+msgid "Save"
+msgstr "Rai"
+
+msgid "Save as..."
+msgstr ""
+
+msgid "Share"
+msgstr "Partilla"
+
+msgid "Translate"
+msgstr "Traduz"
+
+msgid "Write interpretation"
+msgstr ""
+
+msgid "Post"
+msgstr ""
