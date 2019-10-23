@@ -1,0 +1,55 @@
+# Translators:
+# phil_dhis2, 2019
+# Viktor Varland <viktor@dhis2.org>, 2019
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"POT-Creation-Date: 2018-12-06T08:26:55.944Z\n"
+"PO-Revision-Date: 2019-08-13 09:54+0000\n"
+"Last-Translator: Viktor Varland <viktor@dhis2.org>, 2019\n"
+"Language-Team: Urdu (https://www.transifex.com/hisp-uio/teams/100509/ur/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ur\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Organisation units"
+msgstr "تنظیمی یونٹس"
+
+msgid "Hide"
+msgstr "چھپائیں"
+
+msgid "Update"
+msgstr "اپڈیٹ"
+
+msgid "Level"
+msgstr "سطح"
+
+msgid "Select a level"
+msgstr ""
+
+msgid "Group"
+msgstr "گروپ"
+
+msgid "Select a group"
+msgstr ""
+
+msgid "Select children"
+msgstr "تحت چنو"
+
+msgid "selected"
+msgstr "منتخب شدہ"
+
+msgid "Deselect all"
+msgstr "سب کو منتخب کریں"
+
+msgid "User organisation unit"
+msgstr "صارف تنظیم یونٹ"
+
+msgid "User sub-units"
+msgstr "صارف ذیلی یونٹس"
+
+msgid "User sub-x2-units"
+msgstr "صارف ذیلی X2-یونٹس"
