@@ -1,0 +1,81 @@
+# Translators:
+# phil_dhis2, 2019
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"POT-Creation-Date: 2018-06-07T12:57:17.631Z\n"
+"PO-Revision-Date: 2019-08-12 21:18+0000\n"
+"Last-Translator: phil_dhis2, 2019\n"
+"Language-Team: Persian (Afghanistan) (https://www.transifex.com/hisp-uio/teams/100509/fa_AF/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: fa_AF\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "Delete {{what}}"
+msgstr ""
+
+msgid "This {{what}} will be deleted. Continue?"
+msgstr ""
+
+msgid "Delete"
+msgstr "حذف"
+
+msgid "File"
+msgstr ""
+
+msgid "Open in this app"
+msgstr ""
+
+msgid "Open in web API"
+msgstr ""
+
+msgid "Close"
+msgstr "بستن"
+
+msgid "Get link"
+msgstr "دریافت لینک"
+
+msgid "New"
+msgstr "جدید"
+
+msgid "Open"
+msgstr "باز کردن"
+
+msgid "Rename {{what}}"
+msgstr ""
+
+msgid "Name"
+msgstr "نام"
+
+msgid "Description"
+msgstr "شرح"
+
+msgid "Cancel"
+msgstr "لغو کردن"
+
+msgid "Rename"
+msgstr "تغییر نام"
+
+msgid "Save {{what}} as"
+msgstr ""
+
+msgid "Save"
+msgstr "ذخیره"
+
+msgid "Save as..."
+msgstr ""
+
+msgid "Share"
+msgstr "اشتراک"
+
+msgid "Translate"
+msgstr "ترجمه"
+
+msgid "Write interpretation"
+msgstr "نوشتن تفسیر"
+
+msgid "Post"
+msgstr ""
