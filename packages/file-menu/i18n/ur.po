@@ -1,0 +1,82 @@
+# Translators:
+# phil_dhis2, 2019
+# Viktor Varland <viktor@dhis2.org>, 2019
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"POT-Creation-Date: 2018-06-07T12:57:17.631Z\n"
+"PO-Revision-Date: 2019-08-13 20:28+0000\n"
+"Last-Translator: Viktor Varland <viktor@dhis2.org>, 2019\n"
+"Language-Team: Urdu (https://www.transifex.com/hisp-uio/teams/100509/ur/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ur\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Delete {{what}}"
+msgstr ""
+
+msgid "This {{what}} will be deleted. Continue?"
+msgstr ""
+
+msgid "Delete"
+msgstr "حذف"
+
+msgid "File"
+msgstr "فائل"
+
+msgid "Open in this app"
+msgstr ""
+
+msgid "Open in web API"
+msgstr ""
+
+msgid "Close"
+msgstr "بند"
+
+msgid "Get link"
+msgstr "رابطہ کرنا"
+
+msgid "New"
+msgstr "نیا"
+
+msgid "Open"
+msgstr "کھلا"
+
+msgid "Rename {{what}}"
+msgstr ""
+
+msgid "Name"
+msgstr "نام"
+
+msgid "Description"
+msgstr "تفصیلات"
+
+msgid "Cancel"
+msgstr "منسوخ"
+
+msgid "Rename"
+msgstr "نام بدلو"
+
+msgid "Save {{what}} as"
+msgstr ""
+
+msgid "Save"
+msgstr "محفوظ"
+
+msgid "Save as..."
+msgstr ""
+
+msgid "Share"
+msgstr "بانٹیں"
+
+msgid "Translate"
+msgstr "ترجمہ"
+
+msgid "Write interpretation"
+msgstr "تفسیر لکھیں"
+
+msgid "Post"
+msgstr ""
