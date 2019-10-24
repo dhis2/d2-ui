@@ -1,0 +1,82 @@
+# Translators:
+# phil_dhis2, 2019
+# Viktor Varland <viktor@dhis2.org>, 2019
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"POT-Creation-Date: 2018-06-07T12:57:17.631Z\n"
+"PO-Revision-Date: 2019-08-13 20:28+0000\n"
+"Last-Translator: Viktor Varland <viktor@dhis2.org>, 2019\n"
+"Language-Team: Pushto (https://www.transifex.com/hisp-uio/teams/100509/ps/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ps\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Delete {{what}}"
+msgstr ""
+
+msgid "This {{what}} will be deleted. Continue?"
+msgstr ""
+
+msgid "Delete"
+msgstr "خذف یې کړئ"
+
+msgid "File"
+msgstr "فایل"
+
+msgid "Open in this app"
+msgstr ""
+
+msgid "Open in web API"
+msgstr ""
+
+msgid "Close"
+msgstr "بند یې کړئ"
+
+msgid "Get link"
+msgstr "لینک تر لاسه کړئ"
+
+msgid "New"
+msgstr "نوی"
+
+msgid "Open"
+msgstr "خلاص یې کړئ"
+
+msgid "Rename {{what}}"
+msgstr ""
+
+msgid "Name"
+msgstr "نوم [ ژباړه ـ نښه ـ نوم ]"
+
+msgid "Description"
+msgstr "تشریح [ ژباړه ـ نښه ـ تشریح ]"
+
+msgid "Cancel"
+msgstr "رد یې کړئ [فسخ یې کړئ ]"
+
+msgid "Rename"
+msgstr "بیا نومول"
+
+msgid "Save {{what}} as"
+msgstr ""
+
+msgid "Save"
+msgstr "ثبت یې کړئ [ ژباړه - ثبت کړئ ]"
+
+msgid "Save as..."
+msgstr ""
+
+msgid "Share"
+msgstr "شریک یې کړئ"
+
+msgid "Translate"
+msgstr "ژباړه"
+
+msgid "Write interpretation"
+msgstr "تفسیر وليکی"
+
+msgid "Post"
+msgstr ""
