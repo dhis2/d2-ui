@@ -1,0 +1,54 @@
+# Translators:
+# phil_dhis2, 2019
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"POT-Creation-Date: 2018-12-06T08:26:55.944Z\n"
+"PO-Revision-Date: 2019-08-13 09:54+0000\n"
+"Last-Translator: phil_dhis2, 2019\n"
+"Language-Team: Persian (Afghanistan) (https://www.transifex.com/hisp-uio/teams/100509/fa_AF/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: fa_AF\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "Organisation units"
+msgstr "واحد های سازمان"
+
+msgid "Hide"
+msgstr "مخفی کردن"
+
+msgid "Update"
+msgstr "تجدید"
+
+msgid "Level"
+msgstr ""
+
+msgid "Select a level"
+msgstr ""
+
+msgid "Group"
+msgstr "گروپ"
+
+msgid "Select a group"
+msgstr ""
+
+msgid "Select children"
+msgstr ""
+
+msgid "selected"
+msgstr ""
+
+msgid "Deselect all"
+msgstr ""
+
+msgid "User organisation unit"
+msgstr ""
+
+msgid "User sub-units"
+msgstr "زیر-واحد ها استفاده کننده گان"
+
+msgid "User sub-x2-units"
+msgstr "زیر- x2-واحد های استفاده کننده گان"
