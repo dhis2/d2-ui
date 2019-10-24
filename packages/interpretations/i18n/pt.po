@@ -1,0 +1,144 @@
+# Translators:
+# Viktor Varland <viktor@dhis2.org>, 2019
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"POT-Creation-Date: 2018-07-04T08:51:47.874Z\n"
+"PO-Revision-Date: 2019-08-13 20:28+0000\n"
+"Last-Translator: Viktor Varland <viktor@dhis2.org>, 2019\n"
+"Language-Team: Portuguese (https://www.transifex.com/hisp-uio/teams/100509/pt/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: pt\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "No description"
+msgstr "Sem descrição"
+
+msgid "None"
+msgstr "Nenhum"
+
+msgid "Read"
+msgstr "Ler"
+
+msgid "Read/Write"
+msgstr "Ler/Escrever"
+
+msgid "Unknown"
+msgstr "Desconhecido"
+
+msgid "Public"
+msgstr "Publico"
+
+msgid "user groups"
+msgstr ""
+
+msgid "Unsubscribe from this {{object}} and stop receiving notifications"
+msgstr ""
+
+msgid "Subscribe to this {{object}} and start receiving notifications"
+msgstr ""
+
+msgid "Details"
+msgstr "Detalhes"
+
+msgid "Owner"
+msgstr "Proprietário"
+
+msgid "Created"
+msgstr "Criado"
+
+msgid "Last updated"
+msgstr "Última actualização"
+
+msgid "Views"
+msgstr "Visualizações"
+
+msgid "Sharing"
+msgstr "Partilha"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "Post comment"
+msgstr ""
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "Are you sure you want to remove this interpretation?"
+msgstr ""
+
+msgid "Unlike"
+msgstr "Unlike"
+
+msgid "Like"
+msgstr "Like"
+
+msgid "Reply"
+msgstr "Responder"
+
+msgid "Edit"
+msgstr "Modificar"
+
+msgid "Share"
+msgstr "Partilha"
+
+msgid "Delete"
+msgstr "Apagar"
+
+msgid "people like this"
+msgstr "pessoas gostam disso"
+
+msgid "people commented"
+msgstr "pessoas comentaram"
+
+msgid "Are you sure you want to remove this comment?"
+msgstr ""
+
+msgid "more comments"
+msgstr "Mais comentários"
+
+msgid "Edit interpretation"
+msgstr ""
+
+msgid "Create interpretation"
+msgstr ""
+
+msgid "Save & share"
+msgstr ""
+
+msgid "Save"
+msgstr "Gravar"
+
+msgid "No interpretations"
+msgstr "Sem interpretações"
+
+msgid "Clear interpretation"
+msgstr "Interpretação clara"
+
+msgid "Write new interpretation"
+msgstr ""
+
+msgid "Interpretations"
+msgstr "Interpretações"
+
+msgid "chart"
+msgstr ""
+
+msgid "pivot table"
+msgstr ""
+
+msgid "map"
+msgstr ""
+
+msgid "event chart"
+msgstr ""
+
+msgid "event report"
+msgstr ""
+
+msgid "object"
+msgstr ""
