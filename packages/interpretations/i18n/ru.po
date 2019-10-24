@@ -1,0 +1,145 @@
+# Translators:
+# phil_dhis2, 2019
+# Viktor Varland <viktor@dhis2.org>, 2019
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"POT-Creation-Date: 2018-07-04T08:51:47.874Z\n"
+"PO-Revision-Date: 2019-08-13 20:28+0000\n"
+"Last-Translator: Viktor Varland <viktor@dhis2.org>, 2019\n"
+"Language-Team: Russian (https://www.transifex.com/hisp-uio/teams/100509/ru/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ru\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+msgid "No description"
+msgstr "Нет описания"
+
+msgid "None"
+msgstr "Не известное значение"
+
+msgid "Read"
+msgstr "Чтение"
+
+msgid "Read/Write"
+msgstr "Чтение/Запись"
+
+msgid "Unknown"
+msgstr "Неизвестный"
+
+msgid "Public"
+msgstr "Общедоступный"
+
+msgid "user groups"
+msgstr ""
+
+msgid "Unsubscribe from this {{object}} and stop receiving notifications"
+msgstr ""
+
+msgid "Subscribe to this {{object}} and start receiving notifications"
+msgstr ""
+
+msgid "Details"
+msgstr "Детали"
+
+msgid "Owner"
+msgstr "Владелец"
+
+msgid "Created"
+msgstr "Создано"
+
+msgid "Last updated"
+msgstr "Последнее обновление"
+
+msgid "Views"
+msgstr "Просмотры"
+
+msgid "Sharing"
+msgstr "Поделиться"
+
+msgid "OK"
+msgstr "ОК"
+
+msgid "Post comment"
+msgstr ""
+
+msgid "Cancel"
+msgstr "Отменить"
+
+msgid "Are you sure you want to remove this interpretation?"
+msgstr ""
+
+msgid "Unlike"
+msgstr "Нелайк"
+
+msgid "Like"
+msgstr "Лайк"
+
+msgid "Reply"
+msgstr "Ответить"
+
+msgid "Edit"
+msgstr "Редактировать"
+
+msgid "Share"
+msgstr "Поделиться"
+
+msgid "Delete"
+msgstr "Удалить"
+
+msgid "people like this"
+msgstr "людям нравится"
+
+msgid "people commented"
+msgstr "люди прокомментировали"
+
+msgid "Are you sure you want to remove this comment?"
+msgstr ""
+
+msgid "more comments"
+msgstr "больше комментариев"
+
+msgid "Edit interpretation"
+msgstr ""
+
+msgid "Create interpretation"
+msgstr ""
+
+msgid "Save & share"
+msgstr ""
+
+msgid "Save"
+msgstr "Сохранить"
+
+msgid "No interpretations"
+msgstr "Нет интерпретаций"
+
+msgid "Clear interpretation"
+msgstr "Очистить интерпретацию"
+
+msgid "Write new interpretation"
+msgstr ""
+
+msgid "Interpretations"
+msgstr "Интерпретации"
+
+msgid "chart"
+msgstr ""
+
+msgid "pivot table"
+msgstr ""
+
+msgid "map"
+msgstr ""
+
+msgid "event chart"
+msgstr ""
+
+msgid "event report"
+msgstr ""
+
+msgid "object"
+msgstr ""
