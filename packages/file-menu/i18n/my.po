@@ -1,0 +1,82 @@
+# Translators:
+# Viktor Varland <viktor@dhis2.org>, 2019
+# Aung Kyi Min <AungKyi.Min@savethechildren.org>, 2019
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"POT-Creation-Date: 2018-06-07T12:57:17.631Z\n"
+"PO-Revision-Date: 2019-08-13 20:28+0000\n"
+"Last-Translator: Aung Kyi Min <AungKyi.Min@savethechildren.org>, 2019\n"
+"Language-Team: Burmese (https://www.transifex.com/hisp-uio/teams/100509/my/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: my\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Delete {{what}}"
+msgstr ""
+
+msgid "This {{what}} will be deleted. Continue?"
+msgstr ""
+
+msgid "Delete"
+msgstr "ဖျက်ပါ။"
+
+msgid "File"
+msgstr "File"
+
+msgid "Open in this app"
+msgstr ""
+
+msgid "Open in web API"
+msgstr ""
+
+msgid "Close"
+msgstr "ပိတ်မည်"
+
+msgid "Get link"
+msgstr ""
+
+msgid "New"
+msgstr "အသစ်"
+
+msgid "Open"
+msgstr "Open"
+
+msgid "Rename {{what}}"
+msgstr ""
+
+msgid "Name"
+msgstr "အမည်"
+
+msgid "Description"
+msgstr "ဖော်ပြချက်"
+
+msgid "Cancel"
+msgstr "ဆက်မလုပ်တော့ပါ။"
+
+msgid "Rename"
+msgstr "အမည်ပြောင်းခြင်း"
+
+msgid "Save {{what}} as"
+msgstr ""
+
+msgid "Save"
+msgstr "သိမ်းဆည်းပါ။"
+
+msgid "Save as..."
+msgstr ""
+
+msgid "Share"
+msgstr ""
+
+msgid "Translate"
+msgstr "ဘာသာပြန်သည်။"
+
+msgid "Write interpretation"
+msgstr ""
+
+msgid "Post"
+msgstr ""
