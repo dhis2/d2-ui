@@ -1,0 +1,214 @@
+# Translators:
+# Viktor Varland <viktor@dhis2.org>, 2019
+# phil_dhis2, 2019
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"POT-Creation-Date: 2019-02-27T09:42:27.795Z\n"
+"PO-Revision-Date: 2019-08-13 09:54+0000\n"
+"Last-Translator: phil_dhis2, 2019\n"
+"Language-Team: Swedish (https://www.transifex.com/hisp-uio/teams/100509/sv/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: sv\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Pivot Tables"
+msgstr "Pivottabeller"
+
+msgid "Table details"
+msgstr ""
+
+msgid "Visualizer"
+msgstr "Visualisering"
+
+msgid "Chart details"
+msgstr ""
+
+msgid "Maps"
+msgstr "kartor"
+
+msgid "Map details"
+msgstr ""
+
+msgid "Event Reports"
+msgstr "händelserapporter"
+
+msgid "Event Visualizer"
+msgstr "händelse Visualizer"
+
+msgid "View"
+msgstr ""
+
+msgid "Exit View"
+msgstr ""
+
+msgid "Like"
+msgstr ""
+
+msgid "Unlike"
+msgstr ""
+
+msgid "Reply"
+msgstr "Svar"
+
+msgid "Edit"
+msgstr "Redigera"
+
+msgid "Manage sharing"
+msgstr ""
+
+msgid "Delete"
+msgstr "Radera"
+
+msgid "Back to all interpretations"
+msgstr ""
+
+msgid "Interpretations"
+msgstr "tolkningar"
+
+msgid "Delete comment"
+msgstr ""
+
+msgid "Are you sure you want to delete this comment?"
+msgstr ""
+
+msgid "Save reply"
+msgstr ""
+
+msgid "Cancel"
+msgstr "Annullera"
+
+msgid "Write a reply"
+msgstr ""
+
+msgid "Confirm"
+msgstr "Bekräfta"
+
+msgid "_No description_"
+msgstr ""
+
+msgid "Show "
+msgstr ""
+
+msgid "less"
+msgstr ""
+
+msgid "more"
+msgstr ""
+
+msgid "Unsubscribe from this {{object}} and stop receiving notifications"
+msgstr ""
+
+msgid "Subscribe to this {{object}} and start receiving notifications"
+msgstr ""
+
+msgid "Owner"
+msgstr ""
+
+msgid "Created"
+msgstr "Skapad"
+
+msgid "Last updated"
+msgstr ""
+
+msgid "Views"
+msgstr ""
+
+msgid "Sharing"
+msgstr ""
+
+msgid "Delete interpretation"
+msgstr ""
+
+msgid "Are you sure you want to delete this interpretation?"
+msgstr ""
+
+msgid "Access restricted"
+msgstr ""
+
+msgid "likes"
+msgstr ""
+
+msgid "like"
+msgstr ""
+
+msgid "Save interpretation"
+msgstr ""
+
+msgid "Write an interpretation"
+msgstr ""
+
+msgid "replies"
+msgstr ""
+
+msgid "reply"
+msgstr ""
+
+msgid "Hide old replies"
+msgstr ""
+
+msgid "View more replies"
+msgstr ""
+
+msgid "Hide"
+msgstr ""
+
+msgid "Show"
+msgstr "Visa"
+
+msgid "No interpretations"
+msgstr ""
+
+msgid "external access"
+msgstr ""
+
+msgid ", public access"
+msgstr ""
+
+msgid "public access"
+msgstr ""
+
+msgid "None. "
+msgstr ""
+
+msgid "None"
+msgstr "Ingen"
+
+msgid "Read"
+msgstr ""
+
+msgid "Read/Write"
+msgstr ""
+
+msgid "Unknown"
+msgstr "Okänd"
+
+msgid "Public"
+msgstr ""
+
+msgid "Users"
+msgstr "användare"
+
+msgid "user groups"
+msgstr ""
+
+msgid "chart"
+msgstr ""
+
+msgid "pivot table"
+msgstr ""
+
+msgid "map"
+msgstr ""
+
+msgid "event chart"
+msgstr ""
+
+msgid "event report"
+msgstr ""
+
+msgid "object"
+msgstr ""
