@@ -61,7 +61,7 @@ msgid "Sharing"
 msgstr ""
 
 msgid "OK"
-msgstr "OK"
+msgstr ""
 
 msgid "Post comment"
 msgstr ""
