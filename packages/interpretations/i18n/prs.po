@@ -15,7 +15,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 msgid "Pivot Tables"
-msgstr ""
+msgstr "محوري جدول"
 
 msgid "Table details"
 msgstr ""
@@ -27,19 +27,19 @@ msgid "Chart details"
 msgstr ""
 
 msgid "Maps"
-msgstr ""
+msgstr "نقشه ها"
 
 msgid "Map details"
 msgstr ""
 
 msgid "Event Reports"
-msgstr ""
+msgstr "گزارشات رویداد"
 
 msgid "Event Visualizer"
-msgstr ""
+msgstr "نمایش رویداد"
 
 msgid "View"
-msgstr ""
+msgstr "نمایش"
 
 msgid "Exit View"
 msgstr ""
@@ -51,7 +51,7 @@ msgid "Unlike"
 msgstr "غیرموافق"
 
 msgid "Reply"
-msgstr ""
+msgstr "پاسخ"
 
 msgid "Edit"
 msgstr "ویرایش"
@@ -84,7 +84,7 @@ msgid "Write a reply"
 msgstr ""
 
 msgid "Confirm"
-msgstr ""
+msgstr "تائید"
 
 msgid "_No description_"
 msgstr ""
@@ -156,7 +156,7 @@ msgid "Hide"
 msgstr "مخفی کردن"
 
 msgid "Show"
-msgstr ""
+msgstr "څرګند یې کړئ"
 
 msgid "No interpretations"
 msgstr "بدون تفسیر"
@@ -183,13 +183,13 @@ msgid "Read/Write"
 msgstr "خواندن/نوشتن"
 
 msgid "Unknown"
-msgstr ""
+msgstr "نا معلوم"
 
 msgid "Public"
 msgstr "عام"
 
 msgid "Users"
-msgstr ""
+msgstr "استفاده کننده گان"
 
 msgid "user groups"
 msgstr ""

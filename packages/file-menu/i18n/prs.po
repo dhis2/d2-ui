@@ -24,7 +24,7 @@ msgid "Delete"
 msgstr "حذف"
 
 msgid "File"
-msgstr ""
+msgstr "فایل"
 
 msgid "Open in this app"
 msgstr ""
