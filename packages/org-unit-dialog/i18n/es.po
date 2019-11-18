@@ -30,7 +30,7 @@ msgid "Select a level"
 msgstr ""
 
 msgid "Group"
-msgstr "Group"
+msgstr ""
 
 msgid "Select a group"
 msgstr ""
