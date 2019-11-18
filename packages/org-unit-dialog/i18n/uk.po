@@ -43,4 +43,4 @@ msgid "User sub-units"
 msgstr "Одиниці підрозділів користувачів"
 
 msgid "User sub-x2-units"
-msgstr "User sub-x2-units"
+msgstr ""
