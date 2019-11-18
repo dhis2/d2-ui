@@ -25,7 +25,7 @@ msgid "Delete"
 msgstr "Radera"
 
 msgid "File"
-msgstr "File"
+msgstr ""
 
 msgid "Open in this app"
 msgstr ""
