@@ -43,13 +43,13 @@ msgid "New"
 msgstr "Новый"
 
 msgid "Open"
-msgstr "Open"
+msgstr ""
 
 msgid "Rename {{what}}"
 msgstr ""
 
 msgid "Name"
-msgstr "Name"
+msgstr ""
 
 msgid "Description"
 msgstr "Описание"
