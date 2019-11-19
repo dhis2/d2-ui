@@ -52,7 +52,7 @@ msgid "Name"
 msgstr "Nom"
 
 msgid "Description"
-msgstr "Description"
+msgstr ""
 
 msgid "Cancel"
 msgstr "Annuler"
