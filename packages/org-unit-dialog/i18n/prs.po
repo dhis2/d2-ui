@@ -24,7 +24,7 @@ msgid "Update"
 msgstr "تجدید"
 
 msgid "Level"
-msgstr ""
+msgstr "سطحه"
 
 msgid "Select a level"
 msgstr ""
@@ -36,16 +36,16 @@ msgid "Select a group"
 msgstr ""
 
 msgid "Select children"
-msgstr ""
+msgstr "انتخاب اطفال"
 
 msgid "selected"
-msgstr ""
+msgstr "منتخبین"
 
 msgid "Deselect all"
-msgstr ""
+msgstr "همه از حالت انتخاب خارج"
 
 msgid "User organisation unit"
-msgstr ""
+msgstr "د کاروونکي سازمان واحدونه"
 
 msgid "User sub-units"
 msgstr "زیر-واحد ها استفاده کننده گان"
