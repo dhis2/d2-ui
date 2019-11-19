@@ -27,7 +27,7 @@ msgid "Read/Write"
 msgstr "خواندن/نوشتن"
 
 msgid "Unknown"
-msgstr ""
+msgstr "نا معلوم"
 
 msgid "Public"
 msgstr "عام"
@@ -60,7 +60,7 @@ msgid "Sharing"
 msgstr "به اشتراک گذاشتن"
 
 msgid "OK"
-msgstr ""
+msgstr "تأیید"
 
 msgid "Post comment"
 msgstr ""
@@ -78,7 +78,7 @@ msgid "Like"
 msgstr "مانند"
 
 msgid "Reply"
-msgstr ""
+msgstr "پاسخ"
 
 msgid "Edit"
 msgstr "ویرایش"
