@@ -25,7 +25,7 @@ msgid "Delete"
 msgstr "ဖျက်ပါ။"
 
 msgid "File"
-msgstr "File"
+msgstr ""
 
 msgid "Open in this app"
 msgstr ""
@@ -43,7 +43,7 @@ msgid "New"
 msgstr "အသစ်"
 
 msgid "Open"
-msgstr "Open"
+msgstr ""
 
 msgid "Rename {{what}}"
 msgstr ""
