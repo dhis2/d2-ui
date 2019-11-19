@@ -58,7 +58,7 @@ msgid "Cancel"
 msgstr "batal"
 
 msgid "Rename"
-msgstr "Rename"
+msgstr ""
 
 msgid "Save {{what}} as"
 msgstr ""
