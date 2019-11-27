@@ -28,7 +28,7 @@
   "dependencies": {
     "@dhis2/d2-i18n": "^1.0.3",
     "@dhis2/d2-i18n-extract": "^1.0.7",
-    "@dhis2/d2-i18n-generate": "^1.0.18",
+    "@dhis2/d2-i18n-generate": "^1.1.1",
     "@dhis2/d2-ui-mentions-wrapper": "0.0.0-PLACEHOLDER",
     "@dhis2/d2-ui-rich-text": "0.0.0-PLACEHOLDER",
     "@dhis2/d2-ui-sharing-dialog": "0.0.0-PLACEHOLDER",
