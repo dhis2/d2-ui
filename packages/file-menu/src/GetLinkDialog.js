@@ -98,6 +98,7 @@ GetLinkDialog.propTypes = {
         'reportTable',
         'eventReport',
         'map',
+        'visualization',
     ]),
     fileModel: PropTypes.object,
     onRequestClose: PropTypes.func,

@@ -242,7 +242,14 @@ FileMenu.defaultProps = {
 
 FileMenu.propTypes = {
     d2: PropTypes.object,
-    fileType: PropTypes.oneOf(['chart', 'eventChart', 'reportTable', 'eventReport', 'map']),
+    fileType: PropTypes.oneOf([
+        'chart',
+        'eventChart',
+        'reportTable',
+        'eventReport',
+        'map',
+        'visualization',
+    ]),
     fileId: PropTypes.string,
     onNew: PropTypes.func,
     onOpen: PropTypes.func,

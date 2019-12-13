@@ -73,7 +73,14 @@ SaveAsMenuItem.defaultProps = {
 
 SaveAsMenuItem.propTypes = {
     enabled: PropTypes.bool,
-    fileType: PropTypes.oneOf(['chart', 'eventChart', 'reportTable', 'eventReport', 'map']),
+    fileType: PropTypes.oneOf([
+        'chart',
+        'eventChart',
+        'reportTable',
+        'eventReport',
+        'map',
+        'visualization',
+    ]),
     fileModel: PropTypes.object,
     onSaveAs: PropTypes.func,
     onClose: PropTypes.func,

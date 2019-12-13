@@ -77,7 +77,14 @@ ShareMenuItem.defaultProps = {
 
 ShareMenuItem.propTypes = {
     enabled: PropTypes.bool,
-    fileType: PropTypes.oneOf(['chart', 'eventChart', 'reportTable', 'eventReport', 'map']),
+    fileType: PropTypes.oneOf([
+        'chart',
+        'eventChart',
+        'reportTable',
+        'eventReport',
+        'map',
+        'visualization',
+    ]),
     fileModel: PropTypes.object,
     onShare: PropTypes.func,
     onClose: PropTypes.func,

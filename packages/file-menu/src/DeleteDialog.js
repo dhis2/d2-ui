@@ -64,7 +64,14 @@ DeleteDialog.defaultProps = {
 
 DeleteDialog.propTypes = {
     open: PropTypes.bool,
-    fileType: PropTypes.oneOf(['chart', 'eventChart', 'reportTable', 'eventReport', 'map']),
+    fileType: PropTypes.oneOf([
+        'chart',
+        'eventChart',
+        'reportTable',
+        'eventReport',
+        'map',
+        'visualization',
+    ]),
     fileModel: PropTypes.object,
     onRequestClose: PropTypes.func,
     onRequestDelete: PropTypes.func,
