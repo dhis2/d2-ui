@@ -35,7 +35,10 @@ class GetLinkMenuItem extends Component {
 
         return (
             <Fragment>
-                <MenuItem disabled={!enabled} onClick={this.toggleGetLinkDialog}>
+                <MenuItem
+                    disabled={!enabled}
+                    onClick={this.toggleGetLinkDialog}
+                >
                     <ListItemIcon>
                         <Link />
                     </ListItemIcon>
@@ -67,7 +70,14 @@ GetLinkMenuItem.defaultProps = {
 
 GetLinkMenuItem.propTypes = {
     enabled: PropTypes.bool,
-    fileType: PropTypes.oneOf(['chart', 'eventChart', 'reportTable', 'eventReport', 'map']),
+    fileType: PropTypes.oneOf([
+        'chart',
+        'eventChart',
+        'reportTable',
+        'eventReport',
+        'map',
+        'visualization',
+    ]),
     fileModel: PropTypes.object,
     onClose: PropTypes.func,
 };

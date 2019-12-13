@@ -83,7 +83,14 @@ RenameMenuItem.defaultProps = {
 
 RenameMenuItem.propTypes = {
     enabled: PropTypes.bool,
-    fileType: PropTypes.oneOf(['chart', 'eventChart', 'reportTable', 'eventReport', 'map']),
+    fileType: PropTypes.oneOf([
+        'chart',
+        'eventChart',
+        'reportTable',
+        'eventReport',
+        'map',
+        'visualization',
+    ]),
     fileModel: PropTypes.object,
     onRename: PropTypes.func,
     onRenameError: PropTypes.func,

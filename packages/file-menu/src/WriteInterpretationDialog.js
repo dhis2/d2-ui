@@ -28,7 +28,7 @@ class WriteInterpretationDialog extends Component {
         this.props.onRequestClose();
     };
 
-    handleChange = field => (event) => {
+    handleChange = field => event => {
         event.preventDefault();
 
         this.setState({
@@ -36,7 +36,7 @@ class WriteInterpretationDialog extends Component {
         });
     };
 
-    handleSubmit = async (event) => {
+    handleSubmit = async event => {
         event.preventDefault();
 
         const {
@@ -52,7 +52,11 @@ class WriteInterpretationDialog extends Component {
             const headers = { 'Content-Type': 'text/plain' };
 
             try {
-                await this.context.d2.Api.getApi().post(url, form.interpretationText, { headers });
+                await this.context.d2.Api.getApi().post(
+                    url,
+                    form.interpretationText,
+                    { headers }
+                );
 
                 if (onRequestWriteInterpretation) {
                     onRequestWriteInterpretation();
@@ -78,7 +82,9 @@ class WriteInterpretationDialog extends Component {
                                 margin="normal"
                                 multiline
                                 rowsMax={4}
-                                onChange={this.handleChange('interpretationText')}
+                                onChange={this.handleChange(
+                                    'interpretationText'
+                                )}
                             />
                         </FormControl>
                     </DialogContent>
@@ -86,7 +92,11 @@ class WriteInterpretationDialog extends Component {
                         <Button onClick={this.onRequestClose} color="primary">
                             {i18n.t('Cancel')}
                         </Button>
-                        <Button type="submit" onClick={this.handleSubmit} color="primary">
+                        <Button
+                            type="submit"
+                            onClick={this.handleSubmit}
+                            color="primary"
+                        >
                             {i18n.t('Post')}
                         </Button>
                     </DialogActions>
@@ -111,7 +121,14 @@ WriteInterpretationDialog.defaultProps = {
 
 WriteInterpretationDialog.propTypes = {
     open: PropTypes.bool,
-    fileType: PropTypes.oneOf(['chart', 'eventChart', 'reportTable', 'eventReport', 'map']),
+    fileType: PropTypes.oneOf([
+        'chart',
+        'eventChart',
+        'reportTable',
+        'eventReport',
+        'map',
+        'visualization',
+    ]),
     fileModel: PropTypes.object,
     onRequestClose: PropTypes.func,
     onRequestWriteInterpretation: PropTypes.func,

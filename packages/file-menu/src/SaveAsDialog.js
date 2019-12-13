@@ -24,7 +24,11 @@ class SaveAsDialog extends Component {
 
     componentWillReceiveProps(nextProps) {
         // reset form to initial value when reopening the save as dialog
-        if (nextProps.open === true && nextProps.fileModel && !this.state.name) {
+        if (
+            nextProps.open === true &&
+            nextProps.fileModel &&
+            !this.state.name
+        ) {
             this.setState({
                 name: nextProps.fileModel.displayName || '',
                 description: nextProps.fileModel.displayDescription || '',
@@ -40,7 +44,7 @@ class SaveAsDialog extends Component {
         this.props.onRequestClose();
     };
 
-    handleChange = field => (event) => {
+    handleChange = field => event => {
         event.preventDefault();
 
         this.setState({
@@ -48,7 +52,7 @@ class SaveAsDialog extends Component {
         });
     };
 
-    handleSubmit = (event) => {
+    handleSubmit = event => {
         event.preventDefault();
 
         if (this.props.onRequestSaveAs) {
@@ -62,7 +66,9 @@ class SaveAsDialog extends Component {
         return (
             <Dialog open={open} onClose={this.onRequestClose} maxWidth="md">
                 <DialogTitle>
-                    {i18n.t('Save {{what}} as', { what: getFileTypeLabel(fileType) })}
+                    {i18n.t('Save {{what}} as', {
+                        what: getFileTypeLabel(fileType),
+                    })}
                 </DialogTitle>
                 <DialogContent>
                     <form onSubmit={this.handleSubmit}>
@@ -91,7 +97,11 @@ class SaveAsDialog extends Component {
                     <Button onClick={this.onRequestClose} color="primary">
                         {i18n.t('Cancel')}
                     </Button>
-                    <Button type="submit" onClick={this.handleSubmit} color="primary">
+                    <Button
+                        type="submit"
+                        onClick={this.handleSubmit}
+                        color="primary"
+                    >
                         {i18n.t('Save')}
                     </Button>
                 </DialogActions>
@@ -114,7 +124,14 @@ SaveAsDialog.defaultProps = {
 
 SaveAsDialog.propTypes = {
     open: PropTypes.bool,
-    fileType: PropTypes.oneOf(['chart', 'eventChart', 'reportTable', 'eventReport', 'map']),
+    fileType: PropTypes.oneOf([
+        'chart',
+        'eventChart',
+        'reportTable',
+        'eventReport',
+        'map',
+        'visualization',
+    ]),
     fileModel: PropTypes.object,
     onRequestClose: PropTypes.func,
     onRequestSaveAs: PropTypes.func,

@@ -24,7 +24,7 @@ class OpenMenuItem extends Component {
         this.props.onClose();
     };
 
-    onOpen = (id) => {
+    onOpen = id => {
         this.toggleFavoritesDialog();
 
         this.props.onOpen(id);
@@ -74,7 +74,14 @@ OpenMenuItem.defaultProps = {
 };
 
 OpenMenuItem.propTypes = {
-    fileType: PropTypes.oneOf(['chart', 'eventChart', 'reportTable', 'eventReport', 'map']),
+    fileType: PropTypes.oneOf([
+        'chart',
+        'eventChart',
+        'reportTable',
+        'eventReport',
+        'map',
+        'visualization',
+    ]),
     refreshDialogData: PropTypes.bool,
     onOpen: PropTypes.func,
     onClose: PropTypes.func,
