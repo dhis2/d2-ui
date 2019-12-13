@@ -18,6 +18,8 @@ import ShareMenuItem from './ShareMenuItem';
 import GetLinkMenuItem from './GetLinkMenuItem';
 import DeleteMenuItem from './DeleteMenuItem';
 
+import { supportedFileTypes } from './util';
+
 export class FileMenu extends Component {
     constructor(props) {
         super(props);
@@ -258,14 +260,7 @@ FileMenu.defaultProps = {
 
 FileMenu.propTypes = {
     d2: PropTypes.object,
-    fileType: PropTypes.oneOf([
-        'chart',
-        'eventChart',
-        'reportTable',
-        'eventReport',
-        'map',
-        'visualization',
-    ]),
+    fileType: PropTypes.oneOf(supportedFileTypes),
     fileId: PropTypes.string,
     onNew: PropTypes.func,
     onOpen: PropTypes.func,

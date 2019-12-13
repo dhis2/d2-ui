@@ -9,6 +9,8 @@ import Button from '@material-ui/core/Button';
 
 import i18n from '@dhis2/d2-i18n';
 
+import { supportedFileTypes } from './util';
+
 const getAppUrl = (fileType, fileId, context) => {
     const baseUrl = context.d2.Api.getApi().baseUrl.split('/api', 1)[0];
 
@@ -92,14 +94,7 @@ GetLinkDialog.defaultProps = {
 
 GetLinkDialog.propTypes = {
     open: PropTypes.bool,
-    fileType: PropTypes.oneOf([
-        'chart',
-        'eventChart',
-        'reportTable',
-        'eventReport',
-        'map',
-        'visualization',
-    ]),
+    fileType: PropTypes.oneOf(supportedFileTypes),
     fileModel: PropTypes.object,
     onRequestClose: PropTypes.func,
 };

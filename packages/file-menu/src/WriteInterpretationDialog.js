@@ -11,6 +11,8 @@ import FormControl from '@material-ui/core/FormControl';
 
 import i18n from '@dhis2/d2-i18n';
 
+import { supportedFileTypes } from './util';
+
 class WriteInterpretationDialog extends Component {
     constructor(props) {
         super(props);
@@ -121,14 +123,7 @@ WriteInterpretationDialog.defaultProps = {
 
 WriteInterpretationDialog.propTypes = {
     open: PropTypes.bool,
-    fileType: PropTypes.oneOf([
-        'chart',
-        'eventChart',
-        'reportTable',
-        'eventReport',
-        'map',
-        'visualization',
-    ]),
+    fileType: PropTypes.oneOf(supportedFileTypes),
     fileModel: PropTypes.object,
     onRequestClose: PropTypes.func,
     onRequestWriteInterpretation: PropTypes.func,

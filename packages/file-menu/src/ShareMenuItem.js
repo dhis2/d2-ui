@@ -9,6 +9,8 @@ import Share from '@material-ui/icons/Share';
 import i18n from '@dhis2/d2-i18n';
 import SharingDialog from '@dhis2/d2-ui-sharing-dialog';
 
+import { supportedFileTypes } from './util';
+
 class ShareMenuItem extends Component {
     constructor(props) {
         super(props);
@@ -80,14 +82,7 @@ ShareMenuItem.defaultProps = {
 
 ShareMenuItem.propTypes = {
     enabled: PropTypes.bool,
-    fileType: PropTypes.oneOf([
-        'chart',
-        'eventChart',
-        'reportTable',
-        'eventReport',
-        'map',
-        'visualization',
-    ]),
+    fileType: PropTypes.oneOf(supportedFileTypes),
     fileModel: PropTypes.object,
     onShare: PropTypes.func,
     onClose: PropTypes.func,

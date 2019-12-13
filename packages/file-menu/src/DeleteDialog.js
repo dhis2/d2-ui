@@ -8,7 +8,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
 
 import i18n from '@dhis2/d2-i18n';
-import { getFileTypeLabel } from './util';
+import { supportedFileTypes, getFileTypeLabel } from './util';
 
 const DeleteDialog = props => {
     const {
@@ -66,14 +66,7 @@ DeleteDialog.defaultProps = {
 
 DeleteDialog.propTypes = {
     open: PropTypes.bool,
-    fileType: PropTypes.oneOf([
-        'chart',
-        'eventChart',
-        'reportTable',
-        'eventReport',
-        'map',
-        'visualization',
-    ]),
+    fileType: PropTypes.oneOf(supportedFileTypes),
     fileModel: PropTypes.object,
     onRequestClose: PropTypes.func,
     onRequestDelete: PropTypes.func,

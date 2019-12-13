@@ -10,7 +10,7 @@ import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 
 import i18n from '@dhis2/d2-i18n';
-import { getFileTypeLabel } from './util';
+import { supportedFileTypes, getFileTypeLabel } from './util';
 
 class RenameDialog extends Component {
     constructor(props) {
@@ -148,14 +148,7 @@ RenameDialog.defaultProps = {
 
 RenameDialog.propTypes = {
     open: PropTypes.bool,
-    fileType: PropTypes.oneOf([
-        'chart',
-        'eventChart',
-        'reportTable',
-        'eventReport',
-        'map',
-        'visualization',
-    ]),
+    fileType: PropTypes.oneOf(supportedFileTypes),
     fileModel: PropTypes.object,
     onRequestClose: PropTypes.func,
     onRequestRename: PropTypes.func,

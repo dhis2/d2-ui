@@ -9,6 +9,8 @@ import Link from '@material-ui/icons/Link';
 import i18n from '@dhis2/d2-i18n';
 import GetLinkDialog from './GetLinkDialog';
 
+import { supportedFileTypes } from './util';
+
 class GetLinkMenuItem extends Component {
     constructor(props) {
         super(props);
@@ -70,14 +72,7 @@ GetLinkMenuItem.defaultProps = {
 
 GetLinkMenuItem.propTypes = {
     enabled: PropTypes.bool,
-    fileType: PropTypes.oneOf([
-        'chart',
-        'eventChart',
-        'reportTable',
-        'eventReport',
-        'map',
-        'visualization',
-    ]),
+    fileType: PropTypes.oneOf(supportedFileTypes),
     fileModel: PropTypes.object,
     onClose: PropTypes.func,
 };

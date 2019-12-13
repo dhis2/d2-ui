@@ -9,6 +9,8 @@ import OpenInBrowser from '@material-ui/icons/OpenInBrowser';
 import i18n from '@dhis2/d2-i18n';
 import FavoritesDialog from '@dhis2/d2-ui-favorites-dialog';
 
+import { supportedFileTypes } from './util';
+
 class OpenMenuItem extends Component {
     constructor(props) {
         super(props);
@@ -74,14 +76,7 @@ OpenMenuItem.defaultProps = {
 };
 
 OpenMenuItem.propTypes = {
-    fileType: PropTypes.oneOf([
-        'chart',
-        'eventChart',
-        'reportTable',
-        'eventReport',
-        'map',
-        'visualization',
-    ]),
+    fileType: PropTypes.oneOf(supportedFileTypes),
     refreshDialogData: PropTypes.bool,
     onOpen: PropTypes.func,
     onClose: PropTypes.func,
