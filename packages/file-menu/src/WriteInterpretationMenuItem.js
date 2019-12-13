@@ -9,6 +9,8 @@ import Edit from '@material-ui/icons/Edit';
 import i18n from '@dhis2/d2-i18n';
 import WriteInterpretationDialog from './WriteInterpretationDialog';
 
+import { supportedFileTypes } from './util';
+
 class WriteInterpretationMenuItem extends Component {
     constructor(props) {
         super(props);
@@ -91,14 +93,7 @@ WriteInterpretationMenuItem.defaultProps = {
 
 WriteInterpretationMenuItem.propTypes = {
     enabled: PropTypes.bool,
-    fileType: PropTypes.oneOf([
-        'chart',
-        'eventChart',
-        'reportTable',
-        'eventReport',
-        'map',
-        'visualization',
-    ]),
+    fileType: PropTypes.oneOf(supportedFileTypes),
     fileModel: PropTypes.object,
     onWriteInterpretation: PropTypes.func,
     onWriteInterpretationError: PropTypes.func,

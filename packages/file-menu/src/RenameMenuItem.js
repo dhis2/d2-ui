@@ -9,6 +9,8 @@ import Edit from '@material-ui/icons/Edit';
 import i18n from '@dhis2/d2-i18n';
 import RenameDialog from './RenameDialog';
 
+import { supportedFileTypes } from './util';
+
 class RenameMenuItem extends Component {
     constructor(props) {
         super(props);
@@ -83,14 +85,7 @@ RenameMenuItem.defaultProps = {
 
 RenameMenuItem.propTypes = {
     enabled: PropTypes.bool,
-    fileType: PropTypes.oneOf([
-        'chart',
-        'eventChart',
-        'reportTable',
-        'eventReport',
-        'map',
-        'visualization',
-    ]),
+    fileType: PropTypes.oneOf(supportedFileTypes),
     fileModel: PropTypes.object,
     onRename: PropTypes.func,
     onRenameError: PropTypes.func,

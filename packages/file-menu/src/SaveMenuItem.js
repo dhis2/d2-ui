@@ -9,6 +9,8 @@ import Save from '@material-ui/icons/Save';
 import i18n from '@dhis2/d2-i18n';
 import SaveAsDialog from './SaveAsDialog';
 
+import { supportedFileTypes } from './util';
+
 class SaveMenuItem extends Component {
     constructor(props) {
         super(props);
@@ -77,14 +79,7 @@ SaveMenuItem.defaultProps = {
 
 SaveMenuItem.propTypes = {
     enabled: PropTypes.bool,
-    fileType: PropTypes.oneOf([
-        'chart',
-        'eventChart',
-        'reportTable',
-        'eventReport',
-        'map',
-        'visualization',
-    ]),
+    fileType: PropTypes.oneOf(supportedFileTypes),
     fileModel: PropTypes.object,
     onSave: PropTypes.func,
     onSaveAs: PropTypes.func,

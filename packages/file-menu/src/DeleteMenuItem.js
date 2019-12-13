@@ -9,6 +9,8 @@ import Delete from '@material-ui/icons/Delete';
 import i18n from '@dhis2/d2-i18n';
 import DeleteDialog from './DeleteDialog';
 
+import { supportedFileTypes } from './util';
+
 class DeleteMenuItem extends Component {
     constructor(props) {
         super(props);
@@ -77,14 +79,7 @@ DeleteMenuItem.defaultProps = {
 
 DeleteMenuItem.propTypes = {
     enabled: PropTypes.bool,
-    fileType: PropTypes.oneOf([
-        'chart',
-        'eventChart',
-        'reportTable',
-        'eventReport',
-        'map',
-        'visualization',
-    ]),
+    fileType: PropTypes.oneOf(supportedFileTypes),
     fileModel: PropTypes.object,
     onDelete: PropTypes.func,
     onDeleteError: PropTypes.func,
