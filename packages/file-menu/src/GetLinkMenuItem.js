@@ -35,7 +35,10 @@ class GetLinkMenuItem extends Component {
 
         return (
             <Fragment>
-                <MenuItem disabled={!enabled} onClick={this.toggleGetLinkDialog}>
+                <MenuItem
+                    disabled={!enabled}
+                    onClick={this.toggleGetLinkDialog}
+                >
                     <ListItemIcon>
                         <Link />
                     </ListItemIcon>

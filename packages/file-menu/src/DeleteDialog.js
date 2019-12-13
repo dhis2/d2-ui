@@ -10,7 +10,7 @@ import Button from '@material-ui/core/Button';
 import i18n from '@dhis2/d2-i18n';
 import { getFileTypeLabel } from './util';
 
-const DeleteDialog = (props) => {
+const DeleteDialog = props => {
     const {
         open,
         fileType,
@@ -32,7 +32,9 @@ const DeleteDialog = (props) => {
     return (
         <Dialog open={open} onClose={onRequestClose} maxWidth="sm">
             <DialogTitle>
-                {i18n.t('Delete {{what}}', { what: getFileTypeLabel(fileType) })}
+                {i18n.t('Delete {{what}}', {
+                    what: getFileTypeLabel(fileType),
+                })}
             </DialogTitle>
             <DialogContent>
                 <DialogContentText>

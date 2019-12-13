@@ -27,7 +27,10 @@ class WriteInterpretationMenuItem extends Component {
     };
 
     onDialogReturn = success => () => {
-        const { onWriteInterpretation, onWriteInterpretationError } = this.props;
+        const {
+            onWriteInterpretation,
+            onWriteInterpretationError,
+        } = this.props;
 
         this.toggleWriteInterpretationDialog();
 
@@ -47,7 +50,10 @@ class WriteInterpretationMenuItem extends Component {
 
         return (
             <Fragment>
-                <MenuItem disabled={!enabled} onClick={this.toggleWriteInterpretationDialog}>
+                <MenuItem
+                    disabled={!enabled}
+                    onClick={this.toggleWriteInterpretationDialog}
+                >
                     <ListItemIcon>
                         <Edit />
                     </ListItemIcon>
@@ -60,7 +66,9 @@ class WriteInterpretationMenuItem extends Component {
                         fileModel={fileModel}
                         onRequestClose={this.onClose}
                         onRequestWriteInterpretation={this.onDialogReturn(true)}
-                        onRequestWriteInterpretationError={this.onDialogReturn(false)}
+                        onRequestWriteInterpretationError={this.onDialogReturn(
+                            false
+                        )}
                     />
                 ) : null}
             </Fragment>

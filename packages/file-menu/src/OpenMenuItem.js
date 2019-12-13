@@ -24,7 +24,7 @@ class OpenMenuItem extends Component {
         this.props.onClose();
     };
 
-    onOpen = (id) => {
+    onOpen = id => {
         this.toggleFavoritesDialog();
 
         this.props.onOpen(id);

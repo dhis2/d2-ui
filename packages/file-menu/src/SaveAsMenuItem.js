@@ -26,7 +26,7 @@ class SaveAsMenuItem extends Component {
         }
     };
 
-    onSaveAs = (form) => {
+    onSaveAs = form => {
         this.toggleSaveAsDialog();
 
         if (this.props.onSaveAs) {
@@ -43,7 +43,11 @@ class SaveAsMenuItem extends Component {
 
         return (
             <Fragment>
-                <MenuItem button onClick={this.toggleSaveAsDialog} disabled={!enabled}>
+                <MenuItem
+                    button
+                    onClick={this.toggleSaveAsDialog}
+                    disabled={!enabled}
+                >
                     <ListItemIcon>
                         <Save />
                     </ListItemIcon>

@@ -43,7 +43,10 @@ class ShareMenuItem extends Component {
 
         return (
             <Fragment>
-                <MenuItem disabled={!enabled} onClick={this.toggleSharingDialog}>
+                <MenuItem
+                    disabled={!enabled}
+                    onClick={this.toggleSharingDialog}
+                >
                     <ListItemIcon>
                         <Share />
                     </ListItemIcon>

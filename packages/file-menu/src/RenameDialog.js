@@ -40,7 +40,7 @@ class RenameDialog extends Component {
         this.props.onRequestClose();
     };
 
-    handleChange = field => (event) => {
+    handleChange = field => event => {
         event.preventDefault();
 
         this.setState({
@@ -48,7 +48,7 @@ class RenameDialog extends Component {
         });
     };
 
-    handleSubmit = async (event) => {
+    handleSubmit = async event => {
         event.preventDefault();
 
         const { fileModel, onRequestRename, onRequestRenameError } = this.props;
@@ -68,7 +68,7 @@ class RenameDialog extends Component {
                 if (payload.name) {
                     const response = await this.context.d2.Api.getApi().patch(
                         fileModel.href,
-                        payload,
+                        payload
                     );
 
                     if (response.status === 'ERROR') {
@@ -90,7 +90,9 @@ class RenameDialog extends Component {
             <Dialog open={open} onClose={this.onRequestClose} maxWidth="md">
                 <form onSubmit={this.handleSubmit}>
                     <DialogTitle>
-                        {i18n.t('Rename {{what}}', { what: getFileTypeLabel(fileType) })}
+                        {i18n.t('Rename {{what}}', {
+                            what: getFileTypeLabel(fileType),
+                        })}
                     </DialogTitle>
                     <DialogContent>
                         <FormControl fullWidth>
@@ -117,7 +119,11 @@ class RenameDialog extends Component {
                         <Button onClick={this.onRequestClose} color="primary">
                             {i18n.t('Cancel')}
                         </Button>
-                        <Button type="submit" onClick={this.handleSubmit} color="primary">
+                        <Button
+                            type="submit"
+                            onClick={this.handleSubmit}
+                            color="primary"
+                        >
                             {i18n.t('Rename')}
                         </Button>
                     </DialogActions>
