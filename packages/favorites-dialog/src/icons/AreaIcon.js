@@ -2,7 +2,7 @@ import React from 'react';
 import SvgIcon from '@material-ui/core/SvgIcon';
 
 export default <SvgIcon viewBox="0 0 16 16">
-    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
         <mask fill="white">
             <rect x="0" y="0" width="16" height="16"></rect>
         </mask>
