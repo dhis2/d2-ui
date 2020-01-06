@@ -15,12 +15,15 @@
   },
   "scripts": {
     "prebuild": "npm run lint && rimraf ./build/*",
-    "build": "babel src --out-dir build --ignore spec.js",
+    "build": "npm run localize && babel src --out-dir build --ignore spec.js",
     "lint": "eslint src/",
     "watch": "npm run build --  --watch",
-    "test-ci": "jest --config=../../jest.config.js packages/favorites-dialog"
+    "test-ci": "jest --config=../../jest.config.js packages/favorites-dialog",
+    "extract-pot": "d2-i18n-extract -p src/ -o i18n/",
+    "localize": "npm run extract-pot && d2-i18n-generate -n d2-ui-favorites-dialog -p ./i18n/ -o ./src/locales/"
   },
   "dependencies": {
+    "@dhis2/d2-i18n": "^1.0.6",
     "@dhis2/d2-ui-sharing-dialog": "0.0.0-PLACEHOLDER",
     "@material-ui/core": "^3.3.1",
     "@material-ui/icons": "^3.0.1",
@@ -34,5 +37,15 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "0.0.0-PLACEHOLDER"
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run extract-pot && git add ./i18n"
+    }
+  },
+  "version": "0.0.0-PLACEHOLDER",
+  "devDependencies": {
+    "@dhis2/d2-i18n-extract": "^1.0.8",
+    "@dhis2/d2-i18n-generate": "^1.1.1",
+    "husky": "^3.1.0"
+  }
 }
