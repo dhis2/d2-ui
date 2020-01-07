@@ -55,13 +55,16 @@ const Time = ({ date }) => {
 };
 
 const EnhancedTableHead = props => {
-    const { order, column, sortData } = props;
+    const { order, column, sortData, showTypeColumn } = props;
     const columns = [
         { id: 'displayName', label: i18n.t('Name') },
-        { id: 'type', label: i18n.t('Type') },
         { id: 'created', label: i18n.t('Created') },
         { id: 'lastUpdated', label: i18n.t('Last updated') },
     ];
+
+    if (showTypeColumn) {
+        columns.splice(1, 0, { id: 'type', label: i18n.t('Type') });
+    }
 
     const createSortHandler = column => event => {
         sortData(event, column);
@@ -99,6 +102,7 @@ const EnhancedTable = props => {
         column,
         sortData,
         onFavoriteSelect,
+        showTypeColumn,
     } = props;
 
     const clickHandler = id => event => {
@@ -108,7 +112,7 @@ const EnhancedTable = props => {
     return (
         <div>
             <Table>
-                <EnhancedTableHead order={order} column={column} sortData={sortData} />
+                <EnhancedTableHead order={order} column={column} sortData={sortData} showTypeColumn={showTypeColumn} />
                 <TableBody>
                     {data.map(favorite => {
                         const visType = visTypeMap[favorite.type];
@@ -122,12 +126,14 @@ const EnhancedTable = props => {
                                 >
                                     {favorite.displayName}
                                 </TableCell>
-                                <TableCell
-                                    padding="dense">
-                                    <Tooltip title={visType.label}>
-                                        {visType.icon}
-                                    </Tooltip>
-                                </TableCell>
+                                {showTypeColumn &&
+                                    <TableCell
+                                        padding="dense">
+                                        <Tooltip title={visType.label}>
+                                            {visType.icon}
+                                        </Tooltip>
+                                    </TableCell>
+                                }
                                 <TableCell padding="dense">
                                     <Time date={favorite.created} />
                                 </TableCell>

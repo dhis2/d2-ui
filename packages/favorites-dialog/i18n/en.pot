@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2020-01-06T13:59:27.942Z\n"
-"PO-Revision-Date: 2020-01-06T13:59:27.942Z\n"
+"POT-Creation-Date: 2020-01-07T09:00:38.391Z\n"
+"PO-Revision-Date: 2020-01-07T09:00:38.391Z\n"
 
 msgid "Bar"
 msgstr ""
@@ -50,13 +50,13 @@ msgstr ""
 msgid "Name"
 msgstr ""
 
-msgid "Type"
-msgstr ""
-
 msgid "Created"
 msgstr ""
 
 msgid "Last updated"
+msgstr ""
+
+msgid "Type"
 msgstr ""
 
 msgid "Search by name"
