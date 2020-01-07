@@ -8,7 +8,7 @@ export default class FavoritesDialogExample extends React.Component {
     state = {
         favoritesDialog: {
             open: false,
-            type: 'chart',
+            type: 'visualization',
         },
         snackbar: {
             open: false,
@@ -47,13 +47,13 @@ export default class FavoritesDialogExample extends React.Component {
         <div>
             <div style={{ padding: 16 }}>
                 <RaisedButton
-                    onClick={this.toggleDialog('chart')}
-                    label="Open charts favorites"
+                    onClick={this.toggleDialog('visualization')}
+                    label="Open visualization favorites"
                 />
             </div>
             <div style={{ padding: 16 }}>
                 <RaisedButton
-                    onClick={this.toggleDialog('pivot')}
+                    onClick={this.toggleDialog('reportTable')}
                     label="Open pivot table favorites"
                 />
             </div>
@@ -63,7 +63,7 @@ export default class FavoritesDialogExample extends React.Component {
             <FavoritesDialog
                 open={this.state.favoritesDialog.open}
                 type={this.state.favoritesDialog.type}
-                onRequestClose={this.toggleDialog(this.state.type)}
+                onRequestClose={this.toggleDialog(this.state.favoritesDialog.type)}
                 onFavoriteSelect={this.onFavoriteSelect}
                 d2={this.props.d2}
             />
