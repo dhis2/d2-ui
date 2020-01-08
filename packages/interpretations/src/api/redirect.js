@@ -6,6 +6,7 @@ export const MAP = 'MAP';
 export const REPORT_TABLE = 'REPORT_TABLE';
 export const EVENT_REPORT = 'EVENT_REPORT';
 export const EVENT_CHART = 'EVENT_CHART';
+export const VISUALIZATION = 'VISUALIZATION';
 
 export const extractFavorite = item => {
     if (!isObject(item)) {
@@ -23,6 +24,8 @@ export const extractFavorite = item => {
             return item.eventReport;
         case EVENT_CHART:
             return item.eventChart;
+        case VISUALIZATION:
+            return item.chart || item.reportTable;
         default:
             return (
                 item.reportTable ||
@@ -85,5 +88,12 @@ export const itemTypeMap = {
         propName:  'eventChart',
         appName: i18n.t('Event Visualizer'),
         detailsTitle: i18n.t('Chart details'),
+    },
+    [VISUALIZATION]: {
+        id: VISUALIZATION,
+        appUrl: (modelId, interpretationId) => `dhis-web-data-visualizer/#/${modelId}/interpretation/${interpretationId}`,
+        propName: 'visualization',
+        appName: i18n.t('Visualizer'),
+        detailsTitle: i18n.t('Visualization details'),
     },
 };
