@@ -21,7 +21,7 @@ class Favorites extends Component {
     }
 
     render() {
-        const { open, onRequestClose, onFavoriteSelect } = this.props;
+        const { open, onRequestClose, onFavoriteSelect, type } = this.props;
 
         const handleOnFavoriteSelect = (id) => {
             onFavoriteSelect(id);
@@ -29,11 +29,13 @@ class Favorites extends Component {
             onRequestClose();
         };
 
+        const showTypeColumn = /visualization|chart/.test(type);
+
         return (
             <Dialog open={open} onClose={onRequestClose} disableEnforceFocus maxWidth="lg">
                 <DialogContent>
                     <EnhancedToolbar />
-                    <EnhancedTable onFavoriteSelect={handleOnFavoriteSelect} />
+                    <EnhancedTable showTypeColumn={showTypeColumn} onFavoriteSelect={handleOnFavoriteSelect} />
                 </DialogContent>
                 <DialogActions>
                     <Button color="primary" onClick={onRequestClose}>Close</Button>
@@ -45,6 +47,7 @@ class Favorites extends Component {
 
 Favorites.propTypes = {
     open: PropTypes.bool.isRequired,
+    type: PropTypes.string.isRequired,
     onRequestClose: PropTypes.func.isRequired,
     onFavoriteSelect: PropTypes.func.isRequired,
     dataIsLoaded: PropTypes.bool.isRequired,

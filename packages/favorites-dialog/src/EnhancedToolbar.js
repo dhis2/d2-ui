@@ -8,6 +8,7 @@ import TextField from "@material-ui/core/TextField";
 import Toolbar from "@material-ui/core/Toolbar";
 import Tooltip from "@material-ui/core/Tooltip";
 
+import i18n from '@dhis2/d2-i18n';
 import { filterData, searchData } from "./actions";
 
 const toolbarStyles = () => ({
@@ -47,7 +48,7 @@ class EnhancedToolbar extends Component {
             <Toolbar>
                 <TextField
                     type="search"
-                    label="Search by name"
+                    label={i18n.t("Search by name")}
                     className={classes.search}
                     value={searchValue}
                     onChange={searchData}
@@ -55,7 +56,7 @@ class EnhancedToolbar extends Component {
                 <div className={classes.spacer} />
                 <Tooltip
                     className={classes.filter}
-                    title="Filter list"
+                    title={i18n.t("Filter list")}
                     open={this.state.filterTooltipOpen}
                 >
                     <Select
@@ -68,9 +69,9 @@ class EnhancedToolbar extends Component {
                             onEnter: this.hideFilterTooltip
                         }}
                     >
-                        <MenuItem value="all">Show all</MenuItem>
-                        <MenuItem value="byme">Created by me</MenuItem>
-                        <MenuItem value="byothers">Created by others</MenuItem>
+                        <MenuItem value="all">{i18n.t('Show all')}</MenuItem>
+                        <MenuItem value="byme">{i18n.t('Created by me')}</MenuItem>
+                        <MenuItem value="byothers">{i18n.t('Created by others')}</MenuItem>
                     </Select>
                 </Tooltip>
             </Toolbar>

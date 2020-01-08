@@ -31,7 +31,13 @@ class FavoritesDialog extends Component {
     }
 
     render() {
-        const { open, type, onFavoriteSelect, onRequestClose, refreshData } = this.props;
+        const {
+            open,
+            type,
+            onFavoriteSelect,
+            onRequestClose,
+            refreshData,
+        } = this.props;
 
         return (
             <Provider store={store}>
@@ -54,7 +60,14 @@ FavoritesDialog.defaultProps = {
 FavoritesDialog.propTypes = {
     open: PropTypes.bool.isRequired,
     refreshData: PropTypes.bool,
-    type: PropTypes.oneOf(['chart', 'eventChart', 'reportTable', 'eventReport', 'map']).isRequired,
+    type: PropTypes.oneOf([
+        'visualization',
+        'chart',
+        'eventChart',
+        'reportTable',
+        'eventReport',
+        'map',
+    ]).isRequired,
     d2: PropTypes.object.isRequired,
     onRequestClose: PropTypes.func.isRequired,
     onFavoriteSelect: PropTypes.func.isRequired,

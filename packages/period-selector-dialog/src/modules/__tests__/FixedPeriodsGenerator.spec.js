@@ -41,7 +41,7 @@ describe('FixedPeriodsGenerator class', () => {
             const generator = periodsGenerator.get('Daily');
 
             periods = generator.generatePeriods({
-                offset: 2019 - new Date().getFullYear(),
+                offset: 2019 - new Date(Date.now()).getFullYear(),
                 filterFuturePeriods: false,
                 reversePeriods: false,
             });
@@ -79,7 +79,7 @@ describe('FixedPeriodsGenerator class', () => {
             const generator = periodsGenerator.get('Weekly');
 
             periods = generator.generatePeriods({
-                offset: 2009 - new Date().getFullYear(),
+                offset: 2009 - new Date(Date.now()).getFullYear(),
                 filterFuturePeriods: false,
                 reversePeriods: false,
             });
@@ -114,7 +114,7 @@ describe('FixedPeriodsGenerator class', () => {
                 const generator = periodsGenerator.get('Weekly (Start Wednesday)');
 
                 periods = generator.generatePeriods({
-                    offset: 2019 - (new Date()).getFullYear(),
+                    offset: 2019 - (new Date(Date.now())).getFullYear(),
                     filterFuturePeriods: false,
                     reversePeriods: false,
                 });
@@ -140,7 +140,7 @@ describe('FixedPeriodsGenerator class', () => {
                 const generator = periodsGenerator.get('Weekly (Start Thursday)');
 
                 periods = generator.generatePeriods({
-                    offset: 2019 - (new Date()).getFullYear(),
+                    offset: 2019 - (new Date(Date.now())).getFullYear(),
                     filterFuturePeriods: false,
                     reversePeriods: false,
                 });
@@ -166,7 +166,7 @@ describe('FixedPeriodsGenerator class', () => {
                 const generator = periodsGenerator.get('Weekly (Start Saturday)');
 
                 periods = generator.generatePeriods({
-                    offset: 2019 - (new Date()).getFullYear(),
+                    offset: 2019 - (new Date(Date.now())).getFullYear(),
                     filterFuturePeriods: false,
                     reversePeriods: false,
                 });
@@ -192,7 +192,7 @@ describe('FixedPeriodsGenerator class', () => {
                 const generator = periodsGenerator.get('Weekly (Start Sunday)');
 
                 periods = generator.generatePeriods({
-                    offset: 2019 - (new Date()).getFullYear(),
+                    offset: 2019 - (new Date(Date.now())).getFullYear(),
                     filterFuturePeriods: false,
                     reversePeriods: false,
                 });
@@ -221,7 +221,7 @@ describe('FixedPeriodsGenerator class', () => {
             const generator = periodsGenerator.get('Bi-weekly');
 
             periods = generator.generatePeriods({
-                offset: 2019 - new Date().getFullYear(),
+                offset: 2019 - new Date(Date.now()).getFullYear(),
                 filterFuturePeriods: false,
                 reversePeriods: false,
             });
@@ -259,7 +259,7 @@ describe('FixedPeriodsGenerator class', () => {
             const generator = periodsGenerator.get('Monthly');
 
             periods = generator.generatePeriods({
-                offset: 2019 - new Date().getFullYear(),
+                offset: 2019 - new Date(Date.now()).getFullYear(),
                 filterFuturePeriods: false,
                 reversePeriods: false,
             });
@@ -297,7 +297,7 @@ describe('FixedPeriodsGenerator class', () => {
             const generator = periodsGenerator.get('Bi-monthly');
 
             periods = generator.generatePeriods({
-                offset: 2019 - new Date().getFullYear(),
+                offset: 2019 - new Date(Date.now()).getFullYear(),
                 filterFuturePeriods: false,
                 reversePeriods: false,
             });
@@ -345,7 +345,7 @@ describe('FixedPeriodsGenerator class', () => {
             const generator = periodsGenerator.get('Quarterly');
 
             periods = generator.generatePeriods({
-                offset: 2019 - new Date().getFullYear(),
+                offset: 2019 - new Date(Date.now()).getFullYear(),
                 filterFuturePeriods: false,
                 reversePeriods: false,
             });
@@ -383,7 +383,7 @@ describe('FixedPeriodsGenerator class', () => {
             const generator = periodsGenerator.get('Six-monthly');
 
             periods = generator.generatePeriods({
-                offset: 2019 - new Date().getFullYear(),
+                offset: 2019 - new Date(Date.now()).getFullYear(),
                 filterFuturePeriods: false,
                 reversePeriods: false,
             });
@@ -421,7 +421,7 @@ describe('FixedPeriodsGenerator class', () => {
             const generator = periodsGenerator.get('Six-monthly April');
 
             periods = generator.generatePeriods({
-                offset: 2019 - new Date().getFullYear(),
+                offset: 2019 - new Date(Date.now()).getFullYear(),
                 filterFuturePeriods: false,
                 reversePeriods: false,
             });
