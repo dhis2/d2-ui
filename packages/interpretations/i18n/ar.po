@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2019-02-27T09:42:27.795Z\n"
+"POT-Creation-Date: 2020-01-08T11:20:59.368Z\n"
 "PO-Revision-Date: 2019-08-13 09:54+0000\n"
 "Last-Translator: Viktor Varland <viktor@dhis2.org>, 2019\n"
 "Language-Team: Arabic (https://www.transifex.com/hisp-uio/teams/100509/ar/)\n"
@@ -38,6 +38,9 @@ msgstr "تقارير الحدث"
 
 msgid "Event Visualizer"
 msgstr "التحليل المرئي للأحداث"
+
+msgid "Visualization details"
+msgstr ""
 
 msgid "View"
 msgstr "عرض"
