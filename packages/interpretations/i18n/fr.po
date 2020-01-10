@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2019-02-27T09:42:27.795Z\n"
+"POT-Creation-Date: 2020-01-08T11:20:59.368Z\n"
 "PO-Revision-Date: 2019-08-13 09:54+0000\n"
 "Last-Translator: phil_dhis2, 2019\n"
 "Language-Team: French (https://www.transifex.com/hisp-uio/teams/100509/fr/)\n"
@@ -38,6 +38,9 @@ msgid "Event Reports"
 msgstr "Rapports d'évènements"
 
 msgid "Event Visualizer"
+msgstr ""
+
+msgid "Visualization details"
 msgstr ""
 
 msgid "View"
