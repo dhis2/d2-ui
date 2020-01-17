@@ -50,7 +50,8 @@ class EnhancedToolbar extends Component {
             searchValue,
             visTypeValue,
             searchData,
-            filterData
+            filterData,
+            showTypeFilter
         } = this.props;
 
         return (
@@ -70,19 +71,21 @@ class EnhancedToolbar extends Component {
                     open={this.state.filterTooltipOpen}
                 >
                     <Fragment>
-                        <Select
-                            disableUnderline
-                            value={visTypeValue}
-                            onChange={event => filterData('visType', event.target.value)}
-                            onMouseEnter={this.showFilterTooltip}
-                            onMouseLeave={this.hideFilterTooltip}
-                            MenuProps={{
-                                onEnter: this.hideFilterTooltip
-                            }}
-                        >
-                            <MenuItem value="all">{i18n.t('All types')}</MenuItem>
-                            {Object.entries(visTypeMap).map(([ key, value ]) => <MenuItem value={key}><span className={classes.menuItem}><span className={classes.menuIcon}>{value.icon}</span> {value.label}</span></MenuItem>)}
-                        </Select>
+                        {showTypeFilter ?
+                            <Select
+                                disableUnderline
+                                value={visTypeValue}
+                                onChange={event => filterData('visType', event.target.value)}
+                                onMouseEnter={this.showFilterTooltip}
+                                onMouseLeave={this.hideFilterTooltip}
+                                MenuProps={{
+                                    onEnter: this.hideFilterTooltip
+                                }}
+                            >
+                                <MenuItem value="all">{i18n.t('All types')}</MenuItem>
+                                {Object.entries(visTypeMap).map(([ key, value ]) => <MenuItem key={key} value={key}><span className={classes.menuItem}><span className={classes.menuIcon}>{value.icon}</span> {value.label}</span></MenuItem>)}
+                            </Select> : null
+                        }
                         <Select
                             disableUnderline
                             value={createdByValue}
