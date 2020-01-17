@@ -5,38 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2020-01-17T11:26:41.241Z\n"
-"PO-Revision-Date: 2020-01-17T11:26:41.241Z\n"
-
-msgid "Name"
-msgstr ""
-
-msgid "Created"
-msgstr ""
-
-msgid "Last updated"
-msgstr ""
-
-msgid "Type"
-msgstr ""
-
-msgid "Search by name"
-msgstr ""
-
-msgid "Filter list"
-msgstr ""
-
-msgid "All types"
-msgstr ""
-
-msgid "All owners"
-msgstr ""
-
-msgid "Created by me"
-msgstr ""
-
-msgid "Created by others"
-msgstr ""
+"POT-Creation-Date: 2020-01-07T09:00:38.391Z\n"
+"PO-Revision-Date: 2020-01-07T09:00:38.391Z\n"
 
 msgid "Bar"
 msgstr ""
@@ -75,4 +45,31 @@ msgid "Single value"
 msgstr ""
 
 msgid "Pivot table"
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "Created"
+msgstr ""
+
+msgid "Last updated"
+msgstr ""
+
+msgid "Type"
+msgstr ""
+
+msgid "Search by name"
+msgstr ""
+
+msgid "Filter list"
+msgstr ""
+
+msgid "Show all"
+msgstr ""
+
+msgid "Created by me"
+msgstr ""
+
+msgid "Created by others"
 msgstr ""

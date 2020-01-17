@@ -1,7 +1,7 @@
 import React from 'react';
 import SvgIcon from '@material-ui/core/SvgIcon';
 
-export default <SvgIcon viewBox="0 0 16 16" style={{ marginRight: 8 }}>
+export default <SvgIcon viewBox="0 0 16 16">
     <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
         <g>
             <polygon fill="#7B8998" points="1 11 15 11 15 12 1 12"></polygon>
