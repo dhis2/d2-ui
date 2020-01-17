@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 
 import { withStyles } from "@material-ui/core/styles";
@@ -10,6 +10,7 @@ import Tooltip from "@material-ui/core/Tooltip";
 
 import i18n from '@dhis2/d2-i18n';
 import { filterData, searchData } from "./actions";
+import visTypeMap from './visTypes';
 
 const toolbarStyles = () => ({
     search: {
@@ -20,6 +21,10 @@ const toolbarStyles = () => ({
     },
     filter: {
         flex: "0 0 auto"
+    },
+    menuItem: {
+        display: 'flex',
+        alignItems: 'center'
     }
 });
 
@@ -40,6 +45,7 @@ class EnhancedToolbar extends Component {
             classes,
             createdByValue,
             searchValue,
+            visTypeValue,
             searchData,
             filterData
         } = this.props;
@@ -53,26 +59,42 @@ class EnhancedToolbar extends Component {
                     value={searchValue}
                     onChange={searchData}
                 />
+
                 <div className={classes.spacer} />
                 <Tooltip
                     className={classes.filter}
                     title={i18n.t("Filter list")}
                     open={this.state.filterTooltipOpen}
                 >
-                    <Select
-                        disableUnderline
-                        value={createdByValue}
-                        onChange={filterData}
-                        onMouseEnter={this.showFilterTooltip}
-                        onMouseLeave={this.hideFilterTooltip}
-                        MenuProps={{
-                            onEnter: this.hideFilterTooltip
-                        }}
-                    >
-                        <MenuItem value="all">{i18n.t('Show all')}</MenuItem>
-                        <MenuItem value="byme">{i18n.t('Created by me')}</MenuItem>
-                        <MenuItem value="byothers">{i18n.t('Created by others')}</MenuItem>
-                    </Select>
+                    <Fragment>
+                        <Select
+                            disableUnderline
+                            value={visTypeValue}
+                            onChange={event => filterData('visType', event.target.value)}
+                            onMouseEnter={this.showFilterTooltip}
+                            onMouseLeave={this.hideFilterTooltip}
+                            MenuProps={{
+                                onEnter: this.hideFilterTooltip
+                            }}
+                        >
+                            <MenuItem value="all">{i18n.t('All types')}</MenuItem>
+                            {Object.entries(visTypeMap).map(([ key, value ]) => <MenuItem value={key}><span className={classes.menuItem}>{value.icon} {value.label}</span></MenuItem>)}
+                        </Select>
+                        <Select
+                            disableUnderline
+                            value={createdByValue}
+                            onChange={event => filterData('owner', event.target.value)}
+                            onMouseEnter={this.showFilterTooltip}
+                            onMouseLeave={this.hideFilterTooltip}
+                            MenuProps={{
+                                onEnter: this.hideFilterTooltip
+                            }}
+                        >
+                            <MenuItem value="all">{i18n.t('All owners')}</MenuItem>
+                            <MenuItem value="byme">{i18n.t('Created by me')}</MenuItem>
+                            <MenuItem value="byothers">{i18n.t('Created by others')}</MenuItem>
+                        </Select>
+                    </Fragment>
                 </Tooltip>
             </Toolbar>
         );
@@ -81,12 +103,13 @@ class EnhancedToolbar extends Component {
 
 const mapStateToProps = state => ({
     createdByValue: state.filtering.createdByValue,
-    searchValue: state.filtering.searchValue
+    searchValue: state.filtering.searchValue,
+    visTypeValue: state.filtering.visTypeValue,
 });
 
 const mapDispatchToProps = {
     searchData,
-    filterData
+    filterData,
 };
 
 export default connect(
