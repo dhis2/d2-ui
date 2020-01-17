@@ -25,6 +25,9 @@ const toolbarStyles = () => ({
     menuItem: {
         display: 'flex',
         alignItems: 'center'
+    },
+    menuIcon: {
+        marginRight: 8
     }
 });
 
@@ -78,7 +81,7 @@ class EnhancedToolbar extends Component {
                             }}
                         >
                             <MenuItem value="all">{i18n.t('All types')}</MenuItem>
-                            {Object.entries(visTypeMap).map(([ key, value ]) => <MenuItem value={key}><span className={classes.menuItem}>{value.icon} {value.label}</span></MenuItem>)}
+                            {Object.entries(visTypeMap).map(([ key, value ]) => <MenuItem value={key}><span className={classes.menuItem}><span className={classes.menuIcon}>{value.icon}</span> {value.label}</span></MenuItem>)}
                         </Select>
                         <Select
                             disableUnderline
