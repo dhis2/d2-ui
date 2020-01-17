@@ -13,19 +13,6 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 import i18n from '@dhis2/d2-i18n';
 
-import BarIcon from './icons/BarIcon';
-import StackedBarIcon from './icons/StackedBarIcon';
-import ColumnIcon from './icons/ColumnIcon';
-import StackedColumnIcon from './icons/StackedColumnIcon';
-import LineIcon from './icons/LineIcon';
-import AreaIcon from './icons/AreaIcon';
-import PieIcon from './icons/PieIcon';
-import RadarIcon from './icons/RadarIcon';
-import GaugeIcon from './icons/GaugeIcon';
-import YearOverYearLineIcon from './icons/YearOverYearLineIcon';
-import YearOverYearColumnIcon from './icons/YearOverYearColumnIcon';
-import SingleValueIcon from './icons/SingleValueIcon';
-import PivotTableIcon from './icons/PivotTableIcon';
 import visTypeMap from './visTypes';
 
 import { changePage, setRowsPerPage, sortData, selectFavorite } from './actions';
