@@ -45,6 +45,10 @@ export const setCreatedByValue = filter => ({
     type: actionTypes.SET_CREATEDBY_VALUE,
     payload: filter,
 });
+export const setVisTypeValue = filter => ({
+    type: actionTypes.SET_VIS_TYPE_VALUE,
+    payload: filter,
+});
 export const searchData = event => {
     const searchValue = event.target.value;
 
@@ -53,11 +57,19 @@ export const searchData = event => {
         dispatch(fetchData());
     };
 };
-export const filterData = event => {
-    const createdByValue = event.target.value;
-
+export const filterData = (filter, value) => {
     return (dispatch, getState) => {
-        dispatch(setCreatedByValue(createdByValue));
+        switch (filter) {
+            case 'owner':
+                dispatch(setCreatedByValue(value));
+                break;
+            case 'visType':
+                dispatch(setVisTypeValue(value));
+                break;
+            default:
+                break;
+        }
+
         dispatch(fetchData());
     };
 };
@@ -110,6 +122,15 @@ export const fetchData = () => {
                 case 'all':
                 default:
                     break;
+            }
+        }
+
+        if (state.filtering.visTypeValue) {
+            if (state.filtering.visTypeValue !== 'all') {
+                favoriteModel = favoriteModel
+                    .filter()
+                    .on('type')
+                    .equals(state.filtering.visTypeValue);
             }
         }
 

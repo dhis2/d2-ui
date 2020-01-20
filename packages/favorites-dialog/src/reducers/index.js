@@ -9,6 +9,7 @@ export const actionTypes = {
     SET_SEARCH_VALUE: 'SET_SEARCH_VALUE',
     SET_FILTER_VALUE: 'SET_FILTER_VALUE',
     SET_CREATEDBY_VALUE: 'SET_CREATEDBY_VALUE',
+    SET_VIS_TYPE_VALUE: 'SET_VIS_TYPE_VALUE',
     SET_PAGE: 'SET_PAGE',
     SET_ROWS_PER_PAGE: 'SET_ROWS_PER_PAGE',
     SET_TOTAL_RECORDS: 'SET_TOTAL_RECORDS',
@@ -31,6 +32,7 @@ const initialState = {
             type: 'chart',
             searchValue: '',
             createdByValue: 'all',
+            visTypeValue: 'all',
         },
         sorting: {
             order: 'asc',
@@ -111,6 +113,8 @@ const filtering = (state = initialState.data.filtering, action) => {
             return { ...state, createdByValue: action.payload };
         case actionTypes.SET_SEARCH_VALUE:
             return { ...state, searchValue: action.payload };
+        case actionTypes.SET_VIS_TYPE_VALUE:
+            return { ...state, visTypeValue: action.payload };
         default:
             return state;
     }

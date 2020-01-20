@@ -34,7 +34,7 @@ class Favorites extends Component {
         return (
             <Dialog open={open} onClose={onRequestClose} disableEnforceFocus maxWidth="lg">
                 <DialogContent>
-                    <EnhancedToolbar />
+                    <EnhancedToolbar showTypeFilter={showTypeColumn} />
                     <EnhancedTable showTypeColumn={showTypeColumn} onFavoriteSelect={handleOnFavoriteSelect} />
                 </DialogContent>
                 <DialogActions>
