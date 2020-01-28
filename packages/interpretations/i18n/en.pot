@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2020-01-08T11:20:59.368Z\n"
-"PO-Revision-Date: 2020-01-08T11:20:59.368Z\n"
+"POT-Creation-Date: 2020-01-28T10:56:12.426Z\n"
+"PO-Revision-Date: 2020-01-28T10:56:12.426Z\n"
 
 msgid "Pivot Tables"
 msgstr ""
@@ -63,12 +63,6 @@ msgid "Back to all interpretations"
 msgstr ""
 
 msgid "Interpretations"
-msgstr ""
-
-msgid "Delete comment"
-msgstr ""
-
-msgid "Are you sure you want to delete this comment?"
 msgstr ""
 
 msgid "Save reply"
@@ -147,6 +141,12 @@ msgid "Hide old replies"
 msgstr ""
 
 msgid "View more replies"
+msgstr ""
+
+msgid "Delete comment"
+msgstr ""
+
+msgid "Are you sure you want to delete this comment?"
 msgstr ""
 
 msgid "Hide"

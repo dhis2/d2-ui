@@ -2,7 +2,6 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { Comment } from '../Comment';
 import ActionButton from '../../Buttons/ActionButton';
-import DeleteDialog from '../../DeleteDialog/DeleteDialog';
 
 let shallowComment;
 
@@ -21,9 +20,6 @@ const baseProps = {
     onEdit: jest.fn(),
     onReply: jest.fn(),
     onDelete: jest.fn(),
-    dialogIsOpen: false,
-    onDeleteConfirm: jest.fn(),
-    onDeleteCancel: jest.fn(),
 };
 
 const comment = (partialProps = {}) => {
@@ -109,22 +105,6 @@ describe('components: Comment -> Comment component ', () => {
             
                 expect(baseProps.onDelete).toHaveBeenCalled();
             });
-        });
-    });
-
-    describe('with prop dialogIsOpen as false', () => {
-        it('should not show a DeleteDialog', () => {
-            expect(comment().find(DeleteDialog)).not.toExist();
-        });
-    });
-
-    describe('with prop dialogIsOpen as true', () => {
-        beforeEach(() => {
-            comment({ dialogIsOpen: true })
-        });
-
-        it('should show a DeleteDialog', () => {
-            expect(comment().find(DeleteDialog)).toExist();  
         });
     });
 
