@@ -61,9 +61,7 @@ export class CommentsList extends React.Component {
     };
 
     onDeleteComment() {
-        const comment = this.state.commentToDelete;
-        console.log('comment to delete', comment);
-        comment.delete(this.context.d2).then(() => this.props.onChange(this.props.interpretation));
+        this.state.commentToDelete.delete(this.context.d2).then(() => this.props.onChange(this.props.interpretation));
         this.onCloseDeleteDialog();
     };
 
@@ -162,7 +160,7 @@ export class CommentsList extends React.Component {
                 <DeleteDialog
                     title={i18n.t('Delete comment')}
                     text={i18n.t('Are you sure you want to delete this comment?')}
-                    onDelete={() => this.onDeleteComment(this.state.comment)}
+                    onDelete={this.onDeleteComment}
                     onCancel={this.onCloseDeleteDialog}
                 />
             )}
