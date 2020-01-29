@@ -1,13 +1,11 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import i18n from '@dhis2/d2-i18n'
 import ActionButton from '../Buttons/ActionButton';
 import WithAvatar from '../Avatar/WithAvatar';
 import CardHeader from '../Cards/CardHeader';
 import CardText from '../Cards/CardText';
 import CardInfo from '../Cards/CardInfo';
-import DeleteDialog from '../DeleteDialog/DeleteDialog';
 import { formatDate } from '../../dateformats/dateformatter';
 import styles from './styles/Comment.style';
 
@@ -20,9 +18,6 @@ export const Comment = ({
     onEdit, 
     onReply,
     onDelete,
-    dialogIsOpen,
-    onDeleteConfirm,
-    onDeleteCancel, 
 }) => (
     <Fragment>
         <WithAvatar className={classes.comment} key={comment.id} firstName={comment.user.firstName} surname={comment.user.surname}>
@@ -41,7 +36,7 @@ export const Comment = ({
                     />
                     <ActionButton
                         iconType={'delete'} 
-                        onClick={onDelete} 
+                        onClick={() => onDelete(comment)}
                     />
                 </div>
              ) : (
@@ -53,14 +48,6 @@ export const Comment = ({
                 )
              )}
         </WithAvatar>
-        {dialogIsOpen && (
-            <DeleteDialog
-                title={i18n.t('Delete comment')}
-                text={i18n.t('Are you sure you want to delete this comment?')}
-                onDelete={() => onDeleteConfirm(comment)}
-                onCancel={onDeleteCancel}
-            />
-        )}
     </Fragment>
 );
 
@@ -72,9 +59,6 @@ Comment.propTypes = {
     onEdit: PropTypes.func.isRequired,
     onReply: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
-    dialogIsOpen: PropTypes.bool.isRequired,
-    onDeleteConfirm: PropTypes.func.isRequired,
-    onDeleteCancel: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(Comment);

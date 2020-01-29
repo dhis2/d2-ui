@@ -9,6 +9,7 @@ import Link from '../Link/Link';
 import CommentModel from '../../models/comment';
 import { userCanManage } from '../../authorization/auth';
 import styles from './styles/CommentsList.style';
+import DeleteDialog from '../DeleteDialog/DeleteDialog';
 
 const commentsToShowOnInit = 5;
 
@@ -37,6 +38,7 @@ export class CommentsList extends React.Component {
             commentToEdit: null,
             newComment: props.newComment,
             deleteDialogIsOpen: false,
+            commentToDelete: null,
         };
     };
 
@@ -58,8 +60,8 @@ export class CommentsList extends React.Component {
         comment.save(this.context.d2).then(() => this.props.onChange(this.props.interpretation));
     };
 
-    onDeleteComment(comment) {
-        comment.delete(this.context.d2).then(() => this.props.onChange(this.props.interpretation));
+    onDeleteComment() {
+        this.state.commentToDelete.delete(this.context.d2).then(() => this.props.onChange(this.props.interpretation));
         this.onCloseDeleteDialog();
     };
 
@@ -80,11 +82,11 @@ export class CommentsList extends React.Component {
         this.props.onCancel();
     };
 
-    onOpenDeleteDialog = () =>
-        this.setState({ deleteDialogIsOpen: true });
+    onOpenDeleteDialog = comment =>
+        this.setState({ deleteDialogIsOpen: true, commentToDelete: comment });
 
     onCloseDeleteDialog = () =>
-        this.setState({ deleteDialogIsOpen: false });
+        this.setState({ deleteDialogIsOpen: false, commentToDelete: null });
 
     onUpdate(comment) {
         this.onSave(comment);
@@ -98,7 +100,7 @@ export class CommentsList extends React.Component {
 
     getComments = () => {
         const sortedComments = orderBy(["created"], ["asc"], this.props.interpretation.comments);
-        
+
         return !this.state.listIsExpanded 
             ? sortedComments.slice(-commentsToShowOnInit)
             : sortedComments;
@@ -131,9 +133,6 @@ export class CommentsList extends React.Component {
                     onEdit={this.onEdit}
                     onReply={this.onReply}
                     onDelete={this.onOpenDeleteDialog}
-                    dialogIsOpen={this.state.deleteDialogIsOpen}
-                    onDeleteConfirm={this.onDeleteComment}
-                    onDeleteCancel={this.onCloseDeleteDialog}
                 />
             )
         );
@@ -154,9 +153,17 @@ export class CommentsList extends React.Component {
 
         return (
             <div className={this.props.classes.commentSection}>
-                {ViewMoreReplies}
-                {Comments}
-                {InputField}
+            {ViewMoreReplies}
+            {Comments}
+            {InputField}
+            {this.state.deleteDialogIsOpen && (
+                <DeleteDialog
+                    title={i18n.t('Delete comment')}
+                    text={i18n.t('Are you sure you want to delete this comment?')}
+                    onDelete={this.onDeleteComment}
+                    onCancel={this.onCloseDeleteDialog}
+                />
+            )}
             </div>
         );
     }

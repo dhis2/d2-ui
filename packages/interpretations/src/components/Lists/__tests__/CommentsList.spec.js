@@ -4,6 +4,7 @@ import merge from 'lodash/merge';
 import { CommentsList } from '../CommentsList';
 import Comment from '../../Comment/Comment';
 import NewCommentField from '../../Comment/NewCommentField';
+import DeleteDialog from '../../DeleteDialog/DeleteDialog';
 import InterpretationModel from '../../../models/interpretation';
 import { getStubContext } from '../../../../config/test-context';
 
@@ -55,6 +56,7 @@ let commentComponents;
 let currentUser;
 let commentComponent;
 let commentToEdit;
+let commentToDelete;
 
 describe('Interpretations: Lists -> CommentsList component', () => {
     beforeEach(() => {
@@ -63,6 +65,7 @@ describe('Interpretations: Lists -> CommentsList component', () => {
             displayName: "John Traore",
         };
         commentList = renderComponent({}, {d2: {currentUser}});
+        commentList.instance().onDeleteComment = jest.fn();
         commentComponents = commentList.find(Comment);
     });
 
@@ -86,6 +89,10 @@ describe('Interpretations: Lists -> CommentsList component', () => {
                 }
             });
         });
+
+        it('should not show the DeleteDialog', () => {
+            expect(commentList.find(DeleteDialog)).not.toExist();
+        });
     });
 
     describe('click on edit link of editable comment', () => {
@@ -102,5 +109,26 @@ describe('Interpretations: Lists -> CommentsList component', () => {
             expect(commentList.find(Comment)).toHaveLength(interpretation.comments.length - 1);
         });
 
+    });
+
+    describe('click on delete comment', () => {
+        beforeEach(() => {
+            commentComponent = commentComponents.at(1);
+            commentToDelete = commentComponent.props().comment;
+            commentComponent.props().onDelete(commentToDelete);
+            commentList.update();
+        });
+
+        it('should show the DeleteDialog', () => {
+            expect(commentList.find(DeleteDialog)).toExist();
+        });
+
+        it('should call onDeleteComment when dialog is confirmed', () => {
+            const deleteDialog = commentList.find(DeleteDialog);
+
+            deleteDialog.props().onDelete();
+
+            expect(commentList.instance().onDeleteComment).toHaveBeenCalled();
+        });
     });
 });
