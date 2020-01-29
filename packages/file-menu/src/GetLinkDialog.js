@@ -19,6 +19,7 @@ const getAppUrl = (fileType, fileId, context) => {
 
     switch (fileType) {
         case 'chart':
+        case 'visualization':
             appName = 'dhis-web-data-visualizer';
             appUrl = `dhis-web-data-visualizer/#/${fileId}`;
             break;
