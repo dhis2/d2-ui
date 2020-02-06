@@ -1,7 +1,7 @@
 import React from 'react';
 import SvgIcon from '@material-ui/core/SvgIcon';
 
-export default <SvgIcon viewBox="0 0 16 16">
+export default <SvgIcon viewBox="0 0 16 16" style={{ fontSize: 16 }}>
     <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
         <g transform="translate(-1.000000, 0.000000)">
             <path d="M9,0 C11.86,0 14.5,1.52 15.93,4 C17.36,6.48 17.36,9.52 15.93,12 C14.5,14.48 11.86,16 9,16 C6.14,16 3.5,14.48 2.07,12 C0.64,9.52 0.64,6.48 2.07,4 C3.5,1.52 6.14,0 9,0 L9,8 C9,8 9,8 9,8 C9,8 9,8 9,8 C9,8 9,8 9,8 C9,8 9,8 9,8 C9,8 9,8 9,8 C9,8 9,8 9,8 L9,0 Z" fillOpacity="0.002" fill="#455A64"></path>
