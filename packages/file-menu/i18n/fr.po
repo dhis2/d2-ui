@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2018-06-07T12:57:17.631Z\n"
+"POT-Creation-Date: 2020-02-06T13:44:56.329Z\n"
 "PO-Revision-Date: 2019-08-12 21:18+0000\n"
 "Last-Translator: Bram Piot <bram.piot@gmail.com>, 2019\n"
 "Language-Team: French (https://www.transifex.com/hisp-uio/teams/100509/fr/)\n"
@@ -28,9 +28,6 @@ msgid "File"
 msgstr "Fichier"
 
 msgid "Open in this app"
-msgstr ""
-
-msgid "Open in web API"
 msgstr ""
 
 msgid "Close"
