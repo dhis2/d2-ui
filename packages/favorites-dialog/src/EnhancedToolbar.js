@@ -97,7 +97,7 @@ class EnhancedToolbar extends Component {
                             }}
                         >
                             <MenuItem value="all">{i18n.t('All owners')}</MenuItem>
-                            <MenuItem value="byme">{i18n.t('Created by me')}</MenuItem>
+                            <MenuItem value="byme">{i18n.t('Created by you')}</MenuItem>
                             <MenuItem value="byothers">{i18n.t('Created by others')}</MenuItem>
                         </Select>
                     </Fragment>
