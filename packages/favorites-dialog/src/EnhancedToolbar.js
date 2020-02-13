@@ -6,7 +6,6 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import TextField from "@material-ui/core/TextField";
 import Toolbar from "@material-ui/core/Toolbar";
-import Tooltip from "@material-ui/core/Tooltip";
 
 import i18n from '@dhis2/d2-i18n';
 import { filterData, searchData } from "./actions";
@@ -20,91 +19,65 @@ const toolbarStyles = () => ({
         flex: "1 1 100%"
     },
     filter: {
-        flex: "0 0 auto"
+        marginLeft: 8
     },
     menuItem: {
         display: 'flex',
         alignItems: 'center'
     },
     menuIcon: {
-        marginRight: 8
-    }
+        marginRight: 8,
+        height: 16
+    },
 });
 
-class EnhancedToolbar extends Component {
-    state = {
-        filterTooltipOpen: false
-    };
+const EnhancedToolbar = props => {
+    const {
+        classes,
+        createdByValue,
+        searchValue,
+        visTypeValue,
+        searchData,
+        filterData,
+        showTypeFilter
+    } = props;
 
-    showFilterTooltip = () => {
-        this.setState({ filterTooltipOpen: true });
-    };
-    hideFilterTooltip = () => {
-        this.setState({ filterTooltipOpen: false });
-    };
+    return (
+        <Toolbar>
+            <TextField
+                type="search"
+                label={i18n.t("Search by name")}
+                className={classes.search}
+                value={searchValue}
+                onChange={searchData}
+            />
 
-    render() {
-        const {
-            classes,
-            createdByValue,
-            searchValue,
-            visTypeValue,
-            searchData,
-            filterData,
-            showTypeFilter
-        } = this.props;
-
-        return (
-            <Toolbar>
-                <TextField
-                    type="search"
-                    label={i18n.t("Search by name")}
-                    className={classes.search}
-                    value={searchValue}
-                    onChange={searchData}
-                />
-
-                <div className={classes.spacer} />
-                <Tooltip
-                    className={classes.filter}
-                    title={i18n.t("Filter list")}
-                    open={this.state.filterTooltipOpen}
-                >
-                    <Fragment>
-                        {showTypeFilter ?
-                            <Select
-                                disableUnderline
-                                value={visTypeValue}
-                                onChange={event => filterData('visType', event.target.value)}
-                                onMouseEnter={this.showFilterTooltip}
-                                onMouseLeave={this.hideFilterTooltip}
-                                MenuProps={{
-                                    onEnter: this.hideFilterTooltip
-                                }}
-                            >
-                                <MenuItem value="all">{i18n.t('All types')}</MenuItem>
-                                {Object.entries(visTypeMap).map(([ key, value ]) => <MenuItem key={key} value={key}><span className={classes.menuItem}><span className={classes.menuIcon}>{value.icon}</span> {value.label}</span></MenuItem>)}
-                            </Select> : null
-                        }
+            <div className={classes.spacer} />
+                <Fragment>
+                    {showTypeFilter ?
                         <Select
+                            className={classes.filter}
                             disableUnderline
-                            value={createdByValue}
-                            onChange={event => filterData('owner', event.target.value)}
-                            onMouseEnter={this.showFilterTooltip}
-                            onMouseLeave={this.hideFilterTooltip}
-                            MenuProps={{
-                                onEnter: this.hideFilterTooltip
-                            }}
+                            value={visTypeValue}
+                            onChange={event => filterData('visType', event.target.value)}
                         >
-                            <MenuItem value="all">{i18n.t('All owners')}</MenuItem>
-                            <MenuItem value="byme">{i18n.t('Created by you')}</MenuItem>
-                            <MenuItem value="byothers">{i18n.t('Created by others')}</MenuItem>
-                        </Select>
-                    </Fragment>
-                </Tooltip>
-            </Toolbar>
-        );
-    }
+                            <MenuItem value="all">{i18n.t('All types')}</MenuItem>
+                            {Object.entries(visTypeMap).map(([ key, value ]) => <MenuItem key={key} value={key}><span className={classes.menuItem}><span className={classes.menuIcon}>{value.icon}</span> {value.label}</span></MenuItem>)}
+                        </Select> : null
+                    }
+                    <Select
+                        className={classes.filter}
+                        disableUnderline
+                        value={createdByValue}
+                        onChange={event => filterData('owner', event.target.value)}
+                    >
+                        <MenuItem value="all">{i18n.t('All owners')}</MenuItem>
+                        <MenuItem value="byme">{i18n.t('Created by you')}</MenuItem>
+                        <MenuItem value="byothers">{i18n.t('Created by others')}</MenuItem>
+                    </Select>
+                </Fragment>
+        </Toolbar>
+    );
 }
 
 const mapStateToProps = state => ({
