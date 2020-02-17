@@ -1,47 +1,47 @@
 {
-  "name": "@dhis2/d2-ui-period-selector-dialog",
-  "description": "Period selector dialog component for DHIS2",
-  "main": "./build/index.js",
-  "module": "./build/index.js",
-  "license": "BSD-3-Clause",
-  "author": "Ilya Nee <ilya@dhis2.org>",
-  "contributors": [
-    "Viktor Varland <viktor@dhis2.org>"
-  ],
-  "peerDependencies": {
-    "react": "^15.0.0 || ^16.0.0",
-    "react-dom": "^15.0.0 || ^16.0.0"
-  },
-  "scripts": {
-    "prebuild": "npm run lint && rimraf ./build/* && mkdirp ./build",
-    "build": "npm run build:css && babel src --out-dir build --ignore spec.js",
-    "build:css": "cp -R ./css/* ./build/",
-    "lint": "eslint src/",
-    "watch": "npm run build -- --watch",
-    "test-ci": "jest --config=../../jest.config.js packages/period-selector-dialog",
-    "test:watch": "npm test -- --watch"
-  },
-  "dependencies": {
-    "@dhis2/analytics": "^2.1.0",
-    "@dhis2/d2-i18n": "^1.0.4",
-    "@material-ui/core": "^3.3.1",
-    "@material-ui/icons": "^3.0.1",
-    "babel-runtime": "^6.26.0",
-    "prop-types": "^15.6.0"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run extract-pot && git add ./i18n"
-    }
-  },
-  "devDependencies": {
-    "babel-jest": "^23.0.1",
-    "enzyme": "^3.7.0",
-    "jest": "^23.1.0",
-    "mkdirp": "^0.5.1"
-  },
-  "version": "0.0.0-PLACEHOLDER"
+    "name": "@dhis2/d2-ui-period-selector-dialog",
+    "description": "Period selector dialog component for DHIS2",
+    "main": "./build/index.js",
+    "module": "./build/index.js",
+    "license": "BSD-3-Clause",
+    "author": "Ilya Nee <ilya@dhis2.org>",
+    "contributors": [
+        "Viktor Varland <viktor@dhis2.org>"
+    ],
+    "peerDependencies": {
+        "react": "^15.0.0 || ^16.0.0",
+        "react-dom": "^15.0.0 || ^16.0.0"
+    },
+    "scripts": {
+        "prebuild": "npm run lint && rimraf ./build/* && mkdirp ./build",
+        "build": "npm run build:css && babel src --out-dir build --ignore spec.js",
+        "build:css": "cp -R ./css/* ./build/",
+        "lint": "eslint src/",
+        "watch": "npm run build -- --watch",
+        "test-ci": "jest --config=../../jest.config.js packages/period-selector-dialog",
+        "test:watch": "npm test -- --watch"
+    },
+    "dependencies": {
+        "@dhis2/analytics": "^3.3.3",
+        "@dhis2/d2-i18n": "^1.0.4",
+        "@material-ui/core": "^3.3.1",
+        "@material-ui/icons": "^3.0.1",
+        "babel-runtime": "^6.26.0",
+        "prop-types": "^15.6.0"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "npm run extract-pot && git add ./i18n"
+        }
+    },
+    "devDependencies": {
+        "babel-jest": "^23.0.1",
+        "enzyme": "^3.7.0",
+        "jest": "^23.1.0",
+        "mkdirp": "^0.5.1"
+    },
+    "version": "0.0.0-PLACEHOLDER"
 }
