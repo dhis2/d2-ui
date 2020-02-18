@@ -1,6 +1,6 @@
 # Releasing D2-ui packages
 
-The root-level `package.json` contains the `version` key which will be
+The root-level `package.json` contains the `version` key, which will be
 used to publish all packages.
 
 The release process is executed by Travis using [deploy
@@ -14,18 +14,21 @@ on a successful build using the `deploy-build.sh` script.
 
 # Publish to NPM
 
-To publish to NPM, create a version tag locally using `yarn` or `npm`
-and push that tag to the git repo.
+Publishing to NPM is triggered when a git tag is pushed. First you need to bump the npm version manually. You can either bump the version in your feature/fix branch (make sure the latest master is in the branch), or you can create a new branch from master just for the version bump. Note that your branch needs some kind of code change. The commit message must follow semantic-release rules.
 
-Rememeber to also push the master branch as the `version` command adds a
-commit there as well.
+On your branch, create a version tag locally using `yarn` or `npm`:
 
 ```
-yarn version 
-  v0.0.0
+yarn version
+=> 6.5.7
+```
 
-git push origin master
-git push origin v0.0.0
+This will make a new commit to the branch, and make a git tag.
+
+Push the commit, create the PR, get it approved, and merge to master. Then push the tag that was created:
+
+```
+git push --tags
 ```
 
 After a successful build and publish to d2-ci of all the packages,
