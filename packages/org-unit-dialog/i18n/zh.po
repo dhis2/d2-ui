@@ -41,7 +41,7 @@ msgid "Select children"
 msgstr "选择下属"
 
 msgid "selected"
-msgstr ""
+msgstr "选择的"
 
 msgid "Deselect all"
 msgstr ""
