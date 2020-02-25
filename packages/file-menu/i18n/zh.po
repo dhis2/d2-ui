@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2018-06-07T12:57:17.631Z\n"
+"POT-Creation-Date: 2020-02-06T13:44:56.329Z\n"
 "PO-Revision-Date: 2019-08-12 21:18+0000\n"
 "Last-Translator: phil_dhis2, 2019\n"
 "Language-Team: Chinese (https://www.transifex.com/hisp-uio/teams/100509/zh/)\n"
@@ -27,9 +27,6 @@ msgid "File"
 msgstr "文件"
 
 msgid "Open in this app"
-msgstr ""
-
-msgid "Open in web API"
 msgstr ""
 
 msgid "Close"
