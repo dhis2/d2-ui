@@ -48,7 +48,22 @@ class DateValue extends PureComponent {
         // Get the locale from the userSettings
         this.context.d2.currentUser.userSettings
             .get('keyUiLocale')
-            .then(uiLocale => this.setState({ uiLocale }));
+            .then(uiLocale => {
+                /**
+                 * Underscore locales are causing the Intl library
+                 * to throw an error which breaks apps.
+                 * This is just a hack for the Indonesian locale.
+                 *
+                 * A ticket for this behavior exists,
+                 * it describes possible solutions:
+                 * https://jira.dhis2.org/browse/DHIS2-7698
+                 */
+                if (uiLocale === 'in_ID') {
+                    return this.setState({ uiLocale: 'in-ID' })
+                }
+
+                return this.setState({ uiLocale })
+            });
     }
 
     render() {
