@@ -241,7 +241,7 @@ class OrgUnitSelector extends Component {
                                     disabled={this.state.loadingChildren}
                                     dense
                                 >
-                                    {i18n.t('Select children')}
+                                    {i18n.t('Select all org units below')}
                                 </MenuItem>
                             </Menu>
                         </div>
