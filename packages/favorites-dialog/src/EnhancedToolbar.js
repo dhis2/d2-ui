@@ -6,10 +6,11 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import TextField from "@material-ui/core/TextField";
 import Toolbar from "@material-ui/core/Toolbar";
+import Divider from "@material-ui/core/Divider";
 
 import i18n from '@dhis2/d2-i18n';
 import { filterData, searchData } from "./actions";
-import visTypeMap from './visTypes';
+import visTypeMap, { CHART, PIVOT_TABLE } from './visTypes';
 
 const toolbarStyles = () => ({
     search: {
@@ -30,6 +31,13 @@ const toolbarStyles = () => ({
         height: 16
     },
 });
+
+const VisTypeFilterMenuItem = withStyles(toolbarStyles)(({ classes, type, icon = undefined, label = undefined }) => (
+        <span className={classes.menuItem}>
+            <span className={classes.menuIcon}>{icon || visTypeMap[type].icon}</span>
+            {label || visTypeMap[type].label}
+        </span>
+));
 
 const EnhancedToolbar = props => {
     const {
@@ -62,7 +70,19 @@ const EnhancedToolbar = props => {
                             onChange={event => filterData('visType', event.target.value)}
                         >
                             <MenuItem value="all">{i18n.t('All types')}</MenuItem>
-                            {Object.entries(visTypeMap).map(([ key, value ]) => <MenuItem key={key} value={key}><span className={classes.menuItem}><span className={classes.menuIcon}>{value.icon}</span> {value.label}</span></MenuItem>)}
+                            <Divider />
+                            <MenuItem value={CHART}>
+                                <VisTypeFilterMenuItem type={CHART} icon={visTypeMap['COLUMN'].icon} label={i18n.t('Chart')} />
+                            </MenuItem>
+                            <MenuItem value={PIVOT_TABLE}>
+                                <VisTypeFilterMenuItem type={PIVOT_TABLE} />
+                            </MenuItem>
+                            <Divider />
+                            {Object.keys(visTypeMap).filter(type => type !== PIVOT_TABLE).map(type =>
+                                <MenuItem key={type} value={type}>
+                                    <VisTypeFilterMenuItem type={type} />
+                                </MenuItem>
+                            )}
                         </Select> : null
                     }
                     <Select
