@@ -1,5 +1,7 @@
-import { actionTypes } from '../reducers';
 import log from 'loglevel';
+
+import { actionTypes } from '../reducers';
+import { CHART, PIVOT_TABLE } from '../visTypes';
 
 export const toggleLoading = () => ({ type: actionTypes.TOGGLE_LOADING });
 
@@ -126,11 +128,20 @@ export const fetchData = () => {
         }
 
         if (state.filtering.visTypeValue) {
-            if (state.filtering.visTypeValue !== 'all') {
-                favoriteModel = favoriteModel
-                    .filter()
-                    .on('type')
-                    .equals(state.filtering.visTypeValue);
+            switch (state.filtering.visTypeValue) {
+                case 'all':
+                    break;
+                case CHART:
+                    favoriteModel = favoriteModel
+                        .filter()
+                        .on('type')
+                        .notEqual(PIVOT_TABLE);
+                    break
+                default:
+                    favoriteModel = favoriteModel
+                        .filter()
+                        .on('type')
+                        .equals(state.filtering.visTypeValue);
             }
         }
 

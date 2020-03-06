@@ -14,11 +14,14 @@ import YearOverYearColumnIcon from './icons/YearOverYearColumnIcon';
 import SingleValueIcon from './icons/SingleValueIcon';
 import PivotTableIcon from './icons/PivotTableIcon';
 
+export const CHART = 'CHART';
+export const PIVOT_TABLE = 'PIVOT_TABLE';
+
 const visTypeMap = {
-    BAR: { label: i18n.t('Bar'), icon: BarIcon },
-    STACKED_BAR: { label: i18n.t('Stacked bar'), icon: StackedBarIcon },
     COLUMN: { label: i18n.t('Column'), icon: ColumnIcon },
     STACKED_COLUMN: { label: i18n.t('Stacked column'), icon: StackedColumnIcon },
+    BAR: { label: i18n.t('Bar'), icon: BarIcon },
+    STACKED_BAR: { label: i18n.t('Stacked bar'), icon: StackedBarIcon },
     LINE: { label: i18n.t('Line'), icon: LineIcon },
     AREA: { label: i18n.t('Area'), icon: AreaIcon },
     PIE: { label: i18n.t('Pie'), icon: PieIcon },
@@ -27,7 +30,7 @@ const visTypeMap = {
     YEAR_OVER_YEAR_LINE: { label: i18n.t('Year over year (line)'), icon: YearOverYearLineIcon },
     YEAR_OVER_YEAR_COLUMN: { label: i18n.t('Year over year (column)'), icon: YearOverYearColumnIcon },
     SINGLE_VALUE: { label: i18n.t('Single value'), icon: SingleValueIcon },
-    PIVOT_TABLE: { label: i18n.t('Pivot table'), icon: PivotTableIcon },
+    [PIVOT_TABLE]: { label: i18n.t('Pivot table'), icon: PivotTableIcon },
 };
 
 export default visTypeMap;
