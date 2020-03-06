@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2020-02-12T14:17:51.018Z\n"
-"PO-Revision-Date: 2020-02-12T14:17:51.018Z\n"
+"POT-Creation-Date: 2020-03-05T14:46:23.898Z\n"
+"PO-Revision-Date: 2020-03-05T14:46:23.898Z\n"
 
 msgid "Name"
 msgstr ""
@@ -26,6 +26,9 @@ msgstr ""
 msgid "All types"
 msgstr ""
 
+msgid "Chart"
+msgstr ""
+
 msgid "All owners"
 msgstr ""
 
@@ -35,16 +38,16 @@ msgstr ""
 msgid "Created by others"
 msgstr ""
 
-msgid "Bar"
-msgstr ""
-
-msgid "Stacked bar"
-msgstr ""
-
 msgid "Column"
 msgstr ""
 
 msgid "Stacked column"
+msgstr ""
+
+msgid "Bar"
+msgstr ""
+
+msgid "Stacked bar"
 msgstr ""
 
 msgid "Line"
