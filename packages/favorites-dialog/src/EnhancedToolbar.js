@@ -72,7 +72,7 @@ const EnhancedToolbar = props => {
                             <MenuItem value="all">{i18n.t('All types')}</MenuItem>
                             <Divider />
                             <MenuItem value={CHART}>
-                                <VisTypeFilterMenuItem type={CHART} icon={visTypeMap['COLUMN'].icon} label={i18n.t('Chart')} />
+                                <VisTypeFilterMenuItem type={CHART} icon={visTypeMap['COLUMN'].icon} label={i18n.t('All chart types')} />
                             </MenuItem>
                             <MenuItem value={PIVOT_TABLE}>
                                 <VisTypeFilterMenuItem type={PIVOT_TABLE} />
