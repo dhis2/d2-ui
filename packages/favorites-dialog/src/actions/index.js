@@ -73,6 +73,7 @@ export const filterData = (filter, value) => {
         }
 
         dispatch(fetchData());
+        dispatch(setPage(0));
     };
 };
 export const sortData = (event, column) => {
