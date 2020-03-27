@@ -31,7 +31,7 @@ msgid "Open in this app"
 msgstr ""
 
 msgid "Close"
-msgstr ""
+msgstr "关闭"
 
 msgid "Get link"
 msgstr ""
