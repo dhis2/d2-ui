@@ -34,7 +34,7 @@ msgid "Open in web API"
 msgstr ""
 
 msgid "Close"
-msgstr ""
+msgstr "关闭"
 
 msgid "Get link"
 msgstr ""
