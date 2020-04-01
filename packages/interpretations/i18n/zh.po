@@ -24,22 +24,22 @@ msgid "Table details"
 msgstr ""
 
 msgid "Visualizer"
-msgstr ""
+msgstr "可视化图"
 
 msgid "Chart details"
 msgstr ""
 
 msgid "Maps"
-msgstr ""
+msgstr "地图"
 
 msgid "Map details"
 msgstr ""
 
 msgid "Event Reports"
-msgstr ""
+msgstr "事件报表"
 
 msgid "Event Visualizer"
-msgstr ""
+msgstr "事件可视化"
 
 msgid "Visualization details"
 msgstr ""
@@ -54,10 +54,10 @@ msgid "Like"
 msgstr "如"
 
 msgid "Unlike"
-msgstr ""
+msgstr "不喜欢"
 
 msgid "Reply"
-msgstr ""
+msgstr "回复"
 
 msgid "Edit"
 msgstr "编辑"
@@ -72,7 +72,7 @@ msgid "Back to all interpretations"
 msgstr ""
 
 msgid "Interpretations"
-msgstr ""
+msgstr "注释"
 
 msgid "Save reply"
 msgstr ""
@@ -105,7 +105,7 @@ msgid "Subscribe to this {{object}} and start receiving notifications"
 msgstr ""
 
 msgid "Owner"
-msgstr ""
+msgstr "所有者"
 
 msgid "Created"
 msgstr "已创建"
@@ -114,7 +114,7 @@ msgid "Last updated"
 msgstr "上次更新"
 
 msgid "Views"
-msgstr ""
+msgstr "查看"
 
 msgid "Sharing"
 msgstr "共享"
@@ -165,7 +165,7 @@ msgid "Show"
 msgstr "显示"
 
 msgid "No interpretations"
-msgstr ""
+msgstr "无注解"
 
 msgid "external access"
 msgstr ""
@@ -183,16 +183,16 @@ msgid "None"
 msgstr "无"
 
 msgid "Read"
-msgstr ""
+msgstr "Read"
 
 msgid "Read/Write"
-msgstr ""
+msgstr "读/写"
 
 msgid "Unknown"
 msgstr "未知"
 
 msgid "Public"
-msgstr ""
+msgstr "Public"
 
 msgid "Users"
 msgstr "用户"
