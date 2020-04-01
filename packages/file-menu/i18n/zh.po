@@ -16,10 +16,10 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "Delete {{what}}"
-msgstr ""
+msgstr "删除{{what}}"
 
 msgid "This {{what}} will be deleted. Continue?"
-msgstr ""
+msgstr "在该App"
 
 msgid "Delete"
 msgstr "删除"
@@ -28,7 +28,7 @@ msgid "File"
 msgstr "文件"
 
 msgid "Open in this app"
-msgstr ""
+msgstr "在该App打开"
 
 msgid "Open in web API"
 msgstr ""
@@ -37,7 +37,7 @@ msgid "Close"
 msgstr "关闭"
 
 msgid "Get link"
-msgstr ""
+msgstr "获取链接"
 
 msgid "New"
 msgstr "新建"
@@ -46,7 +46,7 @@ msgid "Open"
 msgstr "打开"
 
 msgid "Rename {{what}}"
-msgstr ""
+msgstr "重命名 {{what}} "
 
 msgid "Name"
 msgstr "名称"
@@ -61,13 +61,13 @@ msgid "Rename"
 msgstr "改名"
 
 msgid "Save {{what}} as"
-msgstr ""
+msgstr "保存 {{what}} 为"
 
 msgid "Save"
 msgstr "保存"
 
 msgid "Save as..."
-msgstr ""
+msgstr "另存为"
 
 msgid "Share"
 msgstr "分享"
@@ -76,7 +76,7 @@ msgid "Translate"
 msgstr "翻译"
 
 msgid "Write interpretation"
-msgstr ""
+msgstr "书写注解"
 
 msgid "Post"
-msgstr ""
+msgstr "发布"
