@@ -1,13 +1,14 @@
 # Translators:
 # phil_dhis2, 2019
 # Viktor Varland <viktor@dhis2.org>, 2019
+# Hamza Assada <7amza.it@gmail.com>, 2020
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2020-01-28T10:56:12.426Z\n"
 "PO-Revision-Date: 2019-08-13 09:54+0000\n"
-"Last-Translator: Viktor Varland <viktor@dhis2.org>, 2019\n"
+"Last-Translator: Hamza Assada <7amza.it@gmail.com>, 2020\n"
 "Language-Team: Arabic (https://www.transifex.com/hisp-uio/teams/100509/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,19 +20,19 @@ msgid "Pivot Tables"
 msgstr "الجداول المحورية"
 
 msgid "Table details"
-msgstr ""
+msgstr "تفاصيل الجدول"
 
 msgid "Visualizer"
-msgstr ""
+msgstr "التحليل المرئي"
 
 msgid "Chart details"
-msgstr ""
+msgstr "تفاصيل المخطط البياني"
 
 msgid "Maps"
 msgstr "الخرائط"
 
 msgid "Map details"
-msgstr ""
+msgstr "تفاصيل الخريطة"
 
 msgid "Event Reports"
 msgstr "تقارير الحدث"
@@ -40,13 +41,13 @@ msgid "Event Visualizer"
 msgstr "التحليل المرئي للأحداث"
 
 msgid "Visualization details"
-msgstr ""
+msgstr "تفاصيل التحليل المرئي"
 
 msgid "View"
 msgstr "عرض"
 
 msgid "Exit View"
-msgstr ""
+msgstr "الخروج من العرض"
 
 msgid "Like"
 msgstr "إعجاب"
@@ -61,46 +62,46 @@ msgid "Edit"
 msgstr "تعديل"
 
 msgid "Manage sharing"
-msgstr ""
+msgstr "إدارة المشاركة"
 
 msgid "Delete"
 msgstr "حذف"
 
 msgid "Back to all interpretations"
-msgstr ""
+msgstr "العودة إلى كل التفسيرات"
 
 msgid "Interpretations"
 msgstr "التفسيرات"
 
 msgid "Save reply"
-msgstr ""
+msgstr "حفظ الرد"
 
 msgid "Cancel"
 msgstr "إلغاء"
 
 msgid "Write a reply"
-msgstr ""
+msgstr "كتابة رد"
 
 msgid "Confirm"
 msgstr "تأكيد"
 
 msgid "_No description_"
-msgstr ""
+msgstr "_لا يوجد شرح_"
 
 msgid "Show "
-msgstr ""
+msgstr "إظهار"
 
 msgid "less"
-msgstr ""
+msgstr "أقل"
 
 msgid "more"
-msgstr ""
+msgstr "أكثر"
 
 msgid "Unsubscribe from this {{object}} and stop receiving notifications"
-msgstr ""
+msgstr "إلغاء الاشتراك من {{object}} وإيقاف تلقي الإشعارات"
 
 msgid "Subscribe to this {{object}} and start receiving notifications"
-msgstr ""
+msgstr "الاشتراك بـ {{object}} والبدء في تلقي الإشعارات"
 
 msgid "Owner"
 msgstr "المالك"
@@ -118,43 +119,43 @@ msgid "Sharing"
 msgstr "المشاركة"
 
 msgid "Delete interpretation"
-msgstr ""
+msgstr "حذف التفسير"
 
 msgid "Are you sure you want to delete this interpretation?"
-msgstr ""
+msgstr "هل أنت متأكد أنك تريد حذف هذا التفسير؟"
 
 msgid "Access restricted"
-msgstr ""
+msgstr "تم تقييد الوصول"
 
 msgid "likes"
-msgstr ""
+msgstr "الإعجابات"
 
 msgid "like"
-msgstr ""
+msgstr "إعجاب"
 
 msgid "Save interpretation"
-msgstr ""
+msgstr "حفظ الإعجاب"
 
 msgid "Write an interpretation"
-msgstr ""
+msgstr "كتابة تفسير"
 
 msgid "replies"
-msgstr ""
+msgstr "الردود"
 
 msgid "reply"
-msgstr ""
+msgstr "رد"
 
 msgid "Hide old replies"
-msgstr ""
+msgstr "إخفاء الردود القديمة"
 
 msgid "View more replies"
-msgstr ""
+msgstr "إظهار المزيد من الردود"
 
 msgid "Delete comment"
-msgstr ""
+msgstr "حذف التعليق"
 
 msgid "Are you sure you want to delete this comment?"
-msgstr ""
+msgstr "هل أنت متأكد أنك تريد حذف هذا التعليق؟"
 
 msgid "Hide"
 msgstr "إخفاء"
@@ -166,16 +167,16 @@ msgid "No interpretations"
 msgstr "لا توجد تفسيرات"
 
 msgid "external access"
-msgstr ""
+msgstr "امكانية الوصول الخارجي"
 
 msgid ", public access"
-msgstr ""
+msgstr "، وصول عام"
 
 msgid "public access"
-msgstr ""
+msgstr "وصول عام"
 
 msgid "None. "
-msgstr ""
+msgstr "لا أحد"
 
 msgid "None"
 msgstr "لا شيء"
@@ -196,22 +197,22 @@ msgid "Users"
 msgstr "المستخدمون"
 
 msgid "user groups"
-msgstr ""
+msgstr "مجموعات المستخدم"
 
 msgid "chart"
-msgstr ""
+msgstr "مخطط بياني"
 
 msgid "pivot table"
-msgstr ""
+msgstr "جدول محوري"
 
 msgid "map"
-msgstr ""
+msgstr "خريطة"
 
 msgid "event chart"
-msgstr ""
+msgstr "المخطط البياني للأحداث"
 
 msgid "event report"
-msgstr ""
+msgstr "تقارير عن الأحداث"
 
 msgid "object"
-msgstr ""
+msgstr "كائن"
