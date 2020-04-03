@@ -37,7 +37,7 @@ msgid "Get link"
 msgstr ""
 
 msgid "New"
-msgstr ""
+msgstr "新建"
 
 msgid "Open"
 msgstr "开放"
@@ -46,10 +46,10 @@ msgid "Rename {{what}}"
 msgstr ""
 
 msgid "Name"
-msgstr ""
+msgstr "名称"
 
 msgid "Description"
-msgstr ""
+msgstr "描述"
 
 msgid "Cancel"
 msgstr "取消"
