@@ -20,7 +20,7 @@ msgid "Delete {{what}}"
 msgstr ""
 
 msgid "This {{what}} will be deleted. Continue?"
-msgstr ""
+msgstr "Le {{what}} actuel sera supprimé. Continuer ?"
 
 msgid "Delete"
 msgstr "Supprimer"
@@ -62,7 +62,7 @@ msgid "Rename"
 msgstr "Renommer"
 
 msgid "Save {{what}} as"
-msgstr ""
+msgstr "Enregistrer  {{what}} sous"
 
 msgid "Save"
 msgstr "Enregistrer"
