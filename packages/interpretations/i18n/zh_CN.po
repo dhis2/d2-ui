@@ -190,7 +190,7 @@ msgid "Unknown"
 msgstr ""
 
 msgid "Public"
-msgstr ""
+msgstr "公用"
 
 msgid "Users"
 msgstr "用户"
