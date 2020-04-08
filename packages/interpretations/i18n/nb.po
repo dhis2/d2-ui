@@ -1,25 +1,25 @@
 # Translators:
-# easylin <lin_xd@126.com>, 2020
-# 晓东 林 <13981924470@126.com>, 2020
+# Karoline Tufte Lien <karoline@dhis2.org>, 2020
+# Caroline Hesthagen Holen <carolinehholen@gmail.com>, 2020
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2018-07-04T08:51:47.874Z\n"
 "PO-Revision-Date: 2019-08-13 20:28+0000\n"
-"Last-Translator: 晓东 林 <13981924470@126.com>, 2020\n"
-"Language-Team: Chinese (China) (https://www.transifex.com/hisp-uio/teams/100509/zh_CN/)\n"
+"Last-Translator: Caroline Hesthagen Holen <carolinehholen@gmail.com>, 2020\n"
+"Language-Team: Norwegian Bokmål (https://www.transifex.com/hisp-uio/teams/100509/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: zh_CN\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: nb\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "No description"
-msgstr "没有描述"
+msgstr ""
 
 msgid "None"
-msgstr "没有"
+msgstr "Ingen"
 
 msgid "Read"
 msgstr ""
@@ -31,7 +31,7 @@ msgid "Unknown"
 msgstr ""
 
 msgid "Public"
-msgstr "公用"
+msgstr ""
 
 msgid "user groups"
 msgstr ""
@@ -43,13 +43,13 @@ msgid "Subscribe to this {{object}} and start receiving notifications"
 msgstr ""
 
 msgid "Details"
-msgstr "详情"
+msgstr "Detaljer"
 
 msgid "Owner"
 msgstr ""
 
 msgid "Created"
-msgstr "创建"
+msgstr "Opprettet"
 
 msgid "Last updated"
 msgstr ""
@@ -61,13 +61,13 @@ msgid "Sharing"
 msgstr ""
 
 msgid "OK"
-msgstr "好"
+msgstr "OK"
 
 msgid "Post comment"
 msgstr ""
 
 msgid "Cancel"
-msgstr "取消"
+msgstr "Avbryt"
 
 msgid "Are you sure you want to remove this interpretation?"
 msgstr ""
@@ -82,13 +82,13 @@ msgid "Reply"
 msgstr ""
 
 msgid "Edit"
-msgstr "编辑<br>"
+msgstr "Rediger"
 
 msgid "Share"
-msgstr "共享"
+msgstr ""
 
 msgid "Delete"
-msgstr "删除"
+msgstr "Slett"
 
 msgid "people like this"
 msgstr ""
@@ -112,7 +112,7 @@ msgid "Save & share"
 msgstr ""
 
 msgid "Save"
-msgstr "保存"
+msgstr "Lagre"
 
 msgid "No interpretations"
 msgstr ""
