@@ -1,0 +1,21 @@
+# Translators:
+# Karoline Tufte Lien <karoline@dhis2.org>, 2020
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"POT-Creation-Date: 2018-07-05T10:44:25.966Z\n"
+"PO-Revision-Date: 2019-08-13 09:54+0000\n"
+"Last-Translator: Karoline Tufte Lien <karoline@dhis2.org>, 2020\n"
+"Language-Team: Norwegian Bokmål (https://www.transifex.com/hisp-uio/teams/100509/nb/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: nb\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Searching for \"{{filter}}\""
+msgstr "Søker etter \"{{filter}}\""
+
+msgid "No results found for \"{{filter}}\""
+msgstr "Ingen resultater funnet for \"{{filter}}\""

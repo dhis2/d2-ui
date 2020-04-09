@@ -1,0 +1,55 @@
+# Translators:
+# Caroline Hesthagen Holen <carolinehholen@gmail.com>, 2020
+# Karoline Tufte Lien <karoline@dhis2.org>, 2020
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"POT-Creation-Date: 2018-12-06T08:26:55.944Z\n"
+"PO-Revision-Date: 2019-08-13 09:54+0000\n"
+"Last-Translator: Karoline Tufte Lien <karoline@dhis2.org>, 2020\n"
+"Language-Team: Norwegian Bokmål (https://www.transifex.com/hisp-uio/teams/100509/nb/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: nb\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Organisation units"
+msgstr "Organisasjonsenheter"
+
+msgid "Hide"
+msgstr "Skjul"
+
+msgid "Update"
+msgstr "Oppdater"
+
+msgid "Level"
+msgstr "Nivå"
+
+msgid "Select a level"
+msgstr "Velg et nivå"
+
+msgid "Group"
+msgstr "Gruppe"
+
+msgid "Select a group"
+msgstr "Velg en gruppe"
+
+msgid "Select children"
+msgstr "Velg underordnede enheter"
+
+msgid "selected"
+msgstr "valgt"
+
+msgid "Deselect all"
+msgstr "Fjern valg"
+
+msgid "User organisation unit"
+msgstr "Brukerorganisasjonsenhet"
+
+msgid "User sub-units"
+msgstr "Brukerunderenheter"
+
+msgid "User sub-x2-units"
+msgstr "Brukerunder-x2-enheter"
