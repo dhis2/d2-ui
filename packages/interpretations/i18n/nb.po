@@ -1,13 +1,13 @@
 # Translators:
-# Karoline Tufte Lien <karoline@dhis2.org>, 2020
 # Caroline Hesthagen Holen <carolinehholen@gmail.com>, 2020
+# Karoline Tufte Lien <karoline@dhis2.org>, 2020
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2018-07-04T08:51:47.874Z\n"
 "PO-Revision-Date: 2019-08-13 20:28+0000\n"
-"Last-Translator: Caroline Hesthagen Holen <carolinehholen@gmail.com>, 2020\n"
+"Last-Translator: Karoline Tufte Lien <karoline@dhis2.org>, 2020\n"
 "Language-Team: Norwegian Bokmål (https://www.transifex.com/hisp-uio/teams/100509/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,22 +16,22 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "No description"
-msgstr ""
+msgstr "Ingen beskrivelse"
 
 msgid "None"
 msgstr "Ingen"
 
 msgid "Read"
-msgstr ""
+msgstr "Lese"
 
 msgid "Read/Write"
-msgstr ""
+msgstr "Lese/Skrive"
 
 msgid "Unknown"
 msgstr ""
 
 msgid "Public"
-msgstr ""
+msgstr "Offentlig"
 
 msgid "user groups"
 msgstr ""
@@ -46,19 +46,19 @@ msgid "Details"
 msgstr "Detaljer"
 
 msgid "Owner"
-msgstr ""
+msgstr "Eier"
 
 msgid "Created"
 msgstr "Opprettet"
 
 msgid "Last updated"
-msgstr ""
+msgstr "Sist oppdatert"
 
 msgid "Views"
-msgstr ""
+msgstr "Visninger"
 
 msgid "Sharing"
-msgstr ""
+msgstr "Deling"
 
 msgid "OK"
 msgstr "OK"
@@ -73,34 +73,34 @@ msgid "Are you sure you want to remove this interpretation?"
 msgstr ""
 
 msgid "Unlike"
-msgstr ""
+msgstr "Ikke lik"
 
 msgid "Like"
 msgstr "Like"
 
 msgid "Reply"
-msgstr ""
+msgstr "Svar"
 
 msgid "Edit"
 msgstr "Rediger"
 
 msgid "Share"
-msgstr ""
+msgstr "Del"
 
 msgid "Delete"
 msgstr "Slett"
 
 msgid "people like this"
-msgstr ""
+msgstr "personer liker dette"
 
 msgid "people commented"
-msgstr ""
+msgstr "personer kommenterte"
 
 msgid "Are you sure you want to remove this comment?"
 msgstr ""
 
 msgid "more comments"
-msgstr ""
+msgstr "flere kommentarer"
 
 msgid "Edit interpretation"
 msgstr ""
@@ -115,16 +115,16 @@ msgid "Save"
 msgstr "Lagre"
 
 msgid "No interpretations"
-msgstr ""
+msgstr "Ingen tolkninger"
 
 msgid "Clear interpretation"
-msgstr ""
+msgstr "Nullstill tolkning"
 
 msgid "Write new interpretation"
 msgstr ""
 
 msgid "Interpretations"
-msgstr ""
+msgstr "Tolkninger"
 
 msgid "chart"
 msgstr ""
