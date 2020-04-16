@@ -30,13 +30,13 @@ msgid "Level"
 msgstr "等级"
 
 msgid "Select a level"
-msgstr ""
+msgstr "选择一个等级"
 
 msgid "Group"
 msgstr "组"
 
 msgid "Select a group"
-msgstr ""
+msgstr "选择一个组"
 
 msgid "Select children"
 msgstr "选择下属"
@@ -48,7 +48,7 @@ msgid "Deselect all"
 msgstr "去全选"
 
 msgid "User organisation unit"
-msgstr ""
+msgstr "用户所在机构"
 
 msgid "User sub-units"
 msgstr "下属机构"
