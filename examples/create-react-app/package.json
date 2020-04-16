@@ -3,6 +3,7 @@
   "version": "0.3.0",
   "private": true,
   "dependencies": {
+    "@dhis2/d2-i18n": "^1.0.6",
     "@dhis2/d2-ui-core": "v0.0.0-PLACEHOLDER",
     "@dhis2/d2-ui-expression-manager": "v0.0.0-PLACEHOLDER",
     "@dhis2/d2-ui-favorites-dialog": "v0.0.0-PLACEHOLDER",
