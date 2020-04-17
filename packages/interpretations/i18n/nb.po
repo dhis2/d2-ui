@@ -187,7 +187,7 @@ msgid "Read/Write"
 msgstr "Lese/Skrive"
 
 msgid "Unknown"
-msgstr ""
+msgstr "Ukjent"
 
 msgid "Public"
 msgstr "Offentlig"
