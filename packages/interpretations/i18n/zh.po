@@ -36,13 +36,13 @@ msgid "Public"
 msgstr "Public"
 
 msgid "user groups"
-msgstr ""
+msgstr "用户组"
 
 msgid "Unsubscribe from this {{object}} and stop receiving notifications"
 msgstr ""
 
 msgid "Subscribe to this {{object}} and start receiving notifications"
-msgstr ""
+msgstr "订阅该 {{object}} 并开始接收通知"
 
 msgid "Details"
 msgstr "详情"
@@ -129,19 +129,19 @@ msgid "Interpretations"
 msgstr "注释"
 
 msgid "chart"
-msgstr ""
+msgstr "图表"
 
 msgid "pivot table"
-msgstr ""
+msgstr "透视表"
 
 msgid "map"
-msgstr ""
+msgstr "地图"
 
 msgid "event chart"
 msgstr ""
 
 msgid "event report"
-msgstr ""
+msgstr "事件报表"
 
 msgid "object"
-msgstr ""
+msgstr "对象"
