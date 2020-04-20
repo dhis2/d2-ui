@@ -40,7 +40,6 @@
         }
     },
     "devDependencies": {
-        "@dhis2/cli-app-scripts": "^4.0.0",
         "husky": "^1.0.0-rc.4",
         "prettier": "^1.12.1"
     },

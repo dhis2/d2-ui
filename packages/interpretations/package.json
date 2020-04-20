@@ -40,7 +40,6 @@
         "react-portal": "^4.1.5"
     },
     "devDependencies": {
-        "@dhis2/cli-app-scripts": "^4.0.0",
         "sinon": "^6.0.0"
     },
     "jest": {
