@@ -1,13 +1,13 @@
 # Translators:
-# Karoline Tufte Lien <karoline@dhis2.org>, 2020
 # Caroline Hesthagen Holen <carolinehholen@gmail.com>, 2020
+# Karoline Tufte Lien <karoline@dhis2.org>, 2020
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2020-01-28T10:56:12.426Z\n"
 "PO-Revision-Date: 2019-08-13 09:54+0000\n"
-"Last-Translator: Caroline Hesthagen Holen <carolinehholen@gmail.com>, 2020\n"
+"Last-Translator: Karoline Tufte Lien <karoline@dhis2.org>, 2020\n"
 "Language-Team: Norwegian Bokmål (https://www.transifex.com/hisp-uio/teams/100509/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,19 +19,19 @@ msgid "Pivot Tables"
 msgstr "Pivottabeller"
 
 msgid "Table details"
-msgstr ""
+msgstr "Tabelldetaljer"
 
 msgid "Visualizer"
 msgstr "Visualiserer"
 
 msgid "Chart details"
-msgstr ""
+msgstr "Diagramdetaljer"
 
 msgid "Maps"
 msgstr "Kart"
 
 msgid "Map details"
-msgstr ""
+msgstr "Kartdetaljer"
 
 msgid "Event Reports"
 msgstr "Hendelsesrapporter"
@@ -40,13 +40,13 @@ msgid "Event Visualizer"
 msgstr "Hendelsesvisualiserer"
 
 msgid "Visualization details"
-msgstr ""
+msgstr "Visualiseringdetaljer"
 
 msgid "View"
 msgstr "Vis"
 
 msgid "Exit View"
-msgstr ""
+msgstr "Avslutt visning"
 
 msgid "Like"
 msgstr "Like"
@@ -61,46 +61,46 @@ msgid "Edit"
 msgstr "Rediger"
 
 msgid "Manage sharing"
-msgstr ""
+msgstr "Administrer deling"
 
 msgid "Delete"
 msgstr "Slett"
 
 msgid "Back to all interpretations"
-msgstr ""
+msgstr "Tilbake til alle tolkninger"
 
 msgid "Interpretations"
 msgstr "Tolkninger"
 
 msgid "Save reply"
-msgstr ""
+msgstr "Lagre svar"
 
 msgid "Cancel"
 msgstr "Avbryt"
 
 msgid "Write a reply"
-msgstr ""
+msgstr "Skriv et svar"
 
 msgid "Confirm"
 msgstr "Bekreft"
 
 msgid "_No description_"
-msgstr ""
+msgstr "_Ingen beskrivelse_"
 
 msgid "Show "
-msgstr ""
+msgstr "Vis"
 
 msgid "less"
-msgstr ""
+msgstr "mindre"
 
 msgid "more"
 msgstr "mer"
 
 msgid "Unsubscribe from this {{object}} and stop receiving notifications"
-msgstr ""
+msgstr "Avslutt abonnementet på dette {{objekt}} og slutt å motta varsler"
 
 msgid "Subscribe to this {{object}} and start receiving notifications"
-msgstr ""
+msgstr "Abonner på dette {{objekt}} og begynn å motta varsler"
 
 msgid "Owner"
 msgstr "Eier"
@@ -118,13 +118,13 @@ msgid "Sharing"
 msgstr "Deling"
 
 msgid "Delete interpretation"
-msgstr ""
+msgstr "Slett tolkning"
 
 msgid "Are you sure you want to delete this interpretation?"
-msgstr ""
+msgstr "Er du sikker på at du vil slette denne tolkningen?"
 
 msgid "Access restricted"
-msgstr ""
+msgstr "Tilgang begrenset"
 
 msgid "likes"
 msgstr "likes"
@@ -133,28 +133,28 @@ msgid "like"
 msgstr "like"
 
 msgid "Save interpretation"
-msgstr ""
+msgstr "Lagre tolkning"
 
 msgid "Write an interpretation"
-msgstr ""
+msgstr "Skriv en tolkning"
 
 msgid "replies"
-msgstr ""
+msgstr "svar"
 
 msgid "reply"
-msgstr ""
+msgstr "svar"
 
 msgid "Hide old replies"
-msgstr ""
+msgstr "Skjul gamle svar"
 
 msgid "View more replies"
-msgstr ""
+msgstr "Vis flere svar"
 
 msgid "Delete comment"
-msgstr ""
+msgstr "Slett kommentar"
 
 msgid "Are you sure you want to delete this comment?"
-msgstr ""
+msgstr "Er du sikker på at du vil slette denne kommentaren?"
 
 msgid "Hide"
 msgstr "Skjul"
@@ -166,16 +166,16 @@ msgid "No interpretations"
 msgstr "Ingen tolkninger"
 
 msgid "external access"
-msgstr ""
+msgstr "ekstern tilgang"
 
 msgid ", public access"
-msgstr ""
+msgstr ", offentlig tilgang"
 
 msgid "public access"
-msgstr ""
+msgstr "offentlig tilgang"
 
 msgid "None. "
-msgstr ""
+msgstr "Ingen."
 
 msgid "None"
 msgstr "Ingen"
@@ -196,22 +196,22 @@ msgid "Users"
 msgstr "Brukere"
 
 msgid "user groups"
-msgstr ""
+msgstr "brukergrupper"
 
 msgid "chart"
-msgstr ""
+msgstr "diagram"
 
 msgid "pivot table"
-msgstr ""
+msgstr "pivottabell"
 
 msgid "map"
-msgstr ""
+msgstr "kart"
 
 msgid "event chart"
-msgstr ""
+msgstr "hendelsesdiagram"
 
 msgid "event report"
-msgstr ""
+msgstr "hendelsesrapport"
 
 msgid "object"
-msgstr ""
+msgstr "objekt"
