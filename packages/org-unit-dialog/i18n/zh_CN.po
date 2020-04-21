@@ -18,7 +18,7 @@ msgid "Organisation units"
 msgstr ""
 
 msgid "Hide"
-msgstr ""
+msgstr "隐藏"
 
 msgid "Update"
 msgstr "更新"
