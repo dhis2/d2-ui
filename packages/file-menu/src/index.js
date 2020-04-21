@@ -1,3 +1,4 @@
-import FileMenu from './FileMenu';
+import "./locales/";
+import FileMenu from "./FileMenu";
 
 export default FileMenu;
