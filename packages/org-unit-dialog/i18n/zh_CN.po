@@ -1,7 +1,4 @@
 # Translators:
-# phil_dhis2, 2019
-# Viktor Varland <viktor@dhis2.org>, 2019
-# easylin <lin_xd@126.com>, 2020
 # 晓东 林 <13981924470@126.com>, 2020
 # 
 msgid ""
@@ -10,15 +7,15 @@ msgstr ""
 "POT-Creation-Date: 2018-12-06T08:26:55.944Z\n"
 "PO-Revision-Date: 2019-08-13 09:54+0000\n"
 "Last-Translator: 晓东 林 <13981924470@126.com>, 2020\n"
-"Language-Team: Chinese (https://www.transifex.com/hisp-uio/teams/100509/zh/)\n"
+"Language-Team: Chinese (China) (https://www.transifex.com/hisp-uio/teams/100509/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: zh\n"
+"Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "Organisation units"
-msgstr "组织机构"
+msgstr ""
 
 msgid "Hide"
 msgstr "隐藏"
@@ -30,28 +27,28 @@ msgid "Level"
 msgstr "等级"
 
 msgid "Select a level"
-msgstr "选择一个等级"
+msgstr ""
 
 msgid "Group"
-msgstr "组"
+msgstr ""
 
 msgid "Select a group"
-msgstr "选择一个组"
+msgstr ""
 
 msgid "Select children"
-msgstr "选择下属"
+msgstr ""
 
 msgid "selected"
-msgstr "选择的"
+msgstr ""
 
 msgid "Deselect all"
-msgstr "去全选"
+msgstr ""
 
 msgid "User organisation unit"
-msgstr "用户所在机构"
+msgstr ""
 
 msgid "User sub-units"
-msgstr "下属机构"
+msgstr ""
 
 msgid "User sub-x2-units"
-msgstr "二级下属机构"
+msgstr ""

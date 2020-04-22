@@ -1,0 +1,78 @@
+# Translators:
+# KRG HIS <antonia.bezenchek@informa.pro>, 2020
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"POT-Creation-Date: 2020-02-06T13:44:56.329Z\n"
+"PO-Revision-Date: 2019-08-12 21:18+0000\n"
+"Last-Translator: KRG HIS <antonia.bezenchek@informa.pro>, 2020\n"
+"Language-Team: Arabic (Iraq) (https://www.transifex.com/hisp-uio/teams/100509/ar_IQ/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ar_IQ\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+msgid "Delete {{what}}"
+msgstr ""
+
+msgid "This {{what}} will be deleted. Continue?"
+msgstr ""
+
+msgid "Delete"
+msgstr "حذف"
+
+msgid "File"
+msgstr ""
+
+msgid "Open in this app"
+msgstr ""
+
+msgid "Close"
+msgstr "إغلاق"
+
+msgid "Get link"
+msgstr ""
+
+msgid "New"
+msgstr "جديد"
+
+msgid "Open"
+msgstr ""
+
+msgid "Rename {{what}}"
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "Description"
+msgstr ""
+
+msgid "Cancel"
+msgstr "إلغاء"
+
+msgid "Rename"
+msgstr ""
+
+msgid "Save {{what}} as"
+msgstr ""
+
+msgid "Save"
+msgstr "حفظ"
+
+msgid "Save as..."
+msgstr ""
+
+msgid "Share"
+msgstr ""
+
+msgid "Translate"
+msgstr ""
+
+msgid "Write interpretation"
+msgstr ""
+
+msgid "Post"
+msgstr ""

@@ -1,0 +1,217 @@
+# Translators:
+# Caroline Hesthagen Holen <carolinehholen@gmail.com>, 2020
+# Karoline Tufte Lien <karoline@dhis2.org>, 2020
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"POT-Creation-Date: 2020-01-28T10:56:12.426Z\n"
+"PO-Revision-Date: 2019-08-13 09:54+0000\n"
+"Last-Translator: Karoline Tufte Lien <karoline@dhis2.org>, 2020\n"
+"Language-Team: Norwegian Bokmål (https://www.transifex.com/hisp-uio/teams/100509/nb/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: nb\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Pivot Tables"
+msgstr "Pivottabeller"
+
+msgid "Table details"
+msgstr "Tabelldetaljer"
+
+msgid "Visualizer"
+msgstr "Visualiserer"
+
+msgid "Chart details"
+msgstr "Diagramdetaljer"
+
+msgid "Maps"
+msgstr "Kart"
+
+msgid "Map details"
+msgstr "Kartdetaljer"
+
+msgid "Event Reports"
+msgstr "Hendelsesrapporter"
+
+msgid "Event Visualizer"
+msgstr "Hendelsesvisualiserer"
+
+msgid "Visualization details"
+msgstr "Visualiseringdetaljer"
+
+msgid "View"
+msgstr "Vis"
+
+msgid "Exit View"
+msgstr "Avslutt visning"
+
+msgid "Like"
+msgstr "Like"
+
+msgid "Unlike"
+msgstr "Ikke lik"
+
+msgid "Reply"
+msgstr "Svar"
+
+msgid "Edit"
+msgstr "Rediger"
+
+msgid "Manage sharing"
+msgstr "Administrer deling"
+
+msgid "Delete"
+msgstr "Slett"
+
+msgid "Back to all interpretations"
+msgstr "Tilbake til alle tolkninger"
+
+msgid "Interpretations"
+msgstr "Tolkninger"
+
+msgid "Save reply"
+msgstr "Lagre svar"
+
+msgid "Cancel"
+msgstr "Avbryt"
+
+msgid "Write a reply"
+msgstr "Skriv et svar"
+
+msgid "Confirm"
+msgstr "Bekreft"
+
+msgid "_No description_"
+msgstr "_Ingen beskrivelse_"
+
+msgid "Show "
+msgstr "Vis"
+
+msgid "less"
+msgstr "mindre"
+
+msgid "more"
+msgstr "mer"
+
+msgid "Unsubscribe from this {{object}} and stop receiving notifications"
+msgstr "Avslutt abonnementet på dette {{objekt}} og slutt å motta varsler"
+
+msgid "Subscribe to this {{object}} and start receiving notifications"
+msgstr "Abonner på dette {{objekt}} og begynn å motta varsler"
+
+msgid "Owner"
+msgstr "Eier"
+
+msgid "Created"
+msgstr "Opprettet"
+
+msgid "Last updated"
+msgstr "Sist oppdatert"
+
+msgid "Views"
+msgstr "Visninger"
+
+msgid "Sharing"
+msgstr "Deling"
+
+msgid "Delete interpretation"
+msgstr "Slett tolkning"
+
+msgid "Are you sure you want to delete this interpretation?"
+msgstr "Er du sikker på at du vil slette denne tolkningen?"
+
+msgid "Access restricted"
+msgstr "Tilgang begrenset"
+
+msgid "likes"
+msgstr "likes"
+
+msgid "like"
+msgstr "like"
+
+msgid "Save interpretation"
+msgstr "Lagre tolkning"
+
+msgid "Write an interpretation"
+msgstr "Skriv en tolkning"
+
+msgid "replies"
+msgstr "svar"
+
+msgid "reply"
+msgstr "svar"
+
+msgid "Hide old replies"
+msgstr "Skjul gamle svar"
+
+msgid "View more replies"
+msgstr "Vis flere svar"
+
+msgid "Delete comment"
+msgstr "Slett kommentar"
+
+msgid "Are you sure you want to delete this comment?"
+msgstr "Er du sikker på at du vil slette denne kommentaren?"
+
+msgid "Hide"
+msgstr "Skjul"
+
+msgid "Show"
+msgstr "Vis"
+
+msgid "No interpretations"
+msgstr "Ingen tolkninger"
+
+msgid "external access"
+msgstr "ekstern tilgang"
+
+msgid ", public access"
+msgstr ", offentlig tilgang"
+
+msgid "public access"
+msgstr "offentlig tilgang"
+
+msgid "None. "
+msgstr "Ingen."
+
+msgid "None"
+msgstr "Ingen"
+
+msgid "Read"
+msgstr "Lese"
+
+msgid "Read/Write"
+msgstr "Lese/Skrive"
+
+msgid "Unknown"
+msgstr "Ukjent"
+
+msgid "Public"
+msgstr "Offentlig"
+
+msgid "Users"
+msgstr "Brukere"
+
+msgid "user groups"
+msgstr "brukergrupper"
+
+msgid "chart"
+msgstr "diagram"
+
+msgid "pivot table"
+msgstr "pivottabell"
+
+msgid "map"
+msgstr "kart"
+
+msgid "event chart"
+msgstr "hendelsesdiagram"
+
+msgid "event report"
+msgstr "hendelsesrapport"
+
+msgid "object"
+msgstr "objekt"
