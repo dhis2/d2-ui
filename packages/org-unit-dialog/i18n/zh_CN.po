@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2018-12-06T08:26:55.944Z\n"
+"POT-Creation-Date: 2020-04-13T22:26:59.421Z\n"
 "PO-Revision-Date: 2019-08-13 09:54+0000\n"
 "Last-Translator: 晓东 林 <13981924470@126.com>, 2020\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/hisp-uio/teams/100509/zh_CN/)\n"
@@ -35,7 +35,7 @@ msgstr ""
 msgid "Select a group"
 msgstr ""
 
-msgid "Select children"
+msgid "Select all org units below"
 msgstr ""
 
 msgid "selected"
