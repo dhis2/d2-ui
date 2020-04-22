@@ -42,6 +42,10 @@
             "pre-commit": "npm run extract-pot && git add ./i18n"
         }
     },
+    "sideEffects": [
+        "./src/locales/index.js",
+        "./src/locales/**/translations.json"
+    ],
     "version": "0.0.0-PLACEHOLDER",
     "devDependencies": {
         "husky": "^3.1.0"
