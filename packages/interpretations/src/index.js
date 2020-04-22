@@ -1,3 +1,4 @@
-import InterpretationsComponent from './components/InterpretationsComponent/InterpretationsComponent';
+import "./locales/";
+import InterpretationsComponent from "./components/InterpretationsComponent/InterpretationsComponent";
 
 export default InterpretationsComponent;

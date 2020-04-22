@@ -1,52 +1,54 @@
 {
-  "name": "@dhis2/d2-ui-file-menu",
-  "description": "File menu component for DHIS2",
-  "main": "./build/index.js",
-  "module": "./build/index.js",
-  "license": "BSD-3-Clause",
-  "author": "Edoardo Sabadelli <edoardo@dhis2.org>",
-  "peerDependencies": {
-    "d2": "^31.1.1",
-    "react": "^15.0.0 || ^16.0.0",
-    "react-dom": "^15.0.0 || ^16.0.0"
-  },
-  "scripts": {
-    "prebuild": "npm run lint && rimraf ./build/*",
-    "build": "npm run localize && babel src --copy-files --out-dir build --ignore spec.js",
-    "lint": "eslint src/",
-    "watch": "npm run build -- --watch",
-    "test-ci": "jest --config=../../jest.config.js packages/file-menu",
-    "extract-pot": "d2-i18n-extract -p src/ -o i18n/",
-    "prettify": "prettier \"src/**/*.{js,jsx,json,css}\" --write",
-    "localize": "npm run extract-pot && d2-i18n-generate -n d2-ui-file-menu -p ./i18n/ -o ./src/locales/"
-  },
-  "dependencies": {
-    "@dhis2/d2-i18n": "^1.0.3",
-    "@dhis2/d2-ui-favorites-dialog": "0.0.0-PLACEHOLDER",
-    "@dhis2/d2-ui-sharing-dialog": "0.0.0-PLACEHOLDER",
-    "@dhis2/d2-ui-translation-dialog": "0.0.0-PLACEHOLDER",
-    "@material-ui/core": "^3.3.1",
-    "@material-ui/icons": "^3.0.1",
-    "prop-types": "^15.6.0"
-  },
-  "jest": {
-    "transformIgnorePatterns": [
-      "node_modules/(?!react-native|react-navigation)/"
-    ]
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run extract-pot && npm run prettify && git add ./i18n"
-    }
-  },
-  "devDependencies": {
-    "@dhis2/d2-i18n-extract": "^1.0.6",
-    "@dhis2/d2-i18n-generate": "^1.0.18",
-    "husky": "^1.0.0-rc.4",
-    "prettier": "^1.12.1"
-  },
-  "version": "0.0.0-PLACEHOLDER"
+    "name": "@dhis2/d2-ui-file-menu",
+    "description": "File menu component for DHIS2",
+    "main": "./build/index.js",
+    "module": "./build/index.js",
+    "license": "BSD-3-Clause",
+    "author": "Edoardo Sabadelli <edoardo@dhis2.org>",
+    "peerDependencies": {
+        "@dhis2/d2-i18n": "^1.0.6",
+        "d2": "^31.1.1",
+        "react": "^15.0.0 || ^16.0.0",
+        "react-dom": "^15.0.0 || ^16.0.0"
+    },
+    "scripts": {
+        "prebuild": "npm run lint && rimraf ./build/*",
+        "build": "npm run localize && babel src --copy-files --out-dir build --ignore spec.js",
+        "lint": "eslint src/",
+        "watch": "npm run build -- --watch",
+        "test-ci": "jest --config=../../jest.config.js packages/file-menu",
+        "extract-pot": "d2-app-scripts i18n extract",
+        "prettify": "prettier \"src/**/*.{js,jsx,json,css}\" --write",
+        "localize": "npm run extract-pot && d2-app-scripts i18n generate"
+    },
+    "dependencies": {
+        "@dhis2/d2-ui-favorites-dialog": "0.0.0-PLACEHOLDER",
+        "@dhis2/d2-ui-sharing-dialog": "0.0.0-PLACEHOLDER",
+        "@dhis2/d2-ui-translation-dialog": "0.0.0-PLACEHOLDER",
+        "@material-ui/core": "^3.3.1",
+        "@material-ui/icons": "^3.0.1",
+        "prop-types": "^15.6.0"
+    },
+    "jest": {
+        "transformIgnorePatterns": [
+            "node_modules/(?!react-native|react-navigation)/"
+        ]
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "npm run extract-pot && npm run prettify && git add ./i18n"
+        }
+    },
+    "devDependencies": {
+        "husky": "^1.0.0-rc.4",
+        "prettier": "^1.12.1"
+    },
+    "sideEffects": [
+        "./src/locales/index.js",
+        "./src/locales/**/translations.json"
+    ],
+    "version": "0.0.0-PLACEHOLDER"
 }

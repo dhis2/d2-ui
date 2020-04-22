@@ -1,57 +1,59 @@
 {
-  "name": "@dhis2/d2-ui-interpretations",
-  "description": "DHIS2 component for interpretations",
-  "main": "./build/index.js",
-  "module": "./build/index.js",
-  "license": "BSD-3-Clause",
-  "peerDependencies": {
-    "d2": "^31.1.1",
-    "react": "^15.0.0 || ^16.0.0",
-    "react-dom": "^15.0.0 || ^16.0.0"
-  },
-  "author": "Arnau Sanchez <arnau@eyeseetea.com>",
-  "contributors": [],
-  "scripts": {
-    "prebuild": "npm run lint && rm -rf ./build",
-    "build": "npm run localize && babel src --copy-files --out-dir build --ignore spec.js",
-    "lint": "eslint src/",
-    "watch": "npm run build -- --watch",
-    "extract-pot": "d2-i18n-extract -p src/ -o i18n/",
-    "localize": "yarn extract-pot && d2-i18n-generate -n d2-ui-interpretations -p ./i18n/ -o ./src/locales/",
-    "test-ci": "jest --config=../../jest.config.js packages/interpretations"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn extract-pot && CI=true yarn test-ci"
-    }
-  },
-  "dependencies": {
-    "@dhis2/d2-i18n": "^1.0.3",
-    "@dhis2/d2-i18n-extract": "^1.0.7",
-    "@dhis2/d2-i18n-generate": "^1.1.1",
-    "@dhis2/d2-ui-mentions-wrapper": "0.0.0-PLACEHOLDER",
-    "@dhis2/d2-ui-rich-text": "0.0.0-PLACEHOLDER",
-    "@dhis2/d2-ui-sharing-dialog": "0.0.0-PLACEHOLDER",
-    "@material-ui/core": "^3.3.1",
-    "@material-ui/icons": "^3.0.1",
-    "babel-runtime": "^6.26.0",
-    "classnames": "^2.2.6",
-    "husky": "^1.0.0-rc.8",
-    "postcss-rtl": "^1.3.0",
-    "prop-types": "^15.5.10",
-    "react-portal": "^4.1.5"
-  },
-  "devDependencies": {
-    "sinon": "^6.0.0"
-  },
-  "jest": {
-    "transformIgnorePatterns": [
-      "node_modules/(?!react-native|react-navigation)/"
+    "name": "@dhis2/d2-ui-interpretations",
+    "description": "DHIS2 component for interpretations",
+    "main": "./build/index.js",
+    "module": "./build/index.js",
+    "license": "BSD-3-Clause",
+    "peerDependencies": {
+        "@dhis2/d2-i18n": "^1.0.6",
+        "d2": "^31.1.1",
+        "react": "^15.0.0 || ^16.0.0",
+        "react-dom": "^15.0.0 || ^16.0.0"
+    },
+    "author": "Arnau Sanchez <arnau@eyeseetea.com>",
+    "contributors": [],
+    "scripts": {
+        "prebuild": "npm run lint && rm -rf ./build",
+        "build": "npm run localize && babel src --copy-files --out-dir build --ignore spec.js",
+        "lint": "eslint src/",
+        "watch": "npm run build -- --watch",
+        "extract-pot": "d2-app-scripts i18n extract",
+        "localize": "yarn extract-pot && d2-app-scripts i18n generate",
+        "test-ci": "jest --config=../../jest.config.js packages/interpretations"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "yarn extract-pot && CI=true yarn test-ci"
+        }
+    },
+    "dependencies": {
+        "@dhis2/d2-ui-mentions-wrapper": "0.0.0-PLACEHOLDER",
+        "@dhis2/d2-ui-rich-text": "0.0.0-PLACEHOLDER",
+        "@dhis2/d2-ui-sharing-dialog": "0.0.0-PLACEHOLDER",
+        "@material-ui/core": "^3.3.1",
+        "@material-ui/icons": "^3.0.1",
+        "babel-runtime": "^6.26.0",
+        "classnames": "^2.2.6",
+        "husky": "^1.0.0-rc.8",
+        "postcss-rtl": "^1.3.0",
+        "prop-types": "^15.5.10",
+        "react-portal": "^4.1.5"
+    },
+    "devDependencies": {
+        "sinon": "^6.0.0"
+    },
+    "jest": {
+        "transformIgnorePatterns": [
+            "node_modules/(?!react-native|react-navigation)/"
+        ],
+        "testEnvironments": "jsdom"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "sideEffects": [
+        "./src/locales/index.js",
+        "./src/locales/**/translations.json"
     ],
-    "testEnvironments": "jsdom"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "version": "0.0.0-PLACEHOLDER"
+    "version": "0.0.0-PLACEHOLDER"
 }
