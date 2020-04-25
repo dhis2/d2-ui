@@ -47,19 +47,19 @@ msgid "Details"
 msgstr "详情"
 
 msgid "Owner"
-msgstr ""
+msgstr "所有者"
 
 msgid "Created"
 msgstr "创建"
 
 msgid "Last updated"
-msgstr ""
+msgstr "Last updated"
 
 msgid "Views"
 msgstr "查看"
 
 msgid "Sharing"
-msgstr ""
+msgstr "共享"
 
 msgid "OK"
 msgstr "好"
