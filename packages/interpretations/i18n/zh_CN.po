@@ -44,7 +44,7 @@ msgid "Visualization details"
 msgstr ""
 
 msgid "View"
-msgstr ""
+msgstr "查看"
 
 msgid "Exit View"
 msgstr ""
@@ -104,19 +104,19 @@ msgid "Subscribe to this {{object}} and start receiving notifications"
 msgstr ""
 
 msgid "Owner"
-msgstr ""
+msgstr "所有者"
 
 msgid "Created"
 msgstr "创建"
 
 msgid "Last updated"
-msgstr ""
+msgstr "Last updated"
 
 msgid "Views"
 msgstr "查看"
 
 msgid "Sharing"
-msgstr ""
+msgstr "共享"
 
 msgid "Delete interpretation"
 msgstr ""
