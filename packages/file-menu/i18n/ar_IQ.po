@@ -37,19 +37,19 @@ msgid "Close"
 msgstr "إغلاق"
 
 msgid "Get link"
-msgstr ""
+msgstr "الحصول على الرابط"
 
 msgid "New"
 msgstr "جديد"
 
 msgid "Open"
-msgstr ""
+msgstr "فتح"
 
 msgid "Rename {{what}}"
 msgstr ""
 
 msgid "Name"
-msgstr ""
+msgstr "الاسم"
 
 msgid "Description"
 msgstr ""
@@ -58,7 +58,7 @@ msgid "Cancel"
 msgstr "إلغاء"
 
 msgid "Rename"
-msgstr ""
+msgstr "إعادة التسمية"
 
 msgid "Save {{what}} as"
 msgstr ""
@@ -70,13 +70,13 @@ msgid "Save as..."
 msgstr ""
 
 msgid "Share"
-msgstr ""
+msgstr "مشاركة"
 
 msgid "Translate"
-msgstr ""
+msgstr "ترجمة"
 
 msgid "Write interpretation"
-msgstr ""
+msgstr "كتابة تفسير"
 
 msgid "Post"
 msgstr ""
