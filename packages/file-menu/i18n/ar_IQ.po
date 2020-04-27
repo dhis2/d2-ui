@@ -52,7 +52,7 @@ msgid "Name"
 msgstr "الاسم"
 
 msgid "Description"
-msgstr ""
+msgstr "الوصف"
 
 msgid "Cancel"
 msgstr "إلغاء"

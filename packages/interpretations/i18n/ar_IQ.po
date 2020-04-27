@@ -22,16 +22,16 @@ msgid "None"
 msgstr "لا شيء"
 
 msgid "Read"
-msgstr ""
+msgstr "قراءة"
 
 msgid "Read/Write"
-msgstr ""
+msgstr "قراءة/كتابة"
 
 msgid "Unknown"
 msgstr ""
 
 msgid "Public"
-msgstr ""
+msgstr "عام"
 
 msgid "user groups"
 msgstr ""
@@ -46,19 +46,19 @@ msgid "Details"
 msgstr "التفاصيل"
 
 msgid "Owner"
-msgstr ""
+msgstr "المالك"
 
 msgid "Created"
-msgstr ""
+msgstr "تم الإنشاء"
 
 msgid "Last updated"
 msgstr "آخر تحديث"
 
 msgid "Views"
-msgstr ""
+msgstr "المشاهدات"
 
 msgid "Sharing"
-msgstr ""
+msgstr "المشاركة"
 
 msgid "OK"
 msgstr ""
@@ -73,13 +73,13 @@ msgid "Are you sure you want to remove this interpretation?"
 msgstr ""
 
 msgid "Unlike"
-msgstr ""
+msgstr "إلغاء الإعجاب"
 
 msgid "Like"
-msgstr ""
+msgstr "إعجاب"
 
 msgid "Reply"
-msgstr ""
+msgstr "رد"
 
 msgid "Edit"
 msgstr "تعديل"
@@ -91,16 +91,16 @@ msgid "Delete"
 msgstr "حذف"
 
 msgid "people like this"
-msgstr ""
+msgstr "أشخاص معجبون بهذا"
 
 msgid "people commented"
-msgstr ""
+msgstr "أشخاص قاموا بالتعليق"
 
 msgid "Are you sure you want to remove this comment?"
 msgstr ""
 
 msgid "more comments"
-msgstr ""
+msgstr "المزيد من التعليقات"
 
 msgid "Edit interpretation"
 msgstr ""
@@ -115,16 +115,16 @@ msgid "Save"
 msgstr "حفظ"
 
 msgid "No interpretations"
-msgstr ""
+msgstr "لا توجد تفسيرات"
 
 msgid "Clear interpretation"
-msgstr ""
+msgstr "مسح التفسير"
 
 msgid "Write new interpretation"
 msgstr ""
 
 msgid "Interpretations"
-msgstr ""
+msgstr "التفسيرات"
 
 msgid "chart"
 msgstr ""
