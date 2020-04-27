@@ -31,7 +31,7 @@ msgid "Select a level"
 msgstr ""
 
 msgid "Group"
-msgstr ""
+msgstr "المجموعة"
 
 msgid "Select a group"
 msgstr ""
