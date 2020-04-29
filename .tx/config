@@ -29,3 +29,10 @@ minimum_perc = 0
 source_file = packages/org-unit-dialog/i18n/en.pot
 source_lang = en
 type = PO
+
+[app-d2-ui.favorites-dialog-en-pot]
+file_filter = packages/favorites-dialog/i18n/<lang>.po
+minimum_perc = 0
+source_file = packages/favorites-dialog/i18n/en.pot
+source_lang = en
+type = PO
