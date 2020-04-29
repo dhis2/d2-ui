@@ -40,7 +40,7 @@ msgid "user groups"
 msgstr "用户组"
 
 msgid "Unsubscribe from this {{object}} and stop receiving notifications"
-msgstr ""
+msgstr "取消订阅 {{object}} 并停止接收通知"
 
 msgid "Subscribe to this {{object}} and start receiving notifications"
 msgstr "订阅该 {{object}} 并开始接收通知"
@@ -139,7 +139,7 @@ msgid "map"
 msgstr "地图"
 
 msgid "event chart"
-msgstr ""
+msgstr "事件图表"
 
 msgid "event report"
 msgstr "事件报表"
