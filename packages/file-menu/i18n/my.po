@@ -2,13 +2,14 @@
 # Translators:
 # Viktor Varland <viktor@dhis2.org>, 2019
 # Aung Kyi Min <AungKyi.Min@savethechildren.org>, 2019
+# phil_dhis2, 2020
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2020-02-06T13:44:56.329Z\n"
 "PO-Revision-Date: 2019-08-12 21:18+0000\n"
-"Last-Translator: Aung Kyi Min <AungKyi.Min@savethechildren.org>, 2019\n"
+"Last-Translator: phil_dhis2, 2020\n"
 "Language-Team: Burmese (https://www.transifex.com/hisp-uio/teams/100509/my/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,7 +27,7 @@ msgid "Delete"
 msgstr "ဖျက်ပါ။"
 
 msgid "File"
-msgstr ""
+msgstr "File"
 
 msgid "Open in this app"
 msgstr ""
@@ -41,7 +42,7 @@ msgid "New"
 msgstr "အသစ်"
 
 msgid "Open"
-msgstr ""
+msgstr "Open"
 
 msgid "Rename {{what}}"
 msgstr ""
