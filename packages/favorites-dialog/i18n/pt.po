@@ -1,0 +1,87 @@
+# 
+# Translators:
+# phil_dhis2, 2020
+# Viktor Varland <viktor@dhis2.org>, 2020
+# Gabriela Rodriguez <grodriguezcoronado@gmail.com>, 2020
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"POT-Creation-Date: 2020-03-06T10:11:32.146Z\n"
+"PO-Revision-Date: 2020-04-29 21:46+0000\n"
+"Last-Translator: Gabriela Rodriguez <grodriguezcoronado@gmail.com>, 2020\n"
+"Language-Team: Portuguese (https://www.transifex.com/hisp-uio/teams/100509/pt/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: pt\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Name"
+msgstr "Nome"
+
+msgid "Created"
+msgstr "Criado"
+
+msgid "Last updated"
+msgstr "Última actualização"
+
+msgid "Type"
+msgstr "Tipo"
+
+msgid "Search by name"
+msgstr "Pesquisar por nome"
+
+msgid "All types"
+msgstr "Todos os tipos"
+
+msgid "All chart types"
+msgstr "Todos os tipos de gráfico"
+
+msgid "All owners"
+msgstr "Todos os proprietários"
+
+msgid "Created by you"
+msgstr "Criado por você"
+
+msgid "Created by others"
+msgstr "Criado por outras pessoas"
+
+msgid "Column"
+msgstr "Coluna"
+
+msgid "Stacked column"
+msgstr "Coluna empilhada"
+
+msgid "Bar"
+msgstr "Barra"
+
+msgid "Stacked bar"
+msgstr "Barra empilhada"
+
+msgid "Line"
+msgstr "Linha"
+
+msgid "Area"
+msgstr "Área"
+
+msgid "Pie"
+msgstr "Torta"
+
+msgid "Radar"
+msgstr "Radar"
+
+msgid "Gauge"
+msgstr "Calibre"
+
+msgid "Year over year (line)"
+msgstr "Ano após ano (linha)"
+
+msgid "Year over year (column)"
+msgstr "Ano após ano (coluna)"
+
+msgid "Single value"
+msgstr "Valor unico"
+
+msgid "Pivot table"
+msgstr "Tabela Dinâmica"

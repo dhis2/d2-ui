@@ -39,7 +39,7 @@ msgid "Select a group"
 msgstr "حدد مجموعة"
 
 msgid "Select all org units below"
-msgstr ""
+msgstr "حدد جميع الوحدات التنظيمية أدناه"
 
 msgid "selected"
 msgstr "محدد"
