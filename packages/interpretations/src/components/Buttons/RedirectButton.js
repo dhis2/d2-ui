@@ -17,18 +17,16 @@ export class RedirectButton extends Component {
             EVENT_CHART: i18n.t('Event Visualizer'),
             VISUALIZATION: i18n.t('Visualizer'),
         }
-        const appName = appNameMap[this.context.item.type];
-        const actionTitle = i18n.t(`View in ${appName} app`);
 
         return this.context.appName === 'dashboard' ? (
             <a
                 href={getLink(this.context.item, this.context.d2, this.props.interpretationId)}
                 className={this.props.classes.iconContainer}
-                title={actionTitle}
+                title={i18n.t(`View in ${appNameMap[this.context.item.type]} app`)}
             >
                 <ActionButton
                     iconType={'openApp'}
-                    tooltip={actionTitle}
+                    tooltip={i18n.t(`View in ${appNameMap[this.context.item.type]} app`)}
                 />
             </a>
         ) : null;
