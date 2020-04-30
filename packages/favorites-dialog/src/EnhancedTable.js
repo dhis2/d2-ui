@@ -13,7 +13,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 import i18n from '@dhis2/d2-i18n';
 
-import visTypeMap from './visTypes';
+import {getVisTypeLabel, visTypeIcons} from './visTypes';
 
 import { changePage, setRowsPerPage, sortData, selectFavorite } from './actions';
 
@@ -87,7 +87,7 @@ const EnhancedTable = props => {
                 <EnhancedTableHead order={order} column={column} sortData={sortData} showTypeColumn={showTypeColumn} />
                 <TableBody>
                     {data.map(favorite => {
-                        const visType = visTypeMap[favorite.type];
+                        const visTypeIcon = visTypeIcons[favorite.type];
 
                         return (
                             <TableRow hover={true} key={favorite.id}>
@@ -101,8 +101,10 @@ const EnhancedTable = props => {
                                 {showTypeColumn &&
                                     <TableCell
                                         padding="dense">
-                                        <Tooltip title={visType.label}>
-                                            {visType.icon}
+                                        <Tooltip
+                                            title={getVisTypeLabel(favorite.type)}
+                                        >
+                                            {visTypeIcon}
                                         </Tooltip>
                                     </TableCell>
                                 }

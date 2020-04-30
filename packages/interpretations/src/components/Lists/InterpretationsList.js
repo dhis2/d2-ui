@@ -26,12 +26,16 @@ export const InterpretationsList = ({
         ? filteredItems
         : filteredItems.slice(0 ,interpretationsToShowOnInit);
 
+        const hideShowPreviousInterpretations = isExpanded ?
+            i18n.t('Hide previous interpretations') :
+            i18n.t('Show previous interpretations');
+
 
     return listItems.length ? (
         <Fragment>
             {filteredItems.length > interpretationsToShowOnInit && (
                 <Link 
-                    label={`${isExpanded ? i18n.t('Hide') : i18n.t('Show')}${' previous interpretations'}`}
+                    label={hideShowPreviousInterpretations}
                     onClick={toggleShowAllInterpretations} 
                 />
             )}

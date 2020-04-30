@@ -10,7 +10,7 @@ import Divider from "@material-ui/core/Divider";
 
 import i18n from '@dhis2/d2-i18n';
 import { filterData, searchData } from "./actions";
-import visTypeMap, { CHART, PIVOT_TABLE } from './visTypes';
+import { CHART, PIVOT_TABLE, getVisTypeLabel, visTypeIcons } from "./visTypes";
 
 const toolbarStyles = () => ({
     search: {
@@ -29,13 +29,13 @@ const toolbarStyles = () => ({
     menuIcon: {
         marginRight: 8,
         height: 16
-    },
+    }
 });
 
 const VisTypeFilterMenuItem = withStyles(toolbarStyles)(({ classes, type, icon = undefined, label = undefined }) => (
         <span className={classes.menuItem}>
-            <span className={classes.menuIcon}>{icon || visTypeMap[type].icon}</span>
-            {label || visTypeMap[type].label}
+            <span className={classes.menuIcon}>{icon || visTypeIcons[type]}</span>
+            {label || getVisTypeLabel(type)}
         </span>
 ));
 
@@ -72,13 +72,17 @@ const EnhancedToolbar = props => {
                             <MenuItem value="all">{i18n.t('All types')}</MenuItem>
                             <Divider />
                             <MenuItem value={CHART}>
-                                <VisTypeFilterMenuItem type={CHART} icon={visTypeMap['COLUMN'].icon} label={i18n.t('All chart types')} />
+                                <VisTypeFilterMenuItem
+                                    type={CHART}
+                                    icon={visTypeIcons['COLUMN']}
+                                    label={i18n.t('All chart types')}
+                                />
                             </MenuItem>
                             <MenuItem value={PIVOT_TABLE}>
                                 <VisTypeFilterMenuItem type={PIVOT_TABLE} />
                             </MenuItem>
                             <Divider />
-                            {Object.keys(visTypeMap).filter(type => type !== PIVOT_TABLE).map(type =>
+                            {Object.keys(visTypeIcons).filter(type => type !== PIVOT_TABLE).map(type =>
                                 <MenuItem key={type} value={type}>
                                     <VisTypeFilterMenuItem type={type} />
                                 </MenuItem>

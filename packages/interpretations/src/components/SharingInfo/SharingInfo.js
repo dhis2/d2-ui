@@ -14,9 +14,6 @@ export class SharingInfo extends Component {
     getGroups = () => 
         (this.props.interpretation.userGroupAccesses || []).map(item => item.displayName)
 
-    checkExternalAccess = () => 
-        this.props.interpretation.externalAccess ? i18n.t('external access') : '';
-
     checkPublicAccess = () =>
         this.props.interpretation.publicAccess === 'rw------' ||
         this.props.interpretation.publicAccess === 'r-------';

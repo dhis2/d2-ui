@@ -5,35 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2020-01-28T10:56:12.426Z\n"
-"PO-Revision-Date: 2020-01-28T10:56:12.426Z\n"
-
-msgid "Pivot Tables"
-msgstr ""
-
-msgid "Table details"
-msgstr ""
-
-msgid "Visualizer"
-msgstr ""
-
-msgid "Chart details"
-msgstr ""
-
-msgid "Maps"
-msgstr ""
-
-msgid "Map details"
-msgstr ""
-
-msgid "Event Reports"
-msgstr ""
-
-msgid "Event Visualizer"
-msgstr ""
-
-msgid "Visualization details"
-msgstr ""
+"POT-Creation-Date: 2020-04-30T21:16:55.841Z\n"
+"PO-Revision-Date: 2020-04-30T21:16:55.841Z\n"
 
 msgid "View"
 msgstr ""
@@ -59,6 +32,21 @@ msgstr ""
 msgid "Delete"
 msgstr ""
 
+msgid "Pivot Tables"
+msgstr ""
+
+msgid "Visualizer"
+msgstr ""
+
+msgid "Maps"
+msgstr ""
+
+msgid "Event Reports"
+msgstr ""
+
+msgid "Event Visualizer"
+msgstr ""
+
 msgid "Back to all interpretations"
 msgstr ""
 
@@ -77,22 +65,31 @@ msgstr ""
 msgid "Confirm"
 msgstr ""
 
-msgid "_No description_"
+msgid "No description"
 msgstr ""
 
-msgid "Show "
+msgid "Show less"
 msgstr ""
 
-msgid "less"
-msgstr ""
-
-msgid "more"
+msgid "Show more"
 msgstr ""
 
 msgid "Unsubscribe from this {{object}} and stop receiving notifications"
 msgstr ""
 
 msgid "Subscribe to this {{object}} and start receiving notifications"
+msgstr ""
+
+msgid "Table details"
+msgstr ""
+
+msgid "Chart details"
+msgstr ""
+
+msgid "Map details"
+msgstr ""
+
+msgid "Visualization details"
 msgstr ""
 
 msgid "Owner"
@@ -149,10 +146,10 @@ msgstr ""
 msgid "Are you sure you want to delete this comment?"
 msgstr ""
 
-msgid "Hide"
+msgid "Hide previous interpretations"
 msgstr ""
 
-msgid "Show"
+msgid "Show previous interpretations"
 msgstr ""
 
 msgid "No interpretations"
@@ -185,10 +182,10 @@ msgstr ""
 msgid "Public"
 msgstr ""
 
-msgid "Users"
+msgid "{{userCount}} users"
 msgstr ""
 
-msgid "user groups"
+msgid "{{userGroupsCount}} user groups"
 msgstr ""
 
 msgid "chart"
