@@ -1,0 +1,88 @@
+# 
+# Translators:
+# easylin <lin_xd@126.com>, 2020
+# phil_dhis2, 2020
+# Viktor Varland <viktor@dhis2.org>, 2020
+# 晓东 林 <13981924470@126.com>, 2020
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"POT-Creation-Date: 2020-03-06T10:11:32.146Z\n"
+"PO-Revision-Date: 2020-04-29 21:46+0000\n"
+"Last-Translator: 晓东 林 <13981924470@126.com>, 2020\n"
+"Language-Team: Chinese (https://www.transifex.com/hisp-uio/teams/100509/zh/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Name"
+msgstr "名称"
+
+msgid "Created"
+msgstr "创建"
+
+msgid "Last updated"
+msgstr "上次更新"
+
+msgid "Type"
+msgstr "类型"
+
+msgid "Search by name"
+msgstr "按名称搜索"
+
+msgid "All types"
+msgstr ""
+
+msgid "All chart types"
+msgstr ""
+
+msgid "All owners"
+msgstr ""
+
+msgid "Created by you"
+msgstr ""
+
+msgid "Created by others"
+msgstr "其它人创建的"
+
+msgid "Column"
+msgstr "列"
+
+msgid "Stacked column"
+msgstr "叠列"
+
+msgid "Bar"
+msgstr "柱状图"
+
+msgid "Stacked bar"
+msgstr "叠柱图"
+
+msgid "Line"
+msgstr "折线图"
+
+msgid "Area"
+msgstr "面积"
+
+msgid "Pie"
+msgstr "饼图"
+
+msgid "Radar"
+msgstr "雷达图"
+
+msgid "Gauge"
+msgstr "表盘图"
+
+msgid "Year over year (line)"
+msgstr "逐年（折线图）"
+
+msgid "Year over year (column)"
+msgstr "逐年（列图）"
+
+msgid "Single value"
+msgstr "单个值"
+
+msgid "Pivot table"
+msgstr "透视表"

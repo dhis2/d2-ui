@@ -1,0 +1,86 @@
+# 
+# Translators:
+# Caroline Hesthagen Holen <carolinehholen@gmail.com>, 2020
+# Karoline Tufte Lien <karoline@dhis2.org>, 2020
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"POT-Creation-Date: 2020-03-06T10:11:32.146Z\n"
+"PO-Revision-Date: 2020-04-29 21:46+0000\n"
+"Last-Translator: Karoline Tufte Lien <karoline@dhis2.org>, 2020\n"
+"Language-Team: Norwegian Bokmål (https://www.transifex.com/hisp-uio/teams/100509/nb/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: nb\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Name"
+msgstr "Navn"
+
+msgid "Created"
+msgstr "Opprettet"
+
+msgid "Last updated"
+msgstr "Sist oppdatert"
+
+msgid "Type"
+msgstr "Type"
+
+msgid "Search by name"
+msgstr "Søk på navn"
+
+msgid "All types"
+msgstr "Alle typer"
+
+msgid "All chart types"
+msgstr "Alle diagramtyper"
+
+msgid "All owners"
+msgstr "Alle eiere"
+
+msgid "Created by you"
+msgstr "Opprettet av deg"
+
+msgid "Created by others"
+msgstr "Laget av andre"
+
+msgid "Column"
+msgstr "Stolpe"
+
+msgid "Stacked column"
+msgstr "Stablet stående stolpe"
+
+msgid "Bar"
+msgstr "Liggende stolpe"
+
+msgid "Stacked bar"
+msgstr "Liggende stablet stolpe"
+
+msgid "Line"
+msgstr "Linje"
+
+msgid "Area"
+msgstr "Areal"
+
+msgid "Pie"
+msgstr "Sektor"
+
+msgid "Radar"
+msgstr "Radar"
+
+msgid "Gauge"
+msgstr "Radialmåler"
+
+msgid "Year over year (line)"
+msgstr "År over år (linje)"
+
+msgid "Year over year (column)"
+msgstr "År over år (stolpe)"
+
+msgid "Single value"
+msgstr "Enkeltverdi"
+
+msgid "Pivot table"
+msgstr "Pivottabell"

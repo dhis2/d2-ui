@@ -1,0 +1,86 @@
+# 
+# Translators:
+# Aprisa Chrysantina <aprisa.chrysantina@gmail.com>, 2020
+# Viktor Varland <viktor@dhis2.org>, 2020
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"POT-Creation-Date: 2020-03-06T10:11:32.146Z\n"
+"PO-Revision-Date: 2020-04-29 21:46+0000\n"
+"Last-Translator: Viktor Varland <viktor@dhis2.org>, 2020\n"
+"Language-Team: Indonesian (https://www.transifex.com/hisp-uio/teams/100509/id/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: id\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Name"
+msgstr "Nama"
+
+msgid "Created"
+msgstr "Dibuat"
+
+msgid "Last updated"
+msgstr "Terakhir diperbarui"
+
+msgid "Type"
+msgstr "Tipe"
+
+msgid "Search by name"
+msgstr "Cari berdasarkan nama"
+
+msgid "All types"
+msgstr ""
+
+msgid "All chart types"
+msgstr ""
+
+msgid "All owners"
+msgstr ""
+
+msgid "Created by you"
+msgstr ""
+
+msgid "Created by others"
+msgstr "Dibuat orang lain"
+
+msgid "Column"
+msgstr "Kolom"
+
+msgid "Stacked column"
+msgstr "Kolom tumpuk"
+
+msgid "Bar"
+msgstr "Bar"
+
+msgid "Stacked bar"
+msgstr "Bar tumpuk"
+
+msgid "Line"
+msgstr "Garis"
+
+msgid "Area"
+msgstr "Area"
+
+msgid "Pie"
+msgstr "Pie"
+
+msgid "Radar"
+msgstr "Radar"
+
+msgid "Gauge"
+msgstr "Meteran"
+
+msgid "Year over year (line)"
+msgstr "Tahun ke tahun (garis)"
+
+msgid "Year over year (column)"
+msgstr "Tahun ke tahun (kolom)"
+
+msgid "Single value"
+msgstr "Nilai tunggal"
+
+msgid "Pivot table"
+msgstr ""

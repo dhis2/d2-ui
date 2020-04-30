@@ -1,0 +1,86 @@
+# 
+# Translators:
+# phil_dhis2, 2020
+# Viktor Varland <viktor@dhis2.org>, 2020
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"POT-Creation-Date: 2020-03-06T10:11:32.146Z\n"
+"PO-Revision-Date: 2020-04-29 21:46+0000\n"
+"Last-Translator: Viktor Varland <viktor@dhis2.org>, 2020\n"
+"Language-Team: Urdu (https://www.transifex.com/hisp-uio/teams/100509/ur/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ur\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Name"
+msgstr "ÙØ§Ù"
+
+msgid "Created"
+msgstr "تخلیق"
+
+msgid "Last updated"
+msgstr "آخری اپ ڈیٹ"
+
+msgid "Type"
+msgstr "ٹائپ"
+
+msgid "Search by name"
+msgstr "نام سے تلاش کریں"
+
+msgid "All types"
+msgstr ""
+
+msgid "All chart types"
+msgstr ""
+
+msgid "All owners"
+msgstr ""
+
+msgid "Created by you"
+msgstr ""
+
+msgid "Created by others"
+msgstr "دوسروں کی طرف سے پیدا"
+
+msgid "Column"
+msgstr "کالم"
+
+msgid "Stacked column"
+msgstr "اسٹیک کالم"
+
+msgid "Bar"
+msgstr "بار"
+
+msgid "Stacked bar"
+msgstr "اسٹیک بار"
+
+msgid "Line"
+msgstr "لائن"
+
+msgid "Area"
+msgstr "رقبہ"
+
+msgid "Pie"
+msgstr "پائی"
+
+msgid "Radar"
+msgstr "رڈار"
+
+msgid "Gauge"
+msgstr "گیج"
+
+msgid "Year over year (line)"
+msgstr ""
+
+msgid "Year over year (column)"
+msgstr ""
+
+msgid "Single value"
+msgstr ""
+
+msgid "Pivot table"
+msgstr ""
