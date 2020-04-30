@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 msgid "Delete {{what}}"
-msgstr ""
+msgstr "Supprimer {{what}}"
 
 msgid "This {{what}} will be deleted. Continue?"
 msgstr "Le {{what}} actuel sera supprimé. Continuer ?"
@@ -31,7 +31,7 @@ msgid "File"
 msgstr "Fichier"
 
 msgid "Open in this app"
-msgstr ""
+msgstr "Ouvrir dans cette app"
 
 msgid "Open in web API"
 msgstr ""
@@ -82,4 +82,4 @@ msgid "Write interpretation"
 msgstr "Ecrire une interprétation"
 
 msgid "Post"
-msgstr ""
+msgstr "Publier"

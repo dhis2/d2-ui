@@ -3,13 +3,14 @@
 # Viktor Varland <viktor@dhis2.org>, 2019
 # phil_dhis2, 2019
 # Karoline Tufte Lien <karoline@dhis2.org>, 2020
+# Edem Kossi <ekossi@hispwca.org>, 2020
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2018-07-04T08:51:47.874Z\n"
 "PO-Revision-Date: 2019-08-13 20:28+0000\n"
-"Last-Translator: Karoline Tufte Lien <karoline@dhis2.org>, 2020\n"
+"Last-Translator: Edem Kossi <ekossi@hispwca.org>, 2020\n"
 "Language-Team: French (https://www.transifex.com/hisp-uio/teams/100509/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -40,9 +41,11 @@ msgstr "groupes d'utilisateurs"
 
 msgid "Unsubscribe from this {{object}} and stop receiving notifications"
 msgstr ""
+"Se désinscrire de cet {{object}} et cesser de recevoir des notifications"
 
 msgid "Subscribe to this {{object}} and start receiving notifications"
 msgstr ""
+"S'abonner à cet {{object}} et commencer par recevoir des notifications"
 
 msgid "Details"
 msgstr "Détails"
@@ -141,7 +144,7 @@ msgid "event chart"
 msgstr "tableau d'événements"
 
 msgid "event report"
-msgstr ""
+msgstr "Rapport d'évènements"
 
 msgid "object"
-msgstr ""
+msgstr "objet"
