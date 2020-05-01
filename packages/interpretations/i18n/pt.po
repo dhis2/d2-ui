@@ -24,31 +24,31 @@ msgid "Table details"
 msgstr "Detalhes da tabela"
 
 msgid "Visualizer"
-msgstr ""
+msgstr "Visualizar"
 
 msgid "Chart details"
-msgstr ""
+msgstr "Detalhes do gráfico"
 
 msgid "Maps"
-msgstr ""
+msgstr "Mapas"
 
 msgid "Map details"
-msgstr ""
+msgstr "Detalhes do mapa"
 
 msgid "Event Reports"
-msgstr ""
+msgstr "Relatórios de Eventos"
 
 msgid "Event Visualizer"
-msgstr ""
+msgstr "Visualizador de Eventos"
 
 msgid "Visualization details"
-msgstr ""
+msgstr "Detalhes de visualização"
 
 msgid "View"
 msgstr "Vizualizar"
 
 msgid "Exit View"
-msgstr ""
+msgstr "Sair da vista"
 
 msgid "Like"
 msgstr "como"
@@ -63,13 +63,13 @@ msgid "Edit"
 msgstr "Modificar"
 
 msgid "Manage sharing"
-msgstr ""
+msgstr "Gerenciar compartilhamento"
 
 msgid "Delete"
 msgstr "Apagar"
 
 msgid "Back to all interpretations"
-msgstr ""
+msgstr "Voltar para todas as interpretações"
 
 msgid "Interpretations"
 msgstr "Interpretações"
@@ -81,22 +81,22 @@ msgid "Cancel"
 msgstr "Cancelar"
 
 msgid "Write a reply"
-msgstr ""
+msgstr "Escreva uma resposta"
 
 msgid "Confirm"
 msgstr "Confirmar"
 
 msgid "_No description_"
-msgstr ""
+msgstr "_Sem descrição_"
 
 msgid "Show "
-msgstr ""
+msgstr "Exposição"
 
 msgid "less"
-msgstr ""
+msgstr "menos"
 
 msgid "more"
-msgstr ""
+msgstr "mais"
 
 msgid "Unsubscribe from this {{object}} and stop receiving notifications"
 msgstr ""
