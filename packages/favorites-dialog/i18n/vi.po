@@ -2,13 +2,14 @@
 # Translators:
 # phil_dhis2, 2020
 # Viktor Varland <viktor@dhis2.org>, 2020
+# Mai Nguyen <thanhmai.jica@gmail.com>, 2020
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2020-03-06T10:11:32.146Z\n"
 "PO-Revision-Date: 2020-04-29 21:46+0000\n"
-"Last-Translator: Viktor Varland <viktor@dhis2.org>, 2020\n"
+"Last-Translator: Mai Nguyen <thanhmai.jica@gmail.com>, 2020\n"
 "Language-Team: Vietnamese (https://www.transifex.com/hisp-uio/teams/100509/vi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,46 +33,46 @@ msgid "Search by name"
 msgstr "Tìm theo tên"
 
 msgid "All types"
-msgstr ""
+msgstr "Các loại"
 
 msgid "All chart types"
-msgstr ""
+msgstr "Các loại biểu đồ"
 
 msgid "All owners"
-msgstr ""
+msgstr "Tất cả chủ sở hữu"
 
 msgid "Created by you"
-msgstr ""
+msgstr "Được tạo bởi bạn"
 
 msgid "Created by others"
 msgstr "Được tạo bởi người dùng khác"
 
 msgid "Column"
-msgstr "Cột"
+msgstr "Biểu đồ cột"
 
 msgid "Stacked column"
-msgstr ""
+msgstr "Biểu đồ cột chồng"
 
 msgid "Bar"
-msgstr ""
+msgstr "Biểu đồ dạng thanh"
 
 msgid "Stacked bar"
-msgstr ""
+msgstr "Biểu đồ thanh chồng"
 
 msgid "Line"
-msgstr ""
+msgstr "Biểu đồ đường"
 
 msgid "Area"
-msgstr ""
+msgstr "Khu vực"
 
 msgid "Pie"
-msgstr ""
+msgstr "Biểu đồ bánh"
 
 msgid "Radar"
-msgstr ""
+msgstr "Radar"
 
 msgid "Gauge"
-msgstr ""
+msgstr "Biểu đồ đo lường"
 
 msgid "Year over year (line)"
 msgstr ""
@@ -80,7 +81,7 @@ msgid "Year over year (column)"
 msgstr ""
 
 msgid "Single value"
-msgstr ""
+msgstr "Giá trị đơn"
 
 msgid "Pivot table"
-msgstr ""
+msgstr "Bảng xoay"
