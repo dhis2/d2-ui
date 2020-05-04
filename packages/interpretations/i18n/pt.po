@@ -54,7 +54,7 @@ msgid "Like"
 msgstr "como"
 
 msgid "Unlike"
-msgstr ""
+msgstr "Ao contrário"
 
 msgid "Reply"
 msgstr "Responder"
@@ -75,7 +75,7 @@ msgid "Interpretations"
 msgstr "Interpretações"
 
 msgid "Save reply"
-msgstr ""
+msgstr "Salvar resposta"
 
 msgid "Cancel"
 msgstr "Cancelar"
@@ -99,10 +99,10 @@ msgid "more"
 msgstr "mais"
 
 msgid "Unsubscribe from this {{object}} and stop receiving notifications"
-msgstr ""
+msgstr "Cancele a inscrição neste {{objeto}} e pare de receber notificações"
 
 msgid "Subscribe to this {{object}} and start receiving notifications"
-msgstr ""
+msgstr "Inscrever-se neste {{objeto}} e comece a receber notificações"
 
 msgid "Owner"
 msgstr "Proprietário"
@@ -120,13 +120,13 @@ msgid "Sharing"
 msgstr "Partilha"
 
 msgid "Delete interpretation"
-msgstr ""
+msgstr "Suprimir interpretação"
 
 msgid "Are you sure you want to delete this interpretation?"
-msgstr ""
+msgstr "Tem certeza de que deseja suprimir esta interpretação?"
 
 msgid "Access restricted"
-msgstr ""
+msgstr "Acesso restrito"
 
 msgid "likes"
 msgstr ""
@@ -135,28 +135,28 @@ msgid "like"
 msgstr ""
 
 msgid "Save interpretation"
-msgstr ""
+msgstr "Salvar interpretação"
 
 msgid "Write an interpretation"
-msgstr ""
+msgstr "Escreva uma interpretação"
 
 msgid "replies"
-msgstr ""
+msgstr "respostas"
 
 msgid "reply"
-msgstr ""
+msgstr "resposta"
 
 msgid "Hide old replies"
-msgstr ""
+msgstr "Ocultar respostas antigas"
 
 msgid "View more replies"
-msgstr ""
+msgstr "Ver mais respostas"
 
 msgid "Delete comment"
-msgstr ""
+msgstr "Suprimir comentário"
 
 msgid "Are you sure you want to delete this comment?"
-msgstr ""
+msgstr "Tem certeza de que deseja suprimir este comentário?"
 
 msgid "Hide"
 msgstr "Esconder"
@@ -168,16 +168,16 @@ msgid "No interpretations"
 msgstr "Sem interpretações"
 
 msgid "external access"
-msgstr ""
+msgstr "acesso externo"
 
 msgid ", public access"
-msgstr ""
+msgstr ", acesso público"
 
 msgid "public access"
-msgstr ""
+msgstr "acesso público"
 
 msgid "None. "
-msgstr ""
+msgstr "Nenhum."
 
 msgid "None"
 msgstr "Nenhum"
@@ -198,22 +198,22 @@ msgid "Users"
 msgstr "Utilizadores"
 
 msgid "user groups"
-msgstr ""
+msgstr "grupos de usuários"
 
 msgid "chart"
-msgstr ""
+msgstr "gráfico"
 
 msgid "pivot table"
-msgstr ""
+msgstr "tabela dinâmica"
 
 msgid "map"
-msgstr ""
+msgstr "mapa"
 
 msgid "event chart"
-msgstr ""
+msgstr "gráfico de eventos"
 
 msgid "event report"
-msgstr ""
+msgstr "relatório de evento"
 
 msgid "object"
-msgstr ""
+msgstr "objeto"
