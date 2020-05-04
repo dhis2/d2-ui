@@ -32,7 +32,7 @@ msgid "Open in this app"
 msgstr "Abrir neste aplicativo"
 
 msgid "Open in web API"
-msgstr ""
+msgstr "Abrir na API da web"
 
 msgid "Close"
 msgstr "fFechar"

@@ -4,13 +4,14 @@
 # phil_dhis2, 2019
 # Karoline Tufte Lien <karoline@dhis2.org>, 2020
 # Edem Kossi <ekossi@hispwca.org>, 2020
+# Gabriela Rodriguez <grodriguezcoronado@gmail.com>, 2020
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2018-07-04T08:51:47.874Z\n"
 "PO-Revision-Date: 2019-08-13 20:28+0000\n"
-"Last-Translator: Edem Kossi <ekossi@hispwca.org>, 2020\n"
+"Last-Translator: Gabriela Rodriguez <grodriguezcoronado@gmail.com>, 2020\n"
 "Language-Team: French (https://www.transifex.com/hisp-uio/teams/100509/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -69,13 +70,13 @@ msgid "OK"
 msgstr "Ok"
 
 msgid "Post comment"
-msgstr ""
+msgstr "Publier un commentaire"
 
 msgid "Cancel"
 msgstr "Annuler"
 
 msgid "Are you sure you want to remove this interpretation?"
-msgstr ""
+msgstr "Etes-vous sûr de vouloir supprimer cette interprétation?"
 
 msgid "Unlike"
 msgstr "Je n'aime plus"
@@ -102,19 +103,19 @@ msgid "people commented"
 msgstr "personnes ont commenté"
 
 msgid "Are you sure you want to remove this comment?"
-msgstr ""
+msgstr "Etes-vous sûr de vouloir supprimer ce commentaire?"
 
 msgid "more comments"
 msgstr "Plus de commentaires"
 
 msgid "Edit interpretation"
-msgstr ""
+msgstr "Modifier l'interprétation"
 
 msgid "Create interpretation"
-msgstr ""
+msgstr "Créer une interprétation"
 
 msgid "Save & share"
-msgstr ""
+msgstr "Sauver et partager"
 
 msgid "Save"
 msgstr "Enregistrer"
@@ -126,7 +127,7 @@ msgid "Clear interpretation"
 msgstr "Effacer interprétation"
 
 msgid "Write new interpretation"
-msgstr ""
+msgstr "Écrire une nouvelle interprétation"
 
 msgid "Interpretations"
 msgstr "interprétations"

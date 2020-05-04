@@ -66,13 +66,13 @@ msgid "OK"
 msgstr "Correcto"
 
 msgid "Post comment"
-msgstr ""
+msgstr "Publicar comentario"
 
 msgid "Cancel"
 msgstr "Cancelar"
 
 msgid "Are you sure you want to remove this interpretation?"
-msgstr ""
+msgstr "¿Estás seguro de que quieres eliminar esta interpretación?"
 
 msgid "Unlike"
 msgstr "diferente a"
@@ -99,19 +99,19 @@ msgid "people commented"
 msgstr "personas que comentaron"
 
 msgid "Are you sure you want to remove this comment?"
-msgstr ""
+msgstr "¿Estás seguro de que quieres eliminar este comentario?"
 
 msgid "more comments"
 msgstr "más comentarios"
 
 msgid "Edit interpretation"
-msgstr ""
+msgstr "Editar interpretación"
 
 msgid "Create interpretation"
-msgstr ""
+msgstr "Crear interpretación"
 
 msgid "Save & share"
-msgstr ""
+msgstr "Guardar & compartir"
 
 msgid "Save"
 msgstr "Guardar"
@@ -123,7 +123,7 @@ msgid "Clear interpretation"
 msgstr "limpiar interpretación"
 
 msgid "Write new interpretation"
-msgstr ""
+msgstr "Escribe nueva interpretación"
 
 msgid "Interpretations"
 msgstr "Interpretaciones"

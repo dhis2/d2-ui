@@ -33,7 +33,7 @@ msgid "Open in this app"
 msgstr "Abierto en esta aplicación"
 
 msgid "Open in web API"
-msgstr ""
+msgstr "Abrir en la API web"
 
 msgid "Close"
 msgstr "Cerrar"
