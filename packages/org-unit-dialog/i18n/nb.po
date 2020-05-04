@@ -38,7 +38,7 @@ msgid "Select a group"
 msgstr "Velg en gruppe"
 
 msgid "Select all org units below"
-msgstr "Velg alle org enhetene nedenfor"
+msgstr "Velg alle org enhetene under"
 
 msgid "selected"
 msgstr "valgt"

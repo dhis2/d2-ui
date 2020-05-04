@@ -1,0 +1,22 @@
+# 
+# Translators:
+# Gabriela Rodriguez <grodriguezcoronado@gmail.com>, 2020
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"POT-Creation-Date: 2018-07-05T10:44:25.966Z\n"
+"PO-Revision-Date: 2019-08-13 09:54+0000\n"
+"Last-Translator: Gabriela Rodriguez <grodriguezcoronado@gmail.com>, 2020\n"
+"Language-Team: French (https://www.transifex.com/hisp-uio/teams/100509/fr/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "Searching for \"{{filter}}\""
+msgstr "À la recherche de \"{{filtre}}\""
+
+msgid "No results found for \"{{filter}}\""
+msgstr "Aucun résultat trouvé pour \"{{filtre}}\""
