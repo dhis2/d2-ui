@@ -59,6 +59,14 @@ export class Likes extends Component {
         const { likedBy } = this.props;
         const Tooltip = this.state.tooltipIsOpen && this.renderTooltip();
 
+        const likes = i18n.t(
+            '{{count}} likes',
+            {
+                count: likedBy.length,
+                defaultValue: '{{count}} like',
+                defaultValue_plural: '{{count}} likes'
+            });
+
         return !!likedBy.length && (
             <Fragment>
                 <TextSeparator />
@@ -68,7 +76,7 @@ export class Likes extends Component {
                     onMouseLeave={this.hideTooltip}
                 >
                     {Tooltip}
-                    {likedBy.length} {likedBy.length > 1 ? i18n.t('likes') : i18n.t('like')}
+                    {likes}
                 </span>
             </Fragment>
         );
