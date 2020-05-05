@@ -69,7 +69,7 @@ msgid "Pie"
 msgstr "Biểu đồ bánh"
 
 msgid "Radar"
-msgstr "Radar"
+msgstr "Biểu đồ Radar"
 
 msgid "Gauge"
 msgstr "Biểu đồ đo lường"
