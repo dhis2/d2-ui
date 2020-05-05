@@ -6,7 +6,7 @@ import ActionButton from './ActionButton';
 import { getLink } from '../../api/redirect';
 import styles from './styles/ActionButton.style'
 
-const getAppName = type => {
+export const getAppName = type => {
     const appNameMap = {
         REPORT_TABLE: i18n.t('Pivot Tables'),
         CHART: i18n.t('Visualizer'),

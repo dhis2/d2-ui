@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { RedirectButton } from '../RedirectButton';
+import { RedirectButton, getAppName } from '../RedirectButton';
 import ActionButton from '../ActionButton';
 import { getStubContext } from '../../../../config/test-context';
 
@@ -69,7 +69,7 @@ describe('components: Cards -> CardInfo component ', () => {
             });
 
             it('should render the correct tooltip text', () => {
-                const relativeTooltip = `View in Visualizer app`;
+                const relativeTooltip = `View in ${getAppName(dashboardItem.type)} app`;
                 const actionButton = redirectButton().find(ActionButton);
                 
                 expect(actionButton.props().tooltip).toEqual(relativeTooltip);
