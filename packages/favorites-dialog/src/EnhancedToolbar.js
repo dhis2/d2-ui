@@ -29,7 +29,7 @@ const toolbarStyles = () => ({
     menuIcon: {
         marginRight: 8,
         height: 16
-    }
+    },
 });
 
 const VisTypeFilterMenuItem = withStyles(toolbarStyles)(({ classes, type, icon = undefined, label = undefined }) => (
