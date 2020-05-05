@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2020-05-04T18:02:37.281Z\n"
-"PO-Revision-Date: 2020-05-04T18:02:37.281Z\n"
+"POT-Creation-Date: 2020-05-05T16:59:58.979Z\n"
+"PO-Revision-Date: 2020-05-05T16:59:58.979Z\n"
 
 msgid "View"
 msgstr ""
@@ -45,6 +45,9 @@ msgid "Event Reports"
 msgstr ""
 
 msgid "Event Visualizer"
+msgstr ""
+
+msgid "View in {{appName}} app"
 msgstr ""
 
 msgid "Back to all interpretations"
@@ -166,6 +169,9 @@ msgstr ""
 msgid "None. "
 msgstr ""
 
+msgid "Shared with"
+msgstr ""
+
 msgid "None"
 msgstr ""
 
@@ -181,11 +187,15 @@ msgstr ""
 msgid "Public"
 msgstr ""
 
-msgid "{{userCount}} users"
-msgstr ""
+msgid "{{count}} users"
+msgid_plural "{{count}} users"
+msgstr[0] "{{count}} user"
+msgstr[1] "{{count}} users"
 
-msgid "{{userGroupsCount}} user groups"
-msgstr ""
+msgid "{{count}} user groups"
+msgid_plural "{{count}} user groups"
+msgstr[0] "{{count}} user group"
+msgstr[1] "{{count}} user groups"
 
 msgid "chart"
 msgstr ""

@@ -13,13 +13,25 @@ export const getSharingText = model => {
     const userCount = (model.userAccesses || []).length;
     const userInfo =
         userCount > 2
-            ? i18n.t('{{userCount}} users', {userCount})
+            ? i18n.t(
+                '{{count}} users',
+                {
+                    count: userCount,
+                    defaultValue: '{{count}} user',
+                    defaultValue_plural: '{{count}} users'
+                })
             : (model.userAccesses || []).map(users => users.displayName).join(', ');
 
     const userGroupsCount = (model.userGroupAccesses || []).length;
     const userGroupsInfo =
         userGroupsCount > 2
-            ? i18n.t('{{userGroupsCount}} user groups', {userGroupsCount})
+            ? i18n.t(
+                '{{count}} user groups',
+                {
+                    count: userGroupsCount,
+                    defaultValue: '{{count}} user group',
+                    defaultValue_plural: '{{count}} user groups'
+                })
             : (model.userGroupAccesses || []).map(userGroup => userGroup.displayName).join(', ');
 
     return publicAccess + (userInfo ? ` + ${userInfo}` : '') + (userGroupsInfo ? ` + ${userGroupsInfo}` : '');

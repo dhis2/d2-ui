@@ -15,9 +15,10 @@ import PivotTableIcon from './icons/PivotTableIcon';
 
 export const CHART = 'CHART';
 export const PIVOT_TABLE = 'PIVOT_TABLE';
+export const COLUMN = 'COLUMN';
 
 export const visTypeIcons = {
-    COLUMN: ColumnIcon,
+    [COLUMN]: ColumnIcon,
     STACKED_COLUMN: StackedColumnIcon,
     BAR: BarIcon,
     STACKED_BAR: StackedBarIcon,
@@ -34,7 +35,7 @@ export const visTypeIcons = {
 
 export const getVisTypeLabel = type => {
     const visTypeLabels = {
-        COLUMN: i18n.t("Column"),
+        [COLUMN]: i18n.t("Column"),
         STACKED_COLUMN: i18n.t("Stacked column"),
         BAR: i18n.t("Bar"),
         STACKED_BAR: i18n.t("Stacked bar"),

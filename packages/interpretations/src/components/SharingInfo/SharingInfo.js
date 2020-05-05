@@ -43,12 +43,13 @@ export class SharingInfo extends Component {
 
     render() {
         const Info = this.concatSharingInfo();
+        const colon = ": ";
 
         return (
             <div className={this.props.classes.sharingContainer}>
                 <Share className={this.props.classes.sharingIcon}/>
                 <span className={this.props.classes.label}>
-                    {i18n.t('Shared with: ')} 
+                    {i18n.t('Shared with')}{colon}
                     {Info}
                     <Link 
                         onClick={this.props.onClick}
