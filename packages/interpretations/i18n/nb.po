@@ -23,7 +23,7 @@ msgid "Table details"
 msgstr "Tabelldetaljer"
 
 msgid "Visualizer"
-msgstr "Visualiserer"
+msgstr "Visualizer"
 
 msgid "Chart details"
 msgstr "Diagramdetaljer"
@@ -38,7 +38,7 @@ msgid "Event Reports"
 msgstr "Hendelsesrapporter"
 
 msgid "Event Visualizer"
-msgstr "Hendelsesvisualiserer"
+msgstr "Hendelsesvisualizer"
 
 msgid "Visualization details"
 msgstr "Visualiseringdetaljer"
