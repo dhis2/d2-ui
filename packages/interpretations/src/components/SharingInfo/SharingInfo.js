@@ -26,16 +26,18 @@ export class SharingInfo extends Component {
         };
         
         if (this.checkPublicAccess()) {
+            const publicAccess = i18n.t('public access');
             displayNames = displayNames.concat(displayNames.length
-                ? i18n.t(', public access') 
-                : i18n.t('public access')
+                ? `, ${publicAccess}` 
+                : publicAccess
             );
         };
 
+        const sentenceSeparator = '. ';
         if (displayNames.length) {
-            displayNames = displayNames.replace(/, ([^,]*)$/, ' and $1').concat('. ');
+            displayNames = displayNames.replace(/, ([^,]*)$/, ' and $1').concat(sentenceSeparator);
         } else {
-            displayNames = i18n.t('None. ');
+            displayNames = i18n.t('None').concat(sentenceSeparator);
         }
 
         return displayNames;

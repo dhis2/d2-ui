@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2020-05-05T16:59:58.979Z\n"
-"PO-Revision-Date: 2020-05-05T16:59:58.979Z\n"
+"POT-Creation-Date: 2020-05-05T19:02:08.816Z\n"
+"PO-Revision-Date: 2020-05-05T19:02:08.816Z\n"
 
 msgid "View"
 msgstr ""
@@ -130,11 +130,10 @@ msgstr ""
 msgid "Write an interpretation"
 msgstr ""
 
-msgid "replies"
-msgstr ""
-
-msgid "reply"
-msgstr ""
+msgid "{{count}} replies"
+msgid_plural "{{count}} replies"
+msgstr[0] "{{count}} reply"
+msgstr[1] "{{count}} replies"
 
 msgid "Hide old replies"
 msgstr ""
@@ -160,19 +159,13 @@ msgstr ""
 msgid "external access"
 msgstr ""
 
-msgid ", public access"
-msgstr ""
-
 msgid "public access"
 msgstr ""
 
-msgid "None. "
+msgid "None"
 msgstr ""
 
 msgid "Shared with"
-msgstr ""
-
-msgid "None"
 msgstr ""
 
 msgid "Read"

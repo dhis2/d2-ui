@@ -70,6 +70,14 @@ export class Replies extends Component {
         const { repliedBy } = this.props;
         const Tooltip = this.state.tooltipIsOpen && this.renderTooltip();
 
+        const replies = i18n.t(
+            '{{count}} replies',
+            {
+                count: repliedBy.length,
+                defaultValue: '{{count}} reply',
+                defaultValue_plural: '{{count}} replies'
+            });
+
         return !!repliedBy.length && (
             <Fragment >
                 <TextSeparator />
@@ -79,7 +87,7 @@ export class Replies extends Component {
                     onMouseLeave={this.hideTooltip}
                 >
                     {Tooltip}
-                    {`${repliedBy.length} ${repliedBy.length > 1 ? i18n.t('replies') : i18n.t('reply')}`}
+                    {replies}
                 </span>
             </Fragment>
         );
