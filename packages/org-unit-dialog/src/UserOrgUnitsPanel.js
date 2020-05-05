@@ -10,13 +10,17 @@ import StopIcon from '@material-ui/icons/Stop';
 import userOrgUnits from './userOrgUnits';
 import styles from './styles/UserOrgUnitsPanel';
 
-const UserOrgUnitsPanel = props => {
+const getOrgUnitName = id => {
     const orgUnitNames = {
         USER_ORGUNIT: i18n.t('User organisation unit'),
         USER_ORGUNIT_CHILDREN: i18n.t('User sub-units'),
         USER_ORGUNIT_GRANDCHILDREN: i18n.t('User sub-x2-units')
     };
 
+    return orgUnitNames[id]
+}
+
+const UserOrgUnitsPanel = props => {
     return (
         <div style={styles.container}>
             <Grid
@@ -24,32 +28,28 @@ const UserOrgUnitsPanel = props => {
                 direction="row"
                 alignItems="center"
             >
-                {userOrgUnits.map(orgUnitType => {
-                    const orgUnitName = orgUnitNames[orgUnitType.id];
-
-                    return (
-                        <Grid
-                            key={orgUnitType.id}
-                            style={styles.gridItem}
-                            item
-                        >
-                            <Checkbox
-                                checked={props.userOrgUnits.some(ouType => ouType.id === orgUnitType.id)}
-                                onChange={props.handleUserOrgUnitClick}
-                                inputProps={{
-                                    id: orgUnitType.id,
-                                    name: orgUnitType.id,
-                                }}
-                                icon={<CheckBoxOutlineBlankIcon style={styles.checkbox} />}
-                                checkedIcon={<CheckBoxIcon style={styles.checkboxChecked} />}
-                                color={props.checkboxColor}
-                            />
-                            <InputLabel htmlFor={orgUnitType.id}>
-                                <StopIcon style={styles.stopIcon} />
-                                <span style={styles.text}>{orgUnitName}</span>
-                            </InputLabel>
-                        </Grid>
-                    )}
+                {userOrgUnits.map(orgUnitType => (
+                    <Grid
+                        key={orgUnitType.id}
+                        style={styles.gridItem}
+                        item
+                    >
+                        <Checkbox
+                            checked={props.userOrgUnits.some(ouType => ouType.id === orgUnitType.id)}
+                            onChange={props.handleUserOrgUnitClick}
+                            inputProps={{
+                                id: orgUnitType.id,
+                                name: orgUnitType.id,
+                            }}
+                            icon={<CheckBoxOutlineBlankIcon style={styles.checkbox} />}
+                            checkedIcon={<CheckBoxIcon style={styles.checkboxChecked} />}
+                            color={props.checkboxColor}
+                        />
+                        <InputLabel htmlFor={orgUnitType.id}>
+                            <StopIcon style={styles.stopIcon} />
+                            <span style={styles.text}>{getOrgUnitName(orgUnitType.id)}</span>
+                        </InputLabel>
+                    </Grid>)
                 )}
             </Grid>
         </div>
