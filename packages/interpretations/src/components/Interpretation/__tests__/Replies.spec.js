@@ -3,7 +3,6 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { Replies } from '../Replies';
 import Popper from '@material-ui/core/Popper';
-import Paper from '@material-ui/core/Paper';
 
 const baseProps = {
     classes: {},
