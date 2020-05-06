@@ -1,7 +1,6 @@
 # 
 # Translators:
 # Viktor Varland <viktor@dhis2.org>, 2020
-# Mai Nguyen <thanhmai.jica@gmail.com>, 2020
 # phil_dhis2, 2020
 # 
 msgid ""
@@ -10,72 +9,72 @@ msgstr ""
 "POT-Creation-Date: 2020-04-30T20:43:22.797Z\n"
 "PO-Revision-Date: 2020-04-29 21:46+0000\n"
 "Last-Translator: phil_dhis2, 2020\n"
-"Language-Team: Vietnamese (https://www.transifex.com/hisp-uio/teams/100509/vi/)\n"
+"Language-Team: Swedish (https://www.transifex.com/hisp-uio/teams/100509/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: vi\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: sv\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "Name"
-msgstr "Tên"
+msgstr "Namn"
 
 msgid "Created"
-msgstr "Đã tạo"
+msgstr "Skapad"
 
 msgid "Last updated"
-msgstr "Lần cập nhật cuối"
+msgstr ""
 
 msgid "Type"
-msgstr "Loại"
+msgstr "Typ"
 
 msgid "Search by name"
-msgstr "Tìm theo tên"
+msgstr "Sök på namn"
 
 msgid "All types"
-msgstr "Các loại"
+msgstr ""
 
 msgid "All chart types"
-msgstr "Các loại biểu đồ"
+msgstr ""
 
 msgid "All owners"
-msgstr "Tất cả chủ sở hữu"
+msgstr ""
 
 msgid "Created by you"
-msgstr "Được tạo bởi bạn"
+msgstr ""
 
 msgid "Created by others"
-msgstr "Được tạo bởi người dùng khác"
+msgstr ""
 
 msgid "Close"
-msgstr "Đóng lại"
+msgstr "Stänga"
 
 msgid "Column"
-msgstr "Biểu đồ cột"
+msgstr ""
 
 msgid "Stacked column"
-msgstr "Biểu đồ cột chồng"
+msgstr ""
 
 msgid "Bar"
-msgstr "Biểu đồ dạng thanh"
+msgstr ""
 
 msgid "Stacked bar"
-msgstr "Biểu đồ thanh chồng"
+msgstr ""
 
 msgid "Line"
-msgstr "Biểu đồ đường"
+msgstr ""
 
 msgid "Area"
-msgstr "Khu vực"
+msgstr ""
 
 msgid "Pie"
-msgstr "Biểu đồ bánh"
+msgstr ""
 
 msgid "Radar"
-msgstr "Biểu đồ Radar"
+msgstr ""
 
 msgid "Gauge"
-msgstr "Biểu đồ đo lường"
+msgstr ""
 
 msgid "Year over year (line)"
 msgstr ""
@@ -84,7 +83,7 @@ msgid "Year over year (column)"
 msgstr ""
 
 msgid "Single value"
-msgstr "Giá trị đơn"
+msgstr ""
 
 msgid "Pivot table"
-msgstr "Bảng xoay"
+msgstr ""

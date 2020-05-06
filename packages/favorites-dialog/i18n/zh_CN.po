@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2020-03-06T10:11:32.146Z\n"
+"POT-Creation-Date: 2020-04-30T20:43:22.797Z\n"
 "PO-Revision-Date: 2020-04-29 21:46+0000\n"
 "Last-Translator: 晓东 林 <13981924470@126.com>, 2020\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/hisp-uio/teams/100509/zh_CN/)\n"
@@ -45,6 +45,9 @@ msgstr ""
 
 msgid "Created by others"
 msgstr ""
+
+msgid "Close"
+msgstr "关闭"
 
 msgid "Column"
 msgstr ""

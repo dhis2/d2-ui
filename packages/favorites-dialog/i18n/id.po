@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2020-03-06T10:11:32.146Z\n"
+"POT-Creation-Date: 2020-04-30T20:43:22.797Z\n"
 "PO-Revision-Date: 2020-04-29 21:46+0000\n"
 "Last-Translator: Viktor Varland <viktor@dhis2.org>, 2020\n"
 "Language-Team: Indonesian (https://www.transifex.com/hisp-uio/teams/100509/id/)\n"
@@ -45,6 +45,9 @@ msgstr ""
 
 msgid "Created by others"
 msgstr "Dibuat orang lain"
+
+msgid "Close"
+msgstr "Tutup"
 
 msgid "Column"
 msgstr "Kolom"
