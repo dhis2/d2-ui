@@ -15,7 +15,6 @@ import { setSubscription } from '../../api/helpers';
 import { formatDate } from '../../dateformats/dateformatter';
 import { translateModelName } from '../../translations/modelNametranslator';
 import styles from './styles/Details.style';
-import { itemTypeMap } from '../../api/redirect';
 
 export class Details extends React.Component {
     state = { isExpanded: true, showCompleteDescription: false };
@@ -58,13 +57,25 @@ export class Details extends React.Component {
         );
     };
 
+    getCardTitle = type => {
+        const typeTitleMap = {
+            REPORT_TABLE: i18n.t('Table details'),
+            CHART: i18n.t('Chart details'),
+            MAP:  i18n.t('Map details'),
+            EVENT_REPORT: i18n.t('Table details'),
+            EVENT_CHART: i18n.t('Chart details'),
+            VISUALIZATION: i18n.t('Visualization details'),
+        }
+        return typeTitleMap[type];
+    }
+
     render() {
         const { model, classes } = this.props;
         const owner = model.user ? model.user.displayName : '-';
         const SubscriptionButton = this.renderSubscriptionButton();
 
         return (
-            <CollapsibleCard title={itemTypeMap[this.props.type.toUpperCase()].detailsTitle}>
+            <CollapsibleCard title={this.getCardTitle(this.props.type.toUpperCase())}>
                 {SubscriptionButton}
                 <div className={classes.detailsCardList}>
                     <Item text={

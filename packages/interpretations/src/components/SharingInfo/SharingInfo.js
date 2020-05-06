@@ -14,9 +14,6 @@ export class SharingInfo extends Component {
     getGroups = () => 
         (this.props.interpretation.userGroupAccesses || []).map(item => item.displayName)
 
-    checkExternalAccess = () => 
-        this.props.interpretation.externalAccess ? i18n.t('external access') : '';
-
     checkPublicAccess = () =>
         this.props.interpretation.publicAccess === 'rw------' ||
         this.props.interpretation.publicAccess === 'r-------';
@@ -29,16 +26,18 @@ export class SharingInfo extends Component {
         };
         
         if (this.checkPublicAccess()) {
+            const publicAccess = i18n.t('public access');
             displayNames = displayNames.concat(displayNames.length
-                ? i18n.t(', public access') 
-                : i18n.t('public access')
+                ? `, ${publicAccess}` 
+                : publicAccess
             );
         };
 
+        const sentenceSeparator = '. ';
         if (displayNames.length) {
-            displayNames = displayNames.replace(/, ([^,]*)$/, ' and $1').concat('. ');
+            displayNames = displayNames.replace(/, ([^,]*)$/, ' and $1').concat(sentenceSeparator);
         } else {
-            displayNames = i18n.t('None. ');
+            displayNames = i18n.t('None').concat(sentenceSeparator);
         }
 
         return displayNames;
@@ -46,12 +45,13 @@ export class SharingInfo extends Component {
 
     render() {
         const Info = this.concatSharingInfo();
+        const colon = ": ";
 
         return (
             <div className={this.props.classes.sharingContainer}>
                 <Share className={this.props.classes.sharingIcon}/>
                 <span className={this.props.classes.label}>
-                    {i18n.t('Shared with: ')} 
+                    {i18n.t('Shared with')}{colon}
                     {Info}
                     <Link 
                         onClick={this.props.onClick}

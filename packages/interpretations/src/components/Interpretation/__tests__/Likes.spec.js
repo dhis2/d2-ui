@@ -34,7 +34,7 @@ describe('components: Interpretation -> Likes component ', () => {
         });
 
         it('should show the amount of likes', () => {
-            expect(likes().text()).toContain('2 likes')
+            expect(likes().text()).toContain('2')
         })
         
         describe('when state tooltipIsOpen is false', () => {

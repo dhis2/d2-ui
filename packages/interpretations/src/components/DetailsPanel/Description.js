@@ -10,20 +10,26 @@ export const Description = ({ displayDescription, isToggled, onToggleDescription
     let description;
     
     if (!displayDescription) {
-        description = i18n.t('_No description_');
+        description = i18n.t('No description');
     } else if (displayDescription.length < descriptionMaxLength || isToggled) {
         description = displayDescription;
     } else {
         description = displayDescription.substring(0, descriptionMaxLength) + ' ... ';
     }
 
+    const showMoreLessLabel = isToggled ? i18n.t('Show less') : i18n.t('Show more');
+
+    const DescriptionElement = displayDescription ?
+        <RichTextParser>{description}</RichTextParser> :
+        <p style={{fontStyle: 'italic'}}>{description}</p>;
+
     return (
         <Fragment>
-            <RichTextParser>{description}</RichTextParser>
+            {DescriptionElement}
             {displayDescription.length > descriptionMaxLength && (
                 <Link
                     onClick={onToggleDescription}
-                    label={`[${i18n.t('Show ')} ${isToggled ? i18n.t('less') : i18n.t('more')}]`}
+                    label={showMoreLessLabel}
                 />
             )}
         </Fragment>

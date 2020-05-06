@@ -1,5 +1,4 @@
 import i18n from '@dhis2/d2-i18n';
-
 import BarIcon from './icons/BarIcon';
 import StackedBarIcon from './icons/StackedBarIcon';
 import ColumnIcon from './icons/ColumnIcon';
@@ -16,21 +15,40 @@ import PivotTableIcon from './icons/PivotTableIcon';
 
 export const CHART = 'CHART';
 export const PIVOT_TABLE = 'PIVOT_TABLE';
+export const COLUMN = 'COLUMN';
 
-const visTypeMap = {
-    COLUMN: { label: i18n.t('Column'), icon: ColumnIcon },
-    STACKED_COLUMN: { label: i18n.t('Stacked column'), icon: StackedColumnIcon },
-    BAR: { label: i18n.t('Bar'), icon: BarIcon },
-    STACKED_BAR: { label: i18n.t('Stacked bar'), icon: StackedBarIcon },
-    LINE: { label: i18n.t('Line'), icon: LineIcon },
-    AREA: { label: i18n.t('Area'), icon: AreaIcon },
-    PIE: { label: i18n.t('Pie'), icon: PieIcon },
-    RADAR: { label: i18n.t('Radar'), icon: RadarIcon },
-    GAUGE: { label: i18n.t('Gauge'), icon: GaugeIcon },
-    YEAR_OVER_YEAR_LINE: { label: i18n.t('Year over year (line)'), icon: YearOverYearLineIcon },
-    YEAR_OVER_YEAR_COLUMN: { label: i18n.t('Year over year (column)'), icon: YearOverYearColumnIcon },
-    SINGLE_VALUE: { label: i18n.t('Single value'), icon: SingleValueIcon },
-    [PIVOT_TABLE]: { label: i18n.t('Pivot table'), icon: PivotTableIcon },
+export const visTypeIcons = {
+    [COLUMN]: ColumnIcon,
+    STACKED_COLUMN: StackedColumnIcon,
+    BAR: BarIcon,
+    STACKED_BAR: StackedBarIcon,
+    LINE: LineIcon,
+    AREA: AreaIcon,
+    PIE: PieIcon,
+    RADAR: RadarIcon,
+    GAUGE: GaugeIcon,
+    YEAR_OVER_YEAR_LINE: YearOverYearLineIcon,
+    YEAR_OVER_YEAR_COLUMN: YearOverYearColumnIcon,
+    SINGLE_VALUE: SingleValueIcon,
+    [PIVOT_TABLE]: PivotTableIcon
 };
 
-export default visTypeMap;
+export const getVisTypeLabel = type => {
+    const visTypeLabels = {
+        [COLUMN]: i18n.t("Column"),
+        STACKED_COLUMN: i18n.t("Stacked column"),
+        BAR: i18n.t("Bar"),
+        STACKED_BAR: i18n.t("Stacked bar"),
+        LINE: i18n.t("Line"),
+        AREA: i18n.t("Area"),
+        PIE: i18n.t("Pie"),
+        RADAR: i18n.t("Radar"),
+        GAUGE: i18n.t("Gauge"),
+        YEAR_OVER_YEAR_LINE: i18n.t("Year over year (line)"),
+        YEAR_OVER_YEAR_COLUMN: i18n.t("Year over year (column)"),
+        SINGLE_VALUE: i18n.t("Single value"),
+        [PIVOT_TABLE]: i18n.t("Pivot table")
+    };
+
+    return visTypeLabels[type];
+}

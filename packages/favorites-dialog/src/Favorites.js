@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import i18n from '@dhis2/d2-i18n';
 
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -38,7 +39,7 @@ class Favorites extends Component {
                     <EnhancedTable showTypeColumn={showTypeColumn} onFavoriteSelect={handleOnFavoriteSelect} />
                 </DialogContent>
                 <DialogActions>
-                    <Button color="primary" onClick={onRequestClose}>Close</Button>
+                    <Button color="primary" onClick={onRequestClose}>{i18n.t('Close')}</Button>
                 </DialogActions>
             </Dialog>
         );
