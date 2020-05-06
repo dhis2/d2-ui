@@ -1,8 +1,6 @@
 import sinon from 'sinon';
 import * as api from '../api';
 import { getMentions } from '../users';
-import { getInstance } from 'd2';
-
 
 const users = [{
         id: "oXD88WWSQpR",

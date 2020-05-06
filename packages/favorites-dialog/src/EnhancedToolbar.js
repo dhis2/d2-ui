@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React from "react";
 import { connect } from "react-redux";
 
 import { withStyles } from "@material-ui/core/styles";
@@ -61,7 +61,7 @@ const EnhancedToolbar = props => {
             />
 
             <div className={classes.spacer} />
-                <Fragment>
+                <>
                     {showTypeFilter ?
                         <Select
                             className={classes.filter}
@@ -99,7 +99,7 @@ const EnhancedToolbar = props => {
                         <MenuItem value="byme">{i18n.t('Created by you')}</MenuItem>
                         <MenuItem value="byothers">{i18n.t('Created by others')}</MenuItem>
                     </Select>
-                </Fragment>
+                </>
         </Toolbar>
     );
 }
