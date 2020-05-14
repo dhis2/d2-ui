@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2020-05-13T14:40:54.600Z\n"
-"PO-Revision-Date: 2020-05-13T14:40:54.600Z\n"
+"POT-Creation-Date: 2020-05-14T08:14:36.232Z\n"
+"PO-Revision-Date: 2020-05-14T08:14:36.232Z\n"
 
 msgid "Name"
 msgstr ""
@@ -18,12 +18,6 @@ msgid "Last updated"
 msgstr ""
 
 msgid "Type"
-msgstr ""
-
-msgid "{{from}}-{{to}} of {{total}}"
-msgstr ""
-
-msgid "{{from}}-{{to}} of more than {{to}}"
 msgstr ""
 
 msgid "Search by name"
