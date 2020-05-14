@@ -125,6 +125,21 @@ const EnhancedTable = props => {
                             rowsPerPage={rowsPerPage}
                             page={page}
                             onChangePage={changePage}
+                            labelDisplayedRows={({ from, to, count }) => {
+                                return count !== -1
+                                    ? i18n.t('{{from}}-{{to}} of {{total}}', {
+                                          from,
+                                          to,
+                                          total: count,
+                                      })
+                                    : i18n.t(
+                                          '{{from}}-{{to}} of more than {{to}}',
+                                          {
+                                              from,
+                                              to,
+                                          }
+                                      );
+                            }}
                             //onChangeRowsPerPage={setRowsPerPage}
                             //rowsPerPageOptions={[5, 10, 15, 20]}
                             rowsPerPageOptions={[]}
