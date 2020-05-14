@@ -13,9 +13,14 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 import i18n from '@dhis2/d2-i18n';
 
-import {getVisTypeLabel, visTypeIcons} from './visTypes';
+import { getVisTypeLabel, visTypeIcons } from './visTypes';
 
-import { changePage, setRowsPerPage, sortData, selectFavorite } from './actions';
+import {
+    changePage,
+    setRowsPerPage,
+    sortData,
+    selectFavorite,
+} from './actions';
 
 const Time = ({ date }) => {
     const d = new Date(date);
@@ -84,7 +89,12 @@ const EnhancedTable = props => {
     return (
         <div>
             <Table>
-                <EnhancedTableHead order={order} column={column} sortData={sortData} showTypeColumn={showTypeColumn} />
+                <EnhancedTableHead
+                    order={order}
+                    column={column}
+                    sortData={sortData}
+                    showTypeColumn={showTypeColumn}
+                />
                 <TableBody>
                     {data.map(favorite => {
                         const visTypeIcon = visTypeIcons[favorite.type];
@@ -98,16 +108,17 @@ const EnhancedTable = props => {
                                 >
                                     {favorite.displayName}
                                 </TableCell>
-                                {showTypeColumn &&
-                                    <TableCell
-                                        padding="dense">
+                                {showTypeColumn && (
+                                    <TableCell padding="dense">
                                         <Tooltip
-                                            title={getVisTypeLabel(favorite.type)}
+                                            title={getVisTypeLabel(
+                                                favorite.type
+                                            )}
                                         >
                                             {visTypeIcon}
                                         </Tooltip>
                                     </TableCell>
-                                }
+                                )}
                                 <TableCell padding="dense">
                                     <Time date={favorite.created} />
                                 </TableCell>
@@ -167,4 +178,7 @@ const mapDispatchToProps = {
     selectFavorite,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(EnhancedTable);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(EnhancedTable);
