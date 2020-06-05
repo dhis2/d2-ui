@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2020-02-06T13:44:56.329Z\n"
+"POT-Creation-Date: 2020-06-05T17:52:31.450Z\n"
 "PO-Revision-Date: 2019-08-12 21:18+0000\n"
 "Last-Translator: Gabriela Rodriguez <grodriguezcoronado@gmail.com>, 2020\n"
 "Language-Team: Spanish (https://www.transifex.com/hisp-uio/teams/100509/es/)\n"
@@ -22,6 +22,9 @@ msgstr "Eliminar {{que}}"
 
 msgid "This {{what}} will be deleted. Continue?"
 msgstr "Este {{que}} será eliminado. ¿Continuar?"
+
+msgid "Cancel"
+msgstr "Cancelar"
 
 msgid "Delete"
 msgstr "Eliminar"
@@ -52,9 +55,6 @@ msgstr "Nombre"
 
 msgid "Description"
 msgstr "Descripción"
-
-msgid "Cancel"
-msgstr "Cancelar"
 
 msgid "Rename"
 msgstr "Renombrar"
