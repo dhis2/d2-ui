@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2020-02-06T13:44:56.329Z\n"
+"POT-Creation-Date: 2020-06-05T17:52:31.450Z\n"
 "PO-Revision-Date: 2019-08-12 21:18+0000\n"
 "Last-Translator: Edem Kossi <ekossi@hispwca.org>, 2020\n"
 "Language-Team: French (https://www.transifex.com/hisp-uio/teams/100509/fr/)\n"
@@ -23,6 +23,9 @@ msgstr "Supprimer {{what}}"
 
 msgid "This {{what}} will be deleted. Continue?"
 msgstr "Le {{what}} actuel sera supprimé. Continuer ?"
+
+msgid "Cancel"
+msgstr "Annuler"
 
 msgid "Delete"
 msgstr "Supprimer"
@@ -53,9 +56,6 @@ msgstr "Nom"
 
 msgid "Description"
 msgstr "Description"
-
-msgid "Cancel"
-msgstr "Annuler"
 
 msgid "Rename"
 msgstr "Renommer"

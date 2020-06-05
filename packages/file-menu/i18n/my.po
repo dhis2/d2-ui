@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2020-02-06T13:44:56.329Z\n"
+"POT-Creation-Date: 2020-06-05T17:52:31.450Z\n"
 "PO-Revision-Date: 2019-08-12 21:18+0000\n"
 "Last-Translator: phil_dhis2, 2020\n"
 "Language-Team: Burmese (https://www.transifex.com/hisp-uio/teams/100509/my/)\n"
@@ -22,6 +22,9 @@ msgstr ""
 
 msgid "This {{what}} will be deleted. Continue?"
 msgstr ""
+
+msgid "Cancel"
+msgstr "ဆက်မလုပ်တော့ပါ။"
 
 msgid "Delete"
 msgstr "ဖျက်ပါ။"
@@ -52,9 +55,6 @@ msgstr "အမည်"
 
 msgid "Description"
 msgstr "ဖော်ပြချက်"
-
-msgid "Cancel"
-msgstr "ဆက်မလုပ်တော့ပါ။"
 
 msgid "Rename"
 msgstr "အမည်ပြောင်းခြင်း"

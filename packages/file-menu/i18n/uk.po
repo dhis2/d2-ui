@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2020-02-06T13:44:56.329Z\n"
+"POT-Creation-Date: 2020-06-05T17:52:31.450Z\n"
 "PO-Revision-Date: 2019-08-12 21:18+0000\n"
 "Last-Translator: Viktor Varland <viktor@dhis2.org>, 2019\n"
 "Language-Team: Ukrainian (https://www.transifex.com/hisp-uio/teams/100509/uk/)\n"
@@ -21,6 +21,9 @@ msgstr ""
 
 msgid "This {{what}} will be deleted. Continue?"
 msgstr ""
+
+msgid "Cancel"
+msgstr "Скасувати"
 
 msgid "Delete"
 msgstr "Видалити"
@@ -51,9 +54,6 @@ msgstr "Ім'я"
 
 msgid "Description"
 msgstr "Змалювання"
-
-msgid "Cancel"
-msgstr "Скасувати"
 
 msgid "Rename"
 msgstr "Перейменувати"
