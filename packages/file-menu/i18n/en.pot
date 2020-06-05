@@ -5,13 +5,16 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2020-02-06T13:44:56.329Z\n"
-"PO-Revision-Date: 2020-02-06T13:44:56.329Z\n"
+"POT-Creation-Date: 2020-06-05T17:52:31.450Z\n"
+"PO-Revision-Date: 2020-06-05T17:52:31.450Z\n"
 
 msgid "Delete {{what}}"
 msgstr ""
 
 msgid "This {{what}} will be deleted. Continue?"
+msgstr ""
+
+msgid "Cancel"
 msgstr ""
 
 msgid "Delete"
@@ -42,9 +45,6 @@ msgid "Name"
 msgstr ""
 
 msgid "Description"
-msgstr ""
-
-msgid "Cancel"
 msgstr ""
 
 msgid "Rename"

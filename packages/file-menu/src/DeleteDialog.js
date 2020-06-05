@@ -45,10 +45,10 @@ const DeleteDialog = props => {
             </DialogContent>
             <DialogActions>
                 <Button onClick={onRequestClose} color="primary">
-                    Cancel
+                    {i18n.t('Cancel')}
                 </Button>
                 <Button onClick={deleteFavorite} color="primary">
-                    Delete
+                    {i18n.t('Delete')}
                 </Button>
             </DialogActions>
         </Dialog>
