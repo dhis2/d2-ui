@@ -5,6 +5,7 @@ import ColumnIcon from './icons/ColumnIcon';
 import StackedColumnIcon from './icons/StackedColumnIcon';
 import LineIcon from './icons/LineIcon';
 import AreaIcon from './icons/AreaIcon';
+import StackedAreaIcon from './icons/StackedAreaIcon';
 import PieIcon from './icons/PieIcon';
 import RadarIcon from './icons/RadarIcon';
 import GaugeIcon from './icons/GaugeIcon';
@@ -24,6 +25,7 @@ export const visTypeIcons = {
     STACKED_BAR: StackedBarIcon,
     LINE: LineIcon,
     AREA: AreaIcon,
+    STACKED_AREA: StackedAreaIcon,
     PIE: PieIcon,
     RADAR: RadarIcon,
     GAUGE: GaugeIcon,
@@ -41,6 +43,7 @@ export const getVisTypeLabel = type => {
         STACKED_BAR: i18n.t("Stacked bar"),
         LINE: i18n.t("Line"),
         AREA: i18n.t("Area"),
+        STACKED_AREA: i18n.t("Stacked area"),
         PIE: i18n.t("Pie"),
         RADAR: i18n.t("Radar"),
         GAUGE: i18n.t("Gauge"),
