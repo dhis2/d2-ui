@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2020-05-14T08:14:36.232Z\n"
+"POT-Creation-Date: 2020-08-14T11:58:49.665Z\n"
 "PO-Revision-Date: 2020-04-29 21:46+0000\n"
 "Last-Translator: Carwoto Sa'an <carwoto@gmail.com>, 2020\n"
 "Language-Team: Indonesian (https://www.transifex.com/hisp-uio/teams/100509/id/)\n"
@@ -67,6 +67,9 @@ msgstr "Garis"
 
 msgid "Area"
 msgstr "Area"
+
+msgid "Stacked area"
+msgstr ""
 
 msgid "Pie"
 msgstr "Pie"

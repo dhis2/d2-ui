@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2020-05-14T08:14:36.232Z\n"
+"POT-Creation-Date: 2020-08-14T11:58:49.665Z\n"
 "PO-Revision-Date: 2020-04-29 21:46+0000\n"
 "Last-Translator: Karoline Tufte Lien <karoline@dhis2.org>, 2020\n"
 "Language-Team: Norwegian Bokmål (https://www.transifex.com/hisp-uio/teams/100509/nb/)\n"
@@ -66,6 +66,9 @@ msgstr "Linje"
 
 msgid "Area"
 msgstr "Areal"
+
+msgid "Stacked area"
+msgstr ""
 
 msgid "Pie"
 msgstr "Sektor"
