@@ -15,8 +15,8 @@ const codes = {
         char: "*",
         domEl: "strong",
         encodedChar: 0x2a,
-        // see https://regex101.com/r/evswdV/7 for explanation of regexp
-        regexString: "\\B\\*((?!\\s)[^*]+)(?:\\b|[^*\\s])\\*\\B",
+        // see https://regex101.com/r/evswdV/8 for explanation of regexp
+        regexString: "\\B\\*((?!\\s)[^*]+(?:\\b|[^*\\s]))\\*\\B",
         contentFn: val => val,
     },
     italic: {
