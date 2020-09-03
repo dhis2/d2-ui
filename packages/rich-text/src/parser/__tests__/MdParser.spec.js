@@ -62,6 +62,10 @@ describe('MdParser class', () => {
             ['_italic_ and *bold* with a example.com/link_with_underscore', '<em>italic</em> and <strong>bold</strong> with a <a href="http://example.com/link_with_underscore">example.com/link_with_underscore</a>'],
             ['example.com/path with *bold* after :)', '<a href="http://example.com/path">example.com/path</a> with <strong>bold</strong> after <span>\u{1F642}</span>'],
             ['_before_ example.com/path_with_underscore *after* :)', '<em>before</em> <a href="http://example.com/path_with_underscore">example.com/path_with_underscore</a> <strong>after</strong> <span>\u{1F642}</span>'],
+
+            // italic/bold markers right after non-word characters
+            ['_If % of ART retention rate after 12 months >90(%)_: Sustain the efforts.', '<em>If % of ART retention rate after 12 months &gt;90(%)</em>: Sustain the efforts.'],
+            ['*If % of ART retention rate after 12 months >90(%)*: Sustain the efforts.', '<strong>If % of ART retention rate after 12 months &gt;90(%)</strong>: Sustain the efforts.'],
         ];
 
         tests.forEach((test) => {
