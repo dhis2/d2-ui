@@ -33,7 +33,7 @@ class Favorites extends Component {
         const showTypeColumn = /visualization|chart/.test(type);
 
         return (
-            <Dialog open={open} onClose={onRequestClose} disableEnforceFocus maxWidth="lg">
+            <Dialog open={open} onClose={onRequestClose} disableEnforceFocus maxWidth="md" fullWidth>
                 <DialogContent>
                     <EnhancedToolbar showTypeFilter={showTypeColumn} />
                     <EnhancedTable showTypeColumn={showTypeColumn} onFavoriteSelect={handleOnFavoriteSelect} />
