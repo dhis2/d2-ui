@@ -13,27 +13,21 @@ const interpretation = {
     id: 'LOECMJN3DRF',
     likes: 2,
     text: 'Some interpretation',
-    publicAccess: "r-------",
+    publicAccess: 'r-------',
     created: '2018-04-14T12:00:47.096',
     lastUpdated: '2018-04-14T12:05:47.096',
     user: {
         id: 'xE7jOejl9FI',
         displayName: 'John Traore',
-        firstName: 'John',
-        surname: 'Traore',
     },
     likedBy: [
         {
             id: 'gdfdRRxx112',
             displayName: 'Kevin Boateng',
-            firstName: 'Kevin',
-            surname: 'Boateng'
         },
         {
             id: 'vDFwDfe16Gr',
             displayName: 'Manuel Perez',
-            firstName: 'Manunel',
-            surname: 'Perez'
         },
     ],
     comments: [
@@ -45,8 +39,6 @@ const interpretation = {
             user: {
                 id: 'xE7jOejl9FI',
                 displayName: 'John Traore',
-                firstName: 'John',
-                surname: 'Traore'
             },
         },
         {
@@ -57,8 +49,6 @@ const interpretation = {
             user: {
                 id: 'gdfdRRxx112',
                 displayName: 'Kevin Boateng',
-                firstName: 'Kevin',
-                surname: 'Boateng'
             },
         },
     ],
@@ -72,7 +62,7 @@ const renderComponent = (partialProps = {}, partialContext = {}) => {
         onChange: jest.fn(),
         extended: false,
         classes: {
-            actions: 'actions'
+            actions: 'actions',
         },
         userGroups: [],
         haveReadAccess: true,
@@ -87,8 +77,6 @@ const renderComponent = (partialProps = {}, partialContext = {}) => {
 let interpretationComponent;
 let currentUser;
 
-
-
 describe('Interpretations: Interpretation -> Interpretation component', () => {
     beforeEach(() => {
         currentUser = { id: 'xE7jOejl9FI', displayName: 'John Traore' };
@@ -96,11 +84,16 @@ describe('Interpretations: Interpretation -> Interpretation component', () => {
 
     describe('compact view', () => {
         beforeEach(() => {
-            interpretationComponent = renderComponent({ extended: false }, { d2: { currentUser } });
+            interpretationComponent = renderComponent(
+                { extended: false },
+                { d2: { currentUser } }
+            );
         });
 
         it('should show actions', () => {
-            expect(interpretationComponent.find(ActionButtonContainer)).toExist();
+            expect(
+                interpretationComponent.find(ActionButtonContainer)
+            ).toExist();
         });
 
         it('should not show comments', () => {
@@ -110,11 +103,16 @@ describe('Interpretations: Interpretation -> Interpretation component', () => {
 
     describe('extended view', () => {
         beforeEach(() => {
-            interpretationComponent = renderComponent({ extended: true }, { d2: { currentUser } });
+            interpretationComponent = renderComponent(
+                { extended: true },
+                { d2: { currentUser } }
+            );
         });
 
         it('should show actions', () => {
-            expect(interpretationComponent.find(ActionButtonContainer)).toExist();
+            expect(
+                interpretationComponent.find(ActionButtonContainer)
+            ).toExist();
         });
 
         it('should show comments', () => {
@@ -123,12 +121,16 @@ describe('Interpretations: Interpretation -> Interpretation component', () => {
 
         describe('when state interpretationToEdit is not null', () => {
             beforeEach(() => {
-                interpretationComponent = renderComponent({}).setState({ interpretationToEdit: true });
+                interpretationComponent = renderComponent({}).setState({
+                    interpretationToEdit: true,
+                });
             });
 
             it('should render a NewInterpretationField component', () => {
-                expect(interpretationComponent.find(NewInterpretationField)).toExist();
+                expect(
+                    interpretationComponent.find(NewInterpretationField)
+                ).toExist();
             });
         });
-    });   
+    });
 });
