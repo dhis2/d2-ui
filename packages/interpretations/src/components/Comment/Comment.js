@@ -20,7 +20,7 @@ export const Comment = ({
     onDelete,
 }) => (
     <Fragment>
-        <WithAvatar className={classes.comment} key={comment.id} firstName={comment.user.firstName} surname={comment.user.surname}>
+        <WithAvatar className={classes.comment} key={comment.id} displayName={comment.user.displayName}>
             <CardHeader userName={comment.user.displayName} />
             <CardText text={comment.text}/>
             <CardInfo createdDate={formatDate(comment.created, locale)} />

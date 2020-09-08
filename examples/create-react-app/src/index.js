@@ -12,7 +12,7 @@ if (!baseUrl) {
     baseUrl = 'http://localhost:8080';
 }
 
-init({baseUrl: baseUrl + '/api/29'})
+init({baseUrl: baseUrl + '/api/32'})
     .then(d2 => {
         ReactDOM.render(<App d2={d2}/>, document.getElementById('root'));
         registerServiceWorker();
