@@ -180,7 +180,7 @@ export class NewInterpretationField extends Component {
         const SharingDialog = this.renderSharingDialog();
 
         return (
-            <WithAvatar className={this.props.classes.newInterpretation} firstName={this.context.d2.currentUser.firstName} surname={this.context.d2.currentUser.surname}>
+            <WithAvatar className={this.props.classes.newInterpretation} displayName={this.context.d2.currentUser.displayName}>
                 <MentionsWrapper d2={this.context.d2} onUserSelect={this.onUserSelect}>
                     <RichTextEditor onEdit={this.onInputChange}>
                         <ClickAwayListener mouseEvent="onClick" onClickAway={this.onBlur}>
