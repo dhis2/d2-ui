@@ -235,6 +235,7 @@ class OrgUnitSelector extends Component {
                                 anchorEl={this.state.menuAnchorElement}
                                 open={Boolean(this.state.menuAnchorElement)}
                                 onClose={this.closeContextMenu}
+                                style={{ zIndex: 3100 }}
                             >
                                 <MenuItem
                                     onClick={this.selectChildren}
