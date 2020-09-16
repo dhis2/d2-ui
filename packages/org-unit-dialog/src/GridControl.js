@@ -27,6 +27,9 @@ const GridControl = ({ label, placeholder, options, ...selectProps }) => {
                     renderValue={renderValue}
                     displayEmpty
                     fullWidth
+                    MenuProps={{
+                        style: { zIndex: 3100 }
+                    }}
                 >
                     {options.map(option => (
                         <MenuItem
