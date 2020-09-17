@@ -68,7 +68,7 @@ msgid "Area"
 msgstr "Areal"
 
 msgid "Stacked area"
-msgstr ""
+msgstr "Stablet område"
 
 msgid "Pie"
 msgstr "Sektor"
