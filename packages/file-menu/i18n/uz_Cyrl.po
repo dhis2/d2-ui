@@ -1,0 +1,79 @@
+# 
+# Translators:
+# Ibatov <ibatovk@who.int>, 2020
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"POT-Creation-Date: 2020-06-05T17:52:31.450Z\n"
+"PO-Revision-Date: 2019-08-12 21:18+0000\n"
+"Last-Translator: Ibatov <ibatovk@who.int>, 2020\n"
+"Language-Team: Uzbek (Cyrillic) (https://www.transifex.com/hisp-uio/teams/100509/uz@Cyrl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: uz@Cyrl\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Delete {{what}}"
+msgstr ""
+
+msgid "This {{what}} will be deleted. Continue?"
+msgstr ""
+
+msgid "Cancel"
+msgstr "Бекор қилиш"
+
+msgid "Delete"
+msgstr "Ўчириш"
+
+msgid "File"
+msgstr "Файл"
+
+msgid "Open in this app"
+msgstr ""
+
+msgid "Close"
+msgstr "Ёпиқ"
+
+msgid "Get link"
+msgstr ""
+
+msgid "New"
+msgstr ""
+
+msgid "Open"
+msgstr ""
+
+msgid "Rename {{what}}"
+msgstr ""
+
+msgid "Name"
+msgstr "Исми"
+
+msgid "Description"
+msgstr "Тавсиф"
+
+msgid "Rename"
+msgstr ""
+
+msgid "Save {{what}} as"
+msgstr ""
+
+msgid "Save"
+msgstr "Сақлаш"
+
+msgid "Save as..."
+msgstr ""
+
+msgid "Share"
+msgstr "Баҳам кўриш"
+
+msgid "Translate"
+msgstr ""
+
+msgid "Write interpretation"
+msgstr ""
+
+msgid "Post"
+msgstr ""
