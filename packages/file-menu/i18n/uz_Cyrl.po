@@ -55,7 +55,7 @@ msgid "Description"
 msgstr "Тавсиф"
 
 msgid "Rename"
-msgstr ""
+msgstr "Қайта номлаш"
 
 msgid "Save {{what}} as"
 msgstr ""
