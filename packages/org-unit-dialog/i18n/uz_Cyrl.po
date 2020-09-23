@@ -1,0 +1,55 @@
+# 
+# Translators:
+# Ibatov <ibatovk@who.int>, 2020
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"POT-Creation-Date: 2020-04-13T22:26:59.421Z\n"
+"PO-Revision-Date: 2019-08-13 09:54+0000\n"
+"Last-Translator: Ibatov <ibatovk@who.int>, 2020\n"
+"Language-Team: Uzbek (Cyrillic) (https://www.transifex.com/hisp-uio/teams/100509/uz@Cyrl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: uz@Cyrl\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Organisation units"
+msgstr "Ташкилий бирликлар"
+
+msgid "Hide"
+msgstr "Яшириш"
+
+msgid "Update"
+msgstr "Янгилаш"
+
+msgid "Level"
+msgstr ""
+
+msgid "Select a level"
+msgstr ""
+
+msgid "Group"
+msgstr ""
+
+msgid "Select a group"
+msgstr ""
+
+msgid "Select all org units below"
+msgstr ""
+
+msgid "selected"
+msgstr ""
+
+msgid "Deselect all"
+msgstr ""
+
+msgid "User organisation unit"
+msgstr ""
+
+msgid "User sub-units"
+msgstr "Фойдаланувчига бўйсунувчи бирликлар"
+
+msgid "User sub-x2-units"
+msgstr "Фойдаланувчига бўйсунувчи 2 даражали бирликлар"
