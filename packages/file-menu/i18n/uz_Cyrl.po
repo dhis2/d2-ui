@@ -58,7 +58,7 @@ msgid "Cancel"
 msgstr "Бекор қилиш"
 
 msgid "Rename"
-msgstr ""
+msgstr "Қайта номлаш"
 
 msgid "Save {{what}} as"
 msgstr ""
