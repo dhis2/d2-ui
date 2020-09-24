@@ -22,7 +22,7 @@ msgid "Created"
 msgstr "Яратилди"
 
 msgid "Last updated"
-msgstr ""
+msgstr "Охирги янгиланган"
 
 msgid "Type"
 msgstr "Тури"
@@ -43,7 +43,7 @@ msgid "Created by you"
 msgstr ""
 
 msgid "Created by others"
-msgstr ""
+msgstr "Бошқалар яратганлари"
 
 msgid "Close"
 msgstr "Ёпиқ"
@@ -88,4 +88,4 @@ msgid "Single value"
 msgstr ""
 
 msgid "Pivot table"
-msgstr ""
+msgstr "Таянч жадвал"
