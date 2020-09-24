@@ -16,22 +16,22 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "No description"
-msgstr ""
+msgstr "Тавсиф йўқ"
 
 msgid "None"
 msgstr "Йўқ"
 
 msgid "Read"
-msgstr ""
+msgstr "Ўқинг"
 
 msgid "Read/Write"
-msgstr ""
+msgstr "Ўқинг/Ёзинг"
 
 msgid "Unknown"
 msgstr ""
 
 msgid "Public"
-msgstr ""
+msgstr "Оммавий"
 
 msgid "user groups"
 msgstr ""
@@ -46,19 +46,19 @@ msgid "Details"
 msgstr "Тафсилотлари"
 
 msgid "Owner"
-msgstr ""
+msgstr "Эгаси, тегишлилик"
 
 msgid "Created"
 msgstr "Яратилди"
 
 msgid "Last updated"
-msgstr ""
+msgstr "Охирги янгиланган"
 
 msgid "Views"
-msgstr ""
+msgstr "Кўришлар"
 
 msgid "Sharing"
-msgstr ""
+msgstr "Улашиш"
 
 msgid "OK"
 msgstr ""
@@ -73,13 +73,13 @@ msgid "Are you sure you want to remove this interpretation?"
 msgstr ""
 
 msgid "Unlike"
-msgstr ""
+msgstr "Аксинча"
 
 msgid "Like"
-msgstr ""
+msgstr "Каби, ўхшаш"
 
 msgid "Reply"
-msgstr ""
+msgstr "Жавоб"
 
 msgid "Edit"
 msgstr "Таҳрирлаш"
@@ -91,16 +91,16 @@ msgid "Delete"
 msgstr "Ўчириш"
 
 msgid "people like this"
-msgstr ""
+msgstr "бу каби одамлар"
 
 msgid "people commented"
-msgstr ""
+msgstr "одамлар фикр билдирган"
 
 msgid "Are you sure you want to remove this comment?"
 msgstr ""
 
 msgid "more comments"
-msgstr ""
+msgstr "кўпроқ шарҳлар"
 
 msgid "Edit interpretation"
 msgstr ""
@@ -115,10 +115,10 @@ msgid "Save"
 msgstr "Сақлаш"
 
 msgid "No interpretations"
-msgstr ""
+msgstr "Талқинлар йўқ"
 
 msgid "Clear interpretation"
-msgstr ""
+msgstr "Талқин тозалансин"
 
 msgid "Write new interpretation"
 msgstr ""

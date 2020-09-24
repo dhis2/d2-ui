@@ -37,13 +37,13 @@ msgid "Close"
 msgstr "Ёпиқ"
 
 msgid "Get link"
-msgstr ""
+msgstr "Ҳаволани олинг"
 
 msgid "New"
-msgstr ""
+msgstr "Янги"
 
 msgid "Open"
-msgstr ""
+msgstr "Очиш"
 
 msgid "Rename {{what}}"
 msgstr ""
@@ -73,10 +73,10 @@ msgid "Share"
 msgstr "Баҳам кўриш"
 
 msgid "Translate"
-msgstr ""
+msgstr "Таржима қилинг"
 
 msgid "Write interpretation"
-msgstr ""
+msgstr "Шарҳ ёзиш"
 
 msgid "Post"
 msgstr ""
