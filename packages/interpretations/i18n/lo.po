@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2020-01-28T10:56:12.426Z\n"
+"POT-Creation-Date: 2020-05-05T19:02:08.816Z\n"
 "PO-Revision-Date: 2019-08-13 09:54+0000\n"
 "Last-Translator: Viktor Varland <viktor@dhis2.org>, 2020\n"
 "Language-Team: Lao (https://www.transifex.com/hisp-uio/teams/100509/lo/)\n"
@@ -15,33 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: lo\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-
-msgid "Pivot Tables"
-msgstr "ຕາຕະລາງຂໍ້ມູນ"
-
-msgid "Table details"
-msgstr ""
-
-msgid "Visualizer"
-msgstr "ການສ້າງແຜນວາດ"
-
-msgid "Chart details"
-msgstr ""
-
-msgid "Maps"
-msgstr "ແຜນທີ່"
-
-msgid "Map details"
-msgstr ""
-
-msgid "Event Reports"
-msgstr "​ບົດ​ລາຍ​ງານ​ເຫດ​ການ​ຕ່າງໆ"
-
-msgid "Event Visualizer"
-msgstr "​ສະ​ພາບ​ກ່ຽວ​ກັບ​ການ​ສະ​ແດງ​ຮູບ​ພາບ"
-
-msgid "Visualization details"
-msgstr ""
 
 msgid "View"
 msgstr "ເບິ່ງ"
@@ -67,6 +40,24 @@ msgstr ""
 msgid "Delete"
 msgstr "ລົບ"
 
+msgid "Pivot Tables"
+msgstr "ຕາຕະລາງຂໍ້ມູນ"
+
+msgid "Visualizer"
+msgstr "ການສ້າງແຜນວາດ"
+
+msgid "Maps"
+msgstr "ແຜນທີ່"
+
+msgid "Event Reports"
+msgstr "​ບົດ​ລາຍ​ງານ​ເຫດ​ການ​ຕ່າງໆ"
+
+msgid "Event Visualizer"
+msgstr "​ສະ​ພາບ​ກ່ຽວ​ກັບ​ການ​ສະ​ແດງ​ຮູບ​ພາບ"
+
+msgid "View in {{appName}} app"
+msgstr ""
+
 msgid "Back to all interpretations"
 msgstr ""
 
@@ -85,22 +76,31 @@ msgstr ""
 msgid "Confirm"
 msgstr "Confirm"
 
-msgid "_No description_"
-msgstr ""
+msgid "No description"
+msgstr "ບໍ່ມີລາຍລະອຽດ"
 
-msgid "Show "
-msgstr ""
+msgid "Show less"
+msgstr "ສະແດງໃຫ້ເຫັນໜ້ອຍລົງ"
 
-msgid "less"
-msgstr ""
-
-msgid "more"
-msgstr ""
+msgid "Show more"
+msgstr "ສະແດງໃຫ້ເຫັນຫຼາຍຂຶ້ນ"
 
 msgid "Unsubscribe from this {{object}} and stop receiving notifications"
 msgstr ""
 
 msgid "Subscribe to this {{object}} and start receiving notifications"
+msgstr ""
+
+msgid "Table details"
+msgstr ""
+
+msgid "Chart details"
+msgstr ""
+
+msgid "Map details"
+msgstr ""
+
+msgid "Visualization details"
 msgstr ""
 
 msgid "Owner"
@@ -127,11 +127,9 @@ msgstr ""
 msgid "Access restricted"
 msgstr ""
 
-msgid "likes"
-msgstr ""
-
-msgid "like"
-msgstr ""
+msgid "{{count}} like"
+msgid_plural "{{count}} likes"
+msgstr[0] ""
 
 msgid "Save interpretation"
 msgstr ""
@@ -139,11 +137,9 @@ msgstr ""
 msgid "Write an interpretation"
 msgstr ""
 
-msgid "replies"
-msgstr ""
-
-msgid "reply"
-msgstr ""
+msgid "{{count}} reply"
+msgid_plural "{{count}} replies"
+msgstr[0] ""
 
 msgid "Hide old replies"
 msgstr ""
@@ -157,11 +153,11 @@ msgstr ""
 msgid "Are you sure you want to delete this comment?"
 msgstr ""
 
-msgid "Hide"
-msgstr "ເຊື່ອງ"
+msgid "Hide previous interpretations"
+msgstr ""
 
-msgid "Show"
-msgstr "ສະແດງ"
+msgid "Show previous interpretations"
+msgstr ""
 
 msgid "No interpretations"
 msgstr "ບໍ່ມີການຕີຄວາມໝາຍ"
@@ -169,17 +165,14 @@ msgstr "ບໍ່ມີການຕີຄວາມໝາຍ"
 msgid "external access"
 msgstr ""
 
-msgid ", public access"
-msgstr ""
-
 msgid "public access"
-msgstr ""
-
-msgid "None. "
 msgstr ""
 
 msgid "None"
 msgstr "ບໍ່ມີ"
+
+msgid "Shared with"
+msgstr ""
 
 msgid "Read"
 msgstr "ອ່ານ"
@@ -193,11 +186,13 @@ msgstr "ບໍ່ຮູ້"
 msgid "Public"
 msgstr "ສາທາລະນະ"
 
-msgid "Users"
-msgstr "ຜູ້ນໍາໃຊ້"
+msgid "{{count}} user"
+msgid_plural "{{count}} users"
+msgstr[0] ""
 
-msgid "user groups"
-msgstr ""
+msgid "{{count}} user group"
+msgid_plural "{{count}} user groups"
+msgstr[0] ""
 
 msgid "chart"
 msgstr ""
