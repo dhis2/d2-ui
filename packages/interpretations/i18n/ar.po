@@ -1,48 +1,21 @@
 # 
 # Translators:
 # phil_dhis2, 2019
-# Viktor Varland <viktor@dhis2.org>, 2019
 # Hamza Assada <7amza.it@gmail.com>, 2020
+# Viktor Varland <viktor@dhis2.org>, 2020
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2020-01-28T10:56:12.426Z\n"
+"POT-Creation-Date: 2020-05-05T19:02:08.816Z\n"
 "PO-Revision-Date: 2019-08-13 09:54+0000\n"
-"Last-Translator: Hamza Assada <7amza.it@gmail.com>, 2020\n"
+"Last-Translator: Viktor Varland <viktor@dhis2.org>, 2020\n"
 "Language-Team: Arabic (https://www.transifex.com/hisp-uio/teams/100509/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ar\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
-
-msgid "Pivot Tables"
-msgstr "الجداول المحورية"
-
-msgid "Table details"
-msgstr "تفاصيل الجدول"
-
-msgid "Visualizer"
-msgstr "التحليل المرئي"
-
-msgid "Chart details"
-msgstr "تفاصيل المخطط البياني"
-
-msgid "Maps"
-msgstr "الخرائط"
-
-msgid "Map details"
-msgstr "تفاصيل الخريطة"
-
-msgid "Event Reports"
-msgstr "تقارير الحدث"
-
-msgid "Event Visualizer"
-msgstr "التحليل المرئي للأحداث"
-
-msgid "Visualization details"
-msgstr "تفاصيل التحليل المرئي"
 
 msgid "View"
 msgstr "عرض"
@@ -68,6 +41,24 @@ msgstr "إدارة المشاركة"
 msgid "Delete"
 msgstr "حذف"
 
+msgid "Pivot Tables"
+msgstr "الجداول المحورية"
+
+msgid "Visualizer"
+msgstr "التحليل المرئي"
+
+msgid "Maps"
+msgstr "الخرائط"
+
+msgid "Event Reports"
+msgstr "تقارير الحدث"
+
+msgid "Event Visualizer"
+msgstr "التحليل المرئي للأحداث"
+
+msgid "View in {{appName}} app"
+msgstr ""
+
 msgid "Back to all interpretations"
 msgstr "العودة إلى كل التفسيرات"
 
@@ -86,23 +77,32 @@ msgstr "كتابة رد"
 msgid "Confirm"
 msgstr "تأكيد"
 
-msgid "_No description_"
-msgstr "_لا يوجد شرح_"
+msgid "No description"
+msgstr "لا يوجد وصف"
 
-msgid "Show "
-msgstr "إظهار"
+msgid "Show less"
+msgstr "إظهار الأقل"
 
-msgid "less"
-msgstr "أقل"
-
-msgid "more"
-msgstr "أكثر"
+msgid "Show more"
+msgstr "إظهار المزيد"
 
 msgid "Unsubscribe from this {{object}} and stop receiving notifications"
 msgstr "إلغاء الاشتراك من {{object}} وإيقاف تلقي الإشعارات"
 
 msgid "Subscribe to this {{object}} and start receiving notifications"
 msgstr "الاشتراك بـ {{object}} والبدء في تلقي الإشعارات"
+
+msgid "Table details"
+msgstr "تفاصيل الجدول"
+
+msgid "Chart details"
+msgstr "تفاصيل المخطط البياني"
+
+msgid "Map details"
+msgstr "تفاصيل الخريطة"
+
+msgid "Visualization details"
+msgstr "تفاصيل التحليل المرئي"
 
 msgid "Owner"
 msgstr "المالك"
@@ -128,11 +128,14 @@ msgstr "هل أنت متأكد أنك تريد حذف هذا التفسير؟"
 msgid "Access restricted"
 msgstr "تم تقييد الوصول"
 
-msgid "likes"
-msgstr "الإعجابات"
-
-msgid "like"
-msgstr "إعجاب"
+msgid "{{count}} like"
+msgid_plural "{{count}} likes"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 msgid "Save interpretation"
 msgstr "حفظ الإعجاب"
@@ -140,11 +143,14 @@ msgstr "حفظ الإعجاب"
 msgid "Write an interpretation"
 msgstr "كتابة تفسير"
 
-msgid "replies"
-msgstr "الردود"
-
-msgid "reply"
-msgstr "رد"
+msgid "{{count}} reply"
+msgid_plural "{{count}} replies"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 msgid "Hide old replies"
 msgstr "إخفاء الردود القديمة"
@@ -158,11 +164,11 @@ msgstr "حذف التعليق"
 msgid "Are you sure you want to delete this comment?"
 msgstr "هل أنت متأكد أنك تريد حذف هذا التعليق؟"
 
-msgid "Hide"
-msgstr "إخفاء"
+msgid "Hide previous interpretations"
+msgstr ""
 
-msgid "Show"
-msgstr "إظهار"
+msgid "Show previous interpretations"
+msgstr ""
 
 msgid "No interpretations"
 msgstr "لا توجد تفسيرات"
@@ -170,17 +176,14 @@ msgstr "لا توجد تفسيرات"
 msgid "external access"
 msgstr "امكانية الوصول الخارجي"
 
-msgid ", public access"
-msgstr "، وصول عام"
-
 msgid "public access"
 msgstr "وصول عام"
 
-msgid "None. "
-msgstr "لا أحد"
-
 msgid "None"
 msgstr "لا شيء"
+
+msgid "Shared with"
+msgstr ""
 
 msgid "Read"
 msgstr "قراءة"
@@ -194,11 +197,23 @@ msgstr "غير معروف"
 msgid "Public"
 msgstr "عام"
 
-msgid "Users"
-msgstr "المستخدمون"
+msgid "{{count}} user"
+msgid_plural "{{count}} users"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
-msgid "user groups"
-msgstr "مجموعات المستخدم"
+msgid "{{count}} user group"
+msgid_plural "{{count}} user groups"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 msgid "chart"
 msgstr "مخطط بياني"
