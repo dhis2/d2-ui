@@ -18,7 +18,7 @@
         "lint": "eslint src/",
         "watch": "npm run build -- --watch",
         "extract-pot": "d2-app-scripts i18n extract",
-        "localize": "yarn extract-pot && d2-app-scripts i18n generate",
+        "localize": "d2-app-scripts i18n generate",
         "test-ci": "jest --config=../../jest.config.js packages/interpretations"
     },
     "husky": {
