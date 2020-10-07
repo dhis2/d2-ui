@@ -25,16 +25,16 @@ msgid "Update"
 msgstr "Янгилаш"
 
 msgid "Level"
-msgstr ""
+msgstr "Даража"
 
 msgid "Select a level"
-msgstr ""
+msgstr "Босқични танланг"
 
 msgid "Group"
 msgstr "Гуруҳ"
 
 msgid "Select a group"
-msgstr ""
+msgstr "Гуруҳни танланг"
 
 msgid "Select all org units below"
 msgstr ""
@@ -46,7 +46,7 @@ msgid "Deselect all"
 msgstr "Барча танланганни бекор қилиш"
 
 msgid "User organisation unit"
-msgstr ""
+msgstr "Ташкилий бўлим фойдаланувчиси"
 
 msgid "User sub-units"
 msgstr "Фойдаланувчига бўйсунувчи бирликлар"

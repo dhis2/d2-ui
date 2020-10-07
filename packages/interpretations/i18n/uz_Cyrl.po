@@ -16,10 +16,10 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "View"
-msgstr ""
+msgstr "Кўрик"
 
 msgid "Exit View"
-msgstr ""
+msgstr "Кўрикдан чиқиш"
 
 msgid "Like"
 msgstr "Каби, ўхшаш"
@@ -34,7 +34,7 @@ msgid "Edit"
 msgstr "Таҳрирлаш"
 
 msgid "Manage sharing"
-msgstr ""
+msgstr "Улашишни бошқариш"
 
 msgid "Delete"
 msgstr "Ўчириш"
@@ -43,28 +43,28 @@ msgid "Pivot Tables"
 msgstr "Таянч жадваллар"
 
 msgid "Visualizer"
-msgstr ""
+msgstr "Визуализатор"
 
 msgid "Maps"
 msgstr "Хариталар"
 
 msgid "Event Reports"
-msgstr ""
+msgstr "Ҳодисалар ҳақида ҳисоботлар"
 
 msgid "Event Visualizer"
-msgstr ""
+msgstr "Ҳодисалар визуализатори"
 
 msgid "View in {{appName}} app"
-msgstr ""
+msgstr "{{appName}} иловаси орқали кўриш"
 
 msgid "Back to all interpretations"
-msgstr ""
+msgstr "Жами талқинларга қайтиш"
 
 msgid "Interpretations"
-msgstr "Шарҳлар"
+msgstr "Талқинлар"
 
 msgid "Save reply"
-msgstr ""
+msgstr "Жавоб сақлансин"
 
 msgid "Cancel"
 msgstr "Бекор қилиш"
@@ -118,10 +118,10 @@ msgid "Sharing"
 msgstr "Улашиш"
 
 msgid "Delete interpretation"
-msgstr ""
+msgstr "Талқин ўчирилсин"
 
 msgid "Are you sure you want to delete this interpretation?"
-msgstr ""
+msgstr "Ушбу талқинни ўчиришга ишончингиз комилми?"
 
 msgid "Access restricted"
 msgstr ""
@@ -131,10 +131,10 @@ msgid_plural "{{count}} likes"
 msgstr[0] ""
 
 msgid "Save interpretation"
-msgstr ""
+msgstr "Талқин сақлансин"
 
 msgid "Write an interpretation"
-msgstr ""
+msgstr "Талқин ёзиш"
 
 msgid "{{count}} reply"
 msgid_plural "{{count}} replies"
@@ -153,10 +153,10 @@ msgid "Are you sure you want to delete this comment?"
 msgstr ""
 
 msgid "Hide previous interpretations"
-msgstr ""
+msgstr "Аввалги талқин яширилсин"
 
 msgid "Show previous interpretations"
-msgstr ""
+msgstr "Аввалги талқин кўрсатилсин"
 
 msgid "No interpretations"
 msgstr "Талқинлар йўқ"

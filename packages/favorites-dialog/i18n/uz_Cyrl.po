@@ -28,7 +28,7 @@ msgid "Type"
 msgstr "Тури"
 
 msgid "Search by name"
-msgstr ""
+msgstr "Исми орқали излаш"
 
 msgid "All types"
 msgstr ""
