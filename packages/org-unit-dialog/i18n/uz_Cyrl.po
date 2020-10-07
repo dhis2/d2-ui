@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "Organisation units"
-msgstr "Ташкилий бирликлар"
+msgstr "Ташкилий бўлимлар"
 
 msgid "Hide"
 msgstr "Яшириш"
@@ -25,19 +25,19 @@ msgid "Update"
 msgstr "Янгилаш"
 
 msgid "Level"
-msgstr ""
+msgstr "Босқич"
 
 msgid "Select a level"
-msgstr ""
+msgstr "Босқични танланг"
 
 msgid "Group"
 msgstr "Гуруҳ"
 
 msgid "Select a group"
-msgstr ""
+msgstr "Гуруҳни танланг"
 
 msgid "User organisation unit"
-msgstr ""
+msgstr "Ташкилий бўлим фойдаланувчиси"
 
 msgid "User sub-units"
 msgstr "Фойдаланувчига бўйсунувчи бирликлар"
