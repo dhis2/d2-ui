@@ -19,7 +19,7 @@ msgid "Delete {{what}}"
 msgstr ""
 
 msgid "This {{what}} will be deleted. Continue?"
-msgstr ""
+msgstr "Toto {{what}} bude smazáno. Pokračovat?"
 
 msgid "Cancel"
 msgstr "Zrušit"
@@ -31,7 +31,7 @@ msgid "File"
 msgstr "Soubor"
 
 msgid "Open in this app"
-msgstr ""
+msgstr "Otevřít v této aplikaci"
 
 msgid "Close"
 msgstr "Zavřít"
@@ -52,7 +52,7 @@ msgid "Name"
 msgstr "Název"
 
 msgid "Description"
-msgstr ""
+msgstr "Popis"
 
 msgid "Rename"
 msgstr "Přejmenovat"
@@ -70,10 +70,10 @@ msgid "Share"
 msgstr "Sdílet"
 
 msgid "Translate"
-msgstr ""
+msgstr "přeložit"
 
 msgid "Write interpretation"
-msgstr ""
+msgstr "Napište výklad"
 
 msgid "Post"
-msgstr ""
+msgstr "Příspěvek"
