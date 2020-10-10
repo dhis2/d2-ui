@@ -1,0 +1,91 @@
+# 
+# Translators:
+# Jiří Podhorecký, 2020
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"POT-Creation-Date: 2020-08-14T11:58:49.665Z\n"
+"PO-Revision-Date: 2020-04-29 21:46+0000\n"
+"Last-Translator: Jiří Podhorecký, 2020\n"
+"Language-Team: Czech (https://www.transifex.com/hisp-uio/teams/100509/cs/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: cs\n"
+"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
+
+msgid "Name"
+msgstr "Název"
+
+msgid "Created"
+msgstr "Vytvořeno"
+
+msgid "Last updated"
+msgstr "Naposledy aktualizováno"
+
+msgid "Type"
+msgstr "Typ"
+
+msgid "Search by name"
+msgstr "Hledat podle jména"
+
+msgid "All types"
+msgstr "Všechny typy"
+
+msgid "All chart types"
+msgstr "Všechny typy grafů"
+
+msgid "All owners"
+msgstr "Všichni vlastníci"
+
+msgid "Created by you"
+msgstr "Vámi vytvořené"
+
+msgid "Created by others"
+msgstr "Vytvořené ostatními"
+
+msgid "Close"
+msgstr "Zavřít"
+
+msgid "Column"
+msgstr "Sloupec"
+
+msgid "Stacked column"
+msgstr "skládaný sloupcový graf"
+
+msgid "Bar"
+msgstr "Pruhový"
+
+msgid "Stacked bar"
+msgstr "skládaný sloupcový"
+
+msgid "Line"
+msgstr "Liniový"
+
+msgid "Area"
+msgstr "Plošný"
+
+msgid "Stacked area"
+msgstr "skládaná plocha"
+
+msgid "Pie"
+msgstr "Koláčový"
+
+msgid "Radar"
+msgstr "Radarový"
+
+msgid "Gauge"
+msgstr "Gauge"
+
+msgid "Year over year (line)"
+msgstr "Rok po roce (linie)"
+
+msgid "Year over year (column)"
+msgstr "Rok po roce (sloupec)"
+
+msgid "Single value"
+msgstr "Jedna hodnota"
+
+msgid "Pivot table"
+msgstr "Kontingenční tabulka"
