@@ -34,10 +34,10 @@ msgid "Group"
 msgstr "Skupina"
 
 msgid "Select a group"
-msgstr ""
+msgstr "Vybrat skupinu"
 
 msgid "Select all org units below"
-msgstr ""
+msgstr "Vybrat všechny organizační jednotky níže"
 
 msgid "selected"
 msgstr "vybráno"
@@ -46,10 +46,10 @@ msgid "Deselect all"
 msgstr "Odznačit vše"
 
 msgid "User organisation unit"
-msgstr ""
+msgstr "Organizační jednotka uživatele"
 
 msgid "User sub-units"
-msgstr ""
+msgstr " sub-units uživatele"
 
 msgid "User sub-x2-units"
-msgstr ""
+msgstr " sub-x2-units uživatele"
