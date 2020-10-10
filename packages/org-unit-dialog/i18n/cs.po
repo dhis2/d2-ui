@@ -34,13 +34,13 @@ msgid "Group"
 msgstr "Skupina"
 
 msgid "Select a group"
-msgstr ""
+msgstr "Vybrat skupinu"
 
 msgid "User organisation unit"
-msgstr ""
+msgstr "Organizační jednotka uživatele"
 
 msgid "User sub-units"
-msgstr ""
+msgstr " sub-units uživatele"
 
 msgid "User sub-x2-units"
-msgstr ""
+msgstr " sub-x2-units uživatele"

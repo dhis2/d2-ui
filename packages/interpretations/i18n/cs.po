@@ -16,31 +16,31 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
 
 msgid "No description"
-msgstr ""
+msgstr "Bez popisu"
 
 msgid "None"
-msgstr ""
+msgstr "Žádný"
 
 msgid "Read"
-msgstr ""
+msgstr "Číst"
 
 msgid "Read/Write"
-msgstr ""
+msgstr "Číst / Zapisovat"
 
 msgid "Unknown"
-msgstr ""
+msgstr "Neznámý"
 
 msgid "Public"
-msgstr ""
+msgstr "Veřejný"
 
 msgid "user groups"
-msgstr ""
+msgstr "uživatelská skupina"
 
 msgid "Unsubscribe from this {{object}} and stop receiving notifications"
-msgstr ""
+msgstr "Odhlásit odběr tohoto {{objektu}} a přestat dostávat oznámení"
 
 msgid "Subscribe to this {{object}} and start receiving notifications"
-msgstr ""
+msgstr "Přihlaste se k odběru tohoto {{object}} a začněte přijímat oznámení"
 
 msgid "Details"
 msgstr "Detaily"
@@ -49,37 +49,37 @@ msgid "Owner"
 msgstr "Vlastník"
 
 msgid "Created"
-msgstr ""
+msgstr "Vytvořeno"
 
 msgid "Last updated"
-msgstr ""
+msgstr "Naposledy aktualizováno"
 
 msgid "Views"
-msgstr ""
+msgstr "Zobrazení"
 
 msgid "Sharing"
-msgstr ""
+msgstr "Sdílení"
 
 msgid "OK"
 msgstr "OK"
 
 msgid "Post comment"
-msgstr ""
+msgstr "Přidat komentář"
 
 msgid "Cancel"
 msgstr "Zrušit"
 
 msgid "Are you sure you want to remove this interpretation?"
-msgstr ""
+msgstr "Opravdu chcete tuto interpretaci odstranit?"
 
 msgid "Unlike"
-msgstr ""
+msgstr "Nelíbí"
 
 msgid "Like"
-msgstr ""
+msgstr "Líbí se"
 
 msgid "Reply"
-msgstr ""
+msgstr "Odpovědět"
 
 msgid "Edit"
 msgstr "Upravit"
@@ -91,55 +91,55 @@ msgid "Delete"
 msgstr "Smazat"
 
 msgid "people like this"
-msgstr ""
+msgstr "lidem se to líbí"
 
 msgid "people commented"
-msgstr ""
+msgstr "lidí okomentovalo"
 
 msgid "Are you sure you want to remove this comment?"
-msgstr ""
+msgstr "Opravdu chcete tento komentář odstranit?"
 
 msgid "more comments"
-msgstr ""
+msgstr "více komentářů"
 
 msgid "Edit interpretation"
-msgstr ""
+msgstr "Upravit interpretaci"
 
 msgid "Create interpretation"
-msgstr ""
+msgstr "Vytvořit interpretaci"
 
 msgid "Save & share"
-msgstr ""
+msgstr "Uložit a sdílet"
 
 msgid "Save"
 msgstr "Uložit"
 
 msgid "No interpretations"
-msgstr ""
+msgstr "Žádné interpretace"
 
 msgid "Clear interpretation"
-msgstr ""
+msgstr "Vymazat interpretaci"
 
 msgid "Write new interpretation"
-msgstr ""
+msgstr "Zapsat novou interpretaci"
 
 msgid "Interpretations"
-msgstr ""
+msgstr "Interpretace"
 
 msgid "chart"
 msgstr "graf"
 
 msgid "pivot table"
-msgstr ""
+msgstr "kontingenční tabulka"
 
 msgid "map"
 msgstr "mapa"
 
 msgid "event chart"
-msgstr ""
+msgstr "graf událostí"
 
 msgid "event report"
-msgstr ""
+msgstr "zpráva o události"
 
 msgid "object"
 msgstr "objekt"

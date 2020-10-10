@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
 
 msgid "Delete {{what}}"
-msgstr ""
+msgstr "Smazat {{what}}"
 
 msgid "This {{what}} will be deleted. Continue?"
 msgstr "Toto {{what}} bude smazáno. Pokračovat?"
@@ -31,13 +31,13 @@ msgid "Open in this app"
 msgstr "Otevřít v této aplikaci"
 
 msgid "Open in web API"
-msgstr ""
+msgstr "Otevřít ve webovém rozhraní API"
 
 msgid "Close"
 msgstr "Zavřít"
 
 msgid "Get link"
-msgstr ""
+msgstr "Získat odkaz"
 
 msgid "New"
 msgstr "Nový"
@@ -46,7 +46,7 @@ msgid "Open"
 msgstr "Otevřít"
 
 msgid "Rename {{what}}"
-msgstr ""
+msgstr "Přejmenovat {{what}}"
 
 msgid "Name"
 msgstr "Název"
@@ -61,7 +61,7 @@ msgid "Rename"
 msgstr "Přejmenovat"
 
 msgid "Save {{what}} as"
-msgstr ""
+msgstr "Uložit {{what}} jako"
 
 msgid "Save"
 msgstr "Uložit"
