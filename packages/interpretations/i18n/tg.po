@@ -1,45 +1,44 @@
 # 
 # Translators:
-# Wanda <wanda@frontlineaids.org>, 2019
 # phil_dhis2, 2019
-# Viktor Varland <viktor@dhis2.org>, 2020
+# Viktor Varland <viktor@dhis2.org>, 2019
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2020-05-05T19:02:08.816Z\n"
 "PO-Revision-Date: 2019-08-13 09:54+0000\n"
-"Last-Translator: Viktor Varland <viktor@dhis2.org>, 2020\n"
-"Language-Team: Burmese (https://www.transifex.com/hisp-uio/teams/100509/my/)\n"
+"Last-Translator: Viktor Varland <viktor@dhis2.org>, 2019\n"
+"Language-Team: Tajik (https://www.transifex.com/hisp-uio/teams/100509/tg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: my\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: tg\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "View"
-msgstr "View"
+msgstr "Намоиш додан"
 
 msgid "Exit View"
 msgstr ""
 
 msgid "Like"
-msgstr "Нравится"
+msgstr ""
 
 msgid "Unlike"
-msgstr "Больше не нравится"
+msgstr ""
 
 msgid "Reply"
-msgstr "အကြောင်းပြန်သည်"
+msgstr "Ҷавоб додан"
 
 msgid "Edit"
-msgstr "တည်းဖြတ်သည်"
+msgstr "Таҳрир"
 
 msgid "Manage sharing"
 msgstr ""
 
 msgid "Delete"
-msgstr "ဖျက်ပါ။"
+msgstr "Нест кардан"
 
 msgid "Pivot Tables"
 msgstr ""
@@ -48,7 +47,7 @@ msgid "Visualizer"
 msgstr ""
 
 msgid "Maps"
-msgstr "Maps"
+msgstr ""
 
 msgid "Event Reports"
 msgstr ""
@@ -63,19 +62,19 @@ msgid "Back to all interpretations"
 msgstr ""
 
 msgid "Interpretations"
-msgstr "ဘာသာပြန်ခြင်းများ"
+msgstr "Тафсирҳо"
 
 msgid "Save reply"
 msgstr ""
 
 msgid "Cancel"
-msgstr "ဆက်မလုပ်တော့ပါ။"
+msgstr "Бекор кардан"
 
 msgid "Write a reply"
 msgstr ""
 
 msgid "Confirm"
-msgstr ""
+msgstr "Тасдиқ"
 
 msgid "No description"
 msgstr ""
@@ -111,7 +110,7 @@ msgid "Created"
 msgstr ""
 
 msgid "Last updated"
-msgstr "နောက်ဆုံး အသစ်ဆက်ဆက်"
+msgstr "Навсозии охирин"
 
 msgid "Views"
 msgstr ""
@@ -131,6 +130,7 @@ msgstr ""
 msgid "{{count}} like"
 msgid_plural "{{count}} likes"
 msgstr[0] ""
+msgstr[1] ""
 
 msgid "Save interpretation"
 msgstr ""
@@ -141,6 +141,7 @@ msgstr ""
 msgid "{{count}} reply"
 msgid_plural "{{count}} replies"
 msgstr[0] ""
+msgstr[1] ""
 
 msgid "Hide old replies"
 msgstr ""
@@ -170,7 +171,7 @@ msgid "public access"
 msgstr ""
 
 msgid "None"
-msgstr "တစ်ခုမှမဟုတ်"
+msgstr "Ягонто"
 
 msgid "Shared with"
 msgstr ""
@@ -182,7 +183,7 @@ msgid "Read/Write"
 msgstr ""
 
 msgid "Unknown"
-msgstr "မသိပါ"
+msgstr "Номаълум"
 
 msgid "Public"
 msgstr ""
@@ -190,10 +191,12 @@ msgstr ""
 msgid "{{count}} user"
 msgid_plural "{{count}} users"
 msgstr[0] ""
+msgstr[1] ""
 
 msgid "{{count}} user group"
 msgid_plural "{{count}} user groups"
 msgstr[0] ""
+msgstr[1] ""
 
 msgid "chart"
 msgstr ""

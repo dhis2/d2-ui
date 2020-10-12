@@ -1,0 +1,91 @@
+# 
+# Translators:
+# phil_dhis2, 2020
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"POT-Creation-Date: 2020-08-14T11:58:49.665Z\n"
+"PO-Revision-Date: 2020-04-29 21:46+0000\n"
+"Last-Translator: phil_dhis2, 2020\n"
+"Language-Team: Danish (https://www.transifex.com/hisp-uio/teams/100509/da/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: da\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Name"
+msgstr "Name"
+
+msgid "Created"
+msgstr ""
+
+msgid "Last updated"
+msgstr ""
+
+msgid "Type"
+msgstr ""
+
+msgid "Search by name"
+msgstr ""
+
+msgid "All types"
+msgstr ""
+
+msgid "All chart types"
+msgstr ""
+
+msgid "All owners"
+msgstr ""
+
+msgid "Created by you"
+msgstr ""
+
+msgid "Created by others"
+msgstr ""
+
+msgid "Close"
+msgstr "Close"
+
+msgid "Column"
+msgstr ""
+
+msgid "Stacked column"
+msgstr ""
+
+msgid "Bar"
+msgstr ""
+
+msgid "Stacked bar"
+msgstr ""
+
+msgid "Line"
+msgstr ""
+
+msgid "Area"
+msgstr ""
+
+msgid "Stacked area"
+msgstr ""
+
+msgid "Pie"
+msgstr ""
+
+msgid "Radar"
+msgstr ""
+
+msgid "Gauge"
+msgstr ""
+
+msgid "Year over year (line)"
+msgstr ""
+
+msgid "Year over year (column)"
+msgstr ""
+
+msgid "Single value"
+msgstr ""
+
+msgid "Pivot table"
+msgstr ""
