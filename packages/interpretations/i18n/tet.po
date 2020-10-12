@@ -1,45 +1,43 @@
 # 
 # Translators:
-# Wanda <wanda@frontlineaids.org>, 2019
 # phil_dhis2, 2019
-# Viktor Varland <viktor@dhis2.org>, 2020
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2020-05-05T19:02:08.816Z\n"
 "PO-Revision-Date: 2019-08-13 09:54+0000\n"
-"Last-Translator: Viktor Varland <viktor@dhis2.org>, 2020\n"
-"Language-Team: Burmese (https://www.transifex.com/hisp-uio/teams/100509/my/)\n"
+"Last-Translator: phil_dhis2, 2019\n"
+"Language-Team: Tetum (Tetun) (https://www.transifex.com/hisp-uio/teams/100509/tet/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: my\n"
+"Language: tet\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "View"
-msgstr "View"
+msgstr ""
 
 msgid "Exit View"
 msgstr ""
 
 msgid "Like"
-msgstr "Нравится"
+msgstr ""
 
 msgid "Unlike"
-msgstr "Больше не нравится"
+msgstr ""
 
 msgid "Reply"
-msgstr "အကြောင်းပြန်သည်"
+msgstr "Hatán"
 
 msgid "Edit"
-msgstr "တည်းဖြတ်သည်"
+msgstr "Edita"
 
 msgid "Manage sharing"
 msgstr ""
 
 msgid "Delete"
-msgstr "ဖျက်ပါ။"
+msgstr "Soe"
 
 msgid "Pivot Tables"
 msgstr ""
@@ -48,13 +46,13 @@ msgid "Visualizer"
 msgstr ""
 
 msgid "Maps"
-msgstr "Maps"
+msgstr ""
 
 msgid "Event Reports"
-msgstr ""
+msgstr "Relatorius Eventu"
 
 msgid "Event Visualizer"
-msgstr ""
+msgstr "Vizualizador Eventu"
 
 msgid "View in {{appName}} app"
 msgstr ""
@@ -63,13 +61,13 @@ msgid "Back to all interpretations"
 msgstr ""
 
 msgid "Interpretations"
-msgstr "ဘာသာပြန်ခြင်းများ"
+msgstr "Interpretasoens"
 
 msgid "Save reply"
 msgstr ""
 
 msgid "Cancel"
-msgstr "ဆက်မလုပ်တော့ပါ။"
+msgstr "Kansela"
 
 msgid "Write a reply"
 msgstr ""
@@ -111,7 +109,7 @@ msgid "Created"
 msgstr ""
 
 msgid "Last updated"
-msgstr "နောက်ဆုံး အသစ်ဆက်ဆက်"
+msgstr "Atualizasaun ikus"
 
 msgid "Views"
 msgstr ""
@@ -170,7 +168,7 @@ msgid "public access"
 msgstr ""
 
 msgid "None"
-msgstr "တစ်ခုမှမဟုတ်"
+msgstr "Nein ida"
 
 msgid "Shared with"
 msgstr ""
@@ -182,7 +180,7 @@ msgid "Read/Write"
 msgstr ""
 
 msgid "Unknown"
-msgstr "မသိပါ"
+msgstr "Deskoñesidu"
 
 msgid "Public"
 msgstr ""
