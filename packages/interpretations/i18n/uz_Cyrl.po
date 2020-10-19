@@ -49,7 +49,7 @@ msgid "Maps"
 msgstr "Хариталар"
 
 msgid "Event Reports"
-msgstr "Ҳодисалар ҳақида ҳисоботлар"
+msgstr "Ҳодиса/Тадбирлар ҳақида ҳисоботлар"
 
 msgid "Event Visualizer"
 msgstr "Ҳодисалар визуализатори"
@@ -70,7 +70,7 @@ msgid "Cancel"
 msgstr "Бекор қилиш"
 
 msgid "Write a reply"
-msgstr ""
+msgstr "Изоҳ ёзинг"
 
 msgid "Confirm"
 msgstr "Тасдиқланг"
@@ -86,21 +86,23 @@ msgstr "Кўпроқ кўрсатиш"
 
 msgid "Unsubscribe from this {{object}} and stop receiving notifications"
 msgstr ""
+"Ушбу {{объект}} га обунани бекор қилинг ва билдиришномалар олинишини "
+"тўхтатинг"
 
 msgid "Subscribe to this {{object}} and start receiving notifications"
-msgstr ""
+msgstr "Ушбу {{объект}} га обуна бўлинг ва билдиришномалар олишни бошланг"
 
 msgid "Table details"
-msgstr ""
+msgstr "Жадвал тафсилотлари"
 
 msgid "Chart details"
-msgstr ""
+msgstr "Диаграмма тафсилотлари"
 
 msgid "Map details"
-msgstr ""
+msgstr "Харита тафсилотлари"
 
 msgid "Visualization details"
-msgstr ""
+msgstr "Визуализация тафсилотлари"
 
 msgid "Owner"
 msgstr "Эгаси, тегишлилик"
@@ -124,11 +126,11 @@ msgid "Are you sure you want to delete this interpretation?"
 msgstr "Ушбу талқинни ўчиришга ишончингиз комилми?"
 
 msgid "Access restricted"
-msgstr ""
+msgstr "Кириш чекланган"
 
 msgid "{{count}} like"
 msgid_plural "{{count}} likes"
-msgstr[0] ""
+msgstr[0] "{{йиғинди}} ёқтирилганлар"
 
 msgid "Save interpretation"
 msgstr "Талқин сақлансин"
@@ -138,19 +140,19 @@ msgstr "Талқин ёзиш"
 
 msgid "{{count}} reply"
 msgid_plural "{{count}} replies"
-msgstr[0] ""
+msgstr[0] "{{йиғинди}} изоҳлар"
 
 msgid "Hide old replies"
-msgstr ""
+msgstr "Эски изоҳларни беркитиш"
 
 msgid "View more replies"
-msgstr ""
+msgstr "Кўпроқ изоҳларни кўриш"
 
 msgid "Delete comment"
-msgstr ""
+msgstr "Изоҳни ўчириш"
 
 msgid "Are you sure you want to delete this comment?"
-msgstr ""
+msgstr "Ушбу шарҳни ўчиришни хохлайсизми?"
 
 msgid "Hide previous interpretations"
 msgstr "Аввалги талқин яширилсин"
@@ -162,16 +164,16 @@ msgid "No interpretations"
 msgstr "Талқинлар йўқ"
 
 msgid "external access"
-msgstr ""
+msgstr "Ташқаридан кириш ҳуқуқи"
 
 msgid "public access"
-msgstr ""
+msgstr "оммавий фойдаланишга рухсат"
 
 msgid "None"
 msgstr "Йўқ"
 
 msgid "Shared with"
-msgstr ""
+msgstr "Билан бўлишиш"
 
 msgid "Read"
 msgstr "Ўқинг"
@@ -180,33 +182,33 @@ msgid "Read/Write"
 msgstr "Ўқинг/Ёзинг"
 
 msgid "Unknown"
-msgstr ""
+msgstr "Номаълум"
 
 msgid "Public"
 msgstr "Оммавий"
 
 msgid "{{count}} user"
 msgid_plural "{{count}} users"
-msgstr[0] ""
+msgstr[0] "{{йиғинди}} фойдаланувчилар"
 
 msgid "{{count}} user group"
 msgid_plural "{{count}} user groups"
-msgstr[0] ""
+msgstr[0] "{{йиғинди}} фойдаланувчи гуруҳлари"
 
 msgid "chart"
-msgstr "Диаграмма"
+msgstr "диаграмма"
 
 msgid "pivot table"
-msgstr ""
+msgstr "таянч жадвал"
 
 msgid "map"
-msgstr ""
+msgstr "харита"
 
 msgid "event chart"
-msgstr ""
+msgstr "ҳодиса/тадбир диаграммаси"
 
 msgid "event report"
-msgstr ""
+msgstr "ҳодиса/тадбир ҳисоботи"
 
 msgid "object"
-msgstr ""
+msgstr "объект"
