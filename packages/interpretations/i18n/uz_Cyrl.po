@@ -28,7 +28,7 @@ msgid "Read/Write"
 msgstr "Ўқинг/Ёзинг"
 
 msgid "Unknown"
-msgstr ""
+msgstr "Номаълум"
 
 msgid "Public"
 msgstr "Оммавий"
@@ -38,9 +38,11 @@ msgstr ""
 
 msgid "Unsubscribe from this {{object}} and stop receiving notifications"
 msgstr ""
+"Ушбу {{объект}} га обунани бекор қилинг ва билдиришномалар олинишини "
+"тўхтатинг"
 
 msgid "Subscribe to this {{object}} and start receiving notifications"
-msgstr ""
+msgstr "Ушбу {{объект}} га обуна бўлинг ва билдиришномалар олишни бошланг"
 
 msgid "Details"
 msgstr "Тафсилотлари"
@@ -130,16 +132,16 @@ msgid "chart"
 msgstr "Диаграмма"
 
 msgid "pivot table"
-msgstr ""
+msgstr "таянч жадвал"
 
 msgid "map"
-msgstr ""
+msgstr "харита"
 
 msgid "event chart"
-msgstr ""
+msgstr "ҳодиса/тадбир диаграммаси"
 
 msgid "event report"
-msgstr ""
+msgstr "ҳодиса/тадбир ҳисоботи"
 
 msgid "object"
-msgstr ""
+msgstr "объект"
