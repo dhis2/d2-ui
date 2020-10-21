@@ -64,7 +64,7 @@ msgid "Line"
 msgstr ""
 
 msgid "Area"
-msgstr ""
+msgstr "Майдон"
 
 msgid "Stacked area"
 msgstr ""
