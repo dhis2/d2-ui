@@ -25,10 +25,10 @@ msgid "Update"
 msgstr "Янгилаш"
 
 msgid "Level"
-msgstr "Босқич"
+msgstr "Поғона"
 
 msgid "Select a level"
-msgstr "Босқични танланг"
+msgstr "Поғонани танланг"
 
 msgid "Group"
 msgstr "Гуруҳ"
