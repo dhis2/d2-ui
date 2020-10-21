@@ -28,7 +28,7 @@ msgid "Level"
 msgstr "Даража"
 
 msgid "Select a level"
-msgstr "Босқични танланг"
+msgstr "Поғонани танланг"
 
 msgid "Group"
 msgstr "Гуруҳ"
