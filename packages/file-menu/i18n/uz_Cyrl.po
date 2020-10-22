@@ -16,10 +16,10 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "Delete {{what}}"
-msgstr ""
+msgstr "Ўчириш {{what}}"
 
 msgid "This {{what}} will be deleted. Continue?"
-msgstr ""
+msgstr "Ушбу {{what}} ўчирилади. Давом этасизми?"
 
 msgid "Delete"
 msgstr "Ўчириш"
@@ -28,10 +28,10 @@ msgid "File"
 msgstr "Файл"
 
 msgid "Open in this app"
-msgstr ""
+msgstr "Ушбу иловада очинг"
 
 msgid "Open in web API"
-msgstr ""
+msgstr "web API да очинг"
 
 msgid "Close"
 msgstr "Ёпиқ"
@@ -46,7 +46,7 @@ msgid "Open"
 msgstr "Очиш"
 
 msgid "Rename {{what}}"
-msgstr ""
+msgstr "Қайта номлаш {{what}}"
 
 msgid "Name"
 msgstr "Исми"
@@ -61,13 +61,13 @@ msgid "Rename"
 msgstr "Қайта номлаш"
 
 msgid "Save {{what}} as"
-msgstr ""
+msgstr "{{what}} ни сифатида сақлаш"
 
 msgid "Save"
 msgstr "Сақлаш"
 
 msgid "Save as..."
-msgstr ""
+msgstr "Сифатида сақлаш"
 
 msgid "Share"
 msgstr "Баҳам кўриш"
@@ -76,7 +76,7 @@ msgid "Translate"
 msgstr "Таржима қилинг"
 
 msgid "Write interpretation"
-msgstr "Шарҳ ёзиш"
+msgstr "Талқин ёзиш"
 
 msgid "Post"
-msgstr ""
+msgstr "Почта"

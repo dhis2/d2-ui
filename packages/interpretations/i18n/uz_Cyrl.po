@@ -34,7 +34,7 @@ msgid "Public"
 msgstr "Оммавий"
 
 msgid "user groups"
-msgstr ""
+msgstr "фойдаланувчи гуруҳлари"
 
 msgid "Unsubscribe from this {{object}} and stop receiving notifications"
 msgstr ""
@@ -63,16 +63,16 @@ msgid "Sharing"
 msgstr "Улашиш"
 
 msgid "OK"
-msgstr ""
+msgstr "ОК"
 
 msgid "Post comment"
-msgstr ""
+msgstr "Шарҳ қолдириш"
 
 msgid "Cancel"
 msgstr "Бекор қилиш"
 
 msgid "Are you sure you want to remove this interpretation?"
-msgstr ""
+msgstr "Ҳақиқатдан ҳам ушбу талқинни олиб ташламоқчимисиз?"
 
 msgid "Unlike"
 msgstr "Аксинча"
@@ -99,19 +99,19 @@ msgid "people commented"
 msgstr "одамлар фикр билдирган"
 
 msgid "Are you sure you want to remove this comment?"
-msgstr ""
+msgstr "Ҳақиқатдан ҳам ушбу шарҳни олиб ташламоқчимисиз?"
 
 msgid "more comments"
 msgstr "кўпроқ шарҳлар"
 
 msgid "Edit interpretation"
-msgstr ""
+msgstr "Талқинни таҳрирланг"
 
 msgid "Create interpretation"
-msgstr ""
+msgstr "Талқинни яратинг"
 
 msgid "Save & share"
-msgstr ""
+msgstr "Сақланг ва улашинг"
 
 msgid "Save"
 msgstr "Сақлаш"
@@ -123,13 +123,13 @@ msgid "Clear interpretation"
 msgstr "Талқин тозалансин"
 
 msgid "Write new interpretation"
-msgstr ""
+msgstr "Янги талқин ёзиш"
 
 msgid "Interpretations"
 msgstr "Шарҳлар"
 
 msgid "chart"
-msgstr "Диаграмма"
+msgstr "диаграмма"
 
 msgid "pivot table"
 msgstr "таянч жадвал"
