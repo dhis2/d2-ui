@@ -31,16 +31,16 @@ msgid "Search by name"
 msgstr "Исми орқали излаш"
 
 msgid "All types"
-msgstr ""
+msgstr "Барча турлари"
 
 msgid "All chart types"
-msgstr ""
+msgstr "Барча диаграмма турлари"
 
 msgid "All owners"
-msgstr ""
+msgstr "Барча хўжайинлар"
 
 msgid "Created by you"
-msgstr ""
+msgstr "Сиз томондан таҳрир қилинди"
 
 msgid "Created by others"
 msgstr "Бошқалар яратганлари"
@@ -52,40 +52,40 @@ msgid "Column"
 msgstr "Устун"
 
 msgid "Stacked column"
-msgstr ""
+msgstr "Йиғилган устун"
 
 msgid "Bar"
-msgstr ""
+msgstr "Тизимча"
 
 msgid "Stacked bar"
-msgstr ""
+msgstr "Йиғилган тизимча"
 
 msgid "Line"
-msgstr ""
+msgstr "Қатор"
 
 msgid "Area"
 msgstr "Майдон"
 
 msgid "Stacked area"
-msgstr ""
+msgstr "Йиғилган майдон"
 
 msgid "Pie"
-msgstr ""
+msgstr "Яхлитлик"
 
 msgid "Radar"
-msgstr ""
+msgstr "Радар"
 
 msgid "Gauge"
-msgstr ""
+msgstr "Ҳисоблагич"
 
 msgid "Year over year (line)"
-msgstr ""
+msgstr "Йилдан йилга (қатор)"
 
 msgid "Year over year (column)"
-msgstr ""
+msgstr "Йилдан йилга (устун)"
 
 msgid "Single value"
-msgstr ""
+msgstr "Ягона қиймат"
 
 msgid "Pivot table"
 msgstr "Таянч жадвал"

@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "Organisation units"
-msgstr "Ташкилий бирликлар"
+msgstr "Ташкилий бўлимлар"
 
 msgid "Hide"
 msgstr "Яшириш"
@@ -37,7 +37,7 @@ msgid "Select a group"
 msgstr "Гуруҳни танланг"
 
 msgid "Select all org units below"
-msgstr ""
+msgstr "Бўйсунувчи ташкилий бўлимларни танланг"
 
 msgid "selected"
 msgstr "танланган"
@@ -52,4 +52,4 @@ msgid "User sub-units"
 msgstr "Фойдаланувчига бўйсунувчи бирликлар"
 
 msgid "User sub-x2-units"
-msgstr "Фойдаланувчига бўйсунувчи 2 даражали бирликлар"
+msgstr "Фойдаланувчига бўйсунувчи 2 поғонадаги бўлимлар"
