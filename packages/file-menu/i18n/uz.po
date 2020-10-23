@@ -1,0 +1,79 @@
+# 
+# Translators:
+# Ibatov <ibatovk@who.int>, 2020
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"POT-Creation-Date: 2020-06-05T17:52:31.450Z\n"
+"PO-Revision-Date: 2019-08-12 21:18+0000\n"
+"Last-Translator: Ibatov <ibatovk@who.int>, 2020\n"
+"Language-Team: Uzbek (Cyrillic) (https://www.transifex.com/hisp-uio/teams/100509/uz@Cyrl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: uz@Cyrl\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Delete {{what}}"
+msgstr "Ўчириш {{what}}"
+
+msgid "This {{what}} will be deleted. Continue?"
+msgstr "Ушбу {{what}} ўчирилади. Давом этасизми?"
+
+msgid "Cancel"
+msgstr "Бекор қилиш"
+
+msgid "Delete"
+msgstr "Ўчириш"
+
+msgid "File"
+msgstr "Файл"
+
+msgid "Open in this app"
+msgstr "Ушбу иловада очинг"
+
+msgid "Close"
+msgstr "Ёпиқ"
+
+msgid "Get link"
+msgstr "Ҳаволани олинг"
+
+msgid "New"
+msgstr "Янги"
+
+msgid "Open"
+msgstr "Очиш"
+
+msgid "Rename {{what}}"
+msgstr "Қайта номлаш {{what}}"
+
+msgid "Name"
+msgstr "Исми"
+
+msgid "Description"
+msgstr "Тавсиф"
+
+msgid "Rename"
+msgstr "Қайта номлаш"
+
+msgid "Save {{what}} as"
+msgstr "{{what}} ни сифатида сақлаш"
+
+msgid "Save"
+msgstr "Сақлаш"
+
+msgid "Save as..."
+msgstr "Сифатида сақлаш"
+
+msgid "Share"
+msgstr "Бўлишиш"
+
+msgid "Translate"
+msgstr "Таржима қилинг"
+
+msgid "Write interpretation"
+msgstr "Талқин ёзиш"
+
+msgid "Post"
+msgstr "Почта"

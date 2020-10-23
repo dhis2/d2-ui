@@ -1,0 +1,214 @@
+# 
+# Translators:
+# Ibatov <ibatovk@who.int>, 2020
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"POT-Creation-Date: 2020-05-05T19:02:08.816Z\n"
+"PO-Revision-Date: 2019-08-13 09:54+0000\n"
+"Last-Translator: Ibatov <ibatovk@who.int>, 2020\n"
+"Language-Team: Uzbek (Cyrillic) (https://www.transifex.com/hisp-uio/teams/100509/uz@Cyrl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: uz@Cyrl\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "View"
+msgstr "Кўрик"
+
+msgid "Exit View"
+msgstr "Кўрикдан чиқиш"
+
+msgid "Like"
+msgstr "Каби, ўхшаш"
+
+msgid "Unlike"
+msgstr "Аксинча"
+
+msgid "Reply"
+msgstr "Жавоб"
+
+msgid "Edit"
+msgstr "Таҳрирлаш"
+
+msgid "Manage sharing"
+msgstr "Улашишни бошқариш"
+
+msgid "Delete"
+msgstr "Ўчириш"
+
+msgid "Pivot Tables"
+msgstr "Таянч жадваллар"
+
+msgid "Visualizer"
+msgstr "Визуализатор"
+
+msgid "Maps"
+msgstr "Хариталар"
+
+msgid "Event Reports"
+msgstr "Ҳодиса/Тадбирлар ҳақида ҳисоботлар"
+
+msgid "Event Visualizer"
+msgstr "Ҳодисалар визуализатори"
+
+msgid "View in {{appName}} app"
+msgstr "{{appName}} иловаси орқали кўриш"
+
+msgid "Back to all interpretations"
+msgstr "Жами талқинларга қайтиш"
+
+msgid "Interpretations"
+msgstr "Талқинлар"
+
+msgid "Save reply"
+msgstr "Жавоб сақлансин"
+
+msgid "Cancel"
+msgstr "Бекор қилиш"
+
+msgid "Write a reply"
+msgstr "Изоҳ ёзинг"
+
+msgid "Confirm"
+msgstr "Тасдиқланг"
+
+msgid "No description"
+msgstr "Тавсиф йўқ"
+
+msgid "Show less"
+msgstr "Камроқ кўрсатиш"
+
+msgid "Show more"
+msgstr "Кўпроқ кўрсатиш"
+
+msgid "Unsubscribe from this {{object}} and stop receiving notifications"
+msgstr ""
+"Ушбу {{объект}} га обунани бекор қилинг ва билдиришномалар олинишини "
+"тўхтатинг"
+
+msgid "Subscribe to this {{object}} and start receiving notifications"
+msgstr "Ушбу {{объект}} га обуна бўлинг ва билдиришномалар олишни бошланг"
+
+msgid "Table details"
+msgstr "Жадвал тафсилотлари"
+
+msgid "Chart details"
+msgstr "Диаграмма тафсилотлари"
+
+msgid "Map details"
+msgstr "Харита тафсилотлари"
+
+msgid "Visualization details"
+msgstr "Визуализация тафсилотлари"
+
+msgid "Owner"
+msgstr "Эгаси, тегишлилик"
+
+msgid "Created"
+msgstr "Яратилди"
+
+msgid "Last updated"
+msgstr "Охирги янгиланган"
+
+msgid "Views"
+msgstr "Кўришлар"
+
+msgid "Sharing"
+msgstr "Улашиш"
+
+msgid "Delete interpretation"
+msgstr "Талқин ўчирилсин"
+
+msgid "Are you sure you want to delete this interpretation?"
+msgstr "Ҳақиқатдан ҳам ушбу талқинни ўчирмоқчимисиз?"
+
+msgid "Access restricted"
+msgstr "Кириш чекланган"
+
+msgid "{{count}} like"
+msgid_plural "{{count}} likes"
+msgstr[0] "{{йиғинди}} ёқтирилганлар"
+
+msgid "Save interpretation"
+msgstr "Талқин сақлансин"
+
+msgid "Write an interpretation"
+msgstr "Талқин ёзиш"
+
+msgid "{{count}} reply"
+msgid_plural "{{count}} replies"
+msgstr[0] "{{йиғинди}} изоҳлар"
+
+msgid "Hide old replies"
+msgstr "Эски изоҳларни беркитиш"
+
+msgid "View more replies"
+msgstr "Кўпроқ изоҳларни кўриш"
+
+msgid "Delete comment"
+msgstr "Изоҳни ўчириш"
+
+msgid "Are you sure you want to delete this comment?"
+msgstr "Ушбу шарҳни ўчирмоқчимисиз?"
+
+msgid "Hide previous interpretations"
+msgstr "Аввалги талқин яширилсин"
+
+msgid "Show previous interpretations"
+msgstr "Аввалги талқин кўрсатилсин"
+
+msgid "No interpretations"
+msgstr "Талқинлар йўқ"
+
+msgid "external access"
+msgstr "Ташқаридан кириш ҳуқуқи"
+
+msgid "public access"
+msgstr "оммавий фойдаланишга рухсат"
+
+msgid "None"
+msgstr "Йўқ"
+
+msgid "Shared with"
+msgstr "Билан бўлишиш"
+
+msgid "Read"
+msgstr "Ўқинг"
+
+msgid "Read/Write"
+msgstr "Ўқинг/Ёзинг"
+
+msgid "Unknown"
+msgstr "Номаълум"
+
+msgid "Public"
+msgstr "Оммавий"
+
+msgid "{{count}} user"
+msgid_plural "{{count}} users"
+msgstr[0] "{{йиғинди}} фойдаланувчилар"
+
+msgid "{{count}} user group"
+msgid_plural "{{count}} user groups"
+msgstr[0] "{{йиғинди}} фойдаланувчи гуруҳлари"
+
+msgid "chart"
+msgstr "диаграмма"
+
+msgid "pivot table"
+msgstr "таянч жадвал"
+
+msgid "map"
+msgstr "харита"
+
+msgid "event chart"
+msgstr "ҳодиса/тадбир диаграммаси"
+
+msgid "event report"
+msgstr "ҳодиса/тадбир ҳисоботи"
+
+msgid "object"
+msgstr "объект"

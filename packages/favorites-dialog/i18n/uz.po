@@ -1,0 +1,91 @@
+# 
+# Translators:
+# Ibatov <ibatovk@who.int>, 2020
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"POT-Creation-Date: 2020-08-14T11:58:49.665Z\n"
+"PO-Revision-Date: 2020-04-29 21:46+0000\n"
+"Last-Translator: Ibatov <ibatovk@who.int>, 2020\n"
+"Language-Team: Uzbek (Cyrillic) (https://www.transifex.com/hisp-uio/teams/100509/uz@Cyrl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: uz@Cyrl\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Name"
+msgstr "Исми"
+
+msgid "Created"
+msgstr "Яратилди"
+
+msgid "Last updated"
+msgstr "Охирги янгиланган"
+
+msgid "Type"
+msgstr "Тури"
+
+msgid "Search by name"
+msgstr "Исми орқали излаш"
+
+msgid "All types"
+msgstr "Барча турлари"
+
+msgid "All chart types"
+msgstr "Барча диаграмма турлари"
+
+msgid "All owners"
+msgstr "Барча хўжайинлар"
+
+msgid "Created by you"
+msgstr "Сиз томондан таҳрир қилинди"
+
+msgid "Created by others"
+msgstr "Бошқалар яратганлари"
+
+msgid "Close"
+msgstr "Ёпиқ"
+
+msgid "Column"
+msgstr "Устун"
+
+msgid "Stacked column"
+msgstr "Йиғилган устун"
+
+msgid "Bar"
+msgstr "Тизимча"
+
+msgid "Stacked bar"
+msgstr "Йиғилган тизимча"
+
+msgid "Line"
+msgstr "Қатор"
+
+msgid "Area"
+msgstr "Майдон"
+
+msgid "Stacked area"
+msgstr "Йиғилган майдон"
+
+msgid "Pie"
+msgstr "Яхлитлик"
+
+msgid "Radar"
+msgstr "Радар"
+
+msgid "Gauge"
+msgstr "Ҳисоблагич"
+
+msgid "Year over year (line)"
+msgstr "Йилдан йилга (қатор)"
+
+msgid "Year over year (column)"
+msgstr "Йилдан йилга (устун)"
+
+msgid "Single value"
+msgstr "Ягона қиймат"
+
+msgid "Pivot table"
+msgstr "Таянч жадвал"
