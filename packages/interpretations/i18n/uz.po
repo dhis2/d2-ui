@@ -173,7 +173,7 @@ msgid "None"
 msgstr "Йўқ"
 
 msgid "Shared with"
-msgstr "Билан бўлишиш"
+msgstr "Билан улашиш"
 
 msgid "Read"
 msgstr "Ўқинг"
