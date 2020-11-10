@@ -3,13 +3,14 @@
 # Viktor Varland <viktor@dhis2.org>, 2020
 # Wanda <wanda@frontlineaids.org>, 2020
 # phil_dhis2, 2020
+# Ulanbek Abakirov <ulans@mail.ru>, 2020
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2020-08-14T11:58:49.665Z\n"
 "PO-Revision-Date: 2020-04-29 21:46+0000\n"
-"Last-Translator: phil_dhis2, 2020\n"
+"Last-Translator: Ulanbek Abakirov <ulans@mail.ru>, 2020\n"
 "Language-Team: Russian (https://www.transifex.com/hisp-uio/teams/100509/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,16 +34,16 @@ msgid "Search by name"
 msgstr "Поиск по названию"
 
 msgid "All types"
-msgstr ""
+msgstr "Все типы"
 
 msgid "All chart types"
-msgstr ""
+msgstr "Все виды диаграмм"
 
 msgid "All owners"
-msgstr ""
+msgstr "Все владельцы"
 
 msgid "Created by you"
-msgstr ""
+msgstr "Созданные вами"
 
 msgid "Created by others"
 msgstr "Создано другими"
@@ -69,7 +70,7 @@ msgid "Area"
 msgstr "Диаграмма-области"
 
 msgid "Stacked area"
-msgstr ""
+msgstr "Линейчатая с накоплениями"
 
 msgid "Pie"
 msgstr "Круговая"
@@ -87,7 +88,7 @@ msgid "Year over year (column)"
 msgstr "Год за годом (столбец)"
 
 msgid "Single value"
-msgstr ""
+msgstr "Одиночное значение"
 
 msgid "Pivot table"
 msgstr "Сводная таблица"
