@@ -2,13 +2,14 @@
 # Translators:
 # phil_dhis2, 2019
 # Viktor Varland <viktor@dhis2.org>, 2019
+# Ulanbek Abakirov <ulans@mail.ru>, 2020
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2018-07-04T08:51:47.874Z\n"
 "PO-Revision-Date: 2019-08-13 20:28+0000\n"
-"Last-Translator: Viktor Varland <viktor@dhis2.org>, 2019\n"
+"Last-Translator: Ulanbek Abakirov <ulans@mail.ru>, 2020\n"
 "Language-Team: Russian (https://www.transifex.com/hisp-uio/teams/100509/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,13 +36,13 @@ msgid "Public"
 msgstr "Общедоступный"
 
 msgid "user groups"
-msgstr ""
+msgstr "Группы пользователя"
 
 msgid "Unsubscribe from this {{object}} and stop receiving notifications"
-msgstr ""
+msgstr "Отписаться от  {{object}} и остановить получать уведомления"
 
 msgid "Subscribe to this {{object}} and start receiving notifications"
-msgstr ""
+msgstr "Подписаться к  {{object}}  и начать получать уведомления"
 
 msgid "Details"
 msgstr "Детали"
@@ -65,13 +66,13 @@ msgid "OK"
 msgstr "ОК"
 
 msgid "Post comment"
-msgstr ""
+msgstr "Написать комментарий"
 
 msgid "Cancel"
 msgstr "Отменить"
 
 msgid "Are you sure you want to remove this interpretation?"
-msgstr ""
+msgstr "Вы действительно хотите удалить этот перевод?"
 
 msgid "Unlike"
 msgstr "Нелайк"
@@ -98,19 +99,19 @@ msgid "people commented"
 msgstr "люди прокомментировали"
 
 msgid "Are you sure you want to remove this comment?"
-msgstr ""
+msgstr "Вы действительно хотите удалить этот комментарий?"
 
 msgid "more comments"
 msgstr "больше комментариев"
 
 msgid "Edit interpretation"
-msgstr ""
+msgstr "Редактировать перевод"
 
 msgid "Create interpretation"
-msgstr ""
+msgstr "Создать перевод"
 
 msgid "Save & share"
-msgstr ""
+msgstr "Сохранить и поделиться"
 
 msgid "Save"
 msgstr "Сохранить"
@@ -122,25 +123,25 @@ msgid "Clear interpretation"
 msgstr "Очистить интерпретацию"
 
 msgid "Write new interpretation"
-msgstr ""
+msgstr "Написать новый перевод"
 
 msgid "Interpretations"
 msgstr "Интерпретации"
 
 msgid "chart"
-msgstr ""
+msgstr "Диаграмма"
 
 msgid "pivot table"
-msgstr ""
+msgstr "Сводная таблица"
 
 msgid "map"
-msgstr ""
+msgstr "Карта"
 
 msgid "event chart"
-msgstr ""
+msgstr "Диаграмма случаев"
 
 msgid "event report"
-msgstr ""
+msgstr "Отчет случаев"
 
 msgid "object"
-msgstr ""
+msgstr "Объект"

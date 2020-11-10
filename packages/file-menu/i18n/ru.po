@@ -2,13 +2,14 @@
 # Translators:
 # Viktor Varland <viktor@dhis2.org>, 2019
 # phil_dhis2, 2020
+# Ulanbek Abakirov <ulans@mail.ru>, 2020
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2018-06-07T12:57:17.631Z\n"
 "PO-Revision-Date: 2019-08-13 20:28+0000\n"
-"Last-Translator: phil_dhis2, 2020\n"
+"Last-Translator: Ulanbek Abakirov <ulans@mail.ru>, 2020\n"
 "Language-Team: Russian (https://www.transifex.com/hisp-uio/teams/100509/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -17,10 +18,10 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
 msgid "Delete {{what}}"
-msgstr ""
+msgstr "Удалить {{what}}"
 
 msgid "This {{what}} will be deleted. Continue?"
-msgstr ""
+msgstr "{{what}} будет удален. Продолжить?"
 
 msgid "Delete"
 msgstr "Удалить"
@@ -29,10 +30,10 @@ msgid "File"
 msgstr "Файл"
 
 msgid "Open in this app"
-msgstr ""
+msgstr "Открыть в данном приложении"
 
 msgid "Open in web API"
-msgstr ""
+msgstr "Открыть в Web API"
 
 msgid "Close"
 msgstr "Закрыть"
@@ -47,7 +48,7 @@ msgid "Open"
 msgstr "Открыть"
 
 msgid "Rename {{what}}"
-msgstr ""
+msgstr "Переименовать {{what}}"
 
 msgid "Name"
 msgstr "Название"
@@ -62,13 +63,13 @@ msgid "Rename"
 msgstr "Переименовать"
 
 msgid "Save {{what}} as"
-msgstr ""
+msgstr "Сохранить  {{what}}  как"
 
 msgid "Save"
 msgstr "Сохранить"
 
 msgid "Save as..."
-msgstr ""
+msgstr "Сохранить как..."
 
 msgid "Share"
 msgstr "Поделиться"
