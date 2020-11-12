@@ -34,7 +34,7 @@ msgid "Open in web API"
 msgstr "web API да очинг"
 
 msgid "Close"
-msgstr "Ёпиқ"
+msgstr "Ёпиш"
 
 msgid "Get link"
 msgstr "Ҳаволани олинг"
