@@ -42,7 +42,7 @@ msgid "Unsubscribe from this {{object}} and stop receiving notifications"
 msgstr "إلغاء الاشتراك من {{object}} وإيقاف تلقي الإشعارات"
 
 msgid "Subscribe to this {{object}} and start receiving notifications"
-msgstr "الاشتراك بـ {{object}} والبدء في تلقي الإشعارات"
+msgstr "الاشتراك في {{object}} والبدء في تلقي الإشعارات"
 
 msgid "Details"
 msgstr "التفاصيل"
