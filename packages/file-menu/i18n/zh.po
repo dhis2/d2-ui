@@ -2,13 +2,14 @@
 # Translators:
 # phil_dhis2, 2019
 # 晓东 林 <13981924470@126.com>, 2020
+# easylin <lin_xd@126.com>, 2020
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2018-06-07T12:57:17.631Z\n"
 "PO-Revision-Date: 2019-08-13 20:28+0000\n"
-"Last-Translator: 晓东 林 <13981924470@126.com>, 2020\n"
+"Last-Translator: easylin <lin_xd@126.com>, 2020\n"
 "Language-Team: Chinese (https://www.transifex.com/hisp-uio/teams/100509/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,7 +33,7 @@ msgid "Open in this app"
 msgstr "在该App打开"
 
 msgid "Open in web API"
-msgstr ""
+msgstr "在Web API中打开"
 
 msgid "Close"
 msgstr "关闭"
