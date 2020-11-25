@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2020-05-05T19:02:08.816Z\n"
+"POT-Creation-Date: 2020-11-25T13:09:15.666Z\n"
 "PO-Revision-Date: 2019-08-13 09:54+0000\n"
 "Last-Translator: easylin <lin_xd@126.com>, 2020\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/hisp-uio/teams/100509/zh_CN/)\n"
@@ -127,7 +127,7 @@ msgstr ""
 msgid "Access restricted"
 msgstr ""
 
-msgid "{{count}} like"
+msgid "{{count}} likes"
 msgid_plural "{{count}} likes"
 msgstr[0] ""
 
@@ -137,7 +137,7 @@ msgstr ""
 msgid "Write an interpretation"
 msgstr ""
 
-msgid "{{count}} reply"
+msgid "{{count}} replies"
 msgid_plural "{{count}} replies"
 msgstr[0] ""
 
@@ -186,11 +186,11 @@ msgstr ""
 msgid "Public"
 msgstr "公用"
 
-msgid "{{count}} user"
+msgid "{{count}} users"
 msgid_plural "{{count}} users"
 msgstr[0] ""
 
-msgid "{{count}} user group"
+msgid "{{count}} user groups"
 msgid_plural "{{count}} user groups"
 msgstr[0] ""
 
