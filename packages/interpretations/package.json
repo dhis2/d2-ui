@@ -17,7 +17,7 @@
         "build": "npm run localize && babel src --copy-files --out-dir build --ignore spec.js",
         "lint": "eslint src/",
         "watch": "npm run build -- --watch",
-        "extract-pot": "d2-app-scripts i18n extract",
+        "extract-pot": "node ./scripts/extract.js",
         "localize": "d2-app-scripts i18n generate",
         "test-ci": "jest --config=../../jest.config.js packages/interpretations"
     },
