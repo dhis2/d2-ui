@@ -14,9 +14,24 @@ import EnhancedTable from './EnhancedTable';
 import { fetchData } from './actions';
 
 class Favorites extends Component {
-    componentWillReceiveProps(nextProps) {
+    componentDidMount() {
         // fetch data only the first time the dialog is open
-        if (nextProps.open && (!nextProps.dataIsLoaded || nextProps.refreshData)) {
+        if (
+            this.props.open &&
+            (!this.props.dataIsLoaded || this.props.refreshData)
+        ) {
+            this.props.fetchData();
+        }
+    }
+
+    componentDidUpdate(prevProps) {
+        if (
+            this.props.open !== prevProps.open &&
+            this.props.open &&
+            (!this.props.dataIsLoaded ||
+                this.props.refreshData ||
+                this.props.type !== prevProps.type)
+        ) {
             this.props.fetchData();
         }
     }
@@ -33,13 +48,24 @@ class Favorites extends Component {
         const showTypeColumn = /visualization|chart/.test(type);
 
         return (
-            <Dialog open={open} onClose={onRequestClose} disableEnforceFocus maxWidth="md" fullWidth>
+            <Dialog
+                open={open}
+                onClose={onRequestClose}
+                disableEnforceFocus
+                maxWidth="md"
+                fullWidth
+            >
                 <DialogContent>
                     <EnhancedToolbar showTypeFilter={showTypeColumn} />
-                    <EnhancedTable showTypeColumn={showTypeColumn} onFavoriteSelect={handleOnFavoriteSelect} />
+                    <EnhancedTable
+                        showTypeColumn={showTypeColumn}
+                        onFavoriteSelect={handleOnFavoriteSelect}
+                    />
                 </DialogContent>
                 <DialogActions>
-                    <Button color="primary" onClick={onRequestClose}>{i18n.t('Close')}</Button>
+                    <Button color="primary" onClick={onRequestClose}>
+                        {i18n.t('Close')}
+                    </Button>
                 </DialogActions>
             </Dialog>
         );
@@ -56,7 +82,7 @@ Favorites.propTypes = {
     fetchData: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     dataIsLoaded: state.data.totalRecords > 0,
 });
 
@@ -64,7 +90,4 @@ const mapDispatchToProps = {
     fetchData,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(Favorites);
+export default connect(mapStateToProps, mapDispatchToProps)(Favorites);
