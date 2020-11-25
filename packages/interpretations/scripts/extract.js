@@ -11,7 +11,7 @@ const { i18nextToPot, gettextToI18next } = require("i18next-conv");
 
 /**
  * This script is a near exact copy of the cli-app-scripts extract script. The
- * only difference is that this script sets the default value, which results
+ * only difference is that this script sets the default value (lines 44-45), which results
  * in the en.pot file containing all the translations instead of empty msgstr.
  *
  * If this approach is successful for handling plurals, then the fix will be
@@ -41,9 +41,8 @@ const extract = async ({ input, output }) => {
         keepRemoved: false,
         keySeparator: false,
         sort: true,
-        defaultValue: (lng, ns, key, options) => {
-            return options.defaultValue ? options.defaultValue : key;
-        }
+        defaultValue: (lng, ns, key, options) =>
+            options.defaultValue ? options.defaultValue : key
     });
 
     reporter.debug(`[i18n-extract] Parsing ${files.length} files...`);
