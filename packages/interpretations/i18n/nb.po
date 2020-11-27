@@ -1,6 +1,7 @@
 # 
 # Translators:
 # Caroline Hesthagen Holen <caroline@devotta.no>, 2020
+# Jen Jones Arnesen <jennifer@dhis2.org>, 2020
 # Karoline Tufte Lien <karoline@dhis2.org>, 2020
 # 
 msgid ""
@@ -129,8 +130,8 @@ msgstr "Tilgang begrenset"
 
 msgid "{{count}} likes"
 msgid_plural "{{count}} likes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{{count}} like"
+msgstr[1] "{{count}} likes"
 
 msgid "Save interpretation"
 msgstr "Lagre tolkning"
@@ -140,8 +141,8 @@ msgstr "Skriv en tolkning"
 
 msgid "{{count}} replies"
 msgid_plural "{{count}} replies"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{{count}} svar"
+msgstr[1] "{{count}} svar"
 
 msgid "Hide old replies"
 msgstr "Skjul gamle svar"
@@ -190,13 +191,13 @@ msgstr "Offentlig"
 
 msgid "{{count}} users"
 msgid_plural "{{count}} users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{{count}} bruker"
+msgstr[1] "{{count}} brukere"
 
 msgid "{{count}} user groups"
 msgid_plural "{{count}} user groups"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{{count}} brukergruppe"
+msgstr[1] "{{count}} brukergrupper"
 
 msgid "chart"
 msgstr "diagram"
