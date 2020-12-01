@@ -15,7 +15,6 @@ import { fetchData } from './actions';
 
 class Favorites extends Component {
     componentDidMount() {
-        // fetch data only the first time the dialog is open
         if (
             this.props.open &&
             (!this.props.dataIsLoaded || this.props.refreshData)
