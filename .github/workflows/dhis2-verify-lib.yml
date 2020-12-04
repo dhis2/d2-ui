@@ -122,7 +122,7 @@ jobs:
                   name: lib-build
 
             - name: Publish build
-              run: ./scripts/publish-build.sh --dry-run
+              run: ./scripts/publish-build.sh
               shell: bash
               env:
                   NODE_AUTH_TOKEN: ${{ env.NPM_TOKEN }}
