@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2020-08-14T11:58:49.665Z\n"
+"POT-Creation-Date: 2020-12-07T08:39:12.894Z\n"
 "PO-Revision-Date: 2020-04-29 21:46+0000\n"
 "Last-Translator: easylin <lin_xd@126.com>, 2020\n"
 "Language-Team: Chinese (https://www.transifex.com/hisp-uio/teams/100509/zh/)\n"
@@ -92,3 +92,6 @@ msgstr "单个值"
 
 msgid "Pivot table"
 msgstr "透视表"
+
+msgid "Scatter"
+msgstr ""

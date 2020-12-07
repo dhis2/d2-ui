@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2020-08-14T11:58:49.665Z\n"
+"POT-Creation-Date: 2020-12-07T08:39:12.894Z\n"
 "PO-Revision-Date: 2020-04-29 21:46+0000\n"
 "Last-Translator: phil_dhis2, 2020\n"
 "Language-Team: Persian (Afghanistan) (https://www.transifex.com/hisp-uio/teams/100509/fa_AF/)\n"
@@ -88,4 +88,7 @@ msgid "Single value"
 msgstr ""
 
 msgid "Pivot table"
+msgstr ""
+
+msgid "Scatter"
 msgstr ""
