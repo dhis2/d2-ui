@@ -1,22 +1,23 @@
-import i18n from '@dhis2/d2-i18n';
-import BarIcon from './icons/BarIcon';
-import StackedBarIcon from './icons/StackedBarIcon';
-import ColumnIcon from './icons/ColumnIcon';
-import StackedColumnIcon from './icons/StackedColumnIcon';
-import LineIcon from './icons/LineIcon';
-import AreaIcon from './icons/AreaIcon';
-import StackedAreaIcon from './icons/StackedAreaIcon';
-import PieIcon from './icons/PieIcon';
-import RadarIcon from './icons/RadarIcon';
-import GaugeIcon from './icons/GaugeIcon';
-import YearOverYearLineIcon from './icons/YearOverYearLineIcon';
-import YearOverYearColumnIcon from './icons/YearOverYearColumnIcon';
-import SingleValueIcon from './icons/SingleValueIcon';
-import PivotTableIcon from './icons/PivotTableIcon';
+import i18n from "@dhis2/d2-i18n";
+import BarIcon from "./icons/BarIcon";
+import StackedBarIcon from "./icons/StackedBarIcon";
+import ColumnIcon from "./icons/ColumnIcon";
+import StackedColumnIcon from "./icons/StackedColumnIcon";
+import LineIcon from "./icons/LineIcon";
+import AreaIcon from "./icons/AreaIcon";
+import StackedAreaIcon from "./icons/StackedAreaIcon";
+import PieIcon from "./icons/PieIcon";
+import RadarIcon from "./icons/RadarIcon";
+import GaugeIcon from "./icons/GaugeIcon";
+import YearOverYearLineIcon from "./icons/YearOverYearLineIcon";
+import YearOverYearColumnIcon from "./icons/YearOverYearColumnIcon";
+import SingleValueIcon from "./icons/SingleValueIcon";
+import PivotTableIcon from "./icons/PivotTableIcon";
+import ScatterIcon from "./icons/ScatterIcon";
 
-export const CHART = 'CHART';
-export const PIVOT_TABLE = 'PIVOT_TABLE';
-export const COLUMN = 'COLUMN';
+export const CHART = "CHART";
+export const PIVOT_TABLE = "PIVOT_TABLE";
+export const COLUMN = "COLUMN";
 
 export const visTypeIcons = {
     [COLUMN]: ColumnIcon,
@@ -32,10 +33,11 @@ export const visTypeIcons = {
     YEAR_OVER_YEAR_LINE: YearOverYearLineIcon,
     YEAR_OVER_YEAR_COLUMN: YearOverYearColumnIcon,
     SINGLE_VALUE: SingleValueIcon,
-    [PIVOT_TABLE]: PivotTableIcon
+    [PIVOT_TABLE]: PivotTableIcon,
+    SCATTER: ScatterIcon,
 };
 
-export const getVisTypeLabel = type => {
+export const getVisTypeLabel = (type) => {
     const visTypeLabels = {
         [COLUMN]: i18n.t("Column"),
         STACKED_COLUMN: i18n.t("Stacked column"),
@@ -50,8 +52,9 @@ export const getVisTypeLabel = type => {
         YEAR_OVER_YEAR_LINE: i18n.t("Year over year (line)"),
         YEAR_OVER_YEAR_COLUMN: i18n.t("Year over year (column)"),
         SINGLE_VALUE: i18n.t("Single value"),
-        [PIVOT_TABLE]: i18n.t("Pivot table")
+        [PIVOT_TABLE]: i18n.t("Pivot table"),
+        SCATTER: i18n.t("Scatter"),
     };
 
     return visTypeLabels[type];
-}
+};
