@@ -34,9 +34,9 @@ function exec () {
 
 function publishPackage () {
     local pkg_dir=$1
-	local pkg_ver=$2
+    local pkg_ver=$2
 
-	pushd "$pkg_dir"
+    pushd "$pkg_dir"
 
     if [[ -e package.json ]]; then
         jq --exit-status "(
@@ -51,19 +51,20 @@ function publishPackage () {
             .version = \"$pkg_ver\"
         )" package.json > build/package.json
 
-		pushd build
+        pushd build
 
         name=$(node -pe "require('./package.json').name")
         version=$(node -pe "require('./package.json').version")
-        echo "Publishing package: ${name} @ ${version}"
 
+        echo "Publishing package: ${name} @ ${version}"
         exec "npm publish --tag latest --access public"
-		popd
+
+        popd
     else
         printerr "Package.json file in '${pkg_dir}' does not exist, skipping publish."
     fi
 
-	popd
+    popd
 }
 
 function getVersion {
@@ -83,7 +84,7 @@ root_ver=${root_ver//\"/}
 
 for dir in ./packages/*/
 do
-	publishPackage "${dir%/}" "$root_ver"
+    publishPackage "${dir%/}" "$root_ver"
 done
 
 exit 0

@@ -5,26 +5,27 @@ used to publish all packages.
 
 # Publish to NPM
 
-0. Get on the `master` branch
+1. Get on the `master` branch
 
 ```
 git checkout master
 git pull
 ```
 
-1. Update the `version`
+2. Update the `version`
 
 ```
 yarn version
 ```
 
-2. Push the bump commit and version tag
+3. Push the bump commit and version tag
 
 ```
 git push --follow-tags
 ```
 
-3. Start the release workflow manually
+4. Start the release workflow manually
 
-https://github.blog/changelog/2020-07-06-github-actions-manual-triggers-with-workflow_dispatch/
-
+Go to [the d2-ui release
+action](https://github.com/dhis2/d2-ui/actions?query=workflow%3A%22dhis2%3A+release+d2-ui%22)
+and click "Run workflow" from `master`.
