@@ -1,10 +1,10 @@
+import i18n from '@dhis2/d2-i18n';
+
 export const whitespace = ' ';
 const link = 'http://';
 const linkPlaceholder = '<link-url>';
 const bold = '*';
-const boldPlaceholder = 'bold text';
 const italic = '_';
-const italicPlaceholder = 'italic text';
 
 export const TEXT_START_INDEX = 0;
 const WHITESPACE_LENGTH = 1;
@@ -41,13 +41,13 @@ export const concatLinkWithoutSpace = (currentInput, highlightedText, cursorStar
 });
 
 export const insertBoldWithSpace = (currentInput, cursorStart) => ({
-    text: currentInput.substring(TEXT_START_INDEX, cursorStart).concat(whitespace + bold + boldPlaceholder + bold),
+    text: currentInput.substring(TEXT_START_INDEX, cursorStart).concat(whitespace + bold + i18n.t('bold text') + bold),
     highlightStart: cursorStart + WHITESPACE_LENGTH + BOLD_LENGTH,
     highlightEnd: cursorStart + WHITESPACE_LENGTH + BOLD_LENGTH + BOLD_PLACEHOLDER_LENGTH,
 });
 
 export const insertBoldWithoutSpace = (currentInput, cursorStart) => ({
-    text: currentInput.substring(TEXT_START_INDEX, cursorStart).concat(bold + boldPlaceholder + bold),
+    text: currentInput.substring(TEXT_START_INDEX, cursorStart).concat(bold + i18n.t('bold text') + bold),
     highlightStart: cursorStart + BOLD_LENGTH,
     highlightEnd: cursorStart + BOLD_LENGTH + BOLD_PLACEHOLDER_LENGTH,
 });
@@ -65,13 +65,13 @@ export const concatBoldWithoutSpace = (currentInput, highlightedText, cursorStar
 });
 
 export const insertItalicWithSpace = (currentInput, cursorStart) => ({
-    text: currentInput.substring(TEXT_START_INDEX, cursorStart).concat(whitespace + italic + italicPlaceholder + italic),
+    text: currentInput.substring(TEXT_START_INDEX, cursorStart).concat(whitespace + italic + i18n.t('italic text') + italic),
     highlightStart: cursorStart + WHITESPACE_LENGTH + ITALIC_LENGTH,
     highlightEnd: cursorStart + WHITESPACE_LENGTH + ITALIC_LENGTH + ITALIC_PLACEHOLDER_LENGTH,
 });
 
 export const insertItalicWithoutSpace = (currentInput, cursorStart) => ({
-    text: currentInput.substring(TEXT_START_INDEX, cursorStart).concat(italic + italicPlaceholder + italic),
+    text: currentInput.substring(TEXT_START_INDEX, cursorStart).concat(italic + i18n.t('italic text') + italic),
     highlightStart: cursorStart + ITALIC_LENGTH,
     highlightEnd: cursorStart + ITALIC_LENGTH + ITALIC_PLACEHOLDER_LENGTH,
 });
