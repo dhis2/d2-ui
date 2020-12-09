@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2020-11-25T13:09:15.666Z\n"
+"POT-Creation-Date: 2020-12-09T10:46:11.729Z\n"
 "PO-Revision-Date: 2019-08-13 09:54+0000\n"
 "Last-Translator: phil_dhis2, 2020\n"
 "Language-Team: Persian (Afghanistan) (https://www.transifex.com/hisp-uio/teams/100509/fa_AF/)\n"
@@ -173,6 +173,12 @@ msgid "None"
 msgstr "هیچ‌کدام"
 
 msgid "Shared with"
+msgstr ""
+
+msgid "bold text"
+msgstr ""
+
+msgid "italic text"
 msgstr ""
 
 msgid "Read"
