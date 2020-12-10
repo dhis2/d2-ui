@@ -15,7 +15,6 @@ export class ActionButton extends Component {
         this.timeout = null;
         this.state = { tooltipIsOpen: false };
         this.icons = getIcons()
-        console.log('getIcons', this.icons)
     }
 
     componentWillUnmount() {
