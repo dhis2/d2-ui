@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Popper from "@material-ui/core/Popper";
 import Paper from "@material-ui/core/Paper";
 import { withStyles } from "@material-ui/core/styles";
-import Icons from "./Icons";
+import { getIcons } from "./getIcons";
 import styles from "./styles/ActionButton.style";
 
 const TOOLTIP_ENTER_DELAY = 200;
@@ -14,6 +14,8 @@ export class ActionButton extends Component {
         this.id = Math.random().toString(36);
         this.timeout = null;
         this.state = { tooltipIsOpen: false };
+        this.icons = getIcons()
+        console.log('getIcons', this.icons)
     }
 
     componentWillUnmount() {
@@ -45,13 +47,13 @@ export class ActionButton extends Component {
             style={styles.popper}
         >
             <Paper className={this.props.classes.tooltip}>
-                {this.props.tooltip || Icons[this.props.iconType].tooltip}
+                {this.props.tooltip || this.icons[this.props.iconType].tooltip}
             </Paper>
         </Popper>
     );
 
     render() {
-        const Icon = Icons[this.props.iconType].icon;
+        const Icon = this.icons[this.props.iconType].icon;
         const Tooltip = this.renderTooltip();
 
         return (
