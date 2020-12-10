@@ -10,7 +10,7 @@ import Launch from '@material-ui/icons/Launch';
 import i18n from '@dhis2/d2-i18n';
 import styles from './styles/Icons.style';
 
-export default {
+export const getIcons = () => ({
 	visibility: { 
 		icon: <Visibility style={styles.interpretationCommentIcon}/>, 
 		tooltip: i18n.t('View') 
@@ -45,4 +45,4 @@ export default {
 	openApp: {
 		icon: <Launch style={styles.interpretationCommentIcon}/>,
 	},
-};
+});
