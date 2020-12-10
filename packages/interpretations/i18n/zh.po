@@ -131,7 +131,7 @@ msgstr "访问限制"
 
 msgid "{{count}} likes"
 msgid_plural "{{count}} likes"
-msgstr[0] ""
+msgstr[0] "{{count}}个赞"
 
 msgid "Save interpretation"
 msgstr "保存注释"
@@ -141,7 +141,7 @@ msgstr "书写注释"
 
 msgid "{{count}} replies"
 msgid_plural "{{count}} replies"
-msgstr[0] ""
+msgstr[0] "{{count}}条回复"
 
 msgid "Hide old replies"
 msgstr "隐藏旧的应答"
@@ -177,10 +177,10 @@ msgid "Shared with"
 msgstr "跟...一起分享"
 
 msgid "bold text"
-msgstr ""
+msgstr "粗体"
 
 msgid "italic text"
-msgstr ""
+msgstr "斜体文字"
 
 msgid "Read"
 msgstr "Read"
@@ -196,11 +196,11 @@ msgstr "Public"
 
 msgid "{{count}} users"
 msgid_plural "{{count}} users"
-msgstr[0] ""
+msgstr[0] "{{count}}个用户"
 
 msgid "{{count}} user groups"
 msgid_plural "{{count}} user groups"
-msgstr[0] ""
+msgstr[0] "{{count}}个用户组"
 
 msgid "chart"
 msgstr "图表"

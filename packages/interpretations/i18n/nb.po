@@ -178,10 +178,10 @@ msgid "Shared with"
 msgstr "Delt med"
 
 msgid "bold text"
-msgstr ""
+msgstr "fet tekst"
 
 msgid "italic text"
-msgstr ""
+msgstr "kursiv tekst"
 
 msgid "Read"
 msgstr "Lese"

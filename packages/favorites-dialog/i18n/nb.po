@@ -92,4 +92,4 @@ msgid "Pivot table"
 msgstr "Pivottabell"
 
 msgid "Scatter"
-msgstr ""
+msgstr " Spredning"
