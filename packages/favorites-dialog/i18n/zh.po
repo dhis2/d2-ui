@@ -94,4 +94,4 @@ msgid "Pivot table"
 msgstr "透视表"
 
 msgid "Scatter"
-msgstr ""
+msgstr "分散"

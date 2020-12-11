@@ -176,10 +176,10 @@ msgid "Shared with"
 msgstr "Билан улашиш"
 
 msgid "bold text"
-msgstr ""
+msgstr "қалин ҳарф"
 
 msgid "italic text"
-msgstr ""
+msgstr "ёзма ҳарф"
 
 msgid "Read"
 msgstr "Ўқинг"
