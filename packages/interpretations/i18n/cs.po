@@ -85,7 +85,7 @@ msgid "Show more"
 msgstr "Zobrazit více"
 
 msgid "Unsubscribe from this {{object}} and stop receiving notifications"
-msgstr "Odhlásit odběr tohoto {{objektu}} a přestat dostávat oznámení"
+msgstr "Odhlásit odběr tohoto {{object}} a přestat dostávat oznámení"
 
 msgid "Subscribe to this {{object}} and start receiving notifications"
 msgstr "Přihlaste se k odběru tohoto {{object}} a začněte přijímat oznámení"
@@ -180,10 +180,10 @@ msgid "Shared with"
 msgstr "Sdíleno s"
 
 msgid "bold text"
-msgstr ""
+msgstr "tučné písmo"
 
 msgid "italic text"
-msgstr ""
+msgstr "kurzíva"
 
 msgid "Read"
 msgstr "Číst"
