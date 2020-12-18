@@ -19,7 +19,7 @@ msgid "Organisation units"
 msgstr "Ташкилий бўлимлар"
 
 msgid "Hide"
-msgstr "Яшириш"
+msgstr "Беркитиш"
 
 msgid "Update"
 msgstr "Янгилаш"

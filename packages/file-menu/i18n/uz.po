@@ -70,7 +70,7 @@ msgid "Save as..."
 msgstr "Сифатида сақлаш"
 
 msgid "Share"
-msgstr "Баҳам кўриш"
+msgstr "Улашиш"
 
 msgid "Translate"
 msgstr "Таржима қилинг"
