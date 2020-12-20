@@ -90,7 +90,7 @@ msgid "Share"
 msgstr "Улашиш"
 
 msgid "Delete"
-msgstr "Ўчириш"
+msgstr "Ўчириб ташлаш"
 
 msgid "people like this"
 msgstr "бу каби одамлар"
