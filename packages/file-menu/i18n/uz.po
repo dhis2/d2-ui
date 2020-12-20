@@ -16,16 +16,16 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "Delete {{what}}"
-msgstr "Ўчириш {{what}}"
+msgstr "Ўчириб ташлаш {{Нима}}"
 
 msgid "This {{what}} will be deleted. Continue?"
-msgstr "Ушбу {{what}} ўчирилади. Давом этасизми?"
+msgstr "Ушбу {{нима}} ўчириб ташланади. Давом этасизми?"
 
 msgid "Cancel"
 msgstr "Бекор қилиш"
 
 msgid "Delete"
-msgstr "Ўчириш"
+msgstr "Ўчириб ташлаш"
 
 msgid "File"
 msgstr "Файл"
