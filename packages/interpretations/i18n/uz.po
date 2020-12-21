@@ -37,7 +37,7 @@ msgid "Manage sharing"
 msgstr "Улашишни бошқариш"
 
 msgid "Delete"
-msgstr "Ўчириш"
+msgstr "Ўчириб ташлаш"
 
 msgid "Pivot Tables"
 msgstr "Таянч жадваллар"
@@ -120,10 +120,10 @@ msgid "Sharing"
 msgstr "Улашиш"
 
 msgid "Delete interpretation"
-msgstr "Талқин ўчирилсин"
+msgstr "Талқинни ўчириб ташлаш"
 
 msgid "Are you sure you want to delete this interpretation?"
-msgstr "Ҳақиқатдан ҳам ушбу талқинни ўчирмоқчимисиз?"
+msgstr "Ҳақиқатдан ҳам ушбу талқинни ўчириб ташламоқчимисиз?"
 
 msgid "Access restricted"
 msgstr "Кириш чекланган"
@@ -149,10 +149,10 @@ msgid "View more replies"
 msgstr "Кўпроқ изоҳларни кўриш"
 
 msgid "Delete comment"
-msgstr "Изоҳни ўчириш"
+msgstr "Изоҳни ўчириб ташлаш"
 
 msgid "Are you sure you want to delete this comment?"
-msgstr "Ҳақиқатдан ҳам ушбу шарҳни ўчирмоқчимисиз?"
+msgstr "Ҳақиқатдан ҳам ушбу шарҳни ўчириб ташламоқчимисиз?"
 
 msgid "Hide previous interpretations"
 msgstr "Аввалги талқин яширилсин"
