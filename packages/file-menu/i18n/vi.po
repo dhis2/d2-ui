@@ -18,10 +18,10 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "Delete {{what}}"
-msgstr ""
+msgstr "Xóa {{Cái gì}}"
 
 msgid "This {{what}} will be deleted. Continue?"
-msgstr ""
+msgstr "{{Cái}} này sẽ bị xóa. Tiếp tục?"
 
 msgid "Delete"
 msgstr "Xóa"
@@ -30,10 +30,10 @@ msgid "File"
 msgstr "Tập tin"
 
 msgid "Open in this app"
-msgstr ""
+msgstr "Mở trong ứng dụng này"
 
 msgid "Open in web API"
-msgstr ""
+msgstr "Mở trong web API"
 
 msgid "Close"
 msgstr "Đóng lại"
@@ -48,7 +48,7 @@ msgid "Open"
 msgstr "Mở"
 
 msgid "Rename {{what}}"
-msgstr ""
+msgstr "Đổi tên {{Cái gì}}"
 
 msgid "Name"
 msgstr "Tên tài khoản"
@@ -63,7 +63,7 @@ msgid "Rename"
 msgstr "Đổi tên"
 
 msgid "Save {{what}} as"
-msgstr ""
+msgstr "Lưu {{cái gì}} dưới dạng"
 
 msgid "Save"
 msgstr "Lưu lại"
