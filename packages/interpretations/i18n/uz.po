@@ -1,13 +1,13 @@
 # 
 # Translators:
-# Ibatov <ibatovk@who.int>, 2020
+# Ibatov <ibatovk@who.int>, 2021
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2020-12-09T10:46:11.729Z\n"
 "PO-Revision-Date: 2019-08-13 09:54+0000\n"
-"Last-Translator: Ibatov <ibatovk@who.int>, 2020\n"
+"Last-Translator: Ibatov <ibatovk@who.int>, 2021\n"
 "Language-Team: Uzbek (Cyrillic) (https://www.transifex.com/hisp-uio/teams/100509/uz@Cyrl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -40,7 +40,7 @@ msgid "Delete"
 msgstr "Ўчириб ташлаш"
 
 msgid "Pivot Tables"
-msgstr "Таянч жадваллар"
+msgstr "Солиштирма жадваллар"
 
 msgid "Visualizer"
 msgstr "Визуализатор"
@@ -205,7 +205,7 @@ msgid "chart"
 msgstr "диаграмма"
 
 msgid "pivot table"
-msgstr "таянч жадвал"
+msgstr "солиштирма жадвал"
 
 msgid "map"
 msgstr "харита"
