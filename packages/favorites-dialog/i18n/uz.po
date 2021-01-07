@@ -46,7 +46,7 @@ msgid "Created by others"
 msgstr "Бошқалар яратганлари"
 
 msgid "Close"
-msgstr "Ёпиш"
+msgstr "Ёпмоқ"
 
 msgid "Column"
 msgstr "Устун"
