@@ -30,7 +30,8 @@ const styles = {
     },
 };
 
-const searchDelay = 300;
+const searchDelay = 500;
+const searchResultsCount = 10;
 
 class UserSearch extends Component {
     constructor(props, context) {
@@ -94,7 +95,7 @@ class UserSearch extends Component {
         if (searchText === '') {
             this.handleSearchResult([]);
         } else {
-            this.props.onSearch(searchText).then(({ users, userGroups }) => {
+            this.props.onSearch(searchText, searchResultsCount).then(({ users, userGroups }) => {
                 const addType = type => result => ({ ...result, type });
                 const searchResult = users
                     .map(addType('userAccess'))

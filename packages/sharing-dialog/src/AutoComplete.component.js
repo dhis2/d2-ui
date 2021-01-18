@@ -66,7 +66,7 @@ const styles = theme => ({
     suggestionPaper: {
         maxHeight: 100,
         overflow: 'auto',
-    },    
+    },
 });
 
 let popperNode;
@@ -108,8 +108,8 @@ class AutoComplete extends Component {
                                 {isOpen && (
                                     <Popper className={classes.popper} open anchorEl={popperNode}>
                                         <Paper 
-                                            className={classes.suggestionPaper} 
-                                            square 
+                                            className={classes.suggestionPaper}
+                                            square
                                             style={{ width: popperNode ? popperNode.clientWidth : null }}
                                         >
                                             {suggestions.map((suggestion, index) => {

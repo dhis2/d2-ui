@@ -77,9 +77,9 @@ class SharingDialog extends React.Component {
         }
     }
 
-    onSearchRequest = key =>
+    onSearchRequest = (key, pageSize) =>
         this.props.d2.Api.getApi()
-            .get('sharing/search', { key })
+            .get('sharing/search', { key, pageSize })
             .then(searchResult => searchResult);
 
     onSharingChanged = (updatedAttributes, onSuccess) => {
