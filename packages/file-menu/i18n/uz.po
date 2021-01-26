@@ -34,7 +34,7 @@ msgid "Open in this app"
 msgstr "Ушбу иловада очинг"
 
 msgid "Close"
-msgstr "Ёпмоқ"
+msgstr "Ёпиш"
 
 msgid "Get link"
 msgstr "Ҳаволани олинг"
