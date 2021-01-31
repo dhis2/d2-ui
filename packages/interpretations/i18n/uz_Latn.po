@@ -1,0 +1,148 @@
+# 
+# Translators:
+# Yury Rogachev <yury@dhis2.org>, 2021
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"POT-Creation-Date: 2018-07-04T08:51:47.874Z\n"
+"PO-Revision-Date: 2019-08-13 20:28+0000\n"
+"Last-Translator: Yury Rogachev <yury@dhis2.org>, 2021\n"
+"Language-Team: Uzbek (Latin) (https://www.transifex.com/hisp-uio/teams/100509/uz@Latn/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: uz@Latn\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "No description"
+msgstr "Tavsif yoʼq"
+
+msgid "None"
+msgstr "Yoʼq"
+
+msgid "Read"
+msgstr "Oʼqing"
+
+msgid "Read/Write"
+msgstr "Oʼqing/Yozing"
+
+msgid "Unknown"
+msgstr "Nomaʼlum"
+
+msgid "Public"
+msgstr "Ommaviy"
+
+msgid "user groups"
+msgstr "foydalanuvchi guruhlari"
+
+msgid "Unsubscribe from this {{object}} and stop receiving notifications"
+msgstr ""
+"Ushbu {{object}} ga obunani bekor qiling va bildirishnomalar olinishini "
+"toʼxtating"
+
+msgid "Subscribe to this {{object}} and start receiving notifications"
+msgstr ""
+"Ushbu {{object}} ga obuna boʼling va bildirishnomalar olishni boshlang"
+
+msgid "Details"
+msgstr "Tafsilotlari"
+
+msgid "Owner"
+msgstr "Egasi, tegishlilik"
+
+msgid "Created"
+msgstr "Yaratildi"
+
+msgid "Last updated"
+msgstr "Oxirgi yangilangan"
+
+msgid "Views"
+msgstr "Koʼrishlar"
+
+msgid "Sharing"
+msgstr "Ulashish"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "Post comment"
+msgstr "Sharh qoldirish"
+
+msgid "Cancel"
+msgstr "Bekor qilish"
+
+msgid "Are you sure you want to remove this interpretation?"
+msgstr "Haqiqatdan ham ushbu talqinni olib tashlamoqchimisiz?"
+
+msgid "Unlike"
+msgstr "Аksincha"
+
+msgid "Like"
+msgstr "Kabi, oʼxshash"
+
+msgid "Reply"
+msgstr "Javob"
+
+msgid "Edit"
+msgstr "Tahrirlash"
+
+msgid "Share"
+msgstr "Ulashish"
+
+msgid "Delete"
+msgstr "Oʼchirib tashlash"
+
+msgid "people like this"
+msgstr "bu kabi odamlar"
+
+msgid "people commented"
+msgstr "odamlar fikr bildirgan"
+
+msgid "Are you sure you want to remove this comment?"
+msgstr "Haqiqatdan ham ushbu sharhni olib tashlamoqchimisiz?"
+
+msgid "more comments"
+msgstr "koʼproq sharhlar"
+
+msgid "Edit interpretation"
+msgstr "Talqinni tahrirlang"
+
+msgid "Create interpretation"
+msgstr "Talqinni yarating"
+
+msgid "Save & share"
+msgstr "Saqlang va ulashing"
+
+msgid "Save"
+msgstr "Saqlash"
+
+msgid "No interpretations"
+msgstr "Talqinlar yoʼq"
+
+msgid "Clear interpretation"
+msgstr "Talqin tozalansin"
+
+msgid "Write new interpretation"
+msgstr "Yangi talqin yozish"
+
+msgid "Interpretations"
+msgstr "Sharhlar"
+
+msgid "chart"
+msgstr "diagramma"
+
+msgid "pivot table"
+msgstr ""
+
+msgid "map"
+msgstr "xarita"
+
+msgid "event chart"
+msgstr "hodisa/tadbir diagrammasi"
+
+msgid "event report"
+msgstr "hodisa/tadbir hisoboti"
+
+msgid "object"
+msgstr "obʼekt"
