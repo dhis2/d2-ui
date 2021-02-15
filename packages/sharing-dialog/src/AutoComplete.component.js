@@ -63,6 +63,10 @@ const styles = theme => ({
     inputRoot: {
         flexWrap: 'wrap',
     },
+    suggestionPaper: {
+        maxHeight: 100,
+        overflow: 'auto',
+    },
 });
 
 let popperNode;
@@ -103,7 +107,11 @@ class AutoComplete extends Component {
                             <div {...getMenuProps()}>
                                 {isOpen && (
                                     <Popper className={classes.popper} open anchorEl={popperNode}>
-                                        <Paper square style={{ width: popperNode ? popperNode.clientWidth : null }}>
+                                        <Paper 
+                                            className={classes.suggestionPaper}
+                                            square
+                                            style={{ width: popperNode ? popperNode.clientWidth : null }}
+                                        >
                                             {suggestions.map((suggestion, index) => {
                                                 return (
                                                     <Suggestion
