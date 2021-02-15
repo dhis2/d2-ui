@@ -1,13 +1,15 @@
+# 
 # Translators:
 # Viktor Varland <viktor@dhis2.org>, 2019
 # ericbp <ericbarredap@gmail.com>, 2019
+# Gabriela Rodriguez <grodriguezcoronado@gmail.com>, 2020
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2018-06-07T12:57:17.631Z\n"
 "PO-Revision-Date: 2019-08-13 20:28+0000\n"
-"Last-Translator: ericbp <ericbarredap@gmail.com>, 2019\n"
+"Last-Translator: Gabriela Rodriguez <grodriguezcoronado@gmail.com>, 2020\n"
 "Language-Team: Spanish (https://www.transifex.com/hisp-uio/teams/100509/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,10 +18,10 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "Delete {{what}}"
-msgstr ""
+msgstr "Eliminar {{que}}"
 
 msgid "This {{what}} will be deleted. Continue?"
-msgstr ""
+msgstr "Este {{what}} será eliminado. ¿Continuar?"
 
 msgid "Delete"
 msgstr "Eliminar"
@@ -28,10 +30,10 @@ msgid "File"
 msgstr "Fichero"
 
 msgid "Open in this app"
-msgstr ""
+msgstr "Abierto en esta aplicación"
 
 msgid "Open in web API"
-msgstr ""
+msgstr "Abrir en la API web"
 
 msgid "Close"
 msgstr "Cerrar"
@@ -46,7 +48,7 @@ msgid "Open"
 msgstr "Abrir"
 
 msgid "Rename {{what}}"
-msgstr ""
+msgstr "Renombrar {{que}}"
 
 msgid "Name"
 msgstr "Nombre"
@@ -61,7 +63,7 @@ msgid "Rename"
 msgstr "Renombrar"
 
 msgid "Save {{what}} as"
-msgstr ""
+msgstr "Guardar {{que}} como"
 
 msgid "Save"
 msgstr "Guardar"
@@ -79,4 +81,4 @@ msgid "Write interpretation"
 msgstr "Escribir interpretación"
 
 msgid "Post"
-msgstr ""
+msgstr "Enviar"

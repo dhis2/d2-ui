@@ -1,13 +1,14 @@
+# 
 # Translators:
-# easylin <lin_xd@126.com>, 2020
 # 晓东 林 <13981924470@126.com>, 2020
+# easylin <lin_xd@126.com>, 2021
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2018-07-04T08:51:47.874Z\n"
 "PO-Revision-Date: 2019-08-13 20:28+0000\n"
-"Last-Translator: 晓东 林 <13981924470@126.com>, 2020\n"
+"Last-Translator: easylin <lin_xd@126.com>, 2021\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/hisp-uio/teams/100509/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,7 +29,7 @@ msgid "Read/Write"
 msgstr ""
 
 msgid "Unknown"
-msgstr ""
+msgstr "未知"
 
 msgid "Public"
 msgstr "公用"
@@ -46,19 +47,19 @@ msgid "Details"
 msgstr "详情"
 
 msgid "Owner"
-msgstr ""
+msgstr "所有者"
 
 msgid "Created"
 msgstr "创建"
 
 msgid "Last updated"
-msgstr ""
+msgstr "Last updated"
 
 msgid "Views"
-msgstr ""
+msgstr "查看"
 
 msgid "Sharing"
-msgstr ""
+msgstr "共享"
 
 msgid "OK"
 msgstr "好"
@@ -79,7 +80,7 @@ msgid "Like"
 msgstr "Like"
 
 msgid "Reply"
-msgstr ""
+msgstr "回复"
 
 msgid "Edit"
 msgstr "编辑<br>"
@@ -124,7 +125,7 @@ msgid "Write new interpretation"
 msgstr ""
 
 msgid "Interpretations"
-msgstr ""
+msgstr "注释"
 
 msgid "chart"
 msgstr ""

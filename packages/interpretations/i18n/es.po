@@ -1,13 +1,15 @@
+# 
 # Translators:
 # Viktor Varland <viktor@dhis2.org>, 2019
 # phil_dhis2, 2019
+# Gabriela Rodriguez <grodriguezcoronado@gmail.com>, 2020
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2018-07-04T08:51:47.874Z\n"
 "PO-Revision-Date: 2019-08-13 20:28+0000\n"
-"Last-Translator: phil_dhis2, 2019\n"
+"Last-Translator: Gabriela Rodriguez <grodriguezcoronado@gmail.com>, 2020\n"
 "Language-Team: Spanish (https://www.transifex.com/hisp-uio/teams/100509/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,13 +36,13 @@ msgid "Public"
 msgstr "Público"
 
 msgid "user groups"
-msgstr ""
+msgstr "grupos de usuarios"
 
 msgid "Unsubscribe from this {{object}} and stop receiving notifications"
-msgstr ""
+msgstr "Cancelar de este {{objeto}} y dejar de recibir notificaciones"
 
 msgid "Subscribe to this {{object}} and start receiving notifications"
-msgstr ""
+msgstr "Suscríbase a este {{objeto}} y comience a recibir notificaciones"
 
 msgid "Details"
 msgstr "Detalles"
@@ -64,13 +66,13 @@ msgid "OK"
 msgstr "Correcto"
 
 msgid "Post comment"
-msgstr ""
+msgstr "Publicar comentario"
 
 msgid "Cancel"
 msgstr "Cancelar"
 
 msgid "Are you sure you want to remove this interpretation?"
-msgstr ""
+msgstr "¿Estás seguro de que quieres eliminar esta interpretación?"
 
 msgid "Unlike"
 msgstr "diferente a"
@@ -97,19 +99,19 @@ msgid "people commented"
 msgstr "personas que comentaron"
 
 msgid "Are you sure you want to remove this comment?"
-msgstr ""
+msgstr "¿Estás seguro de que quieres eliminar este comentario?"
 
 msgid "more comments"
 msgstr "más comentarios"
 
 msgid "Edit interpretation"
-msgstr ""
+msgstr "Editar interpretación"
 
 msgid "Create interpretation"
-msgstr ""
+msgstr "Crear interpretación"
 
 msgid "Save & share"
-msgstr ""
+msgstr "Guardar & compartir"
 
 msgid "Save"
 msgstr "Guardar"
@@ -121,25 +123,32 @@ msgid "Clear interpretation"
 msgstr "limpiar interpretación"
 
 msgid "Write new interpretation"
-msgstr ""
+msgstr "Escribe nueva interpretación"
 
 msgid "Interpretations"
 msgstr "Interpretaciones"
 
 msgid "chart"
-msgstr ""
+msgstr "gráfico"
 
 msgid "pivot table"
-msgstr ""
+msgstr "tabla dinámica"
 
 msgid "map"
-msgstr ""
+msgstr "mapa"
 
 msgid "event chart"
-msgstr ""
+msgstr "tabla de eventos"
 
 msgid "event report"
 msgstr ""
+"informe de evento\n"
+" \n"
+"\n"
+" \n"
+" \n"
+" \n"
+" "
 
 msgid "object"
-msgstr ""
+msgstr "objeto"

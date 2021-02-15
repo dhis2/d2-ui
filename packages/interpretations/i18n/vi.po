@@ -1,13 +1,15 @@
+# 
 # Translators:
 # phil_dhis2, 2019
 # Viktor Varland <viktor@dhis2.org>, 2019
+# Mai Nguyen <thanhmai.jica@gmail.com>, 2020
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2018-07-04T08:51:47.874Z\n"
 "PO-Revision-Date: 2019-08-13 20:28+0000\n"
-"Last-Translator: Viktor Varland <viktor@dhis2.org>, 2019\n"
+"Last-Translator: Mai Nguyen <thanhmai.jica@gmail.com>, 2020\n"
 "Language-Team: Vietnamese (https://www.transifex.com/hisp-uio/teams/100509/vi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,13 +36,13 @@ msgid "Public"
 msgstr "Công khai"
 
 msgid "user groups"
-msgstr ""
+msgstr "Các nhóm người dùng"
 
 msgid "Unsubscribe from this {{object}} and stop receiving notifications"
-msgstr ""
+msgstr "Hủy đăng ký {{đối tượng}} này và ngừng nhận thông báo"
 
 msgid "Subscribe to this {{object}} and start receiving notifications"
-msgstr ""
+msgstr "Đăng ký {{đối tượng}} này và bắt đầu nhận thông báo"
 
 msgid "Details"
 msgstr "Chi tiết"
@@ -64,13 +66,13 @@ msgid "OK"
 msgstr "Có"
 
 msgid "Post comment"
-msgstr ""
+msgstr "Đăng bình luận"
 
 msgid "Cancel"
 msgstr "Hủy"
 
 msgid "Are you sure you want to remove this interpretation?"
-msgstr ""
+msgstr "Bạn có chắc chắn muốn xóa phần diễn giải này không?"
 
 msgid "Unlike"
 msgstr "Không thích"
@@ -97,19 +99,19 @@ msgid "people commented"
 msgstr "người đã bình luận"
 
 msgid "Are you sure you want to remove this comment?"
-msgstr ""
+msgstr "Bạn có chắc mình muốn xóa bình luận này không?"
 
 msgid "more comments"
 msgstr "hiện thêm bình luận"
 
 msgid "Edit interpretation"
-msgstr ""
+msgstr "Chỉnh sửa phần diễn giải"
 
 msgid "Create interpretation"
-msgstr ""
+msgstr "Tạo diễn giải"
 
 msgid "Save & share"
-msgstr ""
+msgstr "Lưu và chia sẻ"
 
 msgid "Save"
 msgstr "Lưu lại"
@@ -121,25 +123,25 @@ msgid "Clear interpretation"
 msgstr "Xóa diễn dịch"
 
 msgid "Write new interpretation"
-msgstr ""
+msgstr "Viết diễn giải mới"
 
 msgid "Interpretations"
 msgstr "Diễn giải báo cáo"
 
 msgid "chart"
-msgstr ""
+msgstr "Biểu đồ"
 
 msgid "pivot table"
-msgstr ""
+msgstr "bảng xoay"
 
 msgid "map"
-msgstr ""
+msgstr "bản đồ"
 
 msgid "event chart"
-msgstr ""
+msgstr "biểu đồ sự kiện"
 
 msgid "event report"
-msgstr ""
+msgstr "báo cáo sự kiện"
 
 msgid "object"
-msgstr ""
+msgstr "đối tượng"

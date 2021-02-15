@@ -1,5 +1,6 @@
+# 
 # Translators:
-# Caroline Hesthagen Holen <carolinehholen@gmail.com>, 2020
+# Caroline Hesthagen Holen <caroline@devotta.no>, 2020
 # Karoline Tufte Lien <karoline@dhis2.org>, 2020
 # 
 msgid ""
@@ -34,13 +35,13 @@ msgid "Public"
 msgstr "Offentlig"
 
 msgid "user groups"
-msgstr ""
+msgstr "brukergrupper"
 
 msgid "Unsubscribe from this {{object}} and stop receiving notifications"
-msgstr ""
+msgstr "Avslutt abonnementet på dette {{objekt}} og slutt å motta varsler"
 
 msgid "Subscribe to this {{object}} and start receiving notifications"
-msgstr ""
+msgstr "Abonner på dette {{objekt}} og begynn å motta varsler"
 
 msgid "Details"
 msgstr "Detaljer"
@@ -64,13 +65,13 @@ msgid "OK"
 msgstr "OK"
 
 msgid "Post comment"
-msgstr ""
+msgstr "Legg inn kommentar"
 
 msgid "Cancel"
 msgstr "Avbryt"
 
 msgid "Are you sure you want to remove this interpretation?"
-msgstr ""
+msgstr "Er du sikker på at du vil slette denne tolkningen?"
 
 msgid "Unlike"
 msgstr "Ikke lik"
@@ -97,19 +98,19 @@ msgid "people commented"
 msgstr "personer kommenterte"
 
 msgid "Are you sure you want to remove this comment?"
-msgstr ""
+msgstr "Er du sikker på at du vil slette denne kommentaren?"
 
 msgid "more comments"
 msgstr "flere kommentarer"
 
 msgid "Edit interpretation"
-msgstr ""
+msgstr "Rediger tolkning"
 
 msgid "Create interpretation"
-msgstr ""
+msgstr "Opprette tolkning"
 
 msgid "Save & share"
-msgstr ""
+msgstr "Lagre og del"
 
 msgid "Save"
 msgstr "Lagre"
@@ -121,25 +122,25 @@ msgid "Clear interpretation"
 msgstr "Nullstill tolkning"
 
 msgid "Write new interpretation"
-msgstr ""
+msgstr "Skriv ny tolkning"
 
 msgid "Interpretations"
 msgstr "Tolkninger"
 
 msgid "chart"
-msgstr ""
+msgstr "diagram"
 
 msgid "pivot table"
-msgstr ""
+msgstr "pivottabell"
 
 msgid "map"
-msgstr ""
+msgstr "kart"
 
 msgid "event chart"
-msgstr ""
+msgstr "hendelsesdiagram"
 
 msgid "event report"
-msgstr ""
+msgstr "hendelsesrapport"
 
 msgid "object"
-msgstr ""
+msgstr "objekt"

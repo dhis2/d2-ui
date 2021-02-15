@@ -1,3 +1,4 @@
+# 
 # Translators:
 # phil_dhis2, 2019
 # Viktor Varland <viktor@dhis2.org>, 2019
@@ -32,7 +33,7 @@ msgid "Open in this app"
 msgstr "فتح في هذا التطبيق"
 
 msgid "Open in web API"
-msgstr "الفتح في الـ web API"
+msgstr "الفتح في web API"
 
 msgid "Close"
 msgstr "إغلاق"
@@ -62,7 +63,7 @@ msgid "Rename"
 msgstr "إعادة التسمية"
 
 msgid "Save {{what}} as"
-msgstr "حفظ {{what}} كـ "
+msgstr "حفظ {{what}} بإسم"
 
 msgid "Save"
 msgstr "حفظ"

@@ -1,12 +1,15 @@
+# 
 # Translators:
 # Viktor Varland <viktor@dhis2.org>, 2019
+# phil_dhis2, 2020
+# Gabriela Rodriguez <grodriguezcoronado@gmail.com>, 2020
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2018-10-17T15:15:12.003Z\n"
 "PO-Revision-Date: 2019-08-13 20:28+0000\n"
-"Last-Translator: Viktor Varland <viktor@dhis2.org>, 2019\n"
+"Last-Translator: Gabriela Rodriguez <grodriguezcoronado@gmail.com>, 2020\n"
 "Language-Team: Spanish (https://www.transifex.com/hisp-uio/teams/100509/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,13 +30,13 @@ msgid "Level"
 msgstr "Nivel"
 
 msgid "Select a level"
-msgstr ""
+msgstr "Selecciona un nivel"
 
 msgid "Group"
-msgstr ""
+msgstr "Grupo"
 
 msgid "Select a group"
-msgstr ""
+msgstr "Selecciona un grupo"
 
 msgid "User organisation unit"
 msgstr "Usuario de unidad organizativa"
