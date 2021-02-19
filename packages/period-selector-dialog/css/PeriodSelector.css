@@ -188,12 +188,16 @@ button.nav-button:last-child {
     width: 130px;
 }
 
-.unselected-period-item:hover {
-    background-color: #e0e0e0;
+.unselected-period-item:not(.highlighted):hover {
+    background-color: #e0e0e0 !important;
 }
 
-.selected-period-item:hover {
-    background-color: '#86c4bf';
+.selected-period-item:not(.highlighted):hover {
+    background-color: #86c4bf !important;
+}
+
+.item-selector-arrow-button {
+    background-color: transparent;
 }
 
 .item-selector-arrow-button:focus {

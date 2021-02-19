@@ -1,6 +1,5 @@
 export default {
     arrowButton: {
-        backgroundColor: 'transparent',
         border: '1px solid #d5dde5',
         borderRadius: '4px',
         height: '36px',

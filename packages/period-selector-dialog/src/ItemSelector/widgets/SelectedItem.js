@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import cx from 'classnames'
 
 import ItemIcon from './ItemIcon'
 import DeselectIconButton from './DeselectIconButton'
@@ -34,7 +35,7 @@ export const Item = ({
     const itemLabelStyle = Object.assign({}, styles.itemLabel, highlighted && styles.highlightedText)
     return (
         <div
-            className={!highlighted && 'selected-period-item'}
+            className={cx('selected-period-item', highlighted && 'highlighted')}
             style={itemStyle}
             onClick={onClickWrapper(rest)}
             data-test={`dimension-item-${rest.id}`}

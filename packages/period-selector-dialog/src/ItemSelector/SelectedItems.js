@@ -11,9 +11,6 @@ import { toggler } from './modules/toggler'
 import { reorderList } from './modules/reorderList'
 import styles from './styles/SelectedItems.style'
 
-console.log('styles.selectedListItem', styles.selectedListItem)
-const mystyle = styles.selectedListItem
-
 const Subtitle = () => (
     <div style={styles.subtitleContainer}>
         <span style={styles.subtitleText}>{i18n.t('Selected Data')}</span>
