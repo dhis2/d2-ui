@@ -19,14 +19,29 @@ exports[`The SelectedItems component list with items matches the snapshot with l
 >
   <Subtitle>
     <div
-      className="subtitle-container"
+      style={
+        Object {
+          "borderBottom": "1px solid #e8edf2",
+          "height": "42px",
+        }
+      }
     >
       <span
-        className="subtitle-text"
+        style={
+          Object {
+            "color": "#212934",
+            "fontFamily": "Roboto",
+            "fontSize": "15px",
+            "fontWeight": "500",
+            "height": "20px",
+            "left": "8px",
+            "position": "relative",
+            "top": "12px",
+          }
+        }
       >
         Selected Data
       </span>
-      <style />
     </div>
   </Subtitle>
   <DragDropContext
@@ -78,8 +93,17 @@ exports[`The SelectedItems component list with items matches the snapshot with l
               innerRef={[Function]}
             >
               <ul
-                className="selected-list"
                 data-test="undefined-list"
+                style={
+                  Object {
+                    "flex": "1",
+                    "listStyle": "none",
+                    "margin": "0 6px",
+                    "overflowY": "auto",
+                    "paddingLeft": "0px",
+                    "userSelect": "none",
+                  }
+                }
               >
                 <Connect(Draggable)
                   disableInteractiveElementBlocking={false}
@@ -190,28 +214,41 @@ exports[`The SelectedItems component list with items matches the snapshot with l
                             onRemoveItem={[Function]}
                           >
                             <div
-                              className="item selected-item"
+                              className="selected-period-item"
                               data-test="dimension-item-rb"
                               onClick={[Function]}
+                              style={
+                                Object {
+                                  "alignItems": "center",
+                                  "backgroundColor": "#b2dfdb",
+                                  "borderRadius": "4px",
+                                  "cursor": "pointer",
+                                  "display": "flex",
+                                  "padding": "3px",
+                                }
+                              }
                             >
                               <ItemIcon
                                 backgroundColor="#00796b"
                               >
-                                <div>
-                                  <style>
-                                    
-                div {
-                    background-color: #00796b;
-                    min-height: 6px;
-                    min-width: 6px;
-                    margin: 0px 5px;
-                }
-            
-                                  </style>
-                                </div>
+                                <div
+                                  style={
+                                    Object {
+                                      "backgroundColor": "#00796b",
+                                      "margin": "0 5px",
+                                      "minHeight": "6px",
+                                      "minWidth": "6px",
+                                    }
+                                  }
+                                />
                               </ItemIcon>
                               <span
-                                className="item-label"
+                                style={
+                                  Object {
+                                    "fontSize": "14px",
+                                    "padding": "2px",
+                                  }
+                                }
                               >
                                 rainbow
                               </span>
@@ -220,8 +257,17 @@ exports[`The SelectedItems component list with items matches the snapshot with l
                                 onClick={[Function]}
                               >
                                 <button
-                                  className="deselect-icon-button"
                                   onClick={[Function]}
+                                  style={
+                                    Object {
+                                      "background": "none",
+                                      "border": "none",
+                                      "height": "18px",
+                                      "outline": "none",
+                                      "padding": "0px",
+                                      "width": "18px",
+                                    }
+                                  }
                                 >
                                   <span>
                                     <pure(CloseIcon)
@@ -254,15 +300,15 @@ exports[`The SelectedItems component list with items matches the snapshot with l
                                           <SvgIcon
                                             classes={
                                               Object {
-                                                "colorAction": "MuiSvgIcon-colorAction-4",
-                                                "colorDisabled": "MuiSvgIcon-colorDisabled-6",
-                                                "colorError": "MuiSvgIcon-colorError-5",
-                                                "colorPrimary": "MuiSvgIcon-colorPrimary-2",
-                                                "colorSecondary": "MuiSvgIcon-colorSecondary-3",
-                                                "fontSizeInherit": "MuiSvgIcon-fontSizeInherit-7",
-                                                "fontSizeLarge": "MuiSvgIcon-fontSizeLarge-9",
-                                                "fontSizeSmall": "MuiSvgIcon-fontSizeSmall-8",
-                                                "root": "MuiSvgIcon-root-1",
+                                                "colorAction": "MuiSvgIcon-colorAction-33",
+                                                "colorDisabled": "MuiSvgIcon-colorDisabled-35",
+                                                "colorError": "MuiSvgIcon-colorError-34",
+                                                "colorPrimary": "MuiSvgIcon-colorPrimary-31",
+                                                "colorSecondary": "MuiSvgIcon-colorSecondary-32",
+                                                "fontSizeInherit": "MuiSvgIcon-fontSizeInherit-36",
+                                                "fontSizeLarge": "MuiSvgIcon-fontSizeLarge-38",
+                                                "fontSizeSmall": "MuiSvgIcon-fontSizeSmall-37",
+                                                "root": "MuiSvgIcon-root-30",
                                               }
                                             }
                                             color="inherit"
@@ -279,7 +325,7 @@ exports[`The SelectedItems component list with items matches the snapshot with l
                                           >
                                             <svg
                                               aria-hidden="true"
-                                              className="MuiSvgIcon-root-1"
+                                              className="MuiSvgIcon-root-30"
                                               focusable="false"
                                               role="presentation"
                                               style={
@@ -304,13 +350,10 @@ exports[`The SelectedItems component list with items matches the snapshot with l
                                       </CloseIcon>
                                     </pure(CloseIcon)>
                                   </span>
-                                  <style />
                                 </button>
                               </DeselectIconButton>
-                              <style />
                             </div>
                           </Item>
-                          <style />
                         </li>
                       </DragHandle>
                     </DraggableDimensionPublisher>
@@ -425,28 +468,41 @@ exports[`The SelectedItems component list with items matches the snapshot with l
                             onRemoveItem={[Function]}
                           >
                             <div
-                              className="item selected-item"
+                              className="selected-period-item"
                               data-test="dimension-item-rr"
                               onClick={[Function]}
+                              style={
+                                Object {
+                                  "alignItems": "center",
+                                  "backgroundColor": "#b2dfdb",
+                                  "borderRadius": "4px",
+                                  "cursor": "pointer",
+                                  "display": "flex",
+                                  "padding": "3px",
+                                }
+                              }
                             >
                               <ItemIcon
                                 backgroundColor="#00796b"
                               >
-                                <div>
-                                  <style>
-                                    
-                div {
-                    background-color: #00796b;
-                    min-height: 6px;
-                    min-width: 6px;
-                    margin: 0px 5px;
-                }
-            
-                                  </style>
-                                </div>
+                                <div
+                                  style={
+                                    Object {
+                                      "backgroundColor": "#00796b",
+                                      "margin": "0 5px",
+                                      "minHeight": "6px",
+                                      "minWidth": "6px",
+                                    }
+                                  }
+                                />
                               </ItemIcon>
                               <span
-                                className="item-label"
+                                style={
+                                  Object {
+                                    "fontSize": "14px",
+                                    "padding": "2px",
+                                  }
+                                }
                               >
                                 rarity
                               </span>
@@ -455,8 +511,17 @@ exports[`The SelectedItems component list with items matches the snapshot with l
                                 onClick={[Function]}
                               >
                                 <button
-                                  className="deselect-icon-button"
                                   onClick={[Function]}
+                                  style={
+                                    Object {
+                                      "background": "none",
+                                      "border": "none",
+                                      "height": "18px",
+                                      "outline": "none",
+                                      "padding": "0px",
+                                      "width": "18px",
+                                    }
+                                  }
                                 >
                                   <span>
                                     <pure(CloseIcon)
@@ -489,15 +554,15 @@ exports[`The SelectedItems component list with items matches the snapshot with l
                                           <SvgIcon
                                             classes={
                                               Object {
-                                                "colorAction": "MuiSvgIcon-colorAction-4",
-                                                "colorDisabled": "MuiSvgIcon-colorDisabled-6",
-                                                "colorError": "MuiSvgIcon-colorError-5",
-                                                "colorPrimary": "MuiSvgIcon-colorPrimary-2",
-                                                "colorSecondary": "MuiSvgIcon-colorSecondary-3",
-                                                "fontSizeInherit": "MuiSvgIcon-fontSizeInherit-7",
-                                                "fontSizeLarge": "MuiSvgIcon-fontSizeLarge-9",
-                                                "fontSizeSmall": "MuiSvgIcon-fontSizeSmall-8",
-                                                "root": "MuiSvgIcon-root-1",
+                                                "colorAction": "MuiSvgIcon-colorAction-33",
+                                                "colorDisabled": "MuiSvgIcon-colorDisabled-35",
+                                                "colorError": "MuiSvgIcon-colorError-34",
+                                                "colorPrimary": "MuiSvgIcon-colorPrimary-31",
+                                                "colorSecondary": "MuiSvgIcon-colorSecondary-32",
+                                                "fontSizeInherit": "MuiSvgIcon-fontSizeInherit-36",
+                                                "fontSizeLarge": "MuiSvgIcon-fontSizeLarge-38",
+                                                "fontSizeSmall": "MuiSvgIcon-fontSizeSmall-37",
+                                                "root": "MuiSvgIcon-root-30",
                                               }
                                             }
                                             color="inherit"
@@ -514,7 +579,7 @@ exports[`The SelectedItems component list with items matches the snapshot with l
                                           >
                                             <svg
                                               aria-hidden="true"
-                                              className="MuiSvgIcon-root-1"
+                                              className="MuiSvgIcon-root-30"
                                               focusable="false"
                                               role="presentation"
                                               style={
@@ -539,13 +604,10 @@ exports[`The SelectedItems component list with items matches the snapshot with l
                                       </CloseIcon>
                                     </pure(CloseIcon)>
                                   </span>
-                                  <style />
                                 </button>
                               </DeselectIconButton>
-                              <style />
                             </div>
                           </Item>
-                          <style />
                         </li>
                       </DragHandle>
                     </DraggableDimensionPublisher>
@@ -555,7 +617,6 @@ exports[`The SelectedItems component list with items matches the snapshot with l
                   on={null}
                   shouldAnimate={true}
                 />
-                <style />
               </ul>
             </ItemsList>
           </DroppableDimensionPublisher>
@@ -564,41 +625,193 @@ exports[`The SelectedItems component list with items matches the snapshot with l
     </ErrorBoundary>
   </DragDropContext>
   <div
-    className="deselect-all-button"
+    style={
+      Object {
+        "display": "block",
+        "margin": "0 auto",
+        "padding": "5px",
+      }
+    }
   >
-    <Button
+    <WithStyles(Button)
       dataTest="undefined-deselect-all-button"
       onClick={[Function]}
-      type="button"
     >
-      <button
-        className="jsx-2371629422 "
-        data-test="undefined-deselect-all-button"
-        onBlur={[Function]}
+      <Button
+        classes={
+          Object {
+            "colorInherit": "MuiButton-colorInherit-22",
+            "contained": "MuiButton-contained-12",
+            "containedPrimary": "MuiButton-containedPrimary-13",
+            "containedSecondary": "MuiButton-containedSecondary-14",
+            "disabled": "MuiButton-disabled-21",
+            "extendedFab": "MuiButton-extendedFab-19",
+            "fab": "MuiButton-fab-18",
+            "flat": "MuiButton-flat-6",
+            "flatPrimary": "MuiButton-flatPrimary-7",
+            "flatSecondary": "MuiButton-flatSecondary-8",
+            "focusVisible": "MuiButton-focusVisible-20",
+            "fullWidth": "MuiButton-fullWidth-26",
+            "label": "MuiButton-label-2",
+            "mini": "MuiButton-mini-23",
+            "outlined": "MuiButton-outlined-9",
+            "outlinedPrimary": "MuiButton-outlinedPrimary-10",
+            "outlinedSecondary": "MuiButton-outlinedSecondary-11",
+            "raised": "MuiButton-raised-15",
+            "raisedPrimary": "MuiButton-raisedPrimary-16",
+            "raisedSecondary": "MuiButton-raisedSecondary-17",
+            "root": "MuiButton-root-1",
+            "sizeLarge": "MuiButton-sizeLarge-25",
+            "sizeSmall": "MuiButton-sizeSmall-24",
+            "text": "MuiButton-text-3",
+            "textPrimary": "MuiButton-textPrimary-4",
+            "textSecondary": "MuiButton-textSecondary-5",
+          }
+        }
+        color="default"
+        component="button"
+        dataTest="undefined-deselect-all-button"
+        disableFocusRipple={false}
+        disabled={false}
+        fullWidth={false}
+        mini={false}
         onClick={[Function]}
-        onFocus={[Function]}
+        size="medium"
         type="button"
+        variant="text"
       >
-        Deselect All
-        <JSXStyle
-          id="2371629422"
-        />
-      </button>
-    </Button>
+        <WithStyles(ButtonBase)
+          className="MuiButton-root-1 MuiButton-text-3 MuiButton-flat-6"
+          component="button"
+          dataTest="undefined-deselect-all-button"
+          disabled={false}
+          focusRipple={true}
+          focusVisibleClassName="MuiButton-focusVisible-20"
+          onClick={[Function]}
+          type="button"
+        >
+          <ButtonBase
+            centerRipple={false}
+            className="MuiButton-root-1 MuiButton-text-3 MuiButton-flat-6"
+            classes={
+              Object {
+                "disabled": "MuiButtonBase-disabled-28",
+                "focusVisible": "MuiButtonBase-focusVisible-29",
+                "root": "MuiButtonBase-root-27",
+              }
+            }
+            component="button"
+            dataTest="undefined-deselect-all-button"
+            disableRipple={false}
+            disableTouchRipple={false}
+            disabled={false}
+            focusRipple={true}
+            focusVisibleClassName="MuiButton-focusVisible-20"
+            onClick={[Function]}
+            tabIndex="0"
+            type="button"
+          >
+            <button
+              className="MuiButtonBase-root-27 MuiButton-root-1 MuiButton-text-3 MuiButton-flat-6"
+              dataTest="undefined-deselect-all-button"
+              disabled={false}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchEnd={[Function]}
+              onTouchMove={[Function]}
+              onTouchStart={[Function]}
+              tabIndex="0"
+              type="button"
+            >
+              <span
+                className="MuiButton-label-2"
+              >
+                Deselect All
+              </span>
+              <NoSsr
+                defer={false}
+                fallback={null}
+              >
+                <WithStyles(TouchRipple)
+                  center={false}
+                  innerRef={[Function]}
+                >
+                  <TouchRipple
+                    center={false}
+                    classes={
+                      Object {
+                        "child": "MuiTouchRipple-child-43",
+                        "childLeaving": "MuiTouchRipple-childLeaving-44",
+                        "childPulsate": "MuiTouchRipple-childPulsate-45",
+                        "ripple": "MuiTouchRipple-ripple-40",
+                        "ripplePulsate": "MuiTouchRipple-ripplePulsate-42",
+                        "rippleVisible": "MuiTouchRipple-rippleVisible-41",
+                        "root": "MuiTouchRipple-root-39",
+                      }
+                    }
+                  >
+                    <TransitionGroup
+                      childFactory={[Function]}
+                      className="MuiTouchRipple-root-39"
+                      component="span"
+                      enter={true}
+                      exit={true}
+                    >
+                      <span
+                        className="MuiTouchRipple-root-39"
+                      />
+                    </TransitionGroup>
+                  </TouchRipple>
+                </WithStyles(TouchRipple)>
+              </NoSsr>
+            </button>
+          </ButtonBase>
+        </WithStyles(ButtonBase)>
+      </Button>
+    </WithStyles(Button)>
   </div>
   <div
-    className="deselect-highlighted-button"
+    style={
+      Object {
+        "left": "-48px",
+        "position": "absolute",
+        "top": "291px",
+      }
+    }
   >
     <ArrowButton
       iconType="arrowBack"
       onClick={[Function]}
     >
       <button
-        className="arrow-button"
+        className="item-selector-arrow-button"
         onClick={[Function]}
+        style={
+          Object {
+            "border": "1px solid #d5dde5",
+            "borderRadius": "4px",
+            "height": "36px",
+            "minHeight": "36px",
+            "minWidth": "40px",
+            "padding": "0",
+            "width": "40px",
+          }
+        }
       >
         <span
-          className="arrow-icon"
+          style={
+            Object {
+              "fill": "#4a5768",
+              "height": "20px",
+              "width": "24px",
+            }
+          }
         >
           <pure(ArrowBackIcon)>
             <ArrowBackIcon>
@@ -606,15 +819,15 @@ exports[`The SelectedItems component list with items matches the snapshot with l
                 <SvgIcon
                   classes={
                     Object {
-                      "colorAction": "MuiSvgIcon-colorAction-4",
-                      "colorDisabled": "MuiSvgIcon-colorDisabled-6",
-                      "colorError": "MuiSvgIcon-colorError-5",
-                      "colorPrimary": "MuiSvgIcon-colorPrimary-2",
-                      "colorSecondary": "MuiSvgIcon-colorSecondary-3",
-                      "fontSizeInherit": "MuiSvgIcon-fontSizeInherit-7",
-                      "fontSizeLarge": "MuiSvgIcon-fontSizeLarge-9",
-                      "fontSizeSmall": "MuiSvgIcon-fontSizeSmall-8",
-                      "root": "MuiSvgIcon-root-1",
+                      "colorAction": "MuiSvgIcon-colorAction-33",
+                      "colorDisabled": "MuiSvgIcon-colorDisabled-35",
+                      "colorError": "MuiSvgIcon-colorError-34",
+                      "colorPrimary": "MuiSvgIcon-colorPrimary-31",
+                      "colorSecondary": "MuiSvgIcon-colorSecondary-32",
+                      "fontSizeInherit": "MuiSvgIcon-fontSizeInherit-36",
+                      "fontSizeLarge": "MuiSvgIcon-fontSizeLarge-38",
+                      "fontSizeSmall": "MuiSvgIcon-fontSizeSmall-37",
+                      "root": "MuiSvgIcon-root-30",
                     }
                   }
                   color="inherit"
@@ -624,7 +837,7 @@ exports[`The SelectedItems component list with items matches the snapshot with l
                 >
                   <svg
                     aria-hidden="true"
-                    className="MuiSvgIcon-root-1"
+                    className="MuiSvgIcon-root-30"
                     focusable="false"
                     role="presentation"
                     viewBox="0 0 24 24"
@@ -642,11 +855,9 @@ exports[`The SelectedItems component list with items matches the snapshot with l
             </ArrowBackIcon>
           </pure(ArrowBackIcon)>
         </span>
-        <style />
       </button>
     </ArrowButton>
   </div>
-  <style />
 </SelectedItems>
 `;
 
@@ -658,14 +869,29 @@ exports[`The SelectedItems component matches the snapshot when list is empty 1`]
 >
   <Subtitle>
     <div
-      className="subtitle-container"
+      style={
+        Object {
+          "borderBottom": "1px solid #e8edf2",
+          "height": "42px",
+        }
+      }
     >
       <span
-        className="subtitle-text"
+        style={
+          Object {
+            "color": "#212934",
+            "fontFamily": "Roboto",
+            "fontSize": "15px",
+            "fontWeight": "500",
+            "height": "20px",
+            "left": "8px",
+            "position": "relative",
+            "top": "12px",
+          }
+        }
       >
         Selected Data
       </span>
-      <style />
     </div>
   </Subtitle>
   <DragDropContext
@@ -717,14 +943,22 @@ exports[`The SelectedItems component matches the snapshot when list is empty 1`]
               innerRef={[Function]}
             >
               <ul
-                className="selected-list"
                 data-test="undefined-list"
+                style={
+                  Object {
+                    "flex": "1",
+                    "listStyle": "none",
+                    "margin": "0 6px",
+                    "overflowY": "auto",
+                    "paddingLeft": "0px",
+                    "userSelect": "none",
+                  }
+                }
               >
                 <AnimateInOut
                   on={null}
                   shouldAnimate={true}
                 />
-                <style />
               </ul>
             </ItemsList>
           </DroppableDimensionPublisher>
@@ -733,41 +967,193 @@ exports[`The SelectedItems component matches the snapshot when list is empty 1`]
     </ErrorBoundary>
   </DragDropContext>
   <div
-    className="deselect-all-button"
+    style={
+      Object {
+        "display": "block",
+        "margin": "0 auto",
+        "padding": "5px",
+      }
+    }
   >
-    <Button
+    <WithStyles(Button)
       dataTest="undefined-deselect-all-button"
       onClick={[Function]}
-      type="button"
     >
-      <button
-        className="jsx-2371629422 "
-        data-test="undefined-deselect-all-button"
-        onBlur={[Function]}
+      <Button
+        classes={
+          Object {
+            "colorInherit": "MuiButton-colorInherit-22",
+            "contained": "MuiButton-contained-12",
+            "containedPrimary": "MuiButton-containedPrimary-13",
+            "containedSecondary": "MuiButton-containedSecondary-14",
+            "disabled": "MuiButton-disabled-21",
+            "extendedFab": "MuiButton-extendedFab-19",
+            "fab": "MuiButton-fab-18",
+            "flat": "MuiButton-flat-6",
+            "flatPrimary": "MuiButton-flatPrimary-7",
+            "flatSecondary": "MuiButton-flatSecondary-8",
+            "focusVisible": "MuiButton-focusVisible-20",
+            "fullWidth": "MuiButton-fullWidth-26",
+            "label": "MuiButton-label-2",
+            "mini": "MuiButton-mini-23",
+            "outlined": "MuiButton-outlined-9",
+            "outlinedPrimary": "MuiButton-outlinedPrimary-10",
+            "outlinedSecondary": "MuiButton-outlinedSecondary-11",
+            "raised": "MuiButton-raised-15",
+            "raisedPrimary": "MuiButton-raisedPrimary-16",
+            "raisedSecondary": "MuiButton-raisedSecondary-17",
+            "root": "MuiButton-root-1",
+            "sizeLarge": "MuiButton-sizeLarge-25",
+            "sizeSmall": "MuiButton-sizeSmall-24",
+            "text": "MuiButton-text-3",
+            "textPrimary": "MuiButton-textPrimary-4",
+            "textSecondary": "MuiButton-textSecondary-5",
+          }
+        }
+        color="default"
+        component="button"
+        dataTest="undefined-deselect-all-button"
+        disableFocusRipple={false}
+        disabled={false}
+        fullWidth={false}
+        mini={false}
         onClick={[Function]}
-        onFocus={[Function]}
+        size="medium"
         type="button"
+        variant="text"
       >
-        Deselect All
-        <JSXStyle
-          id="2371629422"
-        />
-      </button>
-    </Button>
+        <WithStyles(ButtonBase)
+          className="MuiButton-root-1 MuiButton-text-3 MuiButton-flat-6"
+          component="button"
+          dataTest="undefined-deselect-all-button"
+          disabled={false}
+          focusRipple={true}
+          focusVisibleClassName="MuiButton-focusVisible-20"
+          onClick={[Function]}
+          type="button"
+        >
+          <ButtonBase
+            centerRipple={false}
+            className="MuiButton-root-1 MuiButton-text-3 MuiButton-flat-6"
+            classes={
+              Object {
+                "disabled": "MuiButtonBase-disabled-28",
+                "focusVisible": "MuiButtonBase-focusVisible-29",
+                "root": "MuiButtonBase-root-27",
+              }
+            }
+            component="button"
+            dataTest="undefined-deselect-all-button"
+            disableRipple={false}
+            disableTouchRipple={false}
+            disabled={false}
+            focusRipple={true}
+            focusVisibleClassName="MuiButton-focusVisible-20"
+            onClick={[Function]}
+            tabIndex="0"
+            type="button"
+          >
+            <button
+              className="MuiButtonBase-root-27 MuiButton-root-1 MuiButton-text-3 MuiButton-flat-6"
+              dataTest="undefined-deselect-all-button"
+              disabled={false}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchEnd={[Function]}
+              onTouchMove={[Function]}
+              onTouchStart={[Function]}
+              tabIndex="0"
+              type="button"
+            >
+              <span
+                className="MuiButton-label-2"
+              >
+                Deselect All
+              </span>
+              <NoSsr
+                defer={false}
+                fallback={null}
+              >
+                <WithStyles(TouchRipple)
+                  center={false}
+                  innerRef={[Function]}
+                >
+                  <TouchRipple
+                    center={false}
+                    classes={
+                      Object {
+                        "child": "MuiTouchRipple-child-43",
+                        "childLeaving": "MuiTouchRipple-childLeaving-44",
+                        "childPulsate": "MuiTouchRipple-childPulsate-45",
+                        "ripple": "MuiTouchRipple-ripple-40",
+                        "ripplePulsate": "MuiTouchRipple-ripplePulsate-42",
+                        "rippleVisible": "MuiTouchRipple-rippleVisible-41",
+                        "root": "MuiTouchRipple-root-39",
+                      }
+                    }
+                  >
+                    <TransitionGroup
+                      childFactory={[Function]}
+                      className="MuiTouchRipple-root-39"
+                      component="span"
+                      enter={true}
+                      exit={true}
+                    >
+                      <span
+                        className="MuiTouchRipple-root-39"
+                      />
+                    </TransitionGroup>
+                  </TouchRipple>
+                </WithStyles(TouchRipple)>
+              </NoSsr>
+            </button>
+          </ButtonBase>
+        </WithStyles(ButtonBase)>
+      </Button>
+    </WithStyles(Button)>
   </div>
   <div
-    className="deselect-highlighted-button"
+    style={
+      Object {
+        "left": "-48px",
+        "position": "absolute",
+        "top": "291px",
+      }
+    }
   >
     <ArrowButton
       iconType="arrowBack"
       onClick={[Function]}
     >
       <button
-        className="arrow-button"
+        className="item-selector-arrow-button"
         onClick={[Function]}
+        style={
+          Object {
+            "border": "1px solid #d5dde5",
+            "borderRadius": "4px",
+            "height": "36px",
+            "minHeight": "36px",
+            "minWidth": "40px",
+            "padding": "0",
+            "width": "40px",
+          }
+        }
       >
         <span
-          className="arrow-icon"
+          style={
+            Object {
+              "fill": "#4a5768",
+              "height": "20px",
+              "width": "24px",
+            }
+          }
         >
           <pure(ArrowBackIcon)>
             <ArrowBackIcon>
@@ -775,15 +1161,15 @@ exports[`The SelectedItems component matches the snapshot when list is empty 1`]
                 <SvgIcon
                   classes={
                     Object {
-                      "colorAction": "MuiSvgIcon-colorAction-4",
-                      "colorDisabled": "MuiSvgIcon-colorDisabled-6",
-                      "colorError": "MuiSvgIcon-colorError-5",
-                      "colorPrimary": "MuiSvgIcon-colorPrimary-2",
-                      "colorSecondary": "MuiSvgIcon-colorSecondary-3",
-                      "fontSizeInherit": "MuiSvgIcon-fontSizeInherit-7",
-                      "fontSizeLarge": "MuiSvgIcon-fontSizeLarge-9",
-                      "fontSizeSmall": "MuiSvgIcon-fontSizeSmall-8",
-                      "root": "MuiSvgIcon-root-1",
+                      "colorAction": "MuiSvgIcon-colorAction-33",
+                      "colorDisabled": "MuiSvgIcon-colorDisabled-35",
+                      "colorError": "MuiSvgIcon-colorError-34",
+                      "colorPrimary": "MuiSvgIcon-colorPrimary-31",
+                      "colorSecondary": "MuiSvgIcon-colorSecondary-32",
+                      "fontSizeInherit": "MuiSvgIcon-fontSizeInherit-36",
+                      "fontSizeLarge": "MuiSvgIcon-fontSizeLarge-38",
+                      "fontSizeSmall": "MuiSvgIcon-fontSizeSmall-37",
+                      "root": "MuiSvgIcon-root-30",
                     }
                   }
                   color="inherit"
@@ -793,7 +1179,7 @@ exports[`The SelectedItems component matches the snapshot when list is empty 1`]
                 >
                   <svg
                     aria-hidden="true"
-                    className="MuiSvgIcon-root-1"
+                    className="MuiSvgIcon-root-30"
                     focusable="false"
                     role="presentation"
                     viewBox="0 0 24 24"
@@ -811,10 +1197,8 @@ exports[`The SelectedItems component matches the snapshot when list is empty 1`]
             </ArrowBackIcon>
           </pure(ArrowBackIcon)>
         </span>
-        <style />
       </button>
     </ArrowButton>
   </div>
-  <style />
 </SelectedItems>
 `;

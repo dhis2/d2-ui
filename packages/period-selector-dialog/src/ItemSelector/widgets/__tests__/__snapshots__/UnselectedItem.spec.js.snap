@@ -2,36 +2,64 @@
 
 exports[`Unselected item component renders a highlighted item 1`] = `
 <div
-  className="item highlighted-item"
+  className="unselected-period-item highlighted"
   data-test="dimension-item-unselected-item-test-id"
   onClick={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#004d40",
+      "borderRadius": "4px",
+      "cursor": "pointer",
+      "display": "flex",
+      "padding": "3px",
+    }
+  }
 >
   <ItemIcon
     backgroundColor="#a0adba"
   />
   <span
-    className="item-label highlighted-text"
+    style={
+      Object {
+        "color": "#fff",
+        "fontSize": "14px",
+        "padding": "2px 5px 2px 2px",
+      }
+    }
   >
     I am an unselected item
   </span>
-  <style />
 </div>
 `;
 
 exports[`Unselected item component renders an unhighlighted item 1`] = `
 <div
-  className="item unselected-item"
+  className="unselected-period-item"
   data-test="dimension-item-unselected-item-test-id"
   onClick={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "borderRadius": "4px",
+      "cursor": "pointer",
+      "display": "flex",
+      "padding": "3px",
+    }
+  }
 >
   <ItemIcon
     backgroundColor="#a0adba"
   />
   <span
-    className="item-label"
+    style={
+      Object {
+        "fontSize": "14px",
+        "padding": "2px 5px 2px 2px",
+      }
+    }
   >
     I am an unselected item
   </span>
-  <style />
 </div>
 `;

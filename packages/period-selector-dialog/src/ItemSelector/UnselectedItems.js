@@ -111,7 +111,7 @@ export class UnselectedItems extends Component {
                         {listItems}
                     </ul>
                 </div>
-                <div style={styles.selectAllButton}>
+                <div className="select-all-button" style={styles.selectAllButton}>
                     <Button
                         onClick={this.onSelectAllClick}
                         dataTest={`${this.props.dataTest}-select-all-button`}

@@ -3,18 +3,36 @@
 exports[`UnselectedItems component list with items matches the snapshot when list has items 1`] = `
 <Fragment>
   <div
-    className="unselected-list-container"
     onScroll={[Function]}
+    style={
+      Object {
+        "flex": "1",
+        "overflowY": "auto",
+      }
+    }
   >
     <ul
-      className="unselected-list"
       data-test="undefined-list"
+      style={
+        Object {
+          "borderBottom": "0px",
+          "listStyle": "none",
+          "margin": "0px",
+          "paddingLeft": "0px",
+          "userSelect": "none",
+        }
+      }
     >
       <li
-        className="unselected-list-item"
         data-test="undefined-list-item"
         key="rb"
         onDoubleClick={[Function]}
+        style={
+          Object {
+            "display": "flex",
+            "margin": "2px",
+          }
+        }
       >
         <Item
           highlighted={false}
@@ -23,13 +41,17 @@ exports[`UnselectedItems component list with items matches the snapshot when lis
           name="rainbow"
           onClick={[Function]}
         />
-        <style />
       </li>
       <li
-        className="unselected-list-item"
         data-test="undefined-list-item"
         key="rr"
         onDoubleClick={[Function]}
+        style={
+          Object {
+            "display": "flex",
+            "margin": "2px",
+          }
+        }
       >
         <Item
           highlighted={false}
@@ -38,63 +60,97 @@ exports[`UnselectedItems component list with items matches the snapshot when lis
           name="rarity"
           onClick={[Function]}
         />
-        <style />
       </li>
     </ul>
   </div>
   <div
     className="select-all-button"
+    style={
+      Object {
+        "display": "block",
+        "margin": "0 auto",
+        "padding": "5px",
+      }
+    }
   >
-    <Button
+    <WithStyles(Button)
       dataTest="undefined-select-all-button"
       onClick={[Function]}
-      type="button"
     >
       Select all
-    </Button>
+    </WithStyles(Button)>
   </div>
   <div
-    className="select-highlighted-button"
+    style={
+      Object {
+        "left": "426px",
+        "position": "absolute",
+        "top": "230px",
+      }
+    }
   >
     <ArrowButton
       iconType="arrowForward"
       onClick={[Function]}
     />
   </div>
-  <style />
 </Fragment>
 `;
 
 exports[`UnselectedItems component matches the snapshot when list is empty 1`] = `
 <Fragment>
   <div
-    className="unselected-list-container"
     onScroll={[Function]}
+    style={
+      Object {
+        "flex": "1",
+        "overflowY": "auto",
+      }
+    }
   >
     <ul
-      className="unselected-list"
       data-test="undefined-list"
+      style={
+        Object {
+          "borderBottom": "0px",
+          "listStyle": "none",
+          "margin": "0px",
+          "paddingLeft": "0px",
+          "userSelect": "none",
+        }
+      }
     />
   </div>
   <div
     className="select-all-button"
+    style={
+      Object {
+        "display": "block",
+        "margin": "0 auto",
+        "padding": "5px",
+      }
+    }
   >
-    <Button
+    <WithStyles(Button)
       dataTest="undefined-select-all-button"
       onClick={[Function]}
-      type="button"
     >
       Select all
-    </Button>
+    </WithStyles(Button)>
   </div>
   <div
-    className="select-highlighted-button"
+    style={
+      Object {
+        "left": "426px",
+        "position": "absolute",
+        "top": "230px",
+      }
+    }
   >
     <ArrowButton
       iconType="arrowForward"
       onClick={[Function]}
     />
   </div>
-  <style />
 </Fragment>
 `;
