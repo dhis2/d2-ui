@@ -74,6 +74,9 @@ class App extends Component {
                     <HeaderBarExample d2={this.state.d2} />
                     <p>Look at the top of the screen...</p>
 
+                    <h2>Period selector</h2>
+                    <PeriodSelector d2={this.state.d2} />
+
                     <h2>Rich Text</h2>
                     <RichTextExample />
 
@@ -143,8 +146,7 @@ class App extends Component {
                     <h2>FormEditor</h2>
                     <FormEditor />
 
-                    <h2>Period selector</h2>
-                    <PeriodSelector d2={this.state.d2} />
+                    
 
                     <h2>OrgUnitSelect</h2>
                     <OrgUnitSelect d2={this.state.d2} />

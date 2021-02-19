@@ -1,0 +1,100 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UnselectedItems component list with items matches the snapshot when list has items 1`] = `
+<Fragment>
+  <div
+    className="unselected-list-container"
+    onScroll={[Function]}
+  >
+    <ul
+      className="unselected-list"
+      data-test="undefined-list"
+    >
+      <li
+        className="unselected-list-item"
+        data-test="undefined-list-item"
+        key="rb"
+        onDoubleClick={[Function]}
+      >
+        <Item
+          highlighted={false}
+          id="rb"
+          index={0}
+          name="rainbow"
+          onClick={[Function]}
+        />
+        <style />
+      </li>
+      <li
+        className="unselected-list-item"
+        data-test="undefined-list-item"
+        key="rr"
+        onDoubleClick={[Function]}
+      >
+        <Item
+          highlighted={false}
+          id="rr"
+          index={1}
+          name="rarity"
+          onClick={[Function]}
+        />
+        <style />
+      </li>
+    </ul>
+  </div>
+  <div
+    className="select-all-button"
+  >
+    <Button
+      dataTest="undefined-select-all-button"
+      onClick={[Function]}
+      type="button"
+    >
+      Select all
+    </Button>
+  </div>
+  <div
+    className="select-highlighted-button"
+  >
+    <ArrowButton
+      iconType="arrowForward"
+      onClick={[Function]}
+    />
+  </div>
+  <style />
+</Fragment>
+`;
+
+exports[`UnselectedItems component matches the snapshot when list is empty 1`] = `
+<Fragment>
+  <div
+    className="unselected-list-container"
+    onScroll={[Function]}
+  >
+    <ul
+      className="unselected-list"
+      data-test="undefined-list"
+    />
+  </div>
+  <div
+    className="select-all-button"
+  >
+    <Button
+      dataTest="undefined-select-all-button"
+      onClick={[Function]}
+      type="button"
+    >
+      Select all
+    </Button>
+  </div>
+  <div
+    className="select-highlighted-button"
+  >
+    <ArrowButton
+      iconType="arrowForward"
+      onClick={[Function]}
+    />
+  </div>
+  <style />
+</Fragment>
+`;

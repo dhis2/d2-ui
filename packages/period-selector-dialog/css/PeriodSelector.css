@@ -187,3 +187,33 @@ button.nav-button:last-child {
 #year-select-menu {
     width: 130px;
 }
+
+.unselected-period-item:hover {
+    background-color: #e0e0e0;
+}
+
+.selected-period-item:hover {
+    background-color: '#86c4bf';
+}
+
+.item-selector-arrow-button:focus {
+    outline: 'none';
+}
+
+.item-selector-arrow-button:active:focus {
+    background-color: rgba(158, 158, 158, 0.18);
+}
+
+.item-selector-arrow-button:hover {
+    cursor: pointer;
+    background-color: rgba(158, 158, 158, 0.07);
+}
+
+.selected-list-item {
+    display: flex;
+    margin: 2px;
+}
+
+.selected-list-item:focus {
+    outline: none;
+}
