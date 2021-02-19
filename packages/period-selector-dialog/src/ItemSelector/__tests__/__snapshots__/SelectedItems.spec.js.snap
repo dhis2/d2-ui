@@ -89,11 +89,9 @@ exports[`The SelectedItems component list with items matches the snapshot with l
           >
             <ItemsList
               data-react-beautiful-dnd-droppable="1"
-              dataTest="undefined-list"
               innerRef={[Function]}
             >
               <ul
-                data-test="undefined-list"
                 style={
                   Object {
                     "flex": "1",
@@ -184,7 +182,6 @@ exports[`The SelectedItems component list with items matches the snapshot with l
                           className="selected-list-item"
                           data-react-beautiful-dnd-drag-handle="1"
                           data-react-beautiful-dnd-draggable="1"
-                          data-test="undefined-list-item"
                           draggable={false}
                           id="rb"
                           onBlur={[Function]}
@@ -438,7 +435,6 @@ exports[`The SelectedItems component list with items matches the snapshot with l
                           className="selected-list-item"
                           data-react-beautiful-dnd-drag-handle="1"
                           data-react-beautiful-dnd-draggable="1"
-                          data-test="undefined-list-item"
                           draggable={false}
                           id="rr"
                           onBlur={[Function]}
@@ -634,7 +630,6 @@ exports[`The SelectedItems component list with items matches the snapshot with l
     }
   >
     <WithStyles(Button)
-      dataTest="undefined-deselect-all-button"
       onClick={[Function]}
     >
       <Button
@@ -670,7 +665,6 @@ exports[`The SelectedItems component list with items matches the snapshot with l
         }
         color="default"
         component="button"
-        dataTest="undefined-deselect-all-button"
         disableFocusRipple={false}
         disabled={false}
         fullWidth={false}
@@ -683,7 +677,6 @@ exports[`The SelectedItems component list with items matches the snapshot with l
         <WithStyles(ButtonBase)
           className="MuiButton-root-1 MuiButton-text-3 MuiButton-flat-6"
           component="button"
-          dataTest="undefined-deselect-all-button"
           disabled={false}
           focusRipple={true}
           focusVisibleClassName="MuiButton-focusVisible-20"
@@ -701,7 +694,6 @@ exports[`The SelectedItems component list with items matches the snapshot with l
               }
             }
             component="button"
-            dataTest="undefined-deselect-all-button"
             disableRipple={false}
             disableTouchRipple={false}
             disabled={false}
@@ -713,7 +705,6 @@ exports[`The SelectedItems component list with items matches the snapshot with l
           >
             <button
               className="MuiButtonBase-root-27 MuiButton-root-1 MuiButton-text-3 MuiButton-flat-6"
-              dataTest="undefined-deselect-all-button"
               disabled={false}
               onBlur={[Function]}
               onClick={[Function]}
@@ -939,11 +930,9 @@ exports[`The SelectedItems component matches the snapshot when list is empty 1`]
           >
             <ItemsList
               data-react-beautiful-dnd-droppable="0"
-              dataTest="undefined-list"
               innerRef={[Function]}
             >
               <ul
-                data-test="undefined-list"
                 style={
                   Object {
                     "flex": "1",
@@ -976,7 +965,6 @@ exports[`The SelectedItems component matches the snapshot when list is empty 1`]
     }
   >
     <WithStyles(Button)
-      dataTest="undefined-deselect-all-button"
       onClick={[Function]}
     >
       <Button
@@ -1012,7 +1000,6 @@ exports[`The SelectedItems component matches the snapshot when list is empty 1`]
         }
         color="default"
         component="button"
-        dataTest="undefined-deselect-all-button"
         disableFocusRipple={false}
         disabled={false}
         fullWidth={false}
@@ -1025,7 +1012,6 @@ exports[`The SelectedItems component matches the snapshot when list is empty 1`]
         <WithStyles(ButtonBase)
           className="MuiButton-root-1 MuiButton-text-3 MuiButton-flat-6"
           component="button"
-          dataTest="undefined-deselect-all-button"
           disabled={false}
           focusRipple={true}
           focusVisibleClassName="MuiButton-focusVisible-20"
@@ -1043,7 +1029,6 @@ exports[`The SelectedItems component matches the snapshot when list is empty 1`]
               }
             }
             component="button"
-            dataTest="undefined-deselect-all-button"
             disableRipple={false}
             disableTouchRipple={false}
             disabled={false}
@@ -1055,7 +1040,6 @@ exports[`The SelectedItems component matches the snapshot when list is empty 1`]
           >
             <button
               className="MuiButtonBase-root-27 MuiButton-root-1 MuiButton-text-3 MuiButton-flat-6"
-              dataTest="undefined-deselect-all-button"
               disabled={false}
               onBlur={[Function]}
               onClick={[Function]}

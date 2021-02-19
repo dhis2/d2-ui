@@ -17,15 +17,15 @@ const Subtitle = () => (
     </div>
 )
 
-const InfoBox = ({ message, dataTest }) => (
-    <div style={styles.infoTontainer} data-test={dataTest}>
+const InfoBox = ({ message }) => (
+    <div style={styles.infoTontainer}>
         <InfoIcon style={{ fontSize: 16, color: '#6e7a8a' }} />
         <span style={styles.infoText}>{message}</span>
     </div>
 )
 
-const ItemsList = ({ innerRef, children, dataTest }) => (
-    <ul style={styles.selectedList} ref={innerRef} data-test={dataTest}>
+const ItemsList = ({ innerRef, children }) => (
+    <ul style={styles.selectedList} ref={innerRef}>
         {children}
     </ul>
 )
@@ -141,7 +141,6 @@ export class SelectedItems extends Component {
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                         ref={provided.innerRef}
-                        data-test={`${this.props.dataTest}-list-item`}
                     >
                         <Item
                             id={id}
@@ -219,10 +218,7 @@ export class SelectedItems extends Component {
             <Fragment>
                 <Subtitle />
                 {this.props.infoBoxMessage ? (
-                    <InfoBox
-                        message={this.props.infoBoxMessage}
-                        dataTest={`${this.props.dataTest}-info-box`}
-                    />
+                    <InfoBox message={this.props.infoBoxMessage} />
                 ) : null}
                 <DragDropContext
                     onDragStart={this.onDragStart}
@@ -232,7 +228,6 @@ export class SelectedItems extends Component {
                         {provided => (
                             <ItemsList
                                 innerRef={provided.innerRef}
-                                dataTest={`${this.props.dataTest}-list`}
                                 {...provided.droppableProps}
                             >
                                 {itemList}
@@ -242,10 +237,7 @@ export class SelectedItems extends Component {
                     </Droppable>
                 </DragDropContext>
                 <div style={styles.deselectAllButton}>
-                    <Button
-                        onClick={this.onDeselectAll}
-                        dataTest={`${this.props.dataTest}-deselect-all-button`}
-                    >
+                    <Button onClick={this.onDeselectAll}>
                         {i18n.t('Deselect All')}
                     </Button>
                 </div>
@@ -261,13 +253,11 @@ export class SelectedItems extends Component {
 }
 
 InfoBox.propTypes = {
-    dataTest: PropTypes.string,
     message: PropTypes.string,
 }
 
 ItemsList.propTypes = {
     children: PropTypes.array,
-    dataTest: PropTypes.string,
     innerRef: PropTypes.func,
 }
 
@@ -275,7 +265,6 @@ SelectedItems.propTypes = {
     items: PropTypes.array.isRequired,
     onDeselect: PropTypes.func.isRequired,
     onReorder: PropTypes.func.isRequired,
-    dataTest: PropTypes.string,
     infoBoxMessage: PropTypes.string,
 }
 

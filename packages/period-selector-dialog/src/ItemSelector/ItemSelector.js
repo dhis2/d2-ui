@@ -33,26 +33,19 @@ class ItemSelector extends Component {
             unselected,
             selected,
             children: filterZone,
-            dataTest,
         } = this.props
 
         const unselectedStyle = Object.assign({}, styles.section, styles.unselected)
         const selectedStyle = Object.assign({}, styles.section, styles.selected)
 
         return (
-            <div style={styles.itemSelectorContainer} data-test={dataTest}>
+            <div style={styles.itemSelectorContainer}>
                 <div style={unselectedStyle}>
                     {filterZone}
-                    <UnselectedItems
-                        {...unselected}
-                        dataTest={`${dataTest}-unselected-items`}
-                    />
+                    <UnselectedItems {...unselected} />
                 </div>
                 <div style={selectedStyle}>
-                    <SelectedItems
-                        {...selected}
-                        dataTest={`${dataTest}-selected-items`}
-                    />
+                    <SelectedItems {...selected} />
                 </div>
             </div>
         )
@@ -61,7 +54,6 @@ class ItemSelector extends Component {
 
 ItemSelector.propTypes = {
     children: PropTypes.object,
-    dataTest: PropTypes.string,
     selected: PropTypes.shape({
         items: PropTypes.arrayOf(
             PropTypes.shape({

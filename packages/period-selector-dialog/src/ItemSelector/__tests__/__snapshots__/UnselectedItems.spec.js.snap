@@ -12,7 +12,6 @@ exports[`UnselectedItems component list with items matches the snapshot when lis
     }
   >
     <ul
-      data-test="undefined-list"
       style={
         Object {
           "borderBottom": "0px",
@@ -24,7 +23,6 @@ exports[`UnselectedItems component list with items matches the snapshot when lis
       }
     >
       <li
-        data-test="undefined-list-item"
         key="rb"
         onDoubleClick={[Function]}
         style={
@@ -43,7 +41,6 @@ exports[`UnselectedItems component list with items matches the snapshot when lis
         />
       </li>
       <li
-        data-test="undefined-list-item"
         key="rr"
         onDoubleClick={[Function]}
         style={
@@ -74,7 +71,6 @@ exports[`UnselectedItems component list with items matches the snapshot when lis
     }
   >
     <WithStyles(Button)
-      dataTest="undefined-select-all-button"
       onClick={[Function]}
     >
       Select all
@@ -109,7 +105,6 @@ exports[`UnselectedItems component matches the snapshot when list is empty 1`] =
     }
   >
     <ul
-      data-test="undefined-list"
       style={
         Object {
           "borderBottom": "0px",
@@ -132,7 +127,6 @@ exports[`UnselectedItems component matches the snapshot when list is empty 1`] =
     }
   >
     <WithStyles(Button)
-      dataTest="undefined-select-all-button"
       onClick={[Function]}
     >
       Select all
