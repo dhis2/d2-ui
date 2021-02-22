@@ -2,6 +2,7 @@ import { getInstance } from 'd2';
 import { Observable } from 'rxjs';
 import Action from '@dhis2/d2-ui-core/action/Action';
 
+
 export function getLocales() {
     if (!getLocales.localePromise) {
         getLocales.localePromise = getInstance()

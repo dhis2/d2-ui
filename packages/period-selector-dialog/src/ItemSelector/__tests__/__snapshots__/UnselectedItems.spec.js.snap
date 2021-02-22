@@ -1,0 +1,150 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UnselectedItems component list with items matches the snapshot when list has items 1`] = `
+<Fragment>
+  <div
+    onScroll={[Function]}
+    style={
+      Object {
+        "flex": "1",
+        "overflowY": "auto",
+      }
+    }
+  >
+    <ul
+      style={
+        Object {
+          "borderBottom": "0px",
+          "listStyle": "none",
+          "margin": "0px",
+          "paddingLeft": "0px",
+          "userSelect": "none",
+        }
+      }
+    >
+      <li
+        key="rb"
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "display": "flex",
+            "margin": "2px",
+          }
+        }
+      >
+        <Item
+          highlighted={false}
+          id="rb"
+          index={0}
+          name="rainbow"
+          onClick={[Function]}
+        />
+      </li>
+      <li
+        key="rr"
+        onDoubleClick={[Function]}
+        style={
+          Object {
+            "display": "flex",
+            "margin": "2px",
+          }
+        }
+      >
+        <Item
+          highlighted={false}
+          id="rr"
+          index={1}
+          name="rarity"
+          onClick={[Function]}
+        />
+      </li>
+    </ul>
+  </div>
+  <div
+    className="select-all-button"
+    style={
+      Object {
+        "display": "block",
+        "margin": "0 auto",
+        "padding": "5px",
+      }
+    }
+  >
+    <WithStyles(Button)
+      onClick={[Function]}
+    >
+      Select all
+    </WithStyles(Button)>
+  </div>
+  <div
+    style={
+      Object {
+        "left": "426px",
+        "position": "absolute",
+        "top": "230px",
+      }
+    }
+  >
+    <ArrowButton
+      iconType="arrowForward"
+      onClick={[Function]}
+    />
+  </div>
+</Fragment>
+`;
+
+exports[`UnselectedItems component matches the snapshot when list is empty 1`] = `
+<Fragment>
+  <div
+    onScroll={[Function]}
+    style={
+      Object {
+        "flex": "1",
+        "overflowY": "auto",
+      }
+    }
+  >
+    <ul
+      style={
+        Object {
+          "borderBottom": "0px",
+          "listStyle": "none",
+          "margin": "0px",
+          "paddingLeft": "0px",
+          "userSelect": "none",
+        }
+      }
+    />
+  </div>
+  <div
+    className="select-all-button"
+    style={
+      Object {
+        "display": "block",
+        "margin": "0 auto",
+        "padding": "5px",
+      }
+    }
+  >
+    <WithStyles(Button)
+      onClick={[Function]}
+    >
+      Select all
+    </WithStyles(Button)>
+  </div>
+  <div
+    style={
+      Object {
+        "left": "426px",
+        "position": "absolute",
+        "top": "230px",
+      }
+    }
+  >
+    <ArrowButton
+      iconType="arrowForward"
+      onClick={[Function]}
+    />
+  </div>
+</Fragment>
+`;

@@ -1,0 +1,112 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Selected item component renders a ghost item 1`] = `
+<div
+  className="selected-period-item"
+  data-test="dimension-item-selected-item-test-id"
+  onClick={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#b2dfdb",
+      "borderRadius": "4px",
+      "cursor": "pointer",
+      "display": "flex",
+      "opacity": "0.2",
+      "padding": "3px",
+      "transition": "opacity 0.2s ease",
+    }
+  }
+>
+  <ItemIcon
+    backgroundColor="#00796b"
+  />
+  <span
+    style={
+      Object {
+        "fontSize": "14px",
+        "padding": "2px",
+      }
+    }
+  >
+    I am a selected item
+  </span>
+  <DeselectIconButton
+    fill="#00796b"
+    onClick={[Function]}
+  />
+</div>
+`;
+
+exports[`Selected item component renders a highlighted item 1`] = `
+<div
+  className="selected-period-item highlighted"
+  data-test="dimension-item-selected-item-test-id"
+  onClick={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#004d40",
+      "borderRadius": "4px",
+      "cursor": "pointer",
+      "display": "flex",
+      "padding": "3px",
+    }
+  }
+>
+  <ItemIcon
+    backgroundColor="#fff"
+  />
+  <span
+    style={
+      Object {
+        "color": "#fff",
+        "fontSize": "14px",
+        "padding": "2px",
+      }
+    }
+  >
+    I am a selected item
+  </span>
+  <DeselectIconButton
+    fill="#fff"
+    onClick={[Function]}
+  />
+</div>
+`;
+
+exports[`Selected item component renders an unhighlighted item 1`] = `
+<div
+  className="selected-period-item"
+  data-test="dimension-item-selected-item-test-id"
+  onClick={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#b2dfdb",
+      "borderRadius": "4px",
+      "cursor": "pointer",
+      "display": "flex",
+      "padding": "3px",
+    }
+  }
+>
+  <ItemIcon
+    backgroundColor="#00796b"
+  />
+  <span
+    style={
+      Object {
+        "fontSize": "14px",
+        "padding": "2px",
+      }
+    }
+  >
+    I am a selected item
+  </span>
+  <DeselectIconButton
+    fill="#00796b"
+    onClick={[Function]}
+  />
+</div>
+`;
