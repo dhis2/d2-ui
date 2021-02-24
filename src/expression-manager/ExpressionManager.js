@@ -12,6 +12,7 @@ import Divider from 'material-ui/Divider';
 import ExpressionDescription from './ExpressionDescription';
 import ExpressionOperators from './ExpressionOperators';
 import ExpressionFormula from './ExpressionFormula';
+import ExpressionFunctions from './ExpressionFunctions';
 
 import OrganisationUnitGroupSelector from './OrganisationUnitGroupSelector';
 import DataElementOperandSelector from './DataElementOperandSelector';
@@ -222,6 +223,7 @@ class ExpressionManager extends Component {
                                 formula={this.state.formula}
                             />
                             <ExpressionOperators operatorClicked={this.addOperatorToFormula} />
+                            <ExpressionFunctions onFunctionClick={this.appendToFormula} />
                         </Column>
                     </Paper>
                     <Paper style={styles.expressionValueOptionsWrap}>
