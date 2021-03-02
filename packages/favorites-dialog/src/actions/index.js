@@ -51,11 +51,8 @@ export const setVisTypeValue = (filter) => ({
     type: actionTypes.SET_VIS_TYPE_VALUE,
     payload: filter,
 });
-export const searchData = (searchValue) => {
-    //    const searchValue = event.target.value;
-
+export const searchData = () => {
     return (dispatch, getState) => {
-        //        dispatch(setSearchValue(searchValue));
         dispatch(fetchData());
     };
 };

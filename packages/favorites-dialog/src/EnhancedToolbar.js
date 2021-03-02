@@ -1,5 +1,6 @@
-import React, { Fragment } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
+import debounce from 'lodash/debounce';
 
 import { withStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -9,7 +10,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Divider from '@material-ui/core/Divider';
 
 import i18n from '@dhis2/d2-i18n';
-import { filterData, searchData } from './actions';
+import { filterData, searchData, setSearchValue } from './actions';
 import {
     CHART,
     PIVOT_TABLE,
@@ -49,78 +50,99 @@ const VisTypeFilterMenuItem = withStyles(toolbarStyles)(
     )
 );
 
-const EnhancedToolbar = (props) => {
-    const {
-        classes,
-        createdByValue,
-        searchValue,
-        visTypeValue,
-        searchData,
-        filterData,
-        showTypeFilter,
-    } = props;
+class EnhancedToolbar extends Component {
+    constructor(props) {
+        super(props);
 
-    return (
-        <Toolbar>
-            <TextField
-                type="search"
-                label={i18n.t('Search by name')}
-                className={classes.search}
-                value={searchValue}
-                onChange={searchData}
-            />
+        this.search = debounce(this.search, 350);
+    }
 
-            <div className={classes.spacer} />
-            <Fragment>
-                {showTypeFilter ? (
+    onChange = (e) => {
+        this.props.setSearchValue(e.target.value);
+
+        this.search();
+    };
+
+    search = () => {
+        this.props.searchData();
+    };
+
+    render() {
+        const {
+            classes,
+            createdByValue,
+            searchValue,
+            visTypeValue,
+            filterData,
+            showTypeFilter,
+        } = this.props;
+
+        return (
+            <Toolbar>
+                <TextField
+                    type="search"
+                    label={i18n.t('Search by name')}
+                    className={classes.search}
+                    value={searchValue}
+                    onChange={this.onChange}
+                />
+
+                <div className={classes.spacer} />
+                <Fragment>
+                    {showTypeFilter ? (
+                        <Select
+                            className={classes.filter}
+                            disableUnderline
+                            value={visTypeValue}
+                            onChange={(event) =>
+                                filterData('visType', event.target.value)
+                            }
+                        >
+                            <MenuItem value="all">
+                                {i18n.t('All types')}
+                            </MenuItem>
+                            <Divider />
+                            <MenuItem value={CHART}>
+                                <VisTypeFilterMenuItem
+                                    type={CHART}
+                                    icon={visTypeIcons[COLUMN]}
+                                    label={i18n.t('All chart types')}
+                                />
+                            </MenuItem>
+                            <MenuItem value={PIVOT_TABLE}>
+                                <VisTypeFilterMenuItem type={PIVOT_TABLE} />
+                            </MenuItem>
+                            <Divider />
+                            {Object.keys(visTypeIcons)
+                                .filter((type) => type !== PIVOT_TABLE)
+                                .map((type) => (
+                                    <MenuItem key={type} value={type}>
+                                        <VisTypeFilterMenuItem type={type} />
+                                    </MenuItem>
+                                ))}
+                        </Select>
+                    ) : null}
                     <Select
                         className={classes.filter}
                         disableUnderline
-                        value={visTypeValue}
+                        value={createdByValue}
                         onChange={(event) =>
-                            filterData('visType', event.target.value)
+                            filterData('owner', event.target.value)
                         }
                     >
-                        <MenuItem value="all">{i18n.t('All types')}</MenuItem>
-                        <Divider />
-                        <MenuItem value={CHART}>
-                            <VisTypeFilterMenuItem
-                                type={CHART}
-                                icon={visTypeIcons[COLUMN]}
-                                label={i18n.t('All chart types')}
-                            />
+                        <MenuItem value="all">{i18n.t('All owners')}</MenuItem>
+                        <MenuItem value="byme">
+                            {i18n.t('Created by you')}
                         </MenuItem>
-                        <MenuItem value={PIVOT_TABLE}>
-                            <VisTypeFilterMenuItem type={PIVOT_TABLE} />
+                        <MenuItem value="byothers">
+                            {i18n.t('Created by others')}
                         </MenuItem>
-                        <Divider />
-                        {Object.keys(visTypeIcons)
-                            .filter((type) => type !== PIVOT_TABLE)
-                            .map((type) => (
-                                <MenuItem key={type} value={type}>
-                                    <VisTypeFilterMenuItem type={type} />
-                                </MenuItem>
-                            ))}
                     </Select>
-                ) : null}
-                <Select
-                    className={classes.filter}
-                    disableUnderline
-                    value={createdByValue}
-                    onChange={(event) =>
-                        filterData('owner', event.target.value)
-                    }
-                >
-                    <MenuItem value="all">{i18n.t('All owners')}</MenuItem>
-                    <MenuItem value="byme">{i18n.t('Created by you')}</MenuItem>
-                    <MenuItem value="byothers">
-                        {i18n.t('Created by others')}
-                    </MenuItem>
-                </Select>
-            </Fragment>
-        </Toolbar>
-    );
-};
+                </Fragment>
+            </Toolbar>
+        );
+    }
+}
 
 const mapStateToProps = (state) => ({
     createdByValue: state.filtering.createdByValue,
@@ -130,6 +152,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     searchData,
+    setSearchValue,
     filterData,
 };
 
