@@ -6,56 +6,53 @@ import { CHART, PIVOT_TABLE } from '../visTypes';
 export const toggleLoading = () => ({ type: actionTypes.TOGGLE_LOADING });
 
 // select
-export const selectFavorite = model => ({
+export const selectFavorite = (model) => ({
     type: actionTypes.SET_SELECTED_FAVORITE,
     payload: model,
 });
 
 // d2
-export const setD2 = d2 => ({
+export const setD2 = (d2) => ({
     type: actionTypes.SET_D2,
     payload: d2,
 });
 
-export const setFavoriteType = type => ({
+export const setFavoriteType = (type) => ({
     type: actionTypes.SET_FAVORITE_TYPE,
     payload: type,
 });
 
 // data
-export const setData = data => ({
+export const setData = (data) => ({
     type: actionTypes.SET_DATA,
     payload: data,
 });
-export const setSortOrder = order => ({
+export const setSortOrder = (order) => ({
     type: actionTypes.SET_SORT_ORDER,
     payload: order,
 });
-export const setSortColumn = column => ({
+export const setSortColumn = (column) => ({
     type: actionTypes.SET_SORT_COLUMN,
     payload: column,
 });
-export const setSearchValue = search => ({
+export const setSearchValue = (search) => ({
     type: actionTypes.SET_SEARCH_VALUE,
     payload: search,
 });
-export const setTotalRecords = total => ({
+export const setTotalRecords = (total) => ({
     type: actionTypes.SET_TOTAL_RECORDS,
     payload: total,
 });
-export const setCreatedByValue = filter => ({
+export const setCreatedByValue = (filter) => ({
     type: actionTypes.SET_CREATEDBY_VALUE,
     payload: filter,
 });
-export const setVisTypeValue = filter => ({
+export const setVisTypeValue = (filter) => ({
     type: actionTypes.SET_VIS_TYPE_VALUE,
     payload: filter,
 });
-export const searchData = event => {
-    const searchValue = event.target.value;
-
+export const searchData = () => {
     return (dispatch, getState) => {
-        dispatch(setSearchValue(searchValue));
         dispatch(fetchData());
     };
 };
@@ -90,8 +87,12 @@ export const sortData = (event, column) => {
 
         const data =
             order === 'desc'
-                ? state.data.records.sort((a, b) => (b[column] < a[column] ? -1 : 1))
-                : state.data.records.sort((a, b) => (a[column] < b[column] ? -1 : 1));
+                ? state.data.records.sort((a, b) =>
+                      b[column] < a[column] ? -1 : 1
+                  )
+                : state.data.records.sort((a, b) =>
+                      a[column] < b[column] ? -1 : 1
+                  );
 
         dispatch(setSortOrder(order));
         dispatch(setSortColumn(column));
@@ -137,7 +138,7 @@ export const fetchData = () => {
                         .filter()
                         .on('type')
                         .notEqual(PIVOT_TABLE);
-                    break
+                    break;
                 default:
                     favoriteModel = favoriteModel
                         .filter()
@@ -161,21 +162,21 @@ export const fetchData = () => {
                 pageSize: state.pagination.rowsPerPage,
                 page: state.pagination.page + 1,
             })
-            .then(collection => {
+            .then((collection) => {
                 dispatch(setTotalRecords(collection.pager.total));
                 dispatch(setData(collection.toArray()));
                 dispatch(toggleLoading());
             })
-            .catch(error => log.error('favorites: fetch error', error));
+            .catch((error) => log.error('favorites: fetch error', error));
     };
 };
 
 // pagination
-export const setPage = page => ({
+export const setPage = (page) => ({
     type: actionTypes.SET_PAGE,
     payload: page,
 });
-export const setRowsPerPage = event => ({
+export const setRowsPerPage = (event) => ({
     type: actionTypes.SET_ROWS_PER_PAGE,
     payload: event.target.value,
 });
