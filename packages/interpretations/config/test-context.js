@@ -54,6 +54,7 @@ export function getStubContext() {
                         keys: () => jest.fn(),
                     })
                 ),
+                getUserGroupIds: jest.fn().mockReturnValue([]),
             },
         },
         locale: 'en',
