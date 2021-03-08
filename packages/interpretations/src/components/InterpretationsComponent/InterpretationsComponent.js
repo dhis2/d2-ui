@@ -11,52 +11,65 @@ import InterpretationsCard from '../Cards/InterpretationsCard';
 import styles from './styles/InterpretationsComponent.style';
 
 export class InterpretationsComponent extends React.Component {
-    state = { model: null, userGroups: []};
+    state = { model: null, userGroups: [] };
 
     constructor(props) {
         super(props);
         this.onChange = this.onChange.bind(this);
-    };
+    }
 
     getChildContext() {
         return {
             d2: this.props.d2,
-            locale: this.props.d2.currentUser.userSettings.settings.keyUiLocale || 'en',
-            appName: this.props.appName || '',
-            item: this.props.item || {},
+            locale:
+                this.props.d2.currentUser.userSettings.settings.keyUiLocale ||
+                'en',
+            appName: this.props.appName || '',
+            item: this.props.item || {},
         };
-    };
+    }
 
     componentDidMount() {
         this.loadModel(this.props);
-    };
+    }
 
     componentWillReceiveProps(nextProps) {
         const fields = ['type', 'id', 'lastUpdated'];
-        const modelFieldsChanged = !isEqual(pick(fields, this.props), pick(fields, nextProps));
-        
+        const modelFieldsChanged = !isEqual(
+            pick(fields, this.props),
+            pick(fields, nextProps)
+        );
+
         if (modelFieldsChanged) {
             this.loadModel(nextProps);
         }
-    };
+    }
 
     async loadModel(props) {
         const users = await props.d2.currentUser.getUserGroups({ fields: 'id' });
-        
-        return getFavoriteWithInterpretations(props.d2, props.type, props.id).then(model => {
+
+        return getFavoriteWithInterpretations(
+            props.d2,
+            props.type,
+            props.id
+        ).then((model) => {
             this.setState({ model, userGroups: Array.from(users.keys()) });
             return model;
         });
-    };
+    }
 
     async onChange() {
         return this.loadModel(this.props).then(
-            newModel => this.props.onChange && this.props.onChange(newModel)
+            (newModel) => this.props.onChange && this.props.onChange(newModel)
         );
-    };
+    }
 
     render() {
-        const { classes, currentInterpretationId, onCurrentInterpretationChange } = this.props;
+        const {
+            classes,
+            currentInterpretationId,
+            onCurrentInterpretationChange,
+        } = this.props;
         const { model, userGroups } = this.state;
 
         if (!model) {
@@ -66,24 +79,26 @@ export class InterpretationsComponent extends React.Component {
         return (
             <div>
                 <div className={classes.interpretationsContainer}>
-                    <Details 
-                        model={model} 
-                        onChange={this.onChange} 
-                        type={this.props.type} 
+                    <Details
+                        model={model}
+                        onChange={this.onChange}
+                        type={this.props.type}
                     />
                     <InterpretationsCard
                         model={model}
                         userGroups={userGroups}
                         onChange={this.onChange}
                         currentInterpretationId={currentInterpretationId}
-                        onCurrentInterpretationChange={onCurrentInterpretationChange}
+                        onCurrentInterpretationChange={
+                            onCurrentInterpretationChange
+                        }
                         type={this.props.type}
                     />
                 </div>
             </div>
         );
-    };
-};
+    }
+}
 
 InterpretationsComponent.propTypes = {
     classes: PropTypes.object.isRequired,
