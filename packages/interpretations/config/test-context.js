@@ -17,14 +17,16 @@ export function getStubContext() {
                 },
             },
             Api: {
-                getApi: jest.fn().mockReturnValue({baseUrl: 'http://localhost:8080'}),
+                getApi: jest
+                    .fn()
+                    .mockReturnValue({ baseUrl: 'http://localhost:8080' }),
             },
             system: {
                 settings: {
                     all: jest.fn().mockReturnValue(Promise.resolve({})),
                 },
                 systemInfo: {
-                    contextPath: "http://test-dhis-server.org",
+                    contextPath: 'http://test-dhis-server.org',
                 },
             },
             currentUser: {
@@ -33,23 +35,29 @@ export function getStubContext() {
                 userSettings: {
                     keyStyle: 'vietnam/vietnam.css',
                     settings: {
-                        keyUiLocale: "en",
+                        keyUiLocale: 'en',
                     },
                 },
                 authorities: new Set(),
                 userGroupAccesses: [
                     {
-                        access: "rw------",
-                        userGroupUid: "wl5cDMuUhmF",
-                        displayName: "Administrators",
-                        id: "wl5cDMuUhmF"
-                    }
+                        access: 'rw------',
+                        userGroupUid: 'wl5cDMuUhmF',
+                        displayName: 'Administrators',
+                        id: 'wl5cDMuUhmF',
+                    },
                 ],
                 userAccesses: [],
-                getUserGroups: jest.fn().mockReturnValue(Promise.resolve({valuesContainerMap: [], keys: () => jest.fn()})),
+                getUserGroups: jest.fn().mockReturnValue(
+                    Promise.resolve({
+                        valuesContainerMap: [],
+                        keys: () => jest.fn(),
+                    })
+                ),
+                getUserGroupIds: jest.fn().mockReturnValue([]),
             },
         },
         locale: 'en',
-        appName: 'CHART'
+        appName: 'CHART',
     };
 }
