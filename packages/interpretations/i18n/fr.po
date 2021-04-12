@@ -7,13 +7,14 @@
 # Gabriela Rodriguez <grodriguezcoronado@gmail.com>, 2020
 # Viktor Varland <viktor@dhis2.org>, 2020
 # Yao Selom SAKA <ysaka@hispwca.org>, 2020
+# Yayra Gomado <ygomado@hispwca.org>, 2021
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2020-12-09T10:46:11.729Z\n"
 "PO-Revision-Date: 2019-08-13 09:54+0000\n"
-"Last-Translator: Yao Selom SAKA <ysaka@hispwca.org>, 2020\n"
+"Last-Translator: Yayra Gomado <ygomado@hispwca.org>, 2021\n"
 "Language-Team: French (https://www.transifex.com/hisp-uio/teams/100509/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -135,8 +136,8 @@ msgstr "Accès limité"
 
 msgid "{{count}} likes"
 msgid_plural "{{count}} likes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{{count}} les aimes"
+msgstr[1] "{{count}} les aimes"
 
 msgid "Save interpretation"
 msgstr "Enregistrer l'interprétation"
@@ -146,8 +147,8 @@ msgstr "Ecrire une interprétation"
 
 msgid "{{count}} replies"
 msgid_plural "{{count}} replies"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{{count}} réponses"
+msgstr[1] "{{count}} réponses"
 
 msgid "Hide old replies"
 msgstr "Masquer les anciennes réponses"
@@ -162,10 +163,10 @@ msgid "Are you sure you want to delete this comment?"
 msgstr "Etes-vous sûr de vouloir supprimer ce commentaire?"
 
 msgid "Hide previous interpretations"
-msgstr ""
+msgstr "Masquer les interprétations précédentes"
 
 msgid "Show previous interpretations"
-msgstr ""
+msgstr "Afficher les interprétations précédentes"
 
 msgid "No interpretations"
 msgstr "Aucune interprétation"
@@ -180,13 +181,13 @@ msgid "None"
 msgstr "Aucun"
 
 msgid "Shared with"
-msgstr ""
+msgstr "Partager avec"
 
 msgid "bold text"
-msgstr ""
+msgstr "texte en gras"
 
 msgid "italic text"
-msgstr ""
+msgstr "texte en italique"
 
 msgid "Read"
 msgstr "Lecture"
@@ -207,8 +208,8 @@ msgstr[1] ""
 
 msgid "{{count}} user groups"
 msgid_plural "{{count}} user groups"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{{count}} groupe d'utilisateurs"
+msgstr[1] "{{count}} groupe d'utilisateurs"
 
 msgid "chart"
 msgstr "graphique"
