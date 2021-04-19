@@ -203,8 +203,8 @@ msgstr "Public"
 
 msgid "{{count}} users"
 msgid_plural "{{count}} users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{{count}} utilisateur"
+msgstr[1] "{{count}} utilisateurs"
 
 msgid "{{count}} user groups"
 msgid_plural "{{count}} user groups"
