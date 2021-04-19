@@ -11,7 +11,6 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import PropTypes from 'prop-types';
 import Sharing from './Sharing.component';
 
-
 const defaultState = {
     sharedObject: null,
     errorMessage: '',
