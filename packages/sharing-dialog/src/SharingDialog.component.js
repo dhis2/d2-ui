@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { mui3theme } from '@dhis2/d2-ui-core';
