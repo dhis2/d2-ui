@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { mui3theme } from '@dhis2/d2-ui-core';
 import PropTypes from 'prop-types';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -45,20 +47,22 @@ class TranslationDialog extends Component {
 
     render() {
         return (
-            <Dialog
-                onClose={this.closeDialog}
-                maxWidth="lg"
-                {...this.muiDialogProps()}
-            >
-                <DialogTitle id="form-dialog-title">{this.i18n.getTranslation('translation_dialog_title')}</DialogTitle>
-                <TranslationFormWithData
-                    model={this.props.objectToTranslate}
-                    onTranslationSaved={this.translationSaved}
-                    onTranslationError={this.translationError}
-                    onCancel={this.closeDialog}
-                    fieldsToTranslate={this.props.fieldsToTranslate}
-                />
-            </Dialog>
+            <MuiThemeProvider theme={createMuiTheme(mui3theme)}>
+                <Dialog
+                    onClose={this.closeDialog}
+                    maxWidth="lg"
+                    {...this.muiDialogProps()}
+                >
+                    <DialogTitle id="form-dialog-title">{this.i18n.getTranslation('translation_dialog_title')}</DialogTitle>
+                    <TranslationFormWithData
+                        model={this.props.objectToTranslate}
+                        onTranslationSaved={this.translationSaved}
+                        onTranslationError={this.translationError}
+                        onCancel={this.closeDialog}
+                        fieldsToTranslate={this.props.fieldsToTranslate}
+                    />
+                </Dialog>
+            </MuiThemeProvider>
         );
     }
 }

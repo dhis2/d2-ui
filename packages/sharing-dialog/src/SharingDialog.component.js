@@ -1,4 +1,7 @@
+
 import React from 'react';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { mui3theme } from '@dhis2/d2-ui-core';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -8,6 +11,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import PropTypes from 'prop-types';
 import Sharing from './Sharing.component';
+
 
 const defaultState = {
     sharedObject: null,
@@ -203,27 +207,29 @@ class SharingDialog extends React.Component {
                     message={this.state.errorMessage}
                     autoHideDuration={3000}
                 />
-                <Dialog
-                    maxWidth="lg"
-                    onClose={this.closeDialog}
-                    {...this.muiDialogProps()}
-                >
-                    <DialogTitle>{this.props.d2.i18n.getTranslation('share')}</DialogTitle>
-                    <DialogContent>
-                        { isLoading && <LoadingMask /> }
-                        { this.state.sharedObject &&
-                            <Sharing
-                                sharedObject={this.state.sharedObject}
-                                dataShareable={dataShareable}
-                                onChange={this.onSharingChanged}
-                                onSearch={this.onSearchRequest}
-                            />
-                        }
-                    </DialogContent>
-                    <DialogActions>
-                        <Button key="closeonly" color="primary" onClick={this.closeDialog}>{this.translate('close')}</Button>,
-                    </DialogActions>
-                </Dialog>
+                <MuiThemeProvider theme={createMuiTheme(mui3theme)}>
+                    <Dialog
+                        maxWidth="lg"
+                        onClose={this.closeDialog}
+                        {...this.muiDialogProps()}
+                    >
+                        <DialogTitle>{this.props.d2.i18n.getTranslation('share')}</DialogTitle>
+                        <DialogContent>
+                            { isLoading && <LoadingMask /> }
+                            { this.state.sharedObject &&
+                                <Sharing
+                                    sharedObject={this.state.sharedObject}
+                                    dataShareable={dataShareable}
+                                    onChange={this.onSharingChanged}
+                                    onSearch={this.onSearchRequest}
+                                />
+                            }
+                        </DialogContent>
+                        <DialogActions>
+                            <Button key="closeonly" color="primary" onClick={this.closeDialog}>{this.translate('close')}</Button>,
+                        </DialogActions>
+                    </Dialog>
+                </MuiThemeProvider>
             </div>
         );
     }
