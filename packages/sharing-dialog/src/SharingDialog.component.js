@@ -233,11 +233,9 @@ class SharingDialog extends React.Component {
     render() {
         if (this.props.insertTheme) {
             return (
-                <div>
-                    <MuiThemeProvider theme={createMuiTheme(mui3theme)}>
-                        {this.getContent()}
-                    </MuiThemeProvider>
-                </div>
+                <MuiThemeProvider theme={createMuiTheme(mui3theme)}>
+                    {this.getContent()}
+                </MuiThemeProvider>
             );
         }
 
