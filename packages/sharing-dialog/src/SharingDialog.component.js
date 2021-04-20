@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { mui3theme } from '@dhis2/d2-ui-core';
 import Dialog from '@material-ui/core/Dialog';
@@ -193,43 +193,56 @@ class SharingDialog extends React.Component {
         return pick(this.props);
     }
 
-    render() {
+    getContent = () => {
         const dataShareable = this.state.dataShareableTypes.indexOf(this.props.type) !== -1;
         const errorOccurred = this.state.errorMessage !== '';
         const isLoading = !this.state.sharedObject && this.props.open && !errorOccurred;
 
         return (
-            <div>
+            <Fragment>
                 <Snackbar
                     open={errorOccurred}
                     message={this.state.errorMessage}
                     autoHideDuration={3000}
                 />
-                <MuiThemeProvider theme={createMuiTheme(mui3theme)}>
-                    <Dialog
-                        maxWidth="lg"
-                        onClose={this.closeDialog}
-                        {...this.muiDialogProps()}
-                    >
-                        <DialogTitle>{this.props.d2.i18n.getTranslation('share')}</DialogTitle>
-                        <DialogContent>
-                            { isLoading && <LoadingMask /> }
-                            { this.state.sharedObject &&
-                                <Sharing
-                                    sharedObject={this.state.sharedObject}
-                                    dataShareable={dataShareable}
-                                    onChange={this.onSharingChanged}
-                                    onSearch={this.onSearchRequest}
-                                />
-                            }
-                        </DialogContent>
-                        <DialogActions>
-                            <Button key="closeonly" color="primary" onClick={this.closeDialog}>{this.translate('close')}</Button>,
-                        </DialogActions>
-                    </Dialog>
-                </MuiThemeProvider>
-            </div>
-        );
+                <Dialog
+                    maxWidth="lg"
+                    onClose={this.closeDialog}
+                    {...this.muiDialogProps()}
+                >
+                    <DialogTitle>{this.props.d2.i18n.getTranslation('share')}</DialogTitle>
+                    <DialogContent>
+                        { isLoading && <LoadingMask /> }
+                        { this.state.sharedObject &&
+                            <Sharing
+                                sharedObject={this.state.sharedObject}
+                                dataShareable={dataShareable}
+                                onChange={this.onSharingChanged}
+                                onSearch={this.onSearchRequest}
+                            />
+                        }
+                    </DialogContent>
+                    <DialogActions>
+                        <Button key="closeonly" color="primary" onClick={this.closeDialog}>{this.translate('close')}</Button>,
+                    </DialogActions>
+                </Dialog>
+            </Fragment>
+        )
+    }
+
+    render() {
+        console.log('insertTheme', this.props.insertTheme)
+        if (this.props.insertTheme) {
+            return (
+                <div>
+                    <MuiThemeProvider theme={createMuiTheme(mui3theme)}>
+                        {this.getContent()}
+                    </MuiThemeProvider>
+                </div>
+            );
+        }
+
+        return this.getContent()
     }
 }
 
@@ -252,6 +265,11 @@ SharingDialog.propTypes = {
      * Id of the sharable object. Can be supplied after initial render.
      */
     id: PropTypes.string,
+
+    /**
+     * If true, then wrap dialog component in material-ui theme
+     */
+    insertTheme: PropTypes.bool,
 
     /**
      * Do not post new sharing settings. Rather, let the user save the new
@@ -301,6 +319,7 @@ SharingDialog.propTypes = {
 SharingDialog.defaultProps = {
     type: '',
     id: '',
+    insertTheme: false,
     doNotPost: false,
     sharedObject: null,
 };
