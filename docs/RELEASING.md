@@ -3,28 +3,39 @@
 The root-level `package.json` contains the `version` key, which will be
 used to publish all packages.
 
+Pushing directly to master is not allowed, so the version bump should be added to the PR that will be merged.
+
 # Publish to NPM
 
-1. Get on the `master` branch
-
-```
-git checkout master
-git pull
-```
-
-2. Update the `version`
+1. Update the `version` in the working branch
 
 ```
 yarn version
 ```
 
-3. Push the bump commit and version tag
+2. Remove the local tag
 
 ```
-git push --follow-tags
+git tag -d vXXX
 ```
 
-4. Start the release workflow manually
+3. Push the bump commit
+
+```
+git push
+```
+
+4. Merge the PR on Github
+
+5. Tag the master branch
+
+```
+git pull
+git tag vXXX
+git push --tags
+```
+
+6. Start the release workflow manually
 
 Go to [the d2-ui release
 action](https://github.com/dhis2/d2-ui/actions?query=workflow%3A%22dhis2%3A+release+d2-ui%22)
