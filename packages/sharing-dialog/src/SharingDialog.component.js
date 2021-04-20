@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { mui3theme } from '@dhis2/d2-ui-core';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -191,13 +193,13 @@ class SharingDialog extends React.Component {
         return pick(this.props);
     }
 
-    render() {
+    getContent = () => {
         const dataShareable = this.state.dataShareableTypes.indexOf(this.props.type) !== -1;
         const errorOccurred = this.state.errorMessage !== '';
         const isLoading = !this.state.sharedObject && this.props.open && !errorOccurred;
 
         return (
-            <div>
+            <Fragment>
                 <Snackbar
                     open={errorOccurred}
                     message={this.state.errorMessage}
@@ -224,8 +226,20 @@ class SharingDialog extends React.Component {
                         <Button key="closeonly" color="primary" onClick={this.closeDialog}>{this.translate('close')}</Button>,
                     </DialogActions>
                 </Dialog>
-            </div>
-        );
+            </Fragment>
+        )
+    }
+
+    render() {
+        if (this.props.insertTheme) {
+            return (
+                <MuiThemeProvider theme={createMuiTheme(mui3theme)}>
+                    {this.getContent()}
+                </MuiThemeProvider>
+            );
+        }
+
+        return this.getContent()
     }
 }
 
@@ -248,6 +262,11 @@ SharingDialog.propTypes = {
      * Id of the sharable object. Can be supplied after initial render.
      */
     id: PropTypes.string,
+
+    /**
+     * If true, then wrap dialog component in material-ui theme
+     */
+    insertTheme: PropTypes.bool,
 
     /**
      * Do not post new sharing settings. Rather, let the user save the new
@@ -297,6 +316,7 @@ SharingDialog.propTypes = {
 SharingDialog.defaultProps = {
     type: '',
     id: '',
+    insertTheme: false,
     doNotPost: false,
     sharedObject: null,
 };
