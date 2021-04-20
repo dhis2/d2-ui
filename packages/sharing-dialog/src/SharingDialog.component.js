@@ -231,7 +231,6 @@ class SharingDialog extends React.Component {
     }
 
     render() {
-        console.log('insertTheme', this.props.insertTheme)
         if (this.props.insertTheme) {
             return (
                 <div>
