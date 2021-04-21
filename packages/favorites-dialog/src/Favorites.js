@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import i18n from '@dhis2/d2-i18n';
-
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -35,10 +34,10 @@ class Favorites extends Component {
         }
     }
 
-    render() {
+    render = () => {
         const { open, onRequestClose, onFavoriteSelect, type } = this.props;
 
-        const handleOnFavoriteSelect = (id) => {
+        const handleOnFavoriteSelect = id => {
             onFavoriteSelect(id);
             // XXX should this be in the favoriteSelect callback?
             onRequestClose();
@@ -51,8 +50,8 @@ class Favorites extends Component {
                 open={open}
                 onClose={onRequestClose}
                 disableEnforceFocus
-                maxWidth="md"
                 fullWidth
+                maxWidth="lg"
             >
                 <DialogContent>
                     <EnhancedToolbar showTypeFilter={showTypeColumn} />
@@ -68,7 +67,7 @@ class Favorites extends Component {
                 </DialogActions>
             </Dialog>
         );
-    }
+    };
 }
 
 Favorites.propTypes = {
@@ -81,7 +80,7 @@ Favorites.propTypes = {
     fetchData: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     dataIsLoaded: state.data.totalRecords > 0,
 });
 
@@ -89,4 +88,7 @@ const mapDispatchToProps = {
     fetchData,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Favorites);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Favorites);

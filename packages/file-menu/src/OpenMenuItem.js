@@ -38,6 +38,7 @@ class OpenMenuItem extends Component {
 
     render() {
         const { refreshDialogData, fileType, onRename, onDelete } = this.props;
+        const { d2, insertTheme } = this.context;
 
         return (
             <Fragment>
@@ -51,11 +52,12 @@ class OpenMenuItem extends Component {
                     open={this.state.dialogIsOpen}
                     refreshData={refreshDialogData}
                     type={fileType}
-                    d2={this.context.d2}
+                    d2={d2}
                     onRequestClose={this.onClose}
                     onFavoriteSelect={this.onOpen}
                     onFavoriteRename={onRename}
                     onFavoriteDelete={onDelete}
+                    insertTheme={insertTheme}
                 />
             </Fragment>
         );
@@ -64,6 +66,7 @@ class OpenMenuItem extends Component {
 
 OpenMenuItem.contextTypes = {
     d2: PropTypes.object,
+    insertTheme: PropTypes.bool,
 };
 
 OpenMenuItem.defaultProps = {
