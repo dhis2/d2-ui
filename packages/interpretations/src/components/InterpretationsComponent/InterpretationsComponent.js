@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { mui3theme } from '@dhis2/d2-ui-core';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { withStyles } from '@material-ui/core/styles';
 import isEqual from 'lodash/fp/isEqual';
@@ -52,7 +54,7 @@ export class InterpretationsComponent extends React.Component {
             props.d2,
             props.type,
             props.id
-        ).then((model) => {
+        ).then(model => {
             this.setState({ model, userGroups: Array.from(users.keys()) });
             return model;
         });
@@ -60,11 +62,11 @@ export class InterpretationsComponent extends React.Component {
 
     async onChange() {
         return this.loadModel(this.props).then(
-            (newModel) => this.props.onChange && this.props.onChange(newModel)
+            newModel => this.props.onChange && this.props.onChange(newModel)
         );
     }
 
-    render() {
+    getContent() {
         const {
             classes,
             currentInterpretationId,
@@ -98,13 +100,30 @@ export class InterpretationsComponent extends React.Component {
             </div>
         );
     }
+
+    render() {
+        if (this.props.insertTheme) {
+            return (
+                <MuiThemeProvider theme={createMuiTheme(mui3theme)}>
+                    {this.getContent()}
+                </MuiThemeProvider>
+            );
+        }
+
+        return this.getContent();
+    }
 }
+
+InterpretationsComponent.defaultProps = {
+    insertTheme: false,
+};
 
 InterpretationsComponent.propTypes = {
     classes: PropTypes.object.isRequired,
     d2: PropTypes.object.isRequired,
     type: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
+    insertTheme: PropTypes.bool,
     lastUpdated: PropTypes.string,
     currentInterpretationId: PropTypes.string,
     onChange: PropTypes.func,

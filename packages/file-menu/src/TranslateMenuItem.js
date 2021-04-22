@@ -26,7 +26,7 @@ class TranslateMenuItem extends Component {
         }
     };
 
-    onDialogReturn = success => (args) => {
+    onDialogReturn = success => args => {
         const { onTranslate, onTranslateError } = this.props;
 
         this.toggleTranslationDialog();
@@ -44,10 +44,14 @@ class TranslateMenuItem extends Component {
 
     render() {
         const { enabled, fileModel } = this.props;
+        const { d2, insertTheme } = this.context;
 
         return (
             <Fragment>
-                <MenuItem disabled={!enabled} onClick={this.toggleTranslationDialog}>
+                <MenuItem
+                    disabled={!enabled}
+                    onClick={this.toggleTranslationDialog}
+                >
                     <ListItemIcon>
                         <Translate />
                     </ListItemIcon>
@@ -55,13 +59,14 @@ class TranslateMenuItem extends Component {
                 </MenuItem>
                 {fileModel ? (
                     <TranslationDialog
-                        d2={this.context.d2}
+                        d2={d2}
                         open={this.state.dialogIsOpen}
                         onRequestClose={this.onClose}
                         objectToTranslate={fileModel}
                         fieldsToTranslate={['name', 'description']}
                         onTranslationSaved={this.onDialogReturn(true)}
                         onTranslationError={this.onDialogReturn(false)}
+                        insertTheme={insertTheme}
                     />
                 ) : null}
             </Fragment>
@@ -71,6 +76,7 @@ class TranslateMenuItem extends Component {
 
 TranslateMenuItem.contextTypes = {
     d2: PropTypes.object,
+    insertTheme: PropTypes.bool,
 };
 
 TranslateMenuItem.defaultProps = {

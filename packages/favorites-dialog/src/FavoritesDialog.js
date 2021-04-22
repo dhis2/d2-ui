@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import PropTypes from 'prop-types';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import cloneDeep from 'lodash/cloneDeep';
+import { mui3theme } from '@dhis2/d2-ui-core';
 
 import Favorites from './Favorites';
 import configureStore from './configureStore';
@@ -30,7 +33,7 @@ class FavoritesDialog extends Component {
         };
     }
 
-    render() {
+    getContent() {
         const {
             open,
             type,
@@ -51,14 +54,37 @@ class FavoritesDialog extends Component {
             </Provider>
         );
     }
+
+    render() {
+        if (this.props.insertTheme) {
+            const theme = cloneDeep(mui3theme);
+
+            // override the MuiDialog style to make it wider
+            theme.overrides.MuiDialog.paperWidthLg = {
+                flex: '0 1 960px',
+                width: '960px',
+                maxWidth: '960px',
+            };
+
+            return (
+                <MuiThemeProvider theme={createMuiTheme(theme)}>
+                    {this.getContent()}
+                </MuiThemeProvider>
+            );
+        }
+
+        return this.getContent();
+    }
 }
 
 FavoritesDialog.defaultProps = {
     refreshData: false,
+    insertTheme: false,
 };
 
 FavoritesDialog.propTypes = {
     open: PropTypes.bool.isRequired,
+    insertTheme: PropTypes.bool,
     refreshData: PropTypes.bool,
     type: PropTypes.oneOf([
         'visualization',

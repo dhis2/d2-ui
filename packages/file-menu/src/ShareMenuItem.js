@@ -42,6 +42,7 @@ class ShareMenuItem extends Component {
 
     render() {
         const { enabled, fileModel, fileType } = this.props;
+        const { d2, insertTheme } = this.context;
 
         return (
             <Fragment>
@@ -58,9 +59,10 @@ class ShareMenuItem extends Component {
                     <SharingDialog
                         open={this.state.dialogIsOpen}
                         onRequestClose={this.onShare}
-                        d2={this.context.d2}
+                        d2={d2}
                         id={fileModel.id}
                         type={fileType}
+                        insertTheme={insertTheme}
                     />
                 ) : null}
             </Fragment>
@@ -70,6 +72,7 @@ class ShareMenuItem extends Component {
 
 ShareMenuItem.contextTypes = {
     d2: PropTypes.object,
+    insertTheme: PropTypes.bool,
 };
 
 ShareMenuItem.defaultProps = {

@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { mui3theme } from '@dhis2/d2-ui-core';
 import { withStyles } from '@material-ui/core/styles';
 import Menu from '@material-ui/core/Menu';
 import Button from '@material-ui/core/Button';
@@ -34,6 +35,7 @@ export class FileMenu extends Component {
 
     getChildContext = () => ({
         d2: this.props.d2,
+        insertTheme: this.props.insertTheme,
     });
 
     componentDidMount = () => {
@@ -122,7 +124,7 @@ export class FileMenu extends Component {
         });
     };
 
-    render() {
+    getContent() {
         const {
             classes,
             fileType,
@@ -237,16 +239,30 @@ export class FileMenu extends Component {
             </Fragment>
         );
     }
+
+    render() {
+        if (this.props.insertTheme) {
+            return (
+                <MuiThemeProvider theme={createMuiTheme(mui3theme)}>
+                    {this.getContent()}
+                </MuiThemeProvider>
+            );
+        }
+
+        return this.getContent();
+    }
 }
 
 FileMenu.childContextTypes = {
     d2: PropTypes.object,
+    insertTheme: PropTypes.bool,
 };
 
 FileMenu.defaultProps = {
     d2: null,
     fileType: 'chart',
     fileId: null,
+    insertTheme: false,
     onNew: Function.prototype,
     onOpen: Function.prototype,
     onSave: Function.prototype,
@@ -262,6 +278,7 @@ FileMenu.propTypes = {
     d2: PropTypes.object,
     fileType: PropTypes.oneOf(supportedFileTypes),
     fileId: PropTypes.string,
+    insertTheme: PropTypes.bool,
     onNew: PropTypes.func,
     onOpen: PropTypes.func,
     onSave: PropTypes.func,
