@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import PropTypes from 'prop-types';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import cloneDeep from 'lodash/cloneDeep';
 import { mui3theme } from '@dhis2/d2-ui-core';
 
 import Favorites from './Favorites';
@@ -56,23 +57,17 @@ class FavoritesDialog extends Component {
 
     render() {
         if (this.props.insertTheme) {
+            const theme = cloneDeep(mui3theme);
+
+            // override the MuiDialog style to make it wider
+            theme.overrides.MuiDialog.paperWidthLg = {
+                flex: '0 1 960px',
+                width: '960px',
+                maxWidth: '960px',
+            };
+
             return (
-                <MuiThemeProvider
-                    theme={createMuiTheme(
-                        // override the lg width to make it wider
-                        Object.assign({}, mui3theme, {
-                            overrides: {
-                                MuiDialog: {
-                                    paperWidthLg: {
-                                        flex: '0 1 960px',
-                                        width: '960px',
-                                        maxWidth: '960px',
-                                    },
-                                },
-                            },
-                        })
-                    )}
-                >
+                <MuiThemeProvider theme={createMuiTheme(theme)}>
                     {this.getContent()}
                 </MuiThemeProvider>
             );
