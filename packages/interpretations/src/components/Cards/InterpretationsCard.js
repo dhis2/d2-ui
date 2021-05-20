@@ -157,7 +157,7 @@ InterpretationsCard.propTypes = {
     classes: PropTypes.object.isRequired,
     model: PropTypes.object.isRequired,
     currentInterpretationId: PropTypes.string,
-    ifOffline: PropTypes.bool,
+    isOffline: PropTypes.bool,
     onChange: PropTypes.func.isRequired,
     onCurrentInterpretationChange: PropTypes.func
 };
