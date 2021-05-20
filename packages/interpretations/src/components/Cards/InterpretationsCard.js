@@ -139,9 +139,9 @@ export class InterpretationsCard extends React.Component {
         return (
             <CollapsibleCard title={i18n.t("Interpretations")} style={{ position: 'relative' }}>
                 {!this.props.isOnline && (
-                    <div style={{position: 'absolute', inset: 0, zIndex: 2000, background: 'rgba(33, 43, 54, 0.4)'}} >
-                        <div style={{width: '100%', height: '100%', display: 'flex', justifyContent: 'space-around', flexDirection: 'row', pointerEvents: 'none', WebkitBoxAlign: 'center', alignItems: 'center',}}>
-                            <span style={{backgroundColor: 'white', padding: '10px', borderRadius: '3px'}}>Not available offline</span>
+                    <div style={styles.overlay} >
+                        <div style={styles.center}>
+                            <span style={styles.offlineMessage}>Not available offline</span>
                         </div>
                     </div>
                 )}
