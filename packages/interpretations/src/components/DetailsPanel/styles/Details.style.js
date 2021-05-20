@@ -44,11 +44,25 @@ export default {
     },
 
     subscriberIcon: {
-        float: 'right',
-        top: '0px',
-        right: '0px',
         padding: '8px',
         margin: '4px',
+    },
+
+    descSubscribe: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'flex-start',
+        padding: '4px 0'
+    },
+
+    uiTooltip: {
+        backgroundColor: '#404b5a',
+        padding: '6px 8px',
+        borderRadius: '3px',
+        color: '#fff',
+        fontSize: '12px',
+        lineHeight: '16px',
+        opacity: '1',
     },
     
     item: {

@@ -85,6 +85,7 @@ export class InterpretationsComponent extends React.Component {
                         model={model}
                         onChange={this.onChange}
                         type={this.props.type}
+                        isOnline={this.props.isOnline}
                     />
                     <InterpretationsCard
                         model={model}
@@ -95,6 +96,7 @@ export class InterpretationsComponent extends React.Component {
                             onCurrentInterpretationChange
                         }
                         type={this.props.type}
+                        isOnline={this.props.isOnline}
                     />
                 </div>
             </div>
@@ -116,6 +118,7 @@ export class InterpretationsComponent extends React.Component {
 
 InterpretationsComponent.defaultProps = {
     insertTheme: false,
+    isOnline: true
 };
 
 InterpretationsComponent.propTypes = {
@@ -123,6 +126,7 @@ InterpretationsComponent.propTypes = {
     d2: PropTypes.object.isRequired,
     type: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
+    isOnline: PropTypes.bool,
     insertTheme: PropTypes.bool,
     lastUpdated: PropTypes.string,
     currentInterpretationId: PropTypes.string,

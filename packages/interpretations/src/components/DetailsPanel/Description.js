@@ -24,7 +24,7 @@ export const Description = ({ displayDescription, isToggled, onToggleDescription
         <p style={{fontStyle: 'italic'}}>{description}</p>;
 
     return (
-        <Fragment>
+        <div style={{display: 'flex', flexDirection: 'column'}}>
             {DescriptionElement}
             {displayDescription.length > descriptionMaxLength && (
                 <Link
@@ -32,7 +32,7 @@ export const Description = ({ displayDescription, isToggled, onToggleDescription
                     label={showMoreLessLabel}
                 />
             )}
-        </Fragment>
+        </div>
     );
 };
 
