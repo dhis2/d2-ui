@@ -5,8 +5,26 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2020-12-09T10:46:11.729Z\n"
-"PO-Revision-Date: 2020-12-09T10:46:11.729Z\n"
+"POT-Creation-Date: 2021-05-20T08:53:00.620Z\n"
+"PO-Revision-Date: 2021-05-20T08:53:00.620Z\n"
+
+msgid "Pivot Tables"
+msgstr "Pivot Tables"
+
+msgid "Visualizer"
+msgstr "Visualizer"
+
+msgid "Maps"
+msgstr "Maps"
+
+msgid "Event Reports"
+msgstr "Event Reports"
+
+msgid "Event Visualizer"
+msgstr "Event Visualizer"
+
+msgid "View in {{appName}} app"
+msgstr "View in {{appName}} app"
 
 msgid "View"
 msgstr "View"
@@ -31,24 +49,6 @@ msgstr "Manage sharing"
 
 msgid "Delete"
 msgstr "Delete"
-
-msgid "Pivot Tables"
-msgstr "Pivot Tables"
-
-msgid "Visualizer"
-msgstr "Visualizer"
-
-msgid "Maps"
-msgstr "Maps"
-
-msgid "Event Reports"
-msgstr "Event Reports"
-
-msgid "Event Visualizer"
-msgstr "Event Visualizer"
-
-msgid "View in {{appName}} app"
-msgstr "View in {{appName}} app"
 
 msgid "Back to all interpretations"
 msgstr "Back to all interpretations"
@@ -82,6 +82,9 @@ msgstr "Unsubscribe from this {{object}} and stop receiving notifications"
 
 msgid "Subscribe to this {{object}} and start receiving notifications"
 msgstr "Subscribe to this {{object}} and start receiving notifications"
+
+msgid "Not available offline"
+msgstr "Not available offline"
 
 msgid "Table details"
 msgstr "Table details"
