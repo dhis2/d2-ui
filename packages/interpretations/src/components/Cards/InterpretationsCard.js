@@ -141,7 +141,7 @@ export class InterpretationsCard extends React.Component {
                 {!this.props.isOnline && (
                     <div style={styles.overlay} >
                         <div style={styles.center}>
-                            <span style={styles.offlineMessage}>Not available offline</span>
+                            <span style={styles.offlineMessage}>{i18n.t('Not available offline')}</span>
                         </div>
                     </div>
                 )}
