@@ -138,7 +138,7 @@ export class InterpretationsCard extends React.Component {
         
         return (
             <CollapsibleCard title={i18n.t("Interpretations")} style={{ position: 'relative' }}>
-                {!this.props.isOnline && (
+                {this.props.isOffline && (
                     <div style={styles.overlay} >
                         <div style={styles.center}>
                             <span style={styles.offlineMessage}>{i18n.t('Not available offline')}</span>
@@ -157,7 +157,7 @@ InterpretationsCard.propTypes = {
     classes: PropTypes.object.isRequired,
     model: PropTypes.object.isRequired,
     currentInterpretationId: PropTypes.string,
-    isOnline: PropTypes.bool,
+    ifOffline: PropTypes.bool,
     onChange: PropTypes.func.isRequired,
     onCurrentInterpretationChange: PropTypes.func
 };

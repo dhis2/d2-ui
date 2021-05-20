@@ -47,7 +47,7 @@ export class Details extends React.Component {
                 i18n.t('Subscribe to this {{object}} and start receiving notifications', tOpts),
               ];
     
-            if(!this.props.isOnline) {
+            if(this.props.isOffline) {
                 return (
                     <Tooltip title={i18n.t('Not available offline')} classes={{ tooltip: this.props.classes.uiTooltip }}>
                         <span>
@@ -125,7 +125,7 @@ Details.contextTypes = {
 };
 
 Details.propTypes = {
-    isOnline: PropTypes.bool,
+    isOffline: PropTypes.bool,
     model: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
 };
