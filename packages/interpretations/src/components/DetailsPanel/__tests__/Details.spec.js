@@ -6,8 +6,6 @@ import SubscriberIconDisabled from '@material-ui/icons/AddAlert';
 
 import * as helpers from '../../../api/helpers';
 import Details from '../../DetailsPanel/Details';
-import Item from '../Item';
-import Description from '../Description';
 import { getStubContext } from '../../../../config/test-context';
 
 const favorite = {
@@ -78,10 +76,6 @@ const renderComponent = (partialProps = {}) => {
     return mount(<Details {...props} />, { context, childContextTypes });
 };
 
-const getItem = (detailsCard, label) => {
-    return detailsCard.find('Item').findWhere(item => item.props().label === label);
-};
-
 describe('Interpretations: Details -> Details component', () => {
     let detailsCard;
 
@@ -89,36 +83,9 @@ describe('Interpretations: Details -> Details component', () => {
         detailsCard = renderComponent();
     });
 
-    it('should render description as first item', () => {
-        expect(
-            detailsCard.find(Item)
-            .first()
-            .find(Description)
-            .props().displayDescription
-            ).toEqual('Some translated Description');
-    });
-
-    it('should render owner', () => {
-        expect(getItem(detailsCard, 'Owner').props().text).toEqual('John Traore');
-    });
-
-    it('should render created', () => {
-        expect(getItem(detailsCard, 'Created').props().text).toEqual('May 17, 2018');
-    });
-
-    it('should render last updated', () => {
-        expect(getItem(detailsCard, 'Last updated').props().text).toEqual('May 21, 2018');
-    });
-
-    it('should render favorite views', () => {
-        expect(getItem(detailsCard, 'Views').props().text).toEqual(5);
-    });
-
-    it('should render sharing info', () => {
-        expect(getItem(detailsCard, 'Sharing').props().text).toEqual(
-            'Public: Read + Administrators'
-        );
-    });
+    it('should render the Details card', () => {
+        expect(detailsCard).toMatchSnapshot()
+    })
 
     describe('subscription icon', () => {
         describe('on non subscribed favorite', () => {

@@ -1,0 +1,1693 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Interpretations: Details -> Details component should render the Details card 1`] = `
+<WithStyles(Details)
+  model={
+    Object {
+      "access": Object {
+        "delete": true,
+        "externalize": true,
+        "manage": true,
+        "read": true,
+        "update": true,
+        "write": true,
+      },
+      "attributeValues": Array [],
+      "created": "2018-05-17T11:53:17.999",
+      "description": "Some Description",
+      "displayDescription": "Some translated Description",
+      "displayName": "ANC: 1st visit coverage (%) by district last year",
+      "externalAccess": false,
+      "favorite": false,
+      "favoriteViews": 5,
+      "favorites": Array [],
+      "href": "http://localhost:8029/api/maps/zDP78aJU8nX",
+      "id": "zDP78aJU8nX",
+      "interpretations": Array [
+        Object {
+          "id": "LOECMJN3DRF",
+        },
+        Object {
+          "id": "LqumKmXxc1k",
+        },
+      ],
+      "lastUpdated": "2018-05-21T12:57:25.365",
+      "lastUpdatedBy": Object {
+        "id": "xE7jOejl9FI",
+      },
+      "mapViews": Array [],
+      "modelDefinition": Object {
+        "name": "map",
+      },
+      "modelName": "map",
+      "name": "ANC: 1st visit coverage (%) by district last year",
+      "publicAccess": "r-------",
+      "translations": Array [],
+      "user": Object {
+        "displayName": "John Traore",
+        "id": "xE7jOejl9FI",
+      },
+      "userAccesses": Array [],
+      "userGroupAccesses": Array [
+        Object {
+          "access": "rw------",
+          "displayName": "Administrators",
+          "id": "wl5cDMuUhmF",
+          "userGroupUid": "wl5cDMuUhmF",
+        },
+      ],
+    }
+  }
+  onChange={[MockFunction]}
+  type="chart"
+>
+  <Details
+    classes={
+      Object {
+        "body": "Details-body-1",
+        "container": "Details-container-2",
+        "descSubscribe": "Details-descSubscribe-9",
+        "detailsCard": "Details-detailsCard-3",
+        "detailsCardHeader": "Details-detailsCardHeader-4",
+        "detailsCardItem": "Details-detailsCardItem-5",
+        "detailsCardList": "Details-detailsCardList-6",
+        "headerText": "Details-headerText-7",
+        "item": "Details-item-11",
+        "subscriberIcon": "Details-subscriberIcon-8",
+        "uiTooltip": "Details-uiTooltip-10",
+      }
+    }
+    model={
+      Object {
+        "access": Object {
+          "delete": true,
+          "externalize": true,
+          "manage": true,
+          "read": true,
+          "update": true,
+          "write": true,
+        },
+        "attributeValues": Array [],
+        "created": "2018-05-17T11:53:17.999",
+        "description": "Some Description",
+        "displayDescription": "Some translated Description",
+        "displayName": "ANC: 1st visit coverage (%) by district last year",
+        "externalAccess": false,
+        "favorite": false,
+        "favoriteViews": 5,
+        "favorites": Array [],
+        "href": "http://localhost:8029/api/maps/zDP78aJU8nX",
+        "id": "zDP78aJU8nX",
+        "interpretations": Array [
+          Object {
+            "id": "LOECMJN3DRF",
+          },
+          Object {
+            "id": "LqumKmXxc1k",
+          },
+        ],
+        "lastUpdated": "2018-05-21T12:57:25.365",
+        "lastUpdatedBy": Object {
+          "id": "xE7jOejl9FI",
+        },
+        "mapViews": Array [],
+        "modelDefinition": Object {
+          "name": "map",
+        },
+        "modelName": "map",
+        "name": "ANC: 1st visit coverage (%) by district last year",
+        "publicAccess": "r-------",
+        "translations": Array [],
+        "user": Object {
+          "displayName": "John Traore",
+          "id": "xE7jOejl9FI",
+        },
+        "userAccesses": Array [],
+        "userGroupAccesses": Array [
+          Object {
+            "access": "rw------",
+            "displayName": "Administrators",
+            "id": "wl5cDMuUhmF",
+            "userGroupUid": "wl5cDMuUhmF",
+          },
+        ],
+      }
+    }
+    onChange={[MockFunction]}
+    type="chart"
+  >
+    <WithStyles(CollapsibleCard)
+      title="Chart details"
+    >
+      <CollapsibleCard
+        classes={
+          Object {
+            "actions": "CollapsibleCard-actions-13",
+            "card": "CollapsibleCard-card-12",
+            "collapse": "CollapsibleCard-collapse-17",
+            "content": "CollapsibleCard-content-16",
+            "expand": "CollapsibleCard-expand-18",
+            "expandOpen": "CollapsibleCard-expandOpen-19",
+            "header": "CollapsibleCard-header-14",
+            "title": "CollapsibleCard-title-15",
+          }
+        }
+        title="Chart details"
+      >
+        <WithStyles(Card)
+          className="CollapsibleCard-card-12"
+        >
+          <Card
+            className="CollapsibleCard-card-12"
+            classes={
+              Object {
+                "root": "MuiCard-root-20",
+              }
+            }
+            raised={false}
+          >
+            <WithStyles(Paper)
+              className="MuiCard-root-20 CollapsibleCard-card-12"
+              elevation={1}
+            >
+              <Paper
+                className="MuiCard-root-20 CollapsibleCard-card-12"
+                classes={
+                  Object {
+                    "elevation0": "MuiPaper-elevation0-23",
+                    "elevation1": "MuiPaper-elevation1-24",
+                    "elevation10": "MuiPaper-elevation10-33",
+                    "elevation11": "MuiPaper-elevation11-34",
+                    "elevation12": "MuiPaper-elevation12-35",
+                    "elevation13": "MuiPaper-elevation13-36",
+                    "elevation14": "MuiPaper-elevation14-37",
+                    "elevation15": "MuiPaper-elevation15-38",
+                    "elevation16": "MuiPaper-elevation16-39",
+                    "elevation17": "MuiPaper-elevation17-40",
+                    "elevation18": "MuiPaper-elevation18-41",
+                    "elevation19": "MuiPaper-elevation19-42",
+                    "elevation2": "MuiPaper-elevation2-25",
+                    "elevation20": "MuiPaper-elevation20-43",
+                    "elevation21": "MuiPaper-elevation21-44",
+                    "elevation22": "MuiPaper-elevation22-45",
+                    "elevation23": "MuiPaper-elevation23-46",
+                    "elevation24": "MuiPaper-elevation24-47",
+                    "elevation3": "MuiPaper-elevation3-26",
+                    "elevation4": "MuiPaper-elevation4-27",
+                    "elevation5": "MuiPaper-elevation5-28",
+                    "elevation6": "MuiPaper-elevation6-29",
+                    "elevation7": "MuiPaper-elevation7-30",
+                    "elevation8": "MuiPaper-elevation8-31",
+                    "elevation9": "MuiPaper-elevation9-32",
+                    "root": "MuiPaper-root-21",
+                    "rounded": "MuiPaper-rounded-22",
+                  }
+                }
+                component="div"
+                elevation={1}
+                square={false}
+              >
+                <div
+                  className="MuiPaper-root-21 MuiPaper-elevation1-24 MuiPaper-rounded-22 MuiCard-root-20 CollapsibleCard-card-12"
+                >
+                  <WithStyles(CardHeader)
+                    action={
+                      <WithStyles(IconButton)
+                        aria-expanded={true}
+                        className="CollapsibleCard-expand-18 CollapsibleCard-expandOpen-19"
+                        disableRipple={true}
+                        onClick={[Function]}
+                      >
+                        <pure(ExpandMoreIcon) />
+                      </WithStyles(IconButton)>
+                    }
+                    classes={
+                      Object {
+                        "action": "CollapsibleCard-actions-13",
+                        "root": "CollapsibleCard-header-14",
+                        "title": "CollapsibleCard-title-15",
+                      }
+                    }
+                    title="Chart details"
+                  >
+                    <CardHeader
+                      action={
+                        <WithStyles(IconButton)
+                          aria-expanded={true}
+                          className="CollapsibleCard-expand-18 CollapsibleCard-expandOpen-19"
+                          disableRipple={true}
+                          onClick={[Function]}
+                        >
+                          <pure(ExpandMoreIcon) />
+                        </WithStyles(IconButton)>
+                      }
+                      classes={
+                        Object {
+                          "action": "MuiCardHeader-action-50 CollapsibleCard-actions-13",
+                          "avatar": "MuiCardHeader-avatar-49",
+                          "content": "MuiCardHeader-content-51",
+                          "root": "MuiCardHeader-root-48 CollapsibleCard-header-14",
+                          "subheader": "MuiCardHeader-subheader-53",
+                          "title": "MuiCardHeader-title-52 CollapsibleCard-title-15",
+                        }
+                      }
+                      component="div"
+                      disableTypography={false}
+                      title="Chart details"
+                    >
+                      <div
+                        className="MuiCardHeader-root-48 CollapsibleCard-header-14"
+                      >
+                        <div
+                          className="MuiCardHeader-content-51"
+                        >
+                          <WithStyles(Typography)
+                            className="MuiCardHeader-title-52 CollapsibleCard-title-15"
+                            component="span"
+                            internalDeprecatedVariant={true}
+                            variant="headline"
+                          >
+                            <Typography
+                              align="inherit"
+                              className="MuiCardHeader-title-52 CollapsibleCard-title-15"
+                              classes={
+                                Object {
+                                  "alignCenter": "MuiTypography-alignCenter-77",
+                                  "alignJustify": "MuiTypography-alignJustify-79",
+                                  "alignLeft": "MuiTypography-alignLeft-76",
+                                  "alignRight": "MuiTypography-alignRight-78",
+                                  "body1": "MuiTypography-body1-63",
+                                  "body2": "MuiTypography-body2-62",
+                                  "button": "MuiTypography-button-65",
+                                  "caption": "MuiTypography-caption-64",
+                                  "colorError": "MuiTypography-colorError-88",
+                                  "colorInherit": "MuiTypography-colorInherit-83",
+                                  "colorPrimary": "MuiTypography-colorPrimary-84",
+                                  "colorSecondary": "MuiTypography-colorSecondary-85",
+                                  "colorTextPrimary": "MuiTypography-colorTextPrimary-86",
+                                  "colorTextSecondary": "MuiTypography-colorTextSecondary-87",
+                                  "display1": "MuiTypography-display1-58",
+                                  "display2": "MuiTypography-display2-57",
+                                  "display3": "MuiTypography-display3-56",
+                                  "display4": "MuiTypography-display4-55",
+                                  "gutterBottom": "MuiTypography-gutterBottom-81",
+                                  "h1": "MuiTypography-h1-66",
+                                  "h2": "MuiTypography-h2-67",
+                                  "h3": "MuiTypography-h3-68",
+                                  "h4": "MuiTypography-h4-69",
+                                  "h5": "MuiTypography-h5-70",
+                                  "h6": "MuiTypography-h6-71",
+                                  "headline": "MuiTypography-headline-59",
+                                  "noWrap": "MuiTypography-noWrap-80",
+                                  "overline": "MuiTypography-overline-74",
+                                  "paragraph": "MuiTypography-paragraph-82",
+                                  "root": "MuiTypography-root-54",
+                                  "srOnly": "MuiTypography-srOnly-75",
+                                  "subheading": "MuiTypography-subheading-61",
+                                  "subtitle1": "MuiTypography-subtitle1-72",
+                                  "subtitle2": "MuiTypography-subtitle2-73",
+                                  "title": "MuiTypography-title-60",
+                                }
+                              }
+                              color="default"
+                              component="span"
+                              gutterBottom={false}
+                              headlineMapping={
+                                Object {
+                                  "body1": "p",
+                                  "body2": "p",
+                                  "display1": "h1",
+                                  "display2": "h1",
+                                  "display3": "h1",
+                                  "display4": "h1",
+                                  "h1": "h1",
+                                  "h2": "h2",
+                                  "h3": "h3",
+                                  "h4": "h4",
+                                  "h5": "h5",
+                                  "h6": "h6",
+                                  "headline": "h1",
+                                  "subheading": "h3",
+                                  "subtitle1": "h6",
+                                  "subtitle2": "h6",
+                                  "title": "h2",
+                                }
+                              }
+                              internalDeprecatedVariant={true}
+                              noWrap={false}
+                              paragraph={false}
+                              theme={
+                                Object {
+                                  "breakpoints": Object {
+                                    "between": [Function],
+                                    "down": [Function],
+                                    "keys": Array [
+                                      "xs",
+                                      "sm",
+                                      "md",
+                                      "lg",
+                                      "xl",
+                                    ],
+                                    "only": [Function],
+                                    "up": [Function],
+                                    "values": Object {
+                                      "lg": 1280,
+                                      "md": 960,
+                                      "sm": 600,
+                                      "xl": 1920,
+                                      "xs": 0,
+                                    },
+                                    "width": [Function],
+                                  },
+                                  "direction": "ltr",
+                                  "mixins": Object {
+                                    "gutters": [Function],
+                                    "toolbar": Object {
+                                      "@media (min-width:0px) and (orientation: landscape)": Object {
+                                        "minHeight": 48,
+                                      },
+                                      "@media (min-width:600px)": Object {
+                                        "minHeight": 64,
+                                      },
+                                      "minHeight": 56,
+                                    },
+                                  },
+                                  "overrides": Object {},
+                                  "palette": Object {
+                                    "action": Object {
+                                      "active": "rgba(0, 0, 0, 0.54)",
+                                      "disabled": "rgba(0, 0, 0, 0.26)",
+                                      "disabledBackground": "rgba(0, 0, 0, 0.12)",
+                                      "hover": "rgba(0, 0, 0, 0.08)",
+                                      "hoverOpacity": 0.08,
+                                      "selected": "rgba(0, 0, 0, 0.14)",
+                                    },
+                                    "augmentColor": [Function],
+                                    "background": Object {
+                                      "default": "#fafafa",
+                                      "paper": "#fff",
+                                    },
+                                    "common": Object {
+                                      "black": "#000",
+                                      "white": "#fff",
+                                    },
+                                    "contrastThreshold": 3,
+                                    "divider": "rgba(0, 0, 0, 0.12)",
+                                    "error": Object {
+                                      "contrastText": "#fff",
+                                      "dark": "#d32f2f",
+                                      "light": "#e57373",
+                                      "main": "#f44336",
+                                    },
+                                    "getContrastText": [Function],
+                                    "grey": Object {
+                                      "100": "#f5f5f5",
+                                      "200": "#eeeeee",
+                                      "300": "#e0e0e0",
+                                      "400": "#bdbdbd",
+                                      "50": "#fafafa",
+                                      "500": "#9e9e9e",
+                                      "600": "#757575",
+                                      "700": "#616161",
+                                      "800": "#424242",
+                                      "900": "#212121",
+                                      "A100": "#d5d5d5",
+                                      "A200": "#aaaaaa",
+                                      "A400": "#303030",
+                                      "A700": "#616161",
+                                    },
+                                    "primary": Object {
+                                      "contrastText": "#fff",
+                                      "dark": "#303f9f",
+                                      "light": "#7986cb",
+                                      "main": "#3f51b5",
+                                    },
+                                    "secondary": Object {
+                                      "contrastText": "#fff",
+                                      "dark": "#c51162",
+                                      "light": "#ff4081",
+                                      "main": "#f50057",
+                                    },
+                                    "text": Object {
+                                      "disabled": "rgba(0, 0, 0, 0.38)",
+                                      "hint": "rgba(0, 0, 0, 0.38)",
+                                      "primary": "rgba(0, 0, 0, 0.87)",
+                                      "secondary": "rgba(0, 0, 0, 0.54)",
+                                    },
+                                    "tonalOffset": 0.2,
+                                    "type": "light",
+                                  },
+                                  "props": Object {},
+                                  "shadows": Array [
+                                    "none",
+                                    "0px 1px 3px 0px rgba(0, 0, 0, 0.2),0px 1px 1px 0px rgba(0, 0, 0, 0.14),0px 2px 1px -1px rgba(0, 0, 0, 0.12)",
+                                    "0px 1px 5px 0px rgba(0, 0, 0, 0.2),0px 2px 2px 0px rgba(0, 0, 0, 0.14),0px 3px 1px -2px rgba(0, 0, 0, 0.12)",
+                                    "0px 1px 8px 0px rgba(0, 0, 0, 0.2),0px 3px 4px 0px rgba(0, 0, 0, 0.14),0px 3px 3px -2px rgba(0, 0, 0, 0.12)",
+                                    "0px 2px 4px -1px rgba(0, 0, 0, 0.2),0px 4px 5px 0px rgba(0, 0, 0, 0.14),0px 1px 10px 0px rgba(0, 0, 0, 0.12)",
+                                    "0px 3px 5px -1px rgba(0, 0, 0, 0.2),0px 5px 8px 0px rgba(0, 0, 0, 0.14),0px 1px 14px 0px rgba(0, 0, 0, 0.12)",
+                                    "0px 3px 5px -1px rgba(0, 0, 0, 0.2),0px 6px 10px 0px rgba(0, 0, 0, 0.14),0px 1px 18px 0px rgba(0, 0, 0, 0.12)",
+                                    "0px 4px 5px -2px rgba(0, 0, 0, 0.2),0px 7px 10px 1px rgba(0, 0, 0, 0.14),0px 2px 16px 1px rgba(0, 0, 0, 0.12)",
+                                    "0px 5px 5px -3px rgba(0, 0, 0, 0.2),0px 8px 10px 1px rgba(0, 0, 0, 0.14),0px 3px 14px 2px rgba(0, 0, 0, 0.12)",
+                                    "0px 5px 6px -3px rgba(0, 0, 0, 0.2),0px 9px 12px 1px rgba(0, 0, 0, 0.14),0px 3px 16px 2px rgba(0, 0, 0, 0.12)",
+                                    "0px 6px 6px -3px rgba(0, 0, 0, 0.2),0px 10px 14px 1px rgba(0, 0, 0, 0.14),0px 4px 18px 3px rgba(0, 0, 0, 0.12)",
+                                    "0px 6px 7px -4px rgba(0, 0, 0, 0.2),0px 11px 15px 1px rgba(0, 0, 0, 0.14),0px 4px 20px 3px rgba(0, 0, 0, 0.12)",
+                                    "0px 7px 8px -4px rgba(0, 0, 0, 0.2),0px 12px 17px 2px rgba(0, 0, 0, 0.14),0px 5px 22px 4px rgba(0, 0, 0, 0.12)",
+                                    "0px 7px 8px -4px rgba(0, 0, 0, 0.2),0px 13px 19px 2px rgba(0, 0, 0, 0.14),0px 5px 24px 4px rgba(0, 0, 0, 0.12)",
+                                    "0px 7px 9px -4px rgba(0, 0, 0, 0.2),0px 14px 21px 2px rgba(0, 0, 0, 0.14),0px 5px 26px 4px rgba(0, 0, 0, 0.12)",
+                                    "0px 8px 9px -5px rgba(0, 0, 0, 0.2),0px 15px 22px 2px rgba(0, 0, 0, 0.14),0px 6px 28px 5px rgba(0, 0, 0, 0.12)",
+                                    "0px 8px 10px -5px rgba(0, 0, 0, 0.2),0px 16px 24px 2px rgba(0, 0, 0, 0.14),0px 6px 30px 5px rgba(0, 0, 0, 0.12)",
+                                    "0px 8px 11px -5px rgba(0, 0, 0, 0.2),0px 17px 26px 2px rgba(0, 0, 0, 0.14),0px 6px 32px 5px rgba(0, 0, 0, 0.12)",
+                                    "0px 9px 11px -5px rgba(0, 0, 0, 0.2),0px 18px 28px 2px rgba(0, 0, 0, 0.14),0px 7px 34px 6px rgba(0, 0, 0, 0.12)",
+                                    "0px 9px 12px -6px rgba(0, 0, 0, 0.2),0px 19px 29px 2px rgba(0, 0, 0, 0.14),0px 7px 36px 6px rgba(0, 0, 0, 0.12)",
+                                    "0px 10px 13px -6px rgba(0, 0, 0, 0.2),0px 20px 31px 3px rgba(0, 0, 0, 0.14),0px 8px 38px 7px rgba(0, 0, 0, 0.12)",
+                                    "0px 10px 13px -6px rgba(0, 0, 0, 0.2),0px 21px 33px 3px rgba(0, 0, 0, 0.14),0px 8px 40px 7px rgba(0, 0, 0, 0.12)",
+                                    "0px 10px 14px -6px rgba(0, 0, 0, 0.2),0px 22px 35px 3px rgba(0, 0, 0, 0.14),0px 8px 42px 7px rgba(0, 0, 0, 0.12)",
+                                    "0px 11px 14px -7px rgba(0, 0, 0, 0.2),0px 23px 36px 3px rgba(0, 0, 0, 0.14),0px 9px 44px 8px rgba(0, 0, 0, 0.12)",
+                                    "0px 11px 15px -7px rgba(0, 0, 0, 0.2),0px 24px 38px 3px rgba(0, 0, 0, 0.14),0px 9px 46px 8px rgba(0, 0, 0, 0.12)",
+                                  ],
+                                  "shape": Object {
+                                    "borderRadius": 4,
+                                  },
+                                  "spacing": Object {
+                                    "unit": 8,
+                                  },
+                                  "transitions": Object {
+                                    "create": [Function],
+                                    "duration": Object {
+                                      "complex": 375,
+                                      "enteringScreen": 225,
+                                      "leavingScreen": 195,
+                                      "short": 250,
+                                      "shorter": 200,
+                                      "shortest": 150,
+                                      "standard": 300,
+                                    },
+                                    "easing": Object {
+                                      "easeIn": "cubic-bezier(0.4, 0, 1, 1)",
+                                      "easeInOut": "cubic-bezier(0.4, 0, 0.2, 1)",
+                                      "easeOut": "cubic-bezier(0.0, 0, 0.2, 1)",
+                                      "sharp": "cubic-bezier(0.4, 0, 0.6, 1)",
+                                    },
+                                    "getAutoHeightDuration": [Function],
+                                  },
+                                  "typography": Object {
+                                    "body1": Object {
+                                      "color": "rgba(0, 0, 0, 0.87)",
+                                      "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                                      "fontSize": "0.875rem",
+                                      "fontWeight": 400,
+                                      "lineHeight": "1.46429em",
+                                    },
+                                    "body1Next": Object {
+                                      "color": "rgba(0, 0, 0, 0.87)",
+                                      "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                                      "fontSize": "1rem",
+                                      "fontWeight": 400,
+                                      "letterSpacing": "0.00938em",
+                                      "lineHeight": 1.5,
+                                    },
+                                    "body2": Object {
+                                      "color": "rgba(0, 0, 0, 0.87)",
+                                      "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                                      "fontSize": "0.875rem",
+                                      "fontWeight": 500,
+                                      "lineHeight": "1.71429em",
+                                    },
+                                    "body2Next": Object {
+                                      "color": "rgba(0, 0, 0, 0.87)",
+                                      "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                                      "fontSize": "0.875rem",
+                                      "fontWeight": 400,
+                                      "letterSpacing": "0.01071em",
+                                      "lineHeight": 1.5,
+                                    },
+                                    "button": Object {
+                                      "color": "rgba(0, 0, 0, 0.87)",
+                                      "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                                      "fontSize": "0.875rem",
+                                      "fontWeight": 500,
+                                      "textTransform": "uppercase",
+                                    },
+                                    "buttonNext": Object {
+                                      "color": "rgba(0, 0, 0, 0.87)",
+                                      "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                                      "fontSize": "0.875rem",
+                                      "fontWeight": 500,
+                                      "letterSpacing": "0.02857em",
+                                      "lineHeight": 1.5,
+                                      "textTransform": "uppercase",
+                                    },
+                                    "caption": Object {
+                                      "color": "rgba(0, 0, 0, 0.54)",
+                                      "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                                      "fontSize": "0.75rem",
+                                      "fontWeight": 400,
+                                      "lineHeight": "1.375em",
+                                    },
+                                    "captionNext": Object {
+                                      "color": "rgba(0, 0, 0, 0.87)",
+                                      "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                                      "fontSize": "0.75rem",
+                                      "fontWeight": 400,
+                                      "letterSpacing": "0.03333em",
+                                      "lineHeight": 1.66,
+                                    },
+                                    "display1": Object {
+                                      "color": "rgba(0, 0, 0, 0.54)",
+                                      "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                                      "fontSize": "2.125rem",
+                                      "fontWeight": 400,
+                                      "lineHeight": "1.20588em",
+                                    },
+                                    "display2": Object {
+                                      "color": "rgba(0, 0, 0, 0.54)",
+                                      "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                                      "fontSize": "2.8125rem",
+                                      "fontWeight": 400,
+                                      "lineHeight": "1.13333em",
+                                      "marginLeft": "-.02em",
+                                    },
+                                    "display3": Object {
+                                      "color": "rgba(0, 0, 0, 0.54)",
+                                      "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                                      "fontSize": "3.5rem",
+                                      "fontWeight": 400,
+                                      "letterSpacing": "-.02em",
+                                      "lineHeight": "1.30357em",
+                                      "marginLeft": "-.02em",
+                                    },
+                                    "display4": Object {
+                                      "color": "rgba(0, 0, 0, 0.54)",
+                                      "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                                      "fontSize": "7rem",
+                                      "fontWeight": 300,
+                                      "letterSpacing": "-.04em",
+                                      "lineHeight": "1.14286em",
+                                      "marginLeft": "-.04em",
+                                    },
+                                    "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                                    "fontSize": 14,
+                                    "fontWeightLight": 300,
+                                    "fontWeightMedium": 500,
+                                    "fontWeightRegular": 400,
+                                    "h1": Object {
+                                      "color": "rgba(0, 0, 0, 0.87)",
+                                      "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                                      "fontSize": "6rem",
+                                      "fontWeight": 300,
+                                      "letterSpacing": "-0.01562em",
+                                      "lineHeight": 1,
+                                    },
+                                    "h2": Object {
+                                      "color": "rgba(0, 0, 0, 0.87)",
+                                      "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                                      "fontSize": "3.75rem",
+                                      "fontWeight": 300,
+                                      "letterSpacing": "-0.00833em",
+                                      "lineHeight": 1,
+                                    },
+                                    "h3": Object {
+                                      "color": "rgba(0, 0, 0, 0.87)",
+                                      "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                                      "fontSize": "3rem",
+                                      "fontWeight": 400,
+                                      "letterSpacing": "0em",
+                                      "lineHeight": 1.04,
+                                    },
+                                    "h4": Object {
+                                      "color": "rgba(0, 0, 0, 0.87)",
+                                      "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                                      "fontSize": "2.125rem",
+                                      "fontWeight": 400,
+                                      "letterSpacing": "0.00735em",
+                                      "lineHeight": 1.17,
+                                    },
+                                    "h5": Object {
+                                      "color": "rgba(0, 0, 0, 0.87)",
+                                      "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                                      "fontSize": "1.5rem",
+                                      "fontWeight": 400,
+                                      "letterSpacing": "0em",
+                                      "lineHeight": 1.33,
+                                    },
+                                    "h6": Object {
+                                      "color": "rgba(0, 0, 0, 0.87)",
+                                      "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                                      "fontSize": "1.25rem",
+                                      "fontWeight": 500,
+                                      "letterSpacing": "0.0075em",
+                                      "lineHeight": 1.6,
+                                    },
+                                    "headline": Object {
+                                      "color": "rgba(0, 0, 0, 0.87)",
+                                      "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                                      "fontSize": "1.5rem",
+                                      "fontWeight": 400,
+                                      "lineHeight": "1.35417em",
+                                    },
+                                    "overline": Object {
+                                      "color": "rgba(0, 0, 0, 0.87)",
+                                      "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                                      "fontSize": "0.75rem",
+                                      "fontWeight": 400,
+                                      "letterSpacing": "0.08333em",
+                                      "lineHeight": 2.66,
+                                      "textTransform": "uppercase",
+                                    },
+                                    "pxToRem": [Function],
+                                    "round": [Function],
+                                    "subheading": Object {
+                                      "color": "rgba(0, 0, 0, 0.87)",
+                                      "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                                      "fontSize": "1rem",
+                                      "fontWeight": 400,
+                                      "lineHeight": "1.5em",
+                                    },
+                                    "subtitle1": Object {
+                                      "color": "rgba(0, 0, 0, 0.87)",
+                                      "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                                      "fontSize": "1rem",
+                                      "fontWeight": 400,
+                                      "letterSpacing": "0.00938em",
+                                      "lineHeight": 1.75,
+                                    },
+                                    "subtitle2": Object {
+                                      "color": "rgba(0, 0, 0, 0.87)",
+                                      "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                                      "fontSize": "0.875rem",
+                                      "fontWeight": 500,
+                                      "letterSpacing": "0.00714em",
+                                      "lineHeight": 1.57,
+                                    },
+                                    "title": Object {
+                                      "color": "rgba(0, 0, 0, 0.87)",
+                                      "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                                      "fontSize": "1.3125rem",
+                                      "fontWeight": 500,
+                                      "lineHeight": "1.16667em",
+                                    },
+                                    "useNextVariants": false,
+                                  },
+                                  "zIndex": Object {
+                                    "appBar": 1100,
+                                    "drawer": 1200,
+                                    "mobileStepper": 1000,
+                                    "modal": 1300,
+                                    "snackbar": 1400,
+                                    "tooltip": 1500,
+                                  },
+                                }
+                              }
+                              variant="headline"
+                            >
+                              <span
+                                className="MuiTypography-root-54 MuiTypography-headline-59 MuiCardHeader-title-52 CollapsibleCard-title-15"
+                              >
+                                Chart details
+                              </span>
+                            </Typography>
+                          </WithStyles(Typography)>
+                        </div>
+                        <div
+                          className="MuiCardHeader-action-50 CollapsibleCard-actions-13"
+                        >
+                          <WithStyles(IconButton)
+                            aria-expanded={true}
+                            className="CollapsibleCard-expand-18 CollapsibleCard-expandOpen-19"
+                            disableRipple={true}
+                            onClick={[Function]}
+                          >
+                            <IconButton
+                              aria-expanded={true}
+                              className="CollapsibleCard-expand-18 CollapsibleCard-expandOpen-19"
+                              classes={
+                                Object {
+                                  "colorInherit": "MuiIconButton-colorInherit-90",
+                                  "colorPrimary": "MuiIconButton-colorPrimary-91",
+                                  "colorSecondary": "MuiIconButton-colorSecondary-92",
+                                  "disabled": "MuiIconButton-disabled-93",
+                                  "label": "MuiIconButton-label-94",
+                                  "root": "MuiIconButton-root-89",
+                                }
+                              }
+                              color="default"
+                              disableRipple={true}
+                              disabled={false}
+                              onClick={[Function]}
+                            >
+                              <WithStyles(ButtonBase)
+                                aria-expanded={true}
+                                centerRipple={true}
+                                className="MuiIconButton-root-89 CollapsibleCard-expand-18 CollapsibleCard-expandOpen-19"
+                                disableRipple={true}
+                                disabled={false}
+                                focusRipple={true}
+                                onClick={[Function]}
+                              >
+                                <ButtonBase
+                                  aria-expanded={true}
+                                  centerRipple={true}
+                                  className="MuiIconButton-root-89 CollapsibleCard-expand-18 CollapsibleCard-expandOpen-19"
+                                  classes={
+                                    Object {
+                                      "disabled": "MuiButtonBase-disabled-96",
+                                      "focusVisible": "MuiButtonBase-focusVisible-97",
+                                      "root": "MuiButtonBase-root-95",
+                                    }
+                                  }
+                                  component="button"
+                                  disableRipple={true}
+                                  disableTouchRipple={false}
+                                  disabled={false}
+                                  focusRipple={true}
+                                  onClick={[Function]}
+                                  tabIndex="0"
+                                  type="button"
+                                >
+                                  <button
+                                    aria-expanded={true}
+                                    className="MuiButtonBase-root-95 MuiIconButton-root-89 CollapsibleCard-expand-18 CollapsibleCard-expandOpen-19"
+                                    disabled={false}
+                                    onBlur={[Function]}
+                                    onClick={[Function]}
+                                    onFocus={[Function]}
+                                    onKeyDown={[Function]}
+                                    onKeyUp={[Function]}
+                                    onMouseDown={[Function]}
+                                    onMouseLeave={[Function]}
+                                    onMouseUp={[Function]}
+                                    onTouchEnd={[Function]}
+                                    onTouchMove={[Function]}
+                                    onTouchStart={[Function]}
+                                    tabIndex="0"
+                                    type="button"
+                                  >
+                                    <span
+                                      className="MuiIconButton-label-94"
+                                    >
+                                      <pure(ExpandMoreIcon)>
+                                        <ExpandMoreIcon>
+                                          <WithStyles(SvgIcon)>
+                                            <SvgIcon
+                                              classes={
+                                                Object {
+                                                  "colorAction": "MuiSvgIcon-colorAction-101",
+                                                  "colorDisabled": "MuiSvgIcon-colorDisabled-103",
+                                                  "colorError": "MuiSvgIcon-colorError-102",
+                                                  "colorPrimary": "MuiSvgIcon-colorPrimary-99",
+                                                  "colorSecondary": "MuiSvgIcon-colorSecondary-100",
+                                                  "fontSizeInherit": "MuiSvgIcon-fontSizeInherit-104",
+                                                  "fontSizeLarge": "MuiSvgIcon-fontSizeLarge-106",
+                                                  "fontSizeSmall": "MuiSvgIcon-fontSizeSmall-105",
+                                                  "root": "MuiSvgIcon-root-98",
+                                                }
+                                              }
+                                              color="inherit"
+                                              component="svg"
+                                              fontSize="default"
+                                              viewBox="0 0 24 24"
+                                            >
+                                              <svg
+                                                aria-hidden="true"
+                                                className="MuiSvgIcon-root-98"
+                                                focusable="false"
+                                                role="presentation"
+                                                viewBox="0 0 24 24"
+                                              >
+                                                <path
+                                                  d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                                                />
+                                                <path
+                                                  d="M0 0h24v24H0z"
+                                                  fill="none"
+                                                />
+                                              </svg>
+                                            </SvgIcon>
+                                          </WithStyles(SvgIcon)>
+                                        </ExpandMoreIcon>
+                                      </pure(ExpandMoreIcon)>
+                                    </span>
+                                  </button>
+                                </ButtonBase>
+                              </WithStyles(ButtonBase)>
+                            </IconButton>
+                          </WithStyles(IconButton)>
+                        </div>
+                      </div>
+                    </CardHeader>
+                  </WithStyles(CardHeader)>
+                  <WithStyles(Collapse)
+                    className="CollapsibleCard-collapse-17"
+                    in={true}
+                    timeout="auto"
+                    unmountOnExit={true}
+                  >
+                    <Collapse
+                      className="CollapsibleCard-collapse-17"
+                      classes={
+                        Object {
+                          "container": "MuiCollapse-container-107",
+                          "entered": "MuiCollapse-entered-108",
+                          "wrapper": "MuiCollapse-wrapper-109",
+                          "wrapperInner": "MuiCollapse-wrapperInner-110",
+                        }
+                      }
+                      collapsedHeight="0px"
+                      component="div"
+                      in={true}
+                      theme={
+                        Object {
+                          "breakpoints": Object {
+                            "between": [Function],
+                            "down": [Function],
+                            "keys": Array [
+                              "xs",
+                              "sm",
+                              "md",
+                              "lg",
+                              "xl",
+                            ],
+                            "only": [Function],
+                            "up": [Function],
+                            "values": Object {
+                              "lg": 1280,
+                              "md": 960,
+                              "sm": 600,
+                              "xl": 1920,
+                              "xs": 0,
+                            },
+                            "width": [Function],
+                          },
+                          "direction": "ltr",
+                          "mixins": Object {
+                            "gutters": [Function],
+                            "toolbar": Object {
+                              "@media (min-width:0px) and (orientation: landscape)": Object {
+                                "minHeight": 48,
+                              },
+                              "@media (min-width:600px)": Object {
+                                "minHeight": 64,
+                              },
+                              "minHeight": 56,
+                            },
+                          },
+                          "overrides": Object {},
+                          "palette": Object {
+                            "action": Object {
+                              "active": "rgba(0, 0, 0, 0.54)",
+                              "disabled": "rgba(0, 0, 0, 0.26)",
+                              "disabledBackground": "rgba(0, 0, 0, 0.12)",
+                              "hover": "rgba(0, 0, 0, 0.08)",
+                              "hoverOpacity": 0.08,
+                              "selected": "rgba(0, 0, 0, 0.14)",
+                            },
+                            "augmentColor": [Function],
+                            "background": Object {
+                              "default": "#fafafa",
+                              "paper": "#fff",
+                            },
+                            "common": Object {
+                              "black": "#000",
+                              "white": "#fff",
+                            },
+                            "contrastThreshold": 3,
+                            "divider": "rgba(0, 0, 0, 0.12)",
+                            "error": Object {
+                              "contrastText": "#fff",
+                              "dark": "#d32f2f",
+                              "light": "#e57373",
+                              "main": "#f44336",
+                            },
+                            "getContrastText": [Function],
+                            "grey": Object {
+                              "100": "#f5f5f5",
+                              "200": "#eeeeee",
+                              "300": "#e0e0e0",
+                              "400": "#bdbdbd",
+                              "50": "#fafafa",
+                              "500": "#9e9e9e",
+                              "600": "#757575",
+                              "700": "#616161",
+                              "800": "#424242",
+                              "900": "#212121",
+                              "A100": "#d5d5d5",
+                              "A200": "#aaaaaa",
+                              "A400": "#303030",
+                              "A700": "#616161",
+                            },
+                            "primary": Object {
+                              "contrastText": "#fff",
+                              "dark": "#303f9f",
+                              "light": "#7986cb",
+                              "main": "#3f51b5",
+                            },
+                            "secondary": Object {
+                              "contrastText": "#fff",
+                              "dark": "#c51162",
+                              "light": "#ff4081",
+                              "main": "#f50057",
+                            },
+                            "text": Object {
+                              "disabled": "rgba(0, 0, 0, 0.38)",
+                              "hint": "rgba(0, 0, 0, 0.38)",
+                              "primary": "rgba(0, 0, 0, 0.87)",
+                              "secondary": "rgba(0, 0, 0, 0.54)",
+                            },
+                            "tonalOffset": 0.2,
+                            "type": "light",
+                          },
+                          "props": Object {},
+                          "shadows": Array [
+                            "none",
+                            "0px 1px 3px 0px rgba(0, 0, 0, 0.2),0px 1px 1px 0px rgba(0, 0, 0, 0.14),0px 2px 1px -1px rgba(0, 0, 0, 0.12)",
+                            "0px 1px 5px 0px rgba(0, 0, 0, 0.2),0px 2px 2px 0px rgba(0, 0, 0, 0.14),0px 3px 1px -2px rgba(0, 0, 0, 0.12)",
+                            "0px 1px 8px 0px rgba(0, 0, 0, 0.2),0px 3px 4px 0px rgba(0, 0, 0, 0.14),0px 3px 3px -2px rgba(0, 0, 0, 0.12)",
+                            "0px 2px 4px -1px rgba(0, 0, 0, 0.2),0px 4px 5px 0px rgba(0, 0, 0, 0.14),0px 1px 10px 0px rgba(0, 0, 0, 0.12)",
+                            "0px 3px 5px -1px rgba(0, 0, 0, 0.2),0px 5px 8px 0px rgba(0, 0, 0, 0.14),0px 1px 14px 0px rgba(0, 0, 0, 0.12)",
+                            "0px 3px 5px -1px rgba(0, 0, 0, 0.2),0px 6px 10px 0px rgba(0, 0, 0, 0.14),0px 1px 18px 0px rgba(0, 0, 0, 0.12)",
+                            "0px 4px 5px -2px rgba(0, 0, 0, 0.2),0px 7px 10px 1px rgba(0, 0, 0, 0.14),0px 2px 16px 1px rgba(0, 0, 0, 0.12)",
+                            "0px 5px 5px -3px rgba(0, 0, 0, 0.2),0px 8px 10px 1px rgba(0, 0, 0, 0.14),0px 3px 14px 2px rgba(0, 0, 0, 0.12)",
+                            "0px 5px 6px -3px rgba(0, 0, 0, 0.2),0px 9px 12px 1px rgba(0, 0, 0, 0.14),0px 3px 16px 2px rgba(0, 0, 0, 0.12)",
+                            "0px 6px 6px -3px rgba(0, 0, 0, 0.2),0px 10px 14px 1px rgba(0, 0, 0, 0.14),0px 4px 18px 3px rgba(0, 0, 0, 0.12)",
+                            "0px 6px 7px -4px rgba(0, 0, 0, 0.2),0px 11px 15px 1px rgba(0, 0, 0, 0.14),0px 4px 20px 3px rgba(0, 0, 0, 0.12)",
+                            "0px 7px 8px -4px rgba(0, 0, 0, 0.2),0px 12px 17px 2px rgba(0, 0, 0, 0.14),0px 5px 22px 4px rgba(0, 0, 0, 0.12)",
+                            "0px 7px 8px -4px rgba(0, 0, 0, 0.2),0px 13px 19px 2px rgba(0, 0, 0, 0.14),0px 5px 24px 4px rgba(0, 0, 0, 0.12)",
+                            "0px 7px 9px -4px rgba(0, 0, 0, 0.2),0px 14px 21px 2px rgba(0, 0, 0, 0.14),0px 5px 26px 4px rgba(0, 0, 0, 0.12)",
+                            "0px 8px 9px -5px rgba(0, 0, 0, 0.2),0px 15px 22px 2px rgba(0, 0, 0, 0.14),0px 6px 28px 5px rgba(0, 0, 0, 0.12)",
+                            "0px 8px 10px -5px rgba(0, 0, 0, 0.2),0px 16px 24px 2px rgba(0, 0, 0, 0.14),0px 6px 30px 5px rgba(0, 0, 0, 0.12)",
+                            "0px 8px 11px -5px rgba(0, 0, 0, 0.2),0px 17px 26px 2px rgba(0, 0, 0, 0.14),0px 6px 32px 5px rgba(0, 0, 0, 0.12)",
+                            "0px 9px 11px -5px rgba(0, 0, 0, 0.2),0px 18px 28px 2px rgba(0, 0, 0, 0.14),0px 7px 34px 6px rgba(0, 0, 0, 0.12)",
+                            "0px 9px 12px -6px rgba(0, 0, 0, 0.2),0px 19px 29px 2px rgba(0, 0, 0, 0.14),0px 7px 36px 6px rgba(0, 0, 0, 0.12)",
+                            "0px 10px 13px -6px rgba(0, 0, 0, 0.2),0px 20px 31px 3px rgba(0, 0, 0, 0.14),0px 8px 38px 7px rgba(0, 0, 0, 0.12)",
+                            "0px 10px 13px -6px rgba(0, 0, 0, 0.2),0px 21px 33px 3px rgba(0, 0, 0, 0.14),0px 8px 40px 7px rgba(0, 0, 0, 0.12)",
+                            "0px 10px 14px -6px rgba(0, 0, 0, 0.2),0px 22px 35px 3px rgba(0, 0, 0, 0.14),0px 8px 42px 7px rgba(0, 0, 0, 0.12)",
+                            "0px 11px 14px -7px rgba(0, 0, 0, 0.2),0px 23px 36px 3px rgba(0, 0, 0, 0.14),0px 9px 44px 8px rgba(0, 0, 0, 0.12)",
+                            "0px 11px 15px -7px rgba(0, 0, 0, 0.2),0px 24px 38px 3px rgba(0, 0, 0, 0.14),0px 9px 46px 8px rgba(0, 0, 0, 0.12)",
+                          ],
+                          "shape": Object {
+                            "borderRadius": 4,
+                          },
+                          "spacing": Object {
+                            "unit": 8,
+                          },
+                          "transitions": Object {
+                            "create": [Function],
+                            "duration": Object {
+                              "complex": 375,
+                              "enteringScreen": 225,
+                              "leavingScreen": 195,
+                              "short": 250,
+                              "shorter": 200,
+                              "shortest": 150,
+                              "standard": 300,
+                            },
+                            "easing": Object {
+                              "easeIn": "cubic-bezier(0.4, 0, 1, 1)",
+                              "easeInOut": "cubic-bezier(0.4, 0, 0.2, 1)",
+                              "easeOut": "cubic-bezier(0.0, 0, 0.2, 1)",
+                              "sharp": "cubic-bezier(0.4, 0, 0.6, 1)",
+                            },
+                            "getAutoHeightDuration": [Function],
+                          },
+                          "typography": Object {
+                            "body1": Object {
+                              "color": "rgba(0, 0, 0, 0.87)",
+                              "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                              "fontSize": "0.875rem",
+                              "fontWeight": 400,
+                              "lineHeight": "1.46429em",
+                            },
+                            "body1Next": Object {
+                              "color": "rgba(0, 0, 0, 0.87)",
+                              "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                              "fontSize": "1rem",
+                              "fontWeight": 400,
+                              "letterSpacing": "0.00938em",
+                              "lineHeight": 1.5,
+                            },
+                            "body2": Object {
+                              "color": "rgba(0, 0, 0, 0.87)",
+                              "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                              "fontSize": "0.875rem",
+                              "fontWeight": 500,
+                              "lineHeight": "1.71429em",
+                            },
+                            "body2Next": Object {
+                              "color": "rgba(0, 0, 0, 0.87)",
+                              "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                              "fontSize": "0.875rem",
+                              "fontWeight": 400,
+                              "letterSpacing": "0.01071em",
+                              "lineHeight": 1.5,
+                            },
+                            "button": Object {
+                              "color": "rgba(0, 0, 0, 0.87)",
+                              "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                              "fontSize": "0.875rem",
+                              "fontWeight": 500,
+                              "textTransform": "uppercase",
+                            },
+                            "buttonNext": Object {
+                              "color": "rgba(0, 0, 0, 0.87)",
+                              "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                              "fontSize": "0.875rem",
+                              "fontWeight": 500,
+                              "letterSpacing": "0.02857em",
+                              "lineHeight": 1.5,
+                              "textTransform": "uppercase",
+                            },
+                            "caption": Object {
+                              "color": "rgba(0, 0, 0, 0.54)",
+                              "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                              "fontSize": "0.75rem",
+                              "fontWeight": 400,
+                              "lineHeight": "1.375em",
+                            },
+                            "captionNext": Object {
+                              "color": "rgba(0, 0, 0, 0.87)",
+                              "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                              "fontSize": "0.75rem",
+                              "fontWeight": 400,
+                              "letterSpacing": "0.03333em",
+                              "lineHeight": 1.66,
+                            },
+                            "display1": Object {
+                              "color": "rgba(0, 0, 0, 0.54)",
+                              "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                              "fontSize": "2.125rem",
+                              "fontWeight": 400,
+                              "lineHeight": "1.20588em",
+                            },
+                            "display2": Object {
+                              "color": "rgba(0, 0, 0, 0.54)",
+                              "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                              "fontSize": "2.8125rem",
+                              "fontWeight": 400,
+                              "lineHeight": "1.13333em",
+                              "marginLeft": "-.02em",
+                            },
+                            "display3": Object {
+                              "color": "rgba(0, 0, 0, 0.54)",
+                              "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                              "fontSize": "3.5rem",
+                              "fontWeight": 400,
+                              "letterSpacing": "-.02em",
+                              "lineHeight": "1.30357em",
+                              "marginLeft": "-.02em",
+                            },
+                            "display4": Object {
+                              "color": "rgba(0, 0, 0, 0.54)",
+                              "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                              "fontSize": "7rem",
+                              "fontWeight": 300,
+                              "letterSpacing": "-.04em",
+                              "lineHeight": "1.14286em",
+                              "marginLeft": "-.04em",
+                            },
+                            "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                            "fontSize": 14,
+                            "fontWeightLight": 300,
+                            "fontWeightMedium": 500,
+                            "fontWeightRegular": 400,
+                            "h1": Object {
+                              "color": "rgba(0, 0, 0, 0.87)",
+                              "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                              "fontSize": "6rem",
+                              "fontWeight": 300,
+                              "letterSpacing": "-0.01562em",
+                              "lineHeight": 1,
+                            },
+                            "h2": Object {
+                              "color": "rgba(0, 0, 0, 0.87)",
+                              "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                              "fontSize": "3.75rem",
+                              "fontWeight": 300,
+                              "letterSpacing": "-0.00833em",
+                              "lineHeight": 1,
+                            },
+                            "h3": Object {
+                              "color": "rgba(0, 0, 0, 0.87)",
+                              "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                              "fontSize": "3rem",
+                              "fontWeight": 400,
+                              "letterSpacing": "0em",
+                              "lineHeight": 1.04,
+                            },
+                            "h4": Object {
+                              "color": "rgba(0, 0, 0, 0.87)",
+                              "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                              "fontSize": "2.125rem",
+                              "fontWeight": 400,
+                              "letterSpacing": "0.00735em",
+                              "lineHeight": 1.17,
+                            },
+                            "h5": Object {
+                              "color": "rgba(0, 0, 0, 0.87)",
+                              "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                              "fontSize": "1.5rem",
+                              "fontWeight": 400,
+                              "letterSpacing": "0em",
+                              "lineHeight": 1.33,
+                            },
+                            "h6": Object {
+                              "color": "rgba(0, 0, 0, 0.87)",
+                              "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                              "fontSize": "1.25rem",
+                              "fontWeight": 500,
+                              "letterSpacing": "0.0075em",
+                              "lineHeight": 1.6,
+                            },
+                            "headline": Object {
+                              "color": "rgba(0, 0, 0, 0.87)",
+                              "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                              "fontSize": "1.5rem",
+                              "fontWeight": 400,
+                              "lineHeight": "1.35417em",
+                            },
+                            "overline": Object {
+                              "color": "rgba(0, 0, 0, 0.87)",
+                              "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                              "fontSize": "0.75rem",
+                              "fontWeight": 400,
+                              "letterSpacing": "0.08333em",
+                              "lineHeight": 2.66,
+                              "textTransform": "uppercase",
+                            },
+                            "pxToRem": [Function],
+                            "round": [Function],
+                            "subheading": Object {
+                              "color": "rgba(0, 0, 0, 0.87)",
+                              "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                              "fontSize": "1rem",
+                              "fontWeight": 400,
+                              "lineHeight": "1.5em",
+                            },
+                            "subtitle1": Object {
+                              "color": "rgba(0, 0, 0, 0.87)",
+                              "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                              "fontSize": "1rem",
+                              "fontWeight": 400,
+                              "letterSpacing": "0.00938em",
+                              "lineHeight": 1.75,
+                            },
+                            "subtitle2": Object {
+                              "color": "rgba(0, 0, 0, 0.87)",
+                              "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                              "fontSize": "0.875rem",
+                              "fontWeight": 500,
+                              "letterSpacing": "0.00714em",
+                              "lineHeight": 1.57,
+                            },
+                            "title": Object {
+                              "color": "rgba(0, 0, 0, 0.87)",
+                              "fontFamily": "\\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif",
+                              "fontSize": "1.3125rem",
+                              "fontWeight": 500,
+                              "lineHeight": "1.16667em",
+                            },
+                            "useNextVariants": false,
+                          },
+                          "zIndex": Object {
+                            "appBar": 1100,
+                            "drawer": 1200,
+                            "mobileStepper": 1000,
+                            "modal": 1300,
+                            "snackbar": 1400,
+                            "tooltip": 1500,
+                          },
+                        }
+                      }
+                      timeout="auto"
+                      unmountOnExit={true}
+                    >
+                      <Transition
+                        addEndListener={[Function]}
+                        appear={false}
+                        enter={true}
+                        exit={true}
+                        in={true}
+                        mountOnEnter={false}
+                        onEnter={[Function]}
+                        onEntered={[Function]}
+                        onEntering={[Function]}
+                        onExit={[Function]}
+                        onExited={[Function]}
+                        onExiting={[Function]}
+                        timeout={null}
+                        unmountOnExit={true}
+                      >
+                        <div
+                          className="MuiCollapse-container-107 MuiCollapse-entered-108 CollapsibleCard-collapse-17"
+                          style={
+                            Object {
+                              "minHeight": "0px",
+                            }
+                          }
+                        >
+                          <div
+                            className="MuiCollapse-wrapper-109"
+                          >
+                            <div
+                              className="MuiCollapse-wrapperInner-110"
+                            >
+                              <WithStyles(CardContent)
+                                classes={
+                                  Object {
+                                    "root": "CollapsibleCard-content-16",
+                                  }
+                                }
+                              >
+                                <CardContent
+                                  classes={
+                                    Object {
+                                      "root": "MuiCardContent-root-111 CollapsibleCard-content-16",
+                                    }
+                                  }
+                                  component="div"
+                                >
+                                  <div
+                                    className="MuiCardContent-root-111 CollapsibleCard-content-16"
+                                  >
+                                    <div
+                                      className="Details-detailsCardList-6"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "alignItems": "flex-start",
+                                            "display": "flex",
+                                            "justifyContent": "space-between",
+                                            "padding": "4px 0",
+                                          }
+                                        }
+                                      >
+                                        <Description
+                                          displayDescription="Some translated Description"
+                                          isToggled={false}
+                                          onToggleDescription={[Function]}
+                                        >
+                                          <div
+                                            style={
+                                              Object {
+                                                "display": "flex",
+                                                "flexDirection": "column",
+                                              }
+                                            }
+                                          >
+                                            <Parser
+                                              style={null}
+                                            >
+                                              <p
+                                                dangerouslySetInnerHTML={
+                                                  Object {
+                                                    "__html": "Some translated Description",
+                                                  }
+                                                }
+                                                style={null}
+                                              />
+                                            </Parser>
+                                          </div>
+                                        </Description>
+                                        <WithStyles(IconButton)
+                                          onClick={[Function]}
+                                          style={
+                                            Object {
+                                              "margin": "4px",
+                                              "padding": "8px",
+                                            }
+                                          }
+                                          title="Subscribe to this map and start receiving notifications"
+                                        >
+                                          <IconButton
+                                            classes={
+                                              Object {
+                                                "colorInherit": "MuiIconButton-colorInherit-90",
+                                                "colorPrimary": "MuiIconButton-colorPrimary-91",
+                                                "colorSecondary": "MuiIconButton-colorSecondary-92",
+                                                "disabled": "MuiIconButton-disabled-93",
+                                                "label": "MuiIconButton-label-94",
+                                                "root": "MuiIconButton-root-89",
+                                              }
+                                            }
+                                            color="default"
+                                            disabled={false}
+                                            onClick={[Function]}
+                                            style={
+                                              Object {
+                                                "margin": "4px",
+                                                "padding": "8px",
+                                              }
+                                            }
+                                            title="Subscribe to this map and start receiving notifications"
+                                          >
+                                            <WithStyles(ButtonBase)
+                                              centerRipple={true}
+                                              className="MuiIconButton-root-89"
+                                              disabled={false}
+                                              focusRipple={true}
+                                              onClick={[Function]}
+                                              style={
+                                                Object {
+                                                  "margin": "4px",
+                                                  "padding": "8px",
+                                                }
+                                              }
+                                              title="Subscribe to this map and start receiving notifications"
+                                            >
+                                              <ButtonBase
+                                                centerRipple={true}
+                                                className="MuiIconButton-root-89"
+                                                classes={
+                                                  Object {
+                                                    "disabled": "MuiButtonBase-disabled-96",
+                                                    "focusVisible": "MuiButtonBase-focusVisible-97",
+                                                    "root": "MuiButtonBase-root-95",
+                                                  }
+                                                }
+                                                component="button"
+                                                disableRipple={false}
+                                                disableTouchRipple={false}
+                                                disabled={false}
+                                                focusRipple={true}
+                                                onClick={[Function]}
+                                                style={
+                                                  Object {
+                                                    "margin": "4px",
+                                                    "padding": "8px",
+                                                  }
+                                                }
+                                                tabIndex="0"
+                                                title="Subscribe to this map and start receiving notifications"
+                                                type="button"
+                                              >
+                                                <button
+                                                  className="MuiButtonBase-root-95 MuiIconButton-root-89"
+                                                  disabled={false}
+                                                  onBlur={[Function]}
+                                                  onClick={[Function]}
+                                                  onFocus={[Function]}
+                                                  onKeyDown={[Function]}
+                                                  onKeyUp={[Function]}
+                                                  onMouseDown={[Function]}
+                                                  onMouseLeave={[Function]}
+                                                  onMouseUp={[Function]}
+                                                  onTouchEnd={[Function]}
+                                                  onTouchMove={[Function]}
+                                                  onTouchStart={[Function]}
+                                                  style={
+                                                    Object {
+                                                      "margin": "4px",
+                                                      "padding": "8px",
+                                                    }
+                                                  }
+                                                  tabIndex="0"
+                                                  title="Subscribe to this map and start receiving notifications"
+                                                  type="button"
+                                                >
+                                                  <span
+                                                    className="MuiIconButton-label-94"
+                                                  >
+                                                    <pure(AddAlertIcon)>
+                                                      <AddAlertIcon>
+                                                        <WithStyles(SvgIcon)>
+                                                          <SvgIcon
+                                                            classes={
+                                                              Object {
+                                                                "colorAction": "MuiSvgIcon-colorAction-101",
+                                                                "colorDisabled": "MuiSvgIcon-colorDisabled-103",
+                                                                "colorError": "MuiSvgIcon-colorError-102",
+                                                                "colorPrimary": "MuiSvgIcon-colorPrimary-99",
+                                                                "colorSecondary": "MuiSvgIcon-colorSecondary-100",
+                                                                "fontSizeInherit": "MuiSvgIcon-fontSizeInherit-104",
+                                                                "fontSizeLarge": "MuiSvgIcon-fontSizeLarge-106",
+                                                                "fontSizeSmall": "MuiSvgIcon-fontSizeSmall-105",
+                                                                "root": "MuiSvgIcon-root-98",
+                                                              }
+                                                            }
+                                                            color="inherit"
+                                                            component="svg"
+                                                            fontSize="default"
+                                                            viewBox="0 0 24 24"
+                                                          >
+                                                            <svg
+                                                              aria-hidden="true"
+                                                              className="MuiSvgIcon-root-98"
+                                                              focusable="false"
+                                                              role="presentation"
+                                                              viewBox="0 0 24 24"
+                                                            >
+                                                              <path
+                                                                d="M0 0h24v24H0V0z"
+                                                                fill="none"
+                                                              />
+                                                              <path
+                                                                d="M10.01 21.01c0 1.1.89 1.99 1.99 1.99s1.99-.89 1.99-1.99h-3.98zm8.87-4.19V11c0-3.25-2.25-5.97-5.29-6.69v-.72C13.59 2.71 12.88 2 12 2s-1.59.71-1.59 1.59v.72C7.37 5.03 5.12 7.75 5.12 11v5.82L3 18.94V20h18v-1.06l-2.12-2.12zM16 13.01h-3v3h-2v-3H8V11h3V8h2v3h3v2.01z"
+                                                              />
+                                                            </svg>
+                                                          </SvgIcon>
+                                                        </WithStyles(SvgIcon)>
+                                                      </AddAlertIcon>
+                                                    </pure(AddAlertIcon)>
+                                                  </span>
+                                                  <NoSsr
+                                                    defer={false}
+                                                    fallback={null}
+                                                  >
+                                                    <WithStyles(TouchRipple)
+                                                      center={true}
+                                                      innerRef={[Function]}
+                                                    >
+                                                      <TouchRipple
+                                                        center={true}
+                                                        classes={
+                                                          Object {
+                                                            "child": "MuiTouchRipple-child-127",
+                                                            "childLeaving": "MuiTouchRipple-childLeaving-128",
+                                                            "childPulsate": "MuiTouchRipple-childPulsate-129",
+                                                            "ripple": "MuiTouchRipple-ripple-124",
+                                                            "ripplePulsate": "MuiTouchRipple-ripplePulsate-126",
+                                                            "rippleVisible": "MuiTouchRipple-rippleVisible-125",
+                                                            "root": "MuiTouchRipple-root-123",
+                                                          }
+                                                        }
+                                                      >
+                                                        <TransitionGroup
+                                                          childFactory={[Function]}
+                                                          className="MuiTouchRipple-root-123"
+                                                          component="span"
+                                                          enter={true}
+                                                          exit={true}
+                                                        >
+                                                          <span
+                                                            className="MuiTouchRipple-root-123"
+                                                          />
+                                                        </TransitionGroup>
+                                                      </TouchRipple>
+                                                    </WithStyles(TouchRipple)>
+                                                  </NoSsr>
+                                                </button>
+                                              </ButtonBase>
+                                            </WithStyles(ButtonBase)>
+                                          </IconButton>
+                                        </WithStyles(IconButton)>
+                                      </div>
+                                      <WithStyles(Item)
+                                        label="Owner"
+                                        text="John Traore"
+                                      >
+                                        <Item
+                                          classes={
+                                            Object {
+                                              "body": "Item-body-112",
+                                              "container": "Item-container-113",
+                                              "descSubscribe": "Item-descSubscribe-120",
+                                              "detailsCard": "Item-detailsCard-114",
+                                              "detailsCardHeader": "Item-detailsCardHeader-115",
+                                              "detailsCardItem": "Item-detailsCardItem-116",
+                                              "detailsCardList": "Item-detailsCardList-117",
+                                              "headerText": "Item-headerText-118",
+                                              "item": "Item-item-122",
+                                              "subscriberIcon": "Item-subscriberIcon-119",
+                                              "uiTooltip": "Item-uiTooltip-121",
+                                            }
+                                          }
+                                          label="Owner"
+                                          text="John Traore"
+                                        >
+                                          <div
+                                            className="Item-detailsCardItem-116"
+                                          >
+                                            <label
+                                              className="Item-item-122"
+                                            >
+                                              Owner
+                                              :
+                                            </label>
+                                            John Traore
+                                          </div>
+                                        </Item>
+                                      </WithStyles(Item)>
+                                      <WithStyles(Item)
+                                        label="Created"
+                                        text="May 17, 2018"
+                                      >
+                                        <Item
+                                          classes={
+                                            Object {
+                                              "body": "Item-body-112",
+                                              "container": "Item-container-113",
+                                              "descSubscribe": "Item-descSubscribe-120",
+                                              "detailsCard": "Item-detailsCard-114",
+                                              "detailsCardHeader": "Item-detailsCardHeader-115",
+                                              "detailsCardItem": "Item-detailsCardItem-116",
+                                              "detailsCardList": "Item-detailsCardList-117",
+                                              "headerText": "Item-headerText-118",
+                                              "item": "Item-item-122",
+                                              "subscriberIcon": "Item-subscriberIcon-119",
+                                              "uiTooltip": "Item-uiTooltip-121",
+                                            }
+                                          }
+                                          label="Created"
+                                          text="May 17, 2018"
+                                        >
+                                          <div
+                                            className="Item-detailsCardItem-116"
+                                          >
+                                            <label
+                                              className="Item-item-122"
+                                            >
+                                              Created
+                                              :
+                                            </label>
+                                            May 17, 2018
+                                          </div>
+                                        </Item>
+                                      </WithStyles(Item)>
+                                      <WithStyles(Item)
+                                        label="Last updated"
+                                        text="May 21, 2018"
+                                      >
+                                        <Item
+                                          classes={
+                                            Object {
+                                              "body": "Item-body-112",
+                                              "container": "Item-container-113",
+                                              "descSubscribe": "Item-descSubscribe-120",
+                                              "detailsCard": "Item-detailsCard-114",
+                                              "detailsCardHeader": "Item-detailsCardHeader-115",
+                                              "detailsCardItem": "Item-detailsCardItem-116",
+                                              "detailsCardList": "Item-detailsCardList-117",
+                                              "headerText": "Item-headerText-118",
+                                              "item": "Item-item-122",
+                                              "subscriberIcon": "Item-subscriberIcon-119",
+                                              "uiTooltip": "Item-uiTooltip-121",
+                                            }
+                                          }
+                                          label="Last updated"
+                                          text="May 21, 2018"
+                                        >
+                                          <div
+                                            className="Item-detailsCardItem-116"
+                                          >
+                                            <label
+                                              className="Item-item-122"
+                                            >
+                                              Last updated
+                                              :
+                                            </label>
+                                            May 21, 2018
+                                          </div>
+                                        </Item>
+                                      </WithStyles(Item)>
+                                      <WithStyles(Item)
+                                        label="Views"
+                                        text={5}
+                                      >
+                                        <Item
+                                          classes={
+                                            Object {
+                                              "body": "Item-body-112",
+                                              "container": "Item-container-113",
+                                              "descSubscribe": "Item-descSubscribe-120",
+                                              "detailsCard": "Item-detailsCard-114",
+                                              "detailsCardHeader": "Item-detailsCardHeader-115",
+                                              "detailsCardItem": "Item-detailsCardItem-116",
+                                              "detailsCardList": "Item-detailsCardList-117",
+                                              "headerText": "Item-headerText-118",
+                                              "item": "Item-item-122",
+                                              "subscriberIcon": "Item-subscriberIcon-119",
+                                              "uiTooltip": "Item-uiTooltip-121",
+                                            }
+                                          }
+                                          label="Views"
+                                          text={5}
+                                        >
+                                          <div
+                                            className="Item-detailsCardItem-116"
+                                          >
+                                            <label
+                                              className="Item-item-122"
+                                            >
+                                              Views
+                                              :
+                                            </label>
+                                            5
+                                          </div>
+                                        </Item>
+                                      </WithStyles(Item)>
+                                      <WithStyles(Item)
+                                        label="Sharing"
+                                        text="Public: Read + Administrators"
+                                      >
+                                        <Item
+                                          classes={
+                                            Object {
+                                              "body": "Item-body-112",
+                                              "container": "Item-container-113",
+                                              "descSubscribe": "Item-descSubscribe-120",
+                                              "detailsCard": "Item-detailsCard-114",
+                                              "detailsCardHeader": "Item-detailsCardHeader-115",
+                                              "detailsCardItem": "Item-detailsCardItem-116",
+                                              "detailsCardList": "Item-detailsCardList-117",
+                                              "headerText": "Item-headerText-118",
+                                              "item": "Item-item-122",
+                                              "subscriberIcon": "Item-subscriberIcon-119",
+                                              "uiTooltip": "Item-uiTooltip-121",
+                                            }
+                                          }
+                                          label="Sharing"
+                                          text="Public: Read + Administrators"
+                                        >
+                                          <div
+                                            className="Item-detailsCardItem-116"
+                                          >
+                                            <label
+                                              className="Item-item-122"
+                                            >
+                                              Sharing
+                                              :
+                                            </label>
+                                            Public: Read + Administrators
+                                          </div>
+                                        </Item>
+                                      </WithStyles(Item)>
+                                    </div>
+                                  </div>
+                                </CardContent>
+                              </WithStyles(CardContent)>
+                            </div>
+                          </div>
+                        </div>
+                      </Transition>
+                    </Collapse>
+                  </WithStyles(Collapse)>
+                </div>
+              </Paper>
+            </WithStyles(Paper)>
+          </Card>
+        </WithStyles(Card)>
+      </CollapsibleCard>
+    </WithStyles(CollapsibleCard)>
+  </Details>
+</WithStyles(Details)>
+`;
