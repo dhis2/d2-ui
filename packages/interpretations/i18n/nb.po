@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2020-12-09T10:46:11.729Z\n"
+"POT-Creation-Date: 2021-05-20T08:53:00.620Z\n"
 "PO-Revision-Date: 2019-08-13 09:54+0000\n"
 "Last-Translator: Karoline Tufte Lien <karoline@dhis2.org>, 2020\n"
 "Language-Team: Norwegian Bokmål (https://www.transifex.com/hisp-uio/teams/100509/nb/)\n"
@@ -16,6 +16,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: nb\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Pivot Tables"
+msgstr "Pivottabeller"
+
+msgid "Visualizer"
+msgstr "Visualizer"
+
+msgid "Maps"
+msgstr "Kart"
+
+msgid "Event Reports"
+msgstr "Hendelsesrapporter"
+
+msgid "Event Visualizer"
+msgstr "Hendelsesvisualizer"
+
+msgid "View in {{appName}} app"
+msgstr "Vis i {{appName}} -app"
 
 msgid "View"
 msgstr "Vis"
@@ -40,24 +58,6 @@ msgstr "Administrer deling"
 
 msgid "Delete"
 msgstr "Slett"
-
-msgid "Pivot Tables"
-msgstr "Pivottabeller"
-
-msgid "Visualizer"
-msgstr "Visualizer"
-
-msgid "Maps"
-msgstr "Kart"
-
-msgid "Event Reports"
-msgstr "Hendelsesrapporter"
-
-msgid "Event Visualizer"
-msgstr "Hendelsesvisualizer"
-
-msgid "View in {{appName}} app"
-msgstr "Vis i {{appName}} -app"
 
 msgid "Back to all interpretations"
 msgstr "Tilbake til alle tolkninger"
@@ -91,6 +91,9 @@ msgstr "Avslutt abonnementet på dette {{objekt}} og slutt å motta varsler"
 
 msgid "Subscribe to this {{object}} and start receiving notifications"
 msgstr "Abonner på dette {{objekt}} og begynn å motta varsler"
+
+msgid "Not available offline"
+msgstr ""
 
 msgid "Table details"
 msgstr "Tabelldetaljer"

@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2020-12-09T10:46:11.729Z\n"
+"POT-Creation-Date: 2021-05-20T08:53:00.620Z\n"
 "PO-Revision-Date: 2019-08-13 09:54+0000\n"
 "Last-Translator: Yayra Gomado <ygomado@hispwca.org>, 2021\n"
 "Language-Team: French (https://www.transifex.com/hisp-uio/teams/100509/fr/)\n"
@@ -21,6 +21,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "Pivot Tables"
+msgstr "Les Tableaux Croisés Dynamiques"
+
+msgid "Visualizer"
+msgstr "Visualiseur"
+
+msgid "Maps"
+msgstr "Cartes"
+
+msgid "Event Reports"
+msgstr "Rapports d'évènements"
+
+msgid "Event Visualizer"
+msgstr "Visualiseur d'évènements"
+
+msgid "View in {{appName}} app"
+msgstr "Ouvrir dans l'app {{appName}}"
 
 msgid "View"
 msgstr "Voir"
@@ -45,24 +63,6 @@ msgstr "Gérer le partage"
 
 msgid "Delete"
 msgstr "Supprimer"
-
-msgid "Pivot Tables"
-msgstr "Les Tableaux Croisés Dynamiques"
-
-msgid "Visualizer"
-msgstr "Visualiseur"
-
-msgid "Maps"
-msgstr "Cartes"
-
-msgid "Event Reports"
-msgstr "Rapports d'évènements"
-
-msgid "Event Visualizer"
-msgstr "Visualiseur d'évènements"
-
-msgid "View in {{appName}} app"
-msgstr "Ouvrir dans l'app {{appName}}"
 
 msgid "Back to all interpretations"
 msgstr "Retour à toutes les interprétations"
@@ -97,6 +97,9 @@ msgstr ""
 
 msgid "Subscribe to this {{object}} and start receiving notifications"
 msgstr "S'abonner à ce {{object}} et commencer par recevoir des notifications"
+
+msgid "Not available offline"
+msgstr ""
 
 msgid "Table details"
 msgstr "Détails du tableau"

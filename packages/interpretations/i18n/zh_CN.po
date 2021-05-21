@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2020-12-09T10:46:11.729Z\n"
+"POT-Creation-Date: 2021-05-20T08:53:00.620Z\n"
 "PO-Revision-Date: 2019-08-13 09:54+0000\n"
 "Last-Translator: easylin <lin_xd@126.com>, 2021\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/hisp-uio/teams/100509/zh_CN/)\n"
@@ -15,6 +15,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Pivot Tables"
+msgstr "图表"
+
+msgid "Visualizer"
+msgstr "可视图"
+
+msgid "Maps"
+msgstr "地图"
+
+msgid "Event Reports"
+msgstr "事件报表"
+
+msgid "Event Visualizer"
+msgstr "事件可视化"
+
+msgid "View in {{appName}} app"
+msgstr ""
 
 msgid "View"
 msgstr "查看"
@@ -39,24 +57,6 @@ msgstr ""
 
 msgid "Delete"
 msgstr "删除"
-
-msgid "Pivot Tables"
-msgstr "图表"
-
-msgid "Visualizer"
-msgstr "可视图"
-
-msgid "Maps"
-msgstr "地图"
-
-msgid "Event Reports"
-msgstr "事件报表"
-
-msgid "Event Visualizer"
-msgstr "事件可视化"
-
-msgid "View in {{appName}} app"
-msgstr ""
 
 msgid "Back to all interpretations"
 msgstr ""
@@ -89,6 +89,9 @@ msgid "Unsubscribe from this {{object}} and stop receiving notifications"
 msgstr ""
 
 msgid "Subscribe to this {{object}} and start receiving notifications"
+msgstr ""
+
+msgid "Not available offline"
 msgstr ""
 
 msgid "Table details"

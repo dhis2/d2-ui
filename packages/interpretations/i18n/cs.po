@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2020-12-09T10:46:11.729Z\n"
+"POT-Creation-Date: 2021-05-20T08:53:00.620Z\n"
 "PO-Revision-Date: 2019-08-13 09:54+0000\n"
 "Last-Translator: trendspotter, 2020\n"
 "Language-Team: Czech (https://www.transifex.com/hisp-uio/teams/100509/cs/)\n"
@@ -14,6 +14,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: cs\n"
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
+
+msgid "Pivot Tables"
+msgstr "Kontingenční tabulky"
+
+msgid "Visualizer"
+msgstr "Visualizer"
+
+msgid "Maps"
+msgstr "Mapy"
+
+msgid "Event Reports"
+msgstr "Zprávy o událostech"
+
+msgid "Event Visualizer"
+msgstr "Vizualizér událostí"
+
+msgid "View in {{appName}} app"
+msgstr "Zobrazit v aplikaci {{appName}} "
 
 msgid "View"
 msgstr "Zobrazit"
@@ -38,24 +56,6 @@ msgstr "Spravovat sdílení"
 
 msgid "Delete"
 msgstr "Smazat"
-
-msgid "Pivot Tables"
-msgstr "Kontingenční tabulky"
-
-msgid "Visualizer"
-msgstr "Visualizer"
-
-msgid "Maps"
-msgstr "Mapy"
-
-msgid "Event Reports"
-msgstr "Zprávy o událostech"
-
-msgid "Event Visualizer"
-msgstr "Vizualizér událostí"
-
-msgid "View in {{appName}} app"
-msgstr "Zobrazit v aplikaci {{appName}} "
 
 msgid "Back to all interpretations"
 msgstr "Zpět ke všem interpretacím"
@@ -89,6 +89,9 @@ msgstr "Odhlásit odběr tohoto {{object}} a přestat dostávat oznámení"
 
 msgid "Subscribe to this {{object}} and start receiving notifications"
 msgstr "Přihlaste se k odběru tohoto {{object}} a začněte přijímat oznámení"
+
+msgid "Not available offline"
+msgstr ""
 
 msgid "Table details"
 msgstr "Detaily tabulky"
