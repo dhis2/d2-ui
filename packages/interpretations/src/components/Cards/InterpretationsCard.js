@@ -137,7 +137,14 @@ export class InterpretationsCard extends React.Component {
         const InputField = this.renderInputField();
         
         return (
-            <CollapsibleCard title={i18n.t("Interpretations")}>
+            <CollapsibleCard title={i18n.t("Interpretations")} style={{ position: 'relative' }}>
+                {this.props.isOffline && (
+                    <div style={styles.overlay} >
+                        <div style={styles.center}>
+                            <span style={styles.offlineMessage}>{i18n.t('Not available offline')}</span>
+                        </div>
+                    </div>
+                )}
                 {BackButton}
                 {Interpretations}
                 {InputField}
@@ -150,6 +157,7 @@ InterpretationsCard.propTypes = {
     classes: PropTypes.object.isRequired,
     model: PropTypes.object.isRequired,
     currentInterpretationId: PropTypes.string,
+    isOffline: PropTypes.bool,
     onChange: PropTypes.func.isRequired,
     onCurrentInterpretationChange: PropTypes.func
 };

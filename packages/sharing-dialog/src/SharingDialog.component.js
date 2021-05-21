@@ -219,6 +219,8 @@ class SharingDialog extends React.Component {
                                 dataShareable={dataShareable}
                                 onChange={this.onSharingChanged}
                                 onSearch={this.onSearchRequest}
+                                isOffline={this.props.isOffline}
+                                offlineMessage={this.props.offlineMessage}
                             />
                         }
                     </DialogContent>
@@ -311,6 +313,16 @@ SharingDialog.propTypes = {
      * d2 instance to use.
      */
     d2: PropTypes.object.isRequired,
+
+    /**
+     * isOffline - indicates whether there is internet connectivity
+     */
+    isOffline: PropTypes.bool,
+
+    /**
+     * offlineMessage - message to display in overlay when no internet connectivity
+     */
+    offlineMessage: PropTypes.string,
 };
 
 SharingDialog.defaultProps = {
@@ -319,6 +331,7 @@ SharingDialog.defaultProps = {
     insertTheme: false,
     doNotPost: false,
     sharedObject: null,
+    isOffline: false,
 };
 
 export default SharingDialog;

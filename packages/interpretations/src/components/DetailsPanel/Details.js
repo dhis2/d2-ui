@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import IconButton from '@material-ui/core/IconButton';
+import Tooltip from '@material-ui/core/Tooltip';
 import SubscriberIconEnabled from '@material-ui/icons/Notifications';
 import SubscriberIconDisabled from '@material-ui/icons/AddAlert';
 import { withStyles } from '@material-ui/core/styles';
@@ -45,6 +46,21 @@ export class Details extends React.Component {
                 SubscriberIconDisabled,
                 i18n.t('Subscribe to this {{object}} and start receiving notifications', tOpts),
               ];
+    
+            if(this.props.isOffline) {
+                return (
+                    <Tooltip title={i18n.t('Not available offline')} classes={{ tooltip: this.props.classes.uiTooltip }}>
+                        <span>
+                            <IconButton
+                                style={styles.subscriberIcon}
+                                disabled
+                            >
+                                <SubscriberIcon />
+                            </IconButton>
+                        </span>
+                    </Tooltip>
+                )
+            }
 
         return (
             <IconButton
@@ -76,16 +92,15 @@ export class Details extends React.Component {
 
         return (
             <CollapsibleCard title={this.getCardTitle(this.props.type.toUpperCase())}>
-                {SubscriptionButton}
                 <div className={classes.detailsCardList}>
-                    <Item text={
+                    <div style={styles.descSubscribe}>
                         <Description
                             displayDescription={model.displayDescription}
                             isToggled={this.state.showCompleteDescription}
                             onToggleDescription={this.toggleDescription}
                         />
-                        } 
-                    />
+                        {SubscriptionButton}
+                    </div>
                     <Item label={i18n.t('Owner')} text={owner} />
                     <Item
                         label={i18n.t('Created')}
@@ -110,6 +125,7 @@ Details.contextTypes = {
 };
 
 Details.propTypes = {
+    isOffline: PropTypes.bool,
     model: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
 };

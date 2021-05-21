@@ -22,6 +22,29 @@ const styles = {
         height: '240px',
         overflowY: 'scroll',
     },
+    overlay: {
+        position: 'absolute',
+        inset: 0,
+        zIndex: 2000,
+        background: 'rgba(33, 43, 54, 0.4)',
+    },
+
+    center: {
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        justifyContent: 'space-around',
+        flexDirection: 'row',
+        pointerEvents: 'none',
+        WebkitBoxAlign: 'center',
+        alignItems: 'center',
+    },
+
+    offlineMessage: {
+        backgroundColor: 'white',
+        padding: '10px',
+        borderRadius: '3px'
+    },
 };
 
 /**
@@ -110,7 +133,14 @@ class Sharing extends React.Component {
             .concat((userGroupAccesses || []).map(access => access.id));
 
         return (
-            <div>
+            <div style={{position: 'relative'}}>
+                {this.props.isOffline && (
+                    <div style={styles.overlay} >
+                        <div style={styles.center}>
+                            <span style={styles.offlineMessage}>{this.props.offlineMessage}</span>
+                        </div>
+                    </div>
+                )}
                 <Heading text={displayName} level={2} />
                 <CreatedBy author={user} />
                 <div style={styles.titleBodySpace} />
@@ -190,6 +220,9 @@ Sharing.propTypes = {
      * Takes a string and a callback, and returns matching users and userGroups.
      */
     onSearch: PropTypes.func.isRequired,
+
+    isOffline: PropTypes.bool,
+    offlineMessage: PropTypes.string,
 };
 
 Sharing.contextTypes = {

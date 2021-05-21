@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import i18n from '@dhis2/d2-i18n';
 import { Parser as RichTextParser } from '@dhis2/d2-ui-rich-text';
@@ -24,7 +24,7 @@ export const Description = ({ displayDescription, isToggled, onToggleDescription
         <p style={{fontStyle: 'italic'}}>{description}</p>;
 
     return (
-        <Fragment>
+        <div style={{display: 'flex', flexDirection: 'column'}}>
             {DescriptionElement}
             {displayDescription.length > descriptionMaxLength && (
                 <Link
@@ -32,7 +32,7 @@ export const Description = ({ displayDescription, isToggled, onToggleDescription
                     label={showMoreLessLabel}
                 />
             )}
-        </Fragment>
+        </div>
     );
 };
 
