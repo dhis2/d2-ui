@@ -221,7 +221,14 @@ Sharing.propTypes = {
      */
     onSearch: PropTypes.func.isRequired,
 
+    /**
+     * isOffline - indicates whether there is internet connectivity
+     */
     isOffline: PropTypes.bool,
+
+    /**
+     * offlineMessage - message to display in overlay when no internet connectivity
+     */
     offlineMessage: PropTypes.string,
 };
 
