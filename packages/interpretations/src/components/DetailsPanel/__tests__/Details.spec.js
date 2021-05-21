@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import PropTypes from 'prop-types';
 import SubscriberIconEnabled from '@material-ui/icons/Notifications';
 import SubscriberIconDisabled from '@material-ui/icons/AddAlert';
@@ -89,36 +89,9 @@ describe('Interpretations: Details -> Details component', () => {
         detailsCard = renderComponent();
     });
 
-    it('should render description as first item', () => {
-        expect(
-            detailsCard.find(Item)
-            .first()
-            .find(Description)
-            .props().displayDescription
-            ).toEqual('Some translated Description');
-    });
-
-    it('should render owner', () => {
-        expect(getItem(detailsCard, 'Owner').props().text).toEqual('John Traore');
-    });
-
-    it('should render created', () => {
-        expect(getItem(detailsCard, 'Created').props().text).toEqual('May 17, 2018');
-    });
-
-    it('should render last updated', () => {
-        expect(getItem(detailsCard, 'Last updated').props().text).toEqual('May 21, 2018');
-    });
-
-    it('should render favorite views', () => {
-        expect(getItem(detailsCard, 'Views').props().text).toEqual(5);
-    });
-
-    it('should render sharing info', () => {
-        expect(getItem(detailsCard, 'Sharing').props().text).toEqual(
-            'Public: Read + Administrators'
-        );
-    });
+    it('should render the Details card', () => {
+        expect(detailsCard).toMatchSnapshot()
+    })
 
     describe('subscription icon', () => {
         describe('on non subscribed favorite', () => {
