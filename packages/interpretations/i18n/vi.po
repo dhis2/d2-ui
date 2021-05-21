@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2020-12-09T10:46:11.729Z\n"
+"POT-Creation-Date: 2021-05-20T08:53:00.620Z\n"
 "PO-Revision-Date: 2019-08-13 09:54+0000\n"
 "Last-Translator: Mai Nguyen <thanhmai.jica@gmail.com>, 2020\n"
 "Language-Team: Vietnamese (https://www.transifex.com/hisp-uio/teams/100509/vi/)\n"
@@ -16,6 +16,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: vi\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Pivot Tables"
+msgstr "Bảng xoay"
+
+msgid "Visualizer"
+msgstr "Biểu Đồ"
+
+msgid "Maps"
+msgstr "Bản đồ"
+
+msgid "Event Reports"
+msgstr "Báo cáo sự kiện"
+
+msgid "Event Visualizer"
+msgstr "Biểu đồ sự kiện"
+
+msgid "View in {{appName}} app"
+msgstr "Xem trong ứng dụng {{Tên ứng dụng}}"
 
 msgid "View"
 msgstr "Xem"
@@ -40,24 +58,6 @@ msgstr "Quản lý chia sẻ"
 
 msgid "Delete"
 msgstr "Xóa"
-
-msgid "Pivot Tables"
-msgstr "Bảng xoay"
-
-msgid "Visualizer"
-msgstr "Biểu Đồ"
-
-msgid "Maps"
-msgstr "Bản đồ"
-
-msgid "Event Reports"
-msgstr "Báo cáo sự kiện"
-
-msgid "Event Visualizer"
-msgstr "Biểu đồ sự kiện"
-
-msgid "View in {{appName}} app"
-msgstr "Xem trong ứng dụng {{Tên ứng dụng}}"
 
 msgid "Back to all interpretations"
 msgstr "Quay lại tất cả các diễn giải"
@@ -91,6 +91,9 @@ msgstr "Hủy đăng ký {{đối tượng}} này và ngừng nhận thông báo
 
 msgid "Subscribe to this {{object}} and start receiving notifications"
 msgstr "Đăng ký {{đối tượng}} này và bắt đầu nhận thông báo"
+
+msgid "Not available offline"
+msgstr ""
 
 msgid "Table details"
 msgstr "Chi tiết bảng "

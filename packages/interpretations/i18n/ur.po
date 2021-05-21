@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2020-12-09T10:46:11.729Z\n"
+"POT-Creation-Date: 2021-05-20T08:53:00.620Z\n"
 "PO-Revision-Date: 2019-08-13 09:54+0000\n"
 "Last-Translator: Viktor Varland <viktor@dhis2.org>, 2020\n"
 "Language-Team: Urdu (https://www.transifex.com/hisp-uio/teams/100509/ur/)\n"
@@ -15,6 +15,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ur\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Pivot Tables"
+msgstr "محور میزیں"
+
+msgid "Visualizer"
+msgstr "وزیولاءزر"
+
+msgid "Maps"
+msgstr "نقسے"
+
+msgid "Event Reports"
+msgstr "ایونٹ ریپورٹ"
+
+msgid "Event Visualizer"
+msgstr "ایونٹ ویزوئلائزر"
+
+msgid "View in {{appName}} app"
+msgstr ""
 
 msgid "View"
 msgstr "دیکھیں"
@@ -39,24 +57,6 @@ msgstr ""
 
 msgid "Delete"
 msgstr "حذف"
-
-msgid "Pivot Tables"
-msgstr "محور میزیں"
-
-msgid "Visualizer"
-msgstr "وزیولاءزر"
-
-msgid "Maps"
-msgstr "نقسے"
-
-msgid "Event Reports"
-msgstr "ایونٹ ریپورٹ"
-
-msgid "Event Visualizer"
-msgstr "ایونٹ ویزوئلائزر"
-
-msgid "View in {{appName}} app"
-msgstr ""
 
 msgid "Back to all interpretations"
 msgstr ""
@@ -89,6 +89,9 @@ msgid "Unsubscribe from this {{object}} and stop receiving notifications"
 msgstr ""
 
 msgid "Subscribe to this {{object}} and start receiving notifications"
+msgstr ""
+
+msgid "Not available offline"
 msgstr ""
 
 msgid "Table details"

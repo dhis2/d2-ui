@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2020-12-09T10:46:11.729Z\n"
+"POT-Creation-Date: 2021-05-20T08:53:00.620Z\n"
 "PO-Revision-Date: 2019-08-13 09:54+0000\n"
 "Last-Translator: Hamza Assada <7amza.it@gmail.com>, 2020\n"
 "Language-Team: Arabic (https://www.transifex.com/hisp-uio/teams/100509/ar/)\n"
@@ -16,6 +16,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ar\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+msgid "Pivot Tables"
+msgstr "الجداول المحورية"
+
+msgid "Visualizer"
+msgstr "التحليل المرئي"
+
+msgid "Maps"
+msgstr "الخرائط"
+
+msgid "Event Reports"
+msgstr "تقارير الحدث"
+
+msgid "Event Visualizer"
+msgstr "التحليل المرئي للأحداث"
+
+msgid "View in {{appName}} app"
+msgstr "عرض في تطبيق {{appName}}"
 
 msgid "View"
 msgstr "عرض"
@@ -40,24 +58,6 @@ msgstr "إدارة المشاركة"
 
 msgid "Delete"
 msgstr "حذف"
-
-msgid "Pivot Tables"
-msgstr "الجداول المحورية"
-
-msgid "Visualizer"
-msgstr "التحليل المرئي"
-
-msgid "Maps"
-msgstr "الخرائط"
-
-msgid "Event Reports"
-msgstr "تقارير الحدث"
-
-msgid "Event Visualizer"
-msgstr "التحليل المرئي للأحداث"
-
-msgid "View in {{appName}} app"
-msgstr "عرض في تطبيق {{appName}}"
 
 msgid "Back to all interpretations"
 msgstr "العودة إلى كل التفسيرات"
@@ -91,6 +91,9 @@ msgstr "إلغاء الاشتراك من {{object}} وإيقاف تلقي الإ
 
 msgid "Subscribe to this {{object}} and start receiving notifications"
 msgstr "الاشتراك في {{object}} والبدء في تلقي الإشعارات"
+
+msgid "Not available offline"
+msgstr ""
 
 msgid "Table details"
 msgstr "تفاصيل الجدول"

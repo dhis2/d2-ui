@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2020-12-09T10:46:11.729Z\n"
+"POT-Creation-Date: 2021-05-20T08:53:00.620Z\n"
 "PO-Revision-Date: 2019-08-13 09:54+0000\n"
 "Last-Translator: Ulanbek Abakirov <ulans@mail.ru>, 2020\n"
 "Language-Team: Russian (https://www.transifex.com/hisp-uio/teams/100509/ru/)\n"
@@ -16,6 +16,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ru\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+msgid "Pivot Tables"
+msgstr "Сводные таблицы"
+
+msgid "Visualizer"
+msgstr "Визуализатор"
+
+msgid "Maps"
+msgstr "Карты"
+
+msgid "Event Reports"
+msgstr "Отчеты случаев"
+
+msgid "Event Visualizer"
+msgstr "Визуализатор событий"
+
+msgid "View in {{appName}} app"
+msgstr "Смотреть в приложении {{appName}}"
 
 msgid "View"
 msgstr "Просмотр"
@@ -40,24 +58,6 @@ msgstr "Управление совместным доступом"
 
 msgid "Delete"
 msgstr "Удалить"
-
-msgid "Pivot Tables"
-msgstr "Сводные таблицы"
-
-msgid "Visualizer"
-msgstr "Визуализатор"
-
-msgid "Maps"
-msgstr "Карты"
-
-msgid "Event Reports"
-msgstr "Отчеты случаев"
-
-msgid "Event Visualizer"
-msgstr "Визуализатор событий"
-
-msgid "View in {{appName}} app"
-msgstr "Смотреть в приложении {{appName}}"
 
 msgid "Back to all interpretations"
 msgstr "Назад к переводам"
@@ -91,6 +91,9 @@ msgstr "Отписаться от  {{object}} и остановить получ
 
 msgid "Subscribe to this {{object}} and start receiving notifications"
 msgstr "Подписаться к  {{object}}  и начать получать уведомления"
+
+msgid "Not available offline"
+msgstr ""
 
 msgid "Table details"
 msgstr "Детали таблицы"
