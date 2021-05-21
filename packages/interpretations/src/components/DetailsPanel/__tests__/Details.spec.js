@@ -1,13 +1,11 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import PropTypes from 'prop-types';
 import SubscriberIconEnabled from '@material-ui/icons/Notifications';
 import SubscriberIconDisabled from '@material-ui/icons/AddAlert';
 
 import * as helpers from '../../../api/helpers';
 import Details from '../../DetailsPanel/Details';
-import Item from '../Item';
-import Description from '../Description';
 import { getStubContext } from '../../../../config/test-context';
 
 const favorite = {
@@ -76,10 +74,6 @@ const baseProps = {
 const renderComponent = (partialProps = {}) => {
     const props = { ...baseProps, ...partialProps };
     return mount(<Details {...props} />, { context, childContextTypes });
-};
-
-const getItem = (detailsCard, label) => {
-    return detailsCard.find('Item').findWhere(item => item.props().label === label);
 };
 
 describe('Interpretations: Details -> Details component', () => {
