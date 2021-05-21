@@ -1,6 +1,6 @@
 name: 'dhis2: release d2-ui'
 
-on: [push, workflow_dispatch]
+on: [pull_request, workflow_dispatch]
 
 env:
     GIT_AUTHOR_NAME: '@dhis2-bot'
