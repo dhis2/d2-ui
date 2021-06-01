@@ -134,7 +134,7 @@ class UserSearch extends Component {
 
     render() {
         return (
-            <div style={styles.container}>
+            <div className="sharing-dialog-user-search" style={styles.container}>
                 <div style={styles.title}>
                     {this.context.d2.i18n.getTranslation(
                         'add_users_and_user_groups'
