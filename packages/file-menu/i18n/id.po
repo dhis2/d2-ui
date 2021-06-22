@@ -2,13 +2,15 @@
 # Translators:
 # Viktor Varland <viktor@dhis2.org>, 2019
 # Aprisa Chrysantina <aprisa.chrysantina@gmail.com>, 2020
+# Yusuf Setiawan <mohammadyusufsetiawan@gmail.com>, 2021
+# Untoro Dwi Raharjo <untoro.dwi.raharjo@mail.ugm.ac.id>, 2021
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2020-06-05T17:52:31.450Z\n"
 "PO-Revision-Date: 2019-08-12 21:18+0000\n"
-"Last-Translator: Aprisa Chrysantina <aprisa.chrysantina@gmail.com>, 2020\n"
+"Last-Translator: Untoro Dwi Raharjo <untoro.dwi.raharjo@mail.ugm.ac.id>, 2021\n"
 "Language-Team: Indonesian (https://www.transifex.com/hisp-uio/teams/100509/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -17,10 +19,10 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "Delete {{what}}"
-msgstr ""
+msgstr "Hapus {{apa}}"
 
 msgid "This {{what}} will be deleted. Continue?"
-msgstr ""
+msgstr "{{what}} ini akan dihapus. Terus?"
 
 msgid "Cancel"
 msgstr "batal"
@@ -29,10 +31,10 @@ msgid "Delete"
 msgstr "hapus"
 
 msgid "File"
-msgstr ""
+msgstr "Berkas"
 
 msgid "Open in this app"
-msgstr ""
+msgstr "Buka di aplikasi ini"
 
 msgid "Close"
 msgstr "Tutup"
@@ -47,7 +49,7 @@ msgid "Open"
 msgstr "Buka"
 
 msgid "Rename {{what}}"
-msgstr ""
+msgstr "Ganti nama {{apa}}"
 
 msgid "Name"
 msgstr "Nama"
@@ -59,13 +61,13 @@ msgid "Rename"
 msgstr "Ganti nama"
 
 msgid "Save {{what}} as"
-msgstr ""
+msgstr "Simpan {{apa}} sebagai"
 
 msgid "Save"
 msgstr "Simpan"
 
 msgid "Save as..."
-msgstr ""
+msgstr "Simpan sebagai..."
 
 msgid "Share"
 msgstr "Bagikan"
@@ -77,4 +79,4 @@ msgid "Write interpretation"
 msgstr "Tulis interpretasi"
 
 msgid "Post"
-msgstr ""
+msgstr "Pos"
