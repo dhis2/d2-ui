@@ -25,7 +25,7 @@ msgid "Maps"
 msgstr "Xaritalar"
 
 msgid "Event Reports"
-msgstr ""
+msgstr "Hodisalar haqida hisobotlar"
 
 msgid "Event Visualizer"
 msgstr "Hodisalar vizualizatori"
@@ -73,7 +73,7 @@ msgid "Write a reply"
 msgstr "Izoh yozing"
 
 msgid "Confirm"
-msgstr ""
+msgstr "Tasdiqlang"
 
 msgid "No description"
 msgstr "Tavsif yoʼq"
