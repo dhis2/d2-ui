@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Observable } from 'rxjs';
 import { Subject } from 'rxjs/Subject';
-import { timer } from 'rxjs/observable/timer';
-import { debounce } from 'rxjs/operators';
+import { debounceTime } from 'rxjs/operators';
 
 import { accessObjectToString } from './utils';
 import PermissionPicker from './PermissionPicker.component';
@@ -53,9 +53,12 @@ class UserSearch extends Component {
 
     componentWillMount() {
         this.inputStream
-            .pipe(debounce(() => timer(searchDelay)))
-            .subscribe(searchText => {
-                this.fetchSearchResult(searchText);
+            .pipe(
+                debounceTime(searchDelay),
+                switchMap(searchText => Observable.from(this.fetchSearchResult(searchText)))
+            )
+            .subscribe(searchResults => {
+                handleSearchResult(searchResults)
             });
     }
 
@@ -93,11 +96,11 @@ class UserSearch extends Component {
 
     fetchSearchResult = searchText => {
         if (searchText === '') {
-            this.handleSearchResult([]);
+            return Promise.resolve([]);
         } else {
             this.props.onSearch(searchText, searchResultsCount).then(({ users, userGroups }) => {
                 const addType = type => result => ({ ...result, type });
-                const searchResult = users
+                const searchResults = users
                     .map(addType('userAccess'))
                     .filter(this.hasNoCurrentAccess)
                     .concat(
@@ -105,8 +108,7 @@ class UserSearch extends Component {
                             .map(addType('userGroupAccess'))
                             .filter(this.hasNoCurrentAccess)
                     );
-
-                this.handleSearchResult(searchResult);
+                return searchResults
             });
         }
     };
