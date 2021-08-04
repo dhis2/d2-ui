@@ -30,7 +30,7 @@ const styles = {
     },
 };
 
-const searchDelay = 500;
+const searchDelay = 300;
 const searchResultsCount = 10;
 
 class UserSearch extends Component {
