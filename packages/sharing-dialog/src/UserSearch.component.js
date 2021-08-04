@@ -58,7 +58,7 @@ class UserSearch extends Component {
                 switchMap(searchText => Observable.from(this.fetchSearchResult(searchText)))
             )
             .subscribe(searchResults => {
-                handleSearchResult(searchResults)
+                this.handleSearchResult(searchResults)
             });
     }
 
