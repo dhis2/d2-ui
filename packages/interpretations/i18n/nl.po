@@ -1,40 +1,37 @@
 # 
 # Translators:
-# Aprisa Chrysantina <aprisa.chrysantina@gmail.com>, 2019
-# Viktor Varland <viktor@dhis2.org>, 2019
-# phil_dhis2, 2019
-# Untoro Dwi Raharjo <untoro.dwi.raharjo@mail.ugm.ac.id>, 2021
+# Cherise Beek <cherise.beek@gmail.com>, 2021
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2018-07-04T08:51:47.874Z\n"
 "PO-Revision-Date: 2019-08-13 20:28+0000\n"
-"Last-Translator: Untoro Dwi Raharjo <untoro.dwi.raharjo@mail.ugm.ac.id>, 2021\n"
-"Language-Team: Indonesian (https://www.transifex.com/hisp-uio/teams/100509/id/)\n"
+"Last-Translator: Cherise Beek <cherise.beek@gmail.com>, 2021\n"
+"Language-Team: Dutch (https://www.transifex.com/hisp-uio/teams/100509/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: id\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: nl\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "No description"
-msgstr "Tidak ada deskripsi"
+msgstr ""
 
 msgid "None"
-msgstr "Tidak ada"
+msgstr ""
 
 msgid "Read"
-msgstr "Baca"
+msgstr ""
 
 msgid "Read/Write"
-msgstr "Baca/Tulis"
+msgstr ""
 
 msgid "Unknown"
 msgstr ""
 
 msgid "Public"
-msgstr "Publik"
+msgstr ""
 
 msgid "user groups"
 msgstr ""
@@ -46,64 +43,64 @@ msgid "Subscribe to this {{object}} and start receiving notifications"
 msgstr ""
 
 msgid "Details"
-msgstr "Rincian"
+msgstr ""
 
 msgid "Owner"
-msgstr "Pemilik"
+msgstr ""
 
 msgid "Created"
-msgstr "Dibuat"
+msgstr ""
 
 msgid "Last updated"
-msgstr "Terakhir diperbarui"
+msgstr "Laatst bijgewerkt"
 
 msgid "Views"
-msgstr "Tampilan"
+msgstr ""
 
 msgid "Sharing"
-msgstr "Berbagi"
+msgstr ""
 
 msgid "OK"
-msgstr "OK"
+msgstr ""
 
 msgid "Post comment"
 msgstr ""
 
 msgid "Cancel"
-msgstr "batal"
+msgstr ""
 
 msgid "Are you sure you want to remove this interpretation?"
 msgstr ""
 
 msgid "Unlike"
-msgstr "Batalkan Suka"
+msgstr ""
 
 msgid "Like"
-msgstr "Suka"
+msgstr ""
 
 msgid "Reply"
-msgstr "Balas"
+msgstr ""
 
 msgid "Edit"
-msgstr "Edit"
+msgstr ""
 
 msgid "Share"
-msgstr "Bagikan"
+msgstr ""
 
 msgid "Delete"
-msgstr "hapus"
+msgstr "Verwijderen"
 
 msgid "people like this"
-msgstr "orang menyukai"
+msgstr ""
 
 msgid "people commented"
-msgstr "orang memberi komentar"
+msgstr ""
 
 msgid "Are you sure you want to remove this comment?"
 msgstr ""
 
 msgid "more comments"
-msgstr "komentar lainnya"
+msgstr ""
 
 msgid "Edit interpretation"
 msgstr ""
@@ -115,19 +112,19 @@ msgid "Save & share"
 msgstr ""
 
 msgid "Save"
-msgstr "Simpan"
+msgstr ""
 
 msgid "No interpretations"
-msgstr "Tidak ada interpretasi"
+msgstr ""
 
 msgid "Clear interpretation"
-msgstr "Hapus interpretasi"
+msgstr ""
 
 msgid "Write new interpretation"
 msgstr ""
 
 msgid "Interpretations"
-msgstr "Interpretasi"
+msgstr ""
 
 msgid "chart"
 msgstr ""
