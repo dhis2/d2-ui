@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
+import Tooltip from '@material-ui/core/Tooltip';
 import Button from '@material-ui/core/Button';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -139,11 +140,31 @@ class TranslationForm extends Component {
                     color="primary"
                     onClick={this.props.onCancel}
                 >{this.getTranslation('cancel')}</Button>
-                <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={this.saveTranslations}
-                >{this.getTranslation('save')}</Button>
+                {this.props.isOnline ? (
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={this.saveTranslations}
+                    >
+                        {this.getTranslation("save")}
+                    </Button>
+                ) : (
+                    <Tooltip
+                        title={this.getTranslation("Cannot save while offline")}
+                        placement="top-start"
+                    >
+                        <span>
+                            <Button
+                                style={{ color: "white" }}
+                                disabled
+                                variant="contained"
+                                color="primary"
+                            >
+                                {this.getTranslation("save")}
+                            </Button>
+                        </span>
+                    </Tooltip>
+                )}
             </DialogActions>
         );
     }
@@ -191,11 +212,13 @@ TranslationForm.propTypes = {
     translations: PropTypes.array,
     setTranslations: PropTypes.func,
     fieldsToTranslate: PropTypes.arrayOf(PropTypes.string),
+    isOnline: PropTypes.bool,
 };
 
 TranslationForm.defaultProps = {
     fieldsToTranslate: ['name', 'shortName', 'description'],
     locales: [],
+    isOnline: true,
 };
 
 TranslationForm.contextTypes = {
