@@ -58,6 +58,7 @@ class TranslationDialog extends Component {
                 onTranslationError={this.translationError}
                 onCancel={this.closeDialog}
                 fieldsToTranslate={this.props.fieldsToTranslate}
+                isOnline={this.props.isOnline}
             />
         </Dialog>
     )
@@ -82,6 +83,7 @@ TranslationDialog.defaultProps = {
 
 TranslationDialog.propTypes = {
     insertTheme: PropTypes.bool,
+    isOnline: PropTypes.bool,
     objectToTranslate: PropTypes.shape({
         id: PropTypes.string.isRequired,
     }).isRequired,
