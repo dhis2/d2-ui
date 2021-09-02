@@ -2,6 +2,8 @@ import i18n from '@dhis2/d2-i18n';
 
 export function translateModelName(modelName) {
     switch (modelName) {
+        case 'visualization':
+            return i18n.t('visualization');
         case 'chart':
             return i18n.t('chart');
         case 'reportTable':
