@@ -24,9 +24,10 @@ export const extractFavorite = item => {
         case EVENT_CHART:
             return item.eventChart;
         case VISUALIZATION:
-            return item.chart || item.reportTable;
+            return item.visualization || item.chart || item.reportTable;
         default:
             return (
+                item.visualization ||
                 item.reportTable ||
                 item.chart ||
                 item.map ||
