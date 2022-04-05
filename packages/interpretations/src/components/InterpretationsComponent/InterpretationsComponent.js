@@ -48,21 +48,21 @@ export class InterpretationsComponent extends React.Component {
     }
 
     async loadModel(props) {
-        const users = await props.d2.currentUser.getUserGroupIds();
+        const userGroupIds = await props.d2.currentUser.getUserGroupIds();
 
         return getFavoriteWithInterpretations(
             props.d2,
             props.type,
             props.id
-        ).then(model => {
-            this.setState({ model, userGroups: Array.from(users.keys()) });
+        ).then((model) => {
+            this.setState({ model, userGroups: userGroupIds });
             return model;
         });
     }
 
     async onChange() {
         return this.loadModel(this.props).then(
-            newModel => this.props.onChange && this.props.onChange(newModel)
+            (newModel) => this.props.onChange && this.props.onChange(newModel)
         );
     }
 
@@ -118,7 +118,7 @@ export class InterpretationsComponent extends React.Component {
 
 InterpretationsComponent.defaultProps = {
     insertTheme: false,
-    isOffline: false
+    isOffline: false,
 };
 
 InterpretationsComponent.propTypes = {
