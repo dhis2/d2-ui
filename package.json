@@ -1,6 +1,6 @@
 {
   "name": "@dhis2/d2-ui",
-  "version": "7.3.3",
+  "version": "7.3.4",
   "license": "BSD-3-Clause",
   "private": true,
   "scripts": {
