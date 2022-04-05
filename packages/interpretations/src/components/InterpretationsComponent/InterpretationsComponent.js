@@ -48,14 +48,14 @@ export class InterpretationsComponent extends React.Component {
     }
 
     async loadModel(props) {
-        const users = await props.d2.currentUser.getUserGroupIds();
+        const userGroupIds = await props.d2.currentUser.getUserGroupIds();
 
         return getFavoriteWithInterpretations(
             props.d2,
             props.type,
             props.id
         ).then((model) => {
-            this.setState({ model, userGroups: users });
+            this.setState({ model, userGroups: userGroupIds });
             return model;
         });
     }
