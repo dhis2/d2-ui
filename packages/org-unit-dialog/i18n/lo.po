@@ -2,13 +2,14 @@
 # Translators:
 # Viktor Varland <viktor@dhis2.org>, 2019
 # phil_dhis2, 2019
+# Somkhit Bouavong <bouavongk@gmail.com>, 2022
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2020-04-13T22:26:59.421Z\n"
 "PO-Revision-Date: 2019-08-13 09:54+0000\n"
-"Last-Translator: phil_dhis2, 2019\n"
+"Last-Translator: Somkhit Bouavong <bouavongk@gmail.com>, 2022\n"
 "Language-Team: Lao (https://www.transifex.com/hisp-uio/teams/100509/lo/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -44,7 +45,7 @@ msgid "selected"
 msgstr "ເລືອກແລ້ວ"
 
 msgid "Deselect all"
-msgstr ""
+msgstr "ຍົກເລີກການເລືອກທັງໝົດ"
 
 msgid "User organisation unit"
 msgstr ""
