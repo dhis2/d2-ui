@@ -102,7 +102,7 @@ class MdParser {
         // :-) :) :-( :( :+1 :-1 -> <span>[unicode]</span>
         md.inline.ruler.push('emoji', parse(codes.emoji.name));
 
-        md.enable(['linkify', 'strong', 'italic', 'emoji']);
+        md.enable(['link', 'linkify', 'strong', 'italic', 'emoji']);
 
         return this;
     }
