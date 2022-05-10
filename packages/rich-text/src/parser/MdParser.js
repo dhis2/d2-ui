@@ -1,50 +1,50 @@
-import MarkdownIt from "markdown-it";
+import MarkdownIt from 'markdown-it';
 
 const emojiDb = {
-    ":-)": "\u{1F642}",
-    ":)": "\u{1F642}",
-    ":-(": "\u{1F641}",
-    ":(": "\u{1F641}",
-    ":+1": "\u{1F44D}",
-    ":-1": "\u{1F44E}"
+    ':-)': '\u{1F642}',
+    ':)': '\u{1F642}',
+    ':-(': '\u{1F641}',
+    ':(': '\u{1F641}',
+    ':+1': '\u{1F44D}',
+    ':-1': '\u{1F44E}',
 };
 
 const codes = {
     bold: {
-        name: "bold",
-        char: "*",
-        domEl: "strong",
+        name: 'bold',
+        char: '*',
+        domEl: 'strong',
         encodedChar: 0x2a,
         // see https://regex101.com/r/evswdV/8 for explanation of regexp
-        regexString: "\\B\\*((?!\\s)[^*]+(?:\\b|[^*\\s]))\\*\\B",
-        contentFn: val => val,
+        regexString: '\\B\\*((?!\\s)[^*]+(?:\\b|[^*\\s]))\\*\\B',
+        contentFn: (val) => val,
     },
     italic: {
-        name: "italic",
-        char: "_",
-        domEl: "em",
+        name: 'italic',
+        char: '_',
+        domEl: 'em',
         encodedChar: 0x5f,
         // see https://regex101.com/r/p6LpjK/6 for explanation of regexp
-        regexString: "\\b_((?!\\s)[^_]+(?:\\B|[^_\\s]))_\\b",
-        contentFn: val => val,
+        regexString: '\\b_((?!\\s)[^_]+(?:\\B|[^_\\s]))_\\b',
+        contentFn: (val) => val,
     },
     emoji: {
-        name: "emoji",
-        char: ":",
-        domEl: "span",
+        name: 'emoji',
+        char: ':',
+        domEl: 'span',
         encodedChar: 0x3a,
-        regexString: "^(:-\\)|:\\)|:\\(|:-\\(|:\\+1|:-1)",
-        contentFn: val => emojiDb[val],
+        regexString: '^(:-\\)|:\\)|:\\(|:-\\(|:\\+1|:-1)',
+        contentFn: (val) => emojiDb[val],
     },
 };
 
 let md;
 let linksInText;
 
-const markerIsInLinkText = pos =>
-    linksInText.some(link => (pos >= link.index && pos <= link.lastIndex));
+const markerIsInLinkText = (pos) =>
+    linksInText.some((link) => pos >= link.index && pos <= link.lastIndex);
 
-const parse = code => (state, silent) => {
+const parse = (code) => (state, silent) => {
     if (silent) return false;
 
     const start = state.pos;
@@ -76,7 +76,7 @@ const parse = code => (state, silent) => {
 
         state.push(`${codes[code].domEl}_open`, codes[code].domEl, 1);
 
-        const t = state.push("text", "", 0);
+        const t = state.push('text', '', 0);
         t.content = codes[code].contentFn(text);
 
         state.push(`${codes.bold.domEl}_close`, codes[code].domEl, -1);
@@ -88,22 +88,21 @@ const parse = code => (state, silent) => {
     return false;
 };
 
-
 class MdParser {
     constructor() {
         // disable all rules, enable autolink for URLs and email addresses
-        md = new MarkdownIt("zero", { linkify: true });
+        md = new MarkdownIt('zero', { linkify: true });
 
         // *bold* -> <strong>bold</strong>
-        md.inline.ruler.push("strong", parse(codes.bold.name));
+        md.inline.ruler.push('strong', parse(codes.bold.name));
 
         // _italic_ -> <em>italic</em>
-        md.inline.ruler.push("italic", parse(codes.italic.name));
+        md.inline.ruler.push('italic', parse(codes.italic.name));
 
         // :-) :) :-( :( :+1 :-1 -> <span>[unicode]</span>
-        md.inline.ruler.push("emoji", parse(codes.emoji.name));
+        md.inline.ruler.push('emoji', parse(codes.emoji.name));
 
-        md.enable(["linkify", "strong", "italic", "emoji"]);
+        md.enable(['link', 'linkify', 'strong', 'italic', 'emoji']);
 
         return this;
     }
