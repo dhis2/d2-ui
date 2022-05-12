@@ -20,7 +20,7 @@ msgid "Organisation units"
 msgstr "Organisatieëenheden"
 
 msgid "Hide"
-msgstr ""
+msgstr "Verbergen"
 
 msgid "Update"
 msgstr "Bijwerken"
@@ -32,7 +32,7 @@ msgid "Select a level"
 msgstr ""
 
 msgid "Group"
-msgstr ""
+msgstr "Groep"
 
 msgid "Select a group"
 msgstr ""
@@ -41,7 +41,7 @@ msgid "Select all org units below"
 msgstr ""
 
 msgid "selected"
-msgstr ""
+msgstr "geselecteerd"
 
 msgid "Deselect all"
 msgstr ""

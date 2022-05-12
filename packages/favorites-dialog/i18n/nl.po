@@ -50,34 +50,34 @@ msgid "Close"
 msgstr "Sluit"
 
 msgid "Column"
-msgstr ""
+msgstr "Kolom"
 
 msgid "Stacked column"
-msgstr ""
+msgstr "Gestapelde kolom"
 
 msgid "Bar"
-msgstr ""
+msgstr "Staaf"
 
 msgid "Stacked bar"
-msgstr ""
+msgstr "Gestapelde staaf"
 
 msgid "Line"
-msgstr ""
+msgstr "Lijn"
 
 msgid "Area"
-msgstr ""
+msgstr "Oppervlakte"
 
 msgid "Stacked area"
 msgstr ""
 
 msgid "Pie"
-msgstr ""
+msgstr "Taart"
 
 msgid "Radar"
-msgstr ""
+msgstr "Radar"
 
 msgid "Gauge"
-msgstr ""
+msgstr "Graadmeter"
 
 msgid "Year over year (line)"
 msgstr ""
