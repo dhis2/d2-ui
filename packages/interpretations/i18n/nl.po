@@ -92,7 +92,7 @@ msgid "Subscribe to this {{object}} and start receiving notifications"
 msgstr ""
 
 msgid "Not available offline"
-msgstr ""
+msgstr "Niet beschikbaar offline"
 
 msgid "Table details"
 msgstr ""
