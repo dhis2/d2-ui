@@ -80,10 +80,10 @@ msgid "Gauge"
 msgstr "Graadmeter"
 
 msgid "Year over year (line)"
-msgstr ""
+msgstr "Jaar over jaar (lijn)"
 
 msgid "Year over year (column)"
-msgstr ""
+msgstr "Jaar over jaar (kolom)"
 
 msgid "Single value"
 msgstr ""
