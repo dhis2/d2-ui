@@ -7,20 +7,20 @@
 # Gabriela Rodriguez <grodriguezcoronado@gmail.com>, 2020
 # Viktor Varland <viktor@dhis2.org>, 2020
 # Yao Selom Saka <ysaka@hispwca.org>, 2020
-# Yayra Gomado <ygomado@hispwca.org>, 2021
+# Yayra Gomado <ygomado@hispwca.org>, 2022
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2021-05-20T08:53:00.620Z\n"
 "PO-Revision-Date: 2019-08-13 09:54+0000\n"
-"Last-Translator: Yayra Gomado <ygomado@hispwca.org>, 2021\n"
+"Last-Translator: Yayra Gomado <ygomado@hispwca.org>, 2022\n"
 "Language-Team: French (https://www.transifex.com/hisp-uio/teams/100509/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 msgid "Pivot Tables"
 msgstr "Les Tableaux Croisés Dynamiques"
@@ -141,6 +141,7 @@ msgid "{{count}} likes"
 msgid_plural "{{count}} likes"
 msgstr[0] "{{count}} les aimes"
 msgstr[1] "{{count}} les aimes"
+msgstr[2] "{{count}} les aimes"
 
 msgid "Save interpretation"
 msgstr "Enregistrer l'interprétation"
@@ -152,6 +153,7 @@ msgid "{{count}} replies"
 msgid_plural "{{count}} replies"
 msgstr[0] "{{count}} réponses"
 msgstr[1] "{{count}} réponses"
+msgstr[2] "{{count}} réponses"
 
 msgid "Hide old replies"
 msgstr "Masquer les anciennes réponses"
@@ -208,11 +210,13 @@ msgid "{{count}} users"
 msgid_plural "{{count}} users"
 msgstr[0] "{{count}} utilisateur"
 msgstr[1] "{{count}} utilisateurs"
+msgstr[2] "{{count}} utilisateurs"
 
 msgid "{{count}} user groups"
 msgid_plural "{{count}} user groups"
 msgstr[0] "{{count}} groupe d'utilisateurs"
 msgstr[1] "{{count}} groupe d'utilisateurs"
+msgstr[2] "{{count}} groupe d'utilisateurs"
 
 msgid "chart"
 msgstr "graphique"
