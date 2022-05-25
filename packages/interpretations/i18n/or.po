@@ -1,0 +1,145 @@
+# 
+# Translators:
+# SubhamJena <subhamjena8465@gmail.com>, 2022
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"POT-Creation-Date: 2018-07-04T08:51:47.874Z\n"
+"PO-Revision-Date: 2019-08-13 20:28+0000\n"
+"Last-Translator: SubhamJena <subhamjena8465@gmail.com>, 2022\n"
+"Language-Team: Odia (https://www.transifex.com/hisp-uio/teams/100509/or/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: or\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "No description"
+msgstr ""
+
+msgid "None"
+msgstr ""
+
+msgid "Read"
+msgstr ""
+
+msgid "Read/Write"
+msgstr ""
+
+msgid "Unknown"
+msgstr ""
+
+msgid "Public"
+msgstr ""
+
+msgid "user groups"
+msgstr ""
+
+msgid "Unsubscribe from this {{object}} and stop receiving notifications"
+msgstr ""
+
+msgid "Subscribe to this {{object}} and start receiving notifications"
+msgstr ""
+
+msgid "Details"
+msgstr "ବିବରଣୀ"
+
+msgid "Owner"
+msgstr ""
+
+msgid "Created"
+msgstr ""
+
+msgid "Last updated"
+msgstr ""
+
+msgid "Views"
+msgstr ""
+
+msgid "Sharing"
+msgstr ""
+
+msgid "OK"
+msgstr ""
+
+msgid "Post comment"
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid "Are you sure you want to remove this interpretation?"
+msgstr ""
+
+msgid "Unlike"
+msgstr ""
+
+msgid "Like"
+msgstr ""
+
+msgid "Reply"
+msgstr ""
+
+msgid "Edit"
+msgstr ""
+
+msgid "Share"
+msgstr ""
+
+msgid "Delete"
+msgstr ""
+
+msgid "people like this"
+msgstr ""
+
+msgid "people commented"
+msgstr ""
+
+msgid "Are you sure you want to remove this comment?"
+msgstr ""
+
+msgid "more comments"
+msgstr ""
+
+msgid "Edit interpretation"
+msgstr ""
+
+msgid "Create interpretation"
+msgstr ""
+
+msgid "Save & share"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "No interpretations"
+msgstr ""
+
+msgid "Clear interpretation"
+msgstr ""
+
+msgid "Write new interpretation"
+msgstr ""
+
+msgid "Interpretations"
+msgstr ""
+
+msgid "chart"
+msgstr ""
+
+msgid "pivot table"
+msgstr ""
+
+msgid "map"
+msgstr ""
+
+msgid "event chart"
+msgstr ""
+
+msgid "event report"
+msgstr ""
+
+msgid "object"
+msgstr ""
