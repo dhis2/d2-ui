@@ -1,0 +1,82 @@
+# 
+# Translators:
+# Valeriu Plesca <vplesca@gmail.com>, 2022
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"POT-Creation-Date: 2018-06-07T12:57:17.631Z\n"
+"PO-Revision-Date: 2019-08-13 20:28+0000\n"
+"Last-Translator: Valeriu Plesca <vplesca@gmail.com>, 2022\n"
+"Language-Team: Romanian (https://www.transifex.com/hisp-uio/teams/100509/ro/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ro\n"
+"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
+
+msgid "Delete {{what}}"
+msgstr ""
+
+msgid "This {{what}} will be deleted. Continue?"
+msgstr ""
+
+msgid "Delete"
+msgstr "Lichidare"
+
+msgid "File"
+msgstr ""
+
+msgid "Open in this app"
+msgstr ""
+
+msgid "Open in web API"
+msgstr ""
+
+msgid "Close"
+msgstr "Închidere"
+
+msgid "Get link"
+msgstr ""
+
+msgid "New"
+msgstr "Nou"
+
+msgid "Open"
+msgstr ""
+
+msgid "Rename {{what}}"
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "Description"
+msgstr "Descriere"
+
+msgid "Cancel"
+msgstr ""
+
+msgid "Rename"
+msgstr ""
+
+msgid "Save {{what}} as"
+msgstr ""
+
+msgid "Save"
+msgstr "salva"
+
+msgid "Save as..."
+msgstr ""
+
+msgid "Share"
+msgstr ""
+
+msgid "Translate"
+msgstr ""
+
+msgid "Write interpretation"
+msgstr ""
+
+msgid "Post"
+msgstr ""
