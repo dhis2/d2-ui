@@ -25,13 +25,13 @@ msgid "Update"
 msgstr "Actualizare"
 
 msgid "Level"
-msgstr ""
+msgstr "Nivel"
 
 msgid "Select a level"
 msgstr ""
 
 msgid "Group"
-msgstr ""
+msgstr "Grup"
 
 msgid "Select a group"
 msgstr ""

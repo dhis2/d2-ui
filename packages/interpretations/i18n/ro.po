@@ -34,7 +34,7 @@ msgid "View in {{appName}} app"
 msgstr ""
 
 msgid "View"
-msgstr ""
+msgstr "Vizionare"
 
 msgid "Exit View"
 msgstr ""
