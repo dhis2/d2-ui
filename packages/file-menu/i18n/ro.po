@@ -28,7 +28,7 @@ msgid "Delete"
 msgstr "Lichidare"
 
 msgid "File"
-msgstr ""
+msgstr "Fişier"
 
 msgid "Open in this app"
 msgstr ""
