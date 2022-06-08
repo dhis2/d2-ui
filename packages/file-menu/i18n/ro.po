@@ -22,7 +22,7 @@ msgid "This {{what}} will be deleted. Continue?"
 msgstr ""
 
 msgid "Cancel"
-msgstr ""
+msgstr "Anulare"
 
 msgid "Delete"
 msgstr "Lichidare"
@@ -67,7 +67,7 @@ msgid "Save as..."
 msgstr ""
 
 msgid "Share"
-msgstr ""
+msgstr "Partajare"
 
 msgid "Translate"
 msgstr ""
