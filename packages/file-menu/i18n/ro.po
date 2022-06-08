@@ -55,7 +55,7 @@ msgid "Description"
 msgstr "Descriere"
 
 msgid "Cancel"
-msgstr ""
+msgstr "Anulare"
 
 msgid "Rename"
 msgstr ""
@@ -70,7 +70,7 @@ msgid "Save as..."
 msgstr ""
 
 msgid "Share"
-msgstr ""
+msgstr "Partajare"
 
 msgid "Translate"
 msgstr ""

@@ -67,7 +67,7 @@ msgid "Post comment"
 msgstr ""
 
 msgid "Cancel"
-msgstr ""
+msgstr "Anulare"
 
 msgid "Are you sure you want to remove this interpretation?"
 msgstr ""
@@ -85,7 +85,7 @@ msgid "Edit"
 msgstr "Editare"
 
 msgid "Share"
-msgstr ""
+msgstr "Partajare"
 
 msgid "Delete"
 msgstr "Lichidare"
