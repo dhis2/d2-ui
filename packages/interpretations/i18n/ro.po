@@ -1,26 +1,25 @@
 # 
 # Translators:
-# phil_dhis2, 2019
-# Viktor Varland <viktor@dhis2.org>, 2019
+# Valeriu Plesca <vplesca@gmail.com>, 2022
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2018-07-04T08:51:47.874Z\n"
 "PO-Revision-Date: 2019-08-13 20:28+0000\n"
-"Last-Translator: Viktor Varland <viktor@dhis2.org>, 2019\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/hisp-uio/teams/100509/pt_BR/)\n"
+"Last-Translator: Valeriu Plesca <vplesca@gmail.com>, 2022\n"
+"Language-Team: Romanian (https://www.transifex.com/hisp-uio/teams/100509/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: pt_BR\n"
-"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
+"Language: ro\n"
+"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
 
 msgid "No description"
 msgstr ""
 
 msgid "None"
-msgstr "Nenhum"
+msgstr ""
 
 msgid "Read"
 msgstr ""
@@ -29,7 +28,7 @@ msgid "Read/Write"
 msgstr ""
 
 msgid "Unknown"
-msgstr "Desconhecido"
+msgstr ""
 
 msgid "Public"
 msgstr ""
@@ -44,7 +43,7 @@ msgid "Subscribe to this {{object}} and start receiving notifications"
 msgstr ""
 
 msgid "Details"
-msgstr "Detalhes"
+msgstr ""
 
 msgid "Owner"
 msgstr ""
@@ -53,7 +52,7 @@ msgid "Created"
 msgstr ""
 
 msgid "Last updated"
-msgstr "Última actualização"
+msgstr "Ultima actualizare"
 
 msgid "Views"
 msgstr ""
@@ -62,13 +61,13 @@ msgid "Sharing"
 msgstr ""
 
 msgid "OK"
-msgstr "Aprovado"
+msgstr ""
 
 msgid "Post comment"
 msgstr ""
 
 msgid "Cancel"
-msgstr "Cancelar"
+msgstr "Anulare"
 
 msgid "Are you sure you want to remove this interpretation?"
 msgstr ""
@@ -80,16 +79,16 @@ msgid "Like"
 msgstr ""
 
 msgid "Reply"
-msgstr "Responder"
+msgstr ""
 
 msgid "Edit"
-msgstr "Editar"
+msgstr "Editare"
 
 msgid "Share"
-msgstr "Partilhar"
+msgstr "Partajare"
 
 msgid "Delete"
-msgstr "Apagar"
+msgstr "Lichidare"
 
 msgid "people like this"
 msgstr ""
@@ -113,7 +112,7 @@ msgid "Save & share"
 msgstr ""
 
 msgid "Save"
-msgstr "Salvar"
+msgstr "salva"
 
 msgid "No interpretations"
 msgstr ""
@@ -125,7 +124,7 @@ msgid "Write new interpretation"
 msgstr ""
 
 msgid "Interpretations"
-msgstr "Interpretações"
+msgstr ""
 
 msgid "chart"
 msgstr ""
