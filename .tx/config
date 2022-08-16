@@ -1,31 +1,32 @@
 [main]
-host = https://www.transifex.com
+host     = https://www.transifex.com
 lang_map = fa_AF: prs, uz@Cyrl: uz, uz@Latn: uz_Latn
 
-[app-d2-ui.file-menu-en-pot]
-file_filter = packages/file-menu/i18n/<lang>.po
+[o:hisp-uio:p:app-d2-ui:r:file-menu-en-pot]
+file_filter  = packages/file-menu/i18n/<lang>.po
+source_file  = packages/file-menu/i18n/en.pot
+source_lang  = en
+type         = PO
 minimum_perc = 0
-source_file = packages/file-menu/i18n/en.pot
-source_lang = en
-type = PO
 
-[app-d2-ui.interpretations-en-pot]
-file_filter = packages/interpretations/i18n/<lang>.po
+[o:hisp-uio:p:app-d2-ui:r:interpretations-en-pot]
+file_filter  = packages/interpretations/i18n/<lang>.po
+source_file  = packages/interpretations/i18n/en.pot
+source_lang  = en
+type         = PO
 minimum_perc = 0
-source_file = packages/interpretations/i18n/en.pot
-source_lang = en
-type = PO
 
-[app-d2-ui.mentions-wrapper-en-pot]
-file_filter = packages/mentions-wrapper/i18n/<lang>.po
+[o:hisp-uio:p:app-d2-ui:r:mentions-wrapper-en-pot]
+file_filter  = packages/mentions-wrapper/i18n/<lang>.po
+source_file  = packages/mentions-wrapper/i18n/en.pot
+source_lang  = en
+type         = PO
 minimum_perc = 0
-source_file = packages/mentions-wrapper/i18n/en.pot
-source_lang = en
-type = PO
 
-[app-d2-ui.org-unit-dialog-en-pot]
-file_filter = packages/org-unit-dialog/i18n/<lang>.po
+[o:hisp-uio:p:app-d2-ui:r:org-unit-dialog-en-pot]
+file_filter  = packages/org-unit-dialog/i18n/<lang>.po
+source_file  = packages/org-unit-dialog/i18n/en.pot
+source_lang  = en
+type         = PO
 minimum_perc = 0
-source_file = packages/org-unit-dialog/i18n/en.pot
-source_lang = en
-type = PO
+
