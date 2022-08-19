@@ -3,13 +3,14 @@
 # Viktor Varland <viktor@dhis2.org>, 2020
 # Wanda <wanda@frontlineaids.org>, 2020
 # phil_dhis2, 2020
+# Éva Tamási, 2022
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2020-12-07T08:39:12.894Z\n"
 "PO-Revision-Date: 2020-04-29 21:46+0000\n"
-"Last-Translator: phil_dhis2, 2020\n"
+"Last-Translator: Éva Tamási, 2022\n"
 "Language-Team: Ukrainian (https://www.transifex.com/hisp-uio/teams/100509/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,16 +34,16 @@ msgid "Search by name"
 msgstr "Пошук за ім'ям"
 
 msgid "All types"
-msgstr ""
+msgstr "Всі типи"
 
 msgid "All chart types"
-msgstr ""
+msgstr "Всі типи діаграм"
 
 msgid "All owners"
-msgstr ""
+msgstr "Всі власники"
 
 msgid "Created by you"
-msgstr ""
+msgstr "Створено вами"
 
 msgid "Created by others"
 msgstr "Створене іншими"
@@ -54,43 +55,43 @@ msgid "Column"
 msgstr "Стовпчик"
 
 msgid "Stacked column"
-msgstr ""
+msgstr "Стовпчаста з накопиченням"
 
 msgid "Bar"
-msgstr ""
+msgstr "Гістограма"
 
 msgid "Stacked bar"
-msgstr ""
+msgstr "Гістограма з накопиченням"
 
 msgid "Line"
-msgstr ""
+msgstr "Лінійна"
 
 msgid "Area"
-msgstr ""
+msgstr "З областями"
 
 msgid "Stacked area"
-msgstr ""
+msgstr "З областями з накопиченням"
 
 msgid "Pie"
-msgstr ""
+msgstr "Секторна"
 
 msgid "Radar"
-msgstr ""
+msgstr "Пелюсткова"
 
 msgid "Gauge"
-msgstr ""
+msgstr "Індикатор"
 
 msgid "Year over year (line)"
-msgstr ""
+msgstr "Рік за роком (лінія)"
 
 msgid "Year over year (column)"
-msgstr ""
+msgstr "Рік за роком (стовпчик)"
 
 msgid "Single value"
-msgstr ""
+msgstr "Одне значення"
 
 msgid "Pivot table"
 msgstr "Зведена таблиця"
 
 msgid "Scatter"
-msgstr ""
+msgstr "Точкова"

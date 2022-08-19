@@ -2,15 +2,15 @@
 # Translators:
 # phil_dhis2, 2019
 # Viktor Varland <viktor@dhis2.org>, 2019
-# Wanda <wanda@frontlineaids.org>, 2019
 # Nadiia <semchuk@aph.org.ua>, 2021
+# Éva Tamási, 2022
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2020-04-13T22:26:59.421Z\n"
 "PO-Revision-Date: 2019-08-13 09:54+0000\n"
-"Last-Translator: Nadiia <semchuk@aph.org.ua>, 2021\n"
+"Last-Translator: Éva Tamási, 2022\n"
 "Language-Team: Ukrainian (https://www.transifex.com/hisp-uio/teams/100509/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,37 +22,37 @@ msgid "Organisation units"
 msgstr "Організаційні підрозділи"
 
 msgid "Hide"
-msgstr "Сховати"
+msgstr "Приховати"
 
 msgid "Update"
 msgstr "Оновити"
 
 msgid "Level"
-msgstr ""
+msgstr "Рівень"
 
 msgid "Select a level"
-msgstr ""
+msgstr "Вибрати рівень"
 
 msgid "Group"
 msgstr "Група"
 
 msgid "Select a group"
-msgstr ""
+msgstr "Вибрати групу"
 
 msgid "Select all org units below"
-msgstr ""
+msgstr "Вибрати всі орг. підрозділи нижче"
 
 msgid "selected"
-msgstr ""
+msgstr "обрано"
 
 msgid "Deselect all"
 msgstr "Скасувати вибір усіх"
 
 msgid "User organisation unit"
-msgstr ""
+msgstr "Організаційний підрозділ користувачів"
 
 msgid "User sub-units"
 msgstr "Одиниці підрозділів користувачів"
 
 msgid "User sub-x2-units"
-msgstr "Підрозділи користувачів другого рівня"
+msgstr "Підрозділи користувачів 2-го рівня"
