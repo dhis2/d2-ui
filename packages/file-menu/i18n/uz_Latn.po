@@ -1,13 +1,13 @@
 # 
 # Translators:
-# Yury Rogachev <yury@dhis2.org>, 2021
+# Yury Rogachev <yury@dhis2.org>, 2022
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2018-06-07T12:57:17.631Z\n"
-"PO-Revision-Date: 2019-08-13 20:28+0000\n"
-"Last-Translator: Yury Rogachev <yury@dhis2.org>, 2021\n"
+"PO-Revision-Date: 2022-08-21 23:24+0000\n"
+"Last-Translator: Yury Rogachev <yury@dhis2.org>, 2022\n"
 "Language-Team: Uzbek (Latin) (https://www.transifex.com/hisp-uio/teams/100509/uz@Latn/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -43,22 +43,22 @@ msgid "New"
 msgstr "Yangi"
 
 msgid "Open"
-msgstr "Ochish"
+msgstr "Ochiq"
 
 msgid "Rename {{what}}"
 msgstr "Qayta nomlash {{what}}"
 
 msgid "Name"
-msgstr "Ismi"
+msgstr "Исми"
 
 msgid "Description"
 msgstr "Tavsif"
 
 msgid "Cancel"
-msgstr "Bekor qilish"
+msgstr "Бекор қилиш"
 
 msgid "Rename"
-msgstr "Qayta nomlash"
+msgstr "Қайта номлаш"
 
 msgid "Save {{what}} as"
 msgstr "{{what}} ni sifatida saqlash"
@@ -70,13 +70,13 @@ msgid "Save as..."
 msgstr "Sifatida saqlash"
 
 msgid "Share"
-msgstr "Ulashish"
+msgstr "Улашиш"
 
 msgid "Translate"
 msgstr "Tarjima qiling"
 
 msgid "Write interpretation"
-msgstr "Sharh yozish"
+msgstr "Talqin yozing"
 
 msgid "Post"
 msgstr "Pochta"

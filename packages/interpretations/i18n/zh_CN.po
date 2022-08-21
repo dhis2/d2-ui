@@ -17,10 +17,10 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "No description"
-msgstr ""
+msgstr "没有描述"
 
 msgid "None"
-msgstr ""
+msgstr "无"
 
 msgid "Read"
 msgstr ""
@@ -29,7 +29,7 @@ msgid "Read/Write"
 msgstr ""
 
 msgid "Unknown"
-msgstr ""
+msgstr "未知"
 
 msgid "Public"
 msgstr "公用"
@@ -44,31 +44,31 @@ msgid "Subscribe to this {{object}} and start receiving notifications"
 msgstr ""
 
 msgid "Details"
-msgstr ""
+msgstr "详情"
 
 msgid "Owner"
-msgstr ""
+msgstr "所有者"
 
 msgid "Created"
-msgstr ""
+msgstr "已创建"
 
 msgid "Last updated"
-msgstr ""
+msgstr "上次更新"
 
 msgid "Views"
-msgstr ""
+msgstr "查看"
 
 msgid "Sharing"
-msgstr ""
+msgstr "共享"
 
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 msgid "Post comment"
 msgstr ""
 
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 msgid "Are you sure you want to remove this interpretation?"
 msgstr ""
@@ -77,19 +77,19 @@ msgid "Unlike"
 msgstr ""
 
 msgid "Like"
-msgstr ""
+msgstr "Like"
 
 msgid "Reply"
-msgstr ""
+msgstr "回复"
 
 msgid "Edit"
-msgstr ""
+msgstr "编辑"
 
 msgid "Share"
 msgstr "分享"
 
 msgid "Delete"
-msgstr ""
+msgstr "删除"
 
 msgid "people like this"
 msgstr ""
@@ -113,7 +113,7 @@ msgid "Save & share"
 msgstr ""
 
 msgid "Save"
-msgstr ""
+msgstr "保存"
 
 msgid "No interpretations"
 msgstr ""
@@ -125,7 +125,7 @@ msgid "Write new interpretation"
 msgstr ""
 
 msgid "Interpretations"
-msgstr ""
+msgstr "注释"
 
 msgid "chart"
 msgstr ""

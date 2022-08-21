@@ -1,15 +1,17 @@
 # 
 # Translators:
-# Viktor Varland <viktor@dhis2.org>, 2019
-# ericbp <ericbarredap@gmail.com>, 2019
-# Gabriela Rodriguez <grodriguezcoronado@gmail.com>, 2020
+# ericbp <ericbarredap@gmail.com>, 2022
+# Marta Vila <marta@dhis2.org>, 2022
+# phil_dhis2, 2022
+# Viktor Varland <viktor@dhis2.org>, 2022
+# Gabriela Rodriguez <grodriguezcoronado@gmail.com>, 2022
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2018-06-07T12:57:17.631Z\n"
-"PO-Revision-Date: 2019-08-13 20:28+0000\n"
-"Last-Translator: Gabriela Rodriguez <grodriguezcoronado@gmail.com>, 2020\n"
+"PO-Revision-Date: 2022-08-21 23:24+0000\n"
+"Last-Translator: Gabriela Rodriguez <grodriguezcoronado@gmail.com>, 2022\n"
 "Language-Team: Spanish (https://www.transifex.com/hisp-uio/teams/100509/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,7 +23,7 @@ msgid "Delete {{what}}"
 msgstr "Eliminar {{que}}"
 
 msgid "This {{what}} will be deleted. Continue?"
-msgstr "Este {{what}} será eliminado. ¿Continuar?"
+msgstr "Este {{que}} será eliminado. ¿Continuar?"
 
 msgid "Delete"
 msgstr "Eliminar"
@@ -45,7 +47,7 @@ msgid "New"
 msgstr "Nuevo"
 
 msgid "Open"
-msgstr "Abrir"
+msgstr "Abierto"
 
 msgid "Rename {{what}}"
 msgstr "Renombrar {{que}}"
@@ -75,7 +77,7 @@ msgid "Share"
 msgstr "Compartir"
 
 msgid "Translate"
-msgstr "Traducción"
+msgstr "Traducir"
 
 msgid "Write interpretation"
 msgstr "Escribir interpretación"

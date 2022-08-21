@@ -1,9 +1,16 @@
 # 
+# Translators:
+# Somkhit Bouavong <bouavongk@gmail.com>, 2022
+# Thuy Nguyen <thuynguyen@hispvietnam.org>, 2022
+# Viktor Varland <viktor@dhis2.org>, 2022
+# phil_dhis2, 2022
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2018-07-04T08:51:47.874Z\n"
 "PO-Revision-Date: 2022-08-21 23:24+0000\n"
+"Last-Translator: phil_dhis2, 2022\n"
 "Language-Team: Lao (https://www.transifex.com/hisp-uio/teams/100509/lo/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -12,22 +19,22 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "No description"
-msgstr ""
+msgstr "ບໍ່ມີລາຍລະອຽດ"
 
 msgid "None"
-msgstr ""
+msgstr "ບໍ່ແມນ"
 
 msgid "Read"
-msgstr ""
+msgstr "ອ່ານ"
 
 msgid "Read/Write"
-msgstr ""
+msgstr "ອ່ານ/ຂຽນ"
 
 msgid "Unknown"
-msgstr ""
+msgstr "ບໍ່ຮູ້"
 
 msgid "Public"
-msgstr ""
+msgstr "ສາທາລະນະ"
 
 msgid "user groups"
 msgstr ""
@@ -39,64 +46,64 @@ msgid "Subscribe to this {{object}} and start receiving notifications"
 msgstr ""
 
 msgid "Details"
-msgstr ""
+msgstr "ລາຍລະອຽດ"
 
 msgid "Owner"
-msgstr ""
+msgstr "ເຈົ້າຂອງ"
 
 msgid "Created"
-msgstr ""
+msgstr "ສ້າງແລ້ວ"
 
 msgid "Last updated"
-msgstr ""
+msgstr "ປັບປຸງ​ຄັ້ງຫລ້າສຸດ"
 
 msgid "Views"
-msgstr ""
+msgstr "ເບິ່ງ"
 
 msgid "Sharing"
-msgstr ""
+msgstr "ແບ່ງປັນ"
 
 msgid "OK"
-msgstr ""
+msgstr "​ຕົກ​ລົງ"
 
 msgid "Post comment"
 msgstr ""
 
 msgid "Cancel"
-msgstr ""
+msgstr "Cancel"
 
 msgid "Are you sure you want to remove this interpretation?"
 msgstr ""
 
 msgid "Unlike"
-msgstr ""
+msgstr "ບໍ່ມັກ"
 
 msgid "Like"
-msgstr ""
+msgstr "ມັກ"
 
 msgid "Reply"
-msgstr ""
+msgstr "ຕອບກັບ"
 
 msgid "Edit"
-msgstr ""
+msgstr "ແກ້ໄຂ"
 
 msgid "Share"
-msgstr ""
+msgstr "ເຜີຍແຜ່"
 
 msgid "Delete"
-msgstr ""
+msgstr "ລົບ"
 
 msgid "people like this"
-msgstr ""
+msgstr "ຫຼາຍຄົນມັກຂໍ້ມູນນີ້"
 
 msgid "people commented"
-msgstr ""
+msgstr "ມີຫຼາຍຄົນສະແດງຄວາມຄິດເຫັນ"
 
 msgid "Are you sure you want to remove this comment?"
 msgstr ""
 
 msgid "more comments"
-msgstr ""
+msgstr "ຄວາມຄິດເຫັນເພີ່ມເຕີມ"
 
 msgid "Edit interpretation"
 msgstr ""
@@ -108,19 +115,19 @@ msgid "Save & share"
 msgstr ""
 
 msgid "Save"
-msgstr ""
+msgstr "ບັນທຶກ"
 
 msgid "No interpretations"
-msgstr ""
+msgstr "ບໍ່ມີການຕີຄວາມໝາຍ"
 
 msgid "Clear interpretation"
-msgstr ""
+msgstr "ລົບລ້າງການຕີຄວາມ"
 
 msgid "Write new interpretation"
 msgstr ""
 
 msgid "Interpretations"
-msgstr ""
+msgstr "ການແປຂໍ້ມູນ"
 
 msgid "chart"
 msgstr ""

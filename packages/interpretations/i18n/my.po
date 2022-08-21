@@ -1,9 +1,15 @@
 # 
+# Translators:
+# Viktor Varland <viktor@dhis2.org>, 2022
+# Wanda <wanda@frontlineaids.org>, 2022
+# phil_dhis2, 2022
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2018-07-04T08:51:47.874Z\n"
 "PO-Revision-Date: 2022-08-21 23:24+0000\n"
+"Last-Translator: phil_dhis2, 2022\n"
 "Language-Team: Burmese (https://www.transifex.com/hisp-uio/teams/100509/my/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -15,7 +21,7 @@ msgid "No description"
 msgstr ""
 
 msgid "None"
-msgstr ""
+msgstr "တစ်ခုမှမဟုတ်"
 
 msgid "Read"
 msgstr ""
@@ -24,7 +30,7 @@ msgid "Read/Write"
 msgstr ""
 
 msgid "Unknown"
-msgstr ""
+msgstr "မသိပါ"
 
 msgid "Public"
 msgstr ""
@@ -39,7 +45,7 @@ msgid "Subscribe to this {{object}} and start receiving notifications"
 msgstr ""
 
 msgid "Details"
-msgstr ""
+msgstr "အသေးစိတ်များ"
 
 msgid "Owner"
 msgstr ""
@@ -48,7 +54,7 @@ msgid "Created"
 msgstr ""
 
 msgid "Last updated"
-msgstr ""
+msgstr "နောက်ဆုံး အသစ်ဆက်ဆက်"
 
 msgid "Views"
 msgstr ""
@@ -57,34 +63,34 @@ msgid "Sharing"
 msgstr ""
 
 msgid "OK"
-msgstr ""
+msgstr "လက်ခံသည်"
 
 msgid "Post comment"
 msgstr ""
 
 msgid "Cancel"
-msgstr ""
+msgstr "ပယ်ဖျက်သည်"
 
 msgid "Are you sure you want to remove this interpretation?"
 msgstr ""
 
 msgid "Unlike"
-msgstr ""
+msgstr "Больше не нравится"
 
 msgid "Like"
-msgstr ""
+msgstr "Нравится"
 
 msgid "Reply"
-msgstr ""
+msgstr "အကြောင်းပြန်သည်"
 
 msgid "Edit"
-msgstr ""
+msgstr "တည်းဖြတ်သည်"
 
 msgid "Share"
 msgstr ""
 
 msgid "Delete"
-msgstr ""
+msgstr "ဖျက်ဆီးသည်"
 
 msgid "people like this"
 msgstr ""
@@ -108,7 +114,7 @@ msgid "Save & share"
 msgstr ""
 
 msgid "Save"
-msgstr ""
+msgstr "သိမ်းဆည်းသည်"
 
 msgid "No interpretations"
 msgstr ""
@@ -120,7 +126,7 @@ msgid "Write new interpretation"
 msgstr ""
 
 msgid "Interpretations"
-msgstr ""
+msgstr "ဘာသာပြန်ခြင်းများ"
 
 msgid "chart"
 msgstr ""

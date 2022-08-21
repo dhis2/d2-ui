@@ -16,130 +16,132 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "No description"
-msgstr ""
+msgstr "Тавсиф йўқ"
 
 msgid "None"
-msgstr ""
+msgstr "Йўқ"
 
 msgid "Read"
-msgstr ""
+msgstr "Ўқинг"
 
 msgid "Read/Write"
-msgstr ""
+msgstr "Ўқинг/Ёзинг"
 
 msgid "Unknown"
-msgstr ""
+msgstr "Номаълум"
 
 msgid "Public"
 msgstr "Оммавий"
 
 msgid "user groups"
-msgstr ""
+msgstr "фойдаланувчи гуруҳлари"
 
 msgid "Unsubscribe from this {{object}} and stop receiving notifications"
 msgstr ""
+"Ушбу {{объект}} га обунани бекор қилинг ва билдиришномалар олинишини "
+"тўхтатинг"
 
 msgid "Subscribe to this {{object}} and start receiving notifications"
-msgstr ""
+msgstr "Ушбу {{объект}} га обуна бўлинг ва билдиришномалар олишни бошланг"
 
 msgid "Details"
-msgstr ""
+msgstr "Тафсилотлари"
 
 msgid "Owner"
-msgstr ""
+msgstr "Эгаси, тегишлилик"
 
 msgid "Created"
-msgstr ""
+msgstr "Яратилган"
 
 msgid "Last updated"
-msgstr ""
+msgstr "Охирги янгиланган"
 
 msgid "Views"
-msgstr ""
+msgstr "Кўришлар"
 
 msgid "Sharing"
-msgstr ""
+msgstr "Улашиш"
 
 msgid "OK"
-msgstr ""
+msgstr "ОК"
 
 msgid "Post comment"
 msgstr "Шарҳ қолдириш"
 
 msgid "Cancel"
-msgstr ""
+msgstr "Бекор қилиш"
 
 msgid "Are you sure you want to remove this interpretation?"
-msgstr ""
+msgstr "Ҳақиқатдан ҳам ушбу талқинни олиб ташламоқчимисиз?"
 
 msgid "Unlike"
 msgstr "Аксинча"
 
 msgid "Like"
-msgstr ""
+msgstr "Каби, ўхшаш"
 
 msgid "Reply"
-msgstr ""
+msgstr "Изоҳ"
 
 msgid "Edit"
-msgstr ""
+msgstr "Таҳрирлаш"
 
 msgid "Share"
 msgstr "Улашиш"
 
 msgid "Delete"
-msgstr ""
+msgstr "Ўчириб ташлаш"
 
 msgid "people like this"
-msgstr ""
+msgstr "бу каби одамлар"
 
 msgid "people commented"
-msgstr ""
+msgstr "одамлар фикр билдирган"
 
 msgid "Are you sure you want to remove this comment?"
-msgstr ""
+msgstr "Ҳақиқатдан ҳам ушбу шарҳни олиб ташламоқчимисиз?"
 
 msgid "more comments"
-msgstr ""
+msgstr "кўпроқ шарҳлар"
 
 msgid "Edit interpretation"
-msgstr ""
+msgstr "Талқинни таҳрирланг"
 
 msgid "Create interpretation"
-msgstr ""
+msgstr "Талқинни яратинг"
 
 msgid "Save & share"
-msgstr ""
+msgstr "Сақланг ва улашинг"
 
 msgid "Save"
-msgstr ""
+msgstr "Сақлаш"
 
 msgid "No interpretations"
-msgstr ""
+msgstr "Талқинлар йўқ"
 
 msgid "Clear interpretation"
-msgstr ""
+msgstr "Аниқ талқин"
 
 msgid "Write new interpretation"
-msgstr ""
+msgstr "Янги талқин ёзиш"
 
 msgid "Interpretations"
-msgstr ""
+msgstr "Талқинлар"
 
 msgid "chart"
-msgstr ""
+msgstr "диаграмма"
 
 msgid "pivot table"
-msgstr ""
+msgstr "солиштирма жадвал"
 
 msgid "map"
-msgstr ""
+msgstr "харита"
 
 msgid "event chart"
-msgstr ""
+msgstr "ҳодиса/тадбир диаграммаси"
 
 msgid "event report"
-msgstr ""
+msgstr "ҳодиса/тадбир ҳисоботи"
 
 msgid "object"
-msgstr ""
+msgstr "объект"

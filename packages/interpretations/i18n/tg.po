@@ -1,13 +1,14 @@
 # 
 # Translators:
 # Viktor Varland <viktor@dhis2.org>, 2022
+# phil_dhis2, 2022
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2018-07-04T08:51:47.874Z\n"
 "PO-Revision-Date: 2022-08-21 23:24+0000\n"
-"Last-Translator: Viktor Varland <viktor@dhis2.org>, 2022\n"
+"Last-Translator: phil_dhis2, 2022\n"
 "Language-Team: Tajik (https://www.transifex.com/hisp-uio/teams/100509/tg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,7 +20,7 @@ msgid "No description"
 msgstr ""
 
 msgid "None"
-msgstr ""
+msgstr "Ягонто"
 
 msgid "Read"
 msgstr ""
@@ -28,7 +29,7 @@ msgid "Read/Write"
 msgstr ""
 
 msgid "Unknown"
-msgstr ""
+msgstr "Номаълум"
 
 msgid "Public"
 msgstr ""
@@ -43,7 +44,7 @@ msgid "Subscribe to this {{object}} and start receiving notifications"
 msgstr ""
 
 msgid "Details"
-msgstr ""
+msgstr "Маълумоти муфассал"
 
 msgid "Owner"
 msgstr ""
@@ -52,7 +53,7 @@ msgid "Created"
 msgstr ""
 
 msgid "Last updated"
-msgstr ""
+msgstr "Навсозии охирин"
 
 msgid "Views"
 msgstr ""
@@ -61,13 +62,13 @@ msgid "Sharing"
 msgstr ""
 
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 msgid "Post comment"
 msgstr ""
 
 msgid "Cancel"
-msgstr ""
+msgstr "Бекор кардан"
 
 msgid "Are you sure you want to remove this interpretation?"
 msgstr ""
@@ -79,16 +80,16 @@ msgid "Like"
 msgstr ""
 
 msgid "Reply"
-msgstr ""
+msgstr "Ҷавоб додан"
 
 msgid "Edit"
-msgstr ""
+msgstr "Таҳрир"
 
 msgid "Share"
 msgstr "Мубодила"
 
 msgid "Delete"
-msgstr ""
+msgstr "Нест кардан"
 
 msgid "people like this"
 msgstr ""
@@ -112,7 +113,7 @@ msgid "Save & share"
 msgstr ""
 
 msgid "Save"
-msgstr ""
+msgstr "Захира кардан"
 
 msgid "No interpretations"
 msgstr ""
@@ -124,7 +125,7 @@ msgid "Write new interpretation"
 msgstr ""
 
 msgid "Interpretations"
-msgstr ""
+msgstr "Тафсирҳо"
 
 msgid "chart"
 msgstr ""

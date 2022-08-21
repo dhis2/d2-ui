@@ -1,9 +1,14 @@
 # 
+# Translators:
+# Viktor Varland <viktor@dhis2.org>, 2022
+# phil_dhis2, 2022
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2018-07-04T08:51:47.874Z\n"
 "PO-Revision-Date: 2022-08-21 23:24+0000\n"
+"Last-Translator: phil_dhis2, 2022\n"
 "Language-Team: Swedish (https://www.transifex.com/hisp-uio/teams/100509/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -12,10 +17,10 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "No description"
-msgstr ""
+msgstr "Ingen beskrivning"
 
 msgid "None"
-msgstr ""
+msgstr "Ingen"
 
 msgid "Read"
 msgstr ""
@@ -24,7 +29,7 @@ msgid "Read/Write"
 msgstr ""
 
 msgid "Unknown"
-msgstr ""
+msgstr "Okänd"
 
 msgid "Public"
 msgstr ""
@@ -39,13 +44,13 @@ msgid "Subscribe to this {{object}} and start receiving notifications"
 msgstr ""
 
 msgid "Details"
-msgstr ""
+msgstr "detaljer"
 
 msgid "Owner"
 msgstr ""
 
 msgid "Created"
-msgstr ""
+msgstr "Skapad"
 
 msgid "Last updated"
 msgstr ""
@@ -57,13 +62,13 @@ msgid "Sharing"
 msgstr ""
 
 msgid "OK"
-msgstr ""
+msgstr "ok"
 
 msgid "Post comment"
 msgstr ""
 
 msgid "Cancel"
-msgstr ""
+msgstr "Avbryt"
 
 msgid "Are you sure you want to remove this interpretation?"
 msgstr ""
@@ -75,16 +80,16 @@ msgid "Like"
 msgstr ""
 
 msgid "Reply"
-msgstr ""
+msgstr "Svar"
 
 msgid "Edit"
-msgstr ""
+msgstr "Redigera"
 
 msgid "Share"
-msgstr ""
+msgstr "Dela med sig"
 
 msgid "Delete"
-msgstr ""
+msgstr "Radera"
 
 msgid "people like this"
 msgstr ""
@@ -108,7 +113,7 @@ msgid "Save & share"
 msgstr ""
 
 msgid "Save"
-msgstr ""
+msgstr "Spara"
 
 msgid "No interpretations"
 msgstr ""
@@ -120,7 +125,7 @@ msgid "Write new interpretation"
 msgstr ""
 
 msgid "Interpretations"
-msgstr ""
+msgstr "tolkningar"
 
 msgid "chart"
 msgstr ""

@@ -1,9 +1,13 @@
 # 
+# Translators:
+# trendspotter <jirka.p@volny.cz>, 2022
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2018-07-04T08:51:47.874Z\n"
 "PO-Revision-Date: 2022-08-21 23:24+0000\n"
+"Last-Translator: trendspotter <jirka.p@volny.cz>, 2022\n"
 "Language-Team: Czech (https://www.transifex.com/hisp-uio/teams/100509/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -12,130 +16,130 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
 
 msgid "No description"
-msgstr ""
+msgstr "Bez popisu"
 
 msgid "None"
-msgstr ""
+msgstr "Žádný"
 
 msgid "Read"
-msgstr ""
+msgstr "Číst"
 
 msgid "Read/Write"
-msgstr ""
+msgstr "Číst / Zapisovat"
 
 msgid "Unknown"
-msgstr ""
+msgstr "Neznámý"
 
 msgid "Public"
-msgstr ""
+msgstr "Veřejné"
 
 msgid "user groups"
-msgstr ""
+msgstr "uživatelská skupina"
 
 msgid "Unsubscribe from this {{object}} and stop receiving notifications"
-msgstr ""
+msgstr "Odhlásit odběr tohoto {{object}} a přestat dostávat oznámení"
 
 msgid "Subscribe to this {{object}} and start receiving notifications"
-msgstr ""
+msgstr "Přihlaste se k odběru tohoto {{object}} a začněte přijímat oznámení"
 
 msgid "Details"
-msgstr ""
+msgstr "Detaily"
 
 msgid "Owner"
-msgstr ""
+msgstr "Majitel"
 
 msgid "Created"
-msgstr ""
+msgstr "Vytvořeno"
 
 msgid "Last updated"
-msgstr ""
+msgstr "Naposledy aktualizováno"
 
 msgid "Views"
-msgstr ""
+msgstr "Zobrazení"
 
 msgid "Sharing"
-msgstr ""
+msgstr "Sdílení"
 
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 msgid "Post comment"
-msgstr ""
+msgstr "Přidat komentář"
 
 msgid "Cancel"
-msgstr ""
+msgstr "Zrušit"
 
 msgid "Are you sure you want to remove this interpretation?"
-msgstr ""
+msgstr "Opravdu chcete tuto interpretaci odstranit?"
 
 msgid "Unlike"
-msgstr ""
+msgstr "Na rozdíl od"
 
 msgid "Like"
-msgstr ""
+msgstr "Jako"
 
 msgid "Reply"
-msgstr ""
+msgstr "Odpovědět"
 
 msgid "Edit"
-msgstr ""
+msgstr "Upravit"
 
 msgid "Share"
-msgstr ""
+msgstr "Sdílet"
 
 msgid "Delete"
-msgstr ""
+msgstr "Smazat"
 
 msgid "people like this"
-msgstr ""
+msgstr "lidem se to líbí"
 
 msgid "people commented"
-msgstr ""
+msgstr "lidí komentovalo"
 
 msgid "Are you sure you want to remove this comment?"
-msgstr ""
+msgstr "Opravdu chcete tento komentář odstranit?"
 
 msgid "more comments"
-msgstr ""
+msgstr "více komentářů"
 
 msgid "Edit interpretation"
-msgstr ""
+msgstr "Upravit interpretaci"
 
 msgid "Create interpretation"
-msgstr ""
+msgstr "Vytvořit interpretaci"
 
 msgid "Save & share"
-msgstr ""
+msgstr "Uložit a sdílet"
 
 msgid "Save"
-msgstr ""
+msgstr "Uložit"
 
 msgid "No interpretations"
-msgstr ""
+msgstr "Žádné interpretace"
 
 msgid "Clear interpretation"
-msgstr ""
+msgstr "Vymazat interpretaci"
 
 msgid "Write new interpretation"
-msgstr ""
+msgstr "Zapsat novou interpretaci"
 
 msgid "Interpretations"
-msgstr ""
+msgstr "Interpretace"
 
 msgid "chart"
-msgstr ""
+msgstr "graf"
 
 msgid "pivot table"
-msgstr ""
+msgstr "kontingenční tabulka"
 
 msgid "map"
-msgstr ""
+msgstr "mapa"
 
 msgid "event chart"
-msgstr ""
+msgstr "graf událostí"
 
 msgid "event report"
-msgstr ""
+msgstr "zpráva o události"
 
 msgid "object"
-msgstr ""
+msgstr "objekt"

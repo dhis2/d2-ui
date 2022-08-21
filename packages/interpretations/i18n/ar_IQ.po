@@ -1,9 +1,13 @@
 # 
+# Translators:
+# KRG HIS <antonia.bezenchek@informa.pro>, 2022
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2018-07-04T08:51:47.874Z\n"
 "PO-Revision-Date: 2022-08-21 23:24+0000\n"
+"Last-Translator: KRG HIS <antonia.bezenchek@informa.pro>, 2022\n"
 "Language-Team: Arabic (Iraq) (https://www.transifex.com/hisp-uio/teams/100509/ar_IQ/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -12,22 +16,22 @@ msgstr ""
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
 msgid "No description"
-msgstr ""
+msgstr "لا يوجد وصف"
 
 msgid "None"
-msgstr ""
+msgstr "لا شيء"
 
 msgid "Read"
-msgstr ""
+msgstr "قراءة"
 
 msgid "Read/Write"
-msgstr ""
+msgstr "قراءة/كتابة"
 
 msgid "Unknown"
 msgstr ""
 
 msgid "Public"
-msgstr ""
+msgstr "عام"
 
 msgid "user groups"
 msgstr ""
@@ -39,22 +43,22 @@ msgid "Subscribe to this {{object}} and start receiving notifications"
 msgstr ""
 
 msgid "Details"
-msgstr ""
+msgstr "التفاصيل"
 
 msgid "Owner"
-msgstr ""
+msgstr "المالك"
 
 msgid "Created"
-msgstr ""
+msgstr "تم الإنشاء"
 
 msgid "Last updated"
-msgstr ""
+msgstr "آخر تحديث"
 
 msgid "Views"
-msgstr ""
+msgstr "المشاهدات"
 
 msgid "Sharing"
-msgstr ""
+msgstr "المشاركة"
 
 msgid "OK"
 msgstr ""
@@ -63,40 +67,40 @@ msgid "Post comment"
 msgstr ""
 
 msgid "Cancel"
-msgstr ""
+msgstr "إلغاء"
 
 msgid "Are you sure you want to remove this interpretation?"
 msgstr ""
 
 msgid "Unlike"
-msgstr ""
+msgstr "إلغاء الإعجاب"
 
 msgid "Like"
-msgstr ""
+msgstr "إعجاب"
 
 msgid "Reply"
-msgstr ""
+msgstr "رد"
 
 msgid "Edit"
-msgstr ""
+msgstr "تعديل"
 
 msgid "Share"
-msgstr ""
+msgstr "مشاركة"
 
 msgid "Delete"
-msgstr ""
+msgstr "حذف"
 
 msgid "people like this"
-msgstr ""
+msgstr "أشخاص معجبون بهذا"
 
 msgid "people commented"
-msgstr ""
+msgstr "أشخاص قاموا بالتعليق"
 
 msgid "Are you sure you want to remove this comment?"
 msgstr ""
 
 msgid "more comments"
-msgstr ""
+msgstr "المزيد من التعليقات"
 
 msgid "Edit interpretation"
 msgstr ""
@@ -108,19 +112,19 @@ msgid "Save & share"
 msgstr ""
 
 msgid "Save"
-msgstr ""
+msgstr "حفظ"
 
 msgid "No interpretations"
-msgstr ""
+msgstr "لا توجد تفسيرات"
 
 msgid "Clear interpretation"
-msgstr ""
+msgstr "مسح التفسير"
 
 msgid "Write new interpretation"
 msgstr ""
 
 msgid "Interpretations"
-msgstr ""
+msgstr "التفسيرات"
 
 msgid "chart"
 msgstr ""

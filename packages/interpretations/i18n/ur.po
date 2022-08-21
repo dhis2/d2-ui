@@ -1,13 +1,14 @@
 # 
 # Translators:
 # Viktor Varland <viktor@dhis2.org>, 2022
+# phil_dhis2, 2022
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2018-07-04T08:51:47.874Z\n"
 "PO-Revision-Date: 2022-08-21 23:24+0000\n"
-"Last-Translator: Viktor Varland <viktor@dhis2.org>, 2022\n"
+"Last-Translator: phil_dhis2, 2022\n"
 "Language-Team: Urdu (https://www.transifex.com/hisp-uio/teams/100509/ur/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,19 +17,19 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "No description"
-msgstr ""
+msgstr "کوئی وضاحت نہیں"
 
 msgid "None"
-msgstr ""
+msgstr "کوئی نہں"
 
 msgid "Read"
-msgstr ""
+msgstr "پڑھو"
 
 msgid "Read/Write"
-msgstr ""
+msgstr "پڑھ لکھ"
 
 msgid "Unknown"
-msgstr ""
+msgstr "نامعلوم"
 
 msgid "Public"
 msgstr "عوام"
@@ -43,31 +44,31 @@ msgid "Subscribe to this {{object}} and start receiving notifications"
 msgstr ""
 
 msgid "Details"
-msgstr ""
+msgstr "تفصیلات"
 
 msgid "Owner"
-msgstr ""
+msgstr "مالک"
 
 msgid "Created"
-msgstr ""
+msgstr "تخلیق"
 
 msgid "Last updated"
-msgstr ""
+msgstr "آخری اپ ڈیٹ"
 
 msgid "Views"
-msgstr ""
+msgstr "مناظر"
 
 msgid "Sharing"
-msgstr ""
+msgstr "اشتراک کرنا"
 
 msgid "OK"
-msgstr ""
+msgstr "ٹھیک"
 
 msgid "Post comment"
 msgstr ""
 
 msgid "Cancel"
-msgstr ""
+msgstr "منسوخ"
 
 msgid "Are you sure you want to remove this interpretation?"
 msgstr ""
@@ -76,31 +77,31 @@ msgid "Unlike"
 msgstr "برعکس"
 
 msgid "Like"
-msgstr ""
+msgstr "کی طرح"
 
 msgid "Reply"
-msgstr ""
+msgstr "جواب"
 
 msgid "Edit"
-msgstr ""
+msgstr "ترمیم"
 
 msgid "Share"
 msgstr "بانٹیں"
 
 msgid "Delete"
-msgstr ""
+msgstr "حذف"
 
 msgid "people like this"
-msgstr ""
+msgstr "اس طرح لوگ"
 
 msgid "people commented"
-msgstr ""
+msgstr "لوگوں نے تبصرہ کیا"
 
 msgid "Are you sure you want to remove this comment?"
 msgstr ""
 
 msgid "more comments"
-msgstr ""
+msgstr "مزید تبصرے"
 
 msgid "Edit interpretation"
 msgstr ""
@@ -112,19 +113,19 @@ msgid "Save & share"
 msgstr ""
 
 msgid "Save"
-msgstr ""
+msgstr "محفوظ"
 
 msgid "No interpretations"
-msgstr ""
+msgstr "کوئی تعبیر نہیں"
 
 msgid "Clear interpretation"
-msgstr ""
+msgstr "واضح تشریح"
 
 msgid "Write new interpretation"
 msgstr ""
 
 msgid "Interpretations"
-msgstr ""
+msgstr "تشریحات"
 
 msgid "chart"
 msgstr ""

@@ -1,15 +1,15 @@
 # 
 # Translators:
 # phil_dhis2, 2022
-# easylin <lin_xd@126.com>, 2022
 # 晓东 林 <13981924470@126.com>, 2022
+# easylin <lin_xd@126.com>, 2022
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2018-07-04T08:51:47.874Z\n"
 "PO-Revision-Date: 2022-08-21 23:24+0000\n"
-"Last-Translator: 晓东 林 <13981924470@126.com>, 2022\n"
+"Last-Translator: easylin <lin_xd@126.com>, 2022\n"
 "Language-Team: Chinese (https://www.transifex.com/hisp-uio/teams/100509/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,130 +18,130 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "No description"
-msgstr ""
+msgstr "无描述"
 
 msgid "None"
-msgstr ""
+msgstr "没有"
 
 msgid "Read"
-msgstr ""
+msgstr "读"
 
 msgid "Read/Write"
-msgstr ""
+msgstr "读/写"
 
 msgid "Unknown"
-msgstr ""
+msgstr "未知"
 
 msgid "Public"
 msgstr "公众"
 
 msgid "user groups"
-msgstr ""
+msgstr "用户组"
 
 msgid "Unsubscribe from this {{object}} and stop receiving notifications"
-msgstr ""
+msgstr "取消订阅 {{object}} 并停止接收通知"
 
 msgid "Subscribe to this {{object}} and start receiving notifications"
-msgstr ""
+msgstr "订阅该 {{object}} 并开始接收通知"
 
 msgid "Details"
-msgstr ""
+msgstr "详情"
 
 msgid "Owner"
-msgstr ""
+msgstr "所有者"
 
 msgid "Created"
-msgstr ""
+msgstr "已创建"
 
 msgid "Last updated"
-msgstr ""
+msgstr "上次更新"
 
 msgid "Views"
-msgstr ""
+msgstr "查看"
 
 msgid "Sharing"
-msgstr ""
+msgstr "共享"
 
 msgid "OK"
-msgstr ""
+msgstr "好"
 
 msgid "Post comment"
 msgstr "发布备注"
 
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 msgid "Are you sure you want to remove this interpretation?"
-msgstr ""
+msgstr "你确信删除该注释？"
 
 msgid "Unlike"
 msgstr "不喜欢"
 
 msgid "Like"
-msgstr ""
+msgstr "喜欢"
 
 msgid "Reply"
-msgstr ""
+msgstr "应答"
 
 msgid "Edit"
-msgstr ""
+msgstr "编辑"
 
 msgid "Share"
 msgstr "分享"
 
 msgid "Delete"
-msgstr ""
+msgstr "删除"
 
 msgid "people like this"
-msgstr ""
+msgstr "喜欢这的人"
 
 msgid "people commented"
 msgstr "评论的人"
 
 msgid "Are you sure you want to remove this comment?"
-msgstr ""
+msgstr "你确信删除该备注？"
 
 msgid "more comments"
-msgstr ""
+msgstr "更多评论"
 
 msgid "Edit interpretation"
-msgstr ""
+msgstr "编辑注释"
 
 msgid "Create interpretation"
-msgstr ""
+msgstr "创建注释"
 
 msgid "Save & share"
-msgstr ""
+msgstr "保存并分享"
 
 msgid "Save"
-msgstr ""
+msgstr "保存"
 
 msgid "No interpretations"
-msgstr ""
+msgstr "没有注释"
 
 msgid "Clear interpretation"
-msgstr ""
+msgstr "清除注释"
 
 msgid "Write new interpretation"
-msgstr ""
+msgstr "书写新注释"
 
 msgid "Interpretations"
-msgstr ""
+msgstr "解释"
 
 msgid "chart"
-msgstr ""
+msgstr "图表"
 
 msgid "pivot table"
-msgstr ""
+msgstr "透视表"
 
 msgid "map"
-msgstr ""
+msgstr "地图"
 
 msgid "event chart"
-msgstr ""
+msgstr "事件图表"
 
 msgid "event report"
-msgstr ""
+msgstr "事件报表"
 
 msgid "object"
 msgstr "对象"

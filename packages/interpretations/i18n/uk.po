@@ -1,14 +1,16 @@
 # 
 # Translators:
+# Wanda <wanda@frontlineaids.org>, 2022
 # Viktor Varland <viktor@dhis2.org>, 2022
 # Éva Tamási, 2022
+# phil_dhis2, 2022
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2018-07-04T08:51:47.874Z\n"
 "PO-Revision-Date: 2022-08-21 23:24+0000\n"
-"Last-Translator: Éva Tamási, 2022\n"
+"Last-Translator: phil_dhis2, 2022\n"
 "Language-Team: Ukrainian (https://www.transifex.com/hisp-uio/teams/100509/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -17,130 +19,130 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
 
 msgid "No description"
-msgstr ""
+msgstr "Без опису"
 
 msgid "None"
-msgstr ""
+msgstr "Немає"
 
 msgid "Read"
-msgstr ""
+msgstr "Читати"
 
 msgid "Read/Write"
-msgstr ""
+msgstr "Читати/Писати"
 
 msgid "Unknown"
-msgstr ""
+msgstr "Невідоме"
 
 msgid "Public"
 msgstr "Загальний доступ"
 
 msgid "user groups"
-msgstr ""
+msgstr "групи користувачів"
 
 msgid "Unsubscribe from this {{object}} and stop receiving notifications"
-msgstr ""
+msgstr "Відписатися від цього {{object}} і припинити отримувати сповіщення"
 
 msgid "Subscribe to this {{object}} and start receiving notifications"
-msgstr ""
+msgstr "Підписатися на цей {{object}} і почати отримувати сповіщення"
 
 msgid "Details"
-msgstr ""
+msgstr "Деталі"
 
 msgid "Owner"
-msgstr ""
+msgstr "Власник"
 
 msgid "Created"
-msgstr ""
+msgstr "Створено"
 
 msgid "Last updated"
-msgstr ""
+msgstr "Останнє оновлення"
 
 msgid "Views"
-msgstr ""
+msgstr "Перегляди"
 
 msgid "Sharing"
-msgstr ""
+msgstr "Спільний доступ"
 
 msgid "OK"
-msgstr ""
+msgstr "ОК"
 
 msgid "Post comment"
 msgstr "Опублікувати коментар"
 
 msgid "Cancel"
-msgstr ""
+msgstr "Скасувати"
 
 msgid "Are you sure you want to remove this interpretation?"
-msgstr ""
+msgstr "Ви дійсно хочете видалити цю інтерпретацію?"
 
 msgid "Unlike"
 msgstr "Прибрати вподобання"
 
 msgid "Like"
-msgstr ""
+msgstr "Вподобати"
 
 msgid "Reply"
-msgstr ""
+msgstr "Відповісти"
 
 msgid "Edit"
-msgstr ""
+msgstr "Редагувати"
 
 msgid "Share"
 msgstr "Поділитися"
 
 msgid "Delete"
-msgstr ""
+msgstr "Видалити"
 
 msgid "people like this"
-msgstr ""
+msgstr "людям це подобається"
 
 msgid "people commented"
-msgstr ""
+msgstr "людей прокоментували"
 
 msgid "Are you sure you want to remove this comment?"
-msgstr ""
+msgstr "Ви дійсно хочете видалити цей коментар?"
 
 msgid "more comments"
-msgstr ""
+msgstr "більше коментарів"
 
 msgid "Edit interpretation"
-msgstr ""
+msgstr "Редагувати інтерпретацію"
 
 msgid "Create interpretation"
-msgstr ""
+msgstr "Створити інтерпретацію"
 
 msgid "Save & share"
-msgstr ""
+msgstr "Зберегти та поділитися"
 
 msgid "Save"
-msgstr ""
+msgstr "Зберегти"
 
 msgid "No interpretations"
-msgstr ""
+msgstr "Немає інтерпретацій"
 
 msgid "Clear interpretation"
-msgstr ""
+msgstr "Очистити інтерпретацію"
 
 msgid "Write new interpretation"
-msgstr ""
+msgstr "Написати нову інтерпретацію"
 
 msgid "Interpretations"
-msgstr ""
+msgstr "Інтерпретації"
 
 msgid "chart"
-msgstr ""
+msgstr "діаграма"
 
 msgid "pivot table"
-msgstr ""
+msgstr "зведена таблиця"
 
 msgid "map"
-msgstr ""
+msgstr "мапа"
 
 msgid "event chart"
-msgstr ""
+msgstr "діаграма подій"
 
 msgid "event report"
-msgstr ""
+msgstr "звіт про подію"
 
 msgid "object"
-msgstr ""
+msgstr "об'єкт"
