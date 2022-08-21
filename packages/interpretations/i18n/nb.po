@@ -1,14 +1,9 @@
 # 
-# Translators:
-# Caroline Hesthagen Holen <caroline@devotta.no>, 2020
-# Karoline Tufte Lien <karoline@dhis2.org>, 2020
-# 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2018-07-04T08:51:47.874Z\n"
-"PO-Revision-Date: 2019-08-13 20:28+0000\n"
-"Last-Translator: Karoline Tufte Lien <karoline@dhis2.org>, 2020\n"
+"PO-Revision-Date: 2022-08-21 23:24+0000\n"
 "Language-Team: Norwegian Bokmål (https://www.transifex.com/hisp-uio/teams/100509/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -17,130 +12,130 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "No description"
-msgstr "Ingen beskrivelse"
+msgstr ""
 
 msgid "None"
-msgstr "Ingen"
+msgstr ""
 
 msgid "Read"
-msgstr "Lese"
+msgstr ""
 
 msgid "Read/Write"
-msgstr "Lese/Skrive"
+msgstr ""
 
 msgid "Unknown"
-msgstr "Ukjent"
+msgstr ""
 
 msgid "Public"
-msgstr "Offentlig"
+msgstr ""
 
 msgid "user groups"
-msgstr "brukergrupper"
+msgstr ""
 
 msgid "Unsubscribe from this {{object}} and stop receiving notifications"
-msgstr "Avslutt abonnementet på dette {{objekt}} og slutt å motta varsler"
+msgstr ""
 
 msgid "Subscribe to this {{object}} and start receiving notifications"
-msgstr "Abonner på dette {{objekt}} og begynn å motta varsler"
+msgstr ""
 
 msgid "Details"
-msgstr "Detaljer"
+msgstr ""
 
 msgid "Owner"
-msgstr "Eier"
+msgstr ""
 
 msgid "Created"
-msgstr "Opprettet"
+msgstr ""
 
 msgid "Last updated"
-msgstr "Sist oppdatert"
+msgstr ""
 
 msgid "Views"
-msgstr "Visninger"
+msgstr ""
 
 msgid "Sharing"
-msgstr "Deling"
+msgstr ""
 
 msgid "OK"
-msgstr "OK"
+msgstr ""
 
 msgid "Post comment"
-msgstr "Legg inn kommentar"
+msgstr ""
 
 msgid "Cancel"
-msgstr "Avbryt"
+msgstr ""
 
 msgid "Are you sure you want to remove this interpretation?"
-msgstr "Er du sikker på at du vil slette denne tolkningen?"
+msgstr ""
 
 msgid "Unlike"
-msgstr "Ikke lik"
+msgstr ""
 
 msgid "Like"
-msgstr "Like"
+msgstr ""
 
 msgid "Reply"
-msgstr "Svar"
+msgstr ""
 
 msgid "Edit"
-msgstr "Rediger"
+msgstr ""
 
 msgid "Share"
-msgstr "Del"
+msgstr ""
 
 msgid "Delete"
-msgstr "Slett"
+msgstr ""
 
 msgid "people like this"
-msgstr "personer liker dette"
+msgstr ""
 
 msgid "people commented"
-msgstr "personer kommenterte"
+msgstr ""
 
 msgid "Are you sure you want to remove this comment?"
-msgstr "Er du sikker på at du vil slette denne kommentaren?"
+msgstr ""
 
 msgid "more comments"
-msgstr "flere kommentarer"
+msgstr ""
 
 msgid "Edit interpretation"
-msgstr "Rediger tolkning"
+msgstr ""
 
 msgid "Create interpretation"
-msgstr "Opprette tolkning"
+msgstr ""
 
 msgid "Save & share"
-msgstr "Lagre og del"
+msgstr ""
 
 msgid "Save"
-msgstr "Lagre"
+msgstr ""
 
 msgid "No interpretations"
-msgstr "Ingen tolkninger"
+msgstr ""
 
 msgid "Clear interpretation"
-msgstr "Nullstill tolkning"
+msgstr ""
 
 msgid "Write new interpretation"
-msgstr "Skriv ny tolkning"
+msgstr ""
 
 msgid "Interpretations"
-msgstr "Tolkninger"
+msgstr ""
 
 msgid "chart"
-msgstr "diagram"
+msgstr ""
 
 msgid "pivot table"
-msgstr "pivottabell"
+msgstr ""
 
 msgid "map"
-msgstr "kart"
+msgstr ""
 
 msgid "event chart"
-msgstr "hendelsesdiagram"
+msgstr ""
 
 msgid "event report"
-msgstr "hendelsesrapport"
+msgstr ""
 
 msgid "object"
-msgstr "objekt"
+msgstr ""

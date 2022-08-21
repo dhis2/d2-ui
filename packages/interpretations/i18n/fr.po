@@ -1,17 +1,9 @@
 # 
-# Translators:
-# Viktor Varland <viktor@dhis2.org>, 2019
-# phil_dhis2, 2019
-# Karoline Tufte Lien <karoline@dhis2.org>, 2020
-# Edem Kossi <ekossi@hispwca.org>, 2020
-# Gabriela Rodriguez <grodriguezcoronado@gmail.com>, 2020
-# 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2018-07-04T08:51:47.874Z\n"
-"PO-Revision-Date: 2019-08-13 20:28+0000\n"
-"Last-Translator: Gabriela Rodriguez <grodriguezcoronado@gmail.com>, 2020\n"
+"PO-Revision-Date: 2022-08-21 23:24+0000\n"
 "Language-Team: French (https://www.transifex.com/hisp-uio/teams/100509/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,132 +12,130 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 msgid "No description"
-msgstr "Aucune description"
+msgstr ""
 
 msgid "None"
-msgstr "Aucun"
+msgstr ""
 
 msgid "Read"
-msgstr "Lecture"
+msgstr ""
 
 msgid "Read/Write"
-msgstr "Lecture/Écriture"
+msgstr ""
 
 msgid "Unknown"
-msgstr "Inconnu"
+msgstr ""
 
 msgid "Public"
-msgstr "Publique"
+msgstr ""
 
 msgid "user groups"
-msgstr "groupes d'utilisateurs"
+msgstr ""
 
 msgid "Unsubscribe from this {{object}} and stop receiving notifications"
 msgstr ""
-"Se désinscrire de cet {{object}} et cesser de recevoir des notifications"
 
 msgid "Subscribe to this {{object}} and start receiving notifications"
 msgstr ""
-"S'abonner à cet {{object}} et commencer par recevoir des notifications"
 
 msgid "Details"
-msgstr "Détails"
+msgstr ""
 
 msgid "Owner"
-msgstr "Propriétaire"
+msgstr ""
 
 msgid "Created"
-msgstr "Créé le"
+msgstr ""
 
 msgid "Last updated"
-msgstr "Dernière mise à jour"
+msgstr ""
 
 msgid "Views"
-msgstr "Vues"
+msgstr ""
 
 msgid "Sharing"
-msgstr "Partage"
+msgstr ""
 
 msgid "OK"
-msgstr "Ok"
+msgstr ""
 
 msgid "Post comment"
-msgstr "Publier un commentaire"
+msgstr ""
 
 msgid "Cancel"
-msgstr "Annuler"
+msgstr ""
 
 msgid "Are you sure you want to remove this interpretation?"
-msgstr "Etes-vous sûr de vouloir supprimer cette interprétation?"
+msgstr ""
 
 msgid "Unlike"
-msgstr "Je n'aime plus"
+msgstr ""
 
 msgid "Like"
-msgstr "J'aime"
+msgstr ""
 
 msgid "Reply"
-msgstr "Répondre"
+msgstr ""
 
 msgid "Edit"
-msgstr "Editer"
+msgstr ""
 
 msgid "Share"
-msgstr "Partager"
+msgstr ""
 
 msgid "Delete"
-msgstr "Supprimer"
+msgstr ""
 
 msgid "people like this"
-msgstr "personnes aiment ceci"
+msgstr ""
 
 msgid "people commented"
-msgstr "personnes ont commenté"
+msgstr ""
 
 msgid "Are you sure you want to remove this comment?"
-msgstr "Etes-vous sûr de vouloir supprimer ce commentaire?"
+msgstr ""
 
 msgid "more comments"
-msgstr "Plus de commentaires"
+msgstr ""
 
 msgid "Edit interpretation"
-msgstr "Modifier l'interprétation"
+msgstr ""
 
 msgid "Create interpretation"
-msgstr "Créer une interprétation"
+msgstr ""
 
 msgid "Save & share"
-msgstr "Sauver et partager"
+msgstr ""
 
 msgid "Save"
-msgstr "Enregistrer"
+msgstr ""
 
 msgid "No interpretations"
-msgstr "Aucune interprétation"
+msgstr ""
 
 msgid "Clear interpretation"
-msgstr "Effacer interprétation"
+msgstr ""
 
 msgid "Write new interpretation"
-msgstr "Écrire une nouvelle interprétation"
+msgstr ""
 
 msgid "Interpretations"
-msgstr "interprétations"
+msgstr ""
 
 msgid "chart"
-msgstr "graphique"
+msgstr ""
 
 msgid "pivot table"
-msgstr "tableau croisé dynamique"
+msgstr ""
 
 msgid "map"
-msgstr "carte"
+msgstr ""
 
 msgid "event chart"
-msgstr "tableau d'événements"
+msgstr ""
 
 msgid "event report"
-msgstr "Rapport d'évènements"
+msgstr ""
 
 msgid "object"
-msgstr "objet"
+msgstr ""

@@ -1,16 +1,15 @@
 # 
 # Translators:
-# Viktor Varland <viktor@dhis2.org>, 2019
-# phil_dhis2, 2019
-# 晓东 林 <13981924470@126.com>, 2020
-# easylin <lin_xd@126.com>, 2020
+# phil_dhis2, 2022
+# easylin <lin_xd@126.com>, 2022
+# 晓东 林 <13981924470@126.com>, 2022
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2018-07-04T08:51:47.874Z\n"
-"PO-Revision-Date: 2019-08-13 20:28+0000\n"
-"Last-Translator: easylin <lin_xd@126.com>, 2020\n"
+"PO-Revision-Date: 2022-08-21 23:24+0000\n"
+"Last-Translator: 晓东 林 <13981924470@126.com>, 2022\n"
 "Language-Team: Chinese (https://www.transifex.com/hisp-uio/teams/100509/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,130 +18,130 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "No description"
-msgstr "没有描述"
+msgstr ""
 
 msgid "None"
-msgstr "无"
+msgstr ""
 
 msgid "Read"
-msgstr "Read"
+msgstr ""
 
 msgid "Read/Write"
-msgstr "读/写"
+msgstr ""
 
 msgid "Unknown"
-msgstr "未知"
+msgstr ""
 
 msgid "Public"
-msgstr "Public"
+msgstr "公众"
 
 msgid "user groups"
-msgstr "用户组"
+msgstr ""
 
 msgid "Unsubscribe from this {{object}} and stop receiving notifications"
-msgstr "取消订阅 {{object}} 并停止接收通知"
+msgstr ""
 
 msgid "Subscribe to this {{object}} and start receiving notifications"
-msgstr "订阅该 {{object}} 并开始接收通知"
+msgstr ""
 
 msgid "Details"
-msgstr "详情"
+msgstr ""
 
 msgid "Owner"
-msgstr "所有者"
+msgstr ""
 
 msgid "Created"
-msgstr "已创建"
+msgstr ""
 
 msgid "Last updated"
-msgstr "上次更新"
+msgstr ""
 
 msgid "Views"
-msgstr "查看"
+msgstr ""
 
 msgid "Sharing"
-msgstr "共享"
+msgstr ""
 
 msgid "OK"
-msgstr "OK"
+msgstr ""
 
 msgid "Post comment"
 msgstr "发布备注"
 
 msgid "Cancel"
-msgstr "取消"
+msgstr ""
 
 msgid "Are you sure you want to remove this interpretation?"
-msgstr "你确信删除该注释？"
+msgstr ""
 
 msgid "Unlike"
 msgstr "不喜欢"
 
 msgid "Like"
-msgstr "如"
+msgstr ""
 
 msgid "Reply"
-msgstr "回复"
+msgstr ""
 
 msgid "Edit"
-msgstr "编辑"
+msgstr ""
 
 msgid "Share"
 msgstr "分享"
 
 msgid "Delete"
-msgstr "删除"
+msgstr ""
 
 msgid "people like this"
-msgstr "喜欢的人群"
+msgstr ""
 
 msgid "people commented"
-msgstr "备注的人"
+msgstr "评论的人"
 
 msgid "Are you sure you want to remove this comment?"
-msgstr "你确信删除该备注？"
+msgstr ""
 
 msgid "more comments"
-msgstr "更多备注"
+msgstr ""
 
 msgid "Edit interpretation"
-msgstr "编辑注释"
+msgstr ""
 
 msgid "Create interpretation"
-msgstr "创建注释"
+msgstr ""
 
 msgid "Save & share"
-msgstr "保存并分享"
+msgstr ""
 
 msgid "Save"
-msgstr "保存"
+msgstr ""
 
 msgid "No interpretations"
-msgstr "无注解"
+msgstr ""
 
 msgid "Clear interpretation"
-msgstr "清除注释"
+msgstr ""
 
 msgid "Write new interpretation"
-msgstr "书写新注释"
+msgstr ""
 
 msgid "Interpretations"
-msgstr "注释"
+msgstr ""
 
 msgid "chart"
-msgstr "图表"
+msgstr ""
 
 msgid "pivot table"
-msgstr "透视表"
+msgstr ""
 
 msgid "map"
-msgstr "地图"
+msgstr ""
 
 msgid "event chart"
-msgstr "事件图表"
+msgstr ""
 
 msgid "event report"
-msgstr "事件报表"
+msgstr ""
 
 msgid "object"
 msgstr "对象"

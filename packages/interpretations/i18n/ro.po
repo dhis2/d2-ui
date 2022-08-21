@@ -1,13 +1,9 @@
 # 
-# Translators:
-# Valeriu Plesca <vplesca@gmail.com>, 2022
-# 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2018-07-04T08:51:47.874Z\n"
-"PO-Revision-Date: 2019-08-13 20:28+0000\n"
-"Last-Translator: Valeriu Plesca <vplesca@gmail.com>, 2022\n"
+"PO-Revision-Date: 2022-08-21 23:24+0000\n"
 "Language-Team: Romanian (https://www.transifex.com/hisp-uio/teams/100509/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -52,7 +48,7 @@ msgid "Created"
 msgstr ""
 
 msgid "Last updated"
-msgstr "Ultima actualizare"
+msgstr ""
 
 msgid "Views"
 msgstr ""
@@ -67,7 +63,7 @@ msgid "Post comment"
 msgstr ""
 
 msgid "Cancel"
-msgstr "Anulare"
+msgstr ""
 
 msgid "Are you sure you want to remove this interpretation?"
 msgstr ""
@@ -82,13 +78,13 @@ msgid "Reply"
 msgstr ""
 
 msgid "Edit"
-msgstr "Editare"
+msgstr ""
 
 msgid "Share"
-msgstr "Partajare"
+msgstr ""
 
 msgid "Delete"
-msgstr "Lichidare"
+msgstr ""
 
 msgid "people like this"
 msgstr ""
@@ -112,7 +108,7 @@ msgid "Save & share"
 msgstr ""
 
 msgid "Save"
-msgstr "salva"
+msgstr ""
 
 msgid "No interpretations"
 msgstr ""

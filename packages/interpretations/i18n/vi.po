@@ -1,15 +1,14 @@
 # 
 # Translators:
-# phil_dhis2, 2019
-# Viktor Varland <viktor@dhis2.org>, 2019
-# Mai Nguyen <thanhmai.jica@gmail.com>, 2020
+# Viktor Varland <viktor@dhis2.org>, 2022
+# Mai Nguyen <thanhmai.jica@gmail.com>, 2022
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2018-07-04T08:51:47.874Z\n"
-"PO-Revision-Date: 2019-08-13 20:28+0000\n"
-"Last-Translator: Mai Nguyen <thanhmai.jica@gmail.com>, 2020\n"
+"PO-Revision-Date: 2022-08-21 23:24+0000\n"
+"Last-Translator: Mai Nguyen <thanhmai.jica@gmail.com>, 2022\n"
 "Language-Team: Vietnamese (https://www.transifex.com/hisp-uio/teams/100509/vi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,130 +17,130 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "No description"
-msgstr "Không mô tả"
+msgstr ""
 
 msgid "None"
-msgstr "Không"
+msgstr ""
 
 msgid "Read"
-msgstr "Đọc"
+msgstr ""
 
 msgid "Read/Write"
-msgstr "Đọc/Ghi"
+msgstr ""
 
 msgid "Unknown"
-msgstr "Không rõ"
+msgstr ""
 
 msgid "Public"
 msgstr "Công khai"
 
 msgid "user groups"
-msgstr "Các nhóm người dùng"
+msgstr ""
 
 msgid "Unsubscribe from this {{object}} and stop receiving notifications"
-msgstr "Hủy đăng ký {{đối tượng}} này và ngừng nhận thông báo"
+msgstr ""
 
 msgid "Subscribe to this {{object}} and start receiving notifications"
-msgstr "Đăng ký {{đối tượng}} này và bắt đầu nhận thông báo"
+msgstr ""
 
 msgid "Details"
-msgstr "Chi tiết"
+msgstr ""
 
 msgid "Owner"
-msgstr "Sở hữu"
+msgstr ""
 
 msgid "Created"
-msgstr "Đã tạo"
+msgstr ""
 
 msgid "Last updated"
-msgstr "Lần cập nhật cuối"
+msgstr ""
 
 msgid "Views"
-msgstr "Lượt xem"
+msgstr ""
 
 msgid "Sharing"
-msgstr "Đang chia sẻ"
+msgstr ""
 
 msgid "OK"
-msgstr "Có"
+msgstr ""
 
 msgid "Post comment"
 msgstr "Đăng bình luận"
 
 msgid "Cancel"
-msgstr "Hủy"
+msgstr ""
 
 msgid "Are you sure you want to remove this interpretation?"
-msgstr "Bạn có chắc chắn muốn xóa phần diễn giải này không?"
+msgstr ""
 
 msgid "Unlike"
 msgstr "Không thích"
 
 msgid "Like"
-msgstr "Thích"
+msgstr ""
 
 msgid "Reply"
-msgstr "Trả lời"
+msgstr ""
 
 msgid "Edit"
-msgstr "Chỉnh sửa"
+msgstr ""
 
 msgid "Share"
 msgstr "Chia sẻ"
 
 msgid "Delete"
-msgstr "Xóa"
+msgstr ""
 
 msgid "people like this"
-msgstr "người thích"
+msgstr ""
 
 msgid "people commented"
 msgstr "người đã bình luận"
 
 msgid "Are you sure you want to remove this comment?"
-msgstr "Bạn có chắc mình muốn xóa bình luận này không?"
+msgstr ""
 
 msgid "more comments"
-msgstr "hiện thêm bình luận"
+msgstr ""
 
 msgid "Edit interpretation"
-msgstr "Chỉnh sửa phần diễn giải"
+msgstr ""
 
 msgid "Create interpretation"
-msgstr "Tạo diễn giải"
+msgstr ""
 
 msgid "Save & share"
-msgstr "Lưu và chia sẻ"
+msgstr ""
 
 msgid "Save"
-msgstr "Lưu lại"
+msgstr ""
 
 msgid "No interpretations"
-msgstr "Không có diễn dịch"
+msgstr ""
 
 msgid "Clear interpretation"
-msgstr "Xóa diễn dịch"
+msgstr ""
 
 msgid "Write new interpretation"
-msgstr "Viết diễn giải mới"
+msgstr ""
 
 msgid "Interpretations"
-msgstr "Diễn giải báo cáo"
+msgstr ""
 
 msgid "chart"
-msgstr "Biểu đồ"
+msgstr ""
 
 msgid "pivot table"
-msgstr "bảng xoay"
+msgstr ""
 
 msgid "map"
-msgstr "bản đồ"
+msgstr ""
 
 msgid "event chart"
-msgstr "biểu đồ sự kiện"
+msgstr ""
 
 msgid "event report"
-msgstr "báo cáo sự kiện"
+msgstr ""
 
 msgid "object"
 msgstr "đối tượng"

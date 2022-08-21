@@ -1,13 +1,13 @@
 # 
 # Translators:
-# Yury Rogachev <yury@dhis2.org>, 2021
+# Yury Rogachev <yury@dhis2.org>, 2022
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2018-10-17T15:15:12.003Z\n"
-"PO-Revision-Date: 2019-08-13 20:28+0000\n"
-"Last-Translator: Yury Rogachev <yury@dhis2.org>, 2021\n"
+"PO-Revision-Date: 2022-08-21 23:24+0000\n"
+"Last-Translator: Yury Rogachev <yury@dhis2.org>, 2022\n"
 "Language-Team: Uzbek (Latin) (https://www.transifex.com/hisp-uio/teams/100509/uz@Latn/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,7 +22,7 @@ msgid "Hide"
 msgstr "Berkitish"
 
 msgid "Update"
-msgstr "Yangilash"
+msgstr "Янгилаш"
 
 msgid "Level"
 msgstr "Daraja"
@@ -31,16 +31,16 @@ msgid "Select a level"
 msgstr "Pogʼonani tanlang"
 
 msgid "Group"
-msgstr "Guruh"
+msgstr "Гуруҳ"
 
 msgid "Select a group"
 msgstr "Guruhni tanlang"
 
 msgid "User organisation unit"
-msgstr "Tashkiliy boʼlim foydalanuvchisi"
+msgstr "Ташкилий бўлим фойдаланувчиси"
 
 msgid "User sub-units"
-msgstr "Foydalanuvchiga boʼysunuvchi birliklar"
+msgstr "Фойдаланувчига бўйсунувчи бирликлар"
 
 msgid "User sub-x2-units"
-msgstr "Foydalanuvchiga boʼysunuvchi 2 darajali birliklar"
+msgstr "Фойдаланувчига бўйсунувчи 2 даражали бирликлар"

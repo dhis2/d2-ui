@@ -1,13 +1,13 @@
 # 
 # Translators:
-# Ibatov <ibatovk@who.int>, 2021
+# Ibatov <ibatovk@who.int>, 2022
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2018-07-04T08:51:47.874Z\n"
-"PO-Revision-Date: 2019-08-13 20:28+0000\n"
-"Last-Translator: Ibatov <ibatovk@who.int>, 2021\n"
+"PO-Revision-Date: 2022-08-21 23:24+0000\n"
+"Last-Translator: Ibatov <ibatovk@who.int>, 2022\n"
 "Language-Team: Uzbek (Cyrillic) (https://www.transifex.com/hisp-uio/teams/100509/uz@Cyrl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,132 +16,130 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "No description"
-msgstr "Тавсиф йўқ"
+msgstr ""
 
 msgid "None"
-msgstr "Йўқ"
+msgstr ""
 
 msgid "Read"
-msgstr "Ўқинг"
+msgstr ""
 
 msgid "Read/Write"
-msgstr "Ўқинг/Ёзинг"
+msgstr ""
 
 msgid "Unknown"
-msgstr "Номаълум"
+msgstr ""
 
 msgid "Public"
 msgstr "Оммавий"
 
 msgid "user groups"
-msgstr "фойдаланувчи гуруҳлари"
+msgstr ""
 
 msgid "Unsubscribe from this {{object}} and stop receiving notifications"
 msgstr ""
-"Ушбу {{объект}} га обунани бекор қилинг ва билдиришномалар олинишини "
-"тўхтатинг"
 
 msgid "Subscribe to this {{object}} and start receiving notifications"
-msgstr "Ушбу {{объект}} га обуна бўлинг ва билдиришномалар олишни бошланг"
+msgstr ""
 
 msgid "Details"
-msgstr "Тафсилотлари"
+msgstr ""
 
 msgid "Owner"
-msgstr "Эгаси, тегишлилик"
+msgstr ""
 
 msgid "Created"
-msgstr "Яратилди"
+msgstr ""
 
 msgid "Last updated"
-msgstr "Охирги янгиланган"
+msgstr ""
 
 msgid "Views"
-msgstr "Кўришлар"
+msgstr ""
 
 msgid "Sharing"
-msgstr "Улашиш"
+msgstr ""
 
 msgid "OK"
-msgstr "ОК"
+msgstr ""
 
 msgid "Post comment"
 msgstr "Шарҳ қолдириш"
 
 msgid "Cancel"
-msgstr "Бекор қилиш"
+msgstr ""
 
 msgid "Are you sure you want to remove this interpretation?"
-msgstr "Ҳақиқатдан ҳам ушбу талқинни олиб ташламоқчимисиз?"
+msgstr ""
 
 msgid "Unlike"
 msgstr "Аксинча"
 
 msgid "Like"
-msgstr "Каби, ўхшаш"
+msgstr ""
 
 msgid "Reply"
-msgstr "Жавоб"
+msgstr ""
 
 msgid "Edit"
-msgstr "Таҳрирлаш"
+msgstr ""
 
 msgid "Share"
 msgstr "Улашиш"
 
 msgid "Delete"
-msgstr "Ўчириб ташлаш"
+msgstr ""
 
 msgid "people like this"
-msgstr "бу каби одамлар"
+msgstr ""
 
 msgid "people commented"
-msgstr "одамлар фикр билдирган"
+msgstr ""
 
 msgid "Are you sure you want to remove this comment?"
-msgstr "Ҳақиқатдан ҳам ушбу шарҳни олиб ташламоқчимисиз?"
+msgstr ""
 
 msgid "more comments"
-msgstr "кўпроқ шарҳлар"
+msgstr ""
 
 msgid "Edit interpretation"
-msgstr "Талқинни таҳрирланг"
+msgstr ""
 
 msgid "Create interpretation"
-msgstr "Талқинни яратинг"
+msgstr ""
 
 msgid "Save & share"
-msgstr "Сақланг ва улашинг"
+msgstr ""
 
 msgid "Save"
-msgstr "Сақлаш"
+msgstr ""
 
 msgid "No interpretations"
-msgstr "Талқинлар йўқ"
+msgstr ""
 
 msgid "Clear interpretation"
-msgstr "Талқин тозалансин"
+msgstr ""
 
 msgid "Write new interpretation"
-msgstr "Янги талқин ёзиш"
+msgstr ""
 
 msgid "Interpretations"
-msgstr "Шарҳлар"
+msgstr ""
 
 msgid "chart"
-msgstr "диаграмма"
+msgstr ""
 
 msgid "pivot table"
-msgstr "солиштирма жадвал"
+msgstr ""
 
 msgid "map"
-msgstr "харита"
+msgstr ""
 
 msgid "event chart"
-msgstr "ҳодиса/тадбир диаграммаси"
+msgstr ""
 
 msgid "event report"
-msgstr "ҳодиса/тадбир ҳисоботи"
+msgstr ""
 
 msgid "object"
-msgstr "объект"
+msgstr ""

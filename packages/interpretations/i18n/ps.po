@@ -1,14 +1,9 @@
 # 
-# Translators:
-# phil_dhis2, 2019
-# Viktor Varland <viktor@dhis2.org>, 2019
-# 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2018-07-04T08:51:47.874Z\n"
-"PO-Revision-Date: 2019-08-13 20:28+0000\n"
-"Last-Translator: Viktor Varland <viktor@dhis2.org>, 2019\n"
+"PO-Revision-Date: 2022-08-21 23:24+0000\n"
 "Language-Team: Pashto (https://www.transifex.com/hisp-uio/teams/100509/ps/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -17,22 +12,22 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "No description"
-msgstr "هېڅ ډول تشریح نه لري"
+msgstr ""
 
 msgid "None"
-msgstr "هېڅ یو"
+msgstr ""
 
 msgid "Read"
-msgstr "ویې لولئ"
+msgstr ""
 
 msgid "Read/Write"
-msgstr "ویې لولئ / ویې لیکئ"
+msgstr ""
 
 msgid "Unknown"
-msgstr "ناپېژنده"
+msgstr ""
 
 msgid "Public"
-msgstr "عمومي"
+msgstr ""
 
 msgid "user groups"
 msgstr ""
@@ -44,64 +39,64 @@ msgid "Subscribe to this {{object}} and start receiving notifications"
 msgstr ""
 
 msgid "Details"
-msgstr "جزیات [ ژباړه ـ جزیات ]"
+msgstr ""
 
 msgid "Owner"
-msgstr "مالک"
+msgstr ""
 
 msgid "Created"
-msgstr "ایجاد شوی دی"
+msgstr ""
 
 msgid "Last updated"
-msgstr "د وروستي ځل لپاره تجدید شوې"
+msgstr ""
 
 msgid "Views"
-msgstr "کتنې"
+msgstr ""
 
 msgid "Sharing"
-msgstr "د شریکېدو په حال کې"
+msgstr ""
 
 msgid "OK"
-msgstr "سم دی"
+msgstr ""
 
 msgid "Post comment"
 msgstr ""
 
 msgid "Cancel"
-msgstr "رد یې کړئ [ ژباړه ـ ردول ]"
+msgstr ""
 
 msgid "Are you sure you want to remove this interpretation?"
 msgstr ""
 
 msgid "Unlike"
-msgstr "نه خوښول."
+msgstr ""
 
 msgid "Like"
-msgstr "د خوښې وړ."
+msgstr ""
 
 msgid "Reply"
-msgstr "ځواب ورکړئ"
+msgstr ""
 
 msgid "Edit"
-msgstr "درست یې کړئ"
+msgstr ""
 
 msgid "Share"
-msgstr "شریک یې کړئ"
+msgstr ""
 
 msgid "Delete"
-msgstr "خذف یې کړئ"
+msgstr ""
 
 msgid "people like this"
-msgstr "خلک دا خوښوي"
+msgstr ""
 
 msgid "people commented"
-msgstr "خلکو په دې اړه خپل نظر ورکړی دی"
+msgstr ""
 
 msgid "Are you sure you want to remove this comment?"
 msgstr ""
 
 msgid "more comments"
-msgstr "نورې څرګندونې."
+msgstr ""
 
 msgid "Edit interpretation"
 msgstr ""
@@ -113,19 +108,19 @@ msgid "Save & share"
 msgstr ""
 
 msgid "Save"
-msgstr "ثبت یې کړئ [ ژباړه - ثبت کړئ ]"
+msgstr ""
 
 msgid "No interpretations"
-msgstr "ژباړه یا تفسیر شتون نه لري"
+msgstr ""
 
 msgid "Clear interpretation"
-msgstr "ژباړه یا تفسیر پاک کړئ"
+msgstr ""
 
 msgid "Write new interpretation"
 msgstr ""
 
 msgid "Interpretations"
-msgstr "شفاهي ژباړې"
+msgstr ""
 
 msgid "chart"
 msgstr ""

@@ -1,14 +1,9 @@
 # 
-# Translators:
-# Cherise Beek <cherise.beek@gmail.com>, 2021
-# Rica Zamora Duchateau, 2022
-# 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2018-07-04T08:51:47.874Z\n"
-"PO-Revision-Date: 2019-08-13 20:28+0000\n"
-"Last-Translator: Rica Zamora Duchateau, 2022\n"
+"PO-Revision-Date: 2022-08-21 23:24+0000\n"
 "Language-Team: Dutch (https://www.transifex.com/hisp-uio/teams/100509/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,7 +15,7 @@ msgid "No description"
 msgstr ""
 
 msgid "None"
-msgstr "Geen"
+msgstr ""
 
 msgid "Read"
 msgstr ""
@@ -44,7 +39,7 @@ msgid "Subscribe to this {{object}} and start receiving notifications"
 msgstr ""
 
 msgid "Details"
-msgstr "Details"
+msgstr ""
 
 msgid "Owner"
 msgstr ""
@@ -53,7 +48,7 @@ msgid "Created"
 msgstr ""
 
 msgid "Last updated"
-msgstr "Laatst bijgewerkt"
+msgstr ""
 
 msgid "Views"
 msgstr ""
@@ -68,7 +63,7 @@ msgid "Post comment"
 msgstr ""
 
 msgid "Cancel"
-msgstr "Annuleer"
+msgstr ""
 
 msgid "Are you sure you want to remove this interpretation?"
 msgstr ""
@@ -83,13 +78,13 @@ msgid "Reply"
 msgstr ""
 
 msgid "Edit"
-msgstr "Bewerk"
+msgstr ""
 
 msgid "Share"
 msgstr ""
 
 msgid "Delete"
-msgstr "Verwijderen"
+msgstr ""
 
 msgid "people like this"
 msgstr ""
@@ -113,7 +108,7 @@ msgid "Save & share"
 msgstr ""
 
 msgid "Save"
-msgstr "Sla op"
+msgstr ""
 
 msgid "No interpretations"
 msgstr ""
@@ -125,7 +120,7 @@ msgid "Write new interpretation"
 msgstr ""
 
 msgid "Interpretations"
-msgstr "Interpretaties"
+msgstr ""
 
 msgid "chart"
 msgstr ""

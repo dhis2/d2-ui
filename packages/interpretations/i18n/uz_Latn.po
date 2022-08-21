@@ -1,13 +1,13 @@
 # 
 # Translators:
-# Yury Rogachev <yury@dhis2.org>, 2021
+# Yury Rogachev <yury@dhis2.org>, 2022
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2018-07-04T08:51:47.874Z\n"
-"PO-Revision-Date: 2019-08-13 20:28+0000\n"
-"Last-Translator: Yury Rogachev <yury@dhis2.org>, 2021\n"
+"PO-Revision-Date: 2022-08-21 23:24+0000\n"
+"Last-Translator: Yury Rogachev <yury@dhis2.org>, 2022\n"
 "Language-Team: Uzbek (Latin) (https://www.transifex.com/hisp-uio/teams/100509/uz@Latn/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,133 +16,130 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "No description"
-msgstr "Tavsif yoʼq"
+msgstr ""
 
 msgid "None"
-msgstr "Yoʼq"
+msgstr ""
 
 msgid "Read"
-msgstr "Oʼqing"
+msgstr ""
 
 msgid "Read/Write"
-msgstr "Oʼqing/Yozing"
+msgstr ""
 
 msgid "Unknown"
-msgstr "Nomaʼlum"
+msgstr ""
 
 msgid "Public"
 msgstr "Ommaviy"
 
 msgid "user groups"
-msgstr "foydalanuvchi guruhlari"
+msgstr ""
 
 msgid "Unsubscribe from this {{object}} and stop receiving notifications"
 msgstr ""
-"Ushbu {{object}} ga obunani bekor qiling va bildirishnomalar olinishini "
-"toʼxtating"
 
 msgid "Subscribe to this {{object}} and start receiving notifications"
 msgstr ""
-"Ushbu {{object}} ga obuna boʼling va bildirishnomalar olishni boshlang"
 
 msgid "Details"
-msgstr "Tafsilotlari"
+msgstr ""
 
 msgid "Owner"
-msgstr "Egasi, tegishlilik"
+msgstr ""
 
 msgid "Created"
-msgstr "Yaratildi"
+msgstr ""
 
 msgid "Last updated"
-msgstr "Oxirgi yangilangan"
+msgstr ""
 
 msgid "Views"
-msgstr "Koʼrishlar"
+msgstr ""
 
 msgid "Sharing"
-msgstr "Ulashish"
+msgstr ""
 
 msgid "OK"
-msgstr "OK"
+msgstr ""
 
 msgid "Post comment"
 msgstr "Sharh qoldirish"
 
 msgid "Cancel"
-msgstr "Bekor qilish"
+msgstr ""
 
 msgid "Are you sure you want to remove this interpretation?"
-msgstr "Haqiqatdan ham ushbu talqinni olib tashlamoqchimisiz?"
+msgstr ""
 
 msgid "Unlike"
 msgstr "Аksincha"
 
 msgid "Like"
-msgstr "Kabi, oʼxshash"
+msgstr ""
 
 msgid "Reply"
-msgstr "Javob"
+msgstr ""
 
 msgid "Edit"
-msgstr "Tahrirlash"
+msgstr ""
 
 msgid "Share"
-msgstr "Ulashish"
+msgstr "Улашиш"
 
 msgid "Delete"
-msgstr "Oʼchirib tashlash"
+msgstr ""
 
 msgid "people like this"
-msgstr "bu kabi odamlar"
+msgstr ""
 
 msgid "people commented"
 msgstr "odamlar fikr bildirgan"
 
 msgid "Are you sure you want to remove this comment?"
-msgstr "Haqiqatdan ham ushbu sharhni olib tashlamoqchimisiz?"
+msgstr ""
 
 msgid "more comments"
-msgstr "koʼproq sharhlar"
+msgstr ""
 
 msgid "Edit interpretation"
-msgstr "Talqinni tahrirlang"
+msgstr ""
 
 msgid "Create interpretation"
-msgstr "Talqinni yarating"
+msgstr ""
 
 msgid "Save & share"
-msgstr "Saqlang va ulashing"
+msgstr ""
 
 msgid "Save"
-msgstr "Saqlash"
+msgstr ""
 
 msgid "No interpretations"
-msgstr "Talqinlar yoʼq"
+msgstr ""
 
 msgid "Clear interpretation"
-msgstr "Talqin tozalansin"
+msgstr ""
 
 msgid "Write new interpretation"
-msgstr "Yangi talqin yozish"
+msgstr ""
 
 msgid "Interpretations"
-msgstr "Sharhlar"
+msgstr ""
 
 msgid "chart"
-msgstr "diagramma"
+msgstr ""
 
 msgid "pivot table"
 msgstr ""
 
 msgid "map"
-msgstr "xarita"
+msgstr ""
 
 msgid "event chart"
-msgstr "hodisa/tadbir diagrammasi"
+msgstr ""
 
 msgid "event report"
-msgstr "hodisa/tadbir hisoboti"
+msgstr ""
 
 msgid "object"
-msgstr "obʼekt"
+msgstr ""

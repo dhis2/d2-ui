@@ -1,14 +1,9 @@
 # 
-# Translators:
-# phil_dhis2, 2019
-# Viktor Varland <viktor@dhis2.org>, 2019
-# 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2018-07-04T08:51:47.874Z\n"
-"PO-Revision-Date: 2019-08-13 20:28+0000\n"
-"Last-Translator: Viktor Varland <viktor@dhis2.org>, 2019\n"
+"PO-Revision-Date: 2022-08-21 23:24+0000\n"
 "Language-Team: Khmer (https://www.transifex.com/hisp-uio/teams/100509/km/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,7 +15,7 @@ msgid "No description"
 msgstr ""
 
 msgid "None"
-msgstr "គ្មាន"
+msgstr ""
 
 msgid "Read"
 msgstr ""
@@ -29,7 +24,7 @@ msgid "Read/Write"
 msgstr ""
 
 msgid "Unknown"
-msgstr "មិន​ស្គាល់"
+msgstr ""
 
 msgid "Public"
 msgstr ""
@@ -44,7 +39,7 @@ msgid "Subscribe to this {{object}} and start receiving notifications"
 msgstr ""
 
 msgid "Details"
-msgstr "លម្អិត"
+msgstr ""
 
 msgid "Owner"
 msgstr ""
@@ -53,7 +48,7 @@ msgid "Created"
 msgstr ""
 
 msgid "Last updated"
-msgstr "បាន​ធ្វើ​បច្ចុប្បន្នភាព​ចុងក្រោយ"
+msgstr ""
 
 msgid "Views"
 msgstr ""
@@ -62,13 +57,13 @@ msgid "Sharing"
 msgstr ""
 
 msgid "OK"
-msgstr "យល់ព្រម"
+msgstr ""
 
 msgid "Post comment"
 msgstr ""
 
 msgid "Cancel"
-msgstr "បោះបង់"
+msgstr ""
 
 msgid "Are you sure you want to remove this interpretation?"
 msgstr ""
@@ -80,16 +75,16 @@ msgid "Like"
 msgstr ""
 
 msgid "Reply"
-msgstr "ឆ្លើយតប"
+msgstr ""
 
 msgid "Edit"
-msgstr "កែសម្រួល​"
+msgstr ""
 
 msgid "Share"
-msgstr "ចែករំលែក"
+msgstr ""
 
 msgid "Delete"
-msgstr "​លុប​"
+msgstr ""
 
 msgid "people like this"
 msgstr ""
@@ -113,7 +108,7 @@ msgid "Save & share"
 msgstr ""
 
 msgid "Save"
-msgstr "រក្សាទុក​"
+msgstr ""
 
 msgid "No interpretations"
 msgstr ""
@@ -125,7 +120,7 @@ msgid "Write new interpretation"
 msgstr ""
 
 msgid "Interpretations"
-msgstr "កន្លែងសន្ទនារ"
+msgstr ""
 
 msgid "chart"
 msgstr ""
