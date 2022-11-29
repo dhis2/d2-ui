@@ -5,9 +5,10 @@ export const MAP = 'MAP';
 export const REPORT_TABLE = 'REPORT_TABLE';
 export const EVENT_REPORT = 'EVENT_REPORT';
 export const EVENT_CHART = 'EVENT_CHART';
+export const EVENT_VISUALIZATION = 'EVENT_VISUALIZATION';
 export const VISUALIZATION = 'VISUALIZATION';
 
-export const extractFavorite = item => {
+export const extractFavorite = (item) => {
     if (!isObject(item)) {
         return null;
     }
@@ -23,6 +24,8 @@ export const extractFavorite = item => {
             return item.eventReport;
         case EVENT_CHART:
             return item.eventChart;
+        case EVENT_VISUALIZATION:
+            return item.eventVisualization;
         case VISUALIZATION:
             return item.visualization || item.chart || item.reportTable;
         default:
@@ -33,14 +36,15 @@ export const extractFavorite = item => {
                 item.map ||
                 item.eventReport ||
                 item.eventChart ||
+                item.eventVisualization ||
                 {}
             );
     }
 };
 
-export const getId = item => extractFavorite(item).id;
+export const getId = (item) => extractFavorite(item).id;
 
-export const getBaseUrl = d2 => {
+export const getBaseUrl = (d2) => {
     const api = d2.Api.getApi();
     const idx = api.baseUrl.indexOf('/api');
     return idx > -1 ? api.baseUrl.slice(0, idx) : api.baseUrl;
@@ -56,32 +60,44 @@ export const getLink = (item, d2, interpretationId) => {
 export const itemTypeMap = {
     [REPORT_TABLE]: {
         id: REPORT_TABLE,
-        appUrl: (modelId, interpretationId) => `dhis-web-pivot/?id=${modelId}&interpretationid=${interpretationId}`,
+        appUrl: (modelId, interpretationId) =>
+            `dhis-web-pivot/?id=${modelId}&interpretationid=${interpretationId}`,
         propName: 'reportTable',
     },
     [CHART]: {
         id: CHART,
-        appUrl: (modelId, interpretationId) => `dhis-web-data-visualizer/#/${modelId}/interpretation/${interpretationId}`,
+        appUrl: (modelId, interpretationId) =>
+            `dhis-web-data-visualizer/#/${modelId}?interpretationId=${interpretationId}`,
         propName: 'chart',
     },
     [MAP]: {
         id: MAP,
-        appUrl: (modelId, interpretationId) => `dhis-web-maps/?id=${modelId}&interpretationid=${interpretationId}`,
+        appUrl: (modelId, interpretationId) =>
+            `dhis-web-maps/?id=${modelId}&interpretationid=${interpretationId}`,
         propName: 'maps',
     },
     [EVENT_REPORT]: {
         id: EVENT_REPORT,
-        appUrl: (modelId, interpretationId) => `dhis-web-event-reports/?id=${modelId}&interpretationid=${interpretationId}`,
+        appUrl: (modelId, interpretationId) =>
+            `dhis-web-event-reports/?id=${modelId}&interpretationid=${interpretationId}`,
         propName: 'eventReport',
     },
     [EVENT_CHART]: {
         id: EVENT_CHART,
-        appUrl: (modelId, interpretationId) => `dhis-web-event-visualizer/?id=${modelId}&interpretationid=${interpretationId}`,
-        propName:  'eventChart',
+        appUrl: (modelId, interpretationId) =>
+            `dhis-web-event-visualizer/?id=${modelId}&interpretationid=${interpretationId}`,
+        propName: 'eventChart',
+    },
+    [EVENT_VISUALIZATION]: {
+        id: EVENT_VISUALIZATION,
+        appUrl: (modelId, interpretationId) =>
+            `api/apps/line-listing/#/${modelId}?interpretationId=${interpretationId}`,
+        propName: 'eventVisualization',
     },
     [VISUALIZATION]: {
         id: VISUALIZATION,
-        appUrl: (modelId, interpretationId) => `dhis-web-data-visualizer/#/${modelId}/interpretation/${interpretationId}`,
+        appUrl: (modelId, interpretationId) =>
+            `dhis-web-data-visualizer/#/${modelId}?interpretationId=${interpretationId}`,
         propName: 'visualization',
     },
 };
