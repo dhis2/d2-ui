@@ -81,7 +81,8 @@ export class Details extends React.Component {
             EVENT_REPORT: i18n.t('Table details'),
             EVENT_CHART: i18n.t('Chart details'),
             VISUALIZATION: i18n.t('Visualization details'),
-        }
+            EVENT_VISUALIZATION: i18n.t('Line list details'),
+        };
         return typeTitleMap[type];
     }
 
