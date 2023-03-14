@@ -34,33 +34,33 @@ export class Details extends React.Component {
 
     renderSubscriptionButton() {
         const tOpts = { object: translateModelName(this.props.model.modelName) };
-        const [ SubscriberIcon, subscriptionTooltip ] = this.props.model.subscribed
+        const [SubscriberIcon, subscriptionTooltip] = this.props.model.subscribed
             ? [
-                SubscriberIconEnabled,
-                i18n.t(
-                    'Unsubscribe from this {{object}} and stop receiving notifications',
-                    tOpts
-                ),
+                  SubscriberIconEnabled,
+                  i18n.t(
+                      'Unsubscribe from this {{object}} and stop receiving notifications',
+                      tOpts
+                  ),
               ]
             : [
-                SubscriberIconDisabled,
-                i18n.t('Subscribe to this {{object}} and start receiving notifications', tOpts),
+                  SubscriberIconDisabled,
+                  i18n.t('Subscribe to this {{object}} and start receiving notifications', tOpts),
               ];
-    
-            if(this.props.isOffline) {
-                return (
-                    <Tooltip title={i18n.t('Not available offline')} classes={{ tooltip: this.props.classes.uiTooltip }}>
-                        <span>
-                            <IconButton
-                                style={styles.subscriberIcon}
-                                disabled
-                            >
-                                <SubscriberIcon />
-                            </IconButton>
-                        </span>
-                    </Tooltip>
-                )
-            }
+
+        if (this.props.isOffline) {
+            return (
+                <Tooltip
+                    title={i18n.t('Not available offline')}
+                    classes={{ tooltip: this.props.classes.uiTooltip }}
+                >
+                    <span>
+                        <IconButton style={styles.subscriberIcon} disabled>
+                            <SubscriberIcon />
+                        </IconButton>
+                    </span>
+                </Tooltip>
+            );
+        }
 
         return (
             <IconButton
@@ -71,19 +71,20 @@ export class Details extends React.Component {
                 <SubscriberIcon />
             </IconButton>
         );
-    };
+    }
 
-    getCardTitle = type => {
+    getCardTitle = (type) => {
         const typeTitleMap = {
             REPORT_TABLE: i18n.t('Table details'),
             CHART: i18n.t('Chart details'),
-            MAP:  i18n.t('Map details'),
+            MAP: i18n.t('Map details'),
             EVENT_REPORT: i18n.t('Table details'),
             EVENT_CHART: i18n.t('Chart details'),
             VISUALIZATION: i18n.t('Visualization details'),
-        }
+            EVENT_VISUALIZATION: i18n.t('Line list details'),
+        };
         return typeTitleMap[type];
-    }
+    };
 
     render() {
         const { model, classes } = this.props;
@@ -115,8 +116,8 @@ export class Details extends React.Component {
                 </div>
             </CollapsibleCard>
         );
-    };
-};
+    }
+}
 
 Details.contextTypes = {
     d2: PropTypes.object.isRequired,
