@@ -7,7 +7,7 @@ export const userCanManage = (d2, object) => {
         return false;
     } else if (object.user.id === currentUser.id) {
         return true;
-    } else if (currentUser.authorities.has("ALL")) {
+    } else if (currentUser.authorities.has('ALL')) {
         return true;
     } else {
         return false;
@@ -17,13 +17,13 @@ export const userCanManage = (d2, object) => {
 export const haveReadAccess = (d2, userGroups, object) => {
     const { currentUser } = d2 || {};
 
-    if (!object || !currentUser) {
+    if (!object || !currentUser) {
         return false;
     } else if (object.user && currentUser.id === object.user.id) {
         return true;
     } else if (currentUser.authorities.has('ALL')) {
         return true;
-    } else if (object.publicAccess.includes('r')) {
+    } else if (object.publicAccess && object.publicAccess.includes('r')) {
         return true;
     } else if (sharedUserAccess(currentUser.id, object.userAccesses, 'r')) {
         return true;
@@ -36,14 +36,14 @@ export const haveReadAccess = (d2, userGroups, object) => {
 
 export const haveWriteAccess = (d2, userGroups, object) => {
     const { currentUser } = d2 || {};
-    
-    if (!object || !currentUser) {
+
+    if (!object || !currentUser) {
         return false;
     } else if (object.user && currentUser.id === object.user.id) {
         return true;
     } else if (currentUser.authorities.has('ALL')) {
         return true;
-    } else if (object.publicAccess.includes('w')) {
+    } else if (object.publicAccess && object.publicAccess.includes('w')) {
         return true;
     } else if (sharedUserAccess(currentUser.id, object.userAccesses, 'w')) {
         return true;
@@ -54,22 +54,22 @@ export const haveWriteAccess = (d2, userGroups, object) => {
     }
 };
 
-
 const sharedUserAccess = (userId, users, accessBit) =>
-    some(user => user.id === userId && user.access.includes(accessBit), users);
+    some((user) => user.id === userId && user.access.includes(accessBit), users);
 
 const sharedUserGroups = (userGroups, objectGroups, accessBit) => {
     let isMember = false;
 
-    userGroups.forEach(id => {
-        if(some(objectGroup => 
-                objectGroup.id === id && 
-                objectGroup.access.includes(accessBit), objectGroups
-            )) {
-                isMember = true;
-            }
-    })
+    userGroups.forEach((id) => {
+        if (
+            some(
+                (objectGroup) => objectGroup.id === id && objectGroup.access.includes(accessBit),
+                objectGroups
+            )
+        ) {
+            isMember = true;
+        }
+    });
 
     return isMember;
 };
-
