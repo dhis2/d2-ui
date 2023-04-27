@@ -23,7 +23,7 @@ export const haveReadAccess = (d2, userGroups, object) => {
         return true;
     } else if (currentUser.authorities.has('ALL')) {
         return true;
-    } else if (object.publicAccess.includes('r')) {
+    } else if (object.publicAccess && object.publicAccess.includes('r')) {
         return true;
     } else if (sharedUserAccess(currentUser.id, object.userAccesses, 'r')) {
         return true;
