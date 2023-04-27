@@ -43,7 +43,7 @@ export const haveWriteAccess = (d2, userGroups, object) => {
         return true;
     } else if (currentUser.authorities.has('ALL')) {
         return true;
-    } else if (object.publicAccess.includes('w')) {
+    } else if (object.publicAccess && object.publicAccess.includes('w')) {
         return true;
     } else if (sharedUserAccess(currentUser.id, object.userAccesses, 'w')) {
         return true;
