@@ -1,14 +1,15 @@
 # 
 # Translators:
 # Jaime Bosque <jaime.bosque@dhis2.org>, 2022
+# Enzo Nicolas Rossi <enzo@dhis2.org>, 2023
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2021-05-20T08:53:00.620Z\n"
+"POT-Creation-Date: 2023-03-14T12:23:26.708Z\n"
 "PO-Revision-Date: 2019-08-13 09:54+0000\n"
-"Last-Translator: Jaime Bosque <jaime.bosque@dhis2.org>, 2022\n"
-"Language-Team: Spanish (Latin America) (https://www.transifex.com/hisp-uio/teams/100509/es_419/)\n"
+"Last-Translator: Enzo Nicolas Rossi <enzo@dhis2.org>, 2023\n"
+"Language-Team: Spanish (Latin America) (https://app.transifex.com/hisp-uio/teams/100509/es_419/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -28,6 +29,9 @@ msgid "Event Reports"
 msgstr ""
 
 msgid "Event Visualizer"
+msgstr ""
+
+msgid "Line Listing"
 msgstr ""
 
 msgid "View in {{appName}} app"
@@ -63,6 +67,9 @@ msgstr ""
 msgid "Interpretations"
 msgstr ""
 
+msgid "Not available offline"
+msgstr ""
+
 msgid "Save reply"
 msgstr ""
 
@@ -90,9 +97,6 @@ msgstr ""
 msgid "Subscribe to this {{object}} and start receiving notifications"
 msgstr ""
 
-msgid "Not available offline"
-msgstr ""
-
 msgid "Table details"
 msgstr ""
 
@@ -105,6 +109,9 @@ msgstr ""
 msgid "Visualization details"
 msgstr ""
 
+msgid "Line list details"
+msgstr ""
+
 msgid "Owner"
 msgstr ""
 
@@ -112,7 +119,7 @@ msgid "Created"
 msgstr ""
 
 msgid "Last updated"
-msgstr ""
+msgstr "Última actualización"
 
 msgid "Views"
 msgstr ""
@@ -209,6 +216,9 @@ msgid_plural "{{count}} user groups"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
+
+msgid "visualization"
+msgstr ""
 
 msgid "chart"
 msgstr ""
