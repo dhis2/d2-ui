@@ -52,7 +52,7 @@ msgid "Reply"
 msgstr ""
 
 msgid "Edit"
-msgstr ""
+msgstr "වෙනස් කරන්න"
 
 msgid "Manage sharing"
 msgstr ""
@@ -82,7 +82,7 @@ msgid "Confirm"
 msgstr "තහවුරු කරන්න"
 
 msgid "No description"
-msgstr ""
+msgstr "විස්තරයක් නැත"
 
 msgid "Show less"
 msgstr ""

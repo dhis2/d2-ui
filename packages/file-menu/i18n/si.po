@@ -34,13 +34,13 @@ msgid "Open in this app"
 msgstr ""
 
 msgid "Close"
-msgstr ""
+msgstr "වසන්න"
 
 msgid "Get link"
 msgstr ""
 
 msgid "New"
-msgstr ""
+msgstr "නව"
 
 msgid "Open"
 msgstr ""
@@ -52,7 +52,7 @@ msgid "Name"
 msgstr ""
 
 msgid "Description"
-msgstr ""
+msgstr "විස්තරය"
 
 msgid "Rename"
 msgstr ""
