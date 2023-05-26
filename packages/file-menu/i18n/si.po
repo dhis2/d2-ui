@@ -43,13 +43,13 @@ msgid "New"
 msgstr "නව"
 
 msgid "Open"
-msgstr ""
+msgstr "විවෘත කරන්න"
 
 msgid "Rename {{what}}"
 msgstr ""
 
 msgid "Name"
-msgstr ""
+msgstr "නම"
 
 msgid "Description"
 msgstr "විස්තරය"
@@ -61,7 +61,7 @@ msgid "Save {{what}} as"
 msgstr ""
 
 msgid "Save"
-msgstr ""
+msgstr "සුරකින්න"
 
 msgid "Save as..."
 msgstr ""
