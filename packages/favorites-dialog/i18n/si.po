@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "Name"
-msgstr ""
+msgstr "නම"
 
 msgid "Created"
 msgstr ""
