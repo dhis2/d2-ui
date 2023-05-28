@@ -28,7 +28,7 @@ msgid "Delete"
 msgstr "ඉවත් කරන්න"
 
 msgid "File"
-msgstr ""
+msgstr "ගොනුව"
 
 msgid "Open in this app"
 msgstr ""
