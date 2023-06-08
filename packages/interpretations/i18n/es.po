@@ -4,13 +4,14 @@
 # Viktor Varland <viktor@dhis2.org>, 2020
 # Prabhjot Singh, 2021
 # Marta Vila <marta@dhis2.org>, 2023
+# Enzo Nicolas Rossi <enzo@dhis2.org>, 2023
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2023-03-14T12:23:26.708Z\n"
 "PO-Revision-Date: 2019-08-13 09:54+0000\n"
-"Last-Translator: Marta Vila <marta@dhis2.org>, 2023\n"
+"Last-Translator: Enzo Nicolas Rossi <enzo@dhis2.org>, 2023\n"
 "Language-Team: Spanish (https://app.transifex.com/hisp-uio/teams/100509/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,7 +35,7 @@ msgid "Event Visualizer"
 msgstr "Visualizador de eventos"
 
 msgid "Line Listing"
-msgstr ""
+msgstr "Listas"
 
 msgid "View in {{appName}} app"
 msgstr "Ver en la aplicación {{appName}}"
@@ -79,7 +80,7 @@ msgid "Cancel"
 msgstr "Cancelar"
 
 msgid "Write a reply"
-msgstr "Escribe una respuesta"
+msgstr "Escribir una respuesta"
 
 msgid "Confirm"
 msgstr "Confirmar"
@@ -113,7 +114,7 @@ msgid "Visualization details"
 msgstr "Detalles de visualización"
 
 msgid "Line list details"
-msgstr ""
+msgstr "Detalles de Listas"
 
 msgid "Owner"
 msgstr "Propietario"
@@ -153,9 +154,9 @@ msgstr "Escribir una interpretación"
 
 msgid "{{count}} replies"
 msgid_plural "{{count}} replies"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{{contar}} respuesta"
+msgstr[1] "{{contar}} respuestas"
+msgstr[2] "{{count}} respuestas"
 
 msgid "Hide old replies"
 msgstr "Ocultar respuestas antiguas"
@@ -170,10 +171,10 @@ msgid "Are you sure you want to delete this comment?"
 msgstr "¿Seguro que quieres eliminar este comentario?"
 
 msgid "Hide previous interpretations"
-msgstr ""
+msgstr "Ocultar interpretaciones anteriores"
 
 msgid "Show previous interpretations"
-msgstr ""
+msgstr "Mostrar interpretaciones anteriores"
 
 msgid "No interpretations"
 msgstr "Sin interpretaciones"
@@ -188,13 +189,13 @@ msgid "None"
 msgstr "Ninguno"
 
 msgid "Shared with"
-msgstr ""
+msgstr "Compartido con"
 
 msgid "bold text"
-msgstr ""
+msgstr "texto en negrita"
 
 msgid "italic text"
-msgstr ""
+msgstr "texto en cursiva"
 
 msgid "Read"
 msgstr "Leer"
@@ -210,18 +211,18 @@ msgstr "Público"
 
 msgid "{{count}} users"
 msgid_plural "{{count}} users"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{{contar}} usuario"
+msgstr[1] "{{contar}} usuarios"
+msgstr[2] "{{count}} usuarios"
 
 msgid "{{count}} user groups"
 msgid_plural "{{count}} user groups"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{{count}} grupo de usuarios"
+msgstr[1] "{{count}} grupos de usuarios"
+msgstr[2] "{{count}} grupos de usuarios"
 
 msgid "visualization"
-msgstr ""
+msgstr "visualización"
 
 msgid "chart"
 msgstr "gráfico"

@@ -3,14 +3,15 @@
 # Viktor Varland <viktor@dhis2.org>, 2019
 # ericbp <ericbarredap@gmail.com>, 2019
 # Gabriela Rodriguez <grodriguezcoronado@gmail.com>, 2020
+# Enzo Nicolas Rossi <enzo@dhis2.org>, 2023
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2020-06-05T17:52:31.450Z\n"
 "PO-Revision-Date: 2019-08-12 21:18+0000\n"
-"Last-Translator: Gabriela Rodriguez <grodriguezcoronado@gmail.com>, 2020\n"
-"Language-Team: Spanish (https://www.transifex.com/hisp-uio/teams/100509/es/)\n"
+"Last-Translator: Enzo Nicolas Rossi <enzo@dhis2.org>, 2023\n"
+"Language-Team: Spanish (https://app.transifex.com/hisp-uio/teams/100509/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -18,10 +19,10 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 msgid "Delete {{what}}"
-msgstr "Eliminar {{que}}"
+msgstr "Eliminar {{what}}"
 
 msgid "This {{what}} will be deleted. Continue?"
-msgstr "Este {{que}} será eliminado. ¿Continuar?"
+msgstr "Este {{what}} será eliminado. ¿Continuar?"
 
 msgid "Cancel"
 msgstr "Cancelar"
@@ -30,7 +31,7 @@ msgid "Delete"
 msgstr "Eliminar"
 
 msgid "File"
-msgstr "Fichero"
+msgstr "Archivo"
 
 msgid "Open in this app"
 msgstr "Abierto en esta aplicación"
@@ -48,7 +49,7 @@ msgid "Open"
 msgstr "Abrir"
 
 msgid "Rename {{what}}"
-msgstr "Renombrar {{que}}"
+msgstr "Renombrar {{what}}"
 
 msgid "Name"
 msgstr "Nombre"
@@ -60,7 +61,7 @@ msgid "Rename"
 msgstr "Renombrar"
 
 msgid "Save {{what}} as"
-msgstr "Guardar {{que}} como"
+msgstr "Guardar {{what}} como"
 
 msgid "Save"
 msgstr "Guardar"
