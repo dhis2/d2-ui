@@ -45,7 +45,7 @@ msgid "New"
 msgstr "Nieuw"
 
 msgid "Open"
-msgstr ""
+msgstr "Open"
 
 msgid "Rename {{what}}"
 msgstr ""
