@@ -69,7 +69,7 @@ msgid "Save as..."
 msgstr ""
 
 msgid "Share"
-msgstr ""
+msgstr "Deel"
 
 msgid "Translate"
 msgstr "Vertaal"
