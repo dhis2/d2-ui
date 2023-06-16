@@ -81,16 +81,16 @@ msgid "Write a reply"
 msgstr ""
 
 msgid "Confirm"
-msgstr ""
+msgstr "Bevestigen"
 
 msgid "No description"
-msgstr ""
+msgstr "Geen beschrijving"
 
 msgid "Show less"
 msgstr ""
 
 msgid "Show more"
-msgstr ""
+msgstr "Laat meer zien"
 
 msgid "Unsubscribe from this {{object}} and stop receiving notifications"
 msgstr ""
