@@ -45,7 +45,7 @@ msgid "Exit View"
 msgstr ""
 
 msgid "Like"
-msgstr ""
+msgstr "Leuk vinden"
 
 msgid "Unlike"
 msgstr ""
