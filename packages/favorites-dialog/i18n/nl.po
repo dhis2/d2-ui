@@ -30,7 +30,7 @@ msgid "Type"
 msgstr "Soort"
 
 msgid "Search by name"
-msgstr ""
+msgstr "Zoek op naam"
 
 msgid "All types"
 msgstr ""
