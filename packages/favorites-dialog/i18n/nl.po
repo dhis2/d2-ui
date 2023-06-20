@@ -33,7 +33,7 @@ msgid "Search by name"
 msgstr "Zoek op naam"
 
 msgid "All types"
-msgstr ""
+msgstr "Alle typen"
 
 msgid "All chart types"
 msgstr ""
