@@ -39,7 +39,7 @@ msgid "View in {{appName}} app"
 msgstr ""
 
 msgid "View"
-msgstr ""
+msgstr "Weergave"
 
 msgid "Exit View"
 msgstr ""
