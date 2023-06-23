@@ -48,10 +48,10 @@ msgid "Deselect all"
 msgstr ""
 
 msgid "User organisation unit"
-msgstr ""
+msgstr "Gebruikersorganisatie-eenheid"
 
 msgid "User sub-units"
-msgstr ""
+msgstr "Subeenheden van gebruikers"
 
 msgid "User sub-x2-units"
-msgstr ""
+msgstr "Gebruiker sub-x2-eenheden"
