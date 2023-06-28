@@ -199,7 +199,7 @@ msgid "Read/Write"
 msgstr ""
 
 msgid "Unknown"
-msgstr ""
+msgstr "Onbekend"
 
 msgid "Public"
 msgstr ""
