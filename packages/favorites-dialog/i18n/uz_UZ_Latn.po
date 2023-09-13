@@ -1,0 +1,94 @@
+# 
+# Translators:
+# Yury Rogachev <yury@dhis2.org>, 2021
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"POT-Creation-Date: 2020-12-07T08:39:12.894Z\n"
+"PO-Revision-Date: 2020-04-29 21:46+0000\n"
+"Last-Translator: Yury Rogachev <yury@dhis2.org>, 2021\n"
+"Language-Team: Uzbek (Latin) (https://app.transifex.com/hisp-uio/teams/100509/uz@Latn/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: uz@Latn\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Name"
+msgstr "Ismi"
+
+msgid "Created"
+msgstr "Yaratildi"
+
+msgid "Last updated"
+msgstr "Oxirgi yangilangan"
+
+msgid "Type"
+msgstr "Turi"
+
+msgid "Search by name"
+msgstr "Ismi orqali izlash"
+
+msgid "All types"
+msgstr "Barcha turlari"
+
+msgid "All chart types"
+msgstr "Barcha diagramma turlari"
+
+msgid "All owners"
+msgstr "Barcha xoʼjayinlar"
+
+msgid "Created by you"
+msgstr "Siz tomondan tahrir qilindi"
+
+msgid "Created by others"
+msgstr "Boshqalar yaratganlari"
+
+msgid "Close"
+msgstr "Yopmoq"
+
+msgid "Column"
+msgstr "Ustun"
+
+msgid "Stacked column"
+msgstr "Yigʼilgan ustun"
+
+msgid "Bar"
+msgstr "Tizimcha"
+
+msgid "Stacked bar"
+msgstr "Yigʼilgan tizimcha"
+
+msgid "Line"
+msgstr "Qator"
+
+msgid "Area"
+msgstr "Maydon"
+
+msgid "Stacked area"
+msgstr "Yigʼilgan maydon"
+
+msgid "Pie"
+msgstr "Butun aylana"
+
+msgid "Radar"
+msgstr "Radar"
+
+msgid "Gauge"
+msgstr "Hisoblagich"
+
+msgid "Year over year (line)"
+msgstr "Yildan yilga (qator)"
+
+msgid "Year over year (column)"
+msgstr "Yildan yilga (ustun)"
+
+msgid "Single value"
+msgstr "Yagona qiymat"
+
+msgid "Pivot table"
+msgstr "Solishtirma jadval"
+
+msgid "Scatter"
+msgstr "Tarqoqlik"

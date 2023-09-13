@@ -5,10 +5,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2021-05-20T08:53:00.620Z\n"
+"POT-Creation-Date: 2023-03-14T12:23:26.708Z\n"
 "PO-Revision-Date: 2019-08-13 09:54+0000\n"
 "Last-Translator: Ibatov <ibatovk@who.int>, 2021\n"
-"Language-Team: Uzbek (Cyrillic) (https://www.transifex.com/hisp-uio/teams/100509/uz@Cyrl/)\n"
+"Language-Team: Uzbek (Cyrillic) (https://app.transifex.com/hisp-uio/teams/100509/uz@Cyrl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -29,6 +29,9 @@ msgstr "Ҳодиса/Тадбирлар ҳақида ҳисоботлар"
 
 msgid "Event Visualizer"
 msgstr "Ҳодисалар визуализатори"
+
+msgid "Line Listing"
+msgstr ""
 
 msgid "View in {{appName}} app"
 msgstr "{{appName}} иловаси орқали кўриш"
@@ -63,6 +66,9 @@ msgstr "Жами талқинларга қайтиш"
 msgid "Interpretations"
 msgstr "Талқинлар"
 
+msgid "Not available offline"
+msgstr "Оффлайн режимда мавжуд эмас"
+
 msgid "Save reply"
 msgstr "Жавоб сақлансин"
 
@@ -92,9 +98,6 @@ msgstr ""
 msgid "Subscribe to this {{object}} and start receiving notifications"
 msgstr "Ушбу {{объект}} га обуна бўлинг ва билдиришномалар олишни бошланг"
 
-msgid "Not available offline"
-msgstr "Оффлайн режимда мавжуд эмас"
-
 msgid "Table details"
 msgstr "Жадвал тафсилотлари"
 
@@ -106,6 +109,9 @@ msgstr "Харита тафсилотлари"
 
 msgid "Visualization details"
 msgstr "Визуализация тафсилотлари"
+
+msgid "Line list details"
+msgstr ""
 
 msgid "Owner"
 msgstr "Эгаси, тегишлилик"
@@ -203,6 +209,9 @@ msgstr[0] "{{count}} фойдаланувчилар"
 msgid "{{count}} user groups"
 msgid_plural "{{count}} user groups"
 msgstr[0] "{{count}} фойдаланувчилар гуруҳи"
+
+msgid "visualization"
+msgstr ""
 
 msgid "chart"
 msgstr "диаграмма"

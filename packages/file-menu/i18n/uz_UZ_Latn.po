@@ -1,0 +1,79 @@
+# 
+# Translators:
+# Yury Rogachev <yury@dhis2.org>, 2021
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"POT-Creation-Date: 2020-06-05T17:52:31.450Z\n"
+"PO-Revision-Date: 2019-08-12 21:18+0000\n"
+"Last-Translator: Yury Rogachev <yury@dhis2.org>, 2021\n"
+"Language-Team: Uzbek (Latin) (https://app.transifex.com/hisp-uio/teams/100509/uz@Latn/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: uz@Latn\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Delete {{what}}"
+msgstr "Oʼchirib tashlash {{what}}"
+
+msgid "This {{what}} will be deleted. Continue?"
+msgstr "Ushbu {{what}} oʼchirib tashlalanadi. Davom etasizmi?"
+
+msgid "Cancel"
+msgstr "Bekor qilish"
+
+msgid "Delete"
+msgstr "Oʼchirib tashlash"
+
+msgid "File"
+msgstr "Fayl"
+
+msgid "Open in this app"
+msgstr "Ushbu ilovada oching"
+
+msgid "Close"
+msgstr "Yopmoq"
+
+msgid "Get link"
+msgstr "Havolani oling"
+
+msgid "New"
+msgstr "Yangi"
+
+msgid "Open"
+msgstr "Ochish"
+
+msgid "Rename {{what}}"
+msgstr "Qayta nomlash {{what}}"
+
+msgid "Name"
+msgstr "Ismi"
+
+msgid "Description"
+msgstr "Tavsif"
+
+msgid "Rename"
+msgstr "Qayta nomlash"
+
+msgid "Save {{what}} as"
+msgstr "{{what}} ni sifatida saqlash"
+
+msgid "Save"
+msgstr "Saqlash"
+
+msgid "Save as..."
+msgstr "Sifatida saqlash"
+
+msgid "Share"
+msgstr "Ulashish"
+
+msgid "Translate"
+msgstr "Tarjima qiling"
+
+msgid "Write interpretation"
+msgstr "Sharh yozish"
+
+msgid "Post"
+msgstr "Pochta"
