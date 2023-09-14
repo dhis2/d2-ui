@@ -1,7 +1,7 @@
 # 
 # Translators:
 # Viktor Varland <viktor@dhis2.org>, 2019
-# phil_dhis2, 2020
+# Philip Larsen Donnelly, 2020
 # Gabriela Rodriguez <grodriguezcoronado@gmail.com>, 2020
 # Enzo Nicolas Rossi <enzo@dhis2.org>, 2023
 # 
@@ -49,7 +49,7 @@ msgid "Deselect all"
 msgstr "Deseleccionar todo"
 
 msgid "User organisation unit"
-msgstr "Usuario de unidad organizativa"
+msgstr "Unidad organizativa del usuario"
 
 msgid "User sub-units"
 msgstr "Subunidades de usuario"
