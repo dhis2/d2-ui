@@ -2,15 +2,15 @@
 # Translators:
 # Caroline Hesthagen Holen <caroline@devotta.no>, 2020
 # Jen Jones Arnesen <jennifer@dhis2.org>, 2020
-# Karoline Tufte Lien <karoline@dhis2.org>, 2020
+# Karoline Tufte Lien <karoline@dhis2.org>, 2023
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2021-05-20T08:53:00.620Z\n"
+"POT-Creation-Date: 2023-03-14T12:23:26.708Z\n"
 "PO-Revision-Date: 2019-08-13 09:54+0000\n"
-"Last-Translator: Karoline Tufte Lien <karoline@dhis2.org>, 2020\n"
-"Language-Team: Norwegian Bokmål (https://www.transifex.com/hisp-uio/teams/100509/nb/)\n"
+"Last-Translator: Karoline Tufte Lien <karoline@dhis2.org>, 2023\n"
+"Language-Team: Norwegian Bokmål (https://app.transifex.com/hisp-uio/teams/100509/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -31,6 +31,9 @@ msgstr "Hendelsesrapporter"
 
 msgid "Event Visualizer"
 msgstr "Hendelsesvisualizer"
+
+msgid "Line Listing"
+msgstr ""
 
 msgid "View in {{appName}} app"
 msgstr "Vis i {{appName}} -app"
@@ -65,6 +68,9 @@ msgstr "Tilbake til alle tolkninger"
 msgid "Interpretations"
 msgstr "Tolkninger"
 
+msgid "Not available offline"
+msgstr "Ikke tilgjengelig i frakoblet modus"
+
 msgid "Save reply"
 msgstr "Lagre svar"
 
@@ -92,9 +98,6 @@ msgstr "Avslutt abonnementet på dette {{objekt}} og slutt å motta varsler"
 msgid "Subscribe to this {{object}} and start receiving notifications"
 msgstr "Abonner på dette {{objekt}} og begynn å motta varsler"
 
-msgid "Not available offline"
-msgstr ""
-
 msgid "Table details"
 msgstr "Tabelldetaljer"
 
@@ -106,6 +109,9 @@ msgstr "Kartdetaljer"
 
 msgid "Visualization details"
 msgstr "Visualiseringdetaljer"
+
+msgid "Line list details"
+msgstr ""
 
 msgid "Owner"
 msgstr "Eier"
@@ -207,6 +213,9 @@ msgid "{{count}} user groups"
 msgid_plural "{{count}} user groups"
 msgstr[0] "{{count}} brukergruppe"
 msgstr[1] "{{count}} brukergrupper"
+
+msgid "visualization"
+msgstr ""
 
 msgid "chart"
 msgstr "diagram"
