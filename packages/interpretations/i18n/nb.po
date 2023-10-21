@@ -33,7 +33,7 @@ msgid "Event Visualizer"
 msgstr "Hendelsesvisualizer"
 
 msgid "Line Listing"
-msgstr ""
+msgstr "Linjeliste"
 
 msgid "View in {{appName}} app"
 msgstr "Vis i {{appName}} -app"
@@ -111,7 +111,7 @@ msgid "Visualization details"
 msgstr "Visualiseringdetaljer"
 
 msgid "Line list details"
-msgstr ""
+msgstr "Linjelistedetaljer"
 
 msgid "Owner"
 msgstr "Eier"
@@ -215,7 +215,7 @@ msgstr[0] "{{count}} brukergruppe"
 msgstr[1] "{{count}} brukergrupper"
 
 msgid "visualization"
-msgstr ""
+msgstr "visualisering"
 
 msgid "chart"
 msgstr "diagram"
