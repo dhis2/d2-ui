@@ -1,15 +1,15 @@
 # 
 # Translators:
 # 晓东 林 <13981924470@126.com>, 2020
-# easylin <lin_xd@126.com>, 2021
+# easylin <lin_xd@126.com>, 2023
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2021-05-20T08:53:00.620Z\n"
+"POT-Creation-Date: 2023-03-14T12:23:26.708Z\n"
 "PO-Revision-Date: 2019-08-13 09:54+0000\n"
-"Last-Translator: easylin <lin_xd@126.com>, 2021\n"
-"Language-Team: Chinese (China) (https://www.transifex.com/hisp-uio/teams/100509/zh_CN/)\n"
+"Last-Translator: easylin <lin_xd@126.com>, 2023\n"
+"Language-Team: Chinese (China) (https://app.transifex.com/hisp-uio/teams/100509/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -31,20 +31,23 @@ msgstr "事件报表"
 msgid "Event Visualizer"
 msgstr "事件可视化"
 
+msgid "Line Listing"
+msgstr "线路列表"
+
 msgid "View in {{appName}} app"
-msgstr ""
+msgstr "在 {{appName}} 应用中查看"
 
 msgid "View"
 msgstr "查看"
 
 msgid "Exit View"
-msgstr ""
+msgstr "退出视图"
 
 msgid "Like"
 msgstr "Like"
 
 msgid "Unlike"
-msgstr ""
+msgstr "不像"
 
 msgid "Reply"
 msgstr "回复"
@@ -53,25 +56,28 @@ msgid "Edit"
 msgstr "编辑<br>"
 
 msgid "Manage sharing"
-msgstr ""
+msgstr "管理共享"
 
 msgid "Delete"
 msgstr "删除"
 
 msgid "Back to all interpretations"
-msgstr ""
+msgstr "返回所有解释"
 
 msgid "Interpretations"
 msgstr "注释"
 
+msgid "Not available offline"
+msgstr "离线时不可用"
+
 msgid "Save reply"
-msgstr ""
+msgstr "保存回复"
 
 msgid "Cancel"
 msgstr "取消"
 
 msgid "Write a reply"
-msgstr ""
+msgstr "写回复"
 
 msgid "Confirm"
 msgstr "确认"
@@ -86,25 +92,25 @@ msgid "Show more"
 msgstr "更多"
 
 msgid "Unsubscribe from this {{object}} and stop receiving notifications"
-msgstr ""
+msgstr "取消订阅此{{object}}并停止接收通知"
 
 msgid "Subscribe to this {{object}} and start receiving notifications"
-msgstr ""
-
-msgid "Not available offline"
-msgstr ""
+msgstr "订阅此{{object}}并开始接收通知"
 
 msgid "Table details"
-msgstr ""
+msgstr "表详细信息"
 
 msgid "Chart details"
-msgstr ""
+msgstr "图表详情"
 
 msgid "Map details"
-msgstr ""
+msgstr "地图详情"
 
 msgid "Visualization details"
-msgstr ""
+msgstr "可视化细节"
+
+msgid "Line list details"
+msgstr "线路列表详细信息"
 
 msgid "Owner"
 msgstr "所有者"
@@ -122,72 +128,72 @@ msgid "Sharing"
 msgstr "共享"
 
 msgid "Delete interpretation"
-msgstr ""
+msgstr "删除解释"
 
 msgid "Are you sure you want to delete this interpretation?"
-msgstr ""
+msgstr "您确定要删除此解释吗？"
 
 msgid "Access restricted"
-msgstr ""
+msgstr "访问受限"
 
 msgid "{{count}} likes"
 msgid_plural "{{count}} likes"
-msgstr[0] ""
+msgstr[0] "{{count}} 喜欢"
 
 msgid "Save interpretation"
-msgstr ""
+msgstr "保存解释"
 
 msgid "Write an interpretation"
-msgstr ""
+msgstr "写一个解释"
 
 msgid "{{count}} replies"
 msgid_plural "{{count}} replies"
-msgstr[0] ""
+msgstr[0] "{{count}} 回复"
 
 msgid "Hide old replies"
-msgstr ""
+msgstr "隐藏旧回复"
 
 msgid "View more replies"
-msgstr ""
+msgstr "查看更多回复"
 
 msgid "Delete comment"
-msgstr ""
+msgstr "删除评论"
 
 msgid "Are you sure you want to delete this comment?"
-msgstr ""
+msgstr "你确定要删除此评论吗？"
 
 msgid "Hide previous interpretations"
-msgstr ""
+msgstr "隐藏以前的解释"
 
 msgid "Show previous interpretations"
-msgstr ""
+msgstr "显示以前的解释"
 
 msgid "No interpretations"
-msgstr ""
+msgstr "没有解释"
 
 msgid "external access"
-msgstr ""
+msgstr "外部访问"
 
 msgid "public access"
-msgstr ""
+msgstr "公共访问"
 
 msgid "None"
 msgstr "没有"
 
 msgid "Shared with"
-msgstr ""
+msgstr "和...分享"
 
 msgid "bold text"
-msgstr ""
+msgstr "加粗字体"
 
 msgid "italic text"
-msgstr ""
+msgstr "斜体文本"
 
 msgid "Read"
-msgstr ""
+msgstr "读"
 
 msgid "Read/Write"
-msgstr ""
+msgstr "读/写"
 
 msgid "Unknown"
 msgstr "未知"
@@ -197,26 +203,29 @@ msgstr "公用"
 
 msgid "{{count}} users"
 msgid_plural "{{count}} users"
-msgstr[0] ""
+msgstr[0] "{{count}} 用户"
 
 msgid "{{count}} user groups"
 msgid_plural "{{count}} user groups"
-msgstr[0] ""
+msgstr[0] "{{count}} 用户组"
+
+msgid "visualization"
+msgstr "可视化"
 
 msgid "chart"
-msgstr ""
+msgstr "图表"
 
 msgid "pivot table"
-msgstr ""
+msgstr "数据透视表"
 
 msgid "map"
-msgstr ""
+msgstr "地图"
 
 msgid "event chart"
-msgstr ""
+msgstr "事件图"
 
 msgid "event report"
-msgstr ""
+msgstr "事件报告"
 
 msgid "object"
-msgstr ""
+msgstr "目的"

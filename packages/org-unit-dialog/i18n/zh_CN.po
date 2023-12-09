@@ -35,10 +35,10 @@ msgid "Group"
 msgstr "组"
 
 msgid "Select a group"
-msgstr ""
+msgstr "选择一个组"
 
 msgid "Select all org units below"
-msgstr ""
+msgstr "选择下面的所有组织部门"
 
 msgid "selected"
 msgstr "选择的"
