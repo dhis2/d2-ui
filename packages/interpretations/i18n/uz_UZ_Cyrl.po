@@ -1,13 +1,14 @@
 # 
 # Translators:
 # Ibatov <ibatovk@who.int>, 2023
+# Philip Larsen Donnelly, 2024
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2023-03-14T12:23:26.708Z\n"
 "PO-Revision-Date: 2019-08-13 09:54+0000\n"
-"Last-Translator: Ibatov <ibatovk@who.int>, 2023\n"
+"Last-Translator: Philip Larsen Donnelly, 2024\n"
 "Language-Team: Uzbek (Cyrillic) (https://app.transifex.com/hisp-uio/teams/100509/uz@Cyrl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -92,11 +93,11 @@ msgstr "Кўпроқ кўрсатиш"
 
 msgid "Unsubscribe from this {{object}} and stop receiving notifications"
 msgstr ""
-"Ушбу {{объект}} га обунани бекор қилинг ва билдиришномалар олинишини "
+"Ушбу {{object}} га обунани бекор қилинг ва билдиришномалар олинишини "
 "тўхтатинг"
 
 msgid "Subscribe to this {{object}} and start receiving notifications"
-msgstr "Ушбу {{объект}} га обуна бўлинг ва билдиришномалар олишни бошланг"
+msgstr "Ушбу {{object}} га обуна бўлинг ва билдиришномалар олишни бошланг"
 
 msgid "Table details"
 msgstr "Жадвал тафсилотлари"
