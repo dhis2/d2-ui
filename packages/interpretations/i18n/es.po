@@ -5,13 +5,14 @@
 # Prabhjot Singh, 2021
 # Marta Vila <marta@dhis2.org>, 2023
 # Enzo Nicolas Rossi <enzo@dhis2.org>, 2023
+# Philip Larsen Donnelly, 2024
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2023-03-14T12:23:26.708Z\n"
 "PO-Revision-Date: 2019-08-13 09:54+0000\n"
-"Last-Translator: Enzo Nicolas Rossi <enzo@dhis2.org>, 2023\n"
+"Last-Translator: Philip Larsen Donnelly, 2024\n"
 "Language-Team: Spanish (https://app.transifex.com/hisp-uio/teams/100509/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -96,10 +97,10 @@ msgstr "Mostrar más"
 
 msgid "Unsubscribe from this {{object}} and stop receiving notifications"
 msgstr ""
-"Cancelar la suscripción de este {{objeto}} y dejar de recibir notificaciones"
+"Cancelar la suscripción de este {{object}} y dejar de recibir notificaciones"
 
 msgid "Subscribe to this {{object}} and start receiving notifications"
-msgstr "Suscríbase a este {{objeto}} y comience a recibir notificaciones"
+msgstr "Suscríbase a este {{object}} y comience a recibir notificaciones"
 
 msgid "Table details"
 msgstr "Detalles de la tabla"

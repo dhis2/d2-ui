@@ -1,16 +1,16 @@
 # 
 # Translators:
-# phil_dhis2, 2019
 # Viktor Varland <viktor@dhis2.org>, 2020
 # Mai Nguyen <thanhmai.jica@gmail.com>, 2020
+# Philip Larsen Donnelly, 2024
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2021-05-20T08:53:00.620Z\n"
+"POT-Creation-Date: 2023-03-14T12:23:26.708Z\n"
 "PO-Revision-Date: 2019-08-13 09:54+0000\n"
-"Last-Translator: Mai Nguyen <thanhmai.jica@gmail.com>, 2020\n"
-"Language-Team: Vietnamese (https://www.transifex.com/hisp-uio/teams/100509/vi/)\n"
+"Last-Translator: Philip Larsen Donnelly, 2024\n"
+"Language-Team: Vietnamese (https://app.transifex.com/hisp-uio/teams/100509/vi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -32,8 +32,11 @@ msgstr "Báo cáo sự kiện"
 msgid "Event Visualizer"
 msgstr "Biểu đồ sự kiện"
 
+msgid "Line Listing"
+msgstr ""
+
 msgid "View in {{appName}} app"
-msgstr "Xem trong ứng dụng {{Tên ứng dụng}}"
+msgstr "Xem trong ứng dụng {{appName}}"
 
 msgid "View"
 msgstr "Xem"
@@ -65,6 +68,9 @@ msgstr "Quay lại tất cả các diễn giải"
 msgid "Interpretations"
 msgstr "Diễn giải báo cáo"
 
+msgid "Not available offline"
+msgstr ""
+
 msgid "Save reply"
 msgstr "Lưu phản hồi"
 
@@ -87,13 +93,10 @@ msgid "Show more"
 msgstr "Hiện thêm"
 
 msgid "Unsubscribe from this {{object}} and stop receiving notifications"
-msgstr "Hủy đăng ký {{đối tượng}} này và ngừng nhận thông báo"
+msgstr "Hủy đăng ký {{object}} này và ngừng nhận thông báo"
 
 msgid "Subscribe to this {{object}} and start receiving notifications"
-msgstr "Đăng ký {{đối tượng}} này và bắt đầu nhận thông báo"
-
-msgid "Not available offline"
-msgstr ""
+msgstr "Đăng ký {{object}} này và bắt đầu nhận thông báo"
 
 msgid "Table details"
 msgstr "Chi tiết bảng "
@@ -106,6 +109,9 @@ msgstr "Chi tiết bản đồ"
 
 msgid "Visualization details"
 msgstr "Chi tiết mô hình hóa"
+
+msgid "Line list details"
+msgstr ""
 
 msgid "Owner"
 msgstr "Sở hữu"
@@ -133,7 +139,7 @@ msgstr "Giới hạn truy cập"
 
 msgid "{{count}} likes"
 msgid_plural "{{count}} likes"
-msgstr[0] "{{đếm}} lượt thích"
+msgstr[0] "{{count}} lượt thích"
 
 msgid "Save interpretation"
 msgstr "Lưu diễn giải"
@@ -143,7 +149,7 @@ msgstr "Viết diễn giải"
 
 msgid "{{count}} replies"
 msgid_plural "{{count}} replies"
-msgstr[0] "{{đếm}} câu trả lời"
+msgstr[0] "{{count}} câu trả lời"
 
 msgid "Hide old replies"
 msgstr "Ẩn câu trả lời cũ"
@@ -198,11 +204,14 @@ msgstr "Công khai"
 
 msgid "{{count}} users"
 msgid_plural "{{count}} users"
-msgstr[0] "{{đếm}} người dùng"
+msgstr[0] "{{count}} người dùng"
 
 msgid "{{count}} user groups"
 msgid_plural "{{count}} user groups"
-msgstr[0] "{{đếm}} nhóm người dùng"
+msgstr[0] "{{count}} nhóm người dùng"
+
+msgid "visualization"
+msgstr ""
 
 msgid "chart"
 msgstr "Biểu đồ"
