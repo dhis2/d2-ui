@@ -3,13 +3,14 @@
 # Philip Larsen Donnelly, 2019
 # Viktor Varland <viktor@dhis2.org>, 2019
 # Jason Pickering <jason@dhis2.org>, 2024
+# Martin <martin@moid.se>, 2024
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2020-04-13T22:26:59.421Z\n"
 "PO-Revision-Date: 2019-08-13 09:54+0000\n"
-"Last-Translator: Jason Pickering <jason@dhis2.org>, 2024\n"
+"Last-Translator: Martin <martin@moid.se>, 2024\n"
 "Language-Team: Swedish (https://app.transifex.com/hisp-uio/teams/100509/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,7 +22,7 @@ msgid "Organisation units"
 msgstr "Organisation enheter"
 
 msgid "Hide"
-msgstr ""
+msgstr "Göm"
 
 msgid "Update"
 msgstr "Uppdatering"
