@@ -1,15 +1,16 @@
 # 
 # Translators:
 # Viktor Varland <viktor@dhis2.org>, 2019
-# phil_dhis2, 2019
+# Philip Larsen Donnelly, 2019
+# Namwan Chanthavisouk, 2024
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2020-06-05T17:52:31.450Z\n"
 "PO-Revision-Date: 2019-08-12 21:18+0000\n"
-"Last-Translator: phil_dhis2, 2019\n"
-"Language-Team: Lao (https://www.transifex.com/hisp-uio/teams/100509/lo/)\n"
+"Last-Translator: Namwan Chanthavisouk, 2024\n"
+"Language-Team: Lao (https://app.transifex.com/hisp-uio/teams/100509/lo/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -32,7 +33,7 @@ msgid "File"
 msgstr "ເອກະສານ"
 
 msgid "Open in this app"
-msgstr ""
+msgstr "ເປີດແອ໋ບນີ້"
 
 msgid "Close"
 msgstr "ປິດ"
