@@ -55,43 +55,43 @@ msgid "Column"
 msgstr "ຖັນ"
 
 msgid "Stacked column"
-msgstr ""
+msgstr "ຖັນຊ້ອນກັນ"
 
 msgid "Bar"
-msgstr ""
+msgstr "ແຖບ"
 
 msgid "Stacked bar"
-msgstr ""
+msgstr "ແຖບຊ້ອນກັນ"
 
 msgid "Line"
-msgstr ""
+msgstr "ລາຍຊື່"
 
 msgid "Area"
-msgstr ""
+msgstr "ພື້ນທີ່"
 
 msgid "Stacked area"
-msgstr ""
+msgstr "ພື້ນທີ່ຊ້ອນກັນ"
 
 msgid "Pie"
-msgstr ""
+msgstr "ພາຍ"
 
 msgid "Radar"
-msgstr ""
+msgstr "ເຣດາ"
 
 msgid "Gauge"
-msgstr ""
+msgstr "ເຄື່ອງວັດແທກ"
 
 msgid "Year over year (line)"
-msgstr ""
+msgstr "ປີຕໍ່ປີ (ລາຍຊື່)"
 
 msgid "Year over year (column)"
-msgstr ""
+msgstr "ປີຕໍ່ປີ (ຖັນ)"
 
 msgid "Single value"
-msgstr ""
+msgstr "ຄ່າດຽວ"
 
 msgid "Pivot table"
 msgstr "ແບບຕາຕະລາງໄພວ໋ອດ"
 
 msgid "Scatter"
-msgstr ""
+msgstr "ກະແຈກກະຈາຍ"
