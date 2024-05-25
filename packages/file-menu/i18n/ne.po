@@ -1,0 +1,79 @@
+# 
+# Translators:
+# Saroj Dhakal <lotusnagarkot@gmail.com>, 2024
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"POT-Creation-Date: 2020-06-05T17:52:31.450Z\n"
+"PO-Revision-Date: 2019-08-12 21:18+0000\n"
+"Last-Translator: Saroj Dhakal <lotusnagarkot@gmail.com>, 2024\n"
+"Language-Team: Nepali (https://app.transifex.com/hisp-uio/teams/100509/ne/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ne\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Delete {{what}}"
+msgstr ""
+
+msgid "This {{what}} will be deleted. Continue?"
+msgstr ""
+
+msgid "Cancel"
+msgstr "रद्द गर्नुहोस्"
+
+msgid "Delete"
+msgstr ""
+
+msgid "File"
+msgstr ""
+
+msgid "Open in this app"
+msgstr ""
+
+msgid "Close"
+msgstr ""
+
+msgid "Get link"
+msgstr ""
+
+msgid "New"
+msgstr ""
+
+msgid "Open"
+msgstr "खोल्नुहोस्"
+
+msgid "Rename {{what}}"
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "Description"
+msgstr ""
+
+msgid "Rename"
+msgstr ""
+
+msgid "Save {{what}} as"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Save as..."
+msgstr ""
+
+msgid "Share"
+msgstr ""
+
+msgid "Translate"
+msgstr ""
+
+msgid "Write interpretation"
+msgstr ""
+
+msgid "Post"
+msgstr ""
