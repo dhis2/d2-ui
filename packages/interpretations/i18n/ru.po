@@ -1,16 +1,17 @@
 # 
 # Translators:
-# phil_dhis2, 2019
+# Philip Larsen Donnelly, 2019
 # Viktor Varland <viktor@dhis2.org>, 2020
 # Ulanbek Abakirov <ulans@mail.ru>, 2020
+# Yury Rogachev <yury@dhis2.org>, 2024
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2021-05-20T08:53:00.620Z\n"
+"POT-Creation-Date: 2023-03-14T12:23:26.708Z\n"
 "PO-Revision-Date: 2019-08-13 09:54+0000\n"
-"Last-Translator: Ulanbek Abakirov <ulans@mail.ru>, 2020\n"
-"Language-Team: Russian (https://www.transifex.com/hisp-uio/teams/100509/ru/)\n"
+"Last-Translator: Yury Rogachev <yury@dhis2.org>, 2024\n"
+"Language-Team: Russian (https://app.transifex.com/hisp-uio/teams/100509/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -31,6 +32,9 @@ msgstr "Отчеты случаев"
 
 msgid "Event Visualizer"
 msgstr "Визуализатор событий"
+
+msgid "Line Listing"
+msgstr "Построчные списки"
 
 msgid "View in {{appName}} app"
 msgstr "Смотреть в приложении {{appName}}"
@@ -65,6 +69,9 @@ msgstr "Назад к переводам"
 msgid "Interpretations"
 msgstr "Интерпретации"
 
+msgid "Not available offline"
+msgstr "Недоступно в автономном режиме"
+
 msgid "Save reply"
 msgstr "Сохранить ответ"
 
@@ -92,9 +99,6 @@ msgstr "Отписаться от  {{object}} и остановить получ
 msgid "Subscribe to this {{object}} and start receiving notifications"
 msgstr "Подписаться к  {{object}}  и начать получать уведомления"
 
-msgid "Not available offline"
-msgstr ""
-
 msgid "Table details"
 msgstr "Детали таблицы"
 
@@ -106,6 +110,9 @@ msgstr "Детали карты"
 
 msgid "Visualization details"
 msgstr "Детали визуализации"
+
+msgid "Line list details"
+msgstr "построчного списка"
 
 msgid "Owner"
 msgstr "Владелец"
@@ -133,10 +140,10 @@ msgstr "Доступ ограничен"
 
 msgid "{{count}} likes"
 msgid_plural "{{count}} likes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{{count}} например,"
+msgstr[1] "{{count}} нравится"
+msgstr[2] "{{count}} нравится"
+msgstr[3] "нравится: {{count}} "
 
 msgid "Save interpretation"
 msgstr "Сохранить перевод"
@@ -146,10 +153,10 @@ msgstr "Написать перевод"
 
 msgid "{{count}} replies"
 msgid_plural "{{count}} replies"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{{count}} ответ"
+msgstr[1] "{{count}} отвечает"
+msgstr[2] "{{count}} отвечает"
+msgstr[3] "количество ответов {{count}} "
 
 msgid "Hide old replies"
 msgstr "Не показывать старые отклики"
@@ -185,10 +192,10 @@ msgid "Shared with"
 msgstr "Совместный доступ с "
 
 msgid "bold text"
-msgstr ""
+msgstr "полужирный текст"
 
 msgid "italic text"
-msgstr ""
+msgstr "курсивный текст"
 
 msgid "Read"
 msgstr "Чтение"
@@ -204,17 +211,20 @@ msgstr "Общедоступный"
 
 msgid "{{count}} users"
 msgid_plural "{{count}} users"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{{count}} пользователь"
+msgstr[1] "{{count}} пользователи"
+msgstr[2] "{{count}} пользователи"
+msgstr[3] "количество пользователей: {{count}} "
 
 msgid "{{count}} user groups"
 msgid_plural "{{count}} user groups"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{{count}} группа пользователей"
+msgstr[1] "{{count}} группы пользователей"
+msgstr[2] "{{count}} группы пользователей"
+msgstr[3] "количество групп пользователей {{count}}"
+
+msgid "visualization"
+msgstr "визуализация"
 
 msgid "chart"
 msgstr "Диаграмма"
