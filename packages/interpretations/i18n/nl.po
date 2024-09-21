@@ -87,7 +87,7 @@ msgid "No description"
 msgstr "Geen beschrijving"
 
 msgid "Show less"
-msgstr ""
+msgstr "Toon minder"
 
 msgid "Show more"
 msgstr "Laat meer zien"
