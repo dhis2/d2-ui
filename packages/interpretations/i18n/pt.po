@@ -4,13 +4,14 @@
 # Viktor Varland <viktor@dhis2.org>, 2020
 # Fernando Jorge Bade, 2021
 # Philip Larsen Donnelly, 2024
+# Shelsea Chumaio, 2024
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2023-03-14T12:23:26.708Z\n"
 "PO-Revision-Date: 2019-08-13 09:54+0000\n"
-"Last-Translator: Philip Larsen Donnelly, 2024\n"
+"Last-Translator: Shelsea Chumaio, 2024\n"
 "Language-Team: Portuguese (https://app.transifex.com/hisp-uio/teams/100509/pt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -152,9 +153,9 @@ msgstr "Escreva uma interpretação"
 
 msgid "{{count}} replies"
 msgid_plural "{{count}} replies"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{{count}} resposta"
+msgstr[1] "{{count}} respostas"
+msgstr[2] "{{count}} respostas"
 
 msgid "Hide old replies"
 msgstr "Ocultar respostas antigas"
@@ -220,7 +221,7 @@ msgstr[1] ""
 msgstr[2] ""
 
 msgid "visualization"
-msgstr ""
+msgstr "visualização"
 
 msgid "chart"
 msgstr "gráfico"
