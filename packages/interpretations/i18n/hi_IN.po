@@ -1,20 +1,18 @@
 # 
 # Translators:
-# Cherise Beek <cherise.beek@gmail.com>, 2021
-# Charel van den Elsen, 2023
-# Rica, 2024
+# Siddharth Agarwal, 2025
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2023-03-14T12:23:26.708Z\n"
 "PO-Revision-Date: 2019-08-13 09:54+0000\n"
-"Last-Translator: Rica, 2024\n"
-"Language-Team: Dutch (https://app.transifex.com/hisp-uio/teams/100509/nl/)\n"
+"Last-Translator: Siddharth Agarwal, 2025\n"
+"Language-Team: Hindi (India) (https://app.transifex.com/hisp-uio/teams/100509/hi_IN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: nl\n"
+"Language: hi_IN\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "Pivot Tables"
@@ -24,7 +22,7 @@ msgid "Visualizer"
 msgstr ""
 
 msgid "Maps"
-msgstr "Kaarten"
+msgstr ""
 
 msgid "Event Reports"
 msgstr ""
@@ -39,13 +37,13 @@ msgid "View in {{appName}} app"
 msgstr ""
 
 msgid "View"
-msgstr "Weergave"
+msgstr ""
 
 msgid "Exit View"
 msgstr ""
 
 msgid "Like"
-msgstr "Leuk vinden"
+msgstr ""
 
 msgid "Unlike"
 msgstr ""
@@ -54,43 +52,43 @@ msgid "Reply"
 msgstr ""
 
 msgid "Edit"
-msgstr "Bewerk"
+msgstr "संपादन करें"
 
 msgid "Manage sharing"
 msgstr ""
 
 msgid "Delete"
-msgstr "Verwijderen"
+msgstr "हटाएं"
 
 msgid "Back to all interpretations"
-msgstr "Terug naar alle interpretaties"
+msgstr ""
 
 msgid "Interpretations"
-msgstr "Interpretaties"
+msgstr ""
 
 msgid "Not available offline"
-msgstr "Niet beschikbaar offline"
+msgstr ""
 
 msgid "Save reply"
 msgstr ""
 
 msgid "Cancel"
-msgstr "Annuleer"
+msgstr "रद्द करें"
 
 msgid "Write a reply"
 msgstr ""
 
 msgid "Confirm"
-msgstr "Bevestigen"
+msgstr ""
 
 msgid "No description"
-msgstr "Geen beschrijving"
+msgstr ""
 
 msgid "Show less"
-msgstr "Toon minder"
+msgstr ""
 
 msgid "Show more"
-msgstr "Laat meer zien"
+msgstr ""
 
 msgid "Unsubscribe from this {{object}} and stop receiving notifications"
 msgstr ""
@@ -117,10 +115,10 @@ msgid "Owner"
 msgstr ""
 
 msgid "Created"
-msgstr "Gemaakt"
+msgstr ""
 
 msgid "Last updated"
-msgstr "Laatst bijgewerkt"
+msgstr ""
 
 msgid "Views"
 msgstr ""
@@ -181,7 +179,7 @@ msgid "public access"
 msgstr ""
 
 msgid "None"
-msgstr "Geen"
+msgstr "कोई नहीं"
 
 msgid "Shared with"
 msgstr ""
@@ -199,7 +197,7 @@ msgid "Read/Write"
 msgstr ""
 
 msgid "Unknown"
-msgstr "Onbekend"
+msgstr "अज्ञात"
 
 msgid "Public"
 msgstr ""
