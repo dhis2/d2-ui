@@ -1,15 +1,16 @@
 # 
 # Translators:
-# phil_dhis2, 2019
+# Philip Larsen Donnelly, 2019
 # Viktor Varland <viktor@dhis2.org>, 2020
+# Em Le <em.hispvietnam@gmail.com>, 2025
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2020-04-13T22:26:59.421Z\n"
 "PO-Revision-Date: 2019-08-13 09:54+0000\n"
-"Last-Translator: Viktor Varland <viktor@dhis2.org>, 2020\n"
-"Language-Team: Khmer (https://www.transifex.com/hisp-uio/teams/100509/km/)\n"
+"Last-Translator: Em Le <em.hispvietnam@gmail.com>, 2025\n"
+"Language-Team: Khmer (https://app.transifex.com/hisp-uio/teams/100509/km/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,7 +21,7 @@ msgid "Organisation units"
 msgstr "Organisation units"
 
 msgid "Hide"
-msgstr ""
+msgstr "លាក់"
 
 msgid "Update"
 msgstr "ធ្វើ​បច្ចុប្បន្នភាព"
@@ -47,10 +48,10 @@ msgid "Deselect all"
 msgstr ""
 
 msgid "User organisation unit"
-msgstr ""
+msgstr "មូលដ្ឋានសុខាភិបាល របស់អ្នកប្រើប្រាស់"
 
 msgid "User sub-units"
-msgstr ""
+msgstr "User sub-units"
 
 msgid "User sub-x2-units"
-msgstr ""
+msgstr "User sub-x2-units"

@@ -3,14 +3,14 @@
 # Viktor Varland <viktor@dhis2.org>, 2020
 # Mai Nguyen <thanhmai.jica@gmail.com>, 2020
 # Philip Larsen Donnelly, 2024
-# Em Le <em.hispvietnam@gmail.com>, 2024
+# Em Le <em.hispvietnam@gmail.com>, 2025
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2023-03-14T12:23:26.708Z\n"
 "PO-Revision-Date: 2019-08-13 09:54+0000\n"
-"Last-Translator: Em Le <em.hispvietnam@gmail.com>, 2024\n"
+"Last-Translator: Em Le <em.hispvietnam@gmail.com>, 2025\n"
 "Language-Team: Vietnamese (https://app.transifex.com/hisp-uio/teams/100509/vi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,7 +34,7 @@ msgid "Event Visualizer"
 msgstr "Biểu đồ sự kiện"
 
 msgid "Line Listing"
-msgstr ""
+msgstr "Báo Cáo Dòng"
 
 msgid "View in {{appName}} app"
 msgstr "Xem trong ứng dụng {{appName}}"

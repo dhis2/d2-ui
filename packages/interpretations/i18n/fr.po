@@ -1,21 +1,20 @@
 # 
 # Translators:
-# a270031086f2a0d3514bc0cb507b48f6, 2019
 # Philip Larsen Donnelly, 2019
 # Karoline Tufte Lien <karoline@dhis2.org>, 2020
 # Edem Kossi <ekossi@hispwca.org>, 2020
 # Gabriela Rodriguez <grodriguezcoronado@gmail.com>, 2020
 # Viktor Varland <viktor@dhis2.org>, 2020
 # Yayra Gomado <ygomado@hispwca.org>, 2021
-# Yao Selom SAKA (HISP WCA) <ysaka@hispwca.org>, 2022
 # Cyrille Kabrane, 2025
+# Yao Selom SAKA (HISP WCA) <ysaka@hispwca.org>, 2025
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2023-03-14T12:23:26.708Z\n"
 "PO-Revision-Date: 2019-08-13 09:54+0000\n"
-"Last-Translator: Cyrille Kabrane, 2025\n"
+"Last-Translator: Yao Selom SAKA (HISP WCA) <ysaka@hispwca.org>, 2025\n"
 "Language-Team: French (https://app.transifex.com/hisp-uio/teams/100509/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,7 +23,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 msgid "Pivot Tables"
-msgstr "Les Tableaux Croisés Dynamiques"
+msgstr "Tableaux croisés dynamiques"
 
 msgid "Visualizer"
 msgstr "Visualiseur"
@@ -84,7 +83,7 @@ msgid "Cancel"
 msgstr "Annuler"
 
 msgid "Write a reply"
-msgstr "Ecrire une réponse"
+msgstr "Écrire une réponse"
 
 msgid "Confirm"
 msgstr "Confirmer"
@@ -118,7 +117,7 @@ msgid "Visualization details"
 msgstr "Détails de la visualisation"
 
 msgid "Line list details"
-msgstr ""
+msgstr "Détails de la liste des lignes"
 
 msgid "Owner"
 msgstr "Propriétaire"
@@ -148,7 +147,7 @@ msgid "{{count}} likes"
 msgid_plural "{{count}} likes"
 msgstr[0] "{{count}} les aimes"
 msgstr[1] "{{count}} les aimes"
-msgstr[2] "{{count}} les aimes"
+msgstr[2] "{{count}} \"J'aime\""
 
 msgid "Save interpretation"
 msgstr "Enregistrer l'interprétation"
@@ -193,7 +192,7 @@ msgid "None"
 msgstr "Aucun"
 
 msgid "Shared with"
-msgstr "Partager avec"
+msgstr "Partagé avec"
 
 msgid "bold text"
 msgstr "texte en gras"
@@ -226,7 +225,7 @@ msgstr[1] "{{count}} groupe d'utilisateurs"
 msgstr[2] "{{count}} groupe d'utilisateurs"
 
 msgid "visualization"
-msgstr ""
+msgstr "visualisation"
 
 msgid "chart"
 msgstr "graphique"
