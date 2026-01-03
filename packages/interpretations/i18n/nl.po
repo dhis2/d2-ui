@@ -1,7 +1,7 @@
 # 
 # Translators:
 # Cherise Beek <cherise.beek@gmail.com>, 2021
-# Charel van den Elsen, 2023
+# Charel van den Elsen <zobeadzorg@gmail.com>, 2023
 # Rica, 2024
 # 
 msgid ""
@@ -87,7 +87,7 @@ msgid "No description"
 msgstr "Geen beschrijving"
 
 msgid "Show less"
-msgstr ""
+msgstr "Toon minder"
 
 msgid "Show more"
 msgstr "Laat meer zien"
