@@ -1,20 +1,20 @@
+# 
 # Translators:
-# Philip Larsen Donnelly, 2019
-# Viktor Varland <viktor@dhis2.org>, 2020
-# Em Le <em.hispvietnam@gmail.com>, 2025
+# Siddharth Agarwal, 2025
+# Rohit Wadhwani, 2026
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2023-03-14T12:23:26.708Z\n"
 "PO-Revision-Date: 2019-08-13 09:54+0000\n"
-"Last-Translator: Em Le <em.hispvietnam@gmail.com>, 2025\n"
-"Language-Team: Khmer (https://app.transifex.com/hisp-uio/teams/100509/km/)\n"
+"Last-Translator: Rohit Wadhwani, 2026\n"
+"Language-Team: Hindi (India) (https://app.transifex.com/hisp-uio/teams/100509/hi_IN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: km\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: hi_IN\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "Pivot Tables"
 msgstr ""
@@ -23,13 +23,13 @@ msgid "Visualizer"
 msgstr ""
 
 msgid "Maps"
-msgstr "ផែនទី"
+msgstr ""
 
 msgid "Event Reports"
-msgstr "របាយការណ៍ព្រឹត្តិការណ៍"
+msgstr ""
 
 msgid "Event Visualizer"
-msgstr "រូបភាពព្រឹត្តិការណ៍"
+msgstr ""
 
 msgid "Line Listing"
 msgstr ""
@@ -38,7 +38,7 @@ msgid "View in {{appName}} app"
 msgstr ""
 
 msgid "View"
-msgstr "View"
+msgstr ""
 
 msgid "Exit View"
 msgstr ""
@@ -50,46 +50,46 @@ msgid "Unlike"
 msgstr ""
 
 msgid "Reply"
-msgstr "ឆ្លើយតប"
+msgstr "जवाब दें"
 
 msgid "Edit"
-msgstr "កែសម្រួល​"
+msgstr "संपादन करें"
 
 msgid "Manage sharing"
 msgstr ""
 
 msgid "Delete"
-msgstr "​លុប​"
+msgstr "हटाएं"
 
 msgid "Back to all interpretations"
-msgstr "ត្រឡប់ទៅកាន់ការបកស្រាយទាំងអស់"
+msgstr ""
 
 msgid "Interpretations"
-msgstr "កន្លែងសន្ទនារ"
+msgstr ""
 
 msgid "Not available offline"
-msgstr "មិនអាចប្រើប្រាស់បាននៅពេលបណ្ដាញត្រូវបានផ្តាច់"
+msgstr ""
 
 msgid "Save reply"
 msgstr ""
 
 msgid "Cancel"
-msgstr "បោះបង់"
+msgstr "रद्द करें"
 
 msgid "Write a reply"
 msgstr ""
 
 msgid "Confirm"
-msgstr "បញ្ជាក់"
-
-msgid "No description"
-msgstr "មិនមានការពិពណ៌នា"
-
-msgid "Show less"
 msgstr ""
 
+msgid "No description"
+msgstr "कोई विवरण नहीं"
+
+msgid "Show less"
+msgstr "कम दिखाएँ"
+
 msgid "Show more"
-msgstr "បង្ហាញច្រើនទៀត"
+msgstr "और दिखाएँ"
 
 msgid "Unsubscribe from this {{object}} and stop receiving notifications"
 msgstr ""
@@ -116,16 +116,16 @@ msgid "Owner"
 msgstr ""
 
 msgid "Created"
-msgstr ""
+msgstr "बनाया गया"
 
 msgid "Last updated"
-msgstr "បាន​ធ្វើ​បច្ចុប្បន្នភាព​ចុងក្រោយ"
+msgstr "अंतिम अपडेट"
 
 msgid "Views"
 msgstr ""
 
 msgid "Sharing"
-msgstr ""
+msgstr "शेयर करें"
 
 msgid "Delete interpretation"
 msgstr ""
@@ -139,6 +139,7 @@ msgstr ""
 msgid "{{count}} likes"
 msgid_plural "{{count}} likes"
 msgstr[0] ""
+msgstr[1] ""
 
 msgid "Save interpretation"
 msgstr ""
@@ -149,6 +150,7 @@ msgstr ""
 msgid "{{count}} replies"
 msgid_plural "{{count}} replies"
 msgstr[0] ""
+msgstr[1] ""
 
 msgid "Hide old replies"
 msgstr ""
@@ -178,7 +180,7 @@ msgid "public access"
 msgstr ""
 
 msgid "None"
-msgstr "គ្មាន"
+msgstr "कोई नहीं"
 
 msgid "Shared with"
 msgstr ""
@@ -190,13 +192,13 @@ msgid "italic text"
 msgstr ""
 
 msgid "Read"
-msgstr ""
+msgstr "पढ़ें"
 
 msgid "Read/Write"
-msgstr ""
+msgstr "पढ़ें / लिखें"
 
 msgid "Unknown"
-msgstr "មិន​ស្គាល់"
+msgstr "अज्ञात"
 
 msgid "Public"
 msgstr ""
@@ -204,10 +206,12 @@ msgstr ""
 msgid "{{count}} users"
 msgid_plural "{{count}} users"
 msgstr[0] ""
+msgstr[1] ""
 
 msgid "{{count}} user groups"
 msgid_plural "{{count}} user groups"
 msgstr[0] ""
+msgstr[1] ""
 
 msgid "visualization"
 msgstr ""
