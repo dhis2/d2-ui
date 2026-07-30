@@ -1,25 +1,27 @@
-# 
 # Translators:
 # Gabriela Rodriguez <grodriguezcoronado@gmail.com>, 2020
 # Viktor Varland <viktor@dhis2.org>, 2020
 # Fernando Jorge Bade, 2021
 # Philip Larsen Donnelly, 2024
+# Shelsea Chumaio, 2024
+# Helton Dias, 2024
+# Edson Nhancale, 2025
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2023-03-14T12:23:26.708Z\n"
 "PO-Revision-Date: 2019-08-13 09:54+0000\n"
-"Last-Translator: Philip Larsen Donnelly, 2024\n"
+"Last-Translator: Edson Nhancale, 2025\n"
 "Language-Team: Portuguese (https://app.transifex.com/hisp-uio/teams/100509/pt/)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: pt\n"
 "Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 msgid "Pivot Tables"
-msgstr "Tabelas dinâmicas"
+msgstr "Tabelas Dinâmicas"
 
 msgid "Visualizer"
 msgstr "Visualizar"
@@ -34,19 +36,19 @@ msgid "Event Visualizer"
 msgstr "Visualizador de Eventos"
 
 msgid "Line Listing"
-msgstr ""
+msgstr "Listagem de Linhas"
 
 msgid "View in {{appName}} app"
-msgstr ""
+msgstr "Ver na aplicação {{appName}} "
 
 msgid "View"
-msgstr "Vizualizar"
+msgstr "Visualizar"
 
 msgid "Exit View"
-msgstr "Sair da vista"
+msgstr "Sair da Visualização"
 
 msgid "Like"
-msgstr "como"
+msgstr "Como"
 
 msgid "Unlike"
 msgstr "Ao contrário"
@@ -55,16 +57,16 @@ msgid "Reply"
 msgstr "Responder"
 
 msgid "Edit"
-msgstr "Modificar"
+msgstr "Editar"
 
 msgid "Manage sharing"
-msgstr "Gerenciar compartilhamento"
+msgstr "Gerir partilha"
 
 msgid "Delete"
 msgstr "Apagar"
 
 msgid "Back to all interpretations"
-msgstr "Voltar para todas as interpretações"
+msgstr "Voltar para todas interpretações"
 
 msgid "Interpretations"
 msgstr "Interpretações"
@@ -109,10 +111,10 @@ msgid "Map details"
 msgstr "Detalhes do mapa"
 
 msgid "Visualization details"
-msgstr "Detalhes de visualização"
+msgstr "Detalhes da visualização"
 
 msgid "Line list details"
-msgstr ""
+msgstr "Detalhes da lista de linhas"
 
 msgid "Owner"
 msgstr "Proprietário"
@@ -130,31 +132,31 @@ msgid "Sharing"
 msgstr "Partilha"
 
 msgid "Delete interpretation"
-msgstr "Suprimir interpretação"
+msgstr "Eliminar interpretação"
 
 msgid "Are you sure you want to delete this interpretation?"
-msgstr "Tem certeza de que deseja suprimir esta interpretação?"
+msgstr "Tem certeza de que deseja eliminar esta interpretação?"
 
 msgid "Access restricted"
 msgstr "Acesso restrito"
 
 msgid "{{count}} likes"
 msgid_plural "{{count}} likes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{{count}} como"
+msgstr[1] "{{count}} gostos"
+msgstr[2] "{{count}} gostos"
 
 msgid "Save interpretation"
-msgstr "Salvar interpretação"
+msgstr "Guardar interpretação"
 
 msgid "Write an interpretation"
 msgstr "Escreva uma interpretação"
 
 msgid "{{count}} replies"
 msgid_plural "{{count}} replies"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{{count}} resposta"
+msgstr[1] "{{count}} respostas"
+msgstr[2] "{{count}} respostas"
 
 msgid "Hide old replies"
 msgstr "Ocultar respostas antigas"
@@ -163,16 +165,16 @@ msgid "View more replies"
 msgstr "Ver mais respostas"
 
 msgid "Delete comment"
-msgstr "Suprimir comentário"
+msgstr "Eliminar comentário"
 
 msgid "Are you sure you want to delete this comment?"
-msgstr "Tem certeza de que deseja suprimir este comentário?"
+msgstr "Tem certeza de que deseja eliminar este comentário?"
 
 msgid "Hide previous interpretations"
-msgstr ""
+msgstr "Ocultar interpretações anteriores"
 
 msgid "Show previous interpretations"
-msgstr ""
+msgstr "Mostrar interpretações anteriores"
 
 msgid "No interpretations"
 msgstr "Sem interpretações"
@@ -187,13 +189,13 @@ msgid "None"
 msgstr "Nenhum"
 
 msgid "Shared with"
-msgstr ""
+msgstr "Partilhado com"
 
 msgid "bold text"
-msgstr ""
+msgstr "texto a negrito"
 
 msgid "italic text"
-msgstr ""
+msgstr "texto em itálico"
 
 msgid "Read"
 msgstr "Ler"
@@ -205,22 +207,22 @@ msgid "Unknown"
 msgstr "Desconhecido"
 
 msgid "Public"
-msgstr "Publico"
+msgstr "Público"
 
 msgid "{{count}} users"
 msgid_plural "{{count}} users"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{{count}} utilizador"
+msgstr[1] "{{count}} utilizadores"
+msgstr[2] "{{count}} utilizadores"
 
 msgid "{{count}} user groups"
 msgid_plural "{{count}} user groups"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{{count}} grupo de utilizadores"
+msgstr[1] "{{count}} grupos de utilizadores"
+msgstr[2] "{{count}} grupos de utilizadores"
 
 msgid "visualization"
-msgstr ""
+msgstr "visualização"
 
 msgid "chart"
 msgstr "gráfico"
@@ -238,4 +240,4 @@ msgid "event report"
 msgstr "relatório de evento"
 
 msgid "object"
-msgstr "objeto"
+msgstr "objecto"
