@@ -1,28 +1,28 @@
 # Translators:
-# Philip Larsen Donnelly, 2020
-# Kiry Heng, 2026
+# Siddharth Agarwal, 2025
+# Rohit Wadhwani, 2026
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2020-12-07T08:39:12.894Z\n"
 "PO-Revision-Date: 2020-04-29 21:46+0000\n"
-"Last-Translator: Kiry Heng, 2026\n"
-"Language-Team: Khmer (https://app.transifex.com/hisp-uio/teams/100509/km/)\n"
+"Last-Translator: Rohit Wadhwani, 2026\n"
+"Language-Team: Hindi (India) (https://app.transifex.com/hisp-uio/teams/100509/hi_IN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: km\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: hi_IN\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "Name"
-msgstr "ឈ្មោះ"
+msgstr "नाम"
 
 msgid "Created"
-msgstr ""
+msgstr "बनाया गया"
 
 msgid "Last updated"
-msgstr "បាន​ធ្វើ​បច្ចុប្បន្នភាព​ចុងក្រោយ"
+msgstr "अंतिम अपडेट"
 
 msgid "Type"
 msgstr ""
@@ -46,7 +46,7 @@ msgid "Created by others"
 msgstr ""
 
 msgid "Close"
-msgstr "បិទ"
+msgstr "बंद करें"
 
 msgid "Column"
 msgstr ""
@@ -64,7 +64,7 @@ msgid "Line"
 msgstr ""
 
 msgid "Area"
-msgstr "តំបន់"
+msgstr ""
 
 msgid "Stacked area"
 msgstr ""
