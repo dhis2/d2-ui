@@ -1,21 +1,20 @@
-# 
 # Translators:
 # Viktor Varland <viktor@dhis2.org>, 2020
 # Karoline Tufte Lien <karoline@dhis2.org>, 2020
-# Bram Piot <bram.piot@gmail.com>, 2020
 # Gabriela Rodriguez <grodriguezcoronado@gmail.com>, 2020
-# phil_dhis2, 2020
+# Philip Larsen Donnelly, 2020
 # Yayra Gomado <ygomado@hispwca.org>, 2021
+# Cyrille Kabrane, 2026
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2020-12-07T08:39:12.894Z\n"
 "PO-Revision-Date: 2020-04-29 21:46+0000\n"
-"Last-Translator: Yayra Gomado <ygomado@hispwca.org>, 2021\n"
-"Language-Team: French (https://www.transifex.com/hisp-uio/teams/100509/fr/)\n"
+"Last-Translator: Cyrille Kabrane, 2026\n"
+"Language-Team: French (https://app.transifex.com/hisp-uio/teams/100509/fr/)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: fr\n"
 "Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
@@ -57,25 +56,25 @@ msgid "Column"
 msgstr "Colonne"
 
 msgid "Stacked column"
-msgstr "Colonne empilée"
+msgstr "Colonnes empilées"
 
 msgid "Bar"
-msgstr "Bar"
+msgstr "Barres"
 
 msgid "Stacked bar"
-msgstr "Bar empilé"
+msgstr "Barres empilées"
 
 msgid "Line"
-msgstr "Ligne"
+msgstr "Linéaire"
 
 msgid "Area"
-msgstr "Aire"
+msgstr "Zone"
 
 msgid "Stacked area"
-msgstr "Zone empilée"
+msgstr "Zone avec empilement"
 
 msgid "Pie"
-msgstr "Tarte"
+msgstr "Circulaire"
 
 msgid "Radar"
 msgstr "Radar"
@@ -84,10 +83,10 @@ msgid "Gauge"
 msgstr "Jauge"
 
 msgid "Year over year (line)"
-msgstr "Année après année (ligne)"
+msgstr "Évolution annuelle (ligne)"
 
 msgid "Year over year (column)"
-msgstr "Année après année (colonne)"
+msgstr "Évolution annuelle (colonne)"
 
 msgid "Single value"
 msgstr "Valeur unique"
